@@ -1,0 +1,13 @@
+{
+ "key": "Stepper Motor",
+ "title": "Stepper Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Reluctance & Stepper/Stepper_Motor.md"
+ ],
+ "text": "Permanent magnet stepper motor suitable for whole-, half-, and micro-stepping.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

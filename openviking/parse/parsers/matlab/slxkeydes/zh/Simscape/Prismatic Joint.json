@@ -1,0 +1,13 @@
+{
+ "key": "Prismatic Joint",
+ "title": "Prismatic Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Prismatic_Joint.md"
+ ],
+ "text": "允许沿单一轴相对运动的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

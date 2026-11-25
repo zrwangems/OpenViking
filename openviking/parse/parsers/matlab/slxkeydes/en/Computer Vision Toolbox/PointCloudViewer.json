@@ -1,0 +1,108 @@
+{
+ "key": "PointCloudViewer",
+ "title": "Point Cloud Viewer",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Point_Cloud_Viewer.md"
+ ],
+ "text": "Visualize streaming point cloud data sequence, 3 inputs, no direct feedthrough; {Open at Start of Simulation} sets the open Point Cloud Viewer window at start, {Location Port} enables point location as input, {Location and Color Port} enables point location and color as input, {Location and Intensity Port} enables point location and intensity, {Display the full path} displays full path of source data in title, {Bring All Point Cloud Viewer Windows Forward} sets the bring all Point Cloud Viewer windows to front, {Simulation Toolbar} shows simulation toolbar, {Status Bar} shows status bar, {Highlight Simulink Block} sets the highlight Point Cloud Viewer block, {Run} sets the view entire point cloud sequence, {Continue}, {Stop} and {Drop Frames to Improve Performance} sets the reduce frame rate of input point cloud. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Location",
+   "direction": "input",
+   "summary": "Positions of points in 3-D coordinate space matrix | array"
+  },
+  {
+   "name": "Color",
+   "direction": "input",
+   "summary": "Color of point cloud [] (default) | matrix | array"
+  },
+  {
+   "name": "Intensity",
+   "direction": "input",
+   "summary": "Grayscale intensities [] (default) | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Open at Start of Simulation",
+   "default": "on",
+   "values": "Open Point Cloud Viewer window at start of simulation on (default) | off",
+   "group": "File"
+  },
+  {
+   "name": "Location Port",
+   "default": "on",
+   "values": "Enable point location as input on (default) | off",
+   "group": "File"
+  },
+  {
+   "name": "Location and Color Port",
+   "default": "off",
+   "values": "Enable point location and color as input off (default) | on",
+   "group": "File"
+  },
+  {
+   "name": "Location and Intensity Port",
+   "default": "off",
+   "values": "Enable point location and intensity as input off (default) | on",
+   "group": "File"
+  },
+  {
+   "name": "Display the full path",
+   "default": "off",
+   "values": "Display full path of source data in title bar off (default) | on",
+   "group": "File > Configuration > Edit > Core"
+  },
+  {
+   "name": "Bring All Point Cloud Viewer Windows Forward",
+   "default": "off",
+   "values": "Bring all Point Cloud Viewer windows to front of display off (default) | on",
+   "group": "View"
+  },
+  {
+   "name": "Simulation Toolbar",
+   "default": "on",
+   "values": "Show simulation toolbar on (default) | off",
+   "group": "View"
+  },
+  {
+   "name": "Status Bar",
+   "default": "on",
+   "values": "Show status bar on (default) | off",
+   "group": "View"
+  },
+  {
+   "name": "Highlight Simulink Block",
+   "default": "off",
+   "values": "Highlight Point Cloud Viewer block off (default) | on",
+   "group": "View"
+  },
+  {
+   "name": "Run",
+   "default": "off",
+   "values": "View entire point cloud sequence off (default) | on",
+   "group": "Simulation"
+  },
+  {
+   "name": "Continue",
+   "default": "off",
+   "values": "Continue viewing the point cloud sequence off (default) | on",
+   "group": "Simulation"
+  },
+  {
+   "name": "Stop",
+   "default": "off",
+   "values": "Stop viewing the point cloud sequence off (default) | on",
+   "group": "Simulation"
+  },
+  {
+   "name": "Drop Frames to Improve Performance",
+   "default": "on",
+   "values": "Reduce frame rate of input point cloud sequence on (default) | off",
+   "group": "Simulation"
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "key": "Baseband File Writer",
+ "title": "Baseband File Writer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sinks/Baseband_File_Writer.md"
+ ],
+ "text": "将基带信号写入文件，输入 1 路；按 {Metadata (structure or object)} 指定描述基带信号的数据 empty structure；{Baseband file name} 指定要写入的基带文件名、{Center frequency (Hz)} 指定基带信号的中心频率 1e8、{Number of latest samples to write} 指定要写入的样本数、{Simulate using} 指定仿真模式 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "基带信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Baseband file name",
+   "default": "untitled.bb",
+   "values": "要写入的基带文件名 untitled.bb (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Center frequency (Hz)",
+   "default": "1e8",
+   "values": "基带信号的中心频率 1e8 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Metadata (structure or object)",
+   "default": ")",
+   "values": "描述基带信号的数据 empty structure ( struct() ) (default) | structure | object",
+   "group": ""
+  },
+  {
+   "name": "Number of latest samples to write",
+   "default": "inf",
+   "values": "要写入的样本数 inf (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "选择仿真模式 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

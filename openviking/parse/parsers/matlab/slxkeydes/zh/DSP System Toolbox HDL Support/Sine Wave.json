@@ -1,0 +1,123 @@
+{
+ "key": "Sine Wave",
+ "title": "Sine Wave",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Sources/Sine_Wave.md",
+  "DSP System Toolbox/Sources/Sine_Wave.md"
+ ],
+ "text": "生成连续或离散正弦波；输出 1 路、无直接馈通；按 {Phase offset (rad)} 指定相位偏移；{Amplitude} 指定正弦波的幅值、{Frequency (Hz)} 指定每个正弦波的频率、{Sample mode} 指定连续或离散采样模式、{Output complexity} 指定实数或复数波形、{Computation method} 指定计算离散时间正弦波的方法 Trigonometric、{Optimize table for} 指定针对速度或内存进行优化、{Sample time} 指定采样周期 1/1000、{Samples per frame}、{Resetting states when re-enabled} 指定使能子系统内部的状态行为 Restart、{Output data type} 输出数据类型、{Mode} 指定数据类型模式 Built、{Signedness} 指定定点数据的有符号性、{Scaling} 指定定点数据的定标方法 Best、{Word length} 指定存放量化整数的字的位数、{Fraction length} 指定定点数据类型的小数长度、{Data type override} 指定数据类型覆盖模式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "正弦信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Amplitude",
+   "default": "1",
+   "values": "正弦波的幅值 1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "100",
+   "values": "每个正弦波的频率 100 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "相位偏移 0 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Sample mode",
+   "default": "Discrete",
+   "values": "连续或离散采样模式 Discrete (default) | Continuous",
+   "group": "Main"
+  },
+  {
+   "name": "Output complexity",
+   "default": "Real",
+   "values": "实数或复数波形 Real (default) | Complex",
+   "group": "Main"
+  },
+  {
+   "name": "Computation method",
+   "default": "fcn",
+   "values": "计算离散时间正弦波的方法 Trigonometric fcn (default) | Table lookup | Differential",
+   "group": "Main"
+  },
+  {
+   "name": "Optimize table for",
+   "default": "Speed",
+   "values": "针对速度或内存进行优化 Speed (default) | Memory",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "1/1000",
+   "values": "采样周期 1/1000 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Resetting states when re-enabled",
+   "default": "zero",
+   "values": "使能子系统内部的状态行为 Restart at time zero (default) | Catch up to simulation time",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | fixdt(1,16) | fixdt(1,16,0) | | Inherit:Inherit via back propagation",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mode",
+   "default": "in",
+   "values": "数据类型模式 Built in (default) | Inherit | Fixed point | Expression",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "定点数据的有符号性 Signed (default)",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "定点数据的定标方法 Best precision (default) | Binary point",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "存放量化整数的字的位数 16 (default) | integer from 2 to 128",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "定点数据类型的小数长度 0 (default) | integer scalar",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Data type override",
+   "default": "Inherit",
+   "values": "数据类型覆盖模式 Inherit (default) | Off",
+   "group": "Data Type Assistant"
+  }
+ ]
+}

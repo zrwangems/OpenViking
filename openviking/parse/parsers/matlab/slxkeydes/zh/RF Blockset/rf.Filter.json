@@ -1,0 +1,163 @@
+{
+ "key": "rf.Filter",
+ "title": "Filter",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Idealized Baseband/Filter.md"
+ ],
+ "text": "在 Simulink 中对 RF 复基带信号进行滤波，输入 1 路、输出 1 路；按 {Passband frequency (Hz)} 指定通带频率；{Design method} 指定滤波器设计方法、{Filter type} 指定滤波器响应类型、{Implement using filter order} 使用滤波器阶数实现、{Filter order} 指定滤波器阶数、{Passband attenuation (dB)} 指定通带衰减 10*log10、{Stopband frequencies (Hz)} 指定带阻滤波器的阻带频率、{Stopband attenuation (dB)} 指定阻带衰减、{RF frequency (Hz)} 指定信号带宽中心、{Simulate using} 指定要运行的仿真类型 Interpreted、{Modeling domain} 指定建模域 Time、{Solver} 指定时域求解器、{FIR filter length} 指定一维数字滤波器的滤波器长度、{First plot type} 指定绘图类型 S21、{Impulse response arguments} 绘制冲激响应的输入参数、{Step response arguments} 绘制阶跃响应的输入参数、{First plot y-axis units} 指定第一个图的 Y 轴单位 Magnitude、{Second Plot type} 指定第二个图的绘图类型、{Second plot y-axis units} 指定第二个图的 Y 轴单位 Magnitude、{X-axis frequency points (Hz)} 用于绘制 S 参数数据的频率点 logspace、{X-axis scale} 指定线性或对数 X 轴刻度、{Y-axis scale} 指定线性或对数 Y 轴刻度、{Plot Sparameter characteristics} 绘制 S 参数数据，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "时变输入信号 real scalar | real column | complex scalar | complex column"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "时变输出信号 complex scalar | complex column"
+  }
+ ],
+ "params": [
+  {
+   "name": "Design method",
+   "default": "Butterworth",
+   "values": "滤波器设计方法 Butterworth (default) | Chebyshev | Inverse Chebyshev",
+   "group": "Main"
+  },
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "滤波器响应类型 Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": "Main"
+  },
+  {
+   "name": "Implement using filter order",
+   "default": "off",
+   "values": "使用滤波器阶数实现 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Filter order",
+   "default": "3",
+   "values": "滤波器阶数 3 (default) | integer greater than 2",
+   "group": "Main"
+  },
+  {
+   "name": "Passband frequency (Hz)",
+   "default": "1e9",
+   "values": "通带频率 1e9 (default) | positive real scalar | positive ascending two-tuple vector",
+   "group": "Main"
+  },
+  {
+   "name": "Passband attenuation (dB)",
+   "default": "10*log10(2)",
+   "values": "通带衰减 10*log10(2) (default) | positive real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Stopband frequencies (Hz)",
+   "default": "2000000000",
+   "values": "带阻滤波器的阻带频率 2000000000 (default) | positive real scalar | positive ascending two-tuple vector",
+   "group": "Main"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "40",
+   "values": "阻带衰减 40 (default) | positive real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "RF frequency (Hz)",
+   "default": "1000000000",
+   "values": "信号带宽中心 1000000000 (default) | positive real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling domain",
+   "default": "step)",
+   "values": "建模域 Time (Fixed step) (default) | Time (Continuous) | Frequency (Digital filter)",
+   "group": "Modeling"
+  },
+  {
+   "name": "Solver",
+   "default": "NDF2",
+   "values": "时域求解器 NDF2 (default) | Trapezoidal | Backward Euler | ode15s | ode23s | ode23t (trap) | ode23tb (trap+BE)",
+   "group": "Modeling"
+  },
+  {
+   "name": "FIR filter length",
+   "default": "128",
+   "values": "一维数字滤波器的滤波器长度 128 (default) | real positive integer",
+   "group": "Modeling"
+  },
+  {
+   "name": "First plot type",
+   "default": "S21",
+   "values": "绘图类型 S21 (default) | Phase delay | Group delay | Impulse response | Step response",
+   "group": "Visualization"
+  },
+  {
+   "name": "Impulse response arguments",
+   "default": "1e4]",
+   "values": "绘制冲激响应的输入参数 [ 1e-11, 1e4] (default) | two-element vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Step response arguments",
+   "default": "]",
+   "values": "绘制阶跃响应的输入参数 [ 1e-11, 1e4, 1e-10 ] (default) | three-element vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "First plot y-axis units",
+   "default": "(dB)",
+   "values": "第一个图的 Y 轴单位 Magnitude (dB) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "Second Plot type",
+   "default": "None",
+   "values": "第二个图的绘图类型 None (default) | S21 | Phase delay | Group delay | Impulse response | Step response",
+   "group": "Visualization"
+  },
+  {
+   "name": "Second plot y-axis units",
+   "default": "(dB)",
+   "values": "第二个图的 Y 轴单位 Magnitude (dB) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "X-axis frequency points (Hz)",
+   "default": "logspace(8,10,2001)",
+   "values": "用于绘制 S 参数数据的频率点 logspace(8,10,2001) (default) | positive real vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "X-axis scale",
+   "default": "Linear",
+   "values": "线性或对数 X 轴刻度 Linear (default) | Logarithmic",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y-axis scale",
+   "default": "Linear",
+   "values": "线性或对数 Y 轴刻度 Linear (default) | Logarithmic",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot Sparameter characteristics",
+   "default": "",
+   "values": "绘制 S 参数数据 button",
+   "group": "Visualization"
+  }
+ ]
+}

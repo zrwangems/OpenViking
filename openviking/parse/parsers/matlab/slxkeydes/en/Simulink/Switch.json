@@ -1,0 +1,105 @@
+{
+ "key": "Switch",
+ "title": "Switch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/K_Switch.md",
+  "Simulink/Signal Routing/K_Switch.md",
+  "HDL Coder/Commonly Used Blocks/K_Switch.md",
+  "HDL Coder/Signal Routing/K_Switch.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/K_Switch.md"
+ ],
+ "text": "Switch output between first input and third input based on value of second input, 3 inputs, 1 output, direct feedthrough, {Integer rounding mode} sets the rounding mode for fixed-point operations; {Criteria for passing first input} sets the selection criteria to pass first data input u2 >, {Threshold}, {Enable zero-crossing detection}, {Require all data port inputs to have the same data type} requires data ports to have the same data, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type}, {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Saturate on integer overflow} sets the method of overflow action and {Allow different data input sizes}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First data input signal scalar | vector"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Control input signal scalar | vector"
+  },
+  {
+   "name": "Port_3",
+   "direction": "input",
+   "summary": "Second data input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Criteria for passing first input",
+   "default": "Threshold",
+   "values": "Selection criteria to pass first data input u2 > Threshold (default) | u2 >= Threshold | u2 ~= 0",
+   "group": "Main"
+  },
+  {
+   "name": "Threshold",
+   "default": "0",
+   "values": "Threshold used in criteria 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Require all data port inputs to have the same data type",
+   "default": "off",
+   "values": "Require data ports to have the same data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | Inherit: Same as first input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | string | Enum: | | Simulink.ImageType(480,640,3)",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Allow different data input sizes",
+   "default": "off",
+   "values": "Allow different data input sizes off (default) | on",
+   "group": "Signal Attributes"
+  }
+ ]
+}

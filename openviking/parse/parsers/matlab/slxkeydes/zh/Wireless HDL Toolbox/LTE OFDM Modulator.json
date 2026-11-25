@@ -1,0 +1,115 @@
+{
+ "key": "LTE OFDM Modulator",
+ "title": "LTE OFDM Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/LTE_OFDM_Modulator.md"
+ ],
+ "text": "调制 LTE 资源网格并返回时域 OFDM 采样，输入 5 路、输出 3 路；按 {Rounding Method} 指定内部定点计算的舍入模式；{NDLRB source} 指定 NDLRB 的来源、{NDLRB} 指定下行资源块数、{Cyclic prefix source} 指定循环前缀来源、{Cyclic prefix type} 指定循环前缀类型、{Windowing} 指定频谱增长降低、{Window length per NDLRB} 指定 NDRLB 窗口长度、{Enable reset input port} 指定重置信号、{Output data sample rate} 输出采样率 Use maximum output data sample、{Divide butterfly outputs by two} 指定位宽控制，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "NDLRB",
+   "direction": "input",
+   "summary": "下行资源块数 6 | 15 | 25 | 50 | 75 | 100"
+  },
+  {
+   "name": "cyclicPrefixType",
+   "direction": "input",
+   "summary": "CP 类型 scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "清除内部状态 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "输出数据 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "指示模块已就绪 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "NDLRB source",
+   "default": "Property",
+   "values": "NDLRB 的来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "NDLRB",
+   "default": "6",
+   "values": "下行资源块数 6 (default) | 15 | 25 | 50 | 75 | 100",
+   "group": "Main"
+  },
+  {
+   "name": "Cyclic prefix source",
+   "default": "Property",
+   "values": "循环前缀来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Cyclic prefix type",
+   "default": "Normal",
+   "values": "循环前缀类型 Normal (default) | Extended",
+   "group": "Main"
+  },
+  {
+   "name": "Windowing",
+   "default": "off",
+   "values": "频谱增长降低 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Window length per NDLRB",
+   "default": "]",
+   "values": "NDRLB 窗口长度 [ 4, 6, 4, 6, 8, 8 ] (default) | row vector of NDLRB window lengths",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "重置信号 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data sample rate",
+   "default": "rate",
+   "values": "输出采样率 Use maximum output data sample rate (default) | Match output data sample rate to NDLRB",
+   "group": "Main"
+  },
+  {
+   "name": "Divide butterfly outputs by two",
+   "default": "on",
+   "values": "位宽控制 on (default) | off",
+   "group": "IFFT Block Parameters"
+  },
+  {
+   "name": "Rounding Method",
+   "default": "Floor",
+   "values": "内部定点计算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "IFFT Block Parameters"
+  }
+ ]
+}

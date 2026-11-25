@@ -1,0 +1,43 @@
+{
+ "key": "dsp.simulink.MovingMaximum",
+ "title": "Moving Maximum",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Moving_Maximum.md"
+ ],
+ "text": "Moving Maximum 模块沿每个通道独立地随时间确定输入信号的移动最大值，输入 1 路、输出 1 路、无直接馈通；{Specify window length} 用于指定窗口长度的标志、{Window length} 指定滑动窗口长度、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "数据输入 column vector | row vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "移动最大值输出 column vector | row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify window length",
+   "default": "on",
+   "values": "用于指定窗口长度的标志 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "4",
+   "values": "滑动窗口长度 4 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

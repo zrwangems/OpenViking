@@ -1,0 +1,62 @@
+{
+ "key": "Bernoulli Binary Generator",
+ "title": "Bernoulli Binary Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Random Data Sources/Bernoulli_Binary_Generator.md"
+ ],
+ "text": "Generate Bernoulli-distributed random binary numbers, 1 output, {Output data type} sets Data type of output signal; {Probability of zero} sets the probability of generating zero at output, {Source of initial seed}, {Initial seed}, {Sample time}, {Samples per frame} and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output data signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Probability of zero",
+   "default": "0.5",
+   "values": "Probability of generating zero at output 0.5 (default) | scalar in the range [0, 1] | vector of scalars in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Source of initial seed",
+   "default": "Auto",
+   "values": "Source of initial seed for random number generator Auto (default) | Parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "",
+   "values": "Initial seed for random number generator nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Sample time of output signal 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame of output signal 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of output signal double (default) | single | uint8 | uint16 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

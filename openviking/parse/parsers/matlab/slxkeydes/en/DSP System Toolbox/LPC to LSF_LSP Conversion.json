@@ -1,0 +1,88 @@
+{
+ "key": "LPC to LSF/LSP Conversion",
+ "title": "LPC to LSF/LSP Conversion",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Linear Prediction/LPC_to_LSF_LSP_Conversion.md"
+ ],
+ "text": "Convert linear prediction coefficients to line spectral pairs or line spectral frequencies, 1 input, 4 outputs, no direct feedthrough, {Output} sets Conversion output LSP in range; {Root finding coarse grid points} sets the number of search steps, {Root finding bisection refinement} sets the number of bisections, {Show output validity status} shows status of output validity, {If current output is invalid, overwrite with previous output} sets the overwrite invalid outputs with previous, {When first output is invalid, overwrite with user-defined values} sets the overwrite invalid first output with user-defined, {User-defined LSP/LSF values for overwriting invalid first output} sets the user-defined LSP/LSF values and {If first input value is not 1} sets the action to take if first input value is not. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Linear prediction coefficients column vector | unoriented vector | matrix"
+  },
+  {
+   "name": "LSP",
+   "direction": "output",
+   "summary": "Line spectral pairs column vector | unoriented vector | matrix"
+  },
+  {
+   "name": "LSFn",
+   "direction": "output",
+   "summary": "Line spectral frequencies normalized in range (0 0.5) column vector | unoriented vector | matrix"
+  },
+  {
+   "name": "LSFr",
+   "direction": "output",
+   "summary": "Line spectral frequencies in range (0 π) column vector | unoriented vector | matrix"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Validity status of output scalar | row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output",
+   "default": "1)",
+   "values": "Conversion output LSP in range (-1 1) (default) | LSF normalized in range (0 0.5) | LSF in range (0 pi)",
+   "group": ""
+  },
+  {
+   "name": "Root finding coarse grid points",
+   "default": "64",
+   "values": "Number of search steps 64 (default) | positive integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Root finding bisection refinement",
+   "default": "4",
+   "values": "Number of bisections 4 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Show output validity status",
+   "default": "off",
+   "values": "Show status of output validity off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "If current output is invalid, overwrite with previous output",
+   "default": "off",
+   "values": "Overwrite invalid outputs with previous output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "When first output is invalid, overwrite with user-defined values",
+   "default": "off",
+   "values": "Overwrite invalid first output with user-defined values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "User-defined LSP/LSF values for overwriting invalid first output",
+   "default": "vector",
+   "values": "User-defined LSP/LSF values vector (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "If first input value is not 1",
+   "default": "Ignore",
+   "values": "Action to take if first input value is not 1 Ignore (default) | Normalize | Normalize and warn | Error",
+   "group": ""
+  }
+ ]
+}

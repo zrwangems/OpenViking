@@ -1,0 +1,90 @@
+{
+ "key": "Assignment",
+ "title": "Assignment",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Assignment.md",
+  "HDL Coder/Math Operations/Assignment.md"
+ ],
+ "text": "Assign values to specified elements of signal, 3 inputs, 1 output, direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Number of output dimensions} sets the number of dimensions of the output signal, {Index mode}, {Index Option} sets the index method for elements, {Index}, {Output Size} sets the width of block output signal, {Initialize output (Y)} sets how to initialize output signal Initialize using input port, {Action if any output element is not assigned} sets the option to produce warning and {Check for out-of-range index in accelerated simulation} sets the option to check for out-of-range index values in accelerator and rapid accelerator simulation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Y0",
+   "direction": "input",
+   "summary": "Initial value of output signal scalar | vector"
+  },
+  {
+   "name": "U",
+   "direction": "input",
+   "summary": "Input data port scalar | vector"
+  },
+  {
+   "name": "IndxN",
+   "direction": "input",
+   "summary": "N th index signal scalar | vector"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Output signal with assigned values scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of output dimensions",
+   "default": "1",
+   "values": "Number of dimensions of the output signal 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Index mode",
+   "default": "One-based",
+   "values": "Index mode One-based (default) | Zero-based",
+   "group": ""
+  },
+  {
+   "name": "Index Option",
+   "default": "(dialog)",
+   "values": "Index method for elements Index vector (dialog) (default) | Assign all | Index vector (port) | Starting index (dialog) | Starting index (port)",
+   "group": ""
+  },
+  {
+   "name": "Index",
+   "default": "1",
+   "values": "Index of elements 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output Size",
+   "default": "1",
+   "values": "Width of block output signal 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Initialize output (Y)",
+   "default": "<Y0>",
+   "values": "How to initialize output signal Initialize using input port <Y0> (default) | Specify size for each dimension in the table",
+   "group": ""
+  },
+  {
+   "name": "Action if any output element is not assigned",
+   "default": "Warning",
+   "values": "Option to produce warning or error Warning (default) | Error | None",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Check for out-of-range index in accelerated simulation",
+   "default": "off",
+   "values": "Option to check for out-of-range index values in accelerator and rapid accelerator simulation modes off (default) | on",
+   "group": ""
+  }
+ ]
+}

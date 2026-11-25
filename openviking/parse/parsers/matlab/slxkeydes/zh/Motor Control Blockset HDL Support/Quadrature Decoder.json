@@ -1,0 +1,89 @@
+{
+ "key": "Quadrature Decoder",
+ "title": "Quadrature Decoder",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Sensor Decoders/Quadrature_Decoder.md",
+  "Motor Control Blockset/Sensor Decoders/Quadrature_Decoder.md"
+ ],
+ "text": "计算正交编码器的位置，输入 4 路、输出 1 路；按 {位置单位} 指定角位置输出的单位；{使用输入端口提供计算参数(运行时电机更换)} 启用 CountsPerRev 和 1/CountsPerRev、{1/CountsPerRev 输入的数据类型}、{编码器刻线} 指定每个相位的刻度线数、{每个刻线的编码器计数} 为每个刻度线生成的计数数、{计数器大小} 指定正交编码器计数器的大小、{外部索引计数} 启用 Idx 输入端口、{位置数据类型} 指定角位置输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Cnt",
+   "direction": "input",
+   "summary": "正交编码器计数器值 标量"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "最后一个索引脉冲的正交编码器计数器值 标量"
+  },
+  {
+   "name": "CountsPerRev",
+   "direction": "input",
+   "summary": "为每次旋转生成的计数数量 标量"
+  },
+  {
+   "name": "1/CountsPerRev",
+   "direction": "input",
+   "summary": "为每次旋转生成的计数数量的倒数 标量"
+  },
+  {
+   "name": "θ m",
+   "direction": "output",
+   "summary": "正交编码器的角位置 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "使用输入端口提供计算参数(运行时电机更换)",
+   "default": "off",
+   "values": "启用 CountsPerRev 和 1/CountsPerRev 输入端口 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "1/CountsPerRev 输入的数据类型",
+   "default": "单精度",
+   "values": "1/CountsPerRev 输入的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": ""
+  },
+  {
+   "name": "编码器刻线",
+   "default": "1000",
+   "values": "每个相位的刻度线数 1000 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "每个刻线的编码器计数",
+   "default": "4",
+   "values": "为每个刻度线生成的计数数 4 (默认) | 1 | 2",
+   "group": ""
+  },
+  {
+   "name": "计数器大小",
+   "default": "位",
+   "values": "正交编码器计数器的大小 16 位 (默认) | 8 位 | 32 位",
+   "group": ""
+  },
+  {
+   "name": "外部索引计数",
+   "default": "on",
+   "values": "启用 Idx 输入端口 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "位置单位",
+   "default": "弧度",
+   "values": "角位置输出的单位 弧度 (默认) | 度 | 标幺",
+   "group": ""
+  },
+  {
+   "name": "位置数据类型",
+   "default": "单精度",
+   "values": "角位置输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": ""
+  }
+ ]
+}

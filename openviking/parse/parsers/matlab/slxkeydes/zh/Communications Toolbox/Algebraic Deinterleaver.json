@@ -1,0 +1,13 @@
+{
+ "key": "Algebraic Deinterleaver",
+ "title": "Algebraic Deinterleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Algebraic_Deinterleaver.md"
+ ],
+ "text": "使用代数推导的置换恢复输入符号的顺序。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

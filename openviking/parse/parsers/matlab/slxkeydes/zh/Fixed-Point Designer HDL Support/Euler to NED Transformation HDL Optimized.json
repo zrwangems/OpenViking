@@ -1,0 +1,56 @@
+{
+ "key": "Euler to NED Transformation HDL Optimized",
+ "title": "Euler to NED Transformation HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Coordinate Transformations/Euler_to_NED_Transformation_HDL_Optimized.md"
+ ],
+ "text": "使用流水线或突发架构计算 Euler 到 North-East-Down 变换，并生成优化的 HDL 代码，输入 4 路、输出 3 路；{Architecture} 指定架构类型 Pipelined，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "U In",
+   "direction": "input",
+   "summary": "输入数组 3-by-1 vector"
+  },
+  {
+   "name": "Angle In",
+   "direction": "input",
+   "summary": "旋转角度 3-by-1 vector"
+  },
+  {
+   "name": "Valid In",
+   "direction": "input",
+   "summary": "输入是否有效 Boolean scalar"
+  },
+  {
+   "name": "Restart",
+   "direction": "input",
+   "summary": "是否清除内部状态 Boolean scalar"
+  },
+  {
+   "name": "U Out",
+   "direction": "output",
+   "summary": "旋转后的数组 3-by-1 vector"
+  },
+  {
+   "name": "Valid Out",
+   "direction": "output",
+   "summary": "输出数据是否有效 boolean scalar"
+  },
+  {
+   "name": "Ready",
+   "direction": "output",
+   "summary": "模块是否已准备好接收输入 Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Architecture",
+   "default": "Pipelined",
+   "values": "架构类型 Pipelined (default) | Burst",
+   "group": ""
+  }
+ ]
+}

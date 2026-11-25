@@ -1,0 +1,53 @@
+{
+ "key": "Phasor Measurement Unit (PMU, Three-Phase)",
+ "title": "Phasor Measurement Unit (PMU, Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Phasor_Measurement_Unit_PMU_Three_Phase.md"
+ ],
+ "text": "三相系统的频率、相位和幅值测量，输入 1 路、输出 3 路；{Rated frequency (Hz)} 指定额定频率、{Sampling points per cycle} 指定每周期采样点数、{Reporting rate factor} 指定报告速率因子，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "input",
+   "summary": "三相信号 vector"
+  },
+  {
+   "name": "freq",
+   "direction": "output",
+   "summary": "正序分量的频率 scalar"
+  },
+  {
+   "name": "angle",
+   "direction": "output",
+   "summary": "正序分量的相位角 scalar"
+  },
+  {
+   "name": "mag",
+   "direction": "output",
+   "summary": "正序分量的幅值 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rated frequency (Hz)",
+   "default": "60",
+   "values": "额定频率 60 (default) | 50",
+   "group": ""
+  },
+  {
+   "name": "Sampling points per cycle",
+   "default": "64",
+   "values": "每周期采样点数 64 (default) | 24 | 48",
+   "group": ""
+  },
+  {
+   "name": "Reporting rate factor",
+   "default": "1",
+   "values": "报告速率因子 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

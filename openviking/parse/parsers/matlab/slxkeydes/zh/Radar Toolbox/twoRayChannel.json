@@ -1,0 +1,135 @@
+{
+ "key": "twoRayChannel",
+ "title": "Two-Ray Channel",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Two_Ray_Channel.md"
+ ],
+ "text": "宽带两射线信道环境，输入 5 路、输出 1 路；按 {Ground reflection coefficient} 指定地面反射系数；{Signal propagation speed (m/s)} 指定信号传播速度 physconst、{Signal carrier frequency (Hz)} 指定信号载频 300e6、{Number of subbands} 指定处理子带数、{Specify atmospheric parameters} 启用大气衰减模型、{Temperature (degrees Celsius)} 指定环境温度、{Dry air pressure (Pa)} 指定大气干空气压力 101.325e3、{Water vapour density (g/m^3)} 指定大气水蒸气密度、{Liquid water density (g/m^3)} 指定液态水密度、{Rain rate (mm/hr)} 指定降雨率、{Inherit sample rate} 指定从上游模块继承采样率、{Sample rate (Hz)} 指定信号采样率 1e6、{Combine two rays at output} 指定在输出中组合两条射线、{Maximum one-way propagation distance (m)} 指定最大单向传播距离 10.0e3、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "宽带输入信号 M -by- N complex-valued matrix | M -by- 2N complex-valued matrix"
+  },
+  {
+   "name": "Pos1",
+   "direction": "input",
+   "summary": "信号源位置 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Pos2",
+   "direction": "input",
+   "summary": "信号目的地的位置 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Vel1",
+   "direction": "input",
+   "summary": "信号原点的速度 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Vel2",
+   "direction": "input",
+   "summary": "信号目的地的速度 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "传播信号 M -by- N complex-valued matrix | M -by- 2N complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Signal carrier frequency (Hz)",
+   "default": "300e6",
+   "values": "信号载频 300e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of subbands",
+   "default": "64",
+   "values": "处理子带数 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify atmospheric parameters",
+   "default": "off",
+   "values": "启用大气衰减模型 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Temperature (degrees Celsius)",
+   "default": "15",
+   "values": "环境温度 15 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Dry air pressure (Pa)",
+   "default": "101.325e3",
+   "values": "大气干空气压力 101.325e3 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Water vapour density (g/m^3)",
+   "default": "7.5",
+   "values": "大气水蒸气密度 7.5 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Liquid water density (g/m^3)",
+   "default": "0.0",
+   "values": "液态水密度 0.0 (default) | nonnegative real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Rain rate (mm/hr)",
+   "default": "0.0",
+   "values": "降雨率 0.0 (default) | non-negative real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "从上游模块继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "信号采样率 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground reflection coefficient",
+   "default": "-1",
+   "values": "地面反射系数 -1 (default) | complex-valued scalar | complex-valued 1-by- N row vector",
+   "group": ""
+  },
+  {
+   "name": "Combine two rays at output",
+   "default": "on",
+   "values": "在输出中组合两条射线的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Maximum one-way propagation distance (m)",
+   "default": "10.0e3",
+   "values": "最大单向传播距离 10.0e3 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Disc Friction Clutch",
+ "title": "Disc Friction Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Disc_Friction_Clutch.md"
+ ],
+ "text": "带有圆盘片的摩擦离合器，当盘片压力超过阈值时接合。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

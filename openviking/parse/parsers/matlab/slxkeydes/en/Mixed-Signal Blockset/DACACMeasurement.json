@@ -1,0 +1,78 @@
+{
+ "key": "DACACMeasurement",
+ "title": "DAC AC Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Measurements & Testbenches/DAC_AC_Measurement.md"
+ ],
+ "text": "Measure AC performance metrics of DAC output, 3 inputs; {Digital signal frequency (Hz)} sets the frequency of digital input signal to DAC, {Start conversion frequency (Hz)} sets the frequency of internal start conversion clock, {Settling time tolerance (LSB)} sets the tolerance for calculating settling time, {Hold off time (s)} sets the delay before measurement analysis to avoid corruption, {Recommended simulation stop time (s)} sets the minimum time simulation must run for meaningful, {Output result to base workspace} sets the store detailed test results to base, {Workspace variable name} sets the name of the variable that stores detailed test results and {Show spectrum analyzer during simulation} sets the displays Spectrum Analyzer during. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "Digital input signal from DAC scalar"
+  },
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "Converted analog signal from DAC scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "External clock to start conversion scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Digital signal frequency (Hz)",
+   "default": "1e3",
+   "values": "Frequency of digital input signal to DAC 1e3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "1e6",
+   "values": "Frequency of internal start conversion clock 1e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time tolerance (LSB)",
+   "default": "0.5",
+   "values": "Tolerance for calculating settling time 0.5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "Delay before measurement analysis to avoid corruption by transients 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Recommended simulation stop time (s)",
+   "default": "0.09",
+   "values": "Minimum time simulation must run for meaningful result 0.09 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output result to base workspace",
+   "default": "off",
+   "values": "Store detailed test results to base workspace off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "dac_ac_out",
+   "values": "Name of the variable that stores detailed test results dac_ac_out (default) | character string",
+   "group": ""
+  },
+  {
+   "name": "Show spectrum analyzer during simulation",
+   "default": "on",
+   "values": "Displays Spectrum Analyzer during simulation on (default) | off",
+   "group": ""
+  }
+ ]
+}

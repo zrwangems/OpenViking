@@ -1,0 +1,37 @@
+{
+ "key": "fixed.system.DivideByConstantAndRound",
+ "title": "Divide by Constant and Round",
+ "toolbox": "Fixed-Point Designer",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer/Divide_by_Constant_and_Round.md"
+ ],
+ "text": "将输入除以常量并舍入到整数，输入 1 路、输出 1 路；按 {舍入方法} 指定要使用的舍入方法；{分母} 指定除数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "被除数 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "除法和舍入运算的结果 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "分母",
+   "default": "10",
+   "values": "除数 10 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "舍入方法",
+   "default": "向下",
+   "values": "要使用的舍入方法 向下 (默认) | 向上 | 最邻近值 | 零 | 收敛",
+   "group": ""
+  }
+ ]
+}

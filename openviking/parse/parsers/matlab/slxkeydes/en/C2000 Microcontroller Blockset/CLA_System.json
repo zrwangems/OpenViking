@@ -1,0 +1,54 @@
+{
+ "key": "CLA_System",
+ "title": "CLA Task",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/C2805x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/C2806x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F28003x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F28004x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F2807x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F2837xD/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F2837xS/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F28p55x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F28p65x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/CLA_Task.md"
+ ],
+ "text": "Create CLA task that executes downstream function-call subsystem on CLA core, 1 output, {Sample time} sets Frequency at which function-call subsystem is triggered; {CLA task number}, {CLA task trigger source} sets the source of CLA task and {Wait until completion of task} sets the block C28x execution until CLA task. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Function-call signal to a function-call subsystem or function-call model scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CLA task number",
+   "default": "1",
+   "values": "CLA task number executed on CLA core 1 (default) | integer in [1, 8]",
+   "group": ""
+  },
+  {
+   "name": "CLA task trigger source",
+   "default": "Software",
+   "values": "Source of CLA task trigger Software (default) | peripheral interrupt",
+   "group": ""
+  },
+  {
+   "name": "Wait until completion of task",
+   "default": "off",
+   "values": "Block C28x execution until CLA task is completed off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.2",
+   "values": "Frequency at which function-call subsystem is triggered 0.2 (default) | -1 | scalar",
+   "group": ""
+  }
+ ]
+}

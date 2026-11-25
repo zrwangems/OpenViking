@@ -1,0 +1,49 @@
+{
+ "key": "\"Combination of two Gaussians\" membership function",
+ "title": "Gaussian2 MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Gaussian2_MF.md"
+ ],
+ "text": "Combination of two Gaussian membership functions, 1 input, 1 output; {Standard deviation for left curve sigma1} sets the left Gaussian standard deviation, {Mean for left curve c1} sets the left Gaussian mean, {Standard deviation for right curve sigma2} sets the right Gaussian standard deviation and {Mean for right curve c2} sets the right Gaussian mean. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input value scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "Membership value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Standard deviation for left curve sigma1",
+   "default": "3",
+   "values": "Left Gaussian standard deviation 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mean for left curve c1",
+   "default": "-1",
+   "values": "Left Gaussian mean -1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation for right curve sigma2",
+   "default": "1",
+   "values": "Right Gaussian standard deviation 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mean for right curve c2",
+   "default": "5",
+   "values": "Right Gaussian mean 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

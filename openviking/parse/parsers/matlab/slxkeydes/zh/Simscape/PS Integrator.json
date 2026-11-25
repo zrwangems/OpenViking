@@ -1,0 +1,13 @@
+{
+ "key": "PS Integrator",
+ "title": "PS Integrator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Linear Operators/PS_Integrator.md"
+ ],
+ "text": "对物理信号进行积分。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

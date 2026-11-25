@@ -1,0 +1,84 @@
+{
+ "key": "dsp.simulink.ZoomFFT",
+ "title": "Zoom FFT",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Zoom_FFT.md"
+ ],
+ "text": "频谱某一部分的高分辨率 FFT，输入 2 路；按 {Sample rate mode} 指定输入采样率的模式 Use normalized frequency；{Decimation factor} 指定抽取因子、{Specify center frequency from input port} 用于从输入端口指定中心频率的标志、{Center frequency} 指定中心频率、{Inherit FFT Length from input dimensions} 用于从输入维度继承 FFT 长度的标志、{FFT length} 指定 FFT 长度、{Input sample rate (Hz)} 指定输入采样率、{Allow arbitrary frame length for fixed-size input signals} 允许固定大小输入信号的任意帧长度、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入数据 vector | matrix"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "中心频率输入 real scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "",
+   "summary": "Zoom FFT 输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Decimation factor",
+   "default": "2",
+   "values": "抽取因子 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "’off’",
+   "values": "用于从输入端口指定中心频率的标志 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Center frequency",
+   "default": "0",
+   "values": "中心频率 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT Length from input dimensions",
+   "default": "’on’",
+   "values": "用于从输入维度继承 FFT 长度的标志 ’on’ (default) | ’off’",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "64",
+   "values": "FFT 长度 64 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入采样率 44100 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "允许固定大小输入信号的任意帧长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

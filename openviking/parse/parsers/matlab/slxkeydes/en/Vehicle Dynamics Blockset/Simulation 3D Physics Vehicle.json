@@ -1,0 +1,570 @@
+{
+ "key": "Simulation 3D Physics Vehicle",
+ "title": "Simulation 3D Physics Vehicle",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Physics_Vehicle.md"
+ ],
+ "text": "Implement controllable 6DOF vehicle 3D environment, 4 inputs, 5 outputs, {Type, PassVehMesh} sets Type Muscle; {Color, VehColor} sets the color of vehicle, {Name, ActorName} sets the name of vehicle, {Initial position [X, Y, Z], InitialPos [m]} sets the vehicle initial position, {Initial rotation [Roll, Pitch, Yaw], InitialRot [rad]} sets the vehicle initial rotation, {Mass, Mass [kg]} sets the vehicle mass, {Center of mass offset vector, CgOffset [m]} sets the offset in center of mass, {Inertia tensor scaling vector, IvehScale []} sets the scaling of inertia tensor, {Chassis height (used in drag), ChassisHeight [m]} sets the height of chassis, {Drag coefficient, Cd []} sets the vehicle drag coefficient, {Drag lift coefficient, Cl []} sets the longitudinal lift coefficient, {Path to custom mesh, MeshPath} sets the path to custom mesh, {Track width, TrackWidth [m]} sets the distance between wheels, {Wheel base in custom mesh [m]}, {Front Wheel radius, FrntWhlRadius [m]} sets the front wheel radius, {Front wheel width, FrntWhlWidth [m]}, {Rear Wheel radius, RearWhlRadius [m]} sets the rear wheel radius, {Rear wheel width, RearWhlWidth [m]}, {Motor torque indices, TrqCrv [Nm]} sets the motor torque indices, {Motor speed breakpoints, SpdCrv [rpm]} sets the motor speed breakpoints, {Maximum powertrain speed, MaxRPM [rpm]}, {Powertrain rotational inertia, Jmot [kg*m^2]}, {Powertrain damping at full torque request, bEngMax [Nms/rad]}, {Powertrain damping at zero torque request in gear, bEngMin [Nms/rad]}, {Drivetrain type} sets the drivetrain Rear Wheel, {Front to rear torque split ratio, FrntRearSplit []}, {Transmission type} sets the transmission, {Gear number vector, G []} sets the gear number, {Gear ratio vector, N []} sets the gear ratios, {Upshift speed, UpShiftRPM [rpm]}, {Downshift speed, DownShiftRPM [rpm]}, {Minimum (idle) speed, MinRPM [rpm]} sets the minimum powertrain speed, {Shift time, tShift [s]} sets the time taken to complete shift, {Final drive ratio, NDiff []}, {Transmission efficiency, eta []} sets the efficiency factor, {Steering type} sets the option to set steering, {Outside to inside steering ratio, SteerAngleRatio []} sets the outside to inside steer angle ratio, {Front wheel max steer angle, FrntWhlMaxSteer [rad]} sets the front wheel max steer, {Rear wheel max steer angle, RearWhlMaxSteer [rad]}, {Maximum steering ratio breakpoints, SteerCrv []} sets the maximum steering ratio, {Steering ratio speed breakpoints, SteerSpdCrv [m/s]} sets the steering ratio speed breakpoints, {Maximum front wheel torque, FrntWhlMaxTrq [Nm]}, {Maximum rear wheel torque, RearWhlMaxTrq [Nm]}, {Option to enable handbrake input} enables handbrake input, {Front wheels affected by handbrake} sets the handbrake option for front wheels, {Rear wheels affected by handbrake} sets the handbrake option for rear wheels, {Maximum front wheel hand brake torque, FrntWhlMaxHndBrkTrq [Nm]}, {Maximum rear wheel hand brake torque, RearWhlMaxHndBrkTrq [Nm]}, {Front suspension force offset location, FrntSuspFOffset [m]} sets the front suspension force offset, {Maximum front suspension compression (jounce), FrntSuspMaxComp [m]}, {Front spring preload, FrntSpringPreload [N]} sets the front suspension preload force, {Front spring stiffness, FrntSpringRate [N/m]} sets the front suspension spring, {Maximum front suspension extension (rebound), FrntSuspMaxExt [m]}, {Front suspension damping ratio, FrntSuspDamping []} sets the damping ratio of front suspension, {Front roll bar stiffness scaling, FrntRollbarScaling []} sets the front anti-roll effect, {Rear suspension force offset location, RearSuspFOffset [m]} sets the rear suspension force offset, {Maximum rear suspension compression (jounce), RearSuspMaxComp [m]}, {Rear spring preload, RearSpringPreload [N]} sets the rear suspension preload force, {Rear spring stiffness, RearSpringRate [N/m]} sets the rear suspension spring, {Maximum rear suspension extension (rebound), RearSuspMaxExt [m]}, {Rear suspension damping ratio, RearSuspDamping []} sets the damping ratio of rear suspension, {Rear roll bar stiffness scaling, RearRollbarScaling []} sets the rear anti-roll effect, {Enable anti-lock braking} sets the option to enable anti-lock braking, {Enable traction control} sets the option to enable traction control, {Front wheel corner stiffness, Cy_f [N/rad]} sets the front cornering stiffness 70e3, {Front wheel slip modifier, FrntSideSlipModifier []} sets the front slip modifier, {Rear wheel corner stiffness, Cy_r [N/rad]} sets the rear cornering stiffness 70e3, {Rear wheel slip modifier, RearSideSlipModifier []} sets the rear slip modifier, {Friction scaling factor, lambda_mu []}, {Enable light controls} sets the option to control vehicle lights, {Headlight color [R,G,B], HeadlightColor} sets the headlight color, {High beam intensity, HighBeamIntensity}, {Low beam intensity, LowBeamIntensity}, {High beam cone half angle, HighBeamConeAngle}, {Low beam cone half angle, LowBeamConeAngle}, {Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation} sets the left headlight beam orientation, {Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation} sets the right headlight beam orientation, {Brake light intensity, BrakelightIntensity}, {Reverse light intensity, ReverselightIntensity}, {Turn signal light intensity, SignallightIntensity}, {Period, SignallightPeriod} sets the turn signal light period, {Pulse width, SignalPulseWidth}, {Sample time, SampleTime}, {Output location and orientation} sets the option to return location and orientation and {Output nominal vehicle state feedback} sets the option to return nominal vehicle state. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SteerCmd",
+   "direction": "input",
+   "summary": "Normalized steer angle scalar"
+  },
+  {
+   "name": "AccelCmd",
+   "direction": "input",
+   "summary": "Normalized vehicle acceleration scalar"
+  },
+  {
+   "name": "DecelCmd",
+   "direction": "input",
+   "summary": "Normalized vehicle deceleration scalar"
+  },
+  {
+   "name": "GearCmd",
+   "direction": "input",
+   "summary": "Gear input 1 | -1 | 0"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "xdot",
+   "direction": "output",
+   "summary": "Vehicle longitudinal velocity scalar"
+  },
+  {
+   "name": "ydot",
+   "direction": "output",
+   "summary": "Vehicle lateral velocity scalar"
+  },
+  {
+   "name": "psi",
+   "direction": "output",
+   "summary": "Yaw scalar"
+  },
+  {
+   "name": "r",
+   "direction": "output",
+   "summary": "Yaw rate scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type, PassVehMesh",
+   "default": "car",
+   "values": "Type Muscle car (default) | Sedan | Sport utility vehicle | Small pickup truck | Hatchback | Box truck | Custom",
+   "group": "Chassis"
+  },
+  {
+   "name": "Color, VehColor",
+   "default": "Red",
+   "values": "Color of vehicle Red (default) | Orange | Yellow | Green | Blue | Black | White | Silver | Dazzle camouflage",
+   "group": "Chassis"
+  },
+  {
+   "name": "Name, ActorName",
+   "default": "SimulinkVehicle1",
+   "values": "Name of vehicle SimulinkVehicle1 (default) | character vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial position [X, Y, Z], InitialPos [m]",
+   "default": "-0.5]",
+   "values": "Vehicle initial position [ 0, 0, -0.5] (default) | 1-by-3 array",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial rotation [Roll, Pitch, Yaw], InitialRot [rad]",
+   "default": "]",
+   "values": "Vehicle initial rotation [ 0, 0, 0 ] (default) | 1-by-3 array",
+   "group": "Chassis"
+  },
+  {
+   "name": "Mass, Mass [kg]",
+   "default": "1500",
+   "values": "Vehicle mass 1500 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Center of mass offset vector, CgOffset [m]",
+   "default": "0]",
+   "values": "Offset in center of mass [0, 0, 0] (default) | three-element vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Inertia tensor scaling vector, IvehScale []",
+   "default": "1]",
+   "values": "Scaling of inertia tensor [1, 1, 1] (default) | three-element vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Chassis height (used in drag), ChassisHeight [m]",
+   "default": "1.0",
+   "values": "Height of chassis 1.0 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Drag coefficient, Cd []",
+   "default": "0.3",
+   "values": "Vehicle drag coefficient 0.3 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Drag lift coefficient, Cl []",
+   "default": "0.1",
+   "values": "Longitudinal lift coefficient 0.1 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Path to custom mesh, MeshPath",
+   "default": "",
+   "values": "Path to custom mesh character vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Track width, TrackWidth [m]",
+   "default": "1.9",
+   "values": "Distance between wheels 1.9 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Wheel base in custom mesh [m]",
+   "default": "3",
+   "values": "Wheel base in custom mesh 3 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Front Wheel radius, FrntWhlRadius [m]",
+   "default": "0.23",
+   "values": "Front wheel radius 0.23 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Front wheel width, FrntWhlWidth [m]",
+   "default": "0.20",
+   "values": "Front wheel width 0.20 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Rear Wheel radius, RearWhlRadius [m]",
+   "default": "0.23",
+   "values": "Rear wheel radius 0.23 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Rear wheel width, RearWhlWidth [m]",
+   "default": "0.20",
+   "values": "Rear wheel width 0.20 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Motor torque indices, TrqCrv [Nm]",
+   "default": "]",
+   "values": "Motor torque indices [ 75, 75, 97, 117, 152, 175, 175, 175, 175, 165, 155, 145, 140, 135, 125, 115, 50 ] (default) | vector",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Motor speed breakpoints, SpdCrv [rpm]",
+   "default": "]",
+   "values": "Motor speed breakpoints [ 0, 750, 1054, 1357, 1660, 1964, 2267, 2571, 2875, 3178, 3482, 3785, 4089, 4393, 4696, 5000, 7000 ] (default) | vector",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Maximum powertrain speed, MaxRPM [rpm]",
+   "default": "7000",
+   "values": "Maximum powertrain speed 7000 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Powertrain rotational inertia, Jmot [kg*m^2]",
+   "default": "1.0",
+   "values": "Powertrain rotational inertia 1.0 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Powertrain damping at full torque request, bEngMax [Nms/rad]",
+   "default": "0.15",
+   "values": "Powertrain damping at full torque request 0.15 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Powertrain damping at zero torque request in gear, bEngMin [Nms/rad]",
+   "default": "2",
+   "values": "Powertrain damping at zero torque request in gear 2 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Drivetrain type",
+   "default": "Drive",
+   "values": "Drivetrain Rear Wheel Drive (default) | Front Wheel Drive | All Wheel Drive",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Front to rear torque split ratio, FrntRearSplit []",
+   "default": "0.5",
+   "values": "Front to rear torque split ratio 0.5 (default) | scalar in the range (0,1)",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Transmission type",
+   "default": "Automatic",
+   "values": "Transmission Automatic (default) | Manual",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Gear number vector, G []",
+   "default": "8]",
+   "values": "Gear number [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8] (default) | vector",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Gear ratio vector, N []",
+   "default": "]",
+   "values": "Gear ratios [ -3.5, 1, 4.75, 3.75, 3.25, 2.75, 2.25, 1.5, 1, 0.75 ] (default) | vector",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Upshift speed, UpShiftRPM [rpm]",
+   "default": "4000",
+   "values": "Upshift speed 4000 (default) | scalar greater than DownShiftRPM",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Downshift speed, DownShiftRPM [rpm]",
+   "default": "2000",
+   "values": "Downshift speed 2000 (default) | scalar in the range [0, UpShiftRPM )",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Minimum (idle) speed, MinRPM [rpm]",
+   "default": "750",
+   "values": "Minimum powertrain speed 750 (default) | scalar in the range [ 0, MaxRPM ]",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Shift time, tShift [s]",
+   "default": "0.1",
+   "values": "Time taken to complete shift 0.1 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Final drive ratio, NDiff []",
+   "default": "3.2",
+   "values": "Final drive ratio 3.2 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Transmission efficiency, eta []",
+   "default": "0.94",
+   "values": "Efficiency factor 0.94 (default) | scalar in the range [0,1)",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Steering type",
+   "default": "Ackermann",
+   "values": "Option to set steering type Ackermann (default) | Linear",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Outside to inside steering ratio, SteerAngleRatio []",
+   "default": "1.0",
+   "values": "Outside to inside steer angle ratio 1.0 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Front wheel max steer angle, FrntWhlMaxSteer [rad]",
+   "default": "45*pi/180",
+   "values": "Front wheel max steer angle 45*pi/180 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Rear wheel max steer angle, RearWhlMaxSteer [rad]",
+   "default": "0",
+   "values": "Rear wheel max steer angle 0 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum steering ratio breakpoints, SteerCrv []",
+   "default": "]",
+   "values": "Maximum steering ratio [ 1, 0.8, 0.7 ] (default) | vector",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Steering ratio speed breakpoints, SteerSpdCrv [m/s]",
+   "default": "]./3.6",
+   "values": "Steering ratio speed breakpoints [ 0, 60, 120 ]./3.6 (default) | vector",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum front wheel torque, FrntWhlMaxTrq [Nm]",
+   "default": "1500",
+   "values": "Maximum front wheel torque 1500 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum rear wheel torque, RearWhlMaxTrq [Nm]",
+   "default": "1500",
+   "values": "Maximum rear wheel torque 1500 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Option to enable handbrake input",
+   "default": "off",
+   "values": "Enable handbrake input off (default) | on",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Front wheels affected by handbrake",
+   "default": "off",
+   "values": "Handbrake option for front wheels off (default) | on",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Rear wheels affected by handbrake",
+   "default": "off",
+   "values": "Handbrake option for rear wheels off (default) | on",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum front wheel hand brake torque, FrntWhlMaxHndBrkTrq [Nm]",
+   "default": "3000",
+   "values": "Maximum front wheel hand brake torque 3000 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum rear wheel hand brake torque, RearWhlMaxHndBrkTrq [Nm]",
+   "default": "3000",
+   "values": "Maximum rear wheel hand brake torque 3000 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Front suspension force offset location, FrntSuspFOffset [m]",
+   "default": "[0,0,0]",
+   "values": "Front suspension force offset [0,0,0] (default) | three-element vector",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Maximum front suspension compression (jounce), FrntSuspMaxComp [m]",
+   "default": "0.15",
+   "values": "Maximum front suspension compression 0.15 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front spring preload, FrntSpringPreload [N]",
+   "default": "200",
+   "values": "Front suspension preload force 200 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front spring stiffness, FrntSpringRate [N/m]",
+   "default": "30e3",
+   "values": "Front suspension spring rate 30e3 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Maximum front suspension extension (rebound), FrntSuspMaxExt [m]",
+   "default": "0.1",
+   "values": "Maximum front suspension extension 0.1 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front suspension damping ratio, FrntSuspDamping []",
+   "default": "0.5",
+   "values": "Damping ratio of front suspension 0.5 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front roll bar stiffness scaling, FrntRollbarScaling []",
+   "default": "0.15",
+   "values": "Front anti-roll effect 0.15 (default) | scalar in the range (0,1)",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear suspension force offset location, RearSuspFOffset [m]",
+   "default": "[0,0,0]",
+   "values": "Rear suspension force offset [0,0,0] (default) | three-element vector",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Maximum rear suspension compression (jounce), RearSuspMaxComp [m]",
+   "default": "0.15",
+   "values": "Maximum rear suspension compression 0.15 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear spring preload, RearSpringPreload [N]",
+   "default": "200",
+   "values": "Rear suspension preload force 200 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear spring stiffness, RearSpringRate [N/m]",
+   "default": "30e3",
+   "values": "Rear suspension spring rate 30e3 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Maximum rear suspension extension (rebound), RearSuspMaxExt [m]",
+   "default": "0.1",
+   "values": "Maximum rear suspension extension 0.1 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear suspension damping ratio, RearSuspDamping []",
+   "default": "0.5",
+   "values": "Damping ratio of rear suspension 0.5 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear roll bar stiffness scaling, RearRollbarScaling []",
+   "default": "0.15",
+   "values": "Rear anti-roll effect 0.15 (default) | scalar in the range (0,1)",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Enable anti-lock braking",
+   "default": "off",
+   "values": "Option to enable anti-lock braking off (default) | on",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Enable traction control",
+   "default": "off",
+   "values": "Option to enable traction control off (default) | on",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front wheel corner stiffness, Cy_f [N/rad]",
+   "default": "70e3",
+   "values": "Front cornering stiffness 70e3 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front wheel slip modifier, FrntSideSlipModifier []",
+   "default": "20",
+   "values": "Front slip modifier 20 (default) | scalar in the range (0,1)",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear wheel corner stiffness, Cy_r [N/rad]",
+   "default": "70e3",
+   "values": "Rear cornering stiffness 70e3 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear wheel slip modifier, RearSideSlipModifier []",
+   "default": "20",
+   "values": "Rear slip modifier 20 (default) | scalar in the range (0,1)",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Friction scaling factor, lambda_mu []",
+   "default": "1.0",
+   "values": "Friction scaling 1.0 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Enable light controls",
+   "default": "off",
+   "values": "Option to control vehicle lights off (default) | on",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Headlight color [R,G,B], HeadlightColor",
+   "default": "[1,1,1]",
+   "values": "Headlight color [1,1,1] (default) | 1-by-3 vector of RGB triplet values",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam intensity, HighBeamIntensity",
+   "default": "100000",
+   "values": "High beam intensity 100000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam intensity, LowBeamIntensity",
+   "default": "60000",
+   "values": "Low beam intensity 60000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam cone half angle, HighBeamConeAngle",
+   "default": "1.22",
+   "values": "High beam cone half angle 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam cone half angle, LowBeamConeAngle",
+   "default": "1.22",
+   "values": "Low beam cone half angle 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "Left headlight beam orientation [0,0] (default) | 1-by-2 vector with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "Right headlight beam orientation [0,0] (default) | 1-by-2 vector with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Brake light intensity, BrakelightIntensity",
+   "default": "500",
+   "values": "Brake light intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Reverse light intensity, ReverselightIntensity",
+   "default": "500",
+   "values": "Reverse light intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Turn signal light intensity, SignallightIntensity",
+   "default": "500",
+   "values": "Turn signal light intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Period, SignallightPeriod",
+   "default": "1",
+   "values": "Turn signal light period 1 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Pulse width, SignalPulseWidth",
+   "default": "50",
+   "values": "Pulse width 50 (default) | positive scalar less than 100",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Sample time, SampleTime",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": "Sample Time"
+  },
+  {
+   "name": "Output location and orientation",
+   "default": "off",
+   "values": "Option to return location and orientation off (default) | on",
+   "group": "Ground Truth"
+  },
+  {
+   "name": "Output nominal vehicle state feedback",
+   "default": "off",
+   "values": "Option to return nominal vehicle state feedback off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

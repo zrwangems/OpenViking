@@ -1,0 +1,13 @@
+{
+ "key": "4-Way 3-Position Directional Valve (2P)",
+ "title": "4-Way 3-Position Directional Valve (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Valves & Orifices/Directional Control Valves/b_4_Way_3_Position_Directional_Valve_2P.md"
+ ],
+ "text": "4-way, 3-position directional valve in the two-phase fluid domain.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

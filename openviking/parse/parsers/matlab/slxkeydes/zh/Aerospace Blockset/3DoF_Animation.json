@@ -1,0 +1,72 @@
+{
+ "key": "3DoF_Animation",
+ "title": "3DoF Animation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/MATLAB-Based Animation/b_3DoF_Animation.md"
+ ],
+ "text": "创建三自由度对象的三维 MATLAB Graphics 动画，输入 3 路；按 {Enter view} 指定入场视图 Fixed；{Axes limits [xmin xmax ymin ymax zmin zmax]} 指定坐标轴范围、{Time interval between updates} 指定时间间隔、{Size of craft displayed} 指定比例因子、{Position of camera [xc yc zc]} 指定相机位置、{View angle} 指定视角、{Enable animation} 显示动画，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x t z t",
+   "direction": "input",
+   "summary": "目标的下程位置和高度（向下为正） two-element vector"
+  },
+  {
+   "name": "x e z e",
+   "direction": "input",
+   "summary": "飞行器的下程位置和高度（向下为正） two-element vector"
+  },
+  {
+   "name": "θ",
+   "direction": "input",
+   "summary": "飞行器姿态 1-by-1 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Axes limits [xmin xmax ymin ymax zmin zmax]",
+   "default": "-3050]",
+   "values": "坐标轴范围 [0 5000 -2000 2000 -5050 -3050] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Time interval between updates",
+   "default": "0.05",
+   "values": "时间间隔 0.05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Size of craft displayed",
+   "default": "1.0",
+   "values": "比例因子 1.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enter view",
+   "default": "position",
+   "values": "入场视图 Fixed position (default) | Cockpit | Fly alongside",
+   "group": ""
+  },
+  {
+   "name": "Position of camera [xc yc zc]",
+   "default": "-3150]",
+   "values": "相机位置 [2000 500 -3150] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "View angle",
+   "default": "10",
+   "values": "视角 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable animation",
+   "default": "on",
+   "values": "显示动画 on (default) | off",
+   "group": ""
+  }
+ ]
+}

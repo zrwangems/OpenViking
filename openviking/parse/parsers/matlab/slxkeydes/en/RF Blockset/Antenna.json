@@ -1,0 +1,127 @@
+{
+ "key": "Antenna",
+ "title": "Antenna",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Antenna.md"
+ ],
+ "text": "Model antenna or antenna array accounting for incident power wave (RX) and radiated power wave (TX), 1 input, 1 output, {Antenna Gain} sets Antenna gain 0; {Source of antenna model} sets the antenna model Isotropic, {Create Antenna} sets the open Antenna Toolbox Antenna Designer app, {Antenna object} sets the antenna or array element input from workspace antenna catalog, {Impedance (Ohm)} sets the input impedance, {Input incident wave}, {Output radiated wave}, {Incident carrier frequencies} sets the carrier frequencies for receiving signal, {Radiated carrier frequencies} sets the carrier frequencies for transmitting signal, {Direction of departure} sets the azimuth and elevation angles towards which output signal power wave radiates, {Direction of arrival} sets the azimuth and elevation angles from which input signal power wave arrives, {Simulate noise} sets the simulate thermal noise, {Ground and hide negative terminals} sets the ground RF circuit terminals, {Modeling options} sets the model frequency-dependent antenna parameters Time, {Relative error desired (dB)} sets the relative error acceptable for the rational, {Automatically estimate impulse response duration} sets the automatically calculate impulse response and {Impulse response duration}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RX",
+   "direction": "input",
+   "summary": "Received signal scalar | vector | matrix | m -by- n -by- k array"
+  },
+  {
+   "name": "TX",
+   "direction": "output",
+   "summary": "Transmitted signal scalar | vector | matrix | m -by- n -by- k array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of antenna model",
+   "default": "radiator",
+   "values": "Antenna model Isotropic radiator (default) | Antenna Designer | Antenna object",
+   "group": "Main"
+  },
+  {
+   "name": "Create Antenna",
+   "default": "",
+   "values": "Open Antenna Toolbox Antenna Designer app button",
+   "group": "Main"
+  },
+  {
+   "name": "Antenna object",
+   "default": "",
+   "values": "Antenna or array element input from workspace antenna catalog object | antenna array catalog object | measuredAntenna object | pcbstack object",
+   "group": "Main"
+  },
+  {
+   "name": "Antenna Gain",
+   "default": "dBi",
+   "values": "Antenna gain 0 dBi (default) | real scalar or vector | positive scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Impedance (Ohm)",
+   "default": "50",
+   "values": "Input impedance 50 (default) | complex-valued scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Input incident wave",
+   "default": "’off’",
+   "values": "Input incident wave for simulating receiving antenna ’off’ (default) | ’on’",
+   "group": "Main"
+  },
+  {
+   "name": "Output radiated wave",
+   "default": "’on’",
+   "values": "Output radiated wave for transmitting antenna ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Incident carrier frequencies",
+   "default": "GHz",
+   "values": "Carrier frequencies for receiving signal 2.1 GHz (default) | nonnegative scalar or row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Radiated carrier frequencies",
+   "default": "GHz",
+   "values": "Carrier frequencies for transmitting signal 2.1 GHz (default) | nonnegative scalar or row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Direction of departure",
+   "default": "deg",
+   "values": "Azimuth and elevation angles towards which output signal power wave radiates [0 0] deg (default) | finite real row vector of length 1-by-2 | finite real matrix of length m -by-2",
+   "group": "Main"
+  },
+  {
+   "name": "Direction of arrival",
+   "default": "deg",
+   "values": "Azimuth and elevation angles from which input signal power wave arrives [180 0] deg (default) | finite real row vector of length 1-by-2 | finite real matrix of length m -by-2",
+   "group": "Main"
+  },
+  {
+   "name": "Simulate noise",
+   "default": "’on’",
+   "values": "Simulate thermal noise ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "’on’",
+   "values": "Ground RF circuit terminals ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling options",
+   "default": "domain",
+   "values": "Model frequency-dependent antenna parameters Time domain (default) | Frequency domain",
+   "group": "Modeling"
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "Relative error acceptable for the rational fit -40 (default) | scalar",
+   "group": "Modeling"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "",
+   "values": "Automatically calculate impulse response ’on’ | ’off’",
+   "group": "Modeling"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "Impulse response duration 1e-10 s (default) | scalar",
+   "group": "Modeling"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "key": "Detrend",
+ "title": "Detrend",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Detrend.md"
+ ],
+ "text": "Remove linear trend from vectors, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input data vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output data column vector"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,95 @@
+{
+ "key": "nav.slalgs.internal.VectorFieldHistogram",
+ "title": "Vector Field Histogram",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Control Algorithms/Vector_Field_Histogram.md"
+ ],
+ "text": "使用矢量场直方图避开障碍物，输入 3 路、输出 1 路；{Number of angular sectors} 用于创建直方图的 bin 数、{Range distance limits (m)} 指定距离读数的限值、{Histogram thresholds} 用于计算二值直方图的阈值、{vehicle radius (m)} 指定车辆半径、{Safety distance (m)} 指定车辆周围的安全距离、{Minimum turning radius (m)} 指定当前速度下的最小转弯半径、{Simulate using} 指定要运行的仿真类型 Code、{Target direction weight} 指定目标方向的代价函数权重、{Current direction weight} 指定当前方向的代价函数权重、{Previous direction weight} 指定先前方向的代价函数权重，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ranges",
+   "direction": "input",
+   "summary": "扫描数据中的距离值 vector of scalars"
+  },
+  {
+   "name": "Angles",
+   "direction": "input",
+   "summary": "扫描数据中的角度值 vector of scalars"
+  },
+  {
+   "name": "TargetDir",
+   "direction": "input",
+   "summary": "车辆目标方向 scalar"
+  },
+  {
+   "name": "SteerDir",
+   "direction": "output",
+   "summary": "车辆转向方向 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of angular sectors",
+   "default": "180",
+   "values": "用于创建直方图的 bin 数 180 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Range distance limits (m)",
+   "default": "2]",
+   "values": "距离读数的限值 [0.05 2] (default) | two-element vector of scalars",
+   "group": ""
+  },
+  {
+   "name": "Histogram thresholds",
+   "default": "10]",
+   "values": "用于计算二值直方图的阈值 [3 10] (default) | two-element vector of scalars",
+   "group": ""
+  },
+  {
+   "name": "vehicle radius (m)",
+   "default": "0.1",
+   "values": "车辆半径 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Safety distance (m)",
+   "default": "0.1",
+   "values": "车辆周围的安全距离 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum turning radius (m)",
+   "default": "0.1",
+   "values": "当前速度下的最小转弯半径 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "指定要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  },
+  {
+   "name": "Target direction weight",
+   "default": "5",
+   "values": "目标方向的代价函数权重 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current direction weight",
+   "default": "2",
+   "values": "当前方向的代价函数权重 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Previous direction weight",
+   "default": "2",
+   "values": "先前方向的代价函数权重 2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

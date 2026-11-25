@@ -1,0 +1,148 @@
+{
+ "key": "Detect Drift",
+ "title": "Detect Drift",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Drift Detection/Detect_Drift.md"
+ ],
+ "text": "使用新数据更新漂移检测器状态和漂移状态，输入 3 路、输出 2 路；按 {整数舍入模式} 指定定点运算的舍入模式；{选择概念漂移检测器} 指定初始增量概念漂移检测器、{添加观测值权重输入端口} 添加观测值权重的第三个输入端口、{采样时间(-1 表示继承)} 指定采样时间、{对整数溢出进行饱和处理} 指定溢出操作的方法、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{漂移状态数据类型} 指定漂移状态输出的数据类型、{漂移状态数据类型最小值} 用于范围检查的漂移状态输出的最小值、{漂移状态数据类型最大值} 用于范围检查的漂移状态输出的最大值、{均值数据类型} 指定均值的数据类型 Inherit、{均值数据类型最小值} 用于范围检查的均值最小值、{均值数据类型最大值} 用于范围检查的均值最大值、{方差数据类型} 指定方差的数据类型 Inherit、{方差数据类型最小值} 用于范围检查的方差最小值、{方差数据类型最大值} 用于范围检查的方差的最大值、{权重加和数据类型} 指定权重加和的数据类型 Inherit、{权重加和数据类型最小值} 用于范围检查的权重加和的最小值、{权重加和数据类型最大值} 用于范围检查的权重加和的最大值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入数据 n×1 数值向量 | 逻辑向量"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "重置信号 数值或 | 0 ( false ) | 1 ( true )"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "观测值权重 n×1 数值向量"
+  },
+  {
+   "name": "IsWarm",
+   "direction": "output",
+   "summary": "指示模块是否跟踪漂移状态的标志 0 ( false ) | 1 ( true )"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "当前漂移状态 0 （稳定） | 1 （警告） | 2 （漂移）"
+  }
+ ],
+ "params": [
+  {
+   "name": "选择概念漂移检测器",
+   "default": "IncCDDetector",
+   "values": "初始增量概念漂移检测器 IncCDDetector (默认) | incrementalConceptDriftDetector 对象",
+   "group": "主要"
+  },
+  {
+   "name": "添加观测值权重输入端口",
+   "default": "off",
+   "values": "添加观测值权重的第三个输入端口 off (默认) | on",
+   "group": "主要"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "–1",
+   "values": "指定采样时间的选项 –1 (默认) | 标量",
+   "group": "主要"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "漂移状态数据类型",
+   "default": "自动",
+   "values": "漂移状态输出的数据类型 继承: 自动 (默认) | 双精度 | 单精度 | 半精度 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | 布尔型 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "漂移状态数据类型最小值",
+   "default": "[]",
+   "values": "用于范围检查的漂移状态输出的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "漂移状态数据类型最大值",
+   "default": "[]",
+   "values": "用于范围检查的漂移状态输出的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "均值数据类型",
+   "default": "auto",
+   "values": "均值的数据类型 Inherit: auto (默认) | 双精度 | 单精度 | 半精度 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | 布尔型 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "均值数据类型最小值",
+   "default": "[]",
+   "values": "用于范围检查的均值最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "均值数据类型最大值",
+   "default": "[]",
+   "values": "用于范围检查的均值最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "方差数据类型",
+   "default": "auto",
+   "values": "方差的数据类型 Inherit: auto (默认) | 双精度 | 单精度 | 半精度 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | 布尔型 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "方差数据类型最小值",
+   "default": "[]",
+   "values": "用于范围检查的方差最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "方差数据类型最大值",
+   "default": "[]",
+   "values": "用于范围检查的方差的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "权重加和数据类型",
+   "default": "auto",
+   "values": "权重加和的数据类型 Inherit: auto (默认) | 双精度 | 单精度 | 半精度 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | 布尔型 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "权重加和数据类型最小值",
+   "default": "[]",
+   "values": "用于范围检查的权重加和的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "权重加和数据类型最大值",
+   "default": "[]",
+   "values": "用于范围检查的权重加和的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  }
+ ]
+}

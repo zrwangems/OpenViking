@@ -1,0 +1,13 @@
+{
+ "key": "Constant Volume Chamber (MA)",
+ "title": "Constant Volume Chamber (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Constant_Volume_Chamber_MA.md"
+ ],
+ "text": "Chamber with fixed volume of moist air and variable number of ports.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,197 @@
+{
+ "key": "SM ST7C",
+ "title": "SM ST7C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_ST7C.md"
+ ],
+ "text": "Discrete-time or continuous-time synchronous machine ST7C static excitation system with automatic voltage regulator, 9 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Initial field voltage, Efd0 (pu)} sets the initial output voltage, {Resistive component of load compensation, R_C (pu)} sets the compensation resistance, {Reactance component of load compensation, X_C (pu)} sets the compensation reactance, {Regulator input filter time constant, T_R (s)} sets the regulator time constant, {Regulator input filter time constant, T_G (s)} sets the time constant for voltage filtering, {Voltage regulator denominator (lag) time constant, T_F (s)} sets the lag time constant of the voltage regulator, {Maximum voltage reference, V_max (pu)}, {Minimum voltage reference, V_min (pu)}, {Voltage regulator gain, K_PA (pu)}, {Voltage regulator denominator (lag) time constant, T_B (s)} sets the voltage regulator lag time constant, {Voltage regulator numerator (lead) time constant, T_C (s)} sets the voltage regulator lead time constant, {Thyristor bridge firing control equivalent time constant, T_A (s)} sets the regulator lag time constant for first lead-lag, {Maximum regulator output, V_Rmax (pu)}, {Minimum regulator output, V_Rmin (pu)}, {Alternate OEL input locations (V_OEL)} sets the oEL input location, {Alternate UEL input locations (V_UEL)} sets the uEL input location, {Alternate SCL input locations (V_SCL)} sets the sCL input location, {Minimum excitation limit gain, K_L (pu)}, {Maximum excitation limit gain, K_H (pu)}, {PI regulator feedback gain, K_IA (pu)} and {PI regulator feedback time constant, T_IA (s)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "Voltage reference scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "Input from stabilizer scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "Terminal voltage scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "Terminal current scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "Overexcitation limit signal scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "Underexcitation limit signal scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "Summation point stator current limit signal scalar"
+  },
+  {
+   "name": "V_SCLoel",
+   "direction": "input",
+   "summary": "Take-over stator current limit for overexcitation limiter scalar"
+  },
+  {
+   "name": "V_SCLuel",
+   "direction": "input",
+   "summary": "Take-over stator current limit for underexcitation limiter scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "Field voltage scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "Initial output voltage 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "Compensation resistance 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "Compensation reactance 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0",
+   "values": "Regulator time constant 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_G (s)",
+   "default": "1",
+   "values": "Time constant for voltage filtering 1 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator denominator (lag) time constant, T_F (s)",
+   "default": "1",
+   "values": "Lag time constant of the voltage regulator 1 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum voltage reference, V_max (pu)",
+   "default": "1.1",
+   "values": "Maximum voltage reference 1.1 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum voltage reference, V_min (pu)",
+   "default": "0.9",
+   "values": "Minimum voltage referenc 0.9 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator gain, K_PA (pu)",
+   "default": "40",
+   "values": "Voltage regulator gain 40 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator denominator (lag) time constant, T_B (s)",
+   "default": "1",
+   "values": "Voltage regulator lag time constant 1 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator numerator (lead) time constant, T_C (s)",
+   "default": "1",
+   "values": "Voltage regulator lead time constant 1 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Thyristor bridge firing control equivalent time constant, T_A (s)",
+   "default": "0",
+   "values": "Regulator lag time constant for first lead-lag block 0 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum regulator output, V_Rmax (pu)",
+   "default": "5",
+   "values": "Maximum regulator output 5 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum regulator output, V_Rmin (pu)",
+   "default": "-4.5",
+   "values": "Minimum regulator output -4.5 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "Unused",
+   "values": "OEL input location Unused (default) | Summation point at voltage reference | Take-over at voltage reference | Take-over at voltage regulator output",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "Unused",
+   "values": "UEL input location Unused (default) | Summation point at voltage reference | Take-over at voltage reference | Take-over at voltage regulator output",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "Unused",
+   "values": "SCL input location Unused (default) | Summation point at voltage reference | Take-over at voltage reference | Take-over at voltage regulator output",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum excitation limit gain, K_L (pu)",
+   "default": "1",
+   "values": "Minimum excitation limit gain 1 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Maximum excitation limit gain, K_H (pu)",
+   "default": "1",
+   "values": "Maximum excitation limit gain 1 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "PI regulator feedback gain, K_IA (pu)",
+   "default": "1",
+   "values": "PI regulator feedback gain 1 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "PI regulator feedback time constant, T_IA (s)",
+   "default": "3",
+   "values": "PI regulator feedback time constant 3 (default) | positive scalar",
+   "group": "Exciter"
+  }
+ ]
+}

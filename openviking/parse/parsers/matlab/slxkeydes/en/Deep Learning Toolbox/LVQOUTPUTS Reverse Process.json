@@ -1,0 +1,13 @@
+{
+ "key": "LVQOUTPUTS Reverse Process",
+ "title": "lvqoutputs_reverse",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/lvqoutputs_reverse.md"
+ ],
+ "text": "LVQ outputs processing function.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

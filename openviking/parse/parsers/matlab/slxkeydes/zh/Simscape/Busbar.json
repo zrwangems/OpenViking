@@ -1,0 +1,13 @@
+{
+ "key": "Busbar",
+ "title": "Busbar",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Busbar.md"
+ ],
+ "text": "潮流分析母线连接器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

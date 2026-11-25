@@ -1,0 +1,112 @@
+{
+ "key": "NRLMSISE-00 Model",
+ "title": "NRLMSISE-00 Atmosphere Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Atmosphere/NRLMSISE_00_Atmosphere_Model.md"
+ ],
+ "text": "Implement mathematical representation of 2001 United States Naval Research Laboratory Mass Spectrometer and Incoherent Scatter Radar Exosphere, 9 inputs, 2 outputs, {Action for out-of-range input} sets Out-of-range block behavior; {Units} sets the input and output units Metric, {Input local apparent solar time} sets the apparent solar time, {Input flux and magnetic index information} sets the daily F10.7 flux for previous day and magnetic index, {Source for flags} sets the variation flag source, {Flags} sets the variation flags ones and {Include anomalous oxygen number density in total mass density} sets the anomalous oxygen. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Geodetic latitudes, longitude, and altitude three-element matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Years array"
+  },
+  {
+   "name": "Port_3",
+   "direction": "input",
+   "summary": "Days array"
+  },
+  {
+   "name": "Port_4",
+   "direction": "input",
+   "summary": "Seconds array"
+  },
+  {
+   "name": "Port_5",
+   "direction": "input",
+   "summary": "Local apparent solar time array"
+  },
+  {
+   "name": "Port_6",
+   "direction": "input",
+   "summary": "81-day average F10.7 flux 150 (default) | array"
+  },
+  {
+   "name": "Port_7",
+   "direction": "input",
+   "summary": "Daily average F10.7 flux 150 (default) | array"
+  },
+  {
+   "name": "Port_8",
+   "direction": "input",
+   "summary": "Magnetic index information N -by-7 array"
+  },
+  {
+   "name": "Port_9",
+   "direction": "input",
+   "summary": "Flags array of 23"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Temperature N -by-2 array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Densities N -by-9 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Input local apparent solar time",
+   "default": "off",
+   "values": "Apparent solar time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input flux and magnetic index information",
+   "default": "off",
+   "values": "Daily F10.7 flux for previous day and magnetic index information off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source for flags",
+   "default": "Internal",
+   "values": "Variation flag source Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Flags",
+   "default": "ones(1,23)",
+   "values": "Variation flags ones(1,23) (default)",
+   "group": ""
+  },
+  {
+   "name": "Include anomalous oxygen number density in total mass density",
+   "default": "off",
+   "values": "Anomalous oxygen off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

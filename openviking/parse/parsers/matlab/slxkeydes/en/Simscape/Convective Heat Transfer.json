@@ -1,0 +1,13 @@
+{
+ "key": "Convective Heat Transfer",
+ "title": "Convective Heat Transfer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Convective_Heat_Transfer.md"
+ ],
+ "text": "Heat transfer by convection.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

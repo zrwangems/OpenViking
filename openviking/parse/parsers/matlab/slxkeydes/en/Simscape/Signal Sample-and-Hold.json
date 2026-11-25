@@ -1,0 +1,42 @@
+{
+ "key": "Signal Sample-and-Hold",
+ "title": "Signal Sample and Hold",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Signal_Sample_and_Hold.md"
+ ],
+ "text": "Discrete-time or Continuous-time sample and hold input signal, 2 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Initial condition} sets the initial output value scalar. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Control signal 0 | 1"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "",
+   "values": "Initial output value scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

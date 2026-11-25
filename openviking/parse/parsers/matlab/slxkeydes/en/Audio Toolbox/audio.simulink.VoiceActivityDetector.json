@@ -1,0 +1,94 @@
+{
+ "key": "audio.simulink.VoiceActivityDetector",
+ "title": "Voice Activity Detector",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Measurements/Voice_Activity_Detector.md"
+ ],
+ "text": "Detect presence of speech in audio signal, 3 inputs, 2 outputs, no direct feedthrough, {Window} sets Windowing function applied before FFT; {Domain of the input}, {Sidelobe attenuation of the window (dB)}, {Inherit FFT length from input dimensions} sets the fFT length to number of input samples, {FFT length} sets the number of bins in frequency domain, {Probability of transition from a silence frame to a speech frame} sets the probability that a speech frame follows a silence, {Probability of transition from a speech frame to a silence frame} sets the probability that a silence frame follows a speech, {Output noise variance} sets the output estimate of noise variance per frequency and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input signal matrix | 1-D vector"
+  },
+  {
+   "name": "SilenceToSpeech",
+   "direction": "input",
+   "summary": "Threshold (dB) scalar in the range [0, 1]"
+  },
+  {
+   "name": "SpeechToSilence",
+   "direction": "input",
+   "summary": "Threshold (dB) scalar in the range [0, 1]"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Probability that speech is present scalar | row vector"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "Estimate of noise variance per frequency bin column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Domain of the input",
+   "default": "Time",
+   "values": "Domain of the input Time (default) | Frequency",
+   "group": ""
+  },
+  {
+   "name": "Window",
+   "default": "Hann",
+   "values": "Windowing function applied before FFT Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation of the window (dB)",
+   "default": "60",
+   "values": "Sidelobe attenuation of the window (dB) 60 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT length from input dimensions",
+   "default": "on",
+   "values": "Set FFT length to number of input samples on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "Number of bins in frequency domain 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Probability of transition from a silence frame to a speech frame",
+   "default": "0.2",
+   "values": "Probability that a speech frame follows a silence frame 0.2 (default) | scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Probability of transition from a speech frame to a silence frame",
+   "default": "0.1",
+   "values": "Probability that a silence frame follows a speech frame 0.1 (default) | scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Output noise variance",
+   "default": "off",
+   "values": "Output estimate of noise variance per frequency bin off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Specify type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

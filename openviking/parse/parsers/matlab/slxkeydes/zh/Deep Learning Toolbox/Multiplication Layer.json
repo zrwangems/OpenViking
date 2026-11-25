@@ -1,0 +1,89 @@
+{
+ "key": "Multiplication Layer",
+ "title": "Multiplication Layer",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Combination Layers/Multiplication_Layer.md"
+ ],
+ "text": "Multiplication Layer 模块逐元素相乘来自多个神经网络层的输入，输入 3 路、输出 1 路；按 {Data format} 指定输入数据的格式；{Number of inputs} 指定层模块的值数目、{Output minimum} 用于范围检查的最小输出值、{Output maximum} 用于范围检查的最大输出值、{Output data type} 输出数据类型、{Lock output data type setting against changes by the fixed-point tools} 用于防止定点工具覆盖输出数据类型、{Integer rounding mode} 指定定点运算的舍入模式、{Saturate on integer overflow} 指定溢出操作的方法、{Sample time} 用于指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入数据 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个输入数据 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "第 N 个输入数据 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出数据 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inputs",
+   "default": "2",
+   "values": "层模块的值数目 2 (default) | 3 | 4 | 5",
+   "group": "Main"
+  },
+  {
+   "name": "Data format",
+   "default": "SSC",
+   "values": "输入数据的格式 SSC (default) | C | CT | SC | SSSC",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "用于范围检查的最小输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "用于范围检查的最大输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "用于指定采样时间的选项 -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

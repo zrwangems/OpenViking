@@ -1,0 +1,104 @@
+{
+ "key": "Compressor",
+ "title": "Compressor",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Boost/Compressor.md"
+ ],
+ "text": "Compressor for boosted engines, 3 inputs, 4 outputs; {Calibrate Performance Maps} sets the calibrate tables with measured data, {Corrected mass flow rate table, mdot_corr_tbl} sets the lookup table array, {Efficiency table, eta_comp_tbl} sets the lookup table array, {Corrected speed breakpoints, w_corr_bpts1} sets the breakpoints vector, {Pressure ratio breakpoints, Pr_bpts2} sets the breakpoints vector, {Reference temperature, T_ref}, {Reference pressure, P_ref}, {Ideal gas constant, R} sets the constant and {Specific heat at constant pressure, cp}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ds",
+   "direction": "input",
+   "summary": "Drive shaft speed two-way connector port"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Inlet pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Outlet pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "Ds",
+   "direction": "output",
+   "summary": "Drive shaft torque two-way connector port"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "Inlet mass flow rate, heat flow rate, temperature, mass fractions two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Outlet mass flow rate, heat flow rate, temperature, mass fractions two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Calibrate Performance Maps",
+   "default": "",
+   "values": "Calibrate tables with measured data selection",
+   "group": ""
+  },
+  {
+   "name": "Corrected mass flow rate table, mdot_corr_tbl",
+   "default": "",
+   "values": "Lookup table array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table, eta_comp_tbl",
+   "default": "",
+   "values": "Lookup table array",
+   "group": ""
+  },
+  {
+   "name": "Corrected speed breakpoints, w_corr_bpts1",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": ""
+  },
+  {
+   "name": "Pressure ratio breakpoints, Pr_bpts2",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": ""
+  },
+  {
+   "name": "Reference temperature, T_ref",
+   "default": "293.15",
+   "values": "Reference 293.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference pressure, P_ref",
+   "default": "101325",
+   "values": "Reference 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ideal gas constant, R",
+   "default": "287",
+   "values": "Constant 287 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specific heat at constant pressure, cp",
+   "default": "1005",
+   "values": "Specific heat 1005 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

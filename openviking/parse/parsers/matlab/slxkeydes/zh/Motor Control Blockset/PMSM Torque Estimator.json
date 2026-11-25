@@ -1,0 +1,170 @@
+{
+ "key": "PMSM Torque Estimator",
+ "title": "PMSM Torque Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/PMSM_Torque_Estimator.md",
+  "Simscape/Electrical/Control/PMSM Control/PMSM_Torque_Estimator.md"
+ ],
+ "text": "估计机电转矩和功率，输入 6 路、输出 2 路；按 {电机参数输入方法} 指定电机参数的类型；{极对数}、{D 轴电流断点矢量，id (A)} 指定 D 轴电流查找矢量、{Q 轴电流断点矢量，iq (A)} 指定 Q 轴电流查找矢量、{定子 d 轴电感，Ld (H)} 指定 D 轴定子绕组电感 0.2e-3、{定子 q 轴电感，Lq (H)} 指定 Q 轴定子绕组电感 0.2e-3、{永磁磁链，FluxPM (Wb)} 指定永磁磁链 6.4e-3、{D 轴磁链 LUT，FluxD(id,iq) (Wb)} 指定 D 轴磁链查找数据、{Q 轴磁链 LUT，FluxQ(id,iq) (Wb)} 指定 Q 轴磁链查找数据、{Ld LUT，Ld(id,iq) (H)} 指定 D 轴电感查找数据 0.2e-3 * ones、{Lq LUT，Lq(id,iq) (H)} 指定 Q 轴电感查找表数据 0.2e-3 * ones、{PM 磁链 LUT，FluxPM(id,iq) (Wb)} 指定永磁磁链查找数据 6.4e-3 * ones、{输入单位} 指定输入值的单位 标幺、{基电压(V)} 指定标称电压限值 24/sqrt、{基电流(A)} 指定标称电流限值、{基转速(rpm)} 指定标称转速限值、{基转矩(Nm)} 指定标称转矩限值、{基功率(W)} 指定标称功率限值、{允许在 CodeGen 中使用缩小的电机参数(提升定点数据类型的精度)} 按比例缩放内部参数以匹配标幺值范围，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I d",
+   "direction": "input",
+   "summary": "D 轴电流 标量"
+  },
+  {
+   "name": "I q",
+   "direction": "input",
+   "summary": "Q 轴电流 标量"
+  },
+  {
+   "name": "ω m",
+   "direction": "input",
+   "summary": "转子的机械转速 标量"
+  },
+  {
+   "name": "L d",
+   "direction": "input",
+   "summary": "D 轴电感 标量"
+  },
+  {
+   "name": "L q",
+   "direction": "input",
+   "summary": "Q 轴电感 标量"
+  },
+  {
+   "name": "Flux PM",
+   "direction": "input",
+   "summary": "永磁磁链 标量"
+  },
+  {
+   "name": "T e",
+   "direction": "output",
+   "summary": "估计的转矩 标量"
+  },
+  {
+   "name": "P e",
+   "direction": "output",
+   "summary": "估计的功率 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "极对数",
+   "default": "4",
+   "values": "电机中可用的极对数 4 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "电机参数输入方法",
+   "default": "具有集总参数的线性模型",
+   "values": "电机参数的类型 具有集总参数的线性模型 (默认) | 带 D、Q 磁链 LUT 的非线性模型 | 带 Ld、Lq 和 FluxPM LUT 的非线性模型 | 基于输入端口的 Ld、Lq 和 FluxPM",
+   "group": ""
+  },
+  {
+   "name": "D 轴电流断点矢量，id (A)",
+   "default": "20]",
+   "values": "D 轴电流查找矢量 [-40, -20, 0, 20] (默认) | 矢量",
+   "group": ""
+  },
+  {
+   "name": "Q 轴电流断点矢量，iq (A)",
+   "default": "40]",
+   "values": "Q 轴电流查找矢量 [-40, -20, 0, 20, 40] (默认) | 矢量",
+   "group": ""
+  },
+  {
+   "name": "定子 d 轴电感，Ld (H)",
+   "default": "0.2e-3",
+   "values": "D 轴定子绕组电感 0.2e-3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "定子 q 轴电感，Lq (H)",
+   "default": "0.2e-3",
+   "values": "Q 轴定子绕组电感 0.2e-3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "永磁磁链，FluxPM (Wb)",
+   "default": "6.4e-3",
+   "values": "永磁磁链 6.4e-3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "D 轴磁链 LUT，FluxD(id,iq) (Wb)",
+   "default": "[-1.6,-1.6,-1.6,-1.6,-1.6;2.4,2.4,2.4,2.4,2.4;6.4,6.4,6.4,6.4,6.4;10.4,10.4,10.4,10.4,10.4]*1e-3",
+   "values": "D 轴磁链查找数据 [-1.6,-1.6,-1.6,-1.6,-1.6;2.4,2.4,2.4,2.4,2.4;6.4,6.4,6.4,6.4,6.4;10.4,10.4,10.4,10.4,10.4]*1e-3 (默认) | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "Q 轴磁链 LUT，FluxQ(id,iq) (Wb)",
+   "default": "[-8,-4,0,4,8;-8,-4,0,4,8;-8,-4,0,4,8;-8,-4,0,4,8]*1e-3",
+   "values": "Q 轴磁链查找数据 [-8,-4,0,4,8;-8,-4,0,4,8;-8,-4,0,4,8;-8,-4,0,4,8]*1e-3 (默认) | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "Ld LUT，Ld(id,iq) (H)",
+   "default": "5)",
+   "values": "D 轴电感查找数据 0.2e-3 * ones(4, 5) (默认) | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "Lq LUT，Lq(id,iq) (H)",
+   "default": "5)",
+   "values": "Q 轴电感查找表数据 0.2e-3 * ones(4, 5) (默认) | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "PM 磁链 LUT，FluxPM(id,iq) (Wb)",
+   "default": "5)",
+   "values": "永磁磁链查找数据 6.4e-3 * ones(4, 5) (默认) | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "输入单位",
+   "default": "标幺(PU)",
+   "values": "输入值的单位 标幺(PU) (默认) | SI 单位",
+   "group": ""
+  },
+  {
+   "name": "基电压(V)",
+   "default": "24/sqrt(3)",
+   "values": "标称电压限值 24/sqrt(3) (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "基电流(A)",
+   "default": "19.3",
+   "values": "标称电流限值 19.3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "基转速(rpm)",
+   "default": "4107",
+   "values": "标称转速限值 4107 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "基转矩(Nm)",
+   "default": "0.74112",
+   "values": "标称转矩限值 0.74112 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "基功率(W)",
+   "default": "401.143",
+   "values": "标称功率限值 401.143 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "允许在 CodeGen 中使用缩小的电机参数(提升定点数据类型的精度)",
+   "default": "on",
+   "values": "按比例缩放内部参数以匹配标幺值范围 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Absolute Reference (MA)",
+ "title": "Absolute Reference (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Absolute_Reference_MA.md"
+ ],
+ "text": "（不推荐）绝对温度和绝对压力为零的参考点。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

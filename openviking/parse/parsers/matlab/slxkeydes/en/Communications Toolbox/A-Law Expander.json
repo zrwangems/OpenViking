@@ -1,0 +1,13 @@
+{
+ "key": "A-Law Expander",
+ "title": "A-Law Expander",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/A_Law_Expander.md"
+ ],
+ "text": "Implement A-law expander for source coding.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

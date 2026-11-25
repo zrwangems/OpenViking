@@ -1,0 +1,37 @@
+{
+ "key": "HDL Combinatorial Logic",
+ "title": "HDL Combinatorial Logic",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/RCP and HIL/HDL_Combinatorial_Logic.md"
+ ],
+ "text": "HDL Combinatorial Logic 模块实现标准真值表，用于对可编程逻辑阵列 (PLA)、逻辑电路、决策表和其他布尔表达式进行建模，输入 1 路、输出 1 路；{Input table} 指定输入排列矩阵 matrix、{Output table} 输出矩阵 matrix，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 vector"
+  },
+  {
+   "name": "v",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input table",
+   "default": "",
+   "values": "输入排列矩阵 matrix",
+   "group": ""
+  },
+  {
+   "name": "Output table",
+   "default": "",
+   "values": "输出矩阵 matrix",
+   "group": ""
+  }
+ ]
+}

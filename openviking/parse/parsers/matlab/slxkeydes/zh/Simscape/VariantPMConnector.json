@@ -1,0 +1,13 @@
+{
+ "key": "VariantPMConnector",
+ "title": "Variant Connector",
+ "toolbox": "Simscape",
+ "kind": "block_type",
+ "source_docs": [
+  "Simscape/Utilities/Variant_Connector.md"
+ ],
+ "text": "从网络中移除或断开物理组件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

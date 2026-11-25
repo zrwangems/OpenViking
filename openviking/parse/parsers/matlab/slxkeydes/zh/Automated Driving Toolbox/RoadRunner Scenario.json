@@ -1,0 +1,38 @@
+{
+ "key": "RoadRunner Scenario",
+ "title": "RoadRunner Scenario",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_block",
+ "source_docs": [
+  "Automated Driving Toolbox/RoadRunner Scenario/RoadRunner_Scenario.md"
+ ],
+ "text": "定义 Simulink 参与者模型的接口；{Action name} 指定用户定义动作的名称 string、{Bus object name} 指定总线对象的名称 string、{Event name} 指定用户定义事件的名称 string、{Maximum Points on Path} 指定路径上的最大点数，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Action name",
+   "default": "",
+   "values": "用户定义动作的名称 string",
+   "group": "Actions"
+  },
+  {
+   "name": "Bus object name",
+   "default": "",
+   "values": "总线对象的名称 string",
+   "group": "Actions"
+  },
+  {
+   "name": "Event name",
+   "default": "",
+   "values": "用户定义事件的名称 string",
+   "group": "Events"
+  },
+  {
+   "name": "Maximum Points on Path",
+   "default": "500",
+   "values": "路径上的最大点数 500 (default) | positive scalar",
+   "group": "Configuration"
+  }
+ ]
+}

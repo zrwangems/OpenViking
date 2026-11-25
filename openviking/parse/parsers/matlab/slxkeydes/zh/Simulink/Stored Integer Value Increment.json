@@ -1,0 +1,25 @@
+{
+ "key": "Stored Integer Value Increment",
+ "title": "Increment Stored Integer",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Math_ Increment - Decrement/Increment_Stored_Integer.md",
+  "HDL Coder/Math Operations/Increment_Stored_Integer.md"
+ ],
+ "text": "将信号的存储整数值加一，输入 1 路、输出 1 路、直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

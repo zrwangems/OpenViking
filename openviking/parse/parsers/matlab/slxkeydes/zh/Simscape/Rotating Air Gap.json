@@ -1,0 +1,13 @@
+{
+ "key": "Rotating Air Gap",
+ "title": "Rotating Air Gap",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Rotating_Air_Gap.md"
+ ],
+ "text": "定子齿与旋转永磁转子之间的气隙。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

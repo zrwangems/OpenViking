@@ -1,0 +1,62 @@
+{
+ "key": "ethercat_pdo_receive",
+ "title": "EtherCAT PDO Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_PDO_Receive.md"
+ ],
+ "text": "Receive data from subordinate device represented by process data object, 1 output; {Network Device Index} sets the etherCAT network identifier, {Signal name} sets the etherCAT device variable name character, {Signal Offset} sets the location in the process of signal data Read-only, {Signal Type} sets the data type for EtherCAT data Read-only: character, {Type Size (bits)} sets the size of EtherCAT data type Read-only, {Signal Dimension} sets the dimension of the signal and {Sample Time} sets the rate at which this block is executed Read-only. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "Data received from subordinate device [double]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT network identifier 0 (default) | 0-15",
+   "group": ""
+  },
+  {
+   "name": "Signal name",
+   "default": "",
+   "values": "EtherCAT device variable name character vector",
+   "group": ""
+  },
+  {
+   "name": "Signal Offset",
+   "default": "",
+   "values": "Location in the process of signal data Read-only: integer",
+   "group": ""
+  },
+  {
+   "name": "Signal Type",
+   "default": "",
+   "values": "Data type for EtherCAT data Read-only: character vector",
+   "group": ""
+  },
+  {
+   "name": "Type Size (bits)",
+   "default": "",
+   "values": "Size of EtherCAT data type Read-only: integer",
+   "group": ""
+  },
+  {
+   "name": "Signal Dimension",
+   "default": "",
+   "values": "Dimension of the signal Read-only: integer",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "",
+   "values": "Rate at which this block is executed Read-only: numeric",
+   "group": ""
+  }
+ ]
+}

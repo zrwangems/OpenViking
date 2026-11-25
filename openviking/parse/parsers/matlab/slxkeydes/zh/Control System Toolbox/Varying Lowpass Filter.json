@@ -1,0 +1,36 @@
+{
+ "key": "Varying Lowpass Filter",
+ "title": "Varying Lowpass Filter",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Varying_Lowpass_Filter.md"
+ ],
+ "text": "具有可变系数的巴特沃斯滤波器，输入 2 路、输出 1 路；{滤波器阶数}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "滤波器输入 标量"
+  },
+  {
+   "name": "freq",
+   "direction": "input",
+   "summary": "截止频率 标量"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "滤波器输出 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "滤波器阶数",
+   "default": "1",
+   "values": "低通滤波器阶数 1 (默认) | 正整数",
+   "group": ""
+  }
+ ]
+}

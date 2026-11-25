@@ -1,0 +1,80 @@
+{
+ "key": "RTIScopeBlock",
+ "title": "Range-Time Intensity Scope",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Sinks/Range_Time_Intensity_Scope.md"
+ ],
+ "text": "Range-time intensity scope，输入 1 路、无直接馈通；{Range Offset (m)} 指定距离偏移、{Time Span (s)} 显示的时间跨度、{Range Resolution (m)} 指定样本之间的距离差、{Time Resolution (s)} 指定行之间的时间差、{Show Grid} 显示笛卡尔网格叠加、{Show Ticks} 显示刻度值标签、{Range Label} 指定距离轴标签、{Time Label} 指定时间轴标签 Time History、{Title} 指定窗口标题、{Colorbar Label} 指定颜色栏，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入数据 real-valued length- M vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Range Offset (m)",
+   "default": "0.0",
+   "values": "距离偏移 0.0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time Span (s)",
+   "default": "0.1",
+   "values": "显示的时间跨度 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Range Resolution (m)",
+   "default": "1",
+   "values": "样本之间的距离差 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time Resolution (s)",
+   "default": "0.001",
+   "values": "行之间的时间差 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Grid",
+   "default": "on",
+   "values": "显示笛卡尔网格叠加 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show Ticks",
+   "default": "on",
+   "values": "显示刻度值标签 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Range Label",
+   "default": "(m)’",
+   "values": "距离轴标签 ’Range (m)’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Time Label",
+   "default": "(s)’",
+   "values": "时间轴标签 Time History (s)’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Title",
+   "default": "Time’",
+   "values": "窗口标题 ’Range vs. Time’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Colorbar Label",
+   "default": "’mag’",
+   "values": "颜色栏 ’mag’ (default) | string",
+   "group": ""
+  }
+ ]
+}

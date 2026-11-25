@@ -1,0 +1,44 @@
+{
+ "key": "Ramp",
+ "title": "Ramp",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Ramp.md"
+ ],
+ "text": "生成持续上升或下降的信号；输出 1 路；按 {斜率} 指定信号的斜率；{开始时间}、{初始输出} 输出信号的初始值、{将向量参数解释为一维向量} 指定将向量视为一维，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "斜率",
+   "default": "1",
+   "values": "信号的斜率 1 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "开始时间",
+   "default": "0",
+   "values": "输出的开始时间 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "初始输出",
+   "default": "0",
+   "values": "输出信号的初始值 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "将向量参数解释为一维向量",
+   "default": "on",
+   "values": "将向量视为一维 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

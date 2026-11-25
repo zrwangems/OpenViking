@@ -1,0 +1,13 @@
+{
+ "key": "Pressure-Compensated Pump (IL)",
+ "title": "Pressure-Compensated Pump (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pumps & Motors/Pressure_Compensated_Pump_IL.md"
+ ],
+ "text": "Constant-pressure, variable-displacement pump in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

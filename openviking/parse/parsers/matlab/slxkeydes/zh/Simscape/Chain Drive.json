@@ -1,0 +1,13 @@
+{
+ "key": "Chain Drive",
+ "title": "Chain Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Chain_Drive.md"
+ ],
+ "text": "带链条和两个链轮的功率传输系统。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

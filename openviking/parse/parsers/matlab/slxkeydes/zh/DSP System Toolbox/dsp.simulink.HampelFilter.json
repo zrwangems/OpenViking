@@ -1,0 +1,65 @@
+{
+ "key": "dsp.simulink.HampelFilter",
+ "title": "Hampel Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Hampel_Filter.md"
+ ],
+ "text": "使用 Hampel 标识符过滤离群值，输入 2 路、输出 2 路、无直接馈通；{Window length} 指定滑动窗口的长度、{Specify threshold from input port} 用于指定阈值的标志、{Threshold for outlier detection (standard deviations)} 指定阈值、{Output outlier status} 用于输出离群值状态的标志、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "阈值 real scalar greater than or equal to 0"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "滤波后输出 vector | matrix"
+  },
+  {
+   "name": "outlier",
+   "direction": "output",
+   "summary": "输出离群值状态 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length",
+   "default": "11",
+   "values": "滑动窗口的长度 11 (default) | positive odd scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Specify threshold from input port",
+   "default": "off",
+   "values": "用于指定阈值的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Threshold for outlier detection (standard deviations)",
+   "default": "3",
+   "values": "阈值 3 (default) | real scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Output outlier status",
+   "default": "off",
+   "values": "用于输出离群值状态的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

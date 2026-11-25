@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Spring",
+ "title": "Rotational Spring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Rotational_Spring.md"
+ ],
+ "text": "Ideal spring in mechanical rotational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

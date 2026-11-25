@@ -1,0 +1,13 @@
+{
+ "key": "PMSM (Single-Phase)",
+ "title": "PMSM (Single-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/PMSM_Single_Phase.md"
+ ],
+ "text": "Single-phase permanent magnet synchronous motor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

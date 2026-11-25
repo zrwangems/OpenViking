@@ -1,0 +1,13 @@
+{
+ "key": "Ignition Trigger",
+ "title": "Ignition Trigger",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Engine Subcomponents/Ignition_Trigger.md"
+ ],
+ "text": "Trigger system for spark-ignited combustion engine.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

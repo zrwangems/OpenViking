@@ -1,0 +1,43 @@
+{
+ "key": "LTI Block",
+ "title": "LTI System",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/LTI_System.md"
+ ],
+ "text": "Use linear time invariant system model object in Simulink, 1 input, 1 output, {Pade order (for linearization)} sets Order of Pade approximation; {LTI system variable} sets the linear system dynamic and {Initial states (state-space only)} sets the initial state values for state-space model. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "LTI system variable",
+   "default": "",
+   "values": "Linear system dynamic system model",
+   "group": ""
+  },
+  {
+   "name": "Initial states (state-space only)",
+   "default": "[]",
+   "values": "Initial state values for state-space model [] (default) | vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pade order (for linearization)",
+   "default": "0",
+   "values": "Order of Pade approximation 0 (default) | positive integer | vector",
+   "group": ""
+  }
+ ]
+}

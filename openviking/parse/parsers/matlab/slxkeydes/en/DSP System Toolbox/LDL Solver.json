@@ -1,0 +1,36 @@
+{
+ "key": "LDL Solver",
+ "title": "LDL Solver",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/LDL_Solver.md"
+ ],
+ "text": "Solve S X = B when S is square Hermitian positive definite matrix, 2 inputs, 1 output, no direct feedthrough, {Non-positive definite input} sets Non-positive definite input.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "System matrix square matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Right-side matrix of system equation vector | matrix"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "Solution to system of equations vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Non-positive definite input",
+   "default": "Ignore",
+   "values": "Non-positive definite input Ignore (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "visionhdl.MeasureTiming",
+ "title": "Measure Timing",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Measure_Timing.md"
+ ],
+ "text": "测量像素控制总线输入的时序，输入 1 路、输出 6 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ctrlIn",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "activePixels",
+   "direction": "output",
+   "summary": "活动视频帧每行中的像素数 scalar"
+  },
+  {
+   "name": "activeLines",
+   "direction": "output",
+   "summary": "活动视频帧中的行数 scalar"
+  },
+  {
+   "name": "totalPixels",
+   "direction": "output",
+   "summary": "每行中的像素数（包括水平消隐间隔） scalar"
+  },
+  {
+   "name": "totalLines",
+   "direction": "output",
+   "summary": "帧中的行数（包括垂直消隐间隔） scalar"
+  },
+  {
+   "name": "horizBlank",
+   "direction": "output",
+   "summary": "帧的行之间的非活动像素数 scalar"
+  },
+  {
+   "name": "vertBlank",
+   "direction": "output",
+   "summary": "帧之间的非活动行数 scalar"
+  }
+ ],
+ "params": []
+}

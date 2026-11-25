@@ -1,0 +1,135 @@
+{
+ "key": "PMSM Current Controller with Pre-Control",
+ "title": "PMSM Current Controller with Pre-Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/PMSM Control/PMSM_Current_Controller_with_Pre_Control.md"
+ ],
+ "text": "带预控制的离散时间永磁同步电机电流控制器，输入 5 路、输出 1 路；按 {Axis prioritization} 指定电压限幅器的轴优先级；{D-axis current proportional gain} 指定 D 轴比例增益、{D-axis current integral gain} 指定 D 轴积分增益、{D-axis current anti-windup gain} 指定 D 轴抗积分饱和增益、{Q-axis current proportional gain} 指定 Q 轴比例增益、{Q-axis current integral gain} 指定 Q 轴积分增益、{Q-axis current anti-windup gain} 指定 Q 轴抗积分饱和增益、{Sample time (-1 for inherited)} 指定模块采样时间、{Enable zero cancellation} 指定前馈零点对消、{Enable pre-control voltage} 指定预控制电压、{D-axis current vector, id (A)} 指定 D 轴电流断点向量、{Q-axis current vector, iq (A)} 指定 Q 轴电流断点向量、{Ld matrix, Ld(id,iq) (H)} 指定 D 轴电感查找表数据 0.0002 * ones、{Lq matrix, Lq(id,iq) (H)} 指定 Q 轴电感查找表数据 0.0002 * ones、{Permanent magnet flux linkage matrix, PM(id,iq) (Wb)} 指定磁链查找表数据 0.04 * ones，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "idqRef",
+   "direction": "input",
+   "summary": "参考电流 vector"
+  },
+  {
+   "name": "idq",
+   "direction": "input",
+   "summary": "测量电流 vector"
+  },
+  {
+   "name": "wElectrical",
+   "direction": "input",
+   "summary": "测量的电气速度 vector"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "最大相电压 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部复位 scalar"
+  },
+  {
+   "name": "vdqRef",
+   "direction": "output",
+   "summary": "参考电压 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "D-axis current proportional gain",
+   "default": "1",
+   "values": "D 轴比例增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current integral gain",
+   "default": "100",
+   "values": "D 轴积分增益 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current anti-windup gain",
+   "default": "1",
+   "values": "D 轴抗积分饱和增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current proportional gain",
+   "default": "1",
+   "values": "Q 轴比例增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current integral gain",
+   "default": "100",
+   "values": "Q 轴积分增益 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current anti-windup gain",
+   "default": "1",
+   "values": "Q 轴抗积分饱和增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | -1 or positive number",
+   "group": ""
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "q-axis",
+   "values": "电压限幅器的轴优先级 q-axis (default) | d-axis | d-q equivalence",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "前馈零点对消 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable pre-control voltage",
+   "default": "on",
+   "values": "预控制电压 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "D-axis current vector, id (A)",
+   "default": "A",
+   "values": "D 轴电流断点向量 [-200,0,200] A (default) | monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current vector, iq (A)",
+   "default": "A",
+   "values": "Q 轴电流断点向量 [-200,0,200] A (default) | monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Ld matrix, Ld(id,iq) (H)",
+   "default": "H",
+   "values": "D 轴电感查找表数据 0.0002 * ones(3, 3) H (default) | positive matrix",
+   "group": ""
+  },
+  {
+   "name": "Lq matrix, Lq(id,iq) (H)",
+   "default": "H",
+   "values": "Q 轴电感查找表数据 0.0002 * ones(3, 3) H (default) | positive matrix",
+   "group": ""
+  },
+  {
+   "name": "Permanent magnet flux linkage matrix, PM(id,iq) (Wb)",
+   "default": "Wb",
+   "values": "磁链查找表数据 0.04 * ones(3, 3) Wb (default) | real matrix",
+   "group": ""
+  }
+ ]
+}

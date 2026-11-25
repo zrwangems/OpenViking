@@ -1,0 +1,13 @@
+{
+ "key": "Poppet Valve (TL)",
+ "title": "Poppet Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Flow Control Valves/Poppet_Valve_TL.md"
+ ],
+ "text": "热液体网络中的提升式流量控制阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

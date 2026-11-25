@@ -1,0 +1,90 @@
+{
+ "key": "GravityWGS84",
+ "title": "WGS84 Gravity Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/WGS84_Gravity_Model.md"
+ ],
+ "text": "实现地球重力的 1984 年世界大地测量系统 (WGS84) 表示，输入 2 路、输出 1 路；按 {Month} 指定月份；{Type of gravity model} 指定重力模型方法 WGS84 Taylor、{Units} 指定单位 Metric、{Exclude Earth’s atmosphere} 指定地球大气、{Precessing reference frame} 指定进动参考坐标系、{Input Julian date} 指定儒略日、{Day} 指定日、{Year} 指定年份、{No centrifugal effects} 指定离心效应、{Action for out-of-range input} 指定超出范围时的模块行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ l h",
+   "direction": "input",
+   "summary": "以大地纬度、经度和高度表示的位置 three-element vector | M -by-3 array"
+  },
+  {
+   "name": "JD",
+   "direction": "input",
+   "summary": "儒略日 scalar | value greater than 2451545"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "重力 three-element vector | M -by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of gravity model",
+   "default": "Series",
+   "values": "重力模型方法 WGS84 Taylor Series (default) | WGS84 Close Approximation | WGS84 Exact",
+   "group": ""
+  },
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Exclude Earth’s atmosphere",
+   "default": "on",
+   "values": "地球大气 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Precessing reference frame",
+   "default": "on",
+   "values": "进动参考坐标系 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input Julian date",
+   "default": "off",
+   "values": "儒略日 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "月份 January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Day",
+   "default": "10",
+   "values": "日 10 (default) | 1 to 31",
+   "group": ""
+  },
+  {
+   "name": "Year",
+   "default": "2004",
+   "values": "年份 2004 (default) | any year",
+   "group": ""
+  },
+  {
+   "name": "No centrifugal effects",
+   "default": "on",
+   "values": "离心效应 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "超出范围时的模块行为 Warning (default) | Error | None",
+   "group": ""
+  }
+ ]
+}

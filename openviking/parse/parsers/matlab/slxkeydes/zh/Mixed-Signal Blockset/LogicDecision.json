@@ -1,0 +1,54 @@
+{
+ "key": "LogicDecision",
+ "title": "Logic Decision",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Logic_Decision.md"
+ ],
+ "text": "二进制处理输入端的阈值交叉检测器，输入 2 路、输出 1 路；{Sample time} 指定采样时间来源、{Sample time value} 指定采样时间的实际值 20e-12、{Minimum delay value} 指定最小传播延迟值 1e-15、{Buffer size} 指定要缓冲的阈值交叉数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wave",
+   "direction": "input",
+   "summary": "输入信号 fixed step sampling | variable step sampling | scalar"
+  },
+  {
+   "name": "vth",
+   "direction": "input",
+   "summary": "判定阈值 scalar"
+  },
+  {
+   "name": "events",
+   "direction": "output",
+   "summary": "输出信号 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "Inherited",
+   "values": "采样时间来源 Inherited (default) | Fixed",
+   "group": ""
+  },
+  {
+   "name": "Sample time value",
+   "default": "20e-12",
+   "values": "采样时间的实际值 20e-12 (default) | real scalar excluding zero",
+   "group": ""
+  },
+  {
+   "name": "Minimum delay value",
+   "default": "1e-15",
+   "values": "最小传播延迟值 1e-15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "1",
+   "values": "要缓冲的阈值交叉数 1 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

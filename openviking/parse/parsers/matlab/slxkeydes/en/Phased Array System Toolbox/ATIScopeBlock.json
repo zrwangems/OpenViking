@@ -1,0 +1,80 @@
+{
+ "key": "ATIScopeBlock",
+ "title": "Angle-Time Intensity Scope",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Sinks/Angle_Time_Intensity_Scope.md"
+ ],
+ "text": "Angle-time intensity scope, 1 input, no direct feedthrough, {Angle label} sets Angle-axis label ’Angle; {Angle offset (degree)}, {Angle resolution (degree)} sets the angle difference between samples, {Time span (s)} sets the time span of display, {Time resolution (s)} sets the time difference between rows, {Grid} shows Cartesian grid overlay, {Ticks} shows tick value labels, {Time label} sets the time axis label, {Title} sets the window title Angle vs. Time and {Colorbar label}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input data real-valued length- M vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Angle offset (degree)",
+   "default": "0.0",
+   "values": "Angle offset 0.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Angle resolution (degree)",
+   "default": "1.0",
+   "values": "Angle difference between samples 1.0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time span (s)",
+   "default": "Auto",
+   "values": "Time span of display Auto (default)",
+   "group": ""
+  },
+  {
+   "name": "Time resolution (s)",
+   "default": "Auto",
+   "values": "Time difference between rows Auto (default)",
+   "group": ""
+  },
+  {
+   "name": "Grid",
+   "default": "on",
+   "values": "Show Cartesian grid overlay on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ticks",
+   "default": "on",
+   "values": "Show tick value labels on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Angle label",
+   "default": "(degree)’",
+   "values": "Angle-axis label ’Angle (degree)’ (default) | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Time label",
+   "default": "(s)’",
+   "values": "Time axis label ’Time History (s)’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Title",
+   "default": "Time’",
+   "values": "Window title Angle vs. Time’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Colorbar label",
+   "default": "’dB’",
+   "values": "Color bar label ’dB’ (default) | string",
+   "group": ""
+  }
+ ]
+}

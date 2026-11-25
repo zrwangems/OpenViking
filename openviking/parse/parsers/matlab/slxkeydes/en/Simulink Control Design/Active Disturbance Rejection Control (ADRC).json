@@ -1,0 +1,101 @@
+{
+ "key": "Active Disturbance Rejection Control (ADRC)",
+ "title": "Active Disturbance Rejection Control",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Adaptive Control/Active_Disturbance_Rejection_Control.md"
+ ],
+ "text": "Design controller for plants with unknown dynamics and disturbances, 2 inputs, 2 outputs, {Initial conditions} sets Initial state values for extended state observer; {Time domain} sets the controller time domain, {Sample time} sets the controller sample time, {Model type} sets the plant order type, {Critical gain}, {Controller bandwidth (rad/sec)}, {Observer bandwidth (rad/sec)}, {Limit output (u)} limits block output to specified saturation, {Upper limit} sets the upper saturation limit for block output, {Lower limit} sets the lower saturation limit for block output and {Estimated extended states (xhat)} sets the output estimated states from observer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Reference signal scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Control input scalar"
+  },
+  {
+   "name": "xhat",
+   "direction": "output",
+   "summary": "Estimated extended states vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time domain",
+   "default": "discrete-time",
+   "values": "Controller time domain discrete-time (default) | continuous-time",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Controller sample time 0.01 (default) | finite positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Model type",
+   "default": "first-order",
+   "values": "Plant order type first-order (default) | second-order",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Critical gain",
+   "default": "1",
+   "values": "Critical gain 1 (default) | finite nonzero scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Controller bandwidth (rad/sec)",
+   "default": "1",
+   "values": "Controller bandwidth 1 (default) | finite positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Observer bandwidth (rad/sec)",
+   "default": "10",
+   "values": "Observer bandwidth 10 (default) | finite positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial state values for extended state observer 0 (default) | scalar | vector",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Limit output (u)",
+   "default": "off",
+   "values": "Limit block output to specified saturation limits off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Upper limit",
+   "default": "inf",
+   "values": "Upper saturation limit for block output inf (default) | scalar",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Lower limit",
+   "default": "–inf",
+   "values": "Lower saturation limit for block output –inf (default) | scalar",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Estimated extended states (xhat)",
+   "default": "off",
+   "values": "Output estimated states from observer off (default) | on",
+   "group": "Block Tab"
+  }
+ ]
+}

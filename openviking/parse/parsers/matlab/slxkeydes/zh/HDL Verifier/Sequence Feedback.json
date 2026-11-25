@@ -1,0 +1,24 @@
+{
+ "key": "Sequence Feedback",
+ "title": "Sequence Feedback",
+ "toolbox": "HDL Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Verifier/For Use with DPI-C SystemVerilog/Sequence_Feedback.md"
+ ],
+ "text": "在 UVM 测试平台模型中连接 scoreboard 与 sequence，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "来自 scoreboard 子系统的反馈信号 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "到 sequence 子系统的反馈信号 scalar"
+  }
+ ],
+ "params": []
+}

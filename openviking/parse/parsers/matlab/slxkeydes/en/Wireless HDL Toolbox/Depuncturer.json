@@ -1,0 +1,78 @@
+{
+ "key": "Depuncturer",
+ "title": "Depuncturer",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/Depuncturer.md"
+ ],
+ "text": "Reverse puncturing scheme to prepare for decoding, 5 inputs, 4 outputs; {Operation mode} sets the end of frame, {Puncture vector source} sets the source of puncture vector and {Puncture vector} sets the locations to insert neutral. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input sample scalar"
+  },
+  {
+   "name": "puncVector",
+   "direction": "input",
+   "summary": "Puncture vector column vector of binary values"
+  },
+  {
+   "name": "syncPunc",
+   "direction": "input",
+   "summary": "Puncture synchronization signal scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Validity of input samples scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Output sample 2-by-1 column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Validity of output data samples scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "erasure",
+   "direction": "output",
+   "summary": "Neutral symbol locations 2-by-1 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation mode",
+   "default": "Continuous",
+   "values": "End of frame behavior Continuous (default) | Frame",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector source",
+   "default": "port",
+   "values": "Source of puncture vector Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "[1;1;0;1;1;0]",
+   "values": "Locations to insert neutral values [1;1;0;1;1;0] (default) | column vector of binary values",
+   "group": ""
+  }
+ ]
+}

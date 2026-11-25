@@ -1,0 +1,178 @@
+{
+ "key": "Induction Machine Field-Oriented Control (Single-Phase)",
+ "title": "Induction Machine Field-Oriented Control (Single-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Induction Machine Control/Induction_Machine_Field_Oriented_Control_Single_Phase.md"
+ ],
+ "text": "标幺制离散时间单相感应电机磁场定向控制，输入 3 路、输出 2 路；{Control mode} 控制模式 Speed、{Rated electrical frequency (Hz)} 指定额定电频率、{Number of pole pairs} 指定极对数、{Main winding rotor resistance, Rar’ (Ohm)} 指定主绕组转子电阻、{Main winding rotor leakage inductance, Llar’ (H)} 指定主绕组转子漏电感、{Main winding mutual inductance, Lms (H)} 指定主绕组互感、{Auxiliary/main windings turn ratio} 指定辅助绕组与主绕组的匝数比、{Fundamental sample time (s)} 指定模块采样时间 5e-6、{Control sample time (s)} 控制采样时间 5e-5、{Speed controller proportional gain} 指定速度控制器比例增益、{Speed controller integral gain} 指定速度控制器积分增益、{Speed controller integral anti-windup gain} 指定速度控制器积分抗饱和增益、{Maximum torque (Nm)} 指定最大转矩、{Minimum torque (Nm)} 指定最小转矩、{Rated flux (Wb)} 指定额定磁链、{Control type} 控制类型 Hysteresis、{Current hysteresis band (A)} 指定电流滞环带宽、{A-phase current proportional gain} 指定主绕组电流比例增益、{A-phase current integral gain} 指定主绕组电流积分增益、{A-phase current anti-windup gain} 指定主绕组电流抗积分饱和增益、{B-phase current proportional gain} 指定辅助绕组电流比例增益、{B-phase current integral gain} 指定辅助绕组电流积分增益、{B-phase current anti-windup gain} 指定辅助绕组电流抗积分饱和增益，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Reference",
+   "direction": "input",
+   "summary": "转矩或角速度参考 scalar"
+  },
+  {
+   "name": "iab",
+   "direction": "input",
+   "summary": "定子电流 scalar"
+  },
+  {
+   "name": "wr",
+   "direction": "input",
+   "summary": "转子角速度 scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "逆变器门极脉冲 0 | 1"
+  },
+  {
+   "name": "Visualization",
+   "direction": "output",
+   "summary": "用于可视化的内部信号 Reference | Rotor velocity | θ | iab | iabRef | TqRef | FluxRef"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control mode",
+   "default": "control",
+   "values": "指定控制模式 Speed control (default) | Torque control",
+   "group": "General"
+  },
+  {
+   "name": "Rated electrical frequency (Hz)",
+   "default": "60",
+   "values": "指定额定电频率 60 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "2",
+   "values": "指定极对数 2 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Main winding rotor resistance, Rar’ (Ohm)",
+   "default": "3.7080",
+   "values": "指定主绕组转子电阻 3.7080 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Main winding rotor leakage inductance, Llar’ (H)",
+   "default": "0.0050",
+   "values": "指定主绕组转子漏电感 0.0050 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Main winding mutual inductance, Lms (H)",
+   "default": "0.1595",
+   "values": "指定主绕组互感 0.1595 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Auxiliary/main windings turn ratio",
+   "default": "1.1",
+   "values": "指定辅助绕组与主绕组的匝数比 1.1 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Fundamental sample time (s)",
+   "default": "5e-6",
+   "values": "指定模块采样时间 5e-6 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Control sample time (s)",
+   "default": "5e-5",
+   "values": "指定控制采样时间 5e-5 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Speed controller proportional gain",
+   "default": "1",
+   "values": "指定速度控制器比例增益 1 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Speed controller integral gain",
+   "default": "10",
+   "values": "指定速度控制器积分增益 10 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Speed controller integral anti-windup gain",
+   "default": "1000",
+   "values": "指定速度控制器积分抗饱和增益 1000 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Maximum torque (Nm)",
+   "default": "5",
+   "values": "指定最大转矩 5 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Minimum torque (Nm)",
+   "default": "-5",
+   "values": "指定最小转矩 -5 (default) | scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Rated flux (Wb)",
+   "default": "0.5",
+   "values": "指定额定磁链 0.5 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Control type",
+   "default": "control",
+   "values": "指定控制类型 Hysteresis control (default) | PI control",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Current hysteresis band (A)",
+   "default": "0.5",
+   "values": "指定电流滞环带宽 0.5 (default) | positive scalar",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "A-phase current proportional gain",
+   "default": "1",
+   "values": "主绕组电流比例增益 1 (default) | positive scalar",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "A-phase current integral gain",
+   "default": "500",
+   "values": "主绕组电流积分增益 500 (default)",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "A-phase current anti-windup gain",
+   "default": "1000",
+   "values": "主绕组电流抗积分饱和增益 1000 (default)",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "B-phase current proportional gain",
+   "default": "1",
+   "values": "辅助绕组电流比例增益 1 (default)",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "B-phase current integral gain",
+   "default": "500",
+   "values": "辅助绕组电流积分增益 500 (default)",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "B-phase current anti-windup gain",
+   "default": "1000",
+   "values": "辅助绕组电流抗积分饱和增益 1000 (default)",
+   "group": "Inner Loop"
+  }
+ ]
+}

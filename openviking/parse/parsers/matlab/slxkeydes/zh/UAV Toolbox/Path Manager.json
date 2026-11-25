@@ -1,0 +1,69 @@
+{
+ "key": "Path Manager",
+ "title": "Path Manager",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Path_Manager.md"
+ ],
+ "text": "计算并执行 UAV 自主任务，输入 5 路、输出 1 路；{UAV type} 指定 UAV 类型、{Loiter radius}、{Data type} 指定输入任务总线的数据类型、{Mission bus name} 指定输入任务总线名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "当前 UAV 位姿 four-element column vector"
+  },
+  {
+   "name": "MissionData",
+   "direction": "input",
+   "summary": "UAV 任务数据 UAVPathManagerBus bus"
+  },
+  {
+   "name": "IsModeDone",
+   "direction": "input",
+   "summary": "确定任务点是否已执行 0 (default) | 1"
+  },
+  {
+   "name": "MissionCmd",
+   "direction": "input",
+   "summary": "更改任务的命令 uint8(0) (default) | 8-bit unsigned integer between 0 and 3"
+  },
+  {
+   "name": "Home",
+   "direction": "input",
+   "summary": "UAV 起始位置 three-element column vector"
+  },
+  {
+   "name": "MissionParams",
+   "direction": "output",
+   "summary": "UAV 任务参数 UAVPathManagerBus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "UAV type",
+   "default": "multirotor",
+   "values": "UAV 类型 multirotor (default) | fixed-wing",
+   "group": ""
+  },
+  {
+   "name": "Loiter radius",
+   "default": "25",
+   "values": "固定翼无人机的 Loiter radius 25 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "输入任务总线的数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Mission bus name",
+   "default": "’UAVPathManagerBus’",
+   "values": "输入任务总线名称 ’UAVPathManagerBus’ (default)",
+   "group": ""
+  }
+ ]
+}

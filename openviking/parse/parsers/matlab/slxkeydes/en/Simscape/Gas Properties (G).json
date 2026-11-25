@@ -1,0 +1,13 @@
+{
+ "key": "Gas Properties (G)",
+ "title": "Gas Properties (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Utilities/Gas_Properties_G.md"
+ ],
+ "text": "Global gas properties for attached circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

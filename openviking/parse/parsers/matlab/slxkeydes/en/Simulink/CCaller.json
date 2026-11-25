@@ -1,0 +1,49 @@
+{
+ "key": "CCaller",
+ "title": "C Caller",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/C_Caller.md"
+ ],
+ "text": "Integrate C code in Simulink, 1 input, 1 output, no direct feedthrough, {Sample time} sets Sample period; {Function name} sets the name of function, {Port specification} sets the port properties table and {Available Functions} sets the list of available functions. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input port scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output port scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function name",
+   "default": "",
+   "values": "Name of function character vector | string scalar",
+   "group": ""
+  },
+  {
+   "name": "Port specification",
+   "default": "",
+   "values": "Port properties table",
+   "group": ""
+  },
+  {
+   "name": "Available Functions",
+   "default": "",
+   "values": "List of available functions cell array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample period -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

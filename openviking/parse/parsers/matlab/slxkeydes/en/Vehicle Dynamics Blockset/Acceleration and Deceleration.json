@@ -1,0 +1,136 @@
+{
+ "key": "Acceleration and Deceleration",
+ "title": "Acceleration and Braking",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Acceleration_and_Braking.md"
+ ],
+ "text": "Generate steering, accelerator, and brake commands, 3 inputs, 2 outputs; {Maneuver start time, tStart [s]} sets the start time, {Longitudinal acceleration at tStart, ax [g]} sets the longitudinal acceleration at simulation, {Longitudinal velocity setpoint, velRef} sets the target velocity, {Longitudinal velocity setpoint units, velRefUnit []} sets the units, {Brake pedal actuation}, {Brake actuation time, tBrake [s]}, {Longitudinal displacement of vehicle CG, xBrake [m]} sets the nominal lateral offset, {Longitudinal deceleration at tBrake, axDecel [g]} sets the deceleration rate, {Set handwheel angle to 0 deg after braking} sets the option to set handwheel angle to zero degrees after, {Enable fault tracking before braking} sets the option to enable fault tracking before, {Transport delay buffer size, bufferSize []}, {Longitudinal velocity and mean longitudinal velocity, velMaxDiff} sets the velocity difference, {Mean longitudinal velocity and longitudinal velocity reference, velMeanDiff} sets the velocity tolerance, {Yaw velocity and mean yaw velocity, rMaxDiff [deg/s]} sets the velocity tolerance, {Handwheel angle and mean handwheel angle, steerMaxDiff [deg]} sets the handwheel angle tolerance and {Stop Simulation when fault occurs} sets the option to stop simulation when fault. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "Vehicle longitudinal velocity scalar"
+  },
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Vehicle yaw rate scalar"
+  },
+  {
+   "name": "SteerCmd",
+   "direction": "input",
+   "summary": "Vehicle handwheel angle scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "Driver reference data bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "Driver command data bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "2",
+   "values": "Start time 2 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal acceleration at tStart, ax [g]",
+   "default": "0.5",
+   "values": "Longitudinal acceleration at simulation start 0.5 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal velocity setpoint, velRef",
+   "default": "50",
+   "values": "Target velocity 50 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "Units mph (default)",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Brake pedal actuation",
+   "default": "Time",
+   "values": "Brake pedal actuation Time (default) | Longitudinal displacement",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Brake actuation time, tBrake [s]",
+   "default": "15",
+   "values": "Brake actuation time 15 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal displacement of vehicle CG, xBrake [m]",
+   "default": "200",
+   "values": "Nominal lateral offset 200 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal deceleration at tBrake, axDecel [g]",
+   "default": "1",
+   "values": "Deceleration rate 1 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Set handwheel angle to 0 deg after braking",
+   "default": "on",
+   "values": "Option to set handwheel angle to zero degrees after braking on (default) | off",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Enable fault tracking before braking",
+   "default": "off",
+   "values": "Option to enable fault tracking before braking off (default) | on",
+   "group": "Tracking Parameters"
+  },
+  {
+   "name": "Transport delay buffer size, bufferSize []",
+   "default": "4096",
+   "values": "Transport delay buffer size 4096 (default) | positive scalar",
+   "group": "Tracking Parameters"
+  },
+  {
+   "name": "Longitudinal velocity and mean longitudinal velocity, velMaxDiff",
+   "default": "1",
+   "values": "Velocity difference 1 (default) | positive scalar",
+   "group": "Tracking Parameters"
+  },
+  {
+   "name": "Mean longitudinal velocity and longitudinal velocity reference, velMeanDiff",
+   "default": "2",
+   "values": "Velocity tolerance 2 (default) | positive scalar",
+   "group": "Tracking Parameters"
+  },
+  {
+   "name": "Yaw velocity and mean yaw velocity, rMaxDiff [deg/s]",
+   "default": "1",
+   "values": "Velocity tolerance 1 (default) | positive scalar",
+   "group": "Tracking Parameters"
+  },
+  {
+   "name": "Handwheel angle and mean handwheel angle, steerMaxDiff [deg]",
+   "default": "3",
+   "values": "Handwheel angle tolerance 3 (default) | positive scalar",
+   "group": "Tracking Parameters"
+  },
+  {
+   "name": "Stop Simulation when fault occurs",
+   "default": "off",
+   "values": "Option to stop simulation when fault occurs off (default) | on",
+   "group": "Tracking Parameters"
+  }
+ ]
+}

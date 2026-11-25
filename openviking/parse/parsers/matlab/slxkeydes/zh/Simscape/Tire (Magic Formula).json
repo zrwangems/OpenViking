@@ -1,0 +1,13 @@
+{
+ "key": "Tire (Magic Formula)",
+ "title": "Tire (Magic Formula)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Tire_Magic_Formula.md"
+ ],
+ "text": "由 Magic Formula 系数定义的轮胎。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

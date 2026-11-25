@@ -1,0 +1,124 @@
+{
+ "key": "phased.RangeResponse",
+ "title": "Range Response",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Range_Response.md"
+ ],
+ "text": "Range Response 模块使用匹配滤波器或基于 FFT 的算法对快时间（距离）数据执行距离滤波，输入 3 路、输出 2 路；按 {Range processing window} 指定距离 FFT 加权窗；{Measurement mode} 指定测量模式 Monostatic、{Range processing method} 指定距离处理方法 Matched、{Propagation speed (m/s)} 指定信号传播速度 physconst、{Inherit sample rate} 指定从上游模块继承采样率、{Sample rate (Hz)} 指定信号采样率 1e6、{FM sweep slope (Hz/s)} 指定 FM 扫频斜率 1e9、{Dechirp input signal} 启用输入信号去斜处理、{Source of FFT length in range processing} 指定距离处理 FFT 长度的来源、{FFT length in range processing} 指定距离处理 FFT 长度、{Range sidelobe attenuation level} 指定距离处理的旁瓣衰减、{Set reference range at center} 指定在距离网格中心设置参考距离、{Reference range (m)} 指定距离网格的参考距离、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入数据立方体 complex-valued K -by-1 column vector | complex-valued K -by- L matrix | complex-valued K -by- N -by- L array"
+  },
+  {
+   "name": "Coeff",
+   "direction": "input",
+   "summary": "匹配滤波器系数 complex-valued column vector"
+  },
+  {
+   "name": "XRef",
+   "direction": "input",
+   "summary": "参考信号 complex-valued K -by-1 column vector"
+  },
+  {
+   "name": "Resp",
+   "direction": "output",
+   "summary": "距离响应数据立方体 complex-valued M -element column vector | complex-valued M -by- L matrix | complex-valued M -by- N by- L array"
+  },
+  {
+   "name": "Range",
+   "direction": "output",
+   "summary": "沿距离维度的距离值 real-valued M -by-1 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement mode",
+   "default": "Monostatic",
+   "values": "测量模式 Monostatic (default) | Bistatic",
+   "group": ""
+  },
+  {
+   "name": "Range processing method",
+   "default": "filter",
+   "values": "距离处理方法 Matched filter (default) | FFT",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "从上游模块继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "信号采样率 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "FM sweep slope (Hz/s)",
+   "default": "1e9",
+   "values": "FM 扫频斜率 1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Dechirp input signal",
+   "default": "on",
+   "values": "启用输入信号去斜处理 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Source of FFT length in range processing",
+   "default": "Auto",
+   "values": "距离处理 FFT 长度的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FFT length in range processing",
+   "default": "1024",
+   "values": "距离处理 FFT 长度 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Range processing window",
+   "default": "None",
+   "values": "距离 FFT 加权窗 None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor",
+   "group": ""
+  },
+  {
+   "name": "Range sidelobe attenuation level",
+   "default": "30",
+   "values": "距离处理的旁瓣衰减 30 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Set reference range at center",
+   "default": "on",
+   "values": "在距离网格中心设置参考距离 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Reference range (m)",
+   "default": "0.0",
+   "values": "距离网格的参考距离 0.0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

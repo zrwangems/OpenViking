@@ -1,0 +1,51 @@
+{
+ "key": "Bit to Integer Converter",
+ "title": "Bit to Integer Converter",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Bit_to_Integer_Converter.md",
+  "Communications Toolbox/Utility Blocks/Bit_to_Integer_Converter.md",
+  "HDL Coder/Logic and Bit Operations/Bit_to_Integer_Converter.md"
+ ],
+ "text": "Map vector of bits to corresponding vector of integers, 1 input, 1 output, no direct feedthrough, {Output data type} sets Output data type Inherit via internal; {Number of bits per integer(M)}, {Input bit order} and {After bit packing, treat resulting integer values as} sets the flag for signed integer values after bit packing. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal bit scalar | column vector of bits"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal integer | column vector of integers"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits per integer(M)",
+   "default": "3",
+   "values": "Number of bits per integer 3 (default) | integer in the range [1, 32]",
+   "group": ""
+  },
+  {
+   "name": "Input bit order",
+   "default": "first",
+   "values": "Input bit order MSB first (default) | LSB first",
+   "group": ""
+  },
+  {
+   "name": "After bit packing, treat resulting integer values as",
+   "default": "Unsigned",
+   "values": "Flag for signed integer values after bit packing Unsigned (default) | Signed",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit via internal rule (default) | Smallest integer | Same as input | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  }
+ ]
+}

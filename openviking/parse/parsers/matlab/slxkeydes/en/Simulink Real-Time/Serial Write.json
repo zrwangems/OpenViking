@@ -1,0 +1,38 @@
+{
+ "key": "Serial Write",
+ "title": "Legacy Serial Write",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Legacy_Serial_Write.md"
+ ],
+ "text": "Write output data for baseboard serial communications, 1 input, {Output Datatype} sets Select output data type 8 bit uint null; {Serial port} sets the port that is being accessed Legacy Serial and {SampleTime} selects sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Data for serial port write serial data"
+  }
+ ],
+ "params": [
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "Port that is being accessed Legacy Serial Port 1 (default) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  },
+  {
+   "name": "Output Datatype",
+   "default": "terminated",
+   "values": "Select output data type 8 bit uint null terminated (default) | 8 bit int null terminated | count+16 bit uint | count+16 bit int | count+32 bit uint | count+32 bit int",
+   "group": ""
+  },
+  {
+   "name": "SampleTime",
+   "default": ".01",
+   "values": "Select sample time in seconds .01 (default) | double",
+   "group": ""
+  }
+ ]
+}

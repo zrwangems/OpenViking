@@ -1,0 +1,106 @@
+{
+ "key": "Battery Voltage Monitoring",
+ "title": "Battery Voltage Monitoring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Protection/Battery_Voltage_Monitoring.md"
+ ],
+ "text": "Monitor for battery voltage, 2 inputs, 3 outputs, {Sample time (-1 for inherited)} sets Block sample time; {Undervoltage limit (V)}, {Overvoltage limit (V)}, {Voltage sensor fault threshold (V)} sets the threshold for voltage sensor fault, {Qualification time undervoltage (s)} sets the undervoltage qualification time, {Disqualification time undervoltage (s)} sets the undervoltage disqualification time, {Qualification time overvoltage (s)} sets the overvoltage qualification time, {Disqualification time overvoltage (s)} sets the overvoltage disqualification time, {Qualification time faulty sensor (s)} sets the faulty sensor qualification time, {Disqualification time faulty sensor (s)} sets the faulty sensor disqualification time and {Algorithm data type} sets the option to choose data type for block algorithm. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellVoltage",
+   "direction": "input",
+   "summary": "Cell voltage, V scalar | vector"
+  },
+  {
+   "name": "PackVoltage",
+   "direction": "input",
+   "summary": "Battery pack voltage, V scalar"
+  },
+  {
+   "name": "UndervoltageError",
+   "direction": "output",
+   "summary": "Indication of undervoltage error 0 | 1"
+  },
+  {
+   "name": "OvervoltageError",
+   "direction": "output",
+   "summary": "Indication of overvoltage error 0 | 1"
+  },
+  {
+   "name": "SensoryFaultyError",
+   "direction": "output",
+   "summary": "Indication of sensor faulty error 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Undervoltage limit (V)",
+   "default": "2.5",
+   "values": "Undervoltage limit 2.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overvoltage limit (V)",
+   "default": "4.5",
+   "values": "Overvoltage limit 4.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Voltage sensor fault threshold (V)",
+   "default": "0.25",
+   "values": "Threshold for voltage sensor fault 0.25 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time undervoltage (s)",
+   "default": "2",
+   "values": "Undervoltage qualification time 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time undervoltage (s)",
+   "default": "0",
+   "values": "Undervoltage disqualification time 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time overvoltage (s)",
+   "default": "2",
+   "values": "Overvoltage qualification time 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time overvoltage (s)",
+   "default": "0",
+   "values": "Overvoltage disqualification time 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time faulty sensor (s)",
+   "default": "2",
+   "values": "Faulty sensor qualification time 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time faulty sensor (s)",
+   "default": "0",
+   "values": "Faulty sensor disqualification time 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

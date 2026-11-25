@@ -1,0 +1,109 @@
+{
+ "key": "Speed Measurement",
+ "title": "Speed Measurement",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Sensor Decoders/Speed_Measurement.md",
+  "Motor Control Blockset/Sensor Decoders/Speed_Measurement.md"
+ ],
+ "text": "Compute speed from rotor angular position, 2 inputs, 1 output, {Speed calculation criteria} sets Method of; {Position unit} sets the unit of angular, {Position scaling datatype} sets the range for mapping input, {Discrete step size (s)} sets the sample time after which block executes again, {Maximum application speed (RPM)} sets the maximum measurable rotor speed, {Speed Resolution (RPM)} sets the minimum detectable speed 5e-6, {Delays for speed calculation (number of samples)} sets the number of angular position samples measured, {Maximum measurable speed (RPM)} sets the maximum measurable speed, {Measurable speed resolution (RPM)} sets the minimum speed resolution used for speed computation 4.6566e-07, {Speed unit} sets the unit of angular, {Per unit speed (RPM)} sets the speed, {Speed data type} sets the data type of angular speed and {Use input port for Discrete step size} sets the sample step size with input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ",
+   "direction": "input",
+   "summary": "Angular position of rotor scalar"
+  },
+  {
+   "name": "Ts",
+   "direction": "input",
+   "summary": "Sample time after which block executes again scalar"
+  },
+  {
+   "name": "⍵",
+   "direction": "output",
+   "summary": "Angular speed of rotor scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Position unit",
+   "default": "Radians",
+   "values": "Unit of angular position Radians (default) | Degrees | Per unit",
+   "group": ""
+  },
+  {
+   "name": "Position scaling datatype",
+   "default": "uint32",
+   "values": "Range for mapping input position uint32 (default) | uint16 | uint64",
+   "group": ""
+  },
+  {
+   "name": "Speed calculation criteria",
+   "default": "speed",
+   "values": "Method of speed calculation Maximum application speed (default) | Speed resolution | Time interval for speed calculation",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "100e-6",
+   "values": "Sample time after which block executes again 100e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum application speed (RPM)",
+   "default": "1000",
+   "values": "Maximum measurable rotor speed 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed Resolution (RPM)",
+   "default": "5e-6",
+   "values": "Minimum detectable speed 5e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Delays for speed calculation (number of samples)",
+   "default": "28",
+   "values": "Number of angular position samples measured 299 or 28 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum measurable speed (RPM)",
+   "default": "10713.2857",
+   "values": "Maximum measurable speed 1000 or 10344.8276 or 10713.2857 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Measurable speed resolution (RPM)",
+   "default": "4.9892e-06",
+   "values": "Minimum speed resolution used for speed computation 4.6566e-07 or 4.9892e-06 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed unit",
+   "default": "RPM",
+   "values": "Unit of angular speed output RPM (default) | Degrees/Sec | Radians/Sec | Per unit based on maximum measurable speed | Per unit based on dialog",
+   "group": ""
+  },
+  {
+   "name": "Per unit speed (RPM)",
+   "default": "1000",
+   "values": "Speed (in RPM) for per-unit calculation 1000 (default)",
+   "group": ""
+  },
+  {
+   "name": "Speed data type",
+   "default": "single",
+   "values": "Data type of angular speed output single (default) | double | fixed point",
+   "group": ""
+  },
+  {
+   "name": "Use input port for Discrete step size",
+   "default": "off",
+   "values": "Specify sample step size with input port off (default) | on",
+   "group": ""
+  }
+ ]
+}

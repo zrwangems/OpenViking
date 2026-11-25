@@ -1,0 +1,31 @@
+{
+ "key": "IBIS_clock",
+ "title": "IBIS-AMI clock_times",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Utilities/IBIS_AMI_clock_times.md"
+ ],
+ "text": "从自定义 DFECDR 和 CDR 恢复 SerDes 时钟时间值，输入 2 路；{Enable IBIS-AMI Offset} 指定将时钟时间值偏移半个 UI，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clockValid",
+   "direction": "input",
+   "summary": "更新 clockTime 端口处的输入 scalar | vector"
+  },
+  {
+   "name": "clockTime",
+   "direction": "input",
+   "summary": "时钟时间数据 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable IBIS-AMI Offset",
+   "default": "on",
+   "values": "将时钟时间值偏移半个 UI on (default) | off",
+   "group": ""
+  }
+ ]
+}

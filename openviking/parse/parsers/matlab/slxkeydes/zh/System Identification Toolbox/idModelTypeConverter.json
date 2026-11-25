@@ -1,0 +1,308 @@
+{
+ "key": "idModelTypeConverter",
+ "title": "Model Type Converter",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Estimators/Model_Type_Converter.md"
+ ],
+ "text": "估计离散时间或连续时间线性系统的状态，输入 15 路、输出 4 路；按 {G} 指定G 矩阵；{Time domain} 指定估计连续时间状态还是离散时间状态、{Use the current measurement y[n] to improve xhat[n]} 使用测量输出更新输出状态估计、{Sample Time} 指定模块采样时间、{Model source} 指定如何向模块提供 A、B、C、D 矩阵 LTI State-Space、{A} 指定状态矩阵、{B} 指定输入矩阵、{C} 输出矩阵、{D} 指定直接馈通矩阵、{Number of states} 指定要估计的状态数、{Number of inputs} 指定已知输入数、{Number of outputs} 指定测量输出数、{Source} 指定如何输入初始状态估计和初始状态估计误差协方差、{Initial states x[0]} 指定初始状态估计、{State estimation error covariance P[0]} 指定初始状态估计误差协方差、{Use the Kalman Gain K from the model variable} 是否使用状态空间被控对象模型中包含的预辨识卡尔曼增益、{Use G and H matrices (default G=I and H=0)} 是否对 G 和 H 矩阵使用非默认值、{Time-invariant G} 指定 G 矩阵为时不变、{H}、{Time-invariant H} 指定 H 矩阵为时不变、{Number of process noise inputs} 指定过程噪声输入、{Q} 指定过程噪声协方差矩阵、{Time-invariant Q} 指定 Q 矩阵是否为时不变、{R} 指定测量噪声协方差矩阵、{Time-invariant R} 指定 R 矩阵是否为时不变、{N} 指定过程噪声与测量噪声互协方差矩阵、{Time-invariant N} 指定 N 矩阵是否为时不变、{Add input port u} 指定模型是否包含已知输入、{Add input port Enable to control measurement updates} 控制测量更新、{External Reset} 使用指定初始值重置估计状态和参数协方差矩阵、{Output estimated model output y} 指定包括估计的模型输出、{Output state estimation error covariance Z} 指定向模块添加 Z 输出端口、{Output state estimation error covariance P} 指定向模块添加 P 输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "已知输入 scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "测量输出 scalar | vector"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "状态矩阵 real matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "输入矩阵 real matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "输出矩阵 real matrix"
+  },
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "馈通矩阵 real matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "测量输出 real matrix"
+  },
+  {
+   "name": "H",
+   "direction": "input",
+   "summary": "测量输出 real matrix"
+  },
+  {
+   "name": "Q",
+   "direction": "input",
+   "summary": "过程噪声协方差矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "测量噪声协方差矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "过程噪声与测量噪声互协方差矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "P0",
+   "direction": "input",
+   "summary": "初始状态估计误差协方差 scalar | vector | matrix"
+  },
+  {
+   "name": "X0",
+   "direction": "input",
+   "summary": "初始状态估计 scalar | vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "用于启用测量更新的控制信号 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "用于重置状态估计的控制信号 scalar"
+  },
+  {
+   "name": "xhat",
+   "direction": "output",
+   "summary": "估计状态 scalar | vector"
+  },
+  {
+   "name": "yhat",
+   "direction": "output",
+   "summary": "估计输出 scalar | vector"
+  },
+  {
+   "name": "Z",
+   "direction": "output",
+   "summary": "状态估计误差协方差 matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "状态估计误差协方差 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time domain",
+   "default": "Discrete-Time",
+   "values": "指定估计连续时间状态还是离散时间状态 Discrete-Time (default) | Continuous-Time",
+   "group": "Filter Settings"
+  },
+  {
+   "name": "Use the current measurement y[n] to improve xhat[n]",
+   "default": "on",
+   "values": "使用测量输出更新输出状态估计 on (default) | off",
+   "group": "Filter Settings"
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | non-negative scalar",
+   "group": "Filter Settings"
+  },
+  {
+   "name": "Model source",
+   "default": "Variable",
+   "values": "指定如何向模块提供 A、B、C、D 矩阵 LTI State-Space Variable (default) | Individual A, B, C, D matrices | Input port",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "A",
+   "default": "0.95",
+   "values": "状态矩阵 0.95 (default)",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "输入矩阵 1 (default)",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "C",
+   "default": "1",
+   "values": "输出矩阵 1 (default)",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "D",
+   "default": "0",
+   "values": "直接馈通矩阵 0 (default)",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of states",
+   "default": "1",
+   "values": "要估计的状态数 1 (default) | non-negative scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "已知输入数 1 (default) | non-negative scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of outputs",
+   "default": "1",
+   "values": "测量输出数 1 (default) | non-negative scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Source",
+   "default": "Dialog",
+   "values": "指定如何输入初始状态估计和初始状态估计误差协方差 Dialog (default) | Input port",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial states x[0]",
+   "default": "0",
+   "values": "指定初始状态估计 0 (default) | scalar | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "State estimation error covariance P[0]",
+   "default": "10",
+   "values": "指定初始状态估计误差协方差 10 (default) | scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Use the Kalman Gain K from the model variable",
+   "default": "off",
+   "values": "指定是否使用状态空间被控对象模型中包含的预辨识卡尔曼增益 off (default) | on",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Use G and H matrices (default G=I and H=0)",
+   "default": "off",
+   "values": "指定是否对 G 和 H 矩阵使用非默认值 off (default) | on",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "G",
+   "default": "1",
+   "values": "指定 G 矩阵 1 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant G",
+   "default": "on",
+   "values": "指定 G 矩阵为时不变 on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "H",
+   "default": "0",
+   "values": "指定 H 矩阵 0 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant H",
+   "default": "on",
+   "values": "指定 H 矩阵为时不变 on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of process noise inputs",
+   "default": "1",
+   "values": "过程噪声输入 1 (default) | non-negative scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Q",
+   "default": "0.05",
+   "values": "过程噪声协方差矩阵 0.05 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant Q",
+   "default": "on",
+   "values": "指定 Q 矩阵是否为时不变 on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "R",
+   "default": "1",
+   "values": "测量噪声协方差矩阵 1 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant R",
+   "default": "on",
+   "values": "指定 R 矩阵是否为时不变 on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "N",
+   "default": "0",
+   "values": "过程噪声与测量噪声互协方差矩阵 0 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant N",
+   "default": "on",
+   "values": "指定 N 矩阵是否为时不变 on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Add input port u",
+   "default": "on",
+   "values": "指定模型是否包含已知输入 on (default) | off",
+   "group": "Options"
+  },
+  {
+   "name": "Add input port Enable to control measurement updates",
+   "default": "off",
+   "values": "控制测量更新 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "External Reset",
+   "default": "None",
+   "values": "使用指定初始值重置估计状态和参数协方差矩阵的选项 None (default) | Rising | Falling | Either | Level | Level hold",
+   "group": "Options"
+  },
+  {
+   "name": "Output estimated model output y",
+   "default": "off",
+   "values": "包括估计的模型输出 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Output state estimation error covariance Z",
+   "default": "off",
+   "values": "向模块添加 Z 输出端口 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Output state estimation error covariance P",
+   "default": "off",
+   "values": "向模块添加 P 输出端口 off (default) | on",
+   "group": "Options"
+  }
+ ]
+}

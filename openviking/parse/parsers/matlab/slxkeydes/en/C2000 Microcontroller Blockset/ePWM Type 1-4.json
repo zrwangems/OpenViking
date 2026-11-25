@@ -1,0 +1,517 @@
+{
+ "key": "ePWM Type 1-4",
+ "title": "ePWM",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/ePWM.md",
+  "C2000 Microcontroller Blockset/C2803x/ePWM.md",
+  "C2000 Microcontroller Blockset/C2805x/ePWM.md",
+  "C2000 Microcontroller Blockset/C2806x/ePWM.md",
+  "C2000 Microcontroller Blockset/F280013x/ePWM.md",
+  "C2000 Microcontroller Blockset/F280015x/ePWM.md",
+  "C2000 Microcontroller Blockset/F28002x/ePWM.md",
+  "C2000 Microcontroller Blockset/F28003x/ePWM.md",
+  "C2000 Microcontroller Blockset/F28004x/ePWM.md",
+  "C2000 Microcontroller Blockset/F2807x/ePWM.md",
+  "C2000 Microcontroller Blockset/F2837xD/ePWM.md",
+  "C2000 Microcontroller Blockset/F2837xS/ePWM.md",
+  "C2000 Microcontroller Blockset/F28p55x/ePWM.md",
+  "C2000 Microcontroller Blockset/F28p65x/ePWM.md",
+  "C2000 Microcontroller Blockset/F29H85x/ePWM.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/ePWM.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/ePWM.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/ePWM.md"
+ ],
+ "text": "Generate enhanced Pulse Width Modulated (ePWM) waveforms, {ePWM#A forced (TZ) to, ePWM#B forced (TZ) to, ePWM#A forced (DCAEVT#) to, ePWM#B forced (DCBEVT#) to} sets Determines; {Allow use of 16 HRPWMs (for C28044) instead of 6 PWMs} enables HRPWM when PWM resolution is too, {Module} Indicates which ePWM module, {ePWMLink TBPRD} Indicates TBPRD linking of ePWM module Not, {Timer period units} Indicates time period units, {Specify timer period via} sets the configure source of timer period value Specify via, {Timer period} Indicates period of ePWM counter, {Timer initial period} Indicates initial ePWM period, {Active period register load option (PRDLD)} sets the event at which counter period register is reloaded Counter equals, {Counting mode} Indicates counting mode of ePWM counter, {Synchronization action} sets the source of phase, {Counting direction after phase synchronization} sets the counter direction after phase synchronization Count down after, {Phase offset value (TBPHS)}, {Specify software synchronization via input port (SWFSYNC)} Indicates phase offset value, {Enable digital compare A event1 synchronization (DCAEVT1)} sets the synchronize ePWM time based on DCAEVT1 digital compare, {Enable digital compare B event1 synchronization (DCBEVT1)} sets the synchronize ePWM time based on DCBEVT1 digital compare, {Synchronization output (SYNCO)} sets the event which generates a time base synchronization output, {Peripheral synchronization event (PWMSYNCSEL)} sets the time-Base Counter Peripheral Synchronization Counter equals, {Time base clock (TBCLK) prescaler divider}, {High speed time base clock (HSPCLKDIV) prescaler divider}, {Enable swap module A and B} sets the swap output signals for module A and B, {Enable ePWM#x} sets the enables ePWMx output signals, {Action when counter=ZERO, Action when counter=period (PRD), Action when counter=CMPA on up-count (CAU), Action when counter=CMPA on down-count (CAD), Action when counter=CMPB on up-count (CBU), Action when counter=CMPB on down-count (CBD)} determines Action Qualifier, {Add continuous software force input port, Continuous software force logic, Reload condition for software force} Determines how action-qualifier, {Inverted version of ePWM#A} sets the invert ePWM#A signal, {Enable high resolution PWM (HRPWM)} sets the enables high resolution PWM settings, {ePWMLink CMPx} sets the linking of ePWM module, {CMPx Units} sets the units used by compare registers Clock, {Specify CMPx Via} sets the pulse width source Specify, {CMPx Value/CMPx Initial Value} sets the pulse width value, {Reload for compare x Register (SHDWxMODE)} sets the time at which the counter period is reset Counter equals, {Use deadband for ePWM#A, Use deadband for ePWM#B} sets the enables deadband area, {Enable half-cycle clocking} sets the double deadband resolution, {Deadband Polarity} sets the ePWM output state at deadband time Active, {Signal source for rising edge (RED)} sets the raising edge source, {Signal source for falling edge (FED)} sets the falling edge source, {Deadband period units} Indicates deadband period units Clock, {Deadband period source} sets the source of control logic Specify, {Deadband Rising edge (RED) period (0-16383)} sets the rED delay time value, {Deadband Falling edge (FED) period} sets the fED delay time value, {Reload for DBRED register (SHDWDBRED), Reload for DBFED register (SHDWDBFED)} sets the event at which shadow register is transferred to active register Immediate without using, {Enable ADC start of conversion for module A} sets the start of ADC conversion event, {Number of event for start of conversion for Module A (SOCA) to be generated} sets the event start number, {Start of conversion for module A event selection} Indicates counter match condition that triggers ADC start of conversion event Counter equals, {Enable ADC start of conversion for module B} sets the start of ADC conversion event, {Number of event for start of conversion for Module B (SOCB) to be generated} sets the event start number, {Start of conversion for module B event selection} Indicates the counter match condition that triggers an ADC start of conversion event Counter equals, {Enable ePWM interrupt} sets the generates ePWM interrupts, {Number of event for interrupt to be generated} Specifies the number of the event that triggers the ePWM interrupt First, {Interrupt counter match event condition} Indicates the counter match condition that triggers ePWM interrupt Counter equals, {Enable High Resolution Period on ePWM#A (HRPWM - period), Enable High Resolution Period on ePWM#B (HRPWM - period)} Indicates the effective resolution for conventionally generated, {Enable HRPWM Duty on ePWM#A(HRPWM - duty)} Indicates decimal part of the compare, {High resolution PWM (HRPWM) Load mode on ePWM#A} Determines when to transfer CMPAHR shadow value to active register Counter equals, {High resolution PWM (HRPWM) control mode on ePWM#A} Indicates the control mode Duty control, {High resolution PWM (HRPWM) edge control mode} Indicates the edge control mode, {Enable high resolution deadband rising edge (RED), Enable high resolution deadband falling edge (FED)} sets the enables HRPWM capabilities on Deadband Rising Edge Delay and Falling Edge, {Use scale factor optimizer (SFO) software} Indicates scale factor, {Enable auto convert} Indicates auto convert, {Chopper module enable} sets the enables chopper module, {Chopper frequency divider} Determines frequency of chopper clock, {Chopper clock cycles width of first pulse} sets the high-energy first pulse to turn on hard and fast power, {Chopper pulse duty cycle} Determines duty cycles of second and subsequent pulses, {Trip zone source} Determines source of control logic for trip zone signals Specify via, {Enable one-shot Trip-zone# (TZ#)} sets the enables corresponding trip zone signal in one-shot, {Enable one-shot digital compare A event 1 (DCAEVT1), Enable one-shot digital compare B event 1 (DCBEVT1)} sets the enables corresponding event signal as OST trip source, {Enable cyclic Trip-zone# (TZ#)} sets the enables corresponding trip zone signal in cycle-by-cycle, {Enable cyclic digital compare A event 2 (DCAEVT2), Enable cyclic digital compare B event 2 (DCBEVT2)} sets the enables corresponding event signal as cyclic trip source, {Enable trip-zone one-shot interrupt (OST)} sets the enables trip zone one-shot interrupt, {Enable trip-zone cycle-by-cycle interrupt (CBC)} sets the enables trip-zone cycle-by-cycle interrupt, {Digital comparator output A event 1 interrupt enable (DCAEVT1), Digital comparator output A event 2 interrupt enable (DCAEVT2), Digital comparator output B event 1 interrupt enable (DCBEVT1), Digital comparator output B event 2 interrupt enable (DCBEVT2)} sets the enables digital comparator output, {Clear cycle-by-cycle trip latch at} selects clear cycle by cycle trip latch Counter equals, {Source for digital compare A high signal (DCAH), Source for digital compare B high signal (DCBH)} sets the source for digital compare high signal, {Source for digital compare A low signal (DCAL), Source for digital compare B low signal (DCBL)} sets the source for digital compare low signal, {Digital compare output A event # selection (DCAEVT#), Digital Compare output B event # selection (DCBEVT#)} sets the qualify signals that generate DC events Event, {DCAEVT# source select, DCBEVT# source select} sets the digital compare event source Event, {Pulse select} Indicates blanking window which filters out event occurrences Counter equals, {Blanking window inverted} Indicates the inverted blanking window, {Blanking window offset} Indicates offset blanking window, {Blanking window width} Indicates duration of blanking window, {Filter output DCEVTFILT} Indicates source select for filter Filtered version and {Enable counter capture} Indicates counter capture. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Allow use of 16 HRPWMs (for C28044) instead of 6 PWMs",
+   "default": "off",
+   "values": "Enable HRPWM when PWM resolution is too low off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Module",
+   "default": "ePWM1",
+   "values": "Indicates which ePWM module to use ePWM1 (default) | ePWM2 | ePWM3 | …",
+   "group": "General"
+  },
+  {
+   "name": "ePWMLink TBPRD",
+   "default": "Linked",
+   "values": "Indicates TBPRD linking of ePWM module Not Linked (default) | ePWM2 | ePWM3 | …",
+   "group": "General"
+  },
+  {
+   "name": "Timer period units",
+   "default": "cycles",
+   "values": "Indicates time period units Clock cycles (default) | Seconds",
+   "group": "General"
+  },
+  {
+   "name": "Specify timer period via",
+   "default": "dialog",
+   "values": "Configure source of timer period value Specify via dialog (default) | Input port",
+   "group": "General"
+  },
+  {
+   "name": "Timer period",
+   "default": "64000",
+   "values": "Indicates period of ePWM counter 64000 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Timer initial period",
+   "default": "64000",
+   "values": "Indicates initial ePWM period of the waveform 64000 (default) | 0 |...",
+   "group": "General"
+  },
+  {
+   "name": "Active period register load option (PRDLD)",
+   "default": "zero",
+   "values": "Event at which counter period register is reloaded Counter equals to zero (default) | Counter equals to zero or SYNC event | SYNC event | Immediate without using shadow",
+   "group": "General"
+  },
+  {
+   "name": "Counting mode",
+   "default": "Up-Down",
+   "values": "Indicates counting mode of ePWM counter Up-Down (default) | Up | Down",
+   "group": "General"
+  },
+  {
+   "name": "Synchronization action",
+   "default": "Disable",
+   "values": "Specify source of phase offset Disable (default) | Set counter to phase value specified via dialog | Set counter to phase value specified via input port",
+   "group": "General"
+  },
+  {
+   "name": "Counting direction after phase synchronization",
+   "default": "sync",
+   "values": "Counter direction after phase synchronization Count down after sync (default) | Count up after sync",
+   "group": "General"
+  },
+  {
+   "name": "Phase offset value (TBPHS)",
+   "default": "0",
+   "values": "Specify Phase offset value (TBPHS) 0 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Specify software synchronization via input port (SWFSYNC)",
+   "default": "off",
+   "values": "Indicates phase offset value off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Enable digital compare A event1 synchronization (DCAEVT1)",
+   "default": "off",
+   "values": "Synchronize ePWM time based on DCAEVT1 digital compare event off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Enable digital compare B event1 synchronization (DCBEVT1)",
+   "default": "off",
+   "values": "Synchronize ePWM time based on DCBEVT1 digital compare event off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Synchronization output (SYNCO)",
+   "default": "Disable",
+   "values": "Event which generates a time base synchronization output signal Disable (default) | Pass through (EPWMxSYNCI or SWFSYNC) | Counter equals to zero (CTR=Zero) | Counter equals to compare B (CTR=CMPB) | Counter equals to compare C (CTR=CMPC) | Counter equals to compare D (CTR=CMPD) | Enable DCBEVT1 sync event to SYNCO signal | Enable DCAEVT1 sync event to SYNCO signal | Enable counter equals to compa",
+   "group": "General"
+  },
+  {
+   "name": "Peripheral synchronization event (PWMSYNCSEL)",
+   "default": "(CTR=PRD)",
+   "values": "Time-Base Counter Peripheral Synchronization Counter equals to period (CTR=PRD) (default) | Counter equals to zero (CTR=Zero) | Counter is incrementing and equals to compare C register (CTRU=CMPC) | Counter is decrementing and equals to compare C register (CTRD=CMPC) | Counter is incrementing and equals to compare D register (CTRU=CMPD) | Counter is decrementing and equals to compare D register (C",
+   "group": "General"
+  },
+  {
+   "name": "Time base clock (TBCLK) prescaler divider",
+   "default": "1",
+   "values": "Time base clock (TBCLK) prescaler divider corresponding to CLKDIV 1 (default) | 2 | 4 | …",
+   "group": "General"
+  },
+  {
+   "name": "High speed time base clock (HSPCLKDIV) prescaler divider",
+   "default": "1",
+   "values": "High speed time base clock (HSPCLKDIV) prescaler divider 1 (default) | 2 | 4 |...",
+   "group": "General"
+  },
+  {
+   "name": "Enable swap module A and B",
+   "default": "off",
+   "values": "Swap output signals for module A and B off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Enable ePWM#x",
+   "default": "off",
+   "values": "Enables ePWMx output signals off (default) | on",
+   "group": "ePWMA and ePWMB"
+  },
+  {
+   "name": "Action when counter=ZERO, Action when counter=period (PRD), Action when counter=CMPA on up-count (CAU), Action when counter=CMPA on down-count (CAD), Action when counter=CMPB on up-count (CBU), Action when counter=CMPB on down-count (CBD)",
+   "default": "Set",
+   "values": "Determine Action Qualifier (AQ) submodule behavior Set (default)",
+   "group": "ePWMA and ePWMB"
+  },
+  {
+   "name": "Add continuous software force input port, Continuous software force logic, Reload condition for software force",
+   "default": "(CTR=Zero)",
+   "values": "Determines how action-qualifier (AQ) submodule handles S/W force event Load on counter equals to zero (CTR=Zero) (default)",
+   "group": "ePWMA and ePWMB"
+  },
+  {
+   "name": "Inverted version of ePWM#A",
+   "default": "off",
+   "values": "Invert ePWM#A signal off (default) | on",
+   "group": "ePWMA and ePWMB"
+  },
+  {
+   "name": "Enable high resolution PWM (HRPWM)",
+   "default": "off",
+   "values": "Enables high resolution PWM settings off (default) | on",
+   "group": "ePWMA and ePWMB"
+  },
+  {
+   "name": "ePWMLink CMPx",
+   "default": "Linked",
+   "values": "Linking of ePWM module Not Linked (default) | ePWM1 | ePWM2 |...",
+   "group": "Counter Compare"
+  },
+  {
+   "name": "CMPx Units",
+   "default": "cycles",
+   "values": "Units used by compare registers Clock cycles (default) | Percentages",
+   "group": "Counter Compare"
+  },
+  {
+   "name": "Specify CMPx Via",
+   "default": "dialog",
+   "values": "Pulse width source Specify via dialog (default) | Input port",
+   "group": "Counter Compare"
+  },
+  {
+   "name": "CMPx Value/CMPx Initial Value",
+   "default": "32000",
+   "values": "Pulse width value 32000 (default)",
+   "group": "Counter Compare"
+  },
+  {
+   "name": "Reload for compare x Register (SHDWxMODE)",
+   "default": "(CTR=Zero)",
+   "values": "Time at which the counter period is reset Counter equals to zero (CTR=Zero) (default) | Counter equals to period (CTR=PRD) | Counter equals to Zero or period (CTR=Zero or CTR=PRD) |...",
+   "group": "Counter Compare"
+  },
+  {
+   "name": "Use deadband for ePWM#A, Use deadband for ePWM#B",
+   "default": "off",
+   "values": "Enables deadband area off (default) | on",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Enable half-cycle clocking",
+   "default": "off",
+   "values": "Double deadband resolution off (default) | on",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Deadband Polarity",
+   "default": "(AH)",
+   "values": "ePWM output state at deadband time Active high (AH) (default) | Active low (AL) | Active high complementary (AHC) | Active low complementary (ALC)",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Signal source for rising edge (RED)",
+   "default": "ePWMxA",
+   "values": "Raising edge source ePWMxA (default) | ePWMxB",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Signal source for falling edge (FED)",
+   "default": "ePWMxA",
+   "values": "Falling edge source ePWMxA (default) | ePWMxB",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Deadband period units",
+   "default": "cycles",
+   "values": "Indicates deadband period units Clock cycles (default) | Seconds",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Deadband period source",
+   "default": "dialog",
+   "values": "Source of control logic Specify via dialog (default) | Input port",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Deadband Rising edge (RED) period (0-16383)",
+   "default": "0",
+   "values": "RED delay time value 0 (default)",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Deadband Falling edge (FED) period",
+   "default": "0",
+   "values": "FED delay time value 0 (default)",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Reload for DBRED register (SHDWDBRED), Reload for DBFED register (SHDWDBFED)",
+   "default": "shadow",
+   "values": "Event at which shadow register is transferred to active register Immediate without using shadow (default) | Freeze | Counter equals to zero (CTR=Zero) | Counter equals to period (CTR=PRD) | Counter equals to either zero or period (CTR=Zero or CTR=PRD) |...",
+   "group": "Deadband Unit"
+  },
+  {
+   "name": "Enable ADC start of conversion for module A",
+   "default": "off",
+   "values": "Start of ADC conversion event off (default) | on",
+   "group": "Event Trigger"
+  },
+  {
+   "name": "Number of event for start of conversion for Module A (SOCA) to be generated",
+   "default": "event",
+   "values": "Event start number First event (default) | Second event | Third event |...",
+   "group": "Event Trigger"
+  },
+  {
+   "name": "Start of conversion for module A event selection",
+   "default": "(CTR=Zero)",
+   "values": "Indicates counter match condition that triggers ADC start of conversion event Counter equals to zero (CTR=Zero) (default) | Digital Compare Module A Event 1 start of conversion (DCAEVT1.soc) |...",
+   "group": "Event Trigger"
+  },
+  {
+   "name": "Enable ADC start of conversion for module B",
+   "default": "off",
+   "values": "Start of ADC conversion event off (default) | on",
+   "group": "Event Trigger"
+  },
+  {
+   "name": "Number of event for start of conversion for Module B (SOCB) to be generated",
+   "default": "event",
+   "values": "Event start number First event (default) | Second event | Third event |...",
+   "group": "Event Trigger"
+  },
+  {
+   "name": "Start of conversion for module B event selection",
+   "default": "(CTR=Zero)",
+   "values": "Indicates the counter match condition that triggers an ADC start of conversion event Counter equals to zero (CTR=Zero) (default) |",
+   "group": "Event Trigger"
+  },
+  {
+   "name": "Enable ePWM interrupt",
+   "default": "Disabled",
+   "values": "Generates ePWM interrupts Disabled (default) | Enabled",
+   "group": "Event Trigger"
+  },
+  {
+   "name": "Number of event for interrupt to be generated",
+   "default": "event",
+   "values": "Specifies the number of the event that triggers the ePWM interrupt First event (default) | Second event to fifteenth event",
+   "group": "Event Trigger"
+  },
+  {
+   "name": "Interrupt counter match event condition",
+   "default": "(CTR=Zero)",
+   "values": "Indicates the counter match condition that triggers ePWM interrupt Counter equals to zero (CTR=Zero) (default)",
+   "group": "Event Trigger"
+  },
+  {
+   "name": "Enable High Resolution Period on ePWM#A (HRPWM - period), Enable High Resolution Period on ePWM#B (HRPWM - period)",
+   "default": "off",
+   "values": "Indicates the effective resolution for conventionally generated PWM off (default) | on",
+   "group": "HRPWM Tab"
+  },
+  {
+   "name": "Enable HRPWM Duty on ePWM#A(HRPWM - duty)",
+   "default": "off",
+   "values": "Indicates decimal part of the compare value off (default) | on",
+   "group": "HRPWM Tab"
+  },
+  {
+   "name": "High resolution PWM (HRPWM) Load mode on ePWM#A",
+   "default": "(CTR=PRD)",
+   "values": "Determines when to transfer CMPAHR shadow value to active register Counter equals to period (CTR=PRD) (default) | Counter equals to zero (CTR=ZERO) | Counter equals to either zero or period (CTR=ZERO or CTR=PRD)",
+   "group": "HRPWM Tab"
+  },
+  {
+   "name": "High resolution PWM (HRPWM) control mode on ePWM#A",
+   "default": "mode",
+   "values": "Indicates the control mode Duty control mode (default) | Phase control mode",
+   "group": "HRPWM Tab"
+  },
+  {
+   "name": "High resolution PWM (HRPWM) edge control mode",
+   "default": "Edge",
+   "values": "Indicates the edge control mode Both Edge (default) | Rising Edge | Falling Edge",
+   "group": "HRPWM Tab"
+  },
+  {
+   "name": "Enable high resolution deadband rising edge (RED), Enable high resolution deadband falling edge (FED)",
+   "default": "off",
+   "values": "Enables HRPWM capabilities on Deadband Rising Edge Delay and Falling Edge Delay off (default) | on",
+   "group": "HRPWM Tab"
+  },
+  {
+   "name": "Use scale factor optimizer (SFO) software",
+   "default": "off",
+   "values": "Indicates scale factor off (default) | on",
+   "group": "HRPWM Tab"
+  },
+  {
+   "name": "Enable auto convert",
+   "default": "off",
+   "values": "Indicates auto convert off (default) | on",
+   "group": "HRPWM Tab"
+  },
+  {
+   "name": "Chopper module enable",
+   "default": "off",
+   "values": "Enables chopper module off (default) | on",
+   "group": "PWM Chopper Control Tab"
+  },
+  {
+   "name": "Chopper frequency divider",
+   "default": "1",
+   "values": "Determines frequency of chopper clock 1 (default) | 2 |...",
+   "group": "PWM Chopper Control Tab"
+  },
+  {
+   "name": "Chopper clock cycles width of first pulse",
+   "default": "1",
+   "values": "High-energy first pulse to turn on hard and fast power switch 1 (default) | 2 |...",
+   "group": "PWM Chopper Control Tab"
+  },
+  {
+   "name": "Chopper pulse duty cycle",
+   "default": "12.5%",
+   "values": "Determines duty cycles of second and subsequent pulses 12.5% (default) | 25% |...",
+   "group": "PWM Chopper Control Tab"
+  },
+  {
+   "name": "Trip zone source",
+   "default": "dialog",
+   "values": "Determines source of control logic for trip zone signals Specify via dialog (default) | Input port",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "Enable one-shot Trip-zone# (TZ#)",
+   "default": "off",
+   "values": "Enables corresponding trip zone signal in one-shot mode off (default) | on",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "Enable one-shot digital compare A event 1 (DCAEVT1), Enable one-shot digital compare B event 1 (DCBEVT1)",
+   "default": "off",
+   "values": "Enables corresponding event signal as OST trip source for event 1 off (default) | on",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "Enable cyclic Trip-zone# (TZ#)",
+   "default": "off",
+   "values": "Enables corresponding trip zone signal in cycle-by-cycle mode off (default) | on",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "Enable cyclic digital compare A event 2 (DCAEVT2), Enable cyclic digital compare B event 2 (DCBEVT2)",
+   "default": "off",
+   "values": "Enables corresponding event signal as cyclic trip source for event 2 off (default) | on",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "Enable trip-zone one-shot interrupt (OST)",
+   "default": "off",
+   "values": "Enables trip zone one-shot interrupt off (default) | on",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "Enable trip-zone cycle-by-cycle interrupt (CBC)",
+   "default": "off",
+   "values": "Enables trip-zone cycle-by-cycle interrupt off (default) | on",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "Digital comparator output A event 1 interrupt enable (DCAEVT1), Digital comparator output A event 2 interrupt enable (DCAEVT2), Digital comparator output B event 1 interrupt enable (DCBEVT1), Digital comparator output B event 2 interrupt enable (DCBEVT2)",
+   "default": "off",
+   "values": "Enables digital comparator output off (default) | on",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "Clear cycle-by-cycle trip latch at",
+   "default": "(CTR=Zero)",
+   "values": "Select clear cycle by cycle trip latch Counter equals to zero (CTR=Zero) (default) | Counter equals to period (CTR=Prd) | Counter equals to zero or period (CTR=Zero or CTR=Prd) | Latch not cleared",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "ePWM#A forced (TZ) to, ePWM#B forced (TZ) to, ePWM#A forced (DCAEVT#) to, ePWM#B forced (DCBEVT#) to",
+   "default": "action",
+   "values": "Determines action to consider on ePWM output No action (default) | High | Low | Hi-Z (High Impedance)",
+   "group": "Trip Zone Unit"
+  },
+  {
+   "name": "Source for digital compare A high signal (DCAH), Source for digital compare B high signal (DCBH)",
+   "default": "DCBH",
+   "values": "Source for digital compare high signal GPTRIP1SEL/(TZ1) for DCAH/GPTRIP1SEL/(TZ1) for DCBH (default) | GPTRIP3SEL/(TZ3) for DCAH/GPTRIP7SEL for DCBH |...",
+   "group": "Digital Compare"
+  },
+  {
+   "name": "Source for digital compare A low signal (DCAL), Source for digital compare B low signal (DCBL)",
+   "default": "DCBL",
+   "values": "Source for digital compare low signal GPTRIP1SEL/(TZ1) for DCAL/GPTRIP1SEL/(TZ1) for DCBL (default) | TRIPIN1(ECCDBLERR) for DCAL/Select From DCBLTRIPSEL for DCBL |...",
+   "group": "Digital Compare"
+  },
+  {
+   "name": "Digital compare output A event # selection (DCAEVT#), Digital Compare output B event # selection (DCBEVT#)",
+   "default": "disabled",
+   "values": "Qualify signals that generate DC events Event disabled (default) | DCAH=low and DCAL=don’t care/DCBH=low and DCBL=don’t care |...",
+   "group": "Digital Compare"
+  },
+  {
+   "name": "DCAEVT# source select, DCBEVT# source select",
+   "default": "disabled",
+   "values": "Digital compare event source Event disabled (default) | DCAH=low and DCAL=don’t care/DCBH=low and DCBL=don’t care |...",
+   "group": "Digital Compare"
+  },
+  {
+   "name": "Pulse select",
+   "default": "(CTR=Zero)",
+   "values": "Indicates blanking window which filters out event occurrences Counter equals to zero (CTR=Zero) (default) | Counter equals to period (CTR=PRD)",
+   "group": "Digital Compare"
+  },
+  {
+   "name": "Blanking window inverted",
+   "default": "off",
+   "values": "Indicates the inverted blanking window off (default) | on",
+   "group": "Digital Compare"
+  },
+  {
+   "name": "Blanking window offset",
+   "default": "0",
+   "values": "Indicates offset blanking window 0 (default)",
+   "group": "Digital Compare"
+  },
+  {
+   "name": "Blanking window width",
+   "default": "0",
+   "values": "Indicates duration of blanking window 0 (default)",
+   "group": "Digital Compare"
+  },
+  {
+   "name": "Filter output DCEVTFILT",
+   "default": "(DCAEVT1FILT)",
+   "values": "Indicates source select for filter Filtered version of DCAEVT1 (DCAEVT1FILT) (default) | Filtered version of DCAEVT2 (DCAEVT2FILT) | Filtered version of DCBEVT1 (DCBEVT1FILT) | Filtered version of DCBEVT2 (DCBEVT2FILT)",
+   "group": "Digital Compare"
+  },
+  {
+   "name": "Enable counter capture",
+   "default": "off",
+   "values": "Indicates counter capture off (default) | on",
+   "group": "Digital Compare"
+  }
+ ]
+}

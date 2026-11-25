@@ -1,0 +1,83 @@
+{
+ "key": "Position Compensation",
+ "title": "Position Compensation",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Signal Management/Position_Compensation.md"
+ ],
+ "text": "补偿由不同类型的延迟引起的位置偏移，输入 3 路、输出 1 路；按 {Position unit} 指定位置输入的单位；{Nature of offset} 指定偏移类型 Sample、{Offset value} 指定位置偏移值、{Number of sample delay} 指定模块执行时间采样数、{Discrete step size (s)} 指定模块再次执行所经过的采样时间 50e-6、{Cut-off frequency (Hz)} 指定滤波器截止频率、{Speed unit} 指定角速度输入的单位、{Maximum application speed (RPM)} 指定角速度上限，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ in",
+   "direction": "input",
+   "summary": "位置输入值 scalar"
+  },
+  {
+   "name": "ϕ",
+   "direction": "input",
+   "summary": "位置偏移 scalar"
+  },
+  {
+   "name": "ω",
+   "direction": "input",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "θ out",
+   "direction": "output",
+   "summary": "位置输出值 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Nature of offset",
+   "default": "delay",
+   "values": "偏移类型 Sample delay (default) | Constant delay | External delay | High-pass filter delay | Low-pass filter delay",
+   "group": ""
+  },
+  {
+   "name": "Offset value",
+   "default": "0.1",
+   "values": "位置偏移值 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of sample delay",
+   "default": "1",
+   "values": "模块执行时间采样数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "模块再次执行所经过的采样时间 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Cut-off frequency (Hz)",
+   "default": "9.578",
+   "values": "滤波器截止频率 9.578 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Position unit",
+   "default": "Radians",
+   "values": "位置输入的单位 Radians (default) | Degrees | Per unit",
+   "group": ""
+  },
+  {
+   "name": "Speed unit",
+   "default": "RPM",
+   "values": "角速度输入的单位 RPM (default) | Degrees/Sec | Radians/Sec | Per unit",
+   "group": ""
+  },
+  {
+   "name": "Maximum application speed (RPM)",
+   "default": "4000",
+   "values": "角速度上限 4000 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

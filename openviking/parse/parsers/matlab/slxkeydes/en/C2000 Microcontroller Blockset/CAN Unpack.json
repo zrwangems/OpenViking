@@ -1,0 +1,124 @@
+{
+ "key": "CAN Unpack",
+ "title": "CAN Unpack",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/CAN_Unpack.md",
+  "Vehicle Network Toolbox/CAN Communication/CAN_Unpack.md",
+  "Embedded Coder/Embedded Targets/Host Communication/CAN_Unpack.md",
+  "Simulink Real-Time/CAN/CAN MSG blocks/CAN_Unpack.md"
+ ],
+ "text": "Unpack individual signals from CAN messages, 1 input, 1 output, {Data to output as} sets Select your; {Database file} sets the aRXML or CAN database file character, {Message list} sets the cAN message list array of character, {Name} sets the cAN message name, {Identifier type} sets the cAN identifier type Standard, {CAN Identifier} sets the cAN message identifier, {Length (bytes)} sets the cAN message length, {Add signal} adds CAN signal, {Delete signal} sets the remove CAN signal, {Signals}, {Output identifier} adds CAN ID output port, {Output timestamp} adds Timestamp output port, {Output error} adds Error output port, {Output remote} adds Remote output port, {Output length} adds Length output port and {Output status} adds Status output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "input",
+   "summary": "CAN message input CAN_MESSAGE | CAN_MESSAGE_BUS"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "CAN signal output single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data to output as",
+   "default": "data",
+   "values": "Select your data signal raw data (default) | manually specify signals | CANdb specified signals | ARXML specified signals",
+   "group": ""
+  },
+  {
+   "name": "Database file",
+   "default": "",
+   "values": "ARXML or CAN database file character vector",
+   "group": ""
+  },
+  {
+   "name": "Message list",
+   "default": "",
+   "values": "CAN message list array of character vectors",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "Msg",
+   "values": "CAN message name CAN Msg (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Identifier type",
+   "default": "identifier)",
+   "values": "CAN identifier type Standard (11-bit identifier) (default) | Extended (29-bit identifier)",
+   "group": ""
+  },
+  {
+   "name": "CAN Identifier",
+   "default": "0",
+   "values": "CAN message identifier 0 (default) | 0 to 536870911",
+   "group": ""
+  },
+  {
+   "name": "Length (bytes)",
+   "default": "8",
+   "values": "CAN message length 8 (default) | 0 to 8",
+   "group": ""
+  },
+  {
+   "name": "Add signal",
+   "default": "",
+   "values": "Add CAN signal",
+   "group": ""
+  },
+  {
+   "name": "Delete signal",
+   "default": "",
+   "values": "Remove CAN signal",
+   "group": ""
+  },
+  {
+   "name": "Signals",
+   "default": "",
+   "values": "Signals table table",
+   "group": ""
+  },
+  {
+   "name": "Output identifier",
+   "default": "off",
+   "values": "Add CAN ID output port off (default)",
+   "group": ""
+  },
+  {
+   "name": "Output timestamp",
+   "default": "off",
+   "values": "Add Timestamp output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output error",
+   "default": "off",
+   "values": "Add Error output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output remote",
+   "default": "off",
+   "values": "Add Remote output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output length",
+   "default": "off",
+   "values": "Add Length output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output status",
+   "default": "off",
+   "values": "Add Status output port off (default) | on",
+   "group": ""
+  }
+ ]
+}

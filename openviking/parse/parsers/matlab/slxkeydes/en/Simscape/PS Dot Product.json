@@ -1,0 +1,13 @@
+{
+ "key": "PS Dot Product",
+ "title": "PS Dot Product",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Dot_Product.md"
+ ],
+ "text": "Calculate scalar dot product of two vector or matrix physical signals.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,31 @@
+{
+ "key": "Angle2Dcm",
+ "title": "Rotation Angles to Direction Cosine Matrix",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Rotation_Angles_to_Direction_Cosine_Matrix.md"
+ ],
+ "text": "将旋转角转换为方向余弦矩阵，输入 1 路、输出 1 路；按 {Rotation Order} 指定旋转顺序。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "[R 1,R 2,R 3]",
+   "direction": "input",
+   "summary": "旋转角 3-by-1 vector"
+  },
+  {
+   "name": "DCM",
+   "direction": "output",
+   "summary": "方向余弦矩阵 3-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rotation Order",
+   "default": "ZYX",
+   "values": "旋转顺序 ZYX (default) | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX",
+   "group": ""
+  }
+ ]
+}

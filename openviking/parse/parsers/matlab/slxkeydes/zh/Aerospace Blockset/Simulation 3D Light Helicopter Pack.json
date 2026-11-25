@@ -1,0 +1,151 @@
+{
+ "key": "Simulation 3D Light Helicopter Pack",
+ "title": "Simulation 3D Light Helicopter Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Light_Helicopter_Pack.md"
+ ],
+ "text": "为轻型直升机生成平移和旋转信息，输入 12 路、输出 2 路；按 {Select input coordinate frame} 指定输入坐标系；{Engine translation} 用于启用 Engine_T 输入端口、{Rotor 1 translation} 用于启用 Rotor1_T 输入端口、{Rotor 2 translation} 用于启用 Rotor2_T 输入端口、{Engine rotation} 用于启用 Engine_R 输入端口、{Rotor 1 rotation} 用于启用 Rotor1_R 输入端口、{Rotor 2 rotation} 用于启用 Rotor2_R 输入端口、{Sensor 1 translation} 用于启用 Sensor1_T 输入端口、{Sensor 2 translation} 用于启用 Sensor2_T 输入端口、{Sensor 1 rotation} 用于启用 Sensor1_R 输入端口、{Sensor 2 rotation} 用于启用 Sensor2_R 输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "机体平移 1-by-3 matrix"
+  },
+  {
+   "name": "Engine_T",
+   "direction": "input",
+   "summary": "发动机平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor1_T",
+   "direction": "input",
+   "summary": "旋翼 1 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor2_T",
+   "direction": "input",
+   "summary": "旋翼 2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor1_T",
+   "direction": "input",
+   "summary": "Sensor 1 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor2_T",
+   "direction": "input",
+   "summary": "Sensor 2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "机体旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Engine_R",
+   "direction": "input",
+   "summary": "发动机旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor1_R",
+   "direction": "input",
+   "summary": "Rotor 1 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor2_R",
+   "direction": "input",
+   "summary": "Rotor 2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor1_R",
+   "direction": "input",
+   "summary": "Sensor 1 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor2_R",
+   "direction": "input",
+   "summary": "Sensor 2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "轻型直升机平移 6 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "旋翼飞行器旋转 6 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Engine translation",
+   "default": "off",
+   "values": "用于启用 Engine_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 1 translation",
+   "default": "off",
+   "values": "用于启用 Rotor1_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 2 translation",
+   "default": "off",
+   "values": "用于启用 Rotor2_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Engine rotation",
+   "default": "off",
+   "values": "用于启用 Engine_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 1 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor1_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 2 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor2_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Sensor 1 translation",
+   "default": "off",
+   "values": "用于启用 Sensor1_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 translation",
+   "default": "off",
+   "values": "用于启用 Sensor2_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 1 rotation",
+   "default": "off",
+   "values": "用于启用 Sensor1_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 rotation",
+   "default": "off",
+   "values": "用于启用 Sensor2_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "输入坐标系 NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "key": "Compositing",
+ "title": "Compositing",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Text & Graphics/Compositing.md"
+ ],
+ "text": "合并两幅图像或对图像应用掩膜，输入 5 路、输出 1 路；按 {Operation} 指定操作；{Opacity factor(s) source} 指定不透明度因子的来源 Specify via、{Opacity factor(s)} 指定不透明度因子、{Location source} 指定叠加位置的来源。如果将此参数设置为 Input port，则会启用 Location 输入端口。 Specify via、{Location [x y]} 指定叠加位置索引、{Mask source} 指定掩码源 Specify via、{Mask} 指定二值掩膜，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image1",
+   "direction": "input",
+   "summary": "输入图像一 matrix | array"
+  },
+  {
+   "name": "Image2",
+   "direction": "input",
+   "summary": "输入图像二 matrix | array"
+  },
+  {
+   "name": "Mask",
+   "direction": "input",
+   "summary": "二值掩膜 scalar | matrix"
+  },
+  {
+   "name": "Factor",
+   "direction": "input",
+   "summary": "不透明度因子 scalar | matrix"
+  },
+  {
+   "name": "Location",
+   "direction": "input",
+   "summary": "位置索引 vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "Blend",
+   "values": "指定操作 Blend (default) | Binary mask | Highlight selected pixels",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity factor(s) source",
+   "default": "dialog",
+   "values": "不透明度因子的来源 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity factor(s)",
+   "default": "0.75",
+   "values": "不透明度因子 0.75 (default) | scalar | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Location source",
+   "default": "dialog",
+   "values": "选择叠加位置的来源。如果将此参数设置为 Input port，则会启用 Location 输入端口。 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Location [x y]",
+   "default": "1]",
+   "values": "叠加位置索引 [1 1] (default) | two-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Mask source",
+   "default": "dialog",
+   "values": "掩码源 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Mask",
+   "default": "0",
+   "values": "二值掩膜 0 (default) | 1 | matrix",
+   "group": "Main"
+  }
+ ]
+}

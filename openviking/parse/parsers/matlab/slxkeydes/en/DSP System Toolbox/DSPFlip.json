@@ -1,0 +1,31 @@
+{
+ "key": "DSPFlip",
+ "title": "Flip",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Indexing/Flip.md"
+ ],
+ "text": "Flip input vertically or horizontally, 1 input, 1 output, no direct feedthrough; {Flip along} sets the dimension to flip. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Flipped output matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Flip along",
+   "default": "Columns",
+   "values": "Specify dimension to flip along Columns (default) | Rows",
+   "group": ""
+  }
+ ]
+}

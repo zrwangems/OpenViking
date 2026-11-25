@@ -1,0 +1,68 @@
+{
+ "key": "Simulation 3D Actor Transform Set",
+ "title": "Simulation 3D Actor Transform Set",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Actor_Transform_Set.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Actor_Transform_Set.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Actor_Transform_Set.md"
+ ],
+ "text": "设置角色平移、旋转、缩放，输入 3 路；{Tag for actor in 3D scene, ActorTag} 指定名称 SimulinkActor1、{Number of parts per actor to set, NumberOfParts} 指定名称、{Initial array values to translate actor per part, Translation} 指定角色初始位置、{Initial array values to rotate actor per part, Rotation} 指定角色初始旋转、{Initial array values to scale actor per part, Scale} 指定角色初始缩放、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "角色平移 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "角色旋转 array"
+  },
+  {
+   "name": "Scale",
+   "direction": "input",
+   "summary": "角色缩放 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tag for actor in 3D scene, ActorTag",
+   "default": "SimulinkActor1",
+   "values": "名称 SimulinkActor1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of parts per actor to set, NumberOfParts",
+   "default": "1",
+   "values": "名称 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to translate actor per part, Translation",
+   "default": "0]",
+   "values": "角色初始位置 [0 0 0] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to rotate actor per part, Rotation",
+   "default": "0]",
+   "values": "角色初始旋转 [0 0 0] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to scale actor per part, Scale",
+   "default": "1]",
+   "values": "角色初始缩放 [1 1 1] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

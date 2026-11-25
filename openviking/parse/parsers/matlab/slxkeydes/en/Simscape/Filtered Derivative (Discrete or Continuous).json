@@ -1,0 +1,73 @@
+{
+ "key": "Filtered Derivative (Discrete or Continuous)",
+ "title": "Filtered Derivative (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Filtered_Derivative_Discrete_or_Continuous.md"
+ ],
+ "text": "Discrete-time or continuous-time filtered derivative, 1 input, 1 output; {Gain} sets the derivative gain, {Time constant} sets the derivative time constant, {Upper saturation limit} sets the output upper limit, {Lower saturation limit} sets the output lower limit, {Minimum sample time to time constant ratio} sets the discrete ratio, {Initialization} sets the initial state specification Inherited from block, {Initial state} and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Derivative input vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Derivative output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Gain",
+   "default": "1",
+   "values": "Derivative gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Time constant",
+   "default": "0.1",
+   "values": "Derivative time constant 0.1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Upper saturation limit",
+   "default": "inf",
+   "values": "Output upper limit inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Lower saturation limit",
+   "default": "-inf",
+   "values": "Output lower limit -inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Minimum sample time to time constant ratio",
+   "default": "10",
+   "values": "Discrete ratio 10 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Initialization",
+   "default": "input",
+   "values": "Initial state specification Inherited from block input (default) | Specify as parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "Initial state 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

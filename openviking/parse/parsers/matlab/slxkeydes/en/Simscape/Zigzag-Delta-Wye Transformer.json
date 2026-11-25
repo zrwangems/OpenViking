@@ -1,0 +1,13 @@
+{
+ "key": "Zigzag-Delta-Wye Transformer",
+ "title": "Zigzag-Delta-Wye Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Zigzag_Delta_Wye_Transformer.md"
+ ],
+ "text": "Linear, non-ideal zigzag-delta-wye transformer with three-limb core with saturation capability.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,19 @@
+{
+ "key": "Design Verifier Implies",
+ "title": "Implies",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Verification Utilities/Implies.md"
+ ],
+ "text": "Specify condition that produces a certain response, 1 input.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Values",
+   "direction": "input",
+   "summary": "Input signal scalar | cell array"
+  }
+ ],
+ "params": []
+}

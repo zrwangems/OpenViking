@@ -1,0 +1,62 @@
+{
+ "key": "If",
+ "title": "If",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/K_If.md",
+  "HDL Coder/Ports & Subsystems/K_If.md"
+ ],
+ "text": "Select subsystem execution using logic similar to if-else statement, 1 input, 1 output, direct feedthrough; {Number of inputs} sets the number of input ports, {Show else condition} controls display of else port, {Enable zero-crossing detection} controls zero-crossing detection, {Provide if-else statements in generated code} sets the option to include only if-else statements in code generated from If, {if} sets the logical expression u1 > and {elseif} sets the logical expression. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Logical operands",
+   "direction": "input",
+   "summary": "Values for evaluating logical expressions scalar | vector"
+  },
+  {
+   "name": "Action",
+   "direction": "output",
+   "summary": "Action signal for an If Action Subsystem block scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "Specify number of input ports 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show else condition",
+   "default": "on",
+   "values": "Control display of else port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Control zero-crossing detection on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Provide if-else statements in generated code",
+   "default": "off",
+   "values": "Option to include only if-else statements in code generated from If block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "if",
+   "default": "0",
+   "values": "Logical expression u1 > 0 (default) | logical expression",
+   "group": ""
+  },
+  {
+   "name": "elseif",
+   "default": "empty",
+   "values": "Logical expression empty (default) | list of logical expressions",
+   "group": ""
+  }
+ ]
+}

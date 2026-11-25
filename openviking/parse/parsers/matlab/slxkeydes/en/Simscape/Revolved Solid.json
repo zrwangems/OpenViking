@@ -1,0 +1,13 @@
+{
+ "key": "Revolved Solid",
+ "title": "Revolved Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Revolved_Solid.md"
+ ],
+ "text": "Solid revolved element with geometry, inertia, and color.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

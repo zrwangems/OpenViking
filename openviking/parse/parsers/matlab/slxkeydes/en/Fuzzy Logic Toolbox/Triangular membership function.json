@@ -1,0 +1,43 @@
+{
+ "key": "Triangular membership function",
+ "title": "Triangular MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Triangular_MF.md"
+ ],
+ "text": "Triangular membership function, 1 input, 1 output; {Left base point a} sets the left foot of triangle, {Peak location b} sets the triangle peak and {Right base point c} sets the right foot of triangle. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input value scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "Membership value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Left base point a",
+   "default": "1",
+   "values": "Left foot of triangle 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Peak location b",
+   "default": "3",
+   "values": "Triangle peak 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right base point c",
+   "default": "6",
+   "values": "Right foot of triangle 6 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

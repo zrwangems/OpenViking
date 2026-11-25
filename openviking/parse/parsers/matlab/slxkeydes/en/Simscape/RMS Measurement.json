@@ -1,0 +1,49 @@
+{
+ "key": "RMS Measurement",
+ "title": "RMS Measurement",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/RMS_Measurement.md"
+ ],
+ "text": "Calculate root-mean-square (RMS) properties of a signal, 1 input, 1 output; {Base frequency (Hz)} sets the fundamental frequency, {Specify harmonics} sets the rMS output mode, {Harmonic numbers} sets the harmonics specification and {Sample time} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "RMS",
+   "direction": "output",
+   "summary": "Root-mean-square scalar or vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Base frequency (Hz)",
+   "default": "Hz",
+   "values": "Fundamental frequency 60 Hz (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify harmonics",
+   "default": "off",
+   "values": "RMS output mode off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Harmonic numbers",
+   "default": "2]",
+   "values": "Harmonics specification [0 1 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0",
+   "values": "Block sample time 0 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

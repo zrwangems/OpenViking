@@ -1,0 +1,67 @@
+{
+ "key": "DIP Switch",
+ "title": "DIP Switch",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic I_O/DIP_Switch.md"
+ ],
+ "text": "连接硬件板上连接到 DIP 开关的信号，输入 1 路、输出 1 路；按 {Hardware board} 指定查看所选硬件；{View DIP switches location} 指定查看 DIP 开关、{IO logic} 指定 IO 逻辑指示器、{Specify DIP switches via} 指定 DIP 开关源、{Number of DIP switches} 指定 DIP 开关选择、{DS n} 指定选定的 DIP 开关、{Sample time} 指定系统采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DSIn x",
+   "direction": "input",
+   "summary": "输入信号 Boolean scalar"
+  },
+  {
+   "name": "DS x",
+   "direction": "output",
+   "summary": "输出信号 Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hardware board",
+   "default": "None",
+   "values": "查看所选硬件 None (default) | Supported Xilinx ® or Intel ® boards | Custom boards",
+   "group": ""
+  },
+  {
+   "name": "View DIP switches location",
+   "default": "",
+   "values": "查看 DIP 开关 button",
+   "group": ""
+  },
+  {
+   "name": "IO logic",
+   "default": "None",
+   "values": "IO 逻辑指示器 None (default) | Active High | Active Low",
+   "group": ""
+  },
+  {
+   "name": "Specify DIP switches via",
+   "default": "Dialog",
+   "values": "DIP 开关源 Dialog (default) | InputPort",
+   "group": ""
+  },
+  {
+   "name": "Number of DIP switches",
+   "default": "1",
+   "values": "DIP 开关选择 1 (default) | list of integers in the range [1, n]",
+   "group": ""
+  },
+  {
+   "name": "DS n",
+   "default": "Off",
+   "values": "选定的 DIP 开关 Off (default) | On",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "系统采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

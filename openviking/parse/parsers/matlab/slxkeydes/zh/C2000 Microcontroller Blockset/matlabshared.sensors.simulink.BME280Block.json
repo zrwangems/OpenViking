@@ -1,0 +1,113 @@
+{
+ "key": "matlabshared.sensors.simulink.BME280Block",
+ "title": "BME280",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Sensors/BME280.md"
+ ],
+ "text": "测量 BME280 传感器的大气压、相对湿度和温度；输出 4 路；{I2C module} 用于通信的模块、{I2C address} 指定 BME280 传感器的 I2C、{Pressure (Pa)} 用于读取压力的输出端口、{Temperature (℃)} 用于读取温度的输出端口、{Humidity (%)} 用于读取湿度的输出端口、{Status} 用于获取读取值状态的输出端口、{Filter coefficient} 指定 IIR 滤波器的滤波器系数、{Stand by time} 指定读取值的待机时间、{Pressure oversampling factor} 指定测得压力值的过采样因子、{Humidity oversampling factor} 指定测得湿度值的过采样因子、{Temperature oversampling factor} 指定测得湿度值的过采样因子、{Data type} 指定来自 BME280 传感器的值的输出数据类型、{Sample time} 指定读取数据的时间间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pressure",
+   "direction": "output",
+   "summary": "BME280 传感器测得的大气压 scalar"
+  },
+  {
+   "name": "Temperature",
+   "direction": "output",
+   "summary": "BME280 传感器测得的温度 scalar"
+  },
+  {
+   "name": "Humidity",
+   "direction": "output",
+   "summary": "BME280 传感器测得的相对湿度 scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "读取值的状态 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "I2C module",
+   "default": "I2C_A",
+   "values": "用于通信的模块 I2C_A (default)",
+   "group": ""
+  },
+  {
+   "name": "I2C address",
+   "default": "0x77",
+   "values": "BME280 传感器的 I2C 地址 0x77 (default) | 0x76",
+   "group": ""
+  },
+  {
+   "name": "Pressure (Pa)",
+   "default": "on",
+   "values": "设置用于读取压力的输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Temperature (℃)",
+   "default": "on",
+   "values": "设置用于读取温度的输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Humidity (%)",
+   "default": "on",
+   "values": "设置用于读取湿度的输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Status",
+   "default": "off",
+   "values": "设置用于获取读取值状态的输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter coefficient",
+   "default": "0",
+   "values": "IIR 滤波器的滤波器系数 0 (default) | 2 | 4 | 8 | 16",
+   "group": ""
+  },
+  {
+   "name": "Stand by time",
+   "default": "0.5",
+   "values": "读取值的待机时间 0.5 (default) | 10 | 20 | 62.5 | 125 | 250 | 500 | 1000",
+   "group": ""
+  },
+  {
+   "name": "Pressure oversampling factor",
+   "default": "1",
+   "values": "测得压力值的过采样因子 1 (default) | 2 | 4 | 8 | 16",
+   "group": ""
+  },
+  {
+   "name": "Humidity oversampling factor",
+   "default": "1",
+   "values": "测得湿度值的过采样因子 1 (default) | 2 | 4 | 8 | 16",
+   "group": ""
+  },
+  {
+   "name": "Temperature oversampling factor",
+   "default": "1",
+   "values": "测得湿度值的过采样因子 1 (default) | 2 | 4 | 8 | 16",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "来自 BME280 传感器的值的输出数据类型 single (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "读取数据的时间间隔 -1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

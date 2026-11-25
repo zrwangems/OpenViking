@@ -1,0 +1,248 @@
+{
+ "key": "Mapped Core Engine",
+ "title": "Mapped Core Engine",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Core Engine/Mapped_Core_Engine.md"
+ ],
+ "text": "使用查找表的稳态核心发动机模型，输入 3 路、输出 10 路；{Engine Type} 指定发动机图像类型 Compression-igniti、{Load input port name} 指定名称 TrqCmd、{Breakpoints for load input} 指定断点 vector、{Speed input port name} 指定名称 EngSpd、{Breakpoints for speed input} 指定断点 vector、{Temperature input port name} 指定名称 EngTemp、{Breakpoints for temperature input} 指定断点、{Output Configuration} 指定创建输出端口、{Power output port name} 指定功率 EngTrq、{Power table} 指定功率 array、{Air output port name} 指定空气 IntkAirMassFlw、{Air table} 指定空气 array、{Fuel output port name} 指定燃油 FuelMassFlw、{Fuel table} 指定燃油 array、{Temperature output port name} 指定温度 ExhManGasTemp、{Temperature table} 指定温度 array、{Efficiency output port name} 指定效率 Bsfc、{Efficiency table} 指定效率 array、{HC output port name} 指定碳氢化合物、{HC table} 指定碳氢化合物 array、{CO output port name} 指定二氧化碳 EoCO、{CO table} 指定二氧化碳 array、{NOx output port name} 指定一氧化氮 NO 和二氧化氮 NO、{NOx table} 指定一氧化氮 NO 和二氧化氮 NO、{CO2 output port name} 指定二氧化碳 EoCO2、{CO2 table} 指定二氧化碳 array、{PM output port name} 指定颗粒物 EoPm、{PM table} 指定颗粒物 array，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "<TrqCmd>",
+   "direction": "input",
+   "summary": "发动机负荷 TrqCmd (default)"
+  },
+  {
+   "name": "<EngSpd>",
+   "direction": "input",
+   "summary": "发动机转速 EngSpd (default)"
+  },
+  {
+   "name": "<EngTemp>",
+   "direction": "input",
+   "summary": "发动机温度 EngTemp (default)"
+  },
+  {
+   "name": "<EngTrq>",
+   "direction": "output",
+   "summary": "功率 EngTrq (default)"
+  },
+  {
+   "name": "<IntkAirMassFlw>",
+   "direction": "output",
+   "summary": "空气质量流量 IntkAirMassFlw (default)"
+  },
+  {
+   "name": "<FuelMassFlw>",
+   "direction": "output",
+   "summary": "燃油流量 FuelMassFlw (default)"
+  },
+  {
+   "name": "<ExhManGasTemp>",
+   "direction": "output",
+   "summary": "排气温度 ExhManGasTemp (default)"
+  },
+  {
+   "name": "<Bsfc>",
+   "direction": "output",
+   "summary": "效率 Bsfc (default)"
+  },
+  {
+   "name": "<EoHC>",
+   "direction": "output",
+   "summary": "碳氢化合物排放 EoHC (default)"
+  },
+  {
+   "name": "<EoCO>",
+   "direction": "output",
+   "summary": "一氧化碳排放 EoCO (default)"
+  },
+  {
+   "name": "<EoNOx>",
+   "direction": "output",
+   "summary": "一氧化氮和二氧化氮排放 EoNOx (default)"
+  },
+  {
+   "name": "<EoCO2>",
+   "direction": "output",
+   "summary": "二氧化碳排放 EoCO2 (default)"
+  },
+  {
+   "name": "<EoPm>",
+   "direction": "output",
+   "summary": "颗粒物排放 EoPm (default)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Engine Type",
+   "default": "(CI)",
+   "values": "发动机图像类型 Compression-ignition (CI) (default) | Spark-ignition (SI)",
+   "group": ""
+  },
+  {
+   "name": "Load input port name",
+   "default": "TrqCmd",
+   "values": "名称 TrqCmd (default)",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for load input",
+   "default": "",
+   "values": "断点 vector",
+   "group": ""
+  },
+  {
+   "name": "Speed input port name",
+   "default": "EngSpd",
+   "values": "名称 EngSpd (default)",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for speed input",
+   "default": "",
+   "values": "断点 vector",
+   "group": ""
+  },
+  {
+   "name": "Temperature input port name",
+   "default": "EngTemp",
+   "values": "名称 EngTemp (default)",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for temperature input",
+   "default": "373.15]",
+   "values": "断点 [233.15 273.15 373.15] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Output Configuration",
+   "default": "on",
+   "values": "创建输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Power output port name",
+   "default": "EngTrq",
+   "values": "功率 EngTrq (default)",
+   "group": ""
+  },
+  {
+   "name": "Power table",
+   "default": "",
+   "values": "功率 array",
+   "group": ""
+  },
+  {
+   "name": "Air output port name",
+   "default": "IntkAirMassFlw",
+   "values": "空气 IntkAirMassFlw (default)",
+   "group": ""
+  },
+  {
+   "name": "Air table",
+   "default": "",
+   "values": "空气 array",
+   "group": ""
+  },
+  {
+   "name": "Fuel output port name",
+   "default": "FuelMassFlw",
+   "values": "燃油 FuelMassFlw (default)",
+   "group": ""
+  },
+  {
+   "name": "Fuel table",
+   "default": "",
+   "values": "燃油 array",
+   "group": ""
+  },
+  {
+   "name": "Temperature output port name",
+   "default": "ExhManGasTemp",
+   "values": "温度 ExhManGasTemp (default)",
+   "group": ""
+  },
+  {
+   "name": "Temperature table",
+   "default": "",
+   "values": "温度 array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency output port name",
+   "default": "Bsfc",
+   "values": "效率 Bsfc (default)",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table",
+   "default": "",
+   "values": "效率 array",
+   "group": ""
+  },
+  {
+   "name": "HC output port name",
+   "default": "EoHC",
+   "values": "碳氢化合物 EoHC (default)",
+   "group": ""
+  },
+  {
+   "name": "HC table",
+   "default": "",
+   "values": "碳氢化合物 array",
+   "group": ""
+  },
+  {
+   "name": "CO output port name",
+   "default": "EoCO",
+   "values": "二氧化碳 EoCO (default)",
+   "group": ""
+  },
+  {
+   "name": "CO table",
+   "default": "",
+   "values": "二氧化碳 array",
+   "group": ""
+  },
+  {
+   "name": "NOx output port name",
+   "default": "EoNOx",
+   "values": "一氧化氮 NO 和二氧化氮 NO 2 EoNOx (default)",
+   "group": ""
+  },
+  {
+   "name": "NOx table",
+   "default": "",
+   "values": "一氧化氮 NO 和二氧化氮 NO 2 array",
+   "group": ""
+  },
+  {
+   "name": "CO2 output port name",
+   "default": "EoCO2",
+   "values": "二氧化碳 EoCO2 (default)",
+   "group": ""
+  },
+  {
+   "name": "CO2 table",
+   "default": "",
+   "values": "二氧化碳 array",
+   "group": ""
+  },
+  {
+   "name": "PM output port name",
+   "default": "EoPm",
+   "values": "颗粒物 EoPm (default)",
+   "group": ""
+  },
+  {
+   "name": "PM table",
+   "default": "",
+   "values": "颗粒物 array",
+   "group": ""
+  }
+ ]
+}

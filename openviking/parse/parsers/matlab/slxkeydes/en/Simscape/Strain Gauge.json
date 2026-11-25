@@ -1,0 +1,13 @@
+{
+ "key": "Strain Gauge",
+ "title": "Strain Gauge",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Strain_Gauge.md"
+ ],
+ "text": "Deformation sensor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

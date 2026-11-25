@@ -1,0 +1,13 @@
+{
+ "key": "Leadscrew",
+ "title": "Leadscrew",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Rotational- Translational/Leadscrew.md"
+ ],
+ "text": "Leadscrew gear set of threaded rotating screw and translating nut, with adjustable thread and friction losses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Modular Multilevel Converter Leg",
+ "title": "Modular Multilevel Converter Leg",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Modular_Multilevel_Converter_Leg.md"
+ ],
+ "text": "具有串联功率子模块的模块化多电平换流器桥臂。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Constant Volume Chamber (G)",
+ "title": "Constant Volume Chamber (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Constant_Volume_Chamber_G.md"
+ ],
+ "text": "具有固定气体体积和可变端口数量的腔室。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

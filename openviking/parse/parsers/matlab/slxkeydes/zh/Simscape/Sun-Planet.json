@@ -1,0 +1,13 @@
+{
+ "key": "Sun-Planet",
+ "title": "Sun-Planet",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Planetary Subcomponents/Sun_Planet.md"
+ ],
+ "text": "Planetary gear set of carrier, planet, and sun wheels with adjustable gear ratio and friction losses。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

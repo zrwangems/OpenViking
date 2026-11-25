@@ -1,0 +1,148 @@
+{
+ "key": "6DOF Acceleration",
+ "title": "6DOF Acceleration",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/6DOF/b_6DOF_Acceleration.md"
+ ],
+ "text": "实现相对于体轴的六自由度运动方程的四元数表示，输入 2 路、输出 9 路；按 {Mass type} 指定质量类型；{Units}、{Initial position in inertial axes [Xe,Ye,Ze]}、{Initial velocity in body axes [U,v,w]}、{Initial Euler orientation [roll, pitch, yaw]}、{Initial body rotation rates [p,q,r]}、{Initial mass}、{Inertia}、{Position: e.g., ’Xe’,’Ye’,’Ze’}、{Velocity: e.g., ’U’,’v’,’w’}、{Quaternion: e.g., ’qr’,’qi’,’qj’,’qk’}、{Body rotation rates: e.g., ’p’,’q’,’r’}、{Output mass properties for acceleration computation} 同样影响行为。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F xyz (N)",
+   "direction": "input",
+   "summary": "施加的力 three-element vector"
+  },
+  {
+   "name": "M xyz (N-m)",
+   "direction": "input",
+   "summary": "施加的力矩 three-element vector"
+  },
+  {
+   "name": "V e",
+   "direction": "output",
+   "summary": "平面地球参考坐标系中的速度 three-element vector"
+  },
+  {
+   "name": "X e",
+   "direction": "output",
+   "summary": "平面地球参考坐标系中的位置 three-element vector"
+  },
+  {
+   "name": "φ θ ψ (rad)",
+   "direction": "output",
+   "summary": "欧拉旋转角 three-element vector"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "四元数 4-by-1 vector"
+  },
+  {
+   "name": "DCM be",
+   "direction": "output",
+   "summary": "坐标变换 3-by-3 matrix"
+  },
+  {
+   "name": "V b",
+   "direction": "output",
+   "summary": "体固连坐标系中的速度 three-element vector"
+  },
+  {
+   "name": "ω b (rad/s)",
+   "direction": "output",
+   "summary": "体固连坐标轴中的角速率 three-element vector"
+  },
+  {
+   "name": "m",
+   "direction": "output",
+   "summary": "质量 scalar"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "惯性张量矩阵 3-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Fixed",
+   "values": "质量类型 Fixed (default) | Simple Variable | Custom Variable",
+   "group": "Main"
+  },
+  {
+   "name": "Initial position in inertial axes [Xe,Ye,Ze]",
+   "default": "0]",
+   "values": "惯性坐标轴中的位置 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial velocity in body axes [U,v,w]",
+   "default": "0]",
+   "values": "体轴中的速度 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial Euler orientation [roll, pitch, yaw]",
+   "default": "0]",
+   "values": "初始欧拉姿态 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial body rotation rates [p,q,r]",
+   "default": "0]",
+   "values": "初始机体旋转 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial mass",
+   "default": "1.0",
+   "values": "初始质量 1.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Inertia",
+   "default": "eye(3)",
+   "values": "惯性 eye(3) (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Position: e.g., {’Xe’,’Ye’,’Ze’}",
+   "default": "’’",
+   "values": "位置状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Velocity: e.g., {’U’,’v’,’w’}",
+   "default": "’’",
+   "values": "速度状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Quaternion: e.g., {’qr’,’qi’,’qj’,’qk’}",
+   "default": "’’",
+   "values": "四元数向量状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Body rotation rates: e.g., {’p’,’q’,’r’}",
+   "default": "’’",
+   "values": "机体旋转状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Output mass properties for acceleration computation",
+   "default": "off",
+   "values": "包含用于加速度端口的质量属性 off (default) | on",
+   "group": "State Attributes"
+  }
+ ]
+}

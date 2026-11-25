@@ -1,0 +1,13 @@
+{
+ "key": "Battery Single Particle",
+ "title": "Battery Single Particle",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Cells/Electrochemical/Battery_Single_Particle.md"
+ ],
+ "text": "采用单粒子方法的电池模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Cylindrical Solid",
+ "title": "Cylindrical Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Cylindrical_Solid.md"
+ ],
+ "text": "Solid cylindrical element with geometry, inertia, and color.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

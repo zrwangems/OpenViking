@@ -1,0 +1,100 @@
+{
+ "key": "Mapped Steering",
+ "title": "Mapped Steering",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Steering/Mapped_Steering.md"
+ ],
+ "text": "带速度相关选项的映射转向，输入 2 路、输出 3 路；{Speed dependent} 使用速度相关表、{Steering type} 使用速度相关表 Steering wheel、{Steering angle breakpoints, StrgAngBpts} 指定转向角度断点、{Rack travel displacement breakpoints, RackDispBpts} 指定齿条行程位移断点、{Gear ratio table, GrTbl} 指定传动比表、{Gear ratio constant, Gr} 指定传动比常数、{Left wheel angle table, WhlLftTbl} 指定左轮角度表、{Right wheel angle table, WhlRghtTbl} 指定右轮角度表、{Vehicle speed breakpoints, VehSpdBpts} 指定车速断点、{Superimposed speed factor table, SpdFctTbl} 指定速度因子，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "AngIn",
+   "direction": "input",
+   "summary": "转向角 scalar"
+  },
+  {
+   "name": "VehSpd",
+   "direction": "input",
+   "summary": "车速 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "AngLft",
+   "direction": "output",
+   "summary": "左轮转角 scalar"
+  },
+  {
+   "name": "AngRght",
+   "direction": "output",
+   "summary": "右轮转角 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Speed dependent",
+   "default": "on",
+   "values": "使用速度相关表 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Steering type",
+   "default": "angle",
+   "values": "使用速度相关表 Steering wheel angle (default) | Rack travel displacement",
+   "group": ""
+  },
+  {
+   "name": "Steering angle breakpoints, StrgAngBpts",
+   "default": "1.5*pi]",
+   "values": "转向角度断点 [-1.5*pi 1.5*pi] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rack travel displacement breakpoints, RackDispBpts",
+   "default": "40]",
+   "values": "齿条行程位移断点 [-40 -19.2 -4.53 4.53 19.2 40] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Gear ratio table, GrTbl",
+   "default": "9.87]*2*pi",
+   "values": "传动比表 [9.87 9.87 7.16 7.16 9.87 9.87]*2*pi (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Gear ratio constant, Gr",
+   "default": "8.28*2*pi",
+   "values": "传动比常数 8.28*2*pi (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left wheel angle table, WhlLftTbl",
+   "default": "1.5*pi]/13.5]",
+   "values": "左轮角度表 [-1.5*pi 1.5*pi]/13.5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Right wheel angle table, WhlRghtTbl",
+   "default": "1.5*pi]/13.5]",
+   "values": "右轮角度表 [-1.5*pi 1.5*pi]/13.5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Vehicle speed breakpoints, VehSpdBpts",
+   "default": "1]",
+   "values": "车速断点 [-1 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Superimposed speed factor table, SpdFctTbl",
+   "default": "1]",
+   "values": "速度因子 [1 1] (default) | vector",
+   "group": ""
+  }
+ ]
+}

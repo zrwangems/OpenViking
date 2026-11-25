@@ -1,0 +1,44 @@
+{
+ "key": "Detect Change",
+ "title": "Detect Change",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Detect_Change.md",
+  "HDL Coder/Logic and Bit Operations/Detect_Change.md"
+ ],
+ "text": "Detect change in signal value, 1 input, 1 output, direct feedthrough, {Initial condition} sets Initial condition for the previous input; {Input processing} sets the sample- or frame-based processing Elements and {Output data type} sets the data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal signal value"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial condition for the previous input 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "boolean",
+   "values": "Data type of the output boolean (default) | uint8",
+   "group": ""
+  }
+ ]
+}

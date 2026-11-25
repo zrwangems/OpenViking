@@ -1,0 +1,37 @@
+{
+ "key": "YAMNet Preprocess",
+ "title": "YAMNet Preprocess",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/YAMNet_Preprocess.md"
+ ],
+ "text": "为 YAMNet 分类预处理音频，输入 1 路、输出 1 路、无直接馈通；{Sample rate of input signal (Hz)} 指定输入信号的采样率{Overlap percentage (%)} 指定连续 mel 频谱图之间的重叠百分比，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "audioIn",
+   "direction": "input",
+   "summary": "声音数据 column vector"
+  },
+  {
+   "name": "features",
+   "direction": "output",
+   "summary": "可馈送到 YAMNet 预训练网络的梅尔频谱图 96-by-64 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "16e3",
+   "values": "输入信号的采样率（Hz） 16e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "50",
+   "values": "连续 mel 频谱图之间的重叠百分比 50 (default) | [0 100)",
+   "group": ""
+  }
+ ]
+}

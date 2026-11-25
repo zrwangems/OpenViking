@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Relief Valve (2P)",
+ "title": "Pressure Relief Valve (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Valves & Orifices/Pressure Control Valves/Pressure_Relief_Valve_2P.md"
+ ],
+ "text": "Pressure relief valve in a two-phase fluid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,103 @@
+{
+ "key": "Integer-Input RS Encoder HDL Optimized",
+ "title": "Integer-Input RS Encoder HDL Optimized",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Error Detection and Correction/Block/Integer_Input_RS_Encoder_HDL_Optimized.md"
+ ],
+ "text": "Encode data using a Reed-Solomon (RS) encoder, 4 inputs, 4 outputs; {Codeword length} sets the length of codeword, {Message length} sets the length of message, {Source of primitive polynomial} sets the primitive polynomial source, {Primitive polynomial}, {Source of puncture pattern} sets the puncture pattern source, {Puncture pattern vector} sets the puncture vector, {Source of B, the starting power for roots of the primitive polynomial} sets the starting power for roots of primitive and {B value} sets the starting exponent of roots. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dataIn",
+   "direction": "input",
+   "summary": "Input data scalar"
+  },
+  {
+   "name": "startIn",
+   "direction": "input",
+   "summary": "Start of input frame indicator scalar"
+  },
+  {
+   "name": "endIn",
+   "direction": "input",
+   "summary": "End of input frame indicator scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Valid input data indicator scalar"
+  },
+  {
+   "name": "dataOut",
+   "direction": "output",
+   "summary": "Output data scalar"
+  },
+  {
+   "name": "startOut",
+   "direction": "output",
+   "summary": "Start of output frame indicator scalar"
+  },
+  {
+   "name": "endOut",
+   "direction": "output",
+   "summary": "End of output frame indicator scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Valid output data indicator scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length",
+   "default": "7",
+   "values": "Length of codeword 7 (default) | range from 7 to 65, 535",
+   "group": ""
+  },
+  {
+   "name": "Message length",
+   "default": "3",
+   "values": "Length of message 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source of primitive polynomial",
+   "default": "Auto",
+   "values": "Primitive polynomial source Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "]",
+   "values": "Primitive polynomial provider [ 1 0 1 1 ] (default) | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Source of puncture pattern",
+   "default": "None",
+   "values": "Puncture pattern source None (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Puncture pattern vector",
+   "default": "zeros(2,1)]",
+   "values": "Puncture vector [ones(2,1); zeros(2,1)] (default) | binary column vector",
+   "group": ""
+  },
+  {
+   "name": "Source of B, the starting power for roots of the primitive polynomial",
+   "default": "Auto",
+   "values": "Starting power for roots of primitive polynomial Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "B value",
+   "default": "1",
+   "values": "Starting exponent of roots 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

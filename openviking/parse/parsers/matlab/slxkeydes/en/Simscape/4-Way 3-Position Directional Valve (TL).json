@@ -1,0 +1,13 @@
+{
+ "key": "4-Way 3-Position Directional Valve (TL)",
+ "title": "4-Way 3-Position Directional Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Directional Control Valves/b_4_Way_3_Position_Directional_Valve_TL.md"
+ ],
+ "text": "Valve for routing flow at the junction of four lines in a thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

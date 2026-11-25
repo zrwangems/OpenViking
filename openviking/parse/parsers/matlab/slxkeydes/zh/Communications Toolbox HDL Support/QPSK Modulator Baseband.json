@@ -1,0 +1,56 @@
+{
+ "key": "QPSK Modulator Baseband",
+ "title": "QPSK Modulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/PM/QPSK_Modulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/QPSK_Modulator_Baseband.md"
+ ],
+ "text": "使用正交相移键控方法进行调制，输入 1 路、输出 1 路；按 {Output data type} 指定输出数据类型；{Input type} 指定整数或位对输入指示符、{Constellation ordering} 指定符号映射 Gray、{Phase offset (rad)} 指定第 0 个点的相位偏移、{View constellation} 绘制参考星座的选项，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "QPSK 调制基带信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "整数或位对输入指示符 Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Gray",
+   "values": "符号映射 Gray (default) | Binary",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "pi/4",
+   "values": "第 0 个点的相位偏移 pi/4 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "View constellation",
+   "default": "",
+   "values": "绘制参考星座的选项 button",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit via back propagation |",
+   "group": "Data Types"
+  }
+ ]
+}

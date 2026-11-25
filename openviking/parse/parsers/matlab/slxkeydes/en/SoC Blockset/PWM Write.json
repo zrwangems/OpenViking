@@ -1,0 +1,47 @@
+{
+ "key": "PWM Write",
+ "title": "PWM Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/PWM_Write.md"
+ ],
+ "text": "Send pulse width modulation (PWM) signal configuration to PWM Interface block, 3 inputs, 1 output; {Show period as input} shows period input port and {Show phase as input} shows phase input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Compare",
+   "direction": "input",
+   "summary": "Comparator trigger value positive scalar | N -length positive vector"
+  },
+  {
+   "name": "Period",
+   "direction": "input",
+   "summary": "Period of PWM waveform positive scalar"
+  },
+  {
+   "name": "Phase",
+   "direction": "input",
+   "summary": "Phase offset of the waveform scalar from 0 to PWM period"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "PWM duty cycle values scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show period as input",
+   "default": "off",
+   "values": "Show period input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show phase as input",
+   "default": "off",
+   "values": "Show phase input port off (default) | on",
+   "group": ""
+  }
+ ]
+}

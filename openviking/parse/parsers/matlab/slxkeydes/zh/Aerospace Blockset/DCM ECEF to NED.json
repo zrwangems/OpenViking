@@ -1,0 +1,24 @@
+{
+ "key": "DCM ECEF to NED",
+ "title": "Direction Cosine Matrix ECEF to NED",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Direction_Cosine_Matrix_ECEF_to_NED.md"
+ ],
+ "text": "将大地纬度和经度转换为方向余弦矩阵，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μl",
+   "direction": "input",
+   "summary": "大地纬度和经度 2-by-1 vector"
+  },
+  {
+   "name": "DCM ef",
+   "direction": "output",
+   "summary": "方向余弦矩阵 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

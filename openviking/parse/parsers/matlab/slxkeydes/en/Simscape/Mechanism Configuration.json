@@ -1,0 +1,13 @@
+{
+ "key": "Mechanism Configuration",
+ "title": "Mechanism Configuration",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Utilities/Mechanism_Configuration.md"
+ ],
+ "text": "Mechanism-wide gravity and simulation parameters.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,44 @@
+{
+ "key": "EGTIndicatorBlock",
+ "title": "EGT Indicator",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Instruments/EGT_Indicator.md"
+ ],
+ "text": "Display measurements for engine exhaust gas temperature (EGT), {Label} sets Block label location; {Connection} sets the connect to signal, {Minimum}, {Maximum} and {Scale Colors} sets the ranges of color bands. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Connect to signal signal name",
+   "group": ""
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "Minimum tick mark value 0 (default) | finite | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "1000",
+   "values": "Maximum tick mark value 1000 (default) | finite | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Scale Colors",
+   "default": "0",
+   "values": "Ranges of color bands 0 (default) | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "Block label location Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

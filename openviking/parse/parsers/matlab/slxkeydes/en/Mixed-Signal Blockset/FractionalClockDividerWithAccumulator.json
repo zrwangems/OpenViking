@@ -1,0 +1,52 @@
+{
+ "key": "FractionalClockDividerWithAccumulator",
+ "title": "Fractional Clock Divider with Accumulator",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Fractional_Clock_Divider_with_Accumulator.md"
+ ],
+ "text": "Clock divider that divides frequency of input signal by fractional number, 2 inputs, 3 outputs; {Enable increased buffer size} and {Buffer size} sets the number of samples of the input buffering available during. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk in",
+   "direction": "input",
+   "summary": "Input clock frequency scalar"
+  },
+  {
+   "name": "div-by",
+   "direction": "input",
+   "summary": "Ratio of output to input clock frequency fractional scalar"
+  },
+  {
+   "name": "clk out",
+   "direction": "output",
+   "summary": "Output clock frequency scalar"
+  },
+  {
+   "name": "state",
+   "direction": "output",
+   "summary": "Missing fractional pulse storage scalar"
+  },
+  {
+   "name": "carry",
+   "direction": "output",
+   "summary": "Activates the pulse swallow function when state port overflows 0 (default) | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "1",
+   "values": "Number of samples of the input buffering available during simulation 1 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

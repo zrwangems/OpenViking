@@ -1,0 +1,89 @@
+{
+ "key": "Resize",
+ "title": "Resize",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Resize.md"
+ ],
+ "text": "放大或缩小整个图像或图像中的感兴趣区域，输入 2 路、输出 2 路；按 {Interpolation method} 指定插值方法；{Specify} 指定要调整大小的图像方面 Output size as a percentage of input、{Resize factor in percentage} 指定输入图像变换的百分比因子、{Number of output columns} 输出图像中的列数、{Number of output rows} 输出图像中的行数、{Number of output rows and columns} 输出图像中的行数和列数、{Perform antialiasing when resize factor is between 0 and 100} 指定缩小图像时防止混叠、{Enable ROI processing} 启用 ROI 输入、{Output flag indicating if ROI is within image bounds} 启用用于指示指定 ROI，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像或视频 matrix | array"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "感兴趣区域 vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "调整大小后的输出图像或视频 matrix | array"
+  },
+  {
+   "name": "Flag",
+   "direction": "output",
+   "summary": "ROI 位于图像区域外 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify",
+   "default": "size",
+   "values": "要调整大小的图像方面 Output size as a percentage of input size (default) | Number of output columns and preserve aspect ratio | Number of output rows and preserve aspect ratio | Number of output rows and columns",
+   "group": ""
+  },
+  {
+   "name": "Resize factor in percentage",
+   "default": "150]",
+   "values": "输入图像变换的百分比因子 [200 150] (default) | scalar | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Number of output columns",
+   "default": "25",
+   "values": "输出图像中的列数 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of output rows",
+   "default": "25",
+   "values": "输出图像中的行数 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of output rows and columns",
+   "default": "35]",
+   "values": "输出图像中的行数和列数 [25 35] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "插值方法 Bilinear (default) | Nearest neighbor | Bicubic | Lanczos2 | Lanczos3",
+   "group": ""
+  },
+  {
+   "name": "Perform antialiasing when resize factor is between 0 and 100",
+   "default": "off",
+   "values": "缩小图像时防止混叠 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable ROI processing",
+   "default": "off",
+   "values": "启用 ROI 输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output flag indicating if ROI is within image bounds",
+   "default": "off",
+   "values": "启用用于指示指定 ROI 是否位于输入图像区域之外的标志 off (default) | on",
+   "group": ""
+  }
+ ]
+}

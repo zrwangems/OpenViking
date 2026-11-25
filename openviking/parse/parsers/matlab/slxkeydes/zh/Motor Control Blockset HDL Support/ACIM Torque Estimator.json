@@ -1,0 +1,107 @@
+{
+ "key": "ACIM Torque Estimator",
+ "title": "ACIM Torque Estimator",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Control Reference/ACIM_Torque_Estimator.md",
+  "Motor Control Blockset/Controls/Control Reference/ACIM_Torque_Estimator.md"
+ ],
+ "text": "估计机电转矩和功率，输入 3 路、输出 2 路；{极对数}、{定子泄漏电感(H)} 指定定子绕组的泄漏电感 6.81e-3、{转子泄漏电感(H)} 指定转子绕组的漏感 6.81e-3、{磁化电感(H)} 指定感应电机的磁化电感 30e-3、{额定磁通(Wb)} 指定电机的额定磁通 38.2e-3、{输入单位} 指定输入值的单位 标幺、{基电压(V)} 指定标幺制的基电压 24/sqrt、{基电流(A)} 指定标幺制的基电流、{基转速(rpm)} 指定标幺制的基转速、{基转矩(Nm)} 指定标幺制的基转矩、{基功率(W)} 指定标幺制的基功率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I sd",
+   "direction": "input",
+   "summary": "D 轴定子电流 标量"
+  },
+  {
+   "name": "I sq",
+   "direction": "input",
+   "summary": "Q 轴定子电流 标量"
+  },
+  {
+   "name": "ω m",
+   "direction": "input",
+   "summary": "转子的机械转速 标量"
+  },
+  {
+   "name": "T e",
+   "direction": "output",
+   "summary": "机电转矩 标量"
+  },
+  {
+   "name": "P e",
+   "direction": "output",
+   "summary": "机电功率 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "极对数",
+   "default": "2",
+   "values": "电机中可用的极对数 2 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "定子泄漏电感(H)",
+   "default": "6.81e-3",
+   "values": "定子绕组的泄漏电感 6.81e-3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "转子泄漏电感(H)",
+   "default": "6.81e-3",
+   "values": "转子绕组的漏感 6.81e-3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "磁化电感(H)",
+   "default": "30e-3",
+   "values": "感应电机的磁化电感 30e-3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "额定磁通(Wb)",
+   "default": "38.2e-3",
+   "values": "电机的额定磁通 38.2e-3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输入单位",
+   "default": "标幺(PU)",
+   "values": "输入值的单位 标幺(PU) (默认) | SI 单位",
+   "group": ""
+  },
+  {
+   "name": "基电压(V)",
+   "default": "24/sqrt(3)",
+   "values": "标幺制的基电压 24/sqrt(3) (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "基电流(A)",
+   "default": "5.3611",
+   "values": "标幺制的基电流 5.3611 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "基转速(rpm)",
+   "default": "1500",
+   "values": "标幺制的基转速 1500 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "基转矩(Nm)",
+   "default": "0.50072",
+   "values": "标幺制的基转矩 0.50072 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "基功率(W)",
+   "default": "111.4284",
+   "values": "标幺制的基功率 111.4284 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

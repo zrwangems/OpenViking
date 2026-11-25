@@ -1,0 +1,46 @@
+{
+ "key": "Logitech G29 Steering Wheel",
+ "title": "Steering Wheel Read",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Logitech G29/Steering_Wheel_Read.md"
+ ],
+ "text": "Receive Logitech G29 Steering Wheel read data, 5 outputs; {sampleTime} sets the sample time for steering wheel data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Buttons",
+   "direction": "output",
+   "summary": "Status of steering wheel buttons 0 (= unpressed) | 1 (= pressed)"
+  },
+  {
+   "name": "Steering",
+   "direction": "output",
+   "summary": "Value of steering wheel position 0 (= left most) | 65535 (= right most)"
+  },
+  {
+   "name": "Pedals",
+   "direction": "output",
+   "summary": "Status of throttle, brake, and clutch pedals 0 (= not engaged) | 255 (= fully engaged)"
+  },
+  {
+   "name": "Direction",
+   "direction": "output",
+   "summary": "Status of direction pad buttons on steering wheel 0 (= UP) | 2 (= RIGHT) | 4 (= DOWN) | 6 (= LEFT) | 8 (= UNPRESSED)"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of communications with steering wheel 0 (default) | negative value"
+  }
+ ],
+ "params": [
+  {
+   "name": "sampleTime",
+   "default": "(inherited)",
+   "values": "Sample time for steering wheel data -1 (inherited) (default)",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Force Sensor (PB)",
+ "title": "Force Sensor (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sensors/Force_Sensor_PB.md"
+ ],
+ "text": "Force sensor in position-based mechanical translational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,54 @@
+{
+ "key": "SOC Estimator (Coulomb Counting)",
+ "title": "SOC Estimator (Coulomb Counting)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/SOC_Estimator_Coulomb_Counting.md"
+ ],
+ "text": "使用库仑计数的荷电状态估计器，输入 2 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Specify Current input as cell current(s)} 指定将电流输入端口指定为向量、{Cell capacity, AH (A*Hr)} 指定完全充电时的电池容量、{Algorithm data type} 用于选择模块算法数据类型的选项 Inherit，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Current",
+   "direction": "input",
+   "summary": "电池电流，A scalar | vector"
+  },
+  {
+   "name": "InitialSOC",
+   "direction": "input",
+   "summary": "初始荷电状态，无单位 scalar | vector"
+  },
+  {
+   "name": "SOC",
+   "direction": "output",
+   "summary": "电池荷电状态 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Current input as cell current(s)",
+   "default": "on",
+   "values": "将电流输入端口指定为向量的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Cell capacity, AH (A*Hr)",
+   "default": "27",
+   "values": "完全充电时的电池容量 27 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "模块采样时间 1 (default) | 0 | -1 | integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

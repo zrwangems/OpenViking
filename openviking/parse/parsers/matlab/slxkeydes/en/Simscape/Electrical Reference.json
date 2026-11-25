@@ -1,0 +1,15 @@
+{
+ "key": "Electrical Reference",
+ "title": "Electrical Reference",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Electrical_Reference.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Electrical_Reference.md",
+  "RF Blockset/Circuit Envelope/Elements/Gnd.md"
+ ],
+ "text": "Connection to electrical ground.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Disc Friction Clutch",
+ "title": "Disc Friction Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Disc_Friction_Clutch.md"
+ ],
+ "text": "Friction clutch with disc plates that engage when plate pressure exceeds threshold.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

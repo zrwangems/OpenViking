@@ -1,0 +1,13 @@
+{
+ "key": "REMOVECONSTANTROWS Reverse Process",
+ "title": "removeconstantrows_reverse",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/removeconstantrows_reverse.md"
+ ],
+ "text": "通过删除具有常量值的行来处理矩阵。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

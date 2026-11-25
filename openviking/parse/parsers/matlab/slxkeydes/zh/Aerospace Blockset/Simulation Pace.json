@@ -1,0 +1,44 @@
+{
+ "key": "Simulation Pace",
+ "title": "Simulation Pace",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Animation Support Utilities/Simulation_Pace.md"
+ ],
+ "text": "设置用于动画查看的仿真速率；输出 1 路；按 {Sample time} 指定采样时间；{Simulation pace} 指定仿真时间与时钟时间之比、{Sleep mode} 控制仿真节奏、{Output pace error} 显示节奏误差，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "节奏误差 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulation pace",
+   "default": "1",
+   "values": "仿真时间与时钟时间之比 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sleep mode",
+   "default": "Auto",
+   "values": "控制仿真节奏 Auto (default) | MATLAB Thread | Off | Busy-Wait",
+   "group": ""
+  },
+  {
+   "name": "Output pace error",
+   "default": "off",
+   "values": "显示节奏误差 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "采样时间 1/30 (default) | -1 | scalar | vector",
+   "group": ""
+  }
+ ]
+}

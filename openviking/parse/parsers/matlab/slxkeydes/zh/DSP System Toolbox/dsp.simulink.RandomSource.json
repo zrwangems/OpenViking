@@ -1,0 +1,98 @@
+{
+ "key": "dsp.simulink.RandomSource",
+ "title": "Random Source",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Random_Source.md"
+ ],
+ "text": "生成随机分布的值；输出 1 路、无直接馈通；按 {Sample time} 指定输出采样周期；{Distribution} 指定均匀或高斯、{Minimum} 指定均匀分布的最小值、{Maximum} 指定均匀分布的最大值、{Mean} 指定高斯分布的均值、{Variance} 指定高斯分布的方差、{Repeatability} 指定重复模块输出的选项 Specify、{Initial seed} 指定随机数生成器的初始种子、{Inherit via output port} 指定从下游模块继承输出端口参数、{Samples per frame} 指定 Samples per output frame、{Signal complexity} 输出的复数属性、{Output data type} 输出数据类型、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "随机分布值的信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Distribution",
+   "default": "Uniform",
+   "values": "均匀或高斯 Uniform (default) | Gaussian",
+   "group": ""
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "均匀分布的最小值 0 (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "1",
+   "values": "均匀分布的最大值 1 (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Mean",
+   "default": "0",
+   "values": "高斯分布的均值 0 (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Variance",
+   "default": "1",
+   "values": "高斯分布的方差 1 (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Repeatability",
+   "default": "seed",
+   "values": "重复模块输出的选项 Specify seed (default) | Not repeatable",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "1",
+   "values": "随机数生成器的初始种子 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit via output port",
+   "default": "off",
+   "values": "从下游模块继承输出端口参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出采样周期 1 (default) | −1 | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per output frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Signal complexity",
+   "default": "Real",
+   "values": "输出的复数属性 Real (default) | Complex",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

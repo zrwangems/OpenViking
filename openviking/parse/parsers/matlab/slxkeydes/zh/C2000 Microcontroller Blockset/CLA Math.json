@@ -1,0 +1,41 @@
+{
+ "key": "CLA Math",
+ "title": "CLA Math",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/C2805x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/C2806x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F28003x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F28004x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F2807x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F2837xD/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F2837xS/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F28p55x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F28p65x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/CLA_Math.md"
+ ],
+ "text": "实现 CLA Math 库中的 CLA Math 函数，输入 1 路、输出 1 路；按 {函数} 指定CLA 数学函数。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入数据 向量"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "输出数据 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "函数",
+   "default": "CLAsin",
+   "values": "选择 CLA 数学函数 CLAsin (默认) | CLAcos | CLAasin | CLAacos | CLAatan | CLAatan2 | CLAsinPU | CLAcosPU | CLAatan2PU | CLAexp | CLAexp2 | CLAexp10 | CLAexpN | CLALn | CLALog10 | CLALogN | CLAdiv | CLAsqrt | CLAisqrt",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Two-Winding Transformer (Three-Phase)",
+ "title": "Two-Winding Transformer (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Two_Winding_Transformer_Three_Phase.md"
+ ],
+ "text": "Three-phase linear nonideal wye- and delta-configurable two-winding transformer with saturation capability.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

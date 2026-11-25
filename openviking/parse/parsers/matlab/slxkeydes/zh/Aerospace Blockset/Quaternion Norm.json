@@ -1,0 +1,24 @@
+{
+ "key": "Quaternion Norm",
+ "title": "Quaternion Norm",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Norm.md"
+ ],
+ "text": "计算四元数的范数，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "四元数的范数 quaternion norm | vector of quaternion norms"
+  },
+  {
+   "name": "norm(q)",
+   "direction": "output",
+   "summary": "四元数的范数 quaternion norm | vector of quaternion norms"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "N-Channel JFET",
+ "title": "N-Channel JFET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/N_Channel_JFET.md"
+ ],
+ "text": "N 沟道结型场效应晶体管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

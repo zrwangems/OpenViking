@@ -1,0 +1,13 @@
+{
+ "key": "Annular Leakage (IL)",
+ "title": "Annular Leakage (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Orifices/Annular_Leakage_IL.md"
+ ],
+ "text": "对等温流动中圆管与圆形插入件之间的环形泄漏进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

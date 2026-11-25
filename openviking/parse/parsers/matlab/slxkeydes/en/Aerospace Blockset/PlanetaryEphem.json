@@ -1,0 +1,100 @@
+{
+ "key": "PlanetaryEphem",
+ "title": "Planetary Ephemeris",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Planetary_Ephemeris.md"
+ ],
+ "text": "Implement position and velocity of astronomical objects, 3 inputs, 2 outputs, {Center} sets Center body; {Units} sets the output units, {Epoch}, {Ephemeris model}, {Target}, {Limit ephemerides date range} sets the option to enable start and end of range of ephemeris, {Start date (JD)} sets the start date of ephemerides date range, {End date (JD)} sets the end date of ephemerides date range, {Action for out-of-range input} sets the out-of-range block behavior and {Calculate velocity} sets the calculate rate of target barycenter. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T JD",
+   "direction": "input",
+   "summary": "Julian date scalar | positive | between minimum and maximum Julian dates"
+  },
+  {
+   "name": "T0 JD",
+   "direction": "input",
+   "summary": "Fixed Julian date scalar | positive"
+  },
+  {
+   "name": "ΔT JD",
+   "direction": "input",
+   "summary": "Elapsed Julian time scalar | positive"
+  },
+  {
+   "name": "X icrf1",
+   "direction": "output",
+   "summary": "Barycenter position vector"
+  },
+  {
+   "name": "V icrf",
+   "direction": "output",
+   "summary": "Velocity vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "km,km/s",
+   "values": "Output units km,km/s (default) | AU,AU/day",
+   "group": ""
+  },
+  {
+   "name": "Epoch",
+   "default": "date",
+   "values": "Epoch Julian date (default) | T0 and elapsed Julian time",
+   "group": ""
+  },
+  {
+   "name": "Ephemeris model",
+   "default": "DE405",
+   "values": "Ephemeris model DE405 (default) | DE421 | DE423 | DE430 | DE432t",
+   "group": ""
+  },
+  {
+   "name": "Center",
+   "default": "Sun",
+   "values": "Center body Sun (default) | Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system barycenter | Earth-Moon barycenter",
+   "group": ""
+  },
+  {
+   "name": "Target",
+   "default": "Sun",
+   "values": "Target body Sun (default) | Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system barycenter | Earth-Moon barycenter",
+   "group": ""
+  },
+  {
+   "name": "Limit ephemerides date range",
+   "default": "off",
+   "values": "Option to enable start and end of range of ephemeris data off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Start date (JD)",
+   "default": "1)",
+   "values": "Start date of ephemerides date range juliandate(2020, 1, 1) (default) | Julian date",
+   "group": ""
+  },
+  {
+   "name": "End date (JD)",
+   "default": "1)",
+   "values": "End date of ephemerides date range juliandate(2050, 1, 1) (default) | Julian date",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Calculate velocity",
+   "default": "on",
+   "values": "Calculate rate of target barycenter on (default) | off",
+   "group": ""
+  }
+ ]
+}

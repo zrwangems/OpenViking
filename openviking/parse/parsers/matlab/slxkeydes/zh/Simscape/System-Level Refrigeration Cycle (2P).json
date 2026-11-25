@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Refrigeration Cycle (2P)",
+ "title": "System-Level Refrigeration Cycle (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Thermodynamic Cycles/System_Level_Refrigeration_Cycle_2P.md"
+ ],
+ "text": "气体、湿空气、热液或两相流体网络中的系统级两相制冷模块。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

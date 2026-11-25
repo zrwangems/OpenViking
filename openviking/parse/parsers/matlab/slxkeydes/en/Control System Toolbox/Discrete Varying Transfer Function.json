@@ -1,0 +1,53 @@
+{
+ "key": "Discrete Varying Transfer Function",
+ "title": "Discrete Varying Transfer Function",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_Transfer_Function.md"
+ ],
+ "text": "Discrete-time transfer function with varying coefficients, 3 inputs, 1 output; {Transfer function order} sets the number of poles, {Enable feedthrough} adds input port for feedthrough term and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Transfer function input scalar"
+  },
+  {
+   "name": "b0, b1,...",
+   "direction": "input",
+   "summary": "Numerator coefficients scalar"
+  },
+  {
+   "name": "a1, a2,...",
+   "direction": "input",
+   "summary": "Denominator coefficients scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Transfer function output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Transfer function order",
+   "default": "1",
+   "values": "Number of poles 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable feedthrough",
+   "default": "on",
+   "values": "Add input port for feedthrough term on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "–1",
+   "values": "Block sample time –1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

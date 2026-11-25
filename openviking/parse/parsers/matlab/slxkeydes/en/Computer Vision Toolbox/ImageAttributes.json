@@ -1,0 +1,49 @@
+{
+ "key": "ImageAttributes",
+ "title": "Image Attributes",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Utilities/Image_Attributes.md"
+ ],
+ "text": "Output attributes of Simulink image signal, 1 input, 6 outputs, direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal Simulink.ImageType"
+  },
+  {
+   "name": "rows",
+   "direction": "output",
+   "summary": "Number of rows in image data scalar"
+  },
+  {
+   "name": "columns",
+   "direction": "output",
+   "summary": "Number of columns in image data scalar"
+  },
+  {
+   "name": "channels",
+   "direction": "output",
+   "summary": "Number of color channels or samples for each pixel in array scalar"
+  },
+  {
+   "name": "class",
+   "direction": "output",
+   "summary": "Data type of underlying image data string"
+  },
+  {
+   "name": "color",
+   "direction": "output",
+   "summary": "Color format of underlying image data string"
+  },
+  {
+   "name": "layout",
+   "direction": "output",
+   "summary": "Array layout of image data string"
+  }
+ ],
+ "params": []
+}

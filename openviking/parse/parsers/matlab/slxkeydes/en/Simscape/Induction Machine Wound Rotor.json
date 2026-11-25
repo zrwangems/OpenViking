@@ -1,0 +1,13 @@
+{
+ "key": "Induction Machine Wound Rotor",
+ "title": "Induction Machine Wound Rotor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/Induction_Machine_Wound_Rotor.md"
+ ],
+ "text": "Wound-rotor induction machine with per-unit or SI parameterization.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,42 @@
+{
+ "key": "SingleModulusPrescaler",
+ "title": "Single Modulus Prescaler",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Single_Modulus_Prescaler.md"
+ ],
+ "text": "对输入信号频率进行分频的整数时钟分频器，输入 2 路、输出 1 路；{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk in",
+   "direction": "input",
+   "summary": "输入时钟频率 scalar"
+  },
+  {
+   "name": "div-by",
+   "direction": "input",
+   "summary": "输出时钟频率与输入时钟频率之比 scalar integer"
+  },
+  {
+   "name": "clk out",
+   "direction": "output",
+   "summary": "输出时钟频率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "1",
+   "values": "仿真期间可用的输入缓冲样本数 1 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

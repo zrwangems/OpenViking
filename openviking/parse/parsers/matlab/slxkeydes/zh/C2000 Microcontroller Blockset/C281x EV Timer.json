@@ -1,0 +1,32 @@
+{
+ "key": "C281x EV Timer",
+ "title": "Timer",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C281x/Timer.md"
+ ],
+ "text": "配置处理器 Watchdog 模块的计数器复位源，输入 1 路；{Watchdog 计数器复位源}、{采样时间} 指定处理器重置 Watchdog 定时器的频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "重置 Watchdog 计数器 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "Watchdog 计数器复位源",
+   "default": "通过对话框指定",
+   "values": "Watchdog 计数器复位源 通过对话框指定 (默认) | 输入端口",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "–1",
+   "values": "处理器重置 Watchdog 定时器的频率 –1 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "key": "Lead or Lag Compensator",
+ "title": "Transfer Fcn Lead or Lag",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discrete/Transfer_Fcn_Lead_or_Lag.md"
+ ],
+ "text": "Implement discrete-time lead or lag compensator, 1 input, 1 output, no direct feedthrough, {Integer rounding mode} sets Rounding mode for fixed-point operations; {Pole of compensator (in Z plane)} sets the pole, {Zero of compensator (in Z plane)}, {Initial condition for previous input}, {Initial condition for previous output} and {Saturate to max or min when overflows occur} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pole of compensator (in Z plane)",
+   "default": "0.95",
+   "values": "Pole 0.95 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Zero of compensator (in Z plane)",
+   "default": "0.75",
+   "values": "Zero of compensator 0.75 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial condition for previous input",
+   "default": "0.0",
+   "values": "Initial condition for previous input 0.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial condition for previous output",
+   "default": "0.0",
+   "values": "Initial condition for previous output 0.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": ""
+  }
+ ]
+}

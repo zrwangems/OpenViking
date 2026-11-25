@@ -1,0 +1,13 @@
+{
+ "key": "FEM-Parameterized Synchronous Machine",
+ "title": "FEM-Parameterized Synchronous Machine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/FEM_Parameterized_Synchronous_Machine.md"
+ ],
+ "text": "以磁链定义的同步电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

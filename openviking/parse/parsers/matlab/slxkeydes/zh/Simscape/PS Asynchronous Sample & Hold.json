@@ -1,0 +1,13 @@
+{
+ "key": "PS Asynchronous Sample & Hold",
+ "title": "PS Asynchronous Sample & Hold",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Discrete/PS_Asynchronous_Sample_Hold.md"
+ ],
+ "text": "带外部触发的采样保持输出信号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,67 @@
+{
+ "key": "CAN Replay",
+ "title": "CAN Replay",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN Communication/CAN_Replay.md"
+ ],
+ "text": "Replay logged CAN messages, 2 outputs; {File name} sets the path and name of MAT-file with messages, {Variable name} sets the variable in MAT-file holding, {Number of times to replay messages} sets the repeat value, {Replay messages to} sets the output location, {Device} sets the cAN device and channel device, {Sample time} sets the block execution rate and {Output as bus} enables signal bus output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "output",
+   "summary": "Replayed CAN messages CAN_MESSAGE | CAN_MESSAGE_BUS"
+  },
+  {
+   "name": "f()",
+   "direction": "output",
+   "summary": "Function-call event output function-call event"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "untitled.mat",
+   "values": "Path and name of MAT-file with messages untitled.mat (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "ans",
+   "values": "Variable in MAT-file holding messages ans (default) | variable",
+   "group": ""
+  },
+  {
+   "name": "Number of times to replay messages",
+   "default": "Inf",
+   "values": "Repeat value Inf (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Replay messages to",
+   "default": "Bus",
+   "values": "Specify output location CAN Bus (default) | Output port",
+   "group": ""
+  },
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN device and channel device list option",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Block execution rate 0.01 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Output as bus",
+   "default": "off",
+   "values": "Enable signal bus output off (default) | on",
+   "group": ""
+  }
+ ]
+}

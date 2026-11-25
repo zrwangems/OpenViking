@@ -1,0 +1,85 @@
+{
+ "key": "Systolic Matrix Solve Using QR Decomposition",
+ "title": "Systolic Matrix Solve Using QR Decomposition",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Matrices and Linear Algebra/Linear System Solvers/Systolic_Matrix_Solve_Using_QR_Decomposition.md"
+ ],
+ "text": "Compute value of X in the equation A X = B using QR decomposition, 5 inputs, 3 outputs, {Output datatype} sets Data type of output matrix X; {Number of rows in matrices A and B}, {Number of columns in matrix A}, {Number of columns in matrix B} and {Signal type} sets the complexity of matrices. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Matrix A matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Matrix B matrix"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Whether inputs are valid scalar"
+  },
+  {
+   "name": "readyIn",
+   "direction": "input",
+   "summary": "Whether downstream block is ready scalar"
+  },
+  {
+   "name": "restart",
+   "direction": "input",
+   "summary": "Whether to clear internal states scalar"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "Matrix X matrix"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Whether output data is valid scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Whether block is ready scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of rows in matrices A and B",
+   "default": "2",
+   "values": "Number of rows in matrices A and B 2 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in matrix A",
+   "default": "2",
+   "values": "Number of columns in matrix A 2 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in matrix B",
+   "default": "1",
+   "values": "Number of columns in matrix B 1 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Output datatype",
+   "default": "fixdt(1,18,4)",
+   "values": "Data type of output matrix X fixdt(1,18,4) (default) | double | single | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Signal type",
+   "default": "real",
+   "values": "Complexity of matrices A and B real (default) | complex",
+   "group": ""
+  }
+ ]
+}

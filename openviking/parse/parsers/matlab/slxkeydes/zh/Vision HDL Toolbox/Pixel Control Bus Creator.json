@@ -1,0 +1,44 @@
+{
+ "key": "Pixel Control Bus Creator",
+ "title": "Pixel Control Bus Creator",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Pixel_Control_Bus_Creator.md"
+ ],
+ "text": "创建与 Vision HDL Toolbox 模块配合使用的控制信号总线，输入 5 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "hStart",
+   "direction": "input",
+   "summary": "帧中水平行的第一个像素 scalar"
+  },
+  {
+   "name": "hEnd",
+   "direction": "input",
+   "summary": "帧中水平行的最后一个像素 scalar"
+  },
+  {
+   "name": "vStart",
+   "direction": "input",
+   "summary": "帧中第一（顶部）行的第一个像素 scalar"
+  },
+  {
+   "name": "vEnd",
+   "direction": "input",
+   "summary": "帧中最后（底部）行的最后一个像素 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "有效像素指示符 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随像素流的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": []
+}

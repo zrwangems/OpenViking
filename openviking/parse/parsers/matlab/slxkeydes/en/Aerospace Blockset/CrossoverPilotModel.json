@@ -1,0 +1,78 @@
+{
+ "key": "CrossoverPilotModel",
+ "title": "Crossover Pilot Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Pilot Models/Crossover_Pilot_Model.md"
+ ],
+ "text": "Represent crossover pilot model, 2 inputs, 1 output, {Type of control} sets Dynamics control; {Calculated value} sets the crossover frequency or pilot gain Crossover, {Controlled element gain}, {Pilot gain}, {Crossover frequency (rad/s)}, {Pilot time delay(s)}, {Pilot lead constant} and {Pilot lag constant}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x com",
+   "direction": "input",
+   "summary": "Signal command scalar"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Signal scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Aircraft command scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of control",
+   "default": "Proportional",
+   "values": "Dynamics control Proportional (default) | Rate or velocity | Spiral divergence | Second order - Short period | Acceleration(*) | Roll attitude(*) | Unstable short period(*) | Second order - Phugoid(*)",
+   "group": ""
+  },
+  {
+   "name": "Calculated value",
+   "default": "frequency",
+   "values": "Crossover frequency or pilot gain Crossover frequency (default) | Pilot gain",
+   "group": ""
+  },
+  {
+   "name": "Controlled element gain",
+   "default": "1",
+   "values": "Controlled element gain 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot gain",
+   "default": "3",
+   "values": "Pilot gain 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Crossover frequency (rad/s)",
+   "default": "3",
+   "values": "Crossover frequency 3 (default) | scalar in the range of 1 and 10",
+   "group": ""
+  },
+  {
+   "name": "Pilot time delay(s)",
+   "default": "0.1",
+   "values": "Pilot time delay 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot lead constant",
+   "default": "1",
+   "values": "Pilot lead constant 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot lag constant",
+   "default": "5",
+   "values": "Pilot lag constant 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

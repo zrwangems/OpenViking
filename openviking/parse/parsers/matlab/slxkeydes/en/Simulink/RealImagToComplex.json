@@ -1,0 +1,60 @@
+{
+ "key": "RealImagToComplex",
+ "title": "Real-Imag to Complex",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Real_Imag_to_Complex.md",
+  "HDL Coder/Math Operations/Real_Imag_to_Complex.md"
+ ],
+ "text": "Convert real and/or imaginary inputs to complex signal, 3 inputs, 1 output, direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Input} sets the real, imaginary, {Imag part} sets the imaginary part of complex output and {Real part}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Re",
+   "direction": "input",
+   "summary": "Real part of complex output scalar | vector | matrix"
+  },
+  {
+   "name": "Im",
+   "direction": "input",
+   "summary": "Imaginary part of complex output scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Real or imaginary part of complex output scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Complex signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "Real",
+   "values": "Real, imaginary, or both Real (default) | Imag | Real and imag",
+   "group": ""
+  },
+  {
+   "name": "Imag part",
+   "default": "0",
+   "values": "Imaginary part of complex output 0 (default) | finite scalar, vector, or matrix",
+   "group": ""
+  },
+  {
+   "name": "Real part",
+   "default": "0",
+   "values": "Real part of complex output 0 (default) | finite scalar, vector, or matrix",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

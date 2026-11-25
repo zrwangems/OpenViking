@@ -1,0 +1,49 @@
+{
+ "key": "rf.PAmemory",
+ "title": "Power Amplifier",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Idealized Baseband/Power_Amplifier.md"
+ ],
+ "text": "对带记忆的窄带功率放大器建模，输入 1 路、输出 1 路；{Model} 用于设计放大器的模型 Memory、{Coefficient matrix} 指定系数矩阵 1+0i、{Measured interval of PA data (s)} 指定测得输入-输出数据的采样时间 1e-6、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "时变输入信号 column"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "时变输出信号 complex column"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model",
+   "default": "polynomial",
+   "values": "用于设计放大器的模型 Memory polynomial (default) | Cross-term memory",
+   "group": ""
+  },
+  {
+   "name": "Coefficient matrix",
+   "default": "1+0i",
+   "values": "系数矩阵 1+0i (default) | 2-D complex matrix",
+   "group": ""
+  },
+  {
+   "name": "Measured interval of PA data (s)",
+   "default": "1e-6",
+   "values": "测得输入-输出数据的采样时间 1e-6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

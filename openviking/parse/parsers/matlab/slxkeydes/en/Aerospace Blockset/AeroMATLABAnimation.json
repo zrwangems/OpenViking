@@ -1,0 +1,76 @@
+{
+ "key": "AeroMATLABAnimation",
+ "title": "MATLAB Animation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/MATLAB-Based Animation/MATLAB_Animation.md"
+ ],
+ "text": "Create six-degrees-of-freedom multibody custom geometry block; {Vehicles} sets the vehicle to animate, {Geometries (use ’quotes’ on filenames)} sets the vehicle geometries, {Bounding box coordinates} sets the boundary coordinates, {Camera offset} sets the distance from camera aim point to camera, {Camera view angle} and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Downrange position, crossrange position, and altitude of vehicle three-element vector"
+  },
+  {
+   "name": "1.X e",
+   "direction": "input",
+   "summary": "Downrange position, crossrange position, and altitude of vehicle three-element vector"
+  },
+  {
+   "name": "1.φ θ ψ",
+   "direction": "input",
+   "summary": "Euler angles three-element vector"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "Downrange position, crossrange position, and altitude (positive down) three-element vector"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "Euler angles three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vehicles",
+   "default": "1",
+   "values": "Vehicle to animate 1 (default) | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10",
+   "group": ""
+  },
+  {
+   "name": "Geometries (use ’quotes’ on filenames)",
+   "default": "’astredwedge.mat’",
+   "values": "Vehicle geometries ’astredwedge.mat’ (default) | MAT-file",
+   "group": ""
+  },
+  {
+   "name": "Bounding box coordinates",
+   "default": "[-50,50,-50,50,-50,50]",
+   "values": "Boundary coordinates [-50,50,-50,50,-50,50] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Camera offset",
+   "default": "[-150,-50,0]",
+   "values": "Distance from camera aim point to camera [-150,-50,0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Camera view angle",
+   "default": "3",
+   "values": "Camera view angle 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.2",
+   "values": "Sample time 0.2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "key": "ros.slros2.internal.block.ReadScan",
+ "title": "Read Scan",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Read_Scan.md"
+ ],
+ "text": "Extract scan data from ROS or ROS 2 laser scan message, 1 input, 4 outputs; {Maximum array length} sets the maximum length of the laser scan array, {Show Angles output port} sets the rGB port toggle, {Show Intensity output port} sets the intensity port toggle, {Show ErrorCode output port} sets the errorCode port toggle and {Output variable-size signals} sets the variable-size signal output toggle. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS or ROS 2 laser scan message nonvirtual bus"
+  },
+  {
+   "name": "Ranges",
+   "direction": "output",
+   "summary": "Range values for each point array"
+  },
+  {
+   "name": "Angles",
+   "direction": "output",
+   "summary": "Angle values for each point array"
+  },
+  {
+   "name": "Intensities",
+   "direction": "output",
+   "summary": "Intensity value for each point array"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "Error code for message parsing scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum array length",
+   "default": "100",
+   "values": "Maximum length of the laser scan array 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Angles output port",
+   "default": "off",
+   "values": "RGB port toggle off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show Intensity output port",
+   "default": "off",
+   "values": "Intensity port toggle off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "on",
+   "values": "ErrorCode port toggle on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "Variable-size signal output toggle off (default) | on",
+   "group": ""
+  }
+ ]
+}

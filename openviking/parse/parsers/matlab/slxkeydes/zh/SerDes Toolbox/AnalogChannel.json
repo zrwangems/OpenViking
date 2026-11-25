@@ -1,0 +1,145 @@
+{
+ "key": "AnalogChannel",
+ "title": "Analog Channel",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Utilities/Analog_Channel.md"
+ ],
+ "text": "根据信道损耗指标或冲激响应构建损耗模型，输入 1 路、输出 1 路；按 {Specification} 指定近端和远端干扰源的幅度；{Channel model} 指定信道模型来源 Loss、{Target frequency (Hz)} 指定所需信道损耗的频率 20e9、{Loss (dB)} 指定目标频率处的信道损耗、{Impedance (Ohms)} 指定信道特征阻抗 positive real、{Impulse response} 指定用户提供的冲激响应、{Impulse sample interval} 指定用户提供的冲激响应的采样间隔 6.25e-12、{Tx R (Ohms)} 指定发送器模拟模型的单端阻抗、{Tx C (F)} 指定发送器模拟模型的电容 100e-15、{Rx R (Ohms)} 指定接收器模拟模型的单端阻抗、{Rx C (F)} 指定接收器模拟模型的电容 200e-15、{Rise time (s)} 指定激励输入的 20%−80% 上升时间 10e-12、{Voltage (V)} 指定发送器模拟模型输入端的峰峰值电压、{Include crosstalk} 指定在仿真中包含串扰、{Far end crosstalk ICN (V)} 指定远端干扰源的期望积分噪声电平 15e-3、{Near end crosstalk ICN (V)} 指定近端干扰源的期望积分噪声电平 10e-3、{Symbol Time (s)} 指定远端串扰激励的符号时间 100e-12、{Delay (s)} 指定远端串扰激励的延迟偏移、{Modulation} 指定远端串扰激励的调制电平、{PRBS Order} 指定远端串扰激励的 PRBS 阶数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "修改后的输出数据 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Channel model",
+   "default": "model",
+   "values": "信道模型来源 Loss model (default) | Impulse response",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Target frequency (Hz)",
+   "default": "20e9",
+   "values": "所需信道损耗的频率 20e9 (default) | positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Loss (dB)",
+   "default": "8",
+   "values": "目标频率处的信道损耗 8 (default) | scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Impedance (Ohms)",
+   "default": "",
+   "values": "信道特征阻抗 positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Impulse response",
+   "default": "[zeros(1,63),1/SampleInterval,zeros(1,192)]",
+   "values": "用户提供的冲激响应 [zeros(1,63),1/SampleInterval,zeros(1,192)] (default) | matrix",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Impulse sample interval",
+   "default": "6.25e-12",
+   "values": "用户提供的冲激响应的采样间隔 6.25e-12 (default) | positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Tx R (Ohms)",
+   "default": "50",
+   "values": "发送器模拟模型的单端阻抗 50 (default) | nonnegative real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Tx C (F)",
+   "default": "100e-15",
+   "values": "发送器模拟模型的电容 100e-15 (default) | nonnegative real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Rx R (Ohms)",
+   "default": "50",
+   "values": "接收器模拟模型的单端阻抗 50 (default) | nonnegative real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Rx C (F)",
+   "default": "200e-15",
+   "values": "接收器模拟模型的电容 200e-15 (default) | nonnegative real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Rise time (s)",
+   "default": "10e-12",
+   "values": "激励输入的 20%−80% 上升时间 10e-12 (default) | positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Voltage (V)",
+   "default": "1",
+   "values": "发送器模拟模型输入端的峰峰值电压 1 (default) | positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Include crosstalk",
+   "default": "off",
+   "values": "在仿真中包含串扰 off (default) | on",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Specification",
+   "default": "100GBASE-CR4",
+   "values": "指定近端和远端干扰源的幅度 100GBASE-CR4 (default) | CEI-25G-LR | CEI-28G-SR | CEI-28G-VSR | Custom",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Far end crosstalk ICN (V)",
+   "default": "15e-3",
+   "values": "远端干扰源的期望积分噪声电平 15e-3 (default) | nonnegative real scalar",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Near end crosstalk ICN (V)",
+   "default": "10e-3",
+   "values": "近端干扰源的期望积分噪声电平 10e-3 (default) | nonnegative real scalar",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Symbol Time (s)",
+   "default": "100e-12",
+   "values": "远端串扰激励的符号时间 100e-12 (default) | positive real scalar",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Delay (s)",
+   "default": "0",
+   "values": "远端串扰激励的延迟偏移 0 (default) | nonnegative real scalar",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Modulation",
+   "default": "NRZ",
+   "values": "远端串扰激励的调制电平 NRZ (default) | PAM3 | PAM4 | PAM5 | PAM6 | PAM7 | PAM8 | PAM9 | PAM10 | PAM11 | PAM12 | PAM13 | PAM14 | PAM15 | PAM16",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "PRBS Order",
+   "default": "7",
+   "values": "远端串扰激励的 PRBS 阶数 7 (default) | 9 | 11 | 13 | 15 | 20 | 23 | 31 | 47",
+   "group": "Crosstalk"
+  }
+ ]
+}

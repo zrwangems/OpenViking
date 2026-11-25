@@ -1,0 +1,13 @@
+{
+ "key": "Magnitude IQN",
+ "title": "Magnitude IQN",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/Magnitude_IQN.md"
+ ],
+ "text": "两个正交 IQ 数的幅值。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

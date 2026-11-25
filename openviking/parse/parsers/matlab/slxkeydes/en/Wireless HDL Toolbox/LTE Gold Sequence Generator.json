@@ -1,0 +1,39 @@
+{
+ "key": "LTE Gold Sequence Generator",
+ "title": "LTE Gold Sequence Generator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Utilities/LTE_Gold_Sequence_Generator.md"
+ ],
+ "text": "Generate Gold sequence, 3 inputs, 2 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "load",
+   "direction": "input",
+   "summary": "Load initial shift register value scalar"
+  },
+  {
+   "name": "init",
+   "direction": "input",
+   "summary": "Initial shift register value scalar | vector"
+  },
+  {
+   "name": "enable",
+   "direction": "input",
+   "summary": "Enable sequence generation scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Generated Gold sequence scalar | vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  }
+ ],
+ "params": []
+}

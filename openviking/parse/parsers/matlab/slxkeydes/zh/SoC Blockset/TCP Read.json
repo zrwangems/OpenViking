@@ -1,0 +1,78 @@
+{
+ "key": "TCP Read",
+ "title": "TCP Read",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/TCP_Read.md"
+ ],
+ "text": "通过 TCP/IP 网络从远程主机接收 TCP/IP 数据包，输入 1 路、输出 2 路；按 {Data type} 指定接收的 TCP/IP 数据包的数据类型；{Network role} 指定将模块设置为客户端或服务器、{Remote address} 指定接收 TCP/IP 数据包的远程服务器的 IP 地址、{Remote port} 指定接收 TCP/IP 数据包的远程服务器上的 IP、{Local port} 指定接收数据所在主机的 IP 端口、{Maximum data length (elements)} 输出 TCP/IP 数据包的最大长度、{Enable event-based execution} 启用基于事件的任务执行、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "从远程主机接收的 TCP/IP 数据包流 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "从远程主机接收的 TCP/IP 数据包 numeric vector"
+  },
+  {
+   "name": "length",
+   "direction": "output",
+   "summary": "输出 TCP/IP 数据包的长度 nonnegative scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network role",
+   "default": "Client",
+   "values": "将模块设置为客户端或服务器 Client (default) | Server",
+   "group": ""
+  },
+  {
+   "name": "Remote address",
+   "default": "127.0.0.1",
+   "values": "接收 TCP/IP 数据包的远程服务器的 IP 地址 127.0.0.1 (default) | dotted-quad expression",
+   "group": ""
+  },
+  {
+   "name": "Remote port",
+   "default": "25000",
+   "values": "接收 TCP/IP 数据包的远程服务器上的 IP 端口 25000 (default) | integer from 1 to 65535",
+   "group": ""
+  },
+  {
+   "name": "Local port",
+   "default": "-1",
+   "values": "接收数据所在主机的 IP 端口 -1 (default) | integer from 1 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "接收的 TCP/IP 数据包的数据类型 uint8 (default) | single | double | int8 | int16 | int32 | uint16 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Maximum data length (elements)",
+   "default": "1",
+   "values": "输出 TCP/IP 数据包的最大长度 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable event-based execution",
+   "default": "off",
+   "values": "启用基于事件的任务执行 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

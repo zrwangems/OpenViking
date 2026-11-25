@@ -1,0 +1,13 @@
+{
+ "key": "Variable Ratio Transmission",
+ "title": "Variable Ratio Transmission",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Variable_Ratio_Transmission.md"
+ ],
+ "text": "具有可变且可控的传动比、传动柔度和摩擦损失的动态齿轮箱。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

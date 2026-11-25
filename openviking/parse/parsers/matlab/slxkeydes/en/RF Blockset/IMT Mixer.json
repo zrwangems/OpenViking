@@ -1,0 +1,170 @@
+{
+ "key": "IMT Mixer",
+ "title": "IMT Mixer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/IMT_Mixer.md"
+ ],
+ "text": "Model mixer using intermodulation table (IMT), {Frequencies (Hz)} sets Frequency data; {Carrier frequency (Hz)}, {Local oscillator frequency (Hz)}, {Reference input power (dBm)}, {Nominal output power (dbm)}, {Use data file}, {Data file}, {Input impedance (Ohm)}, {Output impedance (Ohm)}, {Ground and hide negative terminals}, {IMT table} sets the iMT spur visualization {Output signal power (dBm)} sets the signal power of desired output tone, {Mixer type}, {Plot} sets the visualize IMT table values using specified signal power and mixer type, {Simulate noise} sets the simulate device or phase noise, {Noise type}, {Noise distribution}, {Noise figure (dB)}, {Minimum noise figure (dB)}, {Optimal reflection coefficient}, {Equivalent normalized noise resistance}, {Add LO phase noise} adds phase noise, {Phase noise frequency offset (Hz)}, {Phase noise level (dBc/Hz)} sets the phase noise level, {Automatically estimate impulse response duration} and {Impulse response duration}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Carrier frequency (Hz)",
+   "default": "1e9",
+   "values": "Carrier frequency 1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Local oscillator frequency (Hz)",
+   "default": "0.9e9",
+   "values": "Local oscillator (LO) frequency 0.9e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference input power (dBm)",
+   "default": "-10",
+   "values": "Reference input power -10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal output power (dbm)",
+   "default": "-20",
+   "values": "Nominal LO power -20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Use data file",
+   "default": "off",
+   "values": "Specify data file to use off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Data file",
+   "default": "samplespur1.s2d",
+   "values": "Data file samplespur1.s2d (default)",
+   "group": ""
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "Input impedance of mixer 50 (default) | real scalar | vector of positive real scalars",
+   "group": ""
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "Output impedance of mixer 50 (default) | real scalar | vector of positive real scalars",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF negative circuit terminals on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "IMT table",
+   "default": "99]",
+   "values": "IMT spur visualization [99 99 99; 99 0 99; 99 99 99] (default) | square matrix",
+   "group": ""
+  },
+  {
+   "name": "Output signal power (dBm)",
+   "default": "0",
+   "values": "Signal power of desired output tone 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mixer type",
+   "default": "Upconverter",
+   "values": "Mixer type Upconverter (default) | Downconverter",
+   "group": ""
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Visualize IMT table values using specified signal power and mixer type button",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "Simulate device or phase noise on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Noise type",
+   "default": "figure",
+   "values": "Noise type Noise figure (default) | Spot noise data",
+   "group": ""
+  },
+  {
+   "name": "Noise distribution",
+   "default": "White",
+   "values": "Noise distribution White (default) | Piece-wise linear | Colored",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "Noise figure 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequencies (Hz)",
+   "default": "0",
+   "values": "Frequency data 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Minimum noise figure (dB)",
+   "default": "0",
+   "values": "Minimum noise figure 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Optimal reflection coefficient",
+   "default": "0",
+   "values": "Optimal reflection coefficient 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Equivalent normalized noise resistance",
+   "default": "0",
+   "values": "Equivalent normalized noise resistance 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Add LO phase noise",
+   "default": "off",
+   "values": "Add phase noise off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "1",
+   "values": "Phase noise frequency offset 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-Inf",
+   "values": "Phase noise level -Inf (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "on",
+   "values": "Automatically estimate impulse response duration on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "Impulse response duration 1e-10 s (default) | scalar",
+   "group": ""
+  }
+ ]
+}

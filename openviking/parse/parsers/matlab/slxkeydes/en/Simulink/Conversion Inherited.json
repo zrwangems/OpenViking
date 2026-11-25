@@ -1,0 +1,48 @@
+{
+ "key": "Conversion Inherited",
+ "title": "Data Type Conversion Inherited",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Data_Type_Conversion_Inherited.md"
+ ],
+ "text": "Convert from one data type to another using inherited data type and scaling, 2 inputs, 1 output, direct feedthrough, {Integer rounding mode} sets Rounding mode for fixed-point operations; {Input and Output to have equal} sets the constraint for converting fixed-point data types Real World and {Saturate to max or min when overflows occur} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Reference signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal to convert scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input and Output to have equal",
+   "default": "Value",
+   "values": "Constraint for converting fixed-point data types Real World Value (default) | Stored Integer",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "key": "Deinterlacer",
+ "title": "Deinterlacer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Deinterlacer.md"
+ ],
+ "text": "将输入向量的元素交替分配到两个输出向量中，输入 1 路、输出 2 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 column vector"
+  },
+  {
+   "name": "O",
+   "direction": "output",
+   "summary": "奇数编号元素 vector"
+  },
+  {
+   "name": "E",
+   "direction": "output",
+   "summary": "偶数编号元素 vector"
+  }
+ ],
+ "params": []
+}

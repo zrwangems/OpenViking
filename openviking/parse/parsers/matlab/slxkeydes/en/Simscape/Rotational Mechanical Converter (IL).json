@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Mechanical Converter (IL)",
+ "title": "Rotational Mechanical Converter (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Rotational_Mechanical_Converter_IL.md"
+ ],
+ "text": "Interface between isothermal liquid and mechanical rotational networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

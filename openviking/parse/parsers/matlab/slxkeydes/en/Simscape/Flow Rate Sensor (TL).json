@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Sensor (TL)",
+ "title": "Flow Rate Sensor (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Sensors/Flow_Rate_Sensor_TL.md"
+ ],
+ "text": "Measure mass, energy, and volumetric flow rates in thermal liquid networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

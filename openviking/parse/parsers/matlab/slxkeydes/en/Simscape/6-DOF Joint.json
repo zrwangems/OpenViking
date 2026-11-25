@@ -1,0 +1,13 @@
+{
+ "key": "6-DOF Joint",
+ "title": "6-DOF Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/b_6_DOF_Joint.md"
+ ],
+ "text": "Joint with six degrees of freedom and no kinematic singularity.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

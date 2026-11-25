@@ -1,0 +1,13 @@
+{
+ "key": "Gate Driver",
+ "title": "Gate Driver",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Gate_Driver.md"
+ ],
+ "text": "栅极驱动器集成电路的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

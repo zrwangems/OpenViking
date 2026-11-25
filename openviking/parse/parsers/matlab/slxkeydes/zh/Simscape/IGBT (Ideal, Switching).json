@@ -1,0 +1,13 @@
+{
+ "key": "IGBT (Ideal, Switching)",
+ "title": "IGBT (Ideal, Switching)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/IGBT_Ideal_Switching.md"
+ ],
+ "text": "用于开关应用的理想绝缘栅双极型晶体管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,32 @@
+{
+ "key": "NvMAdminCaller",
+ "title": "NvMAdminCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/NVRAM Manager (NvM)/NvMAdminCaller.md"
+ ],
+ "text": "Call AUTOSAR NVRAM Manager (NvM) service interface NvMadmin; {Client port name} sets the name of client port AUTOSAR component uses to call NvM service interface, {Operation} and {Sample time} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Client port name",
+   "default": "NvMAdmin",
+   "values": "Name of client port AUTOSAR component uses to call NvM service interface NvMAdmin NvMAdmin (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "SetBlockProtection",
+   "values": "Operation defined in NvM service interface NvMAdmin SetBlockProtection (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

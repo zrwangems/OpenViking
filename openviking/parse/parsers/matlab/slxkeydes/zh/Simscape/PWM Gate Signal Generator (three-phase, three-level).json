@@ -1,0 +1,53 @@
+{
+ "key": "PWM Gate Signal Generator (three-phase, three-level)",
+ "title": "PWM Gate Signal Generator (Three-phase, Three-level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Gate_Signal_Generator_Three_phase_Three_level.md"
+ ],
+ "text": "为三相、三电平门极开关器件生成十二个控制开关的脉冲，输入 3 路、输出 1 路；按 {Sampling mode} 指定波形采样方法；{Switching frequency (Hz)} 指定开关速率 1e3、{Sample time (s)} 指定模块采样时间 5e-5，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TgabcON",
+   "direction": "input",
+   "summary": "导通门极时间 vector"
+  },
+  {
+   "name": "TgabcOFF",
+   "direction": "input",
+   "summary": "关断门极时间 vector"
+  },
+  {
+   "name": "SmallHexNum",
+   "direction": "input",
+   "summary": "小六边形编号 scalar"
+  },
+  {
+   "name": "g",
+   "direction": "output",
+   "summary": "门极控制 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "波形采样方法 Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1e3",
+   "values": "开关速率 1e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "5e-5",
+   "values": "模块采样时间 5e-5 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,155 @@
+{
+ "key": "Three-Phase Voltage Source Inverter",
+ "title": "Three-Phase Voltage Source Inverter",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Electric Motors and Inverters/Three_Phase_Voltage_Source_Inverter.md"
+ ],
+ "text": "三相电压源逆变器，输入 7 路、输出 3 路；{Input inverter temperature} 指定创建输入端口、{Enable memory optimized 2D LUT} 指定 off、{Calibrate Maps} 使用测量数据校准表 selection、{Switching voltage function} 指定 Commanded phase、{Breakpoints for speeds (w), w_eff_bp} 指定速度断点、{Resample storage size for w_eff_bp, n1} 指定转速位数、{Breakpoints for load input (T), T_eff_bp} 指定扭矩断点、{Resample storage size for T_eff_bp, n2} 指定转矩位数、{Breakpoints for temperature input, Temp_eff_bp} 指定温度断点、{Corresponding power loss, ploss_table} 指定二维查找表、{Corresponding power loss, ploss_table_3d} 指定三维查找表 M -by- N -by- L、{w_eff_bp max endpoint, u1max} 指定速度断点、{w_eff_bp min endpoint, u1min} 指定速度断点、{T_eff_bp max endpoint, u2max} 指定转矩断点、{T_eff_bp min endpoint, u2min} 指定转矩断点，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PhaseVoltCmd",
+   "direction": "input",
+   "summary": "a、b、c 相对中性点电压指令 1 -by- 3 array"
+  },
+  {
+   "name": "SwitchCmd",
+   "direction": "input",
+   "summary": "开关指令 1 -by- 3 array"
+  },
+  {
+   "name": "BusVolt",
+   "direction": "input",
+   "summary": "电源总线电压 bus"
+  },
+  {
+   "name": "PhaseCurr",
+   "direction": "input",
+   "summary": "a、b、c 相电流 1 -by- 3 array"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "input",
+   "summary": "电机转矩 scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "input",
+   "summary": "电机转速 scalar"
+  },
+  {
+   "name": "InvrtrTemp",
+   "direction": "input",
+   "summary": "逆变器工作温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "output",
+   "summary": "a、b、c 相线对中性点电压 1 -by- 3 array"
+  },
+  {
+   "name": "BusCurr",
+   "direction": "output",
+   "summary": "电源总线电流 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input inverter temperature",
+   "default": "off",
+   "values": "创建输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable memory optimized 2D LUT",
+   "default": "off",
+   "values": "选择 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Calibrate Maps",
+   "default": "",
+   "values": "使用测量数据校准表 selection",
+   "group": ""
+  },
+  {
+   "name": "Switching voltage function",
+   "default": "voltage",
+   "values": "选择 Commanded phase voltage (default) | Switch inputs",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for speeds (w), w_eff_bp",
+   "default": "1000]",
+   "values": "速度断点 [-1000 -500 0 500 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Resample storage size for w_eff_bp, n1",
+   "default": "128",
+   "values": "转速位数 128 (default) | 2 | 4 | 8 | 16 | 32 | 64 | 256",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for load input (T), T_eff_bp",
+   "default": "200]",
+   "values": "扭矩断点 [-200 -100 0 100 200] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Resample storage size for T_eff_bp, n2",
+   "default": "128",
+   "values": "转矩位数 128 (default) | 2 | 4 | 8 | 16 | 32 | 64 | 256",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for temperature input, Temp_eff_bp",
+   "default": "373.15]",
+   "values": "温度断点 [213.15 293.15 373.15] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding power loss, ploss_table",
+   "default": "0.976]",
+   "values": "二维查找表 [1 0.999 0.989 0.997 0.996;0.995 0.994 0.993 0.992 0.991;0.990 0.989 0.988 0.987 0.986;0.985 0.984 0.983 0.982 0.981;0.980 0.979 0.978 0.977 0.976] (default) | M -by- N array",
+   "group": ""
+  },
+  {
+   "name": "Corresponding power loss, ploss_table_3d",
+   "default": "",
+   "values": "三维查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "w_eff_bp max endpoint, u1max",
+   "default": "1000",
+   "values": "速度断点 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "w_eff_bp min endpoint, u1min",
+   "default": "-1000",
+   "values": "速度断点 -1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "T_eff_bp max endpoint, u2max",
+   "default": "200",
+   "values": "转矩断点 200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "T_eff_bp min endpoint, u2min",
+   "default": "-200",
+   "values": "转矩断点 -200 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

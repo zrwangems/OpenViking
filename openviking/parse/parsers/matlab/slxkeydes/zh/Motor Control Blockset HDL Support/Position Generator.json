@@ -1,0 +1,60 @@
+{
+ "key": "Position Generator",
+ "title": "Position Generator",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Control Reference/Position_Generator.md",
+  "Motor Control Blockset/Controls/Control Reference/Position_Generator.md"
+ ],
+ "text": "生成固定频率的位置斜坡，输入 3 路、输出 1 路；按 {Theta 单位} 指定θ 的单位；{初始状态} 指定如何提供 θ 的初始值、{初始 theta 值} 指定θ e 的初始值、{外部重置} 指定重置时的输出值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "∆θ",
+   "direction": "input",
+   "summary": "位置增量值 标量"
+  },
+  {
+   "name": "θ 0",
+   "direction": "input",
+   "summary": "初始位置信号 标量"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部重置信号 标量"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "参考电压位置 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "Theta 单位",
+   "default": "标幺",
+   "values": "θ 的单位 标幺 (默认) | 弧度 | 度",
+   "group": ""
+  },
+  {
+   "name": "初始状态",
+   "default": "通过对话框指定",
+   "values": "指定如何提供 θ 的初始值 通过对话框指定 (默认) | 输入端口",
+   "group": ""
+  },
+  {
+   "name": "初始 theta 值",
+   "default": "0",
+   "values": "θ e 的初始值 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "外部重置",
+   "default": "无",
+   "values": "重置时的输出值 无 (默认) | 高电平重置为零 | 高电平重置为初始条件",
+   "group": ""
+  }
+ ]
+}

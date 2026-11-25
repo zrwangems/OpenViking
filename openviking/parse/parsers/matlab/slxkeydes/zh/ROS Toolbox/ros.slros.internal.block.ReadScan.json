@@ -1,0 +1,70 @@
+{
+ "key": "ros.slros.internal.block.ReadScan",
+ "title": "Read Scan",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Read_Scan.md"
+ ],
+ "text": "从 ROS 或 ROS 2 激光扫描消息中提取扫描数据，输入 1 路、输出 4 路；{Maximum array length} 指定激光扫描数组的最大长度、{Show Angles output port} 指定 RGB 端口切换、{Show Intensity output port} 指定 Intensity 端口切换、{Show ErrorCode output port} 指定 ErrorCode 端口切换、{Output variable-size signals} 指定可变大小信号输出切换，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS 或 ROS 2 激光扫描消息 nonvirtual bus"
+  },
+  {
+   "name": "Ranges",
+   "direction": "output",
+   "summary": "每个点的距离值 array"
+  },
+  {
+   "name": "Angles",
+   "direction": "output",
+   "summary": "每个点的角度值 array"
+  },
+  {
+   "name": "Intensities",
+   "direction": "output",
+   "summary": "每个点的强度值 array"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "消息解析的错误代码 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum array length",
+   "default": "100",
+   "values": "激光扫描数组的最大长度 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Angles output port",
+   "default": "off",
+   "values": "RGB 端口切换 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show Intensity output port",
+   "default": "off",
+   "values": "Intensity 端口切换 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "on",
+   "values": "ErrorCode 端口切换 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "可变大小信号输出切换 off (default) | on",
+   "group": ""
+  }
+ ]
+}

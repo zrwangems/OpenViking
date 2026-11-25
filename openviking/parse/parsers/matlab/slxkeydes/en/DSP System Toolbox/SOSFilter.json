@@ -1,0 +1,88 @@
+{
+ "key": "SOSFilter",
+ "title": "Second-Order Section Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Second_Order_Section_Filter.md"
+ ],
+ "text": "Implement cascade of second-order section filters, 4 inputs, 1 output, no direct feedthrough, {Filter structure} sets Filter structure Direct form II; {Coefficient source} sets the filter coefficient source, {Numerator}, {Denominator}, {Specify scale values} sets the if filter has scale values for each, {Scale Values} scales values for each second-order section, {Input processing} sets the method to process input Columns and {View Filter Response}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Numerator coefficients P -by-3 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "Denominator coefficients P -by-3 matrix | P -by-2 matrix"
+  },
+  {
+   "name": "g",
+   "direction": "input",
+   "summary": "Scale values for each second-order section scalar | vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Filtered output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter structure",
+   "default": "transposed",
+   "values": "Filter structure Direct form II transposed (default) | Direct form I | Direct form I transposed | Direct form II",
+   "group": ""
+  },
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "Filter coefficient source Dialog parameters (default) | Input ports",
+   "group": ""
+  },
+  {
+   "name": "Numerator",
+   "default": "]",
+   "values": "Numerator coefficients of filter [ 0.0975 0.195 0.0975 ] (default) | P -by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Denominator",
+   "default": "]",
+   "values": "Denominator coefficients of filter [ 1 -0.9428 0.3333 ] (default) | P -by-3 matrix | P -by-2 matrix",
+   "group": ""
+  },
+  {
+   "name": "Specify scale values",
+   "default": "off",
+   "values": "Specify if filter has scale values for each section off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Scale Values",
+   "default": "]",
+   "values": "Scale values for each second-order section [ 1 1 ] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process input Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View filter response button",
+   "group": ""
+  }
+ ]
+}

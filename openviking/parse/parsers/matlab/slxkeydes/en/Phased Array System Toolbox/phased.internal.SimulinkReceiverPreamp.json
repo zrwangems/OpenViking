@@ -1,0 +1,101 @@
+{
+ "key": "phased.internal.SimulinkReceiverPreamp",
+ "title": "Receiver Preamp",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Transmitters and Receivers/Receiver_Preamp.md"
+ ],
+ "text": "Receiver preamplifier, 3 inputs, 1 output; {Gain (dB)} sets the gain of receiver, {Loss factor (dB)} sets the loss factor of receiver, {Noise specification method}, {Noise power (W)}, {Noise figure (dB)} sets the noise figure of receiver, {Reference temperature (K)} sets the reference temperature of receiver, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate, {Enable enabling signal input} adds input to specify enabling signal, {Enable phase noise input} adds input to specify phase noise and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input signal complex-valued matrix"
+  },
+  {
+   "name": "TR",
+   "direction": "input",
+   "summary": "Enable enabling signal logical-valued scalar | scalar"
+  },
+  {
+   "name": "Ph",
+   "direction": "input",
+   "summary": "Input phase noise scalar"
+  },
+  {
+   "name": "Out 1",
+   "direction": "output",
+   "summary": "Output complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Gain (dB)",
+   "default": "20",
+   "values": "Gain of receiver 20 (default)",
+   "group": ""
+  },
+  {
+   "name": "Loss factor (dB)",
+   "default": "0",
+   "values": "Loss factor of receiver 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Noise specification method",
+   "default": "temperature",
+   "values": "Noise specification method Noise temperature (default) | Noise power",
+   "group": ""
+  },
+  {
+   "name": "Noise power (W)",
+   "default": "0",
+   "values": "Noise power 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "Noise figure of receiver 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Reference temperature (K)",
+   "default": "290",
+   "values": "Reference temperature of receiver 290 (default)",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable enabling signal input",
+   "default": "off",
+   "values": "Add input to specify enabling signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable phase noise input",
+   "default": "off",
+   "values": "Add input to specify phase noise off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

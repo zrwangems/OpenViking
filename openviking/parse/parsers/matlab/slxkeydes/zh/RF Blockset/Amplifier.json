@@ -1,0 +1,332 @@
+{
+ "key": "Amplifier",
+ "title": "Amplifier",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Amplifier.md"
+ ],
+ "text": "在 RF 系统中对放大器建模；按 {Noise distribution} 指定噪声分布；{Source of amplifier gain} 指定放大器增益源 Available power、{Available power gain} 指定可用功率增益、{Open circuit voltage gain} 指定开路电压增益、{Data source} 指定数据源 Data、{Polynomial coefficients} 指定多项式系数、{AM/AM-AM/PM table} 查找表、{Network-parameter object} 指定网络参数对象作为数据源、{Network parameter type} 指定网络参数类型、{Input impedance (Ohm)} 指定输入阻抗、{Output impedance (Ohm)} 输出阻抗、{Data file} 指定网络参数数据文件的名称、{Frequency (dB)} 指定网络参数的频率 1e9、{Reference Impedance(Ohm)} 指定网络参数的参考阻抗、{Use rational object} 指定有理对象作为数据源、{Residues} 按有理模型顺序排列的留数、{Poles} 按有理模型顺序排列的留数、{Direct feedthrough} 指定直接馈通 0 0:1、{Ground and hide negative terminals} 指定 RF 电路端子接地、{Nonlinear polynomial type} 指定非线性类型 Even、{Intercept points convention} 指定截点约定 Output、{IP2} 指定二阶截点 inf、{IP3} 指定三阶截点 inf、{1-dB gain compression power}、{Output saturation power}、{Gain compression at saturation}、{Use operation frequency at maximum S21 magnitude} 指定工作频率、{Operation frequency} 指定工作频率、{Use constant S21 and nonlinearity} 指定工作频率、{Plot Power Characteristics} 指定放大器非线性功率曲线可视化、{Simulate noise} 指定模拟热噪声、{Noise type} 指定噪声类型 Noise、{Noise figure (dB)} 指定噪声系数、{Frequencies} 指定频率数据、{Minimum noise figure (dB)} 指定最小噪声系数、{Optimal reflection coefficient} 指定最佳反射系数、{Equivalent normalized noise resistance} 指定等效归一化噪声电阻、{Automatically estimate impulse response duration} 指定自动估计冲激响应持续时间、{Impulse response duration} 指定冲激响应持续时间 1e-10、{Modeling options} 指定对 S 参数建模、{Fitting options} 指定 Rationalfit 拟合选项 Fit、{Relative error desired (dB)} 指定有理拟合可接受的相对误差、{Use only S-parameter magnitude with appropriate delay} 指定仅使用具有适当延迟的 S 参数幅值、{Source of frequency data} 指定频率数据源 Extracted from data、{Frequency data} 指定频率数据范围、{Plot type} 指定数据绘图类型 X-Y、{Parameter 1} 指定要绘制的 S 参数类型、{Parameter 2} 指定要绘制的 S 参数类型、{Format1} 指定绘图格式 Magnitude、{Format2} 指定绘图格式 Magnitude、{Y-axis scale} 指定 Y 轴刻度、{X-axis scale} 指定 X 轴刻度、{Plot} 绘制指定数据，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source of amplifier gain",
+   "default": "gain",
+   "values": "放大器增益源 Available power gain (default) | Open circuit voltage gain | Data source | Polynomial coefficients | AM/AM-AM/PM table",
+   "group": "Main"
+  },
+  {
+   "name": "Available power gain",
+   "default": "dB",
+   "values": "可用功率增益 0 dB (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Open circuit voltage gain",
+   "default": "dB",
+   "values": "开路电压增益 0 dB (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Data source",
+   "default": "File",
+   "values": "数据源 Data File (default) | Network-parameters | Rational Model",
+   "group": "Main"
+  },
+  {
+   "name": "Polynomial coefficients",
+   "default": "1]",
+   "values": "多项式系数 [0 1] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "AM/AM-AM/PM table",
+   "default": "]",
+   "values": "查找表 [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ] (default) | M -by-3 real matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Network-parameter object",
+   "default": "off",
+   "values": "网络参数对象作为数据源 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Network parameter type",
+   "default": "S-parameters",
+   "values": "网络参数类型 S-parameters (default) | Y-parameters | Z-parameters",
+   "group": "Main"
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "输入阻抗 50 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "输出阻抗 50 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Data file",
+   "default": "unitygain.s2p",
+   "values": "网络参数数据文件的名称 unitygain.s2p (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (dB)",
+   "default": "Hz",
+   "values": "网络参数的频率 1e9 Hz (default) | scalar | Hz | kHz | MHz | GHz",
+   "group": "Main"
+  },
+  {
+   "name": "Reference Impedance(Ohm)",
+   "default": "50",
+   "values": "网络参数的参考阻抗 50 (default) | positive scalar | vector of positive scalars",
+   "group": "Main"
+  },
+  {
+   "name": "Use rational object",
+   "default": "off",
+   "values": "有理对象作为数据源 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Residues",
+   "default": "0",
+   "values": "按有理模型顺序排列的留数 0 (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Poles",
+   "default": "0",
+   "values": "按有理模型顺序排列的留数 0 (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Direct feedthrough",
+   "default": "0}",
+   "values": "直接馈通 {0 0:1 0} (default) | array of vectors",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Nonlinear polynomial type",
+   "default": "order",
+   "values": "非线性类型 Even and odd order (default) | Odd order",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Intercept points convention",
+   "default": "Output",
+   "values": "截点约定 Output (default) | Input",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "IP2",
+   "default": "dBm",
+   "values": "二阶截点 inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "IP3",
+   "default": "dBm",
+   "values": "三阶截点 inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "1-dB gain compression power",
+   "default": "dBm",
+   "values": "1-dB gain compression power inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Output saturation power",
+   "default": "dBm",
+   "values": "Output saturation power inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Gain compression at saturation",
+   "default": "dBm",
+   "values": "Gain compression at saturation inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Use operation frequency at maximum S21 magnitude",
+   "default": "off",
+   "values": "指定工作频率 off (default) | on",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Operation frequency",
+   "default": "GHz",
+   "values": "工作频率 1 GHz (default) | scalar | finite vector | Hz | KHz | MHz | GHz",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Use constant S21 and nonlinearity",
+   "default": "off",
+   "values": "工作频率 off (default) | on",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Plot Power Characteristics",
+   "default": "button",
+   "values": "放大器非线性功率曲线可视化 button (default)",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "模拟热噪声 on (default) | off",
+   "group": "Noise"
+  },
+  {
+   "name": "Noise type",
+   "default": "figure",
+   "values": "噪声类型 Noise figure (default) | Spot noise data",
+   "group": "Noise"
+  },
+  {
+   "name": "Noise distribution",
+   "default": "White",
+   "values": "噪声分布 White (default) | Piece-wise linear | Colored",
+   "group": "Noise"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "噪声系数 0 (default) | scalar",
+   "group": "Noise"
+  },
+  {
+   "name": "Frequencies",
+   "default": "Hz",
+   "values": "频率数据 0 Hz (default) | real scalar | finite vector",
+   "group": "Noise"
+  },
+  {
+   "name": "Minimum noise figure (dB)",
+   "default": "0",
+   "values": "最小噪声系数 0 (default) | scalar | finite vector",
+   "group": "Noise"
+  },
+  {
+   "name": "Optimal reflection coefficient",
+   "default": "0",
+   "values": "最佳反射系数 0 (default) | scalar | finite vector",
+   "group": "Noise"
+  },
+  {
+   "name": "Equivalent normalized noise resistance",
+   "default": "0",
+   "values": "等效归一化噪声电阻 0 (default) | scalar | finite vector",
+   "group": "Noise"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "on",
+   "values": "自动估计冲激响应持续时间 on (default) | off",
+   "group": "Noise"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "冲激响应持续时间 1e-10 s (default) | scalar",
+   "group": "Noise"
+  },
+  {
+   "name": "Modeling options",
+   "default": "domain",
+   "values": "对 S 参数建模 Time domain (default) | Frequency domain",
+   "group": "Modeling"
+  },
+  {
+   "name": "Fitting options",
+   "default": "individually",
+   "values": "Rationalfit 拟合选项 Fit individually (default) | Share poles by column | Share all poles",
+   "group": "Modeling"
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "有理拟合可接受的相对误差 -40 (default) | scalar",
+   "group": "Modeling"
+  },
+  {
+   "name": "Use only S-parameter magnitude with appropriate delay",
+   "default": "off",
+   "values": "仅使用具有适当延迟的 S 参数幅值 off (default) | on",
+   "group": "Modeling"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "source",
+   "values": "频率数据源 Extracted from data source (default) | User-defined",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data",
+   "default": "[1e9:1e6:3e9]",
+   "values": "频率数据范围 [1e9:1e6:3e9] (default) | finite vector | Hz | kHz | MHz | GHz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "数据绘图类型 X-Y plane (default) | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Parameter 1",
+   "default": "S11",
+   "values": "要绘制的 S 参数类型 S11 (default) | S12 | S21 | S22 | NF",
+   "group": "Visualization"
+  },
+  {
+   "name": "Parameter 2",
+   "default": "None",
+   "values": "要绘制的 S 参数类型 None (default) | S11 | S12 | S21 | S22 | NF",
+   "group": "Visualization"
+  },
+  {
+   "name": "Format1",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Magnitude (linear) | Angle(degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "Format2",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Magnitude (linear) | Angle(degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y-axis scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Logarithmic",
+   "group": "Visualization"
+  },
+  {
+   "name": "X-axis scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Logarithmic",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制指定数据 button",
+   "group": "Visualization"
+  }
+ ]
+}

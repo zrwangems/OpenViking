@@ -1,0 +1,38 @@
+{
+ "key": "DiagnosticOperationCycleCaller",
+ "title": "DiagnosticOperationCycleCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/DiagnosticOperationCycleCaller.md"
+ ],
+ "text": "调用 AUTOSAR 诊断事件管理器 (Dem) 服务接口 OperationCycle；按 {Operation} 指定Dem 服务接口 OperationCycle 中定义的操作；{Client port name} 指定 AUTOSAR 组件用于调用 Dem 服务接口 OperationCycle 的客户端端口名称、{Data type for CycleState} 指定启动或停止操作循环、{Sample time} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Client port name",
+   "default": "OperationCycle",
+   "values": "AUTOSAR 组件用于调用 Dem 服务接口 OperationCycle 的客户端端口名称 OperationCycle (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "RestartOperationCycle",
+   "values": "指定 Dem 服务接口 OperationCycle 中定义的操作 RestartOperationCycle (default) | SetOperationCycleState | GetOperationCycleState",
+   "group": ""
+  },
+  {
+   "name": "Data type for CycleState",
+   "default": "Enum:Dem_OperationCycleStateType",
+   "values": "指定启动或停止操作循环 Enum:Dem_OperationCycleStateType (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "’-1’",
+   "values": "模块采样时间 ’-1’ (default) | scalar",
+   "group": ""
+  }
+ ]
+}

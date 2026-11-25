@@ -1,0 +1,63 @@
+{
+ "key": "phased.internal.SimulinkTSOAPositionEstimator",
+ "title": "TSOA Position Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/TSOA_Position_Estimator.md"
+ ],
+ "text": "根据到达时间总和估计目标位置，输入 4 路、输出 2 路；{Signal propagation speed (m/s)} 指定信号传播速度 physconst、{Output covariances of TSOA position estimates (meters-squared)} 指定 TSOA 位置估计的输出协方差、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TSOAEst",
+   "direction": "input",
+   "summary": "到达时间总和估计值 (秒) real-valued J -by- L -by- K array"
+  },
+  {
+   "name": "TSOAVar",
+   "direction": "input",
+   "summary": "TSOA 估计方差（秒的平方） real-valued J -by- L matrix | real-valued J -by- L -by- K array"
+  },
+  {
+   "name": "TxPos",
+   "direction": "input",
+   "summary": "发射锚点位置（米） real-valued Q -by- J matrix"
+  },
+  {
+   "name": "RxPos",
+   "direction": "input",
+   "summary": "接收锚点位置（米） real-valued Q -by- L matrix"
+  },
+  {
+   "name": "TgtPosEst",
+   "direction": "output",
+   "summary": "目标位置估计 real-valued Q -by-1 vector"
+  },
+  {
+   "name": "TgtPosCov",
+   "direction": "output",
+   "summary": "目标位置协方差矩阵 real-valued positive semi-definite Q -by- Q matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(\"LightSpeed\")",
+   "values": "信号传播速度 physconst(\"LightSpeed\") (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output covariances of TSOA position estimates (meters-squared)",
+   "default": "(0)",
+   "values": "TSOA 位置估计的输出协方差 false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,135 @@
+{
+ "key": "Vector Quantizer Encoder",
+ "title": "Vector Quantizer Encoder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/Vector_Quantizer_Encoder.md"
+ ],
+ "text": "Index of nearest codeword based on Euclidean or weighted Euclidean distance measure, 3 inputs, 3 outputs, no direct feedthrough, {Rounding mode} sets Rounding mode; {Source of codebook}, {Codebook}, {Distortion measure} sets the measure of distortion, {Source of weighting factor}, {Weighting factor}, {Tie-breaking rule}, {Output codeword}, {Output quantization error}, {Index output data type}, {Saturate on integer overflow}, {Product output}, {Word length} sets the product output word length, {Fraction length} sets the product output fraction length and {Accumulator}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "U",
+   "direction": "input",
+   "summary": "Input data values vector | matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Codebook values vector | matrix"
+  },
+  {
+   "name": "W",
+   "direction": "input",
+   "summary": "Weighting factor vector"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "Index values scalar | row vector"
+  },
+  {
+   "name": "Q(U)",
+   "direction": "output",
+   "summary": "Output codeword vector | matrix"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "Quantization error scalar | row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of codebook",
+   "default": "dialog",
+   "values": "Source of codebook Specify via dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Codebook",
+   "default": "8.8]",
+   "values": "Codebook values [1.5 13.3 136.4 6.8; 2.5 14.3 137.4 7.8; 3.5 15.3 138.4 8.8] (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Distortion measure",
+   "default": "error",
+   "values": "Measure of distortion Squared error (default) | Weighted squared error",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Source of weighting factor",
+   "default": "dialog",
+   "values": "Source of weighting factor Specify via dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Weighting factor",
+   "default": "1]",
+   "values": "Weighting factor [1 1 1] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Tie-breaking rule",
+   "default": "index",
+   "values": "Tie-breaking rule Choose the lower index (default) | Choose the higher index",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output codeword",
+   "default": "off",
+   "values": "Output codeword off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output quantization error",
+   "default": "off",
+   "values": "Output quantization error off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Index output data type",
+   "default": "int32",
+   "values": "Index output data type int32 (default) | int8 | uint8 | int16 | uint16 | uint32 | Inherit via back propagation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output data type Same as input (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Product output word length 16 (default) | positive integer in range [2,128]",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Fraction length",
+   "default": "15",
+   "values": "Product output fraction length 15 (default) | integer",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "Accumulator data type Same as product output (default) | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  }
+ ]
+}

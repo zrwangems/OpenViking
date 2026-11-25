@@ -1,0 +1,150 @@
+{
+ "key": "codertarget.tic2000.blocks.CMPSSBlock",
+ "title": "CMPSS",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F280013x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F280015x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28002x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28003x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28004x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F2807x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F2837xD/CMPSS.md",
+  "C2000 Microcontroller Blockset/F2837xS/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28p55x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28p65x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/CMPSS.md"
+ ],
+ "text": "比较比较器引脚上的两个输入电压，输入 5 路、输出 2 路；按 {Comparator module} 指定指示要使用的模块；{Second input} 指定第二个输入引脚的来源 External、{DAC source select} 指定内部 DAC 的来源、{Specify DAC/RAMP parameter(s) via} 指定配置 DAC/RAMP 值的来源、{DAC value (DACH)} 指定 DAC 值、{DAC initial value} 指定 DAC 初始值、{RAMP reference value} 指定 RAMP 参考值、{RAMP decrement value} 指定 RAMP 递减值、{RAMP delay value} 指定 RAMP 延迟值、{RAMP initial reference value} 指定 RAMP 初始参考值、{RAMP initial decrement value} 指定 RAMP 递减值、{RAMP initial delay value} 指定 RAMP 延迟值、{Enable latch output} 指定比较器锁存输出、{Enable latch clear} 指定清除比较器锁存值、{Sample time} 指定从比较器读取数据的频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DAC",
+   "direction": "input",
+   "summary": "DAC 模块 scalar"
+  },
+  {
+   "name": "REF",
+   "direction": "input",
+   "summary": "斜坡参考值 scalar"
+  },
+  {
+   "name": "DEC",
+   "direction": "input",
+   "summary": "RAMP 递减值 scalar"
+  },
+  {
+   "name": "DLY",
+   "direction": "input",
+   "summary": "RAMP 延迟值 scalar"
+  },
+  {
+   "name": "LCLR",
+   "direction": "input",
+   "summary": "锁存清除 scalar"
+  },
+  {
+   "name": "STS",
+   "direction": "output",
+   "summary": "比较器状态输出 scalar"
+  },
+  {
+   "name": "LTH",
+   "direction": "output",
+   "summary": "比较器锁存 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Comparator module",
+   "default": "CMPSS1_COMPH",
+   "values": "指示要使用的模块 CMPSS1_COMPH (default) | CMPSSx_COMPL | CMPSSx_COMPH | where x ranges from 1 to 8",
+   "group": ""
+  },
+  {
+   "name": "Second input",
+   "default": "pin",
+   "values": "第二个输入引脚的来源 External pin (default) | Internal DAC",
+   "group": ""
+  },
+  {
+   "name": "DAC source select",
+   "default": "module",
+   "values": "内部 DAC 的来源 DAC module (default) | RAMP module",
+   "group": ""
+  },
+  {
+   "name": "Specify DAC/RAMP parameter(s) via",
+   "default": "Dialog",
+   "values": "配置 DAC/RAMP 值的来源 Dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "DAC value (DACH)",
+   "default": "0",
+   "values": "指定 DAC 值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "DAC initial value",
+   "default": "0",
+   "values": "指定 DAC 初始值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP reference value",
+   "default": "0",
+   "values": "指定 RAMP 参考值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP decrement value",
+   "default": "0",
+   "values": "指定 RAMP 递减值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP delay value",
+   "default": "0",
+   "values": "指定 RAMP 延迟值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP initial reference value",
+   "default": "0",
+   "values": "指定 RAMP 初始参考值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP initial decrement value",
+   "default": "0",
+   "values": "指定 RAMP 递减值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP initial delay value",
+   "default": "0",
+   "values": "指定 RAMP 延迟值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable latch output",
+   "default": "off",
+   "values": "比较器锁存输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable latch clear",
+   "default": "off",
+   "values": "清除比较器锁存值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "从比较器读取数据的频率 0.1 (default)",
+   "group": ""
+  }
+ ]
+}

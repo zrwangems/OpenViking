@@ -1,0 +1,54 @@
+{
+ "key": "Frame To Samples",
+ "title": "Frame To Samples",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/I_O Interfaces/Frame_To_Samples.md"
+ ],
+ "text": "Convert frame-based data to sample stream, 1 input, 2 outputs; {Idle cycles between samples} sets the number of idle cycles to insert after each, {Idle cycles between frames} sets the number of idle cycles to insert at the end of each, {Output size} sets the number of values representing each sample and {Compose output from interleaved input samples} sets the order of output samples relative to input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "frame",
+   "direction": "input",
+   "summary": "Frame of input samples column vector"
+  },
+  {
+   "name": "sample",
+   "direction": "output",
+   "summary": "Output sample stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Idle cycles between samples",
+   "default": "0",
+   "values": "Number of idle cycles to insert after each sample 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Idle cycles between frames",
+   "default": "0",
+   "values": "Number of idle cycles to insert at the end of each frame 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "1",
+   "values": "Number of values representing each sample 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Compose output from interleaved input samples",
+   "default": "off",
+   "values": "Order of output samples relative to input order off (default) | on",
+   "group": ""
+  }
+ ]
+}

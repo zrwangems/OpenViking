@@ -1,0 +1,170 @@
+{
+ "key": "fusion.simulink.trackOSPAMetric",
+ "title": "Optimal Subpattern Assignment Metric",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Track Metrics/Optimal_Subpattern_Assignment_Metric.md"
+ ],
+ "text": "Calculate Optimal Subpattern Assignment Metric, 3 inputs, 4 outputs, {Distance type} sets Distance type; {Metric}, {Cutoff distance} sets the threshold for cutoff distance between track, {Order}, {Custom distance function}, {Motion model} sets the desired platform motion, {Labeling error} sets the penalty for incorrect assignment, {Window length} sets the sliding window length for OSPA, {Window sum order (q)} sets the order of weighted sum for track and truth, {Window weights} sets the options for window weights, {Window weight exponent (r)} sets the exponent for automatic weight calculation, {Custom window weights} sets the custom weights in time window N -element of vector of nonnegative, {Simulate using} sets the type of simulation to run Interpreted, {Assignments} enables assignment input, {Localization error} enables localization error component output, {Cardinality error} enables cardinality error component output, {Track bus}, {Truth bus}, {Track extractor function} and {Truth extractor function}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tracks",
+   "direction": "input",
+   "summary": "Track list Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Truths",
+   "direction": "input",
+   "summary": "Truth list Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Assignments",
+   "direction": "input",
+   "summary": "Known assignment K -by-2 matrix of nonnegative integers"
+  },
+  {
+   "name": "OSPA Metric",
+   "direction": "output",
+   "summary": "OSPA metric nonnegative real scalar"
+  },
+  {
+   "name": "Localization Error",
+   "direction": "output",
+   "summary": "Localization error component nonnegative real scalar"
+  },
+  {
+   "name": "Cardinality Error",
+   "direction": "output",
+   "summary": "Cardinality error component nonnegative real scalar"
+  },
+  {
+   "name": "Labeling Error",
+   "direction": "output",
+   "summary": "Labeling error component nonnegative real scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Metric",
+   "default": "OPSA",
+   "values": "Metric option OPSA (default) | OSPA(2)",
+   "group": ""
+  },
+  {
+   "name": "Cutoff distance",
+   "default": "30",
+   "values": "Threshold for cutoff distance between track and truth 30 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Order",
+   "default": "2",
+   "values": "Order of OSPA metric 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Distance type",
+   "default": "posnees",
+   "values": "Distance type posnees (default) | velnees | posabserr | velabserr | custom",
+   "group": ""
+  },
+  {
+   "name": "Custom distance function",
+   "default": "",
+   "values": "Custom distance function function handle",
+   "group": ""
+  },
+  {
+   "name": "Motion model",
+   "default": "constvel",
+   "values": "Desired platform motion model constvel (default) | constacc | constturn | singer",
+   "group": ""
+  },
+  {
+   "name": "Labeling error",
+   "default": "0",
+   "values": "Penalty for incorrect assignment 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "100",
+   "values": "Sliding window length for OSPA (2) metric 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Window sum order (q)",
+   "default": "2",
+   "values": "Order of weighted sum for track and truth history 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Window weights",
+   "default": "auto",
+   "values": "Options for window weights auto (default) | custom",
+   "group": ""
+  },
+  {
+   "name": "Window weight exponent (r)",
+   "default": "1",
+   "values": "Exponent for automatic weight calculation 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Custom window weights",
+   "default": "",
+   "values": "Custom weights in time window N -element of vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Assignments",
+   "default": "off",
+   "values": "Enable assignment input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Localization error",
+   "default": "off",
+   "values": "Enable localization error component output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cardinality error",
+   "default": "off",
+   "values": "Enable cardinality error component output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track bus",
+   "default": "objectTrack",
+   "values": "Track bus selection objectTrack (default) | custom",
+   "group": ""
+  },
+  {
+   "name": "Truth bus",
+   "default": "Platform",
+   "values": "Truth bus selection Platform (default) | Actor | custom",
+   "group": ""
+  },
+  {
+   "name": "Track extractor function",
+   "default": "",
+   "values": "Track extractor function function handle",
+   "group": ""
+  },
+  {
+   "name": "Truth extractor function",
+   "default": "",
+   "values": "Truth extractor function function handle",
+   "group": ""
+  }
+ ]
+}

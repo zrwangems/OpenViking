@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Compensator Valve (TL)",
+ "title": "Pressure Compensator Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Pressure Control Valves/Pressure_Compensator_Valve_TL.md"
+ ],
+ "text": "热液体网络中的压力补偿阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

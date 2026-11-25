@@ -1,0 +1,104 @@
+{
+ "key": "phased.internal.SimulinkTDOAEstimator",
+ "title": "TDOA Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/TDOA_Estimator.md"
+ ],
+ "text": "估计到达时间差，输入 3 路、输出 4 路；{Inherit sample rate} 指定从上游模块继承采样率、{Signal sample rate (Hz)} 指定信号采样率、{Maximum number of TDOA estimates} 指定 TDOA 估计值的最大数量、{Enable known delay offset input} 启用已知延迟偏移输入、{Output variance of TDOA Estimates} 输出 TDOA 估计值的方差、{Output TDOA response and TDOA grid} 输出 TDOA 响应和 TDOA 网格、{Source of noise power} 指定噪声功率源、{Noise power (W)} 指定噪声功率、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入数据 N -by- M -by- L complex-valued array"
+  },
+  {
+   "name": "DelayOffset",
+   "direction": "input",
+   "summary": "延迟偏移（秒） scalar | 1-by- L real-valued vector"
+  },
+  {
+   "name": "Npow",
+   "direction": "input",
+   "summary": "输入噪声功率 (W) positive scalar | 1-by- L vector of positive values"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "TDOA 估计值（秒） K -by-( L -1) real-valued matrix"
+  },
+  {
+   "name": "Var",
+   "direction": "output",
+   "summary": "估计的 TDOA 方差 1-by-( L -1) positive-value vector"
+  },
+  {
+   "name": "TDOAResp",
+   "direction": "output",
+   "summary": "TDOA 响应 P -by- M -by-( L -1) MATLAB ® array"
+  },
+  {
+   "name": "TDOAGrid",
+   "direction": "output",
+   "summary": "TDOA 网格 real-valued P -by-( L -1) matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "从上游模块继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Signal sample rate (Hz)",
+   "default": "1000000",
+   "values": "信号采样率 1000000 (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of TDOA estimates",
+   "default": "1",
+   "values": "TDOA 估计值的最大数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable known delay offset input",
+   "default": "(0)",
+   "values": "启用已知延迟偏移输入 false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Output variance of TDOA Estimates",
+   "default": "(0)",
+   "values": "输出 TDOA 估计值的方差 false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Output TDOA response and TDOA grid",
+   "default": "(0)",
+   "values": "输出 TDOA 响应和 TDOA 网格 false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Source of noise power",
+   "default": "Property",
+   "values": "噪声功率源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise power (W)",
+   "default": "1",
+   "values": "噪声功率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

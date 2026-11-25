@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Sensor (G)",
+ "title": "Flow Rate Sensor (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Sensors/Flow_Rate_Sensor_G.md"
+ ],
+ "text": "测量气体网络中的质量流量、能量流量和体积流量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

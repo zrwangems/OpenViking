@@ -1,0 +1,182 @@
+{
+ "key": "Y-Parameters Amplifier",
+ "title": "Y-Parameters Amplifier",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Amplifiers/Y_Parameters_Amplifier.md"
+ ],
+ "text": "使用 Y 参数对非线性放大器建模；按 {Interpolation method} 指定对网络参数进行插值的方法；{Y-Parameters} 指定非线性放大器的 Y 参数、{Frequency (Hz)} 指定 Y 参数的频率 2.0e9、{Noise type} 指定噪声数据类型。 Noise、{Noise figure (dB)} 指定输入端可用信噪比与输出端可用信噪比之比、{Minimum noise figure} 指定输入端可用信噪比与输出端可用信噪比的最小比值、{Optimal reflection coefficient} 指定最佳源阻抗、{Equivalent normalized noise resistance} 用于进行噪声测量的归一化电阻值、{Noise factor} 指定输入端可用信噪功率与输出端可用信噪功率之比、{Noise temperature (K)} 指定与放大器产生相同噪声量的等效温度、{IP3 type} 指定三阶截获点类型、{IP3 (dBm)} 指定 IP3 值、{1dB gain compression power (dBm)} 指定增益下降 1 dB、{Output saturation power (dBm)} 指定放大器完全饱和时产生的输出功率值、{Gain compression at saturation (dB)} 指定增益下降值、{Source of frequency data} 指定频率数据源 Same、{Frequency data (Hz)} 指定频率数据范围、{Reference impedance (ohms)} 指定参考阻抗、{Plot type} 指定数据绘图类型 X-Y、{Y parameter1} 指定要绘制的参数类型、{Y parameter2} 指定要绘制的参数类型、{Y format1} 指定绘图格式 Magnitude、{Y format2} 指定绘图格式 Magnitude、{X parameter} 指定频率图 Freq、{X format} 指定频率图格式、{Y scale} 指定 Y 轴刻度、{X scale} 指定 X 轴刻度、{Plot} 绘制指定数据，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Y-Parameters",
+   "default": "0.0200]",
+   "values": "非线性放大器的 Y 参数 [0.0200,0;-0.0400, 0.0200] (default) | 2-by-2-by- M array",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "2.0e9",
+   "values": "Y 参数的频率 2.0e9 (default) | M -element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "对网络参数进行插值的方法。 Linear (default) | Spline | Cubic",
+   "group": "Main"
+  },
+  {
+   "name": "Noise type",
+   "default": "figure",
+   "values": "噪声数据类型。 Noise figure (default) | Spot noise data | Noise factor | Noise temperature",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "输入端可用信噪比与输出端可用信噪比之比。 0 (default) | scalar ratio | vector of ratios",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Minimum noise figure",
+   "default": "0",
+   "values": "输入端可用信噪比与输出端可用信噪比的最小比值。 0 (default) | scalar ratio | vector of ratios",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Optimal reflection coefficient",
+   "default": "1+0i",
+   "values": "最佳源阻抗。 1+0i (default) | complex scalar | complex vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Equivalent normalized noise resistance",
+   "default": "1",
+   "values": "用于进行噪声测量的归一化电阻值。 1 (default) | positive scalar | positive vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise factor",
+   "default": "1",
+   "values": "输入端可用信噪功率与输出端可用信噪功率之比。 1 (default) | scalar ratio | vector of ratios",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise temperature (K)",
+   "default": "0",
+   "values": "与放大器产生相同噪声量的等效温度。 0 (default) | nonnegative scalar | nonnegative vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "IP3 type",
+   "default": "OIP3",
+   "values": "三阶截获点类型。 OIP3 (default) | IIP3",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "IP3 (dBm)",
+   "default": "inf",
+   "values": "IP3 值。 inf (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "1dB gain compression power (dBm)",
+   "default": "inf",
+   "values": "增益下降 1 dB 时的输出功率值。 inf (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "Output saturation power (dBm)",
+   "default": "inf",
+   "values": "放大器完全饱和时产生的输出功率值。 inf (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "Gain compression at saturation (dB)",
+   "default": "3",
+   "values": "增益下降值 3 (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "Y-Parameters",
+   "values": "频率数据源 Same as the Y-Parameters (default) | User-specified",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1.9e9:1.0e8:2.2e9]",
+   "values": "频率数据范围 [1.9e9:1.0e8:2.2e9] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "参考阻抗 50 (default) | nonnegative scalar",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "数据绘图类型 X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "频率图 Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "频率图格式 Hz (default) | Auto | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制指定数据 button",
+   "group": "Visualization"
+  }
+ ]
+}

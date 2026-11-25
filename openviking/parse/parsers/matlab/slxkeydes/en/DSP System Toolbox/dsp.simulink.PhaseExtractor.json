@@ -1,0 +1,37 @@
+{
+ "key": "dsp.simulink.PhaseExtractor",
+ "title": "Phase Extractor",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Phase_Extractor.md"
+ ],
+ "text": "Extract the unwrapped phase of a complex input, 1 input, 1 output, no direct feedthrough; {Unwrap phase only within the frame} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Unwrapped phase vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unwrap phase only within the frame",
+   "default": "off",
+   "values": "Unwrap phase only within the frame off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

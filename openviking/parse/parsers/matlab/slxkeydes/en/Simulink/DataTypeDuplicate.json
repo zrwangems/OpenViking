@@ -1,0 +1,32 @@
+{
+ "key": "DataTypeDuplicate",
+ "title": "Data Type Duplicate",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Data_Type_Duplicate.md",
+  "HDL Coder/Signal Attributes/Data_Type_Duplicate.md"
+ ],
+ "text": "Force all inputs to same data type, 2 inputs, no direct feedthrough; {Number of input ports} sets the number of block inputs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "Nth input signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "2",
+   "values": "Number of block inputs 2 (default) | real-valued positive integer",
+   "group": ""
+  }
+ ]
+}

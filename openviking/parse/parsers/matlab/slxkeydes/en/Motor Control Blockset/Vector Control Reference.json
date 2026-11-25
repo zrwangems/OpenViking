@@ -1,0 +1,53 @@
+{
+ "key": "Vector Control Reference",
+ "title": "Vector Control Reference",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/Vector_Control_Reference.md"
+ ],
+ "text": "Compute d and q axis components of reference vector, 2 inputs, 2 outputs, {Theta units} sets Unit of input position value; {Alpha (phase-a) axis alignment} sets the dq reference frame and {Number of data points for trigonometric lookup table} sets the size of lookup table array. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mag ref",
+   "direction": "input",
+   "summary": "Magnitude of reference vector scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "Electrical position of reference vector scalar"
+  },
+  {
+   "name": "d ref",
+   "direction": "output",
+   "summary": "d -axis component of reference vector scalar"
+  },
+  {
+   "name": "q ref",
+   "direction": "output",
+   "summary": "q -axis component of reference vector scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Alpha (phase-a) axis alignment",
+   "default": "D-axis",
+   "values": "dq reference frame alignment D-axis (default) | Q-axis",
+   "group": ""
+  },
+  {
+   "name": "Theta units",
+   "default": "Per-unit",
+   "values": "Unit of input position value Per-unit (default) | Radians | Degrees",
+   "group": ""
+  },
+  {
+   "name": "Number of data points for trigonometric lookup table",
+   "default": "1024",
+   "values": "Size of lookup table array 1024 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

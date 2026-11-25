@@ -1,0 +1,64 @@
+{
+ "key": "Rr L Estimator",
+ "title": "Rr L Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/ACIM Parameter Estimation/Rr_L_Estimator.md"
+ ],
+ "text": "Estimate rotor resistance ( R r ), magnetizing inductance ( L m ), stator leakage inductance ( L ls ), and rotor leakage inductance ( L lr ) of AC induction motor (ACIM), 4 inputs, 6 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "Three-phase current response scalar"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC link voltage scalar"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "Control signal for L d estimation logical"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Bus signal input bus"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a, b, and c -axis stator reference voltage components scalar"
+  },
+  {
+   "name": "Rr",
+   "direction": "output",
+   "summary": "Estimated rotor resistance scalar"
+  },
+  {
+   "name": "Lm",
+   "direction": "output",
+   "summary": "Estimated magnetizing inductance scalar"
+  },
+  {
+   "name": "Lls",
+   "direction": "output",
+   "summary": "Estimated stator leakage inductance scalar"
+  },
+  {
+   "name": "Llr",
+   "direction": "output",
+   "summary": "Estimated rotor leakage inductance scalar"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "Debug signals bus"
+  }
+ ],
+ "params": []
+}

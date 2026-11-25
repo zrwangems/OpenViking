@@ -1,0 +1,13 @@
+{
+ "key": "Thermal Liquid Properties (TL)",
+ "title": "Thermal Liquid Properties (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Utilities/Thermal_Liquid_Properties_TL.md"
+ ],
+ "text": "Preset fluid properties for the simulation of a thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

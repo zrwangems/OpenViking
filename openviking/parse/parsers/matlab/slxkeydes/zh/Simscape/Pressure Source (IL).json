@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Source (IL)",
+ "title": "Pressure Source (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Sources/Pressure_Source_IL.md"
+ ],
+ "text": "在等温液体网络中生成指定的压差。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

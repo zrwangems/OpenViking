@@ -1,0 +1,48 @@
+{
+ "key": "LIN Unpack",
+ "title": "LIN Unpack",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/LIN/LIN_Unpack.md"
+ ],
+ "text": "Unpack signals from data frame by using configuration in LIN description file, 2 inputs, 1 output, {Select Frame} sets LIN frame; {LDF File Name} sets the file path and {Frame ID} sets the lIN frame ID. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "message_updated",
+   "direction": "input",
+   "summary": "indicates message update 0 (logical false) | 1 (logical true)"
+  },
+  {
+   "name": "Lin_data_8_bytes",
+   "direction": "input",
+   "summary": "input LIN data to unpack LIN data"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "output data data"
+  }
+ ],
+ "params": [
+  {
+   "name": "LDF File Name",
+   "default": "empty",
+   "values": "File path of LDF empty (default) | character vector | string scalar",
+   "group": ""
+  },
+  {
+   "name": "Select Frame",
+   "default": "None",
+   "values": "LIN frame None (default) | character vector | string scalar",
+   "group": ""
+  },
+  {
+   "name": "Frame ID",
+   "default": "1",
+   "values": "LIN frame ID 1 (default) | uint8",
+   "group": ""
+  }
+ ]
+}

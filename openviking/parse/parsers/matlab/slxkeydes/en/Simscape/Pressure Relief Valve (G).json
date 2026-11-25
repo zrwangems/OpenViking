@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Relief Valve (G)",
+ "title": "Pressure Relief Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Pressure Control Valves/Pressure_Relief_Valve_G.md"
+ ],
+ "text": "Pressure relief valve in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

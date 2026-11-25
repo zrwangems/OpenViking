@@ -1,0 +1,44 @@
+{
+ "key": "Serial",
+ "title": "Legacy Serial",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Legacy_Serial.md"
+ ],
+ "text": "读取底板串行通信的输入数据；输出 1 路；按 {Output Datatype} 指定输出数据类型 8 bit uint null；{Serial port} 指定正在访问的端口 Legacy Serial Port、{Max Read Count} 指定最大读取字计数、{SampleTime} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "从串行端口读取的数据 serial data"
+  }
+ ],
+ "params": [
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "正在访问的端口 Legacy Serial Port 1 (default) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  },
+  {
+   "name": "Max Read Count",
+   "default": "51",
+   "values": "选择最大读取字计数 51 (default) | int",
+   "group": ""
+  },
+  {
+   "name": "Output Datatype",
+   "default": "terminated",
+   "values": "选择输出数据类型 8 bit uint null terminated (default) | 8 bit int null terminated | count+16 bit uint | count+16 bit int | count+32 bit uint | count+32 bit int",
+   "group": ""
+  },
+  {
+   "name": "SampleTime",
+   "default": ".01",
+   "values": "选择采样时间（秒） .01 (default) | double",
+   "group": ""
+  }
+ ]
+}

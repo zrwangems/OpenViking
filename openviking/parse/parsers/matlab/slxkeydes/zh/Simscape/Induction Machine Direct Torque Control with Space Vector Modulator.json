@@ -1,0 +1,133 @@
+{
+ "key": "Induction Machine Direct Torque Control with Space Vector Modulator",
+ "title": "Induction Machine Direct Torque Control with Space Vector Modulator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Induction Machine Control/Induction_Machine_Direct_Torque_Control_with_Space_Vector_Modul.md"
+ ],
+ "text": "带 SVM 的感应电机 DTC 结构，输入 6 路、输出 2 路；按 {Axis prioritization} 指定电压限幅器的轴优先级；{Stator resistance (Ohm)} 指定电阻、{Number of pole pairs} 指定极数、{Inverter dc-link voltage threshold (V)} 指定电压、{Fundamental sample time (s)} 指定 SVM 采样时间 5e-6、{Control sample time (s)} 指定 PI 采样时间 5e-5、{Switching frequency (Hz)} 指定开关速率、{Flux controller proportional gain} 指定磁通 PI 比例增益、{Flux controller integral gain} 指定磁通 PI 积分增益、{Flux controller anti-windup gain} 指定磁通 PI 抗积分饱和增益、{Torque controller proportional gain} 指定转矩 PI 比例增益、{Torque controller integral gain} 指定转矩 PI 积分增益、{Torque controller anti-windup gain} 指定转矩 PI 抗积分饱和增益，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FluxRef",
+   "direction": "input",
+   "summary": "磁链 scalar"
+  },
+  {
+   "name": "TqRef",
+   "direction": "input",
+   "summary": "转矩 scalar"
+  },
+  {
+   "name": "vabc",
+   "direction": "input",
+   "summary": "电压 vector"
+  },
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "电流 vector"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "直流母线电压信号 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "控制器复位 scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "门极脉冲 vector | 0 or 1"
+  },
+  {
+   "name": "ModWave",
+   "direction": "output",
+   "summary": "调制波 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Stator resistance (Ohm)",
+   "default": "0.25",
+   "values": "电阻 0.25 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "1",
+   "values": "极数 1 (default) | positive integer",
+   "group": "General"
+  },
+  {
+   "name": "Inverter dc-link voltage threshold (V)",
+   "default": "300",
+   "values": "电压 300 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Fundamental sample time (s)",
+   "default": "5e-6",
+   "values": "SVM 采样时间 5e-6 (default) | positive scalar less than the control sample time",
+   "group": "General"
+  },
+  {
+   "name": "Control sample time (s)",
+   "default": "5e-5",
+   "values": "PI 采样时间 5e-5 (default) | positive scalar greater than the fundamental sample time",
+   "group": "General"
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1000",
+   "values": "开关速率 1000 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Flux controller proportional gain",
+   "default": "150",
+   "values": "磁通 PI 比例增益 150 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Flux controller integral gain",
+   "default": "3000",
+   "values": "磁通 PI 积分增益 3000 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Flux controller anti-windup gain",
+   "default": "1",
+   "values": "磁通 PI 抗积分饱和增益 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Torque controller proportional gain",
+   "default": "1",
+   "values": "转矩 PI 比例增益 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Torque controller integral gain",
+   "default": "50",
+   "values": "转矩 PI 积分增益 50 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Torque controller anti-windup gain",
+   "default": "1",
+   "values": "转矩 PI 抗积分饱和增益 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "Q-axis",
+   "values": "电压限幅器的轴优先级 Q-axis (default) | D-axis | D-Q equivalence",
+   "group": "Control Parameters"
+  }
+ ]
+}

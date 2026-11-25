@@ -1,0 +1,281 @@
+{
+ "key": "queryinstrument",
+ "title": "Query Instrument",
+ "toolbox": "Instrument Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Instrument Control Toolbox/Query_Instrument.md"
+ ],
+ "text": "与 VISA 资源通信，输入 1 路、输出 3 路；按 {Parity} 指定奇偶校验位类型；{Block sample time} 指定采样之间的时间间隔、{Resource name} 指定 VISA 资源名称 available VISA、{Vendor} 指定仪器制造商 Read-only: instrument manufacturer、{Model} 指定仪器型号 Read-only: instrument model、{Serial Number} 指定与仪器关联的唯一序列号 Read-only: instrument serial、{VISA resource type} 指定要配置的 VISA 资源类型 TCP/IP、{Board index} 指定要连接到的板索引 positive integer、{IP address}、{Port number} 用于连接的端口号、{Device ID} 指定要连接到的设备 ID positive、{EOI Mode} 指定 EOI 模式、{Byte order} 指定字节顺序 little-endian、{Read terminator} 用于读取数据的终止符字符、{Write terminator} 用于写入数据的终止符字符、{Data bits} 表示一个字符数据的位数、{Stop bits} 指示字符结束的位模式、{Flow control} 指定管理数据传输速率的模式、{Baud rate} 指定通信速度、{Timeout} 指定完成操作所允许的时间、{Instrument identification command} 指定要发送到仪器的 SCPI 命令、{Validate and test connection} 指定 VISA 资源连接验证、{Response} 指定仪器查询响应 Read-only: string、{Initialization commands} 指定要发送到仪器的 SCPI 命令 *RST、{MATLAB Code} 指定要发送到仪器的 MATLAB ® 代码 MATLAB、{Instrument error check command} 指定要发送到仪器的 SCPI 命令、{Upload initialization commands and check instrument error status} 指定初始化及错误检查命令上传、{Instrument status} 指定仪器初始化响应 Read-only: string、{SCPI Command} 指定要发送到仪器的 SCPI 命令 SCPI、{Binary command} 指定要发送到仪器的二进制命令 binary values、{Binblock data} 指定要发送到仪器的 Binblock 命令 binblock、{Data type} 指定每个值的大小和格式、{Command header} 指定随输入端口数据一起发送的 SCPI 命令标头 SCPI、{Numeric format} 指定数值数据的格式 Integer, signed、{Enter numeric format} 指定数值数据的自定义格式、{delimiter} 指定分隔字符、{Determine data size automatically} 允许模块自动检测数据大小、{Data size} 指定读取的值的数量、{Action when error occurs} 指定仪器出错时要执行的操作 Stop、{Check instrument error} 输出错误消息、{Error check command} 指定要发送到仪器的 SCPI 命令，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "要发送的数据 vector | matrix | array"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "接收的数据 vector | matrix | array"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "仪器状态 1 | 0"
+  },
+  {
+   "name": "Instrument error",
+   "direction": "output",
+   "summary": "来自仪器的错误消息 string"
+  }
+ ],
+ "params": [
+  {
+   "name": "Block sample time",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (default) | numeric",
+   "group": "Block parameters"
+  },
+  {
+   "name": "Resource name",
+   "default": "",
+   "values": "VISA 资源名称 available VISA resources",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Vendor",
+   "default": "",
+   "values": "仪器制造商 Read-only: instrument manufacturer name",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Model",
+   "default": "",
+   "values": "仪器型号 Read-only: instrument model name",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Serial Number",
+   "default": "",
+   "values": "与仪器关联的唯一序列号 Read-only: instrument serial number",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "VISA resource type",
+   "default": "Socket",
+   "values": "要配置的 VISA 资源类型 TCP/IP Socket (default) | TCP/IP HiSLIP | TCP/IP VXI-11",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Board index",
+   "default": "",
+   "values": "要连接到的板索引 positive integer",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "IP address",
+   "default": "",
+   "values": "要连接到的 IP 地址 IP address",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Port number",
+   "default": "4880",
+   "values": "用于连接的端口号 4880 (default) | positive integer",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Device ID",
+   "default": "",
+   "values": "要连接到的设备 ID positive integer",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "EOI Mode",
+   "default": "on",
+   "values": "EOI 模式 on (default) | off",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Byte order",
+   "default": "little-endian",
+   "values": "字节顺序 little-endian (default) | big-endian",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Read terminator",
+   "default": "off",
+   "values": "用于读取数据的终止符字符 off (default) | LF | CR | CR/LF | 0 to 255",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Write terminator",
+   "default": "LF",
+   "values": "用于写入数据的终止符字符 LF (default) | CR | CR/LF | 0 to 255",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Data bits",
+   "default": "8",
+   "values": "表示一个字符数据的位数 8 (default) | 5 | 6 | 7",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Parity",
+   "default": "none",
+   "values": "奇偶校验位类型 none (default) | even | odd",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Stop bits",
+   "default": "1",
+   "values": "指示字符结束的位模式 1 (default) | positive scalar",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Flow control",
+   "default": "none",
+   "values": "管理数据传输速率的模式 none (default) | hardware | software",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Baud rate",
+   "default": "9600",
+   "values": "通信速度 9600 (default) | positive integer",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Timeout",
+   "default": "10",
+   "values": "完成操作所允许的时间 10 (default) | numeric",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Instrument identification command",
+   "default": "*IDN?",
+   "values": "要发送到仪器的 SCPI 命令 *IDN? (default) | SCPI command",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Validate and test connection",
+   "default": "",
+   "values": "VISA 资源连接验证 button",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Response",
+   "default": "",
+   "values": "仪器查询响应 Read-only: string scalar",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Initialization commands",
+   "default": "*RST;*CLS",
+   "values": "要发送到仪器的 SCPI 命令 *RST;*CLS (default) | SCPI command",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "MATLAB Code",
+   "default": "",
+   "values": "要发送到仪器的 MATLAB ® 代码 MATLAB code",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "Instrument error check command",
+   "default": "SYSTem:ERRor?",
+   "values": "要发送到仪器的 SCPI 命令 SYSTem:ERRor? (default) | SCPI command",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "Upload initialization commands and check instrument error status",
+   "default": "",
+   "values": "初始化及错误检查命令上传 button",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "Instrument status",
+   "default": "",
+   "values": "仪器初始化响应 Read-only: string scalar",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "SCPI Command",
+   "default": "",
+   "values": "要发送到仪器的 SCPI 命令 SCPI command",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Binary command",
+   "default": "",
+   "values": "要发送到仪器的二进制命令 binary values",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Binblock data",
+   "default": "",
+   "values": "要发送到仪器的 Binblock 命令 binblock values",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "每个值的大小和格式 uint8 (default) | single | double | int8 | int16 | uint16 | int32 | uint32 | uint64 | int64",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Command header",
+   "default": "",
+   "values": "随输入端口数据一起发送的 SCPI 命令标头 SCPI command",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Numeric format",
+   "default": "(%d)",
+   "values": "数值数据的格式 Integer, signed (%d) (default) | Integer, unsigned (%u) | Floating-point (%f) | Characters (%c) | Enter numeric format",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Enter numeric format",
+   "default": "%2f",
+   "values": "数值数据的自定义格式 %2f (default) | numeric formats",
+   "group": "Send or Query"
+  },
+  {
+   "name": "delimiter",
+   "default": ",",
+   "values": "分隔字符 , (default)",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Determine data size automatically",
+   "default": "on",
+   "values": "允许模块自动检测数据大小 on (default) | off",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Data size",
+   "default": "[1,1]",
+   "values": "读取的值的数量 [1,1] (default) | [10000,1] (default) | numeric array",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Action when error occurs",
+   "default": "simulation",
+   "values": "仪器出错时要执行的操作 Stop simulation (default) | Continue simulation",
+   "group": "Handle Error"
+  },
+  {
+   "name": "Check instrument error",
+   "default": "off",
+   "values": "输出错误消息 off (default) | on",
+   "group": "Handle Error"
+  },
+  {
+   "name": "Error check command",
+   "default": "SYSTem:ERRor?",
+   "values": "要发送到仪器的 SCPI 命令 SYSTem:ERRor? (default) | SCPI command",
+   "group": "Handle Error"
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "key": "AirspeedIndicatorBlock",
+ "title": "Airspeed Indicator",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Instruments/Airspeed_Indicator.md"
+ ],
+ "text": "Display measurements for aircraft airspeed, {Scale Colors} sets Ranges of color bands; {Connection} sets the connect to signal, {Minimum}, {Maximum} and {Label} sets the name of connected. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Connect to signal signal name",
+   "group": ""
+  },
+  {
+   "name": "Minimum",
+   "default": "40",
+   "values": "Minimum tick mark value 40 (default) | finite | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "400",
+   "values": "Maximum tick mark value 400 (default) | finite | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Scale Colors",
+   "default": "0",
+   "values": "Ranges of color bands 0 (default) | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "Name of connected signal Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

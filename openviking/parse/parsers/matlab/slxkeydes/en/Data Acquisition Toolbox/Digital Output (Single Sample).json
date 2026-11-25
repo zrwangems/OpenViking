@@ -1,0 +1,44 @@
+{
+ "key": "Digital Output (Single Sample)",
+ "title": "Digital Output (Single Sample)",
+ "toolbox": "Data Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Data Acquisition Toolbox/Digital_Output_Single_Sample.md"
+ ],
+ "text": "Output single sample to multiple digital lines of data acquisition device, 1 input, {Number of ports} sets Number of input data ports 1 for all lines; {Device}, {Lines} sets the device line selection and configuration options depend and {Sample time} sets the block execution rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Generated digital output data boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "Device with which you want to generate data",
+   "group": ""
+  },
+  {
+   "name": "Lines",
+   "default": "",
+   "values": "Device line selection and configuration options depend on device",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "",
+   "values": "Number of input data ports 1 for all lines | 1 per line",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Block execution rate 1 (default)",
+   "group": ""
+  }
+ ]
+}

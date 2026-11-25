@@ -1,0 +1,13 @@
+{
+ "key": "Battery (System-Level)",
+ "title": "Battery (System-Level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Battery_System_Level.md"
+ ],
+ "text": "通用系统级电池。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

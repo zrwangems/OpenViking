@@ -1,0 +1,24 @@
+{
+ "key": "Sequence Feedback",
+ "title": "Sequence Feedback",
+ "toolbox": "HDL Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Verifier/For Use with DPI-C SystemVerilog/Sequence_Feedback.md"
+ ],
+ "text": "Connect between scoreboard and sequence in UVM testbench model, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Feedback signal from scoreboard subsystem scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Feedback signal to sequence subsystem scalar"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,114 @@
+{
+ "key": "Simulation 3D Fisheye Camera",
+ "title": "Simulation 3D Fisheye Camera",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Fisheye_Camera.md",
+  "UAV Toolbox/Simulation 3D/Simulation_3D_Fisheye_Camera.md",
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Fisheye_Camera.md"
+ ],
+ "text": "Fisheye camera sensor model in 3D simulation environment, 2 inputs, 3 outputs, {Mounting location} sets Sensor mounting location; {Sensor identifier} sets the unique sensor identifier, {Parent name} sets the name of parent vehicle, {Specify offset} sets the offset from mounting location, {Relative translation [X, Y, Z] (m)} sets the translation offset relative to mounting location, {Relative rotation [Roll, Pitch, Yaw] (deg)} sets the rotational offset relative to mounting location, {Sample time}, {Distortion center (pixels)} sets the center of distortion, {Image size (pixels)} sets the image size produced by camera, {Mapping coefficients} sets the polynomial coefficients for projection function, {Stretch matrix} sets the transforms point from sensor plane to camera plane {Output location (m) and orientation (rad)} sets the output location and orientation of sensor. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rel Translation",
+   "direction": "input",
+   "summary": "Relative translation of sensor from mounting point (m) [0 0 0] (default) | real-valued 1-by-3 vector of form [ X Y Z ]"
+  },
+  {
+   "name": "Rel Rotation",
+   "direction": "input",
+   "summary": "Relative rotation of sensor from mounting point (deg) [0 0 0] (default) | real-valued 1-by-3 vector of form [ Roll Pitch Yaw ]"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "3D output camera image m -by- n -by-3 array of RGB triplet values"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Sensor location real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Sensor orientation real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "Name of parent vehicle Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "Specify offset from mounting location off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Distortion center (pixels)",
+   "default": "360]",
+   "values": "Center of distortion [640, 360] (default) | real-valued 1-by-2 vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Image size (pixels)",
+   "default": "1280]",
+   "values": "Image size produced by camera [720, 1280] (default) | real-valued 1-by-2 vector of positive integers",
+   "group": "Parameters"
+  },
+  {
+   "name": "Mapping coefficients",
+   "default": "0]",
+   "values": "Polynomial coefficients for projection function [320, 0, 0, 0] (default) | real-valued 1-by-4 vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stretch matrix",
+   "default": "1]",
+   "values": "Transforms point from sensor plane to camera plane [1, 0; 0, 1] (default) | real-valued 2-by-2 matrix",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "Output location and orientation of sensor off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

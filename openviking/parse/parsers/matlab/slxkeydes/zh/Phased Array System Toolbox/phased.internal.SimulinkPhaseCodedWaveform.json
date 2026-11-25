@@ -1,0 +1,142 @@
+{
+ "key": "phased.internal.SimulinkPhaseCodedWaveform",
+ "title": "Phase-Coded Waveform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Waveforms/Phase_Coded_Waveform.md"
+ ],
+ "text": "相位编码脉冲波形，输入 2 路、输出 3 路；{Sample rate (Hz)} 输出波形的采样率 1e6、{Phase code} 用于相位调制的码类型、{Custom phase code} 指定自定义相位码、{Chip width (s)} 指定码片持续时间 1e-5、{Number of chips} 指定波形中的码片数、{Zadoff-Chu sequence index} 指定 Zadoff-Chu 代码类型的序列索引、{Pulse repetition frequency (Hz)} 指定脉冲重复频率 1e4、{Enable PRF selection input} 指定预定义 PRF、{Source of Frequency Offset} 指定频率偏移源、{Frequency Offset (Hz)} 指定频率偏移、{Source of simulation sample time} 指定仿真采样时间的来源 Derive from waveform、{Output signal format} 输出信号的格式、{Number of samples in output} 输出中的样本数、{Number of pulses in output} 输出中的脉冲数、{Enable PRF Output} 启用 PRF 输出、{Enable Matched Filter Coefficients Output} 启用匹配滤波器系数输出、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PRFIdx",
+   "direction": "input",
+   "summary": "PRF 索引 positive integer"
+  },
+  {
+   "name": "FreqOffset",
+   "direction": "input",
+   "summary": "频率偏移 scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "脉冲波形 complex-valued vector"
+  },
+  {
+   "name": "PRF",
+   "direction": "output",
+   "summary": "脉冲重复频率 positive scalar"
+  },
+  {
+   "name": "Coeff",
+   "direction": "output",
+   "summary": "匹配滤波器系数 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "输出波形的采样率 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase code",
+   "default": "Frank",
+   "values": "用于相位调制的码类型 Frank (default)",
+   "group": ""
+  },
+  {
+   "name": "Custom phase code",
+   "default": "[1,-1]",
+   "values": "自定义相位码 [1,-1] (default) | M -length vector of complex values",
+   "group": ""
+  },
+  {
+   "name": "Chip width (s)",
+   "default": "1e-5",
+   "values": "码片持续时间 1e-5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of chips",
+   "default": "4",
+   "values": "波形中的码片数 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Zadoff-Chu sequence index",
+   "default": "1",
+   "values": "Zadoff-Chu 代码类型的序列索引 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Pulse repetition frequency (Hz)",
+   "default": "1e4",
+   "values": "脉冲重复频率 1e4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable PRF selection input",
+   "default": "off",
+   "values": "选择预定义 PRF off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of Frequency Offset",
+   "default": "Property",
+   "values": "频率偏移源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Frequency Offset (Hz)",
+   "default": "0",
+   "values": "频率偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Source of simulation sample time",
+   "default": "parameters",
+   "values": "仿真采样时间的来源 Derive from waveform parameters (default) | Inherit from Simulink engine",
+   "group": ""
+  },
+  {
+   "name": "Output signal format",
+   "default": "Pulses",
+   "values": "输出信号的格式 Pulses (default) | Samples",
+   "group": ""
+  },
+  {
+   "name": "Number of samples in output",
+   "default": "100",
+   "values": "输出中的样本数 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of pulses in output",
+   "default": "1",
+   "values": "输出中的脉冲数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable PRF Output",
+   "default": "off",
+   "values": "启用 PRF 输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable Matched Filter Coefficients Output",
+   "default": "off",
+   "values": "启用匹配滤波器系数输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

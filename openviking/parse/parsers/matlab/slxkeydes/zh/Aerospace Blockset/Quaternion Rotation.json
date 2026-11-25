@@ -1,0 +1,29 @@
+{
+ "key": "Quaternion Rotation",
+ "title": "Quaternion Rotation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Rotation.md"
+ ],
+ "text": "使用四元数旋转向量，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "四元数 quaternion | vector"
+  },
+  {
+   "name": "vec",
+   "direction": "input",
+   "summary": "初始向量 vector | vector of vectors"
+  },
+  {
+   "name": "vec_rot",
+   "direction": "output",
+   "summary": "最终四元数 rotated quaternion | vector of rotated quaternions"
+  }
+ ],
+ "params": []
+}

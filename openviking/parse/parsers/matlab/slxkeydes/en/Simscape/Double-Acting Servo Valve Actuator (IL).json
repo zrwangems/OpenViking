@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Servo Valve Actuator (IL)",
+ "title": "Double-Acting Servo Valve Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Double_Acting_Servo_Valve_Actuator_IL.md"
+ ],
+ "text": "Double-acting servo cylinder with spring-centered spool in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

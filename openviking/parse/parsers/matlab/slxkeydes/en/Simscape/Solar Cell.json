@@ -1,0 +1,13 @@
+{
+ "key": "Solar Cell",
+ "title": "Solar Cell",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Solar_Cell.md"
+ ],
+ "text": "Photovoltaic solar cell.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,105 @@
+{
+ "key": "Switch",
+ "title": "Switch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/K_Switch.md",
+  "Simulink/Signal Routing/K_Switch.md",
+  "HDL Coder/Commonly Used Blocks/K_Switch.md",
+  "HDL Coder/Signal Routing/K_Switch.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/K_Switch.md"
+ ],
+ "text": "基于第二个输入的值在第一个输入和第三个输入之间切换输出，输入 3 路、输出 1 路；按 {整数舍入模式} 指定定点运算的舍入模式；{首个输入传递条件} 指定传递第一个数据输入的条件 u2 >、{阈值}、{启用过零检测}、{要求所有数据端口输入具有相同的数据类型} 指定要求数据端口具有相同的数据类型、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{输出数据类型}、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{对整数溢出进行饱和处理} 指定溢出操作的方法、{允许不同数据输入大小}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个数据输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "控制输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_3",
+   "direction": "input",
+   "summary": "第二个数据输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "首个输入传递条件",
+   "default": "阈值",
+   "values": "传递第一个数据输入的条件 u2 > 阈值 (默认) | u2 >= 阈值 | u2~=0",
+   "group": "常设"
+  },
+  {
+   "name": "阈值",
+   "default": "0",
+   "values": "条件中使用的阈值 0 (默认) | scalar",
+   "group": "常设"
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "启用过零检测 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "要求所有数据端口输入具有相同的数据类型",
+   "default": "off",
+   "values": "要求数据端口具有相同的数据类型 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "从内部规则继承",
+   "values": "输出数据类型 继承: 从内部规则继承 (默认) | 继承: 通过反向传播继承 | 继承: 与第一个输入相同 | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | 字符串 | Enum: | <数据类型表达式> | Simulink.ImageType(480,640,3)",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "指定定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "信号属性"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "允许不同数据输入大小",
+   "default": "off",
+   "values": "允许不同数据输入大小 off (默认) | on",
+   "group": "信号属性"
+  }
+ ]
+}

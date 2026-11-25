@@ -1,0 +1,49 @@
+{
+ "key": "Image Data Type Conversion",
+ "title": "Image Data Type Conversion",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Image_Data_Type_Conversion.md"
+ ],
+ "text": "Convert and scale input image to specified output data type, 1 input, 1 output, {Output data type} sets Output data type; {Signed}, {Word length} and {Fraction length}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single | int8 | uint8 | int16 | uint16 | boolean | Fixed-point | Inherit via back propagation",
+   "group": ""
+  },
+  {
+   "name": "Signed",
+   "default": "on",
+   "values": "Signed output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Word length 16 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Fraction length 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

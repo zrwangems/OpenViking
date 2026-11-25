@@ -1,0 +1,103 @@
+{
+ "key": "M-PAM Demodulator Baseband",
+ "title": "M-PAM Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/M_PAM_Demodulator_Baseband.md"
+ ],
+ "text": "Demodulate M -PAM-modulated data, 1 input, 1 output, {Output data type} sets Output data type Inherit via internal; {M-ary number} sets the modulation order, {Output type}, {Constellation ordering} sets the mapping order, {Normalization method} sets the scaling method for the constellation Min. distance between, {Minimum distance} sets the distance between two nearest constellation, {Average power, referenced to 1 ohm (watts)}, {Peak power, referenced to 1 ohm (watts)} sets the maximum power, {Denormalization factor}, {Product output}, {Rounding mode}, {Saturate on integer overflow} sets the option to saturate on integer overflow and {Sum}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "M -PAM-modulated signal scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Demodulated signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "4",
+   "values": "Modulation order 4 (default) | positive, even integer",
+   "group": "Main"
+  },
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "Output type Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Binary",
+   "values": "Mapping order of symbols Binary (default) | Gray",
+   "group": "Main"
+  },
+  {
+   "name": "Normalization method",
+   "default": "symbols",
+   "values": "Scaling method for the constellation Min. distance between symbols (default) | Average Power | Peak Power",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum distance",
+   "default": "2",
+   "values": "Distance between two nearest constellation points 2 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Average power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "Average power 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Peak power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "Maximum power 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denormalization factor",
+   "default": "input",
+   "values": "Denormalization factor data type Inherit: Same word length as input (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Wrap",
+   "values": "Rounding mode for fixed-point operations Wrap (default) | Saturate",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Option to saturate on integer overflow off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sum",
+   "default": "rule",
+   "values": "Sum data type Inherit: Inherit via internal rule (default) | Inherit: Same as product output | fixdt(1,16) |",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "key": "Rotational Multibody Interface",
+ "title": "Rotational Multibody Interface",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Simscape Mechanical Interfaces/Rotational_Multibody_Interface.md",
+  "Simscape/Foundation Library/Mechanical/Multibody Interfaces/Rotational_Multibody_Interface.md"
+ ],
+ "text": "Interface between mechanical rotational networks and Simscape Multibody joints.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

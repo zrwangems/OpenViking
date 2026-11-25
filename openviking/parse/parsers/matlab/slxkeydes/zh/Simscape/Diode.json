@@ -1,0 +1,14 @@
+{
+ "key": "Diode",
+ "title": "Diode",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Diode.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Diode.md"
+ ],
+ "text": "分段线性、指数型或表格型二极管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

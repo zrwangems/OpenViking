@@ -1,0 +1,62 @@
+{
+ "key": "N-Sample Enable",
+ "title": "N-Sample Enable",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/N_Sample_Enable.md",
+  "DSP System Toolbox/Signal Management/Switches and Counters/N_Sample_Enable.md"
+ ],
+ "text": "Output ones or zeros for specified number of sample times, 1 input, 1 output, no direct feedthrough, {Trigger type} sets Type of triggering event Rising; {Trigger count, N} sets the number of samples to output the active, {Active level}, {Reset input} enables reset input port, {Sample time} sets the output sample period and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger count, N",
+   "default": "8",
+   "values": "Number of samples to output the active value 8 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Active level",
+   "default": "(0)",
+   "values": "Active level Low (0) (default) | High (1)",
+   "group": ""
+  },
+  {
+   "name": "Reset input",
+   "default": "off",
+   "values": "Enable reset input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "Type of triggering event Rising edge (default) | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Output sample period 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Logical",
+   "values": "Output data type Logical (default) | Boolean",
+   "group": ""
+  }
+ ]
+}

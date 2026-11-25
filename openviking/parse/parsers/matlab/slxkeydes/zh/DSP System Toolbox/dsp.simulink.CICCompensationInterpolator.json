@@ -1,0 +1,121 @@
+{
+ "key": "dsp.simulink.CICCompensationInterpolator",
+ "title": "CIC Compensation Interpolator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/CIC_Compensation_Interpolator.md"
+ ],
+ "text": "使用 FIR 插值器补偿 CIC 滤波器，输入 1 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定输出定点运算的舍入模式；{Rate change factor} 指定 CIC 滤波器的速率变更因子、{Number of sections} 指定被补偿的 CIC 滤波器中的节数、{Differential delay} 指定 CIC 滤波器的差分延迟、{Interpolation factor} 指定补偿滤波器的插值因子、{Minimum order filter design} 指定设计最小阶数或指定阶数的补偿滤波器、{Filter order} 指定补偿滤波器的阶数、{Passband edge frequency (Hz)} 指定补偿滤波器的通带边缘频率、{Stopband edge frequency (Hz)} 指定补偿滤波器的阻带边缘频率、{Passband ripple (dB)} 指定补偿滤波器的通带波纹、{Stopband attenuation (dB)} 指定补偿滤波器的阻带衰减、{Sample rate mode} 用于指定输入采样率的模式 Use normalized、{Input sample rate (Hz)} 指定输入信号的采样率、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted、{Coefficients} 指定系数的字长和小数长度 fixdt，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "上采样并滤波后的信号 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rate change factor",
+   "default": "2",
+   "values": "CIC 滤波器的速率变更因子 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of sections",
+   "default": "2",
+   "values": "被补偿的 CIC 滤波器中的节数 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Differential delay",
+   "default": "1",
+   "values": "CIC 滤波器的差分延迟 1 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Interpolation factor",
+   "default": "2",
+   "values": "补偿滤波器的插值因子 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Minimum order filter design",
+   "default": "on",
+   "values": "设计最小阶数或指定阶数的补偿滤波器 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter order",
+   "default": "12",
+   "values": "补偿滤波器的阶数 12 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Passband edge frequency (Hz)",
+   "default": "100000",
+   "values": "补偿滤波器的通带边缘频率 100000 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband edge frequency (Hz)",
+   "default": "400000",
+   "values": "补偿滤波器的阻带边缘频率 400000 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Passband ripple (dB)",
+   "default": "0.1",
+   "values": "补偿滤波器的通带波纹 0.1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "60",
+   "values": "补偿滤波器的阻带衰减 60 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "用于指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "600000",
+   "values": "输入信号的采样率 600000 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "输出定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(1,16)",
+   "values": "系数的字长和小数长度 fixdt(1,16) (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  }
+ ]
+}

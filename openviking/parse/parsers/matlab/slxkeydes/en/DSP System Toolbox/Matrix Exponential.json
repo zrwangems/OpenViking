@@ -1,0 +1,24 @@
+{
+ "key": "Matrix Exponential",
+ "title": "Matrix Exponential",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Matrix_Exponential.md"
+ ],
+ "text": "Compute matrix exponential, 1 input, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "Data input matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Matrix exponential output matrix"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,1472 @@
+{
+ "key": "Combined Slip Wheel 2DOF",
+ "title": "Combined Slip Wheel 2DOF",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Wheels and Tires/Combined_Slip_Wheel_2DOF.md"
+ ],
+ "text": "组合滑移 2DOF 车轮，带盘式、鼓式或映射制动器，输入 11 路、输出 8 路；按 {Brake pad mean radius, Rm} 指定半径；{Tire type} 指定类型 External file、{Tire file or object, tireParamSet} 指定 Tire file、{Vertical Motion} 指定 Vertical motion model、{Ply steer} 指定 Include ply steer、{Turn slip} 指定 Include turn slip、{Brake type}、{Install Extended Tire Features} 用于安装 Extended Tire Features for Vehicle Dynamics Blockset™ 支持包、{Plot steady state force, moment response} 用于绘制稳态力和力矩轮胎响应的选项、{Static friction coefficient, mu_static} 指定静摩擦系数、{Kinetic friction coefficient, mu_kinetic} 指定动摩擦、{Disc brake actuator bore, disc_abore} 指定缸径距离、{Number of brake pads, num_pads} 指定制动片数量、{Drum brake actuator bore, drum_abore} 指定缸径距离、{Shoe pin to drum center distance, drum_a} 指定制动蹄销到制动鼓中心的距离、{Shoe pin center to force application point distance, drum_c} 指定制动蹄销中心到力作用点的距离、{Drum internal radius, drum_r} 指定制动鼓内半径、{Shoe pin to pad start angle, drum_theta1} 指定制动蹄销到制动片起始角度、{Shoe pin to pad end angle, drum_theta2} 指定制动蹄销到制动片终止角度、{Brake actuator pressure breakpoints, brake_p_bpt} 指定制动器执行器压力断点 vector、{Wheel speed breakpoints, brake_n_bpt} 指定车轮速度断点 vector、{Brake torque map, f_brake_t} 指定制动扭矩查找表 array、{Nominal pressure, NOMPRES} 指定压力 scalar、{Maximum pressure, PRESMAX} 指定最大压力 scalar、{Minimum pressure, PRESMIN} 指定最小压力 scalar、{Nominal normal force, FNOMIN} 指定力 scalar、{Maximum normal force, FZMAX} 指定力 scalar、{Minimum normal force, FZMIN} 指定力 scalar、{Velocity tolerance used to handle low velocity situations, VXLOW} 指定容差 scalar、{Max allowable slip ratio (absolute), KPUMAX} 指定最大允许滑移率 scalar、{Minimum allowable slip ratio (absolute), KPUMIN} 指定最小允许滑移率 scalar、{Max allowable slip angle (absolute), ALPMAX} 指定最大允许侧偏角 scalar、{Minimum allowable slip angle (absolute), ALPMIN} 指定最小允许侧偏角 scalar、{Maximum allowable camber angle, CAMMAX} 指定最大允许外倾角 scalar、{Minimum allowable camber angle, CAMMIN} 指定最小允许外倾角 scalar、{Nominal longitudinal speed, LONGVL} 指定速度 scalar、{Initial wheel rotational velocity, omegao} 指定初始车轮旋转速度 scalar、{Tire unloaded radius, UNLOADED_RADIUS} 指定半径 scalar、{Tire nominal section width, WIDTH} 指定轮胎名义断面宽度 scalar、{Rim radius, RIM_RADIUS} 指定半径 scalar、{Nominal aspect ratio, ASPECT_RATIO} 指定比值 scalar、{Tire mass, MASS} 指定质量 scalar、{Tire rotational inertia (rolling axis), IYY} 指定轮胎转动惯量 scalar、{Rotational damping, br} 指定旋转阻尼 scalar、{Gravity, GRAVITY} 指定重力 scalar、{Initial tire displacement, zo} 指定位移 scalar、{Initial wheel vertical velocity (wheel fixed frame), zdoto} 指定速度 scalar、{Effective rolling radius at low load stiffness, BREFF} 指定刚度 scalar、{Effective rolling radius peak value, DREFF} 指定半径 scalar、{Effective rolling radius at high load stiffness, FREFF} 指定半径 scalar、{Unloaded to nominal rolling radius ratio, Q_RE0} 指定比值 scalar、{Radius rotational speed dependence, Q_V1} 指定速度 scalar、{Stiffness rotational speed dependence, Q_V2} 指定速度 scalar、{Linear load change with deflection, Q_FZ1} 指定载荷变化 scalar、{Quadratic load change with deflection, Q_FZ2} 指定载荷变化 scalar、{Linear load change with deflection and quadratic camber, Q_FZ3} 指定载荷变化 scalar、{Load response to longitudinal force, Q_FCX} 指定力 scalar、{Load response to lateral force, Q_FCY} 指定力 scalar、{Vertical stiffness change due to lateral load dependency on lateral stiffness, Q_FCY2} 指定刚度 scalar、{Stiffness response to pressure, PFZ1} 指定刚度、{Vertical tire stiffness, VERTICAL_STIFFNESS} 指定刚度 scalar、{Vertical tire damping, VERTICAL_DAMPING} 指定阻尼 scalar、{Rim bottoming out offset, BOTTOM_OFFST} 指定偏移 scalar、{Bottoming out stiffness, BOTTOM_STIFF} 指定刚度 scalar、{Linear load dependent camber angle effect on vertical stiffness, Q_CAM1} 指定刚度 scalar、{Quadratic load dependent camber angle effect on vertical stiffness, Q_CAM2} 指定刚度 scalar、{Linear reduction of stiffness with load and camber angle, Q_CAM3} 指定刚度 scalar、{Constant camber and slip angle effect on vertical stiffness, Q_FYS1} 指定刚度 scalar、{Linear camber and slip angle effect on vertical stiffness, Q_FYS2} 指定刚度 scalar、{Quadratic camber and slip angle effect on vertical stiffness, Q_FYS3} 指定刚度 scalar、{Longitudinal stiffness, LONGITUDINAL_STIFFNESS} 指定刚度 scalar、{Lateral stiffness, LATERAL_STIFFNESS} 指定刚度 scalar、{Linear vertical deflection influence on longitudinal stiffness, PCFX1} 指定挠度影响 scalar、{Quadratic vertical deflection influence on longitudinal stiffness, PCFX2} 指定挠度影响 scalar、{Pressure dependency on longitudinal stiffness, PCFX3} 指定压力依赖性 scalar、{Linear vertical deflection influence on lateral stiffness, PCFY1} 指定挠度影响 scalar、{Quadratic vertical deflection influence on lateral stiffness, PCFY2} 指定挠度影响 scalar、{Pressure dependency on longitudinal stiffness, PCFY3} 指定压力依赖性 scalar、{Contact length square root term, Q_RA1} 指定长度项 scalar、{Contact length linear term, Q_RA2} 指定长度项 scalar、{Contact width root term, Q_RB1} 指定宽度项 scalar、{Contact width linear term, Q_RB2} 指定宽度项 scalar、{Cfx shape factor, PCX1} 指定形状因子 scalar、{Longitudinal friction at nominal normal load, PDX1} 指定摩擦 scalar、{Frictional variation with load, PDX2} 指定摩擦变化 scalar、{Frictional variation with camber, PDX3} 指定摩擦变化 scalar、{Longitudinal curvature at nominal normal load, PEX1} 指定曲率 scalar、{Variation of curvature factor with load, PEX2} 指定曲率变化 scalar、{Variation of curvature factor with square of load, PEX3} 指定曲率变化 scalar、{Longitudinal curvature factor with slip, PEX4} 指定曲率 scalar、{Longitudinal slip stiffness at nominal normal load, PKX1} 指定刚度 scalar、{Variation of slip stiffness with load, PKX2} 指定刚度变化 scalar、{Slip stiffness exponent factor, PKX3} 指定滑移刚度 scalar、{Horizontal shift in slip ratio at nominal normal load, PHX1} 指定滑移率偏移 scalar、{Variation of horizontal slip ratio with load, PHX2} 指定滑移变化 scalar、{Vertical shift in load at nominal normal load, PVX1} 指定载荷偏移 scalar、{Variation of vertical shift with load, PVX2} 指定载荷变化 scalar、{Linear variation of longitudinal slip stiffness with tire pressure, PPX1} 指定刚度变化 scalar、{Quadratic variation of longitudinal slip stiffness with tire pressure, PPX2} 指定刚度变化 scalar、{Linear variation of peak longitudinal friction with tire pressure, PPX3} 指定摩擦变化 scalar、{Quadratic variation of peak longitudinal friction with tire pressure, PPX4} 指定摩擦变化 scalar、{Combined slip Fx slope factor reduction, RBX1} 指定联合滑移纵向力斜率因子折减 scalar、{Slip ratio Fx slope reduction variation, RBX2} 指定滑移率纵向力斜率折减变化 scalar、{Camber influence on combined slip Fx stiffness, RBX3} 指定外倾对联合滑移纵向力刚度的影响 scalar、{Shape factor for combined slip Fx reduction, RCX1} 指定联合滑移纵向力减小量的形状因子 scalar、{Combined Fx curvature factor, REX1} 指定联合纵向力曲率因子 scalar、{Combined Fx curvature factor with load, REX2} 指定联合纵向力曲率因子 scalar、{Combined slip Fx shift factor reduction, RHX1} 指定联合滑移纵向力滑移因子 scalar、{Vertical shift of overturning moment, QSX1} 指定侧翻力矩 scalar、{Overturning moment due to camber, QSX2} 由外倾引起的侧翻力矩 scalar、{Overturning moment due to Fy, QSX3} 由侧向力引起的侧翻力矩 scalar、{Mx combined lateral force load and camber, QSX4} 指定侧翻力矩 scalar、{Mx load effect due to lateral force and camber, QSX5} 指定侧翻力矩 scalar、{Mx load effect due to B-factor, QSX6} 指定侧翻力矩 scalar、{Mx due to camber and load, QSX7} 指定侧翻力矩 scalar、{Mx due to lateral force and load, QSX8} 指定侧翻力矩 scalar、{Mx due to B-factor of lateral force and load, QSX9} 指定侧翻力矩 scalar、{Mx due to vertical force and camber, QSX10} 指定侧翻力矩 scalar、{Mx due to B-factor of vertical force and camber, QSX11} 指定侧翻力矩 scalar、{Mx due to squared camber, QSX12} 指定侧翻力矩 scalar、{Mx due to lateral force, QSX13} 指定侧翻力矩 scalar、{Mx due to lateral force with camber, QSX14} 指定侧翻力矩 scalar、{Mx due to inflation pressure, PPMX1} 由充气压力引起的侧翻力矩 scalar、{Cfy shape factor for lateral force, PCY1} 指定侧向力形状因子 scalar、{Lateral friction muy, PDY1} 指定侧向摩擦 scalar、{Lateral friction variation of muy with load, PDY2} 指定侧向摩擦变化量 scalar、{Lateral friction variation of muy with squared camber, PDY3} 指定侧向摩擦变化量 scalar、{Efy lateral curvature at nominal force FZNOM, PEY1} 指定额定力下的侧向曲率 scalar、{Efy curvature variation with load, PEY2} 指定侧向曲率变化量 scalar、{Efy curvature constant camber dependency, PEY3} 指定侧向曲率常数 scalar、{Efy curvature variation with camber, PEY4} 指定侧向曲率变化量 scalar、{Efy curvature variation with camber squared, PEY5} 指定侧向曲率变化量 scalar、{Maximum KFy/FZNOM stiffness, PKY1} 指定最大刚度 scalar、{Load at maximum KFy/FZNOM stiffness, PKY2} 指定载荷 scalar、{KFy/FZNOM stiffness variation with camber, PKY3} 指定刚度变化 scalar、{KFy curvature, PKY4} 指定横向力刚度曲率 scalar、{Variation of peak stiffness with squared camber, PKY5} 指定刚度变化 scalar、{Fy camber stiffness factor, PKY6} 指定横向力外倾刚度因子 scalar、{Camber stiffness vertical load dependency, PKY7} 指定刚度 scalar、{SHY horizontal shift at FZNOM, PHY1} 指定额定力下的水平偏移 scalar、{SHY variation with load, PHY2} 指定水平偏移变化 scalar、{Svy/Fz vertical shift at FZNOM, PVY1} 指定额定力下的垂直偏移 scalar、{Svy/Fz variation with load, PVY2} 指定垂直偏移随载荷的变化 scalar、{Svy/Fz variation with camber, PVY3} 指定垂直偏移随外倾角的变化 scalar、{Svy/Fz variation with load and camber, PVY4} 指定垂直偏移随载荷和外倾角的变化 scalar、{Cornering stiffness variation with inflation pressure, PPY1} 指定刚度随压力的变化 scalar、{Cornering stiffness variation with inflation pressure induced nominal load dependency, PPY2} 指定刚度随压力的变化 scalar、{Linear inflation pressure on peak lateral friction, PPY3} 指定压力 scalar、{Quadratic inflation pressure on peak lateral friction, PPY4} 指定压力 scalar、{Inflation pressure effect on camber stiffness, PPY5} 指定压力 scalar、{Combined Fy reduction slope factor, RBY1} 指定组合横向力降低斜率因子 scalar、{Fy slope reduction with slip angle, RBY2} 指定横向力斜率随侧偏角的降低 scalar、{Fy shift reduction with slip angle, RBY3} 指定横向力偏移随侧偏角的降低 scalar、{Fy combined stiffness variation from camber, RBY4} 指定横向力组合刚度随外倾角的变化 scalar、{Fy combined reduction shape factor, RCY1} 指定侧向力组合折减形状因子 scalar、{Fy combined curvature factor, REY1} 指定侧向力组合曲率因子 scalar、{Fy combined curvature factor with load, REY2} 指定带载荷的侧向力组合曲率因子 scalar、{Fy combined reduction shift factor, RHY1} 指定侧向力组合折减偏移因子 scalar、{Fy combined reduction shift factor with load, RHY2} 指定带载荷的侧向力组合折减偏移因子 scalar、{Slip ratio side force Svyk/Muy*Fz at FZNOM, RVY1} 指定额定力下的滑移率侧向力 scalar、{Side force Svyk/Muy*Fz variation with load, RVY2} 指定侧向力随载荷的变化 scalar、{Side force Svyk/Muy*Fz variation with camber, RVY3} 指定侧向力随外倾角的变化 scalar、{Side force Svyk/Muy*Fz variation with slip angle, RVY4} 指定侧向力随侧偏角的变化 scalar、{Side force Svyk/Muy*Fz variation with slip ratio, RVY5} 指定侧向力随滑移率的变化 scalar、{Side force Svyk/Muy*Fz variation with slip ratio arctangent, RVY6} 指定侧向力随滑移率反正切的变化 scalar、{Torque resistance coefficient, QSY1} 指定阻力矩 scalar、{Torque resistance due to Fx, QSY2} 由纵向力引起的阻力矩 scalar、{Torque resistance due to speed, QSY3} 由速度引起的阻力矩 scalar、{Torque resistance due to speed^4, QSY4} 由速度引起的阻力矩 scalar、{Torque resistance due to square of camber, QSY5} 由外倾角引起的阻力矩 scalar、{Torque resistance due to square of camber and load, QSY6} 由外倾角和载荷引起的阻力矩 scalar、{Torque resistance due to load, QSY7} 由载荷引起的阻力矩 scalar、{Torque resistance due to pressure, QSY8} 由压力引起的阻力矩 scalar、{Trail slope factor for trail Bpt at FZNOM, QBZ1} 指定额定力下的拖距斜率因子 scalar、{Bpt slope variation with load, QBZ2} 指定斜率随载荷的变化 scalar、{Bpt slope variation with square of load, QBZ3} 指定斜率随载荷的变化、{Bpt slope variation with camber, QBZ4} 指定斜率随外倾角的变化 scalar、{Bpt slope variation with absolute value of camber, QBZ5} 指定斜率随外倾角的变化 scalar、{Bpt slope variation with square of camber, QBZ6} 指定斜率随外倾角的变化 scalar、{Br of Mzr slope scaling factor, QBZ9} 指定斜率缩放因子 scalar、{Br of Mzr cornering stiffness factor, QBZ10} 指定侧偏刚度因子 scalar、{Cpt pneumatic trail shape factor, QCZ1} 指定气胎拖距形状因子 scalar、{Dpt peak trail, QDZ1} 指定峰值拖距 scalar、{Dpt peak trail variation with load, QDZ2} 指定峰值拖距随载荷的变化 scalar、{Dpt peak trail variation with camber, QDZ3} 指定峰值拖距随外倾角的变化 scalar、{Dpt peak trail variation with square of camber, QDZ4} 指定峰值拖距随外倾角的变化 scalar、{Dmr peak residual torque, QDZ6} 指定峰值残余扭矩 scalar、{Dmr peak residual torque variation with load, QDZ7} 指定峰值残余扭矩随载荷的变化 scalar、{Dmr peak residual torque variation with camber, QDZ8} 指定峰值残余扭矩随外倾角的变化 scalar、{Dmr peak residual torque variation with camber and load, QDZ9} 指定峰值残余扭矩随外倾角和载荷的变化 scalar、{Dmr peak residual torque variation with square of camber, QDZ10} 指定峰值残余扭矩随外倾角的变化 scalar、{Dmr peak residual torque variation with square of load, QDZ11} 指定峰值残余扭矩随载荷的变化 scalar、{Ept trail curvature at FZNOM, QEZ1} 指定额定力下的拖距曲率 scalar、{Ept variation with load, QEZ2} 指定拖距曲率随载荷的变化 scalar、{Ept variation with square of load, QEZ3} 指定拖距曲率随载荷的变化 scalar、{Ept variation with sign of alpha-t, QEZ4} 指定拖距曲率变化 scalar、{Ept variation with sign of alpha-t and camber, QEZ5} 指定变化 scalar、{Sht horizontal trail shift at FZNOM, QHZ1} 指定额定载荷下的水平拖距偏移 scalar、{Sht variation with load, QHZ2} 指定水平拖距偏移随载荷的变化 scalar、{Sht variation with camber, QHZ3} 指定水平拖距偏移随外倾角的变化 scalar、{Sht variation with load and camber, QHZ4} 指定水平拖距偏移随载荷和外倾角的变化 scalar、{Inflation pressure influence on trail length, PPZ1} 指定压力对拖距长度的影响 scalar、{Inflation pressure influence on residual aligning torque, PPZ2} 指定压力对回正力矩的影响 scalar、{Nominal value of s/R0: effect of Fx on Mz, SSZ1} 指定纵向力对回正力矩的影响 scalar、{s/R0 variation with lateral to nominal force ratio, SSZ2} 指定随侧向力与标称力之比的变化 scalar、{s/R0 variation with camber, SSZ3} 指定随外倾角的变化 scalar、{s/R0 variation with camber and load, SSZ4} 指定随外倾角和载荷的变化 scalar、{Fx peak reduction due to spin, PDXP1} 指定因自旋导致的纵向力峰值降低 scalar、{Fx peak reduction due to spin with varying load, PDXP2} 指定因自旋导致的纵向力峰值降低 scalar、{Fx peak reduction due to spin with slip ratio, PDXP3} 指定因自旋导致的纵向力峰值降低 scalar、{Cornering stiffness reduction due to spin, PKYP1} 指定因自旋导致的刚度降低 scalar、{Fy peak reduction due to spin, PDYP1} 指定因自旋导致的侧向力峰值降低 scalar、{Fy peak reduction due to spin with varying load, PDYP2} 指定因自旋导致的侧向力峰值降低 scalar、{Fy peak reduction due to spin with slip angle, PDYP3} 指定因自旋导致的侧向力峰值降低 scalar、{Fy peak reduction due to square root of spin, PDYP4} 指定因自旋导致的侧向力峰值降低 scalar、{Fy vs. slip angle response lateral shift limit, PHYP1} 指定侧向力随侧偏角的响应 scalar、{Fy vs. slip angle response max lateral shift limit, PHYP2} 指定侧向力随侧偏角的响应 scalar、{Fy vs. slip angle response max lateral shift limit with load, PHYP3} 指定侧向力随侧偏角的响应 scalar、{Fy vs. slip angle response lateral shift curvature factor, PHYP4} 指定侧向力随侧偏角的响应 scalar、{Camber stiffness reduction due to spin, PECP1} 指定外倾刚度降低 scalar、{Camber stiffness reduction due to spin with load, PECP2} 指定外倾刚度降低 scalar、{Turn slip pneumatic trail reduction factor, QDTP1} 指定转向滑移的轮胎拖距降低因子 scalar、{Turn moment for constant turning and zero longitudinal speed, QCRP1} 指定恒定转向时的转向力矩 scalar、{Turn slip moment increase with spin at 90deg slip angle, QCRP2} 指定转向滑移力矩 scalar、{Residual spin torque reduction from side slip, QBRP1} 指定残余自旋扭矩降低 scalar、{Turn slip moment peak magnitude, QDRP1} 指定转向滑移力矩峰值幅度 scalar、{Turn slip moment curvature, QDRP2} 指定转向滑移力矩曲率 scalar，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BrkPrs",
+   "direction": "input",
+   "summary": "制动压力 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "AxlTrq",
+   "direction": "input",
+   "summary": "车轴扭矩 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Vx",
+   "direction": "input",
+   "summary": "纵向速度 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Vy",
+   "direction": "input",
+   "summary": "横向速度 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Camber",
+   "direction": "input",
+   "summary": "倾角 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "YawRate",
+   "direction": "input",
+   "summary": "轮胎角速度 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Prs",
+   "direction": "input",
+   "summary": "轮胎充气压力 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Gnd",
+   "direction": "input",
+   "summary": "地面位移 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Fext",
+   "direction": "input",
+   "summary": "施加到轮胎上的车轴力 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "RadialDeflct",
+   "direction": "input",
+   "summary": "轮胎径向变形 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "ScaleFctrs",
+   "direction": "input",
+   "summary": "比例因子 27 -by- N array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "模块数据 bus"
+  },
+  {
+   "name": "Omega",
+   "direction": "output",
+   "summary": "车轮角速度 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Fx",
+   "direction": "output",
+   "summary": "车轴纵向力 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Fy",
+   "direction": "output",
+   "summary": "车轴横向力 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Fz",
+   "direction": "output",
+   "summary": "车轴垂向力 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Mx",
+   "direction": "output",
+   "summary": "侧翻力矩 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "My",
+   "direction": "output",
+   "summary": "滚动阻力矩 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Mz",
+   "direction": "output",
+   "summary": "回正力矩 scalar | N -by- 1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tire type",
+   "default": "",
+   "values": "选择类型 External file | Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car 235/45R18 | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Tire file or object, tireParamSet",
+   "default": "vdynPassCar.mat",
+   "values": "Tire file vdynPassCar.mat (default) |.tir |.txt",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Vertical Motion",
+   "default": "Formula",
+   "values": "Vertical motion model Magic Formula (default) | None | External deflection",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Ply steer",
+   "default": "on",
+   "values": "Include ply steer on (default) | off",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Turn slip",
+   "default": "on",
+   "values": "Include turn slip on (default) | off",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Brake type",
+   "default": "",
+   "values": "Brake type None | Disc | Drum | Mapped",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Install Extended Tire Features",
+   "default": "",
+   "values": "用于安装 Extended Tire Features for Vehicle Dynamics Blockset™ 支持包的选项 button",
+   "group": "Plotting"
+  },
+  {
+   "name": "Plot steady state force, moment response",
+   "default": "",
+   "values": "用于绘制稳态力和力矩轮胎响应的选项 button",
+   "group": "Plotting"
+  },
+  {
+   "name": "Static friction coefficient, mu_static",
+   "default": "0.3",
+   "values": "静摩擦系数 0.3 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Kinetic friction coefficient, mu_kinetic",
+   "default": "0.2",
+   "values": "动摩擦 0.2 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Disc brake actuator bore, disc_abore",
+   "default": "0.05",
+   "values": "缸径距离 0.05 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake pad mean radius, Rm",
+   "default": "0.177",
+   "values": "半径 0.177 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Number of brake pads, num_pads",
+   "default": "2",
+   "values": "制动片数量 2 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum brake actuator bore, drum_abore",
+   "default": "0.0508",
+   "values": "缸径距离 0.0508 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to drum center distance, drum_a",
+   "default": "0.123",
+   "values": "制动蹄销到制动鼓中心的距离 0.123 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin center to force application point distance, drum_c",
+   "default": "0.212",
+   "values": "制动蹄销中心到力作用点的距离 0.212 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum internal radius, drum_r",
+   "default": "0.15",
+   "values": "制动鼓内半径 0.15 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad start angle, drum_theta1",
+   "default": "0",
+   "values": "制动蹄销到制动片起始角度 0 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad end angle, drum_theta2",
+   "default": "126",
+   "values": "制动蹄销到制动片终止角度 126 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake actuator pressure breakpoints, brake_p_bpt",
+   "default": "",
+   "values": "制动器执行器压力断点 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Wheel speed breakpoints, brake_n_bpt",
+   "default": "",
+   "values": "车轮速度断点 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake torque map, f_brake_t",
+   "default": "",
+   "values": "制动扭矩查找表 array",
+   "group": "Brake"
+  },
+  {
+   "name": "Nominal pressure, NOMPRES",
+   "default": "",
+   "values": "压力 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Maximum pressure, PRESMAX",
+   "default": "",
+   "values": "最大压力 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum pressure, PRESMIN",
+   "default": "",
+   "values": "最小压力 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Nominal normal force, FNOMIN",
+   "default": "",
+   "values": "力 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Maximum normal force, FZMAX",
+   "default": "",
+   "values": "力 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum normal force, FZMIN",
+   "default": "",
+   "values": "力 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Velocity tolerance used to handle low velocity situations, VXLOW",
+   "default": "",
+   "values": "容差 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Max allowable slip ratio (absolute), KPUMAX",
+   "default": "",
+   "values": "最大允许滑移率 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum allowable slip ratio (absolute), KPUMIN",
+   "default": "",
+   "values": "最小允许滑移率 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Max allowable slip angle (absolute), ALPMAX",
+   "default": "",
+   "values": "最大允许侧偏角 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum allowable slip angle (absolute), ALPMIN",
+   "default": "",
+   "values": "最小允许侧偏角 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Maximum allowable camber angle, CAMMAX",
+   "default": "",
+   "values": "最大允许外倾角 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum allowable camber angle, CAMMIN",
+   "default": "",
+   "values": "最小允许外倾角 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Nominal longitudinal speed, LONGVL",
+   "default": "",
+   "values": "速度 scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Initial wheel rotational velocity, omegao",
+   "default": "",
+   "values": "初始车轮旋转速度 scalar | N -by- 1 vector",
+   "group": "Simulation"
+  },
+  {
+   "name": "Tire unloaded radius, UNLOADED_RADIUS",
+   "default": "",
+   "values": "半径 scalar",
+   "group": "Dimension"
+  },
+  {
+   "name": "Tire nominal section width, WIDTH",
+   "default": "",
+   "values": "轮胎名义断面宽度 scalar",
+   "group": "Dimension"
+  },
+  {
+   "name": "Rim radius, RIM_RADIUS",
+   "default": "",
+   "values": "半径 scalar",
+   "group": "Dimension"
+  },
+  {
+   "name": "Nominal aspect ratio, ASPECT_RATIO",
+   "default": "",
+   "values": "比值 scalar",
+   "group": "Dimension"
+  },
+  {
+   "name": "Tire mass, MASS",
+   "default": "",
+   "values": "质量 scalar | N -by- 1 vector",
+   "group": "Inertial and Damping"
+  },
+  {
+   "name": "Tire rotational inertia (rolling axis), IYY",
+   "default": "",
+   "values": "轮胎转动惯量 scalar | N -by- 1 vector",
+   "group": "Inertial and Damping"
+  },
+  {
+   "name": "Rotational damping, br",
+   "default": "",
+   "values": "旋转阻尼 scalar | N -by- 1 vector",
+   "group": "Inertial and Damping"
+  },
+  {
+   "name": "Gravity, GRAVITY",
+   "default": "",
+   "values": "重力 scalar",
+   "group": "Inertial and Damping"
+  },
+  {
+   "name": "Initial tire displacement, zo",
+   "default": "",
+   "values": "位移 scalar | N -by- 1 vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Initial wheel vertical velocity (wheel fixed frame), zdoto",
+   "default": "",
+   "values": "速度 scalar | N -by- 1 vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Effective rolling radius at low load stiffness, BREFF",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Effective rolling radius peak value, DREFF",
+   "default": "",
+   "values": "半径 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Effective rolling radius at high load stiffness, FREFF",
+   "default": "",
+   "values": "半径 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Unloaded to nominal rolling radius ratio, Q_RE0",
+   "default": "",
+   "values": "比值 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Radius rotational speed dependence, Q_V1",
+   "default": "",
+   "values": "速度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Stiffness rotational speed dependence, Q_V2",
+   "default": "",
+   "values": "速度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear load change with deflection, Q_FZ1",
+   "default": "",
+   "values": "载荷变化 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Quadratic load change with deflection, Q_FZ2",
+   "default": "",
+   "values": "载荷变化 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear load change with deflection and quadratic camber, Q_FZ3",
+   "default": "",
+   "values": "载荷变化 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Load response to longitudinal force, Q_FCX",
+   "default": "",
+   "values": "力 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Load response to lateral force, Q_FCY",
+   "default": "",
+   "values": "力 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical stiffness change due to lateral load dependency on lateral stiffness, Q_FCY2",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Stiffness response to pressure, PFZ1",
+   "default": "0.7098",
+   "values": "刚度 0.7098 (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical tire stiffness, VERTICAL_STIFFNESS",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical tire damping, VERTICAL_DAMPING",
+   "default": "",
+   "values": "阻尼 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Rim bottoming out offset, BOTTOM_OFFST",
+   "default": "",
+   "values": "偏移 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Bottoming out stiffness, BOTTOM_STIFF",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear load dependent camber angle effect on vertical stiffness, Q_CAM1",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Quadratic load dependent camber angle effect on vertical stiffness, Q_CAM2",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear reduction of stiffness with load and camber angle, Q_CAM3",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Constant camber and slip angle effect on vertical stiffness, Q_FYS1",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear camber and slip angle effect on vertical stiffness, Q_FYS2",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Quadratic camber and slip angle effect on vertical stiffness, Q_FYS3",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Longitudinal stiffness, LONGITUDINAL_STIFFNESS",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Lateral stiffness, LATERAL_STIFFNESS",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Linear vertical deflection influence on longitudinal stiffness, PCFX1",
+   "default": "",
+   "values": "挠度影响 scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Quadratic vertical deflection influence on longitudinal stiffness, PCFX2",
+   "default": "",
+   "values": "挠度影响 scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Pressure dependency on longitudinal stiffness, PCFX3",
+   "default": "",
+   "values": "压力依赖性 scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Linear vertical deflection influence on lateral stiffness, PCFY1",
+   "default": "",
+   "values": "挠度影响 scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Quadratic vertical deflection influence on lateral stiffness, PCFY2",
+   "default": "",
+   "values": "挠度影响 scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Pressure dependency on longitudinal stiffness, PCFY3",
+   "default": "",
+   "values": "压力依赖性 scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Contact length square root term, Q_RA1",
+   "default": "",
+   "values": "长度项 scalar",
+   "group": "Contact Patch"
+  },
+  {
+   "name": "Contact length linear term, Q_RA2",
+   "default": "",
+   "values": "长度项 scalar",
+   "group": "Contact Patch"
+  },
+  {
+   "name": "Contact width root term, Q_RB1",
+   "default": "",
+   "values": "宽度项 scalar",
+   "group": "Contact Patch"
+  },
+  {
+   "name": "Contact width linear term, Q_RB2",
+   "default": "",
+   "values": "宽度项 scalar",
+   "group": "Contact Patch"
+  },
+  {
+   "name": "Cfx shape factor, PCX1",
+   "default": "",
+   "values": "形状因子 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal friction at nominal normal load, PDX1",
+   "default": "",
+   "values": "摩擦 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Frictional variation with load, PDX2",
+   "default": "",
+   "values": "摩擦变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Frictional variation with camber, PDX3",
+   "default": "",
+   "values": "摩擦变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal curvature at nominal normal load, PEX1",
+   "default": "",
+   "values": "曲率 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of curvature factor with load, PEX2",
+   "default": "",
+   "values": "曲率变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of curvature factor with square of load, PEX3",
+   "default": "",
+   "values": "曲率变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal curvature factor with slip, PEX4",
+   "default": "",
+   "values": "曲率 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal slip stiffness at nominal normal load, PKX1",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of slip stiffness with load, PKX2",
+   "default": "",
+   "values": "刚度变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Slip stiffness exponent factor, PKX3",
+   "default": "",
+   "values": "滑移刚度 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Horizontal shift in slip ratio at nominal normal load, PHX1",
+   "default": "",
+   "values": "滑移率偏移 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of horizontal slip ratio with load, PHX2",
+   "default": "",
+   "values": "滑移变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Vertical shift in load at nominal normal load, PVX1",
+   "default": "",
+   "values": "载荷偏移 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of vertical shift with load, PVX2",
+   "default": "",
+   "values": "载荷变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Linear variation of longitudinal slip stiffness with tire pressure, PPX1",
+   "default": "",
+   "values": "刚度变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Quadratic variation of longitudinal slip stiffness with tire pressure, PPX2",
+   "default": "",
+   "values": "刚度变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Linear variation of peak longitudinal friction with tire pressure, PPX3",
+   "default": "",
+   "values": "摩擦变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Quadratic variation of peak longitudinal friction with tire pressure, PPX4",
+   "default": "",
+   "values": "摩擦变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Combined slip Fx slope factor reduction, RBX1",
+   "default": "",
+   "values": "联合滑移纵向力斜率因子折减 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Slip ratio Fx slope reduction variation, RBX2",
+   "default": "",
+   "values": "滑移率纵向力斜率折减变化 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Camber influence on combined slip Fx stiffness, RBX3",
+   "default": "",
+   "values": "外倾对联合滑移纵向力刚度的影响 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Shape factor for combined slip Fx reduction, RCX1",
+   "default": "",
+   "values": "联合滑移纵向力减小量的形状因子 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Combined Fx curvature factor, REX1",
+   "default": "",
+   "values": "联合纵向力曲率因子 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Combined Fx curvature factor with load, REX2",
+   "default": "",
+   "values": "联合纵向力曲率因子 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Combined slip Fx shift factor reduction, RHX1",
+   "default": "",
+   "values": "联合滑移纵向力滑移因子 scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Vertical shift of overturning moment, QSX1",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Overturning moment due to camber, QSX2",
+   "default": "",
+   "values": "由外倾引起的侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Overturning moment due to Fy, QSX3",
+   "default": "",
+   "values": "由侧向力引起的侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx combined lateral force load and camber, QSX4",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx load effect due to lateral force and camber, QSX5",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx load effect due to B-factor, QSX6",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to camber and load, QSX7",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to lateral force and load, QSX8",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to B-factor of lateral force and load, QSX9",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to vertical force and camber, QSX10",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to B-factor of vertical force and camber, QSX11",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to squared camber, QSX12",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to lateral force, QSX13",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to lateral force with camber, QSX14",
+   "default": "",
+   "values": "侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to inflation pressure, PPMX1",
+   "default": "",
+   "values": "由充气压力引起的侧翻力矩 scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Cfy shape factor for lateral force, PCY1",
+   "default": "",
+   "values": "侧向力形状因子 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Lateral friction muy, PDY1",
+   "default": "",
+   "values": "侧向摩擦 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Lateral friction variation of muy with load, PDY2",
+   "default": "",
+   "values": "侧向摩擦变化量 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Lateral friction variation of muy with squared camber, PDY3",
+   "default": "",
+   "values": "侧向摩擦变化量 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy lateral curvature at nominal force FZNOM, PEY1",
+   "default": "",
+   "values": "额定力下的侧向曲率 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy curvature variation with load, PEY2",
+   "default": "",
+   "values": "侧向曲率变化量 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy curvature constant camber dependency, PEY3",
+   "default": "",
+   "values": "侧向曲率常数 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy curvature variation with camber, PEY4",
+   "default": "",
+   "values": "侧向曲率变化量 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy curvature variation with camber squared, PEY5",
+   "default": "",
+   "values": "侧向曲率变化量 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Maximum KFy/FZNOM stiffness, PKY1",
+   "default": "",
+   "values": "最大刚度 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Load at maximum KFy/FZNOM stiffness, PKY2",
+   "default": "",
+   "values": "载荷 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "KFy/FZNOM stiffness variation with camber, PKY3",
+   "default": "",
+   "values": "刚度变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "KFy curvature, PKY4",
+   "default": "",
+   "values": "横向力刚度曲率 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Variation of peak stiffness with squared camber, PKY5",
+   "default": "",
+   "values": "刚度变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy camber stiffness factor, PKY6",
+   "default": "",
+   "values": "横向力外倾刚度因子 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Camber stiffness vertical load dependency, PKY7",
+   "default": "",
+   "values": "刚度 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "SHY horizontal shift at FZNOM, PHY1",
+   "default": "",
+   "values": "额定力下的水平偏移 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "SHY variation with load, PHY2",
+   "default": "",
+   "values": "水平偏移变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Svy/Fz vertical shift at FZNOM, PVY1",
+   "default": "",
+   "values": "额定力下的垂直偏移 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Svy/Fz variation with load, PVY2",
+   "default": "",
+   "values": "垂直偏移随载荷的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Svy/Fz variation with camber, PVY3",
+   "default": "",
+   "values": "垂直偏移随外倾角的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Svy/Fz variation with load and camber, PVY4",
+   "default": "",
+   "values": "垂直偏移随载荷和外倾角的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Cornering stiffness variation with inflation pressure, PPY1",
+   "default": "",
+   "values": "刚度随压力的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Cornering stiffness variation with inflation pressure induced nominal load dependency, PPY2",
+   "default": "",
+   "values": "刚度随压力的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Linear inflation pressure on peak lateral friction, PPY3",
+   "default": "",
+   "values": "压力 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Quadratic inflation pressure on peak lateral friction, PPY4",
+   "default": "",
+   "values": "压力 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Inflation pressure effect on camber stiffness, PPY5",
+   "default": "",
+   "values": "压力 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Combined Fy reduction slope factor, RBY1",
+   "default": "",
+   "values": "组合横向力降低斜率因子 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy slope reduction with slip angle, RBY2",
+   "default": "",
+   "values": "横向力斜率随侧偏角的降低 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy shift reduction with slip angle, RBY3",
+   "default": "",
+   "values": "横向力偏移随侧偏角的降低 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined stiffness variation from camber, RBY4",
+   "default": "",
+   "values": "横向力组合刚度随外倾角的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined reduction shape factor, RCY1",
+   "default": "",
+   "values": "侧向力组合折减形状因子 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined curvature factor, REY1",
+   "default": "",
+   "values": "侧向力组合曲率因子 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined curvature factor with load, REY2",
+   "default": "",
+   "values": "带载荷的侧向力组合曲率因子 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined reduction shift factor, RHY1",
+   "default": "",
+   "values": "侧向力组合折减偏移因子 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined reduction shift factor with load, RHY2",
+   "default": "",
+   "values": "带载荷的侧向力组合折减偏移因子 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Slip ratio side force Svyk/Muy*Fz at FZNOM, RVY1",
+   "default": "",
+   "values": "额定力下的滑移率侧向力 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with load, RVY2",
+   "default": "",
+   "values": "侧向力随载荷的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with camber, RVY3",
+   "default": "",
+   "values": "侧向力随外倾角的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with slip angle, RVY4",
+   "default": "",
+   "values": "侧向力随侧偏角的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with slip ratio, RVY5",
+   "default": "",
+   "values": "侧向力随滑移率的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with slip ratio arctangent, RVY6",
+   "default": "",
+   "values": "侧向力随滑移率反正切的变化 scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Torque resistance coefficient, QSY1",
+   "default": "",
+   "values": "阻力矩 scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to Fx, QSY2",
+   "default": "",
+   "values": "由纵向力引起的阻力矩 scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to speed, QSY3",
+   "default": "",
+   "values": "由速度引起的阻力矩 scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to speed^4, QSY4",
+   "default": "",
+   "values": "由速度引起的阻力矩 scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to square of camber, QSY5",
+   "default": "",
+   "values": "由外倾角引起的阻力矩 scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to square of camber and load, QSY6",
+   "default": "",
+   "values": "由外倾角和载荷引起的阻力矩 scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to load, QSY7",
+   "default": "",
+   "values": "由载荷引起的阻力矩 scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to pressure, QSY8",
+   "default": "",
+   "values": "由压力引起的阻力矩 scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Trail slope factor for trail Bpt at FZNOM, QBZ1",
+   "default": "",
+   "values": "额定力下的拖距斜率因子 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with load, QBZ2",
+   "default": "",
+   "values": "斜率随载荷的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with square of load, QBZ3",
+   "default": "0",
+   "values": "斜率随载荷的变化 0 (default) | scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with camber, QBZ4",
+   "default": "",
+   "values": "斜率随外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with absolute value of camber, QBZ5",
+   "default": "",
+   "values": "斜率随外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with square of camber, QBZ6",
+   "default": "",
+   "values": "斜率随外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Br of Mzr slope scaling factor, QBZ9",
+   "default": "",
+   "values": "斜率缩放因子 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Br of Mzr cornering stiffness factor, QBZ10",
+   "default": "",
+   "values": "侧偏刚度因子 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Cpt pneumatic trail shape factor, QCZ1",
+   "default": "",
+   "values": "气胎拖距形状因子 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dpt peak trail, QDZ1",
+   "default": "",
+   "values": "峰值拖距 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dpt peak trail variation with load, QDZ2",
+   "default": "",
+   "values": "峰值拖距随载荷的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dpt peak trail variation with camber, QDZ3",
+   "default": "",
+   "values": "峰值拖距随外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dpt peak trail variation with square of camber, QDZ4",
+   "default": "",
+   "values": "峰值拖距随外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque, QDZ6",
+   "default": "",
+   "values": "峰值残余扭矩 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with load, QDZ7",
+   "default": "",
+   "values": "峰值残余扭矩随载荷的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with camber, QDZ8",
+   "default": "",
+   "values": "峰值残余扭矩随外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with camber and load, QDZ9",
+   "default": "",
+   "values": "峰值残余扭矩随外倾角和载荷的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with square of camber, QDZ10",
+   "default": "",
+   "values": "峰值残余扭矩随外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with square of load, QDZ11",
+   "default": "",
+   "values": "峰值残余扭矩随载荷的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept trail curvature at FZNOM, QEZ1",
+   "default": "",
+   "values": "额定力下的拖距曲率 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept variation with load, QEZ2",
+   "default": "",
+   "values": "拖距曲率随载荷的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept variation with square of load, QEZ3",
+   "default": "",
+   "values": "拖距曲率随载荷的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept variation with sign of alpha-t, QEZ4",
+   "default": "",
+   "values": "拖距曲率变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept variation with sign of alpha-t and camber, QEZ5",
+   "default": "",
+   "values": "变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Sht horizontal trail shift at FZNOM, QHZ1",
+   "default": "",
+   "values": "额定载荷下的水平拖距偏移 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Sht variation with load, QHZ2",
+   "default": "",
+   "values": "水平拖距偏移随载荷的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Sht variation with camber, QHZ3",
+   "default": "",
+   "values": "水平拖距偏移随外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Sht variation with load and camber, QHZ4",
+   "default": "",
+   "values": "水平拖距偏移随载荷和外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Inflation pressure influence on trail length, PPZ1",
+   "default": "",
+   "values": "压力对拖距长度的影响 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Inflation pressure influence on residual aligning torque, PPZ2",
+   "default": "",
+   "values": "压力对回正力矩的影响 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Nominal value of s/R0: effect of Fx on Mz, SSZ1",
+   "default": "",
+   "values": "纵向力对回正力矩的影响 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "s/R0 variation with lateral to nominal force ratio, SSZ2",
+   "default": "",
+   "values": "随侧向力与标称力之比的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "s/R0 variation with camber, SSZ3",
+   "default": "",
+   "values": "随外倾角的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "s/R0 variation with camber and load, SSZ4",
+   "default": "",
+   "values": "随外倾角和载荷的变化 scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Fx peak reduction due to spin, PDXP1",
+   "default": "",
+   "values": "因自旋导致的纵向力峰值降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fx peak reduction due to spin with varying load, PDXP2",
+   "default": "",
+   "values": "因自旋导致的纵向力峰值降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fx peak reduction due to spin with slip ratio, PDXP3",
+   "default": "",
+   "values": "因自旋导致的纵向力峰值降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Cornering stiffness reduction due to spin, PKYP1",
+   "default": "",
+   "values": "因自旋导致的刚度降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy peak reduction due to spin, PDYP1",
+   "default": "",
+   "values": "因自旋导致的侧向力峰值降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy peak reduction due to spin with varying load, PDYP2",
+   "default": "",
+   "values": "因自旋导致的侧向力峰值降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy peak reduction due to spin with slip angle, PDYP3",
+   "default": "",
+   "values": "因自旋导致的侧向力峰值降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy peak reduction due to square root of spin, PDYP4",
+   "default": "",
+   "values": "因自旋导致的侧向力峰值降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy vs. slip angle response lateral shift limit, PHYP1",
+   "default": "",
+   "values": "侧向力随侧偏角的响应 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy vs. slip angle response max lateral shift limit, PHYP2",
+   "default": "",
+   "values": "侧向力随侧偏角的响应 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy vs. slip angle response max lateral shift limit with load, PHYP3",
+   "default": "",
+   "values": "侧向力随侧偏角的响应 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy vs. slip angle response lateral shift curvature factor, PHYP4",
+   "default": "",
+   "values": "侧向力随侧偏角的响应 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Camber stiffness reduction due to spin, PECP1",
+   "default": "",
+   "values": "外倾刚度降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Camber stiffness reduction due to spin with load, PECP2",
+   "default": "",
+   "values": "外倾刚度降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn slip pneumatic trail reduction factor, QDTP1",
+   "default": "",
+   "values": "转向滑移的轮胎拖距降低因子 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn moment for constant turning and zero longitudinal speed, QCRP1",
+   "default": "",
+   "values": "恒定转向时的转向力矩 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn slip moment increase with spin at 90deg slip angle, QCRP2",
+   "default": "",
+   "values": "转向滑移力矩 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Residual spin torque reduction from side slip, QBRP1",
+   "default": "",
+   "values": "残余自旋扭矩降低 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn slip moment peak magnitude, QDRP1",
+   "default": "",
+   "values": "转向滑移力矩峰值幅度 scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn slip moment curvature, QDRP2",
+   "default": "",
+   "values": "转向滑移力矩曲率 scalar",
+   "group": "Turnslip"
+  }
+ ]
+}

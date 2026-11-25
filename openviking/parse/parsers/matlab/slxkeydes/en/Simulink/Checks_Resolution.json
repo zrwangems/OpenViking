@@ -1,0 +1,56 @@
+{
+ "key": "Checks_Resolution",
+ "title": "Check Input Resolution",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model Verification/Check_Input_Resolution.md",
+  "HDL Coder/Model Verification/Check_Input_Resolution.md"
+ ],
+ "text": "Check that input signal has specified resolution, 1 input, 1 output, no direct feedthrough, {Resolution} sets Resolution value to compare to input signal scalar; {Enable assertion} enables or disable check, {Simulation callback when assertion fails (optional)} sets the expression to evaluate when assertion, {Stop simulation when assertion fails} sets the whether to stop simulation when check and {Output assertion signal} sets the create output signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal checked against resolution scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Assertion output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resolution",
+   "default": "",
+   "values": "Resolution value to compare to input signal scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "Enable or disable check on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "\"\"",
+   "values": "Expression to evaluate when assertion fails \"\" (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "on",
+   "values": "Whether to stop simulation when check fails on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "Create output signal off (default) | on",
+   "group": ""
+  }
+ ]
+}

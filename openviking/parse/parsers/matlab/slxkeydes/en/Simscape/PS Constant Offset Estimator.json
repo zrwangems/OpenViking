@@ -1,0 +1,13 @@
+{
+ "key": "PS Constant Offset Estimator",
+ "title": "PS Constant Offset Estimator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Periodic Operators/PS_Constant_Offset_Estimator.md"
+ ],
+ "text": "Measure constant offset value of periodic signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

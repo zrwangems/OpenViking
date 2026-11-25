@@ -1,0 +1,13 @@
+{
+ "key": "Infinite Flow Resistance (TL)",
+ "title": "Infinite Flow Resistance (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Infinite_Flow_Resistance_TL.md"
+ ],
+ "text": "Perfectly insulated break in thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

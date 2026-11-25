@@ -1,0 +1,26 @@
+{
+ "key": "slrealtimepervarwrite",
+ "title": "Persistent Variable Write",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Target Management/Persistent_Variable_Write.md"
+ ],
+ "text": "Write persistent variable value to target computer, 1 input, {Variable name} sets Name of persistent variable.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Persistent variable input data variable data"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variable name",
+   "default": "Variable1",
+   "values": "Name of persistent variable Variable1 (default) | character vector | string",
+   "group": ""
+  }
+ ]
+}

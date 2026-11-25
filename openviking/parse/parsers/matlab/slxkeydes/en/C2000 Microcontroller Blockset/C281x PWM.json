@@ -1,0 +1,32 @@
+{
+ "key": "C281x PWM",
+ "title": "PWM",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C281x/PWM.md"
+ ],
+ "text": "Configure counter reset source of processor watchdog module, 1 input; {Watchdog counter reset source} and {Sample time} sets the frequency at which processor resets Watchdog timer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Resets watchdog counter scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Watchdog counter reset source",
+   "default": "dialog",
+   "values": "Watchdog counter reset source Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "Frequency at which processor resets Watchdog timer –1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

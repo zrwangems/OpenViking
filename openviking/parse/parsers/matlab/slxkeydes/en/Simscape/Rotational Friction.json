@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Friction",
+ "title": "Rotational Friction",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Rotational_Friction.md"
+ ],
+ "text": "Friction in contact between rotating bodies.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

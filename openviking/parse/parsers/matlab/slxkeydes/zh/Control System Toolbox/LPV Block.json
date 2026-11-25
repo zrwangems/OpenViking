@@ -1,0 +1,163 @@
+{
+ "key": "LPV Block",
+ "title": "LPV System",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/LPV_System.md"
+ ],
+ "text": "对线性参数变化 (LPV) 系统进行仿真，输入 3 路、输出 5 路；按 {内插方法} 指定内插方法；{状态空间数组} 指定状态空间模型数组 ss 或、{初始条件源} 用于使用外部信号设置初始条件、{初始条件}、{工作点偏移量} 指定偏移量设定格式、{输入偏移量}、{输出偏移量}、{状态偏移量}、{状态导数/更新偏移量} 指定状态导数或更新偏移量 数组、{结构体数组}、{要固定的系数} 指定状态空间矩阵的固定系数 false 或、{从以下位置读取值} 指定固定系数值的来源、{外插方法}、{索引搜索方法} 指定预查找算法、{使用上一个索引结果开始索引搜索} 指定从上一个时间步开始搜索、{模块数据类型(仅限离散时间情形)} 指定模块数据类型、{初始缓冲区大小(用于延迟)}、{使用固定缓冲区大小}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "par",
+   "direction": "input",
+   "summary": "参数值 标量 | 向量"
+  },
+  {
+   "name": "IC",
+   "direction": "input",
+   "summary": "初始条件 向量"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "模型输出 标量 | 向量"
+  },
+  {
+   "name": "x",
+   "direction": "output",
+   "summary": "状态值 标量 | 向量"
+  },
+  {
+   "name": "dx",
+   "direction": "output",
+   "summary": "状态导数值 标量 | 向量"
+  },
+  {
+   "name": "ss",
+   "direction": "output",
+   "summary": "局部状态空间模型 总线"
+  },
+  {
+   "name": "offset",
+   "direction": "output",
+   "summary": "LPV 模型偏移量 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "状态空间数组",
+   "default": "",
+   "values": "状态空间模型数组 ss 或 idss 模型数组",
+   "group": "LPV 模型选项卡"
+  },
+  {
+   "name": "初始条件源",
+   "default": "内部",
+   "values": "用于使用外部信号设置初始条件的选项 内部 (默认) | 外部",
+   "group": "LPV 模型选项卡"
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "初始条件 0 (默认) | 向量",
+   "group": "LPV 模型选项卡"
+  },
+  {
+   "name": "工作点偏移量",
+   "default": "将偏移量指定为双精度数组",
+   "values": "偏移量设定格式 将偏移量指定为双精度数组 (默认) | 将偏移量指定为结构体数组 | 在状态空间数组中使用偏移量",
+   "group": "LPV 模型选项卡"
+  },
+  {
+   "name": "输入偏移量",
+   "default": "0",
+   "values": "输入偏移量 0 (默认) | 数组",
+   "group": "LPV 模型选项卡"
+  },
+  {
+   "name": "输出偏移量",
+   "default": "0",
+   "values": "输出偏移量 0 (默认) | 数组",
+   "group": "LPV 模型选项卡"
+  },
+  {
+   "name": "状态偏移量",
+   "default": "0",
+   "values": "状态偏移量 0 (默认) | 数组",
+   "group": "LPV 模型选项卡"
+  },
+  {
+   "name": "状态导数/更新偏移量",
+   "default": "",
+   "values": "状态导数或更新偏移量 数组",
+   "group": "LPV 模型选项卡"
+  },
+  {
+   "name": "结构体数组",
+   "default": "struct",
+   "values": "偏移量结构体数组 struct (默认) | 结构体数组名称",
+   "group": "LPV 模型选项卡"
+  },
+  {
+   "name": "要固定的系数",
+   "default": "0",
+   "values": "状态空间矩阵的固定系数 false 或 0 (默认) | true 或 1 | 逻辑矩阵",
+   "group": "“固定条目数”选项卡"
+  },
+  {
+   "name": "从以下位置读取值",
+   "default": "状态空间数组中的第一个模型",
+   "values": "固定系数值的来源 状态空间数组中的第一个模型 (默认) | 自定义状态空间模型",
+   "group": "“固定条目数”选项卡"
+  },
+  {
+   "name": "内插方法",
+   "default": "线性",
+   "values": "内插方法 线性 (默认) | 最邻近值 | 均一",
+   "group": "“调度”选项卡"
+  },
+  {
+   "name": "外插方法",
+   "default": "裁剪",
+   "values": "外插方法 裁剪 (默认) | 线性",
+   "group": "“调度”选项卡"
+  },
+  {
+   "name": "索引搜索方法",
+   "default": "二分搜索",
+   "values": "预查找算法 二分搜索 (默认) | 线性搜索",
+   "group": "“调度”选项卡"
+  },
+  {
+   "name": "使用上一个索引结果开始索引搜索",
+   "default": "on",
+   "values": "从上一个时间步开始搜索 on (默认) | off",
+   "group": "“调度”选项卡"
+  },
+  {
+   "name": "模块数据类型(仅限离散时间情形)",
+   "default": "双精度",
+   "values": "模块数据类型 双精度 (默认) | 单精度",
+   "group": "代码生成选项卡"
+  },
+  {
+   "name": "初始缓冲区大小(用于延迟)",
+   "default": "1024",
+   "values": "初始缓冲区大小 1024 (默认) | 大于 5 的正整数",
+   "group": "代码生成选项卡"
+  },
+  {
+   "name": "使用固定缓冲区大小",
+   "default": "off",
+   "values": "使用固定缓冲区大小 off (默认) | on",
+   "group": "代码生成选项卡"
+  }
+ ]
+}

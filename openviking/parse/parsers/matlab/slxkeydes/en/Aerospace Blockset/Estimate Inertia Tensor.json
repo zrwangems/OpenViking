@@ -1,0 +1,59 @@
+{
+ "key": "Estimate Inertia Tensor",
+ "title": "Estimate Inertia Tensor",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Mass Properties/Estimate_Inertia_Tensor.md"
+ ],
+ "text": "Calculate inertia tensor, 2 inputs, 2 outputs; {Full mass} sets the mass, {Empty mass}, {Full inertia matrix} and {Empty inertia matrix}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mass",
+   "direction": "input",
+   "summary": "Mass scalar"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "Rate of change scalar"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "Inertia tensor 3-by-3 matrix"
+  },
+  {
+   "name": "dI/dt",
+   "direction": "output",
+   "summary": "Rate of change 3-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Full mass",
+   "default": "2",
+   "values": "Mass 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Empty mass",
+   "default": "1",
+   "values": "Empty mass 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Full inertia matrix",
+   "default": "eye(3)",
+   "values": "Full inertia matrix eye(3) (default) | 3-element matrix",
+   "group": ""
+  },
+  {
+   "name": "Empty inertia matrix",
+   "default": "eye(3)/2",
+   "values": "Empty inertia matrix eye(3)/2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

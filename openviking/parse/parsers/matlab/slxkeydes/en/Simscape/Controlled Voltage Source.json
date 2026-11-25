@@ -1,0 +1,13 @@
+{
+ "key": "Controlled Voltage Source",
+ "title": "Controlled Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Sources/Controlled_Voltage_Source.md"
+ ],
+ "text": "Ideal voltage source driven by input signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

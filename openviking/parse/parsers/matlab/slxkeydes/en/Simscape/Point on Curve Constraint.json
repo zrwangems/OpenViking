@@ -1,0 +1,13 @@
+{
+ "key": "Point on Curve Constraint",
+ "title": "Point on Curve Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Constraints/Point_on_Curve_Constraint.md"
+ ],
+ "text": "Kinematic constraint between frame origin and curved path.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

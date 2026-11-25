@@ -1,0 +1,144 @@
+{
+ "key": "Hall Speed and Position",
+ "title": "Hall Speed and Position",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensor Decoders/Hall_Speed_and_Position.md"
+ ],
+ "text": "使用霍尔传感器计算转子转速和估计转子位置，输入 6 路、输出 3 路；按 {模块输出} 指定输出端口；{计数器大小} 指定外部计数器寄存器的大小、{计数器时钟频率(Hz)} 指定外部计数器的时钟频率 90e6、{离散步长(秒)} 指定采样时间，在此采样时间过后模块将再次执行 50e-6、{极对数}、{最小可探测转速(RPM)} 指定模块可以检测到的最小转速、{转速测量间隔} 指定模块测量转速的时间间隔 每、{转速单位} 指定转子角速度输出的单位、{转速数据类型} 指定转子角速度输出的数据类型、{预期正向霍尔序列} 指示正方向的序列、{序列}、{位置外插阶数} 表示位置计算的精度、{位置单位} 指定角位置输出的单位、{位置数据类型} 指定角位置输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "HallVal",
+   "direction": "input",
+   "summary": "当前霍尔传感器输出状态 标量"
+  },
+  {
+   "name": "Cnt",
+   "direction": "input",
+   "summary": "外部计数器值 标量"
+  },
+  {
+   "name": "SpdCnt",
+   "direction": "input",
+   "summary": "霍尔状态更改时的计数 标量"
+  },
+  {
+   "name": "Dir",
+   "direction": "input",
+   "summary": "当前霍尔状态下的转子旋转方向 标量"
+  },
+  {
+   "name": "SpdVal",
+   "direction": "input",
+   "summary": "当前和先前霍尔状态与转速计算的有效性 标量"
+  },
+  {
+   "name": "HallChng",
+   "direction": "input",
+   "summary": "霍尔状态更改标志的值 标量"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "转子的电气位置 标量"
+  },
+  {
+   "name": "⍵ m",
+   "direction": "output",
+   "summary": "转子的机械转速 标量"
+  },
+  {
+   "name": "HallChngRst",
+   "direction": "output",
+   "summary": "将霍尔状态更改标志重置为零 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "模块输出",
+   "default": "转速和位置",
+   "values": "选择输出端口 转速和位置 (默认) | 转速 | 位置",
+   "group": "常规"
+  },
+  {
+   "name": "计数器大小",
+   "default": "位",
+   "values": "外部计数器寄存器的大小 32 位 (默认) | 8 位 | 16 位",
+   "group": "常规"
+  },
+  {
+   "name": "计数器时钟频率(Hz)",
+   "default": "90e6",
+   "values": "外部计数器的时钟频率 90e6 (默认) | 标量",
+   "group": "常规"
+  },
+  {
+   "name": "离散步长(秒)",
+   "default": "50e-6",
+   "values": "采样时间，在此采样时间过后模块将再次执行 50e-6 (默认) | 标量",
+   "group": "常规"
+  },
+  {
+   "name": "极对数",
+   "default": "8",
+   "values": "电机中可用的极对数 8 (默认) | 标量",
+   "group": "常规"
+  },
+  {
+   "name": "最小可探测转速(RPM)",
+   "default": "20",
+   "values": "模块可以检测到的最小转速 20 (默认) | 标量",
+   "group": "常规"
+  },
+  {
+   "name": "转速测量间隔",
+   "default": "度",
+   "values": "模块测量转速的时间间隔 每 180 度 (默认) | 每 60 度",
+   "group": "常规"
+  },
+  {
+   "name": "转速单位",
+   "default": "弧度/秒",
+   "values": "转子角速度输出的单位 弧度/秒 (默认) | 度/秒 | RPM | 标幺",
+   "group": "常规"
+  },
+  {
+   "name": "转速数据类型",
+   "default": "单精度",
+   "values": "转子角速度输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "常规"
+  },
+  {
+   "name": "预期正向霍尔序列",
+   "default": "ABC",
+   "values": "指示正方向的序列 ABC (默认) | CBA | 自定义序列",
+   "group": "位置"
+  },
+  {
+   "name": "序列",
+   "default": "[5,4,6,2,3,1]",
+   "values": "指示正方向的自定义序列 [5,4,6,2,3,1] (默认) | 标量",
+   "group": "位置"
+  },
+  {
+   "name": "位置外插阶数",
+   "default": "一阶",
+   "values": "表示位置计算的精度 一阶 (默认) | 二阶",
+   "group": "位置"
+  },
+  {
+   "name": "位置单位",
+   "default": "弧度",
+   "values": "角位置输出的单位 弧度 (默认) | 度 | 标幺",
+   "group": "位置"
+  },
+  {
+   "name": "位置数据类型",
+   "default": "单精度",
+   "values": "角位置输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "位置"
+  }
+ ]
+}

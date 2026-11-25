@@ -1,0 +1,13 @@
+{
+ "key": "NPN Bipolar Transistor",
+ "title": "NPN Bipolar Transistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/NPN_Bipolar_Transistor.md"
+ ],
+ "text": "NPN bipolar transistor using enhanced Ebers-Moll equations.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

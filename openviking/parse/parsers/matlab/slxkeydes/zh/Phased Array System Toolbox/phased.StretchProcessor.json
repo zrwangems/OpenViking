@@ -1,0 +1,84 @@
+{
+ "key": "phased.StretchProcessor",
+ "title": "Stretch Processor",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Stretch_Processor.md"
+ ],
+ "text": "用于线性 FM 波形的 Stretch Processor，输入 2 路、输出 1 路；按 {Specify PRF as} 指定PRF 值的来源；{Pulse width (s)} 指定脉冲持续时间 50e-6、{Pulse repetition frequency (Hz)} 指定脉冲重复频率 1e4、{FM sweep slope (Hz/s)} 指定线性 FM 扫频的斜率 2e9、{FM sweep interval} 指定 FM 扫频方向、{Signal propagation speed (m/s)} 指定信号传播速度 physconst、{Reference range (m)} 指定感兴趣距离的中心、{Reference span (m)} 指定感兴趣范围的跨度、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入信号 M -by- P complex-valued matrix"
+  },
+  {
+   "name": "PRF",
+   "direction": "input",
+   "summary": "脉冲重复频率 positive scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Stretch 处理后的信号 M -by- P complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pulse width (s)",
+   "default": "50e-6",
+   "values": "脉冲持续时间 50e-6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify PRF as",
+   "default": "Property",
+   "values": "PRF 值的来源 Property (default) | Auto | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pulse repetition frequency (Hz)",
+   "default": "1e4",
+   "values": "脉冲重复频率 1e4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "FM sweep slope (Hz/s)",
+   "default": "2e9",
+   "values": "线性 FM 扫频的斜率 2e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "FM sweep interval",
+   "default": "Positive",
+   "values": "FM 扫频方向 Positive (default) | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference range (m)",
+   "default": "5000",
+   "values": "感兴趣距离的中心 5000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference span (m)",
+   "default": "500",
+   "values": "感兴趣范围的跨度 500 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

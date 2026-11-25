@@ -1,0 +1,119 @@
+{
+ "key": "Optical Flow",
+ "title": "Optical Flow",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Optical_Flow.md"
+ ],
+ "text": "估计对象速度，输入 2 路、输出 2 路；按 {Stop iterative solution} 指定停止迭代求解 When maximum number of iterations is；{Method} 指定光流计算方法、{Compute optical flow between} 指定计算光流 Current frame and N-th frame、{N} 指定帧数、{Smoothness factor} 指定平滑度因子、{Maximum number of iterations} 指定最大迭代次数、{Velocity output} 指定光流输出 Magnitude-squared、{Temporal gradient filter} 用于时间梯度的滤波器 Difference filter、{Number of input frames to buffer} 为平滑而缓冲的输入帧数、{Standard deviation for image smoothing filter} 指定图像平滑滤波器的标准差、{Standard deviation for gradient smoothing filter} 指定梯度平滑滤波器的标准差、{Discard normal flow estimates when constraint equation is ill-conditioned} 指定丢弃法向流估计、{Output image corresponding to motion vectors (accounts for block delay)} 指定与运动向量对应的输出图像、{Threshold for noise reduction} 指定降噪阈值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I/I1",
+   "direction": "input",
+   "summary": "图像或视频帧 scalar | vector | matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "图像 scalar | vector | matrix"
+  },
+  {
+   "name": "|V|^2",
+   "direction": "output",
+   "summary": "速度幅值 scalar | vector | matrix"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "复数形式的速度分量 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Horn-Schunck",
+   "values": "光流计算方法 Horn-Schunck (default) | Lucas-Kanade",
+   "group": ""
+  },
+  {
+   "name": "Compute optical flow between",
+   "default": "back",
+   "values": "计算光流 Current frame and N-th frame back (default) | Two images",
+   "group": ""
+  },
+  {
+   "name": "N",
+   "default": "1",
+   "values": "帧数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Smoothness factor",
+   "default": "1",
+   "values": "平滑度因子 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stop iterative solution",
+   "default": "reached",
+   "values": "停止迭代求解 When maximum number of iterations is reached (default) | When velocity difference falls below threshold | Whichever comes first",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of iterations",
+   "default": "10",
+   "values": "最大迭代次数 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Velocity output",
+   "default": "Magnitude-squared",
+   "values": "光流输出 Magnitude-squared (default) | Horizontal and vertical components in complex form",
+   "group": ""
+  },
+  {
+   "name": "Temporal gradient filter",
+   "default": "1]",
+   "values": "用于时间梯度的滤波器 Difference filter [-1 1] (default) | Derivative of Gaussian",
+   "group": ""
+  },
+  {
+   "name": "Number of input frames to buffer",
+   "default": "3",
+   "values": "为平滑而缓冲的输入帧数 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation for image smoothing filter",
+   "default": "1.5",
+   "values": "图像平滑滤波器的标准差 1.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation for gradient smoothing filter",
+   "default": "1",
+   "values": "梯度平滑滤波器的标准差 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discard normal flow estimates when constraint equation is ill-conditioned",
+   "default": "off",
+   "values": "丢弃法向流估计 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output image corresponding to motion vectors (accounts for block delay)",
+   "default": "off",
+   "values": "与运动向量对应的输出图像 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Threshold for noise reduction",
+   "default": "0.0039",
+   "values": "降噪阈值 0.0039 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

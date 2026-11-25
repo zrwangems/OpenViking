@@ -1,0 +1,37 @@
+{
+ "key": "Real Cepstrum",
+ "title": "Real Cepstrum",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Real_Cepstrum.md"
+ ],
+ "text": "计算输入的实倒谱，输入 1 路、输出 1 路、无直接馈通；{Inherit FFT length from input port dimensions} 指定将 FFT 长度与输入端口的维度匹配、{FFT length} 指定计算 FFT 长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "实倒谱输出，返回为 M o × N 矩阵。 当您清除 Inherit FFT length from input port dimensions 参数时，M o 是您在 FFT length 参数中指定的值。当您选择 Inherit FFT length from input port dimensions 参数时，M o = M，其中 M 是输入信号的帧大小（行数）。 每个输出列包含对应输入列的长度为 M o 的实倒谱。 输出端口速率与输入端口速率相同。 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit FFT length from input port dimensions",
+   "default": "on",
+   "values": "将 FFT 长度与输入端口的维度匹配 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "64",
+   "values": "计算 FFT 长度 64 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

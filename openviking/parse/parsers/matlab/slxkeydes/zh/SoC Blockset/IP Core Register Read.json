@@ -1,0 +1,44 @@
+{
+ "key": "IP Core Register Read",
+ "title": "IP Core Register Read",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/IP_Core_Register_Read.md"
+ ],
+ "text": "对从软件到硬件的寄存器写入进行建模；输出 1 路；按 {Output data type} 指定输出数据的数据类型；{Register name} 指定寄存器名称、{Output vector size} 输出数据的向量大小、{Sample time} 指定采样的仿真间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "数据输出 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Register name",
+   "default": "RegA",
+   "values": "寄存器名称 RegA (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "uint16",
+   "values": "输出数据的数据类型 uint16 (default) | single | int8 | uint8 | int16 | int32 | uint32 | boolean | fixed point data type",
+   "group": ""
+  },
+  {
+   "name": "Output vector size",
+   "default": "1",
+   "values": "输出数据的向量大小 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样的仿真间隔 -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

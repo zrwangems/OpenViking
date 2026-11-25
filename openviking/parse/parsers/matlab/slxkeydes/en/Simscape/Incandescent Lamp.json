@@ -1,0 +1,13 @@
+{
+ "key": "Incandescent Lamp",
+ "title": "Incandescent Lamp",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Incandescent_Lamp.md"
+ ],
+ "text": "Incandescent lamp with temperature dependent resistance.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

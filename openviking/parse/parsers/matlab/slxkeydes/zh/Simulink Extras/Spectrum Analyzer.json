@@ -1,0 +1,13 @@
+{
+ "key": "Spectrum Analyzer",
+ "title": "Spectrum Analyzer",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Sinks/Spectrum_Analyzer.md"
+ ],
+ "text": "将系统的输入连接到该模块的第一个端口，将系统的输出连接到第二个端口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

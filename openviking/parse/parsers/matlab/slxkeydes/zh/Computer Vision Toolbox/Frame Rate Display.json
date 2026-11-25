@@ -1,0 +1,26 @@
+{
+ "key": "Frame Rate Display",
+ "title": "Frame Rate Display",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Frame_Rate_Display.md"
+ ],
+ "text": "计算并显示视频帧速率，输入 1 路；{Update rate} 指定更新频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Update rate",
+   "default": "10",
+   "values": "更新频率 10 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

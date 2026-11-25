@@ -1,0 +1,13 @@
+{
+ "key": "Fuel Cell Equivalent Circuit",
+ "title": "Fuel Cell Equivalent Circuit",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Cells/Fuel_Cell_Equivalent_Circuit.md"
+ ],
+ "text": "Polymer-electrolyte-membrane fuel cell using electrical circuit elements and dynamic membrane water content.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

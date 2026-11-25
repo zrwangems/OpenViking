@@ -1,0 +1,163 @@
+{
+ "key": "Programmable Signal Generator (Three-Phase)",
+ "title": "Programmable Signal Generator (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Programmable_Signal_Generator_Three_Phase.md"
+ ],
+ "text": "具有可编程幅值、相位、频率和重叠谐波的离散时间或连续时间三相正弦信号发生器；输出 2 路；按 {Sample time} 指定模块采样时间；{Variation configuration} 指定幅值变化类型、{Magnitude (value)} 指定所生成三相正弦波的幅值、{Rate of change (value/s)} 指定幅值变化率、{Step value (value)} 指定幅值阶跃值、{Modulation magnitude} 指定调制幅值、{Modulation frequency} 指定调制频率、{Start time} 指定幅值变化开始时间、{Stop time} 指定幅值变化停止时间、{Table data} 指定幅值表值、{Time values} 指定幅值时间值、{Frequency (Hz)} 指定所生成三相正弦波的频率、{Rate of change (Hz/s)} 指定频率变化率、{Step value (Hz)} 指定频率阶跃值、{Phase shift (deg)} 指定所生成三相正弦波的相移、{Rate of change (deg/s)} 指定相位变化率、{Step value (deg)} 指定相位阶跃值、{Enable harmonic A} 指定谐波 A 重叠、{Harmonic sequence} 指定谐波 A 序列类型、{Harmonic order} 指定谐波 A 阶次、{Harmonic magnitude} 指定谐波 A 幅值、{Harmonic phase shift} 指定谐波 A 相移、{Enable harmonic B} 指定谐波 B 重叠，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "三相正弦信号 vector"
+  },
+  {
+   "name": "m",
+   "direction": "output",
+   "summary": "信号测量值 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "1e-5",
+   "values": "模块采样时间 1e-5 (default) | 0 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Variation configuration",
+   "default": "Constant",
+   "values": "幅值变化类型 Constant (default) | Ramp | Step | Modulation | Table",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Magnitude (value)",
+   "default": "100",
+   "values": "所生成三相正弦波的幅值 100 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Rate of change (value/s)",
+   "default": "100",
+   "values": "幅值变化率 100 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Step value (value)",
+   "default": "100",
+   "values": "幅值阶跃值 100 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Modulation magnitude",
+   "default": "50",
+   "values": "调制幅值 50 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Modulation frequency",
+   "default": "10",
+   "values": "调制频率 10 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Start time",
+   "default": "0.1",
+   "values": "幅值变化开始时间 0.1 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Stop time",
+   "default": "0.6",
+   "values": "幅值变化停止时间 0.6 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Table data",
+   "default": "90]",
+   "values": "幅值表值 [0 30 60 90] (default) | vector",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Time values",
+   "default": "0.9]",
+   "values": "幅值时间值 [0 0.3 0.6 0.9] (default) | vector",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "100",
+   "values": "所生成三相正弦波的频率 100 (default) | scalar",
+   "group": "Frequency"
+  },
+  {
+   "name": "Rate of change (Hz/s)",
+   "default": "100",
+   "values": "频率变化率 100 (default) | scalar",
+   "group": "Frequency"
+  },
+  {
+   "name": "Step value (Hz)",
+   "default": "100",
+   "values": "频率阶跃值 100 (default) | scalar",
+   "group": "Frequency"
+  },
+  {
+   "name": "Phase shift (deg)",
+   "default": "100",
+   "values": "所生成三相正弦波的相移 100 (default) | scalar",
+   "group": "Phase"
+  },
+  {
+   "name": "Rate of change (deg/s)",
+   "default": "100",
+   "values": "相位变化率 100 (default) | scalar",
+   "group": "Phase"
+  },
+  {
+   "name": "Step value (deg)",
+   "default": "100",
+   "values": "相位阶跃值 100 (default) | scalar",
+   "group": "Phase"
+  },
+  {
+   "name": "Enable harmonic A",
+   "default": "off",
+   "values": "谐波 A 重叠 off (default) | on",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Harmonic sequence",
+   "default": "Sequence",
+   "values": "谐波 A 序列类型 Zero Sequence (default) | Positive Sequence | Negative Sequence",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Harmonic order",
+   "default": "3",
+   "values": "谐波 A 阶次 3 (default) | scalar",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Harmonic magnitude",
+   "default": "50",
+   "values": "谐波 A 幅值 50 (default) | scalar",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Harmonic phase shift",
+   "default": "180",
+   "values": "谐波 A 相移 180 (default) | scalar",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Enable harmonic B",
+   "default": "off",
+   "values": "谐波 B 重叠 off (default) | on",
+   "group": "Harmonics"
+  }
+ ]
+}

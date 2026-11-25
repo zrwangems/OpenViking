@@ -1,0 +1,49 @@
+{
+ "key": "AMI",
+ "title": "AMI",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Utilities/AMI.md"
+ ],
+ "text": "Co-design SerDes architecture with other vendor designs, 1 input, 1 output, {DLL File} sets Executable file DLL file; {AMI File} sets the aMI settings, {Operation} defines whether block is used as transmitter or receiver and {Correlation Flow} defines whether block runs in parallel with another transmitter. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "Modified output data scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "DLL File",
+   "default": "",
+   "values": "Executable file DLL file | SO file",
+   "group": ""
+  },
+  {
+   "name": "AMI File",
+   "default": "",
+   "values": "AMI settings file text file",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "Tx",
+   "values": "Define whether block is used as transmitter or receiver Tx (default) | Rx",
+   "group": ""
+  },
+  {
+   "name": "Correlation Flow",
+   "default": "off",
+   "values": "Define whether block runs in parallel with another transmitter or receiver off (default) | on",
+   "group": ""
+  }
+ ]
+}

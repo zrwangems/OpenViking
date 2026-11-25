@@ -1,0 +1,13 @@
+{
+ "key": "Translational World (PB)",
+ "title": "Translational World (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_World_PB.md"
+ ],
+ "text": "Global reference frame for position-based translational network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

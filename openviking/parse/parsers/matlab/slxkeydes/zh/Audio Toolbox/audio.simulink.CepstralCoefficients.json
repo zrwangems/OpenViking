@@ -1,0 +1,43 @@
+{
+ "key": "audio.simulink.CepstralCoefficients",
+ "title": "Cepstral Coefficients",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/Cepstral_Coefficients.md"
+ ],
+ "text": "从频谱图提取倒谱系数，输入 1 路、输出 1 路、无直接馈通；按 {Rectification} 指定非线性整流类型；{Number of cepstral coefficients} 指定返回的倒谱系数数、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "频谱图或听觉频谱图 matrix | 3-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "倒谱系数 matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of cepstral coefficients",
+   "default": "13",
+   "values": "返回的倒谱系数数 13 (default) | positive integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Rectification",
+   "default": "Logarithm",
+   "values": "非线性整流类型 Logarithm (default) | Cubic root | None",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "指定要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "SPICE Resistor",
+ "title": "SPICE Resistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Passives/SPICE_Resistor.md"
+ ],
+ "text": "对与 SPICE 兼容的电阻器进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

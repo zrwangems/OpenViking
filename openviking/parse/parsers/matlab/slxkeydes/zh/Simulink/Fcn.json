@@ -1,0 +1,37 @@
+{
+ "key": "Fcn",
+ "title": "Fcn",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/Fcn.md"
+ ],
+ "text": "将指定的表达式应用于输入，输入 1 路、输出 1 路；{表达式}、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Fcn 模块的输入 标量 | 向量"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Fcn 模块的输出 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "表达式",
+   "default": "",
+   "values": "指定数学表达式 数学表达式",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "",
+   "values": "指定模块中的采样时间 标量",
+   "group": ""
+  }
+ ]
+}

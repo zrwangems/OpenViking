@@ -1,0 +1,43 @@
+{
+ "key": "Idle Task",
+ "title": "Idle Task",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/Idle_Task.md"
+ ],
+ "text": "创建自由运行任务，输入 1 路、输出 1 路；按 {Task numbers} 指定按编号标识创建的任务；{Preemption flags} 指定存储缓冲区数量、{Enable simulation port} 为模块启用外设仿真端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "仅用于仿真的端口 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Idle 任务数据 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task numbers",
+   "default": "double",
+   "values": "按编号标识创建的任务 double (default) | single | int8 | int16 | int32 | int64 | int64 | uint8 | uint16 | uint32 | uint64 | uint64 | Boolean | bus",
+   "group": ""
+  },
+  {
+   "name": "Preemption flags",
+   "default": "1",
+   "values": "存储缓冲区数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable simulation port",
+   "default": "off",
+   "values": "为模块启用外设仿真端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

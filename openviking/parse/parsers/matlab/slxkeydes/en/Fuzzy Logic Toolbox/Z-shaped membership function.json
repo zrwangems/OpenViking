@@ -1,0 +1,37 @@
+{
+ "key": "Z-shaped membership function",
+ "title": "Z-shaped MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Z_shaped_MF.md"
+ ],
+ "text": "Z-shaped membership function, 1 input, 1 output; {Left point a} sets the leftmost point of transition area and {Right point b} sets the rightmost point of transition area. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input value scalar | vector"
+  },
+  {
+   "name": "Z MF",
+   "direction": "output",
+   "summary": "Membership value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Left point a",
+   "default": "-3",
+   "values": "Leftmost point of transition area -3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right point b",
+   "default": "3",
+   "values": "Rightmost point of transition area 3 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

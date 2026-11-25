@@ -1,0 +1,83 @@
+{
+ "key": "Block Matching",
+ "title": "Block Matching",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Block_Matching.md"
+ ],
+ "text": "Estimate motion between images or video frames, 2 inputs, 2 outputs; {Estimate motion between}, {N}, {Search method} sets the block match search, {Block matching criteria}, {Block size [height width]} sets the block size, {Overlap size [r c]} sets the block overlap, {Maximum displacement [r c]} sets the maximum displacement and {Velocity output}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I/I1",
+   "direction": "input",
+   "summary": "Image or video frame scalar | vector | matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "Image or video frame scalar | vector | matrix"
+  },
+  {
+   "name": "|V|^2",
+   "direction": "output",
+   "summary": "Velocity magnitudes scalar | vector | matrix"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "Velocity components in complex form scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Estimate motion between",
+   "default": "back",
+   "values": "Estimate motion between images or frames Current frame and N-th frame back (default) | Two images",
+   "group": ""
+  },
+  {
+   "name": "N",
+   "default": "1",
+   "values": "Number of frames 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Search method",
+   "default": "Exhaustive",
+   "values": "Block match search method Exhaustive (default) | Three-step",
+   "group": ""
+  },
+  {
+   "name": "Block matching criteria",
+   "default": "(MSE)",
+   "values": "Block matching criteria Mean square error (MSE) (default) | Mean absolute difference (MAD)",
+   "group": ""
+  },
+  {
+   "name": "Block size [height width]",
+   "default": "17]",
+   "values": "Block size [17 17] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Overlap size [r c]",
+   "default": "0]",
+   "values": "Block overlap [0 0] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum displacement [r c]",
+   "default": "7]",
+   "values": "Maximum displacement [7 7] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Velocity output",
+   "default": "Magnitude-squared",
+   "values": "Velocity output Magnitude-squared (default) | Horizontal and vertical components in complex form",
+   "group": ""
+  }
+ ]
+}

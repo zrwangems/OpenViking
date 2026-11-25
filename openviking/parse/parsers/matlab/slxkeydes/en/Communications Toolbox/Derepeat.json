@@ -1,0 +1,49 @@
+{
+ "key": "Derepeat",
+ "title": "Derepeat",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Derepeat.md"
+ ],
+ "text": "Reduce sampling rate by averaging consecutive samples, 1 input, 1 output, {Initial condition} sets Initial condition; {Derepeat factor, N}, {Input processing} and {Rate options} sets the block processing rate Allow multirate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Derepeat factor, N",
+   "default": "5",
+   "values": "Derepeat factor 5 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Input processing control Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Block processing rate Allow multirate processing (default) | Enforce single-rate processing",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial condition 0 (default) | scalar | vector | matrix",
+   "group": ""
+  }
+ ]
+}

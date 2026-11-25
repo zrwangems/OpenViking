@@ -1,0 +1,80 @@
+{
+ "key": "PMSM Configuration",
+ "title": "PMSM Configuration",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Electrical Systems/Motors/PMSM_Configuration.md"
+ ],
+ "text": "Configure PMSM system parameters, 1 output; {Mechanical input configuration} selects port configuration, {Sample Time (Ts)} sets the sample time after which block executes again, {Number of pole pairs} sets the pole pairs, {Stator resistance per phase (Ohm)} sets the resistance of stator, {Stator d-axis inductance (H)} sets the d -axis inductance 1.7e-3, {Stator q-axis inductance (H)} sets the q -axis inductance 3.2e-3, {Permanent flux linkage constant (Wb)} sets the flux linkage constant, {Inertia (kgm^2)} sets the physical inertia, {Viscous damping (Nm/rad/s)} sets the viscous damping 4.924e-4 and {Static friction (Nm)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "output",
+   "summary": "Block configuration signal vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mechanical input configuration",
+   "default": "Torque",
+   "values": "Select port configuration Torque (default) | Speed",
+   "group": "Block Options"
+  },
+  {
+   "name": "Sample Time (Ts)",
+   "default": "1e-6",
+   "values": "Sample time after which block executes again 1e-6 (default) | scalar",
+   "group": "Block Options"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "Pole pairs 4 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator resistance per phase (Ohm)",
+   "default": "0.02",
+   "values": "Resistance of stator 0.02 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator d-axis inductance (H)",
+   "default": "1.7e-3",
+   "values": "d -axis inductance 1.7e-3 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator q-axis inductance (H)",
+   "default": "3.2e-3",
+   "values": "q -axis inductance 3.2e-3 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Permanent flux linkage constant (Wb)",
+   "default": "0.2205",
+   "values": "Flux linkage constant 0.2205 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Inertia (kgm^2)",
+   "default": "0.0027",
+   "values": "Physical inertia 0.0027 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Viscous damping (Nm/rad/s)",
+   "default": "4.924e-4",
+   "values": "Viscous damping 4.924e-4 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Static friction (Nm)",
+   "default": "0",
+   "values": "Static friction 0 (default) | scalar",
+   "group": "Parameters"
+  }
+ ]
+}

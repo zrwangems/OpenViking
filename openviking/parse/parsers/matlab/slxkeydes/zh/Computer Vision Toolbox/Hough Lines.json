@@ -1,0 +1,47 @@
+{
+ "key": "Hough Lines",
+ "title": "Hough Lines",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/Hough_Lines.md"
+ ],
+ "text": "查找由 rho 和 theta 对描述的直线的笛卡尔坐标，输入 3 路、输出 1 路；{Sine value computation method} 指定正弦值计算方法 Table、{Theta resolution (radians)} 指定 Theta 分辨率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Theta",
+   "direction": "input",
+   "summary": "Theta 值 scalar | vector"
+  },
+  {
+   "name": "Rho",
+   "direction": "input",
+   "summary": "Rho 值 scalar | vector"
+  },
+  {
+   "name": "Ref I",
+   "direction": "input",
+   "summary": "参考图像 matrix"
+  },
+  {
+   "name": "Pts",
+   "direction": "output",
+   "summary": "交点 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sine value computation method",
+   "default": "lookup",
+   "values": "正弦值计算方法 Table lookup (default) | Trigonometric function",
+   "group": ""
+  },
+  {
+   "name": "Theta resolution (radians)",
+   "default": "pi/180",
+   "values": "Theta 分辨率 pi/180 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

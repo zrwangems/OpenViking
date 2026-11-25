@@ -1,0 +1,37 @@
+{
+ "key": "DCM to LATLON",
+ "title": "Direction Cosine Matrix ECEF to NED to Latitude and Longitude",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Direction_Cosine_Matrix_ECEF_to_NED_to_Latitude_and_Longitude.md"
+ ],
+ "text": "Convert direction cosine matrix to geodetic latitude and longitude, 1 input, 1 output, {Action for invalid DCM} sets Block behavior; {Tolerance for DCM validation} sets the tolerance eps. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DCM ef",
+   "direction": "input",
+   "summary": "Direction cosine matrix 3-by-3 matrix"
+  },
+  {
+   "name": "μl",
+   "direction": "output",
+   "summary": "Geodetic latitude and longitude 2-by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Action for invalid DCM",
+   "default": "None",
+   "values": "Block behavior None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Tolerance for DCM validation",
+   "default": "eps(2)",
+   "values": "Tolerance eps(2) (default) | scalar",
+   "group": ""
+  }
+ ]
+}

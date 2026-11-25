@@ -1,0 +1,92 @@
+{
+ "key": "Bus Selector",
+ "title": "SoC Bus Selector",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/SoC_Bus_Selector.md"
+ ],
+ "text": "将总线转换为控制信号，输入 1 路、输出 12 路；按 {Control protocol} 指定协议接口选择 Data；{Control type} 控制类型选择，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ctrlBus",
+   "direction": "input",
+   "summary": "输入控制总线 bus"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "有效控制信号 boolean scalar"
+  },
+  {
+   "name": "tlast",
+   "direction": "output",
+   "summary": "数据包结束指示 boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "就绪控制信号 boolean scalar"
+  },
+  {
+   "name": "hStart",
+   "direction": "output",
+   "summary": "帧的水平行中的第一个像素 boolean scalar"
+  },
+  {
+   "name": "hEnd",
+   "direction": "output",
+   "summary": "帧的水平行中的最后一个像素 boolean scalar"
+  },
+  {
+   "name": "vStart",
+   "direction": "output",
+   "summary": "帧的第一（顶部）行中的第一个像素 boolean scalar"
+  },
+  {
+   "name": "vEnd",
+   "direction": "output",
+   "summary": "帧的最后（底部）行中的最后一个像素 boolean scalar"
+  },
+  {
+   "name": "rd_aready",
+   "direction": "output",
+   "summary": "接受读请求 boolean scalar"
+  },
+  {
+   "name": "rd_dvalid",
+   "direction": "output",
+   "summary": "读请求有效 boolean scalar"
+  },
+  {
+   "name": "wr_ready",
+   "direction": "output",
+   "summary": "写就绪信号 boolean scalar"
+  },
+  {
+   "name": "wr_bvalid",
+   "direction": "output",
+   "summary": "写有效信号 boolean scalar"
+  },
+  {
+   "name": "wr_complete",
+   "direction": "output",
+   "summary": "写事务完成 boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control protocol",
+   "default": "stream",
+   "values": "协议接口选择 Data stream (default) | Pixel stream | Random access read | Random access write",
+   "group": ""
+  },
+  {
+   "name": "Control type",
+   "default": "Valid",
+   "values": "控制类型选择 Valid (default) | Ready",
+   "group": ""
+  }
+ ]
+}

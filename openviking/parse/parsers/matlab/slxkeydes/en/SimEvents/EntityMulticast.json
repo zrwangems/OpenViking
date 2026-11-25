@@ -1,0 +1,31 @@
+{
+ "key": "EntityMulticast",
+ "title": "Entity Multicast",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Multicast.md"
+ ],
+ "text": "Send multicast entities, 1 input, 1 output; {Multicast tag} sets the tag with which to broadcast the entities. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "send",
+   "direction": "output",
+   "summary": "Broadcast entities scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Multicast tag",
+   "default": "A",
+   "values": "Specify the tag with which to broadcast the entities A (default) | character vector",
+   "group": ""
+  }
+ ]
+}

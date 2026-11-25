@@ -1,0 +1,199 @@
+{
+ "key": "OnlinePIDTuner",
+ "title": "Open-Loop PID Autotuner",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/Open_Loop_PID_Autotuner.md"
+ ],
+ "text": "Automatically tune PID gains based on plant frequency responses estimated from open-loop experiment in real time, 7 inputs, 7 outputs, {Type} sets PID controller actions PI; {Form} sets the pID controller form, {Time Domain} sets the pID controller time, {Controller sample time (sec)} sets the sample time of PID controller, {Experiment sample time (sec)} sets the sample time for experiment, {Integrator method} sets the discrete integration formula for integrator term Forward, {Filter method} sets the discrete integration formula for derivative filter term Forward, {Target bandwidth (rad/sec)} sets the target crossover frequency of tuned, {Target phase margin (degrees)} sets the target minimum phase margin of open-loop, {Sine Amplitudes} sets the amplitude of sinusoidal perturbations, {Estimate DC gain with step signal} sets the inject step signal into plant, {Step Amplitude} sets the amplitude of step perturbation, {Reduce memory and avoid task overrun (external mode only)} sets the deploy tuning algorithm only, {Configure block for PLC Coder} sets the configure block for code generation with Simulink PLC, {Data Type} sets the floating point precision, {Clicking \"Update PID Block\" writes tuned gains to the PID block connected to \"u\" port} sets the automatically detect target for writing tuned PID, {Specify PID block path} sets the target PID controller block for writing tuned coefficients, {Update PID Block} sets the write tuned PID gains to target controller block and {Export to MATLAB} sets the send experiment and tuning results to MATLAB workspace. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Signal from controller scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "Start and stop the autotuning experiment scalar"
+  },
+  {
+   "name": "bandwidth",
+   "direction": "input",
+   "summary": "Target bandwidth for tuning scalar"
+  },
+  {
+   "name": "target PM",
+   "direction": "input",
+   "summary": "Target phase margin for tuning scalar"
+  },
+  {
+   "name": "sine Amp",
+   "direction": "input",
+   "summary": "Amplitudes of injected sinusoidal signals scalar | vector"
+  },
+  {
+   "name": "step Amp",
+   "direction": "input",
+   "summary": "Amplitude of injected step signal scalar"
+  },
+  {
+   "name": "u+Δu",
+   "direction": "output",
+   "summary": "Signal for plant input scalar"
+  },
+  {
+   "name": "% conv",
+   "direction": "output",
+   "summary": "Convergence of FRD estimation during experiment scalar"
+  },
+  {
+   "name": "pid gains",
+   "direction": "output",
+   "summary": "Tuned PID coefficients bus"
+  },
+  {
+   "name": "estimated PM",
+   "direction": "output",
+   "summary": "Estimated phase margin with tuned controller scalar"
+  },
+  {
+   "name": "frd",
+   "direction": "output",
+   "summary": "Estimated frequency response vector"
+  },
+  {
+   "name": "dcgain",
+   "direction": "output",
+   "summary": "Estimated DC gain of plant scalar"
+  },
+  {
+   "name": "nominal",
+   "direction": "output",
+   "summary": "Plant input and output at nominal operating point vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "PI",
+   "values": "PID controller actions PI (default) | PID | PIDF |...",
+   "group": ""
+  },
+  {
+   "name": "Form",
+   "default": "Parallel",
+   "values": "PID controller form Parallel (default) | Ideal",
+   "group": ""
+  },
+  {
+   "name": "Time Domain",
+   "default": "discrete-time",
+   "values": "PID controller time domain discrete-time (default) | continuous-time",
+   "group": ""
+  },
+  {
+   "name": "Controller sample time (sec)",
+   "default": "0.1",
+   "values": "Sample time of PID controller 0.1 (default) | positive scalar | –1",
+   "group": ""
+  },
+  {
+   "name": "Experiment sample time (sec)",
+   "default": "0.02",
+   "values": "Sample time for experiment 0.02 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "Discrete integration formula for integrator term Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "Filter method",
+   "default": "Euler",
+   "values": "Discrete integration formula for derivative filter term Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "Target bandwidth (rad/sec)",
+   "default": "1",
+   "values": "Target crossover frequency of tuned response 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Target phase margin (degrees)",
+   "default": "60",
+   "values": "Target minimum phase margin of open-loop response 60 (default) | scalar in range 0–90",
+   "group": ""
+  },
+  {
+   "name": "Sine Amplitudes",
+   "default": "1",
+   "values": "Amplitude of sinusoidal perturbations 1 (default) | scalar | vector of length 4",
+   "group": ""
+  },
+  {
+   "name": "Estimate DC gain with step signal",
+   "default": "on",
+   "values": "Inject step signal into plant on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Step Amplitude",
+   "default": "1",
+   "values": "Amplitude of step perturbation 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reduce memory and avoid task overrun (external mode only)",
+   "default": "off",
+   "values": "Deploy tuning algorithm only off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Configure block for PLC Coder",
+   "default": "off",
+   "values": "Configure block for code generation with Simulink PLC Coder off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Floating point precision double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Clicking \"Update PID Block\" writes tuned gains to the PID block connected to \"u\" port",
+   "default": "on",
+   "values": "Automatically detect target for writing tuned PID coefficients on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Specify PID block path",
+   "default": "[]",
+   "values": "Target PID controller block for writing tuned coefficients [] (default) | block path",
+   "group": ""
+  },
+  {
+   "name": "Update PID Block",
+   "default": "",
+   "values": "Write tuned PID gains to target controller block button",
+   "group": ""
+  },
+  {
+   "name": "Export to MATLAB",
+   "default": "",
+   "values": "Send experiment and tuning results to MATLAB workspace button",
+   "group": ""
+  }
+ ]
+}

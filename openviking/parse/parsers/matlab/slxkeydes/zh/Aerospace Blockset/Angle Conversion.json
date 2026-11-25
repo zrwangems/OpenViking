@@ -1,0 +1,37 @@
+{
+ "key": "Angle Conversion",
+ "title": "Angle Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Angle_Conversion.md"
+ ],
+ "text": "将角度单位转换为所需角度单位，输入 1 路、输出 1 路；按 {Initial unit} 指定输入单位；{Final unit} 输出单位 rad，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "角度 scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "角度 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "deg",
+   "values": "输入单位 deg (default) | rad | rev",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "rad",
+   "values": "输出单位 rad (default) | deg | rev",
+   "group": ""
+  }
+ ]
+}

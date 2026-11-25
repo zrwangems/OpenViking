@@ -1,0 +1,13 @@
+{
+ "key": "Cylinder Friction (IL)",
+ "title": "Cylinder Friction (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Auxiliary Components/Cylinder_Friction_IL.md"
+ ],
+ "text": "为带有运动部件的缸添加摩擦。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

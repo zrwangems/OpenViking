@@ -1,0 +1,43 @@
+{
+ "key": "Software Trigger CPU<->CLA",
+ "title": "Software Trigger CPU<->CLA",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/Software_Trigger_CPU_CLA.md"
+ ],
+ "text": "Trigger software events between processor (CPU) and control law accelerator (CLA), 1 input, 1 output; {Task number} sets the task identification number, {Trigger condition} sets the condition to trigger an event and {Trigger type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Event trigger signal scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "Task event signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task number",
+   "default": "1",
+   "values": "Task identification number 1 (default) | integer from 1 to 8",
+   "group": ""
+  },
+  {
+   "name": "Trigger condition",
+   "default": "edge",
+   "values": "Condition to trigger an event Rising edge (default) | Input high",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "Trig",
+   "values": "Trigger type Trig (default) | TrigAndWait(codegen)",
+   "group": ""
+  }
+ ]
+}

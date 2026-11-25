@@ -1,0 +1,13 @@
+{
+ "key": "Cauer Thermal Model",
+ "title": "Cauer Thermal Model",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Thermal/Cauer_Thermal_Model.md"
+ ],
+ "text": "Heat transfer through multiple layers of a semiconductor module.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

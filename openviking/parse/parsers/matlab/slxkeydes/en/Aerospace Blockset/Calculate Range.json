@@ -1,0 +1,29 @@
+{
+ "key": "Calculate Range",
+ "title": "Calculate Range",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Guidance/Calculate_Range.md"
+ ],
+ "text": "Calculate range between two vehicles given their respective positions, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x 1",
+   "direction": "input",
+   "summary": "Vehicle 1 position 3-element vector"
+  },
+  {
+   "name": "x 2",
+   "direction": "input",
+   "summary": "Vehicle 2 position 3-element vector"
+  },
+  {
+   "name": "R 2-1",
+   "direction": "output",
+   "summary": "Range scalar"
+  }
+ ],
+ "params": []
+}

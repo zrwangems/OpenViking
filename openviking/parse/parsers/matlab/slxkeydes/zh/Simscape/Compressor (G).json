@@ -1,0 +1,13 @@
+{
+ "key": "Compressor (G)",
+ "title": "Compressor (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Turbomachinery/Compressor_G.md"
+ ],
+ "text": "热力学循环中的气体压缩机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

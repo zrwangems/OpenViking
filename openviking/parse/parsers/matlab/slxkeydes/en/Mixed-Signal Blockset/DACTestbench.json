@@ -1,0 +1,162 @@
+{
+ "key": "DACTestbench",
+ "title": "DAC Testbench",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Measurements & Testbenches/DAC_Testbench.md"
+ ],
+ "text": "Measure DC and AC performance metrics of DAC output, 1 input, 2 outputs; {Measurement} selects whether to measure DC or AC performance metrics, {Recommended min. simulation stop time (s)} sets the minimum time simulation must run for meaningful result, {Set as model stop time} sets the automatically set recommended min. simulation stop time as model stop time, {Endpoint} sets the measure DNL, INL using endpoint method, {Best fit} sets the measure DNL, INL using best fit method, {Plot DC analysis result}, {Export measurement result} sets the store detailed test results to base workspace, {Digital input frequency (Hz)} sets the frequency of digital input signal to DAC, {Start conversion frequency (Hz)} sets the frequency of internal start-conversion clock, {Error tolerance (LSB)} sets the maximum difference between successive samples of digital, {Autofill setup parameters} sets the automatically propagate setup parameters from DAC, {Number of bits}, {Input polarity} sets the polarity of input signal, {Reference (V)} sets the reference voltage, {Bias (V)} sets the bias voltage added to output, {Settling time (s)} sets the time required for output to settle, {Settling time tolerance (LSB)} sets the tolerance for calculating settling time, {Hold off time (s)} sets the delay before measurement analysis, {Show spectrum analyzer during simulation} sets the displays Spectrum Analyzer during, {Autofill target metric} sets the automatically propagate target metrics from DAC, {Offset error} sets the shifts quantization steps by specific value and {Gain error} sets the error in slope of DAC transfer curve. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "from dac analog",
+   "direction": "input",
+   "summary": "Analog signal from DAC output scalar"
+  },
+  {
+   "name": "to dac digital",
+   "direction": "output",
+   "summary": "Digital stimulus signal for DAC input scalar"
+  },
+  {
+   "name": "to dac start",
+   "direction": "output",
+   "summary": "External start conversion clock for DAC scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "DC",
+   "values": "Select whether to measure DC or AC performance metrics DC (default) | AC",
+   "group": ""
+  },
+  {
+   "name": "Recommended min. simulation stop time (s)",
+   "default": "2.048e-02",
+   "values": "Minimum time simulation must run for meaningful result 2.048e-02 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Set as model stop time",
+   "default": "",
+   "values": "Automatically set recommended min. simulation stop time as model stop time button",
+   "group": ""
+  },
+  {
+   "name": "Endpoint",
+   "default": "on",
+   "values": "Measure DNL, INL using endpoint method on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Best fit",
+   "default": "on",
+   "values": "Measure DNL, INL using best fit method on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Plot DC analysis result",
+   "default": "",
+   "values": "Plot DC analysis result button",
+   "group": ""
+  },
+  {
+   "name": "Export measurement result",
+   "default": "",
+   "values": "Store detailed test results to base workspace button",
+   "group": ""
+  },
+  {
+   "name": "Digital input frequency (Hz)",
+   "default": "1e4",
+   "values": "Frequency of digital input signal to DAC 1e4 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "1e6",
+   "values": "Frequency of internal start-conversion clock 1e6 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Error tolerance (LSB)",
+   "default": "0.1",
+   "values": "Maximum difference between successive samples of digital signal 0.1 (default) | positive scalar in the range ( 0, 1 ]",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Autofill setup parameters",
+   "default": "",
+   "values": "Automatically propagate setup parameters from DAC button",
+   "group": "Setup"
+  },
+  {
+   "name": "Number of bits",
+   "default": "10",
+   "values": "Number of bits in input word 10 (default) | positive real integer",
+   "group": "Setup"
+  },
+  {
+   "name": "Input polarity",
+   "default": "Bipolar",
+   "values": "Polarity of input signal to DAC Bipolar (default) | Unipolar",
+   "group": "Setup"
+  },
+  {
+   "name": "Reference (V)",
+   "default": "1",
+   "values": "Reference voltage 1 (default) | real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Bias (V)",
+   "default": "0",
+   "values": "Bias voltage added to output 0 (default) | real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Settling time (s)",
+   "default": "0.25/1e-6",
+   "values": "Time required for output to settle 0.25/1e-6 (default) | nonnegative real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Settling time tolerance (LSB)",
+   "default": "0.5",
+   "values": "Tolerance for calculating settling time 0.5 (default) | positive real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "Delay before measurement analysis 0 (default) | nonnegative real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Show spectrum analyzer during simulation",
+   "default": "off",
+   "values": "Displays Spectrum Analyzer during simulation off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Autofill target metric",
+   "default": "",
+   "values": "Automatically propagate target metrics from DAC button",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "Shifts quantization steps by specific value 0 LSB (default) | real scalar",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "Error in slope of DAC transfer curve 0 LSB (default) | real scalar",
+   "group": "Target Metric"
+  }
+ ]
+}

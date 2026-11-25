@@ -1,0 +1,36 @@
+{
+ "key": "Data Cube Slicer",
+ "title": "Cube Slicer",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Space-Time Adaptive Processing/Cube_Slicer.md"
+ ],
+ "text": "沿指定维度对数据立方体进行切片，输入 2 路、输出 1 路；按 {Output Slice} 指定输出切片。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入数据立方体 M -by- Q -by- N complex-valued array"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "切片平面索引 positive integer"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出 complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output Slice",
+   "default": "Angle-Doppler",
+   "values": "输出切片 Angle-Doppler (default) | Range-Doppler | Range-angle",
+   "group": ""
+  }
+ ]
+}

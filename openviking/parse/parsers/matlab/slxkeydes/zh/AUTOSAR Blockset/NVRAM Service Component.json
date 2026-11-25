@@ -1,0 +1,32 @@
+{
+ "key": "NVRAM Service Component",
+ "title": "NVRAM Service Component",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/NVRAM Manager (NvM)/NVRAM_Service_Component.md"
+ ],
+ "text": "配置 AUTOSAR NVRAM 服务和运行时环境 (RTE) 以进行模拟；{模块 ID} 指定标识服务模块的 ID、{最大内存块数}、{初始值}，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "模块 ID",
+   "default": "1",
+   "values": "标识服务模块的 ID 1 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "最大内存块数",
+   "default": "10",
+   "values": "在 NvM 服务操作中使用的最大内存块数 10 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "初始值",
+   "default": "0",
+   "values": "NvM 客户端端口的初始值 0 (默认) | 实数有限标量或向量",
+   "group": ""
+  }
+ ]
+}

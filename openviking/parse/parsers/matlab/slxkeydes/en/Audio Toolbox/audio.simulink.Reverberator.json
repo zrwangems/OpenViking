@@ -1,0 +1,109 @@
+{
+ "key": "audio.simulink.Reverberator",
+ "title": "Reverberator",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Effects/Reverberator.md"
+ ],
+ "text": "Add reverberation to audio signal, 7 inputs, 1 output, no direct feedthrough; {Pre-delay (s)} sets the pre-delay for reverberation, {Highcut frequency (Hz)} sets the lowpass filter cutoff, {Diffusion} sets the density of reverb tail, {Decay factor}, {High frequency damping} sets the high-frequency damping, {Wet/dry mix} sets the ratio of wet, {Inherit sample rate from input} sets the source of input sample rate, {Input sample rate (Hz)} sets the sample rate of input and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input signal matrix | 1-D vector"
+  },
+  {
+   "name": "Delay",
+   "direction": "input",
+   "summary": "Pre-delay for reverberation (s) scalar in the range [0,1]"
+  },
+  {
+   "name": "HighCut",
+   "direction": "input",
+   "summary": "Lowpass filter cutoff positive scalar in the range [0, (Sample Rate)/2]"
+  },
+  {
+   "name": "Diffusion",
+   "direction": "input",
+   "summary": "Density of reverb tail scalar in the range [0,1]"
+  },
+  {
+   "name": "Decay",
+   "direction": "input",
+   "summary": "Decay factor of reverb tail scalar in the range [0,1]"
+  },
+  {
+   "name": "Damping",
+   "direction": "input",
+   "summary": "High-frequency damping scalar in the range [0,1]"
+  },
+  {
+   "name": "WetDry",
+   "direction": "input",
+   "summary": "Ratio of wet (reverberated) signal to dry (original) signal scalar in the range [0,1]"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pre-delay (s)",
+   "default": "0",
+   "values": "Pre-delay for reverberation 0 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Highcut frequency (Hz)",
+   "default": "20000",
+   "values": "Lowpass filter cutoff 20000 (default) | scalar in the range [0, (Sample Rate)/2]",
+   "group": ""
+  },
+  {
+   "name": "Diffusion",
+   "default": "0.50",
+   "values": "Density of reverb tail 0.50 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Decay factor",
+   "default": "0.50",
+   "values": "Decay factor of reverb tail 0.50 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "High frequency damping",
+   "default": "0.0005",
+   "values": "High-frequency damping 0.0005 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Wet/dry mix",
+   "default": "0.3",
+   "values": "Ratio of wet (reverberated) signal to dry (original) signal 0.3 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Specify source of input sample rate on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

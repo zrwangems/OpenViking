@@ -1,0 +1,73 @@
+{
+ "key": "phased.internal.SimulinkBistaticPositionEstimator",
+ "title": "Bistatic Position Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/Bistatic_Position_Estimator.md"
+ ],
+ "text": "Estimate targets positions using bistatic range and angle measurements, 6 inputs, 2 outputs; {Range Measurement} sets the range measurement type, {Enable known variance input} and {Output covariances of position estimates}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RngEst",
+   "direction": "input",
+   "summary": "Range measurement (meters) real-valued 1-by- K vector | real-valued J -by- L matrix"
+  },
+  {
+   "name": "AngEst",
+   "direction": "input",
+   "summary": "Angle-of-arrival estimate (degrees) real-valued 1-by- L row vector | real-valued 2-by- L matrix"
+  },
+  {
+   "name": "RngVar",
+   "direction": "input",
+   "summary": "Range variance (meters-squared) positive real-valued J -by- L matrix | positive real-valued length- K row vector"
+  },
+  {
+   "name": "AngVar",
+   "direction": "input",
+   "summary": "Angle variance (degrees-squared) real-valued 1-by- L row vector | real-valued 2-by- L matrix"
+  },
+  {
+   "name": "TxPos",
+   "direction": "input",
+   "summary": "Transmitting anchor positions (meters) real-valued Q -by- J matrix"
+  },
+  {
+   "name": "RxPos",
+   "direction": "input",
+   "summary": "Receiving anchor positions (meters) real-valued Q -by- L matrix"
+  },
+  {
+   "name": "TgtPosEst",
+   "direction": "output",
+   "summary": "Target position estimate (meters) real-valued Q -by-1 vector"
+  },
+  {
+   "name": "TgtPosCov",
+   "direction": "output",
+   "summary": "Estimated target position covariance (meters-squared) real-valued Q -by- Q matrix | real-valued Q -by- Q -by- K array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Range Measurement",
+   "default": "range",
+   "values": "Range measurement type Bistatic range (default) | Range sum",
+   "group": ""
+  },
+  {
+   "name": "Enable known variance input",
+   "default": "on",
+   "values": "Enable known variance inputs on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output covariances of position estimates",
+   "default": "off",
+   "values": "Output covariances of position estimates off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Turbine (G)",
+ "title": "Turbine (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Turbomachinery/Turbine_G.md"
+ ],
+ "text": "热力学循环中的燃气轮机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

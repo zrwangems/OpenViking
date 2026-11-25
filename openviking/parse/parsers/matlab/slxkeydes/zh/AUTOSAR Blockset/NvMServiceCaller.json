@@ -1,0 +1,38 @@
+{
+ "key": "NvMServiceCaller",
+ "title": "NvMServiceCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/NVRAM Manager (NvM)/NvMServiceCaller.md"
+ ],
+ "text": "调用 AUTOSAR NVRAM Manager (NvM) 服务接口 NvMService；按 {操作} 指定在 NvM 服务接口 NvMService 中定义的操作；{客户端端口名称} 指定 AUTOSAR 组件用于调用 NvM 服务接口 NvMService 的客户端端口的名称、{参量设定} 为操作读取或写入访问权限指定数据类型和维度、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "客户端端口名称",
+   "default": "NvMService",
+   "values": "AUTOSAR 组件用于调用 NvM 服务接口 NvMService 的客户端端口的名称 NvMService (默认) | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "操作",
+   "default": "GetDataIndex",
+   "values": "指定在 NvM 服务接口 NvMService 中定义的操作 GetDataIndex (默认) | GetErrorStatus | EraseNvBlock | InvalidateNvBlock | ReadBlock | RestoreBlockDefaults | SetDataIndex | SetRamBlockStatus | WriteBlock",
+   "group": ""
+  },
+  {
+   "name": "参量设定",
+   "default": "uint8(1)",
+   "values": "为操作读取或写入访问权限指定数据类型和维度 uint8(1) (默认) | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Interface (TL-IL)",
+ "title": "Interface (TL-IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Fluid Network Interfaces/Interface_TL_IL.md"
+ ],
+ "text": "热网络与等温网络之间的连接。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

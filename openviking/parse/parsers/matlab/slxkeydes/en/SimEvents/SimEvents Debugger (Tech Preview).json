@@ -1,0 +1,20 @@
+{
+ "key": "SimEvents Debugger (Tech Preview)",
+ "title": "SimEvents Debugger",
+ "toolbox": "SimEvents",
+ "kind": "source_type",
+ "source_docs": [
+  "SimEvents/SimEvents_Debugger.md"
+ ],
+ "text": "Debug SimEvents models; {Enable debugger} enables the debugger. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Enable debugger",
+   "default": "on",
+   "values": "Enable the debugger on (default) | off",
+   "group": ""
+  }
+ ]
+}

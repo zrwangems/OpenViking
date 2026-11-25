@@ -1,0 +1,80 @@
+{
+ "key": "Induction Motor Configuration",
+ "title": "Induction Motor Configuration",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Electrical Systems/Motors/Induction_Motor_Configuration.md"
+ ],
+ "text": "Configure system parameters of induction motor, 1 output; {Port configuration} selects port configuration, {Sample Time (Ts)} sets the sample time after which block executes again, {Number of pole pairs} sets the pole pairs, {Stator resistance (Ohm)}, {Leakage inductance (H)} sets the stator leakage inductance, {Rotor resistance (Ohm)}, {Magnetizing inductance (H)} sets the inductance, {Physical Inertia (kg*m^2)} sets the physical inertia, {Viscous damping (N*m/rad/s)} and {Static friction (N*m)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "output",
+   "summary": "Block configuration signal vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port configuration",
+   "default": "Torque",
+   "values": "Select port configuration Torque (default) | Speed",
+   "group": "Block Options"
+  },
+  {
+   "name": "Sample Time (Ts)",
+   "default": "1e-6",
+   "values": "Sample time after which block executes again 1e-6 (default) | scalar",
+   "group": "Block Options"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "2",
+   "values": "Pole pairs 2 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator resistance (Ohm)",
+   "default": "1.77",
+   "values": "Stator resistance 1.77 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Leakage inductance (H)",
+   "default": "0.0139",
+   "values": "Stator leakage inductance 0.0139 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Rotor resistance (Ohm)",
+   "default": "1.34",
+   "values": "Rotor resistance 1.34 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Magnetizing inductance (H)",
+   "default": "0.3876",
+   "values": "Inductance 0.3876 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Physical Inertia (kg*m^2)",
+   "default": "0.001",
+   "values": "Physical inertia 0.001 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Viscous damping (N*m/rad/s)",
+   "default": "0",
+   "values": "Viscous damping 0 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Static friction (N*m)",
+   "default": "0",
+   "values": "Static friction 0 (default) | scalar",
+   "group": "Parameters"
+  }
+ ]
+}

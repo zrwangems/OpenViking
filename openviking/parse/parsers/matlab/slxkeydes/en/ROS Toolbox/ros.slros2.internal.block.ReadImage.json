@@ -1,0 +1,86 @@
+{
+ "key": "ros.slros2.internal.block.ReadImage",
+ "title": "Read Image",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Read_Image.md"
+ ],
+ "text": "Send messages to ROS 2 network, 1 input, {Topic source} sets Source for specifying topic name Select from ROS network; {Topic}, {Message type} sets the rOS message type string, {History} sets the mode of storing messages in the queue Keep, {Depth} sets the size of the message queue, {Reliability} sets the delivery guarantee, {Durability} sets the persistence of messages, {Deadline} sets the expected interval between publishing consecutive messages, {Lifespan} sets the message validity window between publishing and reception, {Liveliness} sets the publisher aliveness asserting protocol and {Lease Duration} sets the maximum time window between liveliness assertions. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS message non-virtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic source",
+   "default": "",
+   "values": "Source for specifying topic name Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "Topic name to publish to string",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "",
+   "values": "ROS message type string",
+   "group": ""
+  },
+  {
+   "name": "History",
+   "default": "last",
+   "values": "Mode of storing messages in the queue Keep last (default) | Keep all",
+   "group": ""
+  },
+  {
+   "name": "Depth",
+   "default": "1",
+   "values": "Size of the message queue 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reliability",
+   "default": "Reliable",
+   "values": "Delivery guarantee of messages Reliable (default) | Best effort",
+   "group": ""
+  },
+  {
+   "name": "Durability",
+   "default": "Volatile",
+   "values": "Persistence of messages Volatile (default) | Transient local",
+   "group": ""
+  },
+  {
+   "name": "Deadline",
+   "default": "Inf",
+   "values": "Expected interval between publishing consecutive messages Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lifespan",
+   "default": "Inf",
+   "values": "Message validity window between publishing and reception Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Liveliness",
+   "default": "\"automatic\"",
+   "values": "Publisher aliveness asserting protocol \"automatic\" (default)",
+   "group": ""
+  },
+  {
+   "name": "Lease Duration",
+   "default": "Inf",
+   "values": "Maximum time window between liveliness assertions Inf (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,63 @@
+{
+ "key": "Image Statistics",
+ "title": "Image Statistics",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Statistics/Image_Statistics.md"
+ ],
+ "text": "Calculate mean, variance, and standard deviation, 2 inputs, 4 outputs; {Enable mean output} sets the calculate the mean of each input frame, {Enable variance output} sets the calculate the variance of each input frame and {Enable std. deviation} sets the calculate the standard deviation of each input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "mean",
+   "direction": "output",
+   "summary": "Mean of most recent input frame completed scalar"
+  },
+  {
+   "name": "var",
+   "direction": "output",
+   "summary": "Variance of most recent input frame completed scalar"
+  },
+  {
+   "name": "stdDev",
+   "direction": "output",
+   "summary": "Standard deviation of most recent input frame completed scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Computations completed boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable mean output",
+   "default": "on",
+   "values": "Calculate the mean of each input frame on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable variance output",
+   "default": "on",
+   "values": "Calculate the variance of each input frame on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable std. deviation",
+   "default": "on",
+   "values": "Calculate the standard deviation of each input frame on (default) | off",
+   "group": ""
+  }
+ ]
+}

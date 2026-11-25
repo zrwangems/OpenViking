@@ -1,0 +1,110 @@
+{
+ "key": "audio.simulink.DynamicRangeGate",
+ "title": "Noise Gate",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Dynamic Range Control/Noise_Gate.md"
+ ],
+ "text": "Dynamic range gate, 5 inputs, 2 outputs, no direct feedthrough; {Threshold (dB)} sets the operation threshold, {View static characteristic} sets the open static characteristic plot of dynamic range gate, {Attack time (s)} sets the time for applied gain to ramp up, {Release time (s)} sets the time for applied gain to ramp down, {Hold time (s)} sets the time during which applied gain holds, {Inherit sample rate from input} sets the source of input sample rate, {Input sample rate (Hz)} sets the input sample rate, {Output gain (dB)} sets the gain applied on each input sample, {Sidechain} enables sidechain input and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input signal matrix | 1-D vector"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Threshold (dB) scalar"
+  },
+  {
+   "name": "AT",
+   "direction": "input",
+   "summary": "Attack time (s) scalar"
+  },
+  {
+   "name": "RT",
+   "direction": "input",
+   "summary": "Release time (s) scalar"
+  },
+  {
+   "name": "HT",
+   "direction": "input",
+   "summary": "Hold time (s) scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Gain applied to each input sample matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Threshold (dB)",
+   "default": "–10",
+   "values": "Operation threshold –10 (default) | scalar in the range –140 to 0 inclusive",
+   "group": ""
+  },
+  {
+   "name": "View static characteristic",
+   "default": "",
+   "values": "Open static characteristic plot of dynamic range gate button",
+   "group": ""
+  },
+  {
+   "name": "Attack time (s)",
+   "default": "0.05",
+   "values": "Time for applied gain to ramp up 0.05 (default) | scalar in the range 0 to 4 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Release time (s)",
+   "default": "0.2",
+   "values": "Time for applied gain to ramp down 0.2 (default) | scalar in the range 0 to 4 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Hold time (s)",
+   "default": "0.05",
+   "values": "Time during which applied gain holds steady 0.05 (default) | scalar in the range 0 to 4",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Specify source of input sample rate on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Specify input sample rate 44100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output gain (dB)",
+   "default": "off",
+   "values": "Gain applied on each input sample off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sidechain",
+   "default": "off",
+   "values": "Enable sidechain input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

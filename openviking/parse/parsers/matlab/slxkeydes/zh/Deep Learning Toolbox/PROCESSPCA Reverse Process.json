@@ -1,0 +1,13 @@
+{
+ "key": "PROCESSPCA Reverse Process",
+ "title": "processpca_reverse",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/processpca_reverse.md"
+ ],
+ "text": "使用主成分分析处理矩阵的列。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,54 @@
+{
+ "key": "Permute Matrix",
+ "title": "Permute Matrix",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Permute_Matrix.md"
+ ],
+ "text": "重新排列矩阵的行或列，输入 2 路、输出 1 路、无直接馈通；按 {Invalid permutation index} 指定对无效索引值的响应 Clip；{Permute}、{Index mode} 指定索引模式 One-based、{Error when length of P is not equal to Permute dimension size} 指定 P 长度的错误消息，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "索引矩阵 scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Permute",
+   "default": "Columns",
+   "values": "Permute 方法 Columns (default) | Rows",
+   "group": ""
+  },
+  {
+   "name": "Index mode",
+   "default": "One-based",
+   "values": "索引模式 One-based (default) | Zero-based",
+   "group": ""
+  },
+  {
+   "name": "Invalid permutation index",
+   "default": "index",
+   "values": "对无效索引值的响应 Clip index (default) | Clip and warn | Generate error",
+   "group": ""
+  },
+  {
+   "name": "Error when length of P is not equal to Permute dimension size",
+   "default": "off",
+   "values": "P 长度的错误消息 off (default) | on",
+   "group": ""
+  }
+ ]
+}

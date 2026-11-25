@@ -1,0 +1,13 @@
+{
+ "key": "Compound Planetary Gear",
+ "title": "Compound Planetary Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Compound_Planetary_Gear.md"
+ ],
+ "text": "Planetary gear train with stepped planet gear set.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Reservoir (TL)",
+ "title": "Reservoir (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Reservoir_TL.md"
+ ],
+ "text": "温度和压力恒定的热液体储液器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

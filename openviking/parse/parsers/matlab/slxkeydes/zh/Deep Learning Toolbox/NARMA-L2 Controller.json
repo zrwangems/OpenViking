@@ -1,0 +1,13 @@
+{
+ "key": "NARMA-L2 Controller",
+ "title": "NARMA-L2 Controller",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NARMA_L2_Controller.md"
+ ],
+ "text": "本节所述的神经控制器有两个不同名称：反馈线性化控制和 NARMA-L2 控制。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

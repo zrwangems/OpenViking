@@ -1,0 +1,49 @@
+{
+ "key": "Uniform Decoder",
+ "title": "Uniform Decoder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/Uniform_Decoder.md"
+ ],
+ "text": "将整数输入解码为浮点输出，输入 1 路、输出 1 路、无直接馈通；{Peak} 指定编码输入中的最大幅值、{Bits} 指定位数、{Overflow mode} 指定溢出模式 Saturate、{Output type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "解码输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Peak",
+   "default": "1",
+   "values": "编码输入中的最大幅值 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Bits",
+   "default": "3",
+   "values": "位数 3 (default) | integer in the range [ 2, 32 ]",
+   "group": ""
+  },
+  {
+   "name": "Overflow mode",
+   "default": "Saturate",
+   "values": "溢出模式 Saturate (default) | Wrap",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Double",
+   "values": "输出数据类型 Double (default) | Single",
+   "group": ""
+  }
+ ]
+}

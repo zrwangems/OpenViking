@@ -1,0 +1,69 @@
+{
+ "key": "Path Manager",
+ "title": "Path Manager",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Path_Manager.md"
+ ],
+ "text": "Compute and execute a UAV autonomous mission, 5 inputs, 1 output; {UAV type} sets the type of UAV, {Loiter radius}, {Data type} and {Mission bus name} sets the name of input mission bus. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "Current UAV pose four-element column vector"
+  },
+  {
+   "name": "MissionData",
+   "direction": "input",
+   "summary": "UAV mission data UAVPathManagerBus bus"
+  },
+  {
+   "name": "IsModeDone",
+   "direction": "input",
+   "summary": "Determine if mission point was executed 0 (default) | 1"
+  },
+  {
+   "name": "MissionCmd",
+   "direction": "input",
+   "summary": "Command to change mission uint8(0) (default) | 8-bit unsigned integer between 0 and 3"
+  },
+  {
+   "name": "Home",
+   "direction": "input",
+   "summary": "UAV home location three-element column vector"
+  },
+  {
+   "name": "MissionParams",
+   "direction": "output",
+   "summary": "UAV mission parameters UAVPathManagerBus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "UAV type",
+   "default": "multirotor",
+   "values": "Type of UAV multirotor (default) | fixed-wing",
+   "group": ""
+  },
+  {
+   "name": "Loiter radius",
+   "default": "25",
+   "values": "Loiter radius for fixed-wing UAV 25 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "Data type of input mission bus double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Mission bus name",
+   "default": "’UAVPathManagerBus’",
+   "values": "Name of input mission bus ’UAVPathManagerBus’ (default)",
+   "group": ""
+  }
+ ]
+}

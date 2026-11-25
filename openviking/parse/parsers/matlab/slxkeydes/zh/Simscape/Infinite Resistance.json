@@ -1,0 +1,13 @@
+{
+ "key": "Infinite Resistance",
+ "title": "Infinite Resistance",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Infinite_Resistance.md"
+ ],
+ "text": "电气系统中的分段线性二极管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

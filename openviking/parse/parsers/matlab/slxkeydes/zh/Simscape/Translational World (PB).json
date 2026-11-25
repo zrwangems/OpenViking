@@ -1,0 +1,13 @@
+{
+ "key": "Translational World (PB)",
+ "title": "Translational World (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_World_PB.md"
+ ],
+ "text": "基于位置的平移网络的全局参考坐标系。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

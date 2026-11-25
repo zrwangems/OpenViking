@@ -1,0 +1,13 @@
+{
+ "key": "Dynamic Load (Three-Phase)",
+ "title": "Dynamic Load (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Dynamic_Load_Three_Phase.md"
+ ],
+ "text": "Balanced three-phase dynamic load.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

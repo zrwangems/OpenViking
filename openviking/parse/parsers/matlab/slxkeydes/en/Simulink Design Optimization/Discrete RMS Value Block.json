@@ -1,0 +1,31 @@
+{
+ "key": "Discrete RMS Value Block",
+ "title": "DRMS",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/RMS Blocks/DRMS.md"
+ ],
+ "text": "Compute discrete-time, cumulative root mean square (DRMS) of signal, 1 input, 1 output; {Sampling interval} sets the sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "DRMS value scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sampling interval",
+   "default": "1",
+   "values": "Sample time 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

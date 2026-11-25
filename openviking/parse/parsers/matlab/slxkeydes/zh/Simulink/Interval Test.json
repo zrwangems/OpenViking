@@ -1,0 +1,56 @@
+{
+ "key": "Interval Test",
+ "title": "Interval Test",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Interval_Test.md",
+  "HDL Coder/Logic and Bit Operations/Interval_Test.md"
+ ],
+ "text": "确定信号是否在指定区间中，输入 1 路、输出 1 路；按 {上限} 指定区间的上限；{右半闭区间} 指定包含上限值、{左半闭区间} 指定包含下限值、{下限}、{输出数据类型}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "右半闭区间",
+   "default": "on",
+   "values": "包含上限值 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "上限",
+   "default": "0.5",
+   "values": "区间的上限 0.5 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "左半闭区间",
+   "default": "on",
+   "values": "包含下限值 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "下限",
+   "default": "-0.5",
+   "values": "区间的下限 -0.5 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "boolean",
+   "values": "输出数据类型 boolean (默认) | uint8",
+   "group": ""
+  }
+ ]
+}

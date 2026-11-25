@@ -1,0 +1,114 @@
+{
+ "key": "Simulation 3D Fisheye Camera",
+ "title": "Simulation 3D Fisheye Camera",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Fisheye_Camera.md",
+  "UAV Toolbox/Simulation 3D/Simulation_3D_Fisheye_Camera.md",
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Fisheye_Camera.md"
+ ],
+ "text": "3D 仿真环境中的鱼眼相机传感器模型，输入 2 路、输出 3 路；按 {Mounting location} 指定传感器安装位置；{Sensor identifier} 指定唯一传感器标识符、{Parent name} 指定父车辆名称 Scene、{Specify offset} 指定相对于安装位置的偏移、{Relative translation [X, Y, Z] (m)} 指定相对于安装位置的平移偏移量、{Relative rotation [Roll, Pitch, Yaw] (deg)} 指定相对于安装位置的旋转偏移量、{Sample time} 指定采样时间、{Distortion center (pixels)} 指定畸变中心、{Image size (pixels)} 指定相机生成的图像大小、{Mapping coefficients} 指定投影函数的多项式系数、{Stretch matrix} 指定将点从传感器平面变换到相机平面、{Output location (m) and orientation (rad)} 输出传感器的位置和方向，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rel Translation",
+   "direction": "input",
+   "summary": "传感器相对于安装点的相对平移 (m) [0 0 0] (default) | real-valued 1-by-3 vector of form [ X Y Z ]"
+  },
+  {
+   "name": "Rel Rotation",
+   "direction": "input",
+   "summary": "传感器相对于安装点的相对旋转 (deg) [0 0 0] (default) | real-valued 1-by-3 vector of form [ Roll Pitch Yaw ]"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "3D 输出相机图像 m -by- n -by-3 array of RGB triplet values"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "传感器位置 real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "传感器方向 real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "唯一传感器标识符 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "父车辆名称 Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "传感器安装位置 Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "指定相对于安装位置的偏移 off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "相对于安装位置的平移偏移量 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "相对于安装位置的旋转偏移量 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Distortion center (pixels)",
+   "default": "360]",
+   "values": "畸变中心 [640, 360] (default) | real-valued 1-by-2 vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Image size (pixels)",
+   "default": "1280]",
+   "values": "相机生成的图像大小 [720, 1280] (default) | real-valued 1-by-2 vector of positive integers",
+   "group": "Parameters"
+  },
+  {
+   "name": "Mapping coefficients",
+   "default": "0]",
+   "values": "投影函数的多项式系数 [320, 0, 0, 0] (default) | real-valued 1-by-4 vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stretch matrix",
+   "default": "1]",
+   "values": "将点从传感器平面变换到相机平面 [1, 0; 0, 1] (default) | real-valued 2-by-2 matrix",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "输出传感器的位置和方向 off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

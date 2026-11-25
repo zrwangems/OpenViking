@@ -1,0 +1,98 @@
+{
+ "key": "Output Port",
+ "title": "Output Port",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Input_Output Ports/Output_Port.md"
+ ],
+ "text": "从 RF 物理模块到 Simulink 环境的连接模块；按 {X format} 指定绘图格式；{Load impedance(ohms)} 指定 RF 网络的负载阻抗、{Source of frequency data} 指定频率数据源 Derived from Input Port、{Frequency data (Hz)} 指定频率数据范围、{Reference impedance (ohms)} 指定参考阻抗、{Plot type} 指定数据绘图类型 X-Y、{Y parameter1} 指定要绘制的参数类型、{Y parameter2} 指定要绘制的参数类型、{Y format1} 指定绘图格式 Magnitude、{Y format2} 指定绘图格式 Magnitude、{X parameter} 指定 X 参数 Freq、{Y scale} 指定 Y 轴刻度、{X scale} 指定 X 轴刻度、{Plot} 绘制指定数据，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Load impedance(ohms)",
+   "default": "50",
+   "values": "RF 网络的负载阻抗 50 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "parameter",
+   "values": "频率数据源 Derived from Input Port parameter (default) | User-specified",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "1e9:1e8:3e9",
+   "values": "频率数据范围 1e9:1e8:3e9 (default) | vector",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "参考阻抗 50 (default) | scalar",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "数据绘图类型 X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF |...",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF |...",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "X 参数 Freq (default)",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "绘图格式 Hz (default) | Auto | KHz | MHz | GHz | THz",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Log",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Log",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制指定数据 button",
+   "group": "Visualization Tab"
+  }
+ ]
+}

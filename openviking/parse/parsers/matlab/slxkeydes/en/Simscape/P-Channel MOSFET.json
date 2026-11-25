@@ -1,0 +1,13 @@
+{
+ "key": "P-Channel MOSFET",
+ "title": "P-Channel MOSFET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/P_Channel_MOSFET.md"
+ ],
+ "text": "P-Channel metal-oxide-semiconductor field-effect transistor using either Shichman-Hodges equation or surface-potential-based model.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

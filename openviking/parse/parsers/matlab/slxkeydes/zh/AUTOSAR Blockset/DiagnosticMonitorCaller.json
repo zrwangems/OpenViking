@@ -1,0 +1,38 @@
+{
+ "key": "DiagnosticMonitorCaller",
+ "title": "DiagnosticMonitorCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/DiagnosticMonitorCaller.md"
+ ],
+ "text": "调用 AUTOSAR Diagnostic Event Manager (Dem) 服务接口 DiagnosticMonitor；按 {操作} 指定在 Dem 服务接口 DiagnosticMonitor 中定义的操作；{客户端端口名称} 指定 AUTOSAR 组件用于调用 Dem 服务接口 DiagnosticMonitor 的客户端端口的名称、{EventStatus 的数据类型} 表示 Dem 事件类型的数据类型 Enum、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "客户端端口名称",
+   "default": "DiagnosticMonitor",
+   "values": "AUTOSAR 组件用于调用 Dem 服务接口 DiagnosticMonitor 的客户端端口的名称 DiagnosticMonitor (默认) | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "操作",
+   "default": "SetEventStatus",
+   "values": "指定在 Dem 服务接口 DiagnosticMonitor 中定义的操作 SetEventStatus (默认) | ResetMonitorStatus | ResetEventStatus | PrestoreFreezeFrame | ClearPrestoredFreezeFrame | SetEventDisabled",
+   "group": ""
+  },
+  {
+   "name": "EventStatus 的数据类型",
+   "default": "Dem_EventStatusType",
+   "values": "指定表示 Dem 事件类型的数据类型 Enum: Dem_EventStatusType (默认)",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "’-1’",
+   "values": "模块采样时间 ’-1’ (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "key": "Self-Conditioned",
+ "title": "Self-Conditioned [A,B,C,D]",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/Self_Conditioned_A_B_C_D.md"
+ ],
+ "text": "Implement state-space controller in self-conditioned form, 2 inputs, 1 output, {D-matrix} sets D -matrix of the state-space implementation; {A-matrix} sets a -matrix of the state-space implementation, {B-matrix} sets the b -matrix of the state-space implementation, {C-matrix} sets the c -matrix of the state-space implementation, {Initial state, x_initial} sets the initial states and {Poles of A-H*C} sets the desired poles. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "e",
+   "direction": "input",
+   "summary": "Control error vector"
+  },
+  {
+   "name": "u_meas",
+   "direction": "input",
+   "summary": "Achieved actuator positions vector"
+  },
+  {
+   "name": "u_dem",
+   "direction": "output",
+   "summary": "Actuator demands vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A-matrix",
+   "default": "-3]",
+   "values": "A -matrix of the state-space implementation [-1 -0.2;0 -3] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "B-matrix",
+   "default": "[1;1]",
+   "values": "B -matrix of the state-space implementation [1;1] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "C-matrix",
+   "default": "0]",
+   "values": "C -matrix of the state-space implementation [1 0] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "D-matrix",
+   "default": "0.02",
+   "values": "D -matrix of the state-space implementation 0.02 (default) | array | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "Initial states 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Poles of A-H*C",
+   "default": "-2]",
+   "values": "Desired poles [-5 -2] (default) | vector",
+   "group": ""
+  }
+ ]
+}

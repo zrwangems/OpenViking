@@ -1,0 +1,72 @@
+{
+ "key": "General CRC Syndrome Detector",
+ "title": "General CRC Syndrome Detector",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/CRC/General_CRC_Syndrome_Detector.md"
+ ],
+ "text": "根据生成多项式检测接收码字帧中的错误，输入 1 路、输出 2 路；按 {Final XOR} 指定最终 XOR；{Generator polynomial} 指定生成多项式、{Initial states} 指定内部移位寄存器的初始状态、{Direct method} 使用直接算法进行 CRC 校验和计算、{Reflect input bytes} 指定反射输入字节、{Reflect checksums before final XOR} 指定在最终 XOR 之前反射校验和、{Checksums per frame} 为每帧计算的校验和数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "接收码字 binary column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出帧 binary column vector"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "校验和错误信号 binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generator polynomial",
+   "default": "1’",
+   "values": "生成多项式 ’z^16 + z^12 + z^5 + 1’ (default) | polynomial character vector | binary row vector | integer row vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states",
+   "default": "0",
+   "values": "内部移位寄存器的初始状态 0 (default) | 1 | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Direct method",
+   "default": "off",
+   "values": "使用直接算法进行 CRC 校验和计算 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reflect input bytes",
+   "default": "off",
+   "values": "反射输入字节 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reflect checksums before final XOR",
+   "default": "off",
+   "values": "在最终 XOR 之前反射校验和 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Final XOR",
+   "default": "0",
+   "values": "最终 XOR 0 (default) | 1 | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Checksums per frame",
+   "default": "1",
+   "values": "为每帧计算的校验和数量 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

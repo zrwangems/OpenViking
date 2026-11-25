@@ -1,0 +1,24 @@
+{
+ "key": "Quat2Rod",
+ "title": "Quaternions to Rodrigues",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Quaternions_to_Rodrigues.md"
+ ],
+ "text": "将四元数转换为 Euler-Rodrigues 向量，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Quaternion",
+   "direction": "input",
+   "summary": "四元数 4-by-1 matrix"
+  },
+  {
+   "name": "rod",
+   "direction": "output",
+   "summary": "欧拉-罗德里格斯向量 three-element vector"
+  }
+ ],
+ "params": []
+}

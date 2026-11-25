@@ -1,0 +1,100 @@
+{
+ "key": "msblks.System.SignalSampler",
+ "title": "Signal Sampler",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Signal_Sampler.md"
+ ],
+ "text": "Sample incoming signal at the edge of incoming clock, 4 inputs, 1 output; {Clock edge} determines when input signal is sampled, {Output mode} determines output sample, {Simulate using} selects simulation mode, {DecisionThresholdPort} sets the turn on decision threshold port, {Latch decision threshold} sets the voltage at which latched output switches, {Latch sensitivity} sets the voltage above or below decision threshold needed to assure that latched output switches to correct, {Symbol time (s)} sets the time of single symbol, {Sample interval (s)} sets the uniform time step, {Modulation (2:NRZ, 3:PAM3, 4:PAM4)} sets the modulation scheme and {Input waveform type} sets the type of input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "signal",
+   "direction": "input",
+   "summary": "Fixed step discrete input signal scalar"
+  },
+  {
+   "name": "clock",
+   "direction": "input",
+   "summary": "Saturated but sampled clock waveform scalar"
+  },
+  {
+   "name": "clock_time",
+   "direction": "input",
+   "summary": "Exact time of clock transition scalar"
+  },
+  {
+   "name": "DecisionThreshold",
+   "direction": "input",
+   "summary": "Voltage at which latched output switches polarity scalar"
+  },
+  {
+   "name": "sample",
+   "direction": "output",
+   "summary": "Sample output value at clock edge scalar | -1 | -1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Clock edge",
+   "default": "Rising",
+   "values": "Determine when input signal is sampled Rising (default) | Falling",
+   "group": ""
+  },
+  {
+   "name": "Output mode",
+   "default": "Continuous",
+   "values": "Determine output sample mode Continuous (default) | Latched",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Select simulation mode Code generation (default) | Interpreted execution",
+   "group": ""
+  },
+  {
+   "name": "DecisionThresholdPort",
+   "default": "on",
+   "values": "Turn on decision threshold port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Latch decision threshold",
+   "default": "0",
+   "values": "Voltage at which latched output switches polarity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Latch sensitivity",
+   "default": "0",
+   "values": "Voltage above or below decision threshold needed to assure that latched output switches to correct polarity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Symbol time (s)",
+   "default": "100e-12",
+   "values": "Time of single symbol duration 100e-12 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample interval (s)",
+   "default": "6.25e-12",
+   "values": "Uniform time step of waveform 6.25e-12 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Modulation (2:NRZ, 3:PAM3, 4:PAM4)",
+   "default": "2",
+   "values": "Modulation scheme 2 (default) | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Input waveform type",
+   "default": "Sample",
+   "values": "Type of input waveform Sample (default) | Impulse",
+   "group": ""
+  }
+ ]
+}

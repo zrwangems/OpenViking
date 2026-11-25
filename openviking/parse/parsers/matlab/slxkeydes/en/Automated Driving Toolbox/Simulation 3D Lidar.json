@@ -1,0 +1,150 @@
+{
+ "key": "Simulation 3D Lidar",
+ "title": "Simulation 3D Lidar",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Lidar.md",
+  "Robotics System Toolbox/Simulation 3D/Simulation_3D_Lidar.md",
+  "UAV Toolbox/Simulation 3D/Simulation_3D_Lidar.md",
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Lidar.md"
+ ],
+ "text": "Lidar sensor model in 3D simulation environment, 6 outputs, {Mounting location} sets Sensor mounting location; {Sensor identifier} sets the unique sensor identifier, {Parent name} sets the name of parent vehicle, {Specify offset} sets the offset from mounting location, {Relative translation [X, Y, Z] (m)} sets the translation offset relative to mounting location, {Relative rotation [Roll, Pitch, Yaw] (deg)} sets the rotational offset relative to mounting location, {Sample time}, {Detection range (m)} sets the maximum distance measured by lidar sensor, {Range resolution (m)} sets the resolution of lidar sensor range, {Vertical field of view (deg)}, {Vertical resolution (deg)} sets the vertical angular resolution, {Horizontal field of view (deg)}, {Horizontal resolution (deg)} sets the horizontal angular, {Distance outport} sets the output distance to measured object points, {Reflectivity outport} sets the output reflectivity of surface materials, {Output semantic segmentation} and {Output location (m) and orientation (rad)} sets the output location and orientation of sensor. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Point cloud",
+   "direction": "output",
+   "summary": "Point cloud data m -by- n -by-3 array of positive real-valued [ x, y, z ] points"
+  },
+  {
+   "name": "Distance",
+   "direction": "output",
+   "summary": "Distance to object points m -by- n positive real-valued matrix"
+  },
+  {
+   "name": "Reflectivity",
+   "direction": "output",
+   "summary": "Reflectivity of surface materials m -by- n matrix of intensity values in range [0, 1]"
+  },
+  {
+   "name": "Labels",
+   "direction": "output",
+   "summary": "Label identifiers m -by- n array of label identifiers"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Sensor location real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Sensor orientation real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "Name of parent vehicle Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "Specify offset from mounting location off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Detection range (m)",
+   "default": "120",
+   "values": "Maximum distance measured by lidar sensor 120 (default) | positive scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Range resolution (m)",
+   "default": "0.002",
+   "values": "Resolution of lidar sensor range 0.002 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Vertical field of view (deg)",
+   "default": "40",
+   "values": "Vertical field of view 40 (default) | positive scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Vertical resolution (deg)",
+   "default": "1.25",
+   "values": "Vertical angular resolution 1.25 (default) | positive scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Horizontal field of view (deg)",
+   "default": "360",
+   "values": "Horizontal field of view 360 (default) | positive scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Horizontal resolution (deg)",
+   "default": "0.16",
+   "values": "Horizontal angular (azimuth) resolution 0.16 (default) | positive scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Distance outport",
+   "default": "off",
+   "values": "Output distance to measured object points off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Reflectivity outport",
+   "default": "off",
+   "values": "Output reflectivity of surface materials off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output semantic segmentation",
+   "default": "off",
+   "values": "Output semantic segmentation map of label IDs off (default) | on",
+   "group": "Ground Truth"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "Output location and orientation of sensor off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

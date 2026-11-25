@@ -1,0 +1,13 @@
+{
+ "key": "PS Uniform Random Number",
+ "title": "PS Uniform Random Number",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Sources/PS_Uniform_Random_Number.md"
+ ],
+ "text": "为物理建模生成均匀分布的随机数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

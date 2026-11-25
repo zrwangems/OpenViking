@@ -1,0 +1,97 @@
+{
+ "key": "SM PSS1A",
+ "title": "SM PSS1A",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_PSS1A.md"
+ ],
+ "text": "Discrete-time or continuous-time single input PSS1A power system stabilizer, 1 input, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Power system stabilizer (PSS) gain, K_S (pu)} sets the power system stabilizer gain, {PSS denominator constant for second-order block, A_1} sets the filter constant, {PSS denominator constant for second-order block, A_2} sets the filter constant, {PSS numerator (lead) compensating time constant, T_1 (s)} sets the lead time constant, {PSS denominator (lag) compensating time constant, T_2 (s)} sets the lag time constant, {PSS numerator (lead) compensating time constant, T_3 (s)} sets the lead time constant, {PSS denominator (lag) compensating time constant, T_4 (s)} sets the lag time constant, {PSS washout time constant, T_5 (s)} sets the washout time constant, {PSS transducer time constant, T_6 (s)} sets the transducer time constant, {Maximum PSS output, V_STmax (pu)} sets the maximum stabilization and {Minimum PSS output, V_STmin (pu)} sets the minimum stabilization. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_SI",
+   "direction": "input",
+   "summary": "Speed, frequency, or power scalar"
+  },
+  {
+   "name": "V_ST",
+   "direction": "output",
+   "summary": "Stabilization speed, frequency, or power scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power system stabilizer (PSS) gain, K_S (pu)",
+   "default": "3.15",
+   "values": "Power system stabilizer gain 3.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator constant for second-order block, A_1",
+   "default": "0",
+   "values": "Filter constant 1 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator constant for second-order block, A_2",
+   "default": "0",
+   "values": "Filter constant 2 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS numerator (lead) compensating time constant, T_1 (s)",
+   "default": "0.76",
+   "values": "Lead time constant 1 0.76 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant, T_2 (s)",
+   "default": "0.01",
+   "values": "Lag time constant 2 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS numerator (lead) compensating time constant, T_3 (s)",
+   "default": "0.76",
+   "values": "Lead time constant 3 0.76 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant, T_4 (s)",
+   "default": "0.01",
+   "values": "Lag time constant 4 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_5 (s)",
+   "default": "10",
+   "values": "Washout time constant 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_6 (s)",
+   "default": "0",
+   "values": "Transducer time constant 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum PSS output, V_STmax (pu)",
+   "default": "0.09",
+   "values": "Maximum stabilization 0.09 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum PSS output, V_STmin (pu)",
+   "default": "-0.09",
+   "values": "Minimum stabilization -0.09 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

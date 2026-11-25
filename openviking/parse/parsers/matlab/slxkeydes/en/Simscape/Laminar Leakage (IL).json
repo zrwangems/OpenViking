@@ -1,0 +1,13 @@
+{
+ "key": "Laminar Leakage (IL)",
+ "title": "Laminar Leakage (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Laminar_Leakage_IL.md"
+ ],
+ "text": "Isothermal liquid element that models laminar leakage flow for various geometries.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

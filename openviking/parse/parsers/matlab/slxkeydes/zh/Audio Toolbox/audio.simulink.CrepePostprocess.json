@@ -1,0 +1,31 @@
+{
+ "key": "audio.simulink.CrepePostprocess",
+ "title": "CREPE Postprocess",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/CREPE_Postprocess.md"
+ ],
+ "text": "对 CREPE 音高估计网络的输出进行后处理，输入 1 路、输出 1 路、无直接馈通；{Confidence threshold} 指定音高置信度阈值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "CREPE 网络激活值 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "估计的基频 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Confidence threshold",
+   "default": "0.5",
+   "values": "音高置信度阈值 0.5 (default) | scalar in the range [0, 1)",
+   "group": ""
+  }
+ ]
+}

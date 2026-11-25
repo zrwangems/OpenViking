@@ -1,0 +1,80 @@
+{
+ "key": "Chirp",
+ "title": "Chirp",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Chirp.md"
+ ],
+ "text": "生成扫频余弦（chirp）信号；输出 1 路、无直接馈通；按 {Frequency sweep} 指定频率扫描的类型；{Sweep mode}、{Initial frequency (Hz)}、{Target frequency (Hz)}、{Target time (s)} 指定 Target time of sweep、{Sweep time (s)}、{Initial phase (rad)} 指定 Initial phase of cosine output、{Sample time} 输出采样周期、{Samples per frame}、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "扫频余弦（chirp）信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency sweep",
+   "default": "Linear",
+   "values": "频率扫描的类型 Linear (default) | Swept cosine | Logarithmic | Quadratic",
+   "group": ""
+  },
+  {
+   "name": "Sweep mode",
+   "default": "Unidirectional",
+   "values": "Sweep mode Unidirectional (default) | Bidirectional",
+   "group": ""
+  },
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "1000",
+   "values": "Initial frequency 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Target frequency (Hz)",
+   "default": "4000",
+   "values": "Target frequency 4000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Target time (s)",
+   "default": "1",
+   "values": "Target time of sweep 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sweep time (s)",
+   "default": "1",
+   "values": "Sweep time 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "Initial phase of cosine output 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/8000",
+   "values": "输出采样周期 1/8000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Double",
+   "values": "输出数据类型 Double (default) | Single",
+   "group": ""
+  }
+ ]
+}

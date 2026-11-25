@@ -1,0 +1,44 @@
+{
+ "key": "Detect Change",
+ "title": "Detect Change",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Detect_Change.md",
+  "HDL Coder/Logic and Bit Operations/Detect_Change.md"
+ ],
+ "text": "检测信号值的变化，输入 1 路、输出 1 路；按 {初始条件} 指定上一个的初始条件；{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{输出数据类型} 输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 信号值"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "上一个的初始条件。 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "指定基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "boolean",
+   "values": "输出的数据类型 boolean (默认) | uint8",
+   "group": ""
+  }
+ ]
+}

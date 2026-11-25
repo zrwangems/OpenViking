@@ -1,0 +1,13 @@
+{
+ "key": "Modular Multilevel Converter Arm",
+ "title": "Modular Multilevel Converter Arm",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Modular_Multilevel_Converter_Arm.md"
+ ],
+ "text": "具有串联功率子模块的模块化多电平换流器桥臂。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

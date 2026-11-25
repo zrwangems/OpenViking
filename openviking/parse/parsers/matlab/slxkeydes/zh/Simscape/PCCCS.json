@@ -1,0 +1,13 @@
+{
+ "key": "PCCCS",
+ "title": "PCCCS",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PCCCS.md"
+ ],
+ "text": "多项式电流控制电流源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

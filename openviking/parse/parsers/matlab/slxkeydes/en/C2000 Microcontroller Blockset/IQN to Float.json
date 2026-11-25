@@ -1,0 +1,13 @@
+{
+ "key": "IQN to Float",
+ "title": "IQN to Float",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/IQN_to_Float.md"
+ ],
+ "text": "Convert IQ number to floating-point number.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

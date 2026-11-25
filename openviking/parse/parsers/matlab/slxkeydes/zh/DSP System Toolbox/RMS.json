@@ -1,0 +1,60 @@
+{
+ "key": "RMS",
+ "title": "RMS",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/RMS.md"
+ ],
+ "text": "输入或输入序列的均方根值，输入 2 路、输出 1 路、无直接馈通；按 {Reset port} 指定重置事件；{Running RMS} 用于选择运行 RMS、{Find the RMS value over} 指定模块计算 RMS 值所沿的维度 Each、{Dimension} 指定自定义维度、{Input processing} 指定在运行模式下处理输入的方法 Columns，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "复位端口 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "沿指定维度的 RMS 值 scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Running RMS",
+   "default": "off",
+   "values": "用于选择运行 RMS 的选项 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Find the RMS value over",
+   "default": "column",
+   "values": "模块计算 RMS 值所沿的维度 Each column (default) | Entire input | Each row | Specified dimension",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "自定义维度 1 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "在运行模式下处理输入的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "重置事件 None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  }
+ ]
+}

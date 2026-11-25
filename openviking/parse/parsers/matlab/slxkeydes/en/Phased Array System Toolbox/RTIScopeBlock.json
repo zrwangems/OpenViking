@@ -1,0 +1,80 @@
+{
+ "key": "RTIScopeBlock",
+ "title": "Range-Time Intensity Scope",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Sinks/Range_Time_Intensity_Scope.md"
+ ],
+ "text": "Range-time intensity scope, 1 input, no direct feedthrough; {Range Offset (m)} sets the range offset, {Time Span (s)} sets the time span of display, {Range Resolution (m)} sets the range difference between samples, {Time Resolution (s)} sets the time difference between rows, {Show Grid} shows Cartesian grid overlay, {Show Ticks} shows tick value labels, {Range Label} sets the range axis label, {Time Label} sets the time axis label Time History, {Title} sets the window title and {Colorbar Label} sets the color bar. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input data real-valued length- M vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Range Offset (m)",
+   "default": "0.0",
+   "values": "Range offset 0.0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time Span (s)",
+   "default": "0.1",
+   "values": "Time span of display 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Range Resolution (m)",
+   "default": "1",
+   "values": "Range difference between samples 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time Resolution (s)",
+   "default": "0.001",
+   "values": "Time difference between rows 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Grid",
+   "default": "on",
+   "values": "Show Cartesian grid overlay on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show Ticks",
+   "default": "on",
+   "values": "Show tick value labels on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Range Label",
+   "default": "(m)’",
+   "values": "Range axis label ’Range (m)’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Time Label",
+   "default": "(s)’",
+   "values": "Time axis label Time History (s)’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Title",
+   "default": "Time’",
+   "values": "Window title ’Range vs. Time’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Colorbar Label",
+   "default": "’mag’",
+   "values": "Color bar ’mag’ (default) | string",
+   "group": ""
+  }
+ ]
+}

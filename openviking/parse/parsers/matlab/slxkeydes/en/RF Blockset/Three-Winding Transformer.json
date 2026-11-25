@@ -1,0 +1,50 @@
+{
+ "key": "Three-Winding Transformer",
+ "title": "Three-Winding Transformer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Three_Winding_Transformer.md"
+ ],
+ "text": "Compute sum of RF signals; {Inductance L1} sets the inductance value of first inductor, {Inductance L2} sets the inductance value of second inductor, {Inductance L3} sets the inductance value of third inductor, {Coefficient of coupling K12} sets the coupling coefficient of first and second, {Coefficient of coupling K13} sets the coupling coefficient of first and third and {Coefficient of coupling K23} sets the coupling coefficient of second and third. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Inductance L1",
+   "default": "H",
+   "values": "Inductance value of first inductor 1e-6 H (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Inductance L2",
+   "default": "H",
+   "values": "Inductance value of second inductor 1e-6 H (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Inductance L3",
+   "default": "H",
+   "values": "Inductance value of third inductor 1e-6 H (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of coupling K12",
+   "default": "0.9",
+   "values": "Coupling coefficient of first and second inductors 0.9 (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of coupling K13",
+   "default": "0.9",
+   "values": "Coupling coefficient of first and third inductors 0.9 (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of coupling K23",
+   "default": "0.9",
+   "values": "Coupling coefficient of second and third inductors 0.9 (default) | nonnegative scalar integer",
+   "group": ""
+  }
+ ]
+}

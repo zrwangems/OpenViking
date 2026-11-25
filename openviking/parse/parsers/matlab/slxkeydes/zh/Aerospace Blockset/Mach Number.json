@@ -1,0 +1,29 @@
+{
+ "key": "Mach Number",
+ "title": "Mach Number",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Mach_Number.md"
+ ],
+ "text": "使用速度和声速计算 Mach 数，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "速度 3-element vector"
+  },
+  {
+   "name": "a",
+   "direction": "input",
+   "summary": "声速 1-by-1 array"
+  },
+  {
+   "name": "Mach",
+   "direction": "output",
+   "summary": "马赫数 scalar"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,210 @@
+{
+ "key": "Color Space Conversion",
+ "title": "Color Space Conversion",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Color_Space_Conversion.md"
+ ],
+ "text": "Convert color space of image, 16 inputs, 17 outputs, {White point} sets White point; {Conversion} sets the color space conversion R, {Use conversion specified by} sets the color conversion standard Rec, {Scanning standard} and {Image signal}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input image array"
+  },
+  {
+   "name": "R’",
+   "direction": "input",
+   "summary": "Red color component of image matrix"
+  },
+  {
+   "name": "G’",
+   "direction": "input",
+   "summary": "Green color component of image matrix"
+  },
+  {
+   "name": "B’",
+   "direction": "input",
+   "summary": "Blue color component of image matrix"
+  },
+  {
+   "name": "Y’",
+   "direction": "input",
+   "summary": "Luma component of image matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "input",
+   "summary": "Blue-difference chroma component of image matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "input",
+   "summary": "Red-difference chroma component of image matrix"
+  },
+  {
+   "name": "H",
+   "direction": "input",
+   "summary": "Hue component of image matrix"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Saturation component of image matrix"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Brightness component of image matrix"
+  },
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "X component of image matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "Y component of image matrix"
+  },
+  {
+   "name": "Z",
+   "direction": "input",
+   "summary": "Z component of image matrix"
+  },
+  {
+   "name": "L*",
+   "direction": "input",
+   "summary": "Lightness component of image matrix"
+  },
+  {
+   "name": "a*",
+   "direction": "input",
+   "summary": "Red-green component of image M -by- N matrix"
+  },
+  {
+   "name": "b*",
+   "direction": "input",
+   "summary": "Yellow-blue component of image M -by- N matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image array"
+  },
+  {
+   "name": "R’",
+   "direction": "output",
+   "summary": "Red color component of image matrix"
+  },
+  {
+   "name": "G’",
+   "direction": "output",
+   "summary": "Green color component of image matrix"
+  },
+  {
+   "name": "B’",
+   "direction": "output",
+   "summary": "Blue color component of image matrix"
+  },
+  {
+   "name": "Y’",
+   "direction": "output",
+   "summary": "Luma component of image matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "output",
+   "summary": "Blue-difference chroma component of image matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "output",
+   "summary": "Red-difference chroma component of image matrix"
+  },
+  {
+   "name": "I’",
+   "direction": "output",
+   "summary": "Intensity image matrix"
+  },
+  {
+   "name": "H",
+   "direction": "output",
+   "summary": "Hue component of image matrix"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "Saturation component of image matrix"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "Brightness component of image matrix"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "X component of image matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Y component of image matrix"
+  },
+  {
+   "name": "Z",
+   "direction": "output",
+   "summary": "Z component of image matrix"
+  },
+  {
+   "name": "L*",
+   "direction": "output",
+   "summary": "Lightness component of image matrix"
+  },
+  {
+   "name": "a*",
+   "direction": "output",
+   "summary": "Red-green component of image matrix"
+  },
+  {
+   "name": "b*",
+   "direction": "output",
+   "summary": "Yellow-blue component of image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Conversion",
+   "default": "Y’CbCr",
+   "values": "Color space conversion R’G’B’ to Y’CbCr (default) | Y’CbCr to R’G’B’ | R’G’B’ to intensity |...",
+   "group": ""
+  },
+  {
+   "name": "Use conversion specified by",
+   "default": "(SDTV)",
+   "values": "Color conversion standard Rec. 601 (SDTV) (default) | Rec. 709 (HDTV)",
+   "group": ""
+  },
+  {
+   "name": "Scanning standard",
+   "default": "1125/60/2:1",
+   "values": "Scanning standard 1125/60/2:1 (default) | 1250/50/2:1",
+   "group": ""
+  },
+  {
+   "name": "White point",
+   "default": "D50",
+   "values": "White point D50 (default) | D55 | D65",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Image signal input One multidimensional signal (default) | Separate color signals",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Fault (Three-Phase)",
+ "title": "Fault (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Utilities/Fault_Three_Phase.md"
+ ],
+ "text": "Signal-enabled or time-based, single-phase, two-phase, or three-phase, grounded or ungrounded fault.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

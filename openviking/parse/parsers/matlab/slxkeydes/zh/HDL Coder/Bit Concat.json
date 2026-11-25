@@ -1,0 +1,36 @@
+{
+ "key": "Bit Concat",
+ "title": "Bit Concat",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Bit_Concat.md"
+ ],
+ "text": "将最多 128 个输入字拼接为单个输出，输入 2 路、输出 1 路；{Number of Inputs} 指定输入信号数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "H",
+   "direction": "input",
+   "summary": "最高阶输入字 scalar | vector"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "最低阶输入字 scalar | vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "拼接字 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of Inputs",
+   "default": "2",
+   "values": "输入信号数量 2 (default) | positive integer value less than or equal to 128",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Unipolar Stepper Motor",
+ "title": "Unipolar Stepper Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Reluctance & Stepper/Unipolar_Stepper_Motor.md"
+ ],
+ "text": "Permanent magnet stepper motor with center taps on each of the two windings.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,56 @@
+{
+ "key": "Switch single pole multiple throw (SPnT)",
+ "title": "SPnT",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/SPnT.md"
+ ],
+ "text": "Single pole multiple throw switch, 1 input; {Insertion loss (dB)} sets the insertion loss of switch, {Isolation (dB)} sets the isolation value of switch, {Loading type} sets the switch type, {Number of outputs}, {Port terminations (Ohm)} and {Ground and hide reference terminals} sets the ground RF circuit terminals. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ctl",
+   "direction": "input",
+   "summary": "Simulink control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Insertion loss (dB)",
+   "default": "1",
+   "values": "Insertion loss of switch 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Isolation (dB)",
+   "default": "70",
+   "values": "Isolation value of switch 70 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Loading type",
+   "default": "Absorptive",
+   "values": "Switch type Absorptive (default) | Reflective",
+   "group": ""
+  },
+  {
+   "name": "Number of outputs",
+   "default": "2",
+   "values": "Number of outputs for switch 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Port terminations (Ohm)",
+   "default": "50",
+   "values": "Port terminations 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide reference terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

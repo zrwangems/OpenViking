@@ -1,0 +1,26 @@
+{
+ "key": "DigitalClock",
+ "title": "Digital Clock",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Digital_Clock.md"
+ ],
+ "text": "以指定的采样间隔输出仿真时间；输出 1 路；按 {采样时间} 指定采样间隔。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "采样时间 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "采样时间",
+   "default": "1",
+   "values": "采样间隔 1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

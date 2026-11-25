@@ -1,0 +1,113 @@
+{
+ "key": "Gold Sequence Generator",
+ "title": "Gold Sequence Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Sequence Generators/Gold_Sequence_Generator.md"
+ ],
+ "text": "Generate Gold sequence from set of sequences, 3 inputs, 1 output, {Output data type} sets Output data type; {Preferred polynomial (1)} sets the first sequence polynomial, {Initial states (1)} sets the initial states for first sequence polynomial, {Preferred polynomial (2)} sets the second sequence polynomial, {Initial states (2)} sets the initial states for second sequence polynomial, {Sequence index}, {Shift} sets the offset of Gold sequence, {Output variable-size signals} sets the option to output variable-length signals, {Maximum output size source}, {Maximum output size}, {Sample time} sets the output sample time, {Samples per frame} and {Reset on nonzero input} sets the reset output signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "oSiz",
+   "direction": "input",
+   "summary": "Current output size scalar | two-element row vector"
+  },
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "Reference input signal scalar | column vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset signal scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Preferred polynomial (1)",
+   "default": "1’",
+   "values": "First sequence polynomial ’z^6 + z + 1’ (default) | polynomial character vector | binary row vector | integer row vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states (1)",
+   "default": "1]",
+   "values": "Initial states for first sequence polynomial [0 0 0 0 0 1] (default) | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Preferred polynomial (2)",
+   "default": "1’",
+   "values": "Second sequence polynomial ’z^6 + z^5 + z^2 + z + 1’ (default) | polynomial character vector | binary row vector | integer row vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states (2)",
+   "default": "1]",
+   "values": "Initial states for second sequence polynomial [0 0 0 0 0 1] (default) | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Sequence index",
+   "default": "0",
+   "values": "Sequence index 0 (default) | integer scalar in the range [–2, 2 n –2]",
+   "group": ""
+  },
+  {
+   "name": "Shift",
+   "default": "0",
+   "values": "Offset of Gold sequence 0 (default) | integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "Option to output variable-length signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size source",
+   "default": "parameter",
+   "values": "Maximum output size source Dialog parameter (default) | Inherit from reference port",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size",
+   "default": "1]",
+   "values": "Maximum output size [10 1] (default) | vector of the form [ n 1]",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Output sample time 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Reset on nonzero input",
+   "default": "off",
+   "values": "Reset output signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | boolean | Smallest unsigned integer",
+   "group": ""
+  }
+ ]
+}

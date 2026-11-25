@@ -1,0 +1,68 @@
+{
+ "key": "phased.internal.SimulinkRangeAnglePositionEstimator",
+ "title": "Range-Angle Position Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/Range_Angle_Position_Estimator.md"
+ ],
+ "text": "Estimate target positions using range-angle measurements, 5 inputs, 2 outputs; {Enable known variance input}, {Output covariances of position estimates} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RngEst",
+   "direction": "input",
+   "summary": "range measurement (meters) real-valued 1-by- K vector | real-valued J -by- L matrix"
+  },
+  {
+   "name": "AngEst",
+   "direction": "input",
+   "summary": "angle-of-arrival estimate (degrees) real-valued 1-by- L row vector | real-valued 2-by- L matrix"
+  },
+  {
+   "name": "RngVar",
+   "direction": "input",
+   "summary": "range variance (meters-squared) [] (default) | positive real-valued J -by- L matrix | positive real-valued length- K row vector"
+  },
+  {
+   "name": "AngVar",
+   "direction": "input",
+   "summary": "angle variance (degrees-squared) [] | real-valued 1-by- L row vector | real-valued 2-by- L matrix"
+  },
+  {
+   "name": "AnchorPos",
+   "direction": "input",
+   "summary": "Anchor positions (meters) real-valued Q -by- J matrix"
+  },
+  {
+   "name": "TgtPosEst",
+   "direction": "output",
+   "summary": "Target position estimate (meters) real-valued Q -by-1 vector"
+  },
+  {
+   "name": "TgtPosCov",
+   "direction": "output",
+   "summary": "Estimated target position covariance (meters-squared) real-valued Q -by- Q matrix | real-valued Q -by- Q -by- K array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable known variance input",
+   "default": "on",
+   "values": "Enable known variance input on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output covariances of position estimates",
+   "default": "off",
+   "values": "Output covariances of position estimates off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

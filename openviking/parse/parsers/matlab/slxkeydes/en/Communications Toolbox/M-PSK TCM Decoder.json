@@ -1,0 +1,13 @@
+{
+ "key": "M-PSK TCM Decoder",
+ "title": "M-PSK TCM Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/TCM/M_PSK_TCM_Decoder.md"
+ ],
+ "text": "Decode trellis-coded modulation data, modulated using PSK method.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

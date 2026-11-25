@@ -1,0 +1,62 @@
+{
+ "key": "RateTransition",
+ "title": "Rate Transition",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Rate_Transition.md",
+  "HDL Coder/Signal Attributes/Rate_Transition.md"
+ ],
+ "text": "Handle transfer of data between blocks operating at different rates, 1 input, 1 output, direct feedthrough, {Output port sample time} sets Output rate; {Ensure data integrity during data transfer}, {Ensure deterministic data transfer (maximum delay)}, {Initial conditions}, {Output port sample time options} sets the mode for specifying output port and {Sample time multiple (>0)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Ensure data integrity during data transfer",
+   "default": "on",
+   "values": "Ensure data integrity on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ensure deterministic data transfer (maximum delay)",
+   "default": "on",
+   "values": "Ensure deterministic data transfer on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial conditions 0 (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Output port sample time options",
+   "default": "Specify",
+   "values": "Mode for specifying output port sample time Specify (default) | Inherit | Multiple of input port sample time",
+   "group": ""
+  },
+  {
+   "name": "Output port sample time",
+   "default": "-1",
+   "values": "Output rate -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time multiple (>0)",
+   "default": "1",
+   "values": "Sample time multiple 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

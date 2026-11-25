@@ -1,0 +1,56 @@
+{
+ "key": "Hadamard Code Generator",
+ "title": "Hadamard Code Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Sequence Generators/Hadamard_Code_Generator.md"
+ ],
+ "text": "生成 OVSF 码；输出 1 路；{Code length} 指定码长度、{Code index} 指定 OVSF 码矩阵的行索引、{Sample time} 指定采样时间，以秒为单位、{Samples per frame} 输出的 OVSF 码片数、{Output data type} 输出类型 double、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出数据 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Code length",
+   "default": "64",
+   "values": "码长度 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Code index",
+   "default": "60",
+   "values": "OVSF 码矩阵的行索引 60 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "采样时间，以秒为单位 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "输出的 OVSF 码片数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出类型 double (default) | int8",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

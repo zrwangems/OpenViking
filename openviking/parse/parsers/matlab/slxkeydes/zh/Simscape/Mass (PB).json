@@ -1,0 +1,13 @@
+{
+ "key": "Mass (PB)",
+ "title": "Mass (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Mass_PB.md"
+ ],
+ "text": "具有重力效应的质点。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

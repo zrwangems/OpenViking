@@ -1,0 +1,56 @@
+{
+ "key": "Concatenate",
+ "title": "Vector Concatenate",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Vector_Concatenate.md",
+  "Simulink/Math Operations/Matrix_Concatenate.md",
+  "Simulink/Math Operations/Vector_Concatenate.md",
+  "Simulink/Matrix Operations/Matrix_Concatenate.md",
+  "Simulink/Signal Routing/Vector_Concatenate.md",
+  "HDL Coder/Math Operations/Matrix_Concatenate.md",
+  "HDL Coder/Math Operations/Vector_Concatenate.md",
+  "HDL Coder/Signal Routing/Vector_Concatenate.md",
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Matrix_Concatenate.md"
+ ],
+ "text": "Concatenate input vectors of same data type for iterative processing, 2 inputs, 1 output, direct feedthrough, {Mode} sets Type of concatenation Vector; {Number of inputs} sets the number of input ports and {Concatenate dimension} sets the output dimension along which to concatenate input arrays scalar. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input to concatenate scalar | vector | matrix | array"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "N th input to concatenate scalar | vector | matrix | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Concatenation of input signals scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inputs",
+   "default": "2",
+   "values": "Number of input ports 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "",
+   "values": "Type of concatenation Vector | Multidimensional array",
+   "group": ""
+  },
+  {
+   "name": "Concatenate dimension",
+   "default": "",
+   "values": "Output dimension along which to concatenate input arrays scalar integer",
+   "group": ""
+  }
+ ]
+}

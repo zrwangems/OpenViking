@@ -1,0 +1,44 @@
+{
+ "key": "StringContains",
+ "title": "String Contains",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Contains.md",
+  "Simulink/String/String_Ends_With.md",
+  "Simulink/String/String_Starts_With.md"
+ ],
+ "text": "Determine if string contains, starts with, or ends with pattern, 2 inputs, 1 output, direct feedthrough, {Function} sets Pattern search function Contains; {Case sensitive} sets the case sensitivity. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "str",
+   "direction": "input",
+   "summary": "String to search scalar"
+  },
+  {
+   "name": "sub",
+   "direction": "input",
+   "summary": "String pattern to search for scalar"
+  },
+  {
+   "name": "T/F",
+   "direction": "output",
+   "summary": "String pattern detected 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Case sensitive",
+   "default": "on",
+   "values": "Case sensitivity on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Function",
+   "default": "",
+   "values": "Pattern search function Contains | Starts with | Ends with",
+   "group": ""
+  }
+ ]
+}

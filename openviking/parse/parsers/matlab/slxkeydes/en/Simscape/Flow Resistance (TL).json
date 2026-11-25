@@ -1,0 +1,13 @@
+{
+ "key": "Flow Resistance (TL)",
+ "title": "Flow Resistance (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Flow_Resistance_TL.md"
+ ],
+ "text": "General resistance in a thermal liquid branch.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

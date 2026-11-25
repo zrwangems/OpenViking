@@ -1,0 +1,102 @@
+{
+ "key": "TPC Decoder",
+ "title": "TPC Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Block/TPC_Decoder.md"
+ ],
+ "text": "Turbo 乘积码 (TPC) 解码器，输入 1 路、输出 2 路；{Extended codes} 指定 TPC 行参数的扩展码指示符、{Number of rows in code, Nr} 指定乘积码矩阵中的行数、{Number of rows in message, Kr} 指定消息矩阵中的行数、{Specify shortened message length} 为行指定缩短消息长度、{Number of rows in shortened message, Sr} 指定缩短消息矩阵中的行数、{Number of columns in code, Nc} 指定乘积码矩阵中的列数、{Number of columns in message, Kc} 指定消息矩阵中的列数、{Number of columns in shortened message, Sc} 指定缩短消息矩阵中的列数、{Maximum number of iterations} 指定最大解码迭代次数、{Stop iterating when code converges} 指定基于分量码计算得到的校验子或奇偶校验停止解码、{Output number of iterations executed} 输出已执行的迭代次数、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "对数似然比 column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "TPC 解码消息 column vector"
+  },
+  {
+   "name": "Iter",
+   "direction": "output",
+   "summary": "实际解码迭代次数 positive integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Extended codes",
+   "default": "on",
+   "values": "TPC 行参数的扩展码指示符 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Number of rows in code, Nr",
+   "default": "16",
+   "values": "乘积码矩阵中的行数 16 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of rows in message, Kr",
+   "default": "11",
+   "values": "消息矩阵中的行数 11 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Specify shortened message length",
+   "default": "off",
+   "values": "为行指定缩短消息长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of rows in shortened message, Sr",
+   "default": "9",
+   "values": "缩短消息矩阵中的行数 9 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in code, Nc",
+   "default": "32",
+   "values": "乘积码矩阵中的列数 32 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in message, Kc",
+   "default": "26",
+   "values": "消息矩阵中的列数 26 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in shortened message, Sc",
+   "default": "22",
+   "values": "缩短消息矩阵中的列数 22 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of iterations",
+   "default": "4",
+   "values": "最大解码迭代次数 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Stop iterating when code converges",
+   "default": "on",
+   "values": "基于分量码计算得到的校验子或奇偶校验停止解码 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output number of iterations executed",
+   "default": "off",
+   "values": "输出已执行的迭代次数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

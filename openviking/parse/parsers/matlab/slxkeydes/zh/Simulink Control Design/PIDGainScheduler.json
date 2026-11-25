@@ -1,0 +1,152 @@
+{
+ "key": "PIDGainScheduler",
+ "title": "PID Gain Scheduler",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/PID_Gain_Scheduler.md"
+ ],
+ "text": "使用 PID 数组的基于查找表的增益调度，输入 3 路、输出 4 路；按 {Integer rounding mode} 指定定点运算的舍入模式；{Controller type} 指定 PID 控制器类型、{Breakpoints saved in gain array} 指定读取增益数组中保存的断点、{Breakpoints} 指定 Gain scheduling breakpoints、{Use external signal} 指定 breakpoints from input port、{Method of obtaining gains} 指定获取增益的方法 Data store、{P Gain Parameter Name} 指定比例增益数据名称、{I Gain Parameter Name} 指定积分增益数据名称、{D Gain Parameter Name} 指定微分增益数据名称、{N Gain Parameter Name} 指定滤波器增益数据名称、{Data type} 指定浮点精度 Double、{P gain lookup method} 指定比例增益查找方法 Interpolation-Use End、{I gain lookup method} 指定积分增益查找方法 Interpolation-Use End、{D gain lookup method} 指定微分增益查找方法 Interpolation-Use End、{N gain lookup method} 指定微分滤波器增益查找方法 Interpolation-Use End、{Saturate to max or min when overflows occur} 指定溢出操作的方法、{Lock output data type setting against changes by the fixed-point tools} 用于防止定点工具覆盖输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "scheduling Variable",
+   "direction": "input",
+   "summary": "调度变量 scalar"
+  },
+  {
+   "name": "Breakpoints",
+   "direction": "input",
+   "summary": "断点数据 vector"
+  },
+  {
+   "name": "PID Gains",
+   "direction": "input",
+   "summary": "PID 增益数组 bus"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "比例增益 vector"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "积分增益 vector"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "微分增益 vector"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "微分滤波增益 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Controller type",
+   "default": "P",
+   "values": "PID 控制器类型 P (default) | I | PI | PD | PDN | PID | PIDN",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints saved in gain array",
+   "default": "off",
+   "values": "读取增益数组中保存的断点 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints",
+   "default": "3]",
+   "values": "Gain scheduling breakpoints [1 2 3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Use external signal",
+   "default": "off",
+   "values": "Specify breakpoints from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Method of obtaining gains",
+   "default": "memory",
+   "values": "获取增益的方法 Data store memory (default) | Goto/from | Input to block",
+   "group": ""
+  },
+  {
+   "name": "P Gain Parameter Name",
+   "default": "PGain",
+   "values": "比例增益数据名称 PGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "I Gain Parameter Name",
+   "default": "IGain",
+   "values": "积分增益数据名称 IGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "D Gain Parameter Name",
+   "default": "DGain",
+   "values": "微分增益数据名称 DGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "N Gain Parameter Name",
+   "default": "NGain",
+   "values": "滤波器增益数据名称 NGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "Double",
+   "values": "浮点精度 Double (default) | Single",
+   "group": ""
+  },
+  {
+   "name": "P gain lookup method",
+   "default": "Values",
+   "values": "比例增益查找方法 Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": ""
+  },
+  {
+   "name": "I gain lookup method",
+   "default": "Values",
+   "values": "积分增益查找方法 Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": ""
+  },
+  {
+   "name": "D gain lookup method",
+   "default": "Values",
+   "values": "微分增益查找方法 Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": ""
+  },
+  {
+   "name": "N gain lookup method",
+   "default": "Values",
+   "values": "微分滤波器增益查找方法 Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": ""
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  }
+ ]
+}

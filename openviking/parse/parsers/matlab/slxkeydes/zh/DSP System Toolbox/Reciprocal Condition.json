@@ -1,0 +1,24 @@
+{
+ "key": "Reciprocal Condition",
+ "title": "Reciprocal Condition",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Reciprocal_Condition.md"
+ ],
+ "text": "计算方阵在 1-范数下的倒数条件数，输入 1 路、输出 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入矩阵 square matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "倒数条件数输出 scalar"
+  }
+ ],
+ "params": []
+}

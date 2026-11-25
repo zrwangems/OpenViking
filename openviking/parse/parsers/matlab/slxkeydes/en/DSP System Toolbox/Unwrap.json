@@ -1,0 +1,43 @@
+{
+ "key": "Unwrap",
+ "title": "Unwrap",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Unwrap.md"
+ ],
+ "text": "Unwrap signal phase, 1 input, 1 output, no direct feedthrough; {Tolerance (radians)} sets the jump size, {Input processing} sets the method to process the input Columns and {Reset initial phase to zero for each input frame} sets the checking successive frames. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Signal input scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Signal output scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tolerance (radians)",
+   "default": "pi",
+   "values": "Jump size pi (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process the input Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Reset initial phase to zero for each input frame",
+   "default": "off",
+   "values": "Checking successive frames off (default) | on",
+   "group": ""
+  }
+ ]
+}

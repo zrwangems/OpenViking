@@ -1,0 +1,13 @@
+{
+ "key": "Universal Motor",
+ "title": "Universal Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Brushed Motors/Universal_Motor.md"
+ ],
+ "text": "Universal (or series) motor with electrical and torque characteristics.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,54 @@
+{
+ "key": "Trace Boundary",
+ "title": "Trace Boundary",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Trace_Boundary.md"
+ ],
+ "text": "在二值图像中跟踪对象边界，输入 2 路、输出 1 路；按 {Initial search direction} 指定初始搜索方向类型；{Connectivity} 指定像素连通性类型、{Trace direction} 指定边界跟踪方向、{Maximum number of boundary pixels} 指定最大边界像素数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "输入二值图像 matrix"
+  },
+  {
+   "name": "Start Pt",
+   "direction": "input",
+   "summary": "边界起始点坐标 two-element vector"
+  },
+  {
+   "name": "Pts",
+   "direction": "output",
+   "summary": "边界点坐标 M -by-2 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Connectivity",
+   "default": "8",
+   "values": "像素连通性类型 8 (default) | 4",
+   "group": ""
+  },
+  {
+   "name": "Initial search direction",
+   "default": "North",
+   "values": "初始搜索方向类型 North (default) | East | South | West | Northeast |...",
+   "group": ""
+  },
+  {
+   "name": "Trace direction",
+   "default": "Clockwise",
+   "values": "边界跟踪方向 Clockwise (default) | Counterclockwise",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of boundary pixels",
+   "default": "500",
+   "values": "最大边界像素数 500 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

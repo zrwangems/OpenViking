@@ -1,0 +1,13 @@
+{
+ "key": "Unidirectional Clutch",
+ "title": "Unidirectional Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Unidirectional_Clutch.md"
+ ],
+ "text": "Clutch that transmits power in a single direction.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

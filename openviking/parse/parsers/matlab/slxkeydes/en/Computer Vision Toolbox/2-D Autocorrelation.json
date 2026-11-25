@@ -1,0 +1,31 @@
+{
+ "key": "2-D Autocorrelation",
+ "title": "2-D Autocorrelation",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Autocorrelation.md"
+ ],
+ "text": "2-D autocorrelation of input matrix, 1 input, 1 output; {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input array vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Autocorrelation of input vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  }
+ ]
+}

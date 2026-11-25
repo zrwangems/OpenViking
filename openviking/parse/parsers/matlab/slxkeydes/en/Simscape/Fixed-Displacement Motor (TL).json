@@ -1,0 +1,13 @@
+{
+ "key": "Fixed-Displacement Motor (TL)",
+ "title": "Fixed-Displacement Motor (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pumps & Motors/Fixed_Displacement_Motor_TL.md"
+ ],
+ "text": "Hydraulic-mechanical power conversion device.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

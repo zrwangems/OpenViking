@@ -1,0 +1,71 @@
+{
+ "key": "Integrator (Discrete or Continuous)",
+ "title": "Integrator (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Integrator_Discrete_or_Continuous.md"
+ ],
+ "text": "离散时间或连续时间积分器，输入 3 路、输出 1 路；按 {External reset} 指定重置策略；{Integrator method} 用于指定积分或累加方法的选项 Integration: Forward、{Limit type} 指定饱和策略 Anti-windup、{Upper saturation limit} 指定状态上限 inf、{Lower saturation limit} 指定状态下限 -inf、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "积分器输入 vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "恢复到初始状态 scalar"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "初始状态 vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "积分器输出 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "用于指定积分或累加方法的选项 Integration: Forward Euler (default) | Integration: Backward Euler | Integration: Trapezoidal | Accumulation: Forward Euler | Accumulation: Backward Euler | Accumulation: Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "External reset",
+   "default": "level",
+   "values": "重置策略 level (default) | rising | falling | either",
+   "group": ""
+  },
+  {
+   "name": "Limit type",
+   "default": "Anti-windup",
+   "values": "饱和策略 Anti-windup (default) | Windup",
+   "group": ""
+  },
+  {
+   "name": "Upper saturation limit",
+   "default": "inf",
+   "values": "状态上限 inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Lower saturation limit",
+   "default": "-inf",
+   "values": "状态下限 -inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

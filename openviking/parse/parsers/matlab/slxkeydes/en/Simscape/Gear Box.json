@@ -1,0 +1,13 @@
+{
+ "key": "Gear Box",
+ "title": "Gear Box",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanisms/Gear_Box.md"
+ ],
+ "text": "Gear box in mechanical systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,119 @@
+{
+ "key": "ADC Interface",
+ "title": "ADC Interface",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Test Bench Blocks/ADC_Interface.md",
+  "SoC Blockset/Peripherals/ADC_Interface.md"
+ ],
+ "text": "Convert analog signal on ADC input pin to digital signal, 2 inputs, 3 outputs, {Conversion type} sets Type multichannel conversion; {Resolution (bits)} sets the resolution of digital measurement, {Voltage reference (V)} sets the reference voltage in ADC, {Acquisition time (s)} sets the time required for ADC to capture input voltage, {Conversion time (s)} sets the time to convert physical voltage sample to digital value, {Charge/dischard time constant (s)} sets the charge or discharge time constant of the ADC acquisition, {Number of channel}, {Enable interrupt} sets the option to enable interrupt event generation, {Condition}, {Enable analog watchdog} sets the option to enable analog watchdog interrupt event, {Lower threshold}, {Upper threshold} and {Interrupt latency (s)} sets the interrupt generation latency. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "Start analog to digital conversion start an analog to digital conversion event"
+  },
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "Analog voltage signal scalar"
+  },
+  {
+   "name": "digital",
+   "direction": "output",
+   "summary": "SoC message data scalar"
+  },
+  {
+   "name": "wd event",
+   "direction": "output",
+   "summary": "Analog watchdog task event signal scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "Task event signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resolution (bits)",
+   "default": "12",
+   "values": "Resolution of digital measurement 12 (default) | 16",
+   "group": "Single Channel"
+  },
+  {
+   "name": "Voltage reference (V)",
+   "default": "3",
+   "values": "Reference voltage in ADC 3 (default) | 3.3",
+   "group": "Single Channel"
+  },
+  {
+   "name": "Acquisition time (s)",
+   "default": "320e-9",
+   "values": "Time required for ADC to capture input voltage 320e-9 (default) | positive scalar",
+   "group": "Single Channel"
+  },
+  {
+   "name": "Conversion time (s)",
+   "default": "240e-9",
+   "values": "Time to convert physical voltage sample to digital value 240e-9 (default) | positive scalar",
+   "group": "Single Channel"
+  },
+  {
+   "name": "Charge/dischard time constant (s)",
+   "default": "0",
+   "values": "Charge or discharge time constant of the ADC acquisition circuit 0 (default) | nonnegative scalar",
+   "group": "Single Channel"
+  },
+  {
+   "name": "Number of channel",
+   "default": "1",
+   "values": "Number of channels used in multichannel sampling 1 (default) | integer in the range 1 to 16",
+   "group": "Multichannel"
+  },
+  {
+   "name": "Conversion type",
+   "default": "Sequential",
+   "values": "Type multichannel conversion Sequential (default) | Simultaneous | Oversampling",
+   "group": "Multichannel"
+  },
+  {
+   "name": "Enable interrupt",
+   "default": "enable",
+   "values": "Option to enable interrupt event generation enable (default) | disable",
+   "group": "Event"
+  },
+  {
+   "name": "Condition",
+   "default": "time",
+   "values": "Condition on when to trigger interrupt Acquisition time (default) | Acquisition + Conversion time",
+   "group": "Event"
+  },
+  {
+   "name": "Enable analog watchdog",
+   "default": "off",
+   "values": "Option to enable analog watchdog interrupt event generation off (default) | on",
+   "group": "Event"
+  },
+  {
+   "name": "Lower threshold",
+   "default": "0.1",
+   "values": "Lower threshold watchdog trigger 0.1 (default) | real-valued scalar",
+   "group": "Event"
+  },
+  {
+   "name": "Upper threshold",
+   "default": "2.9",
+   "values": "Upper threshold watchdog trigger 2.9 (default) | real-valued scalar",
+   "group": "Event"
+  },
+  {
+   "name": "Interrupt latency (s)",
+   "default": "0",
+   "values": "Interrupt generation latency 0 (default) | positive scalar",
+   "group": "Event"
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "key": "modbusRead",
+ "title": "Modbus Client Read",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/Modbus/Modbus_Client_Read.md"
+ ],
+ "text": "从 Modbus 服务器读取数据；输出 1 路；{Client} 指定 Modbus 客户端、{Server ID} 指定服务器的地址、{Registers} 指定 Modbus 寄存器列表 table、{Block sample time} 指定读取操作的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Reg_ x",
+   "direction": "output",
+   "summary": "寄存器的当前值 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Client",
+   "default": "",
+   "values": "选择 Modbus 客户端 drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Server ID",
+   "default": "1",
+   "values": "服务器的地址 1 (default) | nonnegative integer in the range [0, 255]",
+   "group": ""
+  },
+  {
+   "name": "Registers",
+   "default": "",
+   "values": "Modbus 寄存器列表 table",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "-1",
+   "values": "读取操作的采样时间 -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

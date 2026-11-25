@@ -1,0 +1,29 @@
+{
+ "key": "Quaternion Multiplication",
+ "title": "Quaternion Multiplication",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Multiplication.md"
+ ],
+ "text": "计算两个四元数的乘积，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "第一个四元数 quaternion | vector of quaternions"
+  },
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "第二个四元数 quaternion | vector of quaternions"
+  },
+  {
+   "name": "q*r",
+   "direction": "output",
+   "summary": "乘积 vector | vector of quaternion products"
+  }
+ ],
+ "params": []
+}

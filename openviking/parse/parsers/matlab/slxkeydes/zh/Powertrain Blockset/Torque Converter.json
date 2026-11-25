@@ -1,0 +1,178 @@
+{
+ "key": "Torque Converter",
+ "title": "Torque Converter",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Torque Converters/Torque_Converter.md",
+  "Simscape/Driveline/Couplings & Drives/Torque_Converter.md"
+ ],
+ "text": "由泵轮、涡轮和导轮组成的三元件液力变矩器；输出 3 路；按 {Interpolation method} 指定插值方法；{Lock-up clutch configuration} 指定锁止离合器配置、{Impeller shaft inertia, Ji} 指定惯性 .1、{Impeller shaft viscous damping, bi} 指定粘性阻尼系数 .001、{Turbine shaft inertia, Jt} 指定惯性 .1、{Turbine shaft viscous damping, bt} 指定粘性阻尼系数 .001、{Initial impeller shaft velocity, omegai_o} 指定角速度、{Initial turbine shaft velocity, omegat_o} 指定角速度、{Speed ratio vector, phi} 指定比值、{Capacity factor parameterization} 指定因子比类型 Input speed / sqrt、{Capacity vector, psi} 指定向量、{Torque ratio vector, zeta} 指定向量、{Fluid torque response time constant (set to 0 to disable), tauTC} 指定时间常数 .02、{Clutch force equivalent net radius, Reff} 指定有效半径 .3、{Static friction coefficient, mus} 指定系数、{Kinetic friction coefficient, muk} 指定系数、{Start simulation with clutch initially locked} 以初始锁定离合器、{Lock-up speed ratio threshold, philu} 指定阈值 .85、{Minimum lock-up engagement speed, omegal} 指定角速度 900*pi/30、{Lock-up disengagement speed, omegau} 指定角速度 800*pi/30、{Lock-up clutch force gain, K_c} 指定 Gain、{Lock-up clutch time constant, tauC} 指定时间常数 .0500，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ImpTrq",
+   "direction": "",
+   "summary": "施加的泵轮转矩 scalar"
+  },
+  {
+   "name": "TurbTrq",
+   "direction": "",
+   "summary": "施加的涡轮转矩 scalar"
+  },
+  {
+   "name": "Clutch Force",
+   "direction": "",
+   "summary": "施加的离合器力 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "ImpSpd",
+   "direction": "output",
+   "summary": "叶轮转速 scalar"
+  },
+  {
+   "name": "TurbSpd",
+   "direction": "output",
+   "summary": "涡轮转速 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lock-up clutch configuration",
+   "default": "Lock-up",
+   "values": "选择锁止离合器配置 Lock-up (default) | No lock-up | External lock-up input",
+   "group": ""
+  },
+  {
+   "name": "Impeller shaft inertia, Ji",
+   "default": ".1",
+   "values": "惯性 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Impeller shaft viscous damping, bi",
+   "default": ".001",
+   "values": "粘性阻尼系数 .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Turbine shaft inertia, Jt",
+   "default": ".1",
+   "values": "惯性 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Turbine shaft viscous damping, bt",
+   "default": ".001",
+   "values": "粘性阻尼系数 .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial impeller shaft velocity, omegai_o",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial turbine shaft velocity, omegat_o",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed ratio vector, phi",
+   "default": "0.97]",
+   "values": "比值 [ 0 0.50 0.60 0.70 0.80 0.87 0.92 0.94 0.96 0.97] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Capacity factor parameterization",
+   "default": "torque)",
+   "values": "选择因子比类型 Input speed / sqrt(input torque) (default) | Absorbed torque / input speed^2",
+   "group": ""
+  },
+  {
+   "name": "Capacity vector, psi",
+   "default": "50.00]",
+   "values": "向量 [12.2938 12.8588 13.1452 13.6285 14.6163 16.2675 19.3503 22.1046 29.9986 50.00] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Torque ratio vector, zeta",
+   "default": "0.9983]",
+   "values": "向量 [2.2320 1.5462 1.4058 1.2746 1.1528 1.0732 1.0192 0.9983 0.9983 0.9983] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Fluid torque response time constant (set to 0 to disable), tauTC",
+   "default": ".02",
+   "values": "时间常数 .02 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "选择插值方法 Linear (default) | Flat | Nearest",
+   "group": ""
+  },
+  {
+   "name": "Clutch force equivalent net radius, Reff",
+   "default": ".3",
+   "values": "有效半径 .3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static friction coefficient, mus",
+   "default": "1.2",
+   "values": "系数 1.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Kinetic friction coefficient, muk",
+   "default": "1",
+   "values": "系数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with clutch initially locked",
+   "default": "off",
+   "values": "选择以初始锁定离合器 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lock-up speed ratio threshold, philu",
+   "default": ".85",
+   "values": "阈值 .85 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum lock-up engagement speed, omegal",
+   "default": "900*pi/30",
+   "values": "角速度 900*pi/30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lock-up disengagement speed, omegau",
+   "default": "800*pi/30",
+   "values": "角速度 800*pi/30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lock-up clutch force gain, K_c",
+   "default": "5000",
+   "values": "Gain 5000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lock-up clutch time constant, tauC",
+   "default": ".0500",
+   "values": "时间常数 .0500 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

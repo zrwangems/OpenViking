@@ -1,0 +1,73 @@
+{
+ "key": "Prelookup",
+ "title": "Prelookup",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Interpolation/Prelookup.md"
+ ],
+ "text": "为 Curve Using Prelookup 或 Map Using Prelookup 模块计算索引和分数，输入 1 路、输出 1 路；按 {Targeted Routine} 指定用于代码替换的 AUTOSAR 库例程 Ifx_DPSearch；{Targeted Routine Library} 指示用于模块代码替换的 AUTOSAR 例程库、{Breakpoints Specification} 指定如何输入断点数据 Explicit、{Breakpoints} 指定断点数据值、{Name} 指定 Simulink.Breakpoint 对象的名称 Simulink.Breakpoint、{Index search method} 指定搜索断点数据的方法 Linear、{Begin index search using previous index result} 使用在上一个时间步找到的索引开始搜索、{Integer rounding mode} 指定定点或浮点运算的舍入模式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号，u scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "包含输出索引和分数的总线 Simulink.Bus object"
+  }
+ ],
+ "params": [
+  {
+   "name": "Targeted Routine Library",
+   "default": "",
+   "values": "指示用于模块代码替换的 AUTOSAR 例程库 IFX (fixed-point) | IFL (floating-point)",
+   "group": ""
+  },
+  {
+   "name": "Targeted Routine",
+   "default": "",
+   "values": "用于代码替换的 AUTOSAR 库例程 Ifx_DPSearch | Ifl_DPSearch",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints Specification",
+   "default": "values",
+   "values": "选择如何输入断点数据 Explicit values (default) | Breakpoint object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Breakpoints",
+   "default": "3]",
+   "values": "断点数据值 [1 2 3] (default)",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Simulink.Breakpoint 对象的名称 Simulink.Breakpoint object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Index search method",
+   "default": "search",
+   "values": "搜索断点数据的方法 Linear search (default) | Binary search",
+   "group": "Algorithms"
+  },
+  {
+   "name": "Begin index search using previous index result",
+   "default": "off",
+   "values": "使用在上一个时间步找到的索引开始搜索 off (default) | on",
+   "group": "Algorithms"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Zero",
+   "values": "定点或浮点运算的舍入模式 Zero (default) | Round",
+   "group": "Algorithms"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Specific Dissipation Heat Exchanger (G)",
+ "title": "Specific Dissipation Heat Exchanger (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Gas/Specific_Dissipation_Heat_Exchanger_G.md"
+ ],
+ "text": "用于气体和受控流系统的、由比耗散数据参数化的热交换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

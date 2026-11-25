@@ -1,0 +1,101 @@
+{
+ "key": "Kasami Sequence Generator",
+ "title": "Kasami Sequence Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Sequence Generators/Kasami_Sequence_Generator.md"
+ ],
+ "text": "Generate Kasami sequence from set of Kasami sequences, 3 inputs, 1 output, {Sequence index(es)} sets Sequence index; {Generator polynomial}, {Initial states}, {Shift} sets the sequence offset from starting point, {Output variable-size signals} sets the option to output variable-length signals, {Maximum output size source}, {Maximum output size}, {Sample time} sets the output sample time, {Samples per frame}, {Reset on nonzero input} sets the option to reset output signal and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "oSiz",
+   "direction": "input",
+   "summary": "Current output size scalar | vector"
+  },
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "Reference input signal scalar | column vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset signal scalar | vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output Signal vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generator polynomial",
+   "default": "1’",
+   "values": "Generator polynomial ’z^6 + z + 1’ (default) | polynomial character vector | string scalar | binary-valued row vector | integer-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states",
+   "default": "1]",
+   "values": "Initial states [0 0 0 0 0 1] (default) | binary-valued scalar | binary-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Sequence index(es)",
+   "default": "0",
+   "values": "Sequence index 0 (default) | integer | vector of the form [ k m ]",
+   "group": ""
+  },
+  {
+   "name": "Shift",
+   "default": "0",
+   "values": "Sequence offset from starting point 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "Option to output variable-length signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size source",
+   "default": "parameter",
+   "values": "Maximum output size source Dialog parameter (default) | Inherit from reference port",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size",
+   "default": "1]",
+   "values": "Maximum output size [10 1] (default) | vector of the form [ n 1]",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Output sample time 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Reset on nonzero input",
+   "default": "off",
+   "values": "Option to reset output signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | boolean",
+   "group": ""
+  }
+ ]
+}

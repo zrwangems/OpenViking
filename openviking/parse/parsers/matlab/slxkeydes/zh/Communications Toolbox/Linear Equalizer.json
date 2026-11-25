@@ -1,0 +1,181 @@
+{
+ "key": "Linear Equalizer",
+ "title": "Linear Equalizer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Equalizers/Linear_Equalizer.md"
+ ],
+ "text": "使用线性滤波对调制信号进行均衡，输入 5 路、输出 3 路；按 {Adaptive algorithm} 指定自适应算法；{Number of taps} 指定均衡器抽头数、{Signal constellation} 指定信号星座 pskmod、{Number of input samples per symbol} 指定每个符号的输入样本数、{Step size} 指定步长、{Forgetting factor} 指定遗忘因子、{Initial inverse correlation matrix} 指定初始逆相关矩阵、{Reference tap} 指定参考抽头、{Input signal delay (samples)} 指定输入信号延迟、{Source of adapt weights flag} 指定调整抽头权重请求的来源、{Adapt tap weights} 指定调整抽头权重、{Initial tap weights source} 指定初始抽头权重的来源、{Initial weights} 指定初始抽头权重、{Tap weight update period (symbols)} 指定抽头权重更新周期、{Enable training control input} 启用训练控制输入、{Update tap weights when not training} 指定未训练时更新抽头权重、{Enable reset input} 启用复位输入、{Info} 指定线性均衡器信息、{Output error signal} 启用误差信号输出、{Output taps weights} 启用抽头权重输出、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入信号 column vector"
+  },
+  {
+   "name": "Desired",
+   "direction": "input",
+   "summary": "训练符号 column vector"
+  },
+  {
+   "name": "Train",
+   "direction": "input",
+   "summary": "训练均衡器标志 1 | 0"
+  },
+  {
+   "name": "Update",
+   "direction": "input",
+   "summary": "更新抽头权重标志 1 | 0"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "重置均衡器标志 1 | 0"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "均衡后的符号 column vector"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "误差信号 column vector"
+  },
+  {
+   "name": "w",
+   "direction": "output",
+   "summary": "抽头权重 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of taps",
+   "default": "5",
+   "values": "均衡器抽头数 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Signal constellation",
+   "default": "pskmod(0:3,4,pi/4)",
+   "values": "信号星座 pskmod(0:3,4,pi/4) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of input samples per symbol",
+   "default": "1",
+   "values": "每个符号的输入样本数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Adaptive algorithm",
+   "default": "LMS",
+   "values": "自适应算法 LMS (default) | RLS | CMA",
+   "group": ""
+  },
+  {
+   "name": "Step size",
+   "default": "0.01",
+   "values": "步长 0.01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.99",
+   "values": "遗忘因子 0.99 (default) | scalar in the range (0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Initial inverse correlation matrix",
+   "default": "0.1",
+   "values": "初始逆相关矩阵 0.1 (default) | scalar | matrix",
+   "group": ""
+  },
+  {
+   "name": "Reference tap",
+   "default": "3",
+   "values": "参考抽头 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Input signal delay (samples)",
+   "default": "0",
+   "values": "输入信号延迟 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Source of adapt weights flag",
+   "default": "Property",
+   "values": "调整抽头权重请求的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Adapt tap weights",
+   "default": "on",
+   "values": "调整抽头权重 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Initial tap weights source",
+   "default": "Auto",
+   "values": "初始抽头权重的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Initial weights",
+   "default": "[0;0;1;0;0]",
+   "values": "初始抽头权重 0 or [0;0;1;0;0] (default) | scalar | column vector",
+   "group": ""
+  },
+  {
+   "name": "Tap weight update period (symbols)",
+   "default": "1",
+   "values": "抽头权重更新周期 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable training control input",
+   "default": "off",
+   "values": "启用训练控制输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Update tap weights when not training",
+   "default": "on",
+   "values": "未训练时更新抽头权重 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable reset input",
+   "default": "off",
+   "values": "启用复位输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Info",
+   "default": "",
+   "values": "线性均衡器信息 button",
+   "group": ""
+  },
+  {
+   "name": "Output error signal",
+   "default": "off",
+   "values": "启用误差信号输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output taps weights",
+   "default": "off",
+   "values": "启用抽头权重输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

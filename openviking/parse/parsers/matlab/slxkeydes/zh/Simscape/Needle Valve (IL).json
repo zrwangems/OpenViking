@@ -1,0 +1,13 @@
+{
+ "key": "Needle Valve (IL)",
+ "title": "Needle Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Flow Control Valves/Needle_Valve_IL.md"
+ ],
+ "text": "等温液体系统中的针阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

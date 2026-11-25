@@ -1,0 +1,29 @@
+{
+ "key": "Probabilistic rule aggregation method",
+ "title": "Probabilistic Rule Agg",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Probabilistic_Rule_Agg.md"
+ ],
+ "text": "用于规则聚合的概率 OR 函数，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "输入值 row vector"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "输入值 row vector"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "概率 OR 值 row vector"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,90 @@
+{
+ "key": "Simulation 3D Spacecraft",
+ "title": "Simulation 3D Spacecraft",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Spacecraft.md"
+ ],
+ "text": "Implement spacecraft in 3D environment, 3 inputs, {Initial rotation (rad)} sets Initial rotation of spacecraft; {Type} sets the spacecraft type, {Path to CubeSat mesh}, {Path to SmallSat mesh}, {Name} sets the spacecraft name, {Initial translation (m)} sets the initial translation of spacecraft zeros, {Scale source}, {Initial scale} sets the initial mesh scale, {Scale} sets the mesh scale and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Spacecraft translation 10-by-3 array | 20-by-3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Spacecraft rotation 10-by-3 array | 20-by-3 array"
+  },
+  {
+   "name": "Scale",
+   "direction": "input",
+   "summary": "Mesh scale [1 1 1] (default) | 1-by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "CubeSat",
+   "values": "Spacecraft type CubeSat (default) | SmallSat",
+   "group": ""
+  },
+  {
+   "name": "Path to CubeSat mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat",
+   "values": "Path to CubeSat mesh /MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Path to SmallSat mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat",
+   "values": "Path to SmallSat mesh /MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "Spacecraft name SimulinkVehicle1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Initial translation (m)",
+   "default": "zeros(10,3)",
+   "values": "Initial translation of spacecraft zeros(10,3) (default) | 10-by-3 array | 20-by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Initial rotation (rad)",
+   "default": "zeros(10,3)",
+   "values": "Initial rotation of spacecraft zeros(10,3) (default) | 10-by-3 array | 20-by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Scale source",
+   "default": "Dialog",
+   "values": "Scale source Dialog (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Initial scale",
+   "default": "1]",
+   "values": "Initial mesh scale [1 1 1] (default) | 1-by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Scale",
+   "default": "1]",
+   "values": "Mesh scale [1 1 1] (default) | 1-by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.02",
+   "values": "Sample time 0.02 (default) | real scalar",
+   "group": ""
+  }
+ ]
+}

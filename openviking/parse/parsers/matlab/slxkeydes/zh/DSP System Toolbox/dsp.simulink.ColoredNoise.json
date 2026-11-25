@@ -1,0 +1,75 @@
+{
+ "key": "dsp.simulink.ColoredNoise",
+ "title": "Colored Noise",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Colored_Noise.md",
+  "Audio Toolbox/Sources/Colored_Noise.md"
+ ],
+ "text": "生成有色噪声信号；输出 1 路；按 {Noise color} 指定生成噪声的颜色；{Power of inverse frequency} 指定逆功率谱密度分量、{Guarantee the output is bounded (+/-1)} 指定将输出边界设置为 +1 和 −1、{Number of output channels} 输出通道数、{Output data type} 输出数据类型、{Number of samples per output channel} 输出的每帧采样点数、{Output sample time (s)} 输出的采样时间、{Initial seed} 指定随机数生成器的初始种子、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "有色噪声信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Noise color",
+   "default": "pink",
+   "values": "生成噪声的颜色 pink (default) | white | brown | blue | purple | custom",
+   "group": ""
+  },
+  {
+   "name": "Power of inverse frequency",
+   "default": "1",
+   "values": "逆功率谱密度分量 1 (default) | scalar in the range [-2 2]",
+   "group": ""
+  },
+  {
+   "name": "Guarantee the output is bounded (+/-1)",
+   "default": "off",
+   "values": "将输出边界设置为 +1 和 −1 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of output channels",
+   "default": "1",
+   "values": "输出通道数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Number of samples per output channel",
+   "default": "1024",
+   "values": "输出的每帧采样点数 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output sample time (s)",
+   "default": "1",
+   "values": "输出的采样时间 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "67",
+   "values": "随机数生成器的初始种子 67 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

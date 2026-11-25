@@ -1,0 +1,436 @@
+{
+ "key": "phased.ScatteringMIMOChannel",
+ "title": "Scattering MIMO Channel",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Scattering_MIMO_Channel.md"
+ ],
+ "text": "Scattering MIMO propagation channel, 12 inputs, 5 outputs, {Geometry} sets Array geometry; {Propagation speed (m/s)} sets the signal propagation speed physconst, {Signal carrier frequency (Hz)} sets the signal carrier frequency 3e8, {Polarization configuration}, {Specify atmospheric parameters} enables atmospheric attenuation model, {Temperature (degrees Celsius)} sets the ambient temperature, {Dry air pressure (Pa)} sets the atmospheric dry air, {Water vapour density (g/m^3)} sets the atmospheric water vapor density, {Liquid water density (g/m^3)}, {Rain rate (mm/hr)} sets the rainfall rate, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate, {Simulate direct path propagation} enables propagation along direct path, {Maximum delay (s)} sets the maximum signal delay 10e-6, {Output channel response} enables output of channel response, {Simulate using} sets the block simulation method Interpreted, {Specify sensor array as} sets the method to specify array Array, {Expression} sets the mATLAB expression used to create an array Phased Array System Toolbox™ array System, {Element type} sets the array element types, {Operating frequency range (Hz)} sets the operating frequency range of the antenna or microphone element, {Operating frequency vector (Hz)} sets the operating frequency range of custom antenna or microphone elements, {Baffle the back of the element} sets the back response of an Isotropic Antenna element or an Omni Microphone element, {Exponent of cosine pattern} sets the exponents of azimuth and elevation cosine patterns, {Frequency responses (dB)} sets the antenna and microphone frequency response, {Input Pattern Coordinate System} sets the coordinate system of custom antenna pattern, {Azimuth angles (deg)} sets the azimuth angles of antenna radiation pattern, {Elevation angles (deg)} sets the elevation angles of antenna radiation pattern, {Phi Angles (deg)} sets the phi angle coordinates of custom antenna radiation pattern, {Theta Angles (deg)} sets the theta angle coordinates of custom antenna radiation pattern, {Magnitude pattern (dB)} sets the magnitude of combined antenna radiation pattern, {Phase pattern (deg)} sets the custom antenna radiation phase pattern, {MatchArrayNormal} sets the rotate antenna element to array normal, {Polar pattern frequencies (Hz)} sets the polar pattern microphone response frequencies, {Polar pattern angles (deg)} sets the polar pattern response angles, {Polar pattern (dB)} sets the custom microphone polar response zeros, {Number of elements} sets the number of array elements 2 for ULA arrays and 5 for UCA, {Element spacing (m)} sets the spacing between array elements 0.5 for ULA arrays, {Array axis} sets the linear axis direction, {Array size} sets the dimensions of URA array, {Element lattice} sets the lattice of URA element positions, {Array normal}, {Radius of UCA (m)} sets the uCA array radius, {Element positions (m)} sets the positions of conformal array elements, {Element normals (deg)} sets the direction of conformal array element normal vectors, {Taper} sets the array element tapers, {Source of transmit array motion} sets the source of the transmitting array motion parameters, {Position of the transmit array (m)} sets the position of transmitting array, {Orientation of the transmit array} sets the orientation of transmitting array axes, {Source of receive array motion} sets the source of the receiving array motion parameters, {Position of the receive array (m)} sets the position of receiving array, {Orientation of the receive array} sets the orientation of receiving array axes, {Scatterer specification} sets the source of scatterer parameters, {Number of scatterers}, {Boundary of scatterer positions} sets the constrain scatterer positions within a boundary, {Positions of scatterers (m)} sets the positions of scatterers and {ScattererCoefficient} sets the scattering coefficients. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Transmitted narrowband signal M -by- N t complex-valued matrix"
+  },
+  {
+   "name": "XH",
+   "direction": "input",
+   "summary": "Transmitted narrowband H-polarization signal M -by- N t complex-valued matrix"
+  },
+  {
+   "name": "XV",
+   "direction": "input",
+   "summary": "Transmitted narrowband V-polarization signal M -by- N t complex-valued matrix"
+  },
+  {
+   "name": "TxPos",
+   "direction": "input",
+   "summary": "Position of transmitting antenna array 3-by-1 real-valued column vector"
+  },
+  {
+   "name": "TxVel",
+   "direction": "input",
+   "summary": "Velocity of transmitting antenna array 3-by-1 real-valued column vector"
+  },
+  {
+   "name": "TxAxes",
+   "direction": "input",
+   "summary": "Axes orientation of transmitting antenna array 3-by-3 real orthonormal matrix"
+  },
+  {
+   "name": "RxPos",
+   "direction": "input",
+   "summary": "Position of receiving antenna array 3-by-1 real-valued column vector"
+  },
+  {
+   "name": "RxVel",
+   "direction": "input",
+   "summary": "Velocity of receiving antenna array 3-by-1 real-valued column vector"
+  },
+  {
+   "name": "RxAxes",
+   "direction": "input",
+   "summary": "Axes orientation of receiving antenna array 3-by-3 real orthonormal matrix"
+  },
+  {
+   "name": "ScatPos",
+   "direction": "input",
+   "summary": "Positions of scatterers 3-by- N s real-valued matrix"
+  },
+  {
+   "name": "ScatVel",
+   "direction": "input",
+   "summary": "Velocities of scatterers 3-by- N s real-valued matrix"
+  },
+  {
+   "name": "ScatCoef",
+   "direction": "input",
+   "summary": "Scattering coefficients 1-by- N s complex-valued row vector"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Received narrowband signal M -by- N r complex-valued matrix"
+  },
+  {
+   "name": "YH",
+   "direction": "output",
+   "summary": "Received narrowband H-polarization signal complex-valued M -by- N r matrix"
+  },
+  {
+   "name": "YV",
+   "direction": "output",
+   "summary": "Received narrowband V-polarization signal complex-valued M -by- N r matrix"
+  },
+  {
+   "name": "CS",
+   "direction": "output",
+   "summary": "Channel response N t -by- N r -by- N s complex-valued MATLAB ® array"
+  },
+  {
+   "name": "Tau",
+   "direction": "output",
+   "summary": "Path delays 1-by- N s real-valued vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Signal carrier frequency (Hz)",
+   "default": "3e8",
+   "values": "Signal carrier frequency 3e8 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Polarization configuration",
+   "default": "None",
+   "values": "Polarization configuration None (default) | Combined | Dual",
+   "group": ""
+  },
+  {
+   "name": "Specify atmospheric parameters",
+   "default": "off",
+   "values": "Enable atmospheric attenuation model off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Temperature (degrees Celsius)",
+   "default": "15",
+   "values": "Ambient temperature 15 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Dry air pressure (Pa)",
+   "default": "101.325e3",
+   "values": "Atmospheric dry air pressure 101.325e3 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Water vapour density (g/m^3)",
+   "default": "7.5",
+   "values": "Atmospheric water vapor density 7.5 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Liquid water density (g/m^3)",
+   "default": "0.0",
+   "values": "Liquid water density 0.0 (default) | nonnegative real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Rain rate (mm/hr)",
+   "default": "0.0",
+   "values": "Rainfall rate 0.0 (default) | non-negative real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate direct path propagation",
+   "default": "off",
+   "values": "Enable propagation along direct path off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum delay (s)",
+   "default": "10e-6",
+   "values": "Maximum signal delay 10e-6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output channel response",
+   "default": "off",
+   "values": "Enable output of channel response off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Specify sensor array as",
+   "default": "subarrays)",
+   "values": "Method to specify array Array (no subarrays) (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Expression",
+   "default": "",
+   "values": "MATLAB expression used to create an array Phased Array System Toolbox™ array System object",
+   "group": ""
+  },
+  {
+   "name": "Element type",
+   "default": "Antenna",
+   "values": "Array element types Isotropic Antenna (default) | Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency range (Hz)",
+   "default": "[0,1e20]",
+   "values": "Operating frequency range of the antenna or microphone element [0,1e20] (default) | real-valued 1-by-2 row vector",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency vector (Hz)",
+   "default": "[0,1e20]",
+   "values": "Operating frequency range of custom antenna or microphone elements [0,1e20] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Baffle the back of the element",
+   "default": "off",
+   "values": "Set back response of an Isotropic Antenna element or an Omni Microphone element to zero off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Exponent of cosine pattern",
+   "default": "1.5]",
+   "values": "Exponents of azimuth and elevation cosine patterns [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2 matrix of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Frequency responses (dB)",
+   "default": "[0,0]",
+   "values": "Antenna and microphone frequency response [0,0] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Input Pattern Coordinate System",
+   "default": "az-el",
+   "values": "Coordinate system of custom antenna pattern az-el (default) | phi-theta",
+   "group": ""
+  },
+  {
+   "name": "Azimuth angles (deg)",
+   "default": "[-180:180]",
+   "values": "Azimuth angles of antenna radiation pattern [-180:180] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "[-90:90]",
+   "values": "Elevation angles of antenna radiation pattern [-90:90] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Phi Angles (deg)",
+   "default": "",
+   "values": "Phi angle coordinates of custom antenna radiation pattern 0:360 | real-valued 1-by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Theta Angles (deg)",
+   "default": "",
+   "values": "Theta angle coordinates of custom antenna radiation pattern 0:180 | real-valued 1-by- Q row vector",
+   "group": ""
+  },
+  {
+   "name": "Magnitude pattern (dB)",
+   "default": "zeros(181,361)",
+   "values": "Magnitude of combined antenna radiation pattern zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Phase pattern (deg)",
+   "default": "zeros(181,361)",
+   "values": "Custom antenna radiation phase pattern zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": ""
+  },
+  {
+   "name": "MatchArrayNormal",
+   "default": "on",
+   "values": "Rotate antenna element to array normal on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern frequencies (Hz)",
+   "default": "1e3",
+   "values": "Polar pattern microphone response frequencies 1e3 (default) | real scalar | real-valued 1-by- L row vector",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern angles (deg)",
+   "default": "[-180:180]",
+   "values": "Polar pattern response angles [-180:180] (default) | real-valued -by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern (dB)",
+   "default": "zeros(1,361)",
+   "values": "Custom microphone polar response zeros(1,361) (default) | real-valued L -by- P matrix",
+   "group": ""
+  },
+  {
+   "name": "Geometry",
+   "default": "ULA",
+   "values": "Array geometry ULA (default) | URA | UCA | Conformal Array",
+   "group": ""
+  },
+  {
+   "name": "Number of elements",
+   "default": "arrays",
+   "values": "Number of array elements 2 for ULA arrays and 5 for UCA arrays (default) | integer greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Element spacing (m)",
+   "default": "arrays",
+   "values": "Spacing between array elements 0.5 for ULA arrays and [0.5,0.5] for URA arrays (default) | positive scalar for ULA or URA arrays | 2-element vector of positive values for URA arrays",
+   "group": ""
+  },
+  {
+   "name": "Array axis",
+   "default": "y",
+   "values": "Linear axis direction of ULA y (default) | x | z",
+   "group": ""
+  },
+  {
+   "name": "Array size",
+   "default": "[2,2]",
+   "values": "Dimensions of URA array [2,2] (default) | positive integer | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Element lattice",
+   "default": "Rectangular",
+   "values": "Lattice of URA element positions Rectangular (default) | Triangular",
+   "group": ""
+  },
+  {
+   "name": "Array normal",
+   "default": "arrays",
+   "values": "Array normal direction x for URA arrays or z for UCA arrays (default) | y",
+   "group": ""
+  },
+  {
+   "name": "Radius of UCA (m)",
+   "default": "0.5",
+   "values": "UCA array radius 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Element positions (m)",
+   "default": "[0;0;0]",
+   "values": "Positions of conformal array elements [0;0;0] (default) | 3-by- N matrix of real values",
+   "group": ""
+  },
+  {
+   "name": "Element normals (deg)",
+   "default": "",
+   "values": "Direction of conformal array element normal vectors [0;0] | 2-by-1 column vector | 2-by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Taper",
+   "default": "1",
+   "values": "Array element tapers 1 (default) | complex scalar | complex-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Source of transmit array motion",
+   "default": "Property",
+   "values": "Specify the source of the transmitting array motion parameters Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Position of the transmit array (m)",
+   "default": "[0;0;0]",
+   "values": "Position of transmitting array [0;0;0] (default) | real-valued 3-by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Orientation of the transmit array",
+   "default": "eye(3,3)",
+   "values": "Set the orientation of transmitting array axes eye(3,3) (default) | real-valued 3-by-3 orthonormal matrix",
+   "group": ""
+  },
+  {
+   "name": "Source of receive array motion",
+   "default": "Property",
+   "values": "Specify the source of the receiving array motion parameters Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Position of the receive array (m)",
+   "default": "0;0]",
+   "values": "Position of receiving array [physconst(’LightSpeed’ )/1e5; 0;0] (default) | real-valued 3-by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Orientation of the receive array",
+   "default": "eye(3,3)",
+   "values": "Set the orientation of receiving array axes eye(3,3) (default) | real-valued 3-by-3 orthonormal matrix",
+   "group": ""
+  },
+  {
+   "name": "Scatterer specification",
+   "default": "Auto",
+   "values": "Specify source of scatterer parameters Auto (default) | Property | Input port",
+   "group": ""
+  },
+  {
+   "name": "Number of scatterers",
+   "default": "1",
+   "values": "Number of scatterers 1 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Boundary of scatterer positions",
+   "default": "[0,1000]",
+   "values": "Constrain scatterer positions within a boundary [0,1000] (default) | 1-by-2 real-valued vector | 3-by-2 real-valued matrix",
+   "group": ""
+  },
+  {
+   "name": "Positions of scatterers (m)",
+   "default": ")*5e-6;0;0]",
+   "values": "Positions of scatterers [physconst(’LightSpeed’ )*5e-6;0;0] (default) | real-valued 3-by- N s matrix",
+   "group": ""
+  },
+  {
+   "name": "ScattererCoefficient",
+   "default": "1",
+   "values": "Scattering coefficients 1 (default) | complex-valued 1-by- N s matrix",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,80 @@
+{
+ "key": "UAV Scenario Lidar",
+ "title": "UAV Scenario Lidar",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Lidar.md"
+ ],
+ "text": "基于场景中的网格仿真激光雷达测量；输出 1 路；{Sensor name} 指定激光雷达传感器名称、{Max range} 指定激光雷达的最大距离、{Range Accuracy} 指定激光雷达的距离精度、{Azimuthal limits} 指定激光雷达的方位角限制、{Azimuthal resolution} 指定方位角分辨率、{Elevation limits} 指定激光雷达的仰角限制、{Elevation resolution} 指定仰角分辨率、{Add noise to measurement} 指定向测量添加噪声、{Output organized point cloud locations} 输出点云位置、{Sample Time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pointcloud",
+   "direction": "output",
+   "summary": "点云数据 N -by- M -by-3 double matrix | N -by-3 double matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor name",
+   "default": "’UAV/Lidar’",
+   "values": "激光雷达传感器名称 ’UAV/Lidar’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Max range",
+   "default": "120",
+   "values": "激光雷达的最大距离 120 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Range Accuracy",
+   "default": "0.002",
+   "values": "激光雷达的距离精度 0.002 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Azimuthal limits",
+   "default": "180]",
+   "values": "激光雷达的方位角限制 [-180, 180] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Azimuthal resolution",
+   "default": "0.16",
+   "values": "方位角分辨率 0.16 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Elevation limits",
+   "default": "20]",
+   "values": "激光雷达的仰角限制 [-20, 20] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation resolution",
+   "default": "1.25",
+   "values": "仰角分辨率 1.25 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Add noise to measurement",
+   "default": "’on’",
+   "values": "向测量添加噪声 ’on’ (default) | ’off’",
+   "group": ""
+  },
+  {
+   "name": "Output organized point cloud locations",
+   "default": "’on’",
+   "values": "输出点云位置 ’on’ (default) | ’off’",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "0.1",
+   "values": "采样时间 0.1 (default) | double",
+   "group": ""
+  }
+ ]
+}

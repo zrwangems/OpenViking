@@ -1,0 +1,24 @@
+{
+ "key": "Reciprocal Condition",
+ "title": "Reciprocal Condition",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Reciprocal_Condition.md"
+ ],
+ "text": "Compute reciprocal condition of square matrix in 1-norm, 1 input, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input matrix square matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Reciprocal condition output scalar"
+  }
+ ],
+ "params": []
+}

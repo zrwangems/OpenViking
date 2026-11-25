@@ -1,0 +1,62 @@
+{
+ "key": "FromFile",
+ "title": "From File",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/From_File.md"
+ ],
+ "text": "Load data from MAT file into Simulink model, 1 output, no direct feedthrough, {File name} sets MAT file name or path to MAT file; {Output data type} sets the data type of data in MAT file Inherit, {Sample time} sets the output sample period and optional time, {Data extrapolation before first data point} sets the method to determine block output before first data point in MAT file Linear, {Data interpolation within time range} sets the interpolation method Linear, {Data extrapolation after last data point} sets the method to determine block output after final data point in MAT file Linear and {Enable zero-crossing detection} sets the option to enable zero-crossing detection for this. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output created using MAT file data scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "untitled.mat",
+   "values": "MAT file name or path to MAT file untitled.mat (default) | MAT file name | path to MAT file",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "Data type of data in MAT file Inherit: auto (default) | double | single | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: | Bus: | |...",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "",
+   "values": "Output sample period and optional time offset 0 | scalar | 1 -by- 2 vector",
+   "group": ""
+  },
+  {
+   "name": "Data extrapolation before first data point",
+   "default": "extrapolation",
+   "values": "Method to determine block output before first data point in MAT file Linear extrapolation (default) | Hold first value | Ground value",
+   "group": ""
+  },
+  {
+   "name": "Data interpolation within time range",
+   "default": "interpolation",
+   "values": "Interpolation method Linear interpolation (default) | Zero order hold",
+   "group": ""
+  },
+  {
+   "name": "Data extrapolation after last data point",
+   "default": "extrapolation",
+   "values": "Method to determine block output after final data point in MAT file Linear extrapolation (default) | Hold last value | Ground value",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "Option to enable zero-crossing detection for this block off (default) | on",
+   "group": ""
+  }
+ ]
+}

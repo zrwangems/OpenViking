@@ -1,0 +1,82 @@
+{
+ "key": "Simulation 3D Camera Get",
+ "title": "Simulation 3D Camera Get",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Camera_Get.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Camera_Get.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Camera_Get.md"
+ ],
+ "text": "Camera image, 1 output, {Mounting location} sets Sensor mounting location; {Sensor identifier} sets the number to identify unique sensor, {Parent name} sets the name of parent, {Specify offset} sets the offset from mounting location, {Relative translation [X, Y, Z]} sets the translation offset from mounting location, {Relative rotation [Roll, Pitch, Yaw]} sets the rotational offset from mounting location, {Sample time}, {Horizontal resolution} sets the pixels uint32, {Vertical resolution} sets the pixels uint32 and {Horizontal field of view} sets the field of view single. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "3D output camera image m -by- n -by-3 array of RGB triplet values"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "0",
+   "values": "Number to identify unique sensor 0 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "Name of parent Scene Origin (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center",
+   "group": ""
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "Specify offset from mounting location off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Relative translation [X, Y, Z]",
+   "default": "[0,0,0]",
+   "values": "Translation offset from mounting location [0,0,0] (default) | real-valued 1-by-3 vector",
+   "group": ""
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw]",
+   "default": "[0,0,0]",
+   "values": "Rotational offset from mounting location [0,0,0] (default) | real-valued 1-by-3 vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Horizontal resolution",
+   "default": "uint32(1280)",
+   "values": "Pixels uint32(1280) (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vertical resolution",
+   "default": "uint32(720)",
+   "values": "Pixels uint32(720) (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Horizontal field of view",
+   "default": "single(60)",
+   "values": "Field of view single(60) (default) | scalar",
+   "group": ""
+  }
+ ]
+}

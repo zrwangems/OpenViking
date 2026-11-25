@@ -1,0 +1,13 @@
+{
+ "key": "Compressor (2P)",
+ "title": "Compressor (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Fluid Machines/Compressor_2P.md"
+ ],
+ "text": "Two-phase fluid compressor in a thermodynamic cycle.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

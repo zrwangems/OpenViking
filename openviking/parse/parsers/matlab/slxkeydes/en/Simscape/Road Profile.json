@@ -1,0 +1,13 @@
+{
+ "key": "Road Profile",
+ "title": "Road Profile",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Road_Profile.md"
+ ],
+ "text": "Road profile with varying elevation and friction properties.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,41 @@
+{
+ "key": "Single Point Interpolation",
+ "title": "Single Point Interpolation",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Interpolation/Single_Point_Interpolation.md"
+ ],
+ "text": "执行单点插值，输入 3 路、输出 1 路；{Fraction} 指定分数源和值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u 1",
+   "direction": "input",
+   "summary": "第一个输入信号 scalar | vector"
+  },
+  {
+   "name": "u 2",
+   "direction": "input",
+   "summary": "第二个输入信号 scalar | vector"
+  },
+  {
+   "name": "f",
+   "direction": "input",
+   "summary": "分数值 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Fraction",
+   "default": "0",
+   "values": "分数源和值 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "key": "Modem Status",
+ "title": "Modem Status",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Modem_Status.md"
+ ],
+ "text": "返回调制解调器控制线路的状态；输出 3 路；按 {Serial port} 指定正在访问的端口 Legacy Serial Port；{CTS} 启用清除发送状态输出、{DSR} 启用数据集就绪状态输出、{DCD} 启用数据载波检测状态输出、{Sample time} 指定模块的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CTS",
+   "direction": "output",
+   "summary": "清除发送线路的状态 true | false"
+  },
+  {
+   "name": "DSR",
+   "direction": "output",
+   "summary": "数据集就绪线路的状态 true | false"
+  },
+  {
+   "name": "DCD",
+   "direction": "output",
+   "summary": "数据载波检测线路的状态 true | false"
+  }
+ ],
+ "params": [
+  {
+   "name": "CTS",
+   "default": "on",
+   "values": "启用清除发送状态输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "DSR",
+   "default": "on",
+   "values": "启用数据集就绪状态输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "DCD",
+   "default": "on",
+   "values": "启用数据载波检测状态输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块的采样时间 -1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "正在访问的端口 Legacy Serial Port 1 (default) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  }
+ ]
+}

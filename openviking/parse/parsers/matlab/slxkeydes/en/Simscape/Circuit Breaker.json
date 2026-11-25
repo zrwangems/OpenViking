@@ -1,0 +1,13 @@
+{
+ "key": "Circuit Breaker",
+ "title": "Circuit Breaker",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/Circuit_Breaker.md"
+ ],
+ "text": "Single-pole single-throw circuit breaker.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

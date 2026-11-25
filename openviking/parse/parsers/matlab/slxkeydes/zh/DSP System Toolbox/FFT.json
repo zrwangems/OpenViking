@@ -1,0 +1,116 @@
+{
+ "key": "FFT",
+ "title": "FFT",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/FFT.md",
+  "DSP HDL Toolbox/Transforms/FFT.md"
+ ],
+ "text": "输入的快速傅里叶变换 (FFT)，输入 1 路、输出 1 路；按 {舍入模式} 指定舍入方法；{FFT 实现}、{输出采用位反转顺序}、{将输出除以 FFT 长度}、{从输入维度继承 FFT 长度}、{FFT 长度}、{当 FFT 长度小于输入长度时对输入数据进行绕回处理} 指定对输入进行绕回或截断处理、{对整数溢出进行饱和处理}、{正弦表}、{乘积输出}、{累加器}、{输出}、{输出最小值} 指定模块应输出的最小值、{输出最大值} 指定模块应输出的最大值、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入的 FFT 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "FFT 实现",
+   "default": "自动",
+   "values": "FFT 实现 自动 (默认) | 基数-2 | FFTW",
+   "group": "主要"
+  },
+  {
+   "name": "输出采用位反转顺序",
+   "default": "off",
+   "values": "输出采用位反转顺序 off (默认) | on",
+   "group": "主要"
+  },
+  {
+   "name": "将输出除以 FFT 长度",
+   "default": "off",
+   "values": "将输出除以 FFT 长度 off (默认) | on",
+   "group": "主要"
+  },
+  {
+   "name": "从输入维度继承 FFT 长度",
+   "default": "on",
+   "values": "从输入维度继承 FFT 长度 on (默认) | off",
+   "group": "主要"
+  },
+  {
+   "name": "FFT 长度",
+   "default": "64",
+   "values": "FFT 长度 64 (默认) | 整数",
+   "group": "主要"
+  },
+  {
+   "name": "当 FFT 长度小于输入长度时对输入数据进行绕回处理",
+   "default": "on",
+   "values": "对输入进行绕回或截断处理 on (默认) | off",
+   "group": "主要"
+  },
+  {
+   "name": "舍入模式",
+   "default": "向下",
+   "values": "舍入方法 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "对整数溢出进行饱和处理 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "正弦表",
+   "default": "继承:与输入的字长相同",
+   "values": "正弦表值的数据类型 继承:与输入的字长相同 (默认) | fixdt(1,16)",
+   "group": "数据类型"
+  },
+  {
+   "name": "乘积输出",
+   "default": "继承:通过内部规则继承",
+   "values": "乘积输出数据类型 继承:通过内部规则继承 (默认) | 继承:与输入相同 | fixdt(1,16,0)",
+   "group": "数据类型"
+  },
+  {
+   "name": "累加器",
+   "default": "继承:通过内部规则继承",
+   "values": "累加器数据类型 继承:通过内部规则继承 (默认) | 继承:与输入相同 | 继承:与乘积输出相同 | fixdt(1,16,0)",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出",
+   "default": "继承:通过内部规则继承",
+   "values": "输出数据类型 继承:通过内部规则继承 (默认) | 继承:与输入相同 | fixdt(1,16,0)",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "模块应输出的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "模块应输出的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  }
+ ]
+}

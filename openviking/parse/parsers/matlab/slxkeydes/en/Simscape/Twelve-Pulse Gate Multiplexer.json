@@ -1,0 +1,13 @@
+{
+ "key": "Twelve-Pulse Gate Multiplexer",
+ "title": "Twelve-Pulse Gate Multiplexer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Twelve_Pulse_Gate_Multiplexer.md"
+ ],
+ "text": "Multiplex gate input signals to Three-Level Converter (Three-Phase) block.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

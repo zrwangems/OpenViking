@@ -1,0 +1,97 @@
+{
+ "key": "Template Matching",
+ "title": "Template Matching",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Template_Matching.md"
+ ],
+ "text": "在图像中定位模板，输入 3 路、输出 5 路；按 {Match metric} 指定匹配度量 Sum of absolute；{Output} 指定匹配度量 Match、{Search method} 指定搜索方法 Exhaustive、{Output NxN matrix of metric values around best match} 输出 N×N 矩阵、{N} 输出矩阵的大小、{Enable ROI processing} 启用 ROI 处理、{Output flag indicating if ROI is valid} 指定有效 ROI，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "图像 image"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "模板 M -by- N matrix"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "感兴趣区域 four-element vector"
+  },
+  {
+   "name": "Metric",
+   "direction": "output",
+   "summary": "匹配度量值 matrix"
+  },
+  {
+   "name": "Loc",
+   "direction": "output",
+   "summary": "最佳匹配位置 two-element vector"
+  },
+  {
+   "name": "NMetric",
+   "direction": "output",
+   "summary": "最佳匹配邻域内的度量值 N -by- N matrix"
+  },
+  {
+   "name": "NValid",
+   "direction": "output",
+   "summary": "有效邻域 off | on"
+  },
+  {
+   "name": "ROIValid",
+   "direction": "output",
+   "summary": "有效感兴趣区域 off | on"
+  }
+ ],
+ "params": [
+  {
+   "name": "Match metric",
+   "default": "differences",
+   "values": "匹配度量 Sum of absolute differences (default) | Sum of squared differences | Maximum absolute difference",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "metric",
+   "values": "匹配度量 Match metric (default) | Best match location",
+   "group": ""
+  },
+  {
+   "name": "Search method",
+   "default": "Exhaustive",
+   "values": "搜索方法 Exhaustive (default) | Three-step",
+   "group": ""
+  },
+  {
+   "name": "Output NxN matrix of metric values around best match",
+   "default": "on",
+   "values": "输出 N×N 矩阵 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "N",
+   "default": "3",
+   "values": "输出矩阵的大小 3 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Enable ROI processing",
+   "default": "on",
+   "values": "启用 ROI 处理 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output flag indicating if ROI is valid",
+   "default": "off",
+   "values": "有效 ROI off (default) | on",
+   "group": ""
+  }
+ ]
+}

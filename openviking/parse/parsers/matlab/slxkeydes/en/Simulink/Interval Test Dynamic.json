@@ -1,0 +1,54 @@
+{
+ "key": "Interval Test Dynamic",
+ "title": "Interval Test Dynamic",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Interval_Test_Dynamic.md",
+  "HDL Coder/Logic and Bit Operations/Interval_Test_Dynamic.md"
+ ],
+ "text": "Determine if signal is in specified interval, 3 inputs, 1 output, direct feedthrough; {Interval closed on right} sets the include upper limit value, {Interval closed on left} sets the include lower limit value and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "up",
+   "direction": "input",
+   "summary": "Upper limit of interval scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "lo",
+   "direction": "input",
+   "summary": "Lower limit of interval scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interval closed on right",
+   "default": "on",
+   "values": "Include upper limit value on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Interval closed on left",
+   "default": "on",
+   "values": "Include lower limit value on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "boolean",
+   "values": "Output data type boolean (default) | uint8",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,126 @@
+{
+ "key": "robotics.slcore.internal.block.TrapVelTrajSys",
+ "title": "Trapezoidal Velocity Profile Trajectory",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Utilities/Trapezoidal_Velocity_Profile_Trajectory.md"
+ ],
+ "text": "Generate trajectories through multiple waypoints using trapezoidal velocity profiles, 6 inputs, 3 outputs, {End time} sets Duration of trajectory segment; {Waypoint source} sets the source for waypoints, {Waypoints} sets the waypoint positions along trajectory n -by- p, {Number of parameters} sets the number of velocity profile parameters, {Parameter 1} sets the velocity profile parameter, {Parameter 2} sets the velocity profile parameter, {Parameter source} sets the source for waypoints, {Peak velocity}, {Acceleration}, {Acceleration time} sets the duration of acceleration phase of velocity profile and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "Time point along trajectory scalar | vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "Waypoint positions along trajectory n -by- p matrix"
+  },
+  {
+   "name": "PeakVel",
+   "direction": "input",
+   "summary": "Peak velocity of the velocity profile [1;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix"
+  },
+  {
+   "name": "Accel",
+   "direction": "input",
+   "summary": "Acceleration of the velocity profile [2;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix"
+  },
+  {
+   "name": "EndTime",
+   "direction": "input",
+   "summary": "Duration of trajectory segment [1;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix"
+  },
+  {
+   "name": "AccelTime",
+   "direction": "input",
+   "summary": "Duration of acceleration phase of velocity profile [1;1] (default) | scalar | n -element vector | n -by-( p – 1) matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "Position of trajectory scalar | vector | matrix"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "Velocity of trajectory scalar | vector | matrix"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "Acceleration of trajectory scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Waypoint source",
+   "default": "Internal",
+   "values": "Source for waypoints Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Waypoints",
+   "default": "",
+   "values": "Waypoint positions along trajectory n -by- p matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of parameters",
+   "default": "0",
+   "values": "Number of velocity profile parameters 0 (default) | 1 | 2",
+   "group": ""
+  },
+  {
+   "name": "Parameter 1",
+   "default": "",
+   "values": "Velocity profile parameter Peak Velocity | Acceleration | End Time | Acceleration Time",
+   "group": ""
+  },
+  {
+   "name": "Parameter 2",
+   "default": "",
+   "values": "Velocity profile parameter Peak Velocity | Acceleration | End Time | Acceleration Time",
+   "group": ""
+  },
+  {
+   "name": "Parameter source",
+   "default": "Internal",
+   "values": "Source for waypoints Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Peak velocity",
+   "default": "[1;2]",
+   "values": "Peak velocity of the velocity profile [1;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix",
+   "group": ""
+  },
+  {
+   "name": "Acceleration",
+   "default": "[2;2]",
+   "values": "Acceleration of the velocity profile [2;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix",
+   "group": ""
+  },
+  {
+   "name": "End time",
+   "default": "[1;2]",
+   "values": "Duration of trajectory segment [1;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix",
+   "group": ""
+  },
+  {
+   "name": "Acceleration time",
+   "default": "[1;1]",
+   "values": "Duration of acceleration phase of velocity profile [1;1] (default) | scalar | n -element vector | n -by-( p – 1) matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

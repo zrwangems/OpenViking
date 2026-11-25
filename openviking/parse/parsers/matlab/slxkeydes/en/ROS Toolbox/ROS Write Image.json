@@ -1,0 +1,36 @@
+{
+ "key": "ROS Write Image",
+ "title": "Write Image",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Write_Image.md"
+ ],
+ "text": "Write image data to a ROS or ROS 2 message, 2 inputs, 1 output, {Image Encoding} sets Image encoding.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input image signal M -by- N -by-3 matrix | M -by- N matrix"
+  },
+  {
+   "name": "AlphaChannel",
+   "direction": "input",
+   "summary": "Alpha channel for input image M -by- N matrix"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "ROS or ROS 2 image message nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Image Encoding",
+   "default": "rgb8",
+   "values": "Image encoding rgb8 (default) | rgba8 |...",
+   "group": ""
+  }
+ ]
+}

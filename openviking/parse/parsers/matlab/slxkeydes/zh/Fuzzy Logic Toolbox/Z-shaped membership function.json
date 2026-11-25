@@ -1,0 +1,37 @@
+{
+ "key": "Z-shaped membership function",
+ "title": "Z-shaped MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Z_shaped_MF.md"
+ ],
+ "text": "Z 形隶属度函数，输入 1 路、输出 1 路；{Left point a} 指定过渡区域最左侧点、{Right point b} 指定过渡区域最右侧点，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入值 scalar | vector"
+  },
+  {
+   "name": "Z MF",
+   "direction": "output",
+   "summary": "隶属度值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Left point a",
+   "default": "-3",
+   "values": "过渡区域最左侧点 -3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right point b",
+   "default": "3",
+   "values": "过渡区域最右侧点 3 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

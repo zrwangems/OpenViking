@@ -1,0 +1,15 @@
+{
+ "key": "Capacitor",
+ "title": "Capacitor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Capacitor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Capacitor.md",
+  "RF Blockset/Circuit Envelope/Elements/C.md"
+ ],
+ "text": "具有可选容差、运行限制和故障行为的线性或非线性电容器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

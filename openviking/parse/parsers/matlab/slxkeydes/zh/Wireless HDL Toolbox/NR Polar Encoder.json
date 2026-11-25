@@ -1,0 +1,74 @@
+{
+ "key": "NR Polar Encoder",
+ "title": "NR Polar Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/NR_Polar_Encoder.md"
+ ],
+ "text": "根据 5G NR 标准执行极化编码，输入 4 路、输出 3 路；{Link direction} 指定 5G NR 链路方向、{Configuration source} 指定 K 和 E、{Message length (K)} 指定信息块的长度、{Rate-matched length (E)} 指定速率匹配后的输出长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据位 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "信息块的长度（以位为单位） positive integer"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "速率匹配后的输出长度（以位为单位） positive integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "编码数据位 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "准备好接受新输入 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Link direction",
+   "default": "Downlink",
+   "values": "5G NR 链路方向 Downlink (default) | Uplink",
+   "group": ""
+  },
+  {
+   "name": "Configuration source",
+   "default": "Property",
+   "values": "K 和 E 的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Message length (K)",
+   "default": "56",
+   "values": "信息块的长度（以位为单位） 56 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Rate-matched length (E)",
+   "default": "864",
+   "values": "速率匹配后的输出长度（以位为单位） 864 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

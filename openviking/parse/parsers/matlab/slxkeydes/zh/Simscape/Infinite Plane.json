@@ -1,0 +1,13 @@
+{
+ "key": "Infinite Plane",
+ "title": "Infinite Plane",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Infinite_Plane.md"
+ ],
+ "text": "用于接触建模的无限平面。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,37 @@
+{
+ "key": "Sample Rate Offset",
+ "title": "Sample Rate Offset",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/Sample_Rate_Offset.md"
+ ],
+ "text": "对输入信号应用采样率偏移，输入 1 路、输出 1 路；{Sample rate offset} 指定采样率偏移、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate offset",
+   "default": "10",
+   "values": "采样率偏移 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

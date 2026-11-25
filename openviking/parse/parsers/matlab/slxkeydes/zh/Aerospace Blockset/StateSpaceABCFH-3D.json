@@ -1,0 +1,99 @@
+{
+ "key": "StateSpaceABCFH-3D",
+ "title": "3D Observer Form [A(v),B(v),C(v),F(v),H(v)]",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/b_3D_Observer_Form_A_v_B_v_C_v_F_v_H_v.md"
+ ],
+ "text": "实现取决于三个调度参数的观测器形式增益调度状态空间控制器，输入 5 路、输出 1 路；{A-matrix(v1,v2,v3)} 指定状态空间实现的 A 矩阵、{B-matrix(v1,v2,v3)} 指定状态空间实现的 B 矩阵、{C-matrix(v1,v2,v3)} 指定状态空间实现的 C 矩阵、{F-matrix(v1,v2,v3)} 指定状态空间实现的 F 矩阵、{H-matrix(v1,v2,v3)} 指定状态空间实现的 H 矩阵、{First scheduling variable (v1) breakpoints} 指定第一个调度变量的断点、{Second scheduling variable (v2) breakpoints} 指定第二个调度变量的断点、{Third scheduling variable (v3) breakpoints} 指定第三个调度变量的断点、{Initial state, x_initial} 指定初始状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y-y_dem",
+   "direction": "input",
+   "summary": "设定点误差 vector"
+  },
+  {
+   "name": "v1",
+   "direction": "input",
+   "summary": "第一个调度变量 vector"
+  },
+  {
+   "name": "v2",
+   "direction": "input",
+   "summary": "第二个调度变量 vector"
+  },
+  {
+   "name": "v3",
+   "direction": "input",
+   "summary": "第三个调度变量 vector"
+  },
+  {
+   "name": "u_meas",
+   "direction": "input",
+   "summary": "测得的执行机构位置 vector"
+  },
+  {
+   "name": "u_dem",
+   "direction": "output",
+   "summary": "作动器需求 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A-matrix(v1,v2,v3)",
+   "default": "A",
+   "values": "状态空间实现的 A 矩阵 A (default) | array",
+   "group": ""
+  },
+  {
+   "name": "B-matrix(v1,v2,v3)",
+   "default": "B",
+   "values": "状态空间实现的 B 矩阵 B (default) | array",
+   "group": ""
+  },
+  {
+   "name": "C-matrix(v1,v2,v3)",
+   "default": "C",
+   "values": "状态空间实现的 C 矩阵 C (default) | array",
+   "group": ""
+  },
+  {
+   "name": "F-matrix(v1,v2,v3)",
+   "default": "F",
+   "values": "状态空间实现的 F 矩阵 F (default) | array",
+   "group": ""
+  },
+  {
+   "name": "H-matrix(v1,v2,v3)",
+   "default": "H",
+   "values": "状态空间实现的 H 矩阵 H (default) | array",
+   "group": ""
+  },
+  {
+   "name": "First scheduling variable (v1) breakpoints",
+   "default": "v1_vec",
+   "values": "第一个调度变量的断点 v1_vec (default)",
+   "group": ""
+  },
+  {
+   "name": "Second scheduling variable (v2) breakpoints",
+   "default": "v2_vec",
+   "values": "第二个调度变量的断点 v2_vec (default)",
+   "group": ""
+  },
+  {
+   "name": "Third scheduling variable (v3) breakpoints",
+   "default": "v3_vec",
+   "values": "第三个调度变量的断点 v3_vec (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "初始状态 0 (default)",
+   "group": ""
+  }
+ ]
+}

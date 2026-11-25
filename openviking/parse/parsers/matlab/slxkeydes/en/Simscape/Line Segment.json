@@ -1,0 +1,13 @@
+{
+ "key": "Line Segment",
+ "title": "Line Segment",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Line_Segment.md"
+ ],
+ "text": "Line segment geometry.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,32 @@
+{
+ "key": "Impedance",
+ "title": "Z",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Z.md"
+ ],
+ "text": "对复阻抗建模；按 {Complex impedance (Ohm)} 指定阻抗值；{Impedance type} 指定频率相关性 Frequency、{Frequency} 指定频率相关阻抗的频率值 1e9，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Impedance type",
+   "default": "independent",
+   "values": "频率相关性 Frequency independent (default) | Frequency dependent",
+   "group": ""
+  },
+  {
+   "name": "Complex impedance (Ohm)",
+   "default": "50",
+   "values": "阻抗值 50 (default) | scalar complex number | vector of complex numbers",
+   "group": ""
+  },
+  {
+   "name": "Frequency",
+   "default": "1e9",
+   "values": "频率相关阻抗的频率值 1e9 (default) | nonnegative scalar number | nonnegative vector numbers",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Heat Exchanger (G-G)",
+ "title": "Heat Exchanger (G-G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Gas/Heat_Exchanger_G_G.md"
+ ],
+ "text": "Heat exchanger for systems with two gas flows.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

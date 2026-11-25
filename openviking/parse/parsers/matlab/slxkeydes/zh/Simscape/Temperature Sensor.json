@@ -1,0 +1,13 @@
+{
+ "key": "Temperature Sensor",
+ "title": "Temperature Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Sensors/Temperature_Sensor.md"
+ ],
+ "text": "理想温度传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Ideal Torque Source",
+ "title": "Ideal Torque Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanical Sources/Ideal_Torque_Source.md"
+ ],
+ "text": "Ideal source of mechanical energy that generates torque proportional to the input signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

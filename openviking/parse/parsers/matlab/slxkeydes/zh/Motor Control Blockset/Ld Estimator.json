@@ -1,0 +1,74 @@
+{
+ "key": "Ld Estimator",
+ "title": "Ld Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/PMSM Parameter Estimation/Ld_Estimator.md"
+ ],
+ "text": "估计永磁同步电机 (PMSM) 的定子电感 ( L d )，输入 4 路、输出 3 路；{最大电流限值(A)} 指定测试时允许的最大电流、{注入电压斜升步长(标幺)} 指定注入电压上升过程中的步长、{每频率扫描步的正弦电压注入次数} 指定频率扫描期间每个频率的正弦电压注入次数、{Ld 估计期间每频率的正弦电压注入次数} 指定 Ld 估计期间每个频率的正弦电压注入次数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "三相电流响应 矢量"
+  },
+  {
+   "name": "Rs",
+   "direction": "input",
+   "summary": "估计定子电阻 标量"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "用于 L d 估计的控制信号 逻辑值"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "总线信号输入 总线"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a 、 b 和 c 轴定子参考电压分量 矢量"
+  },
+  {
+   "name": "Ld",
+   "direction": "output",
+   "summary": "估计的 d 轴定子电感 标量"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "调试信号 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "最大电流限值(A)",
+   "default": "15",
+   "values": "测试时允许的最大电流 15 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "注入电压斜升步长(标幺)",
+   "default": "0.0001",
+   "values": "注入电压上升过程中的步长 0.0001 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "每频率扫描步的正弦电压注入次数",
+   "default": "5",
+   "values": "频率扫描期间每个频率的正弦电压注入次数 5 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ld 估计期间每频率的正弦电压注入次数",
+   "default": "5",
+   "values": "Ld 估计期间每个频率的正弦电压注入次数 5 (默认) | scalar",
+   "group": ""
+  }
+ ]
+}

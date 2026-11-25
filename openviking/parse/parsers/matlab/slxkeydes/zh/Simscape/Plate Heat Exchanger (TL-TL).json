@@ -1,0 +1,13 @@
+{
+ "key": "Plate Heat Exchanger (TL-TL)",
+ "title": "Plate Heat Exchanger (TL-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid/Plate_Heat_Exchanger_TL_TL.md"
+ ],
+ "text": "两个热液网络之间的板式几何换热器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

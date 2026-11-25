@@ -1,0 +1,99 @@
+{
+ "key": "Induction Machine Current Controller",
+ "title": "Induction Machine Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Induction Machine Control/Induction_Machine_Current_Controller.md"
+ ],
+ "text": "离散时间感应电机电流 PI 控制器，输入 5 路、输出 1 路；按 {Axis prioritization} 指定电压限幅器的轴优先级；{D-axis current proportional gain} 指定 d 轴比例增益、{D-axis current integral gain} 指定 d 轴积分增益、{D-axis current anti-windup gain} 指定 d 轴抗饱和增益、{Q-axis current proportional gain} 指定 q 轴比例增益、{Q-axis current integral gain} 指定 q 轴积分增益、{Q-axis current anti-windup gain} 指定 q 轴抗饱和增益、{Sample time (-1 for inherited)} 指定模块采样时间、{Enable pre-control voltage} 指定预控制电压，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "idqRef",
+   "direction": "input",
+   "summary": "参考电流 vector"
+  },
+  {
+   "name": "idq",
+   "direction": "input",
+   "summary": "测量电流 vector"
+  },
+  {
+   "name": "vdqFF",
+   "direction": "input",
+   "summary": "前馈电压 vector"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "最大相电压 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部复位 scalar"
+  },
+  {
+   "name": "vdqRef",
+   "direction": "output",
+   "summary": "参考电压 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "D-axis current proportional gain",
+   "default": "1",
+   "values": "d 轴比例增益 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "D-axis current integral gain",
+   "default": "100",
+   "values": "d 轴积分增益 100 (default)",
+   "group": ""
+  },
+  {
+   "name": "D-axis current anti-windup gain",
+   "default": "1",
+   "values": "d 轴抗饱和增益 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current proportional gain",
+   "default": "1",
+   "values": "q 轴比例增益 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current integral gain",
+   "default": "100",
+   "values": "q 轴积分增益 100 (default)",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current anti-windup gain",
+   "default": "1",
+   "values": "q 轴抗饱和增益 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "Q-axis",
+   "values": "电压限幅器的轴优先级 Q-axis (default) | D-axis | D-Q equivalence",
+   "group": ""
+  },
+  {
+   "name": "Enable pre-control voltage",
+   "default": "on",
+   "values": "预控制电压 on (default) | off",
+   "group": ""
+  }
+ ]
+}

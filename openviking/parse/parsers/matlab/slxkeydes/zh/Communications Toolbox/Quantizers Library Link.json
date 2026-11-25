@@ -1,0 +1,13 @@
+{
+ "key": "Quantizers Library Link",
+ "title": "Quantizers Library Link",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Quantizers_Library_Link.md"
+ ],
+ "text": "DSP System Toolbox™ 提供 Simulink® 模块来实现量化器、编码器和解码器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

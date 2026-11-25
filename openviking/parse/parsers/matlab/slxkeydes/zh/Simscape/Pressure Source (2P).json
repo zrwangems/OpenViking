@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Source (2P)",
+ "title": "Pressure Source (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Sources/Pressure_Source_2P.md"
+ ],
+ "text": "生成恒定或时变的压差。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

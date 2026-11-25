@@ -1,0 +1,20 @@
+{
+ "key": "Stop",
+ "title": "Stop Simulation",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/Stop_Simulation.md",
+  "HDL Coder/Sinks/Stop_Simulation.md"
+ ],
+ "text": "当输入为非零值时使仿真停止，输入 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": []
+}

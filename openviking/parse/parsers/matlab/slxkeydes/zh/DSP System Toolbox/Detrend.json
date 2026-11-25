@@ -1,0 +1,24 @@
+{
+ "key": "Detrend",
+ "title": "Detrend",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Detrend.md"
+ ],
+ "text": "从向量中去除线性趋势，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入数据 vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "输出数据 column vector"
+  }
+ ],
+ "params": []
+}

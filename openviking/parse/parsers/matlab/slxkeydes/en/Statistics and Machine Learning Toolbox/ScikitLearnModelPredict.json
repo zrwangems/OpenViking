@@ -1,0 +1,61 @@
+{
+ "key": "ScikitLearnModelPredict",
+ "title": "Scikit-learn Model Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Python Models/Scikit_learn_Model_Predict.md"
+ ],
+ "text": "Predict responses using pretrained Python scikit-learn model, 1 input, 1 output, direct feedthrough; {Path to scikit-learn model file} sets the name or path of Python scikit-learn model file, {Sample time (–1 for inherited)} sets the option to specify sample, {Input}, {Output}, {Path to Python file defining preprocess()} sets the name or path of Python preprocessing function file character and {Path to Python file defining postprocess()} sets the name or path of Python postprocessing function file character. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Predictor data numeric matrix"
+  },
+  {
+   "name": "yfit",
+   "direction": "output",
+   "summary": "Predicted responses numeric vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Path to scikit-learn model file",
+   "default": "untitled",
+   "values": "Name or path of Python scikit-learn model file untitled (default) | character vector",
+   "group": "Specify model file"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": "Specify model file"
+  },
+  {
+   "name": "Input",
+   "default": "",
+   "values": "Input port properties table",
+   "group": "Input"
+  },
+  {
+   "name": "Output",
+   "default": "",
+   "values": "Output port properties table",
+   "group": "Output"
+  },
+  {
+   "name": "Path to Python file defining preprocess()",
+   "default": "",
+   "values": "Name or path of Python preprocessing function file character vector",
+   "group": "Pre/Post-processing"
+  },
+  {
+   "name": "Path to Python file defining postprocess()",
+   "default": "",
+   "values": "Name or path of Python postprocessing function file character vector",
+   "group": "Pre/Post-processing"
+  }
+ ]
+}

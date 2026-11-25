@@ -1,0 +1,37 @@
+{
+ "key": "dsp.simulink.PhaseExtractor",
+ "title": "Phase Extractor",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Phase_Extractor.md"
+ ],
+ "text": "提取复数输入的展开相位，输入 1 路、输出 1 路、无直接馈通；{Unwrap phase only within the frame} 指定仅在帧内展开相位、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "展开相位 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unwrap phase only within the frame",
+   "default": "off",
+   "values": "仅在帧内展开相位 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

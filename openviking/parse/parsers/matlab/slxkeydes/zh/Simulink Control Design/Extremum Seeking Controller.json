@@ -1,0 +1,126 @@
+{
+ "key": "Extremum Seeking Controller",
+ "title": "Extremum Seeking Control",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Adaptive Control/Extremum_Seeking_Control.md"
+ ],
+ "text": "通过最大化目标函数实时计算控制器参数，输入 1 路、输出 2 路；按 {Forcing frequency omega (rad/s)} 指定强制频率；{Time Domain} 指定滤波器和积分器时间域 Continuous、{Sample time} 指定离散时间滤波器和积分器采样时间、{Integrator method} 指定离散时间积分方法 Forward、{Number of parameters} 指定参数数量、{Initial condition x0} 指定初始参数值、{Learning rate k} 指定参数更新速率、{Demodulation amplitude a} 指定解调信号幅值、{Demodulation phase phi_1 (rad)} 指定解调信号相位、{Modulation amplitude b} 指定调制信号幅值、{Modulation phase phi_2 (rad)} 指定调制信号相位、{Enable HPF} 启用目标函数信号的高通滤波、{HPF frequency omega_h (rad/s)} 指定高通滤波器截止频率、{Enable LPF} 启用解调信号的低通滤波、{LPF frequency omega_l (rad/s)} 指定低通滤波器截止频率 ω l、{Output estimated parameters} 添加估计参数输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "J",
+   "direction": "input",
+   "summary": "目标函数 scalar"
+  },
+  {
+   "name": "theta",
+   "direction": "output",
+   "summary": "扰动参数 scalar | vector"
+  },
+  {
+   "name": "theta_hat",
+   "direction": "output",
+   "summary": "估计参数 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time Domain",
+   "default": "time",
+   "values": "滤波器和积分器时间域 Continuous time (default) | Discrete time",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "离散时间滤波器和积分器采样时间 0.1 (default) | finite positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "离散时间积分方法 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "Number of parameters",
+   "default": "1",
+   "values": "参数数量 1 (default) | positive integer less than or equal to 5",
+   "group": ""
+  },
+  {
+   "name": "Initial condition x0",
+   "default": "0",
+   "values": "初始参数值 0 (default) | finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Forcing frequency omega (rad/s)",
+   "default": "1",
+   "values": "强制频率 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Learning rate k",
+   "default": "1",
+   "values": "参数更新速率 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Demodulation amplitude a",
+   "default": "1",
+   "values": "解调信号幅值 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Demodulation phase phi_1 (rad)",
+   "default": "0",
+   "values": "解调信号相位 0 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Modulation amplitude b",
+   "default": "0.1",
+   "values": "调制信号幅值 0.1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Modulation phase phi_2 (rad)",
+   "default": "0",
+   "values": "调制信号相位 0 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable HPF",
+   "default": "off",
+   "values": "启用目标函数信号的高通滤波 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "HPF frequency omega_h (rad/s)",
+   "default": "1",
+   "values": "高通滤波器截止频率 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable LPF",
+   "default": "off",
+   "values": "启用解调信号的低通滤波 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "LPF frequency omega_l (rad/s)",
+   "default": "1",
+   "values": "低通滤波器截止频率 ω l 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output estimated parameters",
+   "default": "off",
+   "values": "添加估计参数输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

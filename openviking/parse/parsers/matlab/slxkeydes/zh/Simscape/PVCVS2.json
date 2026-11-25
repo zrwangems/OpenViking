@@ -1,0 +1,13 @@
+{
+ "key": "PVCVS2",
+ "title": "PVCVS2",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PVCVS2.md"
+ ],
+ "text": "具有两个控制输入的多项式压控电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

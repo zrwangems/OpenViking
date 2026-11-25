@@ -1,0 +1,114 @@
+{
+ "key": "Discrete Transfer Function Estimator",
+ "title": "Discrete Transfer Function Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Discrete_Transfer_Function_Estimator.md"
+ ],
+ "text": "Compute estimate of frequency-domain transfer function of system, 2 inputs, 1 output, {Window function} sets Window function; {Window length source}, {Window length}, {Window overlap (%)} sets the percentage of overlap between windows, {Averaging method}, {Specify forgetting factor from input port}, {Forgetting factor}, {Number of spectral averages}, {FFT length source} sets the source of FFT length value, {FFT length}, {Sidelobe attenuation of window (dB)}, {Frequency range}, {Output magnitude squared coherence estimate} sets the magnitude squared coherence estimate and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "System input signal vector | matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "System output signal vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Transfer function estimate vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length source",
+   "default": "length",
+   "values": "Window length source Same as input frame length (default) | Specify on dialog",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "1024",
+   "values": "Window length 1024 (default) | positive integer ≥ 2",
+   "group": ""
+  },
+  {
+   "name": "Window overlap (%)",
+   "default": "0",
+   "values": "Percentage of overlap between windows 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Averaging method",
+   "default": "Running",
+   "values": "Averaging method Running (default) | Exponential",
+   "group": ""
+  },
+  {
+   "name": "Specify forgetting factor from input port",
+   "default": "off",
+   "values": "Specify forgetting factor from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.9",
+   "values": "Forgetting factor 0.9 (default) | positive scalar ≤ 1",
+   "group": ""
+  },
+  {
+   "name": "Number of spectral averages",
+   "default": "1",
+   "values": "Number of spectral averages 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "FFT length source",
+   "default": "Auto",
+   "values": "Source of FFT length value Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "128",
+   "values": "FFT length 128 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "Window function Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation of window (dB)",
+   "default": "60",
+   "values": "Sidelobe attenuation of window 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency range",
+   "default": "Centered",
+   "values": "Frequency range of the transfer function estimate Centered (default) | One-sided | Two-sided",
+   "group": ""
+  },
+  {
+   "name": "Output magnitude squared coherence estimate",
+   "default": "off",
+   "values": "Magnitude squared coherence estimate off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

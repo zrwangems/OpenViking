@@ -1,0 +1,44 @@
+{
+ "key": "Ramp",
+ "title": "Ramp",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Ramp.md"
+ ],
+ "text": "Generate constantly increasing or decreasing signal, 1 output, no direct feedthrough, {Slope} sets Slope of signal; {Start time} sets the time output begins, {Initial output} sets the initial value of output signal and {Interpret vector parameters as 1-D} treats vectors as 1-D. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Slope",
+   "default": "1",
+   "values": "Slope of signal 1 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Start time",
+   "default": "0",
+   "values": "Time output begins 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Initial value of output signal 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "Treat vectors as 1-D on (default) | off",
+   "group": ""
+  }
+ ]
+}

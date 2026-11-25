@@ -1,0 +1,13 @@
+{
+ "key": "Generic Linear Actuator",
+ "title": "Generic Linear Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Generic_Linear_Actuator.md"
+ ],
+ "text": "Generic linear actuator driven from DC voltage source or PWM driver.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

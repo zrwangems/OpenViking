@@ -1,0 +1,107 @@
+{
+ "key": "SARADC",
+ "title": "SAR ADC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Architectures/SAR_ADC.md"
+ ],
+ "text": "N-bit successive approximation register (SAR) based ADC, 2 inputs, 2 outputs, {Output polarity} sets Defines ADC output polarity; {Number of bits} sets the number of physical output bits, {Input range (V)} sets the aDC dynamic range, {Use external start clock} sets the connect to external start conversion clock, {Conversion start frequency (Hz)} sets the frequency of internal start conversion clock, {RMS aperture jitter (s)} sets the rMS aperture jitter added to the start conversion, {SAR Frequency (Hz)} sets the frequency of SAR, {Match input scale} sets the inherit output polarity and data type, {Output data type} Defines ADC output data type fixdt, {Enable Linearity Impairments} enables linearity impairments in ADC, {Offset error} sets the shifts quantization steps by specific value and {Gain error} sets the error on slope of ADC transfer curve. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "Analog input signal scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "External clock to start conversion scalar"
+  },
+  {
+   "name": "digital",
+   "direction": "output",
+   "summary": "Converted digital output signal scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Determines whether analog to digital conversion is complete scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits",
+   "default": "8",
+   "values": "Number of physical output bits 8 (default) | positive real integer in the range [1, 26]",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "ADC dynamic range [-1 1] (default) | 2-element row vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Use external start clock",
+   "default": "on",
+   "values": "Connect to external start conversion clock on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Conversion start frequency (Hz)",
+   "default": "10e3",
+   "values": "Frequency of internal start conversion clock 10e3 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "RMS aperture jitter (s)",
+   "default": "0",
+   "values": "RMS aperture jitter added to the start conversion clock 0 (default) | real nonnegative scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "SAR Frequency (Hz)",
+   "default": "2e7",
+   "values": "Frequency of SAR clock 2e7 (default) | real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Match input scale",
+   "default": "off",
+   "values": "Inherit output polarity and data type from input off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output polarity",
+   "default": "Auto",
+   "values": "Defines ADC output polarity Auto (default) | Bipolar | Unipolar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output data type",
+   "default": "fixdt(1,Nbits)",
+   "values": "Defines ADC output data type fixdt(1,Nbits) (default) | fixdt(0,Nbits) | double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Inherit: Inherit via back propagation",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable Linearity Impairments",
+   "default": "off",
+   "values": "Enable linearity impairments in ADC simulation off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "Shifts quantization steps by specific value 1 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "Error on slope of ADC transfer curve 2 LSB (default) | real scalar",
+   "group": "Impairments"
+  }
+ ]
+}

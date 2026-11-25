@@ -1,0 +1,13 @@
+{
+ "key": "Switched Reluctance Machine",
+ "title": "Switched Reluctance Machine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Reluctance & Stepper/Switched_Reluctance_Machine.md"
+ ],
+ "text": "Three-phase switched reluctance machine.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

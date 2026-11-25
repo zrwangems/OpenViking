@@ -1,0 +1,112 @@
+{
+ "key": "NRLMSISE-00 Model",
+ "title": "NRLMSISE-00 Atmosphere Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Atmosphere/NRLMSISE_00_Atmosphere_Model.md"
+ ],
+ "text": "实现 2001 年美国海军研究实验室质谱仪和非相干散射雷达外逸层的数学表示，输入 9 路、输出 2 路；按 {Action for out-of-range input} 指定超出范围时的模块行为；{Units} 指定输入和输出单位 Metric、{Input local apparent solar time} 指定视太阳时、{Input flux and magnetic index information} 指定前一天的每日 F10.7 通量和磁指数信息、{Source for flags} 指定变化标志源、{Flags} 指定变化标志 ones、{Include anomalous oxygen number density in total mass density} 指定异常氧，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "大地纬度、经度和高度 three-element matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "年 array"
+  },
+  {
+   "name": "Port_3",
+   "direction": "input",
+   "summary": "天 array"
+  },
+  {
+   "name": "Port_4",
+   "direction": "input",
+   "summary": "秒 array"
+  },
+  {
+   "name": "Port_5",
+   "direction": "input",
+   "summary": "当地视太阳时 array"
+  },
+  {
+   "name": "Port_6",
+   "direction": "input",
+   "summary": "81 天平均 F10.7 通量 150 (default) | array"
+  },
+  {
+   "name": "Port_7",
+   "direction": "input",
+   "summary": "日平均 F10.7 通量 150 (default) | array"
+  },
+  {
+   "name": "Port_8",
+   "direction": "input",
+   "summary": "磁指数信息 N -by-7 array"
+  },
+  {
+   "name": "Port_9",
+   "direction": "input",
+   "summary": "标志 array of 23"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "温度 N -by-2 array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "密度 N -by-9 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Input local apparent solar time",
+   "default": "off",
+   "values": "视太阳时 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input flux and magnetic index information",
+   "default": "off",
+   "values": "前一天的每日 F10.7 通量和磁指数信息 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source for flags",
+   "default": "Internal",
+   "values": "变化标志源 Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Flags",
+   "default": "ones(1,23)",
+   "values": "变化标志 ones(1,23) (default)",
+   "group": ""
+  },
+  {
+   "name": "Include anomalous oxygen number density in total mass density",
+   "default": "off",
+   "values": "异常氧 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

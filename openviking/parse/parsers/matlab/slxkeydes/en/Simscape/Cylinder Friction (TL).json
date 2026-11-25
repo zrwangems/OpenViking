@@ -1,0 +1,13 @@
+{
+ "key": "Cylinder Friction (TL)",
+ "title": "Cylinder Friction (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Actuators/Auxiliary Components/Cylinder_Friction_TL.md"
+ ],
+ "text": "Cylinder friction in a thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

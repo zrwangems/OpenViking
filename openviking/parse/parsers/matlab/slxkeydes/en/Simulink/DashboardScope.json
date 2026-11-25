@@ -1,0 +1,128 @@
+{
+ "key": "DashboardScope",
+ "title": "Dashboard Scope",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Dashboard_Scope.md"
+ ],
+ "text": "Trace signals on scope display during simulation, {Legend} sets Legend position; {Connection} sets the signals to connect and display signal connection, {Line Style} sets the line style and color for connected signals line style and color, {Time Span} sets the time axis span, {Update Mode} displays update behavior, {Min} sets the vertical axis minimum, {Max} sets the vertical axis maximum, {Normalize y-axis limits} sets the option to normalize y -axis, {Scale axes limits at stop} sets the option to perform fit-to-view upon simulation, {Show \"Double-click to connect\" message} sets the connection instructions visibility, {Ticks} sets the axes tick positions, {Tick Labels} sets the tick label visibility, {Horizontal}, {Vertical}, {Border} plots border visibility, {Markers} sets the option to show signal data markers, {Foreground Color} sets the grid lines color, {Background Color} plots area color and {Font Color} sets the ticks and tick labels color. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Signals to connect and display signal connection options",
+   "group": "Connection Table"
+  },
+  {
+   "name": "Line Style",
+   "default": "",
+   "values": "Line style and color for connected signals line style and color options",
+   "group": "Connection Table"
+  },
+  {
+   "name": "Time Span",
+   "default": "auto",
+   "values": "Time axis span auto (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Update Mode",
+   "default": "Wrap",
+   "values": "Display update behavior Wrap (default) | Scroll",
+   "group": "Main"
+  },
+  {
+   "name": "Min",
+   "default": "-3",
+   "values": "Vertical axis minimum -3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Max",
+   "default": "3",
+   "values": "Vertical axis maximum 3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Normalize y-axis limits",
+   "default": "off",
+   "values": "Option to normalize y -axis off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Scale axes limits at stop",
+   "default": "on",
+   "values": "Option to perform fit-to-view upon simulation stop on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Show \"Double-click to connect\" message",
+   "default": "on",
+   "values": "Connection instructions visibility on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Ticks",
+   "default": "Outside",
+   "values": "Axes tick positions Outside (default) | Inside | None",
+   "group": "Display"
+  },
+  {
+   "name": "Tick Labels",
+   "default": "All",
+   "values": "Tick label visibility All (default) | T-Axis | Y-Axis | None",
+   "group": "Display"
+  },
+  {
+   "name": "Legend",
+   "default": "Top",
+   "values": "Legend position Top (default) | Right | Inside top | Inside right | Hide",
+   "group": "Display"
+  },
+  {
+   "name": "Horizontal",
+   "default": "on",
+   "values": "Horizontal grid line visibility on (default) | off",
+   "group": "Display"
+  },
+  {
+   "name": "Vertical",
+   "default": "on",
+   "values": "Vertical grid line visibility on (default) | off",
+   "group": "Display"
+  },
+  {
+   "name": "Border",
+   "default": "on",
+   "values": "Plot border visibility on (default) | off",
+   "group": "Display"
+  },
+  {
+   "name": "Markers",
+   "default": "off",
+   "values": "Option to show signal data markers off (default) | on",
+   "group": "Display"
+  },
+  {
+   "name": "Foreground Color",
+   "default": "",
+   "values": "Grid lines color [r g b] vector",
+   "group": "Style"
+  },
+  {
+   "name": "Background Color",
+   "default": "",
+   "values": "Plot area color [r g b] vector",
+   "group": "Style"
+  },
+  {
+   "name": "Font Color",
+   "default": "",
+   "values": "Ticks and tick labels color [r g b] vector",
+   "group": "Style"
+  }
+ ]
+}

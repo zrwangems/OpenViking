@@ -1,0 +1,13 @@
+{
+ "key": "Winding",
+ "title": "Winding",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Winding.md"
+ ],
+ "text": "Electromagnetic converter with ohmic and magnetic flux losses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

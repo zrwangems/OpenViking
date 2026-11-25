@@ -1,0 +1,90 @@
+{
+ "key": "Array-Vector Subtract",
+ "title": "Array-Vector Subtract",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Array_Vector_Subtract.md"
+ ],
+ "text": "Subtract vector from array along specified dimension, 2 inputs, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode; {Subtract along dimension} sets the dimension along which to subtract, {Vector (V) source} sets the source of vector V, {Vector (V)} sets the vector to subtract, {Saturate on integer overflow}, {Accumulator}, {Output}, {Output Minimum}, {Output Maximum} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Input array scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Vector to subtract vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Subtract along dimension",
+   "default": "1",
+   "values": "Dimension along which to subtract 1 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V) source",
+   "default": "port",
+   "values": "Source of vector V Input port (default) | Dialog parameter",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V)",
+   "default": "0.25]",
+   "values": "Vector to subtract [0.5 0.25] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as first input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Output data type Inherit: Same as accumulator (default) | Inherit: Same as first input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Output minimum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Output maximum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

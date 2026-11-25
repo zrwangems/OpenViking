@@ -1,0 +1,43 @@
+{
+ "key": "atan2",
+ "title": "atan2",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/atan2.md",
+  "Motor Control Blockset/Controls/Math Transforms/atan2.md"
+ ],
+ "text": "Compute four-quadrant arctangent, 2 inputs, 1 output, {Approximation method} sets Type of approximation used for atan2 computation; {Output unit} sets the unit of output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "y-coordinate value (real number) scalar"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "x-coordinate value (real number) scalar"
+  },
+  {
+   "name": "θ",
+   "direction": "output",
+   "summary": "Angle represented by arctangent scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Approximation method",
+   "default": "None",
+   "values": "Type of approximation used for atan2 computation None (default) | CORDIC | Lookup",
+   "group": ""
+  },
+  {
+   "name": "Output unit",
+   "default": "Radians",
+   "values": "Unit of output values Radians (default) | PerUnit",
+   "group": ""
+  }
+ ]
+}

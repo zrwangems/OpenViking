@@ -1,0 +1,81 @@
+{
+ "key": "CVT Controller",
+ "title": "CVT Controller",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Transmission Controllers/CVT_Controller.md"
+ ],
+ "text": "无级变速器控制器；输出 4 路；{Maximum variator primary pulley radius, rp_max} 指定半径 .08、{Maximum variator secondary pulley radius, rs_max} 指定半径 .07、{Minimum variator primary pulley radius, rp_min} 指定半径 .03、{Minimum variator secondary pulley radius, rs_min} 指定半径 .03、{Gap distance between variator pulleys, rgap} 指定冠状齿轮连接 .025、{Variator wedge angle, thetawedge} 指定冠状齿轮连接，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DirReq",
+   "direction": "",
+   "summary": "方向请求 scalar"
+  },
+  {
+   "name": "PllyRatioReq",
+   "direction": "",
+   "summary": "带轮传动比请求 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "Dir",
+   "direction": "output",
+   "summary": "方向请求 scalar"
+  },
+  {
+   "name": "PriDispCmd",
+   "direction": "output",
+   "summary": "主带轮位移 scalar"
+  },
+  {
+   "name": "SecDispCmd",
+   "direction": "output",
+   "summary": "从带轮位移 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum variator primary pulley radius, rp_max",
+   "default": ".08",
+   "values": "半径 .08 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum variator secondary pulley radius, rs_max",
+   "default": ".07",
+   "values": "半径 .07 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum variator primary pulley radius, rp_min",
+   "default": ".03",
+   "values": "半径 .03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum variator secondary pulley radius, rs_min",
+   "default": ".03",
+   "values": "半径 .03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gap distance between variator pulleys, rgap",
+   "default": ".025",
+   "values": "指定冠状齿轮连接 .025 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Variator wedge angle, thetawedge",
+   "default": "11",
+   "values": "指定冠状齿轮连接 11 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

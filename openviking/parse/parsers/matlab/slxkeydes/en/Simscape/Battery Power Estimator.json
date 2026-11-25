@@ -1,0 +1,149 @@
+{
+ "key": "Battery Power Estimator",
+ "title": "Battery Power Estimator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/Battery_Power_Estimator.md"
+ ],
+ "text": "Calculate maximum charging and discharging power of battery pack over time horizon, 2 inputs, 2 outputs, {Algorithm data type} sets Option to choose data type for block algorithm Inherit:; {Vector of state-of-charge values, SOC (-)} sets the sOC breakpoints, {Vector of temperatures, T} sets the temperature, {No-load voltage, V0(SOC,T), (V)} sets the v 0 lookup table 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; {Charging pulse test resistance, R0Dt(SOC,T), (ohm)} sets the charging resistances over pulse of Δt seconds, {Discharging pulse test resistance, R0Dt(SOC,T), (ohm)} sets the discharging resistances over pulse of Δt seconds, {Cell capacity, AH (A*Hr)} sets the battery capacity when fully charged, {Number of series modules, Ns} sets the number of modules in series, {Number of parallel modules, Np} sets the number of modules in parallel, {Charging efficiency ratio} sets the ratio of charging efficiency, {Minimum cell voltage (V)} sets the minimum voltage of cell, {Maximum cell voltage (V)} sets the maximum voltage of cell, {Minimum state of charge, SOCmin(-)}, {Maximum state of charge, SOCmax(-)}, {Minimum pack current (A)} sets the minimum current of pack, {Maximum pack current (A)} sets the maximum current of pack, {Minimum cell power (W)} sets the minimum power of battery, {Maximum cell power (W)} sets the maximum power of battery and {Time horizon (s)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellSOC",
+   "direction": "input",
+   "summary": "Cell state of charge, unitless scalar | vector"
+  },
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "Cell temperature, K scalar | vector"
+  },
+  {
+   "name": "MaxPowerDischarging",
+   "direction": "output",
+   "summary": "Maximum power for discharging battery, W scalar"
+  },
+  {
+   "name": "MaxPowerCharging",
+   "direction": "output",
+   "summary": "Maximum power for charging battery, W scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vector of state-of-charge values, SOC (-)",
+   "default": "1]",
+   "values": "SOC breakpoints [0,.1,.25,.5,.75,.9, 1] (default) | vector of scalars in the range [0, 1]",
+   "group": "Battery"
+  },
+  {
+   "name": "Vector of temperatures, T",
+   "default": "313]",
+   "values": "Temperature breakpoints [278, 293, 313] (default) | vector of positive scalars",
+   "group": "Battery"
+  },
+  {
+   "name": "No-load voltage, V0(SOC,T), (V)",
+   "default": "4.19]",
+   "values": "V 0 lookup table [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07, 4.08, 4.08; 4.19, 4.19, 4.19] (default) | matrix of nonnegative entries",
+   "group": "Battery"
+  },
+  {
+   "name": "Charging pulse test resistance, R0Dt(SOC,T), (ohm)",
+   "default": "[.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089]",
+   "values": "Charging resistances over pulse of Δt seconds [.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089] (default) | matrix of nonnegative entries",
+   "group": "Battery"
+  },
+  {
+   "name": "Discharging pulse test resistance, R0Dt(SOC,T), (ohm)",
+   "default": "[.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089]",
+   "values": "Discharging resistances over pulse of Δt seconds [.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089] (default) | matrix of nonnegative entries",
+   "group": "Battery"
+  },
+  {
+   "name": "Cell capacity, AH (A*Hr)",
+   "default": "27",
+   "values": "Battery capacity when fully charged 27 (default) | nonnegative scalar",
+   "group": "Battery"
+  },
+  {
+   "name": "Number of series modules, Ns",
+   "default": "10",
+   "values": "Number of modules in series 10 (default) | positive scalar",
+   "group": "Battery"
+  },
+  {
+   "name": "Number of parallel modules, Np",
+   "default": "1",
+   "values": "Number of modules in parallel 1 (default) | positive scalar",
+   "group": "Battery"
+  },
+  {
+   "name": "Charging efficiency ratio",
+   "default": "1",
+   "values": "Ratio of charging efficiency 1 (default) | nonnegative scalar in the range (0,1]",
+   "group": "Battery"
+  },
+  {
+   "name": "Minimum cell voltage (V)",
+   "default": "2.5",
+   "values": "Minimum voltage of cell 2.5 (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Maximum cell voltage (V)",
+   "default": "4.5",
+   "values": "Maximum voltage of cell 4.5 (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Minimum state of charge, SOCmin(-)",
+   "default": "0.1",
+   "values": "Minimum state of charge 0.1 (default) | nonnegative scalar in the range [0,1]",
+   "group": "Limits"
+  },
+  {
+   "name": "Maximum state of charge, SOCmax(-)",
+   "default": "0.9",
+   "values": "Maximum state of charge 0.9 (default) | nonnegative scalar in the range [0,1]",
+   "group": "Limits"
+  },
+  {
+   "name": "Minimum pack current (A)",
+   "default": "-200",
+   "values": "Minimum current of pack -200 (default) | negative scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Maximum pack current (A)",
+   "default": "200",
+   "values": "Maximum current of pack 200 (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Minimum cell power (W)",
+   "default": "-inf",
+   "values": "Minimum power of battery cell -inf (default) | negative scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Maximum cell power (W)",
+   "default": "inf",
+   "values": "Maximum power of battery cell inf (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Time horizon (s)",
+   "default": "10",
+   "values": "Time horizon 10 (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": "Signal Attributes"
+  }
+ ]
+}

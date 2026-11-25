@@ -1,0 +1,111 @@
+{
+ "key": "dsp.simulink.LMSUpdate",
+ "title": "LMS Update",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Adaptive Filters/LMS_Update.md"
+ ],
+ "text": "Estimate weights of least mean squares (LMS) adaptive filter, 5 inputs, 1 output, no direct feedthrough, {Algorithm} sets LMS adaptive algorithm LMS; {Filter length} sets the length of the filter, {Number of adaptive filters}, {Step size source} sets the method to specify the step, {Step size (mu)} sets the size of the adaptation step, {Leakage factor (0 to 1)}, {Initial value of filter weights}, {Adaptive filter mode}, {Enable adapt input} sets the update the filter weights, {Enable reset input} sets the reset the filter weights and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Data input scalar | column vector"
+  },
+  {
+   "name": "Error",
+   "direction": "input",
+   "summary": "Error scalar | column vector"
+  },
+  {
+   "name": "Mu",
+   "direction": "input",
+   "summary": "Filter adaptation step size 0.1 (default) | scalar in the range [0,1]"
+  },
+  {
+   "name": "Adapt",
+   "direction": "input",
+   "summary": "Update filter weights real scalar | vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Reset filter weights real scalar"
+  },
+  {
+   "name": "Wts",
+   "direction": "output",
+   "summary": "Filter weights row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Algorithm",
+   "default": "LMS",
+   "values": "LMS adaptive algorithm LMS (default) | Normalized LMS | Sign—Error LMS | Sign—Data LMS | Sign—Sign LMS",
+   "group": ""
+  },
+  {
+   "name": "Filter length",
+   "default": "32",
+   "values": "Length of the filter 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of adaptive filters",
+   "default": "1",
+   "values": "Number of adaptive filters 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Step size source",
+   "default": "Property",
+   "values": "Method to specify the step size Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Step size (mu)",
+   "default": "0.1",
+   "values": "Size of the adaptation step 0.1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Leakage factor (0 to 1)",
+   "default": "1.0",
+   "values": "Leakage factor 1.0 (default) | real scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Initial value of filter weights",
+   "default": "0",
+   "values": "Initial value of filter weights 0 (default) | real scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Adaptive filter mode",
+   "default": "filter",
+   "values": "Adaptive filter mode Tapped delay-line FIR filter (default) | Adaptive linear combiner",
+   "group": ""
+  },
+  {
+   "name": "Enable adapt input",
+   "default": "off",
+   "values": "Update the filter weights off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable reset input",
+   "default": "off",
+   "values": "Reset the filter weights off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

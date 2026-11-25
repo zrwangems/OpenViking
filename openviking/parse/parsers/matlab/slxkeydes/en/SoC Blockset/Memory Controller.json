@@ -1,0 +1,91 @@
+{
+ "key": "Memory Controller",
+ "title": "Memory Controller",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Memory_Controller.md"
+ ],
+ "text": "Arbitrate memory transactions for one or more Memory Channel blocks, 1 input, 1 output; {Hardware board} sets the view or modify current hardware settings Read-only: name of current hardware, {Memory selection} sets the between memory regions, {Number of masters}, {Interconnect arbitration} sets the arbitration policy Round, {Use hardware board settings} uses hardware implementation settings from the configuration, {Bandwidth}, {Frequency (MHz)} sets the controller clock frequency, in MHz, {Data width (bits)} sets the bit width of datapath, {Bandwidth derating (%)} sets the memory transaction inefficiencies 0-100, {Request to first transfer (in clocks)} sets the number of clock cycles between request and start of transfer nonnegative and {Last transfer to transaction complete (in clocks)} sets the number of clock cycles between the end of transfer and completion of transaction nonnegative. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "burstReq N",
+   "direction": "input",
+   "summary": "Request for memory access scalar"
+  },
+  {
+   "name": "burstDone N",
+   "direction": "output",
+   "summary": "Signal toward master scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hardware board",
+   "default": "",
+   "values": "View or modify current hardware settings Read-only: name of current hardware board",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "Choose between memory regions PS memory (default) | PL memory",
+   "group": "Main"
+  },
+  {
+   "name": "Number of masters",
+   "default": "2",
+   "values": "Number of masters connected to this controller 2 (default) | positive integer from 1 to 12",
+   "group": "Main"
+  },
+  {
+   "name": "Interconnect arbitration",
+   "default": "robin",
+   "values": "Arbitration policy Round robin (default) | Fixed port priority",
+   "group": "Main"
+  },
+  {
+   "name": "Use hardware board settings",
+   "default": "off",
+   "values": "Use hardware implementation settings from the configuration parameters off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Bandwidth",
+   "default": "",
+   "values": "Bandwidth for transactions towards external memory Read-only: scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (MHz)",
+   "default": "200",
+   "values": "Controller clock frequency, in MHz 200 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Data width (bits)",
+   "default": "64",
+   "values": "Bit width of datapath 64 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Bandwidth derating (%)",
+   "default": "",
+   "values": "Memory transaction inefficiencies 0-100",
+   "group": "Main"
+  },
+  {
+   "name": "Request to first transfer (in clocks)",
+   "default": "",
+   "values": "Number of clock cycles between request and start of transfer nonnegative integer",
+   "group": "Main"
+  },
+  {
+   "name": "Last transfer to transaction complete (in clocks)",
+   "default": "",
+   "values": "Number of clock cycles between the end of transfer and completion of transaction nonnegative integer",
+   "group": "Main"
+  }
+ ]
+}

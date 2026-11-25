@@ -1,0 +1,92 @@
+{
+ "key": "PushButtonBlock",
+ "title": "Push Button",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Push_Button.md"
+ ],
+ "text": "Change parameter or variable value using button, {Label} sets Block label position; {Connection} sets the block parameter value to connect parameter value connection, {Button Text} sets the text label, {On Value} sets the value assigned to connected parameter when button is pressed, {Button Type} sets the button response, {Opacity} sets the block background opacity, {Foreground Color} sets the block foreground color, {Background Color} sets the block background color, {Icon}, {Icon Alignment} sets the icon alignment relative to button text, {Customize Icon Color} sets the whether to use icon on and off colors, {On Color} sets the icon color when block is pressed or latched and {Off Color} sets the icon color when block is not pressed or latched. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Block parameter value to connect parameter value connection options",
+   "group": "Connection"
+  },
+  {
+   "name": "Button Text",
+   "default": "Button",
+   "values": "Text label for button Button (default) | string | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "On Value",
+   "default": "1",
+   "values": "Value assigned to connected parameter when button is pressed or latched 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Button Type",
+   "default": "Momentary",
+   "values": "Button response to click Momentary (default) | Latch",
+   "group": "Main"
+  },
+  {
+   "name": "Label",
+   "default": "Hide",
+   "values": "Block label position Hide (default) | Bottom | Top",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "Block background opacity 1 (default) | scalar",
+   "group": "Format"
+  },
+  {
+   "name": "Foreground Color",
+   "default": "",
+   "values": "Block foreground color [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Background Color",
+   "default": "",
+   "values": "Block background color [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Icon",
+   "default": "",
+   "values": "Icon to display on button SVG file | PNG file | JPEG file",
+   "group": "Icon"
+  },
+  {
+   "name": "Icon Alignment",
+   "default": "Left",
+   "values": "Icon alignment relative to button text Left (default) | Right | Top | Bottom | Center",
+   "group": "Icon"
+  },
+  {
+   "name": "Customize Icon Color",
+   "default": "Off",
+   "values": "Whether to use icon on and off colors Off (default) | On",
+   "group": "Icon"
+  },
+  {
+   "name": "On Color",
+   "default": "",
+   "values": "Icon color when block is pressed or latched [r g b] vector",
+   "group": "Icon"
+  },
+  {
+   "name": "Off Color",
+   "default": "",
+   "values": "Icon color when block is not pressed or latched [r g b] vector",
+   "group": "Icon"
+  }
+ ]
+}

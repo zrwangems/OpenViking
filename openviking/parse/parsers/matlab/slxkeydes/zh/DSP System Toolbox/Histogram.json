@@ -1,0 +1,103 @@
+{
+ "key": "Histogram",
+ "title": "Histogram",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Histogram.md",
+  "Vision HDL Toolbox/Statistics/Histogram.md"
+ ],
+ "text": "输入或输入序列的直方图，输入 2 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入运算的方法；{Lower limit of histogram} 指定最低值 bin 的下边界 scalar、{Upper limit of histogram} 指定最高值 bin 的上边界 scalar、{Number of bins} 指定直方图 bin 数、{Find the histogram over} 指定计算每列或整个输入的直方图 Each、{Normalized} 指定归一化输出、{Running histogram} 指定随时间跟踪频率分布、{Reset port} 指定重置事件 Non-zero、{Saturate on integer overflow} 指定溢出操作的方法、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "复位端口 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "直方图输出 vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lower limit of histogram",
+   "default": "",
+   "values": "最低值 bin 的下边界 scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Upper limit of histogram",
+   "default": "",
+   "values": "最高值 bin 的上边界 scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of bins",
+   "default": "",
+   "values": "直方图 bin 数 positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Find the histogram over",
+   "default": "column",
+   "values": "计算每列或整个输入的直方图 Each column (default) | Entire input",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalized",
+   "default": "off",
+   "values": "归一化输出 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Running histogram",
+   "default": "off",
+   "values": "随时间跟踪频率分布 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "sample",
+   "values": "重置事件 Non-zero sample (default) | None | Rising edge | Falling edge | Either edge",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "乘积输出数据类型 Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "累加器数据类型 Inherit: Same as input (default) | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

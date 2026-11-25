@@ -1,0 +1,43 @@
+{
+ "key": "atan2",
+ "title": "atan2",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/atan2.md",
+  "Motor Control Blockset/Controls/Math Transforms/atan2.md"
+ ],
+ "text": "计算四象限反正切，输入 2 路、输出 1 路；按 {逼近方法} 指定用于 atan2 计算的逼近类型；{输出单位} 输出值的单位，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "y 坐标值（实数） 标量"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "x 坐标值（实数） 标量"
+  },
+  {
+   "name": "θ",
+   "direction": "output",
+   "summary": "反正切表示的角度 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "逼近方法",
+   "default": "无",
+   "values": "用于 atan2 计算的逼近类型 无 (默认) | CORDIC | 查找",
+   "group": ""
+  },
+  {
+   "name": "输出单位",
+   "default": "弧度",
+   "values": "输出值的单位 弧度 (默认) | 标幺",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "Pi-shaped membership function",
+ "title": "Pi-shaped MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Pi_shaped_MF.md"
+ ],
+ "text": "Pi 形隶属度函数，输入 1 路、输出 1 路；{Left base point a} 指定左侧过渡区域的足部、{Left top point b} 指定左侧过渡区域的肩部、{Right top point c} 指定右侧过渡区域的肩部、{Right base point d} 指定右侧过渡区域的足部，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入值 scalar | vector"
+  },
+  {
+   "name": "Pi MF",
+   "direction": "output",
+   "summary": "隶属度值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Left base point a",
+   "default": "-9",
+   "values": "左侧过渡区域的足部 -9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left top point b",
+   "default": "-7",
+   "values": "左侧过渡区域的肩部 -7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right top point c",
+   "default": "-9",
+   "values": "右侧过渡区域的肩部 -9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right base point d",
+   "default": "-7",
+   "values": "右侧过渡区域的足部 -7 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

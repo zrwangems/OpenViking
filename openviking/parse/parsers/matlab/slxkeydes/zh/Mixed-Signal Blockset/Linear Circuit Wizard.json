@@ -1,0 +1,140 @@
+{
+ "key": "Linear Circuit Wizard",
+ "title": "Linear Circuit Wizard",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Linear_Circuit_Wizard.md"
+ ],
+ "text": "生成或修改线性电路；按 {Steady state output value(s)} 指定所需主输出值；{Circuit design name} 指定模块图标上显示的电路名称、{Netlist file name} 定义电路的网表文件名称 character、{Configuration name} 指定配置文件的名称 character vector、{Parse netlist file and start new configuration} 指定解析指定的网表文件、{Save configuration} 指定将当前配置保存到文件、{Load configuration} 指定加载现有配置文件、{Attach configuration to block} 指定将所选配置文件附加到 Simulink 模块、{Build Simulink block} 指定创建 Simulink 模块或对象以对网表定义的电路建模、{Pole/zero report} 指定将极点-零点报告添加到基础工作区、{Transfer function plot} 绘制传递函数、{Linear control system} 指定将控制系统微分方程的矩阵添加到基础工作区、{Analyze} 指定分析线性电路以生成所选输出、{Output port} 指定主输出值的输出端口 drop-down menu created from port、{Primary control variable} 用于调节输出的变量 Duty、{Duty cycle value [min,max]} 指定最小控制占空比、{Frequency [min,max]} 指定最小控制频率、{Phase offset(s)} 控制信号上升沿的相位，以控制周期的比例表示、{Pulse Duration(s)} 控制信号的脉冲持续时间，作为控制周期的函数、{Samples per waveform} 指定单个开关周期输出波中的采样点数、{Analyze operating point} 指定开关电路的工作点分析，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Circuit design name",
+   "default": "Circuit’",
+   "values": "模块图标上显示的电路名称 ’Linear Circuit’ (default) | character vector | string scalar",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Netlist file name",
+   "default": "",
+   "values": "定义电路的网表文件名称 character vector | string scalar",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Configuration name",
+   "default": "",
+   "values": "配置文件的名称 character vector | string scalar",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Parse netlist file and start new configuration",
+   "default": "",
+   "values": "解析指定的网表文件 button",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Save configuration",
+   "default": "",
+   "values": "将当前配置保存到文件 button",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Load configuration",
+   "default": "",
+   "values": "加载现有配置文件 button",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Attach configuration to block",
+   "default": "on",
+   "values": "将所选配置文件附加到 Simulink 模块 on (default) | off",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Build Simulink block",
+   "default": "",
+   "values": "创建 Simulink 模块或对象以对网表定义的电路建模 button",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Pole/zero report",
+   "default": "on",
+   "values": "将极点-零点报告添加到基础工作区 on (default) | off",
+   "group": "Linear Analysis"
+  },
+  {
+   "name": "Transfer function plot",
+   "default": "on",
+   "values": "绘制传递函数 on (default) | off",
+   "group": "Linear Analysis"
+  },
+  {
+   "name": "Linear control system",
+   "default": "on",
+   "values": "将控制系统微分方程的矩阵添加到基础工作区 on (default) | off",
+   "group": "Linear Analysis"
+  },
+  {
+   "name": "Analyze",
+   "default": "",
+   "values": "分析线性电路以生成所选输出 button",
+   "group": "Linear Analysis"
+  },
+  {
+   "name": "Output port",
+   "default": "",
+   "values": "主输出值的输出端口 drop-down menu created from port definitions",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Steady state output value(s)",
+   "default": "0",
+   "values": "所需主输出值 0 (default) | scalar | vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Primary control variable",
+   "default": "cycle",
+   "values": "用于调节输出的变量 Duty cycle (default) | Frequency",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Duty cycle value [min,max]",
+   "default": "0",
+   "values": "最小控制占空比 0 (default) | scalar | 2-element vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Frequency [min,max]",
+   "default": "0",
+   "values": "最小控制频率 0 (default) | scalar | 2-element vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Phase offset(s)",
+   "default": "0",
+   "values": "控制信号上升沿的相位，以控制周期的比例表示 0 (default) | scalar | vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Pulse Duration(s)",
+   "default": "0",
+   "values": "控制信号的脉冲持续时间，作为控制周期的函数 0 (default) | scalar | vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Samples per waveform",
+   "default": "1024",
+   "values": "单个开关周期输出波中的采样点数 1024 (default) | positive integer scalar",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Analyze operating point",
+   "default": "",
+   "values": "开关电路的工作点分析 button",
+   "group": "Operating Point Analysis"
+  }
+ ]
+}

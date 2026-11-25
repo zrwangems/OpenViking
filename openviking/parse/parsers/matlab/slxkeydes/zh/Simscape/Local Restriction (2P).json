@@ -1,0 +1,13 @@
+{
+ "key": "Local Restriction (2P)",
+ "title": "Local Restriction (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Local_Restriction_2P.md"
+ ],
+ "text": "两相流体网络中的流通面积限制。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

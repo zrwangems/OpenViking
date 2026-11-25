@@ -1,0 +1,31 @@
+{
+ "key": "Cholesky Factorization",
+ "title": "Cholesky Factorization",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Factorizations/Cholesky_Factorization.md"
+ ],
+ "text": "Factor square Hermitian positive definite matrix into triangular components, 1 input, 1 output, no direct feedthrough, {Non-positive definite input} sets Non-positive definite input.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Input matrix square matrix"
+  },
+  {
+   "name": "LL’",
+   "direction": "output",
+   "summary": "Lower and upper triangular factors square matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Non-positive definite input",
+   "default": "Warning",
+   "values": "Non-positive definite input Warning (default) | Ignore | Error",
+   "group": ""
+  }
+ ]
+}

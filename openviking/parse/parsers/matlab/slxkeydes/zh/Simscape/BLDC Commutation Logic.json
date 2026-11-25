@@ -1,0 +1,36 @@
+{
+ "key": "BLDC Commutation Logic",
+ "title": "BLDC Commutation Logic",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/BLDC Control/BLDC_Commutation_Logic.md"
+ ],
+ "text": "无刷 DC 电机的开关换相逻辑，输入 2 路、输出 1 路；{采样时间(-1 表示继承)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Hall",
+   "direction": "input",
+   "summary": "霍尔传感器 向量"
+  },
+  {
+   "name": "Direction",
+   "direction": "input",
+   "summary": "电机方向 标量"
+  },
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "电机相 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 正标量",
+   "group": ""
+  }
+ ]
+}

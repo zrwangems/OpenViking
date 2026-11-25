@@ -1,0 +1,92 @@
+{
+ "key": "Relay",
+ "title": "Relay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Relay.md",
+  "HDL Coder/Discontinuities/Relay.md"
+ ],
+ "text": "在两个常量输出之间进行切换，输入 1 路、输出 1 路；按 {采样时间(-1 表示继承)} 指定采样之间的时间间隔；{开启点} 用于打开中继的输入值、{关闭点} 用于关闭中继的输入值、{打开时的输出}、{关闭时的输出}、{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{启用过零检测}、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{输出数据类型} 输出信号的数据类型、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "开启点",
+   "default": "’eps’",
+   "values": "用于打开中继的输入值 ’eps’ (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "关闭点",
+   "default": "’eps’",
+   "values": "用于关闭中继的输入值 ’eps’ (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "打开时的输出",
+   "default": "1",
+   "values": "当中继打开时的输出值 1 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "关闭时的输出",
+   "default": "0",
+   "values": "当中继关闭时的输出值 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "指定基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "启用过零检测 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "所有端口都具有相同数据类型",
+   "values": "输出信号的数据类型 继承: 所有端口都具有相同数据类型 (默认) | 继承: 通过反向传播继承 | double | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <数据类型表达式> |...",
+   "group": ""
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

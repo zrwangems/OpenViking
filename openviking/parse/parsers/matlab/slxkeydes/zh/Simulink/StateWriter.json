@@ -1,0 +1,26 @@
+{
+ "key": "StateWriter",
+ "title": "State Writer",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/State_Writer.md"
+ ],
+ "text": "写入模块状态，输入 1 路、无直接馈通；{State owner block} 指定状态所有者模块的名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "状态值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "State owner block",
+   "default": "none",
+   "values": "状态所有者模块的名称 none (default)",
+   "group": ""
+  }
+ ]
+}

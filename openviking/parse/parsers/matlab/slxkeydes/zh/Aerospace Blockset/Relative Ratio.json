@@ -1,0 +1,90 @@
+{
+ "key": "Relative Ratio",
+ "title": "Relative Ratio",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Relative_Ratio.md"
+ ],
+ "text": "计算相对大气比率，输入 5 路、输出 4 路；{Units} 指定单位 Metric、{Theta} 指定相对温度比、{Square root of theta} 指定相对温度比的平方根、{Delta} 指定相对压力比、{Sigma} 指定相对密度比，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Mach",
+   "direction": "input",
+   "summary": "马赫数 scalar"
+  },
+  {
+   "name": "γ",
+   "direction": "input",
+   "summary": "比值 scalar"
+  },
+  {
+   "name": "T o",
+   "direction": "input",
+   "summary": "静温 scalar"
+  },
+  {
+   "name": "P o",
+   "direction": "input",
+   "summary": "静态压力 scalar"
+  },
+  {
+   "name": "ρ o",
+   "direction": "input",
+   "summary": "静密度 scalar"
+  },
+  {
+   "name": "θ",
+   "direction": "output",
+   "summary": "相对温度比 scalar"
+  },
+  {
+   "name": "sqrt(θ)",
+   "direction": "output",
+   "summary": "相对温度比的平方根 scalar"
+  },
+  {
+   "name": "δ",
+   "direction": "output",
+   "summary": "相对压力比 scalar"
+  },
+  {
+   "name": "σ",
+   "direction": "output",
+   "summary": "相对密度比 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Theta",
+   "default": "on",
+   "values": "相对温度比 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Square root of theta",
+   "default": "on",
+   "values": "相对温度比的平方根 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Delta",
+   "default": "on",
+   "values": "相对压力比 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sigma",
+   "default": "on",
+   "values": "相对密度比 on (default) | off",
+   "group": ""
+  }
+ ]
+}

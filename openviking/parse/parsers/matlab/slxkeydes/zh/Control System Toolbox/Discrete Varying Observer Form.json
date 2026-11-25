@@ -1,0 +1,89 @@
+{
+ "key": "Discrete Varying Observer Form",
+ "title": "Discrete Varying Observer Form",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_Observer_Form.md"
+ ],
+ "text": "具有可变矩阵值的离散时间观测器形式状态空间模型，输入 7 路、输出 3 路；按 {Initial conditions} 指定系统初始条件；{Sample time (-1 for inherited)} 指定模块采样时间、{Output states} 指定提供状态输出、{Output state derivatives} 指定提供状态更新，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y k",
+   "direction": "input",
+   "summary": "测量信号 scalar | vector"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "被控对象状态矩阵 matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "被控对象输入矩阵 matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "被控对象输出矩阵 matrix"
+  },
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "被控对象前馈矩阵 matrix"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "状态反馈矩阵 matrix"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "状态观测器矩阵 matrix"
+  },
+  {
+   "name": "u k",
+   "direction": "output",
+   "summary": "控制信号 scalar | vector"
+  },
+  {
+   "name": "x k",
+   "direction": "output",
+   "summary": "估计的被控对象状态向量 vector"
+  },
+  {
+   "name": "x k+1",
+   "direction": "output",
+   "summary": "估计的下一状态向量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "系统初始条件 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "–1",
+   "values": "模块采样时间 –1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output states",
+   "default": "on",
+   "values": "提供状态输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output state derivatives",
+   "default": "on",
+   "values": "提供状态更新 on (default) | off",
+   "group": ""
+  }
+ ]
+}

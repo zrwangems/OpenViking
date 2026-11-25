@@ -1,0 +1,24 @@
+{
+ "key": "FloatTypecast",
+ "title": "Float Typecast",
+ "toolbox": "HDL Coder",
+ "kind": "block_type",
+ "source_docs": [
+  "HDL Coder/HDL Floating Point Operations/Float_Typecast.md"
+ ],
+ "text": "Typecast a floating-point type to an unsigned integer or vice versa, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(u)",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1(y)",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": []
+}

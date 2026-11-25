@@ -1,0 +1,46 @@
+{
+ "key": "Simulation 3D Message Get",
+ "title": "Simulation 3D Message Get",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Message_Get.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Message_Get.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Message_Get.md"
+ ],
+ "text": "从 Unreal Engine 可视化环境中检索数据；输出 1 路；按 {Sample time} 指定采样时间；{Signal name, SigName} 指定消息信号名称、{Data type, DataType} 指定消息数据类型 double *、{Message size, MsgSize} 指定消息维度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ReadMsg",
+   "direction": "output",
+   "summary": "从场景获取的数据 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal name, SigName",
+   "default": "mySignal",
+   "values": "消息信号名称 mySignal (default)",
+   "group": ""
+  },
+  {
+   "name": "Data type, DataType",
+   "default": "",
+   "values": "消息数据类型 double * | single | int8 * | uint8 * | int16 * | uint16 * | int32 | uint32 * | boolean",
+   "group": ""
+  },
+  {
+   "name": "Message size, MsgSize",
+   "default": "1]",
+   "values": "消息维度 [1 1] (default) | scalar | array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.02",
+   "values": "采样时间 0.02 (default) | -1 | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,84 @@
+{
+ "key": "A4M Sink",
+ "title": "AXI4 Master Sink",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/AXI4_Master_Sink.md"
+ ],
+ "text": "接收随机存取存储器数据，输入 2 路、输出 1 路；按 {Data type} 指定输入数据类型；{Dimensions} 指定输入数据维度、{Enable sample packing (last signal dimension as channel)} 指定在信号的最后一维打包数据、{Number of transfers} 指定要发送的读请求数、{Initial address} 指定起始地址、{Initial delay} 指定初始延迟、{Sample time} 指定采样时间间隔、{Save data in workspace} 指定保存到工作区、{Variable name} 指定工作区变量名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "rdData",
+   "direction": "input",
+   "summary": "输入数据 scalar | vector"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "输入控制总线 bus"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "输出控制总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "输入数据类型 uint8 (default) | double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | fixed point",
+   "group": ""
+  },
+  {
+   "name": "Dimensions",
+   "default": "1",
+   "values": "输入数据维度 1 (default) | positive integer | array",
+   "group": ""
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "off",
+   "values": "在信号的最后一维打包数据 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of transfers",
+   "default": "1",
+   "values": "要发送的读请求数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Initial address",
+   "default": "0",
+   "values": "起始地址 0 (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Initial delay",
+   "default": "0",
+   "values": "初始延迟 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "采样时间间隔 1 (default) | positive scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Save data in workspace",
+   "default": "off",
+   "values": "保存到工作区 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "simOut",
+   "values": "工作区变量名称 simOut (default) | any MATLAB-supported variable name",
+   "group": ""
+  }
+ ]
+}

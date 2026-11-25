@@ -1,0 +1,13 @@
+{
+ "key": "Translational Friction (PB)",
+ "title": "Translational Friction (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Friction_PB.md"
+ ],
+ "text": "Resistive frictional contact between surfaces in position-based mechanical translational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

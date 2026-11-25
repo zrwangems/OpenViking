@@ -1,0 +1,13 @@
+{
+ "key": "Tire (Simple)",
+ "title": "Tire (Simple)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Tire_Simple.md"
+ ],
+ "text": "No-slip tire model with minimal parameters.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

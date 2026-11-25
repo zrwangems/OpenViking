@@ -1,0 +1,57 @@
+{
+ "key": "XCP CAN Data Stimulation",
+ "title": "XCP CAN Data Stimulation",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/CAN/XCP_CAN_Data_Stimulation.md",
+  "Vehicle Network Toolbox/XCP Communication/CAN/XCP_CAN_Data_Stimulation.md"
+ ],
+ "text": "对选定测量执行数据激励，输入 1 路；按 {Block Input Settings} 指定将端口输入设置为 Compu method 转换值或原始值 Raw values as double；{Config name} 指定 XCP CAN 会话名称 select、{Event name} 指定事件 select from list、{All Measurements} 指定列出事件可用的所有测量值 measurements、{Selected Measurements} 指定列出选定的测量值 measurement names、{Enable Timestamp} 启用发送 STIM DTO 数据包中的 Simulink，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "用于数据激励的输入样本 defined by A2L file"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "",
+   "values": "指定 XCP CAN 会话名称 select from list",
+   "group": ""
+  },
+  {
+   "name": "Event name",
+   "default": "",
+   "values": "选择事件 select from list",
+   "group": ""
+  },
+  {
+   "name": "All Measurements",
+   "default": "",
+   "values": "列出事件可用的所有测量值 measurements list",
+   "group": ""
+  },
+  {
+   "name": "Selected Measurements",
+   "default": "",
+   "values": "列出选定的测量值 measurement names",
+   "group": ""
+  },
+  {
+   "name": "Block Input Settings",
+   "default": "conversion)",
+   "values": "将端口输入设置为 Compu method 转换值或原始值 Raw values as double (no Compu method conversion) (default) | Raw values (no Compu method conversion) | Physical values (apply Compu method conversion)",
+   "group": ""
+  },
+  {
+   "name": "Enable Timestamp",
+   "default": "off",
+   "values": "启用发送 STIM DTO 数据包中的 Simulink 时间戳 off (default) | on",
+   "group": ""
+  }
+ ]
+}

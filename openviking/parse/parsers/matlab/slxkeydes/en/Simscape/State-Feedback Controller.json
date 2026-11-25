@@ -1,0 +1,136 @@
+{
+ "key": "State-Feedback Controller",
+ "title": "State-Feedback Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/State_Feedback_Controller.md"
+ ],
+ "text": "Discrete-time state-feedback controller with integral action, 4 inputs, 1 output; {State-feedback design} sets the controller generation State-feedback, {State-feedback parameterization}, {Controller matrix}, {Discrete-time A matrix} sets a matrix in discrete time, {Discrete-time B matrix} sets the b matrix in discrete time, {Discrete-time C matrix} sets the c matrix in discrete time, {Discrete-time D matrix} sets the d matrix in discrete time, {Continuous-time A matrix} sets a matrix in continuous time, {Continuous-time B matrix} sets the b matrix in continuous time, {Continuous-time C matrix} sets the c matrix in continuous time, {Continuous-time D matrix} sets the d matrix in continuous time, {Discretization sample time}, {Desired eigenvalues (discrete)} sets the observer eigenvalues, {Control action upper limit} sets the u max, {Control action lower limit} sets the u min and {Sample time (-1 for inherited)} sets the sampling interval. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Plant reference scalar"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "State vector vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Integrator reset scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Controller output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "State-feedback design",
+   "default": "gain",
+   "values": "Controller generation State-feedback gain (default) | Desired eigenvalues",
+   "group": ""
+  },
+  {
+   "name": "State-feedback parameterization",
+   "default": "Discrete-time",
+   "values": "State-feedback parameterization Discrete-time (default) | Continuous-time",
+   "group": ""
+  },
+  {
+   "name": "Controller matrix",
+   "default": "1]",
+   "values": "Controller matrix [1 1] (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Discrete-time A matrix",
+   "default": "1",
+   "values": "A matrix in discrete time 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Discrete-time B matrix",
+   "default": "1",
+   "values": "B matrix in discrete time 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Discrete-time C matrix",
+   "default": "1",
+   "values": "C matrix in discrete time 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Discrete-time D matrix",
+   "default": "1",
+   "values": "D matrix in discrete time 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Continuous-time A matrix",
+   "default": "1",
+   "values": "A matrix in continuous time 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Continuous-time B matrix",
+   "default": "1",
+   "values": "B matrix in continuous time 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Continuous-time C matrix",
+   "default": "1",
+   "values": "C matrix in continuous time 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Continuous-time D matrix",
+   "default": "1",
+   "values": "D matrix in continuous time 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.1",
+   "values": "Discretization sample time 0.1 (default) | positive real number",
+   "group": ""
+  },
+  {
+   "name": "Desired eigenvalues (discrete)",
+   "default": "0",
+   "values": "Observer eigenvalues 0 (default) | real vector",
+   "group": ""
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "5",
+   "values": "u max 5 (default) | scalar greater than the value of the Control action lower limit parameter",
+   "group": ""
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "0",
+   "values": "u min 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sampling interval -1 (default) | default value or a positive number",
+   "group": ""
+  }
+ ]
+}

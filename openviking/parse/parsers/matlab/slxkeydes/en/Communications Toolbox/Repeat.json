@@ -1,0 +1,68 @@
+{
+ "key": "Repeat",
+ "title": "Repeat",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Repeat.md",
+  "DSP System Toolbox HDL Support/Signal Operations/Repeat.md",
+  "DSP System Toolbox/Signal Operations/Repeat.md"
+ ],
+ "text": "Resample input at higher rate by repeating values, 2 inputs, 1 output, no direct feedthrough, {Initial conditions} sets Initial conditions; {Repetition count source} sets the mode of specifying repetition count, {Repetition count, L}, {Maximum repetition factor, Lmax} sets the maximum repetition count, {Input processing} sets the method to process input signals Columns and {Rate options} sets the method by which block upsamples input Enforce single-rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "Repetition count positive integer ≤ Lmax"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Repetition count source",
+   "default": "parameter",
+   "values": "Mode of specifying repetition count Dialog parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Repetition count, L",
+   "default": "5",
+   "values": "Repetition count 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum repetition factor, Lmax",
+   "default": "16",
+   "values": "Maximum repetition count 16 (default) | positive integer ≥ 1",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Method by which block upsamples input Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial conditions 0 (default) | scalar | matrix",
+   "group": ""
+  }
+ ]
+}

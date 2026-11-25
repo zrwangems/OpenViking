@@ -1,0 +1,13 @@
+{
+ "key": "CMOS OR",
+ "title": "CMOS OR",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Logic/CMOS_OR.md"
+ ],
+ "text": "CMOS OR 门的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

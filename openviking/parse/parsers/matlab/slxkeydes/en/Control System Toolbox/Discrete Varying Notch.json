@@ -1,0 +1,52 @@
+{
+ "key": "Discrete Varying Notch",
+ "title": "Discrete Varying Notch",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_Notch.md"
+ ],
+ "text": "Discrete-time notch filter with varying coefficients, 4 inputs, 1 output; {Pre-warping frequency w0 (rad/s)} and {Sample time Ts}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Filter input scalar"
+  },
+  {
+   "name": "freq",
+   "direction": "input",
+   "summary": "Notch frequency scalar"
+  },
+  {
+   "name": "gmin",
+   "direction": "input",
+   "summary": "Gain at notch frequency scalar"
+  },
+  {
+   "name": "damp",
+   "direction": "input",
+   "summary": "Damping ratio of the filter poles scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filter output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pre-warping frequency w0 (rad/s)",
+   "default": "0",
+   "values": "Pre-warping frequency 0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time Ts",
+   "default": "1",
+   "values": "Sample time 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

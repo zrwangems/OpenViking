@@ -1,0 +1,13 @@
+{
+ "key": "Simple Gear",
+ "title": "Simple Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Simple_Gear.md"
+ ],
+ "text": "Simple gear of base and follower wheels with adjustable gear ratio, friction losses, and triggered faults.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

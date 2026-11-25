@@ -1,0 +1,96 @@
+{
+ "key": "PMSM Mechanical Parameter Estimator",
+ "title": "Mechanical Parameter Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/PMSM Parameter Estimation/Mechanical_Parameter_Estimator.md"
+ ],
+ "text": "Estimate back EMF constant, rotor inertia, and viscous damping of permanent magnet synchronous motor (PMSM), 9 inputs, 6 outputs; {Slowdown factor for current PI controller gains [1,20]} sets the slowdown factor for current PI controllers when estimating. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "Three-phase current response vector"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC link voltage scalar"
+  },
+  {
+   "name": "Theta",
+   "direction": "input",
+   "summary": "Rotor position scalar"
+  },
+  {
+   "name": "Speed",
+   "direction": "input",
+   "summary": "Rotor speed scalar"
+  },
+  {
+   "name": "Rs",
+   "direction": "input",
+   "summary": "Estimated stator resistance scalar"
+  },
+  {
+   "name": "Ld",
+   "direction": "input",
+   "summary": "Estimated d -axis stator inductance scalar"
+  },
+  {
+   "name": "StartFOC",
+   "direction": "input",
+   "summary": "Begin closed loop FOC logical"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "Control signal for mechanical parameter estimation logical"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Bus signal input bus"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a, b, and c -axis stator reference voltage components vector"
+  },
+  {
+   "name": "Ke",
+   "direction": "output",
+   "summary": "Estimated back EMF constant scalar"
+  },
+  {
+   "name": "J",
+   "direction": "output",
+   "summary": "Estimated rotor inertia scalar"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Estimated viscous damping scalar"
+  },
+  {
+   "name": "InverterEn",
+   "direction": "output",
+   "summary": "Inverter control signal logical"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "Debug signals bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Slowdown factor for current PI controller gains [1,20]",
+   "default": "5",
+   "values": "Slowdown factor for current PI controllers when estimating back-EMF 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

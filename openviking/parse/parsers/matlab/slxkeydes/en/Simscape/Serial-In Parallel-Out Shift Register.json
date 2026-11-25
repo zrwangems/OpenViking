@@ -1,0 +1,43 @@
+{
+ "key": "Serial-In Parallel-Out Shift Register",
+ "title": "Serial-In Parallel-Out Shift Register",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Serial_In_Parallel_Out_Shift_Register.md"
+ ],
+ "text": "Discrete-time serial-in, parallel-out shift register, 1 input, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Number of samples} sets the number of input samples and {Initial condition} sets the initial value of the input sample. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Serial input scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Parallel output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of samples",
+   "default": "4",
+   "values": "Number of input samples 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial value of the input sample 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Worm and Gear Constraint",
+ "title": "Worm and Gear Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Gears and Couplings/Gears/Worm_and_Gear_Constraint.md"
+ ],
+ "text": "在旋转轴垂直且不相交的蜗杆与齿轮体之间的运动学约束。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

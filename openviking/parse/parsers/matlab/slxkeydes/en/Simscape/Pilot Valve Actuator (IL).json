@@ -1,0 +1,13 @@
+{
+ "key": "Pilot Valve Actuator (IL)",
+ "title": "Pilot Valve Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Pilot_Valve_Actuator_IL.md"
+ ],
+ "text": "Single-acting or double-acting actuator controlled by a pilot pressure in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

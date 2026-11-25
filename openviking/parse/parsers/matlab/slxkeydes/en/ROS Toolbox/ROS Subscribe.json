@@ -1,0 +1,55 @@
+{
+ "key": "ROS Subscribe",
+ "title": "Subscribe",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Subscribe.md"
+ ],
+ "text": "Receive messages from ROS network, 2 outputs, {Topic source} sets Source for specifying topic name Select from ROS network; {Topic}, {Message type} sets the rOS message type string, {Sample time} sets the interval between outputs and {Length of subscribe callback queue} sets the message queue length. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "New message indicator 0 | 1"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "ROS message nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic source",
+   "default": "",
+   "values": "Source for specifying topic name Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "Topic name to subscribe to string",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "",
+   "values": "ROS message type string",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "Interval between outputs –1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Length of subscribe callback queue",
+   "default": "1",
+   "values": "Message queue length 1 (default) | integer",
+   "group": ""
+  }
+ ]
+}

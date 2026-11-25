@@ -1,0 +1,245 @@
+{
+ "key": "fusion.simulink.trackerTOMHT",
+ "title": "Track-Oriented Multi-Hypothesis Tracker",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Multi-Object Tracking Algorithms/Track_Oriented_Multi_Hypothesis_Tracker.md"
+ ],
+ "text": "Track-Oriented Multi-Hypothesis Tracker，输入 5 路、输出 5 路；按 {Track output method} 指定航迹输出方法；{Tracker identifier} 指定唯一跟踪器标识符、{Filter initialization function} 指定滤波器初始化函数、{Threshold for assigning detections to tracks} 指定将检测分配给航迹的阈值 30*、{Maximum number of tracks} 指定最大航迹数、{Maximum number of sensors} 指定最大传感器数、{Out-of-sequence measurements handling} 指定乱序测量处理、{Track state parameters} 指定航迹状态参考系的参数 structure、{Update track state parameters with time} 指定随时间更新航迹状态参数、{Simulate using} 指定要运行的仿真类型 Interpreted、{Maximum number of hypotheses to be maintained} 指定要维护的最大假设数、{Maximum number of track branches per track} 指定每条航迹的最大航迹分支数、{Maximum number of scans maintained in the branch history} 指定分支历史中维护的最大扫描数、{Minimum probability required to keep a branch} 指定保留分支所需的最小概率 .001、{N-scan pruning method} 指定 N 扫描剪枝方法、{Confirmation threshold [positive scalar]} 指定确认航迹所需的最小得分、{Deletion threshold [negative scalar]} 指定航迹删除的最大得分下降、{Probability of detection used for track score} 用于航迹得分的检测概率、{Rate of false positives used for track score} 用于航迹得分的虚警概率 1e-6、{Volume of the sensor’s detection bin} 指定传感器测量单元的体积、{Rate of new tracks per unit volume} 指定单位体积的新航迹速率、{Prediction time source} 指定预测时间来源、{Enable cost matrix input} 启用代价矩阵输入端口、{Enable detectable branch IDs input} 启用可检测分支 ID 输入、{Enable tentative tracks output} 启用暂定航迹输出端口、{Enable all tracks output} 启用所有航迹输出端口、{Enable information output} 启用分析信息的输出端口、{Enable all branches output} 启用所有分支的输出端口、{Source of output bus name} 输出航迹总线名称的来源、{Source of output info bus name} 输出信息总线名称的来源，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Detections",
+   "direction": "input",
+   "summary": "检测列表 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "航迹更新时间 real scalar"
+  },
+  {
+   "name": "Cost Matrix",
+   "direction": "input",
+   "summary": "代价矩阵 real-valued N -by- M matrix"
+  },
+  {
+   "name": "Detectable BranchIDs",
+   "direction": "input",
+   "summary": "可检测分支 ID real-valued M -by-1 vector | real-valued M -by-2 matrix"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "航迹状态参数 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "已确认航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "已确认和暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "用于分析航迹更新的附加信息 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Branches",
+   "direction": "output",
+   "summary": "所有分支 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tracker identifier",
+   "default": "0",
+   "values": "唯一跟踪器标识符 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Filter initialization function",
+   "default": "@initcvekf",
+   "values": "滤波器初始化函数 @initcvekf (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Threshold for assigning detections to tracks",
+   "default": "Inf]",
+   "values": "将检测分配给航迹的阈值 30*[0.3 0.7 1 Inf] (default) | positive scalar | 1-by-3 vector of positive values | 1-by-4 vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of tracks",
+   "default": "100",
+   "values": "最大航迹数 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "20",
+   "values": "最大传感器数 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Out-of-sequence measurements handling",
+   "default": "Terminate",
+   "values": "乱序测量处理 Terminate (default) | neglect",
+   "group": ""
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "航迹状态参考系的参数 structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "随时间更新航迹状态参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track output method",
+   "default": "’Tracks’",
+   "values": "航迹输出方法 ’Tracks’ (default) | ’Hypothesis’ | ’Clusters’",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "要运行的仿真类型 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of hypotheses to be maintained",
+   "default": "5",
+   "values": "要维护的最大假设数 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of track branches per track",
+   "default": "3",
+   "values": "每条航迹的最大航迹分支数 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of scans maintained in the branch history",
+   "default": "4",
+   "values": "分支历史中维护的最大扫描数 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Minimum probability required to keep a branch",
+   "default": ".001",
+   "values": "保留分支所需的最小概率 .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "N-scan pruning method",
+   "default": "’None’",
+   "values": "N 扫描剪枝方法 ’None’ (default) | ’Hypothesis’",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [positive scalar]",
+   "default": "20",
+   "values": "确认航迹所需的最小得分 20 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [negative scalar]",
+   "default": "-7",
+   "values": "航迹删除的最大得分下降 -7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Probability of detection used for track score",
+   "default": "0.9",
+   "values": "用于航迹得分的检测概率 0.9 (default) | positive scalar between 0 and 1",
+   "group": ""
+  },
+  {
+   "name": "Rate of false positives used for track score",
+   "default": "1e-6",
+   "values": "用于航迹得分的虚警概率 1e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Volume of the sensor’s detection bin",
+   "default": "1",
+   "values": "传感器测量单元的体积 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Rate of new tracks per unit volume",
+   "default": "1",
+   "values": "单位体积的新航迹速率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Prediction time source",
+   "default": "Auto",
+   "values": "预测时间来源 Auto (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Enable cost matrix input",
+   "default": "off",
+   "values": "启用代价矩阵输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable detectable branch IDs input",
+   "default": "off",
+   "values": "启用可检测分支 ID 输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "启用暂定航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "启用所有航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable information output",
+   "default": "off",
+   "values": "启用分析信息的输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all branches output",
+   "default": "off",
+   "values": "启用所有分支的输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出航迹总线名称的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Source of output info bus name",
+   "default": "Auto",
+   "values": "输出信息总线名称的来源 Auto (default) | Property",
+   "group": ""
+  }
+ ]
+}

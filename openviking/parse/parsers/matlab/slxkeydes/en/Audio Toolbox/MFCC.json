@@ -1,0 +1,151 @@
+{
+ "key": "MFCC",
+ "title": "MFCC",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/MFCC.md"
+ ],
+ "text": "Extract mel-frequency cepstral coefficients from audio, 1 input, 1 output, no direct feedthrough, {Filter bank normalization} sets Normalization technique for filter bank; {Window} sets the analysis window hamming, {Overlap length} sets the number of overlapping samples between adjacent, {Number of cepstral coefficients}, {Rectification} sets the type of nonlinear, {Append delta}, {Append delta-delta}, {Delta window length} sets the number of coefficients for calculating delta, {Number of feature vectors} sets the number of MFCC feature vectors in output, {Number of overlapped feature vectors} sets the number of feature vectors overlapped, {Inherit sample rate from input} sets the source of input sample rate, {Input sample rate (Hz)} sets the sample rate, {Number of bands}, {Auto-determine frequency range} sets the automatically determine frequency range, {Frequency range (Hz)} sets the frequency range of mel filter bank, {Filter bank design domain} sets the design domain of mel filter, {Mel style}, {Normalize window} sets the normalize analysis window, {Spectrum type} sets the type of spectrum, {Auto-determine FFT length} sets the automatically determine FFT length and {FFT length} sets the number of DFT points. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Audio input column vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "MFCC features matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window",
+   "default": "hamming(1024,’periodic’)",
+   "values": "Analysis window hamming(1024,’periodic’) (default) | real vector",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "512",
+   "values": "Number of overlapping samples between adjacent windows 512 (default) | integer in the range [0, windowLength )",
+   "group": ""
+  },
+  {
+   "name": "Number of cepstral coefficients",
+   "default": "13",
+   "values": "Number of cepstral coefficients in each feature vector 13 (default) | positive integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Rectification",
+   "default": "Logarithm",
+   "values": "Type of nonlinear rectification Logarithm (default) | Cubic root",
+   "group": ""
+  },
+  {
+   "name": "Append delta",
+   "default": "on",
+   "values": "Append delta of MFCCs to feature vectors on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Append delta-delta",
+   "default": "on",
+   "values": "Append delta-delta of MFCCs to feature vectors on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Delta window length",
+   "default": "9",
+   "values": "Number of coefficients for calculating delta and delta-delta 9 (default) | odd integer greater than 2",
+   "group": ""
+  },
+  {
+   "name": "Number of feature vectors",
+   "default": "1",
+   "values": "Number of MFCC feature vectors in output 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of overlapped feature vectors",
+   "default": "0",
+   "values": "Number of feature vectors overlapped in output 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "Specify source of input sample rate off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44.1e3",
+   "values": "Sample rate of input 44.1e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bands",
+   "default": "32",
+   "values": "Number of bands in mel filter bank 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine frequency range",
+   "default": "on",
+   "values": "Automatically determine frequency range on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Frequency range (Hz)",
+   "default": "[0,22050]",
+   "values": "Frequency range of mel filter bank [0,22050] (default) | two-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Filter bank design domain",
+   "default": "linear",
+   "values": "Design domain of mel filter bank linear (default) | warped",
+   "group": ""
+  },
+  {
+   "name": "Filter bank normalization",
+   "default": "bandwidth",
+   "values": "Normalization technique for filter bank bandwidth (default) | area | none",
+   "group": ""
+  },
+  {
+   "name": "Mel style",
+   "default": "oshaughnessy",
+   "values": "Mel style oshaughnessy (default) | slaney",
+   "group": ""
+  },
+  {
+   "name": "Normalize window",
+   "default": "on",
+   "values": "Normalize analysis window on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Spectrum type",
+   "default": "power",
+   "values": "Type of spectrum power (default) | magnitude",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine FFT length",
+   "default": "on",
+   "values": "Automatically determine FFT length on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "Number of DFT points 1024 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

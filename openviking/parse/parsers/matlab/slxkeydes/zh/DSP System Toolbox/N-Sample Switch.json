@@ -1,0 +1,59 @@
+{
+ "key": "N-Sample Switch",
+ "title": "N-Sample Switch",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Switches and Counters/N_Sample_Switch.md"
+ ],
+ "text": "在指定数量的采样周期后在两个输入之间切换，输入 3 路、输出 1 路、无直接馈通；按 {Trigger type} 指定触发类型 Rising；{Switch count, N}、{Reset input}、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "第一个输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Input 2",
+   "direction": "input",
+   "summary": "第二个输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置信号 scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "开关的输出 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Switch count, N",
+   "default": "8",
+   "values": "Switch count 8 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Reset input",
+   "default": "off",
+   "values": "Reset input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "触发类型 Rising edge (default) | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "采样时间 0.1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

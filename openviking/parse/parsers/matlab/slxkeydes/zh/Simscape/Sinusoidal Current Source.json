@@ -1,0 +1,13 @@
+{
+ "key": "Sinusoidal Current Source",
+ "title": "Sinusoidal Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/Sinusoidal_Current_Source.md"
+ ],
+ "text": "阻尼正弦电流源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

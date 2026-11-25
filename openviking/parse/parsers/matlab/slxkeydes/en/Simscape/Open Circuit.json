@@ -1,0 +1,14 @@
+{
+ "key": "Open Circuit",
+ "title": "Open Circuit",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Open_Circuit.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Open_Circuit.md"
+ ],
+ "text": "Electrical port terminator that draws no current.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

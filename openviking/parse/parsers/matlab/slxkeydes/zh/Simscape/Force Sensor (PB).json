@@ -1,0 +1,13 @@
+{
+ "key": "Force Sensor (PB)",
+ "title": "Force Sensor (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sensors/Force_Sensor_PB.md"
+ ],
+ "text": "基于位置的机械平移系统中的力传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

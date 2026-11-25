@@ -1,0 +1,24 @@
+{
+ "key": "Wind2DCM",
+ "title": "Wind Angles to Direction Cosine Matrix",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Wind_Angles_to_Direction_Cosine_Matrix.md"
+ ],
+ "text": "Convert wind angles to direction cosine matrix, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ γ χ",
+   "direction": "input",
+   "summary": "Wind rotation angles 3-by-1 vector"
+  },
+  {
+   "name": "DCM we",
+   "direction": "output",
+   "summary": "Direction cosine matrix 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

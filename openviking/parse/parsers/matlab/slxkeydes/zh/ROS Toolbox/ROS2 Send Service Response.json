@@ -1,0 +1,38 @@
+{
+ "key": "ROS2 Send Service Response",
+ "title": "Send Service Response",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Send_Service_Response.md"
+ ],
+ "text": "向 ROS 2 服务客户端发送服务响应，输入 1 路；{Name} 指定服务名称 Read-only: character、{Type} 指定服务类型 Read-only: character、{Paired Receive Request Block} 指定配对 Receive Service Request 模块的路径 block，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Resp",
+   "direction": "input",
+   "summary": "要发送给客户端的服务响应消息 non-virtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Name",
+   "default": "",
+   "values": "服务名称 Read-only: character vector",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "服务类型 Read-only: character vector",
+   "group": ""
+  },
+  {
+   "name": "Paired Receive Request Block",
+   "default": "",
+   "values": "配对 Receive Service Request 模块的路径 block path",
+   "group": ""
+  }
+ ]
+}

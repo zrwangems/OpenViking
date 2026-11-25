@@ -1,0 +1,13 @@
+{
+ "key": "Translational Damper (PB)",
+ "title": "Translational Damper (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Damper_PB.md"
+ ],
+ "text": "基于位置的机械平移系统中的黏性阻尼器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

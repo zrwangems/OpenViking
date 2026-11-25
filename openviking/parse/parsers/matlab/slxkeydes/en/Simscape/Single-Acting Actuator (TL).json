@@ -1,0 +1,13 @@
+{
+ "key": "Single-Acting Actuator (TL)",
+ "title": "Single-Acting Actuator (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Actuators/Single_Acting_Actuator_TL.md"
+ ],
+ "text": "Single-acting linear actuator in a thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

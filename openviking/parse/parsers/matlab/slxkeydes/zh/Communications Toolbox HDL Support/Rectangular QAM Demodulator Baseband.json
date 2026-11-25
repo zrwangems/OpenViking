@@ -1,0 +1,145 @@
+{
+ "key": "Rectangular QAM Demodulator Baseband",
+ "title": "Rectangular QAM Demodulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/AM/Rectangular_QAM_Demodulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/Rectangular_QAM_Demodulator_Baseband.md"
+ ],
+ "text": "解调矩形 QAM 调制数据，输入 2 路、输出 1 路；按 {Noise variance} 指定噪声方差；{M-ary number} 指定调制阶数、{Output type} 输出类型 Integer、{Decision type} 指定解调判决类型 Hard、{Noise variance source} 指定噪声方差源、{Constellation ordering} 指定符号的映射顺序、{Constellation mapping} 指定用户定义的星座映射、{Normalization method} 指定星座的缩放方法 Min. distance between、{Minimum distance} 指定两个最近星座点之间的距离、{Average power, referenced to 1 ohm (watts)} 指定平均功率、{Peak power, referenced to 1 ohm (watts)} 指定最大功率、{Phase offset (rad)} 指定信号星座的旋转、{Output data type} 输出数据类型 Inherit via internal、{Derotate factor} 指定去旋转因子数据类型、{Denormalization factor} 指定反归一化因子数据类型、{Product output} 指定乘积输出数据类型、{Rounding mode} 指定定点运算的舍入模式、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Sum} 指定求和数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "QAM 调制信号 scalar | vector"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "噪声方差 positive scalar | vector of positive values"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "解调信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "16",
+   "values": "调制阶数 16 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "输出类型 Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "解调判决类型 Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Dialog",
+   "values": "噪声方差源 Dialog (default) | Port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "噪声方差 1 (default) | positive scalar | vector of positive values",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Binary",
+   "values": "符号的映射顺序 Binary (default) | Gray | User-defined",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "[0:15]",
+   "values": "用户定义的星座映射 [0:15] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Normalization method",
+   "default": "symbols",
+   "values": "星座的缩放方法 Min. distance between symbols (default) | Average Power | Peak Power",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum distance",
+   "default": "2",
+   "values": "两个最近星座点之间的距离 2 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Average power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "平均功率 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Peak power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "最大功率 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "信号星座的旋转 0 (default) | numeric scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": "Data Types"
+  },
+  {
+   "name": "Derotate factor",
+   "default": "input",
+   "values": "去旋转因子数据类型 Inherit: Same word length as input (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denormalization factor",
+   "default": "input",
+   "values": "反归一化因子数据类型 Inherit: Same word length as input (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Wrap",
+   "values": "定点运算的舍入模式 Wrap (default) | Saturate",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和的选项 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sum",
+   "default": "rule",
+   "values": "求和数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as product output | fixdt(1,16) |",
+   "group": "Data Types"
+  }
+ ]
+}

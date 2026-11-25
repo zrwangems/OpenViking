@@ -1,0 +1,60 @@
+{
+ "key": "FIFO Block: writer",
+ "title": "FIFO write",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/FIFO_write.md"
+ ],
+ "text": "Write simple data streams, 1 input, 2 outputs, {Input vector type} sets input data type 8 bit uint null; {Size}, {Data present output} sets the enables output DP, {Sample time} and {ID} sets the identifier for overflow messages character. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "Data to write to FIFO vector"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "FIFO vector serialfifoptr"
+  },
+  {
+   "name": "DP",
+   "direction": "output",
+   "summary": "True if new data is present in the FIFO true | false"
+  }
+ ],
+ "params": [
+  {
+   "name": "Size",
+   "default": "1024",
+   "values": "Size of FIFO, in bytes 1024 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Input vector type",
+   "default": "terminated",
+   "values": "Specify input data type 8 bit uint null terminated (default) | count+32 bit int | count+32 bit uint | count+16 bit int | count+16 bit uint | 8 bit int null terminated",
+   "group": ""
+  },
+  {
+   "name": "Data present output",
+   "default": "off",
+   "values": "Enables output DP off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "ID",
+   "default": "",
+   "values": "Identifier for overflow messages character vector",
+   "group": ""
+  }
+ ]
+}

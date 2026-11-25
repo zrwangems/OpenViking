@@ -1,0 +1,69 @@
+{
+ "key": "MATLABSystem",
+ "title": "MATLAB System",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/MATLAB_System.md",
+  "HDL Coder/User-Defined Functions/MATLAB_System.md",
+  "Audio Toolbox/User-Defined Functions/Audio_Plugin.md"
+ ],
+ "text": "Include System object in model, 1 input, 1 output, no direct feedthrough, {New} sets Create a System object from a template; {System Object Name} sets the name of the System object, {Simulate using} selects the simulation mode, {Dependency}, {Saturate on integer overflow} sets the whether overflows saturate, {Treat these inherited Simulink signal types as fi objects} sets the fi data and {MATLAB System fimath} sets the fixed-point settings to use Same. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Signal input to a MATLAB System block scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Signal output of a MATLAB System block scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "System Object Name",
+   "default": "array",
+   "values": "Name of the System object cell array (default)",
+   "group": ""
+  },
+  {
+   "name": "New",
+   "default": "Basic",
+   "values": "Create a System object from a template Basic (default) | Advanced | Simulink Extension",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Select the simulation mode Code generation (default) | Interpreted Execution",
+   "group": ""
+  },
+  {
+   "name": "Dependency",
+   "default": "auto",
+   "values": "Dependency parameter for MATLAB System block auto (default)",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "Off",
+   "values": "Specify whether overflows saturate Off (default) | On",
+   "group": ""
+  },
+  {
+   "name": "Treat these inherited Simulink signal types as fi objects",
+   "default": "Fixed-point",
+   "values": "Specify fi data types Fixed-point (default) | Fixed-point & Integer",
+   "group": ""
+  },
+  {
+   "name": "MATLAB System fimath",
+   "default": "MATLAB",
+   "values": "Specify fixed-point settings to use Same as MATLAB (default) | Specify Other",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "key": "ROS2 Receive Service Request",
+ "title": "Receive Service Request",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Receive_Service_Request.md"
+ ],
+ "text": "Receive service request from ROS 2 network, 3 outputs; {Name} sets the service name character vector, {Type} sets the service type character vector, {Paired Send Response Block} sets the path to paired Send Service Response block block, {Sample time} sets the interval between outputs, {Show Default Response output port} enables default response output port, {History} sets the mode of storing requests in the queue Keep, {Depth} sets the size of the request queue, {Reliability} sets the delivery guarantee, {Durability} sets the persistence of requests, {Deadline} sets the maximum amount of time allowed between receiving a service request and sending response, {Lifespan} sets the length of time a service request is considered valid, {Liveliness} sets the level of liveliness reporting provided by the block and expected from service clients and {Lease Duration} sets the maximum amount of time before which a connected service client has to assert liveliness. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "New service request indicator 0 | 1"
+  },
+  {
+   "name": "Req",
+   "direction": "output",
+   "summary": "Service request message non-virtual bus"
+  },
+  {
+   "name": "DefaultResp",
+   "direction": "output",
+   "summary": "Default response message non-virtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Service name character vector",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "Service type character vector",
+   "group": ""
+  },
+  {
+   "name": "Paired Send Response Block",
+   "default": "",
+   "values": "Path to paired Send Service Response block block path",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "Interval between outputs –1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Default Response output port",
+   "default": "on",
+   "values": "Enable default response output port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "History",
+   "default": "last",
+   "values": "Mode of storing requests in the queue Keep last (default) | Keep all",
+   "group": ""
+  },
+  {
+   "name": "Depth",
+   "default": "1",
+   "values": "Size of the request queue 1 (default) | non-negative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Reliability",
+   "default": "Reliable",
+   "values": "Delivery guarantee of requests Reliable (default) | Best effort",
+   "group": ""
+  },
+  {
+   "name": "Durability",
+   "default": "Volatile",
+   "values": "Persistence of requests Volatile (default) | Transient local",
+   "group": ""
+  },
+  {
+   "name": "Deadline",
+   "default": "Inf",
+   "values": "Maximum amount of time allowed between receiving a service request and sending response Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lifespan",
+   "default": "Inf",
+   "values": "Length of time a service request is considered valid Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Liveliness",
+   "default": "automatic",
+   "values": "Level of liveliness reporting provided by the block and expected from service clients automatic (default)",
+   "group": ""
+  },
+  {
+   "name": "Lease Duration",
+   "default": "Inf",
+   "values": "Maximum amount of time before which a connected service client has to assert liveliness Inf (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "key": "Park Transform",
+ "title": "Park Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Park_Transform.md"
+ ],
+ "text": "实现 abc 到 dq0 的变换，输入 2 路、输出 1 路；{功率不变}、{a 相轴对齐} 指定 dq0 参考系对齐 Q，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "input",
+   "summary": "a 相、 b 相和 c 相分量 向量"
+  },
+  {
+   "name": "θ elec",
+   "direction": "input",
+   "summary": "旋转角度，弧度 标量"
+  },
+  {
+   "name": "dq0",
+   "direction": "output",
+   "summary": "d - q 轴分量和零轴分量 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "功率不变",
+   "default": "off",
+   "values": "功率不变变换 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "a 相轴对齐",
+   "default": "轴",
+   "values": "dq0 参考系对齐 Q 轴 (默认) | D 轴",
+   "group": ""
+  }
+ ]
+}

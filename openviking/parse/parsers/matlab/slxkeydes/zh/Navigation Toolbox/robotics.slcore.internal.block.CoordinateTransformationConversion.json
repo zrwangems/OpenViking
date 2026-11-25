@@ -1,0 +1,68 @@
+{
+ "key": "robotics.slcore.internal.block.CoordinateTransformationConversion",
+ "title": "Coordinate Transformation Conversion",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Utilities/Coordinate_Transformation_Conversion.md",
+  "ROS Toolbox/Utilities/Coordinate_Transformation_Conversion.md",
+  "Robotics System Toolbox/Utilities/Coordinate_Transformation_Conversion.md",
+  "UAV Toolbox/Utilities/Coordinate_Transformation_Conversion.md"
+ ],
+ "text": "转换为指定的坐标变换表示，输入 2 路；按 {Axis rotation sequence} 指定欧拉角轴旋转顺序；{Representation} 指定输入表示 Axis-Angle、{Show TrVec input port} 指定切换 TrVec 端口、{Show TrVec output port} 指定切换 TrVec 端口、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input transformation",
+   "direction": "input",
+   "summary": "坐标变换 column vector | 3-by-3 matrix | 4-by-4 matrix"
+  },
+  {
+   "name": "TrVec",
+   "direction": "input",
+   "summary": "平移向量 3-element column vector"
+  },
+  {
+   "name": "Output transformation",
+   "direction": "",
+   "summary": "坐标变换 column vector | 3-by-3 matrix | 4-by-4 matrix"
+  },
+  {
+   "name": "TrVec",
+   "direction": "",
+   "summary": "平移向量 three-element column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Representation",
+   "default": "",
+   "values": "输入表示 Axis-Angle | Euler Angles | Homogeneous Transformation | Quaternion | Rotation Matrix | Translation Vector",
+   "group": ""
+  },
+  {
+   "name": "Axis rotation sequence",
+   "default": "ZYX",
+   "values": "欧拉角轴旋转顺序 ZYX (default) | ZYZ | XYZ",
+   "group": ""
+  },
+  {
+   "name": "Show TrVec input port",
+   "default": "off",
+   "values": "切换 TrVec 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show TrVec output port",
+   "default": "off",
+   "values": "切换 TrVec 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

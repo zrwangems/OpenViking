@@ -1,0 +1,13 @@
+{
+ "key": "Specific Dissipation Heat Transfer",
+ "title": "Specific Dissipation Heat Transfer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Fundamental Components/Specific_Dissipation_Heat_Transfer.md"
+ ],
+ "text": "两种一般流体之间的简单传热模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,81 @@
+{
+ "key": "Differential Drive Kinematic Model",
+ "title": "Differential Drive Kinematic Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Mobile Robot Algorithms/Differential_Drive_Kinematic_Model.md"
+ ],
+ "text": "Compute vehicle motion using differential drive kinematic model, 4 inputs, 2 outputs; {Vehicle inputs} sets the type of speed and directional inputs for vehicle Wheel, {Wheel radius}, {Wheel speed range} sets the minimum and maximum vehicle speeds, {Track width} sets the track length of vehicle from wheel, {Initial state} sets the initial pose of the vehicle and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dϕ L /dt",
+   "direction": "input",
+   "summary": "Left wheel speed numeric scalar"
+  },
+  {
+   "name": "dϕ R /dt",
+   "direction": "input",
+   "summary": "Right wheel speed numeric scalar"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "Vehicle speed numeric scalar"
+  },
+  {
+   "name": "ɷ",
+   "direction": "input",
+   "summary": "Angular velocity of vehicle numeric scalar"
+  },
+  {
+   "name": "state",
+   "direction": "output",
+   "summary": "Pose of vehicle three-element vector"
+  },
+  {
+   "name": "stateDot",
+   "direction": "output",
+   "summary": "Derivatives of state output three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vehicle inputs",
+   "default": "Speeds",
+   "values": "Type of speed and directional inputs for vehicle Wheel Speeds (default) | Vehicle Speed & Heading Angular Velocity",
+   "group": ""
+  },
+  {
+   "name": "Wheel radius",
+   "default": "0.05",
+   "values": "Wheel radius of vehicle 0.05 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Wheel speed range",
+   "default": "Inf]",
+   "values": "Minimum and maximum vehicle speeds [-Inf Inf] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Track width",
+   "default": "0.2",
+   "values": "Track length of vehicle from wheel to wheel 0.2 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "[0;0;0]",
+   "values": "Initial pose of the vehicle [0;0;0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

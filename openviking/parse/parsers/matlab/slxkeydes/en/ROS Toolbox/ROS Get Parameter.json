@@ -1,0 +1,72 @@
+{
+ "key": "ROS Get Parameter",
+ "title": "Get Parameter",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Get_Parameter.md"
+ ],
+ "text": "Get values from ROS parameter server, 3 outputs, {Show ErrorCode output port} sets Display error code output on; {Source}, {Name} sets the parameter name string, {Data type}, {Maximum length}, {Initial value} sets the default parameter value and {Sample time} sets the interval between outputs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Value",
+   "direction": "output",
+   "summary": "Parameter value scalar | logical | uint8 array"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "Status of ROS parameter 0 | 1 | 2 | 3"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "Length of string parameter integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source",
+   "default": "",
+   "values": "Source for specifying the parameter name Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Parameter name string",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "",
+   "values": "Data type of your parameter double | int32 | boolean | uint8[] (string)",
+   "group": ""
+  },
+  {
+   "name": "Maximum length",
+   "default": "",
+   "values": "Maximum length of the uint8 array scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "",
+   "values": "Default parameter value output double | int32 | boolean | uint8",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "Interval between outputs inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "",
+   "values": "Display error code output on | off",
+   "group": ""
+  }
+ ]
+}

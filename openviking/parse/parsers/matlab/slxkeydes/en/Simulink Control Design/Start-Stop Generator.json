@@ -1,0 +1,83 @@
+{
+ "key": "Start-Stop Generator",
+ "title": "Start-Stop Generator",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Signal Generation/Start_Stop_Generator.md"
+ ],
+ "text": "Generate start-stop signal used by signal generation, estimation, and autotuning blocks, 3 inputs, 1 output, {Settling time interval} sets tling time interval; {Sample time (Ts)}, {Data Type} sets the floating point precision, {Source of start time points}, {Duration (sec)} sets the start-stop signal duration, {Number of samples after reaching steady-state to generate start-stop signal} sets the delay for starting signal generation, {Settling time upper bounds} sets the upper bound for settling time and {Settling time lower bounds} sets the lower bound for settling time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "enable",
+   "direction": "input",
+   "summary": "Enable and disable start-stop signal generation scalar"
+  },
+  {
+   "name": "start times",
+   "direction": "input",
+   "summary": "Start times scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Steady-state value scalar | vector"
+  },
+  {
+   "name": "start/stop",
+   "direction": "output",
+   "summary": "Start-stop signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "Sample time 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Floating point precision double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Source of start time points",
+   "default": "vector",
+   "values": "Source of start time points External time vector (default) | Time after reaching steady-state",
+   "group": ""
+  },
+  {
+   "name": "Duration (sec)",
+   "default": "10",
+   "values": "Start-stop signal duration 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of samples after reaching steady-state to generate start-stop signal",
+   "default": "2",
+   "values": "Delay for starting signal generation 2 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Settling time upper bounds",
+   "default": "3.1]",
+   "values": "Upper bound for settling time [1.1 2.1 3.1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Settling time lower bounds",
+   "default": "2.9]",
+   "values": "Lower bound for settling time [0.9 1.9 2.9] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Settling time interval",
+   "default": "5",
+   "values": "Settling time interval 5 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

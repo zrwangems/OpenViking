@@ -1,0 +1,95 @@
+{
+ "key": "Autothreshold",
+ "title": "Autothreshold",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Autothreshold.md"
+ ],
+ "text": "将强度图像转换为二值图像，输入 1 路、输出 3 路；按 {When data range is exceeded} 指定超出数据范围时执行的操作；{Thresholding operator} 指定阈值处理运算符、{Output threshold} 输出阈值、{Output effectiveness metric} 输出有效性度量、{Specify data range} 指定输入像素值范围、{Minimum value of input} 指定最小输入像素值、{Maximum value of input} 指定最大输入像素值、{Scale threshold} 指定缩放阈值、{Threshold scaling factor} 指定阈值处理的缩放因子、{Lock data type settings against change by the fixed-point tools} 指定数据类型覆盖，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix"
+  },
+  {
+   "name": "BW",
+   "direction": "output",
+   "summary": "输出二值图像 matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "output",
+   "summary": "阈值 scalar"
+  },
+  {
+   "name": "EMetric",
+   "direction": "output",
+   "summary": "有效性度量值 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Thresholding operator",
+   "default": ">",
+   "values": "指定阈值处理运算符 > (default) | <=",
+   "group": "Main"
+  },
+  {
+   "name": "Output threshold",
+   "default": "off",
+   "values": "输出阈值 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output effectiveness metric",
+   "default": "off",
+   "values": "输出有效性度量 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Specify data range",
+   "default": "off",
+   "values": "指定输入像素值范围 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum value of input",
+   "default": "0",
+   "values": "最小输入像素值 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum value of input",
+   "default": "255",
+   "values": "最大输入像素值 255 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "When data range is exceeded",
+   "default": "Ignore",
+   "values": "超出数据范围时执行的操作 Ignore (default) | Saturate | Warn and saturate | Error",
+   "group": "Main"
+  },
+  {
+   "name": "Scale threshold",
+   "default": "off",
+   "values": "指定缩放阈值 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Threshold scaling factor",
+   "default": "1",
+   "values": "阈值处理的缩放因子 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "数据类型覆盖 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

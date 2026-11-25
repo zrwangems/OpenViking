@@ -1,0 +1,43 @@
+{
+ "key": "Data Mapper",
+ "title": "Data Mapper",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Data_Mapper.md"
+ ],
+ "text": "将整数符号从一种编码方案映射到另一种编码方案，输入 1 路、输出 1 路；按 {Mapping mode} 指定映射模式 Binary to；{Symbol set size (M)} 指定符号集大小、{Mapping vector} 指定将输入元素映射到输出元素，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mapping mode",
+   "default": "Gray",
+   "values": "映射模式 Binary to Gray (default) | Gray to Binary | User Defined | Straight through",
+   "group": ""
+  },
+  {
+   "name": "Symbol set size (M)",
+   "default": "8",
+   "values": "符号集大小 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Mapping vector",
+   "default": "5]",
+   "values": "将输入元素映射到输出元素 [0 1 3 2 7 6 4 5] (default) | vector",
+   "group": ""
+  }
+ ]
+}

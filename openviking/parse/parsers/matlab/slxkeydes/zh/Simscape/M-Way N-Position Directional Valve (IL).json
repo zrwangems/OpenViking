@@ -1,0 +1,13 @@
+{
+ "key": "M-Way N-Position Directional Valve (IL)",
+ "title": "M-Way N-Position Directional Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Directional Control Valves/M_Way_N_Position_Directional_Valve_IL.md"
+ ],
+ "text": "等温液体网络中的 M 通、N 位阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

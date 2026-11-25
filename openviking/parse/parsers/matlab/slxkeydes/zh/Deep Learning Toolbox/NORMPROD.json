@@ -1,0 +1,13 @@
+{
+ "key": "NORMPROD",
+ "title": "normprod",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Weight Functions/normprod.md"
+ ],
+ "text": "归一化点积权重函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

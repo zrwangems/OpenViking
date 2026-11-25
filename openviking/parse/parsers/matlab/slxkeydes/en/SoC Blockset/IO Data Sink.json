@@ -1,0 +1,43 @@
+{
+ "key": "IO Data Sink",
+ "title": "IO Data Sink",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor Testbench/IO_Data_Sink.md"
+ ],
+ "text": "Simulate and playback recorded task events, 1 input, 1 output, {Input} sets Source of input data From; {Sample time} sets the time interval of sampling and {Object name} sets the name. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data numeric vector"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "Task event signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "dialog",
+   "values": "Source of input data From dialog (default) | From input port | From timeseries object",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time interval of sampling -1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Object name",
+   "default": "[]",
+   "values": "Name of timeseries object [] (default) | timeseries object",
+   "group": ""
+  }
+ ]
+}

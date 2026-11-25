@@ -1,0 +1,165 @@
+{
+ "key": "Split Torsional Compliance",
+ "title": "Split Torsional Compliance",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Split_Torsional_Compliance.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Split_Torsional_Compliance.md"
+ ],
+ "text": "分流扭转联轴器，输入 9 路、输出 10 路；{Port Configuration} 指定配置 Simulink、{Coupling Configuration} 指定配置 Shaft、{Output Info bus} 指定 off、{Torsional stiffness, k1} 指定刚度 5e4、{Torsional damping, b1} 指定阻尼 1e2、{Damping cutoff frequency, omega1_c} 指定频率、{Torsional stiffness, k2} 指定刚度 5e4、{Torsional damping, b2} 指定阻尼 1e2、{Damping cutoff frequency, omega2_c} 指定频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RSpd",
+   "direction": "input",
+   "summary": "输入轴速度 scalar"
+  },
+  {
+   "name": "C1Spd",
+   "direction": "input",
+   "summary": "第一输出轴速度 scalar"
+  },
+  {
+   "name": "C2Spd",
+   "direction": "input",
+   "summary": "第二输出轴速度 scalar"
+  },
+  {
+   "name": "CSpd",
+   "direction": "input",
+   "summary": "输入速度 scalar"
+  },
+  {
+   "name": "R1Spd",
+   "direction": "input",
+   "summary": "第一输入轴速度 scalar"
+  },
+  {
+   "name": "R2Spd",
+   "direction": "input",
+   "summary": "第二输入轴速度 scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "输入轴角速度和扭矩 two-way connector port"
+  },
+  {
+   "name": "R1",
+   "direction": "input",
+   "summary": "第一输入轴角速度和扭矩 two-way connector port"
+  },
+  {
+   "name": "R2",
+   "direction": "input",
+   "summary": "第二输入轴角速度和力矩 two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "RTrq",
+   "direction": "output",
+   "summary": "输入轴力矩 scalar"
+  },
+  {
+   "name": "C1Trq",
+   "direction": "output",
+   "summary": "第一输出轴力矩 scalar"
+  },
+  {
+   "name": "C2Trq",
+   "direction": "output",
+   "summary": "第二输出轴力矩 scalar"
+  },
+  {
+   "name": "CTrq",
+   "direction": "output",
+   "summary": "输出轴力矩 scalar"
+  },
+  {
+   "name": "R1Trq",
+   "direction": "output",
+   "summary": "第一输入轴力矩 scalar"
+  },
+  {
+   "name": "R2Trq",
+   "direction": "output",
+   "summary": "第二输入轴力矩 scalar"
+  },
+  {
+   "name": "C1",
+   "direction": "output",
+   "summary": "第一输出轴角速度和力矩 two-way connector port"
+  },
+  {
+   "name": "C2",
+   "direction": "output",
+   "summary": "第二输出轴角速度和力矩 two-way connector port"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "输出轴角速度和力矩 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "指定配置 Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Coupling Configuration",
+   "default": "split",
+   "values": "指定配置 Shaft split (default) | Shaft merge",
+   "group": ""
+  },
+  {
+   "name": "Output Info bus",
+   "default": "off",
+   "values": "选择 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Torsional stiffness, k1",
+   "default": "5e4",
+   "values": "刚度 5e4 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Torsional damping, b1",
+   "default": "1e2",
+   "values": "阻尼 1e2 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Damping cutoff frequency, omega1_c",
+   "default": "3000",
+   "values": "频率 3000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Torsional stiffness, k2",
+   "default": "5e4",
+   "values": "刚度 5e4 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Torsional damping, b2",
+   "default": "1e2",
+   "values": "阻尼 1e2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Damping cutoff frequency, omega2_c",
+   "default": "3000",
+   "values": "频率 3000 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

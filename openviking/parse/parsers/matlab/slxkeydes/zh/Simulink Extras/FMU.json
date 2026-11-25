@@ -1,0 +1,80 @@
+{
+ "key": "FMU",
+ "title": "FMU",
+ "toolbox": "Simulink Extras",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink Extras/FMU Import/FMU.md"
+ ],
+ "text": "在模型中包含功能模型单元(FMU)；输出 1 路；按 {FMU 仿真方式} 指定二进制进行仿真；{FMU 名称}、{启用 FMU 容差}、{相对容差}、{启用事件模式} 指定事件模式下的 FMU、{通信步长} 指定联合仿真时间点之间的步长、{启用 FMU 调试记录} 启用 FMU 记录显示以进行调试、{按返回状态筛选日志} 指定筛选调试日志、{将调试日志重定向到} 指定直接流式传输调试日志、{FMU 函数调用方式} 为生成的代码指定 FMI API 的来源，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "占位符端口 无 | | 字符串大小限制为 255"
+  }
+ ],
+ "params": [
+  {
+   "name": "FMU 名称",
+   "default": "",
+   "values": "FMU 名称 字符向量",
+   "group": ""
+  },
+  {
+   "name": "启用 FMU 容差",
+   "default": "off",
+   "values": "启用 FMU 容差 off (默认) | on",
+   "group": "仿真"
+  },
+  {
+   "name": "相对容差",
+   "default": "1E-3",
+   "values": "FMU 相对容差 1E-3 (默认) | 标量",
+   "group": "仿真"
+  },
+  {
+   "name": "FMU 仿真方式",
+   "default": "x86_64-windows",
+   "values": "选择二进制进行仿真 x86_64-windows (默认) | x86-windows | x86_64-linux",
+   "group": "仿真"
+  },
+  {
+   "name": "启用事件模式",
+   "default": "on",
+   "values": "事件模式下的 FMU on (默认) | off",
+   "group": "仿真"
+  },
+  {
+   "name": "通信步长",
+   "default": "-1",
+   "values": "联合仿真时间点之间的步长 -1 (默认) | 正标量",
+   "group": "仿真"
+  },
+  {
+   "name": "启用 FMU 调试记录",
+   "default": "off",
+   "values": "启用 FMU 记录显示以进行调试 off (默认) | on",
+   "group": "仿真"
+  },
+  {
+   "name": "按返回状态筛选日志",
+   "default": "",
+   "values": "筛选调试日志 确定 | 警告 | 丢弃 | 错误 | 致命 | 待处理",
+   "group": "仿真"
+  },
+  {
+   "name": "将调试日志重定向到",
+   "default": "文件",
+   "values": "直接流式传输调试日志 文件 (默认) | 显示",
+   "group": "仿真"
+  },
+  {
+   "name": "FMU 函数调用方式",
+   "default": "",
+   "values": "为生成的代码指定 FMI API 的来源 自动 | 源代码 | 共享库",
+   "group": "代码生成"
+  }
+ ]
+}

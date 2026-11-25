@@ -1,0 +1,49 @@
+{
+ "key": "FunctionCallGenerator",
+ "title": "Function-Call Generator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Function_Call_Generator.md"
+ ],
+ "text": "Provide function-call events to control execution of subsystem or model, 1 input, 1 output, no direct feedthrough, {Sample time} sets time interval; {Number of iterations} sets the number of times to provide a function-call at each time, {Disallow wide output} prevents implicit expansion of output and {Show enable port} adds input port for control signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Control signal input scalar"
+  },
+  {
+   "name": "Function Call",
+   "direction": "output",
+   "summary": "Function-call event output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Specify time interval 1 (default) | scalar | vector | -1",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "1",
+   "values": "Specify number of times to provide a function-call at each time step 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Disallow wide output",
+   "default": "off",
+   "values": "Prevent implicit expansion of output signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show enable port",
+   "default": "off",
+   "values": "Add input port for control signal off (default) | on",
+   "group": ""
+  }
+ ]
+}

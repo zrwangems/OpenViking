@@ -1,0 +1,196 @@
+{
+ "key": "Memory Copy",
+ "title": "Memory Copy",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Memory Operations/Memory_Copy.md",
+  "Motor Control Blockset/Signal Management/Memory_Copy.md"
+ ],
+ "text": "Copy data from and to memory section, 5 inputs, 1 output, {Termination value} sets Termination value; {Copy from} sets the input source for copy operation, {Specify address source} sets the source of memory address for input data Specify via, {Address} sets the memory address of source data hex2dec, {Source code symbol} sets the symbol in source code symbol table, {Data type}, {Data length} sets the number of data elements to copy, {Use offset when reading}, {Specify offset source} sets the source of input offset Specify, {Offset} sets the number of values to skip before copying first value, {Stride} sets the spacing for reading input, {Copy to} sets the type of output destination for copy operation Output, {Use offset when writing}, {Sample time} sets the rate of memory, {Set memory value at initialization} sets the memory address during initialization, {Specify initialization value source} sets the source of initialization value Specify constant, {Initialization value (constant)} sets the constant initialization value, {Initialization value (source code symbol)} sets the symbol in source code symbol table, {Apply initialization value as mask}, {Bitwise operator} sets the type of bitwise operation, {Set memory value at termination} sets the copy memory during program termination, {Set memory value only at initialization/termination} sets the copy memory value during program initialization and termination, {Insert custom code before memory write}, {Insert custom code after memory write} sets the custom code after memory write flag and {Custom code} sets the /* Custom Code Before Write*/ or /* Custom Code After. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "src",
+   "direction": "input",
+   "summary": "Input data for copy operation scalar | vector"
+  },
+  {
+   "name": "&src",
+   "direction": "input",
+   "summary": "Address of input data for copy operation scalar | vector"
+  },
+  {
+   "name": "src ofs",
+   "direction": "input",
+   "summary": "Offset for data read during copy operation scalar | vector"
+  },
+  {
+   "name": "&dst",
+   "direction": "input",
+   "summary": "Address of output data for copy operation scalar | vector"
+  },
+  {
+   "name": "dst ofs",
+   "direction": "input",
+   "summary": "Offset for data written during copy operation scalar | vector"
+  },
+  {
+   "name": "dst",
+   "direction": "output",
+   "summary": "Output data for copy operation scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Copy from",
+   "default": "port",
+   "values": "Input source for copy operation Input port (default) | Specified address | Specified source code symbol",
+   "group": "Source"
+  },
+  {
+   "name": "Specify address source",
+   "default": "dialog",
+   "values": "Source of memory address for input data Specify via dialog (default) | Input port",
+   "group": "Source"
+  },
+  {
+   "name": "Address",
+   "default": "hex2dec(’00001000’)",
+   "values": "Memory address of source data hex2dec(’00001000’) (default) | memory address in decimal or hexadecimal form with a conversion to decimal",
+   "group": "Source"
+  },
+  {
+   "name": "Source code symbol",
+   "default": "myVariableSrc",
+   "values": "Symbol in source code symbol table myVariableSrc (default) | string | character vector",
+   "group": "Source"
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Data type of data being copied uint8 (default) | double | single | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | Inherit from input port",
+   "group": "Source"
+  },
+  {
+   "name": "Data length",
+   "default": "1",
+   "values": "Number of data elements to copy 1 (default) | positive integer",
+   "group": "Source"
+  },
+  {
+   "name": "Use offset when reading",
+   "default": "off",
+   "values": "Use offset when reading input off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "Specify offset source",
+   "default": "dialog",
+   "values": "Source of input offset Specify via dialog (default) | Input port",
+   "group": "Source"
+  },
+  {
+   "name": "Offset",
+   "default": "0",
+   "values": "Number of values to skip before copying first value to destination 0 (default) | positive integer",
+   "group": "Source"
+  },
+  {
+   "name": "Stride",
+   "default": "1",
+   "values": "Spacing for reading input 1 (default) | positive integer",
+   "group": "Source"
+  },
+  {
+   "name": "Copy to",
+   "default": "port",
+   "values": "Type of output destination for copy operation Output port (default) | Specified address | Specified destination code symbol",
+   "group": "Destination"
+  },
+  {
+   "name": "Use offset when writing",
+   "default": "off",
+   "values": "Use offset when writing output off (default) | on",
+   "group": "Destination"
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "Rate of memory copy inf (default) | scalar",
+   "group": "Destination"
+  },
+  {
+   "name": "Set memory value at initialization",
+   "default": "off",
+   "values": "Set memory address during initialization off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Specify initialization value source",
+   "default": "value",
+   "values": "Source of initialization value Specify constant value (default) | Specify source code symbol",
+   "group": "Options"
+  },
+  {
+   "name": "Initialization value (constant)",
+   "default": "1",
+   "values": "Constant initialization value 1 (default) | scalar",
+   "group": "Options"
+  },
+  {
+   "name": "Initialization value (source code symbol)",
+   "default": "myInitValueVariable",
+   "values": "Symbol in source code symbol table myInitValueVariable (default) | string | character vector",
+   "group": "Options"
+  },
+  {
+   "name": "Apply initialization value as mask",
+   "default": "off",
+   "values": "Apply initialization value as mask off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Bitwise operator",
+   "default": "AND",
+   "values": "Type of bitwise operation bitwise AND (default) | bitwise OR | bitwise exclusive OR | left shift | right shift",
+   "group": "Options"
+  },
+  {
+   "name": "Set memory value at termination",
+   "default": "off",
+   "values": "Copy memory during program termination off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Termination value",
+   "default": "1",
+   "values": "Termination value 1 (default) | scalar | vector | matrix",
+   "group": "Options"
+  },
+  {
+   "name": "Set memory value only at initialization/termination",
+   "default": "off",
+   "values": "Copy memory value during program initialization and termination only off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Insert custom code before memory write",
+   "default": "off",
+   "values": "Insert custom code before memory write off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Insert custom code after memory write",
+   "default": "off",
+   "values": "Custom code after memory write flag off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Custom code",
+   "default": "Write*/",
+   "values": "/* Custom Code Before Write*/ or /* Custom Code After Write*/ (default) | string | character vector",
+   "group": "Options"
+  }
+ ]
+}

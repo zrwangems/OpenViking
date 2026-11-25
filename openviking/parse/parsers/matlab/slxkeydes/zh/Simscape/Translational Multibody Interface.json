@@ -1,0 +1,14 @@
+{
+ "key": "Translational Multibody Interface",
+ "title": "Translational Multibody Interface",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Simscape Mechanical Interfaces/Translational_Multibody_Interface.md",
+  "Simscape/Foundation Library/Mechanical/Multibody Interfaces/Translational_Multibody_Interface.md"
+ ],
+ "text": "Interface between mechanical translational networks and Simscape Multibody joints。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,130 @@
+{
+ "key": "Starter Motor",
+ "title": "Starter",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/Starter/Starter.md"
+ ],
+ "text": "Starter as a DC motor, 3 outputs, {Motor Type} sets Select motor type Separately Excited DC; {Armature winding resistance, Ra} sets the resistance, {Armature winding inductance, La} sets the inductance .1, {Field winding resistance, Rf} sets the resistance .3, {Field winding inductance, Lf} sets the inductance .2, {Mutual inductance, Laf} sets the inductance .3, {Initial armature current and field current, Iaf} sets the current, {Armature winding resistance, Rapm} sets the resistance .5, {Armature winding inductance, Lapm} sets the inductance .1, {Torque constant, Kt} sets the motor torque constant .1, {Initial armature current, Ia} sets the current .1, {Total resistance, Rser} sets the resistance .1, {Total inductance, Lser} sets the inductance .1, {Initial current, Iafser} sets the current and {Mutual inductance, Lafser} sets the inductance .3. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "MtrSpd",
+   "direction": "unknown",
+   "summary": "Angular speed scalar"
+  },
+  {
+   "name": "StartVolt",
+   "direction": "unknown",
+   "summary": "Armature and field voltage scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "LdCurr",
+   "direction": "output",
+   "summary": "Starter motor load current scalar"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "output",
+   "summary": "Starter motor shaft torque scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Motor Type",
+   "default": "Motor",
+   "values": "Select motor type Separately Excited DC Motor (default) | Permanent Magnet Excited DC Motor | Series Connection DC Motor",
+   "group": ""
+  },
+  {
+   "name": "Armature winding resistance, Ra",
+   "default": "1",
+   "values": "Resistance 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Armature winding inductance, La",
+   "default": ".1",
+   "values": "Inductance .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field winding resistance, Rf",
+   "default": ".3",
+   "values": "Resistance .3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field winding inductance, Lf",
+   "default": ".2",
+   "values": "Inductance .2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mutual inductance, Laf",
+   "default": ".3",
+   "values": "Inductance .3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial armature current and field current, Iaf",
+   "default": "0]",
+   "values": "Current [0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Armature winding resistance, Rapm",
+   "default": ".5",
+   "values": "Resistance .5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Armature winding inductance, Lapm",
+   "default": ".1",
+   "values": "Inductance .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque constant, Kt",
+   "default": ".1",
+   "values": "Motor torque constant .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial armature current, Ia",
+   "default": ".1",
+   "values": "Current .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Total resistance, Rser",
+   "default": ".1",
+   "values": "Resistance .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Total inductance, Lser",
+   "default": ".1",
+   "values": "Inductance .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial current, Iafser",
+   "default": "0",
+   "values": "Current 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mutual inductance, Lafser",
+   "default": ".3",
+   "values": "Inductance .3 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

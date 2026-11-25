@@ -1,0 +1,13 @@
+{
+ "key": "Piston",
+ "title": "Piston",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Piston.md"
+ ],
+ "text": "往复式内燃机的 Piston 机构。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

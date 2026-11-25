@@ -1,0 +1,48 @@
+{
+ "key": "Discrete Varying Lowpass",
+ "title": "Discrete Varying Lowpass",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_Lowpass.md"
+ ],
+ "text": "Discrete Butterworth filter with varying coefficients, 2 inputs, 1 output; {Filter order} sets the lowpass filter order, {Pre-warping frequency w0 (rad/s)} and {Sample time Ts}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Filter input scalar"
+  },
+  {
+   "name": "freq",
+   "direction": "input",
+   "summary": "Cutoff frequency scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filter output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter order",
+   "default": "1",
+   "values": "Lowpass filter order 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Pre-warping frequency w0 (rad/s)",
+   "default": "0",
+   "values": "Pre-warping frequency 0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time Ts",
+   "default": "1",
+   "values": "Sample time 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

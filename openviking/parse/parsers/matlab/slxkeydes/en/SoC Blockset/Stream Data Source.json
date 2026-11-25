@@ -1,0 +1,84 @@
+{
+ "key": "Stream Data Source",
+ "title": "Stream Data Source",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/Stream_Data_Source.md"
+ ],
+ "text": "Generate continuous stream data, 1 input, 2 outputs, {Data type} sets Output data type; {Dimensions} sets the output data dimensions, {Burst length} sets the length of single burst, {Total bursts} sets the total number of bursts, {Data generation} sets the output generation type, {Counter init value} sets the initial counter value, {Variable name} sets the workspace, {Sample time} sets the time interval of sampling and {Transfer delay (in samples)} sets the delay between bursts. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "Input control bus bus"
+  },
+  {
+   "name": "wrData",
+   "direction": "output",
+   "summary": "Output stream data scalar | vector"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "Output control bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Output data type uint8 (default) | double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Dimensions",
+   "default": "10",
+   "values": "Output data dimensions 10 (default) | positive integer | array",
+   "group": ""
+  },
+  {
+   "name": "Burst length",
+   "default": "20",
+   "values": "Length of single burst 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Total bursts",
+   "default": "4",
+   "values": "Total number of bursts 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Data generation",
+   "default": "counter",
+   "values": "Output generation type counter (default) | random | ones | workspace",
+   "group": ""
+  },
+  {
+   "name": "Counter init value",
+   "default": "0",
+   "values": "Initial counter value 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "simOut",
+   "values": "Workspace variable name simOut (default) | any MATLAB supported variable name",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Time interval of sampling 1 (default) | positive scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Transfer delay (in samples)",
+   "default": "0",
+   "values": "Delay between bursts 0 (default) | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

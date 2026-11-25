@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Heat Exchanger (G-G)",
+ "title": "System-Level Heat Exchanger (G-G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Gas/System_Level_Heat_Exchanger_G_G.md"
+ ],
+ "text": "基于性能数据的换热器，位于两个气体网络之间。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

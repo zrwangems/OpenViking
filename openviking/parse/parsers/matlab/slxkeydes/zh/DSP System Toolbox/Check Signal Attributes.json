@@ -1,0 +1,85 @@
+{
+ "key": "Check Signal Attributes",
+ "title": "Check Signal Attributes",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Signal Attributes/Check_Signal_Attributes.md"
+ ],
+ "text": "当输入信号与选定属性完全匹配或不完全匹配时出错，输入 1 路、输出 1 路、无直接馈通；按 {Dimensions} 指定维度；{Error when input} 指定当输入满足以下条件时生成错误 Does not match attributes、{Complexity} 指定复数性 Ignore、{Dimensionality} 指定维度检查 Ignore、{Data type} 指定数据类型检查、{General data type}、{Specific floating-point}、{Specific fixed-point}、{Specific integer}、{Sample time}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Error when input",
+   "default": "exactly",
+   "values": "当输入满足以下条件时生成错误 Does not match attributes exactly (default) | Matches attributes exactly",
+   "group": ""
+  },
+  {
+   "name": "Complexity",
+   "default": "Ignore",
+   "values": "指定复数性 Ignore (default) | Real | Complex",
+   "group": ""
+  },
+  {
+   "name": "Dimensionality",
+   "default": "Ignore",
+   "values": "维度检查 Ignore (default) | Is... | Is not...",
+   "group": ""
+  },
+  {
+   "name": "Dimensions",
+   "default": "1-D",
+   "values": "指定维度 1-D (default) | 2-D | Scalar (1-D or 2-D) | Vector (1-D or 2-D) | Vector (1-D or 2-D) or scalar | Row vector (2-D) | Row vector (2-D) or scalar | Column vector (2-D) | Column vector (2-D) or scalar | Full matrix (2-D) | Square matrix (2-D)",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "Ignore",
+   "values": "数据类型检查 Ignore (default) | Is... | Is not...",
+   "group": ""
+  },
+  {
+   "name": "General data type",
+   "default": "Boolean",
+   "values": "General data type 检查 Boolean (default) | Enumerated | Floating-point | Floating-point or boolean | Fixed-point | Integer",
+   "group": ""
+  },
+  {
+   "name": "Specific floating-point",
+   "default": "floating-point",
+   "values": "Specific floating-point 检查 Any floating-point (default) | Double precision | Single precision",
+   "group": ""
+  },
+  {
+   "name": "Specific fixed-point",
+   "default": "fixed-point",
+   "values": "Specific fixed-point 检查 Any fixed-point (default) | Signed fixed-point | Unsigned fixed-point",
+   "group": ""
+  },
+  {
+   "name": "Specific integer",
+   "default": "integer",
+   "values": "Specific integer 检查 Any integer (default) | Signed integer | Unsigned integer | int8 | int16 | int32 | uint8 | uint16 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "Ignore",
+   "values": "Sample time 检查 Ignore (default) | Discrete | Continuous",
+   "group": ""
+  }
+ ]
+}

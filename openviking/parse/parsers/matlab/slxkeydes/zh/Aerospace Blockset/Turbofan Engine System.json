@@ -1,0 +1,87 @@
+{
+ "key": "Turbofan Engine System",
+ "title": "Turbofan Engine System",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Propulsion/Turbofan_Engine_System.md"
+ ],
+ "text": "实现带控制器的一阶涡扇发动机表示，输入 4 路、输出 2 路；{Units} 指定输入和输出单位 Metric、{Initial thrust source} 指定初始推力来源、{Initial thrust} 指定初始、{Maximum sea-level static thrust} 指定海平面最大推力、{Fastest engine time constant at sea-level static (sec)} 指定海平面最快发动机时间、{Sea-level static thrust specific fuel consumption} 指定海平面推力比油耗、{Ratio of installed thrust to uninstalled thrust} 表示损失的系数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Throttle position",
+   "direction": "input",
+   "summary": "油门位置 scalar | vector"
+  },
+  {
+   "name": "Mach",
+   "direction": "input",
+   "summary": "马赫数 scalar"
+  },
+  {
+   "name": "Altitude",
+   "direction": "input",
+   "summary": "高度 scalar | vector"
+  },
+  {
+   "name": "Initial thrust",
+   "direction": "input",
+   "summary": "初始推力 scalar | vector"
+  },
+  {
+   "name": "Thrust",
+   "direction": "output",
+   "summary": "推力 scalar | vector"
+  },
+  {
+   "name": "Fuel flow",
+   "direction": "output",
+   "summary": "燃油流量 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Initial thrust source",
+   "default": "Internal",
+   "values": "初始推力来源 Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Initial thrust",
+   "default": "0",
+   "values": "初始 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum sea-level static thrust",
+   "default": "45000",
+   "values": "海平面最大推力 45000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fastest engine time constant at sea-level static (sec)",
+   "default": "1",
+   "values": "海平面最快发动机时间 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sea-level static thrust specific fuel consumption",
+   "default": "0.35",
+   "values": "海平面推力比油耗 0.35 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ratio of installed thrust to uninstalled thrust",
+   "default": "0.9",
+   "values": "表示损失的系数 0.9 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "D Flip-Flop",
+ "title": "D Flip-Flop",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Logic/D_Flip_Flop.md"
+ ],
+ "text": "D flip-flop 的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

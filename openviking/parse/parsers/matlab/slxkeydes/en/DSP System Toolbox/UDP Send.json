@@ -1,0 +1,51 @@
+{
+ "key": "UDP Send",
+ "title": "UDP Send",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/UDP_Send.md",
+  "Embedded Coder/Embedded Targets/Host Communication/UDP_Send.md"
+ ],
+ "text": "Send UDP message, 1 input, no direct feedthrough, {Remote IP address (’255.255.255.255’ for broadcast)} sets IP address from which to accept UDP packets; {Remote IP port} sets the number of remote IP port, {Local IP port source} sets the source of local IP port Automatically, {Local IP port} sets the number of local IP port and {Send buffer size (bytes)} sets the size of buffer that sends UDP packets. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input data vector vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Remote IP address (’255.255.255.255’ for broadcast)",
+   "default": "’127.0.0.1’",
+   "values": "IP address from which to accept UDP packets ’127.0.0.1’ (default) | IP address | string",
+   "group": ""
+  },
+  {
+   "name": "Remote IP port",
+   "default": "25000",
+   "values": "Number of remote IP port 25000 (default) | scalar in the range [1, 65535]",
+   "group": ""
+  },
+  {
+   "name": "Local IP port source",
+   "default": "determine",
+   "values": "Source of local IP port Automatically determine (default) | Specify via dialog",
+   "group": ""
+  },
+  {
+   "name": "Local IP port",
+   "default": "-1",
+   "values": "Number of local IP port -1 (default) | scalar in the range [1, 65535]",
+   "group": ""
+  },
+  {
+   "name": "Send buffer size (bytes)",
+   "default": "8192",
+   "values": "Size of buffer that sends UDP packets 8192 (default) | scalar in the range [1, 67108864]",
+   "group": ""
+  }
+ ]
+}

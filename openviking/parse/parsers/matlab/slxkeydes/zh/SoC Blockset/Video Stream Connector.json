@@ -1,0 +1,44 @@
+{
+ "key": "Video Stream Connector",
+ "title": "Video Stream Connector",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/Video_Stream_Connector.md"
+ ],
+ "text": "使用视频流接口连接两个 IP，输入 3 路、输出 3 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "输入视频数据 scalar"
+  },
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "伴随像素流的输入控制信号 pixelControl bus"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "来自下游接口的就绪信号 boolean scalar"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "输出视频数据 scalar"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "伴随输出像素流的输出控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "到上游接口的就绪信号 boolean scalar"
+  }
+ ],
+ "params": []
+}

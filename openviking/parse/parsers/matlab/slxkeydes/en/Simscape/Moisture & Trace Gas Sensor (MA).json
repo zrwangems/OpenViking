@@ -1,0 +1,13 @@
+{
+ "key": "Moisture & Trace Gas Sensor (MA)",
+ "title": "Moisture & Trace Gas Sensor (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sensors/Moisture_Trace_Gas_Sensor_MA.md"
+ ],
+ "text": "Measure humidity, water droplets, and trace gas levels in moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

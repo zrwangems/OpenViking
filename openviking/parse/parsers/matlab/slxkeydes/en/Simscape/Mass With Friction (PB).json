@@ -1,0 +1,13 @@
+{
+ "key": "Mass With Friction (PB)",
+ "title": "Mass With Friction (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Mass_With_Friction_PB.md"
+ ],
+ "text": "Point mass with friction and gravitational effects.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

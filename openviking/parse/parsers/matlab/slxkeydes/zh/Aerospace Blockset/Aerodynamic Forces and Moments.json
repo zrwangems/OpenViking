@@ -1,0 +1,86 @@
+{
+ "key": "Aerodynamic Forces and Moments",
+ "title": "Aerodynamic Forces and Moments",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Aerodynamics/Aerodynamic_Forces_and_Moments.md"
+ ],
+ "text": "使用气动系数、动压、重心、压力中心和速度计算气动力和气动力矩，输入 5 路、输出 2 路；按 {Force axes} 指定气动力的坐标系；{Input axes} 指定输入系数的坐标系、{Moment axes} 指定气动力矩的坐标系、{Reference area} 指定参考面积、{Reference span} 指定参考展长、{Reference length} 指定参考长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Coef",
+   "direction": "input",
+   "summary": "气动系数 six-element vector"
+  },
+  {
+   "name": "q bar",
+   "direction": "input",
+   "summary": "动压 scalar | three-element vector"
+  },
+  {
+   "name": "CG",
+   "direction": "input",
+   "summary": "重心 three-element vector"
+  },
+  {
+   "name": "CP",
+   "direction": "input",
+   "summary": "压力中心 three-element vector"
+  },
+  {
+   "name": "V b",
+   "direction": "input",
+   "summary": "机体轴系中的速度 three-element vector"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "气动力 three-element vector"
+  },
+  {
+   "name": "M",
+   "direction": "output",
+   "summary": "气动力矩 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input axes",
+   "default": "Body",
+   "values": "输入系数的坐标系 Body (default) | Stability | Wind",
+   "group": ""
+  },
+  {
+   "name": "Force axes",
+   "default": "Body",
+   "values": "气动力的坐标系 Body (default) | Stability | Wind",
+   "group": ""
+  },
+  {
+   "name": "Moment axes",
+   "default": "Body",
+   "values": "气动力矩的坐标系 Body (default) | Stability | Wind",
+   "group": ""
+  },
+  {
+   "name": "Reference area",
+   "default": "1",
+   "values": "参考面积 1 (default) | any double value",
+   "group": ""
+  },
+  {
+   "name": "Reference span",
+   "default": "1",
+   "values": "参考展长 1 (default) | any double value",
+   "group": ""
+  },
+  {
+   "name": "Reference length",
+   "default": "1",
+   "values": "参考长度 1 (default) | any double value",
+   "group": ""
+  }
+ ]
+}

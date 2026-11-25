@@ -1,0 +1,178 @@
+{
+ "key": "RelationalOperator",
+ "title": "Relational Operator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Relational_Operator.md",
+  "Simulink/Logic and Bit Operations/Relational_Operator.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Equal.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/GT.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/GTE.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/GreaterThan.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/GreaterThanOrEqual.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsFinite.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsInf.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsNaN.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/LT.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/LTE.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/LessThanOrEqual.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Less_Than.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NotEqual.md",
+  "HDL Coder/Commonly Used Blocks/Relational_Operator.md",
+  "HDL Coder/HDL Floating Point Operations/Relational_Operator.md",
+  "HDL Coder/Logic and Bit Operations/Relational_Operator.md"
+ ],
+ "text": "对输入执行指定的关系运算，输入 2 路、输出 1 路；按 {关系运算符} 指定关系运算符；{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型} 指定要求所有输入都有相同的数据类型、{输出数据类型}、{整数舍入模式} 指定定点运算的舍入模式、{模式} 指定要指定的数据的类别、{数据类型覆盖}、{符号性}、{字长} 指定存储量化整数的字的位大小、{定标}，按实例取值。",
+ "variants": [
+  {
+   "when": {
+    "关系运算符": [
+     "~="
+    ]
+   },
+   "text": "判断两路输入是否不相等；{关系运算符}、{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型} 指定要求所有输入都有相同的数据类型、{输出数据类型}、{整数舍入模式} 指定定点运算的舍入模式、{模式} 指定要指定的数据的类别、{数据类型覆盖} 为此信号指定数据类型覆盖模式 Inherit、{符号性} 指定定点数据的符号性、{字长} 指定存储量化整数的字的位大小、{定标} 指定定标的方法，按实例取值。"
+  },
+  {
+   "when": {
+    "关系运算符": [
+     "=="
+    ]
+   },
+   "text": "判断两路输入是否相等；{关系运算符}、{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型} 指定要求所有输入都有相同的数据类型、{输出数据类型}、{整数舍入模式} 指定定点运算的舍入模式、{模式} 指定要指定的数据的类别、{数据类型覆盖} 为此信号指定数据类型覆盖模式 Inherit、{符号性} 指定定点数据的符号性、{字长} 指定存储量化整数的字的位大小、{定标} 指定定标的方法，按实例取值。"
+  },
+  {
+   "when": {
+    "关系运算符": [
+     "<"
+    ]
+   },
+   "text": "判断信号 1 是否小于信号 2；{关系运算符}、{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型} 指定要求所有输入都有相同的数据类型、{输出数据类型}、{整数舍入模式} 指定定点运算的舍入模式、{模式} 指定要指定的数据的类别、{数据类型覆盖} 为此信号指定数据类型覆盖模式 Inherit、{符号性} 指定定点数据的符号性、{字长} 指定存储量化整数的字的位大小、{定标} 指定定标的方法，按实例取值。"
+  },
+  {
+   "when": {
+    "关系运算符": [
+     ">="
+    ]
+   },
+   "text": "判断信号 1 是否大于等于信号 2；{关系运算符}、{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型} 指定要求所有输入都有相同的数据类型、{输出数据类型}、{整数舍入模式} 指定定点运算的舍入模式、{模式} 指定要指定的数据的类别、{数据类型覆盖} 为此信号指定数据类型覆盖模式 Inherit、{符号性} 指定定点数据的符号性、{字长} 指定存储量化整数的字的位大小、{定标} 指定定标的方法，按实例取值。"
+  },
+  {
+   "when": {
+    "关系运算符": [
+     ">"
+    ]
+   },
+   "text": "判断信号 1 是否大于信号 2；{关系运算符}、{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型} 指定要求所有输入都有相同的数据类型、{输出数据类型}、{整数舍入模式} 指定定点运算的舍入模式、{模式} 指定要指定的数据的类别、{数据类型覆盖} 为此信号指定数据类型覆盖模式 Inherit、{符号性} 指定定点数据的符号性、{字长} 指定存储量化整数的字的位大小、{定标} 指定定标的方法，按实例取值。"
+  },
+  {
+   "when": {
+    "关系运算符": [
+     "isInf"
+    ]
+   },
+   "text": "判断输入是否为 Inf；{关系运算符}、{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型} 指定要求所有输入都有相同的数据类型、{输出数据类型}、{整数舍入模式} 指定定点运算的舍入模式、{模式} 指定要指定的数据的类别、{数据类型覆盖} 为此信号指定数据类型覆盖模式 Inherit、{符号性} 指定定点数据的符号性、{字长} 指定存储量化整数的字的位大小、{定标} 指定定标的方法，按实例取值。"
+  },
+  {
+   "when": {
+    "关系运算符": [
+     "isNaN"
+    ]
+   },
+   "text": "判断输入是否为 NaN；{关系运算符}、{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型} 指定要求所有输入都有相同的数据类型、{输出数据类型}、{整数舍入模式} 指定定点运算的舍入模式、{模式} 指定要指定的数据的类别、{数据类型覆盖} 为此信号指定数据类型覆盖模式 Inherit、{符号性} 指定定点数据的符号性、{字长} 指定存储量化整数的字的位大小、{定标} 指定定标的方法，按实例取值。"
+  },
+  {
+   "when": {
+    "关系运算符": [
+     "isFinite"
+    ]
+   },
+   "text": "判断输入是否为有限值；{关系运算符}、{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型} 指定要求所有输入都有相同的数据类型、{输出数据类型}、{整数舍入模式} 指定定点运算的舍入模式、{模式} 指定要指定的数据的类别、{数据类型覆盖} 为此信号指定数据类型覆盖模式 Inherit、{符号性} 指定定点数据的符号性、{字长} 指定存储量化整数的字的位大小、{定标} 指定定标的方法，按实例取值。"
+  }
+ ],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "关系运算符",
+   "default": "<=",
+   "values": "关系运算符 <= (默认) | ~= | == | < | >= | > | isInf | isNaN | isFinite",
+   "group": "常设"
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "启用过零检测 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "要求所有输入具有相同的数据类型",
+   "default": "off",
+   "values": "要求所有输入都有相同的数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "boolean",
+   "values": "输出数据类型 boolean (默认) | 继承: Logical（请参阅配置参数：优化） | 继承:通过反向传播继承 | fixdt(1,16) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "最简",
+   "values": "定点运算的舍入模式 最简 (默认) | 收敛 | 向下 | 最邻近值 | 舍入 | 向上 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "模式",
+   "default": "内置",
+   "values": "要指定的数据的类别 内置 (默认) | 继承 | 定点 | 表达式",
+   "group": "数据类型"
+  },
+  {
+   "name": "数据类型覆盖",
+   "default": "",
+   "values": "为此信号指定数据类型覆盖模式 Inherit | Off",
+   "group": "数据类型"
+  },
+  {
+   "name": "符号性",
+   "default": "有符号",
+   "values": "定点数据的符号性 有符号 (默认) | 无符号",
+   "group": "数据类型"
+  },
+  {
+   "name": "字长",
+   "default": "16",
+   "values": "存储量化整数的字的位大小 16 (默认) | 从 0 到 32 的整数",
+   "group": "数据类型"
+  },
+  {
+   "name": "定标",
+   "default": "整数",
+   "values": "定标的方法 整数 (默认)",
+   "group": "数据类型"
+  }
+ ]
+}

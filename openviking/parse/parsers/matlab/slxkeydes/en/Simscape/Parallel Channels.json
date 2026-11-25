@@ -1,0 +1,13 @@
+{
+ "key": "Parallel Channels",
+ "title": "Parallel Channels",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Thermal/Parallel_Channels.md"
+ ],
+ "text": "Cooling plate with multiple parallel channels.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

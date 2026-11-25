@@ -1,0 +1,13 @@
+{
+ "key": "Cartesian Joint",
+ "title": "Cartesian Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Cartesian_Joint.md"
+ ],
+ "text": "Joint with three prismatic primitives.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

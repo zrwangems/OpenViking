@@ -1,0 +1,13 @@
+{
+ "key": "Controlled Reservoir (G)",
+ "title": "Controlled Reservoir (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Controlled_Reservoir_G.md"
+ ],
+ "text": "Boundary conditions for gas network at time-varying pressure and temperature.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

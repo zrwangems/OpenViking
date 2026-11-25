@@ -1,0 +1,61 @@
+{
+ "key": "Triggered To Workspace",
+ "title": "Triggered To Workspace",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/Triggered_To_Workspace.md"
+ ],
+ "text": "触发时将输入采样写入 MATLAB 工作区，输入 2 路、无直接馈通；按 {Variable name} 指定工作区变量名称；{Trigger type} 指定触发类型 Rising、{Decimation} 指定抽取因子、{Maximum number of rows} 指定要保存的最大行数、{Save 2-D signals as} 指定记录数据中二维采样值的排列方式 2-D array、{Log fixed-point data as a fi object} 指定将定点数据记录为 fi 对象，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "要记录到工作区的数据 scalar | vector | matrix | bus"
+  },
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "触发信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "触发类型 Rising edge (default) | Falling edge | Either edge",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "yout",
+   "values": "工作区变量名称 yout (default) | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "抽取因子 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of rows",
+   "default": "1000",
+   "values": "要保存的最大行数 1000 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Save 2-D signals as",
+   "default": "dimension)",
+   "values": "记录数据中二维采样值的排列方式 2-D array (concatenate along first dimension) (default) | 3-D array (concatenate along third dimension)",
+   "group": ""
+  },
+  {
+   "name": "Log fixed-point data as a fi object",
+   "default": "off",
+   "values": "将定点数据记录为 fi 对象 off (default) | on",
+   "group": ""
+  }
+ ]
+}

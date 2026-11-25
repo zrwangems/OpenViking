@@ -1,0 +1,63 @@
+{
+ "key": "Complex Partial-Systolic Q-less QR with Forgetting Factor",
+ "title": "Complex Partial-Systolic Q-less QR with Forgetting Factor",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Matrices and Linear Algebra/Matrix Factorizations/Complex_Partial_Systolic_Q_less_QR_with_Forgetting_Factor.md"
+ ],
+ "text": "Q-less QR decomposition for complex-valued matrices with infinite number of rows, 3 inputs, 3 outputs; {Number of columns in matrix A} sets the number of columns in input matrix, {Forgetting factor} and {Regularization parameter}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A(i,:)",
+   "direction": "input",
+   "summary": "Rows of matrix A vector"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Whether inputs are valid Boolean scalar"
+  },
+  {
+   "name": "restart",
+   "direction": "input",
+   "summary": "Whether to clear internal states Boolean scalar"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Matrix R scalar | vector"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Whether output data is valid Boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Whether block is ready Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of columns in matrix A",
+   "default": "4",
+   "values": "Number of columns in input matrix A 4 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.99",
+   "values": "Forgetting factor applied after each row of matrix is factored 0.99 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Regularization parameter",
+   "default": "0",
+   "values": "Regularization parameter 0 (default) | real nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+ "key": "phased.CFARDetector",
+ "title": "CFAR Detector",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/CFAR_Detector.md"
+ ],
+ "text": "Constant false alarm rate (CFAR) detector, 3 inputs, 3 outputs, {CFAR algorithm} sets CFAR algorithm; {Number of guard cells}, {Number of training cells}, {Rank of order statistic}, {Threshold factor method} sets the methods of obtaining threshold factor, {Probability of false alarm} sets the desired probability of false alarm, {Custom threshold factor}, {Output format} sets the format of detection results, {Output detection threshold}, {Output estimated noise power}, {Source of the number of detections}, {Maximum number of detections} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Cell matrix real-valued M -by-1 column vector | real-valued M -by- N matrix"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "Index of cells under test real-valued length- D vector"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "Threshold factor positive scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Detection results D -by-1 vector | D -by- N matrix | 1 -by- L | 2-by- L matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "output",
+   "summary": "Detection threshold scalar"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "Estimated noise power positive scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CFAR algorithm",
+   "default": "CA",
+   "values": "CFAR algorithm CA (default) | GOCA | SOCA | OS",
+   "group": ""
+  },
+  {
+   "name": "Number of guard cells",
+   "default": "2",
+   "values": "Number of guard cells 2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of training cells",
+   "default": "2",
+   "values": "Number of training cells 2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Rank of order statistic",
+   "default": "1",
+   "values": "Rank of order statistic 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Threshold factor method",
+   "default": "Auto",
+   "values": "Methods of obtaining threshold factor Auto (default) | Input port | Custom",
+   "group": ""
+  },
+  {
+   "name": "Probability of false alarm",
+   "default": "0.1",
+   "values": "Desired probability of false alarm 0.1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Custom threshold factor",
+   "default": "1",
+   "values": "Custom threshold factor 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Output format",
+   "default": "result",
+   "values": "Format of detection results CUT result (default) | Detection index",
+   "group": ""
+  },
+  {
+   "name": "Output detection threshold",
+   "default": "off",
+   "values": "Output detection threshold off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output estimated noise power",
+   "default": "off",
+   "values": "Output estimated noise power off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of the number of detections",
+   "default": "Auto",
+   "values": "Source of the number of detections Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of detections",
+   "default": "1",
+   "values": "Maximum number of detections to report 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

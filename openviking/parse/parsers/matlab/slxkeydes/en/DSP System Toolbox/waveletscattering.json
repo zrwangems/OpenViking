@@ -1,0 +1,103 @@
+{
+ "key": "waveletscattering",
+ "title": "Wavelet Scattering",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Feature Extractors/Wavelet_Scattering.md"
+ ],
+ "text": "Model wavelet scattering network in Simulink, 1 input, 1 output, no direct feedthrough, {Oversampling factor} sets Oversampling factor; {Signal length (samples)} sets the signal length in samples, {Overlap length (Samples)} sets the overlap length in samples, {Specify sample rate}, {Sample rate (Hz)} sets the sample rate 16e3, {Invariance scale (samples)} sets the scattering transform invariance scale, {Invariance scale (s)} sets the scattering transform invariance scale, {Quality factors}, {Reduce the number of scattering paths} sets the optimize scattering transform, {Boundary signal extension} sets the signal extension method, {Include zeroth-order coefficients}, {Normalization} sets the coefficient normalization and {Transform}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output signal matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal length (samples)",
+   "default": "1024",
+   "values": "Signal length in samples 1024 (default) | positive integer ≥ 16",
+   "group": ""
+  },
+  {
+   "name": "Overlap length (Samples)",
+   "default": "0",
+   "values": "Overlap length in samples 0 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify sample rate",
+   "default": "off",
+   "values": "Specify sample rate off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "16e3",
+   "values": "Sample rate 16e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Invariance scale (samples)",
+   "default": "512",
+   "values": "Scattering transform invariance scale in samples 512 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Invariance scale (s)",
+   "default": "0.032",
+   "values": "Scattering transform invariance scale in seconds 0.032 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Quality factors",
+   "default": "]",
+   "values": "Quality factors for scattering filter banks [ 8, 1 ] (default) | positive integer | vector of monotonically decreasing positive integers",
+   "group": ""
+  },
+  {
+   "name": "Reduce the number of scattering paths",
+   "default": "off",
+   "values": "Optimize scattering transform off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Oversampling factor",
+   "default": "0",
+   "values": "Oversampling factor 0 (default) | nonnegative integer | Inf",
+   "group": ""
+  },
+  {
+   "name": "Boundary signal extension",
+   "default": "periodic",
+   "values": "Signal extension method periodic (default) | reflection",
+   "group": ""
+  },
+  {
+   "name": "Include zeroth-order coefficients",
+   "default": "off",
+   "values": "Include zeroth-order coefficients off (default) | on",
+   "group": "Scattering coefficients"
+  },
+  {
+   "name": "Normalization",
+   "default": "none",
+   "values": "Coefficient normalization none (default) | parent",
+   "group": "Scattering coefficients"
+  },
+  {
+   "name": "Transform",
+   "default": "none",
+   "values": "Transformation on coefficients none (default) | log",
+   "group": "Scattering coefficients"
+  }
+ ]
+}

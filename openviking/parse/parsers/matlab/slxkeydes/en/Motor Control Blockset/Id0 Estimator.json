@@ -1,0 +1,44 @@
+{
+ "key": "Id0 Estimator",
+ "title": "Id0 Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/ACIM Parameter Estimation/Id0_Estimator.md"
+ ],
+ "text": "Estimate magnetizing current ( I d0 ) of AC induction motor (ACIM), 3 inputs, 3 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "Three-phase current response scalar"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "Control signal for I d0 estimation logical"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Bus signal input bus"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a, b, and c -axis stator reference voltage components scalar"
+  },
+  {
+   "name": "Id0",
+   "direction": "output",
+   "summary": "Estimated magnetizing current scalar"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "Debug signals bus"
+  }
+ ],
+ "params": []
+}

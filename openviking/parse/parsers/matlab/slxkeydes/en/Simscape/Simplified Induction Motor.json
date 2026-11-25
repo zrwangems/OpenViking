@@ -1,0 +1,13 @@
+{
+ "key": "Simplified Induction Motor",
+ "title": "Simplified Induction Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/Simplified_Induction_Motor.md"
+ ],
+ "text": "Induction motor powered by ideal AC supply.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

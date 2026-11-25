@@ -1,0 +1,54 @@
+{
+ "key": "Permute Matrix",
+ "title": "Permute Matrix",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Permute_Matrix.md"
+ ],
+ "text": "Reorder matrix rows or columns, 2 inputs, 1 output, no direct feedthrough, {Invalid permutation index} sets Response to an invalid; {Permute}, {Index mode} and {Error when length of P is not equal to Permute dimension size} sets the error message for P length. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Input matrix scalar | vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "Index matrix scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Permute",
+   "default": "Columns",
+   "values": "Permute method Columns (default) | Rows",
+   "group": ""
+  },
+  {
+   "name": "Index mode",
+   "default": "One-based",
+   "values": "Index mode One-based (default) | Zero-based",
+   "group": ""
+  },
+  {
+   "name": "Invalid permutation index",
+   "default": "index",
+   "values": "Response to an invalid index value Clip index (default) | Clip and warn | Generate error",
+   "group": ""
+  },
+  {
+   "name": "Error when length of P is not equal to Permute dimension size",
+   "default": "off",
+   "values": "Error message for P length off (default) | on",
+   "group": ""
+  }
+ ]
+}

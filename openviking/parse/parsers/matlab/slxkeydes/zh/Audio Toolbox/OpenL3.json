@@ -1,0 +1,49 @@
+{
+ "key": "OpenL3",
+ "title": "OpenL3",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/OpenL3.md"
+ ],
+ "text": "OpenL3 嵌入提取网络，输入 1 路、输出 1 路、无直接馈通；按 {Spectrum type} 指定频谱类型 Mel；{Content type} 指定音频内容类型 Environmental、{Embedding length} 输出嵌入长度、{Mini-batch size} 指定小批量的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "频谱图 matrix | 4-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "嵌入 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Spectrum type",
+   "default": "bands)",
+   "values": "频谱类型 Mel (128 bands) (default) | Mel (256 bands) | Linear",
+   "group": ""
+  },
+  {
+   "name": "Content type",
+   "default": "sounds",
+   "values": "音频内容类型 Environmental sounds (default) | Musical sounds",
+   "group": ""
+  },
+  {
+   "name": "Embedding length",
+   "default": "512",
+   "values": "输出嵌入长度 512 (default) | 6144",
+   "group": ""
+  },
+  {
+   "name": "Mini-batch size",
+   "default": "128",
+   "values": "小批量的大小 128 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

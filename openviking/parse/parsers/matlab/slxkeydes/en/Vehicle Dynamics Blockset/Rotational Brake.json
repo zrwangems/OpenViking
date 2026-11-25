@@ -1,0 +1,178 @@
+{
+ "key": "Rotational Brake",
+ "title": "Disc Brake",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Brakes/Disc_Brake.md",
+  "Vehicle Dynamics Blockset/Brakes/Drum_Brake.md",
+  "Vehicle Dynamics Blockset/Brakes/External_Torque_Brake.md",
+  "Vehicle Dynamics Blockset/Brakes/Mapped_Brake.md"
+ ],
+ "text": "Rotational brake with disc, drum, mapped, or external torque modes, 5 inputs, 3 outputs, {Brake pad mean radius, Rm} sets Radius; {Brake type}, {Rotation type}, {Output Info bus} sets the option to output Info bus, {Wheel inertia, Iyy} sets the wheel inertia scalar, {Axle viscous damping coefficient, br} sets the axle viscous damping, {Wheel initial angular velocity, omegao} sets the wheel initial angular, {Static friction coefficient, mu_static}, {Kinetic friction coefficient, mu_kinetic}, {Disc brake actuator bore, disc_abore} sets the bore distance, {Number of brake pads, num_pads}, {Drum brake actuator bore, drum_abore} sets the bore distance, {Shoe pin to drum center distance, drum_a}, {Shoe pin center to force application point distance, drum_c}, {Drum internal radius, drum_r}, {Shoe pin to pad start angle, drum_theta1}, {Shoe pin to pad end angle, drum_theta2}, {Brake actuator pressure breakpoints, brake_p_bpt} sets the brake actuator pressure, {Wheel speed breakpoints, brake_n_bpt} sets the wheel speed breakpoints vector and {Brake torque map, f_brake_t} sets the lookup table for brake. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BrkPrs",
+   "direction": "input",
+   "summary": "Brake pressure scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Omega",
+   "direction": "input",
+   "summary": "Wheel angular velocity scalar | N -by- 1 vector"
+  },
+  {
+   "name": "BrkTrqMax",
+   "direction": "input",
+   "summary": "Maximum brake torque scalar | N -by- 1 vector"
+  },
+  {
+   "name": "AxlTrq",
+   "direction": "input",
+   "summary": "Axle torque scalar | N -by- 1 vector"
+  },
+  {
+   "name": "WhlTrq",
+   "direction": "input",
+   "summary": "Wheel torque scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Block data bus"
+  },
+  {
+   "name": "Omega",
+   "direction": "output",
+   "summary": "Wheel angular velocity scalar | N -by- 1 vector"
+  },
+  {
+   "name": "BrkTrqMax",
+   "direction": "output",
+   "summary": "Maximum brake torque scalar | N -by- 1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Brake type",
+   "default": "",
+   "values": "Brake type Disc | Drum | Mapped | External torque",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Rotation type",
+   "default": "inertia",
+   "values": "Rotation type Rotational inertia (default) | No inertia",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Output Info bus",
+   "default": "off",
+   "values": "Option to output Info bus off (default) | on",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Wheel inertia, Iyy",
+   "default": "",
+   "values": "Wheel inertia scalar | N -by- 1 vector",
+   "group": "Wheel and Tire Parameters"
+  },
+  {
+   "name": "Axle viscous damping coefficient, br",
+   "default": "",
+   "values": "Axle viscous damping coefficient scalar | N -by- 1 vector",
+   "group": "Wheel and Tire Parameters"
+  },
+  {
+   "name": "Wheel initial angular velocity, omegao",
+   "default": "",
+   "values": "Wheel initial angular velocity scalar | N -by- 1 vector",
+   "group": "Wheel and Tire Parameters"
+  },
+  {
+   "name": "Static friction coefficient, mu_static",
+   "default": "0.3",
+   "values": "Static friction coefficient 0.3 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Kinetic friction coefficient, mu_kinetic",
+   "default": "0.2",
+   "values": "Kinetic friction 0.2 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Disc brake actuator bore, disc_abore",
+   "default": "0.05",
+   "values": "Bore distance 0.05 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake pad mean radius, Rm",
+   "default": "0.177",
+   "values": "Radius 0.177 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Number of brake pads, num_pads",
+   "default": "2",
+   "values": "Number of brake pads 2 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum brake actuator bore, drum_abore",
+   "default": "0.0508",
+   "values": "Bore distance 0.0508 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to drum center distance, drum_a",
+   "default": "0.123",
+   "values": "Shoe pin to drum center distance 0.123 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin center to force application point distance, drum_c",
+   "default": "0.212",
+   "values": "Shoe pin center to force application point distance 0.212 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum internal radius, drum_r",
+   "default": "0.15",
+   "values": "Drum internal radius 0.15 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad start angle, drum_theta1",
+   "default": "0",
+   "values": "Shoe pin to pad start angle 0 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad end angle, drum_theta2",
+   "default": "126",
+   "values": "Shoe pin to pad end angle 126 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake actuator pressure breakpoints, brake_p_bpt",
+   "default": "",
+   "values": "Brake actuator pressure breakpoints vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Wheel speed breakpoints, brake_n_bpt",
+   "default": "",
+   "values": "Wheel speed breakpoints vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake torque map, f_brake_t",
+   "default": "",
+   "values": "Lookup table for brake torque array",
+   "group": "Brake"
+  }
+ ]
+}

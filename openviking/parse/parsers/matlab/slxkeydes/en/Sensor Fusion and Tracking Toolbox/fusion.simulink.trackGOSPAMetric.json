@@ -1,0 +1,168 @@
+{
+ "key": "fusion.simulink.trackGOSPAMetric",
+ "title": "Generalized Optimal Subpattern Assignment Metric",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Track Metrics/Generalized_Optimal_Subpattern_Assignment_Metric.md"
+ ],
+ "text": "Calculate Generalized Optimal Subpattern Assignment Metric, 3 inputs, 6 outputs, {Distance type} sets Distance type; {Cutoff distance} sets the threshold for cutoff distance between track, {Order}, {Alpha}, {Custom distance function}, {Motion model} sets the desired platform motion, {Switching penalty} sets the penalty for assignment switching, {Simulate using} sets the type of simulation to run Interpreted, {Assignments} enables assignment input, {GOSPA metric without switching error}, {Switching error} enables switching error component output, {Localization error} enables localization error component output, {Missed target error} enables missed target error component, {False track error} enables false track error component output, {Track bus}, {Truth bus}, {Track extractor function} and {Truth extractor function}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tracks",
+   "direction": "input",
+   "summary": "Track list Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Truths",
+   "direction": "input",
+   "summary": "Truth list Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Assignments",
+   "direction": "input",
+   "summary": "Known assignment K -by-2 matrix of nonnegative integers"
+  },
+  {
+   "name": "GOSPA Metric",
+   "direction": "output",
+   "summary": "GOSPA metric including switching error component nonnegative real scalar"
+  },
+  {
+   "name": "GOSPA Metric Without Switching",
+   "direction": "output",
+   "summary": "GOSPA metric without switching error component nonnegative real scalar"
+  },
+  {
+   "name": "Switching Error",
+   "direction": "output",
+   "summary": "Switching error component nonnegative real scalar"
+  },
+  {
+   "name": "Localization Error",
+   "direction": "output",
+   "summary": "Localization error component nonnegative real scalar"
+  },
+  {
+   "name": "Missed Target Error",
+   "direction": "output",
+   "summary": "Missed target error component nonnegative real scalar"
+  },
+  {
+   "name": "False Track Error",
+   "direction": "output",
+   "summary": "False track error component nonnegative real scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Cutoff distance",
+   "default": "30",
+   "values": "Threshold for cutoff distance between track and truth 30 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Order",
+   "default": "2",
+   "values": "Order of GOSPA metric 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Alpha",
+   "default": "2",
+   "values": "Alpha parameter of GOSPA metric 2 (default) | positive scalar in range [0, 2]",
+   "group": ""
+  },
+  {
+   "name": "Distance type",
+   "default": "posnees",
+   "values": "Distance type posnees (default) | velnees | posabserr | velabserr | custom",
+   "group": ""
+  },
+  {
+   "name": "Custom distance function",
+   "default": "",
+   "values": "Custom distance function function handle",
+   "group": ""
+  },
+  {
+   "name": "Motion model",
+   "default": "constvel",
+   "values": "Desired platform motion model constvel (default) | constacc | constturn | singer",
+   "group": ""
+  },
+  {
+   "name": "Switching penalty",
+   "default": "0",
+   "values": "Penalty for assignment switching 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Assignments",
+   "default": "off",
+   "values": "Enable assignment input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "GOSPA metric without switching error",
+   "default": "off",
+   "values": "Enable GOSPA metric without switching error output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Switching error",
+   "default": "off",
+   "values": "Enable switching error component output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Localization error",
+   "default": "off",
+   "values": "Enable localization error component output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Missed target error",
+   "default": "off",
+   "values": "Enable missed target error component output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "False track error",
+   "default": "off",
+   "values": "Enable false track error component output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track bus",
+   "default": "objectTrack",
+   "values": "Track bus selection objectTrack (default) | custom",
+   "group": ""
+  },
+  {
+   "name": "Truth bus",
+   "default": "Platform",
+   "values": "Truth bus selection Platform (default) | Actor | custom",
+   "group": ""
+  },
+  {
+   "name": "Track extractor function",
+   "default": "",
+   "values": "Track extractor function function handle",
+   "group": ""
+  },
+  {
+   "name": "Truth extractor function",
+   "default": "",
+   "values": "Truth extractor function function handle",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Quantizing Encoder",
+ "title": "Quantizing Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Quantizing_Encoder.md"
+ ],
+ "text": "Quantize signal using partition and codebook.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

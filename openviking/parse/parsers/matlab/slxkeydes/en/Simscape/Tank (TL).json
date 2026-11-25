@@ -1,0 +1,13 @@
+{
+ "key": "Tank (TL)",
+ "title": "Tank (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Tanks & Accumulators/Tank_TL.md"
+ ],
+ "text": "Thermal liquid container with variable fluid volume.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

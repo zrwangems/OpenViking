@@ -1,0 +1,13 @@
+{
+ "key": "Air Spring",
+ "title": "Air Spring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Air_Spring.md"
+ ],
+ "text": "Sealed translational air spring.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

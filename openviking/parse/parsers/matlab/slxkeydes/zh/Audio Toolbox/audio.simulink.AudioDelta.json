@@ -1,0 +1,37 @@
+{
+ "key": "audio.simulink.AudioDelta",
+ "title": "Audio Delta",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/Audio_Delta.md"
+ ],
+ "text": "计算 delta 特征，输入 1 路、输出 1 路、无直接馈通；{Delta window length} 用于计算 delta 的窗口长度、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "音频特征 scalar | vector | matrix | 3-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "音频特征的 delta scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delta window length",
+   "default": "9",
+   "values": "用于计算 delta 的窗口长度 9 (default) | odd integer greater than 2",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "指定要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

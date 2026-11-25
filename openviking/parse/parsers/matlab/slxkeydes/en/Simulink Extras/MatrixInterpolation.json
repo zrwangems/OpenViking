@@ -1,0 +1,70 @@
+{
+ "key": "MatrixInterpolation",
+ "title": "Matrix Interpolation",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Lookup Tables/Matrix_Interpolation.md"
+ ],
+ "text": "Interpolate between matrices, 4 inputs, 1 output, {Interpolation method} sets Interpolation method; {Extrapolation method}, {Interpolate Dimension} sets the number of lookup table dimensions, {Table data} sets the table of output and {Simulate using} sets the simulation mode Code generation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "k1",
+   "direction": "input",
+   "summary": "Index, k1, for the first dimension of the table scalar"
+  },
+  {
+   "name": "f1",
+   "direction": "input",
+   "summary": "Fraction, f1, for the first dimension of the table scalar"
+  },
+  {
+   "name": "kn",
+   "direction": "input",
+   "summary": "Index, kn, for the n-th dimension of the table scalar"
+  },
+  {
+   "name": "fn",
+   "direction": "input",
+   "summary": "Fraction, fn, for the n-th dimension of the table scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Approximation of N-dimensional function scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "Interpolation method Linear (default) | Nearest | Flat",
+   "group": ""
+  },
+  {
+   "name": "Extrapolation method",
+   "default": "Clip",
+   "values": "Extrapolation method Clip (default) | Linear",
+   "group": ""
+  },
+  {
+   "name": "Interpolate Dimension",
+   "default": "1",
+   "values": "Number of lookup table dimensions 1 (default) | 2 | 3",
+   "group": ""
+  },
+  {
+   "name": "Table data",
+   "default": "1:1:10",
+   "values": "Table of output values 1:1:10 (default) | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "",
+   "values": "Simulation mode Code generation | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Double-Shoe Brake",
+ "title": "Double-Shoe Brake",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Rotational/Double_Shoe_Brake.md"
+ ],
+ "text": "Frictional brake with two pivoted shoes diametrically positioned about a rotating drum with triggered faulting.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

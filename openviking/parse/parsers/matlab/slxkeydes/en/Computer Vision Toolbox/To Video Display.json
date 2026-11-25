@@ -1,0 +1,74 @@
+{
+ "key": "To Video Display",
+ "title": "To Video Display",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/To_Video_Display.md"
+ ],
+ "text": "Display images or video frames, 7 inputs, {Window size} sets Display window size; {Open at Start of Simulation} sets the open window at start of simulation, {Input Color Format} and {Image signal} sets the configure input port One multidimensional. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input image matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Red color component of image matrix | array"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Green color component of image matrix | array"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Blue color component of image matrix | array"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "Luma component of image matrix | array"
+  },
+  {
+   "name": "Cb",
+   "direction": "input",
+   "summary": "Blue-difference chroma component of image matrix | array"
+  },
+  {
+   "name": "Cr",
+   "direction": "input",
+   "summary": "Red-difference chroma component of image matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window size",
+   "default": "Normal",
+   "values": "Display window size Normal (default) | Full-screen (Esc to exit) | True size (1:1)",
+   "group": "View"
+  },
+  {
+   "name": "Open at Start of Simulation",
+   "default": "on",
+   "values": "Open window at start of simulation on (default) | off",
+   "group": "View"
+  },
+  {
+   "name": "Input Color Format",
+   "default": "RGB",
+   "values": "Input color format RGB (default) | YCbCr 4:2:2",
+   "group": "Settings"
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Configure input port One multidimensional signal (default) | Separate color signals",
+   "group": "Settings"
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "key": "If",
+ "title": "If",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/K_If.md",
+  "HDL Coder/Ports & Subsystems/K_If.md"
+ ],
+ "text": "使用类似于 if-else 语句的逻辑选择子系统执行，输入 1 路、输出 1 路；{输入数目} 指定输入端口个数、{显示 else 条件} 控制 else 端口的显示、{启用过零检测} 控制过零检测、{在生成的代码中提供 if-else 语句} 指定在从 If 模块生成的代码中仅包含 if-else、{if} 指定逻辑表达式 u1 >、{elseif} 指定逻辑表达式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Logical operands",
+   "direction": "input",
+   "summary": "用于计算逻辑表达式的值 标量 | 向量"
+  },
+  {
+   "name": "Action",
+   "direction": "output",
+   "summary": "用于 If Action Subsystem 模块的动作信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入数目",
+   "default": "1",
+   "values": "指定输入端口个数 1 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "显示 else 条件",
+   "default": "on",
+   "values": "控制 else 端口的显示 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "控制过零检测 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "在生成的代码中提供 if-else 语句",
+   "default": "off",
+   "values": "在从 If 模块生成的代码中仅包含 if-else 语句的选项 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "if",
+   "default": "0",
+   "values": "逻辑表达式 u1 > 0 (默认) | 逻辑表达式",
+   "group": ""
+  },
+  {
+   "name": "elseif",
+   "default": "空",
+   "values": "逻辑表达式 空 (默认) | 逻辑表达式列表",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "key": "Carrier Synchronizer",
+ "title": "Carrier Synchronizer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Synchronization/Carrier_Synchronizer.md"
+ ],
+ "text": "Compensate for carrier frequency offset, 1 input, 2 outputs, {Modulation} sets Modulation type; {Modulation phase offset}, {Custom phase offset (radians)} sets the custom phase offset in radians, {Samples per symbol} sets the number of samples per symbol, {Damping factor}, {Normalized loop bandwidth} sets the normalized bandwidth of loop, {Estimated phase error output port} enables estimated phase error output port and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Phase corrected output signal scalar | column vector"
+  },
+  {
+   "name": "PhEst",
+   "direction": "output",
+   "summary": "Phase estimate in radians scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation",
+   "default": "QAM",
+   "values": "Modulation type QAM (default) | 8PSK | BPSK | OQPSK | PAM | QPSK",
+   "group": ""
+  },
+  {
+   "name": "Modulation phase offset",
+   "default": "Auto",
+   "values": "Modulation phase offset method Auto (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Custom phase offset (radians)",
+   "default": "0",
+   "values": "Custom phase offset in radians 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "2",
+   "values": "Number of samples per symbol 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Damping factor",
+   "default": "0.707",
+   "values": "Damping factor of loop 0.707 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Normalized loop bandwidth",
+   "default": "0.01",
+   "values": "Normalized bandwidth of loop 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Estimated phase error output port",
+   "default": "on",
+   "values": "Enable estimated phase error output port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

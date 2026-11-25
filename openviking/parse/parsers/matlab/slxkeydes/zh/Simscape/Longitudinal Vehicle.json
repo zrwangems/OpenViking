@@ -1,0 +1,13 @@
+{
+ "key": "Longitudinal Vehicle",
+ "title": "Longitudinal Vehicle",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Longitudinal_Vehicle.md"
+ ],
+ "text": "具有理想制动器和轮胎的纵向运动抽象车辆。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

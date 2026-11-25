@@ -1,0 +1,13 @@
+{
+ "key": "Quantizing Encoder",
+ "title": "Quantizing Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Quantizing_Encoder.md"
+ ],
+ "text": "使用分区和码本对信号进行量化。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

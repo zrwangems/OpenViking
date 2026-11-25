@@ -1,0 +1,69 @@
+{
+ "key": "LTE Symbol Modulator",
+ "title": "LTE Symbol Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/LTE_Symbol_Modulator.md"
+ ],
+ "text": "Modulate data bits to complex LTE data symbols, 4 inputs, 2 outputs, {Modulation} sets Modulation type; {Modulation source} sets the source for modulation, {Output data type} and {Word length} sets the output word length. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data bits scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicate valid input data scalar"
+  },
+  {
+   "name": "modSel",
+   "direction": "input",
+   "summary": "Modulation selection integer"
+  },
+  {
+   "name": "load",
+   "direction": "input",
+   "summary": "Modulation control scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Modulated complex data symbols scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Valid output data indication scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "Property",
+   "values": "Source for modulation type Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Modulation",
+   "default": "BPSK",
+   "values": "Modulation type BPSK (default) | QPSK | 16-QAM | 64-QAM | 256-QAM",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "Custom",
+   "values": "Output data type selection Custom (default) | double | single",
+   "group": "Data Types"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Output word length 16 (default) | integer in the range [3, 32]",
+   "group": "Data Types"
+  }
+ ]
+}

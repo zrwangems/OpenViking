@@ -1,0 +1,37 @@
+{
+ "key": "Software Watchdog Timer",
+ "title": "Software Watchdog Timer",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensor Decoders/Software_Watchdog_Timer.md"
+ ],
+ "text": "输出 true，直到计数器达到最大计数限值，输入 1 路、输出 1 路；按 {计数器数据类型} 指定Status 输出的数据类型；{最大计数} 指定 watchdog 计时器值的最大限值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Restart",
+   "direction": "input",
+   "summary": "用于重启 watchdog 计时器计数器的脉冲 标量"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "watchdog 计时器状态 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "最大计数",
+   "default": "10",
+   "values": "watchdog 计时器值的最大限值 10 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "计数器数据类型",
+   "default": "uint8",
+   "values": "Status 输出的数据类型 uint8 (默认) | uint16 | uint32",
+   "group": ""
+  }
+ ]
+}

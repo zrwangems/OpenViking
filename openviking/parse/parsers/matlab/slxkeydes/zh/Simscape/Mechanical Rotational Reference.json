@@ -1,0 +1,13 @@
+{
+ "key": "Mechanical Rotational Reference",
+ "title": "Mechanical Rotational Reference",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Mechanical_Rotational_Reference.md"
+ ],
+ "text": "机械旋转端口的参考连接。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

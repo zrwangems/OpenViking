@@ -1,0 +1,97 @@
+{
+ "key": "C28x I2C Transmit",
+ "title": "I2C Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/C2803x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/C2805x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/C2806x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/C280x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/C2833x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/C2834x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F280013x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F280015x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F28002x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F28003x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F28004x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F2807x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xD/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xS/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p55x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p65x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/I2C_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/I2C_Transmit.md"
+ ],
+ "text": "Configure inter-integrated circuit (I2C) module to transmit data to I2C bus, 2 inputs, 1 output, {Addressing format} sets Address format for communication 7–Bit; {Module}, {peripheral address source}, {Peripheral address register}, {Bit count}, {Enable stop condition} sets the send stop bit to indicate that data transmission, {Enable repeat mode} sets the retransmit data until stop or start condition and {Output transmitting status} Indicates when I2C transmit block transmits. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SAR",
+   "direction": "input",
+   "summary": "Peripheral address register value scalar"
+  },
+  {
+   "name": "WD",
+   "direction": "input",
+   "summary": "Data written to I2C bus scalar | vector"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "I2C communication status scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Module",
+   "default": "I2C_A",
+   "values": "Module for communication I2C_A (default) | I2C_B",
+   "group": ""
+  },
+  {
+   "name": "Addressing format",
+   "default": "addressing",
+   "values": "Address format for communication 7–Bit addressing (default) | 10–Bit addressing | Free data format",
+   "group": ""
+  },
+  {
+   "name": "peripheral address source",
+   "default": "dialog",
+   "values": "peripheral address source of I2C peripheral Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Peripheral address register",
+   "default": "80",
+   "values": "Peripheral address register value 80 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Bit count",
+   "default": "8",
+   "values": "Bit count for communication 8 (default) | integer in [1 8]",
+   "group": ""
+  },
+  {
+   "name": "Enable stop condition",
+   "default": "off",
+   "values": "Send stop bit to indicate that data transmission is complete off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable repeat mode",
+   "default": "off",
+   "values": "Retransmit data until stop or start condition is detected off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output transmitting status",
+   "default": "off",
+   "values": "Indicates when I2C transmit block transmits message off (default) | on",
+   "group": ""
+  }
+ ]
+}

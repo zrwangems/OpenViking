@@ -1,0 +1,71 @@
+{
+ "key": "phased.LCMVBeamformer",
+ "title": "LCMV Beamformer",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Beamforming/LCMV_Beamformer.md"
+ ],
+ "text": "窄带线性约束最小方差 (LCMV) 波束形成器，输入 2 路、输出 2 路；{Constraint matrix} 指定 LCMV 波束形成器约束矩阵 complex、{Desired response vector} 指定 LCMV 波束形成的期望响应、{Diagonal loading factor} 指定对角加载因子 positive scalar、{Enable training data input} 启用训练数据输入端口、{Enable weights output} 启用波束形成器权重输出、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入信号 M -by- N complex-valued matrix"
+  },
+  {
+   "name": "XT",
+   "direction": "input",
+   "summary": "训练信号 P -by- N complex-valued matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "波束成形输出 M -by-1 complex-valued column vector"
+  },
+  {
+   "name": "W",
+   "direction": "output",
+   "summary": "波束形成器权重输出 N -by-1 complex-valued column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Constraint matrix",
+   "default": "complex([1;1])",
+   "values": "LCMV 波束形成器约束矩阵 complex([1;1]) (default) | N -by- K complex-valued matrix",
+   "group": ""
+  },
+  {
+   "name": "Desired response vector",
+   "default": "1",
+   "values": "LCMV 波束形成的期望响应 1 (default) | real-valued K -by-1 column vector",
+   "group": ""
+  },
+  {
+   "name": "Diagonal loading factor",
+   "default": "",
+   "values": "对角加载因子 positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable training data input",
+   "default": "off",
+   "values": "启用训练数据输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable weights output",
+   "default": "off",
+   "values": "启用波束形成器权重输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

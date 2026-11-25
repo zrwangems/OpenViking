@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Velocity Noise Source",
+ "title": "Rotational Velocity Noise Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Rotational_Velocity_Noise_Source.md"
+ ],
+ "text": "Produce zero-mean normally (Gaussian) distributed rotational velocity.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

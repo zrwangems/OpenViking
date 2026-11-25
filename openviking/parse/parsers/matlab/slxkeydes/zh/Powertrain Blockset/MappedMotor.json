@@ -1,0 +1,272 @@
+{
+ "key": "MappedMotor",
+ "title": "Mapped Motor",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Electric Motors and Inverters/Mapped_Motor.md",
+  "Vehicle Dynamics Blockset/Powertrain/Propulsion/Mapped_Motor.md"
+ ],
+ "text": "以转矩控制模式运行的映射电机和驱动电子设备，输入 4 路、输出 4 路；按 {Parameterize losses by} 指定电气损耗的参数化方法 Single efficiency；{Port configuration} 指定端口配置 Torque、{Import Torque Limits Calibration} 指定直接导入转矩限制校准表的方法 selection、{Calibrate Maps} 使用实测数据校准损耗表的方法 selection、{Import Loss Calibration} 指定直接导入损耗校准表的方法 selection、{Import Efficiency Calibration} 指定直接导入效率校准表的方法 selection、{Parameterized by} 指定转矩包络的参数化方法 Tabulated torque-speed、{Speed breakpoints for maximum torque, w_t} 指定转速、{Maximum torque values, T_t} 指定转矩、{Maximum torque, torque_max} 指定转矩、{Maximum power, power_max} 指定功率、{Torque control time constant, Tc} 指定时间常数、{Maximum torque as a function of speed and voltage, Tmax_w_V} 指定转矩、{Speed breakpoints for maximum torque, w_Tmax_bp} 指定转速、{Voltage breakpoints for maximum torque, V_Tmax_bp} 指定电压、{Minimum torque as a function of speed and voltage, Tmin_w_V} 指定转矩、{Speed breakpoints for minimum torque, w_Tmin_bp} 指定转速、{Voltage breakpoints for minimum torque, V_Tmin_bp} 指定电压、{Motor and drive overall efficiency, eff} 指定电机和电机驱动器的组合效率 η 0，在效率设定点处测量、{Speed at which efficiency is measured, w_eff} 指定速度、{Torque at which efficiency is measured, T_eff} 指定转矩、{Iron losses, Piron} 指定功率、{Fixed losses independent of torque and speed, Pbase} 指定功率、{Speed breakpoints for losses, w_eff_bp} 指定断点、{Torque breakpoints for losses, T_eff_bp} 指定断点、{Temperature breakpoints for losses, Temp_eff_bp} 指定断点、{Voltage breakpoints for losses, V_eff_bp} 指定断点、{Loss table, losses_table} 指定二维查找表 M -by、{Loss table, losses_table_3d} 指定 3-D 查找表 M -by- N -by- L、{Loss table, losses_table_4d} 指定 4-D 查找表 N -by- M -by- K -by- L、{Efficiency table, efficiency_table} 指定二维查找表 M -by、{Efficiency table, efficiency_table_3d} 指定 3-D 查找表 M -by- N -by- L、{Efficiency table, efficiency_table_4d} 指定 4-D 查找表 N -by- M -by- K -by- L、{Rotor inertia, J} 指定惯性 5e-6、{Rotor damping, b} 指定阻尼 1e-5、{Initial rotor speed, omega_o} 指定速度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BattVolt",
+   "direction": "input",
+   "summary": "电池电压 scalar"
+  },
+  {
+   "name": "TrqCmd",
+   "direction": "input",
+   "summary": "指令电机转矩 scalar"
+  },
+  {
+   "name": "LdTrq",
+   "direction": "input",
+   "summary": "电机负载转矩 scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "input",
+   "summary": "电机输出轴转速 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "BattCurr",
+   "direction": "output",
+   "summary": "电池电流 scalar"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "output",
+   "summary": "电机转矩 scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "output",
+   "summary": "电机轴转速 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port configuration",
+   "default": "Torque",
+   "values": "端口配置 Torque (default) | Speed",
+   "group": ""
+  },
+  {
+   "name": "Import Torque Limits Calibration",
+   "default": "",
+   "values": "直接导入转矩限制校准表的方法 selection",
+   "group": ""
+  },
+  {
+   "name": "Calibrate Maps",
+   "default": "",
+   "values": "使用实测数据校准损耗表的方法 selection",
+   "group": ""
+  },
+  {
+   "name": "Import Loss Calibration",
+   "default": "",
+   "values": "直接导入损耗校准表的方法 selection",
+   "group": ""
+  },
+  {
+   "name": "Import Efficiency Calibration",
+   "default": "",
+   "values": "直接导入效率校准表的方法 selection",
+   "group": ""
+  },
+  {
+   "name": "Parameterized by",
+   "default": "envelope",
+   "values": "转矩包络的参数化方法 Tabulated torque-speed envelope (default) | Maximum torque and power | Tabulated torque-speed-voltage envelope",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints for maximum torque, w_t",
+   "default": "800]",
+   "values": "转速 [0 375 750 800] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque values, T_t",
+   "default": "0]",
+   "values": "转矩 [0.09 0.08 0.07 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque, torque_max",
+   "default": "0.1",
+   "values": "转矩 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum power, power_max",
+   "default": "30",
+   "values": "功率 30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque control time constant, Tc",
+   "default": "0.02",
+   "values": "时间常数 0.02 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque as a function of speed and voltage, Tmax_w_V",
+   "default": "0]",
+   "values": "转矩 [0.09 0.09 0.09;0.08 0.08 0.08;0.07 0.07 0.07;0 0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints for maximum torque, w_Tmax_bp",
+   "default": "]",
+   "values": "转速 [ 0 375 750 800 ] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Voltage breakpoints for maximum torque, V_Tmax_bp",
+   "default": "]",
+   "values": "电压 [ 500 750 900 ] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Minimum torque as a function of speed and voltage, Tmin_w_V",
+   "default": "0]",
+   "values": "转矩 [-0.09 -0.09 -0.09;-0.08 -0.08 -0.08;-0.07 -0.07 -0.07;0 0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints for minimum torque, w_Tmin_bp",
+   "default": "]",
+   "values": "转速 [ 0 375 750 800 ] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Voltage breakpoints for minimum torque, V_Tmin_bp",
+   "default": "]",
+   "values": "电压 [ 500 750 900 ] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Parameterize losses by",
+   "default": "measurement",
+   "values": "电气损耗的参数化方法 Single efficiency measurement (default) | Tabulated loss data | Tabulated loss data with temperature | Tabulated loss data with temperature and voltage | Tabulated efficiency data | Tabulated efficiency data with temperature | Tabulated efficiency data with temperature and voltage",
+   "group": ""
+  },
+  {
+   "name": "Motor and drive overall efficiency, eff",
+   "default": "100",
+   "values": "电机和电机驱动器的组合效率 η 0，在效率设定点处测量，以百分比表示 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed at which efficiency is measured, w_eff",
+   "default": "375",
+   "values": "速度 375 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque at which efficiency is measured, T_eff",
+   "default": "0.08",
+   "values": "转矩 0.08 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Iron losses, Piron",
+   "default": "0",
+   "values": "功率 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fixed losses independent of torque and speed, Pbase",
+   "default": "0",
+   "values": "功率 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints for losses, w_eff_bp",
+   "default": "800]",
+   "values": "断点 [-800 -400 0 400 800] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Torque breakpoints for losses, T_eff_bp",
+   "default": "0.09]",
+   "values": "断点 [0 0.03 0.06 0.09] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Temperature breakpoints for losses, Temp_eff_bp",
+   "default": "373.15]",
+   "values": "断点 [233.15 293.15 373.15] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Voltage breakpoints for losses, V_eff_bp",
+   "default": "900]",
+   "values": "断点 [500 700 900] (default) | 1 -by- K vector",
+   "group": ""
+  },
+  {
+   "name": "Loss table, losses_table",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Loss table, losses_table_3d",
+   "default": "",
+   "values": "3-D 查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Loss table, losses_table_4d",
+   "default": "",
+   "values": "4-D 查找表 N -by- M -by- K -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table, efficiency_table",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table, efficiency_table_3d",
+   "default": "",
+   "values": "3-D 查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table, efficiency_table_4d",
+   "default": "",
+   "values": "4-D 查找表 N -by- M -by- K -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Rotor inertia, J",
+   "default": "5e-6",
+   "values": "惯性 5e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rotor damping, b",
+   "default": "1e-5",
+   "values": "阻尼 1e-5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial rotor speed, omega_o",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "key": "LPC/RC to Autocorrelation",
+ "title": "LPC/RC to Autocorrelation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Linear Prediction/LPC_RC_to_Autocorrelation.md"
+ ],
+ "text": "将线性预测系数或反射系数转换为自相关系数，输入 3 路、输出 1 路、无直接馈通；按 {If first input value is not 1} 指定第一个输入值不为；{Type of conversion} 指定转换类型 LPC、{Specify P} 指定预测误差功率 P 的方法 Assume P =，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "LPC 系数 vector | matrix"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "RC 系数 vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "预测误差功率 scalar | vector"
+  },
+  {
+   "name": "AC",
+   "direction": "output",
+   "summary": "自相关系数 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of conversion",
+   "default": "autocorrelation",
+   "values": "转换类型 LPC to autocorrelation (default) | RC to autocorrelation",
+   "group": ""
+  },
+  {
+   "name": "Specify P",
+   "default": "1",
+   "values": "指定预测误差功率 P 的方法 Assume P = 1 (default) | Via input port",
+   "group": ""
+  },
+  {
+   "name": "If first input value is not 1",
+   "default": "1",
+   "values": "第一个输入值不为 1 时采取的操作 Replace it with 1 (default) | Normalize | Normalize and warn | Error",
+   "group": ""
+  }
+ ]
+}

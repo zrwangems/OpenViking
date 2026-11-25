@@ -1,0 +1,194 @@
+{
+ "key": "PFC Rectifier Controller (Three-Phase)",
+ "title": "PFC Rectifier Controller (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Converter Control/PFC_Rectifier_Controller_Three_Phase.md"
+ ],
+ "text": "PID-based power factor correction (PFC) rectifier controller, 5 inputs, 2 outputs; {System frequency (Hz)}, {AC filter inductance (H)} sets the aC filter inductance 1e-4, {AC side base impedance (Ohm)} sets the aC-side base impedance, {PLL proportional gain} sets the proportional gain, {PLL integral gain} sets the integral gain, {Sample time (-1 for inherited)} sets the block sample time, {Proportional gain}, {Integral gain}, {Derivative gain}, {Derivative controller filter coefficient (N)}, {DC bus base voltage (V)}, {Controller output upper limit (pu)}, {Controller output lower limit (pu)}, {Id proportional gain}, {Id integral gain}, {Id derivative gain}, {Id controller output upper limit (pu)}, {Id controller output lower limit (pu)}, {Iq proportional gain}, {Iq integral gain}, {Iq derivative gain}, {Derivative current controller filter coefficient (N)}, {Iq controller output upper limit (pu)} and {Iq controller output lower limit (pu)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VdcRef (V)",
+   "direction": "input",
+   "summary": "Output DC-link voltage reference, V scalar"
+  },
+  {
+   "name": "QRef (pu)",
+   "direction": "input",
+   "summary": "Reactive power reference, pu scalar"
+  },
+  {
+   "name": "VdcSens (V)",
+   "direction": "input",
+   "summary": "DC-link voltage, V scalar"
+  },
+  {
+   "name": "VabcSens (pu)",
+   "direction": "input",
+   "summary": "Measured AC phase voltage, pu vector"
+  },
+  {
+   "name": "IabcSens (pu)",
+   "direction": "input",
+   "summary": "Measured AC phase current, pu vector"
+  },
+  {
+   "name": "VabcRef (pu)",
+   "direction": "output",
+   "summary": "Reference voltage, pu vector"
+  },
+  {
+   "name": "Visualization",
+   "direction": "output",
+   "summary": "Visualization bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "System frequency (Hz)",
+   "default": "60",
+   "values": "System frequency 60 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "AC filter inductance (H)",
+   "default": "1e-4",
+   "values": "AC filter inductance 1e-4 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "AC side base impedance (Ohm)",
+   "default": "1.722",
+   "values": "AC-side base impedance 1.722 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "PLL proportional gain",
+   "default": "0.05",
+   "values": "Proportional gain 0.05 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "PLL integral gain",
+   "default": "1",
+   "values": "Integral gain 1 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | nonnegative scalar or -1",
+   "group": "General"
+  },
+  {
+   "name": "Proportional gain",
+   "default": "0.4",
+   "values": "Proportional gain 0.4 (default) | positive scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Integral gain",
+   "default": "3",
+   "values": "Integral gain 3 (default) | positive scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Derivative gain",
+   "default": "0",
+   "values": "Derivative gain 0 (default) | nonnegative scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Derivative controller filter coefficient (N)",
+   "default": "3",
+   "values": "Derivative controller filter coefficient 3 (default) | nonnegative scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "DC bus base voltage (V)",
+   "default": "700",
+   "values": "DC bus base voltage 700 (default) | positive scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Controller output upper limit (pu)",
+   "default": "1.5",
+   "values": "Controller output upper limit 1.5 (default) | nonnegative scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Controller output lower limit (pu)",
+   "default": "-1.5",
+   "values": "Controller output lower limit -1.5 (default) | nonpositive scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Id proportional gain",
+   "default": "10",
+   "values": "Id proportional gain 10 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Id integral gain",
+   "default": "350",
+   "values": "Id integral gain 350 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Id derivative gain",
+   "default": "0",
+   "values": "Id derivative gain 0 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Id controller output upper limit (pu)",
+   "default": "1.2",
+   "values": "Id controller output upper limit 1.2 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Id controller output lower limit (pu)",
+   "default": "-1.2",
+   "values": "Id controller output lower limit -1.2 (default) | nonpositive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq proportional gain",
+   "default": "10",
+   "values": "Iq proportional gain 10 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq integral gain",
+   "default": "350",
+   "values": "Iq integral gain 350 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq derivative gain",
+   "default": "0",
+   "values": "Iq derivative gain 0 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Derivative current controller filter coefficient (N)",
+   "default": "100",
+   "values": "Derivative current controller filter coefficient 100 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq controller output upper limit (pu)",
+   "default": "1.2",
+   "values": "Iq controller output upper limit 1.2 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq controller output lower limit (pu)",
+   "default": "-1.2",
+   "values": "Iq controller output lower limit -1.2 (default) | nonpositive scalar",
+   "group": "Current Controller"
+  }
+ ]
+}

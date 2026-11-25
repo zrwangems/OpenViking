@@ -1,0 +1,32 @@
+{
+ "key": "Clock",
+ "title": "Clock",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Clock.md"
+ ],
+ "text": "显示并提供仿真时间；输出 1 路；{显示时间} 指定在模块图标上显示仿真时间、{抽取} 指定更新模块图标的时间间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "采样时间 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "显示时间",
+   "default": "off",
+   "values": "在模块图标上显示仿真时间 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "抽取",
+   "default": "10",
+   "values": "更新模块图标的时间间隔 10 (默认) | 正整数",
+   "group": ""
+  }
+ ]
+}

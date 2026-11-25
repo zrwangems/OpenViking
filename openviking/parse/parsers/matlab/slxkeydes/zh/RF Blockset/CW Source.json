@@ -1,0 +1,98 @@
+{
+ "key": "CW Source",
+ "title": "Continuous Wave",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Sources/Continuous_Wave.md"
+ ],
+ "text": "恒定包络源建模；按 {Carrier frequencies} 指定载波频率；{Source type} 指定波类型 Ideal、{Constant in-phase value} 指定载波频率的同相调制、{Constant quadrature value} 指定载波频率的正交调制、{Source impedance(Ohm)} 指定源的输入阻抗、{Available power} 指定载波频率的可用功率、{Angle(degrees)} 指定功率波的相位角、{Add phase noise} 添加相位噪声、{Phase noise frequency offset (Hz)} 指定相位噪声频率偏移、{Phase noise level (dBc/Hz)} 指定相位噪声电平、{Automatically estimate impulse response duration} 指定自动估计冲激响应持续时间、{Impulse response duration} 指定冲激响应持续时间 1e-10、{Plot phase noise characteristics} 指定相位噪声幅值响应、{Ground and hide negative terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source type",
+   "default": "voltage",
+   "values": "波类型 Ideal voltage (default) | Ideal current | Power",
+   "group": ""
+  },
+  {
+   "name": "Constant in-phase value",
+   "default": "V",
+   "values": "载波频率的同相调制 0 V (default) | vector of real numbers | V | mV | kV",
+   "group": ""
+  },
+  {
+   "name": "Constant quadrature value",
+   "default": "V",
+   "values": "载波频率的正交调制 0 V (default) | vector of real numbers | V | mV | kV",
+   "group": ""
+  },
+  {
+   "name": "Source impedance(Ohm)",
+   "default": "50",
+   "values": "源的输入阻抗 50 (default) | positive real number | complex number",
+   "group": ""
+  },
+  {
+   "name": "Available power",
+   "default": "W",
+   "values": "载波频率的可用功率 0 W (default) | vector of real numbers | W | mW | dBW | dBm",
+   "group": ""
+  },
+  {
+   "name": "Angle(degrees)",
+   "default": "0",
+   "values": "功率波的相位角 0 (default) | vector of real numbers",
+   "group": ""
+  },
+  {
+   "name": "Carrier frequencies",
+   "default": "0",
+   "values": "载波频率 0 (default) | vector of real positive numbers | Hz | kHz | MHz | GHz",
+   "group": ""
+  },
+  {
+   "name": "Add phase noise",
+   "default": "off",
+   "values": "添加相位噪声 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "0",
+   "values": "相位噪声频率偏移 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "0",
+   "values": "相位噪声电平 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "on",
+   "values": "自动估计冲激响应持续时间 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "冲激响应持续时间 1e-10 s (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Plot phase noise characteristics",
+   "default": "",
+   "values": "相位噪声幅值响应 button",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

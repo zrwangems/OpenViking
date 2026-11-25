@@ -1,0 +1,281 @@
+{
+ "key": "Lookup_n-D",
+ "title": "n-D Lookup Table",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/n_D_Lookup_Table.md",
+  "Simulink/Lookup Tables/b_1_D_Lookup_Table.md",
+  "Simulink/Lookup Tables/b_2_D_Lookup_Table.md",
+  "Simulink/Quick Insert/Lookup Tables/b_3_D_Lookup_Table.md",
+  "Simulink/Quick Insert/Lookup Tables/Lookup_with_Akima_spline_Interpolation.md",
+  "Simulink/Quick Insert/Lookup Tables/Lookup_with_Linear_Lagrange_Interpolation.md",
+  "Simulink/Quick Insert/Lookup Tables/Lookup_with_Linear_Point_slope_Interpolation.md",
+  "HDL Coder/Lookup Tables/n_D_Lookup_Table.md",
+  "HDL Coder/Lookup Tables/b_1_D_Lookup_Table.md",
+  "HDL Coder/Lookup Tables/b_2_D_Lookup_Table.md"
+ ],
+ "text": "Approximate n-dimensional function, 6 inputs, 1 output, direct feedthrough, {Number of table dimensions} sets Number of lookup table dimensions; {Data specification} sets the method of table and breakpoint specification Table, {Name}, {Breakpoints specification} sets the method of breakpoint specification Explicit, {Support tunable size} sets the option to enable tunable table size, {Source}, {Tunable size} sets the maximum number of elements for each array, {Table data} defines the table of output values reshape, {Breakpoints} sets the explicit breakpoint values or first point and spacing of breakpoints, {First point}, {Spacing}, {Edit table and breakpoints} sets the open Lookup Table Editor, {Interpolation method} sets the method of interpolation between breakpoint values Linear, {Extrapolation method} sets the method of handling input values that fall outside the range of a breakpoint vector, {Index search method} sets the method of calculating table indices Binary, {Apply more accurate and efficient rounding when possible} sets the more accurate fixed-point table lookup using efficient round, {Begin index search using previous index result} sets the start using the index from the previous time, {Assume input is within range} sets the option to check for out-of-range input, {Diagnostic for out-of-range input} sets the block action when input is out of range, {Apply full precision fixed-point algorithm when possible} sets the more accurate fixed-point table lookup, {Use last table value for inputs at or above last breakpoint} sets the method for computing output for inputs at or above last, {Sample time (-1 for inherited)} sets the interval between samples, {Use one input port for all input data} uses only one input port, {Table data Minimum} sets the minimum value of the table data, {Table data Maximum} sets the maximum value of the table data, {Breakpoints Minimum} sets the minimum value breakpoint data can have, {Breakpoints Maximum} sets the maximum value breakpoint data can have, {Fraction}, {Intermediate results}, {Output}, {Output Minimum} sets the minimum value for range checking, {Output Maximum} sets the maximum value for range checking, {Internal rule priority} sets the internal rule for intermediate calculations, {Require all inputs to have the same data type}, {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Integer rounding mode} sets the rounding mode for fixed-point operations and {Saturate on integer overflow} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u1",
+   "direction": "input",
+   "summary": "First-dimension (row) inputs scalar | vector | matrix"
+  },
+  {
+   "name": "uN",
+   "direction": "input",
+   "summary": "n-th dimension input values scalar | vector | matrix"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Define the table of output values matrix of values with dimensions that match the Number of table dimensions and the breakpoint lengths for each dimension of the table"
+  },
+  {
+   "name": "bp1",
+   "direction": "input",
+   "summary": "Explicit breakpoint values 1-by-n or n-by-1 vector of monotonically increasing values"
+  },
+  {
+   "name": "bp2",
+   "direction": "input",
+   "summary": "Explicit breakpoint values 1-by-n or n-by-1 vector of monotonically increasing values"
+  },
+  {
+   "name": "bp3",
+   "direction": "input",
+   "summary": "Explicit breakpoint values 1-by-n or n-by-1 vector of monotonically increasing values"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output computed by looking up or estimating table values scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of table dimensions",
+   "default": "3",
+   "values": "Number of lookup table dimensions 3 (default) | 1 | 2 | 4 |... | 30",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Data specification",
+   "default": "breakpoints",
+   "values": "Method of table and breakpoint specification Table and breakpoints (default) | Lookup table object",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Name",
+   "default": "[]",
+   "values": "Name of the lookup table object [] (default) | Simulink.LookupTable object",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Breakpoints specification",
+   "default": "values",
+   "values": "Method of breakpoint specification Explicit values (default) | Even spacing",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Support tunable size",
+   "default": "off",
+   "values": "Option to enable tunable table size off (default) | on",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Source",
+   "default": "Dialog",
+   "values": "Source of table and breakpoint data Dialog (default) | Input port",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Tunable size",
+   "default": "-1",
+   "values": "Maximum number of elements for each array -1 (default) | real integer scalar",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Table data",
+   "default": "23],1,2),[3,3,2])",
+   "values": "Define the table of output values reshape(repmat([4 5 6;16 19 20;10 18 23],1,2),[3,3,2]) (default) | matrix of values with dimensions that match the Number of table dimensions",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Breakpoints",
+   "default": "[10,22,31]",
+   "values": "Explicit breakpoint values or first point and spacing of breakpoints [10,22,31] (default) | 1-by-n or n-by-1 vector of monotonically increasing values",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "First point",
+   "default": "1",
+   "values": "First point in evenly spaced breakpoint data 1 (default) | scalar",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Spacing",
+   "default": "1",
+   "values": "Spacing between evenly spaced breakpoints 1 (default) | scalar",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Edit table and breakpoints",
+   "default": "",
+   "values": "Open Lookup Table Editor dialog box button",
+   "group": "Table and Breakpoints"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "point-slope",
+   "values": "Method of interpolation between breakpoint values Linear point-slope (default) | Flat | Nearest | Linear Lagrange | Cubic spline | Akima spline",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Extrapolation method",
+   "default": "Linear",
+   "values": "Method of handling input values that fall outside the range of a breakpoint vector Linear (default) | Clip | Cubic spline | Akima spline",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Index search method",
+   "default": "search",
+   "values": "Method of calculating table indices Binary search (default) | Linear search | Evenly spaced points",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Apply more accurate and efficient rounding when possible",
+   "default": "off",
+   "values": "More accurate fixed-point table lookup using efficient round to nearest off (default) | on",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Begin index search using previous index result",
+   "default": "off",
+   "values": "Start using the index from the previous time step off (default) | on",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Assume input is within range",
+   "default": "off",
+   "values": "Option to check for out-of-range input values off (default) | on",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Diagnostic for out-of-range input",
+   "default": "None",
+   "values": "Block action when input is out of range None (default) | Warning | Error",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Apply full precision fixed-point algorithm when possible",
+   "default": "off",
+   "values": "More accurate fixed-point table lookup off (default) | on",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Use last table value for inputs at or above last breakpoint",
+   "default": "off",
+   "values": "Method for computing output for inputs at or above last breakpoint off (default) | on",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Use one input port for all input data",
+   "default": "off",
+   "values": "Use only one input port off (default) | on",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Table data Minimum",
+   "default": "",
+   "values": "Minimum value of the table data [] | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Table data Maximum",
+   "default": "",
+   "values": "Maximum value of the table data [] | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Breakpoints Minimum",
+   "default": "",
+   "values": "Minimum value breakpoint data can have [] | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Breakpoints Maximum",
+   "default": "",
+   "values": "Maximum value breakpoint data can have [] | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Fraction",
+   "default": "rule",
+   "values": "Fraction data type Inherit: Inherit via internal rule (default) | double | single | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Intermediate results",
+   "default": "output",
+   "values": "Intermediate results data type Inherit: Same as output (default) | Inherit: Inherit via internal rule | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Output data type Inherit: Same as input (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "",
+   "values": "Minimum value for range checking [] | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "",
+   "values": "Maximum value for range checking [] | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal rule priority",
+   "default": "Speed",
+   "values": "Internal rule for intermediate calculations Speed (default) | Precision",
+   "group": "Data Types"
+  },
+  {
+   "name": "Require all inputs to have the same data type",
+   "default": "on",
+   "values": "Require all inputs to have the same data type on (default) | off",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Simplest",
+   "values": "Rounding mode for fixed-point operations Simplest (default) | Ceiling | Convergent | Floor | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

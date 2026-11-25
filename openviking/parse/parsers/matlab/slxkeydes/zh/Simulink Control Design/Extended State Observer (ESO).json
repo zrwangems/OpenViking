@@ -1,0 +1,167 @@
+{
+ "key": "Extended State Observer (ESO)",
+ "title": "Extended State Observer",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Disturbance Observer/Extended_State_Observer.md"
+ ],
+ "text": "估计系统的状态和扰动，输入 8 路、输出 2 路；按 {Time delay} 指定时间延迟；{Time domain} 控制器时域、{LTI state-space variable} 指定已知被控对象动态 ss object、{Use external source for model matrices (A,Bu,Cm)} 指定在模块输入端口指定模型矩阵、{Number of states} 指定模型中的状态数、{Number of inputs} 指定模型中的输入数、{Number of outputs} 指定模型中的输出数、{Specify gain k (such that Bd = k*Bu)} 用于计算扰动输入矩阵的增益值、{Use external source for matrix Bd} 指定在模块输入端口指定扰动矩阵、{Number of disturbances} 指定模型中的扰动数、{Initial conditions} 指定扩展状态的初始条件、{Use external source for initial conditions S0 (x0,d0)} 指定在模块输入端口指定初始条件、{Bandwidth (rad/s)} 指定观测器带宽、{Spacing (rad/s)} 指定观测器带宽间距、{Use external source for matrix L} 指定在模块输入端口指定观测器矩阵、{Data type} 指定浮点精度 double、{Output estimated model states xhat} 指定在模块输出端口输出估计状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "已知输入 scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "测量输出 scalar | vector"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "状态矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "Bu",
+   "direction": "input",
+   "summary": "输入矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "Cm",
+   "direction": "input",
+   "summary": "输出矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "Bd",
+   "direction": "input",
+   "summary": "扰动矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "S0",
+   "direction": "input",
+   "summary": "初始条件 scalar | vector"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "观测器矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "dhat",
+   "direction": "output",
+   "summary": "估计的扰动 vector"
+  },
+  {
+   "name": "xhat",
+   "direction": "output",
+   "summary": "估计状态 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time domain",
+   "default": "discrete-time",
+   "values": "控制器时域 discrete-time (default) | continuous-time",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "LTI state-space variable",
+   "default": "",
+   "values": "已知被控对象动态 ss object | idss object",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use external source for model matrices (A,Bu,Cm)",
+   "default": "off",
+   "values": "在模块输入端口指定模型矩阵 off (default) | on",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Number of states",
+   "default": "1",
+   "values": "模型中的状态数 1 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "模型中的输入数 1 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Number of outputs",
+   "default": "1",
+   "values": "模型中的输出数 1 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Specify gain k (such that Bd = k*Bu)",
+   "default": "1",
+   "values": "用于计算扰动输入矩阵的增益值 1 (default) | nonzero scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use external source for matrix Bd",
+   "default": "off",
+   "values": "在模块输入端口指定扰动矩阵 off (default) | on",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Number of disturbances",
+   "default": "1",
+   "values": "模型中的扰动数 1 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "扩展状态的初始条件 0 (default) | scalar | vector",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use external source for initial conditions S0 (x0,d0)",
+   "default": "off",
+   "values": "在模块输入端口指定初始条件 off (default) | on",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Bandwidth (rad/s)",
+   "default": "1",
+   "values": "观测器带宽 1 (default) | positive scalar",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Spacing (rad/s)",
+   "default": "0.01",
+   "values": "观测器带宽间距 0.01 (default) | positive scalar",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Use external source for matrix L",
+   "default": "off",
+   "values": "在模块输入端口指定观测器矩阵 off (default) | on",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "浮点精度 double (default) | single",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Time delay",
+   "default": "1",
+   "values": "指定时间延迟 1 (default) | positive scalar | vector",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Output estimated model states xhat",
+   "default": "on",
+   "values": "在模块输出端口输出估计状态 on (default) | off",
+   "group": "Block Tab"
+  }
+ ]
+}

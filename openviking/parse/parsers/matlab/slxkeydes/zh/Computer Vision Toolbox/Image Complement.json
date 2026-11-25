@@ -1,0 +1,24 @@
+{
+ "key": "Image Complement",
+ "title": "Image Complement",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Image_Complement.md"
+ ],
+ "text": "计算二值图像或强度图像中像素值的补集，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入图像 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 matrix"
+  }
+ ],
+ "params": []
+}

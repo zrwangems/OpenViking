@@ -1,0 +1,13 @@
+{
+ "key": "Variable Thermal Resistance",
+ "title": "Variable Thermal Resistance",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Variable_Thermal_Resistance.md"
+ ],
+ "text": "热系统中的可变热阻。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

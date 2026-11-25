@@ -1,0 +1,78 @@
+{
+ "key": "Symbol Synchronizer",
+ "title": "Symbol Synchronizer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Synchronization/Symbol_Synchronizer.md"
+ ],
+ "text": "校正符号定时时钟偏移，输入 1 路、输出 2 路；按 {Timing error detector} 指定定时误差检测器类型 Zero-Crossing；{Modulation type} 指定调制类型 PAM/PSK/QAM、{Samples per symbol} 指定每符号样本数、{Damping factor} 指定环路滤波器的阻尼因子、{Normalized loop bandwidth} 指定环路滤波器的归一化带宽、{Detector gain} 指定相位检测器增益、{Normalized timing error output port} 启用归一化定时误差输出端口、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Samp",
+   "direction": "input",
+   "summary": "输入样本 scalar (default) | column vector"
+  },
+  {
+   "name": "Sym",
+   "direction": "output",
+   "summary": "输出信号符号 scalar | column vector"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "估计定时误差 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation type",
+   "default": "PAM/PSK/QAM",
+   "values": "调制类型 PAM/PSK/QAM (default) | OQPSK",
+   "group": ""
+  },
+  {
+   "name": "Timing error detector",
+   "default": "(decision-directed)",
+   "values": "定时误差检测器类型 Zero-Crossing (decision-directed) (default) | Gardner (non-data-aided) | Early-Late (non-data-aided) | Mueller-Muller (decision-directed)",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "2",
+   "values": "每符号样本数 2 (default) | positive integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Damping factor",
+   "default": "1",
+   "values": "环路滤波器的阻尼因子 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Normalized loop bandwidth",
+   "default": "0.01",
+   "values": "环路滤波器的归一化带宽 0.01 (default) | positive scalar less than 1",
+   "group": ""
+  },
+  {
+   "name": "Detector gain",
+   "default": "2.7",
+   "values": "相位检测器增益 2.7 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Normalized timing error output port",
+   "default": "on",
+   "values": "启用归一化定时误差输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

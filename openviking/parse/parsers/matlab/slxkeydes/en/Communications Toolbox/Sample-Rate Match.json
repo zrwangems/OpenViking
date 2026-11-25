@@ -1,0 +1,54 @@
+{
+ "key": "Sample-Rate Match",
+ "title": "Sample-Rate Match",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/Sample_Rate_Match.md"
+ ],
+ "text": "Upsample two signals to common rate, 2 inputs, 1 output; {Input sample rate (Hz)} sets the sample rate of each input signal, {Output samples per frame} sets the number of samples output per frame, {Output sample rate options} sets the options for output sample rate and {Output sample rate (Hz)} sets the output signal sample. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "First input signal column vector | matrix"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "Second input signal column vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "2]*1e6",
+   "values": "Sample rate of each input signal [1 2]*1e6 (default) | 2-element vector",
+   "group": ""
+  },
+  {
+   "name": "Output samples per frame",
+   "default": "1000",
+   "values": "Number of samples output per frame 1000 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate options",
+   "default": "Auto",
+   "values": "Options for output sample rate Auto (default) | Specify via property",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate (Hz)",
+   "default": "2e6",
+   "values": "Output signal sample rate 2e6 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

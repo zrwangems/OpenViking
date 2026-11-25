@@ -1,0 +1,13 @@
+{
+ "key": "Auto Correlator",
+ "title": "Auto Correlator",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Sinks/Auto_Correlator.md"
+ ],
+ "text": "This block when hooked to the output of a system displays the auto correlation of the buffer in the graph window.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

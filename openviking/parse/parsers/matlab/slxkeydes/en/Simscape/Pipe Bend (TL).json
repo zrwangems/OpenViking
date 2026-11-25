@@ -1,0 +1,13 @@
+{
+ "key": "Pipe Bend (TL)",
+ "title": "Pipe Bend (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Pipe_Bend_TL.md"
+ ],
+ "text": "Closed conduit that transports fluid between thermal liquid components.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

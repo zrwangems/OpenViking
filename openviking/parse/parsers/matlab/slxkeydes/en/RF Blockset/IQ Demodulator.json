@@ -1,0 +1,272 @@
+{
+ "key": "IQ Demodulator",
+ "title": "IQ Demodulator",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Systems/IQ_Demodulator.md"
+ ],
+ "text": "Convert RF signal to baseband signal, {Filter type} sets Filter type; {Source of conversion gain} sets the source parameter of conversion gain Available power, {Available power gain} sets the ratio of power of SSB at output I branch to input power, {Open circuit voltage gain}, {Polynomial coefficients} sets the coefficients of polynomial specifying voltage gain, {Local oscillator frequency}, {Input impedance (Ohm)} sets the input impedance of IQ demodulator, {Output impedance (Ohm)} sets the output impedance of IQ demodulator, {Add Image Reject filter} sets the image reject, {Add Channel Select filters} sets the channel select, {Ground and hide negative terminals} sets the ground and hide circuit terminals, {Edit System} sets the break IQ demodulator block links and replace internal variables by appropriate values, {I/Q gain mismatch} sets the gain difference between I and Q branches, {I/Q phase mismatch} sets the phase difference between I and Q branches, {LO to RF isolation} sets the ratio of magnitude between LO voltage to leaked RF voltage inf, {Noise figure (dB)} sets the signal-to-noise ratio, {Add phase noise}, {Phase noise frequency offset (Hz)}, {Phase noise level (dBc/Hz)} sets the phase noise level, {Automatically estimate impulse response duration}, {Impulse response duration}, {Plot phase noise characteristics} sets the phase noise magnitude, {Nonlinear polynomial type} sets the polynomial nonlinearity Even, {Intercept points convention}, {IP2} sets the second-order intercept point, {IP3} sets the third-order intercept point, {1-dB gain compression power}, {Output saturation power}, {Gain compression at saturation}, {Design method} sets the simulation type, {Implementation}, {Passband edge frequency}, {Implement using filter order}, {Filter order}, {Passband frequency}, {Passband frequencies}, {Passband attenuation (dB)} sets the passband attenuation 10*log10, {Stopband frequencies}, {Stopband edge frequencies}, {Stopband attenuation (dB)}, {Source impedance (Ohm)} sets the input source resistance, {Load impedance (Ohm)} sets the output load resistance and {Export} sets the save filter design. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source of conversion gain",
+   "default": "gain",
+   "values": "Source parameter of conversion gain Available power gain (default) | Open circuit voltage gain | Polynomial coefficients",
+   "group": "Main"
+  },
+  {
+   "name": "Available power gain",
+   "default": "dB",
+   "values": "Ratio of power of SSB at output I branch to input power 0 dB (default) | scalar in dB or a unitless ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Open circuit voltage gain",
+   "default": "dB",
+   "values": "Open circuit voltage gain 0 dB (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Polynomial coefficients",
+   "default": "1]",
+   "values": "Coefficients of polynomial specifying voltage gain [0 1] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Local oscillator frequency",
+   "default": "Hz",
+   "values": "Local oscillator (LO) frequency 0 Hz (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "Input impedance of IQ demodulator 50 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "Output impedance of IQ demodulator 50 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Add Image Reject filter",
+   "default": "off",
+   "values": "Image reject (IR) filter parameters off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add Channel Select filters",
+   "default": "off",
+   "values": "Channel select (CS) filter parameters off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground and hide circuit terminals on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Edit System",
+   "default": "",
+   "values": "Break IQ demodulator block links and replace internal variables by appropriate values button",
+   "group": "Main"
+  },
+  {
+   "name": "I/Q gain mismatch",
+   "default": "dB",
+   "values": "Gain difference between I and Q branches 0 dB (default) | scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "I/Q phase mismatch",
+   "default": "degrees",
+   "values": "Phase difference between I and Q branches 0 degrees (default) | scalar in degrees or radians",
+   "group": "Impairments"
+  },
+  {
+   "name": "LO to RF isolation",
+   "default": "dB",
+   "values": "Ratio of magnitude between LO voltage to leaked RF voltage inf dB (default) | scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "Signal-to-noise ratio (SNR) between outputs and input 0 (default) | scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Add phase noise",
+   "default": "off",
+   "values": "Add phase noise off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "1",
+   "values": "Phase noise frequency offset 1 (default) | scalar | vector | matrix",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-Inf",
+   "values": "Phase noise level -Inf (default) | scalar | vector | matrix",
+   "group": "Impairments"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "on",
+   "values": "Automatically estimate impulse response duration on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "Impulse response duration 1e-10 s (default) | scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Plot phase noise characteristics",
+   "default": "",
+   "values": "Phase noise magnitude response button",
+   "group": "Impairments"
+  },
+  {
+   "name": "Nonlinear polynomial type",
+   "default": "order",
+   "values": "Polynomial nonlinearity Even and odd order (default) | Odd order",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Intercept points convention",
+   "default": "Input",
+   "values": "Intercept points convention Input (default) | Output",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "IP2",
+   "default": "dBm",
+   "values": "Second-order intercept point inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "IP3",
+   "default": "dBm",
+   "values": "Third-order intercept point inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "1-dB gain compression power",
+   "default": "dBm",
+   "values": "1-dB gain compression power inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Output saturation power",
+   "default": "dBm",
+   "values": "Output saturation power inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Gain compression at saturation",
+   "default": "dBm",
+   "values": "Gain compression at saturation inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Design method",
+   "default": "Ideal",
+   "values": "Simulation type Ideal (default) | Butterworth | Chebyshev",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "Filter type Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Implementation",
+   "default": "",
+   "values": "Implementation LC Tee | LC Pi | Transfer function | Constant per carrier | Frequency Domain",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Passband edge frequency",
+   "default": "GHz",
+   "values": "Passband edge frequency 2 GHz (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Implement using filter order",
+   "default": "on",
+   "values": "Implement using filter order on (default) | off",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Filter order",
+   "default": "3",
+   "values": "Filter order 3 (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Passband frequency",
+   "default": "",
+   "values": "Passband frequency for lowpass and highpass filters scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Passband frequencies",
+   "default": "GHz",
+   "values": "Passband frequencies for bandpass filters [2 3] GHz (default) | 2-tuple vector",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Passband attenuation (dB)",
+   "default": "10*log10(2)",
+   "values": "Passband attenuation 10*log10(2) (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Stopband frequencies",
+   "default": "GHz",
+   "values": "Stopband frequencies for bandstop filters [2.1 2.9] GHz (default) | 2-tuple vector",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Stopband edge frequencies",
+   "default": "GHz",
+   "values": "Stopband edge frequencies for ideal bandstop filters [2.1 2.9] GHz (default) | 2-tuple vector",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "40",
+   "values": "Stopband attenuation 40 (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Source impedance (Ohm)",
+   "default": "50",
+   "values": "Input source resistance 50 (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Load impedance (Ohm)",
+   "default": "50",
+   "values": "Output load resistance 50 (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Export",
+   "default": "",
+   "values": "Save filter design to a file button",
+   "group": "IR Filter"
+  }
+ ]
+}

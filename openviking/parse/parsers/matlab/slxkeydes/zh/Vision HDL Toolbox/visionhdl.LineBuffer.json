@@ -1,0 +1,64 @@
+{
+ "key": "visionhdl.LineBuffer",
+ "title": "Line Buffer",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Line_Buffer.md"
+ ],
+ "text": "存储视频行并返回邻域像素，输入 2 路、输出 3 路；按 {Padding method} 指定填充输入图像边界的方法；{Neighborhood size} 输出邻域的大小、{Padding value} 用于填充输入图像边界的值、{Line buffer size} 指定行存储缓冲区的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "邻域的列 column vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "随输出列一起的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "shiftEnable",
+   "direction": "output",
+   "summary": "邻域列的有效信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Neighborhood size",
+   "default": "3]",
+   "values": "输出邻域的大小 [3 3] (default) | 2-element row vector of integer dimensions",
+   "group": ""
+  },
+  {
+   "name": "Padding method",
+   "default": "Symmetric",
+   "values": "填充输入图像边界的方法 Symmetric (default) | Constant | Replicate | Reflection | None",
+   "group": ""
+  },
+  {
+   "name": "Padding value",
+   "default": "0",
+   "values": "用于填充输入图像边界的值 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "行存储缓冲区的大小 2048 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "key": "Bottom-hat",
+ "title": "Bottom-hat",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Morphological Operations/Bottom_hat.md"
+ ],
+ "text": "对强度图像或二值图像执行形态学底帽滤波，输入 2 路、输出 1 路；按 {Neighborhood or structuring element} 指定邻域或结构元素；{Input image type} 指定输入图像的类型、{Neighborhood or structuring element source} 指定邻域或结构元素的来源 Specify via，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix"
+  },
+  {
+   "name": "Nhood",
+   "direction": "input",
+   "summary": "邻域值 vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "滤波后的图像 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input image type",
+   "default": "Intensity",
+   "values": "输入图像的类型 Intensity (default) | Binary",
+   "group": ""
+  },
+  {
+   "name": "Neighborhood or structuring element source",
+   "default": "dialog",
+   "values": "邻域或结构元素的来源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Neighborhood or structuring element",
+   "default": "strel(’octagon’,15)",
+   "values": "邻域或结构元素 strel(’octagon’,15) (default) | vector | matrix",
+   "group": ""
+  }
+ ]
+}

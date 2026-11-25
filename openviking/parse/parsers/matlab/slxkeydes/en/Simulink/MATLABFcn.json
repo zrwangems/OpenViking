@@ -1,0 +1,55 @@
+{
+ "key": "MATLABFcn",
+ "title": "Interpreted MATLAB Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/Interpreted_MATLAB_Function.md"
+ ],
+ "text": "(To be removed) Apply MATLAB function or expression to input, 1 input, 1 output, direct feedthrough, {Output signal type} sets the block output signal type; {MATLAB Function} sets the function, {Output dimensions} sets the dimensions of the block output signal, {Collapse 2-D results to 1-D} sets the output a 2-D array as a 1-D array and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input of a Interpreted MATLAB function scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output of a Interpreted MATLAB function scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "MATLAB Function",
+   "default": "function",
+   "values": "Specify the function or expression function (default)",
+   "group": ""
+  },
+  {
+   "name": "Output dimensions",
+   "default": "",
+   "values": "Specify the dimensions of the block output signal scalar | matrix | vector | inherited",
+   "group": ""
+  },
+  {
+   "name": "Output signal type",
+   "default": "auto",
+   "values": "Specify the block output signal type auto (default) | real | complex",
+   "group": ""
+  },
+  {
+   "name": "Collapse 2-D results to 1-D",
+   "default": "off",
+   "values": "Output a 2-D array as a 1-D array off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "",
+   "values": "Specify sample time in the block scalar",
+   "group": ""
+  }
+ ]
+}

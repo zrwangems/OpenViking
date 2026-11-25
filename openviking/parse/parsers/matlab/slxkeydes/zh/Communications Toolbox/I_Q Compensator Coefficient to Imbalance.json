@@ -1,0 +1,66 @@
+{
+ "key": "I/Q Compensator Coefficient to Imbalance",
+ "title": "I/Q Compensator Coefficient to Imbalance",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments Correction/I_Q_Compensator_Coefficient_to_Imbalance.md"
+ ],
+ "text": "自适应调整增益以获得恒定信号电平输出，输入 1 路、输出 2 路；按 {Step size for gain updates} 指定增益更新的步长 0.01；{Target output power level} 指定目标输出功率电平、{Length of averaging window} 指定平均窗口长度、{Maximum power gain} 指定最大功率增益、{Enable output of estimated input power} 输出估计输入功率、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 column vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "输出信号 N S -element column vector"
+  },
+  {
+   "name": "Px",
+   "direction": "output",
+   "summary": "功率电平估计 N S -element column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Step size for gain updates",
+   "default": "",
+   "values": "增益更新的步长 0.01 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Target output power level",
+   "default": "",
+   "values": "目标输出功率电平 (W) 1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Length of averaging window",
+   "default": "",
+   "values": "平均窗口长度（样本） 100 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum power gain",
+   "default": "60",
+   "values": "最大功率增益 (dB) 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable output of estimated input power",
+   "default": "off",
+   "values": "输出估计输入功率的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

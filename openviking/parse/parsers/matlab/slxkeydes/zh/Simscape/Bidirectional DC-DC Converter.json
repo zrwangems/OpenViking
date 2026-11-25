@@ -1,0 +1,13 @@
+{
+ "key": "Bidirectional DC-DC Converter",
+ "title": "Bidirectional DC-DC Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Bidirectional_DC_DC_Converter.md"
+ ],
+ "text": "由控制器驱动的双向 DC-DC 升压和降压电压调节器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

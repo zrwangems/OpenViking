@@ -1,0 +1,84 @@
+{
+ "key": "Battery Temperature Monitoring",
+ "title": "Battery Temperature Monitoring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Protection/Battery_Temperature_Monitoring.md"
+ ],
+ "text": "Monitor for battery temperature, 1 input, 2 outputs, {Sample time (-1 for inherited)} sets Block sample time; {Specify input as [Min,Max]} sets the option to specify input as minimum and maximum, {Undertemperature limit}, {Overtemperature limit}, {Qualification time undertemperature (s)} sets the undertemperature qualification time, {Disqualification time undertemperature (s)} sets the undertemperature disqualification time, {Qualification time overtemperature (s)} sets the overtemperature qualification time, {Disqualification time overtemperature (s)} sets the overtemperature disqualification time and {Algorithm data type} sets the option to choose data type for block algorithm. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "Cell temperature, K scalar | vector"
+  },
+  {
+   "name": "UndertemperatureError",
+   "direction": "output",
+   "summary": "Indication of undertemperature error, unitless 0 | 1"
+  },
+  {
+   "name": "OvertemperatureError",
+   "direction": "output",
+   "summary": "Indication of overtemperature error, unitless 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify input as [Min,Max]",
+   "default": "off",
+   "values": "Option to specify input as minimum and maximum values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Undertemperature limit",
+   "default": "270",
+   "values": "Undertemperature limit 270 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Overtemperature limit",
+   "default": "320",
+   "values": "Overtemperature limit 320 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time undertemperature (s)",
+   "default": "2",
+   "values": "Undertemperature qualification time 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time undertemperature (s)",
+   "default": "0",
+   "values": "Undertemperature disqualification time 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time overtemperature (s)",
+   "default": "2",
+   "values": "Overtemperature qualification time 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time overtemperature (s)",
+   "default": "0",
+   "values": "Overtemperature disqualification time 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

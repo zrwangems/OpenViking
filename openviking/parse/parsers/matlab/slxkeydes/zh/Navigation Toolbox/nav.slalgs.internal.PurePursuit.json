@@ -1,0 +1,93 @@
+{
+ "key": "nav.slalgs.internal.PurePursuit",
+ "title": "Pure Pursuit",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Control Algorithms/Pure_Pursuit.md",
+  "Robotics System Toolbox/Mobile Robot Algorithms/Pure_Pursuit.md"
+ ],
+ "text": "线速度和角速度控制指令，输入 4 路、输出 3 路；{Specify desired linear velocity from input port} 启用期望线速度输入端口、{Desired linear velocity (m/s)} 指定线速度、{Maximum angular velocity (rad/s)} 指定角速度、{Specify lookahead distance from input port} 启用前视距离输入端口、{Lookahead distance (m)} 指定前视距离、{Show Target Direction output port} 指定目标方向指示、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "当前车辆位姿 [x y theta] vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "路点 [ ] (default) | n -by-2 array"
+  },
+  {
+   "name": "Desired Linear Velocity",
+   "direction": "input",
+   "summary": "线速度 scalar in meters per second"
+  },
+  {
+   "name": "Lookahead Distance",
+   "direction": "input",
+   "summary": "前视距离 scalar in meters per second"
+  },
+  {
+   "name": "Linear Velocity",
+   "direction": "output",
+   "summary": "线速度 scalar in meters per second"
+  },
+  {
+   "name": "Angular Velocity",
+   "direction": "output",
+   "summary": "角速度 scalar in radians per second"
+  },
+  {
+   "name": "Target Direction",
+   "direction": "output",
+   "summary": "车辆目标方向 scalar in radians"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify desired linear velocity from input port",
+   "default": "off",
+   "values": "启用期望线速度输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Desired linear velocity (m/s)",
+   "default": "0.1",
+   "values": "线速度 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum angular velocity (rad/s)",
+   "default": "1.0",
+   "values": "角速度 1.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify lookahead distance from input port",
+   "default": "off",
+   "values": "启用前视距离输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lookahead distance (m)",
+   "default": "1.0",
+   "values": "前视距离 1.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Target Direction output port",
+   "default": "off",
+   "values": "目标方向指示 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

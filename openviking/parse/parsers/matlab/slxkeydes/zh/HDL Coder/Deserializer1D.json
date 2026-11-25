@@ -1,0 +1,94 @@
+{
+ "key": "Deserializer1D",
+ "title": "Deserializer1D",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL Operations/Deserializer1D.md"
+ ],
+ "text": "将标量流或较小向量转换为向量信号，输入 3 路、输出 2 路；按 {Input signal type} 指定输入信号类型；{Ratio (Output Vector Size/Input Vector Size)} 输出向量大小与输入向量大小之比、{Idle Cycles} 指定空闲周期数、{Initial condition} 指定初始输出数据信号值、{StartIn}、{ValidIn}、{ValidOut}、{Input data port dimensions (-1 for inherited)} 指定输入数据信号的大小、{Input sample time (-1 for inherited)} 指定输入采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "串行输入数据信号 scalar"
+  },
+  {
+   "name": "ValidIn",
+   "direction": "input",
+   "summary": "有效输入控制信号 scalar"
+  },
+  {
+   "name": "StartIn",
+   "direction": "input",
+   "summary": "StartIn 控制信号 scalar"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "解串行化（并行）数据输出信号 scalar | vector"
+  },
+  {
+   "name": "ValidOut",
+   "direction": "output",
+   "summary": "有效输出控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Ratio (Output Vector Size/Input Vector Size)",
+   "default": "1",
+   "values": "输出向量大小与输入向量大小之比 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Idle Cycles",
+   "default": "0",
+   "values": "空闲周期数 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "初始输出数据信号值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "StartIn",
+   "default": "off",
+   "values": "启用 StartIn 控制端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ValidIn",
+   "default": "off",
+   "values": "启用 ValidIn 控制端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ValidOut",
+   "default": "off",
+   "values": "启用 ValidOut 控制端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input data port dimensions (-1 for inherited)",
+   "default": "0",
+   "values": "输入数据信号的大小 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Input sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "输入采样时间 -1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Input signal type",
+   "default": "auto",
+   "values": "输入信号类型 auto (default) | real | complex",
+   "group": ""
+  }
+ ]
+}

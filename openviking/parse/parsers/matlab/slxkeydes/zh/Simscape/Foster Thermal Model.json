@@ -1,0 +1,13 @@
+{
+ "key": "Foster Thermal Model",
+ "title": "Foster Thermal Model",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Thermal/Foster_Thermal_Model.md"
+ ],
+ "text": "通过半导体模块的热传递。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,45 @@
+{
+ "key": "BusSelector",
+ "title": "Bus Selector",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Bus_Selector.md",
+  "Simulink/Signal Routing/Bus_Selector.md",
+  "HDL Coder/Signal Routing/Bus_Selector.md"
+ ],
+ "text": "Select elements from input bus, 1 input, 1 output, direct feedthrough; {Elements in the bus} sets the input bus hierarchy Read-only: list of element, {Output elements} sets the selected output elements list of element and {Output as virtual bus} sets the option to output selected elements as virtual. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input virtual or nonvirtual bus bus"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Selected elements of input bus scalar | vector | matrix | array | bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Elements in the bus",
+   "default": "",
+   "values": "Input bus hierarchy Read-only: list of element names",
+   "group": ""
+  },
+  {
+   "name": "Output elements",
+   "default": "",
+   "values": "Selected output elements list of element names",
+   "group": ""
+  },
+  {
+   "name": "Output as virtual bus",
+   "default": "off",
+   "values": "Option to output selected elements as virtual bus off (default) | on",
+   "group": ""
+  }
+ ]
+}

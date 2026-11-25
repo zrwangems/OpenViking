@@ -1,0 +1,71 @@
+{
+ "key": "pulseCompressionLibrary",
+ "title": "Pulse Compression Library",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Pulse_Compression_Library.md"
+ ],
+ "text": "脉冲压缩规格库，输入 2 路、输出 2 路；{Signal propagation speed (m/s)} 指定信号传播速度 physconst、{Specification of each waveform in the library} 指定库中脉冲波形的规格、{Pulse compression specifications} 指定脉冲压缩的类型、{Inherit sample rate} 指定从上游模块继承采样率、{Sample rate (Hz)} 指定信号采样率 1e6、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入信号 complex-valued K -by- L matrix | complex-valued K -by- N matrix | complex-valued K -by- N -by- L array"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "处理规格的索引 positive integer"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "输出信号 complex-valued K -by- L matrix | complex-valued K -by- N matrix | complex-valued K -by- N -by- L array"
+  },
+  {
+   "name": "Range",
+   "direction": "output",
+   "summary": "采样距离 real-valued length- M vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specification of each waveform in the library",
+   "default": "{{’Rectangular’,’PRF’,1e4,’PulseWidth’,50e-6},{’LinearFM’,’PRF’,1e4,’PulseWidth’,50e-6,’SweepBandwidth’,1e5,’SweepDirection’,’Up’,’SweepInterval’,’Positive’}}",
+   "values": "库中脉冲波形的规格 {{’Rectangular’,’PRF’,1e4,’PulseWidth’,50e-6},{’LinearFM’,’PRF’,1e4,’PulseWidth’,50e-6,’SweepBandwidth’,1e5,’SweepDirection’,’Up’,’SweepInterval’,’Positive’}} (default) | cell array",
+   "group": ""
+  },
+  {
+   "name": "Pulse compression specifications",
+   "default": "{{’MatchedFilter’,’SpectrumWindow’,’None’},{’StretchProcessor’,’RangeSpan’,200,’ReferenceRange’,5e3,’RangeWindow’,’None’}}",
+   "values": "指定脉冲压缩的类型 {{’MatchedFilter’,’SpectrumWindow’,’None’},{’StretchProcessor’,’RangeSpan’,200,’ReferenceRange’,5e3,’RangeWindow’,’None’}} (default) | cell array",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "从上游模块继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "信号采样率 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

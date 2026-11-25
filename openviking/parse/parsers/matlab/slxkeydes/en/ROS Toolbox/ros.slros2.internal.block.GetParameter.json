@@ -1,0 +1,55 @@
+{
+ "key": "ros.slros2.internal.block.GetParameter",
+ "title": "Get Parameter",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Get_Parameter.md"
+ ],
+ "text": "Get ROS 2 parameter value, 2 outputs, {Data type} sets Data type of parameter; {Name} sets the parameter name, {Maximum length}, {Initial value} sets the default parameter value output and {Sample time} sets the interval between outputs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Value",
+   "direction": "output",
+   "summary": "Parameter value scalar | array"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "Length of array parameter scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Name",
+   "default": "mynamespace.param",
+   "values": "Parameter name mynamespace.param (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "Data type of parameter double (default) | int64 | boolean | uint8[] | double[] | int64[] | boolean[]",
+   "group": ""
+  },
+  {
+   "name": "Maximum length",
+   "default": "16",
+   "values": "Maximum length of array 16 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0.0",
+   "values": "Default parameter value output 0.0 (default) | numeric scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Interval between outputs -1 (default) | numeric scalar",
+   "group": ""
+  }
+ ]
+}

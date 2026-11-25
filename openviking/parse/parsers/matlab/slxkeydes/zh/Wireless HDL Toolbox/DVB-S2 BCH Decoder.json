@@ -1,0 +1,85 @@
+{
+ "key": "DVB-S2 BCH Decoder",
+ "title": "DVB-S2 BCH Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/DVB_S2_BCH_Decoder.md"
+ ],
+ "text": "根据 DVB-S2 标准从 BCH 码字解码并恢复消息，输入 4 路、输出 4 路；按 {Code rate} 指定码率；{FEC frame type source} 指定 FEC 帧类型来源、{FEC frame type} 指定 FEC 帧类型、{Code rate source} 指定码率来源 Property、{Output number of corrected errors} 指定已纠正错误数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "码字数据位 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "frameType",
+   "direction": "input",
+   "summary": "帧类型 scalar"
+  },
+  {
+   "name": "codeRateIdx",
+   "direction": "input",
+   "summary": "码率索引 integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "解码后的消息位 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "numCorrErr",
+   "direction": "output",
+   "summary": "已纠正错误数 scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "模块就绪指示 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "FEC frame type source",
+   "default": "Property",
+   "values": "FEC 帧类型来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "FEC frame type",
+   "default": "Normal",
+   "values": "FEC 帧类型 Normal (default) | Short",
+   "group": ""
+  },
+  {
+   "name": "Code rate source",
+   "default": "Property",
+   "values": "码率来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Code rate",
+   "default": "1/4",
+   "values": "码率 1/4 (default) | 1/3 | 2/5 | 1/2 | 3/5 | 2/3 | 3/4 | 4/5 | 5/6 | 8/9 | 9/10",
+   "group": ""
+  },
+  {
+   "name": "Output number of corrected errors",
+   "default": "off",
+   "values": "已纠正错误数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

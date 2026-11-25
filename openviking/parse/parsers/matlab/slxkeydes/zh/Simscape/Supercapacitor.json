@@ -1,0 +1,13 @@
+{
+ "key": "Supercapacitor",
+ "title": "Supercapacitor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Supercapacitor.md"
+ ],
+ "text": "电化学双层电容器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

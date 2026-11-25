@@ -1,0 +1,13 @@
+{
+ "key": "PS Add",
+ "title": "PS Add",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Add.md"
+ ],
+ "text": "将两个物理信号输入相加。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

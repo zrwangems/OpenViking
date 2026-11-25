@@ -1,0 +1,191 @@
+{
+ "key": "Simulation 3D Vehicle with Ground Following",
+ "title": "Simulation 3D Vehicle with Ground Following",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Vehicle_with_Ground_Following.md",
+  "Simulink 3D Animation/Simulation 3D/Actors/Simulation_3D_Vehicle_with_Ground_Following.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Vehicle_with_Ground_Following.md"
+ ],
+ "text": "实现 3D 环境中跟随地面的车辆，输入 4 路、输出 2 路；按 {Color} 指定车辆颜色；{Type} 指定车辆类型 Muscle、{Path to custom mesh}、{Track width in custom mesh (m)} 指定轮距、{Wheel base in custom mesh (m)} 指定轴距、{Wheel radius in custom mesh (m)} 指定车轮半径、{Initial position [X, Y, Z] (m)} 指定初始车辆位置、{Initial rotation [Roll, Pitch, Yaw] (deg)} 指定车辆初始旋转角度、{Name} 指定车辆名称 SimulinkVehicle1、{Sample time} 指定采样时间、{Enable light controls} 控制车辆灯光、{Headlight color [R,G,B]} 指定前照灯颜色、{High beam intensity (cd)} 指定远光强度、{Low beam intensity (cd)} 指定近光强度、{High beam cone half angle (deg)} 指定远光锥半角、{Low beam cone half angle (deg)} 指定近光锥半角、{Left headlight beam orientation [Pitch, Yaw] (deg)} 指定左前照灯光束方向、{Right headlight beam orientation [Pitch, Yaw] (deg)} 指定右前照灯光束方向、{Brake light intensity (cd/m^2)} 指定强度、{Reverse light intensity (cd/m^2)} 指定强度、{Turn signal light intensity (cd/m^2)} 指定强度、{Period (s)} 指定转向信号灯周期、{Pulse width (% of period)} 指定脉冲宽度、{Output location (m) and orientation (rad)} 输出车辆的位置和方向，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "车辆的纵向位置 scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "车辆的横向位置 scalar"
+  },
+  {
+   "name": "Yaw",
+   "direction": "input",
+   "summary": "车辆的偏航方向角 scalar"
+  },
+  {
+   "name": "Light controls",
+   "direction": "input",
+   "summary": "车辆灯光控制 1-by-6 vector"
+  },
+  {
+   "name": "Location",
+   "direction": "output",
+   "summary": "车辆位置 real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "车辆方向 real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "car",
+   "values": "车辆类型 Muscle car (default) | Sedan | Sport utility vehicle | Small pickup truck | Hatchback | Box truck | Custom",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Path to custom mesh",
+   "default": "/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar",
+   "values": "Path to custom mesh /MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar (default) | valid path",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Track width in custom mesh (m)",
+   "default": "1.9",
+   "values": "轮距 1.9 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Wheel base in custom mesh (m)",
+   "default": "3",
+   "values": "轴距 3 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Wheel radius in custom mesh (m)",
+   "default": "0.35",
+   "values": "车轮半径 0.35 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Color",
+   "default": "Red",
+   "values": "车辆颜色 Red (default) | Orange | Yellow | Green | Blue | Black | White | Silver",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Initial position [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "初始车辆位置 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Initial rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "车辆初始旋转角度 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "车辆名称 SimulinkVehicle1 (default) | vehicle name",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Enable light controls",
+   "default": "off",
+   "values": "控制车辆灯光 off (default) | on",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Headlight color [R,G,B]",
+   "default": "[1,1,1]",
+   "values": "前照灯颜色 [1,1,1] (default) | 1-by-3 array of RGB triplet values",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam intensity (cd)",
+   "default": "100000",
+   "values": "远光强度 100000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam intensity (cd)",
+   "default": "60000",
+   "values": "近光强度 60000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam cone half angle (deg)",
+   "default": "70",
+   "values": "远光锥半角 70 (default) | positive scalar less than or equal to 90",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam cone half angle (deg)",
+   "default": "70",
+   "values": "近光锥半角 70 (default) | positive scalar less than or equal to 90",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Left headlight beam orientation [Pitch, Yaw] (deg)",
+   "default": "[0,0]",
+   "values": "左前照灯光束方向 [Pitch, Yaw] (deg) [0,0] (default) | 1-by-2 array with values between -180 and 180",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Right headlight beam orientation [Pitch, Yaw] (deg)",
+   "default": "[0,0]",
+   "values": "右前照灯光束方向 [0,0] (default) | 1-by-2 array with values between -180 and 180",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Brake light intensity (cd/m^2)",
+   "default": "500",
+   "values": "强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Reverse light intensity (cd/m^2)",
+   "default": "500",
+   "values": "强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Turn signal light intensity (cd/m^2)",
+   "default": "500",
+   "values": "强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Period (s)",
+   "default": "1",
+   "values": "转向信号灯周期 1 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Pulse width (% of period)",
+   "default": "50",
+   "values": "脉冲宽度 50 (default) | positive scalar less than 100",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "输出车辆的位置和方向 off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

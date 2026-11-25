@@ -1,0 +1,102 @@
+{
+ "key": "Minimum",
+ "title": "Minimum",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Statistics/Minimum.md",
+  "DSP System Toolbox/Statistics/Minimum.md"
+ ],
+ "text": "Minimum values of input or sequence of inputs, 2 inputs, 2 outputs, no direct feedthrough, {Reset port} sets Reset event; {Mode}, {Index base} sets the base of the minimum value, {Find the minimum value over} sets the dimension over which the block computes the minimum value Each, {Dimension} sets the custom dimension, {Input processing} sets the method to process the input in running mode Columns, {Rounding mode} sets the method of rounding, {Saturate on integer overflow} sets the method of overflow action, {Product output}, {Accumulator} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Data input vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset port scalar"
+  },
+  {
+   "name": "Val",
+   "direction": "output",
+   "summary": "Minimum values along the specified dimension scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "Index of the minimum values along the specified dimension scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Index",
+   "values": "Mode in which the block operates Value and Index (default) | Value | Index | Running",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Index base",
+   "default": "One",
+   "values": "Base of the minimum value index One (default) | Zero",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Find the minimum value over",
+   "default": "column",
+   "values": "Dimension over which the block computes the minimum value Each column (default) | Each row | Entire input | Specified dimension",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Custom dimension 1 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process the input in running mode Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output data type Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "Accumulator data type Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

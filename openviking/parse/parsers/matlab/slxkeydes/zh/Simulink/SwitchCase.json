@@ -1,0 +1,44 @@
+{
+ "key": "SwitchCase",
+ "title": "Switch Case",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Switch_Case.md",
+  "HDL Coder/Ports & Subsystems/Switch_Case.md"
+ ],
+ "text": "使用类似于 switch 语句的逻辑选择子系统执行，输入 1 路、输出 1 路；{Case 条件} 指定 case 值、{显示默认 case} 控制默认输出端口的显示、{启用过零检测} 控制过零检测，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u1 (logical operator)",
+   "direction": "input",
+   "summary": "case 选择的值 标量"
+  },
+  {
+   "name": "case",
+   "direction": "output",
+   "summary": "用于 Switch Case Action Subsystem 模块的动作信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "Case 条件",
+   "default": "{1}",
+   "values": "指定 case 值 {1} (默认) | case 列表",
+   "group": ""
+  },
+  {
+   "name": "显示默认 case",
+   "default": "on",
+   "values": "控制默认输出端口的显示 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "控制过零检测 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

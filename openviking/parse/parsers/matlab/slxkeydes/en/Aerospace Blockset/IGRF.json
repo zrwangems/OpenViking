@@ -1,0 +1,133 @@
+{
+ "key": "IGRF",
+ "title": "International Geomagnetic Reference Field",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/International_Geomagnetic_Reference_Field.md"
+ ],
+ "text": "Calculate Earth magnetic field and secular variation using International Geomagnetic Reference Field, 4 inputs, 10 outputs, {Month} sets Input month; {Generation} sets the international Geomagnetic Reference Field generation, {Units}, {Input decimal year} sets the desired year, {Day} sets the input day, {Year} sets the input year, {Action for out-of-range input} sets the out-of-range block behavior and {Output secular variance} sets the secular variances. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "Height scalar"
+  },
+  {
+   "name": "μ (deg)",
+   "direction": "input",
+   "summary": "Latitude scalar"
+  },
+  {
+   "name": "l (deg)",
+   "direction": "input",
+   "summary": "Longitude scalar"
+  },
+  {
+   "name": "dyear",
+   "direction": "input",
+   "summary": "Desired year scalar"
+  },
+  {
+   "name": "XYZ",
+   "direction": "output",
+   "summary": "Magnetic field vector"
+  },
+  {
+   "name": "H",
+   "direction": "output",
+   "summary": "Horizontal intensity scalar"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "Declination scalar"
+  },
+  {
+   "name": "l",
+   "direction": "output",
+   "summary": "Inclination scalar"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "Total intensity scalar"
+  },
+  {
+   "name": "DXDYDZ",
+   "direction": "output",
+   "summary": "Secular variation of magnetic field vector"
+  },
+  {
+   "name": "DH",
+   "direction": "output",
+   "summary": "Secular variation of horizontal intensity scalar"
+  },
+  {
+   "name": "DD",
+   "direction": "output",
+   "summary": "Secular variation of declination scalar"
+  },
+  {
+   "name": "DI",
+   "direction": "output",
+   "summary": "Secular variation of inclination scalar"
+  },
+  {
+   "name": "DF",
+   "direction": "output",
+   "summary": "Secular variation of total intensity scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generation",
+   "default": "IGRF-14",
+   "values": "International Geomagnetic Reference Field generation IGRF-14 (default) | IGRF-13 | IGRF-11 | IGRF-12",
+   "group": ""
+  },
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Input decimal year",
+   "default": "on",
+   "values": "Desired year on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "Input month January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Day",
+   "default": "1",
+   "values": "Input day 1 (default) | 1 to 31",
+   "group": ""
+  },
+  {
+   "name": "Year",
+   "default": "2025",
+   "values": "Input year 2025 (default) | 1900 to 2030",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Output secular variance",
+   "default": "on",
+   "values": "Secular variances on (default) | off",
+   "group": ""
+  }
+ ]
+}

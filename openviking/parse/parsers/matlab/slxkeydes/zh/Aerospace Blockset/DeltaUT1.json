@@ -1,0 +1,50 @@
+{
+ "key": "DeltaUT1",
+ "title": "Delta UT1",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Delta_UT1.md",
+  "Aerospace Blockset/Utilities/Axes Transformations/Delta_UT1.md"
+ ],
+ "text": "根据国际天文学联合会 (IAU) 2000A 参考系统计算主世界时 (UT1) 与协调世界时 (UTC) 之间的差值，输入 1 路；按 {Action for out-of-range input} 指定超出范围时的模块行为；{IERS data file} 指定地球定向数据、{IERS data URL} 指定网站或地球定向数据文件、{Destination folder} 指定 IERS 数据文件文件夹 Current，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "UTC",
+   "direction": "input",
+   "summary": "UTC 的 UT1 modified Julian date"
+  },
+  {
+   "name": "ΔUT1",
+   "direction": "",
+   "summary": "UT1 与 UTC 之间的差值 double"
+  }
+ ],
+ "params": [
+  {
+   "name": "IERS data file",
+   "default": "aeroiersdata.mat",
+   "values": "地球定向数据 aeroiersdata.mat (default) | MAT-file",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "IERS data URL",
+   "default": "https://maia.usno.navy.mil/ser7/finals2000A.data",
+   "values": "网站或地球定向数据文件 https://maia.usno.navy.mil/ser7/finals2000A.data (default) | web site address | file name",
+   "group": ""
+  },
+  {
+   "name": "Destination folder",
+   "default": "Folder",
+   "values": "IERS 数据文件文件夹 Current Folder (default)",
+   "group": ""
+  }
+ ]
+}

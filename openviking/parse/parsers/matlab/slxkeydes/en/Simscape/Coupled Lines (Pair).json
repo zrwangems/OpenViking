@@ -1,0 +1,13 @@
+{
+ "key": "Coupled Lines (Pair)",
+ "title": "Coupled Lines (Pair)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Lines/Coupled_Lines_Pair.md"
+ ],
+ "text": "Magnetically couple two lines.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

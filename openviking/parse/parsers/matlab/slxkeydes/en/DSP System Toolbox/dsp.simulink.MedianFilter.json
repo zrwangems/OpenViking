@@ -1,0 +1,38 @@
+{
+ "key": "dsp.simulink.MedianFilter",
+ "title": "Median Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Median_Filter.md",
+  "DSP System Toolbox/Filtering/Filter Designs/Median_Filter.md"
+ ],
+ "text": "Median filter, 1 input, 1 output; {Window length} sets the length of the sliding window and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Data input column vector | row vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Moving median output column vector | row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length",
+   "default": "5",
+   "values": "Length of the sliding window 5 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

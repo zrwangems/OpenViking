@@ -1,0 +1,145 @@
+{
+ "key": "Feed Forward PLL",
+ "title": "PLL with Feed Forward",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Signal Management/PLL_with_Feed_Forward.md"
+ ],
+ "text": "Compute position and angular frequency from orthogonal sinusoidal signals, 4 inputs, 4 outputs, {Position unit} sets Unit of position output; {Enable input normalization} enables block to normalize inputs, {Use input port for computed parameters (run-time motor swap)} sets the option to enable input port to accept computed, {Position output} sets the type of position output, {Discrete step size (s)} sets the sample time after which block executes again, {Frequency ratio} sets the ratio of frequencies of output and input, {Maximum application frequency (Hz)} sets the maximum applicable input frequency, {Cutoff frequency for output filter (Hz)} sets the cutoff frequency of lowpass filter, {Number of data points for lookup table} sets the size of lookup table array, {Proportional (P)} sets the proportional controller gain, {Integral (I)} sets the integral controller gain, {Position data type} sets the data type of position, {Frequency unit} sets the unit of angular frequency output, {Frequency data type} sets the data type of angular frequency output and {Table data type} sets the data type of sine-cosine lookup table. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "α",
+   "direction": "input",
+   "summary": "α -axis signal scalar"
+  },
+  {
+   "name": "β",
+   "direction": "input",
+   "summary": "β -axis signal scalar"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "External reset pulse scalar"
+  },
+  {
+   "name": "ParameterBus",
+   "direction": "input",
+   "summary": "Computed parameters for PLL with Feed Forward bus"
+  },
+  {
+   "name": "θ",
+   "direction": "output",
+   "summary": "Angular position scalar"
+  },
+  {
+   "name": "Sin θ",
+   "direction": "output",
+   "summary": "Sine of angular position scalar"
+  },
+  {
+   "name": "Cos θ",
+   "direction": "output",
+   "summary": "Cos of angular position scalar"
+  },
+  {
+   "name": "ω",
+   "direction": "output",
+   "summary": "Angular frequency scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable input normalization",
+   "default": "on",
+   "values": "Enable block to normalize inputs on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Use input port for computed parameters (run-time motor swap)",
+   "default": "off",
+   "values": "Option to enable input port to accept computed parameters off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Position output",
+   "default": "position",
+   "values": "Type of position output Angular position (default) | Sine and Cosine Position",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Sample time after which block executes again 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency ratio",
+   "default": "1",
+   "values": "Ratio of frequencies of output and input signals 1 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Maximum application frequency (Hz)",
+   "default": "7500",
+   "values": "Maximum applicable input frequency 7500 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Cutoff frequency for output filter (Hz)",
+   "default": "15",
+   "values": "Cutoff frequency of lowpass filter 15 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Number of data points for lookup table",
+   "default": "1024",
+   "values": "Size of lookup table array 1024 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Proportional (P)",
+   "default": "942.4778",
+   "values": "Proportional controller gain 942.4778 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Integral (I)",
+   "default": "222066.099",
+   "values": "Integral controller gain 222066.099 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Position unit",
+   "default": "Degrees",
+   "values": "Unit of position output Degrees (default) | Radians | Per-unit",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Position data type",
+   "default": "single",
+   "values": "Data type of position output single (default) | double | fixed point",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Frequency unit",
+   "default": "Degrees/sec",
+   "values": "Unit of angular frequency output Degrees/sec (default) | Radians/sec | Hz",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Frequency data type",
+   "default": "single",
+   "values": "Data type of angular frequency output single (default) | double | fixed point",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Table data type",
+   "default": "single",
+   "values": "Data type of sine-cosine lookup table single (default) | double | fixed point",
+   "group": "Datatypes"
+  }
+ ]
+}

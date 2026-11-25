@@ -1,0 +1,13 @@
+{
+ "key": "Single-Acting Rotary Actuator (IL)",
+ "title": "Single-Acting Rotary Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Single_Acting_Rotary_Actuator_IL.md"
+ ],
+ "text": "Single-acting rotary actuator in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

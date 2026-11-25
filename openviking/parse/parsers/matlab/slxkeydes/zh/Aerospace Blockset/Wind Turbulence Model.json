@@ -1,0 +1,114 @@
+{
+ "key": "Wind Turbulence Model",
+ "title": "Dryden Wind Turbulence Model (Continuous (+q -r))",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Continuous_q_r.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Continuous_q_r_2.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Continuous_q_r_3.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Discrete_q_r.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Discrete_q_r_2.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Discrete_q_r_3.md",
+  "Aerospace Blockset/Environment/Wind/Von_Karman_Wind_Turbulence_Model_Continuous_q_r.md",
+  "Aerospace Blockset/Environment/Wind/Von_Karman_Wind_Turbulence_Model_Continuous_q_r_2.md",
+  "Aerospace Blockset/Environment/Wind/Von_Karman_Wind_Turbulence_Model_Continuous_q_r_3.md"
+ ],
+ "text": "使用 Dryden 速度谱生成连续风湍流，输入 3 路、输出 2 路；按 {Specification} 指定军用参考标准；{Units} 指定风速单位 Metric、{Model type} 指定湍流模型 Continuous Dryden、{Wind speed at 6 m defines the low altitude intensity} 指定实测风速、{Wind direction at 6 m (degrees clockwise from north)} 指定实测风向、{Probability of exceedance of high-altitude intensity} 指定湍流强度 10^-2、{Scale length at medium/high altitudes (m)} 指定湍流尺度长度、{Wingspan} 指定翼展、{Band limited noise sample time (seconds)} 指定噪声采样时间、{Random noise seeds} 指定噪声种子、{Turbulence on} 指定湍流信号，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "高度 scalar"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "飞行器速度 scalar"
+  },
+  {
+   "name": "DCM",
+   "direction": "input",
+   "summary": "方向余弦矩阵 3-by-3 matrix"
+  },
+  {
+   "name": "V wind",
+   "direction": "output",
+   "summary": "湍流速度 three-element vector"
+  },
+  {
+   "name": "ω wind",
+   "direction": "output",
+   "summary": "湍流角速率 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "风速单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Specification",
+   "default": "MIL-F-8785C",
+   "values": "军用参考标准 MIL-F-8785C (default) | MIL-HDBK-1797 | MIL-HDBK-1797B",
+   "group": ""
+  },
+  {
+   "name": "Model type",
+   "default": "-r)",
+   "values": "湍流模型 Continuous Dryden (+q -r) (default) | Continuous Von Karman (+q +r) | Continuous Von Karman (-q +r) | Continuous Von Karman (+q -r) | Continuous Dryden (+q +r) | Continuous Dryden (-q +r) | Discrete Dryden (+q -r) | Discrete Dryden (+q +r) | Discrete Dryden (-q +r)",
+   "group": ""
+  },
+  {
+   "name": "Wind speed at 6 m defines the low altitude intensity",
+   "default": "15",
+   "values": "实测风速 15 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Wind direction at 6 m (degrees clockwise from north)",
+   "default": "0",
+   "values": "实测风向 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Probability of exceedance of high-altitude intensity",
+   "default": "Light",
+   "values": "湍流强度 10^-2 - Light (default) | 10^-1 | 2x10^-1 | 10^-3 - Moderate | 10^-4 | 10^-5 - Severe | 10^-6",
+   "group": ""
+  },
+  {
+   "name": "Scale length at medium/high altitudes (m)",
+   "default": "533.4",
+   "values": "湍流尺度长度 533.4 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Wingspan",
+   "default": "10",
+   "values": "翼展 10 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Band limited noise sample time (seconds)",
+   "default": "0.1",
+   "values": "噪声采样时间 0.1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Random noise seeds",
+   "default": "23344]",
+   "values": "噪声种子 [ug vg wg pg] [23341 23342 23343 23344] (default) | four-element vector",
+   "group": ""
+  },
+  {
+   "name": "Turbulence on",
+   "default": "on",
+   "values": "湍流信号 on (default) | off",
+   "group": ""
+  }
+ ]
+}

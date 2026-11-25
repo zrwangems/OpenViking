@@ -1,0 +1,43 @@
+{
+ "key": "Change Detector",
+ "title": "Change Detector",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Change_Detector.md"
+ ],
+ "text": "布尔信号变化检测器，输入 1 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Change detection} 指定变化条件 Rising、{Initial condition} 指定初始布尔值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "布尔输入 0 or 1"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "变化报告 0 or 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Change detection",
+   "default": "edge",
+   "values": "变化条件 Rising edge (default) | Falling edge | Either edge",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "初始布尔值 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PS Selector",
+ "title": "PS Selector",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Selector.md"
+ ],
+ "text": "Select elements from vector or matrix input physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

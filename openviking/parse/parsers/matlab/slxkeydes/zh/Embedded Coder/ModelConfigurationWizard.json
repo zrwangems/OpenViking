@@ -1,0 +1,36 @@
+{
+ "key": "ModelConfigurationWizard",
+ "title": "Custom MATLAB file",
+ "toolbox": "Embedded Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "Embedded Coder/Configuration Wizards/Custom_MATLAB_file.md",
+  "Embedded Coder/Configuration Wizards/ERT_optimized_for_fixed_point.md",
+  "Embedded Coder/Configuration Wizards/ERT_optimized_for_floating_point.md",
+  "Embedded Coder/Configuration Wizards/GRT_debug_for_fixed_floating_point.md",
+  "Embedded Coder/Configuration Wizards/GRT_optimized_for_fixed_floating_point.md"
+ ],
+ "text": "通过使用包含自定义 MATLAB 代码的文件更新父模型的活动配置参数；按 {Configure the model for} 指定配置目标；{Configuration function} 指定自定义 MATLAB 脚本、{Invoke build process after configuration} 指定启动构建过程，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Configure the model for",
+   "default": "Custom",
+   "values": "配置目标 Custom (default) | ERT (optimized for fixed-point) | ERT (optimized for floating-point) | GRT (optimized for fixed/floating-point) | GRT (debug for fixed/floating-point)",
+   "group": ""
+  },
+  {
+   "name": "Configuration function",
+   "default": "rtwsampleconfig",
+   "values": "自定义 MATLAB 脚本 rtwsampleconfig (default)",
+   "group": ""
+  },
+  {
+   "name": "Invoke build process after configuration",
+   "default": "off",
+   "values": "启动构建过程 off (default) | on",
+   "group": ""
+  }
+ ]
+}

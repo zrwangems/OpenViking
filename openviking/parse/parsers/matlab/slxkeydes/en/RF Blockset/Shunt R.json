@@ -1,0 +1,98 @@
+{
+ "key": "Shunt R",
+ "title": "Shunt R",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Series_Shunt RLC/Shunt_R.md"
+ ],
+ "text": "Model shunt resistor, {Plot type} sets Type of data plot X-Y; {Resistance (Ohms)} sets the resistance of the shunt element, {Source of frequency data} sets the frequency data source, {Frequency data (Hz)} sets the frequency data range, {Reference impedance (ohms)}, {Y parameter1} sets the type of parameters, {Y parameter2} sets the type of parameters, {Y format1} plots format Magnitude, {Y format2} plots format Magnitude, {X parameter} sets the frequency plot, {X format} sets the frequency plot format, {Y scale} sets the y-axis scale, {X scale} sets the x-axis scale and {Plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Resistance (Ohms)",
+   "default": "1",
+   "values": "Resistance of the shunt element 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "User-specified",
+   "values": "Frequency data source User-specified (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1:1.0e5:4e6]",
+   "values": "Frequency data range [1:1.0e5:4e6] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "Reference impedance 50 (default) | nonnegative scalar",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "Frequency plot Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Auto",
+   "values": "Frequency plot format Auto (default) | Hz | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y-axis scale Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X-axis scale Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Plot specified data button",
+   "group": "Visualization"
+  }
+ ]
+}

@@ -1,0 +1,280 @@
+{
+ "key": "SM AC3C",
+ "title": "SM AC3C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_AC3C.md"
+ ],
+ "text": "离散时间或连续时间同步电机 AC3C 励磁系统，包括自动电压调节器和励磁机，输入 10 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Initial field voltage, Efd0 (pu)} 指定初始输出电压、{Resistive component of load compensation, R_C (pu)} 指定补偿电阻、{Reactance component of load compensation, X_C (pu)} 指定补偿电抗、{Regulator input filter time constant, T_R (s)} 调节器时间常数、{Voltage regulator proportional gain, K_PR (pu)} 指定电压调节器的比例增益、{Voltage regulator integral gain, K_IR (pu/s)} 指定电压调节器的积分增益、{Voltage regulator derivative gain, K_DR (pu.s)} 指定电压调节器的微分增益、{Lag time constant for derivative channel of PID controller, T_DR (s)} 指定 PID 微分通道的滞后时间常数、{Maximum PID regulator output, V_PIDmax (pu)} 指定 PID 调节器的最大输出、{Minimum PID regulator output, V_PIDmin (pu)} 指定 PID 调节器的最小输出、{Regulator denominator (lag) time constant, T_B (s)} 调节器滞后时间常数、{Regulator numerator (lead) time constant, T_C (s)} 调节器超前时间常数、{Regulator output gain, K_A (pu)} 调节器增益、{Regulator output time constant, T_A (s)} 调节器时间常数、{Maximum regulator output, V_Amax (pu)} 调节器输出上限、{Minimum regulator output, V_Amin (pu)} 调节器输出下限、{Rate feedback time constant, T_F (s)} 指定速率反馈时间常数、{Value of EFD at which feedback gain changes, E_FDN (pu)} 指定反馈增益发生变化时的 EFD 值、{Rate feedback excitation system stabilizer gain, K_F (pu)} 指定速率反馈增益、{Rate feedback excitation system stabilizer gain, K_N (pu)} 指定速率反馈增益、{Alternate OEL input locations (V_OEL)} 指定 OEL 输入位置、{Alternate UEL input locations (V_UEL)} 指定 UEL 输入位置、{Alternate SCL input locations (V_SCL)} 指定 SCL 输入位置、{Exciter field proportional constant, K_E (pu)} 指定励磁机磁场增益、{Exciter field time constant, T_E (s)} 指定励磁机磁场时间常数、{Rectifier loading factor proportional to commutating reactance, K_C (pu)} 指定整流器负载系数、{Demagnetizing factor, function of exciter alternator reactances, K_D (pu)} 指定去磁系数、{Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)} 指定第一饱和输出电压、{Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)} 指定第一饱和查表电压、{Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)} 指定第二饱和输出电压、{Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)} 指定第二饱和查表电压、{Gain associated with regulator and alternator field power supply, K_R (pu)} 调节器与交流发电机磁场电源增益、{Minimum exciter voltage output, V_Emin (pu)} 指定励磁机下限、{Exciter field current limit, V_FEmax (pu)} 指定励磁机上限，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "电压参考值 scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "来自稳定器的输入 scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "端电压 scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "端电流 scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "过励限制信号 scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "欠励限制信号 scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "求和点定子电流限制信号 scalar"
+  },
+  {
+   "name": "V_SCLoel",
+   "direction": "input",
+   "summary": "用于过励限制器的接管定子电流限制 scalar"
+  },
+  {
+   "name": "V_SCLuel",
+   "direction": "input",
+   "summary": "用于欠励限制器的接管定子电流限制 scalar"
+  },
+  {
+   "name": "Ifd_pu",
+   "direction": "input",
+   "summary": "实测励磁电流 scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "励磁电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "初始输出电压 1 (default) | real number",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "补偿电阻 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "补偿电抗 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0",
+   "values": "调节器时间常数 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Voltage regulator proportional gain, K_PR (pu)",
+   "default": "1",
+   "values": "电压调节器的比例增益 1 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator integral gain, K_IR (pu/s)",
+   "default": "0",
+   "values": "电压调节器的积分增益 0 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator derivative gain, K_DR (pu.s)",
+   "default": "0",
+   "values": "电压调节器的微分增益 0 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Lag time constant for derivative channel of PID controller, T_DR (s)",
+   "default": "1",
+   "values": "PID 微分通道的滞后时间常数 1 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum PID regulator output, V_PIDmax (pu)",
+   "default": "3.2",
+   "values": "PID 调节器的最大输出 3.2 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum PID regulator output, V_PIDmin (pu)",
+   "default": "-3.2",
+   "values": "PID 调节器的最小输出 -3.2 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator denominator (lag) time constant, T_B (s)",
+   "default": "0",
+   "values": "调节器滞后时间常数 0 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator numerator (lead) time constant, T_C (s)",
+   "default": "0",
+   "values": "调节器超前时间常数 0 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator output gain, K_A (pu)",
+   "default": "45.62",
+   "values": "调节器增益 45.62 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator output time constant, T_A (s)",
+   "default": "0.013",
+   "values": "调节器时间常数 0.013 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum regulator output, V_Amax (pu)",
+   "default": "1",
+   "values": "调节器输出上限 1 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum regulator output, V_Amin (pu)",
+   "default": "-0.95",
+   "values": "调节器输出下限 -0.95 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Rate feedback time constant, T_F (s)",
+   "default": "1",
+   "values": "速率反馈时间常数 1 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Value of EFD at which feedback gain changes, E_FDN (pu)",
+   "default": "2.36",
+   "values": "反馈增益发生变化时的 EFD 值 2.36 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Rate feedback excitation system stabilizer gain, K_F (pu)",
+   "default": "0.143",
+   "values": "速率反馈增益 0.143 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Rate feedback excitation system stabilizer gain, K_N (pu)",
+   "default": "0.05",
+   "values": "速率反馈增益 0.05 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "Unused",
+   "values": "OEL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "Unused",
+   "values": "UEL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "Unused",
+   "values": "SCL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Exciter field proportional constant, K_E (pu)",
+   "default": "1",
+   "values": "励磁机磁场增益 1 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter field time constant, T_E (s)",
+   "default": "0.17",
+   "values": "励磁机磁场时间常数 0.17 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C (pu)",
+   "default": "0.104",
+   "values": "整流器负载系数 0.104 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Demagnetizing factor, function of exciter alternator reactances, K_D (pu)",
+   "default": "0.499",
+   "values": "去磁系数 0.499 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)",
+   "default": "6.24",
+   "values": "第一饱和输出电压 6.24 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)",
+   "default": "1.143",
+   "values": "第一饱和查表电压 1.143 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)",
+   "default": "4.68",
+   "values": "第二饱和输出电压 4.68 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)",
+   "default": "0.1",
+   "values": "第二饱和查表电压 0.1 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Gain associated with regulator and alternator field power supply, K_R (pu)",
+   "default": "3.77",
+   "values": "调节器与交流发电机磁场电源增益 3.77 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Minimum exciter voltage output, V_Emin (pu)",
+   "default": "0.1",
+   "values": "励磁机下限 0.1 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter field current limit, V_FEmax (pu)",
+   "default": "16",
+   "values": "励磁机上限 16 (default) | real number",
+   "group": "Exciter"
+  }
+ ]
+}

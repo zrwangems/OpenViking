@@ -1,0 +1,133 @@
+{
+ "key": "IGRF",
+ "title": "International Geomagnetic Reference Field",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/International_Geomagnetic_Reference_Field.md"
+ ],
+ "text": "使用 International Geomagnetic Reference Field 计算地球磁场和长期变化，输入 4 路、输出 10 路；按 {Action for out-of-range input} 指定超出范围时的模块行为；{Generation} 指定 International Geomagnetic Reference Field generation、{Units} 指定单位 Metric、{Input decimal year} 指定所需年份、{Month} 指定 Input month、{Day} 指定 Input day、{Year} 指定 Input year、{Output secular variance} 指定 Secular variances，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "高度 scalar"
+  },
+  {
+   "name": "μ (deg)",
+   "direction": "input",
+   "summary": "纬度 scalar"
+  },
+  {
+   "name": "l (deg)",
+   "direction": "input",
+   "summary": "经度 scalar"
+  },
+  {
+   "name": "dyear",
+   "direction": "input",
+   "summary": "所需年份 scalar"
+  },
+  {
+   "name": "XYZ",
+   "direction": "output",
+   "summary": "磁场 vector"
+  },
+  {
+   "name": "H",
+   "direction": "output",
+   "summary": "水平强度 scalar"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "磁偏角 scalar"
+  },
+  {
+   "name": "l",
+   "direction": "output",
+   "summary": "磁倾角 scalar"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "总强度 scalar"
+  },
+  {
+   "name": "DXDYDZ",
+   "direction": "output",
+   "summary": "磁场的长期变化 vector"
+  },
+  {
+   "name": "DH",
+   "direction": "output",
+   "summary": "水平强度的长期变化 scalar"
+  },
+  {
+   "name": "DD",
+   "direction": "output",
+   "summary": "磁偏角的长期变化 scalar"
+  },
+  {
+   "name": "DI",
+   "direction": "output",
+   "summary": "磁倾角的长期变化 scalar"
+  },
+  {
+   "name": "DF",
+   "direction": "output",
+   "summary": "总强度的长期变化 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generation",
+   "default": "IGRF-14",
+   "values": "International Geomagnetic Reference Field generation IGRF-14 (default) | IGRF-13 | IGRF-11 | IGRF-12",
+   "group": ""
+  },
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Input decimal year",
+   "default": "on",
+   "values": "所需年份 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "Input month January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Day",
+   "default": "1",
+   "values": "Input day 1 (default) | 1 to 31",
+   "group": ""
+  },
+  {
+   "name": "Year",
+   "default": "2025",
+   "values": "Input year 2025 (default) | 1900 to 2030",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Output secular variance",
+   "default": "on",
+   "values": "Secular variances on (default) | off",
+   "group": ""
+  }
+ ]
+}

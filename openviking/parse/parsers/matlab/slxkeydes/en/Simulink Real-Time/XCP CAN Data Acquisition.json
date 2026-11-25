@@ -1,0 +1,69 @@
+{
+ "key": "XCP CAN Data Acquisition",
+ "title": "XCP CAN Data Acquisition",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/CAN/XCP_CAN_Data_Acquisition.md",
+  "Vehicle Network Toolbox/XCP Communication/CAN/XCP_CAN_Data_Acquisition.md"
+ ],
+ "text": "Acquire selected measurements from configured server connection, 1 output, {Block Output Settings} sets the port output as Compu method conversion values or raw values Raw values as double; {Config name} sets the xCP CAN session name select, {Event name} selects an event select, {All Measurements} sets the list all measurements available for event measurements, {Selected Measurements} sets the list selected measurements measurement, {DAQ List Priority} sets a priority value for server device driver priority, {Sample time} sets the sampling time of block and {Enable Timestamp} enables reading timestamp from incoming DTO. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Output measurement samples defined by A2L file"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "",
+   "values": "Specify XCP CAN session name select from list",
+   "group": ""
+  },
+  {
+   "name": "Event name",
+   "default": "",
+   "values": "Select an event select from list",
+   "group": ""
+  },
+  {
+   "name": "All Measurements",
+   "default": "",
+   "values": "List all measurements available for event measurements list",
+   "group": ""
+  },
+  {
+   "name": "Selected Measurements",
+   "default": "",
+   "values": "List selected measurements measurement names",
+   "group": ""
+  },
+  {
+   "name": "Block Output Settings",
+   "default": "conversion)",
+   "values": "Set the port output as Compu method conversion values or raw values Raw values as double (no Compu method conversion) (default) | Raw values (no Compu method conversion) | Physical values (apply Compu method conversion)",
+   "group": ""
+  },
+  {
+   "name": "DAQ List Priority",
+   "default": "",
+   "values": "Specify a priority value for server device driver priority value",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Specify sampling time of block -1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable Timestamp",
+   "default": "off",
+   "values": "Enable reading timestamp from incoming DTO packets off (default) | on",
+   "group": ""
+  }
+ ]
+}

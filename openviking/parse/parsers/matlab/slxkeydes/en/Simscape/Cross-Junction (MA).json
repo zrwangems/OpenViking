@@ -1,0 +1,13 @@
+{
+ "key": "Cross-Junction (MA)",
+ "title": "Cross-Junction (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/Cross_Junction_MA.md"
+ ],
+ "text": "Cross-junction in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

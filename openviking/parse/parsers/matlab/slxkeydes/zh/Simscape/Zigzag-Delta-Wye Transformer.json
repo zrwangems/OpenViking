@@ -1,0 +1,13 @@
+{
+ "key": "Zigzag-Delta-Wye Transformer",
+ "title": "Zigzag-Delta-Wye Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Zigzag_Delta_Wye_Transformer.md"
+ ],
+ "text": "具有饱和能力的三柱铁芯线性非理想 zigzag-delta-wye 变压器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

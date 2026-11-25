@@ -1,0 +1,44 @@
+{
+ "key": "BPSK Modulator Baseband",
+ "title": "BPSK Modulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/PM/BPSK_Modulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/BPSK_Modulator_Baseband.md"
+ ],
+ "text": "使用 BPSK 方法进行调制，输入 1 路、输出 1 路；按 {Output data type} 指定输出数据类型；{Phase offset (rad)} 指定第 0 个点的相位偏移、{View constellation} 绘制参考星座的选项，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数据 scalar | vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "BPSK 调制的基带信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "第 0 个点的相位偏移 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "View constellation",
+   "default": "",
+   "values": "绘制参考星座的选项 button",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit via back propagation |",
+   "group": "Data Types"
+  }
+ ]
+}

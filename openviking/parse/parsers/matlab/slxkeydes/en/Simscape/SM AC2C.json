@@ -1,0 +1,250 @@
+{
+ "key": "SM AC2C",
+ "title": "SM AC2C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_AC2C.md"
+ ],
+ "text": "Discrete-time or continuous-time synchronous machine AC2C excitation system including an automatic voltage regulator and an exciter, 10 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Initial field voltage, Efd0 (pu)} sets the initial output voltage, {Resistive component of load compensation, R_C (pu)} sets the compensation resistance, {Reactance component of load compensation, X_C (pu)} sets the compensation reactance, {Regulator input filter time constant, T_R (s)} sets the regulator time constant, {Regulator output gain, K_A (pu)} sets the regulator gain, {Regulator output time constant, T_A (s)} sets the regulator time constant, {Regulator denominator (lag) time constant, T_B (s)} sets the regulator lag time constant, {Regulator numerator (lead) time constant, T_C (s)} sets the regulator lead time constant, {Second stage regulator gain, K_B (pu)}, {Exciter field current regulator feedback gain, K_H (pu)}, {Rate feedback excitation system stabilizer gain, K_F (pu)} sets the rate feedback gain, {Rate feedback time constant, T_F (s)}, {Maximum regulator output, V_Amax (pu)} sets the upper limit of the regulator output, {Minimum regulator output, V_Amin (pu)} sets the lower limit of the regulator output, {Maximum exciter field voltage, E_FEmax (pu)} sets the upper limit of the exciter voltage, {Minimum exciter field voltage, E_FEmin (pu)} sets the lower limit of the exciter voltage, {Alternate OEL input locations (V_OEL)} sets the oEL input location, {Alternate UEL input locations (V_UEL)} sets the uEL input location, {Alternate SCL input locations (V_SCL)} sets the sCL input location, {Exciter field proportional constant, K_E (pu)} sets the exciter field gain, {Exciter field time constant, T_E (s)}, {Rectifier loading factor proportional to commutating reactance, K_C (pu)}, {Demagnetizing factor, function of exciter alternator reactances, K_D (pu)} sets the demagnetization factor, {Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)} sets the first saturation output voltage, {Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)} sets the first saturation lookup voltage, {Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)} sets the second saturation output voltage, {Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)} sets the second saturation lookup voltage, {Maximum exciter field current limit reference, V_FEmax (pu)} sets the exciter upper limit and {Minimum exciter voltage output, V_Emin (pu)} sets the exciter lower limit. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "Voltage reference scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "Input from stabilizer scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "Terminal voltage scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "Terminal current scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "Overexcitation limit signal scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "Underexcitation limit signal scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "Summation point stator current limit signal scalar"
+  },
+  {
+   "name": "V_OELscl",
+   "direction": "input",
+   "summary": "Take-over stator current limit for overexcitation limiter scalar"
+  },
+  {
+   "name": "V_UELscl",
+   "direction": "input",
+   "summary": "Take-over stator current limit for underexcitation limiter scalar"
+  },
+  {
+   "name": "Ifd_pu",
+   "direction": "input",
+   "summary": "Measured field current scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "Field voltage scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "Initial output voltage 1 (default) | real number",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "Compensation resistance 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "Compensation reactance 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0",
+   "values": "Regulator time constant 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator output gain, K_A (pu)",
+   "default": "400",
+   "values": "Regulator gain 400 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator output time constant, T_A (s)",
+   "default": "0.01",
+   "values": "Regulator time constant 0.01 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator denominator (lag) time constant, T_B (s)",
+   "default": "0",
+   "values": "Regulator lag time constant 0 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator numerator (lead) time constant, T_C (s)",
+   "default": "0",
+   "values": "Regulator lead time constant 0 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Second stage regulator gain, K_B (pu)",
+   "default": "25",
+   "values": "Second stage regulator gain 25 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Exciter field current regulator feedback gain, K_H (pu)",
+   "default": "1",
+   "values": "Exciter field current regulator feedback gain 1 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Rate feedback excitation system stabilizer gain, K_F (pu)",
+   "default": "0.03",
+   "values": "Rate feedback gain 0.03 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Rate feedback time constant, T_F (s)",
+   "default": "1",
+   "values": "Rate feedback time constant 1 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum regulator output, V_Amax (pu)",
+   "default": "8",
+   "values": "Upper limit of the regulator output 8 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum regulator output, V_Amin (pu)",
+   "default": "-8",
+   "values": "Lower limit of the regulator output -8 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum exciter field voltage, E_FEmax (pu)",
+   "default": "105",
+   "values": "Upper limit of the exciter voltage 105 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum exciter field voltage, E_FEmin (pu)",
+   "default": "-95",
+   "values": "Lower limit of the exciter voltage -95 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "Unused",
+   "values": "OEL input location Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "Unused",
+   "values": "UEL input location Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "Unused",
+   "values": "SCL input location Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Exciter field proportional constant, K_E (pu)",
+   "default": "1",
+   "values": "Exciter field gain 1 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter field time constant, T_E (s)",
+   "default": "0.6",
+   "values": "Exciter field time constant 0.6 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C (pu)",
+   "default": "0.28",
+   "values": "Rectifier loading factor 0.28 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Demagnetizing factor, function of exciter alternator reactances, K_D (pu)",
+   "default": "0.35",
+   "values": "Demagnetization factor 0.35 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)",
+   "default": "4.4",
+   "values": "First saturation output voltage 4.4 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)",
+   "default": "0.037",
+   "values": "First saturation lookup voltage 0.037 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)",
+   "default": "3.3",
+   "values": "Second saturation output voltage 3.3 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)",
+   "default": "0.012",
+   "values": "Second saturation lookup voltage 0.012 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Maximum exciter field current limit reference, V_FEmax (pu)",
+   "default": "4.4",
+   "values": "Exciter upper limit 4.4 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Minimum exciter voltage output, V_Emin (pu)",
+   "default": "0",
+   "values": "Exciter lower limit 0 (default) | real number",
+   "group": "Exciter"
+  }
+ ]
+}

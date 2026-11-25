@@ -1,0 +1,49 @@
+{
+ "key": "Audio Capture",
+ "title": "Audio Capture",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Audio_Capture.md"
+ ],
+ "text": "从输入音频设备捕获音频样本并发送到算法，输入 1 路、输出 1 路；按 {Data type} 指定音频设备的数据类型；{Number of channels} 指定数据通道数、{Samples per frame} 指定从音频设备读取的数据向量大小、{Sample time} 指定采样时间，单位为秒，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "来自音频捕获接口的数据消息 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "来自采集音频的数据帧 M -element vector | M -by- C matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data type",
+   "default": "int16",
+   "values": "音频设备的数据类型 int16 (default) | int8 | int32",
+   "group": ""
+  },
+  {
+   "name": "Number of channels",
+   "default": "2",
+   "values": "数据通道数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "4410",
+   "values": "从音频设备读取的数据向量大小 4410 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间，单位为秒 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

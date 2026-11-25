@@ -1,0 +1,13 @@
+{
+ "key": "Interface (2P-MA)",
+ "title": "Interface (2P-MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Fluid Network Interfaces/Interface_2P_MA.md"
+ ],
+ "text": "Two-phase fluid and moist air network interface.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Cone Clutch",
+ "title": "Cone Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Cone_Clutch.md"
+ ],
+ "text": "Cone clutch with plates that engage when normal force exceeds threshold.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

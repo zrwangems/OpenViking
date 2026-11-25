@@ -1,0 +1,66 @@
+{
+ "key": "PI Controller with Integral Anti-Windup (Discrete or Continuous)",
+ "title": "PI Controller with Integral Anti-Windup (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/PI_Controller_with_Integral_Anti_Windup_Discrete_or_Continuous.md"
+ ],
+ "text": "带积分抗饱和的离散时间或连续时间 PI 控制，输入 2 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Proportional gain} 指定 K p、{Integral gain} 指定 K i、{Upper saturation limit} 指定 B、{Lower saturation limit} 指定 A、{Integrator initial condition} 指定积分器初始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "e",
+   "direction": "input",
+   "summary": "误差信号 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "积分器增益重置 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "1",
+   "values": "K i 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Upper saturation limit",
+   "default": "5",
+   "values": "B 5 (default) | scalar greater than the value of the Lower saturation limit parameter",
+   "group": ""
+  },
+  {
+   "name": "Lower saturation limit",
+   "default": "-5",
+   "values": "A -5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integrator initial condition",
+   "default": "0",
+   "values": "积分器初始值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

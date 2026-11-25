@@ -1,0 +1,153 @@
+{
+ "key": "International Standard Atmosphere Model",
+ "title": "ISA Atmosphere Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Atmosphere/ISA_Atmosphere_Model.md",
+  "Aerospace Blockset/Environment/Atmosphere/Lapse_Rate_Model.md"
+ ],
+ "text": "实现国际标准大气 (ISA)，输入 1 路、输出 6 路；按 {Action for out-of-range input} 指定超出范围时的模块行为；{Use extended ISA model} 指定实现范围、{S}、{T ref} 指定参考温度、{μ ref} 指定参考动力粘度 1.716e-5、{Output kinematic and dynamic viscosity} 输出运动粘度和动力粘度、{Change atmospheric parameters} 指定自定义参数、{Acceleration due to gravity (m/s^2)} 指定加速度、{Ratio of specific heats} 指定比热比、{Characteristic gas constant (J/Kg/K)} 指定气体常数、{Lapse rate (K/m)} 指定递减率、{Height of troposphere (m)} 指定对流层高度、{Height of tropopause (m)} 指定对流层顶高度、{Air density at mean sea level (Kg/m^3)} 指定空气密度、{Ambient pressure at mean sea level (N/m^2)} 指定环境压力、{Ambient temperature at mean sea level (K)} 指定环境温度、{Lowest altitude (m)} 指定最低高度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "h (m)",
+   "direction": "input",
+   "summary": "位势高度 scalar | m -by- n array"
+  },
+  {
+   "name": "T (K)",
+   "direction": "output",
+   "summary": "温度 scalar | m -by- n array"
+  },
+  {
+   "name": "a (m/s)",
+   "direction": "output",
+   "summary": "声速 scalar | m -by- n array"
+  },
+  {
+   "name": "P (Pa)",
+   "direction": "output",
+   "summary": "空气压力 scalar | m -by- n array"
+  },
+  {
+   "name": "ρ (kg/m 3 )",
+   "direction": "output",
+   "summary": "密度 scalar | m -by- n array"
+  },
+  {
+   "name": "ν (m 2 /s)",
+   "direction": "output",
+   "summary": "运动粘度 scalar | m -by- n array"
+  },
+  {
+   "name": "μ (N s/m 2 )",
+   "direction": "output",
+   "summary": "动力粘度 scalar | m -by- n array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use extended ISA model",
+   "default": "off",
+   "values": "实现范围 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "S",
+   "default": "K",
+   "values": "Sutherland 温度 110.4 K (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "T ref",
+   "default": "K",
+   "values": "参考温度 273.15 K (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "μ ref",
+   "default": "kg/ms",
+   "values": "参考动力粘度 1.716e-5 kg/ms (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output kinematic and dynamic viscosity",
+   "default": "off",
+   "values": "输出运动粘度和动力粘度的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "超出范围时的模块行为 Warning (default) | Error | None",
+   "group": ""
+  },
+  {
+   "name": "Change atmospheric parameters",
+   "default": "off",
+   "values": "自定义参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Acceleration due to gravity (m/s^2)",
+   "default": "9.80665",
+   "values": "加速度 9.80665 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ratio of specific heats",
+   "default": "1.4",
+   "values": "比热比 1.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Characteristic gas constant (J/Kg/K)",
+   "default": "287.0531",
+   "values": "气体常数 287.0531 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lapse rate (K/m)",
+   "default": "0.0065",
+   "values": "递减率 0.0065 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Height of troposphere (m)",
+   "default": "11000",
+   "values": "对流层高度 11000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Height of tropopause (m)",
+   "default": "20000",
+   "values": "对流层顶高度 20000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air density at mean sea level (Kg/m^3)",
+   "default": "1.225",
+   "values": "空气密度 1.225 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ambient pressure at mean sea level (N/m^2)",
+   "default": "101325",
+   "values": "环境压力 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ambient temperature at mean sea level (K)",
+   "default": "288.15",
+   "values": "环境温度 288.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lowest altitude (m)",
+   "default": "0",
+   "values": "最低高度 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

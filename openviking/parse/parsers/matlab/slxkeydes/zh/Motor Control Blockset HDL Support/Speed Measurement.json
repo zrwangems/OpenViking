@@ -1,0 +1,109 @@
+{
+ "key": "Speed Measurement",
+ "title": "Speed Measurement",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Sensor Decoders/Speed_Measurement.md",
+  "Motor Control Blockset/Sensor Decoders/Speed_Measurement.md"
+ ],
+ "text": "根据转子的角位置计算转速，输入 2 路、输出 1 路；按 {位置单位} 指定角位置的单位；{位置换算数据类型} 指定映射输入位置的范围、{转速计算准则} 指定转速计算的方法、{离散步长(秒)} 指定采样时间，在此采样时间过后模块将再次执行、{最大应用转速(RPM)} 指定最大可测量转子转速、{转速分辨率(RPM)} 指定最小可探测转速 5e-6、{转速计算的延迟(采样数)} 指定测量的角位置采样数 299 或、{最大可测量转速(RPM)} 指定最大可测量转速 1000 或、{可测量转速分辨率(RPM)} 用于转速计算的最小转速分辨率 4.6566e-07 或、{转速单位} 指定角速度输出的单位、{标幺转速(RPM)} 以标幺为单位计算的转速、{转速数据类型} 指定角速度输出的数据类型、{使用输入端口设置离散步长} 指定通过输入端口指定采样步长，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ",
+   "direction": "input",
+   "summary": "转子的角位置 标量"
+  },
+  {
+   "name": "Ts",
+   "direction": "input",
+   "summary": "采样时间，在此采样时间过后模块将再次执行 标量"
+  },
+  {
+   "name": "⍵",
+   "direction": "output",
+   "summary": "转子角速度 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "位置单位",
+   "default": "弧度",
+   "values": "角位置的单位 弧度 (默认) | 度 | 标幺",
+   "group": ""
+  },
+  {
+   "name": "位置换算数据类型",
+   "default": "uint32",
+   "values": "映射输入位置的范围 uint32 (默认) | uint16 | uint64",
+   "group": ""
+  },
+  {
+   "name": "转速计算准则",
+   "default": "最大应用转速",
+   "values": "转速计算的方法 最大应用转速 (默认) | 转速分辨率 | 转速计算的时间间隔",
+   "group": ""
+  },
+  {
+   "name": "离散步长(秒)",
+   "default": "100e-6",
+   "values": "采样时间，在此采样时间过后模块将再次执行 100e-6 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "最大应用转速(RPM)",
+   "default": "1000",
+   "values": "最大可测量转子转速 1000 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "转速分辨率(RPM)",
+   "default": "5e-6",
+   "values": "最小可探测转速 5e-6 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "转速计算的延迟(采样数)",
+   "default": "28",
+   "values": "测量的角位置采样数 299 或 28 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "最大可测量转速(RPM)",
+   "default": "10713.2857",
+   "values": "最大可测量转速 1000 或 10344.8276 或 10713.2857 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "可测量转速分辨率(RPM)",
+   "default": "4.9892e-06",
+   "values": "用于转速计算的最小转速分辨率 4.6566e-07 或 4.9892e-06 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "转速单位",
+   "default": "RPM",
+   "values": "角速度输出的单位 RPM (默认) | 度/秒 | 弧度/秒 | 基于最大可测量转速的标幺 | 基于对话框的标幺",
+   "group": ""
+  },
+  {
+   "name": "标幺转速(RPM)",
+   "default": "1000",
+   "values": "以标幺为单位计算的转速 (RPM) 1000 (默认)",
+   "group": ""
+  },
+  {
+   "name": "转速数据类型",
+   "default": "单精度",
+   "values": "角速度输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": ""
+  },
+  {
+   "name": "使用输入端口设置离散步长",
+   "default": "off",
+   "values": "通过输入端口指定采样步长 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

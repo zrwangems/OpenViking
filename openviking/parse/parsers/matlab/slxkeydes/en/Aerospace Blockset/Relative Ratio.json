@@ -1,0 +1,90 @@
+{
+ "key": "Relative Ratio",
+ "title": "Relative Ratio",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Relative_Ratio.md"
+ ],
+ "text": "Calculate relative atmospheric ratios, 5 inputs, 4 outputs; {Units}, {Theta} sets the relative temperature ratio, {Square root of theta} sets the square root of relative temperature ratio, {Delta} sets the relative pressure ratio and {Sigma} sets the relative density ratio. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Mach",
+   "direction": "input",
+   "summary": "Mach number scalar"
+  },
+  {
+   "name": "γ",
+   "direction": "input",
+   "summary": "Ratio scalar"
+  },
+  {
+   "name": "T o",
+   "direction": "input",
+   "summary": "Static temperature scalar"
+  },
+  {
+   "name": "P o",
+   "direction": "input",
+   "summary": "Static pressure scalar"
+  },
+  {
+   "name": "ρ o",
+   "direction": "input",
+   "summary": "Static density scalar"
+  },
+  {
+   "name": "θ",
+   "direction": "output",
+   "summary": "Relative temperature ratio scalar"
+  },
+  {
+   "name": "sqrt(θ)",
+   "direction": "output",
+   "summary": "Square root of relative temperature ratio scalar"
+  },
+  {
+   "name": "δ",
+   "direction": "output",
+   "summary": "Relative pressure ratio scalar"
+  },
+  {
+   "name": "σ",
+   "direction": "output",
+   "summary": "Relative density ratio scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Theta",
+   "default": "on",
+   "values": "Relative temperature ratio on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Square root of theta",
+   "default": "on",
+   "values": "Square root of relative temperature ratio on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Delta",
+   "default": "on",
+   "values": "Relative pressure ratio on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sigma",
+   "default": "on",
+   "values": "Relative density ratio on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Common Gear Constraint",
+ "title": "Common Gear Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Gears and Couplings/Gears/Common_Gear_Constraint.md"
+ ],
+ "text": "具有平行旋转轴的两个共面直齿轮体之间的运动学约束。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

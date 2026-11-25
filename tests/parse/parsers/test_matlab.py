@@ -13,9 +13,10 @@ import pytest
 from openviking.parse.output import LocalParseOutputStore
 from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
+from openviking.parse.parsers.matlab.keydes import KeydesLibrary
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
-from openviking.parse.parsers.matlab.slx import parse_slx, system_json_documents
+from openviking.parse.parsers.matlab.slx import Block, parse_slx, system_json_documents
 from openviking.parse.parsers.matlab.stateflow import chart_json, parse_stateflow
 from openviking.parse.parsers.matlab.structured import (
     parse_fig_tree,
@@ -61,13 +62,22 @@ def test_slx_nested_systems_ports_parameters_and_branches():
     assert not any(path.endswith("/index.json") or path == "index.json" for path in documents)
     for path, document in documents.items():
         assert document["schema"] == "ov.matlab.simulink/1"
-        assert document["type"] == ("simulink-model" if path == "main.json" else "simulink-subsystem")
+        assert document["type"] == (
+            "simulink-model" if path == "main.json" else "simulink-subsystem"
+        )
         assert isinstance(document["blocks"], list)
         assert isinstance(document["edges"], list)
         assert set(document) >= {"system", "system_ref", "subsystem_types", "children"}
         assert "```mermaid" not in json.dumps(document)
         for block in document["blocks"]:
-            assert set(block) == {"name", "block_type", "source_block", "ports", "params"}
+            assert set(block) == {
+                "name",
+                "block_type",
+                "source_block",
+                "key",
+                "description",
+                "ports",
+            }
         for edge in document["edges"]:
             assert set(edge) == {"from", "to", "signal"}
             assert isinstance(edge["from"], list) and len(edge["from"]) == 2
@@ -89,7 +99,7 @@ def test_slx_nested_systems_ports_parameters_and_branches():
         documents["IPS_Supervisory_Control/Generator_Control.ON.GenControl/main.json"]["type"]
         == "simulink-subsystem"
     )
-def test_system_json_stays_compact_and_keeps_instance_parameters():
+def test_system_json_carries_a_description_per_block_instead_of_parameters():
     documents = system_json_documents(parse_slx(CONTROLLER), language="zh-CN")
     power_path = next(
         path for path in documents if path.endswith("Mech_To_Elec_Power_Estimate.json")
@@ -98,11 +108,68 @@ def test_system_json_stays_compact_and_keeps_instance_parameters():
     payload = json.dumps(power, ensure_ascii=False)
     assert "Lookup_n-D" in payload
     assert power["blocks"]
-    assert any(
-        block["params"].get("Table") == "PlntEM2EffTbl" for block in power["blocks"]
+    assert all("params" not in block for block in power["blocks"])
+    descriptions = [block["description"] for block in power["blocks"]]
+    assert any("PlntEM2EffTbl" in text for text in descriptions)
+    assert any("逼近 N 维函数" in text for text in descriptions)
+    assert all("{" not in text for text in descriptions)
+    assert power["coverage"]["described_blocks"] <= power["coverage"]["blocks"]
+    assert len(payload) < 20_000
+
+def test_keydes_renders_instance_values_into_the_template():
+    library = KeydesLibrary()
+    block = Block(
+        sid="1",
+        name="Gain",
+        block_type="Gain",
+        parameters={"Gain": "100", "Multiplication": "Matrix(K*u)", "SampleTime": "-1"},
     )
-    assert "逼近 N 维函数" not in payload
-    assert len(payload) < 10_000
+    key, description = library.describe(block, "en")
+    assert key == "Gain"
+    assert "100" in description
+    assert "matrix product" in description
+    assert "{" not in description
+
+
+def test_keydes_uses_the_english_template_for_parameter_names():
+    library = KeydesLibrary()
+    block = Block(sid="1", name="Gain", block_type="Gain", parameters={"Gain": "3.5"})
+    _, description = library.describe(block, "zh-CN")
+    assert "将输入乘以常量" in description
+    assert "3.5" in description
+    assert "{" not in description
+
+
+def test_keydes_matches_documented_parameter_names_to_slx_names():
+    library = KeydesLibrary()
+    block = Block(
+        sid="9",
+        name="Lookup",
+        block_type="Lookup_n-D",
+        parameters={
+            "NumberOfTableDimensions": "1",
+            "Table": "Tbl",
+            "BreakpointsForDimension1": "[1 2 3]",
+        },
+    )
+    _, description = library.describe(block, "en")
+    assert "Tbl" in description
+    assert "[1 2 3]" in description
+
+
+def test_keydes_leaves_blocks_without_a_template_undescribed():
+    library = KeydesLibrary()
+    unlinked = Block(
+        sid="1",
+        name="LPF",
+        block_type="Reference",
+        parameters={"SourceBlock": "autolibutils/LPF IC", "SourceType": ""},
+    )
+    assert library.describe(unlinked, "en") == ("LPF IC", None)
+    assert library.describe(Block(sid="2", name="Sub", block_type="SubSystem"), "en") == (
+        None,
+        None,
+    )
 
 def test_slx_deduplicates_colliding_directory_names():
     model = parse_slx(CONTROLLER)
@@ -699,17 +766,18 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     root = documents["main.json"]
     assert root["type"] == "simulink-model"
     enabled = documents["Enabled.json"]
-    assert any(block["params"].get("StatesWhenEnabling") == "held" for block in enabled["blocks"])
+    assert any("held" in block["description"] for block in enabled["blocks"])
     variants = documents["Variants/main.json"]
     assert variants["type"] == "simulink-subsystem"
     root_blocks = {block["name"]: block for block in root["blocks"]}
-    assert root_blocks["Variants"]["params"]["VariantControlMode"] == "expression"
-    assert any(
-        block["params"].get("VariantControl") == "V == 1" for block in variants["blocks"]
-    )
+    assert root_blocks["Variants"]["key"] is None
+    variant_blocks = {block["name"]: block for block in variants["blocks"]}
+    assert variant_blocks["High power"]["key"] is None
+    assert variant_blocks["High power"]["description"] == ""
     by_name = {block["name"]: block for block in root["blocks"]}
     assert by_name["Electrical +"]["block_type"] == "ConnectionPort"
-    assert by_name["Electrical +"]["params"]["Domain"] == "electrical"
+    assert by_name["Electrical +"]["key"] == "ConnectionPort"
+    assert by_name["Electrical +"]["description"] == ""
     assert by_name["Electrical +"]["ports"]["conn"] == ["Electrical +"]
     assert by_name["Torque"]["block_type"] == "PMIOPort"
     assert by_name["Torque"]["ports"]["conn"] == ["Torque"]

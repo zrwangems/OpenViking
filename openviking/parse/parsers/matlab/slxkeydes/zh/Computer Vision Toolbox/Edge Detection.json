@@ -1,0 +1,110 @@
+{
+ "key": "Edge Detection",
+ "title": "Edge Detection",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Edge_Detection.md"
+ ],
+ "text": "使用 Sobel、Prewitt、Roberts 或 Canny 方法查找图像中对象的边缘，输入 2 路、输出 5 路；按 {Method} 指定边缘检测方法；{Output Type} 输出图像类型 Binary、{User-defined threshold}、{Threshold source}、{Threshold} 指定阈值、{Threshold, [Low High]} 指定 Canny 边缘检测的阈值、{Threshold scale factor:(used to automatically calculate threshold value)} 指定阈值缩放因子、{Edge Thinning} 指定边缘细化、{Approximate percentage of weak edge and nonedge pixels (used to automatically calculate threshold values)} 指定弱边缘和非边缘像素的近似百分比、{Standard deviation of Gaussian filter} 指定高斯滤波器的标准差，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "input",
+   "summary": "阈值 scalar | vector"
+  },
+  {
+   "name": "Edge",
+   "direction": "output",
+   "summary": "边缘检测结果 matrix"
+  },
+  {
+   "name": "Gv",
+   "direction": "output",
+   "summary": "对垂直边缘的梯度响应 matrix"
+  },
+  {
+   "name": "Gh",
+   "direction": "output",
+   "summary": "对水平边缘的梯度响应 matrix"
+  },
+  {
+   "name": "G45",
+   "direction": "output",
+   "summary": "对 45 度边缘的梯度响应 matrix"
+  },
+  {
+   "name": "G135",
+   "direction": "output",
+   "summary": "对 135 度边缘的梯度响应 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Sobel",
+   "values": "边缘检测方法 Sobel (default) | Prewitt | Roberts | Canny",
+   "group": ""
+  },
+  {
+   "name": "Output Type",
+   "default": "image",
+   "values": "输出图像类型 Binary image (default) | Gradient components | Binary image and gradient components",
+   "group": ""
+  },
+  {
+   "name": "User-defined threshold",
+   "default": "off",
+   "values": "User-defined threshold off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Threshold source",
+   "default": "port",
+   "values": "Threshold source Input port (default) | Specify via dialog",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "20",
+   "values": "阈值 20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold, [Low High]",
+   "default": "0.60]",
+   "values": "Canny 边缘检测的阈值 [0.25 0.60] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Threshold scale factor:(used to automatically calculate threshold value)",
+   "default": "4",
+   "values": "阈值缩放因子 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Edge Thinning",
+   "default": "off",
+   "values": "边缘细化 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Approximate percentage of weak edge and nonedge pixels (used to automatically calculate threshold values)",
+   "default": "70",
+   "values": "弱边缘和非边缘像素的近似百分比 70 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation of Gaussian filter",
+   "default": "1",
+   "values": "高斯滤波器的标准差 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

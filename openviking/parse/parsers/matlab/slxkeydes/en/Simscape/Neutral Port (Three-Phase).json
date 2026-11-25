@@ -1,0 +1,13 @@
+{
+ "key": "Neutral Port (Three-Phase)",
+ "title": "Neutral Port (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Neutral_Port_Three_Phase.md"
+ ],
+ "text": "Connect phases of three-phase system to electrical conserving port.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

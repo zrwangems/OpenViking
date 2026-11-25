@@ -1,0 +1,62 @@
+{
+ "key": "Poisson Integer Generator",
+ "title": "Poisson Integer Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Random Data Sources/Poisson_Integer_Generator.md"
+ ],
+ "text": "Generate Poisson-distributed random integers, 1 output, {Poisson parameter(Lambda)} sets Poisson parameter λ; {Source of initial seed}, {Initial seed}, {Sample time}, {Samples per frame}, {Output data type} sets the data type of output and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Random integer output scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Poisson parameter(Lambda)",
+   "default": "0.1",
+   "values": "Poisson parameter λ 0.1 (default) | positive scalar | vector of positive scalars",
+   "group": ""
+  },
+  {
+   "name": "Source of initial seed",
+   "default": "Auto",
+   "values": "Source of initial seed for random number generator Auto (default) | Parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "",
+   "values": "Initial seed for random number generator nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Sample time of output signal 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame of output signal 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of output signal double (default) | uint8 | uint16 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "key": "DTIScopeBlock",
+ "title": "Doppler-Time Intensity Scope",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Sinks/Doppler_Time_Intensity_Scope.md"
+ ],
+ "text": "Doppler-time intensity scope, 1 input, no direct feedthrough; {Doppler Output} sets the doppler output domain, {Propagation Speed (m/s)} sets the signal propagation speed physconst, {Doppler Offset (Hz)} sets the doppler axis offset, {Time Span (s)} sets the time span of display, {Operating Frequency (Hz)} sets the operating frequency 300e6, {Doppler Resolution (Hz)} sets the doppler interval between samples, {Time Resolution (s)} sets the time difference between rows, {Show Grid} shows Cartesian grid overlay, {Show Ticks} shows tick value labels, {Time Label} sets the time axis label, {Colorbar Label} and {Title} sets the window title. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input data real-valued length- M vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Doppler Output",
+   "default": "’Frequency’",
+   "values": "Doppler output domain ’Frequency’ (default) | ’Speed’",
+   "group": ""
+  },
+  {
+   "name": "Propagation Speed (m/s)",
+   "default": "physconst(\"LightSpeed\")",
+   "values": "Signal propagation speed physconst(\"LightSpeed\") (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Doppler Offset (Hz)",
+   "default": "0.0",
+   "values": "Doppler axis offset 0.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Time Span (s)",
+   "default": "0.100",
+   "values": "Time span of display 0.100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating Frequency (Hz)",
+   "default": "300e6",
+   "values": "Operating frequency 300e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Doppler Resolution (Hz)",
+   "default": "1.0",
+   "values": "Doppler interval between samples 1.0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time Resolution (s)",
+   "default": "0.001",
+   "values": "Time difference between rows 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Grid",
+   "default": "on",
+   "values": "Show Cartesian grid overlay on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show Ticks",
+   "default": "on",
+   "values": "Show tick value labels on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Time Label",
+   "default": "(s)’",
+   "values": "Time axis label ’Time (s)’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Colorbar Label",
+   "default": "’dB’",
+   "values": "Color bar label ’dB’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Title",
+   "default": "Time’",
+   "values": "Window title ’Doppler vs. Time’ (default) | string",
+   "group": ""
+  }
+ ]
+}

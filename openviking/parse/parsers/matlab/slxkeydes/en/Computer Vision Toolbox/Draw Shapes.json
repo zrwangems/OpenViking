@@ -1,0 +1,127 @@
+{
+ "key": "Draw Shapes",
+ "title": "Draw Shapes",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Text & Graphics/Draw_Shapes.md"
+ ],
+ "text": "Draw rectangles, lines, polygons, or circles on images, 7 inputs, 1 output, {Shape} sets Shape to draw; {Fill shapes}, {Line width}, {Fill color source} sets the input source to specify fill color Specify via, {Fill color} sets the color to fill, {Border color source} sets the input source to specify border color Specify via, {Border color} sets the outline color, {Color value(s)} sets the color value to draw the border or fill the shape, {Opacity factor (between 0 and 1)} sets the opacity of the color value in the range, {Use antialiasing} sets the smoothing algorithm, {Draw shapes in} sets the region to draw the shape and {Image signal} sets the number of input ports for the image signal One multidimensional. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input image or video stream M -by- N matrix of intensity values | M -by- N -by- 3 array of color values"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Red color channel of the image or video frame M -by- N matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Green color channel of the image or video frame M -by- N matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Blue color channel of the image or video frame M -by- N matrix"
+  },
+  {
+   "name": "Pts",
+   "direction": "input",
+   "summary": "Shape coordinates M -by-3 matrix | M -by-4 matrix | M -by-2 L matrix"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "Region of interest 4-element vector"
+  },
+  {
+   "name": "Clr",
+   "direction": "input",
+   "summary": "Color of shape 3-element vector | M -by- 3 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image M -by- N matrix of intensity values | M -by- N -by- 3 array of color values"
+  }
+ ],
+ "params": [
+  {
+   "name": "Shape",
+   "default": "Rectangles",
+   "values": "Shape to draw Rectangles (default) | Lines | Polygons | Circles",
+   "group": ""
+  },
+  {
+   "name": "Fill shapes",
+   "default": "off",
+   "values": "Fill shapes with color off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Line width",
+   "default": "1",
+   "values": "Line width for the shapes 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Fill color source",
+   "default": "dialog",
+   "values": "Input source to specify fill color Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Fill color",
+   "default": "Black",
+   "values": "Color to fill the shapes Black (default) | White | User-specified value",
+   "group": ""
+  },
+  {
+   "name": "Border color source",
+   "default": "dialog",
+   "values": "Input source to specify border color Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Border color",
+   "default": "Black",
+   "values": "Outline color of the shape Black (default) | White | User-specified value",
+   "group": ""
+  },
+  {
+   "name": "Color value(s)",
+   "default": "",
+   "values": "Color value to draw the border or fill the shape scalar | 3-element vector",
+   "group": ""
+  },
+  {
+   "name": "Opacity factor (between 0 and 1)",
+   "default": "",
+   "values": "Opacity of the color value in the range [0,1] | R -element vector",
+   "group": ""
+  },
+  {
+   "name": "Use antialiasing",
+   "default": "",
+   "values": "Smoothing algorithm off | on",
+   "group": ""
+  },
+  {
+   "name": "Draw shapes in",
+   "default": "image",
+   "values": "Region to draw the shape Entire image (default) | Specify region of interest via port",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Number of input ports for the image signal One multidimensional signal (default) | Separate color signals",
+   "group": ""
+  }
+ ]
+}

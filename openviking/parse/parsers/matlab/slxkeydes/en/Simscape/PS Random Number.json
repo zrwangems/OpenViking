@@ -1,0 +1,13 @@
+{
+ "key": "PS Random Number",
+ "title": "PS Random Number",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Sources/PS_Random_Number.md"
+ ],
+ "text": "Generate normally distributed random numbers for physical modeling.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

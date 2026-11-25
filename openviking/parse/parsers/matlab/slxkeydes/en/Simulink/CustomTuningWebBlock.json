@@ -1,0 +1,150 @@
+{
+ "key": "CustomTuningWebBlock",
+ "title": "Horizontal Slider",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Customizable Blocks/Horizontal_Slider.md",
+  "Simulink/Dashboard/Customizable Blocks/Vertical_Slider.md",
+  "Simulink/Dashboard/Customizable Blocks/Check_Box.md",
+  "Simulink/Dashboard/Customizable Blocks/Combo_Box.md",
+  "Simulink/Dashboard/Customizable Blocks/Knob.md",
+  "Simulink/Dashboard/Customizable Blocks/Push_Button.md",
+  "Simulink/Dashboard/Customizable Blocks/Radio_Button.md",
+  "Simulink/Dashboard/Customizable Blocks/Rocker_Switch.md",
+  "Simulink/Dashboard/Customizable Blocks/Rotary_Switch.md",
+  "Simulink/Dashboard/Customizable Blocks/Slider_Switch.md",
+  "Simulink/Dashboard/Customizable Blocks/Toggle_Switch.md"
+ ],
+ "text": "Change parameter or variable value using horizontal slider with customizable appearance, {Label} sets Position of label displaying name of connected element; {Connection} sets the block parameter value to connect parameter value connection, {Minimum}, {Maximum}, {Tick Interval} sets the interval between major tick marks, {Scale Direction} sets the direction of increasing scale values, {Lock Aspect Ratio} sets the option to maintain block aspect ratio, {Origin} sets the value on scale from which handle moves and value bar, {X Offset} sets the horizontal offset of left edge of scale bounding box from left edge of block, {Y Offset} sets the vertical offset of top edge of scale bounding box from top edge of block, {Width} scales width scalar, {Height} scales height scalar, {Tick Color} sets the color of scale tick marks, span line, and block name, {Label Color} scales label font color, {Label Offset} sets the vertical distance of scale labels from free end of scale tick, {Offset from Scale} sets the distance of top edge of value bar from span, {Size} sets the value bar thickness scalar, {Use Background Color} sets the option to specify solid block background, {Color} sets the block background color, {Opacity} sets the block background opacity and {Corner Radius} sets the corner radius of area with block background color. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Block parameter value to connect parameter value connection options",
+   "group": "Parameters"
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "Minimum tick mark value 0 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum",
+   "default": "100",
+   "values": "Maximum tick mark value 100 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Tick Interval",
+   "default": "auto",
+   "values": "Interval between major tick marks auto (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Scale Direction",
+   "default": "right’",
+   "values": "Direction of increasing scale values ’Left to right’ (default) | ’Right to left’",
+   "group": "Parameters"
+  },
+  {
+   "name": "Label",
+   "default": "Hide",
+   "values": "Position of label displaying name of connected element Hide (default) | Bottom | Top",
+   "group": "Parameters"
+  },
+  {
+   "name": "Lock Aspect Ratio",
+   "default": "on",
+   "values": "Option to maintain block aspect ratio on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Origin",
+   "default": "auto",
+   "values": "Value on scale from which handle moves and value bar grows auto (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "X Offset",
+   "default": "",
+   "values": "Horizontal offset of left edge of scale bounding box from left edge of block scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Y Offset",
+   "default": "",
+   "values": "Vertical offset of top edge of scale bounding box from top edge of block scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Width",
+   "default": "",
+   "values": "Scale width scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Height",
+   "default": "",
+   "values": "Scale height scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Tick Color",
+   "default": "",
+   "values": "Color of scale tick marks, span line, and block name [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Label Color",
+   "default": "",
+   "values": "Scale label font color [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Label Offset",
+   "default": "0.3",
+   "values": "Vertical distance of scale labels from free end of scale tick marks 0.3 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Offset from Scale",
+   "default": "0",
+   "values": "Distance of top edge of value bar from span line 0 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Size",
+   "default": "",
+   "values": "Value bar thickness scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Use Background Color",
+   "default": "off",
+   "values": "Option to specify solid block background color off (default) | on",
+   "group": "Design"
+  },
+  {
+   "name": "Color",
+   "default": "",
+   "values": "Block background color [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "Block background opacity 1 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Corner Radius",
+   "default": "",
+   "values": "Corner radius of area with block background color scalar",
+   "group": "Design"
+  }
+ ]
+}

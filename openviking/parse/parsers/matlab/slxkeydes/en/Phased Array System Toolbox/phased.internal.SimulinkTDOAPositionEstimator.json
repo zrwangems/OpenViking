@@ -1,0 +1,58 @@
+{
+ "key": "phased.internal.SimulinkTDOAPositionEstimator",
+ "title": "TDOA Position Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/TDOA_Position_Estimator.md"
+ ],
+ "text": "Estimate target position from time-difference of arrival, 3 inputs, 2 outputs; {Signal propagation speed (m/s)} sets the signal propagation speed physconst, {Output covariances of TDOA position estimates} sets the output covariance of TDOA position and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TDOAEst",
+   "direction": "input",
+   "summary": "Estimated time-difference of arrival (sec) ( L –1)-element real-valued vector"
+  },
+  {
+   "name": "TDOAVar",
+   "direction": "input",
+   "summary": "Estimated variances of time-differences of arrival (seconds-squared) ( L –1)-element real-valued vector"
+  },
+  {
+   "name": "AnchorPos",
+   "direction": "input",
+   "summary": "Anchor positions (meters) 2-by- L real-valued matrix | 3-by- L real-valued matrix"
+  },
+  {
+   "name": "TgtPosEst",
+   "direction": "output",
+   "summary": "Target position estimate real-valued Q -by-1 vector"
+  },
+  {
+   "name": "TgtPosCov",
+   "direction": "output",
+   "summary": "Target position covariance matrix real-valued positive semi-definite Q -by- Q matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(\"LightSpeed\")",
+   "values": "Signal propagation speed physconst(\"LightSpeed\") (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output covariances of TDOA position estimates",
+   "default": "(0)",
+   "values": "Output covariance of TDOA position estimates false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

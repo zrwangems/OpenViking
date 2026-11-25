@@ -1,0 +1,44 @@
+{
+ "key": "Pixel Control Bus Selector",
+ "title": "Pixel Control Bus Selector",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_block",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Pixel_Control_Bus_Selector.md"
+ ],
+ "text": "从 Vision HDL Toolbox 模块使用的控制信号总线中选择信号，输入 1 路、输出 5 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "伴随像素流的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "帧中水平行的第一个像素 scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "帧中水平行的最后一个像素 scalar"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "帧中第一（顶部）行的第一个像素 scalar"
+  },
+  {
+   "name": "Port_4",
+   "direction": "output",
+   "summary": "帧中最后（底部）行的最后一个像素 scalar"
+  },
+  {
+   "name": "Port_5",
+   "direction": "output",
+   "summary": "有效像素指示符 scalar"
+  }
+ ],
+ "params": []
+}

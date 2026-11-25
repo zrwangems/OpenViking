@@ -1,0 +1,31 @@
+{
+ "key": "UnitConversion",
+ "title": "Unit Conversion",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Unit_Conversion.md"
+ ],
+ "text": "Convert units, 1 input, 1 output, direct feedthrough; {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation",
+   "group": ""
+  }
+ ]
+}

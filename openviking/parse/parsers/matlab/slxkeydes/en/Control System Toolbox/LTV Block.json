@@ -1,0 +1,158 @@
+{
+ "key": "LTV Block",
+ "title": "LTV System",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/LTV_System.md"
+ ],
+ "text": "Simulate linear time-varying (LTV) systems, 2 inputs, 5 outputs, {Interpolation method} sets Interpolation method; {State-space array} sets the array of state-space models ss or idss model, {Initial condition source} sets the option to set initial condition using external signal, {Initial condition}, {Operating Point Offsets} sets the offset specification format Specify Offsets as double, {Input offset}, {Output offset}, {State offset}, {State derivative/update offset} sets the state derivative or update, {Struct array} sets the offsets structure array, {Coefficients To Fix} sets the fixed coefficients of state-space matrices false, {Read values from} sets the source for values of fixed coefficients First model in state-space, {Extrapolation method}, {Index search method} sets the prelookup algorithm Binary, {Begin index search using previous index result} sets the begin search at previous time step, {Block data type (discrete-time case only)} sets the block data type, {Initial buffer size for delays} and {Use fixed buffer size}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "IC",
+   "direction": "input",
+   "summary": "Initial condition vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Model output scalar | vector"
+  },
+  {
+   "name": "x",
+   "direction": "output",
+   "summary": "State values scalar | vector"
+  },
+  {
+   "name": "dx",
+   "direction": "output",
+   "summary": "State derivative values scalar | vector"
+  },
+  {
+   "name": "ss",
+   "direction": "output",
+   "summary": "Local state-space model bus"
+  },
+  {
+   "name": "offset",
+   "direction": "output",
+   "summary": "LPV model offsets bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "State-space array",
+   "default": "",
+   "values": "Array of state-space models ss or idss model array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Initial condition source",
+   "default": "internal",
+   "values": "Option to set initial condition using external signal internal (default) | external",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial conditions 0 (default) | vector",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Operating Point Offsets",
+   "default": "arrays",
+   "values": "Offset specification format Specify Offsets as double arrays (default) | Specify offsets as struct array | Use offsets in state-space array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Input offset",
+   "default": "0",
+   "values": "Input offset 0 (default) | array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Output offset",
+   "default": "0",
+   "values": "Output offset 0 (default) | array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "State offset",
+   "default": "0",
+   "values": "State offset 0 (default) | array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "State derivative/update offset",
+   "default": "",
+   "values": "State derivative or update offset array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Struct array",
+   "default": "struct",
+   "values": "Offsets structure array struct (default) | structure array name",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Coefficients To Fix",
+   "default": "0",
+   "values": "Fixed coefficients of state-space matrices false or 0 (default) | true or 1 | logical matrix",
+   "group": "Fixed Entries Tab"
+  },
+  {
+   "name": "Read values from",
+   "default": "array",
+   "values": "Source for values of fixed coefficients First model in state-space array (default) | Custom state-space model",
+   "group": "Fixed Entries Tab"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "Interpolation method Linear (default) | Nearest | Flat",
+   "group": "Scheduling Tab"
+  },
+  {
+   "name": "Extrapolation method",
+   "default": "Clip",
+   "values": "Extrapolation method Clip (default) | Linear",
+   "group": "Scheduling Tab"
+  },
+  {
+   "name": "Index search method",
+   "default": "search",
+   "values": "Prelookup algorithm Binary search (default) | Linear search",
+   "group": "Scheduling Tab"
+  },
+  {
+   "name": "Begin index search using previous index result",
+   "default": "on",
+   "values": "Begin search at previous time step on (default) | off",
+   "group": "Scheduling Tab"
+  },
+  {
+   "name": "Block data type (discrete-time case only)",
+   "default": "double",
+   "values": "Block data type double (default) | single",
+   "group": "Code Generation Tab"
+  },
+  {
+   "name": "Initial buffer size for delays",
+   "default": "1024",
+   "values": "Initial buffer size 1024 (default) | positive integer greater than 5",
+   "group": "Code Generation Tab"
+  },
+  {
+   "name": "Use fixed buffer size",
+   "default": "off",
+   "values": "Use fixed buffer size off (default) | on",
+   "group": "Code Generation Tab"
+  }
+ ]
+}

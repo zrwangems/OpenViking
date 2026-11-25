@@ -1,0 +1,56 @@
+{
+ "key": "Diagnostic Service Component",
+ "title": "Diagnostic Service Component",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/Diagnostic_Service_Component.md"
+ ],
+ "text": "为仿真配置 AUTOSAR 诊断服务和运行时环境 (RTE)；按 {Mask} 指定抑制条件掩码 LAST_FAILED；{ID (RTE tab)} 指定标识服务事件、操作周期或带抑制条件的函数的 ID、{Increment step size} 指定当 PREFAIL 事件到达时用于递增事件 ID、{Decrement step size} 指定当 PREPASS 事件到达时用于递减事件 ID、{Failed threshold} 表示失败状态的 Dem 事件 ID 计数器阈值、{Passed threshold} 表示通过状态的 Dem 事件 ID 计数器阈值、{ID (FiM tab)} 指定抑制条件 ID，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "ID (RTE tab)",
+   "default": "1",
+   "values": "标识服务事件、操作周期或带抑制条件的函数的 ID 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Increment step size",
+   "default": "1",
+   "values": "当 PREFAIL 事件到达时用于递增事件 ID 计数器的固定步长值 1 (default) | scalar (1 to 32767)",
+   "group": ""
+  },
+  {
+   "name": "Decrement step size",
+   "default": "1",
+   "values": "当 PREPASS 事件到达时用于递减事件 ID 计数器的固定步长值 1 (default) | scalar (1 to 32767)",
+   "group": ""
+  },
+  {
+   "name": "Failed threshold",
+   "default": "2",
+   "values": "表示失败状态的 Dem 事件 ID 计数器阈值 2 (default) | scalar (1 to 32767)",
+   "group": ""
+  },
+  {
+   "name": "Passed threshold",
+   "default": "-1",
+   "values": "表示通过状态的 Dem 事件 ID 计数器阈值 -1 (default) | scalar (-32768 to -1)",
+   "group": ""
+  },
+  {
+   "name": "ID (FiM tab)",
+   "default": "1",
+   "values": "抑制条件 ID 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mask",
+   "default": "",
+   "values": "抑制条件掩码 LAST_FAILED | NOT_TESTED | TESTED | TESTED_AND_FAILED",
+   "group": ""
+  }
+ ]
+}

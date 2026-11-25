@@ -1,0 +1,13 @@
+{
+ "key": "Thermodynamic Properties Sensor (G)",
+ "title": "Thermodynamic Properties Sensor (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Sensors/Thermodynamic_Properties_Sensor_G.md"
+ ],
+ "text": "测量比焓、密度、定压比热容和比熵。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

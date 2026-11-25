@@ -1,0 +1,13 @@
+{
+ "key": "Point on Surface Constraint",
+ "title": "Point on Surface Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Constraints/Point_on_Surface_Constraint.md"
+ ],
+ "text": "坐标系原点与二维表面之间的运动学约束。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

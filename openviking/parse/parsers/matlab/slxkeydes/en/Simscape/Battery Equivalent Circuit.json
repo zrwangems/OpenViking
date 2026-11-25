@@ -1,0 +1,13 @@
+{
+ "key": "Battery Equivalent Circuit",
+ "title": "Battery Equivalent Circuit",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Cells/Battery_Equivalent_Circuit.md"
+ ],
+ "text": "Battery model with electro-thermal dynamics and optional faults.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,190 @@
+{
+ "key": "lidarsimulink.internal.LidarSensorBlock",
+ "title": "Lidar Sensor",
+ "toolbox": "Lidar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Lidar Toolbox/Lidar_Sensor.md"
+ ],
+ "text": "为场景生成激光雷达点云数据，输入 1 路、输出 4 路；按 {Sensor model to choose typical values} 指定传感器模型名称；{Unique identifier of sensor} 指定唯一传感器标识符、{Required interval between sensor updates (s)} 指定传感器更新之间的必需时间间隔、{Position [X Y Height] (m)} 指定传感器中心位置、{Orientation [Roll Pitch Yaw] (deg)} 指定传感器方向、{MATLAB or Model workspace Actor profiles variable name} 指定参与者配置文件的变量名、{ActorID of the host vehicle} 指定自车的 Actor ID、{Coordinate system to report point cloud data} 指定报告的检测的坐标系、{Maximum detection range of sensor (m)} 指定最大检测范围、{Azimuth limits (deg)} 指定激光雷达传感器的方位角范围、{Azimuth resolution (deg)} 指定激光雷达传感器的方位角分辨率、{Use elevation angles} 使用自定义仰角、{Elevation angles (deg)} 指定激光雷达传感器的仰角 N -element real-valued、{Elevation limits (deg)} 指定激光雷达传感器的仰角限制、{Elevation resolution (deg)} 指定激光雷达传感器的仰角分辨率、{Add noise to measurements} 指定向测量添加噪声、{Range accuracy (m)} 指定传感器距离测量精度、{Fog visibility in meters} 指定雾天可见距离、{Rainrate in mm/hour} 指定降雨率、{Simulate Motion Distortion} 指定模拟运动畸变、{Laser firing time (s)} 指定激光雷达传感器中激光器的发射时间、{Material attribute information in JSON format} 指定 JSON 格式的材质属性信息 string、{Edit JSON text to add, remove, or modify material attributes} 指定编辑 JSON 文本以添加、删除或修改材质属性、{Output intensity port} 输出点的强度值、{Output clusters port} 输出点的分割值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ActorPoses",
+   "direction": "input",
+   "summary": "行动者位姿 Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "IsValid",
+   "direction": "output",
+   "summary": "有效仿真时间 0 | 1"
+  },
+  {
+   "name": "Location",
+   "direction": "output",
+   "summary": "点的位置值 M -by- N -by-3 matrix"
+  },
+  {
+   "name": "Intensity",
+   "direction": "output",
+   "summary": "点的强度值 M -by- N matrix"
+  },
+  {
+   "name": "Clusters",
+   "direction": "output",
+   "summary": "行动者的分类数据 M -by- N -by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unique identifier of sensor",
+   "default": "1",
+   "values": "唯一传感器标识符 1 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Required interval between sensor updates (s)",
+   "default": "0.1",
+   "values": "传感器更新之间的必需时间间隔 0.1 (default) | positive scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sensor model to choose typical values",
+   "default": "Custom",
+   "values": "传感器模型名称 Custom (default) | HDL64E | HDL32E | VLP16 | VLP32C | VLS128 | PuckLITE | PuckHiRes | OS0-32 | OS0-64 | OS0-128 | OS1Gen1-32 | OS1Gen1-64 | OS1Gen1-128 | OS1Gen2-32 | OS1Gen2-64 | OS1Gen2-128 | OS2-32 | OS2-64 | OS2-128",
+   "group": "Parameters"
+  },
+  {
+   "name": "Position [X Y Height] (m)",
+   "default": "1.6]",
+   "values": "传感器中心位置 [1.5 0 1.6] (default) | three-element vector of form [ X Y Height ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Orientation [Roll Pitch Yaw] (deg)",
+   "default": "0]",
+   "values": "传感器方向 [0 0 0] (default) | three-element vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "MATLAB or Model workspace Actor profiles variable name",
+   "default": "actor_profiles",
+   "values": "参与者配置文件的变量名 actor_profiles (default) | valid variable name",
+   "group": "Parameters"
+  },
+  {
+   "name": "ActorID of the host vehicle",
+   "default": "1",
+   "values": "自车的 Actor ID 1 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Coordinate system to report point cloud data",
+   "default": "World",
+   "values": "报告的检测的坐标系 World (default) | Sensor | Host",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum detection range of sensor (m)",
+   "default": "120",
+   "values": "最大检测范围 120 (default) | positive scalar",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Azimuth limits (deg)",
+   "default": "180]",
+   "values": "激光雷达传感器的方位角范围 [-180 180] (default) | two-element vector",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Azimuth resolution (deg)",
+   "default": "0.16",
+   "values": "激光雷达传感器的方位角分辨率 0.16 (default) | positive scalar",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Use elevation angles",
+   "default": "off",
+   "values": "使用自定义仰角 off (default) | on",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "",
+   "values": "激光雷达传感器的仰角 N -element real-valued vector",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Elevation limits (deg)",
+   "default": "20]",
+   "values": "激光雷达传感器的仰角限制 [-20 20] (default) | two element vector of form [ min, max ]",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Elevation resolution (deg)",
+   "default": "1.25",
+   "values": "激光雷达传感器的仰角分辨率 1.25 (default) | positive scalar",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Add noise to measurements",
+   "default": "on",
+   "values": "向测量添加噪声 on (default) | off",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Range accuracy (m)",
+   "default": "0.002",
+   "values": "传感器距离测量精度 0.002 (default) | positive scalar",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Fog visibility in meters",
+   "default": "1000",
+   "values": "雾天可见距离 1000 (default) | positive scalar",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Rainrate in mm/hour",
+   "default": "0",
+   "values": "降雨率 0 (default) | positive scalar",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Simulate Motion Distortion",
+   "default": "off",
+   "values": "模拟运动畸变 off (default) | on",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Laser firing time (s)",
+   "default": "[]",
+   "values": "激光雷达传感器中激光器的发射时间 [] (default) | positive scalar | positive numeric vector",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Material attribute information in JSON format",
+   "default": "",
+   "values": "JSON 格式的材质属性信息 string scalar | character vector",
+   "group": "Scene Material Attributes"
+  },
+  {
+   "name": "Edit JSON text to add, remove, or modify material attributes",
+   "default": "off",
+   "values": "编辑 JSON 文本以添加、删除或修改材质属性 off (default) | on",
+   "group": "Scene Material Attributes"
+  },
+  {
+   "name": "Output intensity port",
+   "default": "on",
+   "values": "输出点的强度值 on (default) | off",
+   "group": "Output Port Settings"
+  },
+  {
+   "name": "Output clusters port",
+   "default": "on",
+   "values": "输出点的分割值 on (default) | off",
+   "group": "Output Port Settings"
+  }
+ ]
+}

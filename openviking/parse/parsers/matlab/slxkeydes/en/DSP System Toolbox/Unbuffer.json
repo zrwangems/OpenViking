@@ -1,0 +1,31 @@
+{
+ "key": "Unbuffer",
+ "title": "Unbuffer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Buffers/Unbuffer.md"
+ ],
+ "text": "Unbuffer input frame into sequence of scalar outputs, 1 input, 1 output, no direct feedthrough, {Initial conditions} sets Initial conditions.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Unbuffered signal scalar | row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial conditions 0 (default) | scalar | vector | matrix",
+   "group": ""
+  }
+ ]
+}

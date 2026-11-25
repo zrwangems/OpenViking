@@ -1,0 +1,78 @@
+{
+ "key": "FM Broadcast Modulator Baseband",
+ "title": "FM Broadcast Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Baseband Modulation/FM_Broadcast_Modulator_Baseband.md"
+ ],
+ "text": "Modulate using broadcast FM method, 2 inputs, 1 output, {Sample rate (Hz)} sets Output signal sample rate 240e3; {Frequency deviation (Hz)} sets the peak deviation of modulator output signal frequency, {Pre-emphasis filter time constant (s)} sets the pre-emphasis highpass filter time constant, {Sample rate of audio input signal (Hz)} sets the sample rate of input audio signal, {Stereo audio} sets the option to enable stereo modulation, {RDS/RBDS modulation} sets the option to enable RDS, {Oversampling factor of RDS/RBDS input} and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "Audio signal N -element column vector | 2-by- N matrix"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "RDS (or RBDS) signal N -element column vector | 2-by- N matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "FM-modulated baseband signal column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "",
+   "values": "Output signal sample rate 240e3 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency deviation (Hz)",
+   "default": "",
+   "values": "Peak deviation of modulator output signal frequency 75e3 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Pre-emphasis filter time constant (s)",
+   "default": "7.5e-05",
+   "values": "Pre-emphasis highpass filter time constant 7.5e-05 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate of audio input signal (Hz)",
+   "default": "48000",
+   "values": "Sample rate of input audio signal 48000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stereo audio",
+   "default": "off",
+   "values": "Option to enable stereo modulation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "RDS/RBDS modulation",
+   "default": "off",
+   "values": "Option to enable RDS (or RBDS) waveform modulation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Oversampling factor of RDS/RBDS input",
+   "default": "10",
+   "values": "Oversampling factor of RDS (or RBDS) input signal 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

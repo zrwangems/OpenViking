@@ -1,0 +1,114 @@
+{
+ "key": "Wind Turbulence Model",
+ "title": "Dryden Wind Turbulence Model (Continuous (+q -r))",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Continuous_q_r.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Continuous_q_r_2.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Continuous_q_r_3.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Discrete_q_r.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Discrete_q_r_2.md",
+  "Aerospace Blockset/Environment/Wind/Dryden_Wind_Turbulence_Model_Discrete_q_r_3.md",
+  "Aerospace Blockset/Environment/Wind/Von_Karman_Wind_Turbulence_Model_Continuous_q_r.md",
+  "Aerospace Blockset/Environment/Wind/Von_Karman_Wind_Turbulence_Model_Continuous_q_r_2.md",
+  "Aerospace Blockset/Environment/Wind/Von_Karman_Wind_Turbulence_Model_Continuous_q_r_3.md"
+ ],
+ "text": "Generate continuous wind turbulence with Dryden velocity spectra, 3 inputs, 2 outputs, {Specification} sets Military reference; {Units} sets the wind speed units Metric, {Model type} sets the turbulence model Continuous Dryden, {Wind speed at 6 m defines the low altitude intensity} sets the measured wind speed, {Wind direction at 6 m (degrees clockwise from north)} sets the measured wind direction, {Probability of exceedance of high-altitude intensity} sets the turbulence intensity 10^-2, {Scale length at medium/high altitudes (m)} sets the turbulence scale length, {Wingspan}, {Band limited noise sample time (seconds)} sets the noise sample time, {Random noise seeds} sets the noise seeds and {Turbulence on} sets the turbulence signals. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "Altitude scalar"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Aircraft speed scalar"
+  },
+  {
+   "name": "DCM",
+   "direction": "input",
+   "summary": "Direction cosine matrix 3-by-3 matrix"
+  },
+  {
+   "name": "V wind",
+   "direction": "output",
+   "summary": "Turbulence velocities three-element vector"
+  },
+  {
+   "name": "ω wind",
+   "direction": "output",
+   "summary": "Turbulence angular rates three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Wind speed units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Specification",
+   "default": "MIL-F-8785C",
+   "values": "Military reference MIL-F-8785C (default) | MIL-HDBK-1797 | MIL-HDBK-1797B",
+   "group": ""
+  },
+  {
+   "name": "Model type",
+   "default": "-r)",
+   "values": "Turbulence model Continuous Dryden (+q -r) (default) | Continuous Von Karman (+q +r) | Continuous Von Karman (-q +r) | Continuous Von Karman (+q -r) | Continuous Dryden (+q +r) | Continuous Dryden (-q +r) | Discrete Dryden (+q -r) | Discrete Dryden (+q +r) | Discrete Dryden (-q +r)",
+   "group": ""
+  },
+  {
+   "name": "Wind speed at 6 m defines the low altitude intensity",
+   "default": "15",
+   "values": "Measured wind speed 15 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Wind direction at 6 m (degrees clockwise from north)",
+   "default": "0",
+   "values": "Measured wind direction 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Probability of exceedance of high-altitude intensity",
+   "default": "Light",
+   "values": "Turbulence intensity 10^-2 - Light (default) | 10^-1 | 2x10^-1 | 10^-3 - Moderate | 10^-4 | 10^-5 - Severe | 10^-6",
+   "group": ""
+  },
+  {
+   "name": "Scale length at medium/high altitudes (m)",
+   "default": "533.4",
+   "values": "Turbulence scale length 533.4 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Wingspan",
+   "default": "10",
+   "values": "Wingspan 10 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Band limited noise sample time (seconds)",
+   "default": "0.1",
+   "values": "Noise sample time 0.1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Random noise seeds",
+   "default": "23344]",
+   "values": "Noise seeds [ug vg wg pg] [23341 23342 23343 23344] (default) | four-element vector",
+   "group": ""
+  },
+  {
+   "name": "Turbulence on",
+   "default": "on",
+   "values": "Turbulence signals on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "key": "Quaternion Conjugate",
+ "title": "Quaternion Conjugate",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Conjugate.md"
+ ],
+ "text": "Calculate conjugate of quaternion, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "Input quaternion quaternion | vector of quaternions"
+  },
+  {
+   "name": "q’",
+   "direction": "output",
+   "summary": "Quaternion conjugate quaternion conjugate | vector of quaternion conjugates"
+  }
+ ],
+ "params": []
+}

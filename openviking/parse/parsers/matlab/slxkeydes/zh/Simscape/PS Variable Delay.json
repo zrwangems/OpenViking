@@ -1,0 +1,13 @@
+{
+ "key": "PS Variable Delay",
+ "title": "PS Variable Delay",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Delays/PS_Variable_Delay.md"
+ ],
+ "text": "按可变时间延迟输入物理信号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

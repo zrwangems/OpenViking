@@ -1,0 +1,13 @@
+{
+ "key": "Local Restriction (IL)",
+ "title": "Local Restriction (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Local_Restriction_IL.md"
+ ],
+ "text": "Restriction in flow area in isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,53 @@
+{
+ "key": "Pixels To Frame",
+ "title": "Pixels To Frame",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/I_O Interfaces/Pixels_To_Frame.md"
+ ],
+ "text": "Convert pixel stream to frame-based video, 2 inputs, 2 outputs, {Video format} sets Dimensions of active regions in a video frame; {Number of components} sets the number of values used to represent each and {Number of pixels}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "frame",
+   "direction": "output",
+   "summary": "Full image frame array"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Indicates when output frame is ready scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of components",
+   "default": "1",
+   "values": "Number of values used to represent each pixel 1 (default) | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Number of pixels",
+   "default": "1",
+   "values": "Number of pixels streamed per time step 1 (default) | 2 | 4 | 8",
+   "group": ""
+  },
+  {
+   "name": "Video format",
+   "default": "1080p",
+   "values": "Dimensions of active regions in a video frame 1080p (default) | 240p | 480p | 480pH | 576p | 720p | 768p | 1024p | 1200p | 2KCinema | 4KUHDTV | 8KUHDTV | Custom",
+   "group": ""
+  }
+ ]
+}

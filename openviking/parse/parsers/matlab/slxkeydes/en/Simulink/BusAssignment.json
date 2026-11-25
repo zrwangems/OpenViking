@@ -1,0 +1,43 @@
+{
+ "key": "BusAssignment",
+ "title": "Bus Assignment",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Bus_Assignment.md",
+  "HDL Coder/Signal Routing/Bus_Assignment.md"
+ ],
+ "text": "Assign new values to specified bus elements, 2 inputs, 1 output, direct feedthrough; {Elements in the bus} sets the elements of input bus Read-only: list of element and {Elements that are being assigned} sets the bus elements to be assigned new values list of element. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Bus",
+   "direction": "input",
+   "summary": "Input bus with elements to reassign bus"
+  },
+  {
+   "name": ":=",
+   "direction": "input",
+   "summary": "New value to assign to bus element scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "Bus",
+   "direction": "output",
+   "summary": "Output bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Elements in the bus",
+   "default": "",
+   "values": "Elements of input bus Read-only: list of element names",
+   "group": ""
+  },
+  {
+   "name": "Elements that are being assigned",
+   "default": "",
+   "values": "Bus elements to be assigned new values list of element names",
+   "group": ""
+  }
+ ]
+}

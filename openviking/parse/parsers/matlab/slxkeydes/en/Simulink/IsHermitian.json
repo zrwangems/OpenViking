@@ -1,0 +1,31 @@
+{
+ "key": "IsHermitian",
+ "title": "IsHermitian",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/IsHermitian.md"
+ ],
+ "text": "Check if matrix is Hermitian or skew-Hermitian, 1 input, 1 output, direct feedthrough; {Mode} sets the whether matrix is Hermitian or skew-Hermitian. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input matrix matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Hermitian or skew-Hermitian matrix real scalar Boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Hermitian",
+   "values": "Whether matrix is Hermitian or skew-Hermitian Hermitian (default) | Skew-Hermitian",
+   "group": ""
+  }
+ ]
+}

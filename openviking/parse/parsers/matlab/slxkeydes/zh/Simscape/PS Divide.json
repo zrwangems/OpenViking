@@ -1,0 +1,13 @@
+{
+ "key": "PS Divide",
+ "title": "PS Divide",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Divide.md"
+ ],
+ "text": "计算两个输入物理信号的逐元素除法。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

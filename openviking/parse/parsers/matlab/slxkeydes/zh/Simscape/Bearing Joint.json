@@ -1,0 +1,13 @@
+{
+ "key": "Bearing Joint",
+ "title": "Bearing Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Bearing_Joint.md"
+ ],
+ "text": "具有一个移动副基元和三个转动副基元的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

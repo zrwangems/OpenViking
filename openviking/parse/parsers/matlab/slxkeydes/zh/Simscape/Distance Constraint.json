@@ -1,0 +1,13 @@
+{
+ "key": "Distance Constraint",
+ "title": "Distance Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Constraints/Distance_Constraint.md"
+ ],
+ "text": "坐标系原点与曲线路径之间的运动学约束。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,93 @@
+{
+ "key": "codertarget.tic2000.blocks.SPIWrite",
+ "title": "SPI Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2803x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2805x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2806x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C280x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C281x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2833x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2834x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F280013x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F280015x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28002x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28003x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28004x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2807x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xD/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xS/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p55x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p65x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/SPI_Transmit.md"
+ ],
+ "text": "通过目标上的串行外设接口 (SPI) 传输数据，输入 1 路、输出 1 路；按 {SPI module} 指定用于写入数据的 SPI 模块；{Clock polarity} 指定 SPI 时钟极性、{Clock phase} 指定 SPI 时钟相位、{Enable blocking mode} 指定 SPI 阻塞模式使能、{Data bits} 指定 SPI 传输中的位数、{Chip select calling method} 指定 SPI 外设设备的方法 Provided by the SPI、{Chip select pin polarity} 指定 SPI 片选引脚极性 Active、{Chip select pin} 指定 SPI 外设选择引脚，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tx",
+   "direction": "input",
+   "summary": "SPI 发送数据 vector"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "SPI 发送状态 0 | 1 | 2"
+  }
+ ],
+ "params": [
+  {
+   "name": "SPI module",
+   "default": "SPI_A",
+   "values": "用于写入数据的 SPI 模块 SPI_A (default) | SPI_B | SPI_C | SPI_D",
+   "group": "Main"
+  },
+  {
+   "name": "Clock polarity",
+   "default": "Rising_edge",
+   "values": "SPI 时钟极性 Rising_edge (default) | Falling_edge",
+   "group": "Main"
+  },
+  {
+   "name": "Clock phase",
+   "default": "No_delay",
+   "values": "SPI 时钟相位 No_delay (default) | Delay_half_cycle",
+   "group": "Main"
+  },
+  {
+   "name": "Enable blocking mode",
+   "default": "off",
+   "values": "SPI 阻塞模式使能 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Data bits",
+   "default": "8",
+   "values": "SPI 传输中的位数 8 (default) | integer in [1 16]",
+   "group": "Advanced"
+  },
+  {
+   "name": "Chip select calling method",
+   "default": "peripheral",
+   "values": "选择 SPI 外设设备的方法 Provided by the SPI peripheral (default) | Explicit GPIO calls",
+   "group": "Advanced"
+  },
+  {
+   "name": "Chip select pin polarity",
+   "default": "low",
+   "values": "SPI 片选引脚极性 Active low (default) | Active high",
+   "group": "Advanced"
+  },
+  {
+   "name": "Chip select pin",
+   "default": "0",
+   "values": "SPI 外设选择引脚 0 (default) | positive integer scalar",
+   "group": "Advanced"
+  }
+ ]
+}

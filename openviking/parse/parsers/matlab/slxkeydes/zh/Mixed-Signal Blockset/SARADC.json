@@ -1,0 +1,107 @@
+{
+ "key": "SARADC",
+ "title": "SAR ADC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Architectures/SAR_ADC.md"
+ ],
+ "text": "基于 N 位逐次逼近寄存器 (SAR) 的 ADC，输入 2 路、输出 2 路；按 {Output polarity} 指定定义 ADC 输出极性；{Number of bits} 指定物理输出位数、{Input range (V)} 指定 ADC 动态范围、{Use external start clock} 指定连接到外部启动转换时钟、{Conversion start frequency (Hz)} 指定内部启动转换时钟的频率 10e3、{RMS aperture jitter (s)} 添加到启动转换时钟的 RMS 孔径抖动、{SAR Frequency (Hz)} 指定 SAR 时钟的频率 2e7、{Match input scale} 指定从输入继承输出极性和数据类型、{Output data type} 定义 ADC 输出数据类型 fixdt、{Enable Linearity Impairments} 指定在 ADC 仿真中启用线性度损伤、{Offset error} 按特定值移动量化步长、{Gain error} 指定 ADC 转换曲线斜率的误差，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "模拟输入信号 scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "用于启动转换的外部时钟 scalar"
+  },
+  {
+   "name": "digital",
+   "direction": "output",
+   "summary": "转换后的数字输出信号 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "确定模数转换是否完成 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits",
+   "default": "8",
+   "values": "物理输出位数 8 (default) | positive real integer in the range [1, 26]",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "ADC 动态范围 [-1 1] (default) | 2-element row vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Use external start clock",
+   "default": "on",
+   "values": "连接到外部启动转换时钟 on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Conversion start frequency (Hz)",
+   "default": "10e3",
+   "values": "内部启动转换时钟的频率 10e3 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "RMS aperture jitter (s)",
+   "default": "0",
+   "values": "添加到启动转换时钟的 RMS 孔径抖动 0 (default) | real nonnegative scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "SAR Frequency (Hz)",
+   "default": "2e7",
+   "values": "SAR 时钟的频率 2e7 (default) | real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Match input scale",
+   "default": "off",
+   "values": "从输入继承输出极性和数据类型 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output polarity",
+   "default": "Auto",
+   "values": "定义 ADC 输出极性 Auto (default) | Bipolar | Unipolar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output data type",
+   "default": "fixdt(1,Nbits)",
+   "values": "定义 ADC 输出数据类型 fixdt(1,Nbits) (default) | fixdt(0,Nbits) | double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Inherit: Inherit via back propagation",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable Linearity Impairments",
+   "default": "off",
+   "values": "在 ADC 仿真中启用线性度损伤 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "按特定值移动量化步长 1 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "ADC 转换曲线斜率的误差 2 LSB (default) | real scalar",
+   "group": "Impairments"
+  }
+ ]
+}

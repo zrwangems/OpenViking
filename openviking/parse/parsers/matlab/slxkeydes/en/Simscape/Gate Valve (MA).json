@@ -1,0 +1,13 @@
+{
+ "key": "Gate Valve (MA)",
+ "title": "Gate Valve (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Valves & Orifices/Flow Control Valves/Gate_Valve_MA.md"
+ ],
+ "text": "Gate valve in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

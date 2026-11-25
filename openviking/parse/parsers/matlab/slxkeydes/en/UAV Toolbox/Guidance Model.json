@@ -1,0 +1,66 @@
+{
+ "key": "Guidance Model",
+ "title": "Guidance Model",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Guidance_Model.md"
+ ],
+ "text": "Reduced-order model for UAV, 2 inputs, 1 output; {ModelType} sets the uAV guidance model, {DataType} sets the input and output numeric data, {Simulate using} sets the type of simulation to run Interpreted, {Initial State} sets the initial UAV state tab multiple table, {Configuration} sets the uAV controller configuration tab multiple table and {Input/Output Bus Names} sets the simulink bus signal names tab multiple entries of character. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Control",
+   "direction": "input",
+   "summary": "Control commands bus"
+  },
+  {
+   "name": "Environment",
+   "direction": "input",
+   "summary": "Environmental inputs bus"
+  },
+  {
+   "name": "State",
+   "direction": "output",
+   "summary": "Simulated UAV state bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "ModelType",
+   "default": "MultirotorGuidance",
+   "values": "UAV guidance model type MultirotorGuidance (default) | FixedWingGuidance",
+   "group": ""
+  },
+  {
+   "name": "DataType",
+   "default": "double",
+   "values": "Input and output numeric data types double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  },
+  {
+   "name": "Initial State",
+   "default": "",
+   "values": "Initial UAV state tab multiple table entries",
+   "group": ""
+  },
+  {
+   "name": "Configuration",
+   "default": "",
+   "values": "UAV controller configuration tab multiple table entries",
+   "group": ""
+  },
+  {
+   "name": "Input/Output Bus Names",
+   "default": "",
+   "values": "Simulink bus signal names tab multiple entries of character vectors",
+   "group": ""
+  }
+ ]
+}

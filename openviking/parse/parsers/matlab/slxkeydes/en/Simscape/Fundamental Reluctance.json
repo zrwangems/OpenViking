@@ -1,0 +1,13 @@
+{
+ "key": "Fundamental Reluctance",
+ "title": "Fundamental Reluctance",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Elements/Fundamental_Reluctance.md"
+ ],
+ "text": "Permanent magnet that passively generates magnetic field.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

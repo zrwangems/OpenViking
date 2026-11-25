@@ -1,0 +1,72 @@
+{
+ "key": "Shear",
+ "title": "Shear",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Shear.md"
+ ],
+ "text": "通过线性变化的偏移量平移图像或视频帧的行或列，输入 2 路、输出 1 路；按 {Interpolation method} 指定变换后像素值的插值方法；{Shear direction} 指定变换方向 Horizontal、{Output size after shear} 指定变换后的图像大小、{Shear values source} 指定剪切值偏移量限值的来源 Specify via、{Row/column shear values [first last]} 指定剪切值偏移量限值、{Maximum shear value} 指定最大行或列剪切、{Background fill value} 指定变换后图像中背景的强度值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像或视频 matrix | array"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "剪切值 vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "变换后的图像或视频 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Shear direction",
+   "default": "Horizontal",
+   "values": "变换方向 Horizontal (default) | Vertical",
+   "group": ""
+  },
+  {
+   "name": "Output size after shear",
+   "default": "Full",
+   "values": "变换后的图像大小 Full (default) | Same as input image",
+   "group": ""
+  },
+  {
+   "name": "Shear values source",
+   "default": "dialog",
+   "values": "剪切值偏移量限值的来源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Row/column shear values [first last]",
+   "default": "3]",
+   "values": "剪切值偏移量限值 [0 3] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum shear value",
+   "default": "20",
+   "values": "最大行或列剪切 20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Background fill value",
+   "default": "0",
+   "values": "变换后图像中背景的强度值 0 (default) | scalar | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "变换后像素值的插值方法 Bilinear (default) | Nearest neighbor | Bicubic",
+   "group": ""
+  }
+ ]
+}

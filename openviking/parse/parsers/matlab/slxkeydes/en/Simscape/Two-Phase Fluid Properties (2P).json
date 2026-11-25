@@ -1,0 +1,13 @@
+{
+ "key": "Two-Phase Fluid Properties (2P)",
+ "title": "Two-Phase Fluid Properties (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Utilities/Two_Phase_Fluid_Properties_2P.md"
+ ],
+ "text": "Fluid properties for two-phase fluid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

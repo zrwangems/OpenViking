@@ -1,0 +1,121 @@
+{
+ "key": "C28x I2C Receive",
+ "title": "I2C Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2803x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2805x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2806x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C280x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2833x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2834x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F280013x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F280015x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28002x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28004x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F2807x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xD/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xS/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28p55x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/I2C_Receive.md"
+ ],
+ "text": "Configure inter-integrated circuit (I2C) module to receive data from I2C bus, 1 input, 2 outputs, {Data type} sets Type of data in data vector; {Module}, {Addressing format} sets the address format for communication 7–Bit, {Peripheral address source}, {Peripheral address register}, {Bit count}, {Read data length} sets the length of received data, {Initial output} sets the value of I2C node output to model, {Set NACK bit} sets the nACK bit during I2C acknowledge cycle, {Enable stop condition} sets the stop message to I2C Transmit block, {Output receiving status} Indicates when I2C Receive block receives and {Sample time} sets the frequency at which data is read from I2C. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SAR",
+   "direction": "input",
+   "summary": "Peripheral address register value scalar"
+  },
+  {
+   "name": "RD",
+   "direction": "output",
+   "summary": "Received data from I2C bus scalar | vector"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "I2C communication status scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Module",
+   "default": "I2C_A",
+   "values": "Module for communication I2C_A (default) | I2C_B",
+   "group": ""
+  },
+  {
+   "name": "Addressing format",
+   "default": "addressing",
+   "values": "Address format for communication 7–Bit addressing (default) | 10–Bit addressing | Free data format",
+   "group": ""
+  },
+  {
+   "name": "Peripheral address source",
+   "default": "dialog",
+   "values": "Peripheral address source of I2C peripheral Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Peripheral address register",
+   "default": "80",
+   "values": "Peripheral address register value 80 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Bit count",
+   "default": "8",
+   "values": "Bit count for communication 8 (default) | integer in [1 8]",
+   "group": ""
+  },
+  {
+   "name": "Read data length",
+   "default": "1",
+   "values": "Length of received data 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Value of I2C node output to model 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Set NACK bit",
+   "default": "off",
+   "values": "NACK bit during I2C acknowledge cycle off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable stop condition",
+   "default": "off",
+   "values": "Stop message to I2C Transmit block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output receiving status",
+   "default": "off",
+   "values": "Indicates when I2C Receive block receives message off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Frequency at which data is read from I2C device 0.001 (default) | –1 | scalar",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "int8",
+   "values": "Type of data in data vector int8 (default) | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  }
+ ]
+}

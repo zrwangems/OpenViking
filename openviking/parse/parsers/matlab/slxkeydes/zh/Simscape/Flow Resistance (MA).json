@@ -1,0 +1,13 @@
+{
+ "key": "Flow Resistance (MA)",
+ "title": "Flow Resistance (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Flow_Resistance_MA.md"
+ ],
+ "text": "湿空气支路中的通用阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,79 @@
+{
+ "key": "Receiver Thermal Noise",
+ "title": "Receiver Thermal Noise",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/Receiver_Thermal_Noise.md"
+ ],
+ "text": "对复信号应用接收机热噪声，输入 1 路、输出 1 路；按 {Specification method} 指定热噪声指定方法 Noise；{Noise temperature (K)} 指定噪声温度、{Noise figure (dB)} 指定接收机噪声系数、{Noise factor} 指定接收机噪声因子、{Add 290K antenna noise} 用于添加 290 K 天线噪声、{Reference load (ohm)} 指定参考负载、{Random number source} 指定随机数流的来源 Global、{Initial seed} 指定初始种子值、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "基带信号 scalar | column vector | matrix"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "输出信号 scalar | column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specification method",
+   "default": "temperature",
+   "values": "热噪声指定方法 Noise temperature (default) | Noise figure | Noise factor",
+   "group": ""
+  },
+  {
+   "name": "Noise temperature (K)",
+   "default": "290",
+   "values": "噪声温度 290 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "3.0103",
+   "values": "接收机噪声系数 3.0103 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Noise factor",
+   "default": "2",
+   "values": "接收机噪声因子 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Add 290K antenna noise",
+   "default": "off",
+   "values": "用于添加 290 K 天线噪声的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reference load (ohm)",
+   "default": "1",
+   "values": "参考负载 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Random number source",
+   "default": "stream",
+   "values": "随机数流的来源 Global stream (default) | mt19937ar with seed",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "67987",
+   "values": "初始种子值 67987 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

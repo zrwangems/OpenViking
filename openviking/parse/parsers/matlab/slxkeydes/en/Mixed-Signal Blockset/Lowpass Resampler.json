@@ -1,0 +1,67 @@
+{
+ "key": "Lowpass Resampler",
+ "title": "Lowpass Resampler",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Lowpass_Resampler.md"
+ ],
+ "text": "Convert signal from one sample time to another, 1 input, 1 output, {Output sample time} sets Type of output sample time; {Inherit output rise/fall time}, {Output rise/fall time} sets the 20%−80% output rise/fall, {Number of samples of delay} sets the number of samples of propagation delay for fixed-step, {Samples out per rise/fall time} sets the number of output samples in single output rise/fall, {Enable large buffer} enables extra buffer samples and {Number of extra buffer samples}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Discrete time input signal scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "Continuous time output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit output rise/fall time",
+   "default": "on",
+   "values": "Inherit output rise/fall time from fixed-step input sample time on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output rise/fall time",
+   "default": "1e-10",
+   "values": "20%−80% output rise/fall time 1e-10 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of samples of delay",
+   "default": "1",
+   "values": "Number of samples of propagation delay for fixed-step operation 1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output sample time",
+   "default": "Inherited",
+   "values": "Type of output sample time Inherited (default) | Fixed step discrete | Variable step discrete",
+   "group": ""
+  },
+  {
+   "name": "Samples out per rise/fall time",
+   "default": "5",
+   "values": "Number of output samples in single output rise/fall time 5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable large buffer",
+   "default": "on",
+   "values": "Enable extra buffer samples on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Number of extra buffer samples",
+   "default": "10",
+   "values": "Number of extra buffer samples to support sample delays 10 (default) | positive real scalar",
+   "group": ""
+  }
+ ]
+}

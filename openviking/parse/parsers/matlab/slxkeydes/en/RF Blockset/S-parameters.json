@@ -1,0 +1,194 @@
+{
+ "key": "S-parameters",
+ "title": "S-parameters",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/S_parameters.md"
+ ],
+ "text": "Model S-parameter network, {Data source} sets Data source Data; {Data file} sets the name of network parameter data file, {Network-parameter object} sets the network parameter objects as data source, {Network parameter type}, {Network-parameters} sets the network parameter values, {Frequency (dB)} sets the frequency of network parameters, {Reference Impedance(Ohm)} sets the reference impedance of network parameters, {Use rational object} sets the rational object as data source, {Residues}, {Poles} sets the residues in order of rational model, {Direct feedthrough}, {Simulate noise} sets the simulate thermal noise waves, {Ground and hide negative terminals} sets the ground RF circuit terminals, {Modeling options} sets the model S-parameters Time, {Fitting options} sets the rational fit fitting options Fit, {Relative error desired (dB)} sets the relative error acceptable for the rational, {Maximum number of poles}, {Automatically estimate impulse response duration} sets the automatically calculate impulse response, {Impulse response duration}, {Use only S-parameter magnitude with appropriate delay}, {Source of frequency data} sets the frequency data source Extracted from data, {Frequency data}, {Plot type} sets the type of data plot, {Parameter 1} sets the type of S-Parameters, {Parameter 2} sets the type of S-Parameters to plot, {Format1} plots format Magnitude, {Format2} plots format Magnitude, {Y-axis scale}, {X-axis scale} and {Plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Data source",
+   "default": "file",
+   "values": "Data source Data file (default) | Network-parameters | Rational model",
+   "group": ""
+  },
+  {
+   "name": "Data file",
+   "default": "simrfV2_unitygain.s2p",
+   "values": "Name of network parameter data file simrfV2_unitygain.s2p (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Network-parameter object",
+   "default": "off",
+   "values": "Network parameter objects as data source off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Network parameter type",
+   "default": "S-parameters",
+   "values": "Network parameter type S-parameters (default) | Y-parameters | Z-parameters",
+   "group": ""
+  },
+  {
+   "name": "Network-parameters",
+   "default": "0]",
+   "values": "Network parameter values [0 0;1 0] (default) | multidimensional array | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency (dB)",
+   "default": "Hz",
+   "values": "Frequency of network parameters 1e9 Hz (default) | scalar | vector | Hz | kHz | MHz | GHz",
+   "group": ""
+  },
+  {
+   "name": "Reference Impedance(Ohm)",
+   "default": "50",
+   "values": "Reference impedance of network parameters 50 (default) | positive scalar | vector of positive scalars",
+   "group": ""
+  },
+  {
+   "name": "Use rational object",
+   "default": "off",
+   "values": "Rational object as data source off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Residues",
+   "default": "0",
+   "values": "Residues in order of rational model 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Poles",
+   "default": "0",
+   "values": "Residues in order of rational model 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Direct feedthrough",
+   "default": "0}",
+   "values": "Direct feedthrough {0 0:1 0} (default) | array of vectors",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise",
+   "default": "off",
+   "values": "Simulate thermal noise waves off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Modeling options",
+   "default": "domain",
+   "values": "Model S-parameters Time domain (default) | Frequency domain",
+   "group": ""
+  },
+  {
+   "name": "Fitting options",
+   "default": "individually",
+   "values": "Rational fit fitting options Fit individually (default) | Share poles by column | Share all poles",
+   "group": ""
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "Relative error acceptable for the rational fit -40 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of poles",
+   "default": "48",
+   "values": "Maximum number of poles 48 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "",
+   "values": "Automatically calculate impulse response on | off",
+   "group": ""
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "1e-10",
+   "values": "Impulse response duration 1e-10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Use only S-parameter magnitude with appropriate delay",
+   "default": "off",
+   "values": "Use only S-parameter magnitude with appropriate delay off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "source",
+   "values": "Frequency data source Extracted from data source (default) | User-defined",
+   "group": ""
+  },
+  {
+   "name": "Frequency data",
+   "default": "Hz",
+   "values": "Frequency data range [1e9:1e6:3e9] Hz (default) | vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "Type of data plot X-Y plane (default) | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": ""
+  },
+  {
+   "name": "Parameter 1",
+   "default": "S11",
+   "values": "Type of S-Parameters to plot S11 (default) | SNN",
+   "group": ""
+  },
+  {
+   "name": "Parameter 2",
+   "default": "None",
+   "values": "Type of S-Parameters to plot None (default) | SNN",
+   "group": ""
+  },
+  {
+   "name": "Format1",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Angle(degrees) | Real | Imaginary",
+   "group": ""
+  },
+  {
+   "name": "Format2",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Angle(degrees) | Real | Imaginary",
+   "group": ""
+  },
+  {
+   "name": "Y-axis scale",
+   "default": "Linear",
+   "values": "Y-axis scale Linear (default) | Logarithmic",
+   "group": ""
+  },
+  {
+   "name": "X-axis scale",
+   "default": "Linear",
+   "values": "X-axis scale Linear (default) | Logarithmic",
+   "group": ""
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Plot specified data button",
+   "group": ""
+  }
+ ]
+}

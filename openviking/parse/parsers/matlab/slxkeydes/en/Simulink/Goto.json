@@ -1,0 +1,51 @@
+{
+ "key": "Goto",
+ "title": "Goto",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Goto.md",
+  "HDL Coder/Signal Routing/Goto.md"
+ ],
+ "text": "Pass block input to From blocks, 1 input, no direct feedthrough, {Tag visibility} sets Scope of the Goto block tag; {Goto tag} sets the block identifier, {Icon display} sets the text to display on block, {Rename All} sets the propagate name throughout and {Corresponding blocks} sets the blocks connected to this Goto block block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Goto tag",
+   "default": "A",
+   "values": "Block identifier A (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Tag visibility",
+   "default": "local",
+   "values": "Scope of the Goto block tag local (default) | scoped | global",
+   "group": ""
+  },
+  {
+   "name": "Icon display",
+   "default": "Tag",
+   "values": "Text to display on block icon Tag (default) | Signal name | Tag and signal name",
+   "group": ""
+  },
+  {
+   "name": "Rename All",
+   "default": "",
+   "values": "Propagate name throughout model button",
+   "group": ""
+  },
+  {
+   "name": "Corresponding blocks",
+   "default": "",
+   "values": "Blocks connected to this Goto block block path |...",
+   "group": ""
+  }
+ ]
+}

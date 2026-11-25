@@ -1,0 +1,110 @@
+{
+ "key": "SignalEditor",
+ "title": "Signal Editor",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Signal_Editor.md"
+ ],
+ "text": "Display, create, edit, and switch interchangeable scenarios, {Sample time} sets Time interval between samples; {To create and edit scenarios, open Signal Editor user interface} sets the option to open Signal Editor, {File name} sets the data set file, {Active scenario}, {Use properties from} sets the signal property source, {Active signal} sets the signal to configure Signal, {Apply signal properties to all scenarios} sets the option to apply specified signal properties to active, {Apply signal properties to all signals} sets the option to apply signal properties to all, {Output a bus signal} sets the configure signal as bus, {Select bus object} sets the bus object Bus, {Mode} sets the bus object mode, {Unit} sets the physical unit, {Interpolate data} sets the linearly interpolate data, {Enable zero-crossing detection} sets the detect zero-crossings and {Form output after final data value by} sets the block output after the last time hit for which data is available Setting. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Signal1",
+   "direction": "unknown",
+   "summary": "Signals in scenario scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "To create and edit scenarios, open Signal Editor user interface",
+   "default": "",
+   "values": "Option to open Signal Editor tool button",
+   "group": ""
+  },
+  {
+   "name": "File name",
+   "default": "untitled.mat",
+   "values": "Data set file untitled.mat (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Active scenario",
+   "default": "Scenario",
+   "values": "Active scenario Scenario (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Use properties from",
+   "default": "parameters",
+   "values": "Signal property source Dialog parameters (default) | Signal data in MAT file",
+   "group": ""
+  },
+  {
+   "name": "Active signal",
+   "default": "1",
+   "values": "Signal to configure Signal 1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Apply signal properties to all scenarios",
+   "default": "on",
+   "values": "Option to apply specified signal properties to active signal on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Apply signal properties to all signals",
+   "default": "off",
+   "values": "Option to apply signal properties to all signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output a bus signal",
+   "default": "off",
+   "values": "Configure signal as bus off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Select bus object",
+   "default": "BusObject",
+   "values": "Bus object Bus: BusObject (default) | bus object name",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "object",
+   "values": "Bus object mode Bus object (default) | bus object data type",
+   "group": ""
+  },
+  {
+   "name": "Unit",
+   "default": "inherit",
+   "values": "Physical unit inherit (default) | supported physical unit",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0",
+   "values": "Time interval between samples 0 (default) | -1 | sample time in seconds",
+   "group": ""
+  },
+  {
+   "name": "Interpolate data",
+   "default": "on",
+   "values": "Linearly interpolate data on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "Detect zero-crossings off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Form output after final data value by",
+   "default": "zero",
+   "values": "Block output after the last time hit for which data is available Setting to zero (default) | Extrapolation | Holding final value",
+   "group": ""
+  }
+ ]
+}

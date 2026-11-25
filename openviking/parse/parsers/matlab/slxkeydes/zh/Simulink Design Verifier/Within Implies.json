@@ -1,0 +1,20 @@
+{
+ "key": "Within Implies",
+ "title": "Within Implies",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Temporal Operators/Within_Implies.md"
+ ],
+ "text": "验证响应是否在所需时间内发生；{外部重置} 是否可以重置模块，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "外部重置",
+   "default": "off",
+   "values": "指定是否可以重置模块 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

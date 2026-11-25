@@ -1,0 +1,61 @@
+{
+ "key": "CAN FD Replay",
+ "title": "CAN FD Replay",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN FD Communication/CAN_FD_Replay.md"
+ ],
+ "text": "回放记录的 CAN FD 报文；输出 2 路；{文件名} 指定具有报文的 MAT 文件的路径和名称、{变量名称} 指定 MAT 文件中存储报文的变量、{回放报文的次数} 指定重复值 Inf、{将报文回放给} 输出位置 CAN FD、{设备}、{采样时间} 指定模块执行速率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "output",
+   "summary": "回放的 CAN FD 报文 CAN_FD_MESSAGE_BUS"
+  },
+  {
+   "name": "f()",
+   "direction": "output",
+   "summary": "函数调用事件输出 函数调用事件"
+  }
+ ],
+ "params": [
+  {
+   "name": "文件名",
+   "default": "untitled.mat",
+   "values": "具有报文的 MAT 文件的路径和名称 untitled.mat (默认) | 文件名",
+   "group": ""
+  },
+  {
+   "name": "变量名称",
+   "default": "ans",
+   "values": "MAT 文件中存储报文的变量 ans (默认) | 变量",
+   "group": ""
+  },
+  {
+   "name": "回放报文的次数",
+   "default": "Inf",
+   "values": "重复值 Inf (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "将报文回放给",
+   "default": "总线",
+   "values": "指定输出位置 CAN FD 总线 (默认) | Output port",
+   "group": ""
+  },
+  {
+   "name": "设备",
+   "default": "",
+   "values": "CAN FD 设备和通道 设备列表选项",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.01",
+   "values": "模块执行速率 0.01 (默认) | 数值",
+   "group": ""
+  }
+ ]
+}

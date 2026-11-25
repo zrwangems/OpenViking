@@ -1,0 +1,55 @@
+{
+ "key": "ros.slroscpp.internal.block.GetTransform",
+ "title": "Get Transform",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Get_Transform.md"
+ ],
+ "text": "Get transformation between source and target frame from ROS network, 2 outputs, {Frame source} sets Source for specifying frames Select from ROS network; {Target}, {Source}, {Output format} sets the format of the output transformation value and {Sample time} sets the interval between outputs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsAvail",
+   "direction": "output",
+   "summary": "Transformation availability indicator 0 | 1"
+  },
+  {
+   "name": "Value",
+   "direction": "output",
+   "summary": "Homogeneous transformation value between source and target frame geometry_msgs/TransformStamped non-virtual bus (default) | double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frame source",
+   "default": "",
+   "values": "Source for specifying frames Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Target",
+   "default": "",
+   "values": "Target coordinate frame string",
+   "group": ""
+  },
+  {
+   "name": "Source",
+   "default": "",
+   "values": "Source coordinate frame string",
+   "group": ""
+  },
+  {
+   "name": "Output format",
+   "default": "bus",
+   "values": "Format of the output transformation value bus (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "Interval between outputs –1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "key": "Fault Qualification",
+ "title": "Fault Qualification",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Protection/Fault_Qualification.md"
+ ],
+ "text": "Fault qualification algorithm, 1 input, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Qualification time (s)} sets the error qualification time and {Disqualification time (s)} sets the error disqualification time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Symptom",
+   "direction": "input",
+   "summary": "Symptom flag 0 | 1 | vector of 0 or 1 values"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "Error flag 0 | 1 | vector of 0 or 1 values"
+  }
+ ],
+ "params": [
+  {
+   "name": "Qualification time (s)",
+   "default": "2",
+   "values": "Error qualification time 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time (s)",
+   "default": "4",
+   "values": "Error disqualification time 4 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive integer",
+   "group": ""
+  }
+ ]
+}

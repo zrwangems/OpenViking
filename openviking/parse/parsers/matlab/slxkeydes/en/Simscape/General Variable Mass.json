@@ -1,0 +1,13 @@
+{
+ "key": "General Variable Mass",
+ "title": "General Variable Mass",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Variable Mass/General_Variable_Mass.md"
+ ],
+ "text": "Mass element with variable inertial properties.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

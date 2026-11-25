@@ -1,0 +1,58 @@
+{
+ "key": "WindHWM07",
+ "title": "Horizontal Wind Model 07",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Wind/Horizontal_Wind_Model_07.md"
+ ],
+ "text": "实现 Horizontal Wind Model 07，输入 4 路、输出 1 路；按 {Model} 指定水平风模型类型；{Units} 指定输入和输出单位 Metric、{Action for out-of-range input} 指定超出范围时的模块行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ l h",
+   "direction": "input",
+   "summary": "大地纬度、经度和位势高度 three-element vector | altitude is a value between 0 and 500 km"
+  },
+  {
+   "name": "day",
+   "direction": "input",
+   "summary": "日 scalar | value between 1 and 366"
+  },
+  {
+   "name": "sec",
+   "direction": "input",
+   "summary": "经过的秒数 scalar"
+  },
+  {
+   "name": "Ap",
+   "direction": "input",
+   "summary": "Ap 指数 scalar | range from 0 to 400"
+  },
+  {
+   "name": "V wind",
+   "direction": "output",
+   "summary": "风速矢量 1-by-2 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Model",
+   "default": "Quiet",
+   "values": "水平风模型类型 Quiet (default) | Total | Disturbance",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Error",
+   "values": "超出范围时的模块行为 Error (default) | Warning | None",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "key": "TCP Write",
+ "title": "TCP Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/TCP_Write.md"
+ ],
+ "text": "Send TCP/IP packets to remote host over TCP/IP network, 1 input, 1 output; {Network role} sets the block as server, {Remote address} sets the iP address of remote server to which TCP/IP packets are sent, {Remote port} sets the iP port of remote server to which TCP/IP packets are, {Local port} sets the iP port on sending host from which TCP/IP packets are and {Byte order}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data numeric vector"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "Stream of TCP/IP packets sent to the remote host scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network role",
+   "default": "Client",
+   "values": "Set the block as server or client Client (default) | Server",
+   "group": ""
+  },
+  {
+   "name": "Remote address",
+   "default": "127.0.0.1",
+   "values": "IP address of remote server to which TCP/IP packets are sent 127.0.0.1 (default) | dotted-quad expression",
+   "group": ""
+  },
+  {
+   "name": "Remote port",
+   "default": "25000",
+   "values": "IP port of remote server to which TCP/IP packets are sent 25000 (default) | integer from 1 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Local port",
+   "default": "-1",
+   "values": "IP port on sending host from which TCP/IP packets are sent -1 (default) | integer from 1 to 65535",
+   "group": ""
+  },
+  {
+   "name": "Byte order",
+   "default": "LittleEndian",
+   "values": "Byte order LittleEndian (default) | BigEndian",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "key": "ethercatsoeread",
+ "title": "EtherCAT Sync SSC/SoE Upload",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Sync_SSC_SoE_Upload.md"
+ ],
+ "text": "从由服务数据对象表示的从站设备同步读取数据；输出 2 路；按 {Data Type} 指定IDN 的数据类型；{IDN} 指定标识号 character vector、{Drive Number} 指定驱动器的索引号 integer、{Dimension} 指定此 IDN 的数据维度、{Network Device Index} 指定 EtherCAT 网络标识符、{SubDevice Name} 指定包含 IDN 的设备名称 character、{Sample time} 指定模块的采样时间、{Timeout} 指定等待从属设备响应的时间 numeric，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "从从属设备接收的数据 numeric"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "报告 EtherCAT 网络错误 0 | integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "IDN",
+   "default": "",
+   "values": "标识号 character vector",
+   "group": ""
+  },
+  {
+   "name": "Drive Number",
+   "default": "",
+   "values": "驱动器的索引号 integer",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "IDN 的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "此 IDN 的数据维度 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT 网络标识符 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "SubDevice Name",
+   "default": "",
+   "values": "包含 IDN 的设备名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块的采样时间 -1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "",
+   "values": "等待从属设备响应的时间 numeric",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "key": "Cholesky Solver",
+ "title": "Cholesky Solver",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/Cholesky_Solver.md"
+ ],
+ "text": "Solve SX = B for X when S is a square Hermitian positive definite matrix, 2 inputs, 1 output, no direct feedthrough, {Non-positive definite input} sets Response to nonpositive definite matrix input.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Input S matrix M -by- M matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "B matrix M -by- N matrix | M -by-1 vector"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "Solution to system of equations M -by- N matrix | M -by-1 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Non-positive definite input",
+   "default": "Ignore",
+   "values": "Response to nonpositive definite matrix input Ignore (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

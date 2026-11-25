@@ -1,0 +1,13 @@
+{
+ "key": "Gyrator",
+ "title": "Gyrator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Gyrator.md"
+ ],
+ "text": "Piecewise linear diode in electrical systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

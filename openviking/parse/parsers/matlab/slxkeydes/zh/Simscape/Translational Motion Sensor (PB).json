@@ -1,0 +1,13 @@
+{
+ "key": "Translational Motion Sensor (PB)",
+ "title": "Translational Motion Sensor (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sensors/Translational_Motion_Sensor_PB.md"
+ ],
+ "text": "基于位置的机械平移系统中的运动传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

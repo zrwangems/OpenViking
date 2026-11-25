@@ -1,0 +1,81 @@
+{
+ "key": "Induction Machine Flux Observer",
+ "title": "Induction Machine Flux Observer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Observers/Induction_Machine_Flux_Observer.md"
+ ],
+ "text": "Induction machine flux observer for field-oriented control, 2 inputs, 4 outputs; {Rated electrical frequency (Hz)} sets the frequency, {Rotor resistance, referred to the stator side (pu)} sets the resistance, {Rotor leakage inductance, referred to the stator side (pu)} sets the inductance, {Magnetizing inductance (pu)} sets the inductance, {Time constant for dq currents filters (s)} sets the time constant 1e-4 and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "Current vector"
+  },
+  {
+   "name": "wr",
+   "direction": "input",
+   "summary": "Speed scalar"
+  },
+  {
+   "name": "idqseF",
+   "direction": "output",
+   "summary": "Current vector"
+  },
+  {
+   "name": "imr",
+   "direction": "output",
+   "summary": "Current scalar"
+  },
+  {
+   "name": "theta",
+   "direction": "output",
+   "summary": "Electrical angle scalar"
+  },
+  {
+   "name": "we",
+   "direction": "output",
+   "summary": "Synchronous speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rated electrical frequency (Hz)",
+   "default": "60",
+   "values": "Frequency 60 (default) | positive",
+   "group": ""
+  },
+  {
+   "name": "Rotor resistance, referred to the stator side (pu)",
+   "default": "0.01",
+   "values": "Resistance 0.01 (default) | positive",
+   "group": ""
+  },
+  {
+   "name": "Rotor leakage inductance, referred to the stator side (pu)",
+   "default": "0.06",
+   "values": "Inductance 0.06 (default) | positive",
+   "group": ""
+  },
+  {
+   "name": "Magnetizing inductance (pu)",
+   "default": "2.7",
+   "values": "Inductance 2.7 (default) | positive",
+   "group": ""
+  },
+  {
+   "name": "Time constant for dq currents filters (s)",
+   "default": "1e-4",
+   "values": "Time constant 1e-4 (default) | 0 or positive",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

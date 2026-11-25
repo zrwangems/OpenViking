@@ -1,0 +1,13 @@
+{
+ "key": "Rigid Transform",
+ "title": "Rigid Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Frames and Transforms/Rigid_Transform.md"
+ ],
+ "text": "Fixed spatial relationship between frames。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

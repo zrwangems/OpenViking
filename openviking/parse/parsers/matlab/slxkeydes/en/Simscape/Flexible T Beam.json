@@ -1,0 +1,13 @@
+{
+ "key": "Flexible T Beam",
+ "title": "Flexible T Beam",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Flexible Bodies/Beams/Flexible_T_Beam.md"
+ ],
+ "text": "T-beam with elastic properties for deformation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

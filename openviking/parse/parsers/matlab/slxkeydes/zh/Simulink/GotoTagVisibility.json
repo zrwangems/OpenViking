@@ -1,0 +1,20 @@
+{
+ "key": "GotoTagVisibility",
+ "title": "Goto Tag Visibility",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Goto_Tag_Visibility.md"
+ ],
+ "text": "定义 Goto 模块标记的作用域；{Goto 标记} 指定其可见性由此模块的位置定义的 Goto 模块标记，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Goto 标记",
+   "default": "A",
+   "values": "其可见性由此模块的位置定义的 Goto 模块标记 A (默认) |...",
+   "group": ""
+  }
+ ]
+}

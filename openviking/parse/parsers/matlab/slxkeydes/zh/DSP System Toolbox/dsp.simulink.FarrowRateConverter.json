@@ -1,0 +1,134 @@
+{
+ "key": "dsp.simulink.FarrowRateConverter",
+ "title": "Farrow Rate Converter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Farrow_Rate_Converter.md",
+  "DSP System Toolbox/Filtering/Multirate Filters/Farrow_Rate_Converter.md"
+ ],
+ "text": "具有任意转换因子的多项式采样率转换器，输入 1 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Sample rate of input signal (Hz)} 指定输入信号的采样率{Tolerance for output sample rate} 输出采样率的最大容差、{Filter Specification method} 指定滤波器系数的方法 Polynomial、{Coefficients} 指定滤波器多项式系数、{Polynomial order} 指定 Lagrange 插值滤波器多项式的阶数、{Allow arbitrary frame length for fixed-size input signals} 允许固定大小输入信号的任意帧长度、{View Filter Response} 指定查看滤波器响应、{View Info} 指定查看信息、{Simulate using} 指定要运行的仿真类型 Interpreted execu、{Saturate on integer overflow} 指定溢出操作的方法、{Coefficients} 指定滤波器系数的数据类型 fixdt、{Fractional Delay} 指定分数延迟的数据类型 fixdt、{Multiplicand} 指定被乘数的数据类型 fixdt、{Output} 输出数据类型、{Output Minimum} 指定模块可以输出的最小值、{Output Maximum} 指定模块可以输出的最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型 也按实例取值；{Sample rate of output signal (Hz)} 输出信号的采样率，单位为 Hz 96e3，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "速率转换后的信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "48e3",
+   "values": "输入信号的采样率（Hz） 48e3 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate of output signal (Hz)",
+   "default": "96e3",
+   "values": "输出信号的采样率，单位为 Hz 96e3 (default) | positive scalar in Hz",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Tolerance for output sample rate",
+   "default": "0",
+   "values": "输出采样率的最大容差 0 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter Specification method",
+   "default": "order",
+   "values": "指定滤波器系数的方法 Polynomial order (default) | Coefficients",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "0]",
+   "values": "滤波器多项式系数 [-1 1; 1 0] (default) | real-valued square matrix",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Polynomial order",
+   "default": "3",
+   "values": "Lagrange 插值滤波器多项式的阶数 3 (default) | positive integer less than or equal to 4",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "on",
+   "values": "允许固定大小输入信号的任意帧长度 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Info",
+   "default": "",
+   "values": "查看信息 button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Fractional Delay",
+   "default": "fixdt(0,8)",
+   "values": "分数延迟的数据类型 fixdt(0,8) (default) | fixdt(0,16)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Multiplicand",
+   "default": "fixdt(1,16,13)",
+   "values": "被乘数的数据类型 fixdt(1,16,13) (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出数据类型 Inherit: Same word length as input (default) | Inherit: Same as accumulator | fixdt(1,16) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "模块可以输出的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "模块可以输出的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

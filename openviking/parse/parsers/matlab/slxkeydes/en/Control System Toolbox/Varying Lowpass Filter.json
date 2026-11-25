@@ -1,0 +1,36 @@
+{
+ "key": "Varying Lowpass Filter",
+ "title": "Varying Lowpass Filter",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Varying_Lowpass_Filter.md"
+ ],
+ "text": "Butterworth filter with varying coefficients, 2 inputs, 1 output; {Filter order} sets the lowpass filter order. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Filter input scalar"
+  },
+  {
+   "name": "freq",
+   "direction": "input",
+   "summary": "Cutoff frequency scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filter output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter order",
+   "default": "1",
+   "values": "Lowpass filter order 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

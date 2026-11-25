@@ -1,0 +1,77 @@
+{
+ "key": "Chroma Resampler",
+ "title": "Chroma Resampler",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Conversions/Chroma_Resampler.md"
+ ],
+ "text": "Downsample or upsample chrominance component, 2 inputs, 2 outputs, {Antialiasing filter} sets Lowpass filter to follow downsample operation; {Resampling} sets the type of resampling 4:4:4, {Horizontal filter coefficients} sets the coefficients for the antialiasing filter, {Interpolation}, {Rounding mode} sets the rounding method for internal fixed-point calculations, {Saturate on integer overflow} sets the overflow action for internal fixed-point and {Filter coefficients} sets the data type for antialiasing filter coefficients. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream in Y’CbCr color space vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Output pixel stream in Y’CbCr color space vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resampling",
+   "default": "4:2:2",
+   "values": "Type of resampling 4:4:4 to 4:2:2 (default) | 4:2:2 to 4:4:4",
+   "group": "Main"
+  },
+  {
+   "name": "Antialiasing filter",
+   "default": "Auto",
+   "values": "Lowpass filter to follow downsample operation Auto (default) | Property | None",
+   "group": "Main"
+  },
+  {
+   "name": "Horizontal filter coefficients",
+   "default": "0.2]",
+   "values": "Coefficients for the antialiasing filter [0.2 0.6 0.2] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation",
+   "default": "Linear",
+   "values": "Interpolation method for an upsample operation Linear (default) | Pixel replication",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow action for internal fixed-point calculations off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Filter coefficients",
+   "default": "fixdt(1,16,15)",
+   "values": "Data type for antialiasing filter coefficients fixdt(1,16,15) (default) | data type expression",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "key": "Stop",
+ "title": "Stop Simulation",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/Stop_Simulation.md",
+  "HDL Coder/Sinks/Stop_Simulation.md"
+ ],
+ "text": "Stop simulation when input is nonzero, 1 input, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

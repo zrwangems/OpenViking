@@ -1,0 +1,43 @@
+{
+ "key": "Modem Control",
+ "title": "Modem Control",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Modem_Control.md"
+ ],
+ "text": "Control state of RTS and DTR output lines on serial port, 2 inputs, {Serial port} sets Port that is being accessed Legacy Serial Port; {RTS} and {DTR}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RTS",
+   "direction": "input",
+   "summary": "Level-sensitive signal for setting ready-to-send line double"
+  },
+  {
+   "name": "DTR",
+   "direction": "input",
+   "summary": "Level-sensitive signal for setting data-terminal-ready line double"
+  }
+ ],
+ "params": [
+  {
+   "name": "RTS",
+   "default": "on",
+   "values": "Enable control of RTS line for serial device on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "DTR",
+   "default": "on",
+   "values": "Enable control of DTR line for serial device on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "Port that is being accessed Legacy Serial Port 1 (default) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  }
+ ]
+}

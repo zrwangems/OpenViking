@@ -1,0 +1,62 @@
+{
+ "key": "DeadZone",
+ "title": "Dead Zone",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Dead_Zone.md",
+  "HDL Coder/Discontinuities/Dead_Zone.md"
+ ],
+ "text": "Provide region of zero output, 1 input, 1 output, direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Start of dead zone} sets the lower bound of the dead zone, {End of dead zone} sets the upper limit of the dead zone, {Saturate on integer overflow} sets the method of overflow action, {Treat as gain when linearizing} sets the gain value and {Enable zero-crossing detection}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Start of dead zone",
+   "default": "’-0.5’",
+   "values": "Specify the lower bound of the dead zone ’-0.5’ (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "End of dead zone",
+   "default": "’0.5’",
+   "values": "Specify the upper limit of the dead zone ’0.5’ (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "on",
+   "values": "Method of overflow action on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Treat as gain when linearizing",
+   "default": "on",
+   "values": "Specify the gain value on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Harmonic Drive",
+ "title": "Harmonic Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Harmonic_Drive.md"
+ ],
+ "text": "High-ratio speed reducer based on elastic deformation of an elliptical gear.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

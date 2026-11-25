@@ -1,0 +1,13 @@
+{
+ "key": "T-Junction (MA)",
+ "title": "T-Junction (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/T_Junction_MA.md"
+ ],
+ "text": "湿空气网络中的三通接头。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

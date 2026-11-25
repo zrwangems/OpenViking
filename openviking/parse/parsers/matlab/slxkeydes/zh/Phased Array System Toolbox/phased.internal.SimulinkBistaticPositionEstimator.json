@@ -1,0 +1,73 @@
+{
+ "key": "phased.internal.SimulinkBistaticPositionEstimator",
+ "title": "Bistatic Position Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/Bistatic_Position_Estimator.md"
+ ],
+ "text": "使用双基地距离和角度测量估计目标位置，输入 6 路、输出 2 路；{Range Measurement} 指定距离测量类型 Bistatic、{Enable known variance input} 启用已知方差输入、{Output covariances of position estimates} 输出位置估计的协方差，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RngEst",
+   "direction": "input",
+   "summary": "距离测量（米） real-valued 1-by- K vector | real-valued J -by- L matrix"
+  },
+  {
+   "name": "AngEst",
+   "direction": "input",
+   "summary": "到达角估计（度） real-valued 1-by- L row vector | real-valued 2-by- L matrix"
+  },
+  {
+   "name": "RngVar",
+   "direction": "input",
+   "summary": "距离方差（平方米） positive real-valued J -by- L matrix | positive real-valued length- K row vector"
+  },
+  {
+   "name": "AngVar",
+   "direction": "input",
+   "summary": "角度方差（平方度） real-valued 1-by- L row vector | real-valued 2-by- L matrix"
+  },
+  {
+   "name": "TxPos",
+   "direction": "input",
+   "summary": "发射锚点位置（米） real-valued Q -by- J matrix"
+  },
+  {
+   "name": "RxPos",
+   "direction": "input",
+   "summary": "接收锚点位置（米） real-valued Q -by- L matrix"
+  },
+  {
+   "name": "TgtPosEst",
+   "direction": "output",
+   "summary": "目标位置估计（米） real-valued Q -by-1 vector"
+  },
+  {
+   "name": "TgtPosCov",
+   "direction": "output",
+   "summary": "估计的目标位置协方差（平方米） real-valued Q -by- Q matrix | real-valued Q -by- Q -by- K array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Range Measurement",
+   "default": "range",
+   "values": "距离测量类型 Bistatic range (default) | Range sum",
+   "group": ""
+  },
+  {
+   "name": "Enable known variance input",
+   "default": "on",
+   "values": "启用已知方差输入 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output covariances of position estimates",
+   "default": "off",
+   "values": "输出位置估计的协方差 off (default) | on",
+   "group": ""
+  }
+ ]
+}

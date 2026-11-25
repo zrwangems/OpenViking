@@ -1,0 +1,53 @@
+{
+ "key": "LPC/RC to Autocorrelation",
+ "title": "LPC/RC to Autocorrelation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Linear Prediction/LPC_RC_to_Autocorrelation.md"
+ ],
+ "text": "Convert linear prediction coefficients or reflection coefficients to autocorrelation coefficients, 3 inputs, 1 output, no direct feedthrough, {If first input value is not 1} sets Action to take if first input value is not; {Type of conversion} and {Specify P} sets the method of specifying prediction error power P Assume P. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "LPC coefficients vector | matrix"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "RC coefficients vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "Prediction error power scalar | vector"
+  },
+  {
+   "name": "AC",
+   "direction": "output",
+   "summary": "Autocorrelation coefficients vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of conversion",
+   "default": "autocorrelation",
+   "values": "Type of conversion LPC to autocorrelation (default) | RC to autocorrelation",
+   "group": ""
+  },
+  {
+   "name": "Specify P",
+   "default": "1",
+   "values": "Method of specifying prediction error power P Assume P = 1 (default) | Via input port",
+   "group": ""
+  },
+  {
+   "name": "If first input value is not 1",
+   "default": "1",
+   "values": "Action to take if first input value is not 1 Replace it with 1 (default) | Normalize | Normalize and warn | Error",
+   "group": ""
+  }
+ ]
+}

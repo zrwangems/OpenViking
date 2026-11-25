@@ -1,0 +1,147 @@
+{
+ "key": "Interleaved ADC",
+ "title": "Interleaved ADC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Architectures/Interleaved_ADC.md"
+ ],
+ "text": "时间交织 ADC 模型，输入 4 路、输出 2 路；按 {Output polarity} 指定定义 ADC 输出极性；{Number of bits} 指定所有 ADC 内核的物理输出位数、{Input range} 指定 ADC 动态范围、{Linearly interpolate analog input to find sampled value} 使用正弦转换启动信号的子样本插值、{Number of ADCs (N)} 指定要交织的 ADC 内核数、{Match output to input scale} 指定从输入继承输出极性和数据类型、{Output data type} 定义 ADC 输出数据类型、{Convert the output to scalar} 指定将输出转换为标量、{Sample time} 指定固定步长采样率 6.25e-12、{Simulate using} 定义如何仿真 ADC Code、{Enable linearity impairments} 指定在 ADC 仿真中启用线性度损伤、{Offset error} 按特定值移动量化步长、{Gain error} 指定 ADC 转换曲线斜率的误差、{Enable timing impairments} 指定在 ADC 仿真中启用时序损伤、{Conversion delay (seconds)} 指定 ADC 延迟、{Enable offset calibration port} 启用偏移校准端口、{Enable gain calibration port} 启用增益校准端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "模拟输入信号 scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "用于启动转换的外部时钟 scalar | vector"
+  },
+  {
+   "name": "Offset calibration",
+   "direction": "input",
+   "summary": "模拟输入端的失调误差校准 scalar | vector"
+  },
+  {
+   "name": "Gain calibration",
+   "direction": "input",
+   "summary": "模拟输入端的增益误差校准 scalar | vector"
+  },
+  {
+   "name": "digital",
+   "direction": "output",
+   "summary": "转换后的数字输出信号 scalar | vector"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "确定模数转换是否完成 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits",
+   "default": "8",
+   "values": "所有 ADC 内核的物理输出位数 8 (default) | scalar | vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input range",
+   "default": "1]",
+   "values": "ADC 动态范围 [-1 1] (default) | 2-element row vector | [ NADCs x 2] matrix",
+   "group": "Configuration"
+  },
+  {
+   "name": "Linearly interpolate analog input to find sampled value",
+   "default": "off",
+   "values": "使用正弦转换启动信号的子样本插值 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Number of ADCs (N)",
+   "default": "4",
+   "values": "要交织的 ADC 内核数 4 (default) | positive real integer",
+   "group": "Configuration"
+  },
+  {
+   "name": "Match output to input scale",
+   "default": "off",
+   "values": "从输入继承输出极性和数据类型 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output polarity",
+   "default": "Auto",
+   "values": "定义 ADC 输出极性 Auto (default) | Bipolar | Unipolar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "定义 ADC 输出数据类型 double (default) | single | (u)int8 | (u)int16 | (u)int32 | fixdt(OutputPolarity,NBits)",
+   "group": "Configuration"
+  },
+  {
+   "name": "Convert the output to scalar",
+   "default": "on",
+   "values": "将输出转换为标量 on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Sample time",
+   "default": "6.25e-12",
+   "values": "固定步长采样率 6.25e-12 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "定义如何仿真 ADC Code generation (default) | Interpreted execution",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable linearity impairments",
+   "default": "off",
+   "values": "在 ADC 仿真中启用线性度损伤 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "按特定值移动量化步长 0 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "ADC 转换曲线斜率的误差 0 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable timing impairments",
+   "default": "off",
+   "values": "在 ADC 仿真中启用时序损伤 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Conversion delay (seconds)",
+   "default": "0",
+   "values": "ADC 延迟 0 (default) | nonnegative real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable offset calibration port",
+   "default": "off",
+   "values": "启用偏移校准端口 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable gain calibration port",
+   "default": "off",
+   "values": "启用增益校准端口 off (default) | on",
+   "group": "Impairments"
+  }
+ ]
+}

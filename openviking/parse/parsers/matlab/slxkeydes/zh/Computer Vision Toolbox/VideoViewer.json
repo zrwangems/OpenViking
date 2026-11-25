@@ -1,0 +1,95 @@
+{
+ "key": "VideoViewer",
+ "title": "Video Viewer",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Video_Viewer.md"
+ ],
+ "text": "显示图像或视频帧，输入 4 路、无直接馈通；按 {Colormap} 指定颜色图；{Open at Start of Simulation} 指定在仿真开始时打开 Video Viewer 窗口、{Separate Color Signals} 启用单独的 R、G 和 B 颜色通道作为输入、{One Multi-Dimensional Signal} 启用一个多维信号作为输入、{Display the full path} 指定在标题栏中显示源数据的完整路径、{Open new Image Viewer window for each export} 为每个导出的视频帧打开新的 Image Viewer、{Specify range of displayed pixel values [-Inf to Inf]} 指定要显示的强度值范围、{Min} 指定最小强度值、{Max} 指定最大强度值、{Drop Frames to Improve Performance} 指定降低输入视频信号的帧率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像或视频 matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "图像或视频的红色分量 matrix | array"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "图像或视频的绿色分量 matrix | array"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "图像或视频的蓝色分量 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Open at Start of Simulation",
+   "default": "on",
+   "values": "在仿真开始时打开 Video Viewer 窗口 on (default) | off",
+   "group": "File"
+  },
+  {
+   "name": "Separate Color Signals",
+   "default": "off",
+   "values": "启用单独的 R、G 和 B 颜色通道作为输入 off (default) | on",
+   "group": "File"
+  },
+  {
+   "name": "One Multi-Dimensional Signal",
+   "default": "on",
+   "values": "启用一个多维信号作为输入 on (default) | off",
+   "group": "File"
+  },
+  {
+   "name": "Display the full path",
+   "default": "off",
+   "values": "在标题栏中显示源数据的完整路径 off (default) | on",
+   "group": "File > Configuration > Edit > Core"
+  },
+  {
+   "name": "Open new Image Viewer window for each export",
+   "default": "on",
+   "values": "为每个导出的视频帧打开新的 Image Viewer 窗口 on (default) | off",
+   "group": "File > Configuration > Edit > Tools"
+  },
+  {
+   "name": "Colormap",
+   "default": "gray(256)",
+   "values": "设置颜色图 gray(256) (default) | parula(256) | jet(256) | hot(256) | bone(256) | cool(256) | copper(256)",
+   "group": "Tools > Colormap"
+  },
+  {
+   "name": "Specify range of displayed pixel values [-Inf to Inf]",
+   "default": "off",
+   "values": "指定要显示的强度值范围 off (default) | on",
+   "group": "Tools > Colormap"
+  },
+  {
+   "name": "Min",
+   "default": "0",
+   "values": "最小强度值 0 (default) | numeric scalar",
+   "group": "Tools > Colormap"
+  },
+  {
+   "name": "Max",
+   "default": "255",
+   "values": "最大强度值 255 (default) | numeric scalar",
+   "group": "Tools > Colormap"
+  },
+  {
+   "name": "Drop Frames to Improve Performance",
+   "default": "on",
+   "values": "降低输入视频信号的帧率 on (default) | off",
+   "group": "Simulation"
+  }
+ ]
+}

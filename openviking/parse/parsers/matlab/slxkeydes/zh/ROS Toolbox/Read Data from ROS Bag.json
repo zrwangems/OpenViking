@@ -1,0 +1,37 @@
+{
+ "key": "Read Data from ROS Bag",
+ "title": "Read Data",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Read_Data.md"
+ ],
+ "text": "回放日志文件中的数据；输出 2 路；{Topic} 指定要从日志文件中提取的话题名称 string、{Sample time} 输出之间的间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "新消息指示符 0 | 1"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "ROS 消息 nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "要从日志文件中提取的话题名称 string",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "输出之间的间隔 –1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

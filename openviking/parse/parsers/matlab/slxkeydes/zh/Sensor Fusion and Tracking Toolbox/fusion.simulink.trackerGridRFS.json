@@ -1,0 +1,296 @@
+{
+ "key": "fusion.simulink.trackerGridRFS",
+ "title": "Grid-Based Multi Object Tracker",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Multi-Object Tracking Algorithms/Grid_Based_Multi_Object_Tracker.md"
+ ],
+ "text": "使用随机有限集方法的基于网格的多目标跟踪器，输入 4 路、输出 3 路；按 {Motion model for tracking} 指定跟踪运动模型；{Tracker identifier} 指定唯一跟踪器标识符、{Maximum number of tracks} 指定最大航迹数、{Maximum number of sensors} 指定最大传感器数、{Sensor configurations} 指定跟踪传感器的配置 struct、{Update sensor configurations with time} 指定随时间更新传感器配置、{Track state parameters} 指定航迹状态参考系的参数 structure、{Update track state parameters with time} 指定随时间更新航迹状态参数、{Enable GPU computation} 启用 GPU 计算、{X-dimension of grid} 指定网格的 X 维度、{Y-dimension of grid} 指定网格的 Y 维度、{Resolution of grid} 指定网格分辨率、{Grid origin} 指定网格原点、{Simulate using} 指定要运行的仿真类型 Interpreted、{Minimum and maximum velocity of objects (m/s)} 指定目标的最小和最大速度、{Enable additive process noise} 启用加性过程噪声、{Process noise covariance matrix} 指定过程噪声协方差矩阵 eye、{Number of persistent particles} 指定持续粒子数 1e5、{Number of new-born particles per step} 指定每步新生粒子数 1e4、{Probability of birth in a cell per step} 指定每步单元出生概率、{Death rate of targets per unit time} 指定单位时间内目标的死亡率 1e-3、{Confidence in free space prediction} 指定自由空间预测置信度、{Random number generation} 指定随机数种子生成方法、{Initial Seed} 用于随机化的初始种子、{Clustering method for new object extraction} 指定新对象提取的聚类方法、{Threshold for DBSCAN clustering} 指定 DBSCAN 聚类阈值、{Minimum number of cells per cluster for DBSCAN} 指定 DBSCAN 每簇最小单元数、{Name of ’Custom’ clustering function} 指定自定义聚类函数名称 function name、{Function to initialize tracks from grid cell sets} 指定从网格单元集初始化航迹的函数、{Function to update existing tracks} 指定更新现有航迹的函数、{Threshold for assigning dynamic grid cells to tracks} 指定将动态栅格单元分配给航迹的阈值、{Confirmation threshold [M N]} 指定航迹确认阈值、{Deletion threshold [P Q]} 指定航迹删除阈值、{Enable dynamic grid map visualization} 启用动态栅格地图可视化、{Plot velocity} 启用速度绘制、{Fast update} 启用从上一地图更新、{Invert colors} 启用反色、{Prediction time source} 指定预测时间来源 Input、{Enable tentative tracks output} 启用暂定航迹输出端口、{Enable all tracks output} 启用所有航迹输出端口、{Source of output bus name} 输出航迹总线名称的来源，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Sensor Data",
+   "direction": "input",
+   "summary": "传感器数据 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "航迹更新时间 real scalar"
+  },
+  {
+   "name": "Sensor Configurations",
+   "direction": "input",
+   "summary": "跟踪传感器的配置 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "航迹状态参数 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "已确认航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "确认航迹和暂定航迹 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tracker identifier",
+   "default": "0",
+   "values": "唯一跟踪器标识符 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of tracks",
+   "default": "100",
+   "values": "最大航迹数 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "20",
+   "values": "最大传感器数 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sensor configurations",
+   "default": "100])",
+   "values": "跟踪传感器的配置 struct(’SensorIndex’,1,’IsValidTime’,true,’SensorLimits’,[-180 180; 0 100]) (default) | structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update sensor configurations with time",
+   "default": "off",
+   "values": "随时间更新传感器配置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "航迹状态参考系的参数 structure",
+   "group": ""
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "随时间更新航迹状态参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable GPU computation",
+   "default": "off",
+   "values": "启用 GPU 计算 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "X-dimension of grid",
+   "default": "100",
+   "values": "网格的 X 维度 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Y-dimension of grid",
+   "default": "100",
+   "values": "网格的 Y 维度 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Resolution of grid",
+   "default": "1",
+   "values": "网格分辨率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Grid origin",
+   "default": "-50]",
+   "values": "网格原点 [-50 -50] (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "要运行的仿真类型 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Motion model for tracking",
+   "default": "constant-velocity",
+   "values": "跟踪运动模型 constant-velocity (default) | constant-acceleration | constant-turnrate",
+   "group": ""
+  },
+  {
+   "name": "Minimum and maximum velocity of objects (m/s)",
+   "default": "10]",
+   "values": "目标的最小和最大速度 (m/s) [-10 10; -10 10] (default) | 2-by-2 matrix of scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable additive process noise",
+   "default": "false",
+   "values": "启用加性过程噪声 false (default) | true",
+   "group": ""
+  },
+  {
+   "name": "Process noise covariance matrix",
+   "default": "eye(2)",
+   "values": "过程噪声协方差矩阵 eye(2) (default) | N -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of persistent particles",
+   "default": "1e5",
+   "values": "持续粒子数 1e5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of new-born particles per step",
+   "default": "1e4",
+   "values": "每步新生粒子数 1e4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Probability of birth in a cell per step",
+   "default": "0.01",
+   "values": "每步单元出生概率 0.01 (default) | scalar in range [0, 1)",
+   "group": ""
+  },
+  {
+   "name": "Death rate of targets per unit time",
+   "default": "1e-3",
+   "values": "单位时间内目标的死亡率 1e-3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Confidence in free space prediction",
+   "default": "0.8",
+   "values": "自由空间预测置信度 0.8 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Random number generation",
+   "default": "Repeatable",
+   "values": "随机数种子生成方法 Repeatable (default) | Not repeatable | Specify seed",
+   "group": ""
+  },
+  {
+   "name": "Initial Seed",
+   "default": "0",
+   "values": "用于随机化的初始种子 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Clustering method for new object extraction",
+   "default": "DBSCAN",
+   "values": "新对象提取的聚类方法 DBSCAN (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Threshold for DBSCAN clustering",
+   "default": "5",
+   "values": "DBSCAN 聚类阈值 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum number of cells per cluster for DBSCAN",
+   "default": "2",
+   "values": "DBSCAN 每簇最小单元数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Name of ’Custom’ clustering function",
+   "default": "",
+   "values": "自定义聚类函数名称 function name",
+   "group": ""
+  },
+  {
+   "name": "Function to initialize tracks from grid cell sets",
+   "default": "trackerGridRFS.defaultTrackInitialization",
+   "values": "从网格单元集初始化航迹的函数 trackerGridRFS.defaultTrackInitialization (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Function to update existing tracks",
+   "default": "trackerGridRFS.defaultTrackUpdate",
+   "values": "更新现有航迹的函数 trackerGridRFS.defaultTrackUpdate (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Threshold for assigning dynamic grid cells to tracks",
+   "default": "30",
+   "values": "将动态栅格单元分配给航迹的阈值 30 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [M N]",
+   "default": "3]",
+   "values": "航迹确认阈值 [2 3] (default) | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [P Q]",
+   "default": "5]",
+   "values": "航迹删除阈值 [5 5] (default) | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Enable dynamic grid map visualization",
+   "default": "on",
+   "values": "启用动态栅格地图可视化 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Plot velocity",
+   "default": "off",
+   "values": "启用速度绘制 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Fast update",
+   "default": "on",
+   "values": "启用从上一地图更新 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Invert colors",
+   "default": "off",
+   "values": "启用反色 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Prediction time source",
+   "default": "port",
+   "values": "预测时间来源 Input port (default) | Auto",
+   "group": ""
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "启用暂定航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "启用所有航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出航迹总线名称的来源 Auto (default) | Property",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "key": "Pseudoinverse",
+ "title": "Pseudoinverse",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Inverses/Pseudoinverse.md"
+ ],
+ "text": "计算矩阵的 Moore-Penrose 伪逆，输入 1 路、输出 2 路、无直接馈通；{Show error status port (E)} 显示错误状态端口、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入 vector | matrix"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "伪逆输出 vector | matrix"
+  },
+  {
+   "name": "E",
+   "direction": "output",
+   "summary": "错误状态 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show error status port (E)",
+   "default": "off",
+   "values": "显示错误状态端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

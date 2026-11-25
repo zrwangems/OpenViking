@@ -1,0 +1,13 @@
+{
+ "key": "Delta Reference (Three-Phase)",
+ "title": "Delta Reference (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Delta_Reference_Three_Phase.md"
+ ],
+ "text": "Internal reference point for delta-connected network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

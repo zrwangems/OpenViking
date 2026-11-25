@@ -1,0 +1,147 @@
+{
+ "key": "PMSM Current Reference Generator",
+ "title": "PMSM Current Reference Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/PMSM Control/PMSM_Current_Reference_Generator.md"
+ ],
+ "text": "永磁同步电机电流参考生成器，输入 3 路、输出 3 路；按 {Current references} 指定电流参考策略 Zero d-axis；{Nominal dc-link voltage (V)} 指定额定直流电压、{Maximum power (W)} 指定额定功率、{Maximum torque (N*m)} 指定额定转矩、{Sample time (-1 for inherited)} 指定模块采样时间、{Mechanical speed vector, wMechanical (rpm)} 指定转子转速查找向量、{Torque reference vector, TqRef (N*m)} 指定转矩参考查找向量、{DC-link voltage vector, Vdc (V)} 指定直流母线电压查找向量、{D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)} 指定参考 d 轴电流值 zeros、{Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)} 指定参考 q 轴电流值 zeros、{PWM method} 指定脉宽调制方法 SVM: space vector、{Modulation factor} 指定调制因子、{Number of pole pairs} 指定极对数、{Permanent magnet flux linkage (Wb)} 指定永磁体磁链、{D-axis inductance (H)} 指定 d 轴电感、{Q-axis inductance (H)} 指定 q 轴电感、{Stator resistance (Ohm)} 指定定子电阻，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TqRef",
+   "direction": "input",
+   "summary": "参考转矩，N*m scalar"
+  },
+  {
+   "name": "wMechanical",
+   "direction": "input",
+   "summary": "转子机械速度，rad/s scalar"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "直流母线电压，V scalar"
+  },
+  {
+   "name": "idqRef",
+   "direction": "output",
+   "summary": "参考电流，A vector"
+  },
+  {
+   "name": "TqRefSat",
+   "direction": "output",
+   "summary": "参考转矩，N*m scalar"
+  },
+  {
+   "name": "TqLim",
+   "direction": "output",
+   "summary": "转矩限值，N*m scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Nominal dc-link voltage (V)",
+   "default": "V",
+   "values": "额定直流电压 300 V (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum power (W)",
+   "default": "W",
+   "values": "额定功率 30000 W (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque (N*m)",
+   "default": "N*m",
+   "values": "额定转矩 250 N*m (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | -1 or positive number",
+   "group": ""
+  },
+  {
+   "name": "Current references",
+   "default": "control",
+   "values": "电流参考策略 Zero d-axis control (default) | Lookup-table based | Automatically generated lookup-table",
+   "group": ""
+  },
+  {
+   "name": "Mechanical speed vector, wMechanical (rpm)",
+   "default": "rpm",
+   "values": "转子转速查找向量 [0, 3000] rpm (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Torque reference vector, TqRef (N*m)",
+   "default": "N*m",
+   "values": "转矩参考查找向量 [-100, 0, 100] N*m (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "DC-link voltage vector, Vdc (V)",
+   "default": "V",
+   "values": "直流母线电压查找向量 [300, 350] V (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)",
+   "default": "A",
+   "values": "参考 d 轴电流值 zeros(2,3,2) A (default) | real matrix",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)",
+   "default": "A",
+   "values": "参考 q 轴电流值 zeros(2,3,2) A (default) | real matrix",
+   "group": ""
+  },
+  {
+   "name": "PWM method",
+   "default": "modulation",
+   "values": "脉宽调制方法 SVM: space vector modulation (default) | SPWM: sinusoidal PWM",
+   "group": ""
+  },
+  {
+   "name": "Modulation factor",
+   "default": "1",
+   "values": "调制因子 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "8",
+   "values": "极对数 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Permanent magnet flux linkage (Wb)",
+   "default": "Wb",
+   "values": "永磁体磁链 0.04 Wb (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "D-axis inductance (H)",
+   "default": "0.00024",
+   "values": "d 轴电感 0.00024 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Q-axis inductance (H)",
+   "default": "0.00029",
+   "values": "q 轴电感 0.00029 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator resistance (Ohm)",
+   "default": "0.01",
+   "values": "定子电阻 0.01 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

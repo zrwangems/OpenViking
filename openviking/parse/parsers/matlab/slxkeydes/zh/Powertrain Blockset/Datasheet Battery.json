@@ -1,0 +1,118 @@
+{
+ "key": "Datasheet Battery",
+ "title": "Datasheet Battery",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/Datasheet Battery/Datasheet_Battery.md"
+ ],
+ "text": "锂离子、锂聚合物或铅酸电池；输出 2 路；{Initial battery capacity} 指定输入或参数、{Output battery voltage} 指定 Unfiltered 或 Filter、{Rated capacity at nominal temperature, BattChargeMax} 指定常量、{Open circuit voltage table data, Em} 指定一维查找表 1 -by、{State of charge breakpoints for open circuit voltage, SOCEmBp} 指定断点 1 -by、{Internal resistance table data, RInt} 指定二维查找表 N -by、{Battery temperature breakpoints, BattTempBp} 指定断点、{State of charge breakpoints for internal resistance, SOCRintBp} 指定断点、{Number of cells in series, Ns} 指定整数、{Number of cells in parallel, Np} 指定整数、{Initial battery capacity, BattCapInit} 指定容量、{Output battery voltage time constant, Tc} 指定滤波器时间常数、{Output battery voltage initial value, Vinit} 指定滤波器初始电压，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CapInit",
+   "direction": "",
+   "summary": "电池容量 scalar"
+  },
+  {
+   "name": "BattCurr",
+   "direction": "",
+   "summary": "电池负载电流 scalar"
+  },
+  {
+   "name": "BattTemp",
+   "direction": "",
+   "summary": "电池温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "BattVolt",
+   "direction": "output",
+   "summary": "电池输出电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial battery capacity",
+   "default": "Parameter",
+   "values": "输入或参数 Parameter (default) | External Input",
+   "group": ""
+  },
+  {
+   "name": "Output battery voltage",
+   "default": "Unfiltered",
+   "values": "Unfiltered 或 Filter Unfiltered (default) | Filtered",
+   "group": ""
+  },
+  {
+   "name": "Rated capacity at nominal temperature, BattChargeMax",
+   "default": "100",
+   "values": "常量 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open circuit voltage table data, Em",
+   "default": "",
+   "values": "一维查找表 1 -by- P matrix",
+   "group": ""
+  },
+  {
+   "name": "State of charge breakpoints for open circuit voltage, SOCEmBp",
+   "default": "",
+   "values": "断点 1 -by- P matrix",
+   "group": ""
+  },
+  {
+   "name": "Internal resistance table data, RInt",
+   "default": "",
+   "values": "二维查找表 N -by- M matrix",
+   "group": ""
+  },
+  {
+   "name": "Battery temperature breakpoints, BattTempBp",
+   "default": "313.1]",
+   "values": "断点 [243.1 253.1 263.1 273.1 283.1 298.1 313.1] (default) | 1 -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "State of charge breakpoints for internal resistance, SOCRintBp",
+   "default": "1]",
+   "values": "断点 [0 0.2 0.4 0.6 0.8 1] (default) | 1 -by- M matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of cells in series, Ns",
+   "default": "1",
+   "values": "整数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of cells in parallel, Np",
+   "default": "1",
+   "values": "整数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial battery capacity, BattCapInit",
+   "default": "100",
+   "values": "容量 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output battery voltage time constant, Tc",
+   "default": "1/1000",
+   "values": "滤波器时间常数 1/1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output battery voltage initial value, Vinit",
+   "default": "4.221",
+   "values": "滤波器初始电压 4.221 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

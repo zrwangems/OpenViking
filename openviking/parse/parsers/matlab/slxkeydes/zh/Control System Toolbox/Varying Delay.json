@@ -1,0 +1,78 @@
+{
+ "key": "Varying Delay",
+ "title": "Varying Delay",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Varying_Delay.md"
+ ],
+ "text": "支持固定延迟和零延迟（直接馈通）的 Varying Delay，输入 2 路、输出 1 路；按 {Initial output} 指定初始输出；{Nominal delay} 指定延迟的标称值、{Maximum delay} 指定时间延迟输入的最大值、{Minimum delay} 指定时间延迟输入的最小值、{Fixed delays (indices)} 指定具有固定延迟的信号索引、{Initial buffer size} 指定初始内存分配、{Use fixed buffer size} 使用固定大小缓冲区、{Pade order (for linearization)} 指定 Pade 近似的阶数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "瞬时时间延迟输入 scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "延迟后的信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Nominal delay",
+   "default": "1",
+   "values": "延迟的标称值 1 (default) | positive scalar | vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Maximum delay",
+   "default": "10",
+   "values": "时间延迟输入的最大值 10 (default) | nonnegative scalar | vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Minimum delay",
+   "default": "0",
+   "values": "时间延迟输入的最小值 0 (default) | nonnegative scalar | vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Fixed delays (indices)",
+   "default": "[]",
+   "values": "具有固定延迟的信号索引 [] (default) | positive scalar | vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "初始输出 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial buffer size",
+   "default": "1024",
+   "values": "初始内存分配 1024 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Use fixed buffer size",
+   "default": "off",
+   "values": "使用固定大小缓冲区 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pade order (for linearization)",
+   "default": "0",
+   "values": "Pade 近似的阶数 0 (default) | positive integer | vector",
+   "group": ""
+  }
+ ]
+}

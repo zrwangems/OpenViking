@@ -1,0 +1,13 @@
+{
+ "key": "Load Flow Source",
+ "title": "Load Flow Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Load_Flow_Source.md"
+ ],
+ "text": "用于执行潮流分析的三相电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

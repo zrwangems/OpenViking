@@ -1,0 +1,65 @@
+{
+ "key": "Descrambler",
+ "title": "Descrambler",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Descrambler.md"
+ ],
+ "text": "Descramble input signal, 3 inputs, 1 output, {Scramble polynomial} sets Polynomial that defines connections in descrambler ’1 + x^-1 + x^-2 +; {Calculation base}, {Initial states source} sets the source for descrambler initial states, {Initial states} and {Reset on nonzero input via port} sets the reset descrambler via input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input data signal vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset scrambler scalar"
+  },
+  {
+   "name": "ISt",
+   "direction": "input",
+   "summary": "Initial states scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output descrambled data vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Calculation base",
+   "default": "4",
+   "values": "Calculation base 4 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Scramble polynomial",
+   "default": "x^-4’",
+   "values": "Polynomial that defines connections in descrambler ’1 + x^-1 + x^-2 + x^-4’ (default) | character vector | integer vector | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states source",
+   "default": "Parameter",
+   "values": "Set the source for descrambler initial states Dialog Parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Initial states",
+   "default": "3]",
+   "values": "Initial states of descrambler registers [0 1 2 3] (default) | nonnegative integer vector",
+   "group": ""
+  },
+  {
+   "name": "Reset on nonzero input via port",
+   "default": "off",
+   "values": "Reset descrambler via input port off (default) | on",
+   "group": ""
+  }
+ ]
+}

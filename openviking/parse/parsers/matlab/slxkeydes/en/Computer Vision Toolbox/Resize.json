@@ -1,0 +1,89 @@
+{
+ "key": "Resize",
+ "title": "Resize",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Resize.md"
+ ],
+ "text": "Enlarge or shrink entire image or region of interest within image, 2 inputs, 2 outputs, {Interpolation method} sets Interpolation method; {Specify} sets the aspects of image to resize Output size as a percentage of input, {Resize factor in percentage} sets the percentage factor for input image transformation, {Number of output columns} sets the number of columns in output image, {Number of output rows} sets the number of rows in output image, {Number of output rows and columns} sets the number of rows and columns in output image, {Perform antialiasing when resize factor is between 0 and 100} prevents aliasing when shrinking image, {Enable ROI processing} enables ROI input and {Output flag indicating if ROI is within image bounds} enables flag indicating if specified ROI is outside input image. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input image or video matrix | array"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "Region of interest vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Resized output image or video matrix | array"
+  },
+  {
+   "name": "Flag",
+   "direction": "output",
+   "summary": "ROI is outside image region 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify",
+   "default": "size",
+   "values": "Aspects of image to resize Output size as a percentage of input size (default) | Number of output columns and preserve aspect ratio | Number of output rows and preserve aspect ratio | Number of output rows and columns",
+   "group": ""
+  },
+  {
+   "name": "Resize factor in percentage",
+   "default": "150]",
+   "values": "Percentage factor for input image transformation [200 150] (default) | scalar | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Number of output columns",
+   "default": "25",
+   "values": "Number of columns in output image 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of output rows",
+   "default": "25",
+   "values": "Number of rows in output image 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of output rows and columns",
+   "default": "35]",
+   "values": "Number of rows and columns in output image [25 35] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "Interpolation method Bilinear (default) | Nearest neighbor | Bicubic | Lanczos2 | Lanczos3",
+   "group": ""
+  },
+  {
+   "name": "Perform antialiasing when resize factor is between 0 and 100",
+   "default": "off",
+   "values": "Prevent aliasing when shrinking image off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable ROI processing",
+   "default": "off",
+   "values": "Enable ROI input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output flag indicating if ROI is within image bounds",
+   "default": "off",
+   "values": "Enable flag indicating if specified ROI is outside input image region off (default) | on",
+   "group": ""
+  }
+ ]
+}

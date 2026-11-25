@@ -1,0 +1,111 @@
+{
+ "key": "Simulink Desktop Real-Time Video Input",
+ "title": "Video Input",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Video_Input.md"
+ ],
+ "text": "从系统视频设备获取视频数据，输入 1 路、输出 5 路；按 {ROI Dimensions} 指定感兴趣区域维度 [W H] 值 full frame width and height；{Sample time} 指定模块的采样时间、{Maximum missed ticks} 指定模型可以落后内核的定时器节拍数、{Show “Missed Ticks” port} 指定将错过的节拍数发送到 Missed Ticks 端口、{Yield CPU when waiting} 指定内核等待硬件时让出 CPU、{ROI origin source} 指定感兴趣区域原点源、{ROI origin} 指定感兴趣区域原点、{Frame format} 指定视频数据格式、{Show \"Frame Ready\" port} 启用、{Show \"Frame Error\" port} 启用、{Show frame timestamp port} 启用时间戳输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ROI Input Data",
+   "direction": "input",
+   "summary": "感兴趣区域原点坐标 ROI input data"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "视频数据输出 RGB data | Luminance data"
+  },
+  {
+   "name": "Frame Ready",
+   "direction": "output",
+   "summary": "指示视频帧已就绪 boolean"
+  },
+  {
+   "name": "Frame Error",
+   "direction": "output",
+   "summary": "指示数据采集帧错误 boolean"
+  },
+  {
+   "name": "Timestamp",
+   "direction": "output",
+   "summary": "提供视频帧时间戳 double"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "错过的节拍计数（可选） double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "模块的采样时间 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "模型可以落后内核的定时器节拍数 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "将错过的节拍数发送到 Missed Ticks 端口 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "内核等待硬件时让出 CPU ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "ROI origin source",
+   "default": "Internal",
+   "values": "选择感兴趣区域原点源 Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "ROI origin",
+   "default": "1]",
+   "values": "选择感兴趣区域原点 [X Y] 值 [1 1] (default) | 2-element vector",
+   "group": ""
+  },
+  {
+   "name": "ROI Dimensions",
+   "default": "dimensions",
+   "values": "选择感兴趣区域维度 [W H] 值 full frame width and height dimensions (default) | [640 480] (default if no device configured) | 2-element vector",
+   "group": ""
+  },
+  {
+   "name": "Frame format",
+   "default": "RGB",
+   "values": "选择视频数据格式 RGB (default) | Luminance",
+   "group": ""
+  },
+  {
+   "name": "Show \"Frame Ready\" port",
+   "default": "off",
+   "values": "启用 \"Frame Ready\" 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show \"Frame Error\" port",
+   "default": "off",
+   "values": "启用 \"Frame Error\" 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show frame timestamp port",
+   "default": "off",
+   "values": "启用时间戳输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

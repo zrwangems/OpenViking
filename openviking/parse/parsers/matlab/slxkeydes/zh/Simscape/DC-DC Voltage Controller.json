@@ -1,0 +1,194 @@
+{
+ "key": "DC-DC Voltage Controller",
+ "title": "DC-DC Voltage Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Converter Control/DC_DC_Voltage_Controller.md"
+ ],
+ "text": "基于 PID 的功率因数校正 (PFC) 整流器控制器，输入 5 路、输出 2 路；{System frequency (Hz)} 指定系统频率、{AC filter inductance (H)} 指定交流滤波器电感 1e-4、{AC side base impedance (Ohm)} 指定交流侧基准阻抗、{PLL proportional gain} 指定比例增益、{PLL integral gain} 指定积分增益、{Sample time (-1 for inherited)} 指定模块采样时间、{Proportional gain} 指定比例增益、{Integral gain} 指定积分增益、{Derivative gain} 指定微分增益、{Derivative controller filter coefficient (N)} 指定微分控制器滤波系数、{DC bus base voltage (V)} 指定直流母线基准电压、{Controller output upper limit (pu)} 控制器输出上限、{Controller output lower limit (pu)} 控制器输出下限、{Id proportional gain} 指定 Id 比例增益、{Id integral gain} 指定 Id 积分增益、{Id derivative gain} 指定 Id 微分增益、{Id controller output upper limit (pu)} 指定 Id 控制器输出上限、{Id controller output lower limit (pu)} 指定 Id 控制器输出下限、{Iq proportional gain} 指定 Iq 比例增益、{Iq integral gain} 指定 Iq 积分增益、{Iq derivative gain} 指定 Iq 微分增益、{Derivative current controller filter coefficient (N)} 指定微分电流控制器滤波系数、{Iq controller output upper limit (pu)} 指定 Iq 控制器输出上限、{Iq controller output lower limit (pu)} 指定 Iq 控制器输出下限，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VdcRef (V)",
+   "direction": "input",
+   "summary": "输出直流母线电压参考值，V scalar"
+  },
+  {
+   "name": "QRef (pu)",
+   "direction": "input",
+   "summary": "无功功率参考值，pu scalar"
+  },
+  {
+   "name": "VdcSens (V)",
+   "direction": "input",
+   "summary": "直流母线电压，V scalar"
+  },
+  {
+   "name": "VabcSens (pu)",
+   "direction": "input",
+   "summary": "测量的交流相电压，pu vector"
+  },
+  {
+   "name": "IabcSens (pu)",
+   "direction": "input",
+   "summary": "测量的交流相电流，pu vector"
+  },
+  {
+   "name": "VabcRef (pu)",
+   "direction": "output",
+   "summary": "参考电压，pu vector"
+  },
+  {
+   "name": "Visualization",
+   "direction": "output",
+   "summary": "可视化总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "System frequency (Hz)",
+   "default": "60",
+   "values": "系统频率 60 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "AC filter inductance (H)",
+   "default": "1e-4",
+   "values": "交流滤波器电感 1e-4 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "AC side base impedance (Ohm)",
+   "default": "1.722",
+   "values": "交流侧基准阻抗 1.722 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "PLL proportional gain",
+   "default": "0.05",
+   "values": "比例增益 0.05 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "PLL integral gain",
+   "default": "1",
+   "values": "积分增益 1 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | nonnegative scalar or -1",
+   "group": "General"
+  },
+  {
+   "name": "Proportional gain",
+   "default": "0.4",
+   "values": "比例增益 0.4 (default) | positive scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Integral gain",
+   "default": "3",
+   "values": "积分增益 3 (default) | positive scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Derivative gain",
+   "default": "0",
+   "values": "微分增益 0 (default) | nonnegative scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Derivative controller filter coefficient (N)",
+   "default": "3",
+   "values": "微分控制器滤波系数 3 (default) | nonnegative scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "DC bus base voltage (V)",
+   "default": "700",
+   "values": "直流母线基准电压 700 (default) | positive scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Controller output upper limit (pu)",
+   "default": "1.5",
+   "values": "控制器输出上限 1.5 (default) | nonnegative scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Controller output lower limit (pu)",
+   "default": "-1.5",
+   "values": "控制器输出下限 -1.5 (default) | nonpositive scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "Id proportional gain",
+   "default": "10",
+   "values": "Id 比例增益 10 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Id integral gain",
+   "default": "350",
+   "values": "Id 积分增益 350 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Id derivative gain",
+   "default": "0",
+   "values": "Id 微分增益 0 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Id controller output upper limit (pu)",
+   "default": "1.2",
+   "values": "Id 控制器输出上限 1.2 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Id controller output lower limit (pu)",
+   "default": "-1.2",
+   "values": "Id 控制器输出下限 -1.2 (default) | nonpositive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq proportional gain",
+   "default": "10",
+   "values": "Iq 比例增益 10 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq integral gain",
+   "default": "350",
+   "values": "Iq 积分增益 350 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq derivative gain",
+   "default": "0",
+   "values": "Iq 微分增益 0 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Derivative current controller filter coefficient (N)",
+   "default": "100",
+   "values": "微分电流控制器滤波系数 100 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq controller output upper limit (pu)",
+   "default": "1.2",
+   "values": "Iq 控制器输出上限 1.2 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Iq controller output lower limit (pu)",
+   "default": "-1.2",
+   "values": "Iq 控制器输出下限 -1.2 (default) | nonpositive scalar",
+   "group": "Current Controller"
+  }
+ ]
+}

@@ -1,0 +1,140 @@
+{
+ "key": "Sliding Mode Observer",
+ "title": "Sliding Mode Observer",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensorless Estimators/Sliding_Mode_Observer.md"
+ ],
+ "text": "计算表贴式 PMSM 的电气位置和机械转速，输入 5 路、输出 2 路；按 {转速单位} 指定转速输出单位；{输入单位} 指定模块输入的单位 SI、{离散步长(秒)} 指定采样时间，在此采样时间过后模块将再次执行 50e-6、{定子电阻(欧姆)} 指定电阻、{定子电感(H)} 指定电感 0.2e-3、{最大应用转速(RPM)} 指定支持的最大机械转速、{极对数}、{基电压(V)} 指定对应于一个标幺的标称电压、{基电流(A)} 指定对应于一个标幺的标称电流、{反电动势观测器增益} 指定反电动势的滑动模式观测器增益、{电流观测器增益} 指定电流的滑动模式观测器增益、{滤波器截止频率(Hz)} 指定内部滤波器的截止频率、{位置单位} 指定位置输出的单位、{位置数据类型} 指定位置输出的数据类型、{转速数据类型} 指定转速输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V α",
+   "direction": "input",
+   "summary": "α 轴电压 标量"
+  },
+  {
+   "name": "V β",
+   "direction": "input",
+   "summary": "β 轴电压 标量"
+  },
+  {
+   "name": "I α",
+   "direction": "input",
+   "summary": "α 轴电流 标量"
+  },
+  {
+   "name": "I β",
+   "direction": "input",
+   "summary": "β 轴电流 标量"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置模块 标量"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "PMSM 的电气位置 标量"
+  },
+  {
+   "name": "⍵ m",
+   "direction": "output",
+   "summary": "PMSM 的机械转速 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入单位",
+   "default": "单位",
+   "values": "模块输入的单位 SI 单位 (默认) | 标幺",
+   "group": ""
+  },
+  {
+   "name": "离散步长(秒)",
+   "default": "50e-6",
+   "values": "采样时间，在此采样时间过后模块将再次执行 50e-6 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "定子电阻(欧姆)",
+   "default": "0.36",
+   "values": "电阻 0.36 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "定子电感(H)",
+   "default": "0.2e-3",
+   "values": "电感 0.2e-3 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "最大应用转速(RPM)",
+   "default": "6000",
+   "values": "支持的最大机械转速 6000 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "极对数",
+   "default": "4",
+   "values": "电机中可用的极对数 4 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "基电压(V)",
+   "default": "13.8564",
+   "values": "对应于一个标幺的标称电压 13.8564 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "基电流(A)",
+   "default": "21.4286",
+   "values": "对应于一个标幺的标称电流 21.4286 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "反电动势观测器增益",
+   "default": "0.9",
+   "values": "反电动势的滑动模式观测器增益 0.9 (默认) | 标量",
+   "group": "观测器参数"
+  },
+  {
+   "name": "电流观测器增益",
+   "default": "0.50881",
+   "values": "电流的滑动模式观测器增益 0.50881 (默认) | 标量",
+   "group": "观测器参数"
+  },
+  {
+   "name": "滤波器截止频率(Hz)",
+   "default": "1200",
+   "values": "内部滤波器的截止频率 1200 (默认) | 标量",
+   "group": "观测器参数"
+  },
+  {
+   "name": "位置单位",
+   "default": "弧度",
+   "values": "位置输出的单位 弧度 (默认) | 度 | 标幺",
+   "group": "数据类型"
+  },
+  {
+   "name": "位置数据类型",
+   "default": "单精度",
+   "values": "位置输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "数据类型"
+  },
+  {
+   "name": "转速单位",
+   "default": "RPM",
+   "values": "转速输出单位 RPM (默认) | 度/秒 | 弧度/秒 | 标幺",
+   "group": "数据类型"
+  },
+  {
+   "name": "转速数据类型",
+   "default": "单精度",
+   "values": "转速输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "数据类型"
+  }
+ ]
+}

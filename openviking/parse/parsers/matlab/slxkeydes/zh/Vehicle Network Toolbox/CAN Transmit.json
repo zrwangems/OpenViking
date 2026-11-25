@@ -1,0 +1,44 @@
+{
+ "key": "CAN Transmit",
+ "title": "CAN Transmit",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN Communication/CAN_Transmit.md"
+ ],
+ "text": "将 CAN 报文传输到所选 CAN 设备，输入 1 路；{设备}、{传输选项：数据更改时} 指定当数据发生变化时启用基于事件的传输、{传输选项：周期性} 启用周期性传输、{传输选项：报文周期} 指定报文传输速率周期，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "input",
+   "summary": "要传输的 CAN 报文 打包的 CAN 报文"
+  }
+ ],
+ "params": [
+  {
+   "name": "设备",
+   "default": "",
+   "values": "CAN 设备和通道 列表选项",
+   "group": ""
+  },
+  {
+   "name": "传输选项：数据更改时",
+   "default": "’off’",
+   "values": "当数据发生变化时启用基于事件的传输 ’off’ (默认) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "传输选项：周期性",
+   "default": "’off’",
+   "values": "启用周期性传输 ’off’ (默认) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "传输选项：报文周期",
+   "default": "1.000",
+   "values": "报文传输速率周期 1.000 (默认) | 正数值标量",
+   "group": ""
+  }
+ ]
+}

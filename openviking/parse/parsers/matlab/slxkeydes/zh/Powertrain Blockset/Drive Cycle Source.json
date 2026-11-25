@@ -1,0 +1,216 @@
+{
+ "key": "Drive Cycle Source",
+ "title": "Drive Cycle Source",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Vehicle Scenario Builder/Drive_Cycle_Source.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Drive_Cycle_Source.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Wide_Open_Throttle.md"
+ ],
+ "text": "标准或指定的纵向行驶循环，输入 1 路、输出 4 路；按 {Drive cycle source} 指定行驶循环源；{From workspace} 指定工作区 variable、{Drive cycle source file} 指定文件名 .mat,.xls,.xlsx or.txt、{Repeat cyclically} 指定重复行驶循环、{Output acceleration} 输出加速度、{Output gear shift data} 输出挡位、{Start time, t_wot1} 指定行驶循环开始时间、{Initial reference speed, xdot_woto} 指定速度、{Nominal reference speed, xdot_wot1} 指定速度、{Time to start deceleration, t_wot2} 指定时间、{Final reference speed, xdot_wot2} 指定速度、{WOT simulation time, t_wotend} 指定仿真持续时间、{Source velocity units} 指定速度单位 m/s、{Output velocity units} 指定速度单位 m/s、{Output acceleration units} 指定加速度单位、{Output sample period (0 for continuous), dt} 指定采样之间的周期、{Enable fault tracking} 启用故障跟踪、{Speed tolerance, velBnd} 指定行驶循环速度容差、{Speed tolerance units, velBndUnit} 指定单位 mph、{Velocity feedback units, inUnit} 指定速度反馈单位、{Time tolerance, timeBnd} 指定时间容差、{Enable Failure Tracking} 启用失效跟踪、{Stop simulation when trace fails} 指定轨迹失败时停止仿真、{Maximum number of faults, maxFaultCnt} 允许的最大故障数、{Maximum single fault time, maxFaultTime} 允许的单个故障最大持续时间、{Maximum total fault time, maxTotFaultTime} 指定最大总故障时间、{Display simulation trace} 显示速度轨迹、{Simulation trace update rate, dtTrace} 指定轨迹更新周期、{Simulation trace display window, traceWindow} 指定轨迹窗口更新速率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VelFdbk",
+   "direction": "input",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "RefSpd",
+   "direction": "output",
+   "summary": "车辆参考速度 scalar"
+  },
+  {
+   "name": "RefAcc",
+   "direction": "output",
+   "summary": "车辆参考加速度 scalar"
+  },
+  {
+   "name": "Gear",
+   "direction": "output",
+   "summary": "车辆挡位 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Drive cycle source",
+   "default": "FTP75",
+   "values": "选择行驶循环源 FTP75 (default) | Wide Open Throttle (WOT) | Workspace variable |.mat,.xls,.xlsx or.txt file",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "From workspace",
+   "default": "",
+   "values": "工作区 variable",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Drive cycle source file",
+   "default": "",
+   "values": "文件名 .mat,.xls,.xlsx or.txt",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Repeat cyclically",
+   "default": "off",
+   "values": "重复行驶循环 off (default) | on",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output acceleration",
+   "default": "off",
+   "values": "输出加速度 off (default)",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output gear shift data",
+   "default": "off",
+   "values": "输出挡位 off (default) | on",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Start time, t_wot1",
+   "default": "5",
+   "values": "行驶循环开始时间 5 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Initial reference speed, xdot_woto",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Nominal reference speed, xdot_wot1",
+   "default": "30",
+   "values": "速度 30 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Time to start deceleration, t_wot2",
+   "default": "20",
+   "values": "时间 20 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Final reference speed, xdot_wot2",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "WOT simulation time, t_wotend",
+   "default": "30",
+   "values": "仿真持续时间 30 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Source velocity units",
+   "default": "m/s",
+   "values": "指定速度单位 m/s (default)",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output velocity units",
+   "default": "m/s",
+   "values": "指定速度单位 m/s (default)",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output acceleration units",
+   "default": "m/s^2",
+   "values": "指定加速度单位 m/s^2 (default)",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output sample period (0 for continuous), dt",
+   "default": "0",
+   "values": "采样之间的周期 0 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Enable fault tracking",
+   "default": "off",
+   "values": "启用故障跟踪 off (default) | on",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Speed tolerance, velBnd",
+   "default": "2.0",
+   "values": "行驶循环速度容差 2.0 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Speed tolerance units, velBndUnit",
+   "default": "mph",
+   "values": "设置单位 mph (default)",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Velocity feedback units, inUnit",
+   "default": "m/s",
+   "values": "设置速度反馈单位 m/s (default)",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Time tolerance, timeBnd",
+   "default": "1.0",
+   "values": "时间容差 1.0 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Enable Failure Tracking",
+   "default": "off",
+   "values": "启用失效跟踪 off (default) | on",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Stop simulation when trace fails",
+   "default": "off",
+   "values": "轨迹失败时停止仿真 off (default) | on",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Maximum number of faults, maxFaultCnt",
+   "default": "10",
+   "values": "允许的最大故障数 10 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Maximum single fault time, maxFaultTime",
+   "default": "2.0",
+   "values": "允许的单个故障最大持续时间 2.0 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Maximum total fault time, maxTotFaultTime",
+   "default": "15.0",
+   "values": "最大总故障时间 15.0 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Display simulation trace",
+   "default": "off",
+   "values": "显示速度轨迹 off (default) | on",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Simulation trace update rate, dtTrace",
+   "default": "1",
+   "values": "轨迹更新周期 1 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Simulation trace display window, traceWindow",
+   "default": "10",
+   "values": "轨迹窗口更新速率 10 (default) | scalar",
+   "group": "Fault Tracking"
+  }
+ ]
+}

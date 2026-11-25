@@ -1,0 +1,13 @@
+{
+ "key": "Cap (TL)",
+ "title": "Cap (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Cap_TL.md"
+ ],
+ "text": "完全绝热的流体流动堵头。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

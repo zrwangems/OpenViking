@@ -1,0 +1,63 @@
+{
+ "key": "Real Burst Q-less QR Decomposition",
+ "title": "Real Burst Q-less QR Decomposition",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Matrices and Linear Algebra/Matrix Factorizations/Real_Burst_Q_less_QR_Decomposition.md"
+ ],
+ "text": "实数矩阵的无 Q QR 分解，输入 3 路、输出 3 路；{Number of rows in matrix A} 指定矩阵 A 的行数、{Number of columns in matrix A} 指定矩阵 A 的列数、{Regularization parameter} 指定正则化参数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A(i,:)",
+   "direction": "input",
+   "summary": "实矩阵 A 的行 vector"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入是否有效 Boolean scalar"
+  },
+  {
+   "name": "restart",
+   "direction": "input",
+   "summary": "是否清除内部状态 Boolean scalar"
+  },
+  {
+   "name": "R(i,:)",
+   "direction": "output",
+   "summary": "上三角矩阵 R 的行 scalar | vector"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据是否有效 Boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "模块是否就绪 Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of rows in matrix A",
+   "default": "4",
+   "values": "矩阵 A 的行数 4 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in matrix A",
+   "default": "4",
+   "values": "矩阵 A 的列数 4 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Regularization parameter",
+   "default": "0",
+   "values": "正则化参数 0 (default) | real nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

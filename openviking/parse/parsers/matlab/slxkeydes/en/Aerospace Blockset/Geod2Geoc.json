@@ -1,0 +1,65 @@
+{
+ "key": "Geod2Geoc",
+ "title": "Geodetic to Geocentric Latitude",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Geodetic_to_Geocentric_Latitude.md"
+ ],
+ "text": "Convert geodetic latitude to geocentric latitude, 2 inputs, 2 outputs; {Units}, {Planet model}, {Flattening}, {Equatorial radius of planet} sets the radius and {Output radius} enables output of radius. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ",
+   "direction": "input",
+   "summary": "Geodetic latitude scalar"
+  },
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "Ellipsoidal altitude scalar"
+  },
+  {
+   "name": "λ",
+   "direction": "output",
+   "summary": "Geocentric latitude scalar"
+  },
+  {
+   "name": "r",
+   "direction": "output",
+   "summary": "Radius scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Planet model",
+   "default": "(WGS84)",
+   "values": "Planet model Earth (WGS84) (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "Flattening 1/298.257223563 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius of planet",
+   "default": "6378137.0",
+   "values": "Radius 6378137.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output radius",
+   "default": "off",
+   "values": "Enable output of radius off (default) | on",
+   "group": ""
+  }
+ ]
+}

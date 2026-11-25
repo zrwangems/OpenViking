@@ -1,0 +1,97 @@
+{
+ "key": "Simulink Desktop Real-Time Encoder Input",
+ "title": "Encoder Input",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Encoder_Input.md"
+ ],
+ "text": "Read from one or multiple incremental encoder input channels, 2 outputs, {Reset input function} sets Select mode of; {Install new board} sets the register a board < no board, {Delete current board} sets the delete the current board, {Board setup} sets the up the board, {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {Input channels} selects encoder input channels, {Quadrature mode} sets the to detect optically the amplitude and direction of movement, select encoder stripe edges, {Input filter clock frequency} sets the cutoff frequency and {Output data type} sets the data type of block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Encoder Data",
+   "direction": "output",
+   "summary": "Encoder data read from input channels vector"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "Missed tick count (optional) double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "Register a board < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "Delete the current board (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "Set up the board (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Input channels",
+   "default": "1",
+   "values": "Select encoder input channels 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Quadrature mode",
+   "default": "quadruple",
+   "values": "To detect optically the amplitude and direction of movement, select encoder stripe edges quadruple (default) | double | single | two-pulse",
+   "group": ""
+  },
+  {
+   "name": "Reset input function",
+   "default": "reset",
+   "values": "Select mode of reset pin reset (default) | gate | rising edge index | falling edge index",
+   "group": ""
+  },
+  {
+   "name": "Input filter clock frequency",
+   "default": "Inf",
+   "values": "Cutoff frequency (Hz) of low-pass filter Inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of block output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  }
+ ]
+}

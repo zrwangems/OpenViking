@@ -1,0 +1,97 @@
+{
+ "key": "Simulink Desktop Real-Time Counter Input",
+ "title": "Counter Input",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Counter_Input.md"
+ ],
+ "text": "从一个或多个计数器输入通道读取；输出 2 路；按 {Reset after read} 指定计数器复位策略；{Install new board} 指定注册板卡 < no board、{Delete current board} 指定删除当前板卡、{Board setup} 指定板卡、{Sample time} 指定模块的采样时间、{Maximum missed ticks} 指定模型可以落后内核的定时器节拍数、{Show “Missed Ticks” port} 指定将错过的节拍数发送到 Missed Ticks 端口、{Yield CPU when waiting} 指定内核等待硬件时让出 CPU、{Input channels} 指定计数器输入通道、{Clock input source} 指定使计数器递增的时钟输入 input pin rising、{Gate input functionality} 指定计数器门控输入引脚的操作、{Output data type} 指定模块输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Counter Data",
+   "direction": "output",
+   "summary": "从输入通道读取的计数器数据 vector"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "错过的节拍计数（可选） double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "注册板卡 < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "删除当前板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "设置板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "模块的采样时间 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "模型可以落后内核的定时器节拍数 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "将错过的节拍数发送到 Missed Ticks 端口 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "内核等待硬件时让出 CPU ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Input channels",
+   "default": "1",
+   "values": "选择计数器输入通道 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Reset after read",
+   "default": "never",
+   "values": "计数器复位策略 never (default) | always | level | rising edge | falling edge | either edge",
+   "group": ""
+  },
+  {
+   "name": "Clock input source",
+   "default": "edge",
+   "values": "使计数器递增的时钟输入 input pin rising edge (default) | input pin falling edge | internal clock",
+   "group": ""
+  },
+  {
+   "name": "Gate input functionality",
+   "default": "none",
+   "values": "计数器门控输入引脚的操作 none (default) | enable when high | enable when low | start on rising edge | start on falling edge | reset on rising edge | reset on falling edge | latch on rising edge | latch on falling edge | latch & reset on rising edge | latch & reset on falling edge | enable when high, latch & reset on edge | enable when low, latch & reset on edge",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "模块输出的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  }
+ ]
+}

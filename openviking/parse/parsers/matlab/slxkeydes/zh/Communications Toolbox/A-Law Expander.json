@@ -1,0 +1,13 @@
+{
+ "key": "A-Law Expander",
+ "title": "A-Law Expander",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/A_Law_Expander.md"
+ ],
+ "text": "实现用于信源编码的 A-law 扩展器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

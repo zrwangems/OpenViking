@@ -1,0 +1,99 @@
+{
+ "key": "audio.simulink.ParametricEQ",
+ "title": "Single-Band Parametric EQ",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Single_Band_Parametric_EQ.md"
+ ],
+ "text": "Second-order parametric equalizer filter, 5 inputs, 1 output, no direct feedthrough; {Filter order} sets the order of filter, {Filter specification} sets the parameters used to design filter Bandwidth and center, {Center Frequency (Hz)} sets the center frequency of filter, {Filter Bandwidth (Hz)} sets the bandwidth of filter, {Quality Factor}, {Peak Gain (dB)} sets the peak or dip gain of filter, {Inherit sample rate from input} sets the source of input sample rate, {Input sample rate (Hz)} sets the sample rate of input and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input signal matrix | 1-D vector"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "Center frequency (Hz) scalar"
+  },
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "Bandwidth (Hz) scalar"
+  },
+  {
+   "name": "GdB",
+   "direction": "input",
+   "summary": "Peak or dip gain (dB) scalar"
+  },
+  {
+   "name": "Q",
+   "direction": "input",
+   "summary": "Quality factor scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter order",
+   "default": "2",
+   "values": "Order of filter 2 (default) | positive even scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter specification",
+   "default": "frequency",
+   "values": "Specify parameters used to design filter Bandwidth and center frequency (default) | Quality factor and center frequency",
+   "group": ""
+  },
+  {
+   "name": "Center Frequency (Hz)",
+   "default": "11025",
+   "values": "Center frequency of filter 11025 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter Bandwidth (Hz)",
+   "default": "2205",
+   "values": "Bandwidth of filter 2205 (default) | positive scalar in the range [0, max(fs/2, 20,000)]",
+   "group": ""
+  },
+  {
+   "name": "Quality Factor",
+   "default": "5",
+   "values": "Quality factor 5 (default) | scalar in the range [0.1, 20]",
+   "group": ""
+  },
+  {
+   "name": "Peak Gain (dB)",
+   "default": "6.0206",
+   "values": "Peak or dip gain of filter 6.0206 (default) | scalar in the range [−30, 30]",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Specify source of input sample rate on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Specify type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

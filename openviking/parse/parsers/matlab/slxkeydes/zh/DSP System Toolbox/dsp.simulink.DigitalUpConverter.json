@@ -1,0 +1,175 @@
+{
+ "key": "dsp.simulink.DigitalUpConverter",
+ "title": "Digital Up-Converter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Digital_Up_Converter.md"
+ ],
+ "text": "对数字信号进行插值并将其从基带搬移到中频 (IF) 频带，输入 1 路、输出 1 路、无直接馈通；按 {Interpolation factor} 指定插值因子；{Minimum order filter design} 指定设计最小阶滤波器、{Order of first filter stage} 指定第一个滤波器级的阶数、{Number of sections of CIC interpolator} 指定 CIC 插值器的节数、{Source of stopband frequency} 指定阻带频率来源、{Type of oscillator} 指定振荡器类型 Sine、{Center frequency of output signal} 输出信号的中心频率、{Order of CIC compensation filter stage} 指定 CIC 补偿滤波器级的阶数、{Two sided bandwidth of input signal} 指定输入信号的双侧带宽、{Stopband frequency} 指定阻带频率、{Passband ripple of cascade response (dB)} 指定级联响应的通带波纹、{Stopband attenuation of cascade response (dB)} 指定级联响应的阻带衰减、{Number of NCO accumulator bits} 指定 NCO 累加器位数、{Number of NCO quantized accumulator bits} 指定 NCO 量化累加器位数、{Dither control for NCO} 指定 NCO 的抖动控制、{Number of NCO dither bits} 指定 NCO 抖动位数、{Sample rate mode} 指定输入采样率的模式 Use normalized、{Input sample rate (Hz)} 指定输入信号的采样率 300e3、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted、{Stage output} 指定级输出、{Output} 输出、{Minimum}、{Maximum}、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "输入信号 column vector"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "上变频并上采样后的信号 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation factor",
+   "default": "100",
+   "values": "插值因子 100 (default) | positive integer > 1 | vector of positive integers",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Minimum order filter design",
+   "default": "on",
+   "values": "设计最小阶滤波器 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Order of first filter stage",
+   "default": "10",
+   "values": "第一个滤波器级的阶数 10 (default) | positive even integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of sections of CIC interpolator",
+   "default": "3",
+   "values": "CIC 插值器的节数 3 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Source of stopband frequency",
+   "default": "Auto",
+   "values": "阻带频率来源 Auto (default) | Property",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Type of oscillator",
+   "default": "wave",
+   "values": "振荡器类型 Sine wave (default) | NCO",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Center frequency of output signal",
+   "default": "0.9333",
+   "values": "输出信号的中心频率 0.9333 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Order of CIC compensation filter stage",
+   "default": "12",
+   "values": "CIC 补偿滤波器级的阶数 12 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Two sided bandwidth of input signal",
+   "default": "0.0133",
+   "values": "输入信号的双侧带宽 0.0133 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband frequency",
+   "default": "0.01",
+   "values": "阻带频率 0.01 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Passband ripple of cascade response (dB)",
+   "default": "0.1",
+   "values": "级联响应的通带波纹 0.1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband attenuation of cascade response (dB)",
+   "default": "60",
+   "values": "级联响应的阻带衰减 60 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of NCO accumulator bits",
+   "default": "16",
+   "values": "NCO 累加器位数 16 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of NCO quantized accumulator bits",
+   "default": "12",
+   "values": "NCO 量化累加器位数 12 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dither control for NCO",
+   "default": "on",
+   "values": "NCO 的抖动控制 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of NCO dither bits",
+   "default": "4",
+   "values": "NCO 抖动位数 4 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "300e3",
+   "values": "输入信号的采样率 300e3 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stage output",
+   "default": "input",
+   "values": "级输出 Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出 Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "Minimum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "Maximum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

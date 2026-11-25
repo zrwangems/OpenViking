@@ -1,0 +1,74 @@
+{
+ "key": "FIL Samples To Frame",
+ "title": "FIL Samples To Frame",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/I_O Interfaces/FIL_Samples_To_Frame.md"
+ ],
+ "text": "将来自 FPGA-in-the-loop 的样本流转换为基于帧的数据，输入 4 路、输出 3 路；{Number of input samples} 表示每个样本的值的数量、{Output size} 指定每帧最大样本数、{Compose output from interleaved input samples} 输出样本相对于输入顺序的顺序、{Enable frame length output port} 输出有效样本数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "sampleN",
+   "direction": "input",
+   "summary": "样本流 vector"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "帧起始 vector"
+  },
+  {
+   "name": "end",
+   "direction": "input",
+   "summary": "帧结束 vector"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "样本有效性 vector"
+  },
+  {
+   "name": "frame",
+   "direction": "output",
+   "summary": "输出样本的帧 column vector"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出帧的有效性 scalar"
+  },
+  {
+   "name": "len",
+   "direction": "output",
+   "summary": "输出帧中的有效样本数 integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input samples",
+   "default": "1",
+   "values": "表示每个样本的值的数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "1024",
+   "values": "每帧最大样本数 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Compose output from interleaved input samples",
+   "default": "off",
+   "values": "输出样本相对于输入顺序的顺序 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable frame length output port",
+   "default": "off",
+   "values": "输出有效样本数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

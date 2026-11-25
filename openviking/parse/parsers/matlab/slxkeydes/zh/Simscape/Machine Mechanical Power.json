@@ -1,0 +1,13 @@
+{
+ "key": "Machine Mechanical Power",
+ "title": "Machine Mechanical Power",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechanical/Machine_Mechanical_Power.md"
+ ],
+ "text": "以 SI 或标幺值系统定义的电机机械功率。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,52 @@
+{
+ "key": "d-q Voltage Limiter",
+ "title": "d-q Voltage Limiter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Protection/d_q_Voltage_Limiter.md"
+ ],
+ "text": "在转子直轴-交轴参考坐标系中限制电压，输入 3 路、输出 2 路；按 {Axis prioritization} 指定优先选择 d 轴或 q 轴；{Sample time (-1 for inherited)} 指定采样间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vdRefUnsat",
+   "direction": "input",
+   "summary": "v d unsat scalar"
+  },
+  {
+   "name": "VqRefUnsat",
+   "direction": "input",
+   "summary": "v q unsat scalar"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "V ph_max scalar"
+  },
+  {
+   "name": "vdRef",
+   "direction": "output",
+   "summary": "v d sat scalar"
+  },
+  {
+   "name": "vqRef",
+   "direction": "output",
+   "summary": "v d sat scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Axis prioritization",
+   "default": "Q-axis",
+   "values": "优先选择 d 轴或 q 轴 Q-axis (default) | D-axis | D-Q equivalence",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "采样间隔 -1 (default) | default value or a positive number",
+   "group": ""
+  }
+ ]
+}

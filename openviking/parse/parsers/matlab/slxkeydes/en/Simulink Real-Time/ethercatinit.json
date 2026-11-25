@@ -1,0 +1,56 @@
+{
+ "key": "ethercatinit",
+ "title": "EtherCAT Init",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Init.md"
+ ],
+ "text": "Initialize EtherCAT main device node with data in the EtherCAT Network Information (ENI) file, 1 output, {Initialization End State} sets End state after creating master; {Config file (ENI)} sets the eNI file from the EtherCAT configurator character, {Network Device Index} sets the etherCAT network identifier 0-15, {Ethernet Port Number} sets the port number in target, {DC Tuning} sets the distributed clock initialization parameter Large and {Enable EtherCAT Log for Debugging} sets the access to debugging and logging block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status information about the EtherCAT network vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config file (ENI)",
+   "default": "",
+   "values": "ENI file from the EtherCAT configurator character vector",
+   "group": ""
+  },
+  {
+   "name": "Network Device Index",
+   "default": "",
+   "values": "EtherCAT network identifier 0-15",
+   "group": ""
+  },
+  {
+   "name": "Ethernet Port Number",
+   "default": "",
+   "values": "Port number in target computer int",
+   "group": ""
+  },
+  {
+   "name": "Initialization End State",
+   "default": "Op",
+   "values": "End state after creating master Op (default) | PreOp | SafeOp",
+   "group": ""
+  },
+  {
+   "name": "DC Tuning",
+   "default": "model",
+   "values": "Distributed clock initialization parameter Large model (default) | Medium model | Small model",
+   "group": ""
+  },
+  {
+   "name": "Enable EtherCAT Log for Debugging",
+   "default": "Off",
+   "values": "Access to debugging and logging block parameters Off (default) | Warning | Info | Verbose | All",
+   "group": ""
+  }
+ ]
+}

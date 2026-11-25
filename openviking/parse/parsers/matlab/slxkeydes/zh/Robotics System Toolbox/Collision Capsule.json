@@ -1,0 +1,52 @@
+{
+ "key": "Collision Capsule",
+ "title": "Collision Capsule",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Collision Detection/Collision_Capsule.md"
+ ],
+ "text": "创建胶囊碰撞几何体，输入 3 路、输出 2 路；{Enable Runtime Input Dimensions Error} 指定碰撞胶囊尺寸的验证、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Radius",
+   "direction": "input",
+   "summary": "胶囊球形端部的半径 scalar"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "胶囊中心线段的长度 scalar"
+  },
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "碰撞几何体的位姿 matrix"
+  },
+  {
+   "name": "CollGeom",
+   "direction": "output",
+   "summary": "碰撞几何体 bus"
+  },
+  {
+   "name": "ExitFlag",
+   "direction": "output",
+   "summary": "碰撞胶囊尺寸的有效性 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable Runtime Input Dimensions Error",
+   "default": "on",
+   "values": "碰撞胶囊尺寸的验证 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

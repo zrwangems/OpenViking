@@ -1,0 +1,13 @@
+{
+ "key": "Push-Pull Output",
+ "title": "Push-Pull Output",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Push_Pull_Output.md"
+ ],
+ "text": "Behavioral representation of CMOS complementary output stage.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

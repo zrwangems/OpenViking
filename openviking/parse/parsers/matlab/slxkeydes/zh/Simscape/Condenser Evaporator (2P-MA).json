@@ -1,0 +1,13 @@
+{
+ "key": "Condenser Evaporator (2P-MA)",
+ "title": "Condenser Evaporator (2P-MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Two-Phase Fluid - Moist Air/Condenser_Evaporator_2P_MA.md"
+ ],
+ "text": "湿空气网络与两相流体网络之间的换热器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

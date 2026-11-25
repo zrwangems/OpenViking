@@ -1,0 +1,61 @@
+{
+ "key": "slrealtime.EthernetReceive",
+ "title": "Ethernet Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/Ethernet/Ethernet_Receive.md"
+ ],
+ "text": "接收来自目标计算机 Simulink Real-Time 的以太网数据包；输出 2 路；按 {Interface Name} 指定目标计算机以太网接口名称 wm0；{Data Width} 指定数据端口宽度、{Enable Simulink messages} 指定数据作为消息、{Maximum messages in a time step} 指定每时间步限制数据包数量、{Capture filter} 指定过滤接收到的数据包 字符向量、{Sample Time} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "以太网数据包 Simulink 消息"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "接收的字节数 双精度"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interface Name",
+   "default": "",
+   "values": "目标计算机以太网接口名称 wm0 | wm1 | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "Data Width",
+   "default": "64",
+   "values": "数据端口宽度（单位：字节） 64 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "Enable Simulink messages",
+   "default": "off",
+   "values": "数据作为消息 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum messages in a time step",
+   "default": "1",
+   "values": "每时间步限制数据包数量 1 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "Capture filter",
+   "default": "",
+   "values": "过滤接收到的数据包 字符向量",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 数值",
+   "group": ""
+  }
+ ]
+}

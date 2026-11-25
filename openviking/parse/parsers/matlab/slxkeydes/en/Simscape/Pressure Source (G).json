@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Source (G)",
+ "title": "Pressure Source (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Sources/Pressure_Source_G.md"
+ ],
+ "text": "Generate constant or time-varying pressure differential.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

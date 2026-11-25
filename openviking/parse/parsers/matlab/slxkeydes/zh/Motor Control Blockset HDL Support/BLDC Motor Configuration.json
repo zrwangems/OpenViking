@@ -1,0 +1,80 @@
+{
+ "key": "BLDC Motor Configuration",
+ "title": "BLDC Configuration",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Electrical Systems/Motors/BLDC_Configuration.md"
+ ],
+ "text": "配置 BLDC 系统参数；输出 1 路；{机械输入配置} 指定端口配置 转矩、{采样时间(Ts)} 指定采样时间，在此采样时间过后模块将再次执行 1e-6、{极对数} 指定极对、{每相定子电阻(欧姆)} 指定定子的电阻、{定子 d 轴电感(H)} 指定 d 轴电感 1.7e-3、{定子 q 轴电感(H)} 指定 q 轴电感 3.2e-3、{永磁链常量(Wb)} 指定磁链常量、{惯量(kgm^2)} 指定物理惯量、{粘性阻尼(Nm/rad/s)} 指定粘性阻尼 4.924e-4、{静态摩擦(Nm)} 指定静态摩擦，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "output",
+   "summary": "模块配置信号 矢量"
+  }
+ ],
+ "params": [
+  {
+   "name": "机械输入配置",
+   "default": "转矩",
+   "values": "选择端口配置 转矩 (默认) | 转速",
+   "group": "模块选项"
+  },
+  {
+   "name": "采样时间(Ts)",
+   "default": "1e-6",
+   "values": "采样时间，在此采样时间过后模块将再次执行 1e-6 (默认) | 标量",
+   "group": "模块选项"
+  },
+  {
+   "name": "极对数",
+   "default": "4",
+   "values": "极对 4 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "每相定子电阻(欧姆)",
+   "default": "0.02",
+   "values": "定子的电阻 0.02 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "定子 d 轴电感(H)",
+   "default": "1.7e-3",
+   "values": "d 轴电感 1.7e-3 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "定子 q 轴电感(H)",
+   "default": "3.2e-3",
+   "values": "q 轴电感 3.2e-3 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "永磁链常量(Wb)",
+   "default": "0.2205",
+   "values": "磁链常量 0.2205 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "惯量(kgm^2)",
+   "default": "0.0027",
+   "values": "物理惯量 0.0027 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "粘性阻尼(Nm/rad/s)",
+   "default": "4.924e-4",
+   "values": "粘性阻尼 4.924e-4 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "静态摩擦(Nm)",
+   "default": "0",
+   "values": "静态摩擦 0 (默认) | 标量",
+   "group": "参数"
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+ "key": "phased.internal.SimulinkRectangularWaveform",
+ "title": "Rectangular Waveform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Waveforms/Rectangular_Waveform.md"
+ ],
+ "text": "调频连续波 (FMCW) 波形源；输出 1 路；按 {Sweep direction} 指定FM 扫频方向；{Sample rate (Hz)} 输出波形的采样率 1e6、{Sweep time (s)} 指定每个线性 FM 扫频的持续时间 1e-4、{Sweep bandwidth (Hz)} 指定 FM 扫频带宽 1e5、{Sweep interval} 指定 FM 扫频区间位置、{Output signal format} 输出信号格式、{Number of samples in output} 输出中的样本数、{Number of sweeps in output} 输出中的扫频数、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "FMCW 波形 complex-valued column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "输出波形的采样率 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sweep time (s)",
+   "default": "1e-4",
+   "values": "每个线性 FM 扫频的持续时间 1e-4 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sweep bandwidth (Hz)",
+   "default": "1e5",
+   "values": "FM 扫频带宽 1e5 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sweep direction",
+   "default": "Up",
+   "values": "FM 扫频方向 Up (default) | Down | Triangle",
+   "group": ""
+  },
+  {
+   "name": "Sweep interval",
+   "default": "Positive",
+   "values": "FM 扫频区间位置 Positive (default) | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Output signal format",
+   "default": "Sweeps",
+   "values": "输出信号格式 Sweeps (default) | Samples",
+   "group": ""
+  },
+  {
+   "name": "Number of samples in output",
+   "default": "100",
+   "values": "输出中的样本数 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of sweeps in output",
+   "default": "1",
+   "values": "输出中的扫频数 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

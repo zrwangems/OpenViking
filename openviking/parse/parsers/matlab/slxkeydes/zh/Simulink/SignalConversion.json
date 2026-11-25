@@ -1,0 +1,47 @@
+{
+ "key": "SignalConversion",
+ "title": "Signal Conversion",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Signal_Conversion.md",
+  "Simulink/Quick Insert/Signal Attributes/Signal_Copy.md",
+  "Simulink/Quick Insert/Signal Attributes/To_Nonvirtual_Bus.md",
+  "Simulink/Quick Insert/Signal Attributes/To_Virtual_Bus.md",
+  "HDL Coder/Signal Attributes/Signal_Conversion.md"
+ ],
+ "text": "将信号转换为新类型，而不改变信号值，输入 1 路、输出 1 路；按 {输出} 指定转换的类型 信号副本；{数据类型}、{从 ’模块简化’ 优化中排除此模块} 指定从模块简化优化中排除模块，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要转换的输入信号 标量 | 向量 | 矩阵 | 数组 | 总线"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "转换信号 标量 | 向量 | 矩阵 | 数组 | 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出",
+   "default": "",
+   "values": "转换的类型 信号副本 | 虚拟总线 | 非虚拟总线",
+   "group": ""
+  },
+  {
+   "name": "数据类型",
+   "default": "auto",
+   "values": "非虚拟总线数据类型 Inherit: auto (默认) | Bus: |",
+   "group": ""
+  },
+  {
+   "name": "从 ’模块简化’ 优化中排除此模块",
+   "default": "off",
+   "values": "从模块简化优化中排除模块的选项 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

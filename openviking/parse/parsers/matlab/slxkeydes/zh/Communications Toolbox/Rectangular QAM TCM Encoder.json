@@ -1,0 +1,13 @@
+{
+ "key": "Rectangular QAM TCM Encoder",
+ "title": "Rectangular QAM TCM Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/TCM/Rectangular_QAM_TCM_Encoder.md"
+ ],
+ "text": "对二进制数据进行卷积编码并使用 QAM 方法调制。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

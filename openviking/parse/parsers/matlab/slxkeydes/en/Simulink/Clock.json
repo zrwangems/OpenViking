@@ -1,0 +1,32 @@
+{
+ "key": "Clock",
+ "title": "Clock",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Clock.md"
+ ],
+ "text": "Display and provide simulation time, 1 output, no direct feedthrough; {Display time} displays simulation time on block icon and {Decimation} sets the interval at which to update block icon. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Sample time scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Display time",
+   "default": "off",
+   "values": "Display simulation time on block icon off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Decimation",
+   "default": "10",
+   "values": "Interval at which to update block icon 10 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

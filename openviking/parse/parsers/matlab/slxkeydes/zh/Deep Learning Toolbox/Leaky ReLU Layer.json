@@ -1,0 +1,85 @@
+{
+ "key": "Leaky ReLU Layer",
+ "title": "Leaky ReLU Layer",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Activation Layers/Leaky_ReLU_Layer.md"
+ ],
+ "text": "Leaky ReLU 层，输入 1 路、输出 1 路；按 {Internal integer rounding mode} 指定内部定点运算的舍入模式；{Scale} 指定负输入的缩放因子、{Output minimum} 用于范围检查的最小输出值、{Output maximum} 用于范围检查的最大输出值、{Output data type} 输出数据类型、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型、{Output integer rounding mode} 指定定点输出转换操作的舍入模式、{Output saturate on integer overflow} 输出转换操作的溢出操作方式、{Internal saturate on integer overflow} 指定内部模块操作的溢出操作方式、{Sample time} 用于指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出矩阵 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Scale",
+   "default": "0.01",
+   "values": "负输入的缩放因子 0.01 (default) | numeric scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "用于范围检查的最小输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "用于范围检查的最大输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via back propagation | Inherit: Same as first input | Inherit: Same as accumulator |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output integer rounding mode",
+   "default": "Floor",
+   "values": "定点输出转换操作的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output saturate on integer overflow",
+   "default": "off",
+   "values": "输出转换操作的溢出操作方式 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal integer rounding mode",
+   "default": "Floor",
+   "values": "内部定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal saturate on integer overflow",
+   "default": "off",
+   "values": "内部模块操作的溢出操作方式 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "用于指定采样时间的选项 -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

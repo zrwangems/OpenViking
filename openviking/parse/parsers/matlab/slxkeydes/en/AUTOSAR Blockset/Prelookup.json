@@ -1,0 +1,73 @@
+{
+ "key": "Prelookup",
+ "title": "Prelookup",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Interpolation/Prelookup.md"
+ ],
+ "text": "Compute index and fraction for a Curve Using Prelookup or Map Using Prelookup block, 1 input, 1 output, {Targeted Routine} sets AUTOSAR library routine used for code replacement Ifx_DPSearch; {Targeted Routine Library} Indicates the AUTOSAR routine library used for block code replacement, {Breakpoints Specification} sets how to enter breakpoint data Explicit, {Breakpoints} sets the breakpoint data values, {Name}, {Index search method} sets the method for searching breakpoint data Linear, {Begin index search using previous index result} sets the start search using the index found at the previous time and {Integer rounding mode} sets the rounding mode for fixed-point or floating-point operations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal, u scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Bus containing output index and fraction Simulink.Bus object"
+  }
+ ],
+ "params": [
+  {
+   "name": "Targeted Routine Library",
+   "default": "",
+   "values": "Indicates the AUTOSAR routine library used for block code replacement IFX (fixed-point) | IFL (floating-point)",
+   "group": ""
+  },
+  {
+   "name": "Targeted Routine",
+   "default": "",
+   "values": "AUTOSAR library routine used for code replacement Ifx_DPSearch | Ifl_DPSearch",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints Specification",
+   "default": "values",
+   "values": "Choose how to enter breakpoint data Explicit values (default) | Breakpoint object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Breakpoints",
+   "default": "3]",
+   "values": "Breakpoint data values [1 2 3] (default)",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Name of a Simulink.Breakpoint object Simulink.Breakpoint object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Index search method",
+   "default": "search",
+   "values": "Method for searching breakpoint data Linear search (default) | Binary search",
+   "group": "Algorithms"
+  },
+  {
+   "name": "Begin index search using previous index result",
+   "default": "off",
+   "values": "Start search using the index found at the previous time step off (default) | on",
+   "group": "Algorithms"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Zero",
+   "values": "Rounding mode for fixed-point or floating-point operations Zero (default) | Round",
+   "group": "Algorithms"
+  }
+ ]
+}

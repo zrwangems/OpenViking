@@ -1,0 +1,13 @@
+{
+ "key": "Bevel Gear Constraint",
+ "title": "Bevel Gear Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Gears and Couplings/Gears/Bevel_Gear_Constraint.md"
+ ],
+ "text": "两个锥齿轮体之间的运动学约束，其旋转轴成角度相交。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

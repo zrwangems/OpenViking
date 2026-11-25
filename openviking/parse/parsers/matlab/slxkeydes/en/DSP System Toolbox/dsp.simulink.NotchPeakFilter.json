@@ -1,0 +1,126 @@
+{
+ "key": "dsp.simulink.NotchPeakFilter",
+ "title": "Notch-Peak Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Notch_Peak_Filter.md"
+ ],
+ "text": "Design second-order tunable notching and peaking IIR filter, 1 input, 2 outputs, {Filter output} sets Filter response to output Notch and; {Filter specification} sets the filter design specifications Bandwidth and center, {Specify bandwidth from input port} sets the option to specify 3 dB bandwidth from input, {3 dB bandwidth} sets the 3-dB bandwidth, {Specify center frequency from input port} sets the option to specify center frequency from input, {Center frequency of notch or peak} sets the notch or peak center frequency, {Specify bandwidth coefficient from input port} sets the option to specify bandwidth coefficient from input, {Bandwidth coefficient}, {Specify center frequency coefficient from input port} sets the option to specify center frequency coefficient from input, {Center frequency coefficient}, {Specify quality factor from input port} sets the option to specify quality factor from input, {Quality factor}, {Sample rate mode} sets the mode to specify the input sample rate Use normalized, {Input sample rate (Hz)} sets the sample rate of input, {View Filter Response} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "notch",
+   "direction": "output",
+   "summary": "Notch filter output vector | matrix"
+  },
+  {
+   "name": "peak",
+   "direction": "output",
+   "summary": "Peak filter output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter specification",
+   "default": "frequency",
+   "values": "Filter design specifications Bandwidth and center frequency (default) | Coefficients | Quality factor and center frequency",
+   "group": ""
+  },
+  {
+   "name": "Specify bandwidth from input port",
+   "default": "off",
+   "values": "Option to specify 3 dB bandwidth from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "3 dB bandwidth",
+   "default": "2205",
+   "values": "3-dB bandwidth 2205 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "off",
+   "values": "Option to specify center frequency from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Center frequency of notch or peak",
+   "default": "11025",
+   "values": "Notch or peak center frequency 11025 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify bandwidth coefficient from input port",
+   "default": "off",
+   "values": "Option to specify bandwidth coefficient from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Bandwidth coefficient",
+   "default": "0.72654",
+   "values": "Bandwidth coefficient 0.72654 (default) | real scalar in the range [− 1 1 ]",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency coefficient from input port",
+   "default": "off",
+   "values": "Option to specify center frequency coefficient from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Center frequency coefficient",
+   "default": "0",
+   "values": "Center frequency coefficient 0 (default) | real scalar in the range [− 1 1 ]",
+   "group": ""
+  },
+  {
+   "name": "Specify quality factor from input port",
+   "default": "off",
+   "values": "Option to specify quality factor from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Quality factor",
+   "default": "5",
+   "values": "Quality factor for notch or peak filter 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter output",
+   "default": "Peak",
+   "values": "Filter response to output Notch and Peak (default) | Notch | Peak",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "button",
+   "values": "View filter response button (default)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

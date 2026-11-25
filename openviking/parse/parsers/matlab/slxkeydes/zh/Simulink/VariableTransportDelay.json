@@ -1,0 +1,96 @@
+{
+ "key": "VariableTransportDelay",
+ "title": "Variable Time Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Variable_Time_Delay.md",
+  "Simulink/Continuous/Variable_Transport_Delay.md"
+ ],
+ "text": "按可变时间量延迟输入，输入 3 路、输出 1 路；按 {初始输出} 指定初始输出；{选择延迟类型} 指定延迟的类型 可变时滞、{最大延迟} 指定时滞输入的最大值、{初始缓冲区大小} 指定初始内存分配、{使用固定缓冲区大小} 使用固定大小的缓冲区、{处理零延迟} 用于允许零延迟、{线性化期间直接馈通输入} 用于在线性化和配平操作期间使用零延迟、{帕德阶(用于线性化)} 指定帕德逼近的阶、{绝对容差}、{状态名称(例如，’position’)} 指定每个状态的唯一名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "t 0",
+   "direction": "input",
+   "summary": "时滞输入 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "t i",
+   "direction": "input",
+   "summary": "瞬时时滞输入 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "延迟的信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "选择延迟类型",
+   "default": "",
+   "values": "延迟的类型 可变时滞 | 可变传输延迟",
+   "group": ""
+  },
+  {
+   "name": "最大延迟",
+   "default": "10",
+   "values": "时滞输入的最大值 10 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "初始输出",
+   "default": "0",
+   "values": "初始输出 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "初始缓冲区大小",
+   "default": "1024",
+   "values": "初始内存分配 1024 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "使用固定缓冲区大小",
+   "default": "off",
+   "values": "使用固定大小的缓冲区 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "处理零延迟",
+   "default": "off",
+   "values": "用于允许零延迟的选项 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "线性化期间直接馈通输入",
+   "default": "off",
+   "values": "用于在线性化和配平操作期间使用零延迟的选项 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "帕德阶(用于线性化)",
+   "default": "0",
+   "values": "帕德逼近的阶 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "绝对容差",
+   "default": "auto",
+   "values": "用于计算模块状态的绝对容差 auto (默认) | 正实数标量或向量",
+   "group": ""
+  },
+  {
+   "name": "状态名称(例如，’position’)",
+   "default": "’",
+   "values": "每个状态的唯一名称 ’ ’ (默认) | 字符向量、字符串",
+   "group": ""
+  }
+ ]
+}

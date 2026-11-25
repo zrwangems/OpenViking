@@ -1,0 +1,74 @@
+{
+ "key": "Step",
+ "title": "Step",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Step.md"
+ ],
+ "text": "Generate step function, 1 output, no direct feedthrough, {Output data type} sets Output data type; {Step time} sets the time when step occurs, {Initial value} sets the output value before step, {Final value} sets the output value after step, {Sample time} sets the sample rate, {Interpret vector parameters as 1-D} treats vectors as 1-D, {Enable zero-crossing detection}, {Mode} sets the category of data and {Data type override} sets the data type override mode for this signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output step signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Step time",
+   "default": "1",
+   "values": "Time when step occurs 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "Output value before step 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Final value",
+   "default": "1",
+   "values": "Output value after step 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0",
+   "values": "Sample rate 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "Treat vectors as 1-D on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | Inherit: Inherit via back propagation | single |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Category of data type Inherit (default) | Built in | Expression",
+   "group": ""
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": ""
+  }
+ ]
+}

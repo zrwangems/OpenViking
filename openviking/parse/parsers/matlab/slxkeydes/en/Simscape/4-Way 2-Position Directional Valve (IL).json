@@ -1,0 +1,13 @@
+{
+ "key": "4-Way 2-Position Directional Valve (IL)",
+ "title": "4-Way 2-Position Directional Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Directional Control Valves/b_4_Way_2_Position_Directional_Valve_IL.md"
+ ],
+ "text": "4-way 2-position directional valve in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

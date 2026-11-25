@@ -1,0 +1,36 @@
+{
+ "key": "ManualVariantSource",
+ "title": "Manual Variant Source",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Manual_Variant_Source.md"
+ ],
+ "text": "Switch between multiple variant choices at input, 2 inputs, 1 output, no direct feedthrough; {Number of choices} sets the number of input choices. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First variant input signal scalar | vector"
+  },
+  {
+   "name": "Port_n",
+   "direction": "input",
+   "summary": "n th variant input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of choices",
+   "default": "2",
+   "values": "Number of input choices 2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

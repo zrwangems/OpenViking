@@ -1,0 +1,197 @@
+{
+ "key": "FOC Default Controller Gains",
+ "title": "FOC Default Controller Gains",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/FOC_Default_Controller_Gains.md"
+ ],
+ "text": "在运行时基于经验方法或最优理论计算基于 FOC 的算法的控制器增益；按 {Block Output} 指定模块的输出 Current controller (d,q-axes)，端口数也随它而定；{Motor selection} 指定电机类型 PMSM、{Output unit} 指定模块输出的单位 SI、{Specify filter and sensor delays} 启用添加滤波器和传感器延迟、{Current sensor delay (s)} 指定电流传感器导致的延迟 50e-6、{Speed sensor delay (s)} 指定速度传感器导致的延迟 50e-6、{Speed filter delay (s)} 指定速度滤波导致的延迟，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "R s",
+   "direction": "input",
+   "summary": "定子电阻 scalar"
+  },
+  {
+   "name": "L d",
+   "direction": "input",
+   "summary": "d 轴电感 scalar"
+  },
+  {
+   "name": "L q",
+   "direction": "input",
+   "summary": "q 轴电感 scalar"
+  },
+  {
+   "name": "L m",
+   "direction": "input",
+   "summary": "励磁电感 scalar"
+  },
+  {
+   "name": "L ls",
+   "direction": "input",
+   "summary": "定子漏电感 scalar"
+  },
+  {
+   "name": "L lr",
+   "direction": "input",
+   "summary": "转子漏电感 scalar"
+  },
+  {
+   "name": "J",
+   "direction": "input",
+   "summary": "电机惯量 scalar"
+  },
+  {
+   "name": "T s",
+   "direction": "input",
+   "summary": "电流控制器采样时间 scalar"
+  },
+  {
+   "name": "T sc",
+   "direction": "input",
+   "summary": "速度控制器采样时间 scalar"
+  },
+  {
+   "name": "SlowdownFactor",
+   "direction": "input",
+   "summary": "减慢系统响应的因子 scalar in the range of [1, 20]"
+  },
+  {
+   "name": "I Max",
+   "direction": "input",
+   "summary": "最大可测峰值中性电流 scalar"
+  },
+  {
+   "name": "V dc",
+   "direction": "input",
+   "summary": "直流母线电压 scalar"
+  },
+  {
+   "name": "N base",
+   "direction": "input",
+   "summary": "电机额定转速 scalar"
+  },
+  {
+   "name": "R s",
+   "direction": "input",
+   "summary": "定子电阻 scalar"
+  },
+  {
+   "name": "L d",
+   "direction": "input",
+   "summary": "d 轴电感 scalar"
+  },
+  {
+   "name": "L q",
+   "direction": "input",
+   "summary": "q 轴电感 scalar"
+  },
+  {
+   "name": "J",
+   "direction": "input",
+   "summary": "电机惯量 scalar"
+  },
+  {
+   "name": "p",
+   "direction": "input",
+   "summary": "电机中可用的极对数 scalar"
+  },
+  {
+   "name": "Flux PM",
+   "direction": "input",
+   "summary": "永磁体磁链峰值 scalar"
+  },
+  {
+   "name": "T s",
+   "direction": "input",
+   "summary": "电流控制器采样时间 scalar"
+  },
+  {
+   "name": "T sc",
+   "direction": "input",
+   "summary": "速度控制器采样时间 scalar"
+  },
+  {
+   "name": "CurrLoopDelay",
+   "direction": "input",
+   "summary": "反馈路径中存在的电流延迟的总时间常数值 scalar"
+  },
+  {
+   "name": "SpeedLoopDelay",
+   "direction": "input",
+   "summary": "反馈路径中存在的速度延迟的总时间常数值 scalar"
+  },
+  {
+   "name": "V base",
+   "direction": "input",
+   "summary": "基准电压 scalar"
+  },
+  {
+   "name": "I base",
+   "direction": "input",
+   "summary": "基准电流 scalar"
+  },
+  {
+   "name": "N base",
+   "direction": "input",
+   "summary": "电机额定转速 scalar"
+  },
+  {
+   "name": "PI Gains",
+   "direction": "output",
+   "summary": "PI 控制器增益 bus"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "PI 增益计算状态 true | false"
+  }
+ ],
+ "params": [
+  {
+   "name": "Motor selection",
+   "default": "PMSM",
+   "values": "电机类型 PMSM (default) | ACIM",
+   "group": ""
+  },
+  {
+   "name": "Output unit",
+   "default": "Unit",
+   "values": "模块输出的单位 SI Unit (default) | Per-Unit",
+   "group": ""
+  },
+  {
+   "name": "Block Output",
+   "default": "",
+   "values": "模块的输出 Current controller (d,q-axes) | Field-weakening controller | Speed controller",
+   "group": ""
+  },
+  {
+   "name": "Specify filter and sensor delays",
+   "default": "off",
+   "values": "启用添加滤波器和传感器延迟 off (default) | on",
+   "group": "Delays"
+  },
+  {
+   "name": "Current sensor delay (s)",
+   "default": "50e-6",
+   "values": "电流传感器导致的延迟 50e-6 (default) | scalar",
+   "group": "Delays"
+  },
+  {
+   "name": "Speed sensor delay (s)",
+   "default": "50e-6",
+   "values": "速度传感器导致的延迟 50e-6 (default) | scalar",
+   "group": "Delays"
+  },
+  {
+   "name": "Speed filter delay (s)",
+   "default": "0.02",
+   "values": "速度滤波导致的延迟 0.02 (default) | scalar",
+   "group": "Delays"
+  }
+ ]
+}

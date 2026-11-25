@@ -1,0 +1,14 @@
+{
+ "key": "General Multiplexed Deinterleaver",
+ "title": "General Multiplexed Deinterleaver",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Interleaving/General_Multiplexed_Deinterleaver.md",
+  "Communications Toolbox/Interleaving/Convolutional/General_Multiplexed_Deinterleaver.md"
+ ],
+ "text": "使用指定延迟的移位寄存器恢复符号顺序。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

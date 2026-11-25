@@ -1,0 +1,38 @@
+{
+ "key": "StringConstant",
+ "title": "String Constant",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Constant.md"
+ ],
+ "text": "Output specified string, 1 output, no direct feedthrough; {String} sets the input string, {Output data type} and {Mode} sets the category of data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output string scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "String",
+   "default": "\"Hello!\"",
+   "values": "Input string \"Hello!\" (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "string",
+   "values": "Output data type string (default) |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "string",
+   "values": "Category of data string (default) | scalar",
+   "group": ""
+  }
+ ]
+}

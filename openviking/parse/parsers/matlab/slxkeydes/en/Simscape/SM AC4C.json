@@ -1,0 +1,172 @@
+{
+ "key": "SM AC4C",
+ "title": "SM AC4C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_AC4C.md"
+ ],
+ "text": "Discrete-time or continuous-time synchronous machine AC4C excitation system including an automatic voltage regulator and an exciter, 10 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Initial field voltage, Efd0 (pu)} sets the initial output voltage, {Resistive component of load compensation, R_C (pu)} sets the compensation resistance, {Reactance component of load compensation, X_C (pu)} sets the compensation reactance, {Regulator input filter time constant, T_R (s)} sets the regulator time constant, {Regulator output gain, K_A (pu)} sets the regulator gain, {Regulator output time constant, T_A (s)} sets the regulator time constant, {Regulator denominator (lag) time constant, T_B (s)} sets the regulator lag time constant, {Regulator numerator (lead) time constant, T_C (s)} sets the regulator lead time constant, {Maximum regulator output, V_Rmax (pu)} sets the upper limit of the regulator output, {Minimum regulator output, V_Rmin (pu)} sets the lower limit of the regulator output, {Voltage regulator input (voltage error) maximum limit, V_Imax (pu)} sets the maximum limit of the voltage error, {Voltage regulator input (voltage error) minimum limit, V_Imin (pu)} sets the minimum limit of the voltage error, {Alternate OEL input locations (V_OEL)} sets the oEL input location, {Alternate UEL input locations (V_UEL)} sets the uEL input location, {Alternate SCL input locations (V_SCL)} sets the sCL input location and {Rectifier loading factor proportional to commutating reactance, K_C (pu)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "Voltage reference scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "Input from stabilizer scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "Terminal voltage scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "Terminal current scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "Overexcitation limit signal scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "Underexcitation limit signal scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "Summation point stator current limit signal scalar"
+  },
+  {
+   "name": "V_OELscl",
+   "direction": "input",
+   "summary": "Take-over stator current limit for overexcitation limiter scalar"
+  },
+  {
+   "name": "V_UELscl",
+   "direction": "input",
+   "summary": "Take-over stator current limit for underexcitation limiter scalar"
+  },
+  {
+   "name": "Ifd_pu",
+   "direction": "input",
+   "summary": "Measured field current scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "Field voltage scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "Initial output voltage 1 (default) | real number",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "Compensation resistance 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "Compensation reactance 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0",
+   "values": "Regulator time constant 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator output gain, K_A (pu)",
+   "default": "300",
+   "values": "Regulator gain 300 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator output time constant, T_A (s)",
+   "default": "0.015",
+   "values": "Regulator time constant 0.015 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator denominator (lag) time constant, T_B (s)",
+   "default": "10",
+   "values": "Regulator lag time constant 10 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator numerator (lead) time constant, T_C (s)",
+   "default": "1",
+   "values": "Regulator lead time constant 1 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum regulator output, V_Rmax (pu)",
+   "default": "5.64",
+   "values": "Upper limit of the regulator output 5.64 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum regulator output, V_Rmin (pu)",
+   "default": "-4.53",
+   "values": "Lower limit of the regulator output -4.53 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator input (voltage error) maximum limit, V_Imax (pu)",
+   "default": "10",
+   "values": "Maximum limit of the voltage error 10 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator input (voltage error) minimum limit, V_Imin (pu)",
+   "default": "-10",
+   "values": "Minimum limit of the voltage error -10 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "Unused",
+   "values": "OEL input location Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "Unused",
+   "values": "UEL input location Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "Unused",
+   "values": "SCL input location Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C (pu)",
+   "default": "0",
+   "values": "Rectifier loading factor 0 (default) | positive number",
+   "group": "Exciter"
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "key": "Gazebo Publish",
+ "title": "Gazebo Publish",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Publish.md"
+ ],
+ "text": "向 Gazebo 服务器发送自定义消息，输入 1 路；{Topic source} 指定 topic 的来源、{Topic} 指定自定义消息的 topic 名称、{Message type} 指定 Gazebo 自定义消息类型、{Sample time} 指定输入的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "Gazebo 自定义消息 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic source",
+   "default": "Gazebo",
+   "values": "指定 topic 的来源 From Gazebo (default) | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "/my_topic",
+   "values": "自定义消息的 topic 名称 /my_topic (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "gazebo_msgs/TestPose",
+   "values": "Gazebo 自定义消息类型 gazebo_msgs/TestPose (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "输入的采样时间 0.001 (default) | positive",
+   "group": ""
+  }
+ ]
+}

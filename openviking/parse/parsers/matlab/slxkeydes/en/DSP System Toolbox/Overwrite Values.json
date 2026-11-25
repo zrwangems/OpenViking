@@ -1,0 +1,175 @@
+{
+ "key": "Overwrite Values",
+ "title": "Overwrite Values",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Overwrite_Values.md",
+  "DSP System Toolbox/Signal Management/Indexing/Overwrite_Values.md"
+ ],
+ "text": "Overwrite submatrix or subdiagonal of input, 2 inputs, 1 output, no direct feedthrough, {Ending row} sets Ending row; {Overwrite}, {Source of overwriting value(s)} sets the source of overwriting values Specify via, {Overwrite with}, {Row span} sets the span of input rows Range, {Row/Starting row} sets the row or starting, {Row index/Starting row index} sets the row index or starting row index, {Row offset/Starting row offset} sets the row offset or starting row offset, {Ending row index} sets the index of last row of submatrix, {Ending row offset}, {Column span} sets the span of input columns Range, {Column/Starting column} sets the column or starting, {Column index/Starting column index} sets the column index or starting column index, {Column offset/Starting column offset} sets the column offset or starting column offset, {Ending column}, {Ending column index}, {Ending column offset}, {Diagonal span} sets the span of diagonal elements Range, {Element/Starting element} sets the element or starting, {Element index/Starting element index} sets the element or starting element index, {Ending element}, {Ending element index}, {Element offset/Starting element offset} sets the element offset or starting element offset and {Ending element offset}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Input data scalar | vector | matrix"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Overwriting values scalar | vector | matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Modified data scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Overwrite",
+   "default": "Submatrix",
+   "values": "Overwrite submatrix or diagonal Submatrix (default) | Diagonal",
+   "group": ""
+  },
+  {
+   "name": "Source of overwriting value(s)",
+   "default": "dialog",
+   "values": "Source of overwriting values Specify via dialog (default) | Second input port",
+   "group": ""
+  },
+  {
+   "name": "Overwrite with",
+   "default": "0",
+   "values": "Overwrite with value(s) 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Row span",
+   "default": "rows",
+   "values": "Span of input rows Range of rows (default) | All rows | One row",
+   "group": ""
+  },
+  {
+   "name": "Row/Starting row",
+   "default": "First",
+   "values": "Row or starting Row First (default) | Index | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Row index/Starting row index",
+   "default": "1",
+   "values": "Row index or starting row index 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Row offset/Starting row offset",
+   "default": "",
+   "values": "Row offset or starting row offset 1 | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Ending row",
+   "default": "Last",
+   "values": "Ending row Last (default) | Index | Offset from last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Ending row index",
+   "default": "1",
+   "values": "Index of last row of submatrix 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending row offset",
+   "default": "",
+   "values": "Ending row offset 1 | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Column span",
+   "default": "columns",
+   "values": "Span of input columns Range of columns (default) | All columns | One column",
+   "group": ""
+  },
+  {
+   "name": "Column/Starting column",
+   "default": "First",
+   "values": "Column or starting column First (default) | Index | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Column index/Starting column index",
+   "default": "",
+   "values": "Column index or starting column index 1 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Column offset/Starting column offset",
+   "default": "",
+   "values": "Column offset or starting column offset 1 | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Ending column",
+   "default": "Last",
+   "values": "Ending column Last (default) | Index | Offset from last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Ending column index",
+   "default": "1",
+   "values": "Ending column index 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending column offset",
+   "default": "",
+   "values": "Ending column offset 1 | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Diagonal span",
+   "default": "elements",
+   "values": "Span of diagonal elements Range of elements (default) | All elements | One element",
+   "group": ""
+  },
+  {
+   "name": "Element/Starting element",
+   "default": "Index",
+   "values": "Element or starting element Index (default) | First | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Element index/Starting element index",
+   "default": "2",
+   "values": "Element or starting element index 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending element",
+   "default": "Index",
+   "values": "Ending element Index (default) | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Ending element index",
+   "default": "4",
+   "values": "Ending element index 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Element offset/Starting element offset",
+   "default": "",
+   "values": "Element offset or starting element offset 2 | integer (for offset from middle) | nonnegative integer (for offset from last)",
+   "group": ""
+  },
+  {
+   "name": "Ending element offset",
+   "default": "",
+   "values": "Ending element offset 4 | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

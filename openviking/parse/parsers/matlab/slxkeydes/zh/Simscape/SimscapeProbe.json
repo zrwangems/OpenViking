@@ -1,0 +1,13 @@
+{
+ "key": "SimscapeProbe",
+ "title": "Probe",
+ "toolbox": "Simscape",
+ "kind": "block_type",
+ "source_docs": [
+  "Simscape/Utilities/Probe.md"
+ ],
+ "text": "在仿真期间将模块变量输出为信号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

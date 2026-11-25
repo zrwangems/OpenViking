@@ -1,0 +1,37 @@
+{
+ "key": "FunctionCallSplit",
+ "title": "Function-Call Split",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Function_Call_Split.md"
+ ],
+ "text": "提供联接点以用于拆分函数调用信号线，输入 1 路、输出 1 路；{输出端口数量}、{输出端口布局} 输出端口的顺序，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Function Call",
+   "direction": "input",
+   "summary": "函数调用信号线 标量"
+  },
+  {
+   "name": "Function Call",
+   "direction": "output",
+   "summary": "函数调用信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出端口数量",
+   "default": "2",
+   "values": "指定输出端口数量 2 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "输出端口布局",
+   "default": "默认",
+   "values": "选择输出端口的顺序 默认 (默认) | 反向",
+   "group": ""
+  }
+ ]
+}

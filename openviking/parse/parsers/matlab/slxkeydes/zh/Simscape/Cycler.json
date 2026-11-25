@@ -1,0 +1,13 @@
+{
+ "key": "Cycler",
+ "title": "Cycler",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Cyclers/Cycler.md"
+ ],
+ "text": "理想的恒流仪、恒压仪或循环仪。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

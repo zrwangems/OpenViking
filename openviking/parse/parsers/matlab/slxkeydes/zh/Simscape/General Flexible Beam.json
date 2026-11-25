@@ -1,0 +1,13 @@
+{
+ "key": "General Flexible Beam",
+ "title": "General Flexible Beam",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Flexible Bodies/Beams/General_Flexible_Beam.md"
+ ],
+ "text": "具有弹性属性、可发生变形的细长挤出体。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

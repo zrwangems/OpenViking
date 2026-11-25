@@ -1,0 +1,13 @@
+{
+ "key": "Interface (TL-IL)",
+ "title": "Interface (TL-IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Fluid Network Interfaces/Interface_TL_IL.md"
+ ],
+ "text": "Connection between thermal and isothermal networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

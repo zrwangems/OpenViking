@@ -1,0 +1,55 @@
+{
+ "key": "Transfer Fcn Direct Form II",
+ "title": "Transfer Fcn Direct Form II",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Discrete/Transfer_Fcn_Direct_Form_II.md"
+ ],
+ "text": "实现传递函数的直接 II 型实现，输入 1 路、输出 1 路；按 {整数舍入模式} 指定定点运算的舍入模式；{分子系数}、{不含首项的分母系数} 指定分母系数、{初始条件}、{发生溢出时饱和处理为最大值或最小值} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "分子系数",
+   "default": "0.2]",
+   "values": "分子系数 [0.2 0.3 0.2] (默认) | 向量",
+   "group": ""
+  },
+  {
+   "name": "不含首项的分母系数",
+   "default": "0.6]",
+   "values": "分母系数 [-0.9 0.6] (默认) | 向量",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "0.0",
+   "values": "初始条件 0.0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": ""
+  },
+  {
+   "name": "发生溢出时饱和处理为最大值或最小值",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

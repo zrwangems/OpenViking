@@ -1,0 +1,57 @@
+{
+ "key": "Collision Box",
+ "title": "Collision Box",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Collision Detection/Collision_Box.md"
+ ],
+ "text": "Create box collision geometry, 4 inputs, 2 outputs; {Enable Runtime Input Dimensions Error} sets the validation of collision box dimensions and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Length of box geometry along x -axis scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "Length of box geometry along y -axis scalar"
+  },
+  {
+   "name": "Z",
+   "direction": "input",
+   "summary": "Length of box geometry along z -axis scalar"
+  },
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "Pose of collision geometry matrix"
+  },
+  {
+   "name": "CollGeom",
+   "direction": "output",
+   "summary": "Collision geometry bus"
+  },
+  {
+   "name": "ExitFlag",
+   "direction": "output",
+   "summary": "Validity of collision box dimensions scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable Runtime Input Dimensions Error",
+   "default": "on",
+   "values": "Validation of collision box dimensions on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

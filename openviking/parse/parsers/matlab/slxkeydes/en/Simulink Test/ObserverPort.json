@@ -1,0 +1,19 @@
+{
+ "key": "ObserverPort",
+ "title": "ObserverPort",
+ "toolbox": "Simulink Test",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink Test/ObserverPort.md"
+ ],
+ "text": "Wirelessly link signals to use with verification, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Mapped signal scalar | vector"
+  }
+ ],
+ "params": []
+}

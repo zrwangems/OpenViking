@@ -1,0 +1,79 @@
+{
+ "key": "FIL Pixels To Frame",
+ "title": "FIL Pixels To Frame",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/I_O Interfaces/FIL_Pixels_To_Frame.md"
+ ],
+ "text": "Convert pixel stream from FPGA-in-the-loop to frame-based video, 6 inputs, 2 outputs, {Video format} sets Dimensions of active regions of a video frame; {Number of components} sets the number of values used to represent each, {Number of pixels} and {Input vector format} sets the size of the vector used to communicate with the FPGA subsystem. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data1,...,dataN",
+   "direction": "input",
+   "summary": "Image pixels vector | matrix"
+  },
+  {
+   "name": "hStartIn",
+   "direction": "input",
+   "summary": "First pixel in horizontal line of frame vector"
+  },
+  {
+   "name": "hEndIn",
+   "direction": "input",
+   "summary": "Last pixel in horizontal line of frame vector"
+  },
+  {
+   "name": "vStartIn",
+   "direction": "input",
+   "summary": "First pixel in first (top) line of frame vector"
+  },
+  {
+   "name": "vEndIn",
+   "direction": "input",
+   "summary": "Last pixel in last (bottom) line of frame vector"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Valid pixel indicator vector"
+  },
+  {
+   "name": "frame",
+   "direction": "output",
+   "summary": "Full image frame matrix"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Indicates when output frame is ready scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of components",
+   "default": "1",
+   "values": "Number of values used to represent each pixel 1 (default) | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Number of pixels",
+   "default": "1",
+   "values": "Number of pixels in each column of input matrix 1 (default) | 2 | 4 | 8",
+   "group": ""
+  },
+  {
+   "name": "Input vector format",
+   "default": "Frame",
+   "values": "Size of the vector used to communicate with the FPGA subsystem Frame (default) | Line | Pixel",
+   "group": ""
+  },
+  {
+   "name": "Video format",
+   "default": "1080p",
+   "values": "Dimensions of active regions of a video frame 1080p (default) | 240p | 480p | 480pH | 576p | 720p | 768p | 1024p | 1200p | 2KCinema | 4KUHDTV | 8KUHDTV | Custom",
+   "group": ""
+  }
+ ]
+}

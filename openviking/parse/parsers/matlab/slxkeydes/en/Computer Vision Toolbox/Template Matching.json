@@ -1,0 +1,97 @@
+{
+ "key": "Template Matching",
+ "title": "Template Matching",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Template_Matching.md"
+ ],
+ "text": "Locate a template in an image, 3 inputs, 5 outputs, {Match metric} sets Match metric Sum of absolute; {Output} sets the match metric Match, {Search method}, {Output NxN matrix of metric values around best match} sets the output N -by- N matrix, {N} sets the size of output matrix, {Enable ROI processing} and {Output flag indicating if ROI is valid} sets the valid ROI. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Image image"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Template M -by- N matrix"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "Region of interest four-element vector"
+  },
+  {
+   "name": "Metric",
+   "direction": "output",
+   "summary": "Match metric values matrix"
+  },
+  {
+   "name": "Loc",
+   "direction": "output",
+   "summary": "Best match locations two-element vector"
+  },
+  {
+   "name": "NMetric",
+   "direction": "output",
+   "summary": "Metric values in neighborhood of best match N -by- N matrix"
+  },
+  {
+   "name": "NValid",
+   "direction": "output",
+   "summary": "Valid neighborhood off | on"
+  },
+  {
+   "name": "ROIValid",
+   "direction": "output",
+   "summary": "Valid region of interest off | on"
+  }
+ ],
+ "params": [
+  {
+   "name": "Match metric",
+   "default": "differences",
+   "values": "Match metric Sum of absolute differences (default) | Sum of squared differences | Maximum absolute difference",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "metric",
+   "values": "Match metric Match metric (default) | Best match location",
+   "group": ""
+  },
+  {
+   "name": "Search method",
+   "default": "Exhaustive",
+   "values": "Search method Exhaustive (default) | Three-step",
+   "group": ""
+  },
+  {
+   "name": "Output NxN matrix of metric values around best match",
+   "default": "on",
+   "values": "Output N -by- N matrix on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "N",
+   "default": "3",
+   "values": "Size of output matrix 3 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Enable ROI processing",
+   "default": "on",
+   "values": "Enable ROI processing on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output flag indicating if ROI is valid",
+   "default": "off",
+   "values": "Valid ROI off (default) | on",
+   "group": ""
+  }
+ ]
+}

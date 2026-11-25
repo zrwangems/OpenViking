@@ -1,0 +1,193 @@
+{
+ "key": "Compute Parameter",
+ "title": "Compute Parameter",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Signal Management/Compute_Parameter.md"
+ ],
+ "text": "通过启用附加输入来扩展模块的功能；{Relative path of compatible block that needs functional extension} 指定兼容模块的相对路径、{Get a list of supported block paths in the model} 指定获取兼容模块路径列表、{Supported block paths} 指定兼容模块路径列表 display cell，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "N pp",
+   "direction": "input",
+   "summary": "电机中可用的极对数 scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "定子绕组电阻 scalar"
+  },
+  {
+   "name": "R s",
+   "direction": "input",
+   "summary": "定子绕组电阻 scalar"
+  },
+  {
+   "name": "L d",
+   "direction": "input",
+   "summary": "沿 d 轴的定子绕组电感 scalar"
+  },
+  {
+   "name": "L q",
+   "direction": "input",
+   "summary": "沿 q 轴的定子绕组电感 scalar"
+  },
+  {
+   "name": "L ls",
+   "direction": "input",
+   "summary": "感应电机的定子漏电感 scalar"
+  },
+  {
+   "name": "L lr",
+   "direction": "input",
+   "summary": "感应电机的转子漏电感 scalar"
+  },
+  {
+   "name": "L m",
+   "direction": "input",
+   "summary": "感应电机的励磁电感 scalar"
+  },
+  {
+   "name": "f cutoff",
+   "direction": "input",
+   "summary": "内部高通滤波器的截止频率 scalar"
+  },
+  {
+   "name": "NumSlits",
+   "direction": "input",
+   "summary": "每相狭缝数 scalar"
+  },
+  {
+   "name": "CountsPerSlit",
+   "direction": "input",
+   "summary": "每个狭缝生成的计数数量 scalar"
+  },
+  {
+   "name": "ω 1 (RPM)",
+   "direction": "input",
+   "summary": "电机启动后 I-F 控制停止时的速度 scalar"
+  },
+  {
+   "name": "ω 2 (RPM)",
+   "direction": "input",
+   "summary": "重新进入 I-F 控制所需的速度 scalar"
+  },
+  {
+   "name": "ω max",
+   "direction": "input",
+   "summary": "支持的最大机械转速 scalar"
+  },
+  {
+   "name": "Imax (A)",
+   "direction": "input",
+   "summary": "I-F 控制期间的最大电机电流 scalar"
+  },
+  {
+   "name": "Max(Δω/Δt) (RPM/s)",
+   "direction": "input",
+   "summary": "I-F 控制期间的最大速度变化率 scalar"
+  },
+  {
+   "name": "I DecayRate (A/s)",
+   "direction": "input",
+   "summary": "I-F 控制期间的最大电流衰减率 scalar"
+  },
+  {
+   "name": "ζ",
+   "direction": "input",
+   "summary": "速度振荡阻尼系数值 scalar"
+  },
+  {
+   "name": "T Idle (s)",
+   "direction": "input",
+   "summary": "速度和电流保持恒定的时间 scalar"
+  },
+  {
+   "name": "K EEMF",
+   "direction": "input",
+   "summary": "Extended EMF 观测器增益 scalar"
+  },
+  {
+   "name": "f EEMF cutoff",
+   "direction": "input",
+   "summary": "EEMF 滤波器截止频率 scalar"
+  },
+  {
+   "name": "f Spd cutoff",
+   "direction": "input",
+   "summary": "转速滤波器截止频率 scalar"
+  },
+  {
+   "name": "f cutoff",
+   "direction": "input",
+   "summary": "低通滤波器截止频率 scalar"
+  },
+  {
+   "name": "K Spd p",
+   "direction": "input",
+   "summary": "转速观测器的比例增益 scalar"
+  },
+  {
+   "name": "K Spd i",
+   "direction": "input",
+   "summary": "转速观测器的积分增益 scalar"
+  },
+  {
+   "name": "K p",
+   "direction": "input",
+   "summary": "比例控制器增益 scalar"
+  },
+  {
+   "name": "K i",
+   "direction": "input",
+   "summary": "控制器的积分增益 scalar"
+  },
+  {
+   "name": "UseInternalK p K i",
+   "direction": "input",
+   "summary": "使用控制器的内部增益 0 | 1"
+  },
+  {
+   "name": "f max",
+   "direction": "input",
+   "summary": "最大适用输入频率 scalar"
+  },
+  {
+   "name": "ParameterBus",
+   "direction": "output",
+   "summary": "兼容模块的计算参数 bus"
+  },
+  {
+   "name": "CountsPerRev",
+   "direction": "output",
+   "summary": "每转计数数 scalar"
+  },
+  {
+   "name": "1/CountsPerRev",
+   "direction": "output",
+   "summary": "每转计数数的倒数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Relative path of compatible block that needs functional extension",
+   "default": "blank",
+   "values": "兼容模块的相对路径 blank (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Get a list of supported block paths in the model",
+   "default": "",
+   "values": "获取兼容模块路径列表 button",
+   "group": ""
+  },
+  {
+   "name": "Supported block paths",
+   "default": "",
+   "values": "兼容模块路径列表 display cell",
+   "group": ""
+  }
+ ]
+}

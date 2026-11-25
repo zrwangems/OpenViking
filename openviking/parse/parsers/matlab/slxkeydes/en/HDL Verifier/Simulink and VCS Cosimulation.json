@@ -1,0 +1,181 @@
+{
+ "key": "Simulink and VCS Cosimulation",
+ "title": "HDL Cosimulation",
+ "toolbox": "HDL Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Verifier/For Use with Synopsys VCS/HDL_Cosimulation.md"
+ ],
+ "text": "Cosimulate HDL design by connecting Simulink with HDL simulator, 1 input, 1 output, {I/O Mode} sets Port direction Input; {Block Info} sets the block information for Vivado cosimulation Read-only: block generation, {Enable direct feedthrough} sets the work around algebraic loop warnings, {Full HDL Name} sets the signal path name string, {HDL Type} sets the type of HDL port signal, {HDL Dims} sets the dimension of HDL port signal Read-only, {Sample Time} sets the time between reading samples on an output, {Data Type} sets the simulink Data type for output signal, {Sign}, {Fraction Length} sets the number of fractional bits in output data type, {Simulink Word Length} sets the bit width of Simulink port, {HDL Word Length} sets the bit width of HDL port, {Time to run HDL simulator before cosimulation starts} sets the time required for HDL simulation before cosimulation, {Active Clock Edge} sets the hDL clock edge used to sample signals, {Waveform Type} sets the generate waveforms to drive clocks, resets, or enables to HDL design, {Period/Duration} sets the clock period, {Automatically determine timescale at start of simulation} sets when to calculate automatic timescale, {1 second in Simulink corresponds to in the HDL simulator} sets the timing relationship between Simulink and HDL simulator integer and time, {Connection mode} sets the connection between Simulink and HDL simulator Full, {HDL simulator is running on this computer} sets the same host for HDL simulator and Simulink, {Connection method} sets the connection between HDL simulator and Simulink, {Host name} sets the hDL simulator host, {Port number or service} sets the socket port number string, {Show connection info on icon} adds connection parameters on block icon, {Pre-simulation Tcl commands} sets the commands to run in HDL simulator before cosimulation and {Post-simulation Tcl commands} sets the commands to run in HDL simulator after cosimulation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "HDL_input_port_name",
+   "direction": "input",
+   "summary": "Signal passed from Simulink to HDL simulator scalar | vector"
+  },
+  {
+   "name": "HDL_output_port_name",
+   "direction": "output",
+   "summary": "Signal passed from HDL simulator to Simulink scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Block Info",
+   "default": "",
+   "values": "Block information for Vivado cosimulation Read-only: block generation settings",
+   "group": ""
+  },
+  {
+   "name": "Enable direct feedthrough",
+   "default": "true",
+   "values": "Work around algebraic loop warnings true (default) | false",
+   "group": "Ports"
+  },
+  {
+   "name": "Full HDL Name",
+   "default": "",
+   "values": "Signal path name string",
+   "group": "Ports"
+  },
+  {
+   "name": "I/O Mode",
+   "default": "",
+   "values": "Port direction Input | Output",
+   "group": "Ports"
+  },
+  {
+   "name": "HDL Type",
+   "default": "Logic",
+   "values": "Type of HDL port signal Read-only: Logic (default) | Vector",
+   "group": "Ports"
+  },
+  {
+   "name": "HDL Dims",
+   "default": "",
+   "values": "Dimension of HDL port signal Read-only: scalar | vector",
+   "group": "Ports"
+  },
+  {
+   "name": "Sample Time",
+   "default": "1",
+   "values": "Time between reading samples on an output port 1 (default) | integer",
+   "group": "Ports"
+  },
+  {
+   "name": "Data Type",
+   "default": "Inherit",
+   "values": "Simulink Data type for output signal Inherit (default) | Fixedpoint | Double | Single | Half",
+   "group": "Ports"
+  },
+  {
+   "name": "Sign",
+   "default": "Unsigned",
+   "values": "Sign component of output data type Unsigned (default) | Signed",
+   "group": "Ports"
+  },
+  {
+   "name": "Fraction Length",
+   "default": "",
+   "values": "Number of fractional bits in output data type integer",
+   "group": "Ports"
+  },
+  {
+   "name": "Simulink Word Length",
+   "default": "",
+   "values": "Bit width of Simulink port integer <129 | inherit",
+   "group": "Ports"
+  },
+  {
+   "name": "HDL Word Length",
+   "default": "",
+   "values": "Bit width of HDL port Read-only: integer",
+   "group": "Ports"
+  },
+  {
+   "name": "Time to run HDL simulator before cosimulation starts",
+   "default": "0",
+   "values": "time required for HDL simulation before cosimulation starts 0 (default) | nonnegative integer",
+   "group": "Clocks"
+  },
+  {
+   "name": "Active Clock Edge",
+   "default": "Rising",
+   "values": "HDL clock edge used to sample signals Rising (default) | Falling",
+   "group": "Clocks"
+  },
+  {
+   "name": "Waveform Type",
+   "default": "Rising",
+   "values": "Generate waveforms to drive clocks, resets, or enables to HDL design Rising (default) | Falling | Step 1 to 0 | Step 0 to 1",
+   "group": "Clocks"
+  },
+  {
+   "name": "Period/Duration",
+   "default": "2",
+   "values": "Clock period 2 (default) | integer",
+   "group": "Clocks"
+  },
+  {
+   "name": "Automatically determine timescale at start of simulation",
+   "default": "true",
+   "values": "When to calculate automatic timescale true (default) | false",
+   "group": "Timescales"
+  },
+  {
+   "name": "1 second in Simulink corresponds to {} in the HDL simulator",
+   "default": "",
+   "values": "Timing relationship between Simulink and HDL simulator integer and time units",
+   "group": "Timescales"
+  },
+  {
+   "name": "Connection mode",
+   "default": "Simulation",
+   "values": "Connection between Simulink and HDL simulator Full Simulation (default) | Confirm Interface Only | No Connection",
+   "group": "Connection"
+  },
+  {
+   "name": "HDL simulator is running on this computer",
+   "default": "true",
+   "values": "Same host for HDL simulator and Simulink true (default) | false",
+   "group": "Connection"
+  },
+  {
+   "name": "Connection method",
+   "default": "Socket",
+   "values": "Connection between HDL simulator and Simulink Socket (default) | Shared memory",
+   "group": "Connection"
+  },
+  {
+   "name": "Host name",
+   "default": "",
+   "values": "HDL simulator host machine string",
+   "group": "Connection"
+  },
+  {
+   "name": "Port number or service",
+   "default": "",
+   "values": "Socket port number string",
+   "group": "Connection"
+  },
+  {
+   "name": "Show connection info on icon",
+   "default": "true",
+   "values": "Add connection parameters on block icon true (default) | false",
+   "group": "Connection"
+  },
+  {
+   "name": "Pre-simulation Tcl commands",
+   "default": "",
+   "values": "Commands to run in HDL simulator before cosimulation string",
+   "group": "Simulation"
+  },
+  {
+   "name": "Post-simulation Tcl commands",
+   "default": "",
+   "values": "Commands to run in HDL simulator after cosimulation string",
+   "group": "Simulation"
+  }
+ ]
+}

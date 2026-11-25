@@ -1,0 +1,13 @@
+{
+ "key": "Piezo Bender",
+ "title": "Piezo Bender",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Piezo_Bender.md"
+ ],
+ "text": "矩形截面的压电双晶梁。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

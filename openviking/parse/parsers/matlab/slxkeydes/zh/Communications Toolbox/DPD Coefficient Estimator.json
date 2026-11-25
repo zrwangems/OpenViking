@@ -1,0 +1,89 @@
+{
+ "key": "DPD Coefficient Estimator",
+ "title": "DPD Coefficient Estimator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments Correction/DPD_Coefficient_Estimator.md"
+ ],
+ "text": "估计用于数字预失真的记忆多项式系数，输入 3 路、输出 1 路；{Desired amplitude gain (dB)} 指定期望幅度增益、{Polynomial type} 指定多项式类型 Memory、{Degree} 指定记忆多项式阶数、{Memory depth} 指定记忆多项式深度、{Algorithm} 指定估计算法 Least、{Forgetting factor source} 指定遗忘因子来源、{Forgetting factor} 指定遗忘因子、{Initial coefficient estimate} 指定初始系数估计、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PA In",
+   "direction": "input",
+   "summary": "功率放大器基带等效输入 column vector"
+  },
+  {
+   "name": "PA Out",
+   "direction": "input",
+   "summary": "功率放大器基带等效输出 column vector"
+  },
+  {
+   "name": "Forgetting Factor",
+   "direction": "input",
+   "summary": "遗忘因子 scalar in the range (0, 1]"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "记忆多项式系数 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Desired amplitude gain (dB)",
+   "default": "10",
+   "values": "期望幅度增益 (dB) 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Polynomial type",
+   "default": "polynomial",
+   "values": "多项式类型 Memory polynomial (default) | Cross-term memory polynomial",
+   "group": ""
+  },
+  {
+   "name": "Degree",
+   "default": "5",
+   "values": "记忆多项式阶数 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Memory depth",
+   "default": "3",
+   "values": "记忆多项式深度 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm",
+   "default": "squares",
+   "values": "估计算法 Least squares (default) | Recursive least squares",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor source",
+   "default": "Property",
+   "values": "遗忘因子来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.99",
+   "values": "遗忘因子 0.99 (default) | scalar in the range (0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Initial coefficient estimate",
+   "default": "[]",
+   "values": "初始系数估计 [] (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

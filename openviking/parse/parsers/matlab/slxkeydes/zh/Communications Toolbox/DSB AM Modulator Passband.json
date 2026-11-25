@@ -1,0 +1,43 @@
+{
+ "key": "DSB AM Modulator Passband",
+ "title": "DSB AM Modulator Passband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Passband Modulation/DSB_AM_Modulator_Passband.md"
+ ],
+ "text": "使用双边带幅度调制进行调制，输入 1 路、输出 1 路；{Input signal offset} 指定输入信号偏移因子、{Carrier frequency (Hz)} 指定载波频率，以 Hz 为单位、{Initial phase (rad)} 指定初始相位偏移，以弧度为单位，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input signal offset",
+   "default": "1",
+   "values": "输入信号偏移因子 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier frequency (Hz)",
+   "default": "300",
+   "values": "载波频率，以 Hz 为单位 300 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "初始相位偏移，以弧度为单位 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

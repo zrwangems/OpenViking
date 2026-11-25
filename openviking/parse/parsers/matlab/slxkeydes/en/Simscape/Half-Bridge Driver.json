@@ -1,0 +1,13 @@
+{
+ "key": "Half-Bridge Driver",
+ "title": "Half-Bridge Driver",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Half_Bridge_Driver.md"
+ ],
+ "text": "Behavioral model of half-bridge driver integrated circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

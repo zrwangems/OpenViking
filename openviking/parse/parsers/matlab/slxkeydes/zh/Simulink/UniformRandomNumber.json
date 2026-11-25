@@ -1,0 +1,50 @@
+{
+ "key": "UniformRandomNumber",
+ "title": "Uniform Random Number",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Uniform_Random_Number.md"
+ ],
+ "text": "生成均匀分布的随机数；输出 1 路；按 {最小} 指定最小间隔；{最大}、{种子}、{采样时间}、{将向量参数解释为一维向量} 指定将向量视为一维，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "随机数输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "最小",
+   "default": "0",
+   "values": "最小间隔 0 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "最大",
+   "default": "0",
+   "values": "最大间隔 0 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "种子",
+   "default": "0",
+   "values": "随机数种子 0 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "采样时间 0.1 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "将向量参数解释为一维向量",
+   "default": "on",
+   "values": "将向量视为一维 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

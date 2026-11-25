@@ -1,0 +1,14 @@
+{
+ "key": "ConnectionLabel",
+ "title": "Connection Label",
+ "toolbox": "Simscape",
+ "kind": "block_type",
+ "source_docs": [
+  "Simscape/Utilities/Connection_Label.md",
+  "RF Blockset/Circuit Envelope/Utilities/Connection_Label.md"
+ ],
+ "text": "守恒端口之间的虚拟连接。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,170 @@
+{
+ "key": "IMT Mixer",
+ "title": "IMT Mixer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/IMT_Mixer.md"
+ ],
+ "text": "使用互调表 (IMT) 对混频器建模；按 {Noise distribution} 指定噪声分布；{Carrier frequency (Hz)} 指定载波频率 1e9、{Local oscillator frequency (Hz)} 指定本振、{Reference input power (dBm)} 指定参考输入功率、{Nominal output power (dbm)} 指定标称本振功率、{Use data file} 指定要使用的数据文件、{Data file} 指定数据文件 samplespur1.s2d、{Input impedance (Ohm)} 指定混频器的输入阻抗、{Output impedance (Ohm)} 指定混频器的输出阻抗、{Ground and hide negative terminals} 指定将 RF 负电路端子接地、{IMT table} 指定 IMT 杂散可视化、{Output signal power (dBm)} 指定期望输出单音的信号功率、{Mixer type} 指定混频器类型、{Plot} 使用指定的信号功率和混频器类型可视化 IMT 表值、{Simulate noise} 指定模拟器件噪声或相位噪声、{Noise type} 指定噪声类型 Noise、{Noise figure (dB)} 指定噪声系数、{Frequencies (Hz)} 指定频率数据、{Minimum noise figure (dB)} 指定最小噪声系数、{Optimal reflection coefficient} 指定最佳反射系数、{Equivalent normalized noise resistance} 指定等效归一化噪声电阻、{Add LO phase noise} 添加相位噪声、{Phase noise frequency offset (Hz)} 指定相位噪声频率偏移、{Phase noise level (dBc/Hz)} 指定相位噪声电平、{Automatically estimate impulse response duration} 指定自动估计冲激响应持续时间、{Impulse response duration} 指定冲激响应持续时间 1e-10，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Carrier frequency (Hz)",
+   "default": "1e9",
+   "values": "载波频率 1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Local oscillator frequency (Hz)",
+   "default": "0.9e9",
+   "values": "本振 (LO) 频率 0.9e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference input power (dBm)",
+   "default": "-10",
+   "values": "参考输入功率 -10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal output power (dbm)",
+   "default": "-20",
+   "values": "标称本振功率 -20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Use data file",
+   "default": "off",
+   "values": "指定要使用的数据文件 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Data file",
+   "default": "samplespur1.s2d",
+   "values": "数据文件 samplespur1.s2d (default)",
+   "group": ""
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "混频器的输入阻抗 50 (default) | real scalar | vector of positive real scalars",
+   "group": ""
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "混频器的输出阻抗 50 (default) | real scalar | vector of positive real scalars",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "将 RF 负电路端子接地 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "IMT table",
+   "default": "99]",
+   "values": "IMT 杂散可视化 [99 99 99; 99 0 99; 99 99 99] (default) | square matrix",
+   "group": ""
+  },
+  {
+   "name": "Output signal power (dBm)",
+   "default": "0",
+   "values": "期望输出单音的信号功率 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mixer type",
+   "default": "Upconverter",
+   "values": "混频器类型 Upconverter (default) | Downconverter",
+   "group": ""
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "使用指定的信号功率和混频器类型可视化 IMT 表值 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "模拟器件噪声或相位噪声 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Noise type",
+   "default": "figure",
+   "values": "噪声类型 Noise figure (default) | Spot noise data",
+   "group": ""
+  },
+  {
+   "name": "Noise distribution",
+   "default": "White",
+   "values": "噪声分布 White (default) | Piece-wise linear | Colored",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "噪声系数 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequencies (Hz)",
+   "default": "0",
+   "values": "频率数据 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Minimum noise figure (dB)",
+   "default": "0",
+   "values": "最小噪声系数 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Optimal reflection coefficient",
+   "default": "0",
+   "values": "最佳反射系数 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Equivalent normalized noise resistance",
+   "default": "0",
+   "values": "等效归一化噪声电阻 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Add LO phase noise",
+   "default": "off",
+   "values": "添加相位噪声 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "1",
+   "values": "相位噪声频率偏移 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-Inf",
+   "values": "相位噪声电平 -Inf (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "on",
+   "values": "自动估计冲激响应持续时间 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "冲激响应持续时间 1e-10 s (default) | scalar",
+   "group": ""
+  }
+ ]
+}

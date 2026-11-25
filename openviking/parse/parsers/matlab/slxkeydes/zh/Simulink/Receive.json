@@ -1,0 +1,85 @@
+{
+ "key": "Receive",
+ "title": "Receive",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Messages & Events/Receive.md",
+  "SimEvents/Message_Receive.md"
+ ],
+ "text": "Receive 模块从接收到的消息中提取数据，并将其写入输出信号端口，输入 1 路、输出 2 路、无直接馈通；按 {Initial value} 指定初始数据值；{Use internal queue} 以使用内部队列、{Overwrite the oldest element if queue is full} 指定队列覆盖策略、{Queue length} 指定消息队列的长度、{Queue type} 指定消息队列排序策略、{Priority order} 指定消息队列优先级、{Show receive status} 显示是否接收到消息、{Value source when queue is empty} 指定空队列的值来源 Hold last、{Sample time (-1 for inherited)} 指定采样之间的时间间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入消息 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_S",
+   "direction": "output",
+   "summary": "显示是否接收到消息 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use internal queue",
+   "default": "",
+   "values": "选择以使用内部队列 on (default for SimEvents ® ) | off (default for Simulink ® )",
+   "group": ""
+  },
+  {
+   "name": "Overwrite the oldest element if queue is full",
+   "default": "",
+   "values": "指定队列覆盖策略 on (default for Simulink) | off (default for SimEvents)",
+   "group": ""
+  },
+  {
+   "name": "Queue length",
+   "default": "16",
+   "values": "指定消息队列的长度 16 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Queue type",
+   "default": "FIFO",
+   "values": "指定消息队列排序策略 FIFO (default) | LIFO | Priority",
+   "group": ""
+  },
+  {
+   "name": "Priority order",
+   "default": "Ascending",
+   "values": "指定消息队列优先级 Ascending (default) | Descending",
+   "group": ""
+  },
+  {
+   "name": "Show receive status",
+   "default": "off",
+   "values": "显示是否接收到消息 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "[](unspecified)",
+   "values": "设置初始数据值 [](unspecified) (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Value source when queue is empty",
+   "default": "value",
+   "values": "空队列的值来源 Hold last value (default) | Use initial value",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "指定采样之间的时间间隔 -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

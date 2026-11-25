@@ -1,0 +1,105 @@
+{
+ "key": "Logic",
+ "title": "Logical Operator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Logical_Operator.md",
+  "Simulink/Logic and Bit Operations/Logical_Operator.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/AND.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NAND.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NOR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NOT.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NXOR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/OR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/XOR.md",
+  "HDL Coder/Commonly Used Blocks/Logical_Operator.md",
+  "HDL Coder/Logic and Bit Operations/Logical_Operator.md"
+ ],
+ "text": "对输入执行指定的逻辑运算，输入 3 路、输出 1 路；按 {运算符} 指定逻辑运算符；{输入端口数目} 指定输入数目、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入和输出具有相同的数据类型} 指定要求所有端口具有相同的数据类型、{输出数据类型}、{模式} 指定要指定的数据的类别、{数据类型覆盖}、{符号性}、{字长} 指定存储量化整数的字的位大小、{定标}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "第 N 个输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "运算符",
+   "default": "AND",
+   "values": "逻辑运算符 AND (默认) | OR | nand | NOR | XOR | NXOR | NOT",
+   "group": "常设"
+  },
+  {
+   "name": "输入端口数目",
+   "default": "2",
+   "values": "输入数目 2 (默认) | 正整数",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "要求所有输入和输出具有相同的数据类型",
+   "default": "off",
+   "values": "要求所有端口具有相同的数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "boolean",
+   "values": "输出数据类型 boolean (默认) | 继承: Logical（请参阅配置参数：优化） | 继承:通过反向传播继承 | fixdt(1,16) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "模式",
+   "default": "内置",
+   "values": "要指定的数据的类别 内置 (默认) | 继承 | 定点 | 表达式",
+   "group": "数据类型"
+  },
+  {
+   "name": "数据类型覆盖",
+   "default": "",
+   "values": "为此信号指定数据类型覆盖模式 Inherit | Off",
+   "group": "数据类型"
+  },
+  {
+   "name": "符号性",
+   "default": "有符号",
+   "values": "定点数据的符号性 有符号 (默认) | 无符号",
+   "group": "数据类型"
+  },
+  {
+   "name": "字长",
+   "default": "16",
+   "values": "存储量化整数的字的位大小 16 (默认) | 从 0 到 32 的整数",
+   "group": "数据类型"
+  },
+  {
+   "name": "定标",
+   "default": "整数",
+   "values": "定标的方法 整数 (默认)",
+   "group": "数据类型"
+  }
+ ]
+}

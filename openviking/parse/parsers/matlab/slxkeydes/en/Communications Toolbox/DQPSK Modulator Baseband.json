@@ -1,0 +1,55 @@
+{
+ "key": "DQPSK Modulator Baseband",
+ "title": "DQPSK Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/DQPSK_Modulator_Baseband.md"
+ ],
+ "text": "Modulate using quadrature phase shift keying method, 1 input, 1 output, {Output data type} sets Output data type; {Input type} sets the integer or bit pair input indicator, {Constellation ordering} sets the symbol mapping, {Phase offset (rad)} sets the phase offset of zeroth and {View constellation} sets the option to plot reference constellation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "QPSK-modulated baseband signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "Integer or bit pair input indicator Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Gray",
+   "values": "Symbol mapping Gray (default) | Binary",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "pi/4",
+   "values": "Phase offset of zeroth point pi/4 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "View constellation",
+   "default": "",
+   "values": "Option to plot reference constellation button",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit via back propagation |",
+   "group": "Data Types"
+  }
+ ]
+}

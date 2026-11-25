@@ -1,0 +1,38 @@
+{
+ "key": "F2807x GPIO Digital Output",
+ "title": "Digital Output",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F2807x/Digital_Output.md"
+ ],
+ "text": "将通用输入/输出引脚配置为数字输出，输入 1 路；{GPIO 组} 指定您要配置的 GPIO 引脚、{输出的 GPIO 引脚} 指定您要配置的 GPIO 引脚、{Toggle GPIO#} 指定您要配置的 GPIO 引脚，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "设置 GPIO 引脚状态 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "GPIO 组",
+   "default": "GPIO0-GPIO7",
+   "values": "您要配置的 GPIO 引脚 GPIO0-GPIO7 (默认) | GPIO8-GPIO15 GPIO16-GPIO23 …",
+   "group": ""
+  },
+  {
+   "name": "输出的 GPIO 引脚",
+   "default": "GPIO0",
+   "values": "您要配置的 GPIO 引脚 GPIO0 (默认) | GPIO8 GPIO16 …",
+   "group": ""
+  },
+  {
+   "name": "Toggle GPIO#",
+   "default": "GPIO0",
+   "values": "您要配置的 GPIO 引脚 Toggle GPIO0 (默认) | Toggle GPIO1 …",
+   "group": ""
+  }
+ ]
+}

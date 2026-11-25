@@ -1,0 +1,217 @@
+{
+ "key": "Pulsating High Freq Observer",
+ "title": "Pulsating High Freq Observer",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensorless Estimators/Pulsating_High_Freq_Observer.md"
+ ],
+ "text": "使用脉动高频 (PHF) 注入估计内部 PMSM 的初始转子电气位置，输入 4 路、输出 4 路；按 {数据类型} 指定输入和输出的数据类型；{离散步长(秒)} 指定采样时间，在此采样时间过后模块将再次执行 50e-6、{输入单位} 指定模块输入的单位、{使用电机参数自动计算 PHF 参数}、{使用电机参数自动计算 DP 参数}、{定子电阻(欧姆)} 指定电机电阻、{定子 d 轴电感(H)} 指定电机电感、{定子 q 轴电感(H)} 指定电机电感、{基电压(V)} 指定额定电压、{基电流(A)} 指定额定电流、{计算 PHF 参数}、{计算 DP 参数}、{PHF 峰值电压(PU)} 指定 PHF 的峰值电压、{PHF 频率(Hz)} 指定 PHF 电压频率、{LP 滤波器截止频率(Hz)} 指定 PHF 低通滤波器的截止频率、{选择调节参数} 指定手动调节的控制参数、{比例增益}、{积分增益}、{预期稳定时间(秒)} 指定估计的位置的预期稳定时间、{预期阻尼比}、{计算控制参数} 指定计算禁用的控制参数 按钮、{开环持续时间(秒)} 指定阶段 1 的 A 部分期间开环 PHF、{闭环持续时间(秒)} 指定阶段 1 的 B 部分期间闭环 PHF、{空闲时间(秒)} 指定算法步骤之间的持续时间、{误差阈值(rad)} 指定θ err 的最小误差阈值 4e-4、{脉冲电压(PU)} 指定注入脉冲的振幅、{脉冲持续时间(秒)} 指定注入脉冲的持续时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I ab hf",
+   "direction": "input",
+   "summary": "PHF 电流响应 矢量"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "触发模块运算的输入 标量"
+  },
+  {
+   "name": "θ in",
+   "direction": "input",
+   "summary": "初始转子位置 标量"
+  },
+  {
+   "name": "IPE En",
+   "direction": "input",
+   "summary": "启用阶段 1 初始位置估计 (IPE) 运算 标量"
+  },
+  {
+   "name": "V αβ hf",
+   "direction": "output",
+   "summary": "PHF 输出 标量"
+  },
+  {
+   "name": "θ est",
+   "direction": "output",
+   "summary": "估计的转子位置 标量"
+  },
+  {
+   "name": "Pos En",
+   "direction": "output",
+   "summary": "θ est 端口的状态 标量"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "离散步长(秒)",
+   "default": "50e-6",
+   "values": "采样时间，在此采样时间过后模块将再次执行 50e-6 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输入单位",
+   "default": "标幺",
+   "values": "模块输入的单位 标幺 (默认) | SI",
+   "group": ""
+  },
+  {
+   "name": "数据类型",
+   "default": "单精度",
+   "values": "输入和输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": ""
+  },
+  {
+   "name": "使用电机参数自动计算 PHF 参数",
+   "default": "off",
+   "values": "自动计算 PHF 参数 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "使用电机参数自动计算 DP 参数",
+   "default": "off",
+   "values": "自动计算 DP 参数 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "定子电阻(欧姆)",
+   "default": "0.1458",
+   "values": "电机电阻 0.1458 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "定子 d 轴电感(H)",
+   "default": "0.00013016",
+   "values": "电机电感 0.00013016 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "定子 q 轴电感(H)",
+   "default": "0.00014098",
+   "values": "电机电感 0.00014098 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "基电压(V)",
+   "default": "13.8564",
+   "values": "额定电压 13.8564 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "基电流(A)",
+   "default": "21.4286",
+   "values": "额定电流 21.4286 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "计算 PHF 参数",
+   "default": "",
+   "values": "手动计算 PHF 参数 button",
+   "group": "电机参数"
+  },
+  {
+   "name": "计算 DP 参数",
+   "default": "",
+   "values": "手动计算 DP 参数 按钮",
+   "group": "电机参数"
+  },
+  {
+   "name": "PHF 峰值电压(PU)",
+   "default": "0.2",
+   "values": "PHF 的峰值电压 0.2 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "PHF 频率(Hz)",
+   "default": "2000",
+   "values": "PHF 电压频率 2000 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "LP 滤波器截止频率(Hz)",
+   "default": "131.9037",
+   "values": "PHF 低通滤波器的截止频率 131.9037 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "选择调节参数",
+   "default": "控制器增益",
+   "values": "选择手动调节的控制参数 控制器增益 (默认) | 时间响应变量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "比例增益",
+   "default": "1954.6647",
+   "values": "PHF 的 PI 控制器的比例增益 1954.6647 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "积分增益",
+   "default": "7392.5303",
+   "values": "PHF 的 PI 控制器的积分增益 7392.5303 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "预期稳定时间(秒)",
+   "default": "0.66794",
+   "values": "估计的位置的预期稳定时间 0.66794 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "预期阻尼比",
+   "default": "0.99",
+   "values": "模块输出 θ est 的预期阻尼比 0.99 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "计算控制参数",
+   "default": "",
+   "values": "计算禁用的控制参数 按钮",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "开环持续时间(秒)",
+   "default": "0.0066794",
+   "values": "阶段 1 的 A 部分期间开环 PHF 注入的持续时间 0.0066794 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "闭环持续时间(秒)",
+   "default": "0.66794",
+   "values": "阶段 1 的 B 部分期间闭环 PHF 注入的持续时间 0.66794 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "空闲时间(秒)",
+   "default": "0.0066794",
+   "values": "算法步骤之间的持续时间 0.0066794 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "误差阈值(rad)",
+   "default": "4e-4",
+   "values": "θ err 的最小误差阈值 4e-4 (默认) | 标量",
+   "group": "PHF 参数"
+  },
+  {
+   "name": "脉冲电压(PU)",
+   "default": "0.5",
+   "values": "注入脉冲的振幅 0.5 (默认) | 标量",
+   "group": "DP 参数"
+  },
+  {
+   "name": "脉冲持续时间(秒)",
+   "default": "0.00066955",
+   "values": "注入脉冲的持续时间 0.00066955 (默认) | 标量",
+   "group": "DP 参数"
+  }
+ ]
+}

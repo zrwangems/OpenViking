@@ -1,0 +1,213 @@
+{
+ "key": "Vehicle Path Planner (VPP) system",
+ "title": "Vehicle Path Planner System",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Automated Driving/Vehicle_Path_Planner_System.md"
+ ],
+ "text": "使用自适应模型预测控制器仿真车道保持辅助，输入 11 路、输出 1 路；{Use vehicle parameters} 使用车辆属性定义自车模型、{Use vehicle model} 使用状态空间矩阵定义自车模型、{Total mass} 指定自车质量、{Yaw moment of inertia} 指定绕自车垂直轴的转动惯量、{Longitudinal distance from center of gravity to front tires} 指定从自车质心到其前轮的距离、{Longitudinal distance from center of gravity to rear tires} 指定自车质心到其后轮的距离、{Cornering stiffness of front tires} 指定前轮刚度、{Cornering stiffness of rear tires} 指定后轮刚度、{A} 指定自车预测模型的初始状态矩阵 square、{B} 指定自车预测模型的初始输入到状态矩阵 column、{C} 指定自车预测模型的初始状态到输出矩阵 matrix with two、{Initial longitudinal velocity} 指定自车的初始速度、{Transport lag between model inputs and outputs} 指定自车模型中的总传输延迟、{Minimum steering angle} 指定最小前轮转向角、{Maximum steering angle} 指定最大前轮转向角、{Sample time} 控制器采样时间、{Prediction horizon} 控制器预测时域、{Controller behavior} 指定闭环控制器性能、{Use suboptimal solution} 指定在指定迭代次数后应用次优解、{Maximum iteration number} 指定最大优化迭代次数、{Use external signal to enable or disable optimization} 添加用于启用优化的端口、{Use external signal for bumpless transfer between LKA and other controllers} 添加外部控制信号输入端口、{Create LKA subsystem} 指定创建自定义控制器，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Curvature",
+   "direction": "input",
+   "summary": "道路曲率 scalar | vector"
+  },
+  {
+   "name": "Longitudinal velocity",
+   "direction": "input",
+   "summary": "自车速度 nonnegative scalar"
+  },
+  {
+   "name": "Lateral deviation",
+   "direction": "input",
+   "summary": "自车横向偏差 scalar"
+  },
+  {
+   "name": "Relative yaw angle",
+   "direction": "input",
+   "summary": "相对于车道中心线的角度 scalar"
+  },
+  {
+   "name": "Minimum steering angle",
+   "direction": "input",
+   "summary": "最小前轮转向角 scalar"
+  },
+  {
+   "name": "Maximum steering angle",
+   "direction": "input",
+   "summary": "最大前轮转向角 scalar"
+  },
+  {
+   "name": "Enable optimization",
+   "direction": "input",
+   "summary": "控制器优化启用信号 scalar"
+  },
+  {
+   "name": "External control signal",
+   "direction": "input",
+   "summary": "施加到自车的转向角 scalar"
+  },
+  {
+   "name": "Vehicle dynamics matrix A",
+   "direction": "input",
+   "summary": "自车预测模型的状态矩阵 square matrix"
+  },
+  {
+   "name": "Vehicle dynamics matrix B",
+   "direction": "input",
+   "summary": "自车预测模型的输入到状态矩阵 column vector"
+  },
+  {
+   "name": "Vehicle dynamics matrix C",
+   "direction": "input",
+   "summary": "自车预测模型的状态到输出矩阵 matrix with two rows"
+  },
+  {
+   "name": "Steering angle",
+   "direction": "output",
+   "summary": "前轮转向角控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use vehicle parameters",
+   "default": "on",
+   "values": "使用车辆属性定义自车模型 on (default) | off",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use vehicle model",
+   "default": "off",
+   "values": "使用状态空间矩阵定义自车模型 off (default) | on",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Total mass",
+   "default": "1575",
+   "values": "自车质量 1575 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Yaw moment of inertia",
+   "default": "2875",
+   "values": "绕自车垂直轴的转动惯量 2875 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Longitudinal distance from center of gravity to front tires",
+   "default": "1.2",
+   "values": "从自车质心到其前轮的距离 1.2 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Longitudinal distance from center of gravity to rear tires",
+   "default": "1.6",
+   "values": "自车质心到其后轮的距离 1.6 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Cornering stiffness of front tires",
+   "default": "19000",
+   "values": "前轮刚度 19000 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Cornering stiffness of rear tires",
+   "default": "33000",
+   "values": "后轮刚度 33000 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "A",
+   "default": "",
+   "values": "自车预测模型的初始状态矩阵 square matrix",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "B",
+   "default": "",
+   "values": "自车预测模型的初始输入到状态矩阵 column vector",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "C",
+   "default": "",
+   "values": "自车预测模型的初始状态到输出矩阵 matrix with two rows",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Initial longitudinal velocity",
+   "default": "15",
+   "values": "自车的初始速度 15 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Transport lag between model inputs and outputs",
+   "default": "0",
+   "values": "自车模型中的总传输延迟 0 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Minimum steering angle",
+   "default": "-0.26",
+   "values": "最小前轮转向角 -0.26 (default) | scalar between -pi/2 and pi/2",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Maximum steering angle",
+   "default": "0.26",
+   "values": "最大前轮转向角 0.26 (default) | scalar between -pi/2 and pi/2",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "控制器采样时间 0.1 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Prediction horizon",
+   "default": "10",
+   "values": "控制器预测时域 10 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Controller behavior",
+   "default": "0.5",
+   "values": "闭环控制器性能 0.5 (default) | scalar between 0 and 1",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use suboptimal solution",
+   "default": "off",
+   "values": "在指定迭代次数后应用次优解 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Maximum iteration number",
+   "default": "10",
+   "values": "最大优化迭代次数 10 (default) | positive integer",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external signal to enable or disable optimization",
+   "default": "off",
+   "values": "添加用于启用优化的端口 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external signal for bumpless transfer between LKA and other controllers",
+   "default": "off",
+   "values": "添加外部控制信号输入端口 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Create LKA subsystem",
+   "default": "",
+   "values": "创建自定义控制器 button",
+   "group": "Block Tab"
+  }
+ ]
+}

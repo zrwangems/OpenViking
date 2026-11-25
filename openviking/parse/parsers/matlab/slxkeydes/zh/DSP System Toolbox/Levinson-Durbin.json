@@ -1,0 +1,114 @@
+{
+ "key": "Levinson-Durbin",
+ "title": "Levinson-Durbin",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/Levinson_Durbin.md",
+  "DSP System Toolbox/Estimation/Linear Prediction/Levinson_Durbin.md"
+ ],
+ "text": "使用 Levinson-Durbin 递归求解线性方程组，输入 1 路、输出 3 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Output(s)}、{Output prediction error power (P)} 输出预测误差功率、{If the value of lag 0 is zero, A=[1 zeros], K=[zeros], P=0} 指定如果滞后 0 的值为零，则 A=、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Product output}、{Accumulator}、{Polynomial coefficients (A)} 指定多项式系数数据类型 fixdt、{Reflection coefficients (K)} 指定反射系数数据类型 fixdt、{Prediction error power (P)} 指定预测误差功率数据类型、{Minimum} 指定多项式系数、反射系数或预测误差功率的最小值、{Maximum} 指定多项式系数、反射系数或预测误差功率的最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入 vector | matrix"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "模型系数 vector | matrix"
+  },
+  {
+   "name": "K",
+   "direction": "output",
+   "summary": "反射系数 vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "输出预测误差功率 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output(s)",
+   "default": "K",
+   "values": "Output(s) K (default) | A and K | A",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output prediction error power (P)",
+   "default": "off",
+   "values": "输出预测误差功率 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "If the value of lag 0 is zero, A=[1 zeros], K=[zeros], P=0",
+   "default": "on",
+   "values": "如果滞后 0 的值为零，则 A=[1 zeros]、K=[zeros]、P=0 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output Inherit: Same as input (default) | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "Accumulator Inherit: Same as input (default) | Inherit: Same as product output | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Polynomial coefficients (A)",
+   "default": "fixdt(1,16,0)",
+   "values": "多项式系数数据类型 fixdt(1,16,0) (default) | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Reflection coefficients (K)",
+   "default": "fixdt(1,16,0)",
+   "values": "反射系数数据类型 fixdt(1,16,0) (default) | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Prediction error power (P)",
+   "default": "input",
+   "values": "预测误差功率数据类型 Inherit: Same as input (default) | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "多项式系数、反射系数或预测误差功率的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "多项式系数、反射系数或预测误差功率的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

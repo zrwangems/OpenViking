@@ -1,0 +1,42 @@
+{
+ "key": "Stream Data Sink",
+ "title": "Stream Data Sink",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/Stream_Data_Sink.md"
+ ],
+ "text": "Receive continuous stream data, 2 inputs, 1 output; {Save data in workspace} and {Variable name} sets the workspace variable name. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "rdData",
+   "direction": "input",
+   "summary": "Input stream data scalar | vector"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "Input control bus bus"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "Output control bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Save data in workspace",
+   "default": "off",
+   "values": "Save data in workspace off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "simOut",
+   "values": "Workspace variable name simOut (default) | any MATLAB-supported variable name",
+   "group": ""
+  }
+ ]
+}

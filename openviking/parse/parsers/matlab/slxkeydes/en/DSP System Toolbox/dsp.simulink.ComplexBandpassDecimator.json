@@ -1,0 +1,126 @@
+{
+ "key": "dsp.simulink.ComplexBandpassDecimator",
+ "title": "Complex Bandpass Decimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Complex_Bandpass_Decimator.md"
+ ],
+ "text": "Extract a frequency subband using a one-sided (complex) bandpass decimator, 2 inputs, 1 output, {Filter specification} sets Filter design parameters Decimation; {Decimation factor}, {Bandwidth} sets the width of frequency band of interest, {Specify center frequency from input port} sets the source of center frequency, {Center frequency}, {Stopband attenuation (dB)} sets the stopband attenuation in dB, {Passband ripple (dB)} sets the passband ripple in dB, {Transition width}, {Reduce number of complex coefficients} sets the minimize number of complex coefficients, {Mix signal to baseband}, {Sample rate mode} sets the mode to specify the input sample rate Use normalized, {Input sample rate (Hz)} sets the input sample rate in Hz, {Allow arbitrary frame length for fixed-size input signals}, {View Filter Response} sets the visualize frequency response, {View Info} sets the view filter information and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input data vector | matrix"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "Center frequency real scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Filtered output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter specification",
+   "default": "factor",
+   "values": "Filter design parameters Decimation factor (default) | Bandwidth | Decimation factor and bandwidth",
+   "group": ""
+  },
+  {
+   "name": "Decimation factor",
+   "default": "2",
+   "values": "Decimation factor 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Bandwidth",
+   "default": "0.2268",
+   "values": "Width of frequency band of interest 0.2268 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "off",
+   "values": "Specify source of center frequency off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Center frequency",
+   "default": "0",
+   "values": "Center frequency of desired band 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "Stopband attenuation in dB 80 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Passband ripple (dB)",
+   "default": "1",
+   "values": "Passband ripple in dB 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Transition width",
+   "default": "0.0045",
+   "values": "Transition width 0.0045 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reduce number of complex coefficients",
+   "default": "on",
+   "values": "Minimize number of complex coefficients on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Mix signal to baseband",
+   "default": "on",
+   "values": "Mix signal to baseband on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Input sample rate in Hz 44100 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "Allow arbitrary frame length for fixed-size input signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "Visualize frequency response button",
+   "group": ""
+  },
+  {
+   "name": "View Info",
+   "default": "",
+   "values": "View filter information button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

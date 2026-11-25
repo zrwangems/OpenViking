@@ -1,0 +1,111 @@
+{
+ "key": "dsp.simulink.LMSUpdate",
+ "title": "LMS Update",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Adaptive Filters/LMS_Update.md"
+ ],
+ "text": "估计最小均方 (LMS) 自适应滤波器的权重，输入 5 路、输出 1 路、无直接馈通；按 {Initial value of filter weights} 指定滤波器权重的初始值；{Algorithm} 指定 LMS 自适应算法、{Filter length} 指定将每个自适应滤波器的长度 L 指定为正整数。 当有 N 个自适应滤波器时，模块通过 Wts 输出端口生成的权重向量是 N×L、{Number of adaptive filters} 指定将模块支持的自适应滤波器数量 N 指定为正整数。 当将此值指定为大于 1 的整数时，可以通过提供长度为 N 的逻辑向量作为 Adapt 输入，在运行期间选择每个滤波器独立进行自适应。假定所有滤波器都在同一输入上运行，并具有公共步长、泄漏因子和重置输入。 模块通过 Wts 输出端口生成的权重为 N×L 矩阵，其中 L 是每个滤波器的长度。 有关显示如何自适应多个滤波器的示例，请参阅使用 LMS Update、{Step size source} 指定 Property — 使用 Step size、{Step size (mu)} 指定 Leakage factor、{Leakage factor (0 to 1)} 指定泄漏因子、{Adaptive filter mode} 指定将自适应滤波器模式指定为以下之一： Tapped delay-line FIR filter –– 模块将自适应滤波器的可变部分假定为抽头延迟线 FIR 滤波器。在此模式下，输入采样使用以下方程相关联、{Enable adapt input} 指定更新滤波器权重、{Enable reset input} 指定重置滤波器权重、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "数据输入 scalar | column vector"
+  },
+  {
+   "name": "Error",
+   "direction": "input",
+   "summary": "Error scalar | column vector"
+  },
+  {
+   "name": "Mu",
+   "direction": "input",
+   "summary": "滤波器自适应步长 0.1 (default) | scalar in the range [0,1]"
+  },
+  {
+   "name": "Adapt",
+   "direction": "input",
+   "summary": "更新滤波器权重 real scalar | vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "重置滤波器权重 real scalar"
+  },
+  {
+   "name": "Wts",
+   "direction": "output",
+   "summary": "滤波器权重 row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Algorithm",
+   "default": "LMS",
+   "values": "LMS 自适应算法 LMS (default) | Normalized LMS | Sign—Error LMS | Sign—Data LMS | Sign—Sign LMS",
+   "group": ""
+  },
+  {
+   "name": "Filter length",
+   "default": "32",
+   "values": "将每个自适应滤波器的长度 L 指定为正整数。 当有 N 个自适应滤波器时，模块通过 Wts 输出端口生成的权重向量是 N×L 矩阵。 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of adaptive filters",
+   "default": "1",
+   "values": "将模块支持的自适应滤波器数量 N 指定为正整数。 当将此值指定为大于 1 的整数时，可以通过提供长度为 N 的逻辑向量作为 Adapt 输入，在运行期间选择每个滤波器独立进行自适应。假定所有滤波器都在同一输入上运行，并具有公共步长、泄漏因子和重置输入。 模块通过 Wts 输出端口生成的权重为 N×L 矩阵，其中 L 是每个滤波器的长度。 有关显示如何自适应多个滤波器的示例，请参阅使用 LMS Update 模块自适应多个滤波器。 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Step size source",
+   "default": "Property",
+   "values": "Property — 使用 Step size (mu) 参数指定滤波器自适应大小。 Input port — 使用 Mu 输入端口传递滤波器自适应大小。 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Step size (mu)",
+   "default": "0.1",
+   "values": "Leakage factor (0 到 1) 通过减少滤波器系数偏离其最优值的漂移，防止滤波器系数无界增长。Leakage factor 为 1.0 表示无泄漏。如果遇到系数漂移，即围绕最优解的较大波动，请减小 Leakage factor，直到系数波动变小。 此参数可调。即使在仿真期间也可以更改其值。 0.1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Leakage factor (0 to 1)",
+   "default": "1.0",
+   "values": "泄漏因子 1.0 (default) | real scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Initial value of filter weights",
+   "default": "0",
+   "values": "滤波器权重的初始值 0 (default) | real scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Adaptive filter mode",
+   "default": "filter",
+   "values": "将自适应滤波器模式指定为以下之一： Tapped delay-line FIR filter –– 模块将自适应滤波器的可变部分假定为抽头延迟线 FIR 滤波器。在此模式下，输入采样使用以下方程相关联： u ( n ) = [ u ( n ), u ( n − 1 ),..., u ( n − L + 1 ) ] 其中 n 是当前时间索引，L 是 Filter length 参数中指定的自适应滤波器长度。 在此模式下，模块接受标量输入采样。模块算法会缓冲这些采样以形成 u ( n ) 向量。 Adaptive linear combiner –– 模块不会缓冲输入采样，并且提供给模块的输入必须是与 Filter length 参数长度相等的列向量。在这种情况下，输入采样之间没有关系。 有关更多详细信息，请参阅算法。 Tapped delay-line FIR filter (default) | Adaptive linear combiner",
+   "group": ""
+  },
+  {
+   "name": "Enable adapt input",
+   "default": "off",
+   "values": "更新滤波器权重 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable reset input",
+   "default": "off",
+   "values": "重置滤波器权重 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

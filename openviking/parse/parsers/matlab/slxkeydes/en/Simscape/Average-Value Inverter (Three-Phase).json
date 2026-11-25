@@ -1,0 +1,13 @@
+{
+ "key": "Average-Value Inverter (Three-Phase)",
+ "title": "Average-Value Inverter (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Average_Value_Inverter_Three_Phase.md"
+ ],
+ "text": "Average-value DC Voltage to three-phase AC voltage converter with fixed power loss.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

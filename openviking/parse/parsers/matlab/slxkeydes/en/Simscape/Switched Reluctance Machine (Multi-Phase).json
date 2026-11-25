@@ -1,0 +1,13 @@
+{
+ "key": "Switched Reluctance Machine (Multi-Phase)",
+ "title": "Switched Reluctance Machine (Multi-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Reluctance & Stepper/Switched_Reluctance_Machine_Multi_Phase.md"
+ ],
+ "text": "Four, five, or six-phase switched reluctance machine (SRM).",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

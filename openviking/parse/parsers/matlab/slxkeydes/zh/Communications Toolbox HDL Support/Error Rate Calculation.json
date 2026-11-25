@@ -1,0 +1,101 @@
+{
+ "key": "Error Rate Calculation",
+ "title": "Error Rate Calculation",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Sinks/Error_Rate_Calculation.md",
+  "Communications Toolbox/Comm Sinks/Error_Rate_Calculation.md"
+ ],
+ "text": "计算输入数据的误比特率或误符号率，输入 4 路、输出 1 路；按 {Selected samples from frame} 指定样本索引；{Receive delay} 指定接收信号延迟、{Computation delay} 指定计算延迟、{Computation mode} 指定要考虑的样本 Entire、{Output data} 输出数据位置、{Variable name} 输出数据变量名称、{Reset port} 用于添加 Rst 输入端口、{Stop simulation} 用于在达到指定的错误数或比较次数后停止仿真、{Target number of errors} 用于在达到指定的错误数后停止仿真、{Maximum number of symbols} 用于在比较了指定的符号数后停止仿真的选项 1e6，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tx",
+   "direction": "input",
+   "summary": "发送数据 scalar | column vector"
+  },
+  {
+   "name": "Rx",
+   "direction": "input",
+   "summary": "接收数据 scalar | column vector"
+  },
+  {
+   "name": "Sel",
+   "direction": "input",
+   "summary": "样本索引 positive integer | column vector of positive integers"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置错误计数 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "发送数据与接收数据之间的差值 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Receive delay",
+   "default": "0",
+   "values": "接收信号延迟 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Computation delay",
+   "default": "0",
+   "values": "计算延迟 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Computation mode",
+   "default": "frame",
+   "values": "要考虑的样本 Entire frame (default) | Select samples from mask | Select samples from port",
+   "group": ""
+  },
+  {
+   "name": "Selected samples from frame",
+   "default": "[]",
+   "values": "样本索引 [] (default) | positive integer | column vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Output data",
+   "default": "Workspace",
+   "values": "输出数据位置 Workspace (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "ErrorVec",
+   "values": "输出数据变量名称 ErrorVec (default) | character vector | string scalar",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "off",
+   "values": "用于添加 Rst 输入端口的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation",
+   "default": "off",
+   "values": "用于在达到指定的错误数或比较次数后停止仿真的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Target number of errors",
+   "default": "100",
+   "values": "用于在达到指定的错误数后停止仿真的选项 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of symbols",
+   "default": "1e6",
+   "values": "用于在比较了指定的符号数后停止仿真的选项 1e6 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

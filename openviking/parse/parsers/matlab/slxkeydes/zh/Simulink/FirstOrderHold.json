@@ -1,0 +1,49 @@
+{
+ "key": "FirstOrderHold",
+ "title": "First Order Hold",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/First_Order_Hold.md"
+ ],
+ "text": "在输入信号上实现线性外插一阶保持，输入 1 路、输出 1 路；按 {初始输出} 指定初始输出；{输出算法} 输出信号逼近方法 缓慢、{相对外插误差超过以下值时重置} 指定求解器重置的误差容限、{允许连续输入} 指定对连续信号应用保持，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port 1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port 1",
+   "direction": "output",
+   "summary": "线性逼近的输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始输出",
+   "default": "0",
+   "values": "初始输出 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "输出算法",
+   "default": "缓慢(避免过冲)",
+   "values": "输出信号逼近方法 缓慢(避免过冲) (默认) | 快速（最小化误差）",
+   "group": ""
+  },
+  {
+   "name": "相对外插误差超过以下值时重置",
+   "default": "inf",
+   "values": "求解器重置的误差容限 inf (默认) | 非负实数标量",
+   "group": ""
+  },
+  {
+   "name": "允许连续输入",
+   "default": "off",
+   "values": "对连续信号应用保持 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

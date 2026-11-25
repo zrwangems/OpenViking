@@ -1,0 +1,121 @@
+{
+ "key": "timeFeatureExtractor",
+ "title": "Time Feature Extractor",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Feature Extractors/Time_Feature_Extractor.md"
+ ],
+ "text": "Extract time-domain features from signals, 1 input, 1 output, no direct feedthrough; {Window length} sets the number of samples per frame, {Specify} sets the buffering method Overlap, {Overlap length} sets the number of overlapping samples between consecutive, {Hop size} sets the number of samples between the start, {Mean} sets the option to extract mean, {RMS} sets the option to extract root mean square, {Standard deviation} sets the option to extract standard deviation, {Shape factor} sets the option to extract shape factor, {SNR} sets the option to extract signal-to-noise ratio, {THD} sets the option to extract total harmonic, {SINAD} sets the option to extract signal to noise and distortion, {Peak value} sets the option to extract peak value, {Crest factor} sets the option to extract crest factor, {Clearance factor} sets the option to extract clearance factor, {Impulse factor} sets the option to extract impulse factor and {Feature to output mapping} displays column indices of features in output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Extracted features vector | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length",
+   "default": "64",
+   "values": "Number of samples per frame 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify",
+   "default": "length",
+   "values": "Buffering method Overlap length (default) | Hop size",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "0",
+   "values": "Number of overlapping samples between consecutive frames 0 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Hop size",
+   "default": "64",
+   "values": "Number of samples between the start of frames 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Mean",
+   "default": "on",
+   "values": "Option to extract mean on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "RMS",
+   "default": "off",
+   "values": "Option to extract root mean square off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation",
+   "default": "off",
+   "values": "Option to extract standard deviation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Shape factor",
+   "default": "off",
+   "values": "Option to extract shape factor off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "SNR",
+   "default": "off",
+   "values": "Option to extract signal-to-noise ratio off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "THD",
+   "default": "off",
+   "values": "Option to extract total harmonic distortion off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "SINAD",
+   "default": "off",
+   "values": "Option to extract signal to noise and distortion ratio off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Peak value",
+   "default": "off",
+   "values": "Option to extract peak value off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Crest factor",
+   "default": "off",
+   "values": "Option to extract crest factor off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Clearance factor",
+   "default": "off",
+   "values": "Option to extract clearance factor off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Impulse factor",
+   "default": "off",
+   "values": "Option to extract impulse factor off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Feature to output mapping",
+   "default": "",
+   "values": "Display column indices of features in output section",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "SI Combustion Cylinder",
+ "title": "SI Combustion Cylinder",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Engine Subcomponents/SI_Combustion_Cylinder.md"
+ ],
+ "text": "Spark-ignited, four-stroke internal combustion cylinder.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

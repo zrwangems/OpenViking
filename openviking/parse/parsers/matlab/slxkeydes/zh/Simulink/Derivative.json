@@ -1,0 +1,31 @@
+{
+ "key": "Derivative",
+ "title": "Derivative",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Derivative.md"
+ ],
+ "text": "计算连续输入信号关于时间的逼近连续导数，输入 1 路、输出 1 路；{使用传递函数 s/(c*s + 1) 进行线性化逼近时的系数 c} 指定逼近模块线性化的传递函数中极点的时间常数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要逼近连续导数的信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入信号关于时间的连续导数逼近 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "使用传递函数 s/(c*s + 1) 进行线性化逼近时的系数 c",
+   "default": "inf",
+   "values": "逼近模块线性化的传递函数中极点的时间常数 inf (默认) | 有限正标量数值",
+   "group": ""
+  }
+ ]
+}

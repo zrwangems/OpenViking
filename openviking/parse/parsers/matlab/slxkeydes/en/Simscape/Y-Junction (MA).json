@@ -1,0 +1,13 @@
+{
+ "key": "Y-Junction (MA)",
+ "title": "Y-Junction (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/Y_Junction_MA.md"
+ ],
+ "text": "Y-junction in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

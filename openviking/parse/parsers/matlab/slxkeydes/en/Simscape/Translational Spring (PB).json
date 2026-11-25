@@ -1,0 +1,13 @@
+{
+ "key": "Translational Spring (PB)",
+ "title": "Translational Spring (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Spring_PB.md"
+ ],
+ "text": "Ideal spring in position-based mechanical translational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

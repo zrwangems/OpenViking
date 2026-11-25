@@ -1,0 +1,13 @@
+{
+ "key": "Double-Pinion Planetary Gear",
+ "title": "Double-Pinion Planetary Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Double_Pinion_Planetary_Gear.md"
+ ],
+ "text": "具有两组啮合行星齿轮组的行星齿轮系。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

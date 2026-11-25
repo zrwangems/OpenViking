@@ -1,0 +1,60 @@
+{
+ "key": "FIFO Block: writer",
+ "title": "FIFO write",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/FIFO_write.md"
+ ],
+ "text": "编写简单的数据流，输入 1 路、输出 2 路；按 {Input vector type} 指定输入数据类型 8 bit uint null；{Size} 指定先进先出队列的大小，单位为字节、{Data present output} 启用输出 DP、{Sample time} 指定模块采样时间、{ID} 指定溢出消息标识符 字符向量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "写入 FIFO 的数据 向量"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "FIFO 向量 serialfifoptr"
+  },
+  {
+   "name": "DP",
+   "direction": "output",
+   "summary": "如果 FIFO 中存在新数据则返回 True true | false"
+  }
+ ],
+ "params": [
+  {
+   "name": "Size",
+   "default": "1024",
+   "values": "先进先出队列的大小，单位为字节 1024 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "Input vector type",
+   "default": "terminated",
+   "values": "指定输入数据类型 8 bit uint null terminated (默认) | count+32 bit int | count+32 bit uint | count+16 bit int | count+16 bit uint | 8 bit int null terminated",
+   "group": ""
+  },
+  {
+   "name": "Data present output",
+   "default": "off",
+   "values": "启用输出 DP off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 数值",
+   "group": ""
+  },
+  {
+   "name": "ID",
+   "default": "",
+   "values": "溢出消息标识符 字符向量",
+   "group": ""
+  }
+ ]
+}

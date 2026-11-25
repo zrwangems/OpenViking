@@ -1,0 +1,101 @@
+{
+ "key": "CCSDS LDPC Decoder",
+ "title": "CCSDS LDPC Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/CCSDS_LDPC_Decoder.md"
+ ],
+ "text": "Decode LDPC code according to CCSDS standard, 5 inputs, 5 outputs; {Configuration type} sets the type of configuration, {Decoding termination criteria} sets the termination criteria, {Source for number of iterations} sets the source selection for number of iterations, {Number of iterations} sets the number of decoding iterations, {Maximum number of iterations} sets the maximum number of decoding iterations and {Enable parity check output port} sets the parity check status. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "LLR values scalar | column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "codeRateIdx",
+   "direction": "input",
+   "summary": "Code rate index 0 | 1 | 2"
+  },
+  {
+   "name": "blkLenIdx",
+   "direction": "input",
+   "summary": "Block length index 0 | 1 | 2"
+  },
+  {
+   "name": "iter",
+   "direction": "input",
+   "summary": "Number of iterations integer in the range [1, 63]"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Decoded bits scalar | column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Block ready indicator 0 | 1"
+  },
+  {
+   "name": "actIter",
+   "direction": "output",
+   "summary": "Actual number of iterations positive scalar"
+  },
+  {
+   "name": "parityCheck",
+   "direction": "output",
+   "summary": "Parity check status indicator 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Configuration type",
+   "default": "LDPC",
+   "values": "Type of configuration (8160,7136) LDPC (default) | AR4JA LDPC",
+   "group": ""
+  },
+  {
+   "name": "Decoding termination criteria",
+   "default": "Max",
+   "values": "Termination criteria Max (default) | Early",
+   "group": ""
+  },
+  {
+   "name": "Source for number of iterations",
+   "default": "Property",
+   "values": "Source selection for number of iterations Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "8",
+   "values": "Number of decoding iterations 8 (default) | integer in the range [1, 63]",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of iterations",
+   "default": "8",
+   "values": "Maximum number of decoding iterations 8 (default) | integer in the range [1, 63]",
+   "group": ""
+  },
+  {
+   "name": "Enable parity check output port",
+   "default": "off",
+   "values": "Parity check status off (default) | on",
+   "group": ""
+  }
+ ]
+}

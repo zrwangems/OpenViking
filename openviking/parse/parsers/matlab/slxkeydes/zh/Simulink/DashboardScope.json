@@ -1,0 +1,128 @@
+{
+ "key": "DashboardScope",
+ "title": "Dashboard Scope",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Dashboard_Scope.md"
+ ],
+ "text": "仿真期间跟踪示波器显示画面上的信号；按 {图例} 指定图例位置；{连接}、{线型}、{时间跨度} 指定时间轴跨度、{更新模式} 显示更新行为、{最小值}、{最大值}、{归一化 y 轴范围} 指定归一化 y 轴、{停止时缩放坐标区范围} 指定仿真停止时执行适应视图、{显示 \"双击以连接\" 消息} 指定连接说明可见性、{刻度}、{刻度标签}、{水平}、{垂直}、{边框}、{标记}、{前景颜色} 指定网格线颜色、{背景颜色} 指定绘图区域颜色、{字体颜色} 指定刻度和刻度标签颜色，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "连接",
+   "default": "",
+   "values": "要连接和显示的信号 信号连接选项",
+   "group": "连接表"
+  },
+  {
+   "name": "线型",
+   "default": "",
+   "values": "连接的信号的线型和颜色 线型和颜色选项",
+   "group": "连接表"
+  },
+  {
+   "name": "时间跨度",
+   "default": "auto",
+   "values": "时间轴跨度 auto (默认) | 标量",
+   "group": "常设"
+  },
+  {
+   "name": "更新模式",
+   "default": "Wrap",
+   "values": "显示更新行为 Wrap (默认) | Scroll",
+   "group": "常设"
+  },
+  {
+   "name": "最小值",
+   "default": "-3",
+   "values": "垂直轴最小值 -3 (默认) | 标量",
+   "group": "常设"
+  },
+  {
+   "name": "最大值",
+   "default": "3",
+   "values": "垂直轴最大值 3 (默认) | 标量",
+   "group": "常设"
+  },
+  {
+   "name": "归一化 y 轴范围",
+   "default": "off",
+   "values": "归一化 y 轴的选项 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "停止时缩放坐标区范围",
+   "default": "on",
+   "values": "仿真停止时执行适应视图的选项 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "显示 \"双击以连接\" 消息",
+   "default": "on",
+   "values": "连接说明可见性 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "刻度",
+   "default": "外部",
+   "values": "坐标轴刻度位置 外部 (默认) | 内部 | 无",
+   "group": "显示"
+  },
+  {
+   "name": "刻度标签",
+   "default": "全部",
+   "values": "刻度标签可见性 全部 (默认) | T 轴 | Y 轴 | 无",
+   "group": "显示"
+  },
+  {
+   "name": "图例",
+   "default": "顶端",
+   "values": "图例位置 顶端 (默认) | 右侧 | 内部顶端 | 内部右侧 | 隐藏",
+   "group": "显示"
+  },
+  {
+   "name": "水平",
+   "default": "on",
+   "values": "水平网格线可见性 on (默认) | off",
+   "group": "显示"
+  },
+  {
+   "name": "垂直",
+   "default": "on",
+   "values": "垂直网格线可见性 on (默认) | off",
+   "group": "显示"
+  },
+  {
+   "name": "边框",
+   "default": "on",
+   "values": "绘图边框可见性 on (默认) | off",
+   "group": "显示"
+  },
+  {
+   "name": "标记",
+   "default": "off",
+   "values": "显示信号数据标记的选项 off (默认) | on",
+   "group": "显示"
+  },
+  {
+   "name": "前景颜色",
+   "default": "",
+   "values": "网格线颜色 [r g b] 向量",
+   "group": "样式"
+  },
+  {
+   "name": "背景颜色",
+   "default": "",
+   "values": "绘图区域颜色 [r g b] 向量",
+   "group": "样式"
+  },
+  {
+   "name": "字体颜色",
+   "default": "",
+   "values": "刻度和刻度标签颜色 [r g b] 向量",
+   "group": "样式"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "General TCM Encoder",
+ "title": "General TCM Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/TCM/General_TCM_Encoder.md"
+ ],
+ "text": "对二进制数据进行卷积编码并使用任意星座映射。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

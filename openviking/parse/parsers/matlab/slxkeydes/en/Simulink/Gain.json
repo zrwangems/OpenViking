@@ -1,0 +1,175 @@
+{
+ "key": "Gain",
+ "title": "Gain",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Gain.md",
+  "Simulink/Math Operations/Gain.md",
+  "Simulink/Quick Insert/Math Operations/Multiply.md",
+  "HDL Coder/Commonly Used Blocks/Gain.md",
+  "HDL Coder/HDL Floating Point Operations/Gain.md",
+  "HDL Coder/Math Operations/Gain.md"
+ ],
+ "text": "Multiply input by constant, 1 input, 1 output, direct feedthrough, {Multiplication} sets the multiplication mode; {Gain} sets the value by which to multiply the input, {Sample time (-1 for inherited)} sets the interval between samples, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the output data type, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Mode} selects data type, {Data type override} sets the data type override mode for this signal, {Signedness} sets the signed, {Word length} sets the bit size of the word that holds the quantized, {Scaling} sets the method for scaling fixed-point data Best, {Slope} sets the slope for the fixed-point data, {Bias} sets the bias for the fixed-point data type, {Fraction length} sets the fraction length for fixed-point data type, {Parameter minimum} sets the minimum value of gain, {Parameter maximum} sets the maximum value of gain and {Parameter data type} sets the data type of the Gain parameter. Values come from the instance.",
+ "variants": [
+  {
+   "when": {
+    "Multiplication": [
+     "Matrix(K*u)"
+    ]
+   },
+   "text": "Multiplies the input by the gain matrix as K*u; the output size follows the matrix product; {Gain} sets the value by which to multiply, {Multiplication} specifies the multiplication, {Sample time (-1 for inherited)} sets the interval between samples, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} specifies the output data type, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Integer rounding mode} sets the rounding mode for fixed-point, {Saturate on integer overflow} sets the method of overflow, {Mode} selects data type, {Data type override} specifies data type override mode for this, {Signedness} specifies signed, {Word length} sets the bit size of the word that holds the quantized, {Scaling} sets the method for scaling fixed-point data, {Slope} specifies slope for the fixed-point data, {Bias} specifies bias for the fixed-point data, {Fraction length} specifies fraction length for fixed-point data, {Parameter minimum} specifies the minimum value of gain, {Parameter maximum} specifies the maximum value of gain and {Parameter data type} specifies the data type of the Gain parameter. Values come from the instance."
+  },
+  {
+   "when": {
+    "Multiplication": [
+     "Matrix(u*K)"
+    ]
+   },
+   "text": "Multiplies the input by the gain matrix as u*K; the output size follows the matrix product; {Gain} sets the value by which to multiply, {Multiplication} specifies the multiplication, {Sample time (-1 for inherited)} sets the interval between samples, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} specifies the output data type, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Integer rounding mode} sets the rounding mode for fixed-point, {Saturate on integer overflow} sets the method of overflow, {Mode} selects data type, {Data type override} specifies data type override mode for this, {Signedness} specifies signed, {Word length} sets the bit size of the word that holds the quantized, {Scaling} sets the method for scaling fixed-point data, {Slope} specifies slope for the fixed-point data, {Bias} specifies bias for the fixed-point data, {Fraction length} specifies fraction length for fixed-point data, {Parameter minimum} specifies the minimum value of gain, {Parameter maximum} specifies the maximum value of gain and {Parameter data type} specifies the data type of the Gain parameter. Values come from the instance."
+  },
+  {
+   "when": {
+    "Multiplication": [
+     "Matrix(K*u) (u vector)"
+    ]
+   },
+   "text": "Multiplies the input vector by the gain matrix as K*u; {Gain} sets the value by which to multiply, {Multiplication} specifies the multiplication, {Sample time (-1 for inherited)} sets the interval between samples, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} specifies the output data type, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Integer rounding mode} sets the rounding mode for fixed-point, {Saturate on integer overflow} sets the method of overflow, {Mode} selects data type, {Data type override} specifies data type override mode for this, {Signedness} specifies signed, {Word length} sets the bit size of the word that holds the quantized, {Scaling} sets the method for scaling fixed-point data, {Slope} specifies slope for the fixed-point data, {Bias} specifies bias for the fixed-point data, {Fraction length} specifies fraction length for fixed-point data, {Parameter minimum} specifies the minimum value of gain, {Parameter maximum} specifies the maximum value of gain and {Parameter data type} specifies the data type of the Gain parameter. Values come from the instance."
+  }
+ ],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Input multiplied by gain scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Gain",
+   "default": "1",
+   "values": "Value by which to multiply the input 1 (default) | real or complex-valued scalar, vector, or matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Multiplication",
+   "default": "Element-wise(K.*u)",
+   "values": "Specify the multiplication mode Element-wise(K.*u) (default) | Matrix(K*u) | Matrix(u*K) | Matrix(K*u) (u vector)",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Specify the output data type Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | uint32 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Select data type mode Inherit (default) | Built in | Fixed Point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Specify signed or unsigned Signed (default) | Unsigned",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Specify bias for the fixed-point data type 0 (default) | real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Parameter minimum",
+   "default": "[]",
+   "values": "Specify the minimum value of gain [] (default) | scalar",
+   "group": "Parameter Attributes"
+  },
+  {
+   "name": "Parameter maximum",
+   "default": "[]",
+   "values": "Specify the maximum value of gain [] (default) | scalar",
+   "group": "Parameter Attributes"
+  },
+  {
+   "name": "Parameter data type",
+   "default": "rule",
+   "values": "Specify the data type of the Gain parameter Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Inherit from ’Gain’ | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Parameter Attributes"
+  }
+ ]
+}

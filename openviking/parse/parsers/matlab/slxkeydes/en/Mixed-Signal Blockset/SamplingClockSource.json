@@ -1,0 +1,86 @@
+{
+ "key": "SamplingClockSource",
+ "title": "Sampling Clock Source",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Building Blocks/Sampling_Clock_Source.md"
+ ],
+ "text": "Generate clock signal with aperture jitter, 1 output; {Clock type} sets the output clock signal shape, {Clock frequency (Hz)} sets the desired frequency of output clock signal, {Min (V)} sets the minimum clock output voltage, {Max (V)} sets the maximum clock output voltage, {RMS aperture jitter (s)} sets the standard deviation of clock edge locations, {Specify custom seed} sets the seed, {Seed}, {Specify custom initial output}, {Initial output}, {Enable increased buffer size} and {Buffer size} sets the number of samples of the input buffering available during. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk",
+   "direction": "output",
+   "summary": "Output clock with aperture jitter scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Clock type",
+   "default": "wave",
+   "values": "Output clock signal shape Square wave (default) | Sine wave",
+   "group": ""
+  },
+  {
+   "name": "Clock frequency (Hz)",
+   "default": "1e6",
+   "values": "Desired frequency of output clock signal 1e6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Min (V)",
+   "default": "0",
+   "values": "Minimum clock output voltage 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Max (V)",
+   "default": "1",
+   "values": "Maximum clock output voltage 1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "RMS aperture jitter (s)",
+   "default": "1e-12",
+   "values": "Standard deviation of clock edge locations 1e-12 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify custom seed",
+   "default": "off",
+   "values": "Specify seed off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "0",
+   "values": "Seed for generating clock signal 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify custom initial output",
+   "default": "off",
+   "values": "Specify initial output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "1",
+   "values": "Initial output of sampling clock 1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "50",
+   "values": "Number of samples of the input buffering available during simulation 50 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

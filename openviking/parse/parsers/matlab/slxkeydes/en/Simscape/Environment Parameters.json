@@ -1,0 +1,13 @@
+{
+ "key": "Environment Parameters",
+ "title": "Environment Parameters",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Utilities/Environment_Parameters.md"
+ ],
+ "text": "Set parameters that apply to all connected SPICE-compatible blocks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

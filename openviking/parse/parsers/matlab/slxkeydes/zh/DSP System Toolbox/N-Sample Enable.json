@@ -1,0 +1,62 @@
+{
+ "key": "N-Sample Enable",
+ "title": "N-Sample Enable",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/N_Sample_Enable.md",
+  "DSP System Toolbox/Signal Management/Switches and Counters/N_Sample_Enable.md"
+ ],
+ "text": "在指定采样时间数内输出 1 或 0，输入 1 路、输出 1 路、无直接馈通；按 {Trigger type} 指定触发事件的类型 Rising；{Trigger count, N} 输出活动值的采样数、{Active level}、{Reset input} 启用复位输入端口、{Sample time} 输出采样周期、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置信号 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger count, N",
+   "default": "8",
+   "values": "输出活动值的采样数 8 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Active level",
+   "default": "(0)",
+   "values": "Active level Low (0) (default) | High (1)",
+   "group": ""
+  },
+  {
+   "name": "Reset input",
+   "default": "off",
+   "values": "启用复位输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "触发事件的类型 Rising edge (default) | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出采样周期 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Logical",
+   "values": "输出数据类型 Logical (default) | Boolean",
+   "group": ""
+  }
+ ]
+}

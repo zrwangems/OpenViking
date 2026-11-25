@@ -1,0 +1,104 @@
+{
+ "key": "desSelector",
+ "title": "Entity Selector",
+ "toolbox": "SimEvents",
+ "kind": "source_type",
+ "source_docs": [
+  "SimEvents/Entity_Selector.md"
+ ],
+ "text": "Entity Selector 模块从多个准备离开的实体流中选择实体，并将它们与一个参考实体匹配，输入 2 路、输出 5 路；{Number of matching streams} 确定模块接受的输入实体流数量、{Key entity attribute Name} 指定参考属性的名称、{Matching entity attribute name(s)} 指定所选属性名称、{Number of entities source} 用于确定要匹配的实体数量的来源、{Number of entities to select} 指定要从每个传入实体流中选择的实体数量、{Key attribute for number of entities} 确定要匹配的实体数量的关键属性名称、{Number of entities departed, d} 输出已离开该模块的实体数、{Number of entities in block, n} 输出模块中存在的、尚未离开的实体数量、{Number of entities extracted, ex} 输出从模块中提取的实体数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Key",
+   "direction": "input",
+   "summary": "传入参考实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "传入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "离开的参考实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "离开的匹配实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "尚未离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "已提取的实体数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of matching streams",
+   "default": "1",
+   "values": "确定模块接受的输入实体流数量 1 (default) | numerical",
+   "group": ""
+  },
+  {
+   "name": "Key entity attribute Name",
+   "default": "{’ID’}",
+   "values": "指定参考属性的名称 {’ID’} (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Matching entity attribute name(s)",
+   "default": "{’Type’}",
+   "values": "指定所选属性名称 {’Type’} (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of entities source",
+   "default": "Dialog",
+   "values": "用于确定要匹配的实体数量的来源 Dialog (default) | Attribute",
+   "group": ""
+  },
+  {
+   "name": "Number of entities to select",
+   "default": "1",
+   "values": "要从每个传入实体流中选择的实体数量 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Key attribute for number of entities",
+   "default": "Name",
+   "values": "确定要匹配的实体数量的关键属性名称 Name (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "输出模块中存在的、尚未离开的实体数量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "输出从模块中提取的实体数量 off (default) | on",
+   "group": ""
+  }
+ ]
+}

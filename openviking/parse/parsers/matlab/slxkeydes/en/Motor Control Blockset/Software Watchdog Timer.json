@@ -1,0 +1,37 @@
+{
+ "key": "Software Watchdog Timer",
+ "title": "Software Watchdog Timer",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensor Decoders/Software_Watchdog_Timer.md"
+ ],
+ "text": "Output true until counter reaches maximum count limit, 1 input, 1 output, {Counter data type} sets Data type of Status output; {Maximum count} sets the maximum limit of watchdog timer value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Restart",
+   "direction": "input",
+   "summary": "Pulse to restart watchdog timer counter scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Watchdog timer status scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum count",
+   "default": "10",
+   "values": "Maximum limit of watchdog timer value 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Counter data type",
+   "default": "uint8",
+   "values": "Data type of Status output uint8 (default) | uint16 | uint32",
+   "group": ""
+  }
+ ]
+}

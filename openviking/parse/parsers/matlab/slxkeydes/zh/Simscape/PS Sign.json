@@ -1,0 +1,13 @@
+{
+ "key": "PS Sign",
+ "title": "PS Sign",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Sign.md"
+ ],
+ "text": "输出输入物理信号的符号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

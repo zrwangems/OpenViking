@@ -1,0 +1,92 @@
+{
+ "key": "Memory Allocate",
+ "title": "Memory Allocate",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Memory Operations/Memory_Allocate.md"
+ ],
+ "text": "Allocate memory for new variable, {Variable name} sets Name for variable; {Specify variable alignment} sets the variable alignment flag, {Memory alignment boundary} sets the memory alignment for variable, {Data type}, {Specify data type qualifier} sets the data type qualifier flag, {Data type qualifier}, {Data dimension} sets the number of elements of variable data type, {Initialize memory} sets the memory initialization flag, {Initial value}, {Specify memory section} sets the memory section flag, {Memory section}, {Bind memory section} and {Section start address} sets the start address of memory section for variable. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Variable name",
+   "default": "myVariable",
+   "values": "Name for variable myVariable (default) | string | character vector",
+   "group": "Memory"
+  },
+  {
+   "name": "Specify variable alignment",
+   "default": "off",
+   "values": "Variable alignment flag off (default) | on",
+   "group": "Memory"
+  },
+  {
+   "name": "Memory alignment boundary",
+   "default": "4",
+   "values": "Memory alignment for variable 4 (default) | 1 | 2 | 8",
+   "group": "Memory"
+  },
+  {
+   "name": "Data type",
+   "default": "uint32",
+   "values": "Data type for variable uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | boolean",
+   "group": "Memory"
+  },
+  {
+   "name": "Specify data type qualifier",
+   "default": "off",
+   "values": "Data type qualifier flag off (default) | on",
+   "group": "Memory"
+  },
+  {
+   "name": "Data type qualifier",
+   "default": "volatile",
+   "values": "Data type qualifier for variable volatile (default) | sting | character vectory",
+   "group": "Memory"
+  },
+  {
+   "name": "Data dimension",
+   "default": "64",
+   "values": "Number of elements of variable data type 64 (default) | positive integer",
+   "group": "Memory"
+  },
+  {
+   "name": "Initialize memory",
+   "default": "off",
+   "values": "Memory initialization flag off (default) | on",
+   "group": "Memory"
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "Initial value for variable 0 (default) | scalar | vector | matrix",
+   "group": "Memory"
+  },
+  {
+   "name": "Specify memory section",
+   "default": "off",
+   "values": "Memory section flag off (default) | on",
+   "group": "Section"
+  },
+  {
+   "name": "Memory section",
+   "default": "mySEC1",
+   "values": "Memory section for variable mySEC1 (default) | string | character vector",
+   "group": "Section"
+  },
+  {
+   "name": "Bind memory section",
+   "default": "off",
+   "values": "Bind memory section to start address flag off (default) | on",
+   "group": "Section"
+  },
+  {
+   "name": "Section start address",
+   "default": "hex2dec(’8000’)",
+   "values": "Start address of memory section for variable hex2dec(’8000’) (default) | memory address in decimal or hexadecimal form",
+   "group": "Section"
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "key": "FFT 1536",
+ "title": "FFT 1536",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/FFT_1536.md"
+ ],
+ "text": "Computes fast-fourier-transform (FFT) for LTE standard transmission bandwidth of 15 MHz, 3 inputs, 2 outputs, {Rounding method} sets Rounding mode for internal fixed-point calculations; {Complex multiplication} sets the hDL implementation Use 3 multipliers, {Normalize butterfly output} sets the output normalization and {Enable reset input port} sets the optional reset signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar of real or complex values"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Reset control signal scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Frequency channel output data scalar of real or complex values"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Complex multiplication",
+   "default": "adders",
+   "values": "HDL implementation Use 3 multipliers and 5 adders (default) | Use 4 multipliers and 2 adders",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding method",
+   "default": "Floor",
+   "values": "Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Main"
+  },
+  {
+   "name": "Normalize butterfly output",
+   "default": "off",
+   "values": "Output normalization off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Optional reset signal off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

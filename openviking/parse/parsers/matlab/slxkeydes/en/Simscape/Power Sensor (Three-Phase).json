@@ -1,0 +1,13 @@
+{
+ "key": "Power Sensor (Three-Phase)",
+ "title": "Power Sensor (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Power_Sensor_Three_Phase.md"
+ ],
+ "text": "Three-phase ideal active and reactive power sensor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

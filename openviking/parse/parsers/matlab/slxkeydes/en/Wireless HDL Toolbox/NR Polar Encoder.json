@@ -1,0 +1,74 @@
+{
+ "key": "NR Polar Encoder",
+ "title": "NR Polar Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/NR_Polar_Encoder.md"
+ ],
+ "text": "Perform polar encoding according to 5G NR standard, 4 inputs, 3 outputs; {Link direction} sets the direction of 5G NR, {Configuration source} sets the source for K, {Message length (K)} sets the length of information block in bits and {Rate-matched length (E)} sets the rate-matched output length in bits. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data bit scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "Length of information block in bits positive integer"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "Rate-matched output length in bits positive integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Encoded data bit scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Ready for new inputs scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Link direction",
+   "default": "Downlink",
+   "values": "Direction of 5G NR link Downlink (default) | Uplink",
+   "group": ""
+  },
+  {
+   "name": "Configuration source",
+   "default": "Property",
+   "values": "Source for K and E Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Message length (K)",
+   "default": "56",
+   "values": "Length of information block in bits 56 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Rate-matched length (E)",
+   "default": "864",
+   "values": "Rate-matched output length in bits 864 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

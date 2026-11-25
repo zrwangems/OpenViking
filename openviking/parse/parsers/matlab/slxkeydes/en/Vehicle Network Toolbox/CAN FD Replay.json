@@ -1,0 +1,61 @@
+{
+ "key": "CAN FD Replay",
+ "title": "CAN FD Replay",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN FD Communication/CAN_FD_Replay.md"
+ ],
+ "text": "Replay logged CAN FD messages, 2 outputs; {File name} sets the path and name of MAT-file with messages, {Variable name} sets the variable in MAT-file holding, {Number of times to replay messages} sets the repeat value, {Replay messages to} sets the output location CAN, {Device} sets the cAN FD device and channel device list and {Sample time} sets the block execution rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "output",
+   "summary": "Replayed CAN FD messages CAN_FD_MESSAGE_BUS"
+  },
+  {
+   "name": "f()",
+   "direction": "output",
+   "summary": "Function-call event output function-call event"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "untitled.mat",
+   "values": "Path and name of MAT-file with messages untitled.mat (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "ans",
+   "values": "Variable in MAT-file holding messages ans (default) | variable",
+   "group": ""
+  },
+  {
+   "name": "Number of times to replay messages",
+   "default": "Inf",
+   "values": "Repeat value Inf (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Replay messages to",
+   "default": "Bus",
+   "values": "Specify output location CAN FD Bus (default) | Output port",
+   "group": ""
+  },
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN FD device and channel device list option",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Block execution rate 0.01 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

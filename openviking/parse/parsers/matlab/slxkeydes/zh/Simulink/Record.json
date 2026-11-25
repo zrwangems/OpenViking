@@ -1,0 +1,124 @@
+{
+ "key": "Record",
+ "title": "Record",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/Record.md",
+  "Simulink/Sinks/XY_Graph.md",
+  "HDL Coder/Sinks/XY_Graph.md"
+ ],
+ "text": "查看数据并将数据记录到工作区、文件或两者，输入 1 路、无直接馈通；按 {Limit data points to last} 指定要记录的采样数；{Number of input ports} 指定输入端口数、{Decimation} 指定抽取因子、{Select port} 指定要为其指定输入处理模式的端口、{Input processing} 指定所选端口的输入处理模式 Elements、{Record to workspace} 指定工作区记录、{Workspace variable name} 指定包含所记录模块数据的工作区变量名称、{Record to file} 指定 Log to file、{File name} 指定包含所记录数据的文件名称、{File type} 指定所记录数据的文件类型、{File location} 指定包含所记录数据的文件路径 working、{Time}、{Signal Attributes} 指定要导出到 Excel 文件的信号属性 Data、{Compression Type} 指定压缩选项 Fastest、{Generate Sidecar} 指定生成 JSON sidecar、{Row Group Policy} 指定在 Parquet 文件中分组行的选项 Row Group、{Row Group Policy Value} 指定行组的高度或大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要记录的信号 scalar | vector | matrix | array | bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "1",
+   "values": "输入端口数 1 (default) | integer in the range [ 1,100 ]",
+   "group": "Main"
+  },
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "抽取因子 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Limit data points to last",
+   "default": "inf",
+   "values": "要记录的采样数 inf (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Select port",
+   "default": "1",
+   "values": "要为其指定输入处理模式的端口 1 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Input processing",
+   "default": "(sample-based)",
+   "values": "所选端口的输入处理模式 Elements as channels (sample-based) (default) | Columns as channels (frame-based)",
+   "group": "Main"
+  },
+  {
+   "name": "Record to workspace",
+   "default": "off",
+   "values": "工作区记录选项 off (default) | on",
+   "group": "Record"
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "recordout",
+   "values": "包含所记录模块数据的工作区变量名称 recordout (default) | character vector | string",
+   "group": "Record"
+  },
+  {
+   "name": "Record to file",
+   "default": "off",
+   "values": "Log to file 选项 off (default) | on",
+   "group": "Record"
+  },
+  {
+   "name": "File name",
+   "default": "recording.mldatx",
+   "values": "包含所记录数据的文件名称 recording.mldatx (default) | character vector | string",
+   "group": "Record"
+  },
+  {
+   "name": "File type",
+   "default": "*.mldatx",
+   "values": "所记录数据的文件类型 *.mldatx (default) | *.mat | *.xslx | *.parquet",
+   "group": "Record"
+  },
+  {
+   "name": "File location",
+   "default": "directory",
+   "values": "包含所记录数据的文件路径 working directory (default) | character vector | string",
+   "group": "Record"
+  },
+  {
+   "name": "Time",
+   "default": "Columns",
+   "values": "用于将时间数据导出到 Excel 或 Parquet 文件的选项 Shared Time Columns (default) | Individual Time Columns",
+   "group": "Record"
+  },
+  {
+   "name": "Signal Attributes",
+   "default": "",
+   "values": "要导出到 Excel 文件的信号属性 Data Type | Units | Port Index | Block Path | Interpolation",
+   "group": "Record"
+  },
+  {
+   "name": "Compression Type",
+   "default": "(snappy)",
+   "values": "压缩选项 Fastest (snappy) (default) | Balanced for Size and Speed (gzip) | Compact (brotli) | None (uncompressed)",
+   "group": "Record"
+  },
+  {
+   "name": "Generate Sidecar",
+   "default": "on",
+   "values": "生成 JSON sidecar 的选项 on (default) | off",
+   "group": "Record"
+  },
+  {
+   "name": "Row Group Policy",
+   "default": "Height",
+   "values": "在 Parquet 文件中分组行的选项 Row Group Height (default) | Row Group Size (MB)",
+   "group": "Record"
+  },
+  {
+   "name": "Row Group Policy Value",
+   "default": "",
+   "values": "行组的高度或大小 auto (default when Row Group Policy is Row Group Height ) | 512 (default when Row Group Policy is Row Group Size (MB) | number of rows | size of row group",
+   "group": "Record"
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+{
+ "key": "Array-Vector Add",
+ "title": "Array-Vector Add",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Array_Vector_Add.md"
+ ],
+ "text": "沿指定维度将向量添加到数组，输入 2 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Add along dimension} 指定沿其添加的维度、{Vector (V) source} 指定向量 V 的来源、{Vector (V)} 指定要添加的向量、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Accumulator} 指定累加器数据类型、{Output} 输出数据类型、{Output Minimum} 输出最小值、{Output Maximum} 输出最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入数组 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "要添加的向量 vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "输出 scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Add along dimension",
+   "default": "1",
+   "values": "沿其添加的维度 1 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V) source",
+   "default": "port",
+   "values": "向量 V 的来源 Input port (default) | Dialog parameter",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V)",
+   "default": "0.25]",
+   "values": "要添加的向量 [0.5 0.25] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as first input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "输出数据类型 Inherit: Inherit same as accumulator (default) | Inherit: Inherit same as first input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "输出最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "输出最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

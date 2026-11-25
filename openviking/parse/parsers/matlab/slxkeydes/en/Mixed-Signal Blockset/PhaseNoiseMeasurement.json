@@ -1,0 +1,74 @@
+{
+ "key": "PhaseNoiseMeasurement",
+ "title": "Phase Noise Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Measurements & Testbenches/Phase_Noise_Measurement.md"
+ ],
+ "text": "Compute phase noise at specific frequency offset vectors, 1 input; {Resolution bandwidth (Hz)} sets the smallest positive frequency that can be resolved, {No. of spectral averages} sets the number of spectral averages, {Hold off time (s)} sets the delays measurement analysis to avoid, {Frequency offset vector (Hz)} sets the frequency points relative to fundamental frequency where phase noise is calculated, {Specify target} sets the target phase noise vector, {Phase noise vector (dBc/Hz)} sets the target phase noise profile for given frequency offset vector, {Set stop time} sets the recommended minimum simulation stop time as model stop time, {Plot phase noise} and {Export measurement results}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "sig",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "30e3",
+   "values": "Smallest positive frequency that can be resolved 30e3 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "No. of spectral averages",
+   "default": "4",
+   "values": "Number of spectral averages 4 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "Delays measurement analysis to avoid transients 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency offset vector (Hz)",
+   "default": "10e6]",
+   "values": "Frequency points relative to fundamental frequency where phase noise is calculated [30e3 100e3 1e6 3e6 10e6] (default) | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Specify target",
+   "default": "off",
+   "values": "Specify target phase noise vector off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Phase noise vector (dBc/Hz)",
+   "default": "-300]",
+   "values": "Target phase noise profile for given frequency offset vector [-300 -300 -300 -300 -300] (default) | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Set stop time",
+   "default": "",
+   "values": "Set recommended minimum simulation stop time as model stop time button",
+   "group": ""
+  },
+  {
+   "name": "Plot phase noise",
+   "default": "",
+   "values": "Plot phase noise profile of input signal button",
+   "group": ""
+  },
+  {
+   "name": "Export measurement results",
+   "default": "",
+   "values": "Export measurement results after simulation button",
+   "group": ""
+  }
+ ]
+}

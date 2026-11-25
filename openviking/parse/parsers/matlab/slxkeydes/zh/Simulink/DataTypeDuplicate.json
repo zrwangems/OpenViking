@@ -1,0 +1,32 @@
+{
+ "key": "DataTypeDuplicate",
+ "title": "Data Type Duplicate",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Data_Type_Duplicate.md",
+  "HDL Coder/Signal Attributes/Data_Type_Duplicate.md"
+ ],
+ "text": "强制所有输入为相同数据类型，输入 2 路；{输入端口数目} 指定模块输入的数目，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "第 N 个输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入端口数目",
+   "default": "2",
+   "values": "模块输入的数目 2 (默认) | 实值正整数",
+   "group": ""
+  }
+ ]
+}

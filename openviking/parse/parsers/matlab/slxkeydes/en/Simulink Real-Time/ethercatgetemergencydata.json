@@ -1,0 +1,53 @@
+{
+ "key": "ethercatgetemergencydata",
+ "title": "EtherCAT Get Emergency",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Get_Emergency.md"
+ ],
+ "text": "Collect emergency messages from the EtherCAT bus, 4 outputs; {Network Device Index} sets the etherCAT network identifier, {Log messages to statusmonitor} enables message logging and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Err Code",
+   "direction": "output",
+   "summary": "Error Code uint16"
+  },
+  {
+   "name": "Err Reg",
+   "direction": "output",
+   "summary": "Error Register uint8"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Emergency data vector uint8"
+  },
+  {
+   "name": "Name",
+   "direction": "output",
+   "summary": "Station address uint8"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT network identifier 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "Log messages to statusmonitor",
+   "default": "on",
+   "values": "Enable message logging on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": ".001",
+   "values": "Sample time of block .001 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

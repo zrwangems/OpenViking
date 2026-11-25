@@ -1,0 +1,20 @@
+{
+ "key": "Shared-memory Pack",
+ "title": "Shared Memory Pack",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Shared Memory/Shared_Memory_Pack.md"
+ ],
+ "text": "Shared memory pack; {Partition struct} sets the name of structure. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Partition struct",
+   "default": "[]",
+   "values": "Name of structure [] (default)",
+   "group": ""
+  }
+ ]
+}

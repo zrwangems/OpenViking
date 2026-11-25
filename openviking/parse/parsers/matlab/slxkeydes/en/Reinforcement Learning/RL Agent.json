@@ -1,0 +1,91 @@
+{
+ "key": "RL Agent",
+ "title": "RL Agent",
+ "toolbox": "Reinforcement Learning",
+ "kind": "source_type",
+ "source_docs": [
+  "Reinforcement Learning/RL_Agent.md"
+ ],
+ "text": "Reinforcement learning agent, 6 inputs, 2 outputs; {Agent object} sets the agent to train, {Generate greedy policy block}, {External action inputs} adds input ports for external action, {Last action input} adds input ports for last action applied, {Cumulative reward output} adds cumulative reward output port and {Use strict observation data types} sets the enforce strict data types for observations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "observation",
+   "direction": "input",
+   "summary": "Environment observations scalar | vector | nonvirtual bus"
+  },
+  {
+   "name": "reward",
+   "direction": "input",
+   "summary": "Reward from environment scalar"
+  },
+  {
+   "name": "isdone",
+   "direction": "input",
+   "summary": "Flag to terminate episode simulation logical"
+  },
+  {
+   "name": "external action",
+   "direction": "input",
+   "summary": "External action signal scalar | vector"
+  },
+  {
+   "name": "last action",
+   "direction": "input",
+   "summary": "Last action applied to environment signal scalar | vector"
+  },
+  {
+   "name": "use external action",
+   "direction": "input",
+   "summary": "Use external action signal 0 | 1"
+  },
+  {
+   "name": "action",
+   "direction": "output",
+   "summary": "Agent action scalar | vector | nonvirtual bus"
+  },
+  {
+   "name": "cumulative reward",
+   "direction": "output",
+   "summary": "Cumulative undiscounted reward scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Agent object",
+   "default": "agentObj",
+   "values": "Agent to train agentObj (default) | agent object",
+   "group": ""
+  },
+  {
+   "name": "Generate greedy policy block",
+   "default": "",
+   "values": "Generate greedy policy block controller button",
+   "group": ""
+  },
+  {
+   "name": "External action inputs",
+   "default": "off",
+   "values": "Add input ports for external action off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Last action input",
+   "default": "off",
+   "values": "Add input ports for last action applied to environment off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cumulative reward output",
+   "default": "off",
+   "values": "Add cumulative reward output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use strict observation data types",
+   "default": "off",
+   "values": "Enforce strict data types for observations off (default) | on",
+   "group": ""
+  }
+ ]
+}

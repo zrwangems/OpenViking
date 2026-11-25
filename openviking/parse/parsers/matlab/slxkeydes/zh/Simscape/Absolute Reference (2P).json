@@ -1,0 +1,13 @@
+{
+ "key": "Absolute Reference (2P)",
+ "title": "Absolute Reference (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Absolute_Reference_2P.md"
+ ],
+ "text": "完全绝热的流体流动堵头。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

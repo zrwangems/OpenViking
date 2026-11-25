@@ -1,0 +1,97 @@
+{
+ "key": "Normalization",
+ "title": "Normalization",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Math Operations/Normalization.md"
+ ],
+ "text": "Perform vector normalization along rows, columns, or specified dimension, 1 input, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode; {Norm}, {Normalization bias}, {Normalize over} sets the dimension over which to normalize Each, {Dimension}, {Saturate on integer overflow}, {Product output}, {Accumulator}, {Output}, {Output Minimum}, {Output Maximum} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Normalization output scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Norm",
+   "default": "2-norm",
+   "values": "Normalization type Squared 2-norm (default) | 2-norm",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalization bias",
+   "default": "1e-10",
+   "values": "Normalization bias 1e-10 (default) | nonnegative scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalize over",
+   "default": "column",
+   "values": "Dimension over which to normalize Each column (default) | Each row | Specified dimension",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Specify dimension 1 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output data type Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "Accumulator data type Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "output",
+   "values": "Output data type Inherit: Same as product output (default) | Inherit: Same as input | Inherit: Same as accumulator | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Output Minimum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Output Maximum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

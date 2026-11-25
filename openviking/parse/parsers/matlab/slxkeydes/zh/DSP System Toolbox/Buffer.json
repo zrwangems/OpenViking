@@ -1,0 +1,43 @@
+{
+ "key": "Buffer",
+ "title": "Buffer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Buffers/Buffer.md"
+ ],
+ "text": "将输入序列分组或合并为更小或更大的帧大小，输入 1 路、输出 1 路、无直接馈通；按 {初始条件} 指定初始输出；{输出缓冲区大小(每通道)} 指定缓冲区大小、{缓冲区重叠}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出缓冲区大小(每通道)",
+   "default": "64",
+   "values": "缓冲区大小 64 (默认) | 正整数",
+   "group": ""
+  },
+  {
+   "name": "缓冲区重叠",
+   "default": "0",
+   "values": "缓冲区重叠 0 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "初始输出 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  }
+ ]
+}

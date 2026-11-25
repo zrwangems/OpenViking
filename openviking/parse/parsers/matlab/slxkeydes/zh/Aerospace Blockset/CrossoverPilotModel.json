@@ -1,0 +1,78 @@
+{
+ "key": "CrossoverPilotModel",
+ "title": "Crossover Pilot Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Pilot Models/Crossover_Pilot_Model.md"
+ ],
+ "text": "表示 Crossover Pilot Model，输入 2 路、输出 1 路；按 {Type of control} 指定动力学控制；{Calculated value} 指定穿越频率或飞行员增益 Crossover、{Controlled element gain} 指定受控对象增益、{Pilot gain} 指定飞行员增益、{Crossover frequency (rad/s)} 指定穿越频率、{Pilot time delay(s)} 指定飞行员时间延迟、{Pilot lead constant} 指定飞行员超前常数、{Pilot lag constant} 指定飞行员滞后常数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x com",
+   "direction": "input",
+   "summary": "信号指令 scalar"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "信号 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "飞行器指令 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of control",
+   "default": "Proportional",
+   "values": "动力学控制 Proportional (default) | Rate or velocity | Spiral divergence | Second order - Short period | Acceleration(*) | Roll attitude(*) | Unstable short period(*) | Second order - Phugoid(*)",
+   "group": ""
+  },
+  {
+   "name": "Calculated value",
+   "default": "frequency",
+   "values": "穿越频率或飞行员增益 Crossover frequency (default) | Pilot gain",
+   "group": ""
+  },
+  {
+   "name": "Controlled element gain",
+   "default": "1",
+   "values": "受控对象增益 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot gain",
+   "default": "3",
+   "values": "飞行员增益 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Crossover frequency (rad/s)",
+   "default": "3",
+   "values": "穿越频率 3 (default) | scalar in the range of 1 and 10",
+   "group": ""
+  },
+  {
+   "name": "Pilot time delay(s)",
+   "default": "0.1",
+   "values": "飞行员时间延迟 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot lead constant",
+   "default": "1",
+   "values": "飞行员超前常数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot lag constant",
+   "default": "5",
+   "values": "飞行员滞后常数 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

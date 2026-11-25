@@ -1,0 +1,85 @@
+{
+ "key": "Check Signal Attributes",
+ "title": "Check Signal Attributes",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Signal Attributes/Check_Signal_Attributes.md"
+ ],
+ "text": "Error when input signal does or does not match selected attributes exactly, 1 input, 1 output, no direct feedthrough, {Specific floating-point} sets Specific; {Error when input} sets the generate error when input Does not match attributes, {Complexity}, {Dimensionality}, {Dimensions}, {Data type}, {General data type}, {Specific fixed-point}, {Specific integer} and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Error when input",
+   "default": "exactly",
+   "values": "Generate error when input Does not match attributes exactly (default) | Matches attributes exactly",
+   "group": ""
+  },
+  {
+   "name": "Complexity",
+   "default": "Ignore",
+   "values": "Specify complexity Ignore (default) | Real | Complex",
+   "group": ""
+  },
+  {
+   "name": "Dimensionality",
+   "default": "Ignore",
+   "values": "Dimensionality check Ignore (default) | Is... | Is not...",
+   "group": ""
+  },
+  {
+   "name": "Dimensions",
+   "default": "1-D",
+   "values": "Specify dimensions 1-D (default) | 2-D | Scalar (1-D or 2-D) | Vector (1-D or 2-D) | Vector (1-D or 2-D) or scalar | Row vector (2-D) | Row vector (2-D) or scalar | Column vector (2-D) | Column vector (2-D) or scalar | Full matrix (2-D) | Square matrix (2-D)",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "Ignore",
+   "values": "Data type check Ignore (default) | Is... | Is not...",
+   "group": ""
+  },
+  {
+   "name": "General data type",
+   "default": "Boolean",
+   "values": "General data type check Boolean (default) | Enumerated | Floating-point | Floating-point or boolean | Fixed-point | Integer",
+   "group": ""
+  },
+  {
+   "name": "Specific floating-point",
+   "default": "floating-point",
+   "values": "Specific floating-point check Any floating-point (default) | Double precision | Single precision",
+   "group": ""
+  },
+  {
+   "name": "Specific fixed-point",
+   "default": "fixed-point",
+   "values": "Specific fixed-point check Any fixed-point (default) | Signed fixed-point | Unsigned fixed-point",
+   "group": ""
+  },
+  {
+   "name": "Specific integer",
+   "default": "integer",
+   "values": "Specific integer check Any integer (default) | Signed integer | Unsigned integer | int8 | int16 | int32 | uint8 | uint16 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "Ignore",
+   "values": "Sample time check Ignore (default) | Discrete | Continuous",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PS Switch",
+ "title": "PS Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Switch.md"
+ ],
+ "text": "Single-pole double-throw switch controlled by external physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

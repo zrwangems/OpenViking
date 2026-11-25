@@ -1,0 +1,44 @@
+{
+ "key": "Band-Limited White Noise.",
+ "title": "Band-Limited White Noise",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Band_Limited_White_Noise.md"
+ ],
+ "text": "Introduce white noise into continuous system, 1 output, no direct feedthrough, {Seed} sets Starting seed; {Noise power} sets the height of PSD of white noise, {Sample time} sets the correlation time of noise and {Interpret vector parameters as 1-D} treats vector parameters as 1-D. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Normally distributed random numbers scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Noise power",
+   "default": "[0.1]",
+   "values": "Height of PSD of white noise [0.1] (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Correlation time of noise 0.1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "[23341]",
+   "values": "Starting seed [23341] (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "Treat vector parameters as 1-D on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Induction Machine Wound Rotor",
+ "title": "Induction Machine Wound Rotor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/Induction_Machine_Wound_Rotor.md"
+ ],
+ "text": "具有标幺值或 SI 参数化的绕线转子感应电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

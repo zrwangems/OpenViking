@@ -1,0 +1,29 @@
+{
+ "key": "MessageViewer",
+ "title": "Sequence Viewer",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Messages & Events/Sequence_Viewer.md",
+  "SimEvents/Sequence_Viewer.md",
+  "Simulink Test/Sequence_Viewer.md",
+  "Stateflow/Sequence_Viewer.md"
+ ],
+ "text": "Display messages, events, states, transitions, and functions between blocks during simulation; {Time Precision for Variable Step} sets the digits for time increment precision and {History} sets the maximum number of previous events. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Time Precision for Variable Step",
+   "default": "3",
+   "values": "Digits for time increment precision 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "History",
+   "default": "5000",
+   "values": "Maximum number of previous events to display 5000 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

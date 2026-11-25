@@ -1,0 +1,97 @@
+{
+ "key": "Matrix Square",
+ "title": "Matrix Square",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Matrix_Square.md"
+ ],
+ "text": "Compute square of input matrix, 1 input, 1 output, direct feedthrough, {Mode} sets Category of data to specify; {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type}, {Lock output data type setting against changes by the fixed-point tools} sets the output data type locking, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the behavior when integer overflow occurs, {Signedness} sets the signed, {Scaling} sets the method for scaling fixed-point data Binary, {Data type override} sets the data type override mode for this signal, {Word length} sets the bit size of the word that holds the quantized and {Fraction length} sets the fraction length for fixed-point data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input matrix M -by-1 matrix | 1-by- N matrix | M -by- N matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output matrix M -by- M matrix | N -by- N matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | Inherit: Same as input | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Output data type locking off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Behavior when integer overflow occurs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Category of data to specify Inherit (default) | Built in | Fixed point | Expression",
+   "group": ""
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Specify signed or unsigned Signed (default) | Unsigned",
+   "group": ""
+  },
+  {
+   "name": "Scaling",
+   "default": "point",
+   "values": "Method for scaling fixed-point data Binary point (default)",
+   "group": ""
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": ""
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": ""
+  }
+ ]
+}

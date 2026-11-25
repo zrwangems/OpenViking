@@ -1,0 +1,61 @@
+{
+ "key": "ZeroPole",
+ "title": "Zero-Pole",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Zero_Pole.md"
+ ],
+ "text": "使用零极点增益传递函数进行系统建模，输入 1 路、输出 1 路；按 {零点} 指定零点矩阵；{极点}、{增益}、{参数可调性} 指定代码中模块参数的可调表示、{绝对容差}、{状态名称(例如，’position’)} 用于为各状态指定唯一名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "零点",
+   "default": "[1]",
+   "values": "零点矩阵 [1] (默认) | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "极点",
+   "default": "-1]",
+   "values": "极点向量 [0 -1] (默认) | 向量",
+   "group": ""
+  },
+  {
+   "name": "增益",
+   "default": "[1]",
+   "values": "增益向量 [1] (默认) | 向量",
+   "group": ""
+  },
+  {
+   "name": "参数可调性",
+   "default": "Auto",
+   "values": "代码中模块参数的可调表示 Auto (默认) | Optimized | Unconstrained",
+   "group": ""
+  },
+  {
+   "name": "绝对容差",
+   "default": "auto",
+   "values": "用于计算模块状态的绝对容差 auto (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "状态名称(例如，’position’)",
+   "default": "’’",
+   "values": "用于为各状态指定唯一名称的选项 ’’ (默认) | 字符向量 | 字符向量元胞数组 | MATLAB ® 变量 |...",
+   "group": ""
+  }
+ ]
+}

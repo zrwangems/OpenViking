@@ -1,0 +1,50 @@
+{
+ "key": "Signal From Workspace",
+ "title": "Signal From Workspace",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Signal_From_Workspace.md"
+ ],
+ "text": "Import signal from MATLAB workspace, 1 output, no direct feedthrough, {Signal} sets Signal to import; {Sample time} sets the output sample period, {Samples per frame}, {Form output after final data value by} sets the values to output after final imported signal value Setting and {Warn when frame size does not evenly divide input length} sets the warn when input length is not an integer multiple of frame. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Signal imported from workspace scalar | vector | matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal",
+   "default": "1:10",
+   "values": "Signal to import 1:10 (default) | MATLAB workspace variable | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Output sample period 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Form output after final data value by",
+   "default": "zero",
+   "values": "Values to output after final imported signal value Setting to zero (default) | Holding final value | Cyclic repetition",
+   "group": ""
+  },
+  {
+   "name": "Warn when frame size does not evenly divide input length",
+   "default": "off",
+   "values": "Warn when input length is not an integer multiple of frame size off (default) | on",
+   "group": ""
+  }
+ ]
+}

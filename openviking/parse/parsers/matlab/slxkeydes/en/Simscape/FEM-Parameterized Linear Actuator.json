@@ -1,0 +1,13 @@
+{
+ "key": "FEM-Parameterized Linear Actuator",
+ "title": "FEM-Parameterized Linear Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/FEM_Parameterized_Linear_Actuator.md"
+ ],
+ "text": "Linear actuator defined in terms of magnetic flux.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

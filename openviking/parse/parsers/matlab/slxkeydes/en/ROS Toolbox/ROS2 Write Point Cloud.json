@@ -1,0 +1,52 @@
+{
+ "key": "ROS2 Write Point Cloud",
+ "title": "Write Point Cloud",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Write_Point_Cloud.md"
+ ],
+ "text": "Write point cloud data to a ROS or ROS 2 message, 4 inputs, 1 output, {Select color field} sets Color field for the point cloud image; {Write to Intensity field} sets the write intensity values. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "XYZ",
+   "direction": "input",
+   "summary": "XYZ coordinates matrix | array"
+  },
+  {
+   "name": "RGB",
+   "direction": "input",
+   "summary": "RGB values for each point matrix | array"
+  },
+  {
+   "name": "Alpha",
+   "direction": "input",
+   "summary": "Alpha channel for input image N -by-1 vector | h -by- w matrix"
+  },
+  {
+   "name": "Intensity",
+   "direction": "input",
+   "summary": "Intensity values for each point matrix | array"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "ROS or ROS 2 point cloud message nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select color field",
+   "default": "none",
+   "values": "Color field for the point cloud image none (default) | rgb | rgba",
+   "group": ""
+  },
+  {
+   "name": "Write to Intensity field",
+   "default": "off",
+   "values": "Write intensity values off (default) | on",
+   "group": ""
+  }
+ ]
+}

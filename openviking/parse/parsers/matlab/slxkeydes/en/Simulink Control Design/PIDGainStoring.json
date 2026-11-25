@@ -1,0 +1,160 @@
+{
+ "key": "PIDGainStoring",
+ "title": "PID Gains Store and Update",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/PID_Gains_Store_and_Update.md"
+ ],
+ "text": "Store and update tuned PID gains tuned using Closed-Loop PID Autotuner, 4 inputs, 1 output, {Controller type} sets PID controller type P; {Use for gain scheduling} enables block for gain scheduling, {Save breakpoints in gain array} sets the save breakpoints along with PID gains, {Breakpoints} sets the gain scheduling breakpoints, {Number of breakpoints}, {Use external signal} sets the breakpoints from input port, {Gain index tolerance}, {Method of storing gains}, {P Gain Parameter Name} sets the proportional gain data, {P Gain initial conditions} sets the proportional gain initial value, {I Gain Parameter Name} sets the integral gain data, {I Gain initial conditions} sets the integral gain initial value, {D Gain Parameter Name} sets the derivative gain data, {D Gain initial conditions} sets the derivative gain initial value, {N Gain Parameter Name} sets the filter gain data, {N Gain initial conditions} sets the filter gain initial value, {Method to trigger gain update} sets the update trigger method Detect change in PID, {Number of samples to delay update}, {Sample time (-1 for inherited)} and {Data Type} sets the floating point precision. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "tuned Gains",
+   "direction": "input",
+   "summary": "Tuned PID gains bus"
+  },
+  {
+   "name": "scheduling Variable",
+   "direction": "input",
+   "summary": "Scheduling variable scalar"
+  },
+  {
+   "name": "Breakpoints",
+   "direction": "input",
+   "summary": "Breakpoint data vector"
+  },
+  {
+   "name": "Update Trigger",
+   "direction": "input",
+   "summary": "Trigger control signal scalar"
+  },
+  {
+   "name": "PID Gains Out",
+   "direction": "output",
+   "summary": "PID gain array bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Controller type",
+   "default": "P",
+   "values": "PID controller type P (default) | I | PI | PD | PDN | PID | PIDN",
+   "group": ""
+  },
+  {
+   "name": "Use for gain scheduling",
+   "default": "on",
+   "values": "Enable block for gain scheduling on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Save breakpoints in gain array",
+   "default": "off",
+   "values": "Save breakpoints along with PID gains off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints",
+   "default": "3]",
+   "values": "Gain scheduling breakpoints [1 2 3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of breakpoints",
+   "default": "3",
+   "values": "Number of breakpoints 3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Use external signal",
+   "default": "off",
+   "values": "Specify breakpoints from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Gain index tolerance",
+   "default": "1e-3",
+   "values": "Gain index tolerance 1e-3 (default) | nonegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Method of storing gains",
+   "default": "memory",
+   "values": "Method of storing gains Data store memory (default) | Goto/from | Output from block",
+   "group": ""
+  },
+  {
+   "name": "P Gain Parameter Name",
+   "default": "PGain",
+   "values": "Proportional gain data name PGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "P Gain initial conditions",
+   "default": "0",
+   "values": "Proportional gain initial value 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "I Gain Parameter Name",
+   "default": "IGain",
+   "values": "Integral gain data name IGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "I Gain initial conditions",
+   "default": "0",
+   "values": "Integral gain initial value 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "D Gain Parameter Name",
+   "default": "DGain",
+   "values": "Derivative gain data name DGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "D Gain initial conditions",
+   "default": "0",
+   "values": "Derivative gain initial value 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "N Gain Parameter Name",
+   "default": "NGain",
+   "values": "Filter gain data name NGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "N Gain initial conditions",
+   "default": "100",
+   "values": "Filter gain initial value 100 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Method to trigger gain update",
+   "default": "gains",
+   "values": "Update trigger method Detect change in PID gains (default) | External trigger",
+   "group": ""
+  },
+  {
+   "name": "Number of samples to delay update",
+   "default": "1",
+   "values": "Number of samples to delay update 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "Double",
+   "values": "Floating point precision Double (default) | Single",
+   "group": ""
+  }
+ ]
+}

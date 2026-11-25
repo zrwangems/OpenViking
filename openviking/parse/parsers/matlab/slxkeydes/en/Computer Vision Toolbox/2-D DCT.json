@@ -1,0 +1,73 @@
+{
+ "key": "2-D DCT",
+ "title": "2-D DCT",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/b_2_D_DCT.md"
+ ],
+ "text": "Compute 2-D discrete cosine transform (DCT), 1 input, 1 output, {Rounding mode} sets Rounding mode for fixed-point representation; {Sine and cosine computation} sets how the block computes the sine and cosine terms Table, {Saturate on integer overflow} sets the overflow mode, {Sine Table} sets the data type of sine table, {Product output} sets the data type of product output, {Accumulator} sets the data type of accumulator, {Output} sets the data type of output and {Lock data type settings against change by the fixed-point tools} sets the data type override. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data matrix | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output data matrix | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sine and cosine computation",
+   "default": "lookup",
+   "values": "Specify how the block computes the sine and cosine terms Table lookup (default) | Trigonometric fcn",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point representation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Specify overflow mode off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sine Table",
+   "default": "input",
+   "values": "Data type of sine table Inherit: Same word length as input (default) | fixdt(1,16) |",
+   "group": ""
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Data type of product output Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Data type of accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "Data type of output Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Data type override off (default) | on",
+   "group": ""
+  }
+ ]
+}

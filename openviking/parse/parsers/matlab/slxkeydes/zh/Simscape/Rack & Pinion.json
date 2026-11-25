@@ -1,0 +1,13 @@
+{
+ "key": "Rack & Pinion",
+ "title": "Rack & Pinion",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Rotational- Translational/Rack_Pinion.md"
+ ],
+ "text": "Rack and pinion gear coupling translational and rotational motion, with adjustable pinion radius and friction losses。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

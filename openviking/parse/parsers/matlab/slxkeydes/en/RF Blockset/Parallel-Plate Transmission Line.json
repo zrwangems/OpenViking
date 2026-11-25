@@ -1,0 +1,146 @@
+{
+ "key": "Parallel-Plate Transmission Line",
+ "title": "Parallel-Plate Transmission Line",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Transmission Lines/Parallel_Plate_Transmission_Line.md"
+ ],
+ "text": "Model parallel-plate transmission line, {Stub mode} sets Type of; {Plate width (m)} sets the width of parallel-plate transmission line, {Plate separation (m)} sets the dielectric spacing in parallel-plate transmission line, {Relative permeability constant} sets the relative permeability of the dielectric material in the parallel-plate transmission, {Relative permittivity constant} sets the relative permittivity of the dielectric material in the parallel-plate transmission, {Loss tangent of dielectric}, {Conductivity of the conductor (S/m)} sets the conductivity of conductor, {Transmission line length(m)} sets the physical length of the transmission line, {Termination of stub} sets the stub termination, {Source of frequency data} sets the frequency data source, {Frequency data (Hz)} sets the frequency data range, {Reference impedance (ohms)}, {Plot type} sets the type of data plot, {Y parameter1} sets the type of parameters, {Y parameter2} sets the type of parameters, {Y format1} plots format Magnitude, {Y format2} plots format Magnitude, {X parameter} sets the frequency plot, {X format} sets the frequency plot format, {Y scale} sets the y-axis scale, {X scale} sets the x-axis scale and {Plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Plate width (m)",
+   "default": "5e-3",
+   "values": "Width of parallel-plate transmission line 5e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Plate separation (m)",
+   "default": "1e-3",
+   "values": "Dielectric spacing in parallel-plate transmission line 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Relative permeability constant",
+   "default": "1",
+   "values": "Relative permeability of the dielectric material in the parallel-plate transmission line 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Relative permittivity constant",
+   "default": "2.3",
+   "values": "Relative permittivity of the dielectric material in the parallel-plate transmission line 2.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Loss tangent of dielectric",
+   "default": "0",
+   "values": "Loss tangent of dielectric in the parallel-plate transmission line 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Conductivity of the conductor (S/m)",
+   "default": "inf",
+   "values": "Conductivity of conductor inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Transmission line length(m)",
+   "default": "0.01",
+   "values": "Physical length of the transmission line 0.01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stub mode",
+   "default": "stub",
+   "values": "Type of stub Not a stub (default) | Shunt | Series",
+   "group": ""
+  },
+  {
+   "name": "Termination of stub",
+   "default": "Open",
+   "values": "Stub termination Open (default)",
+   "group": ""
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "User-specified",
+   "values": "Frequency data source User-specified (default)",
+   "group": ""
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1e9:1e6:3e9]",
+   "values": "Frequency data range [1e9:1e6:3e9] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "Reference impedance 50 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": ""
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": ""
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": ""
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": ""
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": ""
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "Frequency plot Freq (default)",
+   "group": ""
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "Frequency plot format Hz (default) | Auto | kHz | MHz | GHz | THz",
+   "group": ""
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y-axis scale Linear (default) | Log",
+   "group": ""
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X-axis scale Linear (default) | Log",
+   "group": ""
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Plot specified data button",
+   "group": ""
+  }
+ ]
+}

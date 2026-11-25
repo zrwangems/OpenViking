@@ -1,0 +1,56 @@
+{
+ "key": "Interval Test",
+ "title": "Interval Test",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Interval_Test.md",
+  "HDL Coder/Logic and Bit Operations/Interval_Test.md"
+ ],
+ "text": "Determine if signal is in specified interval, 1 input, 1 output, direct feedthrough, {Upper limit} sets Upper limit of interval; {Interval closed on right} sets the include upper limit value, {Interval closed on left} sets the include lower limit value, {Lower limit} and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interval closed on right",
+   "default": "on",
+   "values": "Include upper limit value on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Upper limit",
+   "default": "0.5",
+   "values": "Upper limit of interval 0.5 (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Interval closed on left",
+   "default": "on",
+   "values": "Include lower limit value on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Lower limit",
+   "default": "-0.5",
+   "values": "Lower limit of interval -0.5 (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "boolean",
+   "values": "Output data type boolean (default) | uint8",
+   "group": ""
+  }
+ ]
+}

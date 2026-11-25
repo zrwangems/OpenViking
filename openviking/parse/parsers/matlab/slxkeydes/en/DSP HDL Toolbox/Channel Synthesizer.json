@@ -1,0 +1,94 @@
+{
+ "key": "Channel Synthesizer",
+ "title": "Channel Synthesizer",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/Channel_Synthesizer.md"
+ ],
+ "text": "Combine narrowband signals into multichannel signal, 3 inputs, 2 outputs, {Rounding mode} sets Rounding mode for typecasting output; {Filter coefficients} sets the polyphase filter coefficients, {Filter structure} sets the hDL filter architecture Direct form, {Complex multiplication} sets the hDL implementation of complex multipliers Use 4 multipliers, {Divide butterfly outputs by two} sets the iFFT scaling, {Saturate on integer overflow} sets the overflow handling for typecasting output, {Coefficients} sets the data type of the coefficients, {Output} sets the data type of block output and {Enable reset input port} sets the option to enable reset input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data real-valued row vector | complex-valued row vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clears internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Synthesized output data complex-valued column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter coefficients",
+   "default": "-0.0329]",
+   "values": "Polyphase filter coefficients [-0.0329 0.1218 0.3183 0.4829 0.5469 0.4829 0.5469 0.4829 0.3183 0.1218 -0.0329] (default) | complex-valued vector",
+   "group": "Main"
+  },
+  {
+   "name": "Filter structure",
+   "default": "transposed",
+   "values": "HDL filter architecture Direct form transposed (default) | Direct form systolic",
+   "group": "Main"
+  },
+  {
+   "name": "Complex multiplication",
+   "default": "adders",
+   "values": "HDL implementation of complex multipliers Use 4 multipliers and 2 adders (default) | Use 3 multipliers and 5 adders",
+   "group": "Main"
+  },
+  {
+   "name": "Divide butterfly outputs by two",
+   "default": "on",
+   "values": "IFFT scaling on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for typecasting output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow handling for typecasting output off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Data type of the coefficients Inherit: Same word length as input (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "Data type of block output Inherit: via internal rule (default) | Inherit: Same as input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Option to enable reset input port off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Custom Tire Force and Torque",
+ "title": "Custom Tire Force and Torque",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Custom_Tire_Force_and_Torque.md"
+ ],
+ "text": "Compute interactions and spatial relationships between tire and ground surface.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

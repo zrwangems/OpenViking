@@ -1,0 +1,175 @@
+{
+ "key": "Overwrite Values",
+ "title": "Overwrite Values",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Overwrite_Values.md",
+  "DSP System Toolbox/Signal Management/Indexing/Overwrite_Values.md"
+ ],
+ "text": "覆盖输入的子矩阵或次对角线，输入 2 路、输出 1 路、无直接馈通；按 {Overwrite with} 指定用值覆盖；{Overwrite} 指定覆盖子矩阵或对角线、{Source of overwriting value(s)} 指定覆盖值来源 Specify via、{Row span} 指定输入行的跨度 Range、{Row/Starting row} 指定行或起始行、{Row index/Starting row index} 指定行索引或起始行索引、{Row offset/Starting row offset} 指定行偏移或起始行偏移、{Ending row}、{Ending row index} 指定子矩阵最后一行的索引、{Ending row offset}、{Column span} 指定输入列的跨度 Range、{Column/Starting column} 指定列或起始列、{Column index/Starting column index} 指定列索引或起始列索引、{Column offset/Starting column offset} 指定列偏移或起始列偏移、{Ending column}、{Ending column index}、{Ending column offset}、{Diagonal span} 指定对角线元素的跨度 Range、{Element/Starting element} 指定 Element or starting、{Element index/Starting element index} 指定 Element or starting element index、{Ending element}、{Ending element index}、{Element offset/Starting element offset} 指定 Element offset or starting element offset、{Ending element offset}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入数据 scalar | vector | matrix"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "覆盖值 scalar | vector | matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "修改后的数据 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Overwrite",
+   "default": "Submatrix",
+   "values": "覆盖子矩阵或对角线 Submatrix (default) | Diagonal",
+   "group": ""
+  },
+  {
+   "name": "Source of overwriting value(s)",
+   "default": "dialog",
+   "values": "覆盖值来源 Specify via dialog (default) | Second input port",
+   "group": ""
+  },
+  {
+   "name": "Overwrite with",
+   "default": "0",
+   "values": "用值覆盖 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Row span",
+   "default": "rows",
+   "values": "输入行的跨度 Range of rows (default) | All rows | One row",
+   "group": ""
+  },
+  {
+   "name": "Row/Starting row",
+   "default": "First",
+   "values": "行或起始行 First (default) | Index | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Row index/Starting row index",
+   "default": "1",
+   "values": "行索引或起始行索引 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Row offset/Starting row offset",
+   "default": "",
+   "values": "行偏移或起始行偏移 1 | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Ending row",
+   "default": "Last",
+   "values": "Ending row Last (default) | Index | Offset from last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Ending row index",
+   "default": "1",
+   "values": "子矩阵最后一行的索引 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending row offset",
+   "default": "",
+   "values": "Ending row offset 1 | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Column span",
+   "default": "columns",
+   "values": "输入列的跨度 Range of columns (default) | All columns | One column",
+   "group": ""
+  },
+  {
+   "name": "Column/Starting column",
+   "default": "First",
+   "values": "列或起始列 First (default) | Index | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Column index/Starting column index",
+   "default": "",
+   "values": "列索引或起始列索引 1 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Column offset/Starting column offset",
+   "default": "",
+   "values": "列偏移或起始列偏移 1 | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Ending column",
+   "default": "Last",
+   "values": "Ending column Last (default) | Index | Offset from last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Ending column index",
+   "default": "1",
+   "values": "Ending column index 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending column offset",
+   "default": "",
+   "values": "Ending column offset 1 | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Diagonal span",
+   "default": "elements",
+   "values": "对角线元素的跨度 Range of elements (default) | All elements | One element",
+   "group": ""
+  },
+  {
+   "name": "Element/Starting element",
+   "default": "Index",
+   "values": "Element or starting element Index (default) | First | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Element index/Starting element index",
+   "default": "2",
+   "values": "Element or starting element index 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending element",
+   "default": "Index",
+   "values": "Ending element Index (default) | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Ending element index",
+   "default": "4",
+   "values": "Ending element index 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Element offset/Starting element offset",
+   "default": "",
+   "values": "Element offset or starting element offset 2 | integer (for offset from middle) | nonnegative integer (for offset from last)",
+   "group": ""
+  },
+  {
+   "name": "Ending element offset",
+   "default": "",
+   "values": "Ending element offset 4 | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

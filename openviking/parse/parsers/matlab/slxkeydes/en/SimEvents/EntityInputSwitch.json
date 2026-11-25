@@ -1,0 +1,65 @@
+{
+ "key": "EntityInputSwitch",
+ "title": "Entity Input Switch",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Input_Switch.md"
+ ],
+ "text": "Switch input entities, 3 inputs, 1 output, {Switching criterion} sets input port switch criterion Round; {Number of input ports} sets the number of input ports, {Active port selection} sets the active input, {Initial port selection} sets the initial input port for entity entry and {Seed} sets the seed for the random number generator to determine the input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "control",
+   "direction": "input",
+   "summary": "Incoming control entity scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output entity scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "2",
+   "values": "Specify the number of input ports 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Active port selection",
+   "default": "All",
+   "values": "Specify the active input port All (default) | Switch",
+   "group": ""
+  },
+  {
+   "name": "Switching criterion",
+   "default": "robin",
+   "values": "Specify input port switch criterion Round robin (default) | From control port | Equiprobable",
+   "group": ""
+  },
+  {
+   "name": "Initial port selection",
+   "default": "1",
+   "values": "Specify the initial input port for entity entry 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "23453",
+   "values": "Specify the seed for the random number generator to determine the input port 23453 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "key": "Zero Crossing",
+ "title": "Zero Crossing",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Zero_Crossing.md"
+ ],
+ "text": "Count number of times signal crosses zero in single time step, 1 input, 1 output, no direct feedthrough; {Input processing} sets the method to process input signals Columns. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Cnt",
+   "direction": "output",
+   "summary": "Number of zero crossings scalar | row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  }
+ ]
+}

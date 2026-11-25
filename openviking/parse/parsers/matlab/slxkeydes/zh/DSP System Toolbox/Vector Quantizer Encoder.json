@@ -1,0 +1,135 @@
+{
+ "key": "Vector Quantizer Encoder",
+ "title": "Vector Quantizer Encoder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/Vector_Quantizer_Encoder.md"
+ ],
+ "text": "基于欧几里得距离或加权欧几里得距离度量得出的最近码字索引，输入 3 路、输出 3 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Source of codebook} 指定码本来源 Specify via、{Codebook} 指定码本值、{Distortion measure} 指定失真度量 Squared、{Source of weighting factor} 指定加权因子的来源 Specify via、{Weighting factor} 指定加权因子、{Tie-breaking rule} 指定打破平局规则 Choose the lower、{Output codeword} 输出码字、{Output quantization error} 输出量化误差、{Index output data type} 指定索引输出数据类型、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Product output} 指定乘积输出数据类型 Same、{Word length} 指定乘积输出字长、{Fraction length} 指定乘积输出小数长度、{Accumulator} 指定累加器数据类型 Same as product，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "U",
+   "direction": "input",
+   "summary": "输入数据值 vector | matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "码本值 vector | matrix"
+  },
+  {
+   "name": "W",
+   "direction": "input",
+   "summary": "加权因子 vector"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "索引值 scalar | row vector"
+  },
+  {
+   "name": "Q(U)",
+   "direction": "output",
+   "summary": "输出码字 vector | matrix"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "量化误差 scalar | row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of codebook",
+   "default": "dialog",
+   "values": "码本来源 Specify via dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Codebook",
+   "default": "8.8]",
+   "values": "码本值 [1.5 13.3 136.4 6.8; 2.5 14.3 137.4 7.8; 3.5 15.3 138.4 8.8] (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Distortion measure",
+   "default": "error",
+   "values": "失真度量 Squared error (default) | Weighted squared error",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Source of weighting factor",
+   "default": "dialog",
+   "values": "加权因子的来源 Specify via dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Weighting factor",
+   "default": "1]",
+   "values": "加权因子 [1 1 1] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Tie-breaking rule",
+   "default": "index",
+   "values": "打破平局规则 Choose the lower index (default) | Choose the higher index",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output codeword",
+   "default": "off",
+   "values": "输出码字 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output quantization error",
+   "default": "off",
+   "values": "输出量化误差 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Index output data type",
+   "default": "int32",
+   "values": "索引输出数据类型 int32 (default) | int8 | uint8 | int16 | uint16 | uint32 | Inherit via back propagation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "乘积输出数据类型 Same as input (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "乘积输出字长 16 (default) | positive integer in range [2,128]",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Fraction length",
+   "default": "15",
+   "values": "乘积输出小数长度 15 (default) | integer",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "累加器数据类型 Same as product output (default) | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  }
+ ]
+}

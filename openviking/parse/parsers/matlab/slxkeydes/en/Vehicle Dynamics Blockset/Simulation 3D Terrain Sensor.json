@@ -1,0 +1,68 @@
+{
+ "key": "Simulation 3D Terrain Sensor",
+ "title": "Simulation 3D Terrain Sensor",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Terrain_Sensor.md"
+ ],
+ "text": "Implement multipoint terrain sensor in 3D environment, 1 output; {Sensor identifier, sensorId} sets the unique sensor identifier, {Parent name, VehTag} sets the name of parent to which sensor is mounted, {Ray origins, RayOrigins} sets the ray origin, {Ray directions, RayDirections} sets the normalized ray direction, {Ray lengths, RayLengths}, {Number of wheels on parent vehicle}, {Visualize trace line} sets the visualize ray traces and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier, sensorId",
+   "default": "0",
+   "values": "Unique sensor identifier 0 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Parent name, VehTag",
+   "default": "SimulinkVehicle1",
+   "values": "Name of parent to which sensor is mounted SimulinkVehicle1 (default) | vehicle name",
+   "group": ""
+  },
+  {
+   "name": "Ray origins, RayOrigins",
+   "default": "1]",
+   "values": "Ray origin [0 0 1] (default) | real-valued N -by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Ray directions, RayDirections",
+   "default": "-1]",
+   "values": "Normalized ray direction [0 0 -1] (default) | real-valued N -by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Ray lengths, RayLengths",
+   "default": "20",
+   "values": "Length 20 (default) | real-valued N -by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels on parent vehicle",
+   "default": "4",
+   "values": "Number of wheels 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Visualize trace line",
+   "default": "off",
+   "values": "Visualize ray traces off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Reservoir (TL)",
+ "title": "Reservoir (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Reservoir_TL.md"
+ ],
+ "text": "Thermal liquid reservoir at constant temperature and pressure.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

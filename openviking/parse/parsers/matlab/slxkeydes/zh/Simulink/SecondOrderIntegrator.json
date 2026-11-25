@@ -1,0 +1,178 @@
+{
+ "key": "SecondOrderIntegrator",
+ "title": "Integrator, Second-Order",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Integrator_Second_Order.md",
+  "Simulink/Continuous/Integrator_Second_Order_Limited.md"
+ ],
+ "text": "输入信号的二阶积分，输入 4 路、输出 2 路；按 {x 下限} 指定状态 x 的下限；{x 初始条件来源} 指定状态 x 的初始条件来源、{x 初始条件} 指定状态 x 的初始条件、{x 限制} 指定状态 x 的范围值、{x 上限} 指定状态 x 的上限、{绕回 x} 启用 x 的绕回、{x 绕回上限值} 指定绕回 x 的上限值、{x 绕回下限值} 指定绕回 x 的下限值、{x 绝对容差} 用于计算状态 x 的绝对容差、{x 状态名称} 指定状态 x 的名称、{dx/dt 初始条件来源} 指定状态 dx/dt 的初始条件来源、{dx/dt 初始条件} 指定状态 dx/dt 的初始条件、{dx/dt 限制} 指定状态 dx/dt 的范围值、{dx/dt 上限} 指定状态 dx/dt 的上限、{dx/dt 下限} 指定状态 dx/dt 的下限、{dx/dt 绝对容差} 用于计算状态 dx/dt 的绝对容差、{dx/dt 状态名称} 指定状态 dx/dt 的名称、{外部重置} 指定将状态重置为其初始条件、{启用过零检测}、{当 x 达到饱和时重新初始化 dx/dt} 指定当 x 达到饱和时，重置 dx/dt、{忽略状态限制和重置以便于线性化} 指定忽略状态限制和外部重置以进行线性化、{显示输出} 指定要显示的输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 u 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "初始条件 x0 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "dx0",
+   "direction": "input",
+   "summary": "初始条件 dx0 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "External Reset",
+   "direction": "input",
+   "summary": "将状态重置为初始条件的信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "x",
+   "direction": "output",
+   "summary": "输出信号 x 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "dx",
+   "direction": "output",
+   "summary": "输出信号 dx 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "x 初始条件来源",
+   "default": "内部",
+   "values": "状态 x 的初始条件来源 内部 (默认) | 外部",
+   "group": "x"
+  },
+  {
+   "name": "x 初始条件",
+   "default": "0.0",
+   "values": "状态 x 的初始条件 0.0 (默认) | 标量 | 向量 | 矩阵",
+   "group": "x"
+  },
+  {
+   "name": "x 限制",
+   "default": "",
+   "values": "状态 x 的范围值 off | on",
+   "group": "x"
+  },
+  {
+   "name": "x 上限",
+   "default": "",
+   "values": "状态 x 的上限 1 | inf | 标量 | 向量 | 矩阵",
+   "group": "x"
+  },
+  {
+   "name": "x 下限",
+   "default": "0",
+   "values": "状态 x 的下限 0 (默认) | -inf | 标量 | 向量 | 矩阵",
+   "group": "x"
+  },
+  {
+   "name": "绕回 x",
+   "default": "off",
+   "values": "启用 x 的绕回 off (默认) | on",
+   "group": "x"
+  },
+  {
+   "name": "x 绕回上限值",
+   "default": "pi",
+   "values": "绕回 x 的上限值 pi (默认) | 标量 | 向量 | 矩阵",
+   "group": "x"
+  },
+  {
+   "name": "x 绕回下限值",
+   "default": "-pi",
+   "values": "绕回 x 的下限值 -pi (默认) | 标量 | 向量 | 矩阵",
+   "group": "x"
+  },
+  {
+   "name": "x 绝对容差",
+   "default": "auto",
+   "values": "用于计算状态 x 的绝对容差。 auto (默认) | -1 | 标量 | 向量",
+   "group": "x"
+  },
+  {
+   "name": "x 状态名称",
+   "default": "’’",
+   "values": "状态 x 的名称 ’’ (默认) | 字符向量 | 字符串",
+   "group": "x"
+  },
+  {
+   "name": "dx/dt 初始条件来源",
+   "default": "内部",
+   "values": "状态 dx/dt 的初始条件来源 内部 (默认) | 外部",
+   "group": "dx/dt"
+  },
+  {
+   "name": "dx/dt 初始条件",
+   "default": "0.0",
+   "values": "状态 dx/dt 的初始条件 0.0 (默认) | 标量 | 向量 | 矩阵",
+   "group": "dx/dt"
+  },
+  {
+   "name": "dx/dt 限制",
+   "default": "",
+   "values": "状态 dx/dt 的范围值 off | on",
+   "group": "dx/dt"
+  },
+  {
+   "name": "dx/dt 上限",
+   "default": "inf",
+   "values": "状态 dx/dt 的上限 inf (默认) | 标量 | 向量 | 矩阵",
+   "group": "dx/dt"
+  },
+  {
+   "name": "dx/dt 下限",
+   "default": "-inf",
+   "values": "状态 dx/dt 的下限 -inf (默认) | 标量 | 向量 | 矩阵",
+   "group": "dx/dt"
+  },
+  {
+   "name": "dx/dt 绝对容差",
+   "default": "auto",
+   "values": "用于计算状态 dx/dt 的绝对容差。 auto (默认) | -1 | 标量 | 向量",
+   "group": "dx/dt"
+  },
+  {
+   "name": "dx/dt 状态名称",
+   "default": "’",
+   "values": "状态 dx/dt 的名称 ’ ’ (默认) | 字符向量 | 字符串",
+   "group": "dx/dt"
+  },
+  {
+   "name": "外部重置",
+   "default": "无",
+   "values": "将状态重置为其初始条件 无 (默认) | 上升沿 | 下降沿 | 任一沿",
+   "group": "属性"
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "启用过零检测 on (默认) | off",
+   "group": "属性"
+  },
+  {
+   "name": "当 x 达到饱和时重新初始化 dx/dt",
+   "default": "off",
+   "values": "当 x 达到饱和时，重置 dx/dt off (默认) | on",
+   "group": "属性"
+  },
+  {
+   "name": "忽略状态限制和重置以便于线性化",
+   "default": "off",
+   "values": "忽略状态限制和外部重置以进行线性化 off (默认) | on",
+   "group": "属性"
+  },
+  {
+   "name": "显示输出",
+   "default": "两者",
+   "values": "要显示的输出端口 两者 (默认) | x | dxdt",
+   "group": "属性"
+  }
+ ]
+}

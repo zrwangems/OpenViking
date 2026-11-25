@@ -1,0 +1,41 @@
+{
+ "key": "fixed.system.internal.modbyconstant_hdl",
+ "title": "Modulo by Constant HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Math Operations/Modulo_by_Constant_HDL_Optimized.md"
+ ],
+ "text": "使用常量分母执行 mod 运算，并生成优化的 HDL 代码，输入 2 路、输出 2 路；按 {Denominator} 指定除数。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "被除数 real-valued scalar | vector | matrix | multidimensional array"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入是否有效 boolean scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "取模运算的结果 scalar | vector | matrix | multidimensional array"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据是否有效 boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Denominator",
+   "default": "10",
+   "values": "除数 10 (default) | real-valued scalar | vector | matrix | multidimensional array",
+   "group": ""
+  }
+ ]
+}

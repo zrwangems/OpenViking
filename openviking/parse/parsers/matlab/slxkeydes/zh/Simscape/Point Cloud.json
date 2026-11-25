@@ -1,0 +1,13 @@
+{
+ "key": "Point Cloud",
+ "title": "Point Cloud",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Point_Cloud.md"
+ ],
+ "text": "点云几何。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

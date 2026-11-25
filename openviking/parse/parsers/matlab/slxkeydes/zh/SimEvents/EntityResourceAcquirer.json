@@ -1,0 +1,81 @@
+{
+ "key": "EntityResourceAcquirer",
+ "title": "Resource Acquirer",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Resource_Acquirer.md"
+ ],
+ "text": "获取实体资源，输入 1 路、输出 5 路；按 {Event actions} 指定实体在特定事件发生时的行为；{Maximum number of waiting entities} 指定可等待资源的最大实体数、{Number of entities departed, d} 输出已离开该模块的实体数、{Number of entities in block, n} 输出模块中存在的、尚未离开的实体数量、{Average wait, w} 输出平均等待时间、{Number of entities extracted, ex} 指定从该模块中提取的实体数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "尚未离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "实体在该模块中的平均等待时间 scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "已提取的实体数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum number of waiting entities",
+   "default": "1",
+   "values": "可等待资源的最大实体数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Event actions",
+   "default": "Entry",
+   "values": "指定实体在特定事件发生时的行为 Entry (default) | Exit | Blocked",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "输出模块中存在的、尚未离开的实体数量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average wait, w",
+   "default": "off",
+   "values": "输出平均等待时间 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "从该模块中提取的实体数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

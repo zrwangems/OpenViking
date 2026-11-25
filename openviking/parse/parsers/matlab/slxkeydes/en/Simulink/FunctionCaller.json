@@ -1,0 +1,61 @@
+{
+ "key": "FunctionCaller",
+ "title": "Function Caller",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/Function_Caller.md"
+ ],
+ "text": "Call a Simulink function, 1 input, 1 output, direct feedthrough, {Function name} sets Quali; {Function prototype} sets the function prototype y=f, {Input argument specifications} sets the input argument data type, dimensions, and complexity <Enter, {Output argument specifications} sets the output argument data type, dimensions, and complexity <Enter, {Sample time} sets the time interval between function calls and {Execute function call asynchronously} sets the option to execute function calls. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input argument",
+   "direction": "input",
+   "summary": "Input signal for input argument scalar | vector | matrix"
+  },
+  {
+   "name": "Output argument",
+   "direction": "output",
+   "summary": "Output signal or message for output argument scalar | vector | matrix | message"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function prototype",
+   "default": "y=f(u)",
+   "values": "Specify function prototype y=f(u) (default) | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Function name",
+   "default": "f",
+   "values": "Qualified function name f (default) | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Input argument specifications",
+   "default": "example>",
+   "values": "Specify input argument data type, dimensions, and complexity <Enter example> (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Output argument specifications",
+   "default": "example>",
+   "values": "Specify output argument data type, dimensions, and complexity <Enter example> (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time interval between function calls -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Execute function call asynchronously",
+   "default": "off",
+   "values": "Option to execute function calls asynchronously off (default) | on",
+   "group": ""
+  }
+ ]
+}

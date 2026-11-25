@@ -1,0 +1,149 @@
+{
+ "key": "OFDM Modulator",
+ "title": "OFDM Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/OFDM_Modulator.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/OFDM/OFDM_Modulator.md"
+ ],
+ "text": "Modulate frequency-domain OFDM subcarriers to time-domain samples for custom communication protocols, 8 inputs, 3 outputs, {Rounding Method} sets Rounding mode for internal fixed-point calculations; {OFDM parameters source} sets the source of OFDM, {Maximum FFT length} sets the maximum length of FFT length, {FFT length} sets the length of FFT, {Cyclic prefix length} sets the length of cyclic prefix, {Number of left guard subcarriers} sets the number of guard band subcarriers in left extreme of OFDM, {Number of right guard subcarriers} sets the number of guard band subcarriers in right extreme of OFDM, {Insert DC Null} sets the option to insert DC null, {Enable reset input port} sets the reset signal, {Windowing} sets the spectral growth reduction, {Window length} sets the length of window, {Maximum window length} sets the maximum length of window and {Divide butterfly outputs by two} sets the divide FFT butterfly outputs by two. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "FFTLen",
+   "direction": "input",
+   "summary": "Length of FFT scalar"
+  },
+  {
+   "name": "CPLen",
+   "direction": "input",
+   "summary": "Length of cyclic prefix scalar"
+  },
+  {
+   "name": "numLgSc",
+   "direction": "input",
+   "summary": "Number of left guard carriers of OFDM symbol scalar"
+  },
+  {
+   "name": "numRgSc",
+   "direction": "input",
+   "summary": "Number of right guard carriers of OFDM symbol scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clear internal states scalar"
+  },
+  {
+   "name": "winLen",
+   "direction": "input",
+   "summary": "Length of window scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Modulated output data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "OFDM parameters source",
+   "default": "Property",
+   "values": "Source of OFDM parameters Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum FFT length",
+   "default": "64",
+   "values": "Maximum length of FFT length 64 (default) | power of 2 in range from 8 to 65,536",
+   "group": "Main"
+  },
+  {
+   "name": "FFT length",
+   "default": "64",
+   "values": "Length of FFT 64 (default) | power of 2 in range from 8 to 65, 536",
+   "group": "Main"
+  },
+  {
+   "name": "Cyclic prefix length",
+   "default": "16",
+   "values": "Length of cyclic prefix 16 (default) | integer in range from 0 to FFTLength",
+   "group": "Main"
+  },
+  {
+   "name": "Number of left guard subcarriers",
+   "default": "6",
+   "values": "Number of guard band subcarriers in left extreme of OFDM symbol 6 (default) | integer in range from 0 to ( FFTLength /2) – 1",
+   "group": "Main"
+  },
+  {
+   "name": "Number of right guard subcarriers",
+   "default": "5",
+   "values": "Number of guard band subcarriers in right extreme of OFDM symbol 5 (default) | integer in range from 0 to ( FFTLength /2) – 1",
+   "group": "Main"
+  },
+  {
+   "name": "Insert DC Null",
+   "default": "on",
+   "values": "Option to insert DC null on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Reset signal off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Windowing",
+   "default": "off",
+   "values": "Spectral growth reduction off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Window length",
+   "default": "4",
+   "values": "Length of window 4 (default) | even integer in range from 1 to Cyclic prefix length",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum window length",
+   "default": "8",
+   "values": "Maximum length of window 8 (default) | integer in the range from 1 to CPLen",
+   "group": "Main"
+  },
+  {
+   "name": "Divide butterfly outputs by two",
+   "default": "on",
+   "values": "Divide FFT butterfly outputs by two on (default) | off",
+   "group": "IFFT Parameters"
+  },
+  {
+   "name": "Rounding Method",
+   "default": "Floor",
+   "values": "Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "IFFT Parameters"
+  }
+ ]
+}

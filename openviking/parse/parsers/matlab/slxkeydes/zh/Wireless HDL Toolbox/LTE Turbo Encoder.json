@@ -1,0 +1,63 @@
+{
+ "key": "LTE Turbo Encoder",
+ "title": "LTE Turbo Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/LTE_Turbo_Encoder.md"
+ ],
+ "text": "使用 Turbo 算法对二进制样本进行编码，输入 3 路、输出 3 路；{Block size source} 指定如何指定块大小 Input、{Block size} 指定 Turbo 码块大小、{Enable trellis termination valid ports} 启用指示尾比特输出样本的端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入样本 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "blockSize",
+   "direction": "input",
+   "summary": "Turbo 码块大小 integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "编码样本流 3-by-1 column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "tail1, tail2",
+   "direction": "output",
+   "summary": "指示网格终止周期 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Block size source",
+   "default": "port",
+   "values": "如何指定块大小 Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Block size",
+   "default": "6144",
+   "values": "Turbo 码块大小 6144 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable trellis termination valid ports",
+   "default": "off",
+   "values": "启用指示尾比特输出样本的端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

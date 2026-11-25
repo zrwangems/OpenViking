@@ -1,0 +1,31 @@
+{
+ "key": "Simulink Desktop Real-Time Task Execution Time",
+ "title": "Execution Time",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Target Profiling/Execution_Time.md"
+ ],
+ "text": "Output total execution time in Run in Kernel mode, 2 outputs; {Measure task execution times} shows task execution times for individual. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Total Exec Time",
+   "direction": "output",
+   "summary": "Total execution time for the previous base rate tick double"
+  },
+  {
+   "name": "Task Exec Time",
+   "direction": "output",
+   "summary": "Task execution times for individual sample rates (optional) vector of double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measure task execution times",
+   "default": "‘off’",
+   "values": "Show task execution times for individual tasks ‘off’ (default) | ‘on’",
+   "group": ""
+  }
+ ]
+}

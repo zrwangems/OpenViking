@@ -1,0 +1,13 @@
+{
+ "key": "Magnetic Reference",
+ "title": "Magnetic Reference",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Elements/Magnetic_Reference.md"
+ ],
+ "text": "被动产生磁场的永磁体。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

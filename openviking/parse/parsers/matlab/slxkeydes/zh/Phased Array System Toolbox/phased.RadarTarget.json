@@ -1,0 +1,71 @@
+{
+ "key": "phased.RadarTarget",
+ "title": "Radar Target",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Radar_Target.md"
+ ],
+ "text": "Radar Target，输入 3 路、输出 1 路；按 {Fluctuation model} 指定Fluctuation model；{Source of mean radar cross section}、{Mean radar cross section (m^2)}、{Propagation speed (m/s)} 指定信号传播速度 physconst、{Operating frequency (Hz)} 指定工作频率 3e8、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "入射信号 complex-valued N -by- 1 column vector | complex-valued N -by- M matrix"
+  },
+  {
+   "name": "RCS",
+   "direction": "input",
+   "summary": "Mean radar cross-section nonnegative scalar | 1-by- M row vector of nonnegative values"
+  },
+  {
+   "name": "Update",
+   "direction": "input",
+   "summary": "Indicator to update radar cross-section 0 | 1"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "反射信号 complex-valued N -by- 1 column vector | complex-valued N -by- M matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of mean radar cross section",
+   "default": "Property",
+   "values": "Source of mean radar cross section Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Mean radar cross section (m^2)",
+   "default": "",
+   "values": "Mean radar cross section 1",
+   "group": ""
+  },
+  {
+   "name": "Fluctuation model",
+   "default": "Nonfluctuating",
+   "values": "Fluctuation model Nonfluctuating (default) | Swerling1 | Swerling2 | Swerling3 | Swerling4",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency (Hz)",
+   "default": "3e8",
+   "values": "工作频率 3e8 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

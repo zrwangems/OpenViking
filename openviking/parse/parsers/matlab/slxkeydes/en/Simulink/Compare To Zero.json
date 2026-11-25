@@ -1,0 +1,50 @@
+{
+ "key": "Compare To Zero",
+ "title": "Compare To Zero",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Compare_To_Zero.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsNegative.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsNonNegative.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsNonPositive.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsNonZero.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsPositive.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsZero.md",
+  "HDL Coder/Logic and Bit Operations/Compare_To_Zero.md"
+ ],
+ "text": "Determine how signal compares to zero, 1 input, 1 output, direct feedthrough, {Operator} sets Logical operator; {Output data type} sets the data type and {Enable zero-crossing detection} selects to enable zero-crossing detection. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal 0 | 1 | scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operator",
+   "default": "<=",
+   "values": "Logical operator <= (default) | == | ~= | < | >= | >",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "boolean",
+   "values": "Data type of the output boolean (default) | uint8",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Select to enable zero-crossing detection on (default) | off",
+   "group": ""
+  }
+ ]
+}

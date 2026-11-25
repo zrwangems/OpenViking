@@ -1,0 +1,101 @@
+{
+ "key": "fusion.internal.simulink.gpsSensor",
+ "title": "GPS",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/GPS.md",
+  "Navigation Toolbox/Multisensor Positioning/Sensor Models/GPS.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Sensor Models/GPS.md"
+ ],
+ "text": "仿真带噪声的 GPS 传感器读数，输入 2 路、输出 4 路；{Reference frame} 指定参考坐标系、{Position input format} 指定位置坐标输入格式、{Reference location} 指定本地导航参考坐标系的原点、{Horizontal position accuracy} 指定水平位置精度、{Vertical position accuracy} 指定垂直位置精度、{Velocity accuracy} 指定速度精度、{Decay factor} 指定全局位置噪声衰减因子、{Seed} 指定初始种子、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Position",
+   "direction": "input",
+   "summary": "GPS 接收机在导航坐标系中的位置 matrix"
+  },
+  {
+   "name": "Velocity",
+   "direction": "input",
+   "summary": "本地导航坐标系中的速度 (m/s) matrix"
+  },
+  {
+   "name": "LLA",
+   "direction": "output",
+   "summary": "LLA 坐标系中的位置 matrix"
+  },
+  {
+   "name": "Velocity",
+   "direction": "output",
+   "summary": "本地导航坐标系中的速度 (m/s) matrix"
+  },
+  {
+   "name": "Groundspeed",
+   "direction": "output",
+   "summary": "本地导航坐标系中水平速度的大小 (m/s) vector"
+  },
+  {
+   "name": "Course",
+   "direction": "output",
+   "summary": "本地导航坐标系中水平速度的方向 (°) vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference frame",
+   "default": "NED",
+   "values": "参考坐标系 NED (default) | ENU",
+   "group": ""
+  },
+  {
+   "name": "Position input format",
+   "default": "Local",
+   "values": "位置坐标输入格式 Local (default) | Geodetic",
+   "group": ""
+  },
+  {
+   "name": "Reference location",
+   "default": "[0,0,0]",
+   "values": "本地导航参考坐标系的原点 [0,0,0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Horizontal position accuracy",
+   "default": "1.6",
+   "values": "水平位置精度 (m) 1.6 (default) | nonnegative real scaler",
+   "group": ""
+  },
+  {
+   "name": "Vertical position accuracy",
+   "default": "3",
+   "values": "垂直位置精度 (m) 3 (default) | nonnegative real scaler",
+   "group": ""
+  },
+  {
+   "name": "Velocity accuracy",
+   "default": "0.1",
+   "values": "速度精度 (m/s) 0.1 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Decay factor",
+   "default": "0.999",
+   "values": "全局位置噪声衰减因子 0.999 (default) | scalar in range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "67",
+   "values": "初始种子 67 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

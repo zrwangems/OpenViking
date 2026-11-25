@@ -1,0 +1,68 @@
+{
+ "key": "matlabshared.sensors.simulink.ADXL34xBlock",
+ "title": "ADXL34x",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Sensors/ADXL34x.md"
+ ],
+ "text": "测量 ADXL34x 系列加速度计沿各轴的线性加速度；输出 1 路；按 {Accelerometer range} 指定测量线性加速度的满量程；{I2C module} 用于通信的模块、{I2C address} 指定 ADXL34x 传感器的 I2C、{Data type} 指定 ADXL34x 传感器值的输出数据类型、{Sample time} 指定读取数据的时间间隔、{Accelerometer output data rate} 指定加速度计数据的采样速率、{Enable data ready interrupt} 指定数据就绪时启用中断、{Interrupt generate pin} 用于生成数据就绪中断的引脚，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Acceleration",
+   "direction": "output",
+   "summary": "ADXL34x 传感器测得的线性加速度 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "I2C module",
+   "default": "I2C_A",
+   "values": "用于通信的模块 I2C_A (default)",
+   "group": ""
+  },
+  {
+   "name": "I2C address",
+   "default": "0x53",
+   "values": "ADXL34x 传感器的 I2C 地址 0x53 (default) | 0x1D",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "ADXL34x 传感器值的输出数据类型 single (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "读取数据的时间间隔 -1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer range",
+   "default": "±4g",
+   "values": "测量线性加速度的满量程 ±4g (default) | ±2g | ±8g | ±16g",
+   "group": "Advanced settings"
+  },
+  {
+   "name": "Accelerometer output data rate",
+   "default": "Hz",
+   "values": "加速度计数据的采样速率 12.5 Hz (default) | 0.1 Hz | 0.2 Hz | 0.39 Hz | 0.78 Hz | 1.56 Hz | 3.13 Hz | 6.25 Hz | 25 Hz | 50 Hz | 100 Hz | 200 Hz | 400 Hz | 800 Hz | 1600 Hz",
+   "group": "Advanced settings"
+  },
+  {
+   "name": "Enable data ready interrupt",
+   "default": "off",
+   "values": "数据就绪时启用中断 off (default) | on",
+   "group": "Advanced settings"
+  },
+  {
+   "name": "Interrupt generate pin",
+   "default": "INT1",
+   "values": "用于生成数据就绪中断的引脚 INT1 (default) | INT2",
+   "group": "Advanced settings"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "key": "Collision Sphere",
+ "title": "Collision Sphere",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Collision Detection/Collision_Sphere.md"
+ ],
+ "text": "Create sphere collision geometry, 2 inputs, 2 outputs; {Enable Runtime Input Dimensions Error} sets the validation of collision sphere dimensions and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Radius",
+   "direction": "input",
+   "summary": "Radius of sphere scalar"
+  },
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "Pose of collision geometry matrix"
+  },
+  {
+   "name": "CollGeom",
+   "direction": "output",
+   "summary": "Collision geometry bus"
+  },
+  {
+   "name": "ExitFlag",
+   "direction": "output",
+   "summary": "Validity of collision sphere radius scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable Runtime Input Dimensions Error",
+   "default": "on",
+   "values": "Validation of collision sphere dimensions on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

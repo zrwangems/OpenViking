@@ -1,0 +1,160 @@
+{
+ "key": "Kinematic Steering",
+ "title": "Kinematic Steering",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Steering/Kinematic_Steering.md"
+ ],
+ "text": "Ackerman、齿轮齿条式和平行转向机构的运动学转向，输入 2 路、输出 3 路；按 {Type} 指定转向类型；{Parametrized by} 指定参数化 Constant、{Location} 指定位置 Front、{Normalization factor, NrmlFctr} 指定调整转向角 scalar、{Track width, TrckWdth} 指定宽度、{Wheel base, WhlBase} 指定 Base、{Deadband, Db} 指定死区、{Steering range, StrgRng} 指定方向盘转角输入范围、{Steering ratio, StrgRatio} 指定比值、{Steering angle breakpoints, StrgAngBpts} 指定断点、{Steering ratio table, StrgRatioTbl} 指定表、{Steering arm length, StrgArmLngth} 指定长度、{Rack casing length, RckCsLngth} 指定长度、{Tie rod length, TieRodLngth} 指定长度、{Distance between axis and rack, D} 指定距离、{Pinion radius, PnnRadius} 指定半径、{Pinion radius table, PnnRadiusTbl} 指定表、{Input Percent Ackerman} 指定创建 PctAckIn 输入端口、{Percent Ackerman, PctAck} 指定阿克曼百分比常量、{Percent Ackerman table, PctAckTbl} 指定阿克曼百分比表 ones，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "AngIn",
+   "direction": "input",
+   "summary": "转向角 scalar"
+  },
+  {
+   "name": "PctAckIn",
+   "direction": "input",
+   "summary": "Ackerman 百分比 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "AngLft",
+   "direction": "output",
+   "summary": "左轮转角 scalar"
+  },
+  {
+   "name": "AngRght",
+   "direction": "output",
+   "summary": "右轮转角 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "Ackerman",
+   "values": "选择转向类型 Ackerman (default) | Rack and pinion | Parallel",
+   "group": ""
+  },
+  {
+   "name": "Parametrized by",
+   "default": "Constant",
+   "values": "选择参数化 Constant (default) | Lookup table",
+   "group": ""
+  },
+  {
+   "name": "Location",
+   "default": "Front",
+   "values": "选择位置 Front (default) | Rear",
+   "group": ""
+  },
+  {
+   "name": "Normalization factor, NrmlFctr",
+   "default": "",
+   "values": "调整转向角 scalar",
+   "group": ""
+  },
+  {
+   "name": "Track width, TrckWdth",
+   "default": "1",
+   "values": "宽度 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wheel base, WhlBase",
+   "default": "1.524",
+   "values": "Base 1.524 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Deadband, Db",
+   "default": "0",
+   "values": "死区 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering range, StrgRng",
+   "default": "1.25*pi",
+   "values": "方向盘转角输入范围 1.25*pi (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering ratio, StrgRatio",
+   "default": "100",
+   "values": "比值 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering angle breakpoints, StrgAngBpts",
+   "default": "6.2832]",
+   "values": "断点 [-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Steering ratio table, StrgRatioTbl",
+   "default": "13.5000]",
+   "values": "表 [13.5000 13.3750 13.2500 13.1250 13.0000 13.0000 13.0000 13.1250 13.2500 13.3750 13.5000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Steering arm length, StrgArmLngth",
+   "default": "0.1",
+   "values": "长度 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rack casing length, RckCsLngth",
+   "default": "0.5",
+   "values": "长度 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Tie rod length, TieRodLngth",
+   "default": "0.248",
+   "values": "长度 0.248 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance between axis and rack, D",
+   "default": "0.2",
+   "values": "距离 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pinion radius, PnnRadius",
+   "default": "0.0057",
+   "values": "半径 0.0057 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pinion radius table, PnnRadiusTbl",
+   "default": "0.0055]",
+   "values": "表 [0.0055 0.0055 0.0056 0.0057 0.0057 0.0057 0.0058 0.0057 0.0056 0.0055 0.0055] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Input Percent Ackerman",
+   "default": "off",
+   "values": "创建 PctAckIn 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman, PctAck",
+   "default": "100",
+   "values": "阿克曼百分比常量 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman table, PctAckTbl",
+   "default": "ones(1,11)*100",
+   "values": "阿克曼百分比表 ones(1,11)*100 (default) | vector",
+   "group": ""
+  }
+ ]
+}

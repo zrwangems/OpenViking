@@ -1,0 +1,121 @@
+{
+ "key": "C28x I2C Receive",
+ "title": "I2C Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2803x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2805x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2806x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C280x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2833x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/C2834x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F280013x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F280015x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28002x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28004x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F2807x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xD/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xS/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28p55x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/I2C_Receive.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/I2C_Receive.md"
+ ],
+ "text": "配置集成电路间通信 (I2C) 模块以从 I2C 总线接收数据，输入 1 路、输出 2 路；按 {寻址格式} 指定通信地址格式 7；{模块}、{外设地址源}、{外设地址寄存器}、{位计数} 指定通信比特计数、{读取的数据长度} 指定接收的数据长度、{初始输出} 指定 I2C 节点输出对模型的价值、{设置 NACK 位} 指定 I2C 应答周期中的 NACK 位、{启用停止条件} 指定停止消息发送到 I2C Transmit 模块、{输出接收状态} 指示 I2C Receive 模块何时接收到消息、{采样时间} 指定从 I2C 设备读取数据的频率、{数据类型}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SAR",
+   "direction": "input",
+   "summary": "外设地址寄存器值 标量"
+  },
+  {
+   "name": "RD",
+   "direction": "output",
+   "summary": "从 I2C 总线接收的数据 标量 | 向量"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "I2C 通信状态 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "模块",
+   "default": "I2C_A",
+   "values": "通信模块 I2C_A (默认) | I2C_B",
+   "group": ""
+  },
+  {
+   "name": "寻址格式",
+   "default": "位寻址",
+   "values": "通信地址格式 7 位寻址 (默认) | 10 位寻址 | 自由数据格式",
+   "group": ""
+  },
+  {
+   "name": "外设地址源",
+   "default": "通过对话框指定",
+   "values": "I2C 外设的外设地址源 通过对话框指定 (默认) | 输入端口",
+   "group": ""
+  },
+  {
+   "name": "外设地址寄存器",
+   "default": "80",
+   "values": "外设地址寄存器值 80 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "位计数",
+   "default": "8",
+   "values": "通信比特计数 8 (默认) | [1 8] 范围内的整数",
+   "group": ""
+  },
+  {
+   "name": "读取的数据长度",
+   "default": "1",
+   "values": "接收的数据长度 1 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "初始输出",
+   "default": "0",
+   "values": "I2C 节点输出对模型的价值 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "设置 NACK 位",
+   "default": "off",
+   "values": "I2C 应答周期中的 NACK 位 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "启用停止条件",
+   "default": "off",
+   "values": "停止消息发送到 I2C Transmit 模块 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "输出接收状态",
+   "default": "off",
+   "values": "指示 I2C Receive 模块何时接收到消息 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.001",
+   "values": "从 I2C 设备读取数据的频率 0.001 (默认) | –1 | 标量",
+   "group": ""
+  },
+  {
+   "name": "数据类型",
+   "default": "int8",
+   "values": "数据向量中的数据类型 int8 (默认) | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "key": "Triangular membership function",
+ "title": "Triangular MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Triangular_MF.md"
+ ],
+ "text": "三角形隶属度函数，输入 1 路、输出 1 路；{Left base point a} 指定三角形的左底脚、{Peak location b} 指定三角形峰值、{Right base point c} 指定三角形的右底脚，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入值 scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "隶属度值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Left base point a",
+   "default": "1",
+   "values": "三角形的左底脚 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Peak location b",
+   "default": "3",
+   "values": "三角形峰值 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right base point c",
+   "default": "6",
+   "values": "三角形的右底脚 6 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

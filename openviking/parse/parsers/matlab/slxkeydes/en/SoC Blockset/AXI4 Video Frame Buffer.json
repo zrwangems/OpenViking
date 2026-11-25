@@ -1,0 +1,147 @@
+{
+ "key": "AXI4 Video Frame Buffer",
+ "title": "AXI4 Video Frame Buffer",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/AXI4_Video_Frame_Buffer.md"
+ ],
+ "text": "Model connection between two hardware algorithms through external memory, 3 inputs, 3 outputs, {Data type} sets Data type of video pixel; {Memory simulation} sets the simulation timing accuracy, {Memory selection} sets the between memory regions, {Region size (bytes)} sets the size of the allocated memory region, in bytes Read-only, {Frame size} sets the frame dimensions 1080p HDTV, {Number of Frames} sets the number of buffers in region, {Burst length}, {FIFO depth (number of bursts)} sets the depth of FIFO for data, {FIFO almost-full depth (number of bursts)} sets the depth of FIFO when backpressure, {Clock frequency (MHz)} sets the interconnect frequency of manager datapath, {Data width (bits)} sets the data width of manager datapath, {Dimensions}, {Sample time} sets the time interval of sampling, {Enable sample packing (last signal dimension as channel)} sets the pack data on last dimension of signal, {Inherit sample time offset} sets the make reader inherit sample time, {Use pixel clock sample times} and {View performance plots} displays performance metrics. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "Writer data bus signal scalar | vector | matrix"
+  },
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "Writer input control signal bus"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "Reader input control signal bus"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "Output data signal to data consumer scalar | vector | matrix"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "Reader control signal from memory channel to data consumer bus"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "Writer control signal from memory channel to data producer bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Memory simulation",
+   "default": "accurate",
+   "values": "Set simulation timing accuracy Burst accurate (default) | Protocol accurate | Behavioral",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "Choose between memory regions PS memory (default) | PL memory",
+   "group": "Main"
+  },
+  {
+   "name": "Region size (bytes)",
+   "default": "",
+   "values": "Size of the allocated memory region, in bytes Read-only: calculated",
+   "group": "Main"
+  },
+  {
+   "name": "Frame size",
+   "default": "(1920x1080p)",
+   "values": "Frame dimensions 1080p HDTV (1920x1080p) (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Number of Frames",
+   "default": "3",
+   "values": "Number of buffers in region 3 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Burst length",
+   "default": "256",
+   "values": "Burst length for memory transactions 256 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO depth (number of bursts)",
+   "default": "8",
+   "values": "Depth of FIFO for data 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO almost-full depth (number of bursts)",
+   "default": "6",
+   "values": "Depth of FIFO when backpressure is asserted 6 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Clock frequency (MHz)",
+   "default": "100",
+   "values": "Interconnect frequency of manager datapath 100 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Data width (bits)",
+   "default": "64",
+   "values": "Data width of manager datapath 64 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Dimensions",
+   "default": "3]",
+   "values": "Dimensions of video data [1 3] (default) | scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Data type of video pixel uint8 (default) | uint16 | uint32 | uint64 | fixdt(1,16,0)",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Time interval of sampling 1 (default) | positive scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "on",
+   "values": "Pack data on last dimension of signal on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Inherit sample time offset",
+   "default": "on",
+   "values": "Make reader inherit sample time from writer on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Use pixel clock sample times",
+   "default": "off",
+   "values": "Use pixel clock sample time off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "View performance plots",
+   "default": "",
+   "values": "Display performance metrics button",
+   "group": "Performance"
+  }
+ ]
+}

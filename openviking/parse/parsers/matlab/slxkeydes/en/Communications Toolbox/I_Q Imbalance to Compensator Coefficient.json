@@ -1,0 +1,66 @@
+{
+ "key": "I/Q Imbalance to Compensator Coefficient",
+ "title": "I/Q Imbalance to Compensator Coefficient",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments Correction/I_Q_Imbalance_to_Compensator_Coefficient.md"
+ ],
+ "text": "Adaptively adjust gain for constant signal-level output, 1 input, 2 outputs, {Step size for gain updates} sets Step size for gain updates 0.01; {Target output power level}, {Length of averaging window}, {Maximum power gain}, {Enable output of estimated input power} sets the option to output estimated input power and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal column vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output signal N S -element column vector"
+  },
+  {
+   "name": "Px",
+   "direction": "output",
+   "summary": "Power level estimate N S -element column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Step size for gain updates",
+   "default": "",
+   "values": "Step size for gain updates 0.01 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Target output power level",
+   "default": "",
+   "values": "Target output power level (W) 1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Length of averaging window",
+   "default": "",
+   "values": "Length of averaging window (samples) 100 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum power gain",
+   "default": "60",
+   "values": "Maximum power gain (dB) 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable output of estimated input power",
+   "default": "off",
+   "values": "Option to output estimated input power off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

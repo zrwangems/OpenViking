@@ -1,0 +1,121 @@
+{
+ "key": "ultrasonicDetectionGenerator",
+ "title": "Ultrasonic Detection Generator",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Ultrasonic_Detection_Generator.md"
+ ],
+ "text": "从驾驶场景或 RoadRunner Scenario 生成超声波传感器检测，输入 1 路、输出 1 路；按 {Target profiles definition} 指定目标配置文件的方法；{Unique identifier of sensor} 指定唯一传感器标识符、{Translation [ X, Y, Z ] relative to ego origin (m)} 指定传感器在自车上的位置、{Rotation [Yaw, Pitch, Roll] relative to ego’s frame (deg)} 指定雷达安装旋转角度、{Field of view [horizontalFOV, verticalFOV] (deg)} 指定超声波传感器的角度视场、{Detection ranges [minDetOnlyRange, minDistRange, maxDistRange] (m)} 指定超声波传感器的检测范围向量、{Update rate (Hz)} 指定传感器更新率、{Source of output bus name} 输出总线名称的来源、{Specify an output bus name} 输出总线名称 BusDrivingRadarData、{MATLAB expression for target profiles} 用于目标配置文件的 MATLAB 表达式 MATLAB、{Unique identifier for actors} 指定场景定义的目标物标识符、{User-defined integer to classify actors} 指定用户定义的分类标识符、{Length of actors’ cuboids (m)} 指定目标物长方体的长度、{Width of actors’ cuboids (m)} 指定目标物长方体的宽度、{Height of actors’ cuboids (m)} 指定目标物长方体的高度、{Rotational center of actors from bottom center (m)} 指定目标物的旋转中心，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Actors",
+   "direction": "input",
+   "summary": "场景参与者位姿 Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "目标检测 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unique identifier of sensor",
+   "default": "0",
+   "values": "唯一传感器标识符 0 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Translation [ X, Y, Z ] relative to ego origin (m)",
+   "default": "0.2]",
+   "values": "传感器在自车上的位置 (m) [3.4, 0, 0.2] (default) | 1-by-3 real-valued vector of form [ x y z ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Rotation [Yaw, Pitch, Roll] relative to ego’s frame (deg)",
+   "default": "0]",
+   "values": "雷达安装旋转角度 [0 0 0] (default) | 1-by-3 real-valued vector of form [ z yaw y pitch x roll ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Field of view [horizontalFOV, verticalFOV] (deg)",
+   "default": "35]",
+   "values": "超声波传感器的角度视场 [70 35] (default) | 1-by-2 positive real-valued vector of form [horizontalFOV verticalFOV]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Detection ranges [minDetOnlyRange, minDistRange, maxDistRange] (m)",
+   "default": "5.5]",
+   "values": "超声波传感器的检测范围向量 (m) [0.03 0.15 5.5] (default) | 1-by-3 nonnegative real-valued vector of form [minDetOnlyRange minDistRange maxDistRange]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Update rate (Hz)",
+   "default": "10",
+   "values": "传感器更新率 10 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出总线名称的来源 Auto (default) | Property",
+   "group": "Parameters"
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "BusDrivingRadarDataGenerator",
+   "values": "输出总线名称 BusDrivingRadarDataGenerator (default) | valid bus name",
+   "group": "Parameters"
+  },
+  {
+   "name": "Target profiles definition",
+   "default": "Parameters",
+   "values": "指定目标配置文件的方法 Parameters (default) | MATLAB expression | From Scenario Reader block",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "MATLAB expression for target profiles",
+   "default": "",
+   "values": "用于目标配置文件的 MATLAB 表达式 MATLAB structure | MATLAB structure array | valid MATLAB expression",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Unique identifier for actors",
+   "default": "[]",
+   "values": "场景定义的目标物标识符 [] (default) | positive integer | length- L vector of unique positive integers",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "User-defined integer to classify actors",
+   "default": "0",
+   "values": "用户定义的分类标识符 0 (default) | integer | length- L vector of integers",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Length of actors’ cuboids (m)",
+   "default": "4.7",
+   "values": "目标物长方体的长度 4.7 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Width of actors’ cuboids (m)",
+   "default": "1.8",
+   "values": "目标物长方体的宽度 1.8 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Height of actors’ cuboids (m)",
+   "default": "1.4",
+   "values": "目标物长方体的高度 1.4 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Rotational center of actors from bottom center (m)",
+   "default": "0]}",
+   "values": "目标物的旋转中心 {[-1.35, 0, 0]} (default) | length- L cell array of real-valued 1-by-3 vectors",
+   "group": "Actor Profiles"
+  }
+ ]
+}

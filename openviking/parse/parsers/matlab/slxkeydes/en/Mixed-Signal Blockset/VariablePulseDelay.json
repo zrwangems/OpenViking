@@ -1,0 +1,42 @@
+{
+ "key": "VariablePulseDelay",
+ "title": "Variable Pulse Delay",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Variable_Pulse_Delay.md"
+ ],
+ "text": "Delay samples by controlled, continuously variable amount, 2 inputs, 1 output; {Initial Input} sets the value at the output port before and {Buffer Size} sets the number of samples of the input buffering available during. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input sample data fixed step discrete sample | variable step discrete sample"
+  },
+  {
+   "name": "delay",
+   "direction": "input",
+   "summary": "Introduces delay to input signal nonnegative scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "Delayed output sample fixed step discrete sample | variable step discrete sample"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial Input",
+   "default": "0",
+   "values": "The value at the output port before simulation 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer Size",
+   "default": "1",
+   "values": "Number of samples of the input buffering available during simulation 1 (default) | positive scalar integer",
+   "group": ""
+  }
+ ]
+}

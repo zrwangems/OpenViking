@@ -1,0 +1,98 @@
+{
+ "key": "Checks_CustomBounds",
+ "title": "Check Custom Bounds",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/Model Verification/Check_Custom_Bounds.md",
+  "Simulink Design Optimization/Signal Constraints/Check_Custom_Bounds.md"
+ ],
+ "text": "Check that model signal satisfies bounds during simulation, 1 input, 1 output, {Times} sets Lower bound time vector; {Show Plot} sets the open plot window, {Show plot on block open} sets the double-click block to open plot, {Response Optimization} sets the open Response Optimizer, {Include upper bound in assertion} sets the check that signal satisfies upper bound, {Amplitudes} sets the upper bound amplitude values {Include lower bound in assertion} sets the check that signal satisfies lower bound, {Enable zero-crossing detection} sets the evaluate model at bound edges, {Enable assertion} enables or disable check, {Simulation callback when assertion fails (optional)} sets the expression to evaluate when assertion, {Stop simulation when assertion fails} sets the halt simulation when assertion fails and {Output assertion signal} sets the create output signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1 (u)",
+   "direction": "input",
+   "summary": "Signal to check against specified bounds scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1 (out)",
+   "direction": "output",
+   "summary": "Output assertion signal 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show Plot",
+   "default": "",
+   "values": "Open plot window button",
+   "group": ""
+  },
+  {
+   "name": "Show plot on block open",
+   "default": "off",
+   "values": "Double-click block to open plot off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Response Optimization",
+   "default": "",
+   "values": "Open Response Optimizer button",
+   "group": ""
+  },
+  {
+   "name": "Include upper bound in assertion",
+   "default": "on",
+   "values": "Check that signal satisfies upper bound on (default) | off",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Times",
+   "default": "10]",
+   "values": "Upper bound time vector [0 5; 5 10] (default) | two-element vector | two-column matrix | cell array",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1.01]",
+   "values": "Upper bound amplitude values [1.1 1.1; 1.01 1.01] (default) | two-element vector | two-column matrix | cell array",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Include lower bound in assertion",
+   "default": "off",
+   "values": "Check that signal satisfies lower bound off (default) | on",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Evaluate model at bound edges on (default) | off",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "Enable or disable check on (default) | off",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "’’",
+   "values": "Expression to evaluate when assertion fails ’’ (default) | MATLAB expression",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "Halt simulation when assertion fails off (default) | on",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "Create output signal off (default) | on",
+   "group": "Assertion Tab"
+  }
+ ]
+}

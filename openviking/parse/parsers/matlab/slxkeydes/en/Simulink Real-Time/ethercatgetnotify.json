@@ -1,0 +1,32 @@
+{
+ "key": "ethercatgetnotify",
+ "title": "EtherCAT Get Notifications",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Get_Notifications.md"
+ ],
+ "text": "Collect notifications from the EtherCAT bus, 1 output; {Network Device Index} sets the etherCAT network identifier and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Values",
+   "direction": "output",
+   "summary": "Self-descriptive 21-element vector containing EtherCAT notification codes [ Length 20 * Notification ]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT network identifier 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

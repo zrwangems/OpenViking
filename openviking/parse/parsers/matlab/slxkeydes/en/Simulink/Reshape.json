@@ -1,0 +1,39 @@
+{
+ "key": "Reshape",
+ "title": "Reshape",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Reshape.md",
+  "HDL Coder/Math Operations/Reshape.md",
+  "DSP System Toolbox HDL Support/Signal Management/Convert_1_D_to_2_D.md"
+ ],
+ "text": "Change dimensionality of signal, 1 input, 1 output, direct feedthrough, {Output dimensionality} sets Dimensions of output signal 1-D; {Output dimensions} sets the custom dimensions of output signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output dimensionality",
+   "default": "array",
+   "values": "Dimensions of output signal 1-D array (default) | Column vector (2-D) | Row vector (2-D) | Customize | Derive from reference input port",
+   "group": ""
+  },
+  {
+   "name": "Output dimensions",
+   "default": "[1,1]",
+   "values": "Custom dimensions of output signal [1,1] (default) | [integer] | [integer,integer]",
+   "group": ""
+  }
+ ]
+}

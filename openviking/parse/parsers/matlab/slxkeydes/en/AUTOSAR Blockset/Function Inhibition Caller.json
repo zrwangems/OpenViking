@@ -1,0 +1,32 @@
+{
+ "key": "Function Inhibition Caller",
+ "title": "Function Inhibition Caller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Function Inhibition Manager (FiM)/Function_Inhibition_Caller.md"
+ ],
+ "text": "Call AUTOSAR Function Inhibition Manager (FiM) service interface FunctionInhibition; {Client port name} sets the name of client port AUTOSAR component uses to call FiM service interface, {Operation} sets the operation defined in FiM service interface FunctionInhibition and {Sample time} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Client port name",
+   "default": "FunctionInhibition",
+   "values": "Name of client port AUTOSAR component uses to call FiM service interface FunctionInhibition FunctionInhibition (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "GetFunctionPermission",
+   "values": "Specify operation defined in FiM service interface FunctionInhibition GetFunctionPermission (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,103 @@
+{
+ "key": "Passivity Enforcement",
+ "title": "Passivity Enforcement",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Constraint Control/Passivity_Enforcement.md"
+ ],
+ "text": "修改控制动作以满足无源性约束和动作边界，输入 6 路、输出 2 路；按 {Passivity index} 指定无源性指数；{Number of actions} 控制动作数量、{Use external source for upper bound} 添加动作上界输入端口、{Use external source for lower bound} 添加动作下界输入端口、{Sample time} 指定优化采样时间、{Maximum iterations} 指定最大优化迭代次数、{Constraint tolerance} 指定约束违反容差 1e-6、{Optimization status} 添加退出标志输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u0",
+   "direction": "input",
+   "summary": "控制动作 scalar | vector"
+  },
+  {
+   "name": "fp",
+   "direction": "input",
+   "summary": "无源性输入函数偏移系数 scalar | vector"
+  },
+  {
+   "name": "gp",
+   "direction": "input",
+   "summary": "无源性输入函数线性系数 scalar | matrix"
+  },
+  {
+   "name": "yp",
+   "direction": "input",
+   "summary": "无源性输出函数 scalar | vector"
+  },
+  {
+   "name": "umax",
+   "direction": "input",
+   "summary": "动作信号上界 scalar | vector"
+  },
+  {
+   "name": "umin",
+   "direction": "input",
+   "summary": "动作信号下界 scalar | vector"
+  },
+  {
+   "name": "u*",
+   "direction": "output",
+   "summary": "修改后的控制动作 scalar | vector"
+  },
+  {
+   "name": "exitflag",
+   "direction": "output",
+   "summary": "优化状态 1 | 0 | negative integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of actions",
+   "default": "1",
+   "values": "控制动作数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Passivity index",
+   "default": "0.1",
+   "values": "无源性指数 0.1 (default) | nonnegative scalar | nonnegative vector",
+   "group": ""
+  },
+  {
+   "name": "Use external source for upper bound",
+   "default": "off",
+   "values": "添加动作上界输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use external source for lower bound",
+   "default": "off",
+   "values": "添加动作下界输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "优化采样时间 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum iterations",
+   "default": "200",
+   "values": "最大优化迭代次数 200 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Constraint tolerance",
+   "default": "1e-6",
+   "values": "约束违反容差 1e-6 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Optimization status",
+   "default": "off",
+   "values": "添加退出标志输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "Symmetric Inertia Tensor",
+ "title": "Symmetric Inertia Tensor",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Mass Properties/Symmetric_Inertia_Tensor.md"
+ ],
+ "text": "根据惯性矩和惯性积创建惯性张量，输入 6 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I xx",
+   "direction": "input",
+   "summary": "惯性矩 scalar"
+  },
+  {
+   "name": "I xy",
+   "direction": "input",
+   "summary": "xy 平面内的惯性积 scalar"
+  },
+  {
+   "name": "I xz",
+   "direction": "input",
+   "summary": "xz 平面内的惯性积 scalar"
+  },
+  {
+   "name": "I yy",
+   "direction": "input",
+   "summary": "绕 y 轴的惯性矩 scalar"
+  },
+  {
+   "name": "I yz",
+   "direction": "input",
+   "summary": "yz 平面内的惯性积 scalar"
+  },
+  {
+   "name": "I zz",
+   "direction": "input",
+   "summary": "绕 z 轴的惯性矩 scalar"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "惯性张量 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

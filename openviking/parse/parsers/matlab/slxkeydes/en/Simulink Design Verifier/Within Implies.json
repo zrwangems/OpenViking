@@ -1,0 +1,20 @@
+{
+ "key": "Within Implies",
+ "title": "Within Implies",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Temporal Operators/Within_Implies.md"
+ ],
+ "text": "Verify response occurs within desired duration; {External reset} specifies whether the block can be reset. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "External reset",
+   "default": "off",
+   "values": "specify whether the block can be reset off (default) | on",
+   "group": ""
+  }
+ ]
+}

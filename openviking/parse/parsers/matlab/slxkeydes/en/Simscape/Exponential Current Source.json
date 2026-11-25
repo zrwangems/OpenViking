@@ -1,0 +1,13 @@
+{
+ "key": "Exponential Current Source",
+ "title": "Exponential Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/Exponential_Current_Source.md"
+ ],
+ "text": "Exponential pulse current source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

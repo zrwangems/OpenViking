@@ -1,0 +1,13 @@
+{
+ "key": "Generic Rotary Actuator",
+ "title": "Generic Rotary Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Generic_Rotary_Actuator.md"
+ ],
+ "text": "由直流电压源或 PWM 驱动器驱动的 Generic Rotary Actuator。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

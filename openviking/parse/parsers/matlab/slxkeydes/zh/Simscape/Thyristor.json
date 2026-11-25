@@ -1,0 +1,13 @@
+{
+ "key": "Thyristor",
+ "title": "Thyristor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Thyristor.md"
+ ],
+ "text": "使用 NPN 和 PNP 晶体管的 Thyristor。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

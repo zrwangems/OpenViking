@@ -1,0 +1,72 @@
+{
+ "key": "Interpolation",
+ "title": "Interpolation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Interpolation.md"
+ ],
+ "text": "Interpolate values of real input samples, 2 inputs, 1 output, no direct feedthrough, {Interpolation points} sets Interpolation points [1.1 4.8 2.67 1.6; {Source of interpolation points} sets the interpolation point input method Specify via, {Interpolation mode}, {Interpolation filter half-length} sets the half length of FIR interpolation filter, {Interpolation points per input sample} sets the interpolation points per sample, {Normalized input bandwidth} and {Out of range interpolation points} sets the error handling for out-of-range points. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Pts",
+   "direction": "input",
+   "summary": "Interpolation points scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of interpolation points",
+   "default": "dialog",
+   "values": "Interpolation point input method Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Interpolation points",
+   "default": "3.2]’",
+   "values": "Interpolation points [1.1 4.8 2.67 1.6 3.2]’ (default) | scalar | vector | matrix | N -D array",
+   "group": ""
+  },
+  {
+   "name": "Interpolation mode",
+   "default": "Linear",
+   "values": "Interpolation mode Linear (default) | FIR",
+   "group": ""
+  },
+  {
+   "name": "Interpolation filter half-length",
+   "default": "3",
+   "values": "Half length of FIR interpolation filter 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Interpolation points per input sample",
+   "default": "3",
+   "values": "Interpolation points per sample 3 (default)",
+   "group": ""
+  },
+  {
+   "name": "Normalized input bandwidth",
+   "default": "0.5",
+   "values": "Normalized input bandwidth 0.5 (default) | scalar in (0 1]",
+   "group": ""
+  },
+  {
+   "name": "Out of range interpolation points",
+   "default": "Clip",
+   "values": "Error handling for out-of-range points Clip (default) | Clip and warn | Error",
+   "group": ""
+  }
+ ]
+}

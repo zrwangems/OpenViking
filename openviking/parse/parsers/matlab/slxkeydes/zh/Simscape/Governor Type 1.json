@@ -1,0 +1,179 @@
+{
+ "key": "Governor Type 1",
+ "title": "Governor Type 1",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Turbine-Governors/Governor_Type_1.md"
+ ],
+ "text": "IEEE 类型 1 线性化调速汽轮机模型，输入 2 路、输出 2 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Speed reference (pu)} 指定转速参考、{Initial torque (pu)} 指定初始转矩、{Governor gain (1/droop), K (pu)} 指定调速器增益、{Lag time constant, T_1 (s)} 指定调速器滞后时间常数、{Lead time constant, T_2 (s)} 指定调速器超前时间常数、{Valve position time constant, T_3 (s)} 指定阀门位置时间常数、{Maximum valve opening rate, U_o (pu/s)} 指定阀门最大开启速率、{Maximum valve closing rate, U_c (pu/s)} 指定阀门最大关闭速率、{Maximum valve opening, on MW capability, P_max (pu)} 指定基于 MW 能力的阀门最大开度、{Minimum valve opening, on MW capability, P_min (pu)} 指定基于 MW 能力的阀门最小开度、{Time constant for steam inlet, T_4 (s)} 指定入口蒸汽时间常数、{HP fraction, K_1} 指定高压轴功率分数、{LP fraction, K2} 指定低压轴功率分数、{Time constant for second boiler pass, T_5 (s)} 指定第二次锅炉流程的时间常数、{HP fraction, K_3} 指定高压轴功率分数、{LP fraction, K_4} 指定低压轴功率分数、{Time constant for third boiler pass, T_6 (s)} 指定第三次锅炉流程的时间常数、{HP fraction, K_5} 指定高压轴功率分数、{LP fraction, K_6} 指定低压轴功率分数、{Time constant for fourth boiler pass, T_7 (s)} 指定第四次锅炉流程的时间常数、{HP fraction, K_7} 指定高压轴功率分数、{LP fraction, K_8} 指定低压轴功率分数、{Deadband} 指定死区宽度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "speed_pu",
+   "direction": "input",
+   "summary": "涡轮转速 scalar"
+  },
+  {
+   "name": "Pref",
+   "direction": "input",
+   "summary": "转速参考偏置 scalar"
+  },
+  {
+   "name": "Pmech(HP)",
+   "direction": "output",
+   "summary": "高压机械功率 scalar"
+  },
+  {
+   "name": "Pmech(LP)",
+   "direction": "output",
+   "summary": "低压机械功率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Speed reference (pu)",
+   "default": "1",
+   "values": "转速参考 1 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Initial torque (pu)",
+   "default": "0.45",
+   "values": "初始转矩 0.45 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Governor gain (1/droop), K (pu)",
+   "default": "20",
+   "values": "调速器增益 20 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Lag time constant, T_1 (s)",
+   "default": "0.2",
+   "values": "调速器滞后时间常数 0.2 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Lead time constant, T_2 (s)",
+   "default": "0",
+   "values": "调速器超前时间常数 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Valve position time constant, T_3 (s)",
+   "default": "0.1",
+   "values": "阀门位置时间常数 0.1 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Maximum valve opening rate, U_o (pu/s)",
+   "default": "0.1",
+   "values": "阀门最大开启速率 0.1 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Maximum valve closing rate, U_c (pu/s)",
+   "default": "-0.1",
+   "values": "阀门最大关闭速率 -0.1 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Maximum valve opening, on MW capability, P_max (pu)",
+   "default": "0.98",
+   "values": "基于 MW 能力的阀门最大开度 0.98 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Minimum valve opening, on MW capability, P_min (pu)",
+   "default": "0",
+   "values": "基于 MW 能力的阀门最小开度 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Time constant for steam inlet, T_4 (s)",
+   "default": "0.25",
+   "values": "入口蒸汽时间常数 0.25 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "HP fraction, K_1",
+   "default": "0.22",
+   "values": "高压轴功率分数 0.22 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "LP fraction, K2",
+   "default": "0",
+   "values": "低压轴功率分数 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Time constant for second boiler pass, T_5 (s)",
+   "default": "4",
+   "values": "第二次锅炉流程的时间常数 4 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "HP fraction, K_3",
+   "default": "0.22",
+   "values": "高压轴功率分数 0.22 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "LP fraction, K_4",
+   "default": "0",
+   "values": "低压轴功率分数 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Time constant for third boiler pass, T_6 (s)",
+   "default": "4",
+   "values": "第三次锅炉流程的时间常数 4 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "HP fraction, K_5",
+   "default": "0.3",
+   "values": "高压轴功率分数 0.3 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "LP fraction, K_6",
+   "default": "0",
+   "values": "低压轴功率分数 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Time constant for fourth boiler pass, T_7 (s)",
+   "default": "0.4",
+   "values": "第四次锅炉流程的时间常数 0.4 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "HP fraction, K_7",
+   "default": "0.26",
+   "values": "高压轴功率分数 0.26 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "LP fraction, K_8",
+   "default": "0",
+   "values": "低压轴功率分数 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Deadband",
+   "default": "0.02",
+   "values": "死区宽度 0.02 (default) | scalar",
+   "group": "Governor"
+  }
+ ]
+}

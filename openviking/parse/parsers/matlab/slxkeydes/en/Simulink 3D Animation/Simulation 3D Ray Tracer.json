@@ -1,0 +1,125 @@
+{
+ "key": "Simulation 3D Ray Tracer",
+ "title": "Simulation 3D Ray Tracer",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Ray_Tracer.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Ray_Tracer.md"
+ ],
+ "text": "Implement ray tracing in 3D environment, 5 outputs, {Mounting location} sets Sensor mounting location; {Sensor identifier} sets the unique sensor identifier, {Parent name} sets the name of parent, {Coordinate system}, {Specify offset} sets the offset from mounting location, {Relative translation [X, Y, Z]} sets the translation offset relative to mounting location, {Relative rotation [Roll, Pitch, Yaw]} sets the rotational offset relative to mounting location, {Ray origins} sets the ray origin zeros, {Ray directions} sets the normalized ray direction ones, {Max ray lengths} sets the maximum total ray length ones, {Number of bounces}, {Visualize trace line} sets the visualize ray traces, {Enable optimization} and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "HitLocations",
+   "direction": "output",
+   "summary": "Hit locations real-valued N(B+1) -by-3 array"
+  },
+  {
+   "name": "HitNormals",
+   "direction": "output",
+   "summary": "Ray normal to hit location real-valued N(B+1) -by-3 array"
+  },
+  {
+   "name": "HitDistances",
+   "direction": "output",
+   "summary": "Ray distance to hit location real-valued N(B+1) -by-1 array"
+  },
+  {
+   "name": "SurfaceIds",
+   "direction": "output",
+   "summary": "Object IDs of hit surfaces integer-valued N(B+1) -by-1 vector | 0"
+  },
+  {
+   "name": "IsValidHit",
+   "direction": "output",
+   "summary": "Hit flag N -by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "Name of parent Scene Origin (default)",
+   "group": ""
+  },
+  {
+   "name": "Coordinate system",
+   "default": "Default",
+   "values": "Coordinate system for actor transformation Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE",
+   "group": ""
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": ""
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "Specify offset from mounting location off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Relative translation [X, Y, Z]",
+   "default": "0]",
+   "values": "Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": ""
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw]",
+   "default": "0]",
+   "values": "Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": ""
+  },
+  {
+   "name": "Ray origins",
+   "default": "zeros(10,3)",
+   "values": "Ray origin zeros(10,3) (default) | real-valued N -by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Ray directions",
+   "default": "ones(10,3)",
+   "values": "Normalized ray direction ones(10,3) (default) | real-valued N -by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Max ray lengths",
+   "default": "ones(10,1)*10",
+   "values": "Maximum total ray length ones(10,1)*10 (default) | real-valued N -by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Number of bounces",
+   "default": "2",
+   "values": "Number of bounces per ray 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Visualize trace line",
+   "default": "on",
+   "values": "Visualize ray traces on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable optimization",
+   "default": "on",
+   "values": "Enable optimization on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "key": "RateTransition",
+ "title": "Rate Transition",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Rate_Transition.md",
+  "HDL Coder/Signal Attributes/Rate_Transition.md"
+ ],
+ "text": "处理以不同速率运行的模块之间的数据传输，输入 1 路、输出 1 路；按 {初始条件} 指定初始条件；{确保数据传输的数据完整性} 指定确保数据完整性、{确保确定性数据传输(最大延迟)}、{输出端口采样时间选项} 输出端口采样时间的模式、{输出端口采样时间} 输出速率、{采样时间倍数 (>0)}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "确保数据传输的数据完整性",
+   "default": "on",
+   "values": "确保数据完整性 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "确保确定性数据传输(最大延迟)",
+   "default": "on",
+   "values": "确保确定性数据传输 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "初始条件 0 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "输出端口采样时间选项",
+   "default": "指定",
+   "values": "指定输出端口采样时间的模式 指定 (默认) | 继承 | 输入端口采样时间的倍数",
+   "group": ""
+  },
+  {
+   "name": "输出端口采样时间",
+   "default": "-1",
+   "values": "输出速率 -1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "采样时间倍数 (>0)",
+   "default": "1",
+   "values": "采样时间倍数 1 (默认) | 正标量",
+   "group": ""
+  }
+ ]
+}

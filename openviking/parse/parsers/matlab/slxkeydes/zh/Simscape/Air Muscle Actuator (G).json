@@ -1,0 +1,13 @@
+{
+ "key": "Air Muscle Actuator (G)",
+ "title": "Air Muscle Actuator (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Actuators/Air_Muscle_Actuator_G.md"
+ ],
+ "text": "具有生物肌肉力特性的线性执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

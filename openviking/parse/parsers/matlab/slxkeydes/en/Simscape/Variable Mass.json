@@ -1,0 +1,13 @@
+{
+ "key": "Variable Mass",
+ "title": "Variable Mass",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Inertias & Loads/Variable_Mass.md"
+ ],
+ "text": "Load with angle-dependent rotational inertia.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

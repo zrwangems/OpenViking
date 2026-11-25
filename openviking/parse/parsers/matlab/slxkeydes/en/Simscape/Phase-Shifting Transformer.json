@@ -1,0 +1,13 @@
+{
+ "key": "Phase-Shifting Transformer",
+ "title": "Phase-Shifting Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Phase_Shifting_Transformer.md"
+ ],
+ "text": "12-pulse, 18-pulse, 24-pulse, or 48-pulse phase-shifting transformer.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

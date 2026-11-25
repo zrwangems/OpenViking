@@ -1,0 +1,109 @@
+{
+ "key": "CPM Modulator Baseband",
+ "title": "CPM Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/CPM/CPM_Modulator_Baseband.md"
+ ],
+ "text": "Modulate signal using CPM method, 1 input, 1 output, {Frequency pulse shape} sets Type of pulse shaping; {M-ary number} sets the modulation order, {Input type} sets the integer or group of bits input indicator, {Symbol set ordering} sets the symbol mapping, {Modulation index}, {Main lobe pulse duration (symbol intervals)} sets the main lobe duration, {Rolloff}, {BT product} sets the product of bandwidth and symbol time of Gaussian pulse, {Pulse length (symbol intervals)} sets the length of frequency pulse shape, {Symbol prehistory} sets the data symbols used before the start, {Phase offset (rad)} sets the initial phase offset, {Samples per symbol} sets the symbol sampling rate, {Rate options} sets the block processing rate Enforce single-rate and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "4",
+   "values": "Modulation order 4 (default) | power of two scalar",
+   "group": ""
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "Integer or group of bits input indicator Integer (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Symbol set ordering",
+   "default": "Binary",
+   "values": "Symbol mapping Binary (default) | Gray",
+   "group": ""
+  },
+  {
+   "name": "Modulation index",
+   "default": "0.5",
+   "values": "Modulation index { h i } 0.5 (default) | nonnegative scalar | column vector",
+   "group": ""
+  },
+  {
+   "name": "Frequency pulse shape",
+   "default": "Rectangular",
+   "values": "Type of pulse shaping Rectangular (default) | Raised Cosine | Spectral Raised Cosine | Gaussian | Tamed FM",
+   "group": ""
+  },
+  {
+   "name": "Main lobe pulse duration (symbol intervals)",
+   "default": "1",
+   "values": "Main lobe duration 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Rolloff",
+   "default": "0.2",
+   "values": "Rolloff factor of spectral raised cosine pulse shape 0.2 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "BT product",
+   "default": "0.3",
+   "values": "Product of bandwidth and symbol time of Gaussian pulse shape 0.3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Pulse length (symbol intervals)",
+   "default": "1",
+   "values": "Length of frequency pulse shape 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Symbol prehistory",
+   "default": "1",
+   "values": "Data symbols used before the start of simulation 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "Initial phase offset 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "8",
+   "values": "Symbol sampling rate 8 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Block processing rate Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single",
+   "group": ""
+  }
+ ]
+}

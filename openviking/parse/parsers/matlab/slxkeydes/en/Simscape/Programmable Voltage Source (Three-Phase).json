@@ -1,0 +1,13 @@
+{
+ "key": "Programmable Voltage Source (Three-Phase)",
+ "title": "Programmable Voltage Source (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Programmable_Voltage_Source_Three_Phase.md"
+ ],
+ "text": "Three-phase voltage source with optional programmable AC magnitude, frequency, and phase shift.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

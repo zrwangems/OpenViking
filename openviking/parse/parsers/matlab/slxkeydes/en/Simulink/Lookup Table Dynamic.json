@@ -1,0 +1,65 @@
+{
+ "key": "Lookup Table Dynamic",
+ "title": "Lookup Table Dynamic",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/Lookup_Table_Dynamic.md"
+ ],
+ "text": "Approximate a one-dimensional function using dynamic table, 3 inputs, 1 output, direct feedthrough, {Output data type} sets Output data type; {Lookup Method} sets the lookup method Interpolation-Use End, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Integer rounding mode} sets the rounding mode for fixed-point operations and {Saturate to max or min when overflows occur} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "input vector scalar | vector | 2-D array"
+  },
+  {
+   "name": "xdat",
+   "direction": "input",
+   "summary": "breakpoint data 1-by-n vector of strictly monotonically increasing values"
+  },
+  {
+   "name": "ydat",
+   "direction": "input",
+   "summary": "table data 1-by-n vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Approximation of y = f(x) using dynamic table data 1-by-n vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lookup Method",
+   "default": "Values",
+   "values": "Specify the lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | ’Inherit: Inherit via back propagation’ | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Signal Attributes Tab"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Signal Attributes Tab"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes Tab"
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes Tab"
+  }
+ ]
+}

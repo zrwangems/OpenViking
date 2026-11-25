@@ -1,0 +1,73 @@
+{
+ "key": "M-FSK Modulator Baseband",
+ "title": "M-FSK Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/FSK/M_FSK_Modulator_Baseband.md"
+ ],
+ "text": "使用 M 元频移键控方法进行调制，输入 1 路、输出 1 路；{M-ary number} 指定调制信号中的频率数、{Input type} 指定整数或位组输入指示符、{Symbol set ordering} 指定符号映射 Binary、{Frequency separation (Hz)} 指定频率间隔、{Phase continuity} 指定相位连续性、{Samples per symbol} 指定符号采样率、{Rate options} 指定模块处理速率 Enforce single-rate、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | row vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "M-FSK 调制信号 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "8",
+   "values": "调制信号中的频率数 8 (default) | positive integer ≥ 2",
+   "group": ""
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "整数或位组输入指示符 Integer (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Symbol set ordering",
+   "default": "Binary",
+   "values": "符号映射 Binary (default) | Gray",
+   "group": ""
+  },
+  {
+   "name": "Frequency separation (Hz)",
+   "default": "6",
+   "values": "频率间隔 (Hz) 6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase continuity",
+   "default": "Continuous",
+   "values": "相位连续性 Continuous (default) | Discontinuous",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "17",
+   "values": "符号采样率 17 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "模块处理速率 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single",
+   "group": ""
+  }
+ ]
+}

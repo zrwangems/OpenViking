@@ -1,0 +1,288 @@
+{
+ "key": "IM Controller",
+ "title": "IM Controller",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Electric Motor Controllers/IM_Controller.md"
+ ],
+ "text": "用于感应电机的基于转矩的内部磁场定向控制器，带有可选的外环转速控制器，输入 6 路、输出 3 路；按 {Parameterize losses by} 指定类型 Single efficiency；{Control Type} 控制 Speed、{Stator resistance, Rs} 指定电阻、{Stator leakage inductance, Lls} 指定电感、{Rotor resistance, Rr} 指定电阻、{Rotor leakage inductance, Llr} 指定电感、{Rotor magnetizing inductance, Lm} 指定电感、{Number of pole pairs, PolePairs} 指定极数、{Physical inertia, viscous damping, static friction, Mechanical} 指定电机的机械属性、{Rated synchronous speed, Frate} 指定电机频率、{Rated line to line voltage RMS, Vrate} 指定电机电压、{Rated slip, Srate} 指定电机转差速度、{Calculate Rated Stator Flux Current} 指定派生参数、{D-axis rated current, Isd_0} 指定派生、{Q-axis rated current, Isq_0} 指定派生、{Torque at rated current, Tem} 指定派生、{Bandwidth of the current regulator, EV_current} 指定带宽、{Sample time for the torque control, Tst} 指定时间 5e-5、{Calculate Current Regulator Gains} 指定派生参数、{D and Q axis proportional gain, Kp} 指定派生、{D and Q axis integral gain, Ki} 指定派生、{Bandwidth of the motion controller, EV_motion} 指定带宽、{Bandwidth of the state filter, EV_sf} 指定带宽、{Calculate Speed Regulator Gains} 指定派生参数、{Proportional gain, ba} 指定派生、{Angular gain, Ksa} 指定派生、{Rotational gain, Kisa} 指定派生、{Speed regulation time constant, Ksf} 指定派生、{Inertia compensation, Jcomp} 指定派生、{Viscous damping compensation, Fv} 指定派生、{Static friction, Fs} 指定派生、{Overall inverter efficiency, eff} 指定常量、{Vector of speeds (w) for tabulated loss, w_loss_bp} 指定断点、{Vector of torques (T) for tabulated loss, T_loss_bp} 指定断点、{Corresponding losses, losses_table} 指定表、{Vector of speeds (w) for tabulated efficiency, w_eff_bp} 指定断点、{Vector of torques (T) for tabulated efficiency, T_eff_bp} 指定断点、{Corresponding efficiency, efficiency_table} 指定表，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SpdReq",
+   "direction": "input",
+   "summary": "转子机械转速指令 scalar"
+  },
+  {
+   "name": "TrqCmd",
+   "direction": "input",
+   "summary": "扭矩指令 scalar"
+  },
+  {
+   "name": "BusVolt",
+   "direction": "input",
+   "summary": "直流母线电压 scalar"
+  },
+  {
+   "name": "PhaseCurrA",
+   "direction": "input",
+   "summary": "电流 scalar"
+  },
+  {
+   "name": "PhaseCurrB",
+   "direction": "input",
+   "summary": "电流 scalar"
+  },
+  {
+   "name": "SpdFdbk",
+   "direction": "input",
+   "summary": "转子机械转速 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "BusCurr",
+   "direction": "output",
+   "summary": "总线电流 scalar"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "output",
+   "summary": "定子端电压 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control Type",
+   "default": "Control",
+   "values": "选择控制 Speed Control (default) | Torque Control",
+   "group": ""
+  },
+  {
+   "name": "Stator resistance, Rs",
+   "default": "1.77",
+   "values": "电阻 1.77 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator leakage inductance, Lls",
+   "default": "0.0139",
+   "values": "电感 0.0139 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rotor resistance, Rr",
+   "default": "1.34",
+   "values": "电阻 1.34 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rotor leakage inductance, Llr",
+   "default": "0.0121",
+   "values": "电感 0.0121 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rotor magnetizing inductance, Lm",
+   "default": "0.3687",
+   "values": "电感 0.3687 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs, PolePairs",
+   "default": "2",
+   "values": "极数 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Physical inertia, viscous damping, static friction, Mechanical",
+   "default": "0]",
+   "values": "电机的机械属性 [0.025, 0, 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rated synchronous speed, Frate",
+   "default": "60",
+   "values": "电机频率 60 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rated line to line voltage RMS, Vrate",
+   "default": "460",
+   "values": "电机电压 460 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rated slip, Srate",
+   "default": "0.0172",
+   "values": "电机转差速度 0.0172 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Calculate Rated Stator Flux Current",
+   "default": "",
+   "values": "派生参数 button",
+   "group": ""
+  },
+  {
+   "name": "D-axis rated current, Isd_0",
+   "default": "3.1004",
+   "values": "派生 3.1004 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Q-axis rated current, Isq_0",
+   "default": "5.7131",
+   "values": "派生 5.7131 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque at rated current, Tem",
+   "default": "12.6467",
+   "values": "派生 12.6467 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Bandwidth of the current regulator, EV_current",
+   "default": "200",
+   "values": "带宽 200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time for the torque control, Tst",
+   "default": "5e-5",
+   "values": "时间 5e-5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Calculate Current Regulator Gains",
+   "default": "",
+   "values": "派生参数 button",
+   "group": ""
+  },
+  {
+   "name": "D and Q axis proportional gain, Kp",
+   "default": "32.1894",
+   "values": "派生 32.1894 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "D and Q axis integral gain, Ki",
+   "default": "2224.2476",
+   "values": "派生 2224.2476 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Bandwidth of the motion controller, EV_motion",
+   "default": "0.8]",
+   "values": "带宽 [20, 4, 0.8] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Bandwidth of the state filter, EV_sf",
+   "default": "200",
+   "values": "带宽 200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Calculate Speed Regulator Gains",
+   "default": "",
+   "values": "派生参数 button",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain, ba",
+   "default": "3.7477",
+   "values": "派生 3.7477 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Angular gain, Ksa",
+   "default": "94.0877",
+   "values": "派生 94.0877 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rotational gain, Kisa",
+   "default": "381.7822",
+   "values": "派生 381.7822 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed regulation time constant, Ksf",
+   "default": "1217.9727",
+   "values": "派生 1217.9727 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Inertia compensation, Jcomp",
+   "default": "0.025",
+   "values": "派生 0.025 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Viscous damping compensation, Fv",
+   "default": "0",
+   "values": "派生 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static friction, Fs",
+   "default": "0",
+   "values": "派生 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Parameterize losses by",
+   "default": "measurement",
+   "values": "选择类型 Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data",
+   "group": ""
+  },
+  {
+   "name": "Overall inverter efficiency, eff",
+   "default": "98",
+   "values": "常量 98 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vector of speeds (w) for tabulated loss, w_loss_bp",
+   "default": "1000]",
+   "values": "断点 [0 200 400 600 800 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of torques (T) for tabulated loss, T_loss_bp",
+   "default": "100]",
+   "values": "断点 [0 25 50 75 100] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding losses, losses_table",
+   "default": "1100]",
+   "values": "表 [100 100 100 100 100;100 150 200 250 300;100 200 300 400 500;100 250 400 550 700;100 300 500 700 900;100 350 600 850 1100] (default) | M -by- N array",
+   "group": ""
+  },
+  {
+   "name": "Vector of speeds (w) for tabulated efficiency, w_eff_bp",
+   "default": "1000]",
+   "values": "断点 [200 400 600 800 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of torques (T) for tabulated efficiency, T_eff_bp",
+   "default": "100]",
+   "values": "断点 [25 50 75 100] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding efficiency, efficiency_table",
+   "default": "99.8]",
+   "values": "表 [96.2 98.1 98.7 99;98.1 99 99.4 99.5;98.7 99.4 99.6 99.7;99 99.5 99.7 99.8;99.2 99.6 99.7 99.8] (default) | M -by- N array",
+   "group": ""
+  }
+ ]
+}

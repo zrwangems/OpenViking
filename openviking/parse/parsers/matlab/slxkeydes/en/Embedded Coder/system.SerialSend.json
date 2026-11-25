@@ -1,0 +1,111 @@
+{
+ "key": "system.SerialSend",
+ "title": "Serial Send",
+ "toolbox": "Embedded Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "Embedded Coder/Embedded Targets/Host Communication/Serial_Send.md",
+  "Instrument Control Toolbox/Serial_Send.md",
+  "C2000 Microcontroller Blockset/Host Communication/Serial_Send.md",
+  "Motor Control Blockset/Protection and Diagnostics/Host_Serial_Transmit.md"
+ ],
+ "text": "Pack individual signals into CAN message, 2 inputs, 1 output, {Data input as} sets Select your; {Database file} sets the aRXML or CAN database file character, {Message list} sets the cAN message list array of character, {Name} sets the cAN message name, {Identifier type} sets the cAN identifier type Standard, {CAN Identifier} sets the cAN message ID, {Specify CAN identifier from input port} sets the cAN message ID value, {Length (bytes)} sets the cAN message length, {Remote frame} sets the cAN message as remote frame, {Output as bus} sets the cAN message as bus, {Add signal} adds CAN signal, {Delete signal} sets the remove CAN signal and {Signals}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "CAN message signal input single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean"
+  },
+  {
+   "name": "CAN Msg ID",
+   "direction": "input",
+   "summary": "CAN message identifier single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64"
+  },
+  {
+   "name": "CAN Msg",
+   "direction": "output",
+   "summary": "CAN message output CAN_MESSAGE | CAN_MESSAGE_BUS"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data input as",
+   "default": "data",
+   "values": "Select your data signal raw data (default) | manually specified signals | CANdb specified signals | ARXML specified signals",
+   "group": ""
+  },
+  {
+   "name": "Database file",
+   "default": "",
+   "values": "ARXML or CAN database file character vector",
+   "group": ""
+  },
+  {
+   "name": "Message list",
+   "default": "",
+   "values": "CAN message list array of character vectors",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "Msg",
+   "values": "CAN message name CAN Msg (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Identifier type",
+   "default": "identifier)",
+   "values": "CAN identifier type Standard (11-bit identifier) (default) | Extended (29-bit identifier)",
+   "group": ""
+  },
+  {
+   "name": "CAN Identifier",
+   "default": "0",
+   "values": "CAN message ID 0 (default) | 0 to 536870911",
+   "group": ""
+  },
+  {
+   "name": "Specify CAN identifier from input port",
+   "default": "off",
+   "values": "CAN message ID value off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Length (bytes)",
+   "default": "8",
+   "values": "CAN message length 8 (default) | 0 to 8",
+   "group": ""
+  },
+  {
+   "name": "Remote frame",
+   "default": "off",
+   "values": "CAN message as remote frame off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output as bus",
+   "default": "off",
+   "values": "CAN message as bus off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Add signal",
+   "default": "",
+   "values": "Add CAN signal",
+   "group": ""
+  },
+  {
+   "name": "Delete signal",
+   "default": "",
+   "values": "Remove CAN signal",
+   "group": ""
+  },
+  {
+   "name": "Signals",
+   "default": "",
+   "values": "Signals table table",
+   "group": ""
+  }
+ ]
+}

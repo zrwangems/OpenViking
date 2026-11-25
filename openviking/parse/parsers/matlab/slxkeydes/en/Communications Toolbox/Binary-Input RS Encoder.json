@@ -1,0 +1,67 @@
+{
+ "key": "Binary-Input RS Encoder",
+ "title": "Binary-Input RS Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Block/Binary_Input_RS_Encoder.md"
+ ],
+ "text": "Create Reed-Solomon code from binary vector data, 1 input, 1 output, {Primitive polynomial} sets Primitive polynomial ’X^3 + X +; {Codeword length N (symbols)}, {Message length K (symbols)} sets the message word length, {Shortened message length S (symbols)} sets the shortened message word length, {Generator polynomial}, {Puncture vector} and {Output data type} sets the output type of the block Same. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Message binary column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Reed-Solomon codeword binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length N (symbols)",
+   "default": "7",
+   "values": "Codeword length 7 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Message length K (symbols)",
+   "default": "3",
+   "values": "Message word length 3 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Shortened message length S (symbols)",
+   "default": "3",
+   "values": "Shortened message word length 3 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Generator polynomial",
+   "default": "’double’)",
+   "values": "Generator polynomial rsgenpoly(7, 3, [], [], ’double’) (default) | polynomial character vector | binary row vector | binary Galois row vector",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "1’",
+   "values": "Primitive polynomial ’X^3 + X + 1’ (default) | polynomial character vector | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "zeros(2,1)]",
+   "values": "Puncture vector [ones(2,1); zeros(2,1)] (default) | binary column vector",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "input",
+   "values": "Output type of the block Same as input (default) | boolean | double",
+   "group": ""
+  }
+ ]
+}

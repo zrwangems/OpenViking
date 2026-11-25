@@ -1,0 +1,13 @@
+{
+ "key": "Wye-Connected Load",
+ "title": "Wye-Connected Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/RLC Assemblies/Wye_Connected_Load.md"
+ ],
+ "text": "Three-phase load wired in wye configuration.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Positive-Displacement Compressor (2P)",
+ "title": "Positive-Displacement Compressor (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Fluid Machines/Positive_Displacement_Compressor_2P.md"
+ ],
+ "text": "两相流体网络中的容积式压缩机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

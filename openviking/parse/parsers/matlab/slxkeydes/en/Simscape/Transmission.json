@@ -1,0 +1,13 @@
+{
+ "key": "Transmission",
+ "title": "Transmission",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Transmission.md"
+ ],
+ "text": "Abstract transmission for system-level driveline modeling.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

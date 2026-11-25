@@ -1,0 +1,49 @@
+{
+ "key": "visionhdl.MeasureTiming",
+ "title": "Measure Timing",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Measure_Timing.md"
+ ],
+ "text": "Measure timing of pixel control bus input, 1 input, 6 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ctrlIn",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "activePixels",
+   "direction": "output",
+   "summary": "Number of pixels in each line of active video frame scalar"
+  },
+  {
+   "name": "activeLines",
+   "direction": "output",
+   "summary": "Number of lines in active video frame scalar"
+  },
+  {
+   "name": "totalPixels",
+   "direction": "output",
+   "summary": "Number of pixels in each line, including the horizontal blanking interval scalar"
+  },
+  {
+   "name": "totalLines",
+   "direction": "output",
+   "summary": "Number of lines in the frame, including the vertical blanking interval scalar"
+  },
+  {
+   "name": "horizBlank",
+   "direction": "output",
+   "summary": "Number of inactive pixels between lines of a frame scalar"
+  },
+  {
+   "name": "vertBlank",
+   "direction": "output",
+   "summary": "Number of inactive lines between frames scalar"
+  }
+ ],
+ "params": []
+}

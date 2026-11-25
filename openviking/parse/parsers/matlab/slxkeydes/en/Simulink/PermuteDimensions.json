@@ -1,0 +1,31 @@
+{
+ "key": "PermuteDimensions",
+ "title": "Permute Dimensions",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Permute_Dimensions.md"
+ ],
+ "text": "Rearrange dimensions of multidimensional array dimensions, 1 input, 1 output, direct feedthrough; {Order} sets the permutation vector. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Permutation of input signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Order",
+   "default": "[2,1]",
+   "values": "Permutation vector [2,1] (default) | N -element vector, where N is the number of dimensions of the input signal",
+   "group": ""
+  }
+ ]
+}

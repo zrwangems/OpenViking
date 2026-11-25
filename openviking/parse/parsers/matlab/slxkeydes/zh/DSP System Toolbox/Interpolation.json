@@ -1,0 +1,72 @@
+{
+ "key": "Interpolation",
+ "title": "Interpolation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Interpolation.md"
+ ],
+ "text": "对实数输入样本值进行插值，输入 2 路、输出 1 路、无直接馈通；按 {Out of range interpolation points} 指定超出范围点的错误处理；{Source of interpolation points} 指定插值点输入方法 Specify via、{Interpolation points} 指定插值点、{Interpolation mode} 指定插值模式 Linear、{Interpolation filter half-length} 指定 FIR 插值滤波器的半长度、{Interpolation points per input sample} 指定每个采样的插值点数、{Normalized input bandwidth} 指定归一化输入带宽，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Pts",
+   "direction": "input",
+   "summary": "插值点 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of interpolation points",
+   "default": "dialog",
+   "values": "插值点输入方法 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Interpolation points",
+   "default": "3.2]’",
+   "values": "插值点 [1.1 4.8 2.67 1.6 3.2]’ (default) | scalar | vector | matrix | N -D array",
+   "group": ""
+  },
+  {
+   "name": "Interpolation mode",
+   "default": "Linear",
+   "values": "插值模式 Linear (default) | FIR",
+   "group": ""
+  },
+  {
+   "name": "Interpolation filter half-length",
+   "default": "3",
+   "values": "FIR 插值滤波器的半长度 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Interpolation points per input sample",
+   "default": "3",
+   "values": "每个采样的插值点数 3 (default)",
+   "group": ""
+  },
+  {
+   "name": "Normalized input bandwidth",
+   "default": "0.5",
+   "values": "归一化输入带宽 0.5 (default) | scalar in (0 1]",
+   "group": ""
+  },
+  {
+   "name": "Out of range interpolation points",
+   "default": "Clip",
+   "values": "超出范围点的错误处理 Clip (default) | Clip and warn | Error",
+   "group": ""
+  }
+ ]
+}

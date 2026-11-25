@@ -1,0 +1,13 @@
+{
+ "key": "3-Way Directional Valve (IL)",
+ "title": "3-Way Directional Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Directional Control Valves/b_3_Way_Directional_Valve_IL.md"
+ ],
+ "text": "3-way flow control valve in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

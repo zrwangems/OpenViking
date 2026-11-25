@@ -1,0 +1,95 @@
+{
+ "key": "EntityResourcePool",
+ "title": "Resource Pool",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Resource_Pool.md"
+ ],
+ "text": "Resource Pool 模块定义实体在模型仿真期间可以使用的资源，输入 1 路、输出 3 路；{Resource name} 指定资源池中资源的名称、{Resource granularity} 指定资源使用粒度 Discrete、{Reusable upon release} 指定资源在释放后是否可重用、{Resource amount source} 指定资源数量来源、{Resource amount} 指定资源数量、{Initial resource amount} 指定输入初始资源数量、{Resource visibility} 指定资源的可用性、{Amount in use, u} 指定正在使用的资源数量、{Average utilization, util} 输出平均资源利用率、{Amount available, avail} 输出可用资源数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "更改资源数量 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_u",
+   "direction": "output",
+   "summary": "输出正在使用的资源数量 scalar"
+  },
+  {
+   "name": "Port_util",
+   "direction": "output",
+   "summary": "输出资源池的平均利用时间 scalar"
+  },
+  {
+   "name": "Port_avail",
+   "direction": "output",
+   "summary": "输出可用资源数量 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resource name",
+   "default": "Resource1",
+   "values": "资源池中资源的名称 Resource1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Resource granularity",
+   "default": "unit",
+   "values": "选择资源使用粒度 Discrete unit (default) | Fractional amount",
+   "group": ""
+  },
+  {
+   "name": "Reusable upon release",
+   "default": "off",
+   "values": "指定资源在释放后是否可重用 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Resource amount source",
+   "default": "Dialog",
+   "values": "选择资源数量来源 Dialog (default) | Change amount through control port",
+   "group": ""
+  },
+  {
+   "name": "Resource amount",
+   "default": "10",
+   "values": "设置资源数量 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial resource amount",
+   "default": "10",
+   "values": "输入初始资源数量 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Resource visibility",
+   "default": "Global",
+   "values": "选择资源的可用性 Global (default) | Scoped",
+   "group": ""
+  },
+  {
+   "name": "Amount in use, u",
+   "default": "off",
+   "values": "正在使用的资源数量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average utilization, util",
+   "default": "off",
+   "values": "输出平均资源利用率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Amount available, avail",
+   "default": "off",
+   "values": "输出可用资源数量 off (default) | on",
+   "group": ""
+  }
+ ]
+}

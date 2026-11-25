@@ -1,0 +1,44 @@
+{
+ "key": "Ideal Circulators",
+ "title": "Circulator",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/Circulator.md"
+ ],
+ "text": "Model ideal frequency-independent circulators with S-parameters, {Select component} sets Circulator direction Circulator; {Reference impedances (Ohm)} sets the reference impedance of circulator, {Phase shift, ports 1 and 2 (rad)} sets the angle to shift phase of signal in port, {Phase shift, ports 3 (rad)} sets the angle to shift phase of signal in port and {Ground and hide negative terminals} sets the ground RF circuit terminals. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Select component",
+   "default": "clockwise",
+   "values": "Circulator direction Circulator clockwise (default) | Circulator counter clockwise | Tee H-plane (S11=0) | Reciprocal phase shifter",
+   "group": ""
+  },
+  {
+   "name": "Reference impedances (Ohm)",
+   "default": "50",
+   "values": "Reference impedance of circulator 50 (default) | positive scalar | three-tuple vector",
+   "group": ""
+  },
+  {
+   "name": "Phase shift, ports 1 and 2 (rad)",
+   "default": "0",
+   "values": "Angle to shift phase of signal in port 1 and port 2 0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase shift, ports 3 (rad)",
+   "default": "0",
+   "values": "Angle to shift phase of signal in port 3 0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

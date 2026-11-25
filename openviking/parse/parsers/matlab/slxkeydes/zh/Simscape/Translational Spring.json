@@ -1,0 +1,13 @@
+{
+ "key": "Translational Spring",
+ "title": "Translational Spring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Translational_Spring.md"
+ ],
+ "text": "机械平移系统中的理想弹簧。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

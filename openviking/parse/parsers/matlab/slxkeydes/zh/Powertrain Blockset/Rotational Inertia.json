@@ -1,0 +1,87 @@
+{
+ "key": "Rotational Inertia",
+ "title": "Rotational Inertia",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Rotational_Inertia.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Rotational_Inertia.md"
+ ],
+ "text": "理想机械旋转惯量，输入 4 路、输出 3 路；{Port Configuration} 指定配置 Simulink、{Output Info bus} 指定 off、{External inertia input} 指定输入转动惯量、{Rotational inertia, J} 指定惯性 .01、{Torsional damping, b} 指定阻尼 .001、{Initial velocity, omega_o} 指定角度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RTrq",
+   "direction": "input",
+   "summary": "输入扭矩 scalar"
+  },
+  {
+   "name": "CTrq",
+   "direction": "input",
+   "summary": "输出扭矩 scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "角速度和扭矩 two-way connector port"
+  },
+  {
+   "name": "Inertia",
+   "direction": "input",
+   "summary": "输入 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "Spd",
+   "direction": "output",
+   "summary": "传动轴速度 scalar"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "角速度和扭矩 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "指定配置 Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Output Info bus",
+   "default": "off",
+   "values": "选择 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External inertia input",
+   "default": "off",
+   "values": "输入转动惯量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Rotational inertia, J",
+   "default": ".01",
+   "values": "惯性 .01 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Torsional damping, b",
+   "default": ".001",
+   "values": "阻尼 .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity, omega_o",
+   "default": "0",
+   "values": "角度 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  }
+ ]
+}

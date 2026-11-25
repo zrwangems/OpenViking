@@ -1,0 +1,49 @@
+{
+ "key": "AMI",
+ "title": "AMI",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Utilities/AMI.md"
+ ],
+ "text": "与其他供应商的设计协同设计 SerDes 架构，输入 1 路、输出 1 路；按 {DLL File} 指定可执行文件 DLL file；{AMI File} 指定 AMI 设置文件 text file、{Operation} 定义模块用作发送器还是接收器、{Correlation Flow} 定义模块是否与另一个发送器或接收器并行运行，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "修改后的输出数据 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "DLL File",
+   "default": "",
+   "values": "可执行文件 DLL file | SO file",
+   "group": ""
+  },
+  {
+   "name": "AMI File",
+   "default": "",
+   "values": "AMI 设置文件 text file",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "Tx",
+   "values": "定义模块用作发送器还是接收器 Tx (default) | Rx",
+   "group": ""
+  },
+  {
+   "name": "Correlation Flow",
+   "default": "off",
+   "values": "定义模块是否与另一个发送器或接收器并行运行 off (default) | on",
+   "group": ""
+  }
+ ]
+}

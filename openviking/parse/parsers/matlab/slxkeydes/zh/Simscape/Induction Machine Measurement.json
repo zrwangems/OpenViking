@@ -1,0 +1,13 @@
+{
+ "key": "Induction Machine Measurement",
+ "title": "Induction Machine Measurement",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/Induction_Machine_Measurement.md"
+ ],
+ "text": "来自感应电机的标幺值测量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,116 @@
+{
+ "key": "S-Parameters Passive Network",
+ "title": "S-Parameters Passive Network",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Black Box Elements/S_Parameters_Passive_Network.md"
+ ],
+ "text": "使用 S 参数对无源网络建模；按 {Interpolation method} 指定对网络参数进行插值的方法；{S-Parameters} 指定二端口无源网络的 S 参数、{Frequency (Hz)} 指定 S 参数的频率 2.0e9、{Reference Impedance (ohms)} 指定网络参考阻抗、{Source of frequency data} 指定频率数据源 Same、{Frequency data (Hz)} 指定频率数据范围、{Reference impedance (ohms)} 指定参考阻抗、{Plot type} 指定数据绘图类型 X-Y、{Y parameter1} 指定要绘制的参数类型、{Y parameter2} 指定要绘制的参数类型、{Y format1} 指定绘图格式 Magnitude、{Y format2} 指定绘图格式 Magnitude、{X parameter} 指定频率图 Freq、{X format} 指定频率图格式、{Y scale} 指定 Y 轴刻度、{X scale} 指定 X 轴刻度、{Plot} 绘制指定数据，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "S-Parameters",
+   "default": "[0,0;1,0]",
+   "values": "二端口无源网络的 S 参数 [0,0;1,0] (default) | 2-by-2-by- M array",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "2.0e9",
+   "values": "S 参数的频率 2.0e9 (default) | M -element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Reference Impedance (ohms)",
+   "default": "50",
+   "values": "网络参考阻抗 50 (default) | nonnegative scalar | vector of length M",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "对网络参数进行插值的方法。 Linear (default) | Spline | Cubic",
+   "group": "Main"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "S-Parameters",
+   "values": "频率数据源 Same as the S-Parameters (default) | User-specified",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1.9e9:1.0e6:2.2e9]",
+   "values": "频率数据范围 [1.9e9:1.0e6:2.2e9] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "参考阻抗 50 (default) | nonnegative scalar",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "数据绘图类型 X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "频率图 Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "频率图格式 Hz (default) | Auto | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制指定数据 button",
+   "group": "Visualization"
+  }
+ ]
+}

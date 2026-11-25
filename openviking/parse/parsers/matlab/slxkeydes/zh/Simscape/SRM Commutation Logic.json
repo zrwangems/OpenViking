@@ -1,0 +1,47 @@
+{
+ "key": "SRM Commutation Logic",
+ "title": "SRM Commutation Logic",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SRM Control/SRM_Commutation_Logic.md"
+ ],
+ "text": "开关磁阻电机的换相逻辑，输入 3 路、输出 1 路；{Torque capability angle (rad)} 指定转矩角 pi/2、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "相位角 scalar"
+  },
+  {
+   "name": "thetaON",
+   "direction": "input",
+   "summary": "开通角 scalar"
+  },
+  {
+   "name": "thetaOFF",
+   "direction": "input",
+   "summary": "关断角 scalar"
+  },
+  {
+   "name": "abcOnOff",
+   "direction": "output",
+   "summary": "换相信号 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Torque capability angle (rad)",
+   "default": "pi/2",
+   "values": "转矩角 pi/2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "key": "TcpSend",
+ "title": "TCP Send",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28M35x/M3/TCP_Send.md",
+  "C2000 Microcontroller Blockset/F28M36x/M3/TCP_Send.md"
+ ],
+ "text": "Trigger downstream function-call subsystems from interrupt service routine, 1 input, 1 output, {Number of events to serve} sets number of events to serve; {Simulink task priority} sets the priority of selected ISR, {Disable interrupt pre-emption} selects to disable interrupt preemption and {Enable simulation port}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "name Event Task",
+   "direction": "input",
+   "summary": "Function-call event input simulation scalar"
+  },
+  {
+   "name": "name Event",
+   "direction": "output",
+   "summary": "Generate interrupt request Scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of events to serve",
+   "default": "1",
+   "values": "Specify number of events to serve 1 (default) | 2 | 3 | <32",
+   "group": ""
+  },
+  {
+   "name": "Simulink task priority",
+   "default": "50",
+   "values": "Set priority of selected ISR 50 (default) | positive integer or nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Disable interrupt pre-emption",
+   "default": "off",
+   "values": "Select to disable interrupt preemption off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable simulation port",
+   "default": "off",
+   "values": "Enable simulation ports to block off (default) | on",
+   "group": ""
+  }
+ ]
+}

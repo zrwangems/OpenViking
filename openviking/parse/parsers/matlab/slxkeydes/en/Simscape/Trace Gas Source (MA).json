@@ -1,0 +1,13 @@
+{
+ "key": "Trace Gas Source (MA)",
+ "title": "Trace Gas Source (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sources/Moisture & Trace Gas Sources/Trace_Gas_Source_MA.md"
+ ],
+ "text": "Inject or extract trace gas at a constant or time-varying rate.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

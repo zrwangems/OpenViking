@@ -1,0 +1,55 @@
+{
+ "key": "Video Display Interface",
+ "title": "Video Display Interface",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Peripherals/Video_Display_Interface.md"
+ ],
+ "text": "Simulate display of images to video screen on device, 1 input, 1 output, {Image size} sets Image size; {Output}, {Image size ([width, height])} sets the image size, {Pixel format} sets the format of the pixel and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "SoC message data vector"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Image data 3* height * width -element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output",
+   "default": "terminator",
+   "values": "Output type To terminator (default) | To output port",
+   "group": ""
+  },
+  {
+   "name": "Image size",
+   "default": "160x120",
+   "values": "Image size 160x120 (default) | 320x240 | 640x480 | 800x600 | custom",
+   "group": ""
+  },
+  {
+   "name": "Image size ([width, height])",
+   "default": "240]",
+   "values": "Image size [320, 240] (default) | two-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Pixel format",
+   "default": "RGB",
+   "values": "Format of the pixel data RGB (default) | YCbCr 4:2:2",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time in seconds -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

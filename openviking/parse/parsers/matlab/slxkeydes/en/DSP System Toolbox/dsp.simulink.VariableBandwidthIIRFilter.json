@@ -1,0 +1,124 @@
+{
+ "key": "dsp.simulink.VariableBandwidthIIRFilter",
+ "title": "Variable Bandwidth IIR Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Variable_Bandwidth_IIR_Filter.md"
+ ],
+ "text": "Design tunable bandwidth IIR filter, 4 inputs, 1 output, {Filter type} sets Filter type; {IIR filter order}, {Specify passband frequency from input port}, {Filter passband frequency}, {Specify center frequency from input port}, {Filter center frequency}, {Specify bandwidth from input port}, {Filter bandwidth}, {Filter passband ripple (dB)}, {Filter Stopband attenuation (dB)}, {Sample rate mode} sets the mode to specify the input sample rate Use normalized, {Input sample rate (Hz)}, {View Filter Response} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Fp",
+   "direction": "input",
+   "summary": "Filter passband frequency positive scalar"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "Filter center frequency positive scalar"
+  },
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "Filter bandwidth positive scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Filtered output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "Filter type Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": ""
+  },
+  {
+   "name": "IIR filter order",
+   "default": "8",
+   "values": "IIR filter order 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify passband frequency from input port",
+   "default": "off",
+   "values": "Specify passband frequency from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter passband frequency",
+   "default": "512",
+   "values": "Filter passband frequency 512 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "off",
+   "values": "Specify center frequency from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter center frequency",
+   "default": "44100/4",
+   "values": "Filter center frequency 44100/4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify bandwidth from input port",
+   "default": "off",
+   "values": "Specify bandwidth from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter bandwidth",
+   "default": "7680",
+   "values": "Filter bandwidth 7680 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter passband ripple (dB)",
+   "default": "1",
+   "values": "Filter passband ripple 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter Stopband attenuation (dB)",
+   "default": "60",
+   "values": "Filter Stopband attenuation 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Input sample rate 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View Filter Response button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

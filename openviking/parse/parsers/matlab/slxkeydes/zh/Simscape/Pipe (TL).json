@@ -1,0 +1,14 @@
+{
+ "key": "Pipe (TL)",
+ "title": "Pipe (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Pipe_TL.md",
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Pipe_TL.md"
+ ],
+ "text": "在热液组件之间输送流体的封闭管道。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

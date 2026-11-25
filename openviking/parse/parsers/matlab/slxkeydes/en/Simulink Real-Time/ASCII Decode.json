@@ -1,0 +1,43 @@
+{
+ "key": "ASCII Decode",
+ "title": "ASCII Decode",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/ASCII_Decode.md"
+ ],
+ "text": "Parse ASCII character vector into Simulink values, 1 input, 1 output, {Format string} sets Format specifier for parsing input vector; {Number of variables} sets the number of output ports for this block and {Variable types} sets the simulink data types allowed for output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "Input vector to parse character vector"
+  },
+  {
+   "name": "1",
+   "direction": "output",
+   "summary": "Numbered ports that send Simulink ® values numeric"
+  }
+ ],
+ "params": [
+  {
+   "name": "Format string",
+   "default": "%d\\r",
+   "values": "Format specifier for parsing input vector %d\\r (default) | %c | %i | %o | %u | %x | %e | %f | %g",
+   "group": ""
+  },
+  {
+   "name": "Number of variables",
+   "default": "1",
+   "values": "Number of output ports for this block 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Variable types",
+   "default": "{’double’}",
+   "values": "Simulink data types allowed for output ports {’double’} (default) | {’int8’} | {’uint8’} | {’int16} | {’uint16’} | {’int32’} | {’uint32’}",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "key": "RoadRunner Scenario",
+ "title": "RoadRunner Scenario",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_block",
+ "source_docs": [
+  "Automated Driving Toolbox/RoadRunner Scenario/RoadRunner_Scenario.md"
+ ],
+ "text": "Define interface for Simulink actor model; {Action name} sets the name of user-defined, {Bus object name} sets the name of bus, {Event name} sets the name of user-defined and {Maximum Points on Path} sets the maximum number of points on path. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Action name",
+   "default": "",
+   "values": "Name of user-defined action string",
+   "group": "Actions"
+  },
+  {
+   "name": "Bus object name",
+   "default": "",
+   "values": "Name of bus object string",
+   "group": "Actions"
+  },
+  {
+   "name": "Event name",
+   "default": "",
+   "values": "Name of user-defined event string",
+   "group": "Events"
+  },
+  {
+   "name": "Maximum Points on Path",
+   "default": "500",
+   "values": "Maximum number of points on path 500 (default) | positive scalar",
+   "group": "Configuration"
+  }
+ ]
+}

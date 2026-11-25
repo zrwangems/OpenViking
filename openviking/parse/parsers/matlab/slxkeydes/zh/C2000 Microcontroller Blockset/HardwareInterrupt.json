@@ -1,0 +1,64 @@
+{
+ "key": "HardwareInterrupt",
+ "title": "Hardware Interrupt",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F29H85x/Hardware_Interrupt.md",
+  "C2000 Microcontroller Blockset/Scheduling/Hardware_Interrupt.md",
+  "SoC Blockset/Processor Task Execution/Hardware_Interrupt.md"
+ ],
+ "text": "从中断服务例程触发下游函数调用子系统；输出 1 路；按 {Interrupt name} 指定ISR；{Interrupt group} 指定外设 ISR External interrupts、{Interrupt number} 指定 ISR 在中断表中的位置、{Events to serve} 指定事件 EXTI0、{Simulink task priority} 指定所选 ISR 的优先级、{Run interrupt service routine as atomic unit} 指定此项以禁用中断抢占、{Clear status after servicing each event} 指定此项以清除中断状态标志，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "name Event",
+   "direction": "output",
+   "summary": "生成中断请求 Scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interrupt group",
+   "default": "(EXTI)",
+   "values": "选择外设 ISR External interrupts (EXTI) (default) | Analog to digital converter (ADC) | Pulse width modulation (PWM) | Direct memory access (DMA)",
+   "group": ""
+  },
+  {
+   "name": "Interrupt name",
+   "default": "EXTI0_IRQHandler",
+   "values": "选择 ISR EXTI0_IRQHandler (default) | ADC_IRQHandler | TIM1_BRK_TIM9_IRQHandler | DMA0_Stream0_IRQHandler",
+   "group": ""
+  },
+  {
+   "name": "Interrupt number",
+   "default": "21",
+   "values": "ISR 在中断表中的位置 21 (default) | 33 | 71 | …",
+   "group": ""
+  },
+  {
+   "name": "Events to serve",
+   "default": "Event",
+   "values": "选择事件 EXTI0 Event (default) | ADC1 OVR | Stream0 TC | …",
+   "group": ""
+  },
+  {
+   "name": "Simulink task priority",
+   "default": "30",
+   "values": "设置所选 ISR 的优先级 30 (default) | positive integer or nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Run interrupt service routine as atomic unit",
+   "default": "off",
+   "values": "选择此项以禁用中断抢占 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Clear status after servicing each event",
+   "default": "off",
+   "values": "选择此项以清除中断状态标志 off (default) | on",
+   "group": ""
+  }
+ ]
+}

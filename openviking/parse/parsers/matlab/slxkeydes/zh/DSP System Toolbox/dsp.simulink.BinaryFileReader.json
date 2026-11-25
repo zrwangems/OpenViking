@@ -1,0 +1,85 @@
+{
+ "key": "dsp.simulink.BinaryFileReader",
+ "title": "Binary File Reader",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Binary_File_Reader.md"
+ ],
+ "text": "从二进制文件读取数据；输出 2 路、无直接馈通；按 {Storage data type} 指定文件中数据的存储类；{File name} 指定文件名、{File header} 指定文件头大小 struct、{Export header to base workspace} 指定获取文件头、{Samples per frame} 指定每个输出帧的样本数、{Data is complex} 指定数据复数性、{Number of channels} 指定通道数、{Output end-of-file indicator} 指定文件末尾指示符、{Sample time (s)} 指定采样时间、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "二进制文件数据 column vector | row vector | matrix"
+  },
+  {
+   "name": "EOF",
+   "direction": "output",
+   "summary": "文件末尾指示符 boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "’Untitled.bin’",
+   "values": "文件名 ’Untitled.bin’ (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "File header",
+   "default": "struct([])",
+   "values": "文件头大小 struct([]) (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "Export header to base workspace",
+   "default": "",
+   "values": "获取文件头 button",
+   "group": ""
+  },
+  {
+   "name": "Storage data type",
+   "default": "’double’",
+   "values": "文件中数据的存储类 ’double’ (default) | ’single’ | ’int8’ | ’int16’ | ’int32’ | ’int64’ | ’uint8’ | ’uint16’ | ’uint32’ | ’uint64’",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1024",
+   "values": "每个输出帧的样本数 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Data is complex",
+   "default": "off",
+   "values": "指定数据复数性 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of channels",
+   "default": "1",
+   "values": "通道数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output end-of-file indicator",
+   "default": "off",
+   "values": "文件末尾指示符 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "1",
+   "values": "采样时间 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

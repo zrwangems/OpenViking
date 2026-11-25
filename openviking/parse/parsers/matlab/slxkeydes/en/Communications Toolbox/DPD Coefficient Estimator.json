@@ -1,0 +1,89 @@
+{
+ "key": "DPD Coefficient Estimator",
+ "title": "DPD Coefficient Estimator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments Correction/DPD_Coefficient_Estimator.md"
+ ],
+ "text": "Estimate memory-polynomial coefficients for digital predistortion, 3 inputs, 1 output; {Desired amplitude gain (dB)} sets the desired amplitude gain in dB, {Polynomial type}, {Degree} sets the memory-polynomial degree, {Memory depth} sets the memory-polynomial depth, {Algorithm} sets the estimation algorithm Least, {Forgetting factor source} sets the source of forgetting, {Forgetting factor}, {Initial coefficient estimate} and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PA In",
+   "direction": "input",
+   "summary": "Power amplifier baseband-equivalent input column vector"
+  },
+  {
+   "name": "PA Out",
+   "direction": "input",
+   "summary": "Power amplifier baseband-equivalent output column vector"
+  },
+  {
+   "name": "Forgetting Factor",
+   "direction": "input",
+   "summary": "Forgetting factor scalar in the range (0, 1]"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Memory-polynomial coefficients matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Desired amplitude gain (dB)",
+   "default": "10",
+   "values": "Desired amplitude gain in dB 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Polynomial type",
+   "default": "polynomial",
+   "values": "Polynomial type Memory polynomial (default) | Cross-term memory polynomial",
+   "group": ""
+  },
+  {
+   "name": "Degree",
+   "default": "5",
+   "values": "Memory-polynomial degree 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Memory depth",
+   "default": "3",
+   "values": "Memory-polynomial depth 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm",
+   "default": "squares",
+   "values": "Estimation algorithm Least squares (default) | Recursive least squares",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor source",
+   "default": "Property",
+   "values": "Source of forgetting factor Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.99",
+   "values": "Forgetting factor 0.99 (default) | scalar in the range (0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Initial coefficient estimate",
+   "default": "[]",
+   "values": "Initial coefficient estimate [] (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

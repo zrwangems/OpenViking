@@ -1,0 +1,50 @@
+{
+ "key": "UDP Write",
+ "title": "UDP Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Host I_O/UDP_Write.md",
+  "SoC Blockset/Processor I_O/UDP_Write.md"
+ ],
+ "text": "向远程主机发送 UDP 数据包，输入 1 路、输出 1 路；{Remote IP address (255.255.255.255 for broadcast)} 指定数据发送到的远程主机的 IP 地址、{Remote port} 指定数据发送到的远程主机的 IP 端口、{Local port} 指定数据从其发送的目标上应用程序的 IP 端口号、{Byte order} 指定字节顺序 LittleEndian，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入信号 numeric vector"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "发送到远程主机的 UDP 数据包 numeric vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Remote IP address (255.255.255.255 for broadcast)",
+   "default": "127.0.0.1",
+   "values": "数据发送到的远程主机的 IP 地址 127.0.0.1 (default) | dotted-quad expression",
+   "group": ""
+  },
+  {
+   "name": "Remote port",
+   "default": "25000",
+   "values": "数据发送到的远程主机的 IP 端口 25000 (default) | integer from 1 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Local port",
+   "default": "-1",
+   "values": "数据从其发送的目标上应用程序的 IP 端口号 -1 (default) | integer from 1 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Byte order",
+   "default": "LittleEndian",
+   "values": "字节顺序 LittleEndian (default) | BigEndian",
+   "group": ""
+  }
+ ]
+}

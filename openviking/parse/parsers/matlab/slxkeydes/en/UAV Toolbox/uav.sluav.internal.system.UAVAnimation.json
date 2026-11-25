@@ -1,0 +1,100 @@
+{
+ "key": "uav.sluav.internal.system.UAVAnimation",
+ "title": "UAV Animation",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Utilities/UAV_Animation.md"
+ ],
+ "text": "Animate UAV flight path using translations and rotations, 5 inputs; {Number of UAVs} sets the number of UAV to display, {Enable dynamic UAV mesh configuration} sets the dynamic UAV mesh configuration, {UAV Type} sets the type of UAV mesh, {UAV size} sets the size of frames and attached meshes, {UAV mesh color} sets the color of UAV meshes, {UAV mesh and trajectory alpha} sets the transparency of UAV mesh and trajectory, {Inertial frame z-axis direction} sets the direction of positive z -axis of inertial frame, {Rotation format} sets the format of rotation, {Draw marker} enables markers and {Sample time} sets the interval between outputs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "xyz -positions of UAVs matrix"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Rotations of UAV body frames matrix | m -by-4 matrix"
+  },
+  {
+   "name": "UAV Type",
+   "direction": "input",
+   "summary": "UAV mesh type vector"
+  },
+  {
+   "name": "UAV Mesh Configuration",
+   "direction": "input",
+   "summary": "UAV mesh configuration vector | matrix"
+  },
+  {
+   "name": "Marker",
+   "direction": "input",
+   "summary": "UAV Marker configuration matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of UAVs",
+   "default": "1",
+   "values": "Number of UAV to display 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable dynamic UAV mesh configuration",
+   "default": "off",
+   "values": "Dynamic UAV mesh configuration off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "UAV Type",
+   "default": "Multirotor",
+   "values": "Type of UAV mesh to display Multirotor (default) | FixedWing",
+   "group": ""
+  },
+  {
+   "name": "UAV size",
+   "default": "1",
+   "values": "Size of frames and attached meshes 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "UAV mesh color",
+   "default": "0]",
+   "values": "Color of UAV meshes [1 0 0] (default) | RGB triplet",
+   "group": ""
+  },
+  {
+   "name": "UAV mesh and trajectory alpha",
+   "default": "1",
+   "values": "Transparency of UAV mesh and trajectory 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Inertial frame z-axis direction",
+   "default": "Down",
+   "values": "Direction of positive z -axis of inertial frame Down (default) | Up",
+   "group": ""
+  },
+  {
+   "name": "Rotation format",
+   "default": "Quaternion",
+   "values": "Format of rotation input Quaternion (default) | Euler ZYX",
+   "group": ""
+  },
+  {
+   "name": "Draw marker",
+   "default": "off",
+   "values": "Enable markers off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "Interval between outputs –1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

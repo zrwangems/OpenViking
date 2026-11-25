@@ -1,0 +1,134 @@
+{
+ "key": "SignalSpecification",
+ "title": "Signal Specification",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Signal_Specification.md",
+  "HDL Coder/Signal Attributes/Signal_Specification.md"
+ ],
+ "text": "指定信号所需的维度、采样时间、数据类型、数值类型和其他属性，输入 1 路、输出 1 路；按 {采样时间(-1 表示继承)} 指定采样时间间隔；{最小}、{最大}、{数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{需要非虚拟总线} 指定仅接受非虚拟总线信号、{单位(例如，m、m/s^2、N*m)} 指定模块的输入信号的物理单位、{维度(-1 表示继承)} 指定输入和输出信号的维度、{可变大小信号} 允许信号为可变大小、固定大小或两者皆可、{信号类型} 指定信号的复/实性、{模式}、{符号性} 指定有符号或无符号 有符号、{数据类型覆盖}、{字长} 指定存储量化整数的字的位大小、{定标}、{小数长度}、{斜率}、{偏置}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "最小",
+   "default": "[]",
+   "values": "范围检查的最小值 [] (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "最大",
+   "default": "[]",
+   "values": "范围检查的最大值 [] (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "数据类型",
+   "default": "auto",
+   "values": "输出数据类型 Inherit: auto (默认) | double | single | half | int8 | uint8 | int16 | uint16 |...",
+   "group": ""
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型的选项 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "需要非虚拟总线",
+   "default": "off",
+   "values": "仅接受非虚拟总线信号 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "单位(例如，m、m/s^2、N*m)",
+   "default": "inherit",
+   "values": "模块的输入信号的物理单位 inherit (默认) | <Enter unit>",
+   "group": ""
+  },
+  {
+   "name": "维度(-1 表示继承)",
+   "default": "-1",
+   "values": "输入和输出信号的维度 -1 (默认) | n | [m n]",
+   "group": ""
+  },
+  {
+   "name": "可变大小信号",
+   "default": "继承",
+   "values": "允许信号为可变大小、固定大小或两者皆可 继承 (默认) | 否 | 是",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "信号类型",
+   "default": "自动",
+   "values": "信号的复/实性 自动 (默认) | 实数 | 复",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "继承",
+   "values": "数据类型模式 继承 (默认) | 内置 | 定点 | 枚举 | 总线对象 | 值类型 | 表达式",
+   "group": ""
+  },
+  {
+   "name": "符号性",
+   "default": "",
+   "values": "有符号或无符号 有符号",
+   "group": ""
+  },
+  {
+   "name": "数据类型覆盖",
+   "default": "",
+   "values": "为此信号指定数据类型覆盖模式 Inherit | Off",
+   "group": ""
+  },
+  {
+   "name": "字长",
+   "default": "16",
+   "values": "存储量化整数的字的位大小 16 (默认) | 从 0 到 32 的整数",
+   "group": ""
+  },
+  {
+   "name": "定标",
+   "default": "最佳精度",
+   "values": "定标定点数据的方法 最佳精度 (默认) | 二进制小数点 | 斜率和偏置",
+   "group": ""
+  },
+  {
+   "name": "小数长度",
+   "default": "0",
+   "values": "指定定点数据类型的小数长度 0 (默认) | 整数标量",
+   "group": ""
+  },
+  {
+   "name": "斜率",
+   "default": "2^0",
+   "values": "指定定点数据类型的斜率。 2^0 (默认) | 正实数值标量",
+   "group": ""
+  },
+  {
+   "name": "偏置",
+   "default": "0",
+   "values": "指定定点数据类型的偏置。 0 (默认) | 实数值标量",
+   "group": ""
+  }
+ ]
+}

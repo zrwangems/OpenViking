@@ -1,0 +1,13 @@
+{
+ "key": "Power Sensor",
+ "title": "Power Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Power_Sensor.md"
+ ],
+ "text": "理想瞬时或周期平均功率测量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

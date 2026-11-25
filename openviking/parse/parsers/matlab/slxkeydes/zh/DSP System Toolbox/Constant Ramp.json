@@ -1,0 +1,91 @@
+{
+ "key": "Constant Ramp",
+ "title": "Constant Ramp",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Constant_Ramp.md"
+ ],
+ "text": "根据输入维度生成具有相应长度的斜坡信号，输入 1 路、输出 1 路、无直接馈通；按 {Mode} 指定数据类型模式；{Ramp length equals number of} 用于确定斜坡长度的维度、{Dimension} 确定输出斜坡长度的维度、{Slope} 指定斜坡的斜率、{Offset} 指定斜坡的 y 轴截距、{Output data type} 输出数据类型、{Signedness} 指定定点数据的有符号性、{Word length} 指定存放量化整数的字的位数、{Scaling} 指定定点数据的定标方法 Best、{Data type override} 指定数据类型覆盖模式、{Fraction length} 指定定点数据类型的小数长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Ramp length equals number of",
+   "default": "Rows",
+   "values": "用于确定斜坡长度的维度 Rows (default) | Columns | Elements in specified dimension",
+   "group": "Main"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "确定输出斜坡长度的维度 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Slope",
+   "default": "1",
+   "values": "斜坡的斜率 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Offset",
+   "default": "0",
+   "values": "斜坡的 y 轴截距 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "input",
+   "values": "输出数据类型 Inherit: Same as input (default) | Inherit: Inherit via back propagation | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "数据类型模式 Inherit (default) | Built in | Fixed point | Expression",
+   "group": "Data Type Assistant Parameters"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "定点数据的有符号性 Signed (default) | Unsigned",
+   "group": "Data Type Assistant Parameters"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "存放量化整数的字的位数 16 (default) | integer from 2 to 128",
+   "group": "Data Type Assistant Parameters"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "定点数据的定标方法 Best precision (default) | Binary point",
+   "group": "Data Type Assistant Parameters"
+  },
+  {
+   "name": "Data type override",
+   "default": "Inherit",
+   "values": "数据类型覆盖模式 Inherit (default) | Off",
+   "group": "Data Type Assistant Parameters"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "定点数据类型的小数长度 0 (default) | integer scalar",
+   "group": "Data Type Assistant Parameters"
+  }
+ ]
+}

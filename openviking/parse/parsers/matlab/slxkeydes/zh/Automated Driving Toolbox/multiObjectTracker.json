@@ -1,0 +1,163 @@
+{
+ "key": "multiObjectTracker",
+ "title": "Multi-Object Tracker",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Multi_Object_Tracker.md"
+ ],
+ "text": "创建并管理多个目标的航迹，输入 5 路、输出 3 路；按 {Track state parameters} 指定航迹状态参考系的参数 structure；{Tracker identifier} 指定唯一跟踪器标识符、{Filter initialization function name} 指定卡尔曼滤波器初始化函数、{Threshold for assigning detections to tracks} 指定检测分配阈值、{M and N for the M-out-of-N confirmation} 指定航迹创建的确认参数、{P and R for the P-out-of-R deletion} 指定航迹删除阈值、{Maximum number of tracks} 指定最大航迹数、{Maximum number of sensors} 指定最大传感器数、{Out-of-sequence measurements handling} 指定乱序测量处理、{Update track state parameters with time} 指定随时间更新航迹状态参数、{Prediction time source} 指定预测时间来源 Input、{Enable cost matrix input} 启用代价矩阵输入端口、{Enable detectable track IDs input} 启用可检测航迹 ID 输入、{Source of output bus name} 输出总线名称的来源、{Specify an output bus name} 输出总线名称 no default、{Enable tentative tracks output} 启用暂定航迹输出端口、{Enable all tracks output} 启用所有航迹输出端口、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Detections",
+   "direction": "input",
+   "summary": "检测列表 Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "航迹更新时间 real scalar"
+  },
+  {
+   "name": "Cost Matrix",
+   "direction": "input",
+   "summary": "代价矩阵 real-valued N t -by- N d matrix"
+  },
+  {
+   "name": "Detectable Track IDs",
+   "direction": "input",
+   "summary": "可检测航迹 ID real-valued M -by-1 vector | real-valued M -by-2 matrix"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "航迹状态参数 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "已确认航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "所有航迹 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tracker identifier",
+   "default": "0",
+   "values": "唯一跟踪器标识符 0 (default) | nonnegative integer",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "Filter initialization function name",
+   "default": "initcvkf",
+   "values": "卡尔曼滤波器初始化函数 initcvkf (default) | function name",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "Threshold for assigning detections to tracks",
+   "default": "30.0",
+   "values": "检测分配阈值 30.0 (default) | positive real scalar",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "M and N for the M-out-of-N confirmation",
+   "default": "[2,3]",
+   "values": "航迹创建的确认参数 [2,3] (default) | two-element vector of positive integers",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "P and R for the P-out-of-R deletion",
+   "default": "5]",
+   "values": "航迹删除阈值 [5 5] (default) | real-valued 1-by-2 vector of positive integers",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "Maximum number of tracks",
+   "default": "200",
+   "values": "最大航迹数 200 (default) | positive integer",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "20",
+   "values": "最大传感器数 20 (default) | positive integer",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "Out-of-sequence measurements handling",
+   "default": "Terminate",
+   "values": "乱序测量处理 Terminate (default) | neglect",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "航迹状态参考系的参数 structure | structure array",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "随时间更新航迹状态参数 off (default) | on",
+   "group": "Tracker Management"
+  },
+  {
+   "name": "Prediction time source",
+   "default": "port",
+   "values": "预测时间来源 Input port (default) | Auto",
+   "group": "Inputs and Outputs"
+  },
+  {
+   "name": "Enable cost matrix input",
+   "default": "off",
+   "values": "启用代价矩阵输入端口 off (default) | on",
+   "group": "Inputs and Outputs"
+  },
+  {
+   "name": "Enable detectable track IDs input",
+   "default": "off",
+   "values": "启用可检测航迹 ID 输入 off (default) | on",
+   "group": "Inputs and Outputs"
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出总线名称的来源 Auto (default) | Property",
+   "group": "Inputs and Outputs"
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "",
+   "values": "输出总线名称 no default",
+   "group": "Inputs and Outputs"
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "启用暂定航迹输出端口 off (default) | on",
+   "group": "Inputs and Outputs"
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "启用所有航迹输出端口 off (default) | on",
+   "group": "Inputs and Outputs"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Inputs and Outputs"
+  }
+ ]
+}

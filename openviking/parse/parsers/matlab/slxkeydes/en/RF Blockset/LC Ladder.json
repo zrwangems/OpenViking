@@ -1,0 +1,38 @@
+{
+ "key": "LC Ladder",
+ "title": "LC Ladder",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/LC_Ladder.md"
+ ],
+ "text": "Model LC ladder networks; {Ladder topology} sets the type of ladder topology LC, {Inductance} sets the inductance values, {Capacitance} and {Ground and hide negative terminals} sets the internally ground and hide the negative. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Ladder topology",
+   "default": "Tee",
+   "values": "Type of ladder topology LC Lowpass Tee (default)",
+   "group": ""
+  },
+  {
+   "name": "Inductance",
+   "default": "H",
+   "values": "inductance values [1.3324e-5 1.3324e-5] H (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Capacitance",
+   "default": "F",
+   "values": "Capacitance value 1.1327e-9 F (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Internally ground and hide the negative terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

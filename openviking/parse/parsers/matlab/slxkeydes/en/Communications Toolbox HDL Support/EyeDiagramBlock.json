@@ -1,0 +1,233 @@
+{
+ "key": "EyeDiagramBlock",
+ "title": "Eye Diagram",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "block_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Sinks/Eye_Diagram.md",
+  "Communications Toolbox/Comm Sinks/Eye_Diagram.md",
+  "Mixed-Signal Blockset/Utilities/Eye_Diagram.md",
+  "SerDes Toolbox/Utilities/Eye_Diagram.md"
+ ],
+ "text": "(Removed) Display eye diagram of time-domain signal, 1 input, no direct feedthrough, {Oversampling method} sets Oversampling method; {Display mode}, {Enable measurements}, {Show horizontal (jitter) histogram} displays jitter histogram, {Show vertical (noise) histogram} displays noise histogram, {Do not show horizontal or vertical histogram}, {Show horizontal bathtub curve}, {Show vertical bathtub curve}, {Eye diagram to display}, {Color fading}, {Samples per symbol}, {Sample offset}, {Symbols per trace}, {Traces to display} sets the number of traces to display, {Title}, {Show grid} sets the toggle scope grid, {Y-limits (Minimum)} sets the lower limit of y -axis, {Y-limits (Maximum)} sets the upper limit of y -axis, {Real axis label}, {Imaginary axis label}, {Color scale}, {Export measurements, histograms and bathtub curves}, {Variable name}, {Figure color}, {Axes colors}, {Line}, {Marker} sets the data point marker, {Colormap}, {Eye level boundaries} sets the time range for calculating eye levels, {Decision boundary} sets the amplitude level threshold, {Rise/Fall thresholds} sets the amplitude levels of the rise and fall transitions, {Hysteresis} sets the amplitude tolerance of the horizontal, {BER threshold} sets the bER used for eye, {Bathtub BERs} sets the bER values used to calculate openings of bathtub curves and {Measurement delay} sets the duration of initial data discarded. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Display mode",
+   "default": "plot",
+   "values": "Display mode Line plot (default) | 2D color Histogram",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Enable measurements",
+   "default": "off",
+   "values": "Enable measurements off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Show horizontal (jitter) histogram",
+   "default": "off",
+   "values": "Display jitter histogram off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Show vertical (noise) histogram",
+   "default": "off",
+   "values": "Display noise histogram off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Do not show horizontal or vertical histogram",
+   "default": "on",
+   "values": "Do not show horizontal or vertical histogram on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Show horizontal bathtub curve",
+   "default": "off",
+   "values": "Show horizontal bathtub curve off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Show vertical bathtub curve",
+   "default": "off",
+   "values": "Show vertical bathtub curve off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Eye diagram to display",
+   "default": "only",
+   "values": "Eye diagram to display Real only (default) | Real and imaginary",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Color fading",
+   "default": "off",
+   "values": "Color fading off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "8",
+   "values": "Samples per symbol 8 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample offset",
+   "default": "0",
+   "values": "Sample offset 0 (default) | nonnegative integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Symbols per trace",
+   "default": "2",
+   "values": "Symbols per trace 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Traces to display",
+   "default": "40",
+   "values": "Number of traces to display 40 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Title",
+   "default": "None",
+   "values": "Title label None (default)",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Show grid",
+   "default": "on",
+   "values": "Toggle scope grid on (default) | off",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Y-limits (Minimum)",
+   "default": "-1.1",
+   "values": "Lower limit of y -axis -1.1 (default) | scalar",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Y-limits (Maximum)",
+   "default": "1.1",
+   "values": "Upper limit of y -axis 1.1 (default) | scalar",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Real axis label",
+   "default": "Amplitude",
+   "values": "Real axis label Real Amplitude (default)",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Imaginary axis label",
+   "default": "Amplitude",
+   "values": "Imaginary axis label Imaginary Amplitude (default)",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Oversampling method",
+   "default": "None",
+   "values": "Oversampling method None (default) | Input interpolation | Histogram interpolation",
+   "group": "2D Histogram Tab"
+  },
+  {
+   "name": "Color scale",
+   "default": "Linear",
+   "values": "Color scale Linear (default) | Logarithmic",
+   "group": "2D Histogram Tab"
+  },
+  {
+   "name": "Export measurements, histograms and bathtub curves",
+   "default": "Off",
+   "values": "Export measurements, histograms and bathtub curves Off (default) | off",
+   "group": "Export Tab"
+  },
+  {
+   "name": "Variable name",
+   "default": "EyeData",
+   "values": "Variable name EyeData (default)",
+   "group": "Export Tab"
+  },
+  {
+   "name": "Figure color",
+   "default": "black",
+   "values": "Figure color black (default)",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Axes colors",
+   "default": "gray",
+   "values": "Axes colors black | gray (default)",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Line",
+   "default": "yellow",
+   "values": "Line style, thickness and color for line plots continuous | 0.5 | yellow (default)",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Marker",
+   "default": "None",
+   "values": "Data point marker None (default) |...",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Colormap",
+   "default": "Hot",
+   "values": "Colormap for histograms Hot (default) | Parula | Jet | HSV | Cool | Spring Summer | Autumn | Winter | Gray | Bone | Copper | Pink | Lines | Custom",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Eye level boundaries",
+   "default": "60]",
+   "values": "Time range for calculating eye levels [40 60] (default) | two-element vector",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Decision boundary",
+   "default": "0",
+   "values": "Amplitude level threshold 0 (default) | scalar",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Rise/Fall thresholds",
+   "default": "90]",
+   "values": "Amplitude levels of the rise and fall transitions [10 90] (default) | two-element vector",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Hysteresis",
+   "default": "0",
+   "values": "Amplitude tolerance of the horizontal crossings 0 (default) | scalar",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "BER threshold",
+   "default": "1e-12",
+   "values": "BER used for eye measurements 1e-12 (default) | nonnegative scalar from 0 to 0.5",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Bathtub BERs",
+   "default": "1e-12]",
+   "values": "BER values used to calculate openings of bathtub curves [0.5 0.1 0.01 0.001 0.0001 1e-05 1e-06 1e-07 1e-08 1e-09 1e-10 1e-11 1e-12] (default) | vector",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Measurement delay",
+   "default": "0",
+   "values": "Duration of initial data discarded from measurements 0 (default) | nonnegative scalar",
+   "group": "Measurement Settings Pane"
+  }
+ ]
+}

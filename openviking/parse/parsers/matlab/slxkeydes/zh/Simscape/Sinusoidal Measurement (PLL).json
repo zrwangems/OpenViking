@@ -1,0 +1,77 @@
+{
+ "key": "Sinusoidal Measurement (PLL)",
+ "title": "Sinusoidal Measurement (PLL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Sinusoidal_Measurement_PLL.md"
+ ],
+ "text": "使用锁相环估计正弦特征，输入 1 路、输出 3 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Phase detector integral gain} 指定 PD 积分增益、{Loop filter proportional gain} 指定 LF 比例增益、{Loop filter integral gain} 指定 LF 积分增益、{Initial frequency (Hz)} 指定 Initial frequency、{Initial phase angle (rad)} 指定初始相位、{Initial magnitude} 指定初始幅值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 scalar or vector"
+  },
+  {
+   "name": "freq",
+   "direction": "output",
+   "summary": "频率 scalar or vector"
+  },
+  {
+   "name": "angle",
+   "direction": "output",
+   "summary": "相位角 scalar or vector"
+  },
+  {
+   "name": "mag",
+   "direction": "output",
+   "summary": "幅值 scalar or vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase detector integral gain",
+   "default": "1000",
+   "values": "PD 积分增益 1000 (default) | positive scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Loop filter proportional gain",
+   "default": "400",
+   "values": "LF 比例增益 400 (default) | positive scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Loop filter integral gain",
+   "default": "20000",
+   "values": "LF 积分增益 20000 (default) | positive scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "Hz",
+   "values": "Initial frequency 60 Hz (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Initial phase angle (rad)",
+   "default": "rad",
+   "values": "初始相位 0 rad (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Initial magnitude",
+   "default": "1",
+   "values": "初始幅值 1 (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "key": "Derivative",
+ "title": "Derivative",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Derivative.md"
+ ],
+ "text": "Compute approximate continuous derivative of continuous input signal with respect to time, 1 input, 1 output, direct feedthrough; {Coefficient c in the transfer function approximation s/(c*s + 1) used for linearization} sets the time constant of pole in transfer function that approximates linearization for block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Signal for which to approximate continuous derivative scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Approximation of continuous derivative for input signal with respect to time scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient c in the transfer function approximation s/(c*s + 1) used for linearization",
+   "default": "inf",
+   "values": "Time constant of pole in transfer function that approximates linearization for block inf (default) | finite positive scalar number",
+   "group": ""
+  }
+ ]
+}

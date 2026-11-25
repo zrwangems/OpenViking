@@ -1,0 +1,63 @@
+{
+ "key": "phased.internal.SimulinkTSOAPositionEstimator",
+ "title": "TSOA Position Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/TSOA_Position_Estimator.md"
+ ],
+ "text": "Estimate target position from time-sum of arrival, 4 inputs, 2 outputs; {Signal propagation speed (m/s)} sets the signal propagation speed physconst, {Output covariances of TSOA position estimates (meters-squared)} sets the output covariance of TSOA position and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TSOAEst",
+   "direction": "input",
+   "summary": "Time-sum of arrival estimates (sec) real-valued J -by- L -by- K array"
+  },
+  {
+   "name": "TSOAVar",
+   "direction": "input",
+   "summary": "TSOA estimation variance (seconds-squared) real-valued J -by- L matrix | real-valued J -by- L -by- K array"
+  },
+  {
+   "name": "TxPos",
+   "direction": "input",
+   "summary": "Transmitting anchor positions (meters) real-valued Q -by- J matrix"
+  },
+  {
+   "name": "RxPos",
+   "direction": "input",
+   "summary": "Receiving anchor positions (meters) real-valued Q -by- L matrix"
+  },
+  {
+   "name": "TgtPosEst",
+   "direction": "output",
+   "summary": "Target position estimate real-valued Q -by-1 vector"
+  },
+  {
+   "name": "TgtPosCov",
+   "direction": "output",
+   "summary": "Target position covariance matrix real-valued positive semi-definite Q -by- Q matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(\"LightSpeed\")",
+   "values": "Signal propagation speed physconst(\"LightSpeed\") (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output covariances of TSOA position estimates (meters-squared)",
+   "default": "(0)",
+   "values": "Output covariance of TSOA position estimates false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

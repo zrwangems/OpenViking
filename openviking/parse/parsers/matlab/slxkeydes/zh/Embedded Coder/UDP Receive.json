@@ -1,0 +1,75 @@
+{
+ "key": "UDP Receive",
+ "title": "UDP Receive",
+ "toolbox": "Embedded Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "Embedded Coder/Embedded Targets/Host Communication/UDP_Receive.md",
+  "DSP System Toolbox/Sources/UDP_Receive.md"
+ ],
+ "text": "接收 UDP 数据包；输出 1 路；按 {Data type for Message} 指定消息的数据类型；{Local IP port} 指定 IP 端口号、{Remote IP address (’0.0.0.0’ to accept all)} 指定接受数据包的 IP 地址、{Receive buffer size (bytes)} 指定接收 UDP 数据包的缓冲区大小、{Maximum length for Message} 输出数据的最大长度、{Message is complex} 指定消息数据复杂度、{Output variable-size signal} 指定长度可变的消息输出、{Blocking time (seconds)} 指定等待 UDP 数据包的秒数、{Sample time (seconds)} 指定调用模块的频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "UDP 数据包 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Local IP port",
+   "default": "25000",
+   "values": "IP 端口号 25000 (default) | scalar in the range [1, 65535]",
+   "group": ""
+  },
+  {
+   "name": "Remote IP address (’0.0.0.0’ to accept all)",
+   "default": "’0.0.0.0’",
+   "values": "接受数据包的 IP 地址 ’0.0.0.0’ (default) | IP address",
+   "group": ""
+  },
+  {
+   "name": "Receive buffer size (bytes)",
+   "default": "8192",
+   "values": "接收 UDP 数据包的缓冲区大小 8192 (default) | scalar in the range [1, 67108864]",
+   "group": ""
+  },
+  {
+   "name": "Maximum length for Message",
+   "default": "255",
+   "values": "输出数据的最大长度 255 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Data type for Message",
+   "default": "uint8",
+   "values": "消息的数据类型 uint8 (default) | single | double | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | boolean | fixed point | enumerated | bus",
+   "group": ""
+  },
+  {
+   "name": "Message is complex",
+   "default": "off",
+   "values": "消息数据复杂度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signal",
+   "default": "on",
+   "values": "长度可变的消息输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Blocking time (seconds)",
+   "default": "inf",
+   "values": "等待 UDP 数据包的秒数 inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (seconds)",
+   "default": "0.01",
+   "values": "调用模块的频率 0.01 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

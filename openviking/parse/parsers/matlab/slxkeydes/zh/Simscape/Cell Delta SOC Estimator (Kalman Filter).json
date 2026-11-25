@@ -1,0 +1,134 @@
+{
+ "key": "Cell Delta SOC Estimator (Kalman Filter)",
+ "title": "Cell Delta SOC Estimator (Kalman Filter)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/Cell_Delta_SOC_Estimator_Kalman_Filter.md"
+ ],
+ "text": "使用电芯差值卡尔曼滤波器的荷电状态估计器，输入 6 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Specify Current input as cell current(s)} 指定将电流输入端口指定为向量、{Filter type} 指定卡尔曼滤波器类型 Extended Kalman、{Alpha}、{Beta}、{Kappa}、{Covariance of the process noise, Q} 指定过程噪声的协方差、{Covariance of the measurement noise, R} 指定测量噪声的协方差、{Initial state error covariance, P0} 指定初始状态误差协方差 1e-3、{Vector of state-of-charge values, SOC (-)} 指定 SOC 断点、{Vector of temperatures, T} 指定温度断点、{Terminal resistance, R0(SOC,T), (ohm)} 指定带有温度断点的 R0 查找表、{No-load voltage, V0(SOC,T), (V)} 指定 V 0 查找表、{Algorithm data type} 用于选择模块算法数据类型的选项 Inherit，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Current",
+   "direction": "input",
+   "summary": "电池电流，安培 scalar | vector"
+  },
+  {
+   "name": "CellVoltage",
+   "direction": "input",
+   "summary": "电池单体电压，伏特 scalar | vector"
+  },
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "电芯温度，K scalar | vector"
+  },
+  {
+   "name": "dInvCellAH",
+   "direction": "input",
+   "summary": "电池单体增量容量倒数，A*Hr scalar | vector"
+  },
+  {
+   "name": "PackSOC",
+   "direction": "input",
+   "summary": "电池包平均 SOC，无量纲 scalar"
+  },
+  {
+   "name": "Vdyn",
+   "direction": "input",
+   "summary": "电池包平均动态过电位电压，伏特 scalar"
+  },
+  {
+   "name": "CellSOC",
+   "direction": "output",
+   "summary": "电池单体 SOC scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Current input as cell current(s)",
+   "default": "off",
+   "values": "将电流输入端口指定为向量的选项 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Filter type",
+   "default": "filter",
+   "values": "卡尔曼滤波器类型 Extended Kalman filter (default) | Extended Kalman-Bucy filter | Unscented Kalman filter | Unscented Kalman-Bucy filter",
+   "group": "Main"
+  },
+  {
+   "name": "Alpha",
+   "default": "1",
+   "values": "Alpha 系数 1 (default) | scalar in the range (0,1]",
+   "group": "Main"
+  },
+  {
+   "name": "Beta",
+   "default": "2",
+   "values": "Beta 系数 2 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Kappa",
+   "default": "0",
+   "values": "Kappa 系数 0 (default) | scalar in the range [0, 3]",
+   "group": "Main"
+  },
+  {
+   "name": "Covariance of the process noise, Q",
+   "default": "0.0001",
+   "values": "过程噪声的协方差 0.0001 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Covariance of the measurement noise, R",
+   "default": "0.7",
+   "values": "测量噪声的协方差 0.7 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial state error covariance, P0",
+   "default": "1e-3",
+   "values": "初始状态误差协方差 1e-3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "模块采样时间 1 (default) | 0 | -1 | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Vector of state-of-charge values, SOC (-)",
+   "default": "1]",
+   "values": "SOC 断点 [0,.1,.25,.5,.75,.9, 1] (default) | vector of scalars in the range [0, 1]",
+   "group": "System Model"
+  },
+  {
+   "name": "Vector of temperatures, T",
+   "default": "313]",
+   "values": "温度断点 [278, 293, 313] (default) | vector of positive scalars",
+   "group": "System Model"
+  },
+  {
+   "name": "Terminal resistance, R0(SOC,T), (ohm)",
+   "default": "[.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089]",
+   "values": "带有温度断点的 R0 查找表 [.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089] (default) | matrix of positive entries",
+   "group": "System Model"
+  },
+  {
+   "name": "No-load voltage, V0(SOC,T), (V)",
+   "default": "4.19]",
+   "values": "V 0 查找表 [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07, 4.08, 4.08; 4.19, 4.19, 4.19] (default) | matrix of nonnegative entries",
+   "group": "System Model"
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": "Signal Attributes"
+  }
+ ]
+}

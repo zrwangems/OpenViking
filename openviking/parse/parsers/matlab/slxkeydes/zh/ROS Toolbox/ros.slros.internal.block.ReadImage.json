@@ -1,0 +1,65 @@
+{
+ "key": "ros.slros.internal.block.ReadImage",
+ "title": "Read Image",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Read_Image.md"
+ ],
+ "text": "从 ROS Image 消息中提取图像，输入 1 路、输出 3 路；按 {Image Encoding} 指定图像编码；{Maximum Image Size} 指定最大图像大小、{Show Alpha output port} 指定切换 AlphaChannel 端口、{Show ErrorCode output port} 指定切换 ErrorCode 端口、{Output variable-size signals} 指定切换可变大小信号输出，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS `sensor_msgs/Image` 或 `sensor_msgs/CompressedImage` 消息 nonvirtual bus"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "提取的图像信号 M -by- N -by-3 matrix | M -by- N matrix"
+  },
+  {
+   "name": "AlphaChannel",
+   "direction": "output",
+   "summary": "图像 alpha 通道 M -by- N matrix"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "图像转换的错误代码 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum Image Size",
+   "default": "2000]",
+   "values": "最大图像大小 [2000 2000] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Image Encoding",
+   "default": "rgb8",
+   "values": "图像编码 rgb8 (default) | rgba8 |...",
+   "group": ""
+  },
+  {
+   "name": "Show Alpha output port",
+   "default": "off",
+   "values": "切换 AlphaChannel 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "on",
+   "values": "切换 ErrorCode 端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "切换可变大小信号输出 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "key": "Boost Drive Shaft",
+ "title": "Boost Drive Shaft",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Boost/Boost_Drive_Shaft.md"
+ ],
+ "text": "Boost drive shaft speed, 3 inputs, 3 outputs, {Configuration} sets configuration; {Additional torque input} sets the external torque input External torque, {Shaft inertia, J_shaft} sets the inertia 1.55e-5, {Initial shaft speed, w_0} sets the speed, {Min shaft speed, w_min} sets the speed, {Max shaft speed, w_max} sets the speed and {Turbine mechanical efficiency, eta_mech} sets the efficiency. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Cmprs",
+   "direction": "input",
+   "summary": "Compressor torque two-way connector port"
+  },
+  {
+   "name": "Turb",
+   "direction": "input",
+   "summary": "Turbine torque two-way connector port"
+  },
+  {
+   "name": "ExtTrq",
+   "direction": "input",
+   "summary": "Externally applied torque scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "Cmprs",
+   "direction": "output",
+   "summary": "Compressor speed two-way connector port"
+  },
+  {
+   "name": "Turb",
+   "direction": "output",
+   "summary": "Turbine speed two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Configuration",
+   "default": "Turbocharger",
+   "values": "Specify configuration Turbocharger (default) | Turbine only | Compressor only",
+   "group": ""
+  },
+  {
+   "name": "Additional torque input",
+   "default": "input",
+   "values": "Specify external torque input External torque input (default) | No external torque",
+   "group": ""
+  },
+  {
+   "name": "Shaft inertia, J_shaft",
+   "default": "1.55e-5",
+   "values": "Inertia 1.55e-5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial shaft speed, w_0",
+   "default": "1000",
+   "values": "Speed 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Min shaft speed, w_min",
+   "default": "100",
+   "values": "Speed 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Max shaft speed, w_max",
+   "default": "20000",
+   "values": "Speed 20000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Turbine mechanical efficiency, eta_mech",
+   "default": "0.95",
+   "values": "Efficiency 0.95 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Translational Hard Stop",
+ "title": "Translational Hard Stop",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Translational_Hard_Stop.md"
+ ],
+ "text": "双侧平动硬限位。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

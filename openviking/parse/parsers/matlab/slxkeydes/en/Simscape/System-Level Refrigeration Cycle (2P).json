@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Refrigeration Cycle (2P)",
+ "title": "System-Level Refrigeration Cycle (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Thermodynamic Cycles/System_Level_Refrigeration_Cycle_2P.md"
+ ],
+ "text": "System-level, two-phase refrigeration block in a gas, moist air, thermal liquid, or two-phase fluid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

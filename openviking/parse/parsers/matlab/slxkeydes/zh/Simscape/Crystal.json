@@ -1,0 +1,13 @@
+{
+ "key": "Crystal",
+ "title": "Crystal",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Crystal.md"
+ ],
+ "text": "Stable resonator。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

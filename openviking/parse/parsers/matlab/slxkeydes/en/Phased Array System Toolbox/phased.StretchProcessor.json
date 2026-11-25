@@ -1,0 +1,84 @@
+{
+ "key": "phased.StretchProcessor",
+ "title": "Stretch Processor",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Stretch_Processor.md"
+ ],
+ "text": "Stretch processor for linear FM waveforms, 2 inputs, 1 output, {Specify PRF as} sets Source of PRF value; {Pulse width (s)} sets the time duration, {Pulse repetition frequency (Hz)} sets the pulse repetition frequency 1e4, {FM sweep slope (Hz/s)} sets the slope of linear FM, {FM sweep interval} sets the direction of FM, {Signal propagation speed (m/s)} sets the signal propagation speed physconst, {Reference range (m)} sets the center of ranges of interest, {Reference span (m)} sets the span of ranges of interest and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input signal M -by- P complex-valued matrix"
+  },
+  {
+   "name": "PRF",
+   "direction": "input",
+   "summary": "Pulse repetition frequency positive scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Stretch processed signal M -by- P complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pulse width (s)",
+   "default": "50e-6",
+   "values": "Time duration of pulse 50e-6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify PRF as",
+   "default": "Property",
+   "values": "Source of PRF value Property (default) | Auto | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pulse repetition frequency (Hz)",
+   "default": "1e4",
+   "values": "Pulse repetition frequency 1e4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "FM sweep slope (Hz/s)",
+   "default": "2e9",
+   "values": "Slope of linear FM sweep 2e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "FM sweep interval",
+   "default": "Positive",
+   "values": "Direction of FM sweep Positive (default) | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference range (m)",
+   "default": "5000",
+   "values": "Center of ranges of interest 5000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference span (m)",
+   "default": "500",
+   "values": "Span of ranges of interest 500 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "key": "Check Collision",
+ "title": "Check Collision",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Collision Detection/Check_Collision.md"
+ ],
+ "text": "Check if two convex collision geometries are in collision, 2 inputs, 3 outputs; {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Geom1",
+   "direction": "input",
+   "summary": "First collision geometry to check bus"
+  },
+  {
+   "name": "Geom2",
+   "direction": "input",
+   "summary": "Second collision geometry to check bus"
+  },
+  {
+   "name": "CollStatus",
+   "direction": "output",
+   "summary": "Collision status scalar"
+  },
+  {
+   "name": "SepDist",
+   "direction": "output",
+   "summary": "Minimum distance between collision geometries scalar"
+  },
+  {
+   "name": "WitnessPts",
+   "direction": "output",
+   "summary": "Witness points on each geometry matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

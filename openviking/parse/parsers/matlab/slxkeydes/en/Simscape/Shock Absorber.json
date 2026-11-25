@@ -1,0 +1,13 @@
+{
+ "key": "Shock Absorber",
+ "title": "Shock Absorber",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Shock_Absorber.md"
+ ],
+ "text": "Spring and damper system that absorbs translational shocks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

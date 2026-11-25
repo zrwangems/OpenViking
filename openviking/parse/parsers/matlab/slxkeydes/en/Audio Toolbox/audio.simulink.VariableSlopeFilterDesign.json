@@ -1,0 +1,112 @@
+{
+ "key": "audio.simulink.VariableSlopeFilterDesign",
+ "title": "Variable Slope Filter Design",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Variable_Slope_Filter_Design.md"
+ ],
+ "text": "Design tunable lowpass or highpass filter coefficients, 3 inputs, 2 outputs, no direct feedthrough; {Smooth tuned filter parameters} sets the smooth filter parameters when tuning, {Smoothing factor}, {Maximum filter slope}, {Specify slope from input port} uses additional input port to specify slope, {Filter slope}, {Specify normalized cutoff frequency from input port} uses additional input port to specify normalized cutoff, {Normalized cutoff frequency}, {Specify filter type from input port} uses additional input port to specify filter, {Filter type} sets the type of filter, {Output data type} sets the data type of output, {Sample time} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Filter slope scalar in range [0,48]"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "Normalized cutoff frequency scalar in range [0,1]"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Filter type 0 (lowpass) | 1 (highpass)"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "Numerator filter coefficients N -by-3 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "output",
+   "summary": "Denominator filter coefficients N -by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Smooth tuned filter parameters",
+   "default": "off",
+   "values": "Smooth filter parameters when tuning off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor",
+   "default": "0.6",
+   "values": "Smoothing factor for tuned parameters 0.6 (default) | scalar in range [0,1)",
+   "group": ""
+  },
+  {
+   "name": "Maximum filter slope",
+   "default": "12",
+   "values": "Maximum filter slope (dB/octave) 12 (default) | scalar in range [0,48]",
+   "group": ""
+  },
+  {
+   "name": "Specify slope from input port",
+   "default": "off",
+   "values": "Use additional input port to specify slope off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter slope",
+   "default": "12",
+   "values": "Filter slope (dB/octave) 12 (default) | scalar in range [0,48]",
+   "group": ""
+  },
+  {
+   "name": "Specify normalized cutoff frequency from input port",
+   "default": "off",
+   "values": "Use additional input port to specify normalized cutoff frequency off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Normalized cutoff frequency",
+   "default": "0.1",
+   "values": "Normalized cutoff frequency 0.1 (default) | scalar in range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify filter type from input port",
+   "default": "off",
+   "values": "Use additional input port to specify filter type off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter type",
+   "default": "lowpass",
+   "values": "Type of filter lowpass (default) | highpass",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of output coefficients double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

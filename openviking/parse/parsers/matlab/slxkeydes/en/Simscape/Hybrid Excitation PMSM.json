@@ -1,0 +1,13 @@
+{
+ "key": "Hybrid Excitation PMSM",
+ "title": "Hybrid Excitation PMSM",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/Hybrid_Excitation_PMSM.md"
+ ],
+ "text": "Hybrid excitation synchronous machine with three-phase wye-wound stator.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

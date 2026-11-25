@@ -1,0 +1,129 @@
+{
+ "key": "Delay",
+ "title": "Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Delay.md",
+  "Simulink/Discrete/Delay.md",
+  "Simulink/Discrete/Enabled_Delay.md",
+  "Simulink/Discrete/Resettable_Delay.md",
+  "Simulink/Discrete/Variable_Integer_Delay.md",
+  "Simulink/Quick Insert/Discrete/Delay_One_Step.md",
+  "DSP System Toolbox HDL Support/Signal Operations/Delay.md",
+  "DSP System Toolbox/Signal Operations/Delay.md",
+  "HDL Coder/Commonly Used Blocks/Delay.md",
+  "HDL Coder/Discrete/Delay.md",
+  "HDL Coder/Discrete/Enabled_Delay.md",
+  "HDL Coder/Discrete/Enabled_Resettable_Delay.md",
+  "HDL Coder/Discrete/Resettable_Delay.md"
+ ],
+ "text": "Delay input signal by fixed or variable sample periods, 5 inputs, 1 output, no direct feedthrough, {External reset} sets External state reset; {Delay length}, {Initial condition}, {Input processing} sets the sample- or frame-based processing Elements, {Use circular buffer for state} sets the circular buffer for storing state, {Prevent direct feedthrough}, {Remove delay length check in generated code} sets the remove delay length out-of-range check, {Diagnostic for delay length} sets the diagnostic checks for delay length, {Show enable port} sets the create enable port, {Sample time (-1 for inherited)} sets the discrete interval between sample time hits, {State name} sets the unique name for block state and {State name must resolve to Simulink signal object} requires state name resolve to a signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Data input signal scalar | vector"
+  },
+  {
+   "name": "d",
+   "direction": "input",
+   "summary": "Delay length scalar"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "External enable signal scalar"
+  },
+  {
+   "name": "External reset",
+   "direction": "input",
+   "summary": "External reset signal scalar"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "Initial condition scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delay length",
+   "default": "Dialog",
+   "values": "Delay length Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Initial condition",
+   "default": "Dialog",
+   "values": "Initial condition Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": "Main"
+  },
+  {
+   "name": "Use circular buffer for state",
+   "default": "off",
+   "values": "Circular buffer for storing state off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Prevent direct feedthrough",
+   "default": "off",
+   "values": "Prevent direct feedthrough off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Remove delay length check in generated code",
+   "default": "off",
+   "values": "Remove delay length out-of-range check off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Diagnostic for delay length",
+   "default": "None",
+   "values": "Diagnostic checks for delay length None (default) | Warning | Error",
+   "group": "Main"
+  },
+  {
+   "name": "Show enable port",
+   "default": "off",
+   "values": "Create enable port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "External reset",
+   "default": "None",
+   "values": "External state reset None (default) | Rising | Falling | Either | Level | Level hold",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Discrete interval between sample time hits -1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "State name",
+   "default": "’’",
+   "values": "Unique name for block state ’’ (default) | alphanumeric string",
+   "group": "State Attributes"
+  },
+  {
+   "name": "State name must resolve to Simulink signal object",
+   "default": "off",
+   "values": "Require state name resolve to a signal object off (default) | on",
+   "group": "State Attributes"
+  }
+ ]
+}

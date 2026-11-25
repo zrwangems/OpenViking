@@ -1,0 +1,142 @@
+{
+ "key": "dsp.simulink.FrequencyDomainFIRFilter",
+ "title": "Frequency-Domain FIR Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Frequency_Domain_FIR_Filter.md"
+ ],
+ "text": "在频域中对输入信号进行滤波，输入 3 路、无直接馈通；按 {Frequency response} 指定滤波器的频率响应；{Frequency-domain filter method} 指定频域中的滤波方法、{Numerator domain}、{Specify coefficients from input port} 用于指定时域 FIR 滤波器系数的标志、{Filter coefficients} 指定时域 FIR 滤波器系数 fir1、{Specify frequency response from input port} 用于指定频域滤波器系数的标志、{Number of propagation paths} 指定每个输入通道与输出通道对之间的传播路径数、{Sum filtered output contributions from all input channels} 用于对所有输入通道的滤波输出贡献求和、{Partition numerator to reduce latency} 用于对分子进行分区以减少延迟、{Numerator partition length} 指定分子的分区长度、{Time-domain numerator length} 指定时域分子长度、{Inherit FFT length from numerator length} 用于从分子长度继承 FFT 长度的标志、{FFT length} 指定 FFT 长度、{Filter is real} 用于指定滤波器是否为实数的标志、{Output filter latency} 用于输出滤波器延迟的标志、{View Filter Response} 指定可视化频率响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "时域 FIR 滤波器系数 row vector | matrix (since R2024a)"
+  },
+  {
+   "name": "NumFFT",
+   "direction": "input",
+   "summary": "频域 FIR 滤波器系数 row vector | matrix | 3-D array (since R2024a)"
+  },
+  {
+   "name": "output",
+   "direction": "",
+   "summary": "滤波后输出 vector | matrix | 3D array (since R2024a)"
+  },
+  {
+   "name": "latency",
+   "direction": "",
+   "summary": "滤波器延迟 positive integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency-domain filter method",
+   "default": "Overlap-save",
+   "values": "频域中的滤波方法 Overlap-save (default) | Overlap-add",
+   "group": ""
+  },
+  {
+   "name": "Numerator domain",
+   "default": "Time",
+   "values": "Numerator domain Time (default) | Frequency",
+   "group": ""
+  },
+  {
+   "name": "Specify coefficients from input port",
+   "default": "off",
+   "values": "用于指定时域 FIR 滤波器系数的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter coefficients",
+   "default": "fir1(100,0.3)",
+   "values": "时域 FIR 滤波器系数 fir1(100,0.3) (default) | row vector | matrix (since R2024a)",
+   "group": ""
+  },
+  {
+   "name": "Specify frequency response from input port",
+   "default": "off",
+   "values": "用于指定频域滤波器系数的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Frequency response",
+   "default": "fft(fir1(100,0.3),202)",
+   "values": "滤波器的频率响应 fft(fir1(100,0.3),202) (default) | row vector | matrix | 3-D array (since R2024a)",
+   "group": ""
+  },
+  {
+   "name": "Number of propagation paths",
+   "default": "1",
+   "values": "每个输入通道与输出通道对之间的传播路径数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sum filtered output contributions from all input channels",
+   "default": "true",
+   "values": "用于对所有输入通道的滤波输出贡献求和的选项 true (default) | false",
+   "group": ""
+  },
+  {
+   "name": "Partition numerator to reduce latency",
+   "default": "off",
+   "values": "用于对分子进行分区以减少延迟的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Numerator partition length",
+   "default": "32",
+   "values": "分子的分区长度 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Time-domain numerator length",
+   "default": "101",
+   "values": "时域分子长度 101 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT length from numerator length",
+   "default": "on",
+   "values": "用于从分子长度继承 FFT 长度的标志 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "FFT 长度 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter is real",
+   "default": "true",
+   "values": "用于指定滤波器是否为实数的标志 true (default) | false",
+   "group": ""
+  },
+  {
+   "name": "Output filter latency",
+   "default": "’off’",
+   "values": "用于输出滤波器延迟的标志 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "可视化频率响应 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

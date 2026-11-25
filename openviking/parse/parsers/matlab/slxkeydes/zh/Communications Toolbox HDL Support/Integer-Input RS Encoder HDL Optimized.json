@@ -1,0 +1,103 @@
+{
+ "key": "Integer-Input RS Encoder HDL Optimized",
+ "title": "Integer-Input RS Encoder HDL Optimized",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Error Detection and Correction/Block/Integer_Input_RS_Encoder_HDL_Optimized.md"
+ ],
+ "text": "使用 Reed-Solomon (RS) 编码器对数据进行编码，输入 4 路、输出 4 路；{Codeword length} 指定码字长度、{Message length} 指定消息长度、{Source of primitive polynomial} 指定本原多项式来源、{Primitive polynomial} 指定本原多项式提供程序、{Source of puncture pattern} 指定删余图案来源、{Puncture pattern vector} 指定删余向量、{Source of B, the starting power for roots of the primitive polynomial} 指定本原多项式根的起始幂、{B value} 指定根的起始指数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dataIn",
+   "direction": "input",
+   "summary": "输入数据 scalar"
+  },
+  {
+   "name": "startIn",
+   "direction": "input",
+   "summary": "输入帧起始指示 scalar"
+  },
+  {
+   "name": "endIn",
+   "direction": "input",
+   "summary": "输入帧结束指示 scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入数据有效指示 scalar"
+  },
+  {
+   "name": "dataOut",
+   "direction": "output",
+   "summary": "输出数据 scalar"
+  },
+  {
+   "name": "startOut",
+   "direction": "output",
+   "summary": "输出帧起始指示 scalar"
+  },
+  {
+   "name": "endOut",
+   "direction": "output",
+   "summary": "输出帧结束指示 scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据有效指示 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length",
+   "default": "7",
+   "values": "码字长度 7 (default) | range from 7 to 65, 535",
+   "group": ""
+  },
+  {
+   "name": "Message length",
+   "default": "3",
+   "values": "消息长度 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source of primitive polynomial",
+   "default": "Auto",
+   "values": "本原多项式来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "]",
+   "values": "本原多项式提供程序 [ 1 0 1 1 ] (default) | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Source of puncture pattern",
+   "default": "None",
+   "values": "删余图案来源 None (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Puncture pattern vector",
+   "default": "zeros(2,1)]",
+   "values": "删余向量 [ones(2,1); zeros(2,1)] (default) | binary column vector",
+   "group": ""
+  },
+  {
+   "name": "Source of B, the starting power for roots of the primitive polynomial",
+   "default": "Auto",
+   "values": "本原多项式根的起始幂 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "B value",
+   "default": "1",
+   "values": "根的起始指数 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

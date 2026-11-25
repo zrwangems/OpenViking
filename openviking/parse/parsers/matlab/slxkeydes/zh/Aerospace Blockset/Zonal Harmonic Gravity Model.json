@@ -1,0 +1,67 @@
+{
+ "key": "Zonal Harmonic Gravity Model",
+ "title": "Zonal Harmonic Gravity Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/Zonal_Harmonic_Gravity_Model.md"
+ ],
+ "text": "计算行星重力的带谐表示，输入 1 路、输出 1 路；按 {Planet model} 指定行星模型；{Units} 指定输入单位 Metric、{Degree}、{Action for out-of-range input} 指定超出范围输入的行为、{Equatorial radius} 指定行星赤道半径、{Gravitational parameter} 指定行星引力参数、{J values} 指定带谐系数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X ecef",
+   "direction": "input",
+   "summary": "以行星为中心的行星固连坐标 m-by-3 matrix"
+  },
+  {
+   "name": "g ecef",
+   "direction": "output",
+   "summary": "重力值 m-by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Degree",
+   "default": "4",
+   "values": "Degree of harmonic model 4 (default) | 2 | 3",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "超出范围输入的行为 Warning (default) | Error None",
+   "group": ""
+  },
+  {
+   "name": "Planet model",
+   "default": "Mercury",
+   "values": "行星模型 Mercury (default) | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Custom",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "6378136.3",
+   "values": "行星赤道半径 6378136.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gravitational parameter",
+   "default": "398600441500000",
+   "values": "行星引力参数 398600441500000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "J values",
+   "default": "-1.6204000e-06]",
+   "values": "带谐系数 [1.0826269e-03 -2.5323000e-06 -1.6204000e-06] (default) | 3-element array",
+   "group": ""
+  }
+ ]
+}

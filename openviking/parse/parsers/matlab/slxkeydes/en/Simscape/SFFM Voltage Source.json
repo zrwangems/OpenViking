@@ -1,0 +1,13 @@
+{
+ "key": "SFFM Voltage Source",
+ "title": "SFFM Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/SFFM_Voltage_Source.md"
+ ],
+ "text": "Single-frequency frequency-modulated voltage source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

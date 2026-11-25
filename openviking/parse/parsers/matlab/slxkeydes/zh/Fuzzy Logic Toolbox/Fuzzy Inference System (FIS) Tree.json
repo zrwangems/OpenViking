@@ -1,0 +1,67 @@
+{
+ "key": "Fuzzy Inference System (FIS) Tree",
+ "title": "FIS Tree",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/FIS_Tree.md"
+ ],
+ "text": "计算模糊推理系统树，输入 1 路、输出 1 路；按 {Data type} 指定信号数据类型；{FIS tree name} 指定要计算的 FIS 树、{Number of samples for output discretization} 输出模糊集中的点数、{Simulate using} 指定仿真模式 Interpreted、{Out of range input value} 指定输入超出范围时的诊断消息行为、{No rule fired} 指定没有规则触发时的诊断消息行为、{Empty output fuzzy set} 输出模糊集为空时的诊断消息行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "去模糊化输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "FIS tree name",
+   "default": "",
+   "values": "要计算的 FIS 树 fistree object | MAT file name in quotes",
+   "group": "General"
+  },
+  {
+   "name": "Number of samples for output discretization",
+   "default": "101",
+   "values": "输出模糊集中的点数 101 (default) | integer greater than 1",
+   "group": "General"
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "信号数据类型 double (default) | single | fixed-point | expression",
+   "group": "General"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "仿真模式 Interpreted execution (default) | Code generation",
+   "group": "General"
+  },
+  {
+   "name": "Out of range input value",
+   "default": "warning",
+   "values": "输入超出范围时的诊断消息行为 warning (default) | error | none",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "No rule fired",
+   "default": "warning",
+   "values": "没有规则触发时的诊断消息行为 warning (default) | error | none",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "Empty output fuzzy set",
+   "default": "warning",
+   "values": "输出模糊集为空时的诊断消息行为 warning (default) | error | none",
+   "group": "Diagnostics"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "key": "Variable Resistor",
+ "title": "Variable Resistor",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Variable_Resistor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Variable_Resistor.md"
+ ],
+ "text": "对可变电阻器建模，输入 1 路；{Simulate noise} 指定模拟热噪声，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Simulink 控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "模拟热噪声 on (default) | off",
+   "group": ""
+  }
+ ]
+}

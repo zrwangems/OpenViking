@@ -1,0 +1,13 @@
+{
+ "key": "Cable",
+ "title": "Cable",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Cable.md"
+ ],
+ "text": "Cable connection that enables tension transfer.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

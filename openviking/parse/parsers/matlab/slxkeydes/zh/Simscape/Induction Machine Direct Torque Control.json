@@ -1,0 +1,70 @@
+{
+ "key": "Induction Machine Direct Torque Control",
+ "title": "Induction Machine Direct Torque Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Induction Machine Control/Induction_Machine_Direct_Torque_Control.md"
+ ],
+ "text": "感应电机 DTC，输入 4 路、输出 1 路；{Stator resistance (Ohm)} 指定电阻、{Number of pole pairs} 指定极数、{Flux hysteresis bandwidth (Wb)} 指定磁链、{Torque hysteresis bandwidth (N*m)} 指定转矩、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FluxRef",
+   "direction": "input",
+   "summary": "磁链 scalar"
+  },
+  {
+   "name": "TqRef",
+   "direction": "input",
+   "summary": "转矩 scalar"
+  },
+  {
+   "name": "vabc",
+   "direction": "input",
+   "summary": "电压 vector"
+  },
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "电流 vector"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "门极脉冲 vector | 0 or 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Stator resistance (Ohm)",
+   "default": "0.25",
+   "values": "电阻 0.25 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "1",
+   "values": "极数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Flux hysteresis bandwidth (Wb)",
+   "default": "0.02",
+   "values": "磁链 0.02 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque hysteresis bandwidth (N*m)",
+   "default": "10",
+   "values": "转矩 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

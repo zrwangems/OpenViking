@@ -1,0 +1,37 @@
+{
+ "key": "Velocity Conversion",
+ "title": "Velocity Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Velocity_Conversion.md"
+ ],
+ "text": "Convert from velocity units to desired velocity units, 1 input, 1 output, {Initial unit} sets Input units; {Final unit} sets the output units. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Velocity scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Velocity scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "ft/s",
+   "values": "Input units ft/s (default) | m/s | km/s | in/s | km/h | mph | kts | ft/min",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "m/s",
+   "values": "Output units m/s (default) | ft/s | km/s | in/s | km/h | mph | kts | ft/min",
+   "group": ""
+  }
+ ]
+}

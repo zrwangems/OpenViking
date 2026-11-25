@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Actuator (G-IL)",
+ "title": "Double-Acting Actuator (G-IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Double_Acting_Actuator_G_IL.md"
+ ],
+ "text": "Linear actuator with isothermal liquid and gas chambers.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

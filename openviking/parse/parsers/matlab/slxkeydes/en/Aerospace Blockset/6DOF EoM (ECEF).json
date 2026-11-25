@@ -1,0 +1,297 @@
+{
+ "key": "6DOF EoM (ECEF)",
+ "title": "Simple Variable Mass 6DOF ECEF (Quaternion)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/6DOF/Simple_Variable_Mass_6DOF_ECEF_Quaternion.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/b_6DOF_ECEF_Quaternion.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/Custom_Variable_Mass_6DOF_ECEF_Quaternion.md"
+ ],
+ "text": "Implement quaternion representation of six-degrees-of-freedom equations of motion of simple variable mass in Earth-centered Earth-fixed (ECEF) coordinates, 6 inputs, 14 outputs, {Mass type} sets Mass type Simple; {Units} sets the input and output units Metric, {Initial position in geodetic latitude, longitude and altitude [mu,l,h]} sets the initial location of rigid body, {Initial velocity in body axes [U,v,w]} sets the velocity in body axes, {Initial Euler orientation [roll, pitch, yaw]} sets the initial Euler orientation, {Initial body rotation rates [p,q,r]} sets the initial body rotation, {Initial mass}, {Empty mass}, {Full mass}, {Inertia}, {Empty inertia}, {Full inertia}, {Include mass flow relative velocity} sets the mass flow relative velocity port, {Include inertial acceleration}, {Planet model}, {Equatorial radius} sets the radius of planet at equator, {Flattening}, {Rotational rate}, {Celestial longitude of Greenwich source} sets the source of Greenwich meridian initial celestial longitude, {Celestial longitude of Greenwich [deg]} sets the initial angle, {Celestial longitude of prime meridian source} sets the source of prime meridian initial celestial longitude, {Celestial longitude of prime meridian [deg]} sets the initial angle, {Quaternion vector: e.g., ’qr’,’qi’,’qj’,’qk’} sets the quaternion vector state name, {Body rotation rates: e.g., ’p’,’q’,’r’} sets the body rotation state names, {Velocity: e.g., ’U’,’v’,’w’} sets the velocity state name, {Fixed frame position: e.g., ’Xff’, ’Yff’, ’Zff’} sets the eCEF position state name, {Inertial position: e.g., ’Xinertial’, ’Yinertial’, ’Zinertial’} sets the inertial position state names, {Celestial longitude of Greenwich: e.g., ’LG’} sets the celestial longitude state name, {Celestial longitude of prime meridian: e.g., ’LPM’} sets the celestial longitude prime meridian and {Mass: e.g., ’mass’} sets the mass state name. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F xyz",
+   "direction": "input",
+   "summary": "Applied forces three-element vector"
+  },
+  {
+   "name": "M xyz",
+   "direction": "input",
+   "summary": "Applied moments three-element vector"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "Rates of change of mass scalar"
+  },
+  {
+   "name": "L G (0)",
+   "direction": "input",
+   "summary": "Initial celestial longitude of Greenwich scalar"
+  },
+  {
+   "name": "L PM (0)",
+   "direction": "input",
+   "summary": "Prime meridian initial celestial longitude angle scalar"
+  },
+  {
+   "name": "V re",
+   "direction": "input",
+   "summary": "Relative velocities three-element vector"
+  },
+  {
+   "name": "V ff",
+   "direction": "output",
+   "summary": "Velocity of body with respect to ECEF frame, three-element vector"
+  },
+  {
+   "name": "X ff",
+   "direction": "output",
+   "summary": "Position in ECEF reference frame three-element vector"
+  },
+  {
+   "name": "μ l h",
+   "direction": "output",
+   "summary": "Position in geodetic latitude, longitude, and altitude three-element vector | M-by-3 array"
+  },
+  {
+   "name": "φ θ Ψ (rad)",
+   "direction": "output",
+   "summary": "Body rotation angles three-element vector"
+  },
+  {
+   "name": "DCM bi",
+   "direction": "output",
+   "summary": "Coordinate transformation from ECI axes 3-by-3 matrix"
+  },
+  {
+   "name": "DCM be",
+   "direction": "output",
+   "summary": "Coordinate transformation from NED axes to body-fixed axes 3-by-3 matrix"
+  },
+  {
+   "name": "DCM ef",
+   "direction": "output",
+   "summary": "Coordinate transformation from fixed-frame axes 3-by-3 matrix"
+  },
+  {
+   "name": "V b",
+   "direction": "output",
+   "summary": "Velocity of body with respect to fixed-frame three-element vector"
+  },
+  {
+   "name": "ω rel",
+   "direction": "output",
+   "summary": "Relative angular rates of body with respect to NED frame three-element vector"
+  },
+  {
+   "name": "ω b",
+   "direction": "output",
+   "summary": "Angular rates of body with respect to inertial frame three-element vector"
+  },
+  {
+   "name": "dω b /dt",
+   "direction": "output",
+   "summary": "Angular accelerations of the body with respect to inertial frame three-element vector"
+  },
+  {
+   "name": "A bb",
+   "direction": "output",
+   "summary": "Accelerations in body-fixed axes three-element vector"
+  },
+  {
+   "name": "Fuel",
+   "direction": "output",
+   "summary": "Fuel tank status scalar"
+  },
+  {
+   "name": "A b ff",
+   "direction": "output",
+   "summary": "Accelerations in body-fixed axes three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Variable",
+   "values": "Mass type Simple Variable (default) | Fixed | Custom Variable",
+   "group": "Main"
+  },
+  {
+   "name": "Initial position in geodetic latitude, longitude and altitude [mu,l,h]",
+   "default": "0]",
+   "values": "Initial location of rigid body [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial velocity in body axes [U,v,w]",
+   "default": "0]",
+   "values": "Velocity in body axes [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial Euler orientation [roll, pitch, yaw]",
+   "default": "0]",
+   "values": "Initial Euler orientation [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial body rotation rates [p,q,r]",
+   "default": "0]",
+   "values": "Initial body rotation [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial mass",
+   "default": "1.0",
+   "values": "Initial mass 1.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty mass",
+   "default": "0.5",
+   "values": "Empty mass 0.5 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Full mass",
+   "default": "2.0",
+   "values": "Full mass of body 2.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Inertia",
+   "default": "eye(3)",
+   "values": "Inertia eye(3) (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty inertia",
+   "default": "eye(3)",
+   "values": "Empty inertia matrix eye(3) (default) | 3-by-3 matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Full inertia",
+   "default": "2*eye(3)",
+   "values": "Full inertia of body 2*eye(3) (default) | 3-by-3 matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Include mass flow relative velocity",
+   "default": "off",
+   "values": "Mass flow relative velocity port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Include inertial acceleration",
+   "default": "off",
+   "values": "Include inertial acceleration port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Planet model",
+   "default": "(WGS84)",
+   "values": "Planet model Earth (WGS84) (default) | Custom",
+   "group": "Planet"
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "6378137",
+   "values": "Radius of planet at equator 6378137 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "Flattening of planet 1/298.257223563 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Rotational rate",
+   "default": "7292115e-11",
+   "values": "Rotational rate 7292115e-11 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Celestial longitude of Greenwich source",
+   "default": "Internal",
+   "values": "Source of Greenwich meridian initial celestial longitude Internal (default) | External",
+   "group": "Planet"
+  },
+  {
+   "name": "Celestial longitude of Greenwich [deg]",
+   "default": "0",
+   "values": "Initial angle 0 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Celestial longitude of prime meridian source",
+   "default": "Internal",
+   "values": "Source of prime meridian initial celestial longitude Internal (default) | External",
+   "group": "Planet"
+  },
+  {
+   "name": "Celestial longitude of prime meridian [deg]",
+   "default": "0",
+   "values": "Initial angle 0 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Quaternion vector: e.g., {’qr’,’qi’,’qj’,’qk’}",
+   "default": "’’",
+   "values": "Quaternion vector state name ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Body rotation rates: e.g., {’p’,’q’,’r’}",
+   "default": "’’",
+   "values": "Body rotation state names ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Velocity: e.g., {’U’,’v’,’w’}",
+   "default": "’’",
+   "values": "Velocity state name ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Fixed frame position: e.g., {’Xff’, ’Yff’, ’Zff’}",
+   "default": "’’",
+   "values": "ECEF position state name ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Inertial position: e.g., {’Xinertial’, ’Yinertial’, ’Zinertial’}",
+   "default": "’’",
+   "values": "Inertial position state names ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Celestial longitude of Greenwich: e.g., ’LG’",
+   "default": "’’",
+   "values": "Celestial longitude state name ’’ (default) | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Celestial longitude of prime meridian: e.g., ’LPM’",
+   "default": "’’",
+   "values": "Celestial longitude prime meridian ’’ (default) | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Mass: e.g., ’mass’",
+   "default": "’’",
+   "values": "Mass state name ’’ (default) | character vector",
+   "group": "State Attributes"
+  }
+ ]
+}

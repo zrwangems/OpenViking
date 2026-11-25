@@ -1,0 +1,151 @@
+{
+ "key": "Kalman Filter",
+ "title": "Kalman Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Adaptive Filters/Kalman_Filter.md"
+ ],
+ "text": "使用最小均方 (LMS) 自适应算法计算输出、误差和权重，输入 5 路、输出 3 路、无直接馈通；按 {Algorithm} 指定算法；{Filter length} 指定滤波器长度、{Specify step size via} 指定步长的方式、{Step size (mu)} 指定步长、{Leakage factor (0 to 1)} 指定泄漏因子、{Initial value of filter weights} 指定滤波器权重的初始值、{Adapt port} 启用 Adapt 端口、{Reset port} 指定复位端口 None、{Output filter weights} 输出滤波器权重、{Rounding mode} 指定舍入运算的方法、{Saturate on integer overflow} 指定溢出操作的方法、{Parameters} 指定参数 Same word length as first、{Weights} 指定滤波器权重的字长和小数长度 Same as first、{Product and quotient} 指定乘积和商的字长和小数长度 Same as first、{Accumulator} 指定累加器的字长和小数长度 Same as first、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector"
+  },
+  {
+   "name": "Desired",
+   "direction": "input",
+   "summary": "期望信号 scalar | column vector"
+  },
+  {
+   "name": "Step-size",
+   "direction": "input",
+   "summary": "步长 scalar"
+  },
+  {
+   "name": "Adapt",
+   "direction": "input",
+   "summary": "更新滤波器权重 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "重置滤波器权重 scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "期望信号的估计值 scalar | column vector"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "输出信号与期望信号之间的误差 scalar | column vector"
+  },
+  {
+   "name": "Wts",
+   "direction": "output",
+   "summary": "滤波器权重 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Algorithm",
+   "default": "LMS",
+   "values": "选择算法 LMS (default) | Normalized LMS | Sign-Error LMS | Sign-Data LMS | Sign-Sign LMS",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter length",
+   "default": "32",
+   "values": "滤波器长度 32 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Specify step size via",
+   "default": "Dialog",
+   "values": "指定步长的方式 Dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Step size (mu)",
+   "default": "0.1",
+   "values": "步长 0.1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Leakage factor (0 to 1)",
+   "default": "1.0",
+   "values": "泄漏因子 1.0 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial value of filter weights",
+   "default": "0",
+   "values": "滤波器权重的初始值 0 (default) | vector | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Adapt port",
+   "default": "off",
+   "values": "启用 Adapt 端口 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "复位端口 None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output filter weights",
+   "default": "on",
+   "values": "输出滤波器权重 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Parameters",
+   "default": "input",
+   "values": "参数 Same word length as first input (default) | Specify word length | Binary point scaling",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Weights",
+   "default": "input",
+   "values": "滤波器权重的字长和小数长度 Same as first input (default) | Binary point scaling",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Product and quotient",
+   "default": "input",
+   "values": "乘积和商的字长和小数长度 Same as first input (default) | Binary point scaling",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "累加器的字长和小数长度 Same as first input (default) | Binary point scaling",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Type Tab"
+  }
+ ]
+}

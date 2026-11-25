@@ -1,0 +1,54 @@
+{
+ "key": "NR LDPC Encoder",
+ "title": "NR LDPC Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/NR_LDPC_Encoder.md"
+ ],
+ "text": "Perform LDPC encoding according to 5G NR standard, 4 inputs, 4 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data bits scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "bgn",
+   "direction": "input",
+   "summary": "Base graph number scalar"
+  },
+  {
+   "name": "liftingSize",
+   "direction": "input",
+   "summary": "Input lifting size scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Encoded output data bits scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "liftingSize",
+   "direction": "output",
+   "summary": "Output lifting size scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Ready for new inputs scalar"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,141 @@
+{
+ "key": "Varying State Space",
+ "title": "Discrete Varying State Space",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_State_Space.md",
+  "Control System Toolbox/Linear Parameter Varying/Varying_State_Space.md"
+ ],
+ "text": "Discrete-time state-space model with varying matrix values, 10 inputs, 3 outputs, {Initial conditions} sets System initial conditions; {Initial condition source} sets the option to set initial condition using external signal, {Sample time (-1 for inherited)} sets the block sample time, {Output states} sets the provide state output, {Output state derivatives} sets the provide state updates, {Enable feedthrough} adds input port for feedthrough matrix, {Enable state offsets x0} adds input port for state offsets, {Enable state derivative offsets dx0} adds input port for state derivative, {Enable input offsets u0} adds input port for input offsets and {Enable output offsets y0} adds input port for output offsets. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u k",
+   "direction": "input",
+   "summary": "System input scalar | vector"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "State matrix matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Input matrix matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Output matrix matrix"
+  },
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "Feedforward matrix matrix"
+  },
+  {
+   "name": "dx0",
+   "direction": "input",
+   "summary": "State derivative offsets matrix"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "State offsets matrix"
+  },
+  {
+   "name": "u0",
+   "direction": "input",
+   "summary": "Input offsets matrix"
+  },
+  {
+   "name": "y0",
+   "direction": "input",
+   "summary": "Output offsets matrix"
+  },
+  {
+   "name": "IC",
+   "direction": "input",
+   "summary": "Initial condition vector"
+  },
+  {
+   "name": "y k",
+   "direction": "output",
+   "summary": "System output scalar | vector"
+  },
+  {
+   "name": "x k",
+   "direction": "output",
+   "summary": "Current state vector vector"
+  },
+  {
+   "name": "x k+1",
+   "direction": "output",
+   "summary": "Next state vector vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition source",
+   "default": "internal",
+   "values": "Option to set initial condition using external signal internal (default) | external",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "System initial conditions 0 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "–1",
+   "values": "Block sample time –1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output states",
+   "default": "on",
+   "values": "Provide state output on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output state derivatives",
+   "default": "on",
+   "values": "Provide state updates on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Enable feedthrough",
+   "default": "on",
+   "values": "Add input port for feedthrough matrix on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Enable state offsets x0",
+   "default": "off",
+   "values": "Add input port for state offsets off (default) | on",
+   "group": "Offsets Tab"
+  },
+  {
+   "name": "Enable state derivative offsets dx0",
+   "default": "off",
+   "values": "Add input port for state derivative offsets off (default) | on",
+   "group": "Offsets Tab"
+  },
+  {
+   "name": "Enable input offsets u0",
+   "default": "off",
+   "values": "Add input port for input offsets off (default) | on",
+   "group": "Offsets Tab"
+  },
+  {
+   "name": "Enable output offsets y0",
+   "default": "off",
+   "values": "Add input port for output offsets off (default) | on",
+   "group": "Offsets Tab"
+  }
+ ]
+}

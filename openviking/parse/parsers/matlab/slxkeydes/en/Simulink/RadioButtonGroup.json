@@ -1,0 +1,62 @@
+{
+ "key": "RadioButtonGroup",
+ "title": "Radio Button",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Radio_Button.md"
+ ],
+ "text": "Select parameter value, {Label} sets Block label position; {Connection} sets the block parameter value to connect parameter value connection, {Enumerated Data Type} sets the state values and labels using an enumerated data, {Group Name} sets the radio Button group, {States} sets the of states to select for connected parameter scalar and character, {Opacity} sets the block background opacity, {Foreground Color} sets the block foreground color and {Background Color} sets the block background color. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Block parameter value to connect parameter value connection options",
+   "group": "Connection"
+  },
+  {
+   "name": "Enumerated Data Type",
+   "default": "off",
+   "values": "Specify state values and labels using an enumerated data type off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Group Name",
+   "default": "RadioButtonGroup",
+   "values": "Radio Button group name RadioButtonGroup (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "Block label position Top (default) | Bottom | Hide",
+   "group": "Main"
+  },
+  {
+   "name": "States",
+   "default": "",
+   "values": "Set of states to select for connected parameter scalar and character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "Block background opacity 1 (default) | scalar",
+   "group": "Format"
+  },
+  {
+   "name": "Foreground Color",
+   "default": "",
+   "values": "Block foreground color [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Background Color",
+   "default": "",
+   "values": "Block background color [r g b] vector",
+   "group": "Format"
+  }
+ ]
+}

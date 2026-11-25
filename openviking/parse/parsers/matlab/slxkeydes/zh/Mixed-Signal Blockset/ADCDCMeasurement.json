@@ -1,0 +1,101 @@
+{
+ "key": "ADCDCMeasurement",
+ "title": "ADC DC Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Measurements & Testbenches/ADC_DC_Measurement.md"
+ ],
+ "text": "测量 ADC 输出的 DC 性能指标，输入 4 路；{Input range (V)} 指定 ADC 的动态范围、{Hold off time (s)} 指定延迟测量分析以避免瞬态破坏、{Number of bits} 指定 ADC 中的物理位数、{Start conversion frequency (Hz)} 指定 ADC 启动转换时钟的频率 10e6、{Recommended min. simulation stop time (s)} 指定仿真必须运行以获得有意义结果的最短时间 3.2e-5、{Set as model stop time} 指定自动将推荐的最小仿真停止时间设置为模型停止时间、{Endpoint} 使用端点法测量 DNL、INL、{Best fit} 使用最佳拟合方法测量 DNL、INL、{Output result to base workspace} 指定将详细测试结果存储到基础工作区、{Workspace variable name} 指定存储详细测试结果的变量名称、{Plot} 绘制测量结果，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "ADC 的模拟输入信号 scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "外部转换启动时钟 scalar"
+  },
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "来自 ADC 的转换后数字信号 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "input",
+   "summary": "指示模数转换是否完成 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "ADC 的动态范围 [-1 1] (default) | 2-element vector",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "延迟测量分析以避免瞬态破坏 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bits",
+   "default": "5",
+   "values": "ADC 中的物理位数 5 (default) | positive real integer",
+   "group": ""
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "10e6",
+   "values": "ADC 启动转换时钟的频率 10e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Recommended min. simulation stop time (s)",
+   "default": "3.2e-5",
+   "values": "仿真必须运行以获得有意义结果的最短时间 3.2e-5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Set as model stop time",
+   "default": "",
+   "values": "自动将推荐的最小仿真停止时间设置为模型停止时间 button",
+   "group": ""
+  },
+  {
+   "name": "Endpoint",
+   "default": "on",
+   "values": "使用端点法测量 DNL、INL on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Best fit",
+   "default": "on",
+   "values": "使用最佳拟合方法测量 DNL、INL on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output result to base workspace",
+   "default": "off",
+   "values": "将详细测试结果存储到基础工作区 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "adc_dc_out",
+   "values": "存储详细测试结果的变量名称 adc_dc_out (default) | character string",
+   "group": ""
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制测量结果 button",
+   "group": ""
+  }
+ ]
+}

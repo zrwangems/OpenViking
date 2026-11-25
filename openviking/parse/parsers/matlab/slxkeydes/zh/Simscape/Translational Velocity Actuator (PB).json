@@ -1,0 +1,13 @@
+{
+ "key": "Translational Velocity Actuator (PB)",
+ "title": "Translational Velocity Actuator (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/Translational_Velocity_Actuator_PB.md"
+ ],
+ "text": "带长度的理想速度执行器，保持速度与输入信号成正比。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

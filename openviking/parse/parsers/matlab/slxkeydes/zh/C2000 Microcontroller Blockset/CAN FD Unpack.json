@@ -1,0 +1,141 @@
+{
+ "key": "CAN FD Unpack",
+ "title": "CAN FD Unpack",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/CAN_FD_Unpack.md",
+  "Vehicle Network Toolbox/CAN FD Communication/CAN_FD_Unpack.md",
+  "Simulink Real-Time/CAN/CAN-FD MSG blocks/CAN_FD_Unpack.md"
+ ],
+ "text": "从 CAN FD 消息中解包各个信号，输入 1 路、输出 1 路；按 {Data to output as} 指定数据信号 raw；{Database file} 指定 ARXML 或 CAN 数据库文件 character、{Message list} 指定 Message 列表 array of character、{Name} 指定 Message 名称 CAN、{Identifier type} 指定标识符类型 Standard、{Identifier} 指定消息标识符、{Length (bytes)} 指定 CAN 消息长度、{Add signal} 添加 CAN 信号、{Delete signal} 指定移除 CAN 信号、{Signals}、{Output identifier} 添加 CAN ID 输出端口、{Output timestamp} 添加 Timestamp 输出端口、{Output error} 添加 Error 输出端口、{Output remote} 添加 Remote 输出端口、{Output length} 添加 Length 输出端口、{Output status} 添加 Status 输出端口、{Output Bit Rate Switch (BRS)} 添加 BRS 输出端口、{Output Error Status Indicator (ESI)} 添加 ESI 输出端口、{Output Data Length Code (DLC)} 添加 DLC 输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "CAN FD 消息输入 CAN_FD_MESSAGE_BUS"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "CAN 消息输出 single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data to output as",
+   "default": "data",
+   "values": "选择数据信号 raw data (default) | manually specify signals | CANdb specified signals | ARXML specified signals",
+   "group": ""
+  },
+  {
+   "name": "Database file",
+   "default": "",
+   "values": "ARXML 或 CAN 数据库文件 character vector",
+   "group": ""
+  },
+  {
+   "name": "Message list",
+   "default": "",
+   "values": "Message 列表 array of character vectors",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "Msg",
+   "values": "Message 名称 CAN Msg (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Identifier type",
+   "default": "identifier)",
+   "values": "标识符类型 Standard (11-bit identifier) (default) | Extended (29-bit identifier)",
+   "group": ""
+  },
+  {
+   "name": "Identifier",
+   "default": "0",
+   "values": "消息标识符 0 (default) | 0.. 536870911",
+   "group": ""
+  },
+  {
+   "name": "Length (bytes)",
+   "default": "8",
+   "values": "CAN 消息长度 8 (default) | 0.. 8",
+   "group": ""
+  },
+  {
+   "name": "Add signal",
+   "default": "",
+   "values": "添加 CAN 信号",
+   "group": ""
+  },
+  {
+   "name": "Delete signal",
+   "default": "",
+   "values": "移除 CAN 信号",
+   "group": ""
+  },
+  {
+   "name": "Signals",
+   "default": "",
+   "values": "Signals 表 table",
+   "group": ""
+  },
+  {
+   "name": "Output identifier",
+   "default": "off",
+   "values": "添加 CAN ID 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output timestamp",
+   "default": "off",
+   "values": "添加 Timestamp 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output error",
+   "default": "off",
+   "values": "添加 Error 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output remote",
+   "default": "off",
+   "values": "添加 Remote 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output length",
+   "default": "off",
+   "values": "添加 Length 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output status",
+   "default": "off",
+   "values": "添加 Status 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Bit Rate Switch (BRS)",
+   "default": "off",
+   "values": "添加 BRS 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Error Status Indicator (ESI)",
+   "default": "off",
+   "values": "添加 ESI 输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Data Length Code (DLC)",
+   "default": "off",
+   "values": "添加 DLC 输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

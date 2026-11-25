@@ -1,0 +1,13 @@
+{
+ "key": "Perfect Insulator",
+ "title": "Perfect Insulator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Perfect_Insulator.md"
+ ],
+ "text": "具有完美绝热且无热质量的热元件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

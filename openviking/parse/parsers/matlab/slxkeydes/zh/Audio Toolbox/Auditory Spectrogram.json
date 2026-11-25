@@ -1,0 +1,156 @@
+{
+ "key": "Auditory Spectrogram",
+ "title": "Auditory Spectrogram",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/Auditory_Spectrogram.md"
+ ],
+ "text": "从音频中提取 mel、Bark 或 ERB 频谱图，输入 1 路、输出 2 路、无直接馈通；按 {Frequency scale} 指定滤波器组的频率刻度；{Mel style} 指定 Mel 样式、{Auto-determine number of bands} 指定自动确定带通滤波器数量、{Number of bands} 指定带通滤波器数量、{Auto-determine frequency range} 指定自动确定频率范围、{Frequency range (Hz)} 用于设计听觉滤波器组的频率范围、{Filter bank design domain} 指定设计滤波器组的域、{Filter bank normalization} 指定滤波器组的归一化方法、{Output center frequencies} 指定中心频率的附加输出端口、{Visualize filter bank} 打开绘图以可视化滤波器组、{Window} 指定分析窗 hamming、{Normalize window} 指定归一化分析窗、{Overlap length} 指定相邻分析窗的重叠长度、{Auto-determine FFT length} 指定自动确定 FFT 长度、{FFT length} 指定 DFT 点数、{Spectrum type} 指定频谱类型 magnitude、{Number of spectra} 指定频谱数、{Number of spectra overlap} 指定重叠频谱数、{Apply logarithm} 指定应用对数、{Inherit sample rate from input} 指定输入采样率的来源、{Input sample rate (Hz)} 指定输入的采样率 44.1e3，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "音频输入 column vector | matrix"
+  },
+  {
+   "name": "spec",
+   "direction": "output",
+   "summary": "频谱图 matrix | 3-D array"
+  },
+  {
+   "name": "fvec",
+   "direction": "output",
+   "summary": "中心频率 row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency scale",
+   "default": "mel",
+   "values": "滤波器组的频率刻度 mel (default) | bark | erb",
+   "group": ""
+  },
+  {
+   "name": "Mel style",
+   "default": "oshaughnessy",
+   "values": "Mel 样式 oshaughnessy (default) | slaney",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine number of bands",
+   "default": "on",
+   "values": "自动确定带通滤波器数量 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Number of bands",
+   "default": "32",
+   "values": "带通滤波器数量 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine frequency range",
+   "default": "on",
+   "values": "自动确定频率范围 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Frequency range (Hz)",
+   "default": "[0,22050]",
+   "values": "用于设计听觉滤波器组的频率范围 [0,22050] (default) | two-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Filter bank design domain",
+   "default": "linear",
+   "values": "设计滤波器组的域 linear (default) | warped",
+   "group": ""
+  },
+  {
+   "name": "Filter bank normalization",
+   "default": "bandwidth",
+   "values": "滤波器组的归一化方法 bandwidth (default) | area | none",
+   "group": ""
+  },
+  {
+   "name": "Output center frequencies",
+   "default": "off",
+   "values": "指定中心频率的附加输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Visualize filter bank",
+   "default": "",
+   "values": "打开绘图以可视化滤波器组 button",
+   "group": ""
+  },
+  {
+   "name": "Window",
+   "default": "hamming(1024,’periodic’)",
+   "values": "分析窗 hamming(1024,’periodic’) (default) | real vector",
+   "group": ""
+  },
+  {
+   "name": "Normalize window",
+   "default": "on",
+   "values": "归一化分析窗 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "512",
+   "values": "相邻分析窗的重叠长度 512 (default) | integer in the range [0, windowLength )",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine FFT length",
+   "default": "on",
+   "values": "自动确定 FFT 长度 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "DFT 点数 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Spectrum type",
+   "default": "magnitude",
+   "values": "频谱类型 magnitude (default) | power",
+   "group": ""
+  },
+  {
+   "name": "Number of spectra",
+   "default": "1",
+   "values": "频谱数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of spectra overlap",
+   "default": "0",
+   "values": "重叠频谱数 0 (default) | integer in the range [0, Number of spectra )",
+   "group": ""
+  },
+  {
+   "name": "Apply logarithm",
+   "default": "off",
+   "values": "应用对数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "指定输入采样率的来源 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44.1e3",
+   "values": "输入的采样率 44.1e3 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

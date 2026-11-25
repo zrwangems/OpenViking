@@ -1,0 +1,14 @@
+{
+ "key": "DC Voltage Source",
+ "title": "DC Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/DC_Voltage_Source.md",
+  "Simscape/Foundation Library/Electrical/Electrical Sources/DC_Voltage_Source.md"
+ ],
+ "text": "Constant voltage source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

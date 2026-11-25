@@ -1,0 +1,13 @@
+{
+ "key": "Thermal Mass",
+ "title": "Thermal Mass",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Thermal_Mass.md"
+ ],
+ "text": "Mass in thermal systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

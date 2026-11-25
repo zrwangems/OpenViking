@@ -1,0 +1,24 @@
+{
+ "key": "RadiansToDegrees",
+ "title": "Radians to Degrees",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Transformations/Radians_to_Degrees.md"
+ ],
+ "text": "Convert radians to degrees, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input angle in radians scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output angle in degrees scalar"
+  }
+ ],
+ "params": []
+}

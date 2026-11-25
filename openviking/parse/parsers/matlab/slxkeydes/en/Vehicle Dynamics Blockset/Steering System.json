@@ -1,0 +1,422 @@
+{
+ "key": "Steering System",
+ "title": "Steering System",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Steering/Steering_System.md"
+ ],
+ "text": "Steering system for Ackermann and rack-and-pinion steering mechanisms, 10 inputs, 3 outputs; {Type} sets the steering type Rack, {Intermediate shaft type}, {Power assist} sets the option to model power assist, {Ackerman steering} sets the option to use Ackermann steering, {Kingpin moment} sets the left and right kingpin moments, {Steered axle} sets the location of steering, {Steering inputs} sets the steering wheel angle, {Track width, TrckWdth}, {Steering angle input range, StrRng} sets the steering wheel range, {Steering angle input deadband width, DbWdth}, {Steering wheel inertia, StrWhlInert}, {Steering shaft inertia, StrColInert} sets the inertia of steering shaft, {Kingpin offset, KngpnOfst}, {Kingpin inclination angle, Lambda}, {Hub lead, HbLead} sets the hub lead 4.00E-05, {Static loaded radius, StcLdRadius}, {Overall steering ratio, OvrlStrRatio}, {Steering angle breakpoints, StrgAngBpts} sets the steering wheel angle breakpoints, {CstrAng} sets the caster angle, {Rack gain parameterized by} sets the rack gain parameterization, {Rack gain, RckGn}, {Rack gain table, RckGnTbl} sets the rack gain table ones, {Steering arm length, StrgArmLngth}, {Rack casing length, RckCsLngth} sets the rack length, {Tie rod length, TieRodLngth}, {Distance between axis and rack, Dst} sets the distance between axle and rack, {Efficiency of gears, Epsilon}, {Pinion inertia, PnInert}, {Spatial angle for the single Cardan joint, SptlAng}, {Spatial angle for the upper Cardan joint, Alpha_b} sets the spatial angle for upper Cardan joint, {Spatial angle for the lower Cardan joint, Alpha_c} sets the spatial angle for lower Cardan joint, {Edge view angle between the planes of the two joints, Sigma_bc} sets the edge view angle between planes of the two, {Phase angle, Gamma}, {Steering wheel torque breakpoints, TrqBpts} sets the steering wheel torque breakpoints, {Vehicle speed breakpoints, VehSpdBpts} sets the vehicle speed breakpoints, {Assisting torque table, TrqTbl} sets the torque assist table, {Assisting torque limit, TrqLmt} sets the torque assist limit, {Assisting power limit, PwrLmt} sets the assist power limit, {Assisting torque efficiency, Eta} sets the torque assist efficiency, {Cutoff frequency, CutOmege [rad/s]}, {Percent Ackerman parameterized by} sets the ackermann parameterization, {Percent Ackerman, PctAck} sets the percent Ackermann, {Percent Ackerman table, PctAckTbl} sets the percent Ackermann table ones, {Sealing stiffness, SlgStf} sets the sealing stiffness 1.5e4, {Upper boundary friction, UpprFric}, {Pressure change due to friction boundary increase, PrsFric}, {Maxwell element stiffness, MaxStf}, {Maxwell element upper boundary friction, MaxUpprFric}, {Maxwell linear damping coefficient, MaxDamp}, {Torsion bar stiffness coefficient, TorStf} sets the torsional stiffness of steering shaft, {Torsion bar damping coefficient, TorDamp} sets the torsional viscous damping in steering, {Integral anti-windup gain, A []}, {Derivative gain, D []}, {Integral gain, I []}, {Steering torque output saturation lower limit, OutSatLowLmt [Nm]} sets the output saturation lower limit, {Steering torque output saturation upper limit, OutSatUpLmt [Nm]} and {Proportional gain, P []}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VehSpd",
+   "direction": "input",
+   "summary": "Vehicle speed scalar"
+  },
+  {
+   "name": "CstrAng",
+   "direction": "input",
+   "summary": "Wheel caster angle 1-by-2 vector"
+  },
+  {
+   "name": "WhlAngFdk",
+   "direction": "input",
+   "summary": "Wheel steer angle feedback 1-by-2 vector"
+  },
+  {
+   "name": "AngIn",
+   "direction": "input",
+   "summary": "Steering wheel angle input scalar"
+  },
+  {
+   "name": "TrqIn",
+   "direction": "input",
+   "summary": "Steering torque input scalar"
+  },
+  {
+   "name": "PwrAstTrq",
+   "direction": "input",
+   "summary": "Power assist torque scalar"
+  },
+  {
+   "name": "PctAck",
+   "direction": "input",
+   "summary": "Percent Ackermann value scalar"
+  },
+  {
+   "name": "TireFdk",
+   "direction": "input",
+   "summary": "Tire forces and moments feedback 1-by-12 vector"
+  },
+  {
+   "name": "LftKpM",
+   "direction": "input",
+   "summary": "Left kingpin moment scalar"
+  },
+  {
+   "name": "RghtKpM",
+   "direction": "input",
+   "summary": "Right kingpin moment scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Vehicle dynamics information bus"
+  },
+  {
+   "name": "AngLft",
+   "direction": "output",
+   "summary": "Left wheel steer angle scalar"
+  },
+  {
+   "name": "AngRght",
+   "direction": "output",
+   "summary": "Right wheel steer angle scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "pinion",
+   "values": "Steering type Rack and pinion (default)",
+   "group": ""
+  },
+  {
+   "name": "Intermediate shaft type",
+   "default": "joint",
+   "values": "Intermediate shaft type Single Cardan joint (default) | Double Cardan joints",
+   "group": ""
+  },
+  {
+   "name": "Power assist",
+   "default": "on",
+   "values": "Option to model power assist on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ackerman steering",
+   "default": "on",
+   "values": "Option to use Ackermann steering on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Kingpin moment",
+   "default": "off",
+   "values": "Left and right kingpin moments off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Steered axle",
+   "default": "Front",
+   "values": "Location of steering system Front (default) | Rear",
+   "group": ""
+  },
+  {
+   "name": "Steering inputs",
+   "default": "Angle",
+   "values": "Steering wheel angle or torque Angle (default) | Torque",
+   "group": ""
+  },
+  {
+   "name": "Track width, TrckWdth",
+   "default": "1",
+   "values": "Track width 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering angle input range, StrRng",
+   "default": "1.25*pi",
+   "values": "Steering wheel range 1.25*pi (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering angle input deadband width, DbWdth",
+   "default": "0",
+   "values": "Steering angle input deadband width 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering wheel inertia, StrWhlInert",
+   "default": "0.1",
+   "values": "Steering wheel inertia 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering shaft inertia, StrColInert",
+   "default": "0.01",
+   "values": "Inertia of steering shaft 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Kingpin offset, KngpnOfst",
+   "default": "0.075",
+   "values": "Kingpin offset 0.075 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Kingpin inclination angle, Lambda",
+   "default": "0.2094",
+   "values": "Kingpin inclination angle 0.2094 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Hub lead, HbLead",
+   "default": "4.00E-05",
+   "values": "Hub lead 4.00E-05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static loaded radius, StcLdRadius",
+   "default": "0.4",
+   "values": "Static loaded radius 0.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Overall steering ratio, OvrlStrRatio",
+   "default": "17.42",
+   "values": "Overall steering ratio 17.42 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering angle breakpoints, StrgAngBpts",
+   "default": "6.2832]",
+   "values": "Steering wheel angle breakpoints [-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832] (default) | 1-by-11 vector",
+   "group": ""
+  },
+  {
+   "name": "CstrAng",
+   "default": "0",
+   "values": "Caster angle 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rack gain parameterized by",
+   "default": "Constant",
+   "values": "Rack gain parameterization Constant (default) | Lookup table",
+   "group": ""
+  },
+  {
+   "name": "Rack gain, RckGn",
+   "default": "0.062",
+   "values": "Rack gain 0.062 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rack gain table, RckGnTbl",
+   "default": "ones(1,11)*0.0057*2*pi",
+   "values": "Rack gain table ones(1,11)*0.0057*2*pi (default) | 1-by-11 vector",
+   "group": ""
+  },
+  {
+   "name": "Steering arm length, StrgArmLngth",
+   "default": "0.1",
+   "values": "Steering arm length 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rack casing length, RckCsLngth",
+   "default": "0.5",
+   "values": "Rack length 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Tie rod length, TieRodLngth",
+   "default": "0.248",
+   "values": "Tie rod length 0.248 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance between axis and rack, Dst",
+   "default": "0.2",
+   "values": "Distance between axle and rack 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Efficiency of gears, Epsilon",
+   "default": "0.9",
+   "values": "Efficiency of gears 0.9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pinion inertia, PnInert",
+   "default": "0.1",
+   "values": "Pinion inertia 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Spatial angle for the single Cardan joint, SptlAng",
+   "default": "2.6178",
+   "values": "Spatial angle for the single Cardan joint 2.6178 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Spatial angle for the upper Cardan joint, Alpha_b",
+   "default": "2.6178",
+   "values": "Spatial angle for upper Cardan joint 2.6178 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Spatial angle for the lower Cardan joint, Alpha_c",
+   "default": "2.7051",
+   "values": "Spatial angle for lower Cardan joint 2.7051 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Edge view angle between the planes of the two joints, Sigma_bc",
+   "default": "0.2618",
+   "values": "Edge view angle between planes of the two joints 0.2618 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase angle, Gamma",
+   "default": "0.2618",
+   "values": "Phase angle 0.2618 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering wheel torque breakpoints, TrqBpts",
+   "default": "100]",
+   "values": "Steering wheel torque breakpoints [-100 0 100] (default) | 1-by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vehicle speed breakpoints, VehSpdBpts",
+   "default": "20]",
+   "values": "Vehicle speed breakpoints [0 20] (default) | 1-by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Assisting torque table, TrqTbl",
+   "default": "100]",
+   "values": "Torque assist table [0 -100;0 0;0 100] (default) | M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Assisting torque limit, TrqLmt",
+   "default": "100",
+   "values": "Torque assist limit 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Assisting power limit, PwrLmt",
+   "default": "1000",
+   "values": "Assist power limit 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Assisting torque efficiency, Eta",
+   "default": "1",
+   "values": "Torque assist efficiency 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Cutoff frequency, CutOmege [rad/s]",
+   "default": "200",
+   "values": "Cutoff frequency 200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman parameterized by",
+   "default": "Constant",
+   "values": "Ackermann parameterization Constant (default) | Lookup table",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman, PctAck",
+   "default": "100",
+   "values": "Percent Ackermann 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman table, PctAckTbl",
+   "default": "ones(1,11)*100",
+   "values": "Percent Ackermann table ones(1,11)*100 (default) | 1-by-11 vector",
+   "group": ""
+  },
+  {
+   "name": "Sealing stiffness, SlgStf",
+   "default": "1.5e4",
+   "values": "Sealing stiffness 1.5e4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Upper boundary friction, UpprFric",
+   "default": "1",
+   "values": "Upper boundary friction 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pressure change due to friction boundary increase, PrsFric",
+   "default": "1e-5",
+   "values": "Pressure change due to friction boundary increase 1e-5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maxwell element stiffness, MaxStf",
+   "default": "10000",
+   "values": "Maxwell element stiffness 10000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maxwell element upper boundary friction, MaxUpprFric",
+   "default": "0.2",
+   "values": "Maxwell element upper boundary friction 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maxwell linear damping coefficient, MaxDamp",
+   "default": "1",
+   "values": "Maxwell linear damping coefficient 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torsion bar stiffness coefficient, TorStf",
+   "default": "30",
+   "values": "Torsional stiffness of steering shaft 30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torsion bar damping coefficient, TorDamp",
+   "default": "1",
+   "values": "Torsional viscous damping in steering shaft 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral anti-windup gain, A []",
+   "default": "0",
+   "values": "Integral anti-windup gain 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Derivative gain, D []",
+   "default": "0.1",
+   "values": "Derivative gain 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain, I []",
+   "default": "5",
+   "values": "Integral gain 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering torque output saturation lower limit, OutSatLowLmt [Nm]",
+   "default": "-500",
+   "values": "Output saturation lower limit -500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering torque output saturation upper limit, OutSatUpLmt [Nm]",
+   "default": "500",
+   "values": "Steering torque output saturation upper limit 500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain, P []",
+   "default": "150",
+   "values": "Proportional gain 150 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,103 @@
+{
+ "key": "DataStoreRead",
+ "title": "Data Store Read",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Data_Store_Read.md"
+ ],
+ "text": "从数据存储中读取数据，输入 1 路、输出 1 路；按 {采样时间} 指定采样时间；{数据存储名称} 指定模块从中读取数据的数据存储的名称、{Data Store Memory 模块}、{对应的 Data Store Write 模块}、{数组中的元素(总线中的信号)} 指定关联的数据存储中的元素 字符向量、{指定要选择的元素} 用于定义要选择的元素的 MATLAB 表达式、{选定元素}、{启用索引}、{维数}、{索引模式}、{索引选项} 指定子元素的索引方法 索引向量、{索引}、{输出大小} 指定要读取的子元素范围的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IdxN",
+   "direction": "input",
+   "summary": "第 N 个索引信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "来自指定数据存储的值 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "数据存储名称",
+   "default": "A",
+   "values": "模块从中读取数据的数据存储的名称 A (默认) | 数据存储的名称",
+   "group": "参数"
+  },
+  {
+   "name": "Data Store Memory 模块",
+   "default": "",
+   "values": "Data Store Memory 模块名称 只读: 模块路径",
+   "group": "参数"
+  },
+  {
+   "name": "对应的 Data Store Write 模块",
+   "default": "",
+   "values": "对应的 Data Store Write 模块列表 只读: 模块路径",
+   "group": "参数"
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "采样时间 -1 (默认) | 标量 | 向量",
+   "group": "参数"
+  },
+  {
+   "name": "数组中的元素(总线中的信号)",
+   "default": "",
+   "values": "关联的数据存储中的元素 字符向量",
+   "group": "元素选择"
+  },
+  {
+   "name": "指定要选择的元素",
+   "default": "",
+   "values": "用于定义要选择的元素的 MATLAB 表达式 字符向量",
+   "group": "元素选择"
+  },
+  {
+   "name": "选定元素",
+   "default": "",
+   "values": "选定元素的列表 字符向量",
+   "group": "元素选择"
+  },
+  {
+   "name": "启用索引",
+   "default": "off",
+   "values": "启用索引以指定要读取的数据存储元素的子元素 off (默认) | on",
+   "group": "元素选择"
+  },
+  {
+   "name": "维数",
+   "default": "1",
+   "values": "数据存储元素的维数 1 (默认) | 正整数",
+   "group": "元素选择"
+  },
+  {
+   "name": "索引模式",
+   "default": "开始",
+   "values": "索引模式 从 1 开始 (默认) | 从 0 开始",
+   "group": "元素选择"
+  },
+  {
+   "name": "索引选项",
+   "default": "索引向量(对话框)",
+   "values": "子元素的索引方法 索引向量(对话框) (默认) | 全选 | 索引向量(端口) | 起始索引(对话框) | 起始索引(端口)",
+   "group": "元素选择"
+  },
+  {
+   "name": "索引",
+   "default": "1",
+   "values": "子元素的索引或起始索引 1 (默认) | 整数 | 整数向量",
+   "group": "元素选择"
+  },
+  {
+   "name": "输出大小",
+   "default": "1",
+   "values": "要读取的子元素范围的大小 1 (默认) | 整数",
+   "group": "元素选择"
+  }
+ ]
+}

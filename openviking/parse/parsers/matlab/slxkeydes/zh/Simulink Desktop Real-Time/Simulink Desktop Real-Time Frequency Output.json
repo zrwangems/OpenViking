@@ -1,0 +1,126 @@
+{
+ "key": "Simulink Desktop Real-Time Frequency Output",
+ "title": "Frequency Output",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Frequency_Output.md"
+ ],
+ "text": "写入一个或多个频率或 PWM 输出通道，输入 2 路、输出 1 路；{Install new board} 指定注册板卡 < no board、{Delete current board} 指定删除当前板卡、{Board setup} 指定板卡、{Sample time} 指定模块的采样时间、{Maximum missed ticks} 指定模型可以落后内核的定时器节拍数、{Show “Missed Ticks” port} 指定将错过的节拍数发送到 Missed Ticks 端口、{Yield CPU when waiting} 指定内核等待硬件时让出 CPU、{Output channels} 指定频率输出通道 vector、{Output signal frequency source} 输出频率、{Frequency} 输出频率、{Frequency initial value} 指定板卡在执行开始前生成的频率 scalar、{Frequency final value} 指定板卡在执行结束后生成的频率 scalar、{Output signal duty source} 输出信号占空比的来源、{Duty} 输出信号为高电平的时间、{Duty initial value} 指定执行开始前板卡的占空比 0–1、{Duty final value} 指定执行结束后板卡的占空比 0–1，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Frequency",
+   "direction": "input",
+   "summary": "输出波形的频率（可选） vector"
+  },
+  {
+   "name": "Duty Cycle",
+   "direction": "input",
+   "summary": "输出波形的占空比（可选） vector"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "错过的节拍计数（可选） double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "注册板卡 < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "删除当前板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "设置板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "模块的采样时间 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "模型可以落后内核的定时器节拍数 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "将错过的节拍数发送到 Missed Ticks 端口 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "内核等待硬件时让出 CPU ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Output channels",
+   "default": "",
+   "values": "选择频率输出通道 vector",
+   "group": ""
+  },
+  {
+   "name": "Output signal frequency source",
+   "default": "external",
+   "values": "指定输出频率 (Hz) 的来源 external (default) | internal",
+   "group": ""
+  },
+  {
+   "name": "Frequency",
+   "default": "",
+   "values": "指定输出频率 (Hz) scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency initial value",
+   "default": "",
+   "values": "指定板卡在执行开始前生成的频率 scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency final value",
+   "default": "",
+   "values": "指定板卡在执行结束后生成的频率 scalar",
+   "group": ""
+  },
+  {
+   "name": "Output signal duty source",
+   "default": "internal",
+   "values": "指定输出信号占空比的来源 internal (default) | external",
+   "group": ""
+  },
+  {
+   "name": "Duty",
+   "default": "0.5",
+   "values": "指定输出信号为高电平的时间 0.5 (default) | 0–1",
+   "group": ""
+  },
+  {
+   "name": "Duty initial value",
+   "default": "",
+   "values": "指定执行开始前板卡的占空比 0–1",
+   "group": ""
+  },
+  {
+   "name": "Duty final value",
+   "default": "",
+   "values": "指定执行结束后板卡的占空比 0–1",
+   "group": ""
+  }
+ ]
+}

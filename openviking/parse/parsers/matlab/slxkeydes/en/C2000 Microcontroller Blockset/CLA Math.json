@@ -1,0 +1,41 @@
+{
+ "key": "CLA Math",
+ "title": "CLA Math",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/C2805x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/C2806x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F28003x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F28004x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F2807x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F2837xD/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F2837xS/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F28p55x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F28p65x/CLA_Math.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/CLA_Math.md"
+ ],
+ "text": "Implements CLA Math functions from CLA Math library, 1 input, 1 output, {Function} sets Select CLA Math function.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input data vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function",
+   "default": "CLAsin",
+   "values": "Select CLA Math function CLAsin (default) | CLAcos | CLAasin | CLAacos | CLAatan | CLAatan2 | CLAsinPU | CLAcosPU | CLAatan2PU | CLAexp | CLAexp2 | CLAexp10 | CLAexpN | CLALn | CLALog10 | CLALogN | CLAdiv | CLAsqrt | CLAisqrt",
+   "group": ""
+  }
+ ]
+}

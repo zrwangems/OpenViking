@@ -1,0 +1,15 @@
+{
+ "key": "Inductor",
+ "title": "Inductor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Inductor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Inductor.md",
+  "RF Blockset/Circuit Envelope/Elements/L.md"
+ ],
+ "text": "包括可选容差、运行限制和故障行为的电感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

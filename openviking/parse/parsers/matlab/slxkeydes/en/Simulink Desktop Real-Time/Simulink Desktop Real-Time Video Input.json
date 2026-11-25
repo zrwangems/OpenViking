@@ -1,0 +1,111 @@
+{
+ "key": "Simulink Desktop Real-Time Video Input",
+ "title": "Video Input",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Video_Input.md"
+ ],
+ "text": "Get video data from system video devices, 1 input, 5 outputs, {ROI Dimensions} sets Select region-of-interest; {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {ROI origin source} selects region-of-interest origin source, {ROI origin} selects region-of-interest origin, {Frame format} selects video data, {Show \"Frame Ready\" port} enables, {Show \"Frame Error\" port} enables and {Show frame timestamp port} enables timestamp output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ROI Input Data",
+   "direction": "input",
+   "summary": "Region-of-interest origin coordinates ROI input data"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Video data output RGB data | Luminance data"
+  },
+  {
+   "name": "Frame Ready",
+   "direction": "output",
+   "summary": "Indicates video frame ready boolean"
+  },
+  {
+   "name": "Frame Error",
+   "direction": "output",
+   "summary": "Indicates data acquisition frame error boolean"
+  },
+  {
+   "name": "Timestamp",
+   "direction": "output",
+   "summary": "Provides video frame timestamp double"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "Missed tick count (optional) double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "ROI origin source",
+   "default": "Internal",
+   "values": "Select region-of-interest origin source Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "ROI origin",
+   "default": "1]",
+   "values": "Select region-of-interest origin [X Y] values [1 1] (default) | 2-element vector",
+   "group": ""
+  },
+  {
+   "name": "ROI Dimensions",
+   "default": "dimensions",
+   "values": "Select region-of-interest dimensions [W H] values full frame width and height dimensions (default) | [640 480] (default if no device configured) | 2-element vector",
+   "group": ""
+  },
+  {
+   "name": "Frame format",
+   "default": "RGB",
+   "values": "Select video data format RGB (default) | Luminance",
+   "group": ""
+  },
+  {
+   "name": "Show \"Frame Ready\" port",
+   "default": "off",
+   "values": "Enable \"Frame Ready\" output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show \"Frame Error\" port",
+   "default": "off",
+   "values": "Enable \"Frame Error\" output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show frame timestamp port",
+   "default": "off",
+   "values": "Enable timestamp output port off (default) | on",
+   "group": ""
+  }
+ ]
+}

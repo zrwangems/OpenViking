@@ -1,0 +1,13 @@
+{
+ "key": "PS Sum of Elements",
+ "title": "PS Sum of Elements",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Sum_of_Elements.md"
+ ],
+ "text": "Calculate sum of elements of vector or matrix input physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

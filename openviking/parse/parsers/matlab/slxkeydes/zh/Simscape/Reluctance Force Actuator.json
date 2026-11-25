@@ -1,0 +1,13 @@
+{
+ "key": "Reluctance Force Actuator",
+ "title": "Reluctance Force Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Elements/Reluctance_Force_Actuator.md"
+ ],
+ "text": "被动生成磁场的永磁体。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

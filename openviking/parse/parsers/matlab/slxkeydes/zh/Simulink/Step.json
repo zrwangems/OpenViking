@@ -1,0 +1,74 @@
+{
+ "key": "Step",
+ "title": "Step",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Step.md"
+ ],
+ "text": "生成阶跃函数；输出 1 路；按 {输出数据类型} 指定输出数据类型；{阶跃时间} 指定阶跃发生的时间、{初始值} 指定阶跃之前的输出值、{终值} 指定阶跃之后的输出值、{采样时间} 指定采样率、{将向量参数解释为一维向量} 指定将向量视为一维、{启用过零检测}、{模式} 指定数据类型的类别、{数据类型覆盖}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出阶跃信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "阶跃时间",
+   "default": "1",
+   "values": "阶跃发生的时间 1 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "初始值",
+   "default": "0",
+   "values": "阶跃之前的输出值 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "终值",
+   "default": "1",
+   "values": "阶跃之后的输出值 1 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0",
+   "values": "采样率 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "将向量参数解释为一维向量",
+   "default": "on",
+   "values": "将向量视为一维 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "启用过零检测 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "double",
+   "values": "输出数据类型 double (默认) | 继承: 通过反向传播继承 | single |",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "Inherit",
+   "values": "数据类型的类别 Inherit (默认) | Built in | Expression",
+   "group": ""
+  },
+  {
+   "name": "数据类型覆盖",
+   "default": "",
+   "values": "为此信号指定数据类型覆盖模式 Inherit | Off",
+   "group": ""
+  }
+ ]
+}

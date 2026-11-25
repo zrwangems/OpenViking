@@ -1,0 +1,84 @@
+{
+ "key": "Simulation 3D UAV Vehicle",
+ "title": "Simulation 3D UAV Vehicle",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Simulation 3D/Simulation_3D_UAV_Vehicle.md"
+ ],
+ "text": "Place UAV vehicle in 3D visualization, 3 inputs, {Type} sets Type of vehicle; {Path to custom mesh} sets the reference path to the custom UAV mesh asset, {Color}, {Name}, {Use geospatial coordinates for inputs and initial values} uses geospatial coordinates for port inputs and initial, {Initial Translation (m)} sets the initial vehicle position, {Initial Georeference Origin (LLA)} sets the initial georeference origin, {Initial Rotation (rad)} sets the initial angles of vehicle rotation and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Translated position of UAV vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Rotation of UAV vector | matrix"
+  },
+  {
+   "name": "GeoOrigin",
+   "direction": "input",
+   "summary": "Geospatial coordinates of Unreal Engine world origin vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "Quadcopter",
+   "values": "Type of vehicle Quadcopter (default) | Fixed wing | Custom",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Path to custom mesh",
+   "default": "/MathWorksUAVContent/UAVs/HexaRotorUAV/HexaRotor.HexaRotor",
+   "values": "Reference path to the custom UAV mesh asset /MathWorksUAVContent/UAVs/HexaRotorUAV/HexaRotor.HexaRotor (default) | valid asset reference path",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Color",
+   "default": "Black",
+   "values": "Color of vehicle Black (default) | Orange | Yellow | Green | Blue | Red | White | Silver",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "Name of vehicle SimulinkVehicle1 (default) | vehicle name",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Use geospatial coordinates for inputs and initial values",
+   "default": "off",
+   "values": "Use geospatial coordinates for port inputs and initial values off (default) | on",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Initial Translation (m)",
+   "default": "0]",
+   "values": "Initial vehicle position [0 0 0] (default) | vector",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial Georeference Origin (LLA)",
+   "default": "0]",
+   "values": "Initial georeference origin [0 0 0] (default) | vector",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial Rotation (rad)",
+   "default": "0]",
+   "values": "Initial angles of vehicle rotation [0 0 0] (default) | vector | matrix",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": "Sample Time"
+  }
+ ]
+}

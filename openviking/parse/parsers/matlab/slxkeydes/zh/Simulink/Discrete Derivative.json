@@ -1,0 +1,80 @@
+{
+ "key": "Discrete Derivative",
+ "title": "Discrete Derivative",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discrete/Discrete_Derivative.md",
+  "Simulink/Quick Insert/Discrete/Discrete_Derivative.md"
+ ],
+ "text": "计算离散时间导数，输入 1 路、输出 1 路；按 {整数舍入模式} 指定定点运算的舍入模式；{增益值} 指定缩放因子、{上一加权输入 K*u/Ts 的初始条件} 指定初始条件、{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{输出数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 用于防止定点工具覆盖输出数据类型、{发生溢出时饱和处理为最大值或最小值} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "缩放离散时间导数 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "增益值",
+   "default": "1.0",
+   "values": "缩放因子 1.0 (默认) | 标量",
+   "group": "常设"
+  },
+  {
+   "name": "上一加权输入 K*u/Ts 的初始条件",
+   "default": "0.0",
+   "values": "初始条件 0.0 (默认) | 标量",
+   "group": "常设"
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "指定基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": "常设"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "从内部规则继承",
+   "values": "输出数据类型 继承: 从内部规则继承 (默认) | 继承: 通过反向传播继承 | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0)",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "信号属性"
+  },
+  {
+   "name": "发生溢出时饱和处理为最大值或最小值",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "信号属性"
+  }
+ ]
+}

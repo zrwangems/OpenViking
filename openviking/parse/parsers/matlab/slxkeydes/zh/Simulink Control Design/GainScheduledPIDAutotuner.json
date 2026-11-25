@@ -1,0 +1,337 @@
+{
+ "key": "GainScheduledPIDAutotuner",
+ "title": "Gain-Scheduled PID Autotuner",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/Gain_Scheduled_PID_Autotuner.md"
+ ],
+ "text": "在多个工作点自动整定 PID 增益，输入 9 路、输出 5 路；按 {Signal Amplitudes} 指定扰动幅值；{Controller type} 指定 PID 控制器作用、{Form} 指定 PID 控制器形式、{Sample time (-1 for inherited)} 指定 PID 控制器的采样时间、{Data Type} 指定浮点精度 double、{Tune at different sample time} 启用与 PID 控制器和实验不同的采样时间进行整定、{Tuning sample time (sec)} 指定整定算法的采样时间、{Integrator method} 指定积分项的离散积分公式 Forward、{Filter method} 指定微分滤波项的离散积分公式 Forward、{Target bandwidth (rad/sec)} 指定整定后响应的目标穿越频率、{Target phase margin (degrees)} 指定开环响应的目标最小相位裕度、{Experiment Mode} 指定扰动信号类型、{Plant Type} 指定被控对象稳定性、{Plant Sign} 指定被控对象符号、{Breakpoints} 指定 Gain scheduling breakpoints、{Use external signal} 指定 breakpoints from input port、{Number of breakpoints} 指定断点数、{Gain index tolerance}、{Use y as scheduling variable} 指定 Schedule breakpoints using plant output、{Method of storing gains}、{P Gain initial conditions} 指定 Proportional gain initial value、{P Gain Parameter Name} 指定比例增益数据名称、{I Gain initial conditions} 指定积分增益初始值、{I Gain Parameter Name} 指定积分增益数据名称、{D Gain initial conditions} 指定微分增益初始值、{D Gain Parameter Name} 指定微分增益数据名称、{N Gain initial conditions} 指定滤波器增益初始值、{N Gain Parameter Name} 指定滤波器增益数据名称、{Save breakpoints in gain array} 指定将断点与 PID 增益一起保存、{Method to trigger gain update} 指定更新触发方法 Detect change in PID、{Number of samples to delay update} 指定延迟更新的采样点数、{P gain lookup method} 指定比例增益查找方法 Interpolation-Use End、{I gain lookup method} 指定积分增益查找方法 Interpolation-Use End、{D gain lookup method} 指定微分增益查找方法 Interpolation-Use End、{N gain lookup method} 指定微分滤波器增益查找方法 Interpolation-Use End、{Saturate to max or min when overflows occur} 指定溢出操作的方法、{Lock output data type setting against changes by the fixed-point tools} 用于防止定点工具覆盖输出数据类型、{Integer rounding mode} 指定定点运算的舍入模式、{Output Signal Configuration} 指定提供控制信号加扰动或仅提供扰动 control action +、{Display Bode plot} 绘制估计频率响应、{Baseline plant model} 指定 Bode 图基线模型、{Display gain surface plot} 显示增益曲面图，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "来自控制器的信号 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 scalar"
+  },
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "启动和停止自动整定实验 scalar"
+  },
+  {
+   "name": "bandwidth",
+   "direction": "input",
+   "summary": "用于整定的目标带宽 scalar"
+  },
+  {
+   "name": "target PM",
+   "direction": "input",
+   "summary": "用于整定的目标相位裕度 scalar"
+  },
+  {
+   "name": "signal Amp",
+   "direction": "input",
+   "summary": "注入扰动信号的幅值 scalar | vector"
+  },
+  {
+   "name": "scheduling Variable",
+   "direction": "input",
+   "summary": "调度变量 scalar"
+  },
+  {
+   "name": "Breakpoints",
+   "direction": "input",
+   "summary": "断点数据 vector"
+  },
+  {
+   "name": "Update Trigger",
+   "direction": "input",
+   "summary": "触发控制信号 scalar"
+  },
+  {
+   "name": "u+Δu",
+   "direction": "output",
+   "summary": "用于被控对象输入的信号 scalar"
+  },
+  {
+   "name": "Δu",
+   "direction": "output",
+   "summary": "被控对象输入扰动 scalar"
+  },
+  {
+   "name": "pid gains",
+   "direction": "output",
+   "summary": "整定后的 PID 系数 bus"
+  },
+  {
+   "name": "estimated PM",
+   "direction": "output",
+   "summary": "使用整定后控制器得到的估计相位裕度 scalar"
+  },
+  {
+   "name": "frd",
+   "direction": "output",
+   "summary": "估计频率响应 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Controller type",
+   "default": "PIDN",
+   "values": "PID 控制器作用 PIDN (default) | P | I | PI | PD | PDN | PID |...",
+   "group": "Controller Settings"
+  },
+  {
+   "name": "Form",
+   "default": "Parallel",
+   "values": "PID 控制器形式 Parallel (default) | Ideal",
+   "group": "Controller Settings"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "0.1",
+   "values": "PID 控制器的采样时间 0.1 (default) | positive scalar | –1",
+   "group": "Controller Settings"
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "浮点精度 double (default) | single",
+   "group": "Controller Settings"
+  },
+  {
+   "name": "Tune at different sample time",
+   "default": "off",
+   "values": "启用与 PID 控制器和实验不同的采样时间进行整定 off (default) | on",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Tuning sample time (sec)",
+   "default": "0.2",
+   "values": "整定算法的采样时间 0.2 (default) | positive scalar",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "积分项的离散积分公式 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Filter method",
+   "default": "Euler",
+   "values": "微分滤波项的离散积分公式 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Target bandwidth (rad/sec)",
+   "default": "1",
+   "values": "整定后响应的目标穿越频率 1 (default) | positive scalar",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Target phase margin (degrees)",
+   "default": "60",
+   "values": "开环响应的目标最小相位裕度 60 (default) | scalar in range 0–90",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Experiment Mode",
+   "default": "Superposition",
+   "values": "扰动信号类型 Superposition (default) | Sinestream | PRBS",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Plant Type",
+   "default": "Stable",
+   "values": "被控对象稳定性 Stable (default) | Integrating",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Plant Sign",
+   "default": "Positive",
+   "values": "被控对象符号 Positive (default) | Negative",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Signal Amplitudes",
+   "default": "1",
+   "values": "扰动幅值 1 (default) | scalar | vector of length 5",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Breakpoints",
+   "default": "3]",
+   "values": "Gain scheduling breakpoints [1 2 3] (default) | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Use external signal",
+   "default": "off",
+   "values": "Specify breakpoints from input port off (default) | on",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Number of breakpoints",
+   "default": "3",
+   "values": "断点数 3 (default) | positive scalar",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Gain index tolerance",
+   "default": "1e-3",
+   "values": "Gain index tolerance 1e-3 (default) | nonegative scalar",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Use y as scheduling variable",
+   "default": "on",
+   "values": "Schedule breakpoints using plant output on (default) | off",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Method of storing gains",
+   "default": "block",
+   "values": "Method of storing gains Internal to block (default) | Data store memory",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "P Gain initial conditions",
+   "default": "0",
+   "values": "Proportional gain initial value 0 (default) | scalar | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "P Gain Parameter Name",
+   "default": "PGain",
+   "values": "比例增益数据名称 PGain (default) | string",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "I Gain initial conditions",
+   "default": "0",
+   "values": "积分增益初始值 0 (default) | scalar | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "I Gain Parameter Name",
+   "default": "IGain",
+   "values": "积分增益数据名称 IGain (default) | string",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "D Gain initial conditions",
+   "default": "0",
+   "values": "微分增益初始值 0 (default) | scalar | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "D Gain Parameter Name",
+   "default": "DGain",
+   "values": "微分增益数据名称 DGain (default) | string",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "N Gain initial conditions",
+   "default": "100",
+   "values": "滤波器增益初始值 100 (default) | scalar | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "N Gain Parameter Name",
+   "default": "NGain",
+   "values": "滤波器增益数据名称 NGain (default) | string",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Save breakpoints in gain array",
+   "default": "off",
+   "values": "将断点与 PID 增益一起保存 off (default) | on",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Method to trigger gain update",
+   "default": "gains",
+   "values": "更新触发方法 Detect change in PID gains (default) | External trigger",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Number of samples to delay update",
+   "default": "1",
+   "values": "延迟更新的采样点数 1 (default) | nonnegative scalar",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "P gain lookup method",
+   "default": "Values",
+   "values": "比例增益查找方法 Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "I gain lookup method",
+   "default": "Values",
+   "values": "积分增益查找方法 Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "D gain lookup method",
+   "default": "Values",
+   "values": "微分增益查找方法 Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "N gain lookup method",
+   "default": "Values",
+   "values": "微分滤波器增益查找方法 Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (default) | on",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Output Signal Configuration",
+   "default": "perturbation",
+   "values": "提供控制信号加扰动或仅提供扰动 control action + perturbation (default) | perturbation only",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Display Bode plot",
+   "default": "off",
+   "values": "绘制估计频率响应 off (default) | on",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Baseline plant model",
+   "default": "[]",
+   "values": "Bode 图基线模型 [] (default) | LTI model",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Display gain surface plot",
+   "default": "off",
+   "values": "显示增益曲面图 off (default) | on",
+   "group": "Visualization Tab"
+  }
+ ]
+}

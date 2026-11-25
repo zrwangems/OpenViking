@@ -1,0 +1,13 @@
+{
+ "key": "Switch Two Terminal",
+ "title": "Switch",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/K_Switch.md"
+ ],
+ "text": "Simulink 控制的双端子开关。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

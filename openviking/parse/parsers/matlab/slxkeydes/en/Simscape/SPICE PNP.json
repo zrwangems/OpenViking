@@ -1,0 +1,13 @@
+{
+ "key": "SPICE PNP",
+ "title": "SPICE PNP",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Semiconductors/SPICE_PNP.md"
+ ],
+ "text": "SPICE-compatible Gummel-Poon PNP Transistor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

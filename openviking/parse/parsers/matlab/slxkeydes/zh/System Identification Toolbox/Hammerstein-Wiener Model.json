@@ -1,0 +1,37 @@
+{
+ "key": "Hammerstein-Wiener Model",
+ "title": "Hammerstein-Wiener Model",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Models/Hammerstein_Wiener_Model.md"
+ ],
+ "text": "在 Simulink 软件中仿真 Hammerstein-Wiener 模型，输入 1 路、输出 1 路；{Model} 指定要仿真的 Hammerstein-Wiener 模型 idnlhw、{Initial conditions} 指定仿真的初始条件指定，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "仿真输入数据 scalar | vector"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "仿真输出 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model",
+   "default": "",
+   "values": "要仿真的 Hammerstein-Wiener 模型 idnlhw object",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "Zero",
+   "values": "仿真的初始条件指定 Zero (default) | State values",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "RADBASN",
+ "title": "radbasn",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/radbasn.md"
+ ],
+ "text": "Normalized radial basis transfer function.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

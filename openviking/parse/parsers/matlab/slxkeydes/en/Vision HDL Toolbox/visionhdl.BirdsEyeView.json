@@ -1,0 +1,65 @@
+{
+ "key": "visionhdl.BirdsEyeView",
+ "title": "Birds-Eye View",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Geometric Transforms/Birds_Eye_View.md"
+ ],
+ "text": "Transform front-facing camera image into top-down view, 2 inputs, 2 outputs; {Homography matrix} sets the transfer function derived from camera parameters, {Maximum buffer size, in pixels} sets the number of input pixels to buffer, {Number of input lines to buffer} sets the number of lines to transform, {Output active pixels} sets the horizontal size of output frame and {Output active lines} sets the vertical size of output frame. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Output pixel stream scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Homography matrix",
+   "default": "-0.000222053779501]",
+   "values": "Transfer function derived from camera parameters [0.000100990123328 0 0;0.000412396945637 0.001302203393162 1.293171994e-06;-0.103019798961327 -0.255811259450009 -0.000222053779501] (default) | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Maximum buffer size, in pixels",
+   "default": "40000",
+   "values": "Number of input pixels to buffer 40000 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of input lines to buffer",
+   "default": "54",
+   "values": "Number of lines to transform 54 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output active pixels",
+   "default": "640",
+   "values": "Horizontal size of output frame 640 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output active lines",
+   "default": "700",
+   "values": "Vertical size of output frame 700 (default) | integer",
+   "group": ""
+  }
+ ]
+}

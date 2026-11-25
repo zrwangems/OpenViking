@@ -1,0 +1,96 @@
+{
+ "key": "ADCACMeasurement",
+ "title": "ADC AC Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Measurements & Testbenches/ADC_AC_Measurement.md"
+ ],
+ "text": "Measure AC performance metrics of ADC output, 3 inputs, {Analog stimulus frequency (Hz)} sets Frequency of the analog input signal to ADC positive real scalar; {Distortion measurement type} sets the type of distortion, {Spectrum estimation method}, {Resolution bandwidth (Hz)} sets the resolution bandwidth positive, {Start conversion frequency (Hz)} sets the frequency of the start conversion clock of the ADC, {Hold off time (s)} sets the delays measurement analysis to avoid corruption, {Recommended min. simulation stop time (s)} sets the minimum time simulation must run for meaningful result positive real, {Set as model stop time} sets the automatically set recommended min. simulation stop time as model stop time, {Output result to base workspace} sets the store detailed test results to base, {Workspace variable name} sets the name of the variable that stores detailed test results and {Show spectrum analyzer during simulation} sets the displays spectrum analyzer during. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "Converted digital signal from ADC scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "input",
+   "summary": "Indicates whether analog to digital conversion is complete scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "External conversion start clock scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Distortion measurement type",
+   "default": "Harmonic",
+   "values": "Type of distortion to measure Harmonic (default) | Intermodulation",
+   "group": ""
+  },
+  {
+   "name": "Analog stimulus frequency (Hz)",
+   "default": "",
+   "values": "Frequency of the analog input signal to ADC positive real scalar | positive real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Spectrum estimation method",
+   "default": "Welch",
+   "values": "Spectrum estimation method Welch (default) | Filter bank",
+   "group": ""
+  },
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "",
+   "values": "Resolution bandwidth positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "1e6",
+   "values": "Frequency of the start conversion clock of the ADC 1e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "Delays measurement analysis to avoid corruption by transients 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Recommended min. simulation stop time (s)",
+   "default": "",
+   "values": "Minimum time simulation must run for meaningful result positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Set as model stop time",
+   "default": "",
+   "values": "Automatically set recommended min. simulation stop time as model stop time button",
+   "group": ""
+  },
+  {
+   "name": "Output result to base workspace",
+   "default": "off",
+   "values": "Store detailed test results to base workspace off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "adc_ac_out",
+   "values": "Name of the variable that stores detailed test results adc_ac_out (default) | character string",
+   "group": ""
+  },
+  {
+   "name": "Show spectrum analyzer during simulation",
+   "default": "off",
+   "values": "Displays spectrum analyzer during simulation off (default) | on",
+   "group": ""
+  }
+ ]
+}

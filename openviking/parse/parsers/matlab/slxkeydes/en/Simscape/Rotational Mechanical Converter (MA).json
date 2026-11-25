@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Mechanical Converter (MA)",
+ "title": "Rotational Mechanical Converter (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Rotational_Mechanical_Converter_MA.md"
+ ],
+ "text": "Interface between moist air and mechanical rotational networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,217 @@
+{
+ "key": "msblks.System.ClockGenerator",
+ "title": "Clock Generator",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Clock_Generator.md"
+ ],
+ "text": "Generate clock signal with one or more phases, 3 inputs, 5 outputs, {Specify using} sets Define control; {Voltage sensitivity (Hz/V)} sets the measure of change in output frequency, {Free running frequency (Hz)} sets the output frequency without control voltage, {Control voltage (V)} controls voltage values, {Output frequency (Hz)} sets the clock generator output frequency values, {Output amplitude (V)} sets the maximum amplitude of clock generator output, {Phase unit} sets the units of output phase and duty, {Output phase} sets the phases of output clock signals, {Output duty cycle} sets the duty cycle of the output clock signals, {PhaseOffsetPort} defines duty cycle phase offset through an input, {Phase offset (symbol time)} sets the duty cycle phase offset, {ReferenceOffsetPort} defines reference frequency offset through an input, {Reference clock frequency offset (ppm)} sets the factor by which nominal output frequency is to be, {Simulate using} selects simulation mode, {Add phase noise}, {Phase noise frequency offset (Hz)} sets the frequency offsets of specified phase noise from carrier frequency, {Phase noise level (dBc/Hz)} sets the specified phase noise power at phase noise frequency offsets relative to the carrier, {Estimate phase noise parameters}, {Period jitter (S)} sets the standard deviation of period jitter, {Flicker corner frequency (Hz)} sets the corner frequency of flicker noise, {Customize flicker exponent (Advanced feature)} sets the customize flicker noise power spectral, {Flicker exponent} sets the flicker noise power exponent, {Plot fit}, {Symbol time (s)} sets the time of single symbol, {Sample interval (s)} sets the uniform time step, {Modulation (2:NRZ, 3:PAM3, 4:PAM4)} sets the modulation scheme and {Input waveform type} sets the type of input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vctrl",
+   "direction": "input",
+   "summary": "Voltage to control output frequency scalar | vector"
+  },
+  {
+   "name": "ReferenceOffset",
+   "direction": "input",
+   "summary": "Reference frequency offset scalar"
+  },
+  {
+   "name": "PhaseOffset",
+   "direction": "input",
+   "summary": "Duty cycle phase offset scalar"
+  },
+  {
+   "name": "clock0",
+   "direction": "output",
+   "summary": "Saturated output clock signal scalar"
+  },
+  {
+   "name": "clockTime0",
+   "direction": "output",
+   "summary": "Simulation time at last clock transition scalar"
+  },
+  {
+   "name": "Phase",
+   "direction": "output",
+   "summary": "Most recent clock phase of fundamental clock scalar"
+  },
+  {
+   "name": "clockValid",
+   "direction": "output",
+   "summary": "Variable-step discrete-sampled clock scalar"
+  },
+  {
+   "name": "clockTime",
+   "direction": "output",
+   "summary": "Absolute clock time of most recent clock change scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify using",
+   "default": "sensitivity",
+   "values": "Define control sensitivity of clock generator Voltage sensitivity (default) | Output frequency vs. control voltage | Period offset",
+   "group": ""
+  },
+  {
+   "name": "Voltage sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "Measure of change in output frequency 100e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Free running frequency (Hz)",
+   "default": "10e9",
+   "values": "Output frequency without control voltage 10e9 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "5]",
+   "values": "Control voltage values [-5 0 5] (default) | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "10.5e9]",
+   "values": "Clock generator output frequency values [9.9e9 10e9 10.5e9] (default) | positive real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Output amplitude (V)",
+   "default": "1",
+   "values": "Maximum amplitude of clock generator output voltage 1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase unit",
+   "default": "Degrees",
+   "values": "Units of output phase and duty cycle Degrees (default) | Fraction of a clock cycle",
+   "group": ""
+  },
+  {
+   "name": "Output phase",
+   "default": "[0]",
+   "values": "Phases of output clock signals [0] (default) | nonnegative real scalar | nonnegative real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Output duty cycle",
+   "default": "[180]",
+   "values": "Duty cycle of the output clock signals [180] (default) | positive real scalar | positive real valued vector",
+   "group": ""
+  },
+  {
+   "name": "PhaseOffsetPort",
+   "default": "on",
+   "values": "Define duty cycle phase offset through an input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Phase offset (symbol time)",
+   "default": "0",
+   "values": "Duty cycle phase offset 0 (default) | scalar in the range [-0.5,0.5]",
+   "group": ""
+  },
+  {
+   "name": "ReferenceOffsetPort",
+   "default": "on",
+   "values": "Define reference frequency offset through an input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Reference clock frequency offset (ppm)",
+   "default": "0",
+   "values": "Factor by which nominal output frequency is to be offset 0 (default) | scalar in the range of [-300,300]",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Select simulation mode Code generation (default) | Interpreted execution",
+   "group": ""
+  },
+  {
+   "name": "Add phase noise",
+   "default": "on",
+   "values": "Add phase noise as a function of frequency on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "10e6]",
+   "values": "Frequency offsets of specified phase noise from carrier frequency [30e3 100e3 1e6 3e6 10e6] (default) | positive real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-152]",
+   "values": "Specified phase noise power at phase noise frequency offsets relative to the carrier [-56 -106 -132 -143 -152] (default) | negative real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Estimate phase noise parameters",
+   "default": "",
+   "values": "Estimate phase noise parameters from measured phase noise data button",
+   "group": ""
+  },
+  {
+   "name": "Period jitter (S)",
+   "default": "1.7e-15",
+   "values": "Standard deviation of period jitter 1.7e-15 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Flicker corner frequency (Hz)",
+   "default": "0",
+   "values": "Corner frequency of flicker noise 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Customize flicker exponent (Advanced feature)",
+   "default": "off",
+   "values": "Customize flicker noise power spectral distribution off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Flicker exponent",
+   "default": "1.0",
+   "values": "Flicker noise power exponent 1.0 (default) | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5",
+   "group": ""
+  },
+  {
+   "name": "Plot fit",
+   "default": "",
+   "values": "Plot fitted phase noise profile button",
+   "group": ""
+  },
+  {
+   "name": "Symbol time (s)",
+   "default": "100e-12",
+   "values": "Time of single symbol duration 100e-12 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample interval (s)",
+   "default": "6.25e-12",
+   "values": "Uniform time step of waveform 6.25e-12 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Modulation (2:NRZ, 3:PAM3, 4:PAM4)",
+   "default": "2",
+   "values": "Modulation scheme 2 (default) | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Input waveform type",
+   "default": "Sample",
+   "values": "Type of input waveform Sample (default) | Impulse",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "key": "IdentityMatrix",
+ "title": "IdentityMatrix",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/IdentityMatrix.md"
+ ],
+ "text": "生成主对角线上为 1、其他位置为零值的矩阵，输入 1 路、输出 1 路、无直接馈通；按 {Output data type} 指定输出数据类型；{Inherit output port attributes from input port} 输出端口从输入端口继承属性、{Output dimensions} 输出矩阵的大小、{Mode} 指定数据类型模式、{Signedness} 指定定点数据的有符号性、{Scaling} 指定定点数据的定标方法 Best、{Word length} 指定保存量化整数的字的位大小、{Fraction length} 指定定点数据类型的小数长度、{Data type override} 指定数据类型覆盖模式、{Sample time} 输出采样周期，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "单位矩阵 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit output port attributes from input port",
+   "default": "off",
+   "values": "输出端口从输入端口继承属性的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output dimensions",
+   "default": "5",
+   "values": "输出矩阵的大小 5 (default) | scalar | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | Inherit: Inherit via back propagation |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "数据类型模式 Inherit (default) | Built in | Fixed point | Expression",
+   "group": ""
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "定点数据的有符号性 Signed (default) | Unsigned",
+   "group": ""
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "定点数据的定标方法 Best precision (default) | Binary point",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "保存量化整数的字的位大小 16 (default) | integer from 2 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "定点数据类型的小数长度 0 (default) | integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Data type override",
+   "default": "Inherit",
+   "values": "数据类型覆盖模式 Inherit (default) | Off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出采样周期 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

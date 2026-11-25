@@ -1,0 +1,50 @@
+{
+ "key": "RandomNumber",
+ "title": "Random Number",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Random_Number.md"
+ ],
+ "text": "生成正态分布的随机数；输出 1 路；按 {种子} 指定起始种子；{均值}、{方差}、{采样时间} 指定间隔时间、{将向量参数解释为一维向量} 指定将向量视为一维，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "均值",
+   "default": "0",
+   "values": "随机数的均值 0 (默认) | 标量 | 数组",
+   "group": ""
+  },
+  {
+   "name": "方差",
+   "default": "1",
+   "values": "随机数的方差 1 (默认) | 标量 | 数组",
+   "group": ""
+  },
+  {
+   "name": "种子",
+   "default": "0",
+   "values": "起始种子 0 (默认) | 正整数 | 标量 | 数组",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "间隔时间 0.1 (默认) | integer",
+   "group": ""
+  },
+  {
+   "name": "将向量参数解释为一维向量",
+   "default": "on",
+   "values": "将向量视为一维 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

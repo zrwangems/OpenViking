@@ -1,0 +1,59 @@
+{
+ "key": "Power Measurement (Three-Phase)",
+ "title": "Power Measurement (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Power_Measurement_Three_Phase.md"
+ ],
+ "text": "Calculate three-phase real and reactive power, 2 inputs, 2 outputs, {Sequence} sets Symmetrical sequence; {Base frequency (Hz)} sets the fundamental frequency, {Harmonic numbers} sets the frequency components and {Sample time} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Input voltage vector"
+  },
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input current vector"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Real power scalar or vector | vector"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "Reactive power scalar or vector | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Base frequency (Hz)",
+   "default": "60",
+   "values": "Fundamental frequency 60 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Harmonic numbers",
+   "default": "3]",
+   "values": "Frequency components [0 1 2 3] (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Sequence",
+   "default": "Positive",
+   "values": "Symmetrical sequence Positive (default) | Negative | Zero",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0",
+   "values": "Block sample time 0 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

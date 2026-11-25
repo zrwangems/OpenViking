@@ -1,0 +1,60 @@
+{
+ "key": "Tapped Delay Enabled Synchronous",
+ "title": "Tapped Delay Enabled Synchronous",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Discrete/Tapped_Delay_Enabled_Synchronous.md"
+ ],
+ "text": "Delay scalar signal multiple sample periods and output all delayed versions when external Enable signal is true, 2 inputs, 1 output, {Sample time} sets Time between samples; {Initial condition} sets the initial output, {Number of delays} sets the number of discrete-time operators, {Order output vector starting with} sets the order of output and {Include current input in output vector}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "Enable signal Scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Delayed versions of input signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "0.0",
+   "values": "Initial output 0.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time between samples -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of delays",
+   "default": "4",
+   "values": "Number of discrete-time operators 4 (default) | positive scalar | -1 (for inherited)",
+   "group": ""
+  },
+  {
+   "name": "Order output vector starting with",
+   "default": "Oldest",
+   "values": "Order of output Oldest (default) | Newest",
+   "group": ""
+  },
+  {
+   "name": "Include current input in output vector",
+   "default": "off",
+   "values": "Include current input in output vector off (default) | on",
+   "group": ""
+  }
+ ]
+}

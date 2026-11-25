@@ -1,0 +1,620 @@
+{
+ "key": "Dugoff 2DOF",
+ "title": "Dugoff Wheel 2DOF",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Wheels and Tires/Dugoff_Wheel_2DOF.md"
+ ],
+ "text": "Dugoff Wheel 2DOF wheel with disc, drum, or mapped brake, 11 inputs, 8 outputs, {Brake pad mean radius, Rm} sets Radius; {Tire type} selects type User, {Model slip type}, {Brake type}, {Rolling Resistance} sets the rolling resistance torque, {Vertical Motion} sets the vertical motion model, {Longitudinal stiffness, Ckappa} sets the longitudinal stiffness 1e7, {Lateral stiffness per slip angle, Calpha} sets the lateral stiffness 4.5e4, {Camber stiffness, Cgamma} sets the camber stiffness 1e3, {Maximum friction scaling coefficient, mu0}, {Friction reduction factor, As}, {Longitudinal relaxation length, Lrelx}, {Lateral relaxation length, Lrely}, {Longitudinal squared slip correction factor, gx1}, {Longitudinal squared slip friction correction factor, gx2}, {Longitudinal linear slip correction factor, gx3}, {Longitudinal linear slip friction correction factor, gx4}, {Longitudinal offset correction factor, gx5}, {Lateral maximum friction correction factor, gy1}, {Lateral offset correction factor, gy2}, {Velocity independent force coefficient, aMy} sets the velocity-independent force coefficient, {Linear velocity force component, bMy} sets the linear velocity force, {Quadratic velocity force component, cMy} sets the quadratic velocity force, {Tire pressure exponent, alphaMy}, {Normal force exponent, betaMy}, {Parasitic losses force, Fpl} sets the parasitic force loss, {Rolling resistance constant, Cr} sets the rolling resistance constant 1e-3, {Thermal correction factor, Kt}, {Measured temperature, Tmeas} sets the temperature during testing, {Ambient temperature, Tamb} sets the temperature in application environment, {Input ambient temperature} sets the option to input ambient temperature, {Rolling resistance torque coefficient, QSY1} sets the torque coefficient, {Longitudinal force rolling resistance coefficient, QSY2} sets the force resistance coefficient, {Linear rotational speed rolling resistance coefficient, QSY3} sets the linear speed coefficient, {Quartic rotational speed rolling resistance coefficient, QSY4} sets the quartic speed coefficient 8.5e-05, {Camber squared rolling resistance torque, QSY5} sets the camber resistance torque, {Load based camber squared rolling resistance torque, QSY6} sets the load resistance torque, {Normal load rolling resistance coefficient, QSY8} sets the normal resistance coefficient, {Pressure load rolling resistance coefficient, QSY8} sets the pressure resistance coefficient, {Rolling resistance scaling factor, lam_My} sets the scaling factor, {Spin axis velocity breakpoints, VxMy} sets the spin axis velocity, {Normal force breakpoints, FzMy} sets the normal force breakpoints, {Rolling resistance torque map, MyMap} sets the rolling resistance torque, {Tire nominal section width, WIDTH} sets the tire nominal section, {Linear yaw rate resistance, bMz}, {Static friction coefficient, mu_static}, {Kinetic friction coefficient, mu_kinetic}, {Disc brake actuator bore, disc_abore} sets the bore distance, {Number of brake pads, num_pads}, {Drum brake actuator bore, drum_abore} sets the bore distance, {Shoe pin to drum center distance, drum_a}, {Shoe pin center to force application point distance, drum_c}, {Drum internal radius, drum_r}, {Shoe pin to pad start angle, drum_theta1}, {Shoe pin to pad end angle, drum_theta2}, {Brake actuator pressure breakpoints, brake_p_bpt} sets the brake actuator pressure, {Wheel speed breakpoints, brake_n_bpt} sets the wheel speed breakpoints vector, {Brake torque map, f_brake_t} sets the lookup table for brake, {Rotational damping, br} sets the rotational damping scalar, {Tire rotational inertia (rolling axis), IYY} sets the tire rotational inertia scalar, {Initial wheel rotational velocity, omegao} sets the initial wheel rotational, {Tire unloaded radius, UNLOADED_RADIUS}, {Tire mass, MASS}, {Initial tire displacement, zo}, {Initial wheel vertical velocity (wheel fixed frame), zdoto}, {Gravitational acceleration, GRAVITY}, {Vertical deflection breakpoints, zFz} sets the vertical deflection breakpoints, {Pressure breakpoints, pFz} sets the pressure breakpoints, {Force due to deflection, Fzz} sets the force due to deflection {Vertical velocity breakpoints, zdotFz} sets the vertical velocity breakpoints, {Force due to velocity, Fzzdot} sets the force due to velocity, {Maximum normal force, FZMAX}, {Minimum normal force, FZMIN}, {Maximum pressure, PRESMAX}, {Minimum pressure, PRESMIN}, {Max allowable slip ratio (absolute), KPUMAX}, {Minimum allowable slip ratio (absolute), KPUMIN}, {Max allowable slip angle (absolute), ALPMAX}, {Minimum allowable slip angle (absolute), ALPMIN}, {Maximum allowable camber angle, CAMMAX}, {Minimum allowable camber angle, CAMMIN}, {Minimum ambient temperature, TMIN}, {Maximum ambient temperature, TMAX}, {Install Extended Tire Features} sets the option to install Extended Tire Features for Vehicle Dynamics Blockset™ support package and {Plot steady state force, moment response} sets the option to plot steady-state force and moment tire responses. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BrkPrs",
+   "direction": "input",
+   "summary": "Brake pressure scalar | N -by- 1 vector"
+  },
+  {
+   "name": "AxlTrq",
+   "direction": "input",
+   "summary": "Axle torque scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Vx",
+   "direction": "input",
+   "summary": "Longitudinal velocity scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Vy",
+   "direction": "input",
+   "summary": "Lateral velocity scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Camber",
+   "direction": "input",
+   "summary": "Inclination angle scalar | N -by- 1 vector"
+  },
+  {
+   "name": "YawRate",
+   "direction": "input",
+   "summary": "Tire angular velocity scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Prs",
+   "direction": "input",
+   "summary": "Tire inflation pressure scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Gnd",
+   "direction": "input",
+   "summary": "Ground displacement scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Fext",
+   "direction": "input",
+   "summary": "Axle force applied to tire scalar | N -by- 1 vector"
+  },
+  {
+   "name": "RadialDeflct",
+   "direction": "input",
+   "summary": "Tire radial deflection scalar | N -by- 1 vector"
+  },
+  {
+   "name": "ScaleFctrs",
+   "direction": "input",
+   "summary": "Scale factor scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Block data bus"
+  },
+  {
+   "name": "Omega",
+   "direction": "output",
+   "summary": "Wheel angular velocity scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Fx",
+   "direction": "output",
+   "summary": "Longitudinal axle force scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Fy",
+   "direction": "output",
+   "summary": "Lateral axle force scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Fz",
+   "direction": "output",
+   "summary": "Vertical axle force scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Mx",
+   "direction": "output",
+   "summary": "Overturning moment scalar | N -by- 1 vector"
+  },
+  {
+   "name": "My",
+   "direction": "output",
+   "summary": "Rolling resistive moment scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Mz",
+   "direction": "output",
+   "summary": "Aligning moment scalar | N -by- 1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tire type",
+   "default": "defined",
+   "values": "Select type User defined (default) | Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car 235/45R18 | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5",
+   "group": "Block Options"
+  },
+  {
+   "name": "Model slip type",
+   "default": "",
+   "values": "Model slip type Nominal slip | Extended slip",
+   "group": "Block Options"
+  },
+  {
+   "name": "Brake type",
+   "default": "",
+   "values": "Brake type None | Disc | Drum | Mapped",
+   "group": "Block Options"
+  },
+  {
+   "name": "Rolling Resistance",
+   "default": "None",
+   "values": "Rolling resistance torque None (default) | Pressure and velocity | ISO 28580 | Magic Formula | Mapped torque",
+   "group": "Block Options"
+  },
+  {
+   "name": "Vertical Motion",
+   "default": "None",
+   "values": "Vertical motion model None (default) | Mapped stiffness and damping | External deflection",
+   "group": "Block Options"
+  },
+  {
+   "name": "Longitudinal stiffness, Ckappa",
+   "default": "1e7",
+   "values": "Longitudinal stiffness 1e7 (default) | scalar | N -by- 1 vector",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Lateral stiffness per slip angle, Calpha",
+   "default": "4.5e4",
+   "values": "Lateral stiffness 4.5e4 (default) | scalar | N -by- 1 vector",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Camber stiffness, Cgamma",
+   "default": "1e3",
+   "values": "Camber stiffness 1e3 (default) | scalar | N -by- 1 vector",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Maximum friction scaling coefficient, mu0",
+   "default": "0.8",
+   "values": "Maximum friction scaling coefficient 0.8 (default) | scalar | N -by- 1 vector",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Friction reduction factor, As",
+   "default": "0.01",
+   "values": "Friction reduction factor 0.01 (default) | scalar | N -by- 1 vector",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Longitudinal relaxation length, Lrelx",
+   "default": "0.05",
+   "values": "Longitudinal relaxation length 0.05 (default) | scalar | N -by- 1 vector",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Lateral relaxation length, Lrely",
+   "default": "0.15",
+   "values": "Lateral relaxation length 0.15 (default) | scalar | N -by- 1 vector",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Longitudinal squared slip correction factor, gx1",
+   "default": "1.14",
+   "values": "Longitudinal squared slip correction factor 1.14 (default) | scalar",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Longitudinal squared slip friction correction factor, gx2",
+   "default": "-0.75",
+   "values": "Longitudinal squared slip friction correction factor -0.75 (default) | scalar",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Longitudinal linear slip correction factor, gx3",
+   "default": "1.63",
+   "values": "Longitudinal linear slip correction factor 1.63 (default) | scalar",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Longitudinal linear slip friction correction factor, gx4",
+   "default": "-0.75",
+   "values": "Longitudinal linear slip friction correction factor -0.75 (default) | scalar",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Longitudinal offset correction factor, gx5",
+   "default": "1.5",
+   "values": "Longitudinal offset correction factor 1.5 (default) | scalar",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Lateral maximum friction correction factor, gy1",
+   "default": "-1.6",
+   "values": "Lateral maximum friction correction factor -1.6 (default) | scalar",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Lateral offset correction factor, gy2",
+   "default": "1.5",
+   "values": "Lateral offset correction factor 1.5 (default) | scalar",
+   "group": "Longitudinal and Lateral"
+  },
+  {
+   "name": "Velocity independent force coefficient, aMy",
+   "default": "84e-4",
+   "values": "Velocity-independent force coefficient 84e-4 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Linear velocity force component, bMy",
+   "default": "6.2e-4",
+   "values": "Linear velocity force component 6.2e-4 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Quadratic velocity force component, cMy",
+   "default": "1.6e-4",
+   "values": "Quadratic velocity force component 1.6e-4 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Tire pressure exponent, alphaMy",
+   "default": "-0.003",
+   "values": "Tire pressure exponent -0.003 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Normal force exponent, betaMy",
+   "default": "0.97",
+   "values": "Normal force exponent 0.97 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Parasitic losses force, Fpl",
+   "default": "10",
+   "values": "Parasitic force loss 10 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Rolling resistance constant, Cr",
+   "default": "1e-3",
+   "values": "Rolling resistance constant 1e-3 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Thermal correction factor, Kt",
+   "default": "0.008",
+   "values": "Thermal correction factor 0.008 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Measured temperature, Tmeas",
+   "default": "298.15",
+   "values": "Temperature during testing 298.15 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Ambient temperature, Tamb",
+   "default": "298.15",
+   "values": "Temperature in application environment 298.15 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Input ambient temperature",
+   "default": "off",
+   "values": "Option to input ambient temperature off (default) | on",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Rolling resistance torque coefficient, QSY1",
+   "default": "0.007",
+   "values": "Torque coefficient 0.007 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Longitudinal force rolling resistance coefficient, QSY2",
+   "default": "0",
+   "values": "Force resistance coefficient 0 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Linear rotational speed rolling resistance coefficient, QSY3",
+   "default": "0.0015",
+   "values": "Linear speed coefficient 0.0015 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Quartic rotational speed rolling resistance coefficient, QSY4",
+   "default": "8.5e-05",
+   "values": "Quartic speed coefficient 8.5e-05 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Camber squared rolling resistance torque, QSY5",
+   "default": "0",
+   "values": "Camber resistance torque 0 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Load based camber squared rolling resistance torque, QSY6",
+   "default": "0",
+   "values": "Load resistance torque 0 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Normal load rolling resistance coefficient, QSY8",
+   "default": "0.9",
+   "values": "Normal resistance coefficient 0.9 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Pressure load rolling resistance coefficient, QSY8",
+   "default": "-0.4",
+   "values": "Pressure resistance coefficient -0.4 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Rolling resistance scaling factor, lam_My",
+   "default": "1",
+   "values": "Scaling factor 1 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Spin axis velocity breakpoints, VxMy",
+   "default": "-20:1:20",
+   "values": "Spin axis velocity breakpoints -20:1:20 (default) | vector",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Normal force breakpoints, FzMy",
+   "default": "0:200:1e4",
+   "values": "Normal force breakpoints 0:200:1e4 (default) | vector",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Rolling resistance torque map, MyMap",
+   "default": "",
+   "values": "Rolling resistance torque map array",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Tire nominal section width, WIDTH",
+   "default": "",
+   "values": "Tire nominal section width scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Linear yaw rate resistance, bMz",
+   "default": "",
+   "values": "Linear yaw rate resistance 0 | scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Static friction coefficient, mu_static",
+   "default": "0.3",
+   "values": "Static friction coefficient 0.3 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Kinetic friction coefficient, mu_kinetic",
+   "default": "0.2",
+   "values": "Kinetic friction 0.2 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Disc brake actuator bore, disc_abore",
+   "default": "0.05",
+   "values": "Bore distance 0.05 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake pad mean radius, Rm",
+   "default": "0.177",
+   "values": "Radius 0.177 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Number of brake pads, num_pads",
+   "default": "2",
+   "values": "Number of brake pads 2 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum brake actuator bore, drum_abore",
+   "default": "0.0508",
+   "values": "Bore distance 0.0508 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to drum center distance, drum_a",
+   "default": "0.123",
+   "values": "Shoe pin to drum center distance 0.123 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin center to force application point distance, drum_c",
+   "default": "0.212",
+   "values": "Shoe pin center to force application point distance 0.212 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum internal radius, drum_r",
+   "default": "0.15",
+   "values": "Drum internal radius 0.15 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad start angle, drum_theta1",
+   "default": "0",
+   "values": "Shoe pin to pad start angle 0 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad end angle, drum_theta2",
+   "default": "126",
+   "values": "Shoe pin to pad end angle 126 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake actuator pressure breakpoints, brake_p_bpt",
+   "default": "",
+   "values": "Brake actuator pressure breakpoints vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Wheel speed breakpoints, brake_n_bpt",
+   "default": "",
+   "values": "Wheel speed breakpoints vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake torque map, f_brake_t",
+   "default": "",
+   "values": "Lookup table for brake torque array",
+   "group": "Brake"
+  },
+  {
+   "name": "Rotational damping, br",
+   "default": "",
+   "values": "Rotational damping scalar | N -by- 1 vector",
+   "group": "Wheel"
+  },
+  {
+   "name": "Tire rotational inertia (rolling axis), IYY",
+   "default": "",
+   "values": "Tire rotational inertia scalar | N -by- 1 vector",
+   "group": "Wheel"
+  },
+  {
+   "name": "Initial wheel rotational velocity, omegao",
+   "default": "",
+   "values": "Initial wheel rotational velocity scalar | N -by- 1 vector",
+   "group": "Wheel"
+  },
+  {
+   "name": "Tire unloaded radius, UNLOADED_RADIUS",
+   "default": "0.309384029954441",
+   "values": "Tire unloaded radius 0.309384029954441 (default) | scalar",
+   "group": "Wheel"
+  },
+  {
+   "name": "Tire mass, MASS",
+   "default": "9.46491996974568",
+   "values": "Tire mass 9.46491996974568 (default) | scalar | N -by- 1 vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Initial tire displacement, zo",
+   "default": "0",
+   "values": "Initial tire displacement 0 (default) | scalar | N -by- 1 vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Initial wheel vertical velocity (wheel fixed frame), zdoto",
+   "default": "0",
+   "values": "Initial wheel vertical velocity 0 (default) | scalar | N -by- 1 vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Gravitational acceleration, GRAVITY",
+   "default": "-9.81",
+   "values": "Gravitational acceleration -9.81 (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical deflection breakpoints, zFz",
+   "default": "[0.01.1]",
+   "values": "Vertical deflection breakpoints [0.01.1] (default) | vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Pressure breakpoints, pFz",
+   "default": "1000000]",
+   "values": "Pressure breakpoints [10000 1000000] (default) | vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Force due to deflection, Fzz",
+   "default": "1e5]",
+   "values": "Force due to deflection [0 1e3 1e4; 0 1e4 1e5] (default) | vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical velocity breakpoints, zdotFz",
+   "default": "20]",
+   "values": "Vertical velocity breakpoints [-20 0 20] (default) | vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Force due to velocity, Fzzdot",
+   "default": "-250]",
+   "values": "Force due to velocity [500 0 -500;250 0 -250] (default) | array",
+   "group": "Vertical"
+  },
+  {
+   "name": "Maximum normal force, FZMAX",
+   "default": "10000",
+   "values": "Maximum normal force 10000 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Minimum normal force, FZMIN",
+   "default": "0",
+   "values": "Minimum normal force 0 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Maximum pressure, PRESMAX",
+   "default": "1003118",
+   "values": "Maximum pressure 1003118 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Minimum pressure, PRESMIN",
+   "default": "9982",
+   "values": "Minimum pressure 9982 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Max allowable slip ratio (absolute), KPUMAX",
+   "default": "0.999",
+   "values": "Max allowable slip ratio 0.999 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Minimum allowable slip ratio (absolute), KPUMIN",
+   "default": "-0.999",
+   "values": "Minimum allowable slip ratio -0.999 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Max allowable slip angle (absolute), ALPMAX",
+   "default": "1.5708",
+   "values": "Max allowable slip angle 1.5708 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Minimum allowable slip angle (absolute), ALPMIN",
+   "default": "-1.5708",
+   "values": "Minimum allowable slip angle -1.5708 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Maximum allowable camber angle, CAMMAX",
+   "default": "",
+   "values": "Maximum allowable camber angle 0.173 | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Minimum allowable camber angle, CAMMIN",
+   "default": "",
+   "values": "Minimum allowable camber angle -0.173 | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Minimum ambient temperature, TMIN",
+   "default": "0",
+   "values": "Minimum ambient temperature 0 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Maximum ambient temperature, TMAX",
+   "default": "400",
+   "values": "Maximum ambient temperature 400 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Install Extended Tire Features",
+   "default": "",
+   "values": "Option to install Extended Tire Features for Vehicle Dynamics Blockset™ support package button",
+   "group": "Plotting"
+  },
+  {
+   "name": "Plot steady state force, moment response",
+   "default": "",
+   "values": "Option to plot steady-state force and moment tire responses button",
+   "group": "Plotting"
+  }
+ ]
+}

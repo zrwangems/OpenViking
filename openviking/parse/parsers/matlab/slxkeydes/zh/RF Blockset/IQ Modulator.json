@@ -1,0 +1,272 @@
+{
+ "key": "IQ Modulator",
+ "title": "IQ Modulator",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Systems/IQ_Modulator.md"
+ ],
+ "text": "将基带信号转换为 RF 信号；按 {Design method} 指定仿真类型；{Source of conversion gain} 指定转换增益的源参数 Available power、{Available power gain} 输出端 SSB 的功率与 I 端输入功率之比、{Open circuit voltage gain} 指定开路电压增益、{Polynomial coefficients} 用于指定电压增益的多项式系数、{Local oscillator frequency} 指定本振、{Input impedance (Ohm)} 指定 IQ 调制器的输入阻抗、{Output impedance (Ohm)} 指定 IQ 调制器的输出阻抗、{Add Image Reject filters} 指定镜像抑制、{Add Channel Select filter} 指定通道选择、{Ground and hide negative terminals} 指定将端子接地并隐藏、{Edit System} 指定断开 IQ 调制器模块链接，并用适当的值替换内部变量、{I/Q gain mismatch} 指定 I 与 Q 支路之间的增益差、{I/Q phase mismatch} 指定 I 与 Q 支路之间的相位差、{LO to RF isolation} 指定 LO 电压与泄漏射频电压之间的幅度比 inf、{Noise floor (dBm/Hz)} 指定单边噪声功率谱分布、{Add phase noise} 添加相位噪声、{Phase noise frequency offset (Hz)} 指定相位噪声频率偏移、{Phase noise level (dBc/Hz)} 指定相位噪声电平、{Automatically estimate impulse response duration} 指定自动估计冲激响应持续时间、{Impulse response duration} 指定冲激响应持续时间 1e-10、{Plot phase noise characteristics} 指定相位噪声幅值响应、{Nonlinear polynomial type} 指定多项式非线性 Even、{Intercept points convention} 指定截点约定 Output、{IP2} 指定二阶截点 inf、{IP3} 指定三阶截点 inf、{1-dB gain compression power}、{Output saturation power}、{Gain compression at saturation}、{Filter type} 指定滤波器类型、{Implementation} 指定实现 LC Tee、{Passband edge frequency} 指定通带边缘频率、{Implement using filter order} 使用滤波器阶数实现、{Filter order} 指定滤波器阶数、{Passband frequency} 指定低通和高通滤波器的通带频率 scalar、{Passband frequencies} 指定带通滤波器的通带频率、{Passband attenuation (dB)} 指定通带衰减 10*log10、{Stopband frequencies} 指定带阻滤波器的阻带频率、{Stopband edge frequencies} 指定理想带阻滤波器的阻带边缘频率、{Stopband attenuation (dB)} 指定阻带衰减、{Source impedance (Ohm)} 指定输入源电阻、{Load impedance (Ohm)} 输出负载电阻、{Export} 指定将滤波器设计保存到文件，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source of conversion gain",
+   "default": "gain",
+   "values": "转换增益的源参数 Available power gain (default) | Open circuit voltage gain | Polynomial coefficients",
+   "group": "Main"
+  },
+  {
+   "name": "Available power gain",
+   "default": "dB",
+   "values": "输出端 SSB 的功率与 I 端输入功率之比 0 dB (default) | scalar in dB or a unitless ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Open circuit voltage gain",
+   "default": "dB",
+   "values": "开路电压增益 0 dB (default) | scalar in dB or a unitless ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Polynomial coefficients",
+   "default": "1]",
+   "values": "用于指定电压增益的多项式系数 [0 1] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Local oscillator frequency",
+   "default": "Hz",
+   "values": "本振 (LO) 频率 0 Hz (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "IQ 调制器的输入阻抗 50 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "IQ 调制器的输出阻抗 50 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Add Image Reject filters",
+   "default": "off",
+   "values": "镜像抑制 (IR) 滤波器参数 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add Channel Select filter",
+   "default": "off",
+   "values": "通道选择 (CS) 滤波器参数 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "将端子接地并隐藏 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Edit System",
+   "default": "",
+   "values": "断开 IQ 调制器模块链接，并用适当的值替换内部变量 button",
+   "group": "Main"
+  },
+  {
+   "name": "I/Q gain mismatch",
+   "default": "dB",
+   "values": "I 与 Q 支路之间的增益差 0 dB (default) | scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "I/Q phase mismatch",
+   "default": "degrees",
+   "values": "I 与 Q 支路之间的相位差 0 degrees (default) | scalar in degrees or radians",
+   "group": "Impairments"
+  },
+  {
+   "name": "LO to RF isolation",
+   "default": "dB",
+   "values": "LO 电压与泄漏射频电压之间的幅度比 inf dB (default) | scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Noise floor (dBm/Hz)",
+   "default": "-inf",
+   "values": "单边噪声功率谱分布 -inf (default) | scalar in dBm/Hz",
+   "group": "Impairments"
+  },
+  {
+   "name": "Add phase noise",
+   "default": "off",
+   "values": "添加相位噪声 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "1",
+   "values": "相位噪声频率偏移 1 (default) | scalar | vector | matrix",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-Inf",
+   "values": "相位噪声电平 -Inf (default) | scalar | vector | matrix",
+   "group": "Impairments"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "on",
+   "values": "自动估计冲激响应持续时间 on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "冲激响应持续时间 1e-10 s (default) | scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Plot phase noise characteristics",
+   "default": "",
+   "values": "相位噪声幅值响应 button",
+   "group": "Impairments"
+  },
+  {
+   "name": "Nonlinear polynomial type",
+   "default": "order",
+   "values": "多项式非线性 Even and odd order (default) | Odd order",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Intercept points convention",
+   "default": "Output",
+   "values": "截点约定 Output (default) | Input",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "IP2",
+   "default": "dBm",
+   "values": "二阶截点 inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "IP3",
+   "default": "dBm",
+   "values": "三阶截点 inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "1-dB gain compression power",
+   "default": "dBm",
+   "values": "1-dB gain compression power inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Output saturation power",
+   "default": "dBm",
+   "values": "Output saturation power inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Gain compression at saturation",
+   "default": "dBm",
+   "values": "Gain compression at saturation inf dBm (default) | scalar",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Design method",
+   "default": "Ideal",
+   "values": "仿真类型 Ideal (default) | Butterworth | Chebyshev",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "滤波器类型 Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Implementation",
+   "default": "",
+   "values": "实现 LC Tee | LC Pi | Transfer function | Constant per carrier | Frequency Domain",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Passband edge frequency",
+   "default": "GHz",
+   "values": "通带边缘频率 2 GHz (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Implement using filter order",
+   "default": "on",
+   "values": "使用滤波器阶数实现 on (default) | off",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Filter order",
+   "default": "3",
+   "values": "滤波器阶数 3 (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Passband frequency",
+   "default": "",
+   "values": "低通和高通滤波器的通带频率 scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Passband frequencies",
+   "default": "GHz",
+   "values": "带通滤波器的通带频率 [2 3] GHz (default) | 2-tuple vector",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Passband attenuation (dB)",
+   "default": "10*log10(2)",
+   "values": "通带衰减 10*log10(2) (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Stopband frequencies",
+   "default": "GHz",
+   "values": "带阻滤波器的阻带频率 [2.1 2.9] GHz (default) | 2-tuple vector",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Stopband edge frequencies",
+   "default": "GHz",
+   "values": "理想带阻滤波器的阻带边缘频率 [2.1 2.9] GHz (default) | 2-tuple vector",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "40",
+   "values": "阻带衰减 40 (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Source impedance (Ohm)",
+   "default": "50",
+   "values": "输入源电阻 50 (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Load impedance (Ohm)",
+   "default": "50",
+   "values": "输出负载电阻 50 (default) | scalar",
+   "group": "IR Filter"
+  },
+  {
+   "name": "Export",
+   "default": "",
+   "values": "将滤波器设计保存到文件 button",
+   "group": "IR Filter"
+  }
+ ]
+}

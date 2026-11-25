@@ -1,0 +1,13 @@
+{
+ "key": "Helical Interleaver",
+ "title": "Helical Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Convolutional/Helical_Interleaver.md"
+ ],
+ "text": "使用螺旋数组置换输入符号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

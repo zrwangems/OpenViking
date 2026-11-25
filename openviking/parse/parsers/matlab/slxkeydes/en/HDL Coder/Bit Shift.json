@@ -1,0 +1,37 @@
+{
+ "key": "Bit Shift",
+ "title": "Bit Shift",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Bit_Shift.md"
+ ],
+ "text": "Logical or arithmetic shift of input signal, 1 input, 1 output, {Shift Mode} sets Type and direction of shift Shift Left; {Shift Length} sets the number of bits to be shifted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input Signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output Signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Shift Mode",
+   "default": "Logical",
+   "values": "Type and direction of shift Shift Left Logical (default) | Shift Right Logical | Shift Right Arithmetic",
+   "group": ""
+  },
+  {
+   "name": "Shift Length",
+   "default": "0",
+   "values": "Number of bits to be shifted 0 (default)",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+ "key": "LinearGaugeBlock",
+ "title": "Linear Gauge",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Linear_Gauge.md"
+ ],
+ "text": "在线性刻度上显示输入值；按 {Label} 指定模块标签位置；{Connection} 指定要连接并显示的信号 signal connection、{Minimum} 指定最小刻度线值、{Maximum} 指定最大刻度标记值、{Tick Interval} 指定主刻度标记之间的间隔、{Scale Colors} 指定仪表刻度上的颜色指示 colors for scale、{Opacity} 指定模块背景不透明度、{Foreground Color} 指定模块前景色、{Background Color} 指定模块背景色、{Font Color} 指定模块字体颜色，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "要连接并显示的信号 signal connection options",
+   "group": "Signal"
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "最小刻度线值 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum",
+   "default": "100",
+   "values": "最大刻度标记值 100 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Tick Interval",
+   "default": "auto",
+   "values": "主刻度标记之间的间隔 auto (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Scale Colors",
+   "default": "",
+   "values": "仪表刻度上的颜色指示 colors for scale ranges",
+   "group": "Main"
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "模块标签位置 Top (default) | Bottom | Hide",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "模块背景不透明度 1 (default) | scalar",
+   "group": "Format"
+  },
+  {
+   "name": "Foreground Color",
+   "default": "",
+   "values": "模块前景色 [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Background Color",
+   "default": "",
+   "values": "模块背景色 [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Font Color",
+   "default": "",
+   "values": "模块字体颜色 [r g b] vector",
+   "group": "Format"
+  }
+ ]
+}

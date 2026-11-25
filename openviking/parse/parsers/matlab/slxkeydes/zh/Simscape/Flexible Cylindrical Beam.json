@@ -1,0 +1,13 @@
+{
+ "key": "Flexible Cylindrical Beam",
+ "title": "Flexible Cylindrical Beam",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Flexible Bodies/Beams/Flexible_Cylindrical_Beam.md"
+ ],
+ "text": "具有弹性特性、可发生变形的圆柱梁。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

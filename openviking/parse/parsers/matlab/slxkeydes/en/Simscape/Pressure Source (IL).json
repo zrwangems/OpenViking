@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Source (IL)",
+ "title": "Pressure Source (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Sources/Pressure_Source_IL.md"
+ ],
+ "text": "Generate specified pressure differential in isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

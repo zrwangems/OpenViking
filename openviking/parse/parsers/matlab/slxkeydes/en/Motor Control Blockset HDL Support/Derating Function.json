@@ -1,0 +1,37 @@
+{
+ "key": "Derating Function",
+ "title": "Derating Function",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Controllers/Derating_Function.md",
+  "Motor Control Blockset/Controls/Controllers/Derating_Function.md"
+ ],
+ "text": "Compute derating factor, 2 inputs, 1 output; {Derating threshold} sets the threshold beyond which derating must occur. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "f max",
+   "direction": "input",
+   "summary": "Maximum reference signal limit scalar"
+  },
+  {
+   "name": "f feedback",
+   "direction": "input",
+   "summary": "Reference feedback signal scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Derating factor scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Derating threshold",
+   "default": "0.9",
+   "values": "Threshold beyond which derating must occur 0.9 (default) | scalar in the range [0,1)",
+   "group": ""
+  }
+ ]
+}

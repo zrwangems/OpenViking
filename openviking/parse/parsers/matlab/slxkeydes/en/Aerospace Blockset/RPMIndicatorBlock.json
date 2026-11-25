@@ -1,0 +1,32 @@
+{
+ "key": "RPMIndicatorBlock",
+ "title": "RPM Indicator",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Instruments/RPM_Indicator.md"
+ ],
+ "text": "Display measurements for engine revolutions per minute (RPM) in percentage of RPM, {Label} sets Block label location; {Connection} sets the connect to signal and {Scale Colors} sets the ranges of color bands. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Connect to signal signal name",
+   "group": ""
+  },
+  {
+   "name": "Scale Colors",
+   "default": "0",
+   "values": "Ranges of color bands 0 (default) | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "Block label location Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

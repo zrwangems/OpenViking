@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Sensor (2P)",
+ "title": "Flow Rate Sensor (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Sensors/Flow_Rate_Sensor_2P.md"
+ ],
+ "text": "Measure mass, energy, and volumetric flow rates in two-phase fluid networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

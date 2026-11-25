@@ -1,0 +1,382 @@
+{
+ "key": "SM AC9C",
+ "title": "SM AC9C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_AC9C.md"
+ ],
+ "text": "离散时间或连续时间同步电机 AC9C 励磁系统，包括自动电压调节器和励磁机，输入 10 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Initial field voltage, Efd0 (pu)} 指定初始输出电压、{Initial terminal voltage, Vt0 (pu)} 指定初始机端电压、{Initial terminal current, It0 (pu)} 指定初始机端电流、{Resistive component of load compensation, R_C (pu)} 指定补偿电阻、{Reactance component of load compensation, X_C (pu)} 指定补偿电抗、{Regulator input filter time constant, T_R (s)} 调节器时间常数、{Voltage regulator proportional gain, K_PR (pu)} 指定电压调节器的比例增益、{Voltage regulator integral gain, K_IR (pu/s)} 指定电压调节器的积分增益、{Voltage regulator derivative gain, K_DR (pu.s)} 指定电压调节器的微分增益、{Lag time constant for derivative channel of PID controller, T_DR (s)} 指定 PID 微分通道的滞后时间常数、{Maximum voltage regulator output, V_PIDmax (pu)} 指定 PID 调节器的最大输出、{Minimum voltage regulator output, V_PIDmin (pu)} 指定 PID 调节器的最小输出、{Field current regulator proportional gain, K_PA (pu)} 指定磁场电流调节器的比例增益、{Field current regulator integral gain, K_IA (pu/s)} 指定磁场电流调节器的积分增益、{Maximum current regulator output, V_Amax (pu)} 指定电流调节器的最大输出、{Minimum current regulator output, V_Amin (pu)} 指定电流调节器的最小输出、{Controlled rectifier bridge equivalent gain, K_A (pu)} 指定整流桥增益、{Controlled rectifier bridge equivalent time constant, T_A (s)} 指定整流桥时间常数、{Maximum rectifier bridge output, V_Rmax (pu)} 指定整流桥输出的上限、{Minimum rectifier bridge output, V_Rmin (pu)} 指定整流桥输出的下限、{Exciter field current feedback gain, K_F (pu)} 指定励磁机磁场电流反馈增益、{Field current feedback time constant, T_F (s)} 指定反馈时间常数、{Free wheel equivalent feedback gain, K_FW (pu)} 指定续流反馈增益、{Maximum free wheel feedback, V_FWmax (pu)} 指定续流反馈的上限、{Minimum free wheel feedback, V_FWmin (pu)} 指定续流反馈的下限、{Power stage type selector, S_CT} 用于选择功率级类型的选项 Thyristor、{Voltage limit, V_lim1 (pu)} 指定第一个自动电压调节器限值、{Voltage limit, V_lim2 (pu)} 指定第二个自动电压调节器限值、{Alternate OEL input locations (V_OEL)} 指定 OEL 输入位置、{Alternate UEL input locations (V_UEL)} 指定 UEL 输入位置、{Alternate SCL input locations (V_SCL)} 指定 SCL 输入位置、{Exciter field proportional constant, K_E (pu)} 指定励磁机磁场增益、{Exciter field time constant, T_E (s)} 指定励磁机磁场时间常数、{Diode bridge loading factor proportional to commutating reactance, K_C (pu)} 指定二极管桥负载系数、{Demagnetizing factor, function of exciter alternator reactances, K_D (pu)} 指定去磁系数、{Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)} 指定第一饱和输出电压、{Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)} 指定第一饱和查表电压、{Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)} 指定第二饱和输出电压、{Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)} 指定第二饱和查表电压、{Exciter field current limit, V_FEmax (pu)} 指定励磁机上限、{Minimum exciter output limit, V_Emin (pu)} 指定励磁机下限、{Potential circuit gain coefficient, K_P (pu)} 指定电势电路增益系数、{Potential circuit phase angle (degrees)} 指定电势电路相位角、{Compound circuit (current) gain coefficient, K_I (pu)} 指定复励回路电流增益系数、{Reactance associated with potential source, X_L (pu)} 指定与电势源相关的电抗、{Rectifier loading factor proportional to commutating reactance, K_C1 (pu)} 指定与换相电抗成正比的整流器负载系数、{Power source selector SW1} 指定电源选择器 Position A: power source derived from terminal、{Maximum available exciter field voltage, V_B1max (pu)} 指定最大可用励磁机磁场电压、{Rectifier loading factor proportional to commutating reactance, K_C2 (pu)} 指定与换相电抗成正比的整流器负载系数、{Compound circuit (current) gain coefficient, K_I2 (pu)} 指定复励回路电流增益系数、{Maximum available exciter field voltage, V_B2max (pu)} 指定最大可用励磁机磁场电压，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "电压参考值 scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "来自稳定器的输入 scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "端电压 scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "端电流 scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "过励限制信号 scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "欠励限制信号 scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "求和点定子电流限制信号 scalar"
+  },
+  {
+   "name": "V_SCLoel",
+   "direction": "input",
+   "summary": "用于过励限制器的接管定子电流限制 scalar"
+  },
+  {
+   "name": "V_SCLuel",
+   "direction": "input",
+   "summary": "用于欠励限制器的接管定子电流限制 scalar"
+  },
+  {
+   "name": "Ifd_pu",
+   "direction": "input",
+   "summary": "实测励磁电流 scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "励磁电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "初始输出电压 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Initial terminal voltage, Vt0 (pu)",
+   "default": "1",
+   "values": "初始机端电压 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Initial terminal current, It0 (pu)",
+   "default": "1",
+   "values": "初始机端电流 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "补偿电阻 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "补偿电抗 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0.01",
+   "values": "调节器时间常数 0.01 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Voltage regulator proportional gain, K_PR (pu)",
+   "default": "10",
+   "values": "电压调节器的比例增益 10 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator integral gain, K_IR (pu/s)",
+   "default": "10",
+   "values": "电压调节器的积分增益 10 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator derivative gain, K_DR (pu.s)",
+   "default": "0",
+   "values": "电压调节器的微分增益 0 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Lag time constant for derivative channel of PID controller, T_DR (s)",
+   "default": "0.01",
+   "values": "PID 微分通道的滞后时间常数 0.01 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum voltage regulator output, V_PIDmax (pu)",
+   "default": "1.6",
+   "values": "PID 调节器的最大输出 1.6 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum voltage regulator output, V_PIDmin (pu)",
+   "default": "0",
+   "values": "PID 调节器的最小输出 0 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Field current regulator proportional gain, K_PA (pu)",
+   "default": "4",
+   "values": "磁场电流调节器的比例增益 4 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Field current regulator integral gain, K_IA (pu/s)",
+   "default": "0",
+   "values": "磁场电流调节器的积分增益 0 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum current regulator output, V_Amax (pu)",
+   "default": "0.996",
+   "values": "电流调节器的最大输出 0.996 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum current regulator output, V_Amin (pu)",
+   "default": "-0.866",
+   "values": "电流调节器的最小输出 -0.866 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Controlled rectifier bridge equivalent gain, K_A (pu)",
+   "default": "20",
+   "values": "整流桥增益 20 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Controlled rectifier bridge equivalent time constant, T_A (s)",
+   "default": "0.0018",
+   "values": "整流桥时间常数 0.0018 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum rectifier bridge output, V_Rmax (pu)",
+   "default": "19.92",
+   "values": "整流桥输出的上限 19.92 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum rectifier bridge output, V_Rmin (pu)",
+   "default": "-17.32",
+   "values": "整流桥输出的下限 -17.32 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Exciter field current feedback gain, K_F (pu)",
+   "default": "0.2",
+   "values": "励磁机磁场电流反馈增益 0.2 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Field current feedback time constant, T_F (s)",
+   "default": "0.01",
+   "values": "反馈时间常数 0.01 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Free wheel equivalent feedback gain, K_FW (pu)",
+   "default": "0",
+   "values": "续流反馈增益 0 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum free wheel feedback, V_FWmax (pu)",
+   "default": "10",
+   "values": "续流反馈的上限 10 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum free wheel feedback, V_FWmin (pu)",
+   "default": "0",
+   "values": "续流反馈的下限 0 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Power stage type selector, S_CT",
+   "default": "bridge",
+   "values": "用于选择功率级类型的选项 Thyristor bridge (default) | Chopper converter",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage limit, V_lim1 (pu)",
+   "default": "0",
+   "values": "第一个自动电压调节器限值 0 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage limit, V_lim2 (pu)",
+   "default": "-0.1",
+   "values": "第二个自动电压调节器限值 -0.1 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "Unused",
+   "values": "OEL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "Unused",
+   "values": "UEL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "Unused",
+   "values": "SCL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Exciter field proportional constant, K_E (pu)",
+   "default": "1",
+   "values": "励磁机磁场增益 1 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter field time constant, T_E (s)",
+   "default": "1",
+   "values": "励磁机磁场时间常数 1 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Diode bridge loading factor proportional to commutating reactance, K_C (pu)",
+   "default": "0",
+   "values": "二极管桥负载系数 0 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Demagnetizing factor, function of exciter alternator reactances, K_D (pu)",
+   "default": "1",
+   "values": "去磁系数 1 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)",
+   "default": "4.167",
+   "values": "第一饱和输出电压 4.167 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)",
+   "default": "0.001",
+   "values": "第一饱和查表电压 0.001 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)",
+   "default": "3.125",
+   "values": "第二饱和输出电压 3.125 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)",
+   "default": "0.01",
+   "values": "第二饱和查表电压 0.01 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter field current limit, V_FEmax (pu)",
+   "default": "16",
+   "values": "励磁机上限 16 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Minimum exciter output limit, V_Emin (pu)",
+   "default": "0",
+   "values": "励磁机下限 0 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit gain coefficient, K_P (pu)",
+   "default": "1",
+   "values": "电势电路增益系数 1 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit phase angle (degrees)",
+   "default": "0",
+   "values": "电势电路相位角 0 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Compound circuit (current) gain coefficient, K_I (pu)",
+   "default": "0",
+   "values": "复励回路电流增益系数 0 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Reactance associated with potential source, X_L (pu)",
+   "default": "0",
+   "values": "与电势源相关的电抗 0 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C1 (pu)",
+   "default": "0",
+   "values": "与换相电抗成正比的整流器负载系数 0 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Power source selector SW1",
+   "default": "voltage",
+   "values": "电源选择器 Position A: power source derived from terminal voltage (default) | Position B: power source independent of the terminal conditions",
+   "group": "Exciter"
+  },
+  {
+   "name": "Maximum available exciter field voltage, V_B1max (pu)",
+   "default": "100",
+   "values": "最大可用励磁机磁场电压 100 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C2 (pu)",
+   "default": "0",
+   "values": "与换相电抗成正比的整流器负载系数 0 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Compound circuit (current) gain coefficient, K_I2 (pu)",
+   "default": "0",
+   "values": "复励回路电流增益系数 0 (default) | real scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Maximum available exciter field voltage, V_B2max (pu)",
+   "default": "0",
+   "values": "最大可用励磁机磁场电压 0 (default) | real scalar",
+   "group": "Exciter"
+  }
+ ]
+}

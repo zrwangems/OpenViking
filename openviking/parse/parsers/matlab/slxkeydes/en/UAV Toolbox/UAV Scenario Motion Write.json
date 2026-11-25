@@ -1,0 +1,52 @@
+{
+ "key": "UAV Scenario Motion Write",
+ "title": "UAV Scenario Motion Write",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Motion_Write.md"
+ ],
+ "text": "Update platform motion in UAV scenario simulation, 5 inputs; {Platform name} and {Coordinate frame of input motion}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Position",
+   "direction": "input",
+   "summary": "Position 1-by-3 vector"
+  },
+  {
+   "name": "Orientation",
+   "direction": "input",
+   "summary": "Orientation quaternion 1-by-4 vector"
+  },
+  {
+   "name": "Velocity",
+   "direction": "input",
+   "summary": "Velocity 1-by-3 vector"
+  },
+  {
+   "name": "Acceleration",
+   "direction": "input",
+   "summary": "Acceleration 1-by-3 vector"
+  },
+  {
+   "name": "AngularVelocity",
+   "direction": "input",
+   "summary": "Angular Velocity 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Platform name",
+   "default": "’UAV’",
+   "values": "Platform name ’UAV’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Coordinate frame of input motion",
+   "default": "’NED’",
+   "values": "Coordinate frame of input motion ’NED’ (default) | ENU",
+   "group": ""
+  }
+ ]
+}

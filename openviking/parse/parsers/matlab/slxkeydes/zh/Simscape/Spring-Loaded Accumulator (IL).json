@@ -1,0 +1,13 @@
+{
+ "key": "Spring-Loaded Accumulator (IL)",
+ "title": "Spring-Loaded Accumulator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Tanks & Accumulators/Spring_Loaded_Accumulator_IL.md"
+ ],
+ "text": "带有弹簧的蓄能器，用于等温液体系统中的能量存储。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

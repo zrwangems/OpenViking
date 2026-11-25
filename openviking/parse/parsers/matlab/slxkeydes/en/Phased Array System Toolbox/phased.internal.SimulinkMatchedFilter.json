@@ -1,0 +1,101 @@
+{
+ "key": "phased.internal.SimulinkMatchedFilter",
+ "title": "Matched Filter",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Matched_Filter.md"
+ ],
+ "text": "Matched filter, 2 inputs, 2 outputs, {Spectrum window} sets Window for spectrum weighting; {Source of coefficients} sets the source of matched filter coefficients, {Coefficients} sets the matched filter coefficients, {Spectrum window range (Hz)} sets the spectrum window coverage region, {Inherit sample rate}, {Sample rate (Hz)} sets the sample rate of the output, {Sidelobe attenuation level} sets the window sidelobe attenuation level, {Kaiser shape parameter}, {Number of constant level sidelobes} sets the number of nearly constant sidelobes in Taylor, {Enable SNR gain output} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input signal M -by- N complex valued matrix"
+  },
+  {
+   "name": "Coeff",
+   "direction": "input",
+   "summary": "Matched filter coefficients M -length complex column vector"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Matched filter output M -by- N complex valued matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Matched-filter gain N -length real-valued"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of coefficients",
+   "default": "Property",
+   "values": "Source of matched filter coefficients Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Coefficients",
+   "default": "[1;1]",
+   "values": "Matched filter coefficients [1;1] (default)",
+   "group": ""
+  },
+  {
+   "name": "Spectrum window",
+   "default": "None",
+   "values": "Window for spectrum weighting None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor",
+   "group": ""
+  },
+  {
+   "name": "Spectrum window range (Hz)",
+   "default": "1e5]",
+   "values": "Spectrum window coverage region [0, 1e5] (default)",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sample rate of the output waveform 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation level",
+   "default": "30",
+   "values": "Window sidelobe attenuation level 30 (default)",
+   "group": ""
+  },
+  {
+   "name": "Kaiser shape parameter",
+   "default": "0.5",
+   "values": "Kaiser shape parameter 0.5 (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of constant level sidelobes",
+   "default": "4",
+   "values": "Number of nearly constant sidelobes in Taylor window 4 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable SNR gain output",
+   "default": "off",
+   "values": "Enable SNR gain output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

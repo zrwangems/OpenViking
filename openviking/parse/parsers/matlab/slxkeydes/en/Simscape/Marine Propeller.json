@@ -1,0 +1,13 @@
+{
+ "key": "Marine Propeller",
+ "title": "Marine Propeller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Marine_Propeller.md"
+ ],
+ "text": "Propeller that converts rotation into thrust in marine environments.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

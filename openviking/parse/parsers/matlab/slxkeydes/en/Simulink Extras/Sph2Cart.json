@@ -1,0 +1,44 @@
+{
+ "key": "Sph2Cart",
+ "title": "Spherical to Cartesian",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Transformations/Spherical_to_Cartesian.md"
+ ],
+ "text": "Transform spherical coordinates to Cartesian coordinates, 3 inputs, 3 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "r spherical coordinate input scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "theta spherical coordinate input scalar"
+  },
+  {
+   "name": "Port_3",
+   "direction": "input",
+   "summary": "phi spherical coordinate input scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "x Cartesian coordinate output scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "y Cartesian coordinate output scalar"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "z Cartesian coordinate output scalar"
+  }
+ ],
+ "params": []
+}

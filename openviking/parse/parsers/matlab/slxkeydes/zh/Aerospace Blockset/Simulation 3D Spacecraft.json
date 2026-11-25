@@ -1,0 +1,90 @@
+{
+ "key": "Simulation 3D Spacecraft",
+ "title": "Simulation 3D Spacecraft",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Spacecraft.md"
+ ],
+ "text": "在 3D 环境中实现航天器，输入 3 路；按 {Initial translation (m)} 指定航天器的初始平移；{Type} 指定航天器类型、{Path to CubeSat mesh} 指定 CubeSat 网格的路径、{Path to SmallSat mesh} 指定 SmallSat 网格的路径、{Name} 指定航天器名称、{Initial rotation (rad)} 指定航天器的初始旋转 zeros、{Scale source}、{Initial scale} 指定 Initial mesh scale、{Scale} 指定网格比例、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "航天器平移 10-by-3 array | 20-by-3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "航天器旋转 10-by-3 array | 20-by-3 array"
+  },
+  {
+   "name": "Scale",
+   "direction": "input",
+   "summary": "网格比例 [1 1 1] (default) | 1-by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "CubeSat",
+   "values": "航天器类型 CubeSat (default) | SmallSat",
+   "group": ""
+  },
+  {
+   "name": "Path to CubeSat mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat",
+   "values": "CubeSat 网格的路径 /MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Path to SmallSat mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat",
+   "values": "SmallSat 网格的路径 /MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "航天器名称 SimulinkVehicle1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Initial translation (m)",
+   "default": "zeros(10,3)",
+   "values": "航天器的初始平移 zeros(10,3) (default) | 10-by-3 array | 20-by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Initial rotation (rad)",
+   "default": "zeros(10,3)",
+   "values": "航天器的初始旋转 zeros(10,3) (default) | 10-by-3 array | 20-by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Scale source",
+   "default": "Dialog",
+   "values": "Scale source Dialog (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Initial scale",
+   "default": "1]",
+   "values": "Initial mesh scale [1 1 1] (default) | 1-by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Scale",
+   "default": "1]",
+   "values": "网格比例 [1 1 1] (default) | 1-by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.02",
+   "values": "采样时间 0.02 (default) | real scalar",
+   "group": ""
+  }
+ ]
+}

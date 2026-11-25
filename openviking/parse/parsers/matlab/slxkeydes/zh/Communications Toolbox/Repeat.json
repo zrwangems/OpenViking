@@ -1,0 +1,68 @@
+{
+ "key": "Repeat",
+ "title": "Repeat",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Repeat.md",
+  "DSP System Toolbox HDL Support/Signal Operations/Repeat.md",
+  "DSP System Toolbox/Signal Operations/Repeat.md"
+ ],
+ "text": "通过重复值以更高率对输入进行重采样，输入 2 路、输出 1 路、无直接馈通；按 {Initial conditions} 指定初始条件；{Repetition count source} 指定重复计数的方式、{Repetition count, L} 指定重复计数、{Maximum repetition factor, Lmax} 指定最大重复计数、{Input processing} 指定处理输入信号的方法 Columns、{Rate options} 指定模块对输入进行上采样的方法 Enforce single-rate，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "重复计数 positive integer ≤ Lmax"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Repetition count source",
+   "default": "parameter",
+   "values": "指定重复计数的方式 Dialog parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Repetition count, L",
+   "default": "5",
+   "values": "重复计数 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum repetition factor, Lmax",
+   "default": "16",
+   "values": "最大重复计数 16 (default) | positive integer ≥ 1",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "处理输入信号的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "模块对输入进行上采样的方法 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "初始条件 0 (default) | scalar | matrix",
+   "group": ""
+  }
+ ]
+}

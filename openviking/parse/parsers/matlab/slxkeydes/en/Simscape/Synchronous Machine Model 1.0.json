@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Machine Model 1.0",
+ "title": "Synchronous Machine Model 1.0",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Synchronous_Machine_Model_1_0.md"
+ ],
+ "text": "Synchronous machine with field circuit and no damper.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

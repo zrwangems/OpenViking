@@ -1,0 +1,13 @@
+{
+ "key": "Y-Junction (TL)",
+ "title": "Y-Junction (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Y_Junction_TL.md"
+ ],
+ "text": "Y-junction in a thermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

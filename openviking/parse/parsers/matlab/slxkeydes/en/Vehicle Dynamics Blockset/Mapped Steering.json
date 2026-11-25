@@ -1,0 +1,100 @@
+{
+ "key": "Mapped Steering",
+ "title": "Mapped Steering",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Steering/Mapped_Steering.md"
+ ],
+ "text": "Mapped steering with speed-dependent option, 2 inputs, 3 outputs; {Speed dependent} uses speed-dependent tables, {Steering type} uses speed-dependent tables Steering wheel, {Steering angle breakpoints, StrgAngBpts} sets the steering angle breakpoints, {Rack travel displacement breakpoints, RackDispBpts} sets the rack travel displacement breakpoints, {Gear ratio table, GrTbl} sets the gear ratio table, {Gear ratio constant, Gr} sets the gear ratio constant, {Left wheel angle table, WhlLftTbl} sets the left wheel angle table, {Right wheel angle table, WhlRghtTbl} sets the right wheel angle table, {Vehicle speed breakpoints, VehSpdBpts} sets the vehicle speed breakpoints and {Superimposed speed factor table, SpdFctTbl} sets the speed factor. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "AngIn",
+   "direction": "input",
+   "summary": "Steering angle scalar"
+  },
+  {
+   "name": "VehSpd",
+   "direction": "input",
+   "summary": "Vehicle speed scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "AngLft",
+   "direction": "output",
+   "summary": "Left wheel angle scalar"
+  },
+  {
+   "name": "AngRght",
+   "direction": "output",
+   "summary": "Right wheel angle scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Speed dependent",
+   "default": "on",
+   "values": "Use speed-dependent tables on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Steering type",
+   "default": "angle",
+   "values": "Use speed-dependent tables Steering wheel angle (default) | Rack travel displacement",
+   "group": ""
+  },
+  {
+   "name": "Steering angle breakpoints, StrgAngBpts",
+   "default": "1.5*pi]",
+   "values": "Steering angle breakpoints [-1.5*pi 1.5*pi] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rack travel displacement breakpoints, RackDispBpts",
+   "default": "40]",
+   "values": "Rack travel displacement breakpoints [-40 -19.2 -4.53 4.53 19.2 40] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Gear ratio table, GrTbl",
+   "default": "9.87]*2*pi",
+   "values": "Gear ratio table [9.87 9.87 7.16 7.16 9.87 9.87]*2*pi (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Gear ratio constant, Gr",
+   "default": "8.28*2*pi",
+   "values": "Gear ratio constant 8.28*2*pi (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left wheel angle table, WhlLftTbl",
+   "default": "1.5*pi]/13.5]",
+   "values": "Left wheel angle table [-1.5*pi 1.5*pi]/13.5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Right wheel angle table, WhlRghtTbl",
+   "default": "1.5*pi]/13.5]",
+   "values": "Right wheel angle table [-1.5*pi 1.5*pi]/13.5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Vehicle speed breakpoints, VehSpdBpts",
+   "default": "1]",
+   "values": "Vehicle speed breakpoints [-1 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Superimposed speed factor table, SpdFctTbl",
+   "default": "1]",
+   "values": "Speed factor [1 1] (default) | vector",
+   "group": ""
+  }
+ ]
+}

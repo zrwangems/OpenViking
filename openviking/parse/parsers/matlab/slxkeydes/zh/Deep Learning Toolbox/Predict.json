@@ -1,0 +1,67 @@
+{
+ "key": "Predict",
+ "title": "Predict",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Neural Networks/Predict.md"
+ ],
+ "text": "使用经过训练的深度学习神经网络预测响应，输入 1 路、输出 1 路；按 {输入数据格式} 指定dlnetwork 的输入数据格式 字符向量；{网络}、{文件路径} 指定包含经过训练的网络的 MAT、{MATLAB 函数}、{小批量大小} 指定小批量的大小、{预测}、{激活值}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "input",
+   "direction": "input",
+   "summary": "图像、特征、序列或时间序列数据 数值数组"
+  },
+  {
+   "name": "output",
+   "direction": "output",
+   "summary": "预测的分数、响应或激活 数值数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "网络",
+   "default": "文件创建网络",
+   "values": "经过训练的网络的源 从 MAT 文件创建网络 (默认) | 从 MATLAB 函数创建网络",
+   "group": ""
+  },
+  {
+   "name": "文件路径",
+   "default": "untitled.mat",
+   "values": "包含经过训练的网络的 MAT 文件 untitled.mat (默认) | MAT 文件路径或名称",
+   "group": ""
+  },
+  {
+   "name": "MATLAB 函数",
+   "default": "squeezenet",
+   "values": "MATLAB 函数名称 squeezenet (默认) | MATLAB 函数名称",
+   "group": ""
+  },
+  {
+   "name": "小批量大小",
+   "default": "128",
+   "values": "小批量的大小 128 (默认) | 正整数",
+   "group": ""
+  },
+  {
+   "name": "预测",
+   "default": "on",
+   "values": "输出预测的分数或响应 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "输入数据格式",
+   "default": "",
+   "values": "dlnetwork 的输入数据格式 字符向量 | 字符串",
+   "group": ""
+  },
+  {
+   "name": "激活值",
+   "default": "",
+   "values": "输出特定层的网络激活值 网络的层",
+   "group": ""
+  }
+ ]
+}

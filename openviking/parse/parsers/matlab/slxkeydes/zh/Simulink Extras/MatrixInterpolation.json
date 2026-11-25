@@ -1,0 +1,70 @@
+{
+ "key": "MatrixInterpolation",
+ "title": "Matrix Interpolation",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Lookup Tables/Matrix_Interpolation.md"
+ ],
+ "text": "在矩阵之间插值，输入 4 路、输出 1 路；按 {Interpolation method} 指定插值方法；{Extrapolation method} 指定外插方法 Clip、{Interpolate Dimension} 查找表维度数、{Table data} 输出值表 1:1:10、{Simulate using} 指定仿真模式 Code generation，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "k1",
+   "direction": "input",
+   "summary": "表第一个维度的索引 k1 scalar"
+  },
+  {
+   "name": "f1",
+   "direction": "input",
+   "summary": "表第一个维度的分数 f1 scalar"
+  },
+  {
+   "name": "kn",
+   "direction": "input",
+   "summary": "表第 n 个维度的索引 kn scalar"
+  },
+  {
+   "name": "fn",
+   "direction": "input",
+   "summary": "表第 n 个维度的分数 fn scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "N 维函数的近似值 scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "插值方法 Linear (default) | Nearest | Flat",
+   "group": ""
+  },
+  {
+   "name": "Extrapolation method",
+   "default": "Clip",
+   "values": "外插方法 Clip (default) | Linear",
+   "group": ""
+  },
+  {
+   "name": "Interpolate Dimension",
+   "default": "1",
+   "values": "查找表维度数 1 (default) | 2 | 3",
+   "group": ""
+  },
+  {
+   "name": "Table data",
+   "default": "1:1:10",
+   "values": "输出值表 1:1:10 (default) | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "",
+   "values": "仿真模式 Code generation | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

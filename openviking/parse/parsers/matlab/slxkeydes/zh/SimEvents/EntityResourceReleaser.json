@@ -1,0 +1,70 @@
+{
+ "key": "EntityResourceReleaser",
+ "title": "Resource Releaser",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Resource_Releaser.md"
+ ],
+ "text": "释放实体资源，输入 1 路、输出 4 路；按 {Event actions} 指定实体在特定事件发生时的行为；{Resource to release} 指定要释放的资源、{Number of entities departed, d} 输出已离开该模块的实体数、{Number of entities in block, n} 输出模块中存在的、尚未离开的实体数量、{Number of entities extracted, ex} 指定从该模块中提取的实体数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "尚未离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "已提取的实体数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resource to release",
+   "default": "All",
+   "values": "选择要释放的资源 All (default) | Selected",
+   "group": ""
+  },
+  {
+   "name": "Event actions",
+   "default": "Entry",
+   "values": "指定实体在特定事件发生时的行为 Entry (default) | Exit | Blocked",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "输出模块中存在的、尚未离开的实体数量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "从该模块中提取的实体数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

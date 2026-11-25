@@ -1,0 +1,234 @@
+{
+ "key": "Simulation 3D Radar Data Generator",
+ "title": "Simulation 3D Radar Data Generator",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Radar_Data_Generator.md"
+ ],
+ "text": "生成雷达传感器检测和航迹；输出 3 路；按 {Coordinate frame used to report detections} 指定报告的检测的坐标系；{Sensor identifier} 指定唯一传感器标识符、{Parent name} 指定父车辆名称 Scene、{Coordinate system} 用于参与者变换的坐标系、{Mounting location} 指定传感器安装位置、{Specify offset} 指定相对于安装位置的偏移、{Relative translation [X, Y, Z]} 指定相对于安装位置的平移偏移量、{Relative rotation [Roll, Pitch, Yaw]} 指定相对于安装位置的旋转偏移量、{Sample time} 指定采样时间、{Enable elevation angle measurements} 启用雷达测量目标仰角、{Enable range rate measurements} 启用雷达测量目标距离变化率、{Add measurement noise to observations} 启用向雷达传感器测量值添加噪声、{Enable generation of reports from false observations} 启用创建雷达虚警检测、{Maximum number of target reports} 指定检测或航迹的最大数量、{Format of generated target reports} 指定生成的目标报告格式 Clustered、{Azimuthal resolution (deg)} 指定雷达方位角分辨率、{Elevation resolution (deg)} 指定雷达仰角分辨率、{Range resolution (m)} 指定雷达距离分辨率、{Range rate resolution (m/s)} 指定雷达距离变化率分辨率、{Azimuth bias fraction} 指定雷达方位角偏差比例、{Elevation bias fraction} 指定雷达仰角偏差比例、{Range bias fraction} 指定距离偏差比例、{Range rate bias fraction} 指定距离变化率偏差比例、{Total angular field of view [AZ, EL] (deg)} 指定雷达的角度视场、{Range limits [MIN, MAX] (m)} 指定雷达的最小和最大距离、{Range rate limits [MIN, MAX] (m/s)} 指定雷达的最小和最大距离变化率、{Detection probability} 指定检测目标的概率、{False alarm rate} 指定虚警报告率 1e-06、{Reference target range (m)} 指定给定检测概率下的参考距离、{Reference target RCS (dBsm)} 指定给定检测概率下的参考雷达截面积、{Center frequency (Hz)} 指定雷达频带的中心频率 77e9、{Select method to specify initial seed} 指定随机数生成器种子的方法、{Initial seed} 指定随机数生成器种子、{Actor types to oversample} 用于改进目标检测的 Actor 类型 Simulation 3D，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Clustered detections",
+   "direction": "output",
+   "summary": "聚类目标检测 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Tracks",
+   "direction": "output",
+   "summary": "目标航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "未聚类目标检测 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "唯一传感器标识符 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "父车辆名称 Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Coordinate system",
+   "default": "Default",
+   "values": "用于参与者变换的坐标系 Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "传感器安装位置 Origin (default)",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "指定相对于安装位置的偏移 off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z]",
+   "default": "0]",
+   "values": "相对于安装位置的平移偏移量 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw]",
+   "default": "0]",
+   "values": "相对于安装位置的旋转偏移量 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Enable elevation angle measurements",
+   "default": "on",
+   "values": "启用雷达测量目标仰角 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable range rate measurements",
+   "default": "on",
+   "values": "启用雷达测量目标距离变化率 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Add measurement noise to observations",
+   "default": "on",
+   "values": "启用向雷达传感器测量值添加噪声 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable generation of reports from false observations",
+   "default": "on",
+   "values": "启用创建雷达虚警检测 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum number of target reports",
+   "default": "50",
+   "values": "检测或航迹的最大数量 50 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Format of generated target reports",
+   "default": "detections",
+   "values": "生成的目标报告格式 Clustered detections (default) | Tracks | Detections",
+   "group": "Parameters"
+  },
+  {
+   "name": "Coordinate frame used to report detections",
+   "default": "Body",
+   "values": "报告的检测的坐标系 Body (default) | Sensor rectangular | Sensor spherical",
+   "group": "Parameters"
+  },
+  {
+   "name": "Azimuthal resolution (deg)",
+   "default": "4",
+   "values": "雷达方位角分辨率 4 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation resolution (deg)",
+   "default": "5",
+   "values": "雷达仰角分辨率 5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range resolution (m)",
+   "default": "2.5",
+   "values": "雷达距离分辨率 2.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate resolution (m/s)",
+   "default": "0.5",
+   "values": "雷达距离变化率分辨率 0.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Azimuth bias fraction",
+   "default": "0.1",
+   "values": "雷达方位角偏差比例 0.1 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation bias fraction",
+   "default": "0.1",
+   "values": "雷达仰角偏差比例 0.1 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range bias fraction",
+   "default": "0.05",
+   "values": "距离偏差比例 0.05 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate bias fraction",
+   "default": "0.05",
+   "values": "距离变化率偏差比例 0.05 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Total angular field of view [AZ, EL] (deg)",
+   "default": "5]",
+   "values": "雷达的角度视场 [20 5] (default) | 1-by-2 positive real-valued vector of form [azfov,elfov]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range limits [MIN, MAX] (m)",
+   "default": "150]",
+   "values": "雷达的最小和最大距离 [0 150] (default) | 1-by-2 nonnegative real-valued vector of form [min max]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate limits [MIN, MAX] (m/s)",
+   "default": "100]",
+   "values": "雷达的最小和最大距离变化率 (m/s) [-100 100] (default) | 1-by-2 real-valued vector of form [min max]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Detection probability",
+   "default": "0.9",
+   "values": "检测目标的概率 0.9 (default) | scalar in range (0, 1]",
+   "group": "Measurements"
+  },
+  {
+   "name": "False alarm rate",
+   "default": "1e-06",
+   "values": "虚警报告率 1e-06 (default) | positive real scalar in range [10 –7, 10 –3 ]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Reference target range (m)",
+   "default": "100",
+   "values": "给定检测概率下的参考距离 100 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Reference target RCS (dBsm)",
+   "default": "0",
+   "values": "给定检测概率下的参考雷达截面积 0 (default) | real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Center frequency (Hz)",
+   "default": "77e9",
+   "values": "雷达频带的中心频率 77e9 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Select method to specify initial seed",
+   "default": "Repeatable",
+   "values": "指定随机数生成器种子的方法 Repeatable (default) | Specify seed | Not repeatable",
+   "group": "Measurements"
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "随机数生成器种子 0 (default) | nonnegative integer less than 2 32",
+   "group": "Measurements"
+  },
+  {
+   "name": "Actor types to oversample",
+   "default": "Vehicles",
+   "values": "用于改进目标检测的 Actor 类型 Simulation 3D Vehicles (default) | None | Simulation 3D Actors | All Actors",
+   "group": "Measurements"
+  }
+ ]
+}

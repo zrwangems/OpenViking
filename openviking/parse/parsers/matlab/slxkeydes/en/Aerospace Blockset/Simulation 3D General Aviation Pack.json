@@ -1,0 +1,349 @@
+{
+ "key": "Simulation 3D General Aviation Pack",
+ "title": "Simulation 3D General Aviation Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_General_Aviation_Pack.md"
+ ],
+ "text": "Generate translation and rotation information for general aviation aircraft, 30 inputs, 2 outputs, {Select input coordinate frame} sets Input coordinate frame; {Engine translation} sets the option to enable Engine1_T input port, {Engine rotation} sets the option to enable Engine1_R input port, {Rudder translation} sets the option to enable Rudder_T input port, {Elevator translation} sets the option to enable Elevator_T input port, {Left aileron translation} sets the option to enable Left_Aileron_T input port, {Right aileron translation} sets the option to enable Right_Aileron_T input, {Flaps translation} sets the option to enable Flaps_T input port, {Left spoiler translation} sets the option to enable Left_Spoiler_T input port, {Right spoiler translation} sets the option to enable Right_Spoiler_T input, {Rudder rotation} sets the option to enable Rudder_R input port, {Elevator rotation} sets the option to enable Elevator_R input port, {Left aileron rotation} sets the option to enable Left_Aileron_R input port, {Right aileron rotation} sets the option to enable Right_Aileron_R input, {Flaps rotation} sets the option to enable Flaps_R input port, {Left spoiler rotation} sets the option to enable Left_Spoiler_R input port, {Right spoiler rotation} sets the option to enable Right_Spoiler_R input, {Nose gear translation} sets the option to enable Nose_Gear_T input port, {Nose wheel translation} sets the option to enable Nose_Wheel_T input port, {Left gear translation} sets the option to enable Left_Gear_T input port, {Left wheel translation} sets the option to enable Left_Wheel_T input port, {Right gear translation} sets the option to enable Right_Gear_T input port, {Right wheel translation} sets the option to enable Right_Wheel_T input port, {Nose gear rotation} sets the option to enable Nose_Gear_R input port, {Nose wheel rotation} sets the option to enable Nose_Wheel_R input port, {Left gear rotation} sets the option to enable Left_Gear_R input port, {Left wheel rotation} sets the option to enable Left_Wheel_R input port, {Right gear rotation} sets the option to enable Right_Gear_R input port and {Right wheel rotation} sets the option to enable Right_Wheel_R input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "Body translation 1-by-3 matrix"
+  },
+  {
+   "name": "Engine1_T",
+   "direction": "input",
+   "summary": "Engine translation 1-by-3 matrix"
+  },
+  {
+   "name": "Rudder_T",
+   "direction": "input",
+   "summary": "Rudder translation 1-by-3 matrix"
+  },
+  {
+   "name": "Elevator_T",
+   "direction": "input",
+   "summary": "Elevator translation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Aileron_T",
+   "direction": "input",
+   "summary": "Left aileron translation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Aileron_T",
+   "direction": "input",
+   "summary": "Right aileron translation 1-by-3 matrix"
+  },
+  {
+   "name": "Flaps_T",
+   "direction": "input",
+   "summary": "Flaps translation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Spoiler_T",
+   "direction": "input",
+   "summary": "Left spoiler translation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Spoiler_T",
+   "direction": "input",
+   "summary": "Right spoiler translation 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Gear_T",
+   "direction": "input",
+   "summary": "Nose gear translation 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Wheel_T",
+   "direction": "input",
+   "summary": "Nose wheel translation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_T",
+   "direction": "input",
+   "summary": "Left gear translation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Wheel_T",
+   "direction": "input",
+   "summary": "Left wheel translation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_T",
+   "direction": "input",
+   "summary": "Right gear translation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Wheel_T",
+   "direction": "input",
+   "summary": "Right wheel translation 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "Body rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Engine1_R",
+   "direction": "input",
+   "summary": "Engine rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rudder_R",
+   "direction": "input",
+   "summary": "Rudder rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Elevator_R",
+   "direction": "input",
+   "summary": "Elevator rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Aileron_R",
+   "direction": "input",
+   "summary": "Left aileron rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Aileron_R",
+   "direction": "input",
+   "summary": "Right aileron rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Flaps_R",
+   "direction": "input",
+   "summary": "Flaps rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Spoiler_R",
+   "direction": "input",
+   "summary": "Left spoiler rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Spoiler_R",
+   "direction": "input",
+   "summary": "Right spoiler rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Gear_R",
+   "direction": "input",
+   "summary": "Nose gear rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Wheel_R",
+   "direction": "input",
+   "summary": "Nose wheel rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_R",
+   "direction": "input",
+   "summary": "Left gear rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Wheel_R",
+   "direction": "input",
+   "summary": "Left wheel rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_R",
+   "direction": "input",
+   "summary": "Right gear rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Wheel_R",
+   "direction": "input",
+   "summary": "Right wheel rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Aircraft translation 15 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Aircraft rotation 15 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Engine translation",
+   "default": "off",
+   "values": "Option to enable Engine1_T input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Engine rotation",
+   "default": "off",
+   "values": "Option to enable Engine1_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rudder translation",
+   "default": "off",
+   "values": "Option to enable Rudder_T input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Elevator translation",
+   "default": "off",
+   "values": "Option to enable Elevator_T input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left aileron translation",
+   "default": "off",
+   "values": "Option to enable Left_Aileron_T input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right aileron translation",
+   "default": "off",
+   "values": "Option to enable Right_Aileron_T input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Flaps translation",
+   "default": "off",
+   "values": "Option to enable Flaps_T input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left spoiler translation",
+   "default": "off",
+   "values": "Option to enable Left_Spoiler_T input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right spoiler translation",
+   "default": "off",
+   "values": "Option to enable Right_Spoiler_T input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Rudder rotation",
+   "default": "off",
+   "values": "Option to enable Rudder_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Elevator rotation",
+   "default": "off",
+   "values": "Option to enable Elevator_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left aileron rotation",
+   "default": "off",
+   "values": "Option to enable Left_Aileron_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right aileron rotation",
+   "default": "off",
+   "values": "Option to enable Right_Aileron_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Flaps rotation",
+   "default": "off",
+   "values": "Option to enable Flaps_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left spoiler rotation",
+   "default": "off",
+   "values": "Option to enable Left_Spoiler_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right spoiler rotation",
+   "default": "off",
+   "values": "Option to enable Right_Spoiler_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Nose gear translation",
+   "default": "off",
+   "values": "Option to enable Nose_Gear_T input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose wheel translation",
+   "default": "off",
+   "values": "Option to enable Nose_Wheel_T input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear translation",
+   "default": "off",
+   "values": "Option to enable Left_Gear_T input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left wheel translation",
+   "default": "off",
+   "values": "Option to enable Left_Wheel_T input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear translation",
+   "default": "off",
+   "values": "Option to enable Right_Gear_T input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right wheel translation",
+   "default": "off",
+   "values": "Option to enable Right_Wheel_T input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose gear rotation",
+   "default": "off",
+   "values": "Option to enable Nose_Gear_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose wheel rotation",
+   "default": "off",
+   "values": "Option to enable Nose_Wheel_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear rotation",
+   "default": "off",
+   "values": "Option to enable Left_Gear_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left wheel rotation",
+   "default": "off",
+   "values": "Option to enable Left_Wheel_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear rotation",
+   "default": "off",
+   "values": "Option to enable Right_Gear_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right wheel rotation",
+   "default": "off",
+   "values": "Option to enable Right_Wheel_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "Input coordinate frame NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

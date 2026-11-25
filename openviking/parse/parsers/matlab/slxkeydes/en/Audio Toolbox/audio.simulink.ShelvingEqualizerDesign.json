@@ -1,0 +1,123 @@
+{
+ "key": "audio.simulink.ShelvingEqualizerDesign",
+ "title": "Shelving EQ Design",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Shelving_EQ_Design.md"
+ ],
+ "text": "Design tunable shelving equalizer coefficients, 4 inputs, 2 outputs, no direct feedthrough; {Smooth tuned filter parameters} sets the smooth filter parameters when tuning, {Smoothing factor}, {Specify peak gain from input port} uses additional input port to specify gain, {Peak gain (dB)}, {Specify slope coefficient from input port} uses additional input port to specify slope, {Slope coefficient}, {Specify normalized cutoff frequency from input port} uses additional input port to specify normalized cutoff, {Normalized cutoff frequency}, {Specify filter type from input port} uses additional input port to specify filter, {Filter type} sets the type of shelving, {Output data type} sets the data type of output, {Sample time} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Peak gain (dB) real scalar"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Slope coefficient positive scalar"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "Normalized cutoff frequency scalar in range [0,1]"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Filter type 0 (low-shelf) | 1 (high-shelf)"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "Numerator filter coefficients three-element row vector"
+  },
+  {
+   "name": "Den",
+   "direction": "output",
+   "summary": "Denominator filter coefficients three-element row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Smooth tuned filter parameters",
+   "default": "off",
+   "values": "Smooth filter parameters when tuning off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor",
+   "default": "0.6",
+   "values": "Smoothing factor for tuned parameters 0.6 (default) | scalar in range [0,1)",
+   "group": ""
+  },
+  {
+   "name": "Specify peak gain from input port",
+   "default": "off",
+   "values": "Use additional input port to specify gain off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Peak gain (dB)",
+   "default": "0",
+   "values": "Peak gain (dB) 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify slope coefficient from input port",
+   "default": "off",
+   "values": "Use additional input port to specify slope coefficient off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Slope coefficient",
+   "default": "1.5",
+   "values": "Slope coefficient 1.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify normalized cutoff frequency from input port",
+   "default": "off",
+   "values": "Use additional input port to specify normalized cutoff frequency off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Normalized cutoff frequency",
+   "default": "0.1",
+   "values": "Normalized cutoff frequency 0.1 (default) | scalar in range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify filter type from input port",
+   "default": "off",
+   "values": "Use additional input port to specify filter type off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter type",
+   "default": "low",
+   "values": "Type of shelving equalizer low (default) | high",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of output coefficients double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

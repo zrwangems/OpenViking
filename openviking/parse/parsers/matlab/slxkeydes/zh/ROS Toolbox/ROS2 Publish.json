@@ -1,0 +1,86 @@
+{
+ "key": "ROS2 Publish",
+ "title": "Publish",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Publish.md"
+ ],
+ "text": "向 ROS 2 网络发送消息，输入 1 路；按 {Topic source} 指定用于指定话题名称的来源 Select from ROS network；{Topic} 指定要发布到的话题名称 string、{Message type} 指定 ROS 消息类型 string、{History} 指定在队列中存储消息的模式 Keep、{Depth} 指定消息队列的大小、{Reliability} 指定消息的投递保证、{Durability} 指定消息的持久性、{Deadline} 指定发布连续消息之间的预期间隔、{Lifespan} 指定发布与接收之间的消息有效窗口、{Liveliness} 指定发布器存活性断言协议、{Lease Duration} 指定存活性断言之间的最大时间窗口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS 消息 non-virtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic source",
+   "default": "",
+   "values": "用于指定话题名称的来源 Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "要发布到的话题名称 string",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "",
+   "values": "ROS 消息类型 string",
+   "group": ""
+  },
+  {
+   "name": "History",
+   "default": "last",
+   "values": "在队列中存储消息的模式 Keep last (default) | Keep all",
+   "group": ""
+  },
+  {
+   "name": "Depth",
+   "default": "1",
+   "values": "消息队列的大小 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reliability",
+   "default": "Reliable",
+   "values": "消息的投递保证 Reliable (default) | Best effort",
+   "group": ""
+  },
+  {
+   "name": "Durability",
+   "default": "Volatile",
+   "values": "消息的持久性 Volatile (default) | Transient local",
+   "group": ""
+  },
+  {
+   "name": "Deadline",
+   "default": "Inf",
+   "values": "发布连续消息之间的预期间隔 Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lifespan",
+   "default": "Inf",
+   "values": "发布与接收之间的消息有效窗口 Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Liveliness",
+   "default": "\"automatic\"",
+   "values": "发布器存活性断言协议 \"automatic\" (default)",
+   "group": ""
+  },
+  {
+   "name": "Lease Duration",
+   "default": "Inf",
+   "values": "存活性断言之间的最大时间窗口 Inf (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

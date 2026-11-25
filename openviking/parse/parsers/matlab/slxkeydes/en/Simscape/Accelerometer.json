@@ -1,0 +1,13 @@
+{
+ "key": "Accelerometer",
+ "title": "Accelerometer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Accelerometer.md"
+ ],
+ "text": "Behavioral model of MEMS accelerometer.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

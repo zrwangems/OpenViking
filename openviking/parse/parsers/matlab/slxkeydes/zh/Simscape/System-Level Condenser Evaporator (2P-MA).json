@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Condenser Evaporator (2P-MA)",
+ "title": "System-Level Condenser Evaporator (2P-MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Two-Phase Fluid - Moist Air/System_Level_Condenser_Evaporator_2P_MA.md"
+ ],
+ "text": "基于性能数据的两相流体与湿空气网络间换热器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

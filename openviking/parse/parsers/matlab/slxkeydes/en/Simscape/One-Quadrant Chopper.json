@@ -1,0 +1,13 @@
+{
+ "key": "One-Quadrant Chopper",
+ "title": "One-Quadrant Chopper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/One_Quadrant_Chopper.md"
+ ],
+ "text": "Controller-driven one-quadrant chopper.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

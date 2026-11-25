@@ -1,0 +1,59 @@
+{
+ "key": "Policy",
+ "title": "Policy",
+ "toolbox": "Reinforcement Learning",
+ "kind": "source_type",
+ "source_docs": [
+  "Reinforcement Learning/Policy.md"
+ ],
+ "text": "Reinforcement learning policy, 3 inputs, 1 output; {Policy block data MAT file}, {Policy parameter inputs} adds policy parameters input ports and create bus object and parameter, {Policy parameter bus name} sets the name of policy parameters bus object and {Generate IC blocks} sets the generate blocks containing initial conditions for the policy parameters. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "observation",
+   "direction": "input",
+   "summary": "Environment observations scalar | vector | nonvirtual bus"
+  },
+  {
+   "name": "update parameters",
+   "direction": "input",
+   "summary": "Enable update of policy parameters scalar"
+  },
+  {
+   "name": "parameters",
+   "direction": "input",
+   "summary": "Input bus"
+  },
+  {
+   "name": "action",
+   "direction": "output",
+   "summary": "Policy action scalar | vector | nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Policy block data MAT file",
+   "default": "blockAgentData.mat",
+   "values": "Policy block data MAT file blockAgentData.mat (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Policy parameter inputs",
+   "default": "off",
+   "values": "Add policy parameters input ports and create bus object and parameter structure off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Policy parameter bus name",
+   "default": "policy_param_bus",
+   "values": "Name of policy parameters bus object policy_param_bus (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Generate IC blocks",
+   "default": "",
+   "values": "Generate blocks containing initial conditions for the policy parameters button",
+   "group": ""
+  }
+ ]
+}

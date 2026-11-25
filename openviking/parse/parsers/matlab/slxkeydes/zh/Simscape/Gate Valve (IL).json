@@ -1,0 +1,13 @@
+{
+ "key": "Gate Valve (IL)",
+ "title": "Gate Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Flow Control Valves/Gate_Valve_IL.md"
+ ],
+ "text": "等温液体系统中的闸阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

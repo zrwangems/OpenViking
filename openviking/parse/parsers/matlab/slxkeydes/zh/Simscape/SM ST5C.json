@@ -1,0 +1,220 @@
+{
+ "key": "SM ST5C",
+ "title": "SM ST5C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_ST5C.md"
+ ],
+ "text": "带自动电压调节器的离散时间或连续时间同步电机 ST5C 静态励磁系统，输入 10 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Initial field voltage, Efd0 (pu)} 指定初始输出电压、{Resistive component of load compensation, R_C (pu)} 指定补偿电阻、{Reactance component of load compensation, X_C (pu)} 指定补偿电抗、{Regulator input filter time constant, T_R (s)} 调节器时间常数、{Regulator gain, K_R (pu)} 调节器增益、{Voltage regulator denominator (lag) time constant (first block), T_B1 (s)} 调节器滞后时间常数、{Voltage regulator numerator (lead) time constant (first block), T_C1 (s)} 调节器超前时间常数、{Voltage regulator denominator (lag) time constant (second block), T_B2 (s)} 调节器滞后时间常数、{Voltage regulator numerator (lead) time constant (second block), T_C2 (s)} 调节器超前时间常数、{UEL regulator denominator (lag) time constant (first block), T_UB1 (s)} 指定 UEL 调节器滞后时间常数、{UEL regulator numerator (lead) time constant (first block), T_UC1 (s)} 指定 UEL 调节器超前时间常数、{UEL regulator denominator (lag) time constant (second block), T_UB2 (s)} 指定 UEL 调节器滞后时间常数、{UEL regulator numerator (lead) time constant (second block), T_UC2 (s)} 指定 UEL 调节器超前时间常数、{OEL regulator denominator (lag) time constant (first block), T_OB1 (s)} 指定 OEL 调节器滞后时间常数、{OEL regulator numerator (lead) time constant (first block), T_OC1 (s)} 指定 OEL 调节器超前时间常数、{OEL regulator denominator (lag) time constant (second block), T_OB2 (s)} 指定 OEL 调节器滞后时间常数、{OEL regulator numerator (lead) time constant (second block), T_OC2 (s)} 指定 OEL 调节器超前时间常数、{Maximum regulator output, V_Rmax (pu)} 调节器最大输出、{Minimum regulator output, V_Rmin (pu)} 调节器最小输出、{Alternate OEL input locations (V_OEL)} 指定 OEL 输入位置、{Alternate UEL input locations (V_UEL)} 指定 UEL 输入位置、{Alternate SCL input locations (V_SCL)} 指定 SCL 输入位置、{Rectifier loading factor proportional to commutating reactance, K_C (pu)} 指定整流器负载系数、{Thyristor bridge firing control equivalent time constant, T_1 (s)} 指定晶闸管桥触发控制的时间常数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "电压参考值 scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "来自稳定器的输入 scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "端电压 scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "端电流 scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "过励限制信号 scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "欠励限制信号 scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "求和点定子电流限制信号 scalar"
+  },
+  {
+   "name": "V_SCLoel",
+   "direction": "input",
+   "summary": "接管定子电流限值 (OEL) scalar"
+  },
+  {
+   "name": "V_SCLuel",
+   "direction": "input",
+   "summary": "接管定子电流限值 (UEL) scalar"
+  },
+  {
+   "name": "Ifd_pu",
+   "direction": "input",
+   "summary": "实测励磁电流 scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "励磁电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "初始输出电压 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "补偿电阻 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "补偿电抗 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0.02",
+   "values": "调节器时间常数 0.02 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator gain, K_R (pu)",
+   "default": "200",
+   "values": "调节器增益 200 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator denominator (lag) time constant (first block), T_B1 (s)",
+   "default": "6",
+   "values": "调节器滞后时间常数 1 6 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator numerator (lead) time constant (first block), T_C1 (s)",
+   "default": "0.8",
+   "values": "调节器超前时间常数 1 0.8 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator denominator (lag) time constant (second block), T_B2 (s)",
+   "default": "0.01",
+   "values": "调节器滞后时间常数 2 0.01 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator numerator (lead) time constant (second block), T_C2 (s)",
+   "default": "0.08",
+   "values": "调节器超前时间常数 2 0.08 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "UEL regulator denominator (lag) time constant (first block), T_UB1 (s)",
+   "default": "10",
+   "values": "UEL 调节器滞后时间常数 1 10 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "UEL regulator numerator (lead) time constant (first block), T_UC1 (s)",
+   "default": "2",
+   "values": "UEL 调节器超前时间常数 1 2 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "UEL regulator denominator (lag) time constant (second block), T_UB2 (s)",
+   "default": "0.05",
+   "values": "UEL 调节器滞后时间常数 2 0.05 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "UEL regulator numerator (lead) time constant (second block), T_UC2 (s)",
+   "default": "0.1",
+   "values": "UEL 调节器超前时间常数 2 0.1 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "OEL regulator denominator (lag) time constant (first block), T_OB1 (s)",
+   "default": "2",
+   "values": "OEL 调节器滞后时间常数 1 2 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "OEL regulator numerator (lead) time constant (first block), T_OC1 (s)",
+   "default": "0.1",
+   "values": "OEL 调节器超前时间常数 1 0.1 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "OEL regulator denominator (lag) time constant (second block), T_OB2 (s)",
+   "default": "0.08",
+   "values": "OEL 调节器滞后时间常数 2 0.08 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "OEL regulator numerator (lead) time constant (second block), T_OC2 (s)",
+   "default": "0.08",
+   "values": "OEL 调节器超前时间常数 2 0.08 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum regulator output, V_Rmax (pu)",
+   "default": "5",
+   "values": "调节器最大输出 5 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum regulator output, V_Rmin (pu)",
+   "default": "-4",
+   "values": "调节器最小输出 -4 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "Unused",
+   "values": "OEL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "Unused",
+   "values": "UEL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "Unused",
+   "values": "SCL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C (pu)",
+   "default": "0.004",
+   "values": "整流器负载系数 0.004 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Thyristor bridge firing control equivalent time constant, T_1 (s)",
+   "default": "0.004",
+   "values": "晶闸管桥触发控制的时间常数 0.004 (default) | positive scalar",
+   "group": "Exciter"
+  }
+ ]
+}

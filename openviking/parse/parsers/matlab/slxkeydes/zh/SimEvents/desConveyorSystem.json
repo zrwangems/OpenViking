@@ -1,0 +1,134 @@
+{
+ "key": "desConveyorSystem",
+ "title": "Conveyor System",
+ "toolbox": "SimEvents",
+ "kind": "source_type",
+ "source_docs": [
+  "SimEvents/Conveyor_System.md"
+ ],
+ "text": "Conveyor System 模块在输送机表面上运输实体，输入 2 路、输出 5 路；按 {Blocked output behavior} 指定输出阻塞时的行为；{Conveyor length} 指定表面长度、{Conveyor speed} 指定输送机表面的速度、{Minimum distance between entities} 指定最小物理间距、{Entity length source} 指定实体长度来源、{Entity length value} 指定实体长度、{Entity length attribute name} 指定实体长度属性名称、{Error if conveyor full} 指定达到最大实体数量时的输送机行为、{Variable conveyor speed} 指定恒定或可变输送机速度、{Number of entities departed, d} 指定已离开实体数量、{Number of entities in block, n} 指定现有实体数量、{Pending entity in block, pe} 指定待处理实体、{Number of entities extracted, ex} 指定从该模块中提取的实体数、{Conveyor speed, s} 指定仿真持续期间的传送带速度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "传入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "传入匿名实体 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "离开实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开实体数量 off (default) | on"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "模块中的实体数量 off (default) | on"
+  },
+  {
+   "name": "Port_pe",
+   "direction": "output",
+   "summary": "模块中的待处理实体 off (default) | on"
+  },
+  {
+   "name": "Port_s",
+   "direction": "output",
+   "summary": "输送机速度 off (default) | on"
+  }
+ ],
+ "params": [
+  {
+   "name": "Conveyor length",
+   "default": "100",
+   "values": "表面长度 100 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Conveyor speed",
+   "default": "1000",
+   "values": "输送机表面的速度 1000 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Minimum distance between entities",
+   "default": "0",
+   "values": "最小物理间距 0 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Entity length source",
+   "default": "Dialog",
+   "values": "实体长度来源 Dialog (default) | Attribute",
+   "group": ""
+  },
+  {
+   "name": "Entity length value",
+   "default": "1",
+   "values": "实体长度 1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Entity length attribute name",
+   "default": "Length",
+   "values": "实体长度属性名称 Length (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Blocked output behavior",
+   "default": "Accumulate",
+   "values": "输出阻塞时的行为 Accumulate (default) | Pause | Error",
+   "group": ""
+  },
+  {
+   "name": "Error if conveyor full",
+   "default": "on",
+   "values": "达到最大实体数量时的输送机行为 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Variable conveyor speed",
+   "default": "off",
+   "values": "恒定或可变输送机速度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "已离开实体数量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "现有实体数量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pending entity in block, pe",
+   "default": "off",
+   "values": "待处理实体 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "从该模块中提取的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Conveyor speed, s",
+   "default": "off",
+   "values": "仿真持续期间的传送带速度 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "key": "DeltaUT1",
+ "title": "Delta UT1",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Delta_UT1.md",
+  "Aerospace Blockset/Utilities/Axes Transformations/Delta_UT1.md"
+ ],
+ "text": "Calculate difference between principal Universal Time (UT1) and Coordinated Universal Time (UTC) according to International Astronomical Union (IAU) 2000A reference system, 1 input, {Action for out-of-range input} sets Out-of-range block behavior; {IERS data file} sets the earth orientation data, {IERS data URL} sets the web site or Earth orientation data file and {Destination folder} sets the folder for IERS data file. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "UTC",
+   "direction": "input",
+   "summary": "UT1 for UTC modified Julian date"
+  },
+  {
+   "name": "ΔUT1",
+   "direction": "unknown",
+   "summary": "Difference between UT1 and UTC double"
+  }
+ ],
+ "params": [
+  {
+   "name": "IERS data file",
+   "default": "aeroiersdata.mat",
+   "values": "Earth orientation data aeroiersdata.mat (default) | MAT-file",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "IERS data URL",
+   "default": "https://maia.usno.navy.mil/ser7/finals2000A.data",
+   "values": "Web site or Earth orientation data file https://maia.usno.navy.mil/ser7/finals2000A.data (default) | web site address | file name",
+   "group": ""
+  },
+  {
+   "name": "Destination folder",
+   "default": "Folder",
+   "values": "Folder for IERS data file Current Folder (default)",
+   "group": ""
+  }
+ ]
+}

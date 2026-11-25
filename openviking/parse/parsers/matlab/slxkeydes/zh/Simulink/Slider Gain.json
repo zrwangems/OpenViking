@@ -1,0 +1,43 @@
+{
+ "key": "Slider Gain",
+ "title": "Slider Gain",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Math Operations/Slider_Gain.md"
+ ],
+ "text": "使用滑块更改标量增益，输入 1 路、输出 1 路；{滑块增益} 指定增益值、{低} 指定滑块范围的下限、{高} 指定滑块范围的上限，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入乘以增益 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "滑块增益",
+   "default": "0",
+   "values": "增益值 0 (默认) | 实数值",
+   "group": ""
+  },
+  {
+   "name": "低",
+   "default": "0",
+   "values": "滑块范围的下限 0 (默认) | 实数值",
+   "group": ""
+  },
+  {
+   "name": "高",
+   "default": "2",
+   "values": "滑块范围的上限 2 (默认) | 实数值",
+   "group": ""
+  }
+ ]
+}

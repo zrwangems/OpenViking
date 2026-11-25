@@ -1,0 +1,80 @@
+{
+ "key": "Chirp",
+ "title": "Chirp",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Chirp.md"
+ ],
+ "text": "Generate swept-frequency cosine (chirp) signal, 1 output, no direct feedthrough, {Frequency sweep} sets Type of frequency sweep; {Sweep mode}, {Initial frequency (Hz)}, {Target frequency (Hz)}, {Target time (s)} sets the target time of sweep, {Sweep time (s)}, {Initial phase (rad)} sets the initial phase of cosine output, {Sample time} sets the output sample period, {Samples per frame} and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Swept-frequency cosine (chirp) signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency sweep",
+   "default": "Linear",
+   "values": "Type of frequency sweep Linear (default) | Swept cosine | Logarithmic | Quadratic",
+   "group": ""
+  },
+  {
+   "name": "Sweep mode",
+   "default": "Unidirectional",
+   "values": "Sweep mode Unidirectional (default) | Bidirectional",
+   "group": ""
+  },
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "1000",
+   "values": "Initial frequency 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Target frequency (Hz)",
+   "default": "4000",
+   "values": "Target frequency 4000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Target time (s)",
+   "default": "1",
+   "values": "Target time of sweep 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sweep time (s)",
+   "default": "1",
+   "values": "Sweep time 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "Initial phase of cosine output 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/8000",
+   "values": "Output sample period 1/8000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Double",
+   "values": "Output data type Double (default) | Single",
+   "group": ""
+  }
+ ]
+}

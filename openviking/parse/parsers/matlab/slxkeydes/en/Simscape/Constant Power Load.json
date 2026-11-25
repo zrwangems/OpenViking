@@ -1,0 +1,13 @@
+{
+ "key": "Constant Power Load",
+ "title": "Constant Power Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Constant_Power_Load.md"
+ ],
+ "text": "Constant power load for DC or AC supply.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

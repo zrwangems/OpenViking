@@ -1,0 +1,20 @@
+{
+ "key": "slreverseendian",
+ "title": "Change endianess",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Shared Memory/Change_endianess.md"
+ ],
+ "text": "Shared Memory Pack 模块将指定的分区结构体打包为无结构的双字数组向量；{Partition struct} 指定结构体名称，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Partition struct",
+   "default": "[]",
+   "values": "结构体名称 [] (默认)",
+   "group": ""
+  }
+ ]
+}

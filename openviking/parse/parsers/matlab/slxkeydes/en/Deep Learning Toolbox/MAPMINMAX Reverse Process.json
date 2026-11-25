@@ -1,0 +1,13 @@
+{
+ "key": "MAPMINMAX Reverse Process",
+ "title": "mapminmax_reverse",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/mapminmax_reverse.md"
+ ],
+ "text": "Process matrices by mapping row minimum and maximum values to [ -1 1 ].",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

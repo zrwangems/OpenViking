@@ -1,0 +1,24 @@
+{
+ "key": "ASCIIToString",
+ "title": "ASCII to String",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/ASCII_to_String.md"
+ ],
+ "text": "Uint8 向量信号转换为字符串信号，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "ASCII 信号 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "转换后的字符串信号 标量"
+  }
+ ],
+ "params": []
+}

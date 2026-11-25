@@ -1,0 +1,32 @@
+{
+ "key": "NvMAdminCaller",
+ "title": "NvMAdminCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/NVRAM Manager (NvM)/NvMAdminCaller.md"
+ ],
+ "text": "调用 AUTOSAR NVRAM Manager (NvM) 服务接口 NvMadmin；{客户端端口名称} 指定 AUTOSAR 组件用于调用 NvM 服务接口 NvMAdmin 的客户端端口的名称、{操作}、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "客户端端口名称",
+   "default": "NvMAdmin",
+   "values": "AUTOSAR 组件用于调用 NvM 服务接口 NvMAdmin 的客户端端口的名称 NvMAdmin (默认) | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "操作",
+   "default": "SetBlockProtection",
+   "values": "在 NvM 服务接口 NvMAdmin 中定义的操作 SetBlockProtection (默认)",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

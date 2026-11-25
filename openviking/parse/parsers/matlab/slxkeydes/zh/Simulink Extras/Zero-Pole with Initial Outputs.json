@@ -1,0 +1,50 @@
+{
+ "key": "Zero-Pole with Initial Outputs",
+ "title": "Zero-Pole (with initial outputs)",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Linear/Zero_Pole_with_initial_outputs.md"
+ ],
+ "text": "指定零极点增益系统的初始输出；按 {Zeros} 指定Matrix of zeros；{Poles} 指定 Vector of poles、{Gain} 指定 Vector of gains、{Parameter tunability} 指定 Tunable representation of block parameters、{Absolute tolerance}、{State Name (e.g., ''''position'''')} 指定 Option to assign unique names to states，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Zeros",
+   "default": "[1]",
+   "values": "Matrix of zeros [1] (default) | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Poles",
+   "default": "-1]",
+   "values": "Vector of poles [0 -1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Gain",
+   "default": "[1]",
+   "values": "Vector of gains [1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Parameter tunability",
+   "default": "Auto",
+   "values": "Tunable representation of block parameters in code Auto (default) | Optimized | Unconstrained",
+   "group": ""
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "auto",
+   "values": "Absolute tolerance for computing block states auto (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "State Name (e.g., ''''position'''')",
+   "default": "''''''''",
+   "values": "Option to assign unique names to states '''''''' (default) | character vector | cell array of character vectors | MATLAB® variable | ...",
+   "group": ""
+  }
+ ]
+}

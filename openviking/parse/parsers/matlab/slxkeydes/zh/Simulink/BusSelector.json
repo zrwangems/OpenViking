@@ -1,0 +1,45 @@
+{
+ "key": "BusSelector",
+ "title": "Bus Selector",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Bus_Selector.md",
+  "Simulink/Signal Routing/Bus_Selector.md",
+  "HDL Coder/Signal Routing/Bus_Selector.md"
+ ],
+ "text": "从输入总线中选择元素，输入 1 路、输出 1 路；{总线中的元素} 指定输入总线层次结构 只读: 元素名称列表、{输出元素}、{以虚拟总线输出} 指定将选定元素作为虚拟总线输出，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入虚拟或非虚拟总线 总线"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入总线的选定元素 标量 | 向量 | 矩阵 | 数组 | 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "总线中的元素",
+   "default": "",
+   "values": "输入总线层次结构 只读: 元素名称列表",
+   "group": ""
+  },
+  {
+   "name": "输出元素",
+   "default": "",
+   "values": "选择的输出元素 元素名称列表",
+   "group": ""
+  },
+  {
+   "name": "以虚拟总线输出",
+   "default": "off",
+   "values": "将选定元素作为虚拟总线输出的选项 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "key": "opcUAWrite",
+ "title": "OPC UA Write",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/OPC Unified Architecture/OPC_UA_Write.md"
+ ],
+ "text": "Write data to OPC UA server, 1 input; {Server} defines OPC UA server for block drop-down, {Nodes} sets the list of OPC UA server and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Value",
+   "direction": "input",
+   "summary": "Vector of node values vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Server",
+   "default": "",
+   "values": "Define OPC UA server for block drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Nodes",
+   "default": "",
+   "values": "List of OPC UA server nodes table",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time for write operation -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

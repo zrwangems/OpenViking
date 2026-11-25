@@ -1,0 +1,73 @@
+{
+ "key": "Sigmoid Layer",
+ "title": "Sigmoid Layer",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Activation Layers/Sigmoid_Layer.md"
+ ],
+ "text": "Sigmoid 层，输入 1 路、输出 1 路；按 {Integer rounding mode} 指定定点运算的舍入模式；{Approximation method} 用于计算层输出的近似方法、{Output minimum} 用于范围检查的最小输出值、{Output maximum} 用于范围检查的最大输出值、{Output data type} 输出数据类型、{Lock output data type setting against changes by the fixed-point tools} 用于防止定点工具覆盖输出数据类型、{Saturate on integer overflow} 指定溢出操作的方法、{Sample time} 用于指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出数据 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Approximation method",
+   "default": "None",
+   "values": "用于计算层输出的近似方法 None (default) | CORDIC | Lookup",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "用于范围检查的最小输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "用于范围检查的最大输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit: Inherit via internal rule (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "用于指定采样时间的选项 -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

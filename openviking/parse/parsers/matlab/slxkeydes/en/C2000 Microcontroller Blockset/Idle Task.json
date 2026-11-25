@@ -1,0 +1,43 @@
+{
+ "key": "Idle Task",
+ "title": "Idle Task",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/Idle_Task.md"
+ ],
+ "text": "Create free-running task, 1 input, 1 output, {Task numbers} sets Identifies created tasks by numbers; {Preemption flags} sets the number of storage buffers and {Enable simulation port} enables peripheral simulation port to block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Simulation only port scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Idle task data vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task numbers",
+   "default": "double",
+   "values": "Identifies created tasks by numbers double (default) | single | int8 | int16 | int32 | int64 | int64 | uint8 | uint16 | uint32 | uint64 | uint64 | Boolean | bus",
+   "group": ""
+  },
+  {
+   "name": "Preemption flags",
+   "default": "1",
+   "values": "Number of storage buffers 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable simulation port",
+   "default": "off",
+   "values": "Enable peripheral simulation port to block off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Ellipsoidal Solid",
+ "title": "Ellipsoidal Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Ellipsoidal_Solid.md"
+ ],
+ "text": "具有几何、惯性和颜色的椭球实体。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

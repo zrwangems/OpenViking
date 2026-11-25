@@ -1,0 +1,32 @@
+{
+ "key": "Gazebo Apply Command",
+ "title": "Gazebo Apply Command",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Apply_Command.md"
+ ],
+ "text": "Send command to Gazebo simulator, 1 input, {Command type} sets Type of command; {Sample time} sets the sampling time of input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Cmd",
+   "direction": "input",
+   "summary": "Gazebo Command bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Command type",
+   "default": "ApplyLinkWrench",
+   "values": "Type of command ApplyLinkWrench (default) | ApplyJointTorque | SetLinkWorldPose | SetLinkLinearVelocity | SetLinkAngularVelocity | SetJointPosition | SetJointVelocity",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Sampling time of input 0.001 (default) | positive",
+   "group": ""
+  }
+ ]
+}

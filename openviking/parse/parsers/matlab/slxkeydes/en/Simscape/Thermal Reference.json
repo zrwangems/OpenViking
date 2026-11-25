@@ -1,0 +1,13 @@
+{
+ "key": "Thermal Reference",
+ "title": "Thermal Reference",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Thermal_Reference.md"
+ ],
+ "text": "Reference connection for thermal ports.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

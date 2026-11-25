@@ -1,0 +1,253 @@
+{
+ "key": "fusion.simulink.trackFuser",
+ "title": "Track-To-Track Fuser",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Multi-Object Tracking Algorithms/Track_To_Track_Fuser.md"
+ ],
+ "text": "Track-to-Track Fusion, 4 inputs, 4 outputs, {Assignment algorithm name} sets Assignment algorithm; {Fuser Index} sets the unique index for track fuser, {Name of ’Custom’ assignment function}, {Threshold for assigning source to central tracks}, {Maximum number of central tracks}, {Maximum number of source configurations}, {Source configurations} sets the configuration of source systems struct, {Update source configurations with time}, {Track state parameters} sets the parameters of track state reference frame, {Update track state parameters with time}, {Simulate using} sets the type of simulation to run Interpreted, {Confirmation threshold [M N]} sets the threshold for central track confirmation, {Deletion threshold [P Q]} sets the threshold for central track deletion, {Central track state size}, {Central track object attributes}, {State transition function}, {State transition Jacobian function}, {Process noise matrix}, {Enable additive process noise}, {State fusion function}, {Name of ’Custom’ fusion function} sets the name of custom assignment function function, {State fusion parameters source}, {Cross covariance factor}, {Optimize covariance based on} sets the intersection algorithm criteria, {State fusion custom algorithm parameters}, {Fuse only confirmed source tracks}, {Fuse coasted source tracks} sets the fuse only confirmed source tracks, {Prediction time source} sets the source of prediction time, {Enable tentative tracks output} enables output port for tentative tracks, {Enable all tracks output} enables output port for all tracks, {Enable information output} enables output port for analysis, {Source of output bus name} sets the source of output track bus name and {Source of output info bus name}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tracks",
+   "direction": "input",
+   "summary": "Track list Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "Track update time real scalar"
+  },
+  {
+   "name": "Source Configurations",
+   "direction": "input",
+   "summary": "Source configuration list Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "Track state parameters Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "Confirmed tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "Tentative tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "Confirmed and tentative tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Additional information for analyzing track updates Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Fuser Index",
+   "default": "1",
+   "values": "Unique index for track fuser 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Assignment algorithm name",
+   "default": "MatchPairs",
+   "values": "Assignment algorithm MatchPairs (default) | Munkres | Jonker-Volgenant | Auction | Custom",
+   "group": ""
+  },
+  {
+   "name": "Name of ’Custom’ assignment function",
+   "default": "",
+   "values": "Name of ’Custom’ assignment function function name",
+   "group": ""
+  },
+  {
+   "name": "Threshold for assigning source to central tracks",
+   "default": "Inf]*30.0",
+   "values": "Threshold for assigning source to central tracks [1 Inf]*30.0 (default) | positive scalar | 1-by-2 vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of central tracks",
+   "default": "100",
+   "values": "Maximum number of central tracks 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of source configurations",
+   "default": "20",
+   "values": "Maximum number of source configurations 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source configurations",
+   "default": "struct(’SourceIndex’,1)",
+   "values": "Configuration of source systems struct(’SourceIndex’,1) (default) | array of source configuration structures",
+   "group": ""
+  },
+  {
+   "name": "Update source configurations with time",
+   "default": "off",
+   "values": "Update source configurations with time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "Parameters of track state reference frame structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "Update track state parameters with time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [M N]",
+   "default": "3]",
+   "values": "Threshold for central track confirmation [2 3] (default) | positive integer | real-valued 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [P Q]",
+   "default": "5]",
+   "values": "Threshold for central track deletion [5 5] (default) | positive integer | real-valued 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Central track state size",
+   "default": "6",
+   "values": "Central track state size 6 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Central track object attributes",
+   "default": "struct",
+   "values": "Central track object attributes struct (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "State transition function",
+   "default": "constvel",
+   "values": "State transition function constvel (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "State transition Jacobian function",
+   "default": "",
+   "values": "State transition Jacobian function function name",
+   "group": ""
+  },
+  {
+   "name": "Process noise matrix",
+   "default": "eye(3)",
+   "values": "Process noise matrix eye(3) (default) | positive real scalar | positive definite matrix",
+   "group": ""
+  },
+  {
+   "name": "Enable additive process noise",
+   "default": "off",
+   "values": "Enable additive process noise off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "State fusion function",
+   "default": "Cross",
+   "values": "State fusion function Cross (default) | Intersection | Custom",
+   "group": ""
+  },
+  {
+   "name": "Name of ’Custom’ fusion function",
+   "default": "",
+   "values": "Name of custom assignment function function name",
+   "group": ""
+  },
+  {
+   "name": "State fusion parameters source",
+   "default": "Auto",
+   "values": "State fusion parameters source Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Cross covariance factor",
+   "default": "0.4",
+   "values": "Cross covariance factor 0.4 (default) | scalar in range (0,1)",
+   "group": ""
+  },
+  {
+   "name": "Optimize covariance based on",
+   "default": "det",
+   "values": "Intersection algorithm criteria det (default) | trace",
+   "group": ""
+  },
+  {
+   "name": "State fusion custom algorithm parameters",
+   "default": "",
+   "values": "State fusion custom algorithm parameters MATLAB variable",
+   "group": ""
+  },
+  {
+   "name": "Fuse only confirmed source tracks",
+   "default": "on",
+   "values": "Fuse only confirmed source tracks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Fuse coasted source tracks",
+   "default": "off",
+   "values": "Fuse only confirmed source tracks off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Prediction time source",
+   "default": "Auto",
+   "values": "Source of prediction time Auto (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "Enable output port for tentative tracks off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "Enable output port for all tracks off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable information output",
+   "default": "off",
+   "values": "Enable output port for analysis information off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "Source of output track bus name Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Source of output info bus name",
+   "default": "Auto",
+   "values": "Source of output info bus name Auto (default) | Property",
+   "group": ""
+  }
+ ]
+}

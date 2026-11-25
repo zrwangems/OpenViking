@@ -1,0 +1,89 @@
+{
+ "key": "dsp.simulink.VariableFIRDecimator",
+ "title": "Variable FIR Decimation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Variable_FIR_Decimation.md"
+ ],
+ "text": "具有可调抽取因子的多相 FIR 抽取，输入 3 路、输出 1 路、无直接馈通；按 {Numerator source} 指定FIR 滤波器系数来源；{Specification} 用于控制抽取因子的模式 Decimation、{Maximum decimation factor} 指定最大抽取因子、{Specify decimation factor from input port} 指定从输入端口指定抽取因子、{Decimation factor} 指定抽取因子、{Output frame length} 输出帧长度、{Prototype filter numerator coefficients} 指定原型低通 FIR 滤波器系数、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "M",
+   "direction": "input",
+   "summary": "抽取因子输入端口 positive integer"
+  },
+  {
+   "name": "coeffs",
+   "direction": "input",
+   "summary": "原型滤波器系数 vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "抽取后的输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specification",
+   "default": "factor",
+   "values": "指定用于控制抽取因子的模式 Decimation factor (default) | Output frame length",
+   "group": ""
+  },
+  {
+   "name": "Maximum decimation factor",
+   "default": "24",
+   "values": "最大抽取因子 24 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify decimation factor from input port",
+   "default": "on",
+   "values": "从输入端口指定抽取因子 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Decimation factor",
+   "default": "24",
+   "values": "抽取因子 24 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output frame length",
+   "default": "48",
+   "values": "输出帧长度 48 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Numerator source",
+   "default": "Auto",
+   "values": "FIR 滤波器系数来源 Auto (default) | Dialog parameter | Input port",
+   "group": ""
+  },
+  {
+   "name": "Prototype filter numerator coefficients",
+   "default": "designMultirateFIR(1,24)",
+   "values": "原型低通 FIR 滤波器系数 designMultirateFIR(1,24) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

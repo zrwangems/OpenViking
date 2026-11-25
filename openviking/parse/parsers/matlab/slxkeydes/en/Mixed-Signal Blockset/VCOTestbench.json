@@ -1,0 +1,103 @@
+{
+ "key": "VCOTestbench",
+ "title": "VCO Testbench",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Measurements & Testbenches/VCO_Testbench.md"
+ ],
+ "text": "Validate voltage controlled oscillator (VCO) by measuring phase noise metrics or VCO characteristics, 1 input, 1 output; {Measurement} sets the target metric to be measured, {Set stop time} sets the recommended minimum simulation stop time as model stop time, {Plot measurement}, {Export measurement results}, {Control voltage (V)} sets the vCO control voltage, {Range of control voltage (V)} sets the range of VCO control voltages, {Autofill setup parameters} sets the automatically calculate setup parameters for phase noise measurement, {Resolution bandwidth (Hz)} sets the smallest positive frequency that can be resolved, {No. of spectral averages} sets the number of spectral averages, {Hold-off time (s)} sets the delays measurement analysis to avoid, {Autofill target metric} sets the automatically populate target phase noise metric, {Phase noise frequency offset vector (Hz)} sets the phase noise frequency offset vector and {Phase noise vector (dBc/Hz)} sets the phase noise vector. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "from vco",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "to vco",
+   "direction": "output",
+   "summary": "Output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "noise",
+   "values": "Target metric to be measured Phase noise (default) | Kvco and Fo",
+   "group": ""
+  },
+  {
+   "name": "Set stop time",
+   "default": "",
+   "values": "Set recommended minimum simulation stop time as model stop time button",
+   "group": ""
+  },
+  {
+   "name": "Plot measurement",
+   "default": "",
+   "values": "Plot measurements button",
+   "group": ""
+  },
+  {
+   "name": "Export measurement results",
+   "default": "",
+   "values": "Export measurement results button",
+   "group": ""
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "2",
+   "values": "VCO control voltage 2 (default) | scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Range of control voltage (V)",
+   "default": "7]",
+   "values": "Range of VCO control voltages [2 7] (default) | two-element row vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Autofill setup parameters",
+   "default": "",
+   "values": "Automatically calculate setup parameters for phase noise measurement button",
+   "group": "Setup"
+  },
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "30e3",
+   "values": "Smallest positive frequency that can be resolved 30e3 (default) | real positive scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "No. of spectral averages",
+   "default": "8",
+   "values": "Number of spectral averages 8 (default) | positive integer scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Hold-off time (s)",
+   "default": "0",
+   "values": "Delays measurement analysis to avoid transients 0 (default)",
+   "group": "Setup"
+  },
+  {
+   "name": "Autofill target metric",
+   "default": "",
+   "values": "Automatically populate target phase noise metric button",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Phase noise frequency offset vector (Hz)",
+   "default": "10e6]",
+   "values": "Phase noise frequency offset vector [30e3 100e3 1e6 3e6 10e6] (default) | real valued vector",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Phase noise vector (dBc/Hz)",
+   "default": "-100]",
+   "values": "Phase noise vector [-45 -55 -65 -75 -100] (default) | real valued vector",
+   "group": "Target Metric"
+  }
+ ]
+}

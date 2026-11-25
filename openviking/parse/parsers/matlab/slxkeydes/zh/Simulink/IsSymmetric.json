@@ -1,0 +1,31 @@
+{
+ "key": "IsSymmetric",
+ "title": "IsSymmetric",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/IsSymmetric.md"
+ ],
+ "text": "检查矩阵是对称还是斜对称，输入 1 路、输出 1 路、直接馈通；{Mode} 指定矩阵是对称还是斜对称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入矩阵 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "对称或斜对称矩阵 real scalar boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Symmetric",
+   "values": "矩阵是对称还是斜对称 Symmetric (default) | Skew-Symmetric",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "key": "Quaternion Multiplication",
+ "title": "Quaternion Multiplication",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Multiplication.md"
+ ],
+ "text": "Calculate product of two quaternions, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "First quaternion quaternion | vector of quaternions"
+  },
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Second quaternion quaternion | vector of quaternions"
+  },
+  {
+   "name": "q*r",
+   "direction": "output",
+   "summary": "Product vector | vector of quaternion products"
+  }
+ ],
+ "params": []
+}

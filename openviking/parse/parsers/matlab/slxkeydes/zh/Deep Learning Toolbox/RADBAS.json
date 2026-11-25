@@ -1,0 +1,13 @@
+{
+ "key": "RADBAS",
+ "title": "radbas",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/radbas.md"
+ ],
+ "text": "径向基传递函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

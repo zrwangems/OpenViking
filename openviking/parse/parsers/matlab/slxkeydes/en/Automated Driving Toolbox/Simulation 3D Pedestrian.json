@@ -1,0 +1,83 @@
+{
+ "key": "Simulation 3D Pedestrian",
+ "title": "Simulation 3D Pedestrian",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Pedestrian.md",
+  "Simulink 3D Animation/Simulation 3D/Actors/Simulation_3D_Pedestrian.md"
+ ],
+ "text": "Implement pedestrian in 3D environment, 3 inputs, 2 outputs, {Type} sets Type of pedestrian Male; {Scale}, {Initial position [X, Y, Z] (m)} sets the initial pedestrian position, {Initial yaw (deg)} sets the initial angle of pedestrian rotation, {Name}, {Sample time} and {Output location (m) and orientation (rad)} sets the output location and orientation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "Lateral position of pedestrian scalar"
+  },
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Longitudinal position of pedestrian scalar"
+  },
+  {
+   "name": "Yaw",
+   "direction": "input",
+   "summary": "Yaw orientation angle of pedestrian scalar"
+  },
+  {
+   "name": "Location",
+   "direction": "output",
+   "summary": "Location of pedestrian real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "Orientation of pedestrian real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "1",
+   "values": "Type of pedestrian Male 1 (default) | Male 2 | Male 3 | Female 1 | Female 2 | Female 3 | Child",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Scale",
+   "default": "1]",
+   "values": "Scale factor for pedestrian [1, 1, 1] (default) | real-valued 1-by-3 vector",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Initial position [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Initial pedestrian position [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Initial yaw (deg)",
+   "default": "0",
+   "values": "Initial angle of pedestrian rotation 0 (default) | real-valued scalar",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkPedestrian1",
+   "values": "Name of pedestrian SimulinkPedestrian1 (default) | pedestrian name",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "Output location and orientation of pedestrian off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

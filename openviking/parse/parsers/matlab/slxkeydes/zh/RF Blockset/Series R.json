@@ -1,0 +1,98 @@
+{
+ "key": "Series R",
+ "title": "Series R",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Series_Shunt RLC/Series_R.md"
+ ],
+ "text": "对串联电阻器建模；按 {X format} 指定频率图格式；{Resistance (ohms)} 指定电阻值、{Source of frequency data} 指定频率数据源、{Frequency data (Hz)} 指定频率数据范围、{Reference impedance (ohms)} 指定参考阻抗、{Plot type} 指定数据绘图类型 X-Y、{Y parameter1} 指定要绘制的参数类型、{Y parameter2} 指定要绘制的参数类型、{Y format1} 指定绘图格式 Magnitude、{Y format2} 指定绘图格式 Magnitude、{X parameter} 指定频率图 Freq、{Y scale} 指定 Y 轴刻度、{X scale} 指定 X 轴刻度、{Plot} 绘制指定数据，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Resistance (ohms)",
+   "default": "1",
+   "values": "电阻值 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "User-specified",
+   "values": "频率数据源 User-specified (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1:1.0e5:4e6]",
+   "values": "频率数据范围 [1:1.0e5:4e6] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "参考阻抗 50 (default) | nonnegative scalar",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "数据绘图类型 X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "频率图 Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Auto",
+   "values": "频率图格式 Auto (default) | Hz | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制指定数据 button",
+   "group": "Visualization"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Ravigneaux Gear",
+ "title": "Ravigneaux Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Ravigneaux_Gear.md"
+ ],
+ "text": "Planetary gear with two sun gears and two planet gear sets.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,63 @@
+{
+ "key": "LTE Turbo Encoder",
+ "title": "LTE Turbo Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/LTE_Turbo_Encoder.md"
+ ],
+ "text": "Encode binary samples using turbo algorithm, 3 inputs, 3 outputs; {Block size source} sets how to specify the block size, {Block size} sets the turbo code block size and {Enable trellis termination valid ports} enables ports that indicate the tail bit output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input sample scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "blockSize",
+   "direction": "input",
+   "summary": "Turbo code block size integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Encoded sample stream 3-by-1 column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "tail1, tail2",
+   "direction": "output",
+   "summary": "Indicate trellis termination cycles scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Block size source",
+   "default": "port",
+   "values": "How to specify the block size Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Block size",
+   "default": "6144",
+   "values": "Turbo code block size 6144 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable trellis termination valid ports",
+   "default": "off",
+   "values": "Enable ports that indicate the tail bit output samples off (default) | on",
+   "group": ""
+  }
+ ]
+}

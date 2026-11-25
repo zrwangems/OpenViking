@@ -1,0 +1,73 @@
+{
+ "key": "DownSample",
+ "title": "Downsample",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Operations/Downsample.md",
+  "DSP System Toolbox/Signal Operations/Downsample.md"
+ ],
+ "text": "Resample input at lower rate by deleting samples, 2 inputs, 1 output, no direct feedthrough, {Initial conditions} sets Initial value; {Downsample factor source} sets the source of downsample factor, {Downsample factor, M} sets the downsampling factor, {Sample offset (0 to M−1)}, {Input processing} sets the method to process input Columns, {Rate options} sets the enforce single-rate or allow multirate processing Enforce single-rate and {Allow arbitrary frame length for fixed-size input signals}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Data input column vector | matrix | N -D array"
+  },
+  {
+   "name": "M",
+   "direction": "input",
+   "summary": "Downsample factor positive integer"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Downsampled output column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Downsample factor source",
+   "default": "parameter",
+   "values": "Source of downsample factor Dialog parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Downsample factor, M",
+   "default": "2",
+   "values": "Downsampling factor 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample offset (0 to M−1)",
+   "default": "0",
+   "values": "Sample offset 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process input Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Enforce single-rate or allow multirate processing Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "on",
+   "values": "Allow arbitrary frame length for fixed-size input signals on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial value 0 (default) | real scalar | array",
+   "group": ""
+  }
+ ]
+}

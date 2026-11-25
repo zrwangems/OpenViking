@@ -1,0 +1,31 @@
+{
+ "key": "DSPFlip",
+ "title": "Flip",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Indexing/Flip.md"
+ ],
+ "text": "垂直或水平翻转输入，输入 1 路、输出 1 路、无直接馈通；{翻转维度} 指定要沿其翻转的维度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 矩阵"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "翻转的输出 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "翻转维度",
+   "default": "列",
+   "values": "指定要沿其翻转的维度 列 (默认) | 行",
+   "group": ""
+  }
+ ]
+}

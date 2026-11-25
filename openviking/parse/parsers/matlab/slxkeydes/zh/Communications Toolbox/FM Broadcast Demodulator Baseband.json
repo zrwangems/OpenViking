@@ -1,0 +1,91 @@
+{
+ "key": "FM Broadcast Demodulator Baseband",
+ "title": "FM Broadcast Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Baseband Modulation/FM_Broadcast_Demodulator_Baseband.md"
+ ],
+ "text": "解调广播 FM 调制信号，输入 1 路、输出 1 路；按 {Sample rate (Hz)} 指定输出信号采样率 240e3；{Frequency deviation (Hz)} 输出信号频率的峰值偏差 75e3、{De-emphasis filter time constant (s)} 指定去加重低通滤波器时间常数 7.5e-05、{Output audio sample rate (Hz)} 输出音频采样率、{Play audio device} 使用默认音频设备播放声音、{Buffer size (samples)} 指定缓冲区大小、{Stereo audio} 启用立体声解调、{RDS/RBDS demodulation} 启用 RDS、{Number of samples per RDS/RBDS symbol} 指定每个 RDS/RBDS 符号输出的采样点数、{RDS/RBDS Costas loop} 启用 Costas 环路、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "FM 调制的基带音频信号 column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "RDS（或 RBDS）信号 N -element column vector | 2-by- N matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "",
+   "values": "输出信号采样率 240e3 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency deviation (Hz)",
+   "default": "",
+   "values": "输出信号频率的峰值偏差 75e3 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "De-emphasis filter time constant (s)",
+   "default": "7.5e-05",
+   "values": "去加重低通滤波器时间常数 7.5e-05 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output audio sample rate (Hz)",
+   "default": "48000",
+   "values": "输出音频采样率 48000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Play audio device",
+   "default": "on",
+   "values": "使用默认音频设备播放声音 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Buffer size (samples)",
+   "default": "4096",
+   "values": "缓冲区大小 4096 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stereo audio",
+   "default": "off",
+   "values": "启用立体声解调的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "RDS/RBDS demodulation",
+   "default": "off",
+   "values": "启用 RDS（或 RBDS）波形解调的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of samples per RDS/RBDS symbol",
+   "default": "10",
+   "values": "每个 RDS/RBDS 符号输出的采样点数 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "RDS/RBDS Costas loop",
+   "default": "off",
+   "values": "启用 Costas 环路的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

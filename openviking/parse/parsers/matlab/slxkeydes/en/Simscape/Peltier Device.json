@@ -1,0 +1,13 @@
+{
+ "key": "Peltier Device",
+ "title": "Peltier Device",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Peltier_Device.md"
+ ],
+ "text": "Electrothermal cooler or thermoelectric generator.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

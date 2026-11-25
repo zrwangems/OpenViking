@@ -1,0 +1,13 @@
+{
+ "key": "Buck Converter",
+ "title": "Buck Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Buck_Converter.md"
+ ],
+ "text": "Controller-driven DC-DC step-down voltage regulator.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

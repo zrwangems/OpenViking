@@ -1,0 +1,13 @@
+{
+ "key": "D Latch",
+ "title": "D Latch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Logic/D_Latch.md"
+ ],
+ "text": "Behavioral model of D latch.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,75 @@
+{
+ "key": "Real Divide HDL Optimized",
+ "title": "Real Divide HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Math Operations/Real_Divide_HDL_Optimized.md"
+ ],
+ "text": "Divide one real input by another using CORDIC algorithm and generate optimized HDL code, 3 inputs, 3 outputs, {Output datatype} sets Data type of the output; {Show divide by zero port} sets the whether to show the divideByZero port, {Automatically select CORDIC maximum shift value based on input word length}, {CORDIC maximum shift value} sets the maximum shift value of hyperbolic vectoring CORDIC and {Number of iterations per pipeline register} sets the number of CORDIC iterations to perform per pipeline. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "num",
+   "direction": "input",
+   "summary": "Numerator scalar | vector | matrix"
+  },
+  {
+   "name": "den",
+   "direction": "input",
+   "summary": "Denominator scalar | vector | matrix"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Whether input is valid Boolean scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output computed by dividing inputs real scalar"
+  },
+  {
+   "name": "divideByZero",
+   "direction": "output",
+   "summary": "Whether the value at output is the result of division by zero Boolean scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Whether output data is valid Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output datatype",
+   "default": "fixdt(1,18,10)",
+   "values": "Data type of the output fixdt(1,18,10) (default) | single | double | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Show divide by zero port",
+   "default": "off",
+   "values": "Whether to show the divideByZero port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Automatically select CORDIC maximum shift value based on input word length",
+   "default": "on",
+   "values": "Automatically select CORDIC maximum shift value based on input word length on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "CORDIC maximum shift value",
+   "default": "1",
+   "values": "Maximum shift value of hyperbolic vectoring CORDIC wl - 1 (default) | 10 | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations per pipeline register",
+   "default": "1",
+   "values": "Number of CORDIC iterations to perform per pipeline stage 1 (default) | positive integer-valued scalar",
+   "group": ""
+  }
+ ]
+}

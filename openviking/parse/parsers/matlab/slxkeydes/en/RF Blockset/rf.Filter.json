@@ -1,0 +1,163 @@
+{
+ "key": "rf.Filter",
+ "title": "Filter",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Idealized Baseband/Filter.md"
+ ],
+ "text": "Filter RF complex baseband signals in Simulink, 1 input, 1 output, {First plot type} sets Plot type; {Design method} sets the filter design method, {Filter type} sets the filter response type, {Implement using filter order}, {Filter order}, {Passband frequency (Hz)} sets the passband frequency 1e9, {Passband attenuation (dB)} sets the passband attenuation 10*log10, {Stopband frequencies (Hz)} sets the stopband frequencies for bandstop filters, {Stopband attenuation (dB)}, {RF frequency (Hz)} sets the center of signal bandwidth, {Simulate using} sets the type of simulation to run Interpreted, {Modeling domain}, {Solver} sets the time-domain solvers, {FIR filter length} sets the filter length of 1-D digital filter, {Impulse response arguments} sets the input arguments to plot impulse response, {Step response arguments} sets the input arguments to plot step response, {First plot y-axis units} sets the y-axis units of first plot Magnitude, {Second Plot type} plots type of second plot, {Second plot y-axis units} sets the y-axis units of second plot Magnitude, {X-axis frequency points (Hz)} sets the frequency points to plot S-parameter data, {X-axis scale}, {Y-axis scale} and {Plot Sparameter characteristics} plots S-parameters data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Time-dependent input signal real scalar | real column | complex scalar | complex column"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Time-dependent output signal complex scalar | complex column"
+  }
+ ],
+ "params": [
+  {
+   "name": "Design method",
+   "default": "Butterworth",
+   "values": "Filter design method Butterworth (default) | Chebyshev | Inverse Chebyshev",
+   "group": "Main"
+  },
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "Filter response type Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": "Main"
+  },
+  {
+   "name": "Implement using filter order",
+   "default": "off",
+   "values": "Implement using filter order off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Filter order",
+   "default": "3",
+   "values": "Filter order 3 (default) | integer greater than 2",
+   "group": "Main"
+  },
+  {
+   "name": "Passband frequency (Hz)",
+   "default": "1e9",
+   "values": "Passband frequency 1e9 (default) | positive real scalar | positive ascending two-tuple vector",
+   "group": "Main"
+  },
+  {
+   "name": "Passband attenuation (dB)",
+   "default": "10*log10(2)",
+   "values": "Passband attenuation 10*log10(2) (default) | positive real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Stopband frequencies (Hz)",
+   "default": "2000000000",
+   "values": "Stopband frequencies for bandstop filters 2000000000 (default) | positive real scalar | positive ascending two-tuple vector",
+   "group": "Main"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "40",
+   "values": "Stopband attenuation 40 (default) | positive real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "RF frequency (Hz)",
+   "default": "1000000000",
+   "values": "Center of signal bandwidth 1000000000 (default) | positive real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling domain",
+   "default": "step)",
+   "values": "Modeling domain Time (Fixed step) (default) | Time (Continuous) | Frequency (Digital filter)",
+   "group": "Modeling"
+  },
+  {
+   "name": "Solver",
+   "default": "NDF2",
+   "values": "Time-domain solvers NDF2 (default) | Trapezoidal | Backward Euler | ode15s | ode23s | ode23t (trap) | ode23tb (trap+BE)",
+   "group": "Modeling"
+  },
+  {
+   "name": "FIR filter length",
+   "default": "128",
+   "values": "Filter length of 1-D digital filter 128 (default) | real positive integer",
+   "group": "Modeling"
+  },
+  {
+   "name": "First plot type",
+   "default": "S21",
+   "values": "Plot type S21 (default) | Phase delay | Group delay | Impulse response | Step response",
+   "group": "Visualization"
+  },
+  {
+   "name": "Impulse response arguments",
+   "default": "1e4]",
+   "values": "Input arguments to plot impulse response [ 1e-11, 1e4] (default) | two-element vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Step response arguments",
+   "default": "]",
+   "values": "Input arguments to plot step response [ 1e-11, 1e4, 1e-10 ] (default) | three-element vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "First plot y-axis units",
+   "default": "(dB)",
+   "values": "Y-axis units of first plot Magnitude (dB) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "Second Plot type",
+   "default": "None",
+   "values": "Plot type of second plot None (default) | S21 | Phase delay | Group delay | Impulse response | Step response",
+   "group": "Visualization"
+  },
+  {
+   "name": "Second plot y-axis units",
+   "default": "(dB)",
+   "values": "Y-axis units of second plot Magnitude (dB) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "X-axis frequency points (Hz)",
+   "default": "logspace(8,10,2001)",
+   "values": "Frequency points to plot S-parameter data logspace(8,10,2001) (default) | positive real vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "X-axis scale",
+   "default": "Linear",
+   "values": "Linear or logarithmic X-axis scale Linear (default) | Logarithmic",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y-axis scale",
+   "default": "Linear",
+   "values": "Linear or logarithmic Y-axis scale Linear (default) | Logarithmic",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot Sparameter characteristics",
+   "default": "",
+   "values": "Plot S-parameters data button",
+   "group": "Visualization"
+  }
+ ]
+}

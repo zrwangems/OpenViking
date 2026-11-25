@@ -1,0 +1,13 @@
+{
+ "key": "Variable Translational Spring",
+ "title": "Variable Translational Spring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Variable_Translational_Spring.md"
+ ],
+ "text": "Translational spring with variable spring stiffness.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,24 @@
+{
+ "key": "FunctionCallFeedbackLatch",
+ "title": "Function-Call Feedback Latch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Function_Call_Feedback_Latch.md"
+ ],
+ "text": "断开函数调用模块之间涉及数据信号的反馈环路，输入 1 路、输出 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "来自函数调用子系统模块的信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "到函数调用子系统的信号 scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

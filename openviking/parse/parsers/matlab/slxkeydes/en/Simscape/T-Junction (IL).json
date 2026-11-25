@@ -1,0 +1,13 @@
+{
+ "key": "T-Junction (IL)",
+ "title": "T-Junction (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pipes & Fittings/T_Junction_IL.md"
+ ],
+ "text": "Three-way junction in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

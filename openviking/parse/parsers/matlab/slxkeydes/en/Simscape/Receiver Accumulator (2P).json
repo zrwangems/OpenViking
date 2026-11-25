@@ -1,0 +1,13 @@
+{
+ "key": "Receiver Accumulator (2P)",
+ "title": "Receiver Accumulator (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Tanks & Accumulators/Receiver_Accumulator_2P.md"
+ ],
+ "text": "Tank with liquid and vapor volumes of variable proportion.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

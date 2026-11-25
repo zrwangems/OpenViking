@@ -1,0 +1,13 @@
+{
+ "key": "Flexible Shaft",
+ "title": "Flexible Shaft",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Flexible_Shaft.md"
+ ],
+ "text": "具有扭转和弯曲柔度的轴。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

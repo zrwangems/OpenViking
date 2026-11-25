@@ -1,0 +1,13 @@
+{
+ "key": "AC Current Source",
+ "title": "AC Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Sources/AC_Current_Source.md"
+ ],
+ "text": "Ideal sinusoidal current source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

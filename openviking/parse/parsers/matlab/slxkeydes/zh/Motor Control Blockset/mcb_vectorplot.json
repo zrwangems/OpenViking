@@ -1,0 +1,86 @@
+{
+ "key": "mcb_vectorplot",
+ "title": "Vector plot",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Signal Management/Vector_plot.md"
+ ],
+ "text": "绘制空间域中的矢量，输入 7 路；按 {角度单位} 指定角度输入的单位；{选择输入类型} 指定输入端口类型 Vabc Iabc、{选择参考系} 指定矢量的参考系、{alpha (a 相)轴对齐} 指定 dq 参考系对齐 D、{Theta 单位} 指定 Theta 输入的单位、{在仿真开始时打开绘图} 指定在仿真开始时打开矢量图，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "三相电压 矢量"
+  },
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "三相电流 矢量"
+  },
+  {
+   "name": "Theta",
+   "direction": "input",
+   "summary": "变换的角度 标量"
+  },
+  {
+   "name": "Vdq",
+   "direction": "input",
+   "summary": "dq 参考系中的电压 矢量"
+  },
+  {
+   "name": "Idq",
+   "direction": "input",
+   "summary": "dq 参考系中的电流 矢量"
+  },
+  {
+   "name": "Magnitude",
+   "direction": "input",
+   "summary": "矢量幅值 矢量"
+  },
+  {
+   "name": "Angle",
+   "direction": "input",
+   "summary": "矢量角 矢量"
+  }
+ ],
+ "params": [
+  {
+   "name": "选择输入类型",
+   "default": "Theta",
+   "values": "输入端口类型 Vabc Iabc Theta (默认) | Vdq Idq | Mag Angle",
+   "group": ""
+  },
+  {
+   "name": "选择参考系",
+   "default": "旋转参考系",
+   "values": "矢量的参考系 旋转参考系 (默认) | 静止参考系",
+   "group": ""
+  },
+  {
+   "name": "alpha (a 相)轴对齐",
+   "default": "轴",
+   "values": "dq 参考系对齐 D 轴 (默认) | Q 轴",
+   "group": ""
+  },
+  {
+   "name": "Theta 单位",
+   "default": "弧度",
+   "values": "Theta 输入的单位 弧度 (默认) | 度 | 标幺",
+   "group": ""
+  },
+  {
+   "name": "角度单位",
+   "default": "弧度",
+   "values": "角度输入的单位 弧度 (默认) | 度 | 标幺",
+   "group": ""
+  },
+  {
+   "name": "在仿真开始时打开绘图",
+   "default": "打开",
+   "values": "在仿真开始时打开矢量图 打开 (默认) | 关闭",
+   "group": ""
+  }
+ ]
+}

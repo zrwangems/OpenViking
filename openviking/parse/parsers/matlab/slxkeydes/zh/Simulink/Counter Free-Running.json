@@ -1,0 +1,33 @@
+{
+ "key": "Counter Free-Running",
+ "title": "Counter Free-Running",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Counter_Free_Running.md",
+  "HDL Coder/Sources/Counter_Free_Running.md"
+ ],
+ "text": "进行累加计数并在达到指定位数的最大值后溢出归零；输出 1 路；按 {采样时间} 指定采样之间的时间间隔；{位数}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "计数值 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "位数",
+   "default": "16",
+   "values": "位数 16 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

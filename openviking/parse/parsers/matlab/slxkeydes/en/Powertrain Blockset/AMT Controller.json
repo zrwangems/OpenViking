@@ -1,0 +1,71 @@
+{
+ "key": "AMT Controller",
+ "title": "AMT Controller",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Transmission Controllers/AMT_Controller.md"
+ ],
+ "text": "Automated manual transmission controller with clutch open, close, and synchronization timing, 3 outputs; {Initial gear, G_o} sets the engaged gear, {Clutch actuation time, tc} sets the time .1, {Synchronizer time, ts} sets the time .01, {Sample period, dt} sets the time, {Start simulation with clutch locked} selects to initially lock clutch and {Start simulation with synchronizer locked} selects to initially lock synchronizer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "GearReq",
+   "direction": "unknown",
+   "summary": "Gear number to engage scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "GearEffct",
+   "direction": "output",
+   "summary": "Effective gear for shifting scalar"
+  },
+  {
+   "name": "Cltch",
+   "direction": "output",
+   "summary": "Command for clutch pressure scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial gear, G_o",
+   "default": "0",
+   "values": "Engaged gear 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch actuation time, tc",
+   "default": ".1",
+   "values": "Time .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Synchronizer time, ts",
+   "default": ".01",
+   "values": "Time .01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample period, dt",
+   "default": "-1",
+   "values": "Time -1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with clutch locked",
+   "default": "off",
+   "values": "Select to initially lock clutch off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with synchronizer locked",
+   "default": "off",
+   "values": "Select to initially lock synchronizer off (default) | on",
+   "group": ""
+  }
+ ]
+}

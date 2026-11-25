@@ -1,0 +1,60 @@
+{
+ "key": "Sliding Mode Controller",
+ "title": "Sliding Mode Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Sliding_Mode_Controller.md"
+ ],
+ "text": "基于滞环的滑模控制，输入 2 路、输出 1 路；{Sliding factor} 指定滑动因子、{Hysteresis band} 指定总滞环带宽、{Control action upper limit} 控制信号上限，u max、{Control action lower limit} 控制信号下限，u min、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "被控对象参考 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制器输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sliding factor",
+   "default": "1",
+   "values": "滑动因子 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Hysteresis band",
+   "default": "0.2",
+   "values": "总滞环带宽 0.2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "10",
+   "values": "控制信号上限，u max 10 (default) | scalar greater than the value of the Control action lower limit parameter",
+   "group": ""
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "-10",
+   "values": "控制信号下限，u min -10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

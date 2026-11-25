@@ -1,0 +1,20 @@
+{
+ "key": "Phase Shift",
+ "title": "Phase Shift",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Phase_Shift.md"
+ ],
+ "text": "Model phase shift in RF systems; {Phase shift}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Phase shift",
+   "default": "deg",
+   "values": "Phase shift angle 90 deg (default) | non-negative scalar integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,807 @@
+{
+ "key": "SI Controller",
+ "title": "SI Controller",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Controllers/SI_Controller.md"
+ ],
+ "text": "使用驾驶员扭矩请求的火花点火发动机控制器，输入 16 路、输出 8 路；按 {Torque table load breakpoints, f_tq_nl_l_bpt} 指定断点 [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175；{Air mass flow estimation model} 指定空气质量流量估计模型 Dual Variable Cam、{Torque estimation model} 指定扭矩估计模型 Torque、{Engine commanded load table, f_lcmd} 查找表 array、{Torque command breakpoints, f_lcmd_tq_bpt} 指定断点、{Speed breakpoints, f_lcmd_n_bpt} 指定断点、{Throttle area percent, f_tap} 查找表，% array、{Throttle area percent load breakpoints, f_tap_ld_bpt} 指定断点、{Throttle area percent speed breakpoints, f_tap_n_bpt} 指定断点、{Throttle area percent to position percent table, f_tpp} 查找表、{Throttle area percent to position percent area breakpoints, f_tpp_tap_bpt} 指定断点、{Wastegate area percent, f_wap} 查找表，% array、{Load breakpoints, f_wap_ld_bpt} 指定断点、{Speed breakpoints, f_wap_n_bpt} 指定断点，单位为 rpm、{Intake cam phaser angle, f_icp} 查找表 array、{Exhaust cam phaser angle, f_ecp} 查找表 array、{Load breakpoints, f_cp_ld_bpt} 指定断点、{Speed breakpoints, f_cp_n_bpt} 指定断点、{Commanded EGR percent, f_egrpct_cmd} 查找表 array、{Load breakpoints, f_egrpct_ld_bpt} 指定断点、{Speed breakpoints, f_egrpct_n_bpt} 指定断点、{EGR valve area percent, f_egr_areapct_cmd} 查找表 array、{Open EGR valve standard flow, f_egr_max_stdflow} 指定断点、{Normalized EGR valve standard flow breakpoints, f_egr_areapct_nrmlzdflow_bpt} 指定断点、{EGR valve pressure ratio breakpoints, f_egr_areapct_pr_bpt} 指定断点 vector、{Injector slope, Sinj} 指定斜率、{Stoichiometric air-fuel ratio, afr_stoich} 指定比值、{Relative air-fuel ratio lambda, f_lamcmd} 指定空燃比、{Load breakpoints, f_lamcmd_ld_bpt} 指定断点、{Speed breakpoints, f_lamcmd_n_bpt} 指定断点、{Engine startup lambda enrichment delta vs coolant temperature, f_startup_lambda_delta} 查找表、{Engine startup lambda enrichment delta time constant vs coolant temperature, f_startup_lambda_delta_timecnst} 指定 Lambda 时间常数、{Engine startup coolant temperature breakpoints, f_startup_ect_bpt} 指定断点、{Closed-loop feedback} 指定最小化指令 AFR 误差、{Dither} 指定对催化转化效率建模、{Closed-loop fuel proportional gain, ClsdLpFuelPGain} 指定比例增益、{Closed-loop fuel integral gain, ClsdLpFuelIGain} 指定积分增益、{Closed-loop fuel integrator limit, ClsdLpFuelIntgLmt} 指定积分器限值、{Lambda dither amplitude, LambdaDitherAmp} 指定 Amplitude、{Lambda dither frequency, LambdaDitherFrq} 指定频率、{Oxygen sensor stoichiometric reset voltage, O2ResetStoichVoltSen} 指定闭环 AFR 控制、{Oxygen sensor minimum voltage reset, O2ResetMinVoltSen} 指定闭环 AFR 控制、{Oxygen sensor maximum voltage reset, O2ResetMaxVoltSen} 指定闭环 AFR 控制、{Oxygen sensor voltage learn update period, O2LearnUpdatePerSen} 指定闭环 AFR 控制、{Oxygen sensor voltage amplitude minimum, O2AmpMinVoltSen} 指定闭环 AFR 控制、{Oxygen sensor ready voltage, O2ReadyVoltSen} 指定闭环 AFR 控制、{Oxygen sensor not ready voltage, O2NotReadyVoltSen} 指定闭环 AFR 控制、{Spark advance table, f_sa} 查找表 array、{Load breakpoints, f_sa_ld_bpt} 指定断点、{Speed breakpoints, f_sa_n_bpt} 指定断点、{Target idle speed, N_idle} 指定速度、{Enable torque command limit, Trq_idlecmd_enable} 指定转矩、{Maximum torque command, Trq_idlecmd_max} 指定转矩、{Proportional gain, Kp_idle} 指定 PI 控制器、{Integral gain, Ki_idle} 指定 PI 控制器、{Rev-limiter speed threshold, EngRevLim} 指定发动机转速限制、{Engine cranking speed, CrankSpeed} 指定发动机转速、{Enable Engine Stop-Start} 以启用发动机起停逻辑、{External Enable Port} 指定创建输入端口、{Engine stop time, EngStopTime} 指定发动机停止时间、{Catalyst light off time, CatLightOffTime} 指定催化剂起燃时间、{Sample time, Ts} 指定采样时间、{Number of cylinders, NCyl} 指定发动机气缸数、{Crank revolutions per power stroke, Cps} 指定每冲程转数、{Total displaced volume, Vd} 指定体积、{Ideal gas constant air, Rair} 指定常量、{Air standard pressure, Pstd} 指定压力、{Air standard temperature, Tstd} 指定温度、{Speed-density volumetric efficiency, f_nv} 查找表 array、{Speed-density intake manifold pressure breakpoints, f_nv_prs_bpt} 指定断点、{Speed-density engine speed breakpoints, f_nv_n_bpt} 指定断点、{Cylinder volume at intake valve close table, f_vivc} 指定二维查找表 array、{Engine speed breakpoints, f_tm_corr_n_bpt} 指定断点、{Cylinder volume intake cam phase breakpoints, f_vivc_icp_bpt} 指定断点、{Cylinder trapped mass correction factor, f_tm_corr} 查找表 array、{Normalized density breakpoints, f_tm_corr_nd_bpt} 指定断点、{Intake mass flow, f_mdot_intk} 查找表 array、{Exhaust cam phase breakpoints, f_mdot_air_ecp_bpt} 指定断点、{Trapped mass flow breakpoints, f_mdot_trpd_bpt} 指定断点、{Air mass flow correction factor, f_mdot_air_corr} 查找表 array、{Engine load breakpoints for air mass flow correction, f_mdot_air_corr_ld_bpt} 指定断点 vector、{Engine speed breakpoints for air mass flow correction, f_mdot_air_n_bpt} 指定断点、{EGR flow time constant, tau_egr} 指定常量、{Intake system pressure ratio table, f_intksys_stdflow_pr} 指定表 array、{Standard mass flow rate breakpoints for intake pressure ratio, f_intksys_stdflow_bpt} 指定断点、{EGR valve standard mass flow rate, f_egr_stdflow} 指定表 vector、{EGR valve standard flow pressure ratio breakpoints, f_egr_stdflow_pr_bpt} 指定断点 vector、{EGR valve standard flow area percent breakpoints, f_egr_stdflow_egrap_bpt} 指定断点、{Torque table, f_tq_nl} 查找表、{Torque table speed breakpoints, f_tq_nl_n_bpt} 指定断点、{Crank angle pressure and torque} 启用曲轴角信号、{Cylinder pressure, f_crk_prs} 指定气缸压力表 L x M x、{Brake torque, f_crk_btq} 指定制动扭矩表 L x M x、{Speed breakpoints, f_crk_n_bpt} 指定速度断点、{Load breakpoints, f_crk_l_bpt} 指定负荷断点、{Crank angle breakpoints, f_crk_ang_bpt} 指定曲轴转角断点、{TDC compression angles by cylinder, f_crk_tdc_ang} 指定各气缸的 TDC 压缩角、{Inner torque table, f_tq_inr} 查找表 array、{Friction torque table, f_tq_fric} 查找表 array、{Engine temperature modifier on friction torque, f_fric_temp_mod} 查找表、{Engine temperature modifier breakpoints, f_fric_temp_bpt} 指定断点、{Pumping torque table, f_tq_pump} 查找表 array、{Optimal spark table, f_sa_opt} 查找表 array、{Inner torque load breakpoints, f_tq_inr_l_bpt} 指定断点、{Inner torque speed breakpoints, f_tq_inr_n_bpt} 指定断点、{Spark efficiency table, f_m_sa} 查找表 array、{Spark retard from optimal, f_del_sa_bpt} 指定断点、{Lambda efficiency, f_m_lam} 查找表 array、{Lambda breakpoints, f_m_lam_bpt} 指定断点、{Exhaust temperature table, f_t_exh} 查找表 array、{Load breakpoints, f_t_exh_l_bpt} 指定断点、{Speed breakpoints, f_t_exh_n_bpt} 指定断点，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TrqCmd",
+   "direction": "input",
+   "summary": "指令发动机扭矩 scalar"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "input",
+   "summary": "测量发动机转速 scalar"
+  },
+  {
+   "name": "AmbPrs",
+   "direction": "input",
+   "summary": "测量的绝对环境压力 scalar"
+  },
+  {
+   "name": "Map",
+   "direction": "input",
+   "summary": "测量进气歧管绝对压力 scalar"
+  },
+  {
+   "name": "Mat",
+   "direction": "input",
+   "summary": "测量进气歧管绝对温度 scalar"
+  },
+  {
+   "name": "IntkCamPhase",
+   "direction": "input",
+   "summary": "进气凸轮相位器角度 scalar"
+  },
+  {
+   "name": "ExhCamPhase",
+   "direction": "input",
+   "summary": "排气凸轮相位器角度 scalar"
+  },
+  {
+   "name": "Iat",
+   "direction": "input",
+   "summary": "进气温度 scalar"
+  },
+  {
+   "name": "Ect",
+   "direction": "input",
+   "summary": "发动机冷却温度 scalar"
+  },
+  {
+   "name": "EgrVlvInTemp",
+   "direction": "input",
+   "summary": "EGR 阀入口温度 scalar"
+  },
+  {
+   "name": "EgrVlvAreaPct",
+   "direction": "input",
+   "summary": "EGR 阀面积百分比 scalar"
+  },
+  {
+   "name": "EgrVlvDeltaPrs",
+   "direction": "input",
+   "summary": "EGR 阀压差 scalar"
+  },
+  {
+   "name": "O2VoltSen",
+   "direction": "input",
+   "summary": "氧传感器电压 scalar"
+  },
+  {
+   "name": "LambdaCmd",
+   "direction": "input",
+   "summary": "指令 AFR，lambda scalar"
+  },
+  {
+   "name": "IgSw",
+   "direction": "input",
+   "summary": "点火开关 Boolean"
+  },
+  {
+   "name": "ESSEnable",
+   "direction": "input",
+   "summary": "发动机停止-启动启用 Boolean"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "ThrPosPctCmd",
+   "direction": "output",
+   "summary": "节气门面积百分比指令 scalar"
+  },
+  {
+   "name": "WgAreaPctCmd",
+   "direction": "output",
+   "summary": "废气门面积百分比指令 scalar"
+  },
+  {
+   "name": "InjPw",
+   "direction": "output",
+   "summary": "喷油器脉宽 scalar"
+  },
+  {
+   "name": "SpkAdv",
+   "direction": "output",
+   "summary": "点火提前角 scalar"
+  },
+  {
+   "name": "IntkCamPhaseCmd",
+   "direction": "output",
+   "summary": "进气凸轮相位器角度指令 scalar"
+  },
+  {
+   "name": "ExhCamPhaseCmd",
+   "direction": "output",
+   "summary": "排气凸轮相位器角度指令 scalar"
+  },
+  {
+   "name": "EgrVlvAreaPctCmd",
+   "direction": "output",
+   "summary": "EGR 阀面积百分比指令 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Air mass flow estimation model",
+   "default": "Phasing",
+   "values": "选择空气质量流量估计模型 Dual Variable Cam Phasing (default) | Simple Speed-Density",
+   "group": "Configuration"
+  },
+  {
+   "name": "Torque estimation model",
+   "default": "Structure",
+   "values": "选择扭矩估计模型 Torque Structure (default) | Simple Torque Lookup",
+   "group": "Configuration"
+  },
+  {
+   "name": "Engine commanded load table, f_lcmd",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Controls"
+  },
+  {
+   "name": "Torque command breakpoints, f_lcmd_tq_bpt",
+   "default": "175]",
+   "values": "断点 [15 26.43 37.86 49.29 60.71 72.14 83.57 95 106.4 117.9 129.3 140.7 152.1 163.6 175] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_lcmd_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent, f_tap",
+   "default": "",
+   "values": "查找表，% array",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent load breakpoints, f_tap_ld_bpt",
+   "default": "1.25]",
+   "values": "断点 [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent speed breakpoints, f_tap_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent to position percent table, f_tpp",
+   "default": "100]",
+   "values": "查找表 [0 100] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent to position percent area breakpoints, f_tpp_tap_bpt",
+   "default": "100]",
+   "values": "断点 [0 100] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Wastegate area percent, f_wap",
+   "default": "",
+   "values": "查找表，% array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_wap_ld_bpt",
+   "default": "1.25]",
+   "values": "断点 [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_wap_n_bpt",
+   "default": "5000]",
+   "values": "断点，单位为 rpm [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Intake cam phaser angle, f_icp",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Controls"
+  },
+  {
+   "name": "Exhaust cam phaser angle, f_ecp",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_cp_ld_bpt",
+   "default": "1.25]",
+   "values": "断点 [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_cp_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Commanded EGR percent, f_egrpct_cmd",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_egrpct_ld_bpt",
+   "default": "1.25]",
+   "values": "断点 [0 0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_egrpct_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "EGR valve area percent, f_egr_areapct_cmd",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Controls"
+  },
+  {
+   "name": "Open EGR valve standard flow, f_egr_max_stdflow",
+   "default": "0]",
+   "values": "断点 [74.87 74.87 74.74 74.39 73.81 72.98 71.91 70.58 68.97 67.06 64.84 62.25 59.27 55.81 51.79 47.07 36.33 24.22 12.11 0] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Normalized EGR valve standard flow breakpoints, f_egr_areapct_nrmlzdflow_bpt",
+   "default": "1]",
+   "values": "断点 [0 0.03448 0.06897 0.1034 0.1379 0.1724 0.2069 0.2414 0.2759 0.3103 0.3448 0.3793 0.4138 0.4483 0.4828 0.5172 0.5517 0.5862 0.6207 0.6552 0.6897 0.7241 0.7586 0.7931 0.8276 0.8621 0.8966 0.931 0.9655 1] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "EGR valve pressure ratio breakpoints, f_egr_areapct_pr_bpt",
+   "default": "",
+   "values": "断点 vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Injector slope, Sinj",
+   "default": "6.452",
+   "values": "斜率 6.452 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Stoichiometric air-fuel ratio, afr_stoich",
+   "default": "14.6",
+   "values": "比值 14.6 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Relative air-fuel ratio lambda, f_lamcmd",
+   "default": "",
+   "values": "空燃比 (AFR) 查找表 array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_lamcmd_ld_bpt",
+   "default": "1.25]",
+   "values": "断点 [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_lamcmd_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine startup lambda enrichment delta vs coolant temperature, f_startup_lambda_delta",
+   "default": "0]",
+   "values": "查找表 [0.5 0.3 0.2 0] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine startup lambda enrichment delta time constant vs coolant temperature, f_startup_lambda_delta_timecnst",
+   "default": "0]",
+   "values": "Lambda 时间常数 [90 40 12 0] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine startup coolant temperature breakpoints, f_startup_ect_bpt",
+   "default": "50]",
+   "values": "断点 [-40 0 20 50] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Closed-loop feedback",
+   "default": "off",
+   "values": "最小化指令 AFR 误差 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Dither",
+   "default": "off",
+   "values": "对催化转化效率建模 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Closed-loop fuel proportional gain, ClsdLpFuelPGain",
+   "default": "0.005",
+   "values": "比例增益 0.005 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Closed-loop fuel integral gain, ClsdLpFuelIGain",
+   "default": "0.05",
+   "values": "积分增益 0.05 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Closed-loop fuel integrator limit, ClsdLpFuelIntgLmt",
+   "default": "0.2",
+   "values": "积分器限值 0.2 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Lambda dither amplitude, LambdaDitherAmp",
+   "default": "0.03",
+   "values": "Amplitude 0.03 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Lambda dither frequency, LambdaDitherFrq",
+   "default": "0.75",
+   "values": "频率 0.75 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor stoichiometric reset voltage, O2ResetStoichVoltSen",
+   "default": "2500",
+   "values": "闭环 AFR 控制 2500 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor minimum voltage reset, O2ResetMinVoltSen",
+   "default": "0",
+   "values": "闭环 AFR 控制 0 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor maximum voltage reset, O2ResetMaxVoltSen",
+   "default": "5000",
+   "values": "闭环 AFR 控制 5000 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor voltage learn update period, O2LearnUpdatePerSen",
+   "default": "4",
+   "values": "闭环 AFR 控制 4 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor voltage amplitude minimum, O2AmpMinVoltSen",
+   "default": "250",
+   "values": "闭环 AFR 控制 250 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor ready voltage, O2ReadyVoltSen",
+   "default": "1150",
+   "values": "闭环 AFR 控制 1150 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor not ready voltage, O2NotReadyVoltSen",
+   "default": "1950",
+   "values": "闭环 AFR 控制 1950 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Spark advance table, f_sa",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_sa_ld_bpt",
+   "default": "1.25]",
+   "values": "断点 [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_sa_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Target idle speed, N_idle",
+   "default": "750",
+   "values": "速度 750 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Enable torque command limit, Trq_idlecmd_enable",
+   "default": "1",
+   "values": "转矩 1 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Maximum torque command, Trq_idlecmd_max",
+   "default": "50",
+   "values": "转矩 50 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Proportional gain, Kp_idle",
+   "default": "0.05",
+   "values": "PI 控制器 0.05 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Integral gain, Ki_idle",
+   "default": "0.2",
+   "values": "PI 控制器 0.2 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Rev-limiter speed threshold, EngRevLim",
+   "default": "6000",
+   "values": "发动机转速限制 6000 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine cranking speed, CrankSpeed",
+   "default": "150",
+   "values": "发动机转速 150 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Enable Engine Stop-Start",
+   "default": "off",
+   "values": "选择以启用发动机起停逻辑 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "External Enable Port",
+   "default": "off",
+   "values": "创建输入端口 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine stop time, EngStopTime",
+   "default": "5",
+   "values": "发动机停止时间 5 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Catalyst light off time, CatLightOffTime",
+   "default": "0",
+   "values": "催化剂起燃时间 0 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Sample time, Ts",
+   "default": "0.01",
+   "values": "采样时间 0.01 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Number of cylinders, NCyl",
+   "default": "4",
+   "values": "发动机气缸数 4 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Crank revolutions per power stroke, Cps",
+   "default": "2",
+   "values": "每冲程转数 2 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Total displaced volume, Vd",
+   "default": "0.0015",
+   "values": "体积 0.0015 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Ideal gas constant air, Rair",
+   "default": "287",
+   "values": "常量 287 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Air standard pressure, Pstd",
+   "default": "101325",
+   "values": "压力 101325 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Air standard temperature, Tstd",
+   "default": "293.15",
+   "values": "温度 293.15 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed-density volumetric efficiency, f_nv",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed-density intake manifold pressure breakpoints, f_nv_prs_bpt",
+   "default": "166]",
+   "values": "断点 [31 40.64 50.29 59.93 69.57 79.21 88.86 98.5 108.1 117.8 127.4 137.1 146.7 156.4 166] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed-density engine speed breakpoints, f_nv_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Cylinder volume at intake valve close table, f_vivc",
+   "default": "",
+   "values": "二维查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine speed breakpoints, f_tm_corr_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 973.7 1197 1421 1645 1868 2092 2316 2539 2763 2987 3211 3434 3658 3882 4105 4329 4553 4776 5000] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Cylinder volume intake cam phase breakpoints, f_vivc_icp_bpt",
+   "default": "50]",
+   "values": "断点 [0 2.632 5.263 7.895 10.53 13.16 15.79 18.42 21.05 23.68 26.32 28.95 31.58 34.21 36.84 39.47 42.11 44.74 47.37 50] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Cylinder trapped mass correction factor, f_tm_corr",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Normalized density breakpoints, f_tm_corr_nd_bpt",
+   "default": "2]",
+   "values": "断点 [0.3 0.3895 0.4789 0.5684 0.6579 0.7474 0.8368 0.9263 1.016 1.105 1.195 1.284 1.374 1.463 1.553 1.642 1.732 1.821 1.911 2] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Intake mass flow, f_mdot_intk",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Exhaust cam phase breakpoints, f_mdot_air_ecp_bpt",
+   "default": "50]",
+   "values": "断点 [0 2.632 5.263 7.895 10.53 13.16 15.79 18.42 21.05 23.68 26.32 28.95 31.58 34.21 36.84 39.47 42.11 44.74 47.37 50] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Trapped mass flow breakpoints, f_mdot_trpd_bpt",
+   "default": "110]",
+   "values": "断点 [0 5.79 11.58 17.37 23.16 28.95 34.74 40.53 46.32 52.11 57.89 63.68 69.47 75.26 81.05 86.84 92.63 98.42 104.2 110] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Air mass flow correction factor, f_mdot_air_corr",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine load breakpoints for air mass flow correction, f_mdot_air_corr_ld_bpt",
+   "default": "",
+   "values": "断点 vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine speed breakpoints for air mass flow correction, f_mdot_air_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 973.7 1197 1421 1645 1868 2092 2316 2539 2763 2987 3211 3434 3658 3882 4105 4329 4553 4776 5000] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "EGR flow time constant, tau_egr",
+   "default": "0.2",
+   "values": "常量 0.2 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Intake system pressure ratio table, f_intksys_stdflow_pr",
+   "default": "",
+   "values": "表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Standard mass flow rate breakpoints for intake pressure ratio, f_intksys_stdflow_bpt",
+   "default": "226.4]",
+   "values": "断点 [0 29.67 59.34 89.01 117.8 144.1 155.7 166 175.2 183.3 190.7 197 202.7 207.7 212.2 216.1 219.4 222.2 224.5 226.4] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "EGR valve standard mass flow rate, f_egr_stdflow",
+   "default": "",
+   "values": "表 vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "EGR valve standard flow pressure ratio breakpoints, f_egr_stdflow_pr_bpt",
+   "default": "",
+   "values": "断点 vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "EGR valve standard flow area percent breakpoints, f_egr_stdflow_egrap_bpt",
+   "default": "[0;5;10;15;20;25;30;35;40;45;50;55;60;65;70;75;80;85;90;95;100]",
+   "values": "断点 [0;5;10;15;20;25;30;35;40;45;50;55;60;65;70;75;80;85;90;95;100] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Torque table, f_tq_nl",
+   "default": "",
+   "values": "查找表 [L x N] array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Torque table load breakpoints, f_tq_nl_l_bpt",
+   "default": "1.25]",
+   "values": "断点 [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector | [1 x L] vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Torque table speed breakpoints, f_tq_nl_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857 2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000] (default) | vector | [1 x N] vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Crank angle pressure and torque",
+   "default": "off",
+   "values": "启用曲轴角信号 off (default) | on",
+   "group": "Estimation"
+  },
+  {
+   "name": "Cylinder pressure, f_crk_prs",
+   "default": "",
+   "values": "气缸压力表 L x M x N array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Brake torque, f_crk_btq",
+   "default": "",
+   "values": "制动扭矩表 L x M x N array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed breakpoints, f_crk_n_bpt",
+   "default": "5000]",
+   "values": "速度断点 [750 5000] (default) | 1 x N vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Load breakpoints, f_crk_l_bpt",
+   "default": "1.4]",
+   "values": "负荷断点 [0.2 1.4] (default) | 1 x L vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Crank angle breakpoints, f_crk_ang_bpt",
+   "default": "660]",
+   "values": "曲轴转角断点 [60 660] (default) | 1 x M vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "TDC compression angles by cylinder, f_crk_tdc_ang",
+   "default": "360]",
+   "values": "各气缸的 TDC 压缩角 [0 540 180 360] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Inner torque table, f_tq_inr",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Friction torque table, f_tq_fric",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine temperature modifier on friction torque, f_fric_temp_mod",
+   "default": "0.987]",
+   "values": "查找表 [3.96 3.22 2.56 2.26 2.11 2 1.9 1.83 1.76 1.7 1.65 1.6 1.55 1.49 1.44 1.41 1.38 1.35 1.32 1.3 1.27 1.25 1.24 1.21 1.2 1.18 1.16 1.15 1.13 1.12 1.11 1.1 1.09 1.08 1.07 1.06 1.05 1.05 1.04 1.03 1.02 1.02 1.01 1.01 1 1 1 0.999 0.997 0.995 0.993 0.991 0.989 0.987] (default) | vector | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine temperature modifier breakpoints, f_fric_temp_bpt",
+   "default": "380]",
+   "values": "断点 [274 276 278 280 282 284 286 288 290 292 294 296 298 300 302 304 306 308 310 312 314 316 318 320 322 324 326 328 330 332 334 336 338 340 342 344 346 348 350 352 354 356 358 360 362 364 366 368 370 372 374 376 378 380] (default) | vector | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Pumping torque table, f_tq_pump",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Optimal spark table, f_sa_opt",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Inner torque load breakpoints, f_tq_inr_l_bpt",
+   "default": "1.4]",
+   "values": "断点 [0.2 0.28571 0.37143 0.45714 0.54286 0.62857 0.71429 0.8 0.88571 0.97143 1.0571 1.1429 1.2286 1.3143 1.4] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Inner torque speed breakpoints, f_tq_inr_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1053.5714 1357.1429 1660.7143 1964.2857 2267.8571 2571.4286 2875 3178.5714 3482.1429 3785.7143 4089.2857 4392.8571 4696.4286 5000] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Spark efficiency table, f_m_sa",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Spark retard from optimal, f_del_sa_bpt",
+   "default": "48]",
+   "values": "断点 [0 0.75 1.5 2.25 3 3.75 4.5 5.25 6 6.75 7.5 8.25 9 9.75 10.5 11.25 12 12.75 13.5 14.25 15 15.75 16.5 17.25 18 18.75 19.5 20.25 21 21.75 22.5 23.25 24 24.75 25.5 26.25 27 27.75 28.5 29.25 30 30.75 31.5 32.25 33 33.75 34.5 35.25 36 36.75 37.5 38.25 39 39.75 40.5 41.25 42 42.75 43.5 44.25 45 45.75 46.5 47.25 48] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Lambda efficiency, f_m_lam",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Lambda breakpoints, f_m_lam_bpt",
+   "default": "1.1]",
+   "values": "断点 [0.65 0.7 0.75 0.8 0.85 0.9 0.95 1 1.05 1.1] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Exhaust temperature table, f_t_exh",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Load breakpoints, f_t_exh_l_bpt",
+   "default": "1.25]",
+   "values": "断点 [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed breakpoints, f_t_exh_n_bpt",
+   "default": "5000]",
+   "values": "断点 [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Estimation"
+  }
+ ]
+}

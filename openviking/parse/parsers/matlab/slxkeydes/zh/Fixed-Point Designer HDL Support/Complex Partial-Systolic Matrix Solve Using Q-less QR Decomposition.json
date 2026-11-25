@@ -1,0 +1,90 @@
+{
+ "key": "Complex Partial-Systolic Matrix Solve Using Q-less QR Decomposition",
+ "title": "Complex Partial-Systolic Matrix Solve Using Q-less QR Decomposition",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Matrices and Linear Algebra/Linear System Solvers/Complex_Partial_Systolic_Matrix_Solve_Using_Q_less_QR_Decomposi.md"
+ ],
+ "text": "使用无 Q QR 分解计算复值矩阵方程 A ’ A X = B 中 X 的值，输入 5 路、输出 4 路；按 {Output datatype} 指定输出矩阵 X 的数据类型；{Number of rows in matrix A} 指定矩阵 A 的行数、{Number of columns in matrix A and rows in matrix B} 指定矩阵 A 的列数和矩阵 B 的行数、{Number of columns in matrix B} 指定矩阵 B 的列数、{Regularization parameter} 指定正则化参数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A(i,:)",
+   "direction": "input",
+   "summary": "矩阵 A 的行 vector"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "矩阵 B vector"
+  },
+  {
+   "name": "validInA",
+   "direction": "input",
+   "summary": "输入 A 是否有效 Boolean scalar"
+  },
+  {
+   "name": "validInB",
+   "direction": "input",
+   "summary": "输入 B 是否有效 Boolean scalar"
+  },
+  {
+   "name": "restart",
+   "direction": "input",
+   "summary": "是否清除内部状态 Boolean scalar"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "矩阵 X matrix | vector"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据是否有效 Boolean scalar"
+  },
+  {
+   "name": "readyA",
+   "direction": "output",
+   "summary": "模块是否已准备好接收输入 A Boolean scalar"
+  },
+  {
+   "name": "readyB",
+   "direction": "output",
+   "summary": "模块是否已准备好接收输入 B Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of rows in matrix A",
+   "default": "4",
+   "values": "矩阵 A 的行数 4 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in matrix A and rows in matrix B",
+   "default": "4",
+   "values": "矩阵 A 的列数和矩阵 B 的行数 4 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in matrix B",
+   "default": "1",
+   "values": "矩阵 B 的列数 1 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Regularization parameter",
+   "default": "0",
+   "values": "正则化参数 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output datatype",
+   "default": "fixdt(1,18,14)",
+   "values": "输出矩阵 X 的数据类型 fixdt(1,18,14) (default) | double | single | fixdt(1,16,0) |",
+   "group": ""
+  }
+ ]
+}

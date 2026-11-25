@@ -1,0 +1,324 @@
+{
+ "key": "Longitudinal Driver",
+ "title": "Longitudinal Driver",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Vehicle Scenario Builder/Longitudinal_Driver.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Driver/Longitudinal_Driver.md"
+ ],
+ "text": "Longitudinal speed-tracking controller, 12 inputs, 4 outputs, {Shift type, shftType} sets Shift type; {Accelerator override} sets the override acceleration command, {Accelerator hold} sets the hold acceleration command, {Accelerator disable} sets the disable acceleration command, {Decelerator override} sets the override deceleration command, {Decelerator hold} sets the hold deceleration command, {Decelerator disable} sets the disable deceleration command, {Control type, cntrlType} sets the longitudinal control, {Reference and feedback units, velUnits} sets the velocity units, {Output gear signal} sets the create GearCmd output port, {Proportional gain, Kp} sets the gain, {Integral gain, Ki} sets the gain, {Velocity feed-forward, Kff} sets the gain .1, {Grade angle feed-forward, Kg} sets the gain, {Velocity gain breakpoints, VehVelVec} sets the breakpoints, {Velocity feed-forward gain values, KffVec} sets the gain, {Proportional gain values, KpVec} sets the gain, {Integral gain values, KiVec} sets the gain, {Grade angle feed-forward values, KgVec} sets the grade gain, {Nominal speed, vnom} sets the nominal vehicle speed, {Anti-windup, Kaw} sets the gain, {Error filter time constant, tauerr} sets the filter .01, {Vehicle mass, m} sets the mass, {Effective vehicle total tractive force, Kpt} sets the tractive force, {Driver response time, tau} sets the tau .1, {Preview distance, L} sets the distance, {Rolling resistance coefficient, aR} sets the resistance, {Rolling and driveline resistance coefficient, bR} sets the resistance, {Aerodynamic drag coefficient, cR} sets the drag .5, {Gravitational constant, g}, {Initial gear, GearInit}, {Time required to shift, tShift} sets the time .1, {Up and down shift accelerator pedal positions, pdlVec} sets the pedal position breakpoints, {Upshift velocity data table, upShftTbl} sets the table, {Downshift velocity data table, dwnShftTbl} sets the table, {Time required to shift, tClutch} sets the time .5, {Time required to engage reverse from neutral, tRev} sets the time .5 and {Time required to engage park from neutral, tPark} sets the time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VelRef",
+   "direction": "input",
+   "summary": "Reference vehicle velocity scalar"
+  },
+  {
+   "name": "EnblAccelOvr",
+   "direction": "input",
+   "summary": "Enable acceleration command override scalar"
+  },
+  {
+   "name": "AccelOvrCmd",
+   "direction": "input",
+   "summary": "Acceleration override command scalar"
+  },
+  {
+   "name": "AccelHld",
+   "direction": "input",
+   "summary": "Acceleration hold scalar"
+  },
+  {
+   "name": "AccelZero",
+   "direction": "input",
+   "summary": "Disable acceleration command scalar"
+  },
+  {
+   "name": "EnblDecelOvr",
+   "direction": "input",
+   "summary": "Enable deceleration command override scalar"
+  },
+  {
+   "name": "DecelOvrCmd",
+   "direction": "input",
+   "summary": "Deceleration override command scalar"
+  },
+  {
+   "name": "DecelHld",
+   "direction": "input",
+   "summary": "Deceleration hold scalar"
+  },
+  {
+   "name": "DecelZero",
+   "direction": "input",
+   "summary": "Disable deceleration command scalar"
+  },
+  {
+   "name": "ExtGear",
+   "direction": "input",
+   "summary": "Gear scalar"
+  },
+  {
+   "name": "VelFdbk",
+   "direction": "input",
+   "summary": "Longitudinal vehicle velocity scalar"
+  },
+  {
+   "name": "Grade",
+   "direction": "input",
+   "summary": "Road grade angle scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "AccelCmd",
+   "direction": "output",
+   "summary": "Commanded vehicle acceleration scalar"
+  },
+  {
+   "name": "DecelCmd",
+   "direction": "output",
+   "summary": "Commanded vehicle deceleration scalar"
+  },
+  {
+   "name": "GearCmd",
+   "direction": "output",
+   "summary": "Commanded vehicle gear scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Accelerator override",
+   "default": "off",
+   "values": "Override acceleration command off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Accelerator hold",
+   "default": "off",
+   "values": "Hold acceleration command off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Accelerator disable",
+   "default": "off",
+   "values": "Disable acceleration command off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Decelerator override",
+   "default": "off",
+   "values": "Override deceleration command off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Decelerator hold",
+   "default": "off",
+   "values": "Hold deceleration command off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Decelerator disable",
+   "default": "off",
+   "values": "Disable deceleration command off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Control type, cntrlType",
+   "default": "PI",
+   "values": "Longitudinal control PI (default) | Scheduled PI | Predictive",
+   "group": ""
+  },
+  {
+   "name": "Shift type, shftType",
+   "default": "None",
+   "values": "Shift type None (default) | Reverse, Neutral, Drive | Scheduled | External",
+   "group": ""
+  },
+  {
+   "name": "Reference and feedback units, velUnits",
+   "default": "m/s",
+   "values": "Velocity units m/s (default)",
+   "group": ""
+  },
+  {
+   "name": "Output gear signal",
+   "default": "off",
+   "values": "Create GearCmd output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain, Kp",
+   "default": "10",
+   "values": "Gain 10 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Integral gain, Ki",
+   "default": "5",
+   "values": "Gain 5 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Velocity feed-forward, Kff",
+   "default": ".1",
+   "values": "Gain .1 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Grade angle feed-forward, Kg",
+   "default": "0",
+   "values": "Gain 0 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Velocity gain breakpoints, VehVelVec",
+   "default": "100]",
+   "values": "Breakpoints [0 100] (default) | vector",
+   "group": "Control"
+  },
+  {
+   "name": "Velocity feed-forward gain values, KffVec",
+   "default": "[.1.1]",
+   "values": "Gain [.1.1] (default) | vector",
+   "group": "Control"
+  },
+  {
+   "name": "Proportional gain values, KpVec",
+   "default": "10]",
+   "values": "Gain [10 10] (default) | vector",
+   "group": "Control"
+  },
+  {
+   "name": "Integral gain values, KiVec",
+   "default": "5]",
+   "values": "Gain [5 5] (default) | vector",
+   "group": "Control"
+  },
+  {
+   "name": "Grade angle feed-forward values, KgVec",
+   "default": "0]",
+   "values": "Grade gain [0 0] (default) | vector",
+   "group": "Control"
+  },
+  {
+   "name": "Nominal speed, vnom",
+   "default": "5",
+   "values": "Nominal vehicle speed 5 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Anti-windup, Kaw",
+   "default": "1",
+   "values": "Gain 1 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Error filter time constant, tauerr",
+   "default": ".01",
+   "values": "Filter .01 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Vehicle mass, m",
+   "default": "1500",
+   "values": "Mass 1500 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Effective vehicle total tractive force, Kpt",
+   "default": "3000",
+   "values": "Tractive force 3000 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Driver response time, tau",
+   "default": ".1",
+   "values": "Tau .1 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Preview distance, L",
+   "default": "2",
+   "values": "Distance 2 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Rolling resistance coefficient, aR",
+   "default": "200",
+   "values": "Resistance 200 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Rolling and driveline resistance coefficient, bR",
+   "default": "2.5",
+   "values": "Resistance 2.5 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Aerodynamic drag coefficient, cR",
+   "default": ".5",
+   "values": "Drag .5 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Gravitational constant, g",
+   "default": "9.81",
+   "values": "Gravitational constant 9.81 (default) | scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Initial gear, GearInit",
+   "default": "0",
+   "values": "Initial gear 0 (default) | scalar",
+   "group": "Shift"
+  },
+  {
+   "name": "Time required to shift, tShift",
+   "default": ".1",
+   "values": "Time .1 (default) | scalar",
+   "group": "Shift"
+  },
+  {
+   "name": "Up and down shift accelerator pedal positions, pdlVec",
+   "default": "0.9]",
+   "values": "Pedal position breakpoints [0.1 0.4 0.5 0.9] (default) | [1-by-m] vector",
+   "group": "Shift"
+  },
+  {
+   "name": "Upshift velocity data table, upShftTbl",
+   "default": "",
+   "values": "Table [m-by-n] array",
+   "group": "Shift"
+  },
+  {
+   "name": "Downshift velocity data table, dwnShftTbl",
+   "default": "",
+   "values": "Table [m-by-n] array",
+   "group": "Shift"
+  },
+  {
+   "name": "Time required to shift, tClutch",
+   "default": ".5",
+   "values": "Time .5 (default) | scalar",
+   "group": "Shift"
+  },
+  {
+   "name": "Time required to engage reverse from neutral, tRev",
+   "default": ".5",
+   "values": "Time .5 (default) | scalar",
+   "group": "Shift"
+  },
+  {
+   "name": "Time required to engage park from neutral, tPark",
+   "default": "120",
+   "values": "Time 120 (default) | scalar",
+   "group": "Shift"
+  }
+ ]
+}

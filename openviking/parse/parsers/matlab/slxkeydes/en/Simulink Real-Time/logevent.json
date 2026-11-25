@@ -1,0 +1,44 @@
+{
+ "key": "logevent",
+ "title": "Log Event",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Profiling/Log_Event.md"
+ ],
+ "text": "Log an execution profiling event, 1 input, {Trigger type} sets Selects trigger signal edge; {Channel} sets the event channel ID, {Code} sets the event code number and {Value} sets the event value number. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Trigger for log event 1..0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Channel",
+   "default": "0",
+   "values": "Event channel ID 0 (default) | int",
+   "group": ""
+  },
+  {
+   "name": "Code",
+   "default": "0",
+   "values": "Event code number 0 (default) | uint32",
+   "group": ""
+  },
+  {
+   "name": "Value",
+   "default": "0",
+   "values": "Event value number 0 (default) | uint32",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "Rising",
+   "values": "Selects trigger signal edge Rising (default) | Falling | Either",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "ImageAttributes",
+ "title": "Image Attributes",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Utilities/Image_Attributes.md"
+ ],
+ "text": "Simulink 图像信号的输出属性，输入 1 路、输出 6 路、直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 Simulink.ImageType"
+  },
+  {
+   "name": "rows",
+   "direction": "output",
+   "summary": "图像数据中的行数 scalar"
+  },
+  {
+   "name": "columns",
+   "direction": "output",
+   "summary": "图像数据中的列数 scalar"
+  },
+  {
+   "name": "channels",
+   "direction": "output",
+   "summary": "数组中每个像素的颜色通道数或样本数 scalar"
+  },
+  {
+   "name": "class",
+   "direction": "output",
+   "summary": "底层图像数据的数据类型 string"
+  },
+  {
+   "name": "color",
+   "direction": "output",
+   "summary": "底层图像数据的颜色格式 string"
+  },
+  {
+   "name": "layout",
+   "direction": "output",
+   "summary": "图像数据的数组布局 string"
+  }
+ ],
+ "params": []
+}

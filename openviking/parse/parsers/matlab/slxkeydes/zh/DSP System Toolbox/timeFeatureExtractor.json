@@ -1,0 +1,121 @@
+{
+ "key": "timeFeatureExtractor",
+ "title": "Time Feature Extractor",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Feature Extractors/Time_Feature_Extractor.md"
+ ],
+ "text": "从信号中提取时域特征，输入 1 路、输出 1 路、无直接馈通；{Window length} 指定每帧样本数、{Specify} 指定缓冲方法 Overlap、{Overlap length} 指定连续帧之间的重叠样本数、{Hop size} 指定帧起始之间的样本数、{Mean} 指定提取均值、{RMS} 指定提取均方根、{Standard deviation} 指定提取标准差、{Shape factor} 指定提取波形因子、{SNR} 指定提取信噪比、{THD} 指定提取总谐波失真、{SINAD} 指定提取信噪失真比、{Peak value} 指定提取峰值、{Crest factor} 指定提取峰值因子、{Clearance factor} 指定提取裕度因子、{Impulse factor} 用于提取脉冲因子、{Feature to output mapping} 显示输出中各特征的列索引 section，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "提取的特征 vector | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length",
+   "default": "64",
+   "values": "每帧样本数 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify",
+   "default": "length",
+   "values": "缓冲方法 Overlap length (default) | Hop size",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "0",
+   "values": "连续帧之间的重叠样本数 0 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Hop size",
+   "default": "64",
+   "values": "帧起始之间的样本数 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Mean",
+   "default": "on",
+   "values": "提取均值的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "RMS",
+   "default": "off",
+   "values": "提取均方根的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation",
+   "default": "off",
+   "values": "提取标准差的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Shape factor",
+   "default": "off",
+   "values": "提取波形因子的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "SNR",
+   "default": "off",
+   "values": "提取信噪比的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "THD",
+   "default": "off",
+   "values": "提取总谐波失真的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "SINAD",
+   "default": "off",
+   "values": "提取信噪失真比的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Peak value",
+   "default": "off",
+   "values": "提取峰值的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Crest factor",
+   "default": "off",
+   "values": "提取峰值因子的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Clearance factor",
+   "default": "off",
+   "values": "提取裕度因子的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Impulse factor",
+   "default": "off",
+   "values": "用于提取脉冲因子的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Feature to output mapping",
+   "default": "",
+   "values": "显示输出中各特征的列索引 section",
+   "group": ""
+  }
+ ]
+}

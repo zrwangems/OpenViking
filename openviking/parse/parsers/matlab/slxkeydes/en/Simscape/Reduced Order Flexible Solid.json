@@ -1,0 +1,13 @@
+{
+ "key": "Reduced Order Flexible Solid",
+ "title": "Reduced Order Flexible Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Flexible Bodies/Reduced_Order_Flexible_Solid.md"
+ ],
+ "text": "Create flexible body using reduced-order model data.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Valve Plate Orifice (IL)",
+ "title": "Valve Plate Orifice (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pumps & Motors/Auxiliary Components/Valve_Plate_Orifice_IL.md"
+ ],
+ "text": "等温轴向柱塞机中的可变节流孔。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

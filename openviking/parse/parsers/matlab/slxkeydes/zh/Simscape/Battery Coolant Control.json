@@ -1,0 +1,82 @@
+{
+ "key": "Battery Coolant Control",
+ "title": "Battery Coolant Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Thermal Management/Battery_Coolant_Control.md"
+ ],
+ "text": "电池冷却液控制算法，输入 3 路、输出 2 路；按 {Algorithm data type} 指定用于选择模块算法数据类型的选项 Inherit:；{Specify CellTemperature input as [Min,Max]} 用于将 CellTemperature、{Control strategy} 控制策略 ON-OFF、{Switch-on temperature} 指定冷却液开启温度、{Switch-off temperature} 指定冷却液关闭温度、{Constant used in f(deltaT)=c*deltaT} 指定冷却液策略常数、{Flow rate step} 指定流量步长，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "电芯温度，K scalar | vector"
+  },
+  {
+   "name": "AmbientTemperature",
+   "direction": "input",
+   "summary": "环境温度，单位为 K scalar"
+  },
+  {
+   "name": "CoolantTemperature",
+   "direction": "input",
+   "summary": "冷却液温度，K scalar"
+  },
+  {
+   "name": "FlowRateCommand",
+   "direction": "output",
+   "summary": "流量指令 scalar"
+  },
+  {
+   "name": "FlowTemperature",
+   "direction": "output",
+   "summary": "流体温度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify CellTemperature input as [Min,Max]",
+   "default": "off",
+   "values": "用于将 CellTemperature 输入指定为最小值和最大值的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Control strategy",
+   "default": "control",
+   "values": "控制策略 ON-OFF control (default) | Step control",
+   "group": ""
+  },
+  {
+   "name": "Switch-on temperature",
+   "default": "305.15",
+   "values": "冷却液开启温度 305.15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Switch-off temperature",
+   "default": "301.15",
+   "values": "冷却液关闭温度 301.15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant used in f(deltaT)=c*deltaT",
+   "default": "0.1",
+   "values": "冷却液策略常数 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Flow rate step",
+   "default": "0.2",
+   "values": "流量步长 0.2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

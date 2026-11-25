@@ -1,0 +1,48 @@
+{
+ "key": "EntityTransportDelay",
+ "title": "Entity Transport Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Entity_Transport_Delay.md",
+  "SimEvents/Entity_Transport_Delay.md"
+ ],
+ "text": "Introduce a delay in propagation of a SimEvents message, 2 inputs, 2 outputs, no direct feedthrough; {Capacity} sets the capacity and {Output number of entities in block, n} sets the outputs the number of delayed entities present. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity SimEvents entity"
+  },
+  {
+   "name": "t i",
+   "direction": "input",
+   "summary": "Instantaneous delay scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Delayed entity SimEvents entity"
+  },
+  {
+   "name": "n",
+   "direction": "output",
+   "summary": "Number of delayed entities real scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Capacity",
+   "default": "inf",
+   "values": "Specify the capacity of the block inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output number of entities in block, n",
+   "default": "off",
+   "values": "Outputs the number of delayed entities present in the block off (default) | on",
+   "group": ""
+  }
+ ]
+}

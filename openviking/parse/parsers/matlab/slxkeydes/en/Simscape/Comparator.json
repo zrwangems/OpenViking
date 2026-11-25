@@ -1,0 +1,13 @@
+{
+ "key": "Comparator",
+ "title": "Comparator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Comparator.md"
+ ],
+ "text": "Behavioral model of a comparator integrated circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Centrifugal Pump (2P)",
+ "title": "Centrifugal Pump (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Fluid Machines/Centrifugal_Pump_2P.md"
+ ],
+ "text": "Centrifugal pump in a two-phase fluid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

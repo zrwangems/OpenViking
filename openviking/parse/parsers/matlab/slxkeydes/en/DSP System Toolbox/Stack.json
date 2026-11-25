@@ -1,0 +1,109 @@
+{
+ "key": "Stack",
+ "title": "Stack",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Buffers/Stack.md"
+ ],
+ "text": "Store inputs into LIFO register, 4 inputs, 4 outputs, no direct feedthrough, {Pop empty stack} sets Pop empty stack; {Stack depth} sets the number of entries stack can hold, {Trigger type}, {Push full stack}, {Show empty stack indicator port (Empty)} enables empty stack indicator port, {Show full stack indicator port (Full)} enables full stack indicator port, {Show number of stack entries port (Num)} enables number of stack entries port, {Show reset port (Rst) to clear internal stack buffer} enables reset port and {Clear output port on reset}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input scalar | vector | matrix"
+  },
+  {
+   "name": "Push",
+   "direction": "input",
+   "summary": "Trigger event to push input scalar"
+  },
+  {
+   "name": "Pop",
+   "direction": "input",
+   "summary": "Trigger event to pop elements scalar"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Empty stack contents scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output scalar | vector | matrix"
+  },
+  {
+   "name": "Empty",
+   "direction": "output",
+   "summary": "Empty stack indicator port scalar"
+  },
+  {
+   "name": "Full",
+   "direction": "output",
+   "summary": "Full stack indicator port scalar"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "Number of stack entries port scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Stack depth",
+   "default": "8",
+   "values": "Number of entries stack can hold 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "Trigger type Rising edge (default) | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Push full stack",
+   "default": "reallocation",
+   "values": "Push full stack Dynamic reallocation (default) | Ignore | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Pop empty stack",
+   "default": "Warning",
+   "values": "Pop empty stack Warning (default) | Ignore | Error",
+   "group": ""
+  },
+  {
+   "name": "Show empty stack indicator port (Empty)",
+   "default": "off",
+   "values": "Enable empty stack indicator port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show full stack indicator port (Full)",
+   "default": "off",
+   "values": "Enable full stack indicator port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show number of stack entries port (Num)",
+   "default": "off",
+   "values": "Enable number of stack entries port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show reset port (Rst) to clear internal stack buffer",
+   "default": "off",
+   "values": "Enable reset port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Clear output port on reset",
+   "default": "off",
+   "values": "Clear output port on reset off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Translational Free End",
+ "title": "Translational Free End",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Translational_Free_End.md"
+ ],
+ "text": "零力平移端口终端器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

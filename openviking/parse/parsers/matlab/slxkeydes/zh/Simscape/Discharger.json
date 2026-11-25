@@ -1,0 +1,13 @@
+{
+ "key": "Discharger",
+ "title": "Discharger",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Cyclers/Discharger.md"
+ ],
+ "text": "理想电池放电器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

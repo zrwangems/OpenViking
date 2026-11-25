@@ -1,0 +1,133 @@
+{
+ "key": "Ring oscillator VCO",
+ "title": "Ring Oscillator VCO",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Ring_Oscillator_VCO.md"
+ ],
+ "text": "Model ring oscillator VCO, 1 input, 1 output; {Specify using} defines how VCO output frequency is specified Voltage, {Voltage sensitivity (Hz/V)} sets the measure of change in output frequency of VCO, {Free running frequency (Hz)} sets the vCO output frequency without control voltage, {Control voltage (V)} controls voltage values, {Output frequency (Hz)} sets the vCO output frequency values, {Output amplitude (V)} sets the maximum amplitude of VCO output voltage, {Enable increased buffer size}, {Buffer size} sets the number of samples of input buffering available during, {Add phase noise}, {Model double sided phase noise instead of single sided} sets the model double-sided phase noise instead, {Phase noise frequency offset (Hz)} sets the frequency offsets of specified phase noise from carrier frequency, {Phase noise level (dBc/Hz)} sets the specified phase noise power at phase noise frequency offsets relative to the carrier, {Estimate phase noise parameters} sets the noise parameters intended to match specified noise spectrum, {Period jitter (S)} sets the standard deviation of period jitter, {Flicker corner frequency (Hz)} sets the corner frequency of flicker, {Customize flicker exponent (Advanced feature)} sets the customize flicker noise power spectral, {Flicker exponent} sets the flicker noise power exponent and {Plot fit} plots specified and expected output phase noise density. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vctrl",
+   "direction": "input",
+   "summary": "Voltage used to control VCO output frequency scalar | vector"
+  },
+  {
+   "name": "vco out",
+   "direction": "output",
+   "summary": "Output signal determined by vctrl port scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify using",
+   "default": "sensitivity",
+   "values": "Define how VCO output frequency is specified Voltage sensitivity (default) | Output frequency vs. control voltage",
+   "group": "Parameters"
+  },
+  {
+   "name": "Voltage sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "Measure of change in output frequency of VCO 100e6 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Free running frequency (Hz)",
+   "default": "2.5e9",
+   "values": "VCO output frequency without control voltage 2.5e9 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "5]",
+   "values": "Control voltage values [-5 0 5] (default) | real valued vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "3e9]",
+   "values": "VCO output frequency values [2e9 2.5e9 3e9] (default) | positive real valued vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output amplitude (V)",
+   "default": "1",
+   "values": "Maximum amplitude of VCO output voltage 1 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "Number of samples of input buffering available during simulation 10 (default) | positive integer scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Add phase noise",
+   "default": "on",
+   "values": "Add phase noise as a function of frequency on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Model double sided phase noise instead of single sided",
+   "default": "off",
+   "values": "Model double-sided phase noise instead of single-sided off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "10e6]",
+   "values": "Frequency offsets of specified phase noise from carrier frequency [30e3 100e3 1e6 3e6 10e6] (default) | positive real valued vector",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-152]",
+   "values": "Specified phase noise power at phase noise frequency offsets relative to the carrier [-56 -106 -132 -143 -152] (default) | negative real valued vector",
+   "group": "Impairments"
+  },
+  {
+   "name": "Estimate phase noise parameters",
+   "default": "",
+   "values": "Set noise parameters intended to match specified noise spectrum button",
+   "group": "Impairments"
+  },
+  {
+   "name": "Period jitter (S)",
+   "default": "1.7e-15",
+   "values": "Standard deviation of period jitter 1.7e-15 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Flicker corner frequency (Hz)",
+   "default": "5e5",
+   "values": "Corner frequency of flicker noise 5e5 (default) | scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Customize flicker exponent (Advanced feature)",
+   "default": "off",
+   "values": "Customize flicker noise power spectral distribution off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Flicker exponent",
+   "default": "1.0",
+   "values": "Flicker noise power exponent 1.0 (default) | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5",
+   "group": "Impairments"
+  },
+  {
+   "name": "Plot fit",
+   "default": "",
+   "values": "Plot specified and expected output phase noise density button",
+   "group": "Impairments"
+  }
+ ]
+}

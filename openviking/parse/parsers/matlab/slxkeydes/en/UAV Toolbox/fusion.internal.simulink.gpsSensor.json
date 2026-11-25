@@ -1,0 +1,101 @@
+{
+ "key": "fusion.internal.simulink.gpsSensor",
+ "title": "GPS",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/GPS.md",
+  "Navigation Toolbox/Multisensor Positioning/Sensor Models/GPS.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Sensor Models/GPS.md"
+ ],
+ "text": "Simulate GPS sensor readings with noise, 2 inputs, 4 outputs; {Reference frame}, {Position input format} sets the position coordinate input, {Reference location} sets the origin of local navigation reference frame, {Horizontal position accuracy}, {Vertical position accuracy}, {Velocity accuracy}, {Decay factor} sets the global position noise decay factor, {Seed} sets the initial seed and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Position",
+   "direction": "input",
+   "summary": "Position of GPS receiver in navigation coordinate system matrix"
+  },
+  {
+   "name": "Velocity",
+   "direction": "input",
+   "summary": "Velocity in local navigation coordinate system (m/s) matrix"
+  },
+  {
+   "name": "LLA",
+   "direction": "output",
+   "summary": "Position in LLA coordinate system matrix"
+  },
+  {
+   "name": "Velocity",
+   "direction": "output",
+   "summary": "Velocity in local navigation coordinate system (m/s) matrix"
+  },
+  {
+   "name": "Groundspeed",
+   "direction": "output",
+   "summary": "Magnitude of horizontal velocity in local navigation coordinate system (m/s) vector"
+  },
+  {
+   "name": "Course",
+   "direction": "output",
+   "summary": "Direction of horizontal velocity in local navigation coordinate system (°) vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference frame",
+   "default": "NED",
+   "values": "Reference frame NED (default) | ENU",
+   "group": ""
+  },
+  {
+   "name": "Position input format",
+   "default": "Local",
+   "values": "Position coordinate input format Local (default) | Geodetic",
+   "group": ""
+  },
+  {
+   "name": "Reference location",
+   "default": "[0,0,0]",
+   "values": "Origin of local navigation reference frame [0,0,0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Horizontal position accuracy",
+   "default": "1.6",
+   "values": "Horizontal position accuracy (m) 1.6 (default) | nonnegative real scaler",
+   "group": ""
+  },
+  {
+   "name": "Vertical position accuracy",
+   "default": "3",
+   "values": "Vertical position accuracy (m) 3 (default) | nonnegative real scaler",
+   "group": ""
+  },
+  {
+   "name": "Velocity accuracy",
+   "default": "0.1",
+   "values": "Velocity accuracy (m/s) 0.1 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Decay factor",
+   "default": "0.999",
+   "values": "Global position noise decay factor 0.999 (default) | scalar in range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "67",
+   "values": "Initial seed 67 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

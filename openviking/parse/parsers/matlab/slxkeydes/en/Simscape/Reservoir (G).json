@@ -1,0 +1,13 @@
+{
+ "key": "Reservoir (G)",
+ "title": "Reservoir (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Reservoir_G.md"
+ ],
+ "text": "Boundary conditions for gas network at constant pressure and temperature.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

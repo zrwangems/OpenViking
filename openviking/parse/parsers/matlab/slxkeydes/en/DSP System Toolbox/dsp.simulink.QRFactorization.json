@@ -1,0 +1,47 @@
+{
+ "key": "dsp.simulink.QRFactorization",
+ "title": "QR Factorization",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Factorizations/QR_Factorization.md"
+ ],
+ "text": "Factor arbitrary matrix into unitary and upper triangular components, 1 input, 3 outputs, no direct feedthrough; {Output size} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Input vector | matrix"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "Orthonormal component Q of QR factorization vector | matrix"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Upper triangular component R of QR factorization vector | matrix"
+  },
+  {
+   "name": "E",
+   "direction": "output",
+   "summary": "Column permutation vector vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output size",
+   "default": "Economy",
+   "values": "Output size Economy (default) | Full",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

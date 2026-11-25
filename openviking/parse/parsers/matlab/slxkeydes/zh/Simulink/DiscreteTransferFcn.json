@@ -1,0 +1,228 @@
+{
+ "key": "DiscreteTransferFcn",
+ "title": "Discrete Transfer Fcn",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Discrete_Transfer_Fcn.md",
+  "Simulink/Quick Insert/Discrete/Discrete_Transfer_Fcn.md",
+  "HDL Coder/Discrete/Discrete_Transfer_Fcn.md",
+  "HDL Coder/HDL Floating Point Operations/Discrete_Transfer_Fcn.md"
+ ],
+ "text": "实现离散传递函数，输入 5 路、输出 1 路；按 {分子值} 指定分子系数；{分子源} 指定分子系数的信源、{分母源} 指定分母系数的信源、{分母值} 指定分母系数、{初始状态源} 指定初始状态的信源、{初始状态值} 指定初始滤波器状态、{外部重置} 指定外部状态重置、{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{通过跳过除以分母首项系数(a0)进行优化} 指定跳过除以 a0 的运算、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{查看滤波器响应}、{状态}、{分子系数}、{分子系数最小值} 指定分子系数的最小值、{分子系数最大值} 指定分子系数的最大值、{分子乘积输出}、{分子累加器}、{分母系数}、{分母系数最小值} 指定分母系数的最小值、{分母系数最大值} 指定分母系数的最大值、{分母乘积输出}、{分母累加器}、{输出}、{输出最小值} 输出的最小值、{输出最大值} 输出的最大值、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法、{状态名称} 指定模块状态的唯一名称、{状态名称必须解析为 Simulink 信号对象} 指定要求将状态名称解析为信号对象，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "分子系数 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "分母系数 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "External reset",
+   "direction": "input",
+   "summary": "外部重置信号 标量"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "初始状态 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "分子源",
+   "default": "对话框",
+   "values": "分子系数的信源 对话框 (默认) | 输入端口",
+   "group": "常设"
+  },
+  {
+   "name": "分子值",
+   "default": "[1]",
+   "values": "分子系数 [1] (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "分母源",
+   "default": "对话框",
+   "values": "分母系数的信源 对话框 (默认) | 输入端口",
+   "group": "常设"
+  },
+  {
+   "name": "分母值",
+   "default": "0.5]",
+   "values": "分母系数 [1 0.5] (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "初始状态源",
+   "default": "对话框",
+   "values": "初始状态的信源 对话框 (默认) | 输入端口",
+   "group": "常设"
+  },
+  {
+   "name": "初始状态值",
+   "default": "0",
+   "values": "初始滤波器状态 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "外部重置",
+   "default": "无",
+   "values": "外部状态重置 无 (默认) | 上升沿 | 下降沿 | 任一沿 | 电平 | 电平保持",
+   "group": "常设"
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": "常设"
+  },
+  {
+   "name": "通过跳过除以分母首项系数(a0)进行优化",
+   "default": "off",
+   "values": "跳过除以 a0 的运算 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "查看滤波器响应",
+   "default": "",
+   "values": "查看滤波器响应 按钮",
+   "group": "常设"
+  },
+  {
+   "name": "状态",
+   "default": "input",
+   "values": "状态数据类型 Inherit: Same as input (默认) | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "分子系数",
+   "default": "rule",
+   "values": "分子系数数据类型 Inherit: Inherit via internal rule (默认) | int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "分子系数最小值",
+   "default": "[]",
+   "values": "分子系数的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "分子系数最大值",
+   "default": "[]",
+   "values": "分子系数的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "分子乘积输出",
+   "default": "rule",
+   "values": "分子乘积输出数据类型 Inherit: Inherit via internal rule (默认) | 继承: 与输入相同 | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "分子累加器",
+   "default": "rule",
+   "values": "分子累加器数据类型 Inherit: Inherit via internal rule (默认) | 继承: 与输入相同 | 继承: 与乘积输出相同 | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "分母系数",
+   "default": "rule",
+   "values": "分母系数数据类型 Inherit: Inherit via internal rule (默认) | int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "分母系数最小值",
+   "default": "[]",
+   "values": "分母系数的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "分母系数最大值",
+   "default": "[]",
+   "values": "分母系数的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "分母乘积输出",
+   "default": "rule",
+   "values": "分母乘积输出数据类型 Inherit: Inherit via internal rule (默认) | 继承: 与输入相同 | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "分母累加器",
+   "default": "rule",
+   "values": "分母累加器数据类型 Inherit: Inherit via internal rule (默认) | 继承: 与输入相同 | 继承: 与乘积输出相同 | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出",
+   "default": "rule",
+   "values": "输出数据类型 Inherit: Inherit via internal rule (默认) | Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "输出的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "输出的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "状态名称",
+   "default": "’’",
+   "values": "模块状态的唯一名称 ’’ (默认) | 字母数字字符串",
+   "group": "状态属性"
+  },
+  {
+   "name": "状态名称必须解析为 Simulink 信号对象",
+   "default": "off",
+   "values": "要求将状态名称解析为信号对象 off (默认) | on",
+   "group": "状态属性"
+  }
+ ]
+}

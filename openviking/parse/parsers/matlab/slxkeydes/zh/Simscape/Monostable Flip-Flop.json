@@ -1,0 +1,49 @@
+{
+ "key": "Monostable Flip-Flop",
+ "title": "Monostable Flip-Flop",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Monostable_Flip_Flop.md"
+ ],
+ "text": "上升沿、下降沿、任一边沿单稳态触发器，输入 1 路、输出 1 路；按 {Sample time} 指定模块采样时间；{Change detection} 指定触发信号的变化 Rising、{Initial output} 指定触发器初始输出、{Pulse duration (s)} 输出脉冲持续时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "触发器触发 0 | 1"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "触发器输出 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Change detection",
+   "default": "edge",
+   "values": "触发信号的变化 Rising edge (default) | Falling edge | Either edge",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "触发器初始输出 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pulse duration (s)",
+   "default": "0.01",
+   "values": "输出脉冲持续时间 0.01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "模块采样时间 0.001 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,124 @@
+{
+ "key": "Estimate Geometric Transformation",
+ "title": "Estimate Geometric Transformation",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Estimate_Geometric_Transformation.md"
+ ],
+ "text": "根据匹配点对估计几何变换，输入 3 路、输出 2 路；按 {Transformation type} 指定变换类型；{Find and exclude outliers} 查找并排除离群点、{Method} 查找离群点的方法 RANdom SAmple Con、{Algebraic distance threshold for determining inliers} 用于确定内点的代数距离阈值{Determine number of random samplings using} 使用以下项确定随机采样数 Specified val、{Number of random samplings} 指定随机采样数、{Desired confidence (in %)} 指定期望置信度（%）、{Maximum number of random samplings} 指定最大随机采样数、{Stop sampling earlier when a specified percentage of point pairs are determined to be inlier} 指定停止采样、{Perform additional iterative refinement of the transformation matrix} 指定执行额外的迭代细化、{Output Boolean signal indicating which point pairs are inliers} 输出布尔信号、{When Pts1 and Pts2 are built-in integers, set transformation matrix date type to} 指定变换矩阵数据类型、{Allow variable-sized signal input} 允许可变大小信号输入 也按实例取值；{Distance threshold for determining inliers (in pixels)} 用于确定内点的距离阈值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pts1",
+   "direction": "input",
+   "summary": "点坐标 M -by-2 matrix"
+  },
+  {
+   "name": "Pts2",
+   "direction": "input",
+   "summary": "点坐标 M -by-2 matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "有效点数 scalar"
+  },
+  {
+   "name": "TForm",
+   "direction": "output",
+   "summary": "变换 3-by-2 matrix | 3-by-3 matrix"
+  },
+  {
+   "name": "Inlier",
+   "direction": "output",
+   "summary": "使用的点 M -by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Transformation type",
+   "default": "Affine",
+   "values": "变换类型 Affine (default) | Nonreflective similarity | Projective",
+   "group": ""
+  },
+  {
+   "name": "Find and exclude outliers",
+   "default": "on",
+   "values": "查找并排除离群点 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Method",
+   "default": "(RANSAC)",
+   "values": "查找离群点的方法 RANdom SAmple Consensus (RANSAC) (default) | Least Median of Squares",
+   "group": ""
+  },
+  {
+   "name": "Algebraic distance threshold for determining inliers",
+   "default": "1.5",
+   "values": "用于确定内点的代数距离阈值 1.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance threshold for determining inliers (in pixels)",
+   "default": "1.5",
+   "values": "用于确定内点的距离阈值（以像素为单位） 1.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Determine number of random samplings using",
+   "default": "value",
+   "values": "使用以下项确定随机采样数 Specified value (default) | Desired confidence",
+   "group": ""
+  },
+  {
+   "name": "Number of random samplings",
+   "default": "500",
+   "values": "随机采样数 500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Desired confidence (in %)",
+   "default": "99",
+   "values": "期望置信度（%） 99 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of random samplings",
+   "default": "1000",
+   "values": "最大随机采样数 1000 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Stop sampling earlier when a specified percentage of point pairs are determined to be inlier",
+   "default": "off",
+   "values": "停止采样 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Perform additional iterative refinement of the transformation matrix",
+   "default": "off",
+   "values": "执行额外的迭代细化 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Boolean signal indicating which point pairs are inliers",
+   "default": "off",
+   "values": "输出布尔信号 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "When Pts1 and Pts2 are built-in integers, set transformation matrix date type to",
+   "default": "Single",
+   "values": "设置变换矩阵数据类型 Single (default) | Double",
+   "group": ""
+  },
+  {
+   "name": "Allow variable-sized signal input",
+   "default": "on",
+   "values": "允许可变大小信号输入 on (default) | off",
+   "group": ""
+  }
+ ]
+}

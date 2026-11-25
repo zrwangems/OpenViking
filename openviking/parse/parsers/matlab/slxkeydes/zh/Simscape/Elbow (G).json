@@ -1,0 +1,13 @@
+{
+ "key": "Elbow (G)",
+ "title": "Elbow (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Pipes & Fittings/Elbow_G.md"
+ ],
+ "text": "气体网络中的管道转弯。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

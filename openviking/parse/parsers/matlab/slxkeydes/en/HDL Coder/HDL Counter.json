@@ -1,0 +1,140 @@
+{
+ "key": "HDL Counter",
+ "title": "HDL Counter",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Sources/HDL_Counter.md"
+ ],
+ "text": "Free-running or count-limited hardware counter, 5 inputs, 2 outputs, {Counter type} sets Counter behavior Free; {Initial value} sets the counter value after reset, {Step value}, {Count to value} sets the threshold count value, {Count from} sets the criteria for count from value Initial, {Count from value} sets the initial value to count, {Local reset port} sets the local port to reset counter, {Load ports} sets the port for load value, {Count enable port} sets the port to enable counting, {Count direction port} sets the port for count direction, {Count hit output port} sets the port for count limit, {Counter output data is} sets the output data type, {Word length} sets the counter word length, {Fraction length} sets the counter fraction length and {Sample time} sets the counter sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "rst",
+   "direction": "input",
+   "summary": "Local reset port scalar"
+  },
+  {
+   "name": "load",
+   "direction": "input",
+   "summary": "Load port scalar"
+  },
+  {
+   "name": "load_val",
+   "direction": "input",
+   "summary": "Load port value scalar"
+  },
+  {
+   "name": "enb",
+   "direction": "input",
+   "summary": "Count enable port scalar"
+  },
+  {
+   "name": "dir",
+   "direction": "input",
+   "summary": "Count direction port scalar"
+  },
+  {
+   "name": "count",
+   "direction": "output",
+   "summary": "Counter value scalar"
+  },
+  {
+   "name": "count_hit",
+   "direction": "output",
+   "summary": "Counter limit indicator scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Counter type",
+   "default": "running",
+   "values": "Counter behavior Free running (default) | Count limited | Modulo",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "Counter value after reset 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Step value",
+   "default": "1",
+   "values": "Step value for count 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Count to value",
+   "default": "25",
+   "values": "Threshold count value 25 (default)",
+   "group": ""
+  },
+  {
+   "name": "Count from",
+   "default": "value",
+   "values": "Criteria for count from value Initial value (default) | Specify",
+   "group": ""
+  },
+  {
+   "name": "Count from value",
+   "default": "0",
+   "values": "Initial value to count from 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Local reset port",
+   "default": "off",
+   "values": "Local port to reset counter off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Load ports",
+   "default": "off",
+   "values": "Port for load value off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Count enable port",
+   "default": "off",
+   "values": "Port to enable counting off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Count direction port",
+   "default": "off",
+   "values": "Port for count direction off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Count hit output port",
+   "default": "off",
+   "values": "Port for count limit off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Counter output data is",
+   "default": "Unsigned",
+   "values": "Output data type signedness Unsigned (default) | Signed",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "8",
+   "values": "Counter word length 8 (default)",
+   "group": ""
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Counter fraction length 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Counter sample time 1 (default)",
+   "group": ""
+  }
+ ]
+}

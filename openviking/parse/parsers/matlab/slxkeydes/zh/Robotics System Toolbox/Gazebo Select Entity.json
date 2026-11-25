@@ -1,0 +1,37 @@
+{
+ "key": "Gazebo Select Entity",
+ "title": "Gazebo Select Entity",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Select_Entity.md"
+ ],
+ "text": "选择 Gazebo 实体；输出 2 路；{Model Name} 指定模型名称、{Output vector size upper bound} 输出数组的上限，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "model",
+   "direction": "output",
+   "summary": "实体的模型名称 model1 (default) | string ( uint8[] )"
+  },
+  {
+   "name": "Joint/Link",
+   "direction": "output",
+   "summary": "实体的关联关节或连杆名称 joint1 (default) | string ( uint8[] )"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model Name",
+   "default": "’model1/joint1’",
+   "values": "选择模型名称 ’model1/joint1’ (default) | string scalar",
+   "group": ""
+  },
+  {
+   "name": "Output vector size upper bound",
+   "default": "128",
+   "values": "输出数组的上限 128 (default)",
+   "group": ""
+  }
+ ]
+}

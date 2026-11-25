@@ -1,0 +1,24 @@
+{
+ "key": "ethercatgetsbdata",
+ "title": "EtherCAT Get Scanbus Error Data",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Get_Scanbus_Error_Data.md"
+ ],
+ "text": "检测模型中的 EtherCAT 设备何时无响应，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Values",
+   "direction": "input",
+   "summary": "来自 EtherCAT Get Notifications 模块的输入 [ Length 20 * Notification ]"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "指示 scanbus 错误 false (default) | true"
+  }
+ ],
+ "params": []
+}

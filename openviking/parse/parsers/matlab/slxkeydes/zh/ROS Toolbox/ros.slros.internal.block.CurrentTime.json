@@ -1,0 +1,32 @@
+{
+ "key": "ros.slros.internal.block.CurrentTime",
+ "title": "Current Time",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Current_Time.md"
+ ],
+ "text": "检索当前 ROS 时间或系统时间；输出 1 路；{Output format} 指定 ROS 时间的格式、{Sample time} 输出之间的间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "output",
+   "summary": "ROS 时间 bus | scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output format",
+   "default": "bus",
+   "values": "ROS 时间的格式 bus (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "输出之间的间隔 -1 (default) | numeric scalar",
+   "group": ""
+  }
+ ]
+}

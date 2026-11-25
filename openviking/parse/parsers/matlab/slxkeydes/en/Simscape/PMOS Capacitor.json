@@ -1,0 +1,13 @@
+{
+ "key": "PMOS Capacitor",
+ "title": "PMOS Capacitor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/PMOS_Capacitor.md"
+ ],
+ "text": "P-type metal-oxide-semiconductor capacitor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

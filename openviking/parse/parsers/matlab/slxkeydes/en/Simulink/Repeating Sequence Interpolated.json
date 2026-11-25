@@ -1,0 +1,68 @@
+{
+ "key": "Repeating Sequence Interpolated",
+ "title": "Repeating Sequence Interpolated",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Repeating_Sequence_Interpolated.md"
+ ],
+ "text": "Output discrete-time sequence and repeat, interpolating between data points, 1 output, no direct feedthrough, {Output data type} sets the output data type; {Vector of output values}, {Vector of time values}, {Lookup Method} sets the lookup method for output Interpolation-Use End, {Sample time} sets the time interval between samples, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking and {Lock output data type setting against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Periodic output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vector of output values",
+   "default": "1].’",
+   "values": "Vector of output values [3 1 4 2 1].’ (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Vector of time values",
+   "default": "1].’",
+   "values": "Vector of time values [0 0.1 0.5 0.6 1].’ (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Lookup Method",
+   "default": "Values",
+   "values": "Lookup method for output Interpolation-Use End Values (default) | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Time interval between samples 0.01 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Specify the output data type double (default) | Inherit: Inherit via back propagation | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | |...",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Signal Attributes"
+  }
+ ]
+}

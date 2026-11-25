@@ -1,0 +1,172 @@
+{
+ "key": "dsp.simulink.FrequencyDomainAdaptiveFilter",
+ "title": "Frequency-Domain Adaptive Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Adaptive Filters/Frequency_Domain_Adaptive_Filter.md"
+ ],
+ "text": "使用频域 FIR 自适应滤波器计算输出、误差和系数，输入 8 路、输出 3 路、无直接馈通；按 {Initial time-domain coefficients} 指定滤波器的初始时域系数；{Method} 指定计算滤波器系数的方法 Constrained、{Filter length} 指定滤波器系数向量的长度、{Block length} 指定系数更新的块长度、{Specify step size from port} 用于指定步长的标志、{Step size} 指定自适应步长、{Specify leakage factor from port} 用于指定泄漏因子的标志、{LeakageFactor} 指定自适应泄漏因子、{Specify averaging factor from port} 用于指定平均因子的标志、{Averaging factor} 指定信号功率的平均因子、{Specify offset from port} 用于指定偏移的标志、{Offset} 指定归一化项的偏移、{Initial FFT input signal power} 指定初始 FFT 输入信号功率、{Enable adapt port} 用于启用系数更新的标志、{Enable reset port} 用于重置内部状态的标志、{Output filter FFT coefficients} 用于输出滤波器系数 DFT 的标志、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "数据输入 column vector"
+  },
+  {
+   "name": "Desired",
+   "direction": "input",
+   "summary": "期望信号 column vector"
+  },
+  {
+   "name": "Mu",
+   "direction": "input",
+   "summary": "步长输入 real scalar in the range (0,1]"
+  },
+  {
+   "name": "Leak",
+   "direction": "input",
+   "summary": "泄漏因子输入 real scalar in the range (0,1]"
+  },
+  {
+   "name": "Avrg",
+   "direction": "input",
+   "summary": "平均因子输入 real scalar in the range (0,1]"
+  },
+  {
+   "name": "Offset",
+   "direction": "input",
+   "summary": "归一化项的偏移 nonnegative real scalar"
+  },
+  {
+   "name": "Adapt",
+   "direction": "input",
+   "summary": "启用滤波器系数更新 nonnegative real scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "启用滤波器状态重置 nonnegative real scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "滤波后输出 column vector"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "输出与期望信号之间的差值 column vector"
+  },
+  {
+   "name": "FFTCoeffs",
+   "direction": "output",
+   "summary": "滤波器的当前 FFT 系数 row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "FDAF",
+   "values": "计算滤波器系数的方法 Constrained FDAF (default) | Partitioned constrained FDAF | Unconstrained FDAF | Partitioned unconstrained FDAF",
+   "group": ""
+  },
+  {
+   "name": "Filter length",
+   "default": "32",
+   "values": "滤波器系数向量的长度 32 (default) | positive, integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Block length",
+   "default": "32",
+   "values": "系数更新的块长度 32 (default) | positive, integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify step size from port",
+   "default": "off",
+   "values": "用于指定步长的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Step size",
+   "default": "1",
+   "values": "自适应步长 1 (default) | real scalar in the range (0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify leakage factor from port",
+   "default": "off",
+   "values": "用于指定泄漏因子的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "LeakageFactor",
+   "default": "1",
+   "values": "自适应泄漏因子 1 (default) | real scalar in the range (0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify averaging factor from port",
+   "default": "off",
+   "values": "用于指定平均因子的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Averaging factor",
+   "default": "0.9",
+   "values": "信号功率的平均因子 0.9 (default) | real scalar in the range (0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify offset from port",
+   "default": "off",
+   "values": "用于指定偏移的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Offset",
+   "default": "0",
+   "values": "归一化项的偏移 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial FFT input signal power",
+   "default": "1",
+   "values": "初始 FFT 输入信号功率 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial time-domain coefficients",
+   "default": "0",
+   "values": "滤波器的初始时域系数 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable adapt port",
+   "default": "off",
+   "values": "用于启用系数更新的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable reset port",
+   "default": "off",
+   "values": "用于重置内部状态的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output filter FFT coefficients",
+   "default": "off",
+   "values": "用于输出滤波器系数 DFT 的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

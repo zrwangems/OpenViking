@@ -1,0 +1,136 @@
+{
+ "key": "State-Feedback Controller",
+ "title": "State-Feedback Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/State_Feedback_Controller.md"
+ ],
+ "text": "具有积分作用的离散时间状态反馈控制器，输入 4 路、输出 1 路；{State-feedback design} 控制器生成 State-feedback、{State-feedback parameterization} 指定状态反馈参数化、{Controller matrix} 控制器矩阵、{Discrete-time A matrix} 指定离散时间 A 矩阵、{Discrete-time B matrix} 指定离散时间 B 矩阵、{Discrete-time C matrix} 指定离散时间 C 矩阵、{Discrete-time D matrix} 指定离散时间 D 矩阵、{Continuous-time A matrix} 指定连续时间 A 矩阵、{Continuous-time B matrix} 指定连续时间 B 矩阵、{Continuous-time C matrix} 指定连续时间 C 矩阵、{Continuous-time D matrix} 指定连续时间 D 矩阵、{Discretization sample time} 指定离散化采样时间、{Desired eigenvalues (discrete)} 指定观测器特征值、{Control action upper limit} 指定 u max、{Control action lower limit} 指定 u min、{Sample time (-1 for inherited)} 指定采样间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "被控对象参考 scalar"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "状态向量 vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "积分器复位 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制器输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "State-feedback design",
+   "default": "gain",
+   "values": "控制器生成 State-feedback gain (default) | Desired eigenvalues",
+   "group": ""
+  },
+  {
+   "name": "State-feedback parameterization",
+   "default": "Discrete-time",
+   "values": "状态反馈参数化 Discrete-time (default) | Continuous-time",
+   "group": ""
+  },
+  {
+   "name": "Controller matrix",
+   "default": "1]",
+   "values": "控制器矩阵 [1 1] (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Discrete-time A matrix",
+   "default": "1",
+   "values": "离散时间 A 矩阵 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Discrete-time B matrix",
+   "default": "1",
+   "values": "离散时间 B 矩阵 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Discrete-time C matrix",
+   "default": "1",
+   "values": "离散时间 C 矩阵 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Discrete-time D matrix",
+   "default": "1",
+   "values": "离散时间 D 矩阵 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Continuous-time A matrix",
+   "default": "1",
+   "values": "连续时间 A 矩阵 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Continuous-time B matrix",
+   "default": "1",
+   "values": "连续时间 B 矩阵 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Continuous-time C matrix",
+   "default": "1",
+   "values": "连续时间 C 矩阵 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Continuous-time D matrix",
+   "default": "1",
+   "values": "连续时间 D 矩阵 1 (default) | real scalar or matrix",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.1",
+   "values": "离散化采样时间 0.1 (default) | positive real number",
+   "group": ""
+  },
+  {
+   "name": "Desired eigenvalues (discrete)",
+   "default": "0",
+   "values": "观测器特征值 0 (default) | real vector",
+   "group": ""
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "5",
+   "values": "u max 5 (default) | scalar greater than the value of the Control action lower limit parameter",
+   "group": ""
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "0",
+   "values": "u min 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "采样间隔 -1 (default) | default value or a positive number",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,67 @@
+{
+ "key": "Lead-Lag (Discrete or Continuous)",
+ "title": "Lead-Lag (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Lead_Lag_Discrete_or_Continuous.md"
+ ],
+ "text": "离散时间或连续时间超前-滞后补偿器，输入 1 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Lead time constant, T1} 指定超前时间常数、{Lag time constant, T2} 指定滞后时间常数、{Upper saturation limit} 指定状态上限 inf、{Lower saturation limit} 指定状态下限 -inf、{Initialization} 指定初始状态指定 Inherited from block、{Initial state} 指定初始状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "补偿器输入 vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "补偿器输出 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lead time constant, T1",
+   "default": "0.2",
+   "values": "超前时间常数 0.2 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Lag time constant, T2",
+   "default": "0.1",
+   "values": "滞后时间常数 0.1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Upper saturation limit",
+   "default": "inf",
+   "values": "状态上限 inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Lower saturation limit",
+   "default": "-inf",
+   "values": "状态下限 -inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Initialization",
+   "default": "input",
+   "values": "初始状态指定 Inherited from block input (default) | Specify as parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "初始状态 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

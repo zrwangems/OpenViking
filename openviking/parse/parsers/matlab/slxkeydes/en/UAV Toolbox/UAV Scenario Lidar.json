@@ -1,0 +1,80 @@
+{
+ "key": "UAV Scenario Lidar",
+ "title": "UAV Scenario Lidar",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Lidar.md"
+ ],
+ "text": "Simulate lidar measurements based on meshes in scenario, 1 output; {Sensor name} sets the lidar sensor name, {Max range}, {Range Accuracy} sets the range accuracy of lidar, {Azimuthal limits}, {Azimuthal resolution}, {Elevation limits}, {Elevation resolution}, {Add noise to measurement}, {Output organized point cloud locations} sets the output point cloud locations and {Sample Time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pointcloud",
+   "direction": "output",
+   "summary": "Point cloud data N -by- M -by-3 double matrix | N -by-3 double matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor name",
+   "default": "’UAV/Lidar’",
+   "values": "Lidar sensor name ’UAV/Lidar’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Max range",
+   "default": "120",
+   "values": "Max range of lidar 120 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Range Accuracy",
+   "default": "0.002",
+   "values": "Range accuracy of lidar 0.002 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Azimuthal limits",
+   "default": "180]",
+   "values": "Azimuthal limits of lidar [-180, 180] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Azimuthal resolution",
+   "default": "0.16",
+   "values": "Azimuthal resolution 0.16 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Elevation limits",
+   "default": "20]",
+   "values": "Elevation limits of lidar [-20, 20] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation resolution",
+   "default": "1.25",
+   "values": "Elevation resolution 1.25 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Add noise to measurement",
+   "default": "’on’",
+   "values": "Add noise to measurement ’on’ (default) | ’off’",
+   "group": ""
+  },
+  {
+   "name": "Output organized point cloud locations",
+   "default": "’on’",
+   "values": "Output point cloud locations ’on’ (default) | ’off’",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "0.1",
+   "values": "Sample time 0.1 (default) | double",
+   "group": ""
+  }
+ ]
+}

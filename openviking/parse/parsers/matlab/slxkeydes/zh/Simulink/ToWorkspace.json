@@ -1,0 +1,65 @@
+{
+ "key": "ToWorkspace",
+ "title": "To Workspace",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/To_Workspace.md",
+  "DSP System Toolbox HDL Support/Sinks/To_Workspace.md",
+  "DSP System Toolbox/Sinks/To_Workspace.md",
+  "HDL Coder/Sinks/To_Workspace.md"
+ ],
+ "text": "将数据从 Simulink 模型记录到工作区，输入 1 路；按 {将数据点限制为最后} 指定要记录的采样数；{变量名称} 用于保存数据的变量的名称、{抽取}、{保存格式} 指定记录到工作区的数据的格式、{将二维信号另存为} 指定所记录数据中二维采样值的排列 三维数组、{将定点数据记录为 fi 对象} 指定记录的定点数据的数据类型、{采样时间} 指定采样间隔和可选时间偏移量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要记录到工作区的数据 标量 | 向量 | 矩阵 | 数组 | 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "变量名称",
+   "default": "simout",
+   "values": "用于保存数据的变量的名称 simout (默认) | 字符串 | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "将数据点限制为最后",
+   "default": "inf",
+   "values": "要记录的采样数 inf (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "抽取",
+   "default": "1",
+   "values": "抽取因子 1 (默认) | 正整数",
+   "group": ""
+  },
+  {
+   "name": "保存格式",
+   "default": "时间序列",
+   "values": "记录到工作区的数据的格式 时间序列 (默认) | 带时间的结构体 | 结构体 | 数组",
+   "group": ""
+  },
+  {
+   "name": "将二维信号另存为",
+   "default": "三维数组(沿第三个维度串联)",
+   "values": "所记录数据中二维采样值的排列 三维数组(沿第三个维度串联) (默认) | 二维数组(沿第一个维度串联)",
+   "group": ""
+  },
+  {
+   "name": "将定点数据记录为 fi 对象",
+   "default": "on",
+   "values": "记录的定点数据的数据类型 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "采样间隔和可选时间偏移量 -1 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

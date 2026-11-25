@@ -1,0 +1,79 @@
+{
+ "key": "SRM Current Controller",
+ "title": "SRM Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SRM Control/SRM_Current_Controller.md"
+ ],
+ "text": "开关磁阻电机的电流控制，输入 6 路、输出 2 路；{Proportional gain} 控制器比例增益 K p、{Integral gain} 指定积分增益 K i、{Anti-windup gain} 指定抗饱和增益 K aw、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsRef",
+   "direction": "input",
+   "summary": "参考电流 scalar"
+  },
+  {
+   "name": "Is",
+   "direction": "input",
+   "summary": "测得电流 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "积分器复位 scalar"
+  },
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "Theta 转子角 scalar"
+  },
+  {
+   "name": "thetaON",
+   "direction": "input",
+   "summary": "开通角 scalar"
+  },
+  {
+   "name": "thetaOFF",
+   "direction": "input",
+   "summary": "关断角 scalar"
+  },
+  {
+   "name": "abcRef",
+   "direction": "output",
+   "summary": "参考电压 vector"
+  },
+  {
+   "name": "abcOnOff",
+   "direction": "output",
+   "summary": "开关信号 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "控制器比例增益 K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "5",
+   "values": "积分增益 K i 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "抗饱和增益 K aw 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

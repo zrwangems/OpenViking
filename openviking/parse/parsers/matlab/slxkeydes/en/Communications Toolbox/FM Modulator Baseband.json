@@ -1,0 +1,37 @@
+{
+ "key": "FM Modulator Baseband",
+ "title": "FM Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Baseband Modulation/FM_Modulator_Baseband.md"
+ ],
+ "text": "Modulate using FM method, 1 input, 1 output; {Frequency deviation (Hz)} sets the frequency deviation and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input data signal scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output data signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency deviation (Hz)",
+   "default": "75e3",
+   "values": "Frequency deviation of modulator 75e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

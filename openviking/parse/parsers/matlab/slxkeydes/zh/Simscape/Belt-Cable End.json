@@ -1,0 +1,13 @@
+{
+ "key": "Belt-Cable End",
+ "title": "Belt-Cable End",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Belts and Cables/Belt_Cable_End.md"
+ ],
+ "text": "滑轮系统绳索的末端。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

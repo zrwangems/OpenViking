@@ -1,0 +1,71 @@
+{
+ "key": "Interprocess Data Channel",
+ "title": "Interprocess Data Channel",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Test Bench Blocks/Interprocess_Data_Channel.md",
+  "SoC Blockset/Processor Interconnect/Interprocess_Data_Channel.md"
+ ],
+ "text": "对两个处理器之间的处理器间数据通道进行建模，输入 1 路、输出 4 路；{Circular FIFO depth} 指定存储缓冲区数量、{Propagation delay} 指定数据通过通道的传播延迟 1e-6、{Show event port} 启用任务事件端口、{Show number of used circular FIFO} 启用循环 FIFO 计数端口、{Show when circular FIFO is overwritten} 启用显示循环 FIFO 覆盖的端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "datain",
+   "direction": "input",
+   "summary": "输入数据消息 scalar"
+  },
+  {
+   "name": "dataout",
+   "direction": "output",
+   "summary": "输出数据消息 scalar"
+  },
+  {
+   "name": "overwritten",
+   "direction": "output",
+   "summary": "输出覆盖通知信号 scalar"
+  },
+  {
+   "name": "used",
+   "direction": "output",
+   "summary": "输出正在使用的缓冲区数量 scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "任务事件信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Circular FIFO depth",
+   "default": "1",
+   "values": "存储缓冲区数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Propagation delay",
+   "default": "1e-6",
+   "values": "数据通过通道的传播延迟 1e-6 (default) | non-negative number",
+   "group": ""
+  },
+  {
+   "name": "Show event port",
+   "default": "off",
+   "values": "启用任务事件端口的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show number of used circular FIFO",
+   "default": "off",
+   "values": "启用循环 FIFO 计数端口的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show when circular FIFO is overwritten",
+   "default": "off",
+   "values": "启用显示循环 FIFO 覆盖的端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

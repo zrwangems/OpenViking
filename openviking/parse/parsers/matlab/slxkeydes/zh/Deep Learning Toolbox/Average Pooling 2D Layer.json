@@ -1,0 +1,103 @@
+{
+ "key": "Average Pooling 2D Layer",
+ "title": "Average Pooling 2D Layer",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Pooling Layers/Average_Pooling_2D_Layer.md"
+ ],
+ "text": "2-D 平均池化层，输入 1 路、输出 1 路；按 {Internal integer rounding mode} 指定内部定点运算的舍入模式；{Layer} 指定对应的层对象、{Data format} 指定输入数据的格式、{Output minimum} 用于范围检查的最小输出值、{Output maximum} 用于范围检查的最大输出值、{Output data type} 输出数据类型、{Lock output data type setting against changes by the fixed-point tools} 用于防止定点工具覆盖输出数据类型、{Output integer rounding mode} 指定定点输出转换操作的舍入模式、{Output saturate on integer overflow} 输出转换操作的溢出操作方式、{Accumulator} 指定累加器的数据类型、{Number of pooling elements} 指定标准差的数据类型、{Internal saturate on integer overflow} 指定内部模块操作的溢出操作方式、{Sample time} 用于指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 3-dimensional array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "下采样后的输出数据 3-dimensional array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Layer",
+   "default": "layerObject",
+   "values": "对应的层对象 layerObject (default) | averagePooling2dLayer object",
+   "group": "Main"
+  },
+  {
+   "name": "Data format",
+   "default": "SSC",
+   "values": "输入数据的格式 SSC (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "用于范围检查的最小输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "用于范围检查的最大输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output integer rounding mode",
+   "default": "Floor",
+   "values": "定点输出转换操作的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output saturate on integer overflow",
+   "default": "off",
+   "values": "输出转换操作的溢出操作方式 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器的数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Number of pooling elements",
+   "default": "propagation",
+   "values": "标准差的数据类型 Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal integer rounding mode",
+   "default": "Floor",
+   "values": "内部定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal saturate on integer overflow",
+   "default": "off",
+   "values": "内部模块操作的溢出操作方式 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "用于指定采样时间的选项 -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

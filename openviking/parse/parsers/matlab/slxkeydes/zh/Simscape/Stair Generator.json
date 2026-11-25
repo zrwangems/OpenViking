@@ -1,0 +1,50 @@
+{
+ "key": "Stair Generator",
+ "title": "Stair Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Stair_Generator.md"
+ ],
+ "text": "离散时间或连续时间阶梯信号发生器；输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Time (s)} 指定转换时间、{Amplitude} 指定阶梯信号值的幅值、{Repeat stair pattern indefinitely} 指定阶梯模式重复、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "阶梯信号 Simulink ® signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time (s)",
+   "default": "3.5]",
+   "values": "转换时间 [0.5 1 3 3.5] (default) | row vector of nonnegative values",
+   "group": "Main"
+  },
+  {
+   "name": "Amplitude",
+   "default": "0]",
+   "values": "阶梯信号值的幅值 [1 -1 2.5 0] (default) | row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Repeat stair pattern indefinitely",
+   "default": "off",
+   "values": "阶梯模式重复 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "指定输出数据类型 double (default) | Inherit: auto | Inherit: Inherit via internal rule | Inherit: Inherit via back propagation | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 |",
+   "group": "Signal Attributes"
+  }
+ ]
+}

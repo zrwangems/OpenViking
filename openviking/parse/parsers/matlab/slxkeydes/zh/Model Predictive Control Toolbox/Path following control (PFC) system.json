@@ -1,0 +1,302 @@
+{
+ "key": "Path following control (PFC) system",
+ "title": "Path Following Control System",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Automated Driving/Path_Following_Control_System.md"
+ ],
+ "text": "使用自适应模型预测控制器仿真路径跟随控制，输入 17 路、输出 2 路；按 {Control horizon} 指定控制器控制时域；{Use vehicle parameters} 使用车辆属性定义自车模型、{Use vehicle model} 使用状态空间矩阵定义自车模型、{Total mass} 指定自车质量、{Yaw moment of inertia} 指定绕自车垂直轴的转动惯量、{Longitudinal distance from center of gravity to front tires} 指定从自车质心到其前轮的距离、{Longitudinal distance from center of gravity to rear tires} 指定自车质心到其后轮的距离、{Cornering stiffness of front tires} 指定前轮刚度、{Cornering stiffness of rear tires} 指定后轮刚度、{Longitudinal acceleration tracking time constant} 指定加速度跟踪时间常数、{A} 指定自车预测模型的初始状态矩阵 square、{B} 指定自车预测模型的初始输入到状态矩阵 matrix with two、{C} 指定自车预测模型的初始状态到输出矩阵 matrix with three、{Initial longitudinal velocity} 指定自车模型的初始速度、{Transport lag between model inputs and outputs} 指定自车模型中的总传输延迟、{Maintain safe distance between lead vehicle and ego vehicle} 启用间距控制、{Default spacing} 指定与前车的最小间距、{Minimum steering angle} 指定最小前轮转向角、{Maximum steering angle} 指定最大前轮转向角、{Minimum longitudinal acceleration} 指定自车最小加速度、{Maximum longitudinal acceleration} 指定自车最大加速度、{Sample time} 控制器采样时间、{Prediction horizon} 控制器预测时域、{Weight on velocity tracking} 指定纵向速度跟踪的整定权重、{Weight on lateral error} 指定横向误差的整定权重、{Weight on change of longitudinal acceleration} 指定纵向加速度变化的整定权重、{Weight on change of steering angle} 指定转向角变化的整定权重、{Use suboptimal solution} 指定在指定迭代次数后应用次优解、{Maximum iteration number} 指定最大优化迭代次数、{Use external signal to enable or disable optimization} 添加用于启用优化的端口、{Use external signal for bumpless transfer between PFC and other controllers} 添加外部控制信号输入端口、{Create PFC subsystem} 指定创建自定义控制器，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Set velocity",
+   "direction": "input",
+   "summary": "自车速度设定值 nonnegative scalar"
+  },
+  {
+   "name": "Time gap",
+   "direction": "input",
+   "summary": "安全时距 nonnegative scalar"
+  },
+  {
+   "name": "Relative distance",
+   "direction": "input",
+   "summary": "前车与自车之间的距离 positive scalar"
+  },
+  {
+   "name": "Relative velocity",
+   "direction": "input",
+   "summary": "前车与自车之间的速度差 scalar"
+  },
+  {
+   "name": "Longitudinal velocity",
+   "direction": "input",
+   "summary": "自车速度 nonnegative scalar"
+  },
+  {
+   "name": "Curvature",
+   "direction": "input",
+   "summary": "道路曲率 scalar | vector"
+  },
+  {
+   "name": "Lateral deviation",
+   "direction": "input",
+   "summary": "自车横向偏差 scalar"
+  },
+  {
+   "name": "Relative yaw angle",
+   "direction": "input",
+   "summary": "相对于车道中心线的角度 scalar"
+  },
+  {
+   "name": "Minimum longitudinal acceleration",
+   "direction": "input",
+   "summary": "自车最小加速度 scalar"
+  },
+  {
+   "name": "Maximum longitudinal acceleration",
+   "direction": "input",
+   "summary": "自车最大加速度 scalar"
+  },
+  {
+   "name": "Minimum steering angle",
+   "direction": "input",
+   "summary": "最小前轮转向角 scalar"
+  },
+  {
+   "name": "Maximum steering angle",
+   "direction": "input",
+   "summary": "最大前轮转向角 scalar"
+  },
+  {
+   "name": "Enable optimization",
+   "direction": "input",
+   "summary": "控制器优化启用信号 scalar"
+  },
+  {
+   "name": "External control signal",
+   "direction": "input",
+   "summary": "施加到自车的控制信号 vector of length two"
+  },
+  {
+   "name": "Vehicle dynamics matrix A",
+   "direction": "input",
+   "summary": "自车预测模型的状态矩阵 square matrix"
+  },
+  {
+   "name": "Vehicle dynamics matrix B",
+   "direction": "input",
+   "summary": "自车预测模型的输入到状态矩阵 matrix with two columns"
+  },
+  {
+   "name": "Vehicle dynamics matrix C",
+   "direction": "input",
+   "summary": "自车预测模型的状态到输出矩阵 matrix with three rows"
+  },
+  {
+   "name": "Longitudinal acceleration",
+   "direction": "output",
+   "summary": "加速度控制信号 scalar"
+  },
+  {
+   "name": "Steering angle",
+   "direction": "output",
+   "summary": "前轮转向角控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use vehicle parameters",
+   "default": "on",
+   "values": "使用车辆属性定义自车模型 on (default) | off",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use vehicle model",
+   "default": "off",
+   "values": "使用状态空间矩阵定义自车模型 off (default) | on",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Total mass",
+   "default": "1575",
+   "values": "自车质量 1575 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Yaw moment of inertia",
+   "default": "2875",
+   "values": "绕自车垂直轴的转动惯量 2875 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Longitudinal distance from center of gravity to front tires",
+   "default": "1.2",
+   "values": "从自车质心到其前轮的距离 1.2 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Longitudinal distance from center of gravity to rear tires",
+   "default": "1.6",
+   "values": "自车质心到其后轮的距离 1.6 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Cornering stiffness of front tires",
+   "default": "19000",
+   "values": "前轮刚度 19000 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Cornering stiffness of rear tires",
+   "default": "33000",
+   "values": "后轮刚度 33000 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Longitudinal acceleration tracking time constant",
+   "default": "0.5",
+   "values": "加速度跟踪时间常数 0.5 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "A",
+   "default": "",
+   "values": "自车预测模型的初始状态矩阵 square matrix",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "B",
+   "default": "",
+   "values": "自车预测模型的初始输入到状态矩阵 matrix with two columns",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "C",
+   "default": "",
+   "values": "自车预测模型的初始状态到输出矩阵 matrix with three rows",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Initial longitudinal velocity",
+   "default": "15",
+   "values": "自车模型的初始速度 15 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Transport lag between model inputs and outputs",
+   "default": "0",
+   "values": "自车模型中的总传输延迟 0 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Maintain safe distance between lead vehicle and ego vehicle",
+   "default": "on",
+   "values": "启用间距控制 on (default) | off",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Default spacing",
+   "default": "10",
+   "values": "与前车的最小间距 10 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Minimum steering angle",
+   "default": "-0.26",
+   "values": "最小前轮转向角 -0.26 (default) | scalar between -pi/2 and pi/2",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Maximum steering angle",
+   "default": "0.26",
+   "values": "最大前轮转向角 0.26 (default) | scalar between -pi/2 and pi/2",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Minimum longitudinal acceleration",
+   "default": "-3",
+   "values": "自车最小加速度 -3 (default) | scalar",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Maximum longitudinal acceleration",
+   "default": "2",
+   "values": "自车最大加速度 2 (default) | scalar",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "控制器采样时间 0.1 (default) | positive scalar",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Prediction horizon",
+   "default": "10",
+   "values": "控制器预测时域 10 (default) | positive integer",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Control horizon",
+   "default": "3",
+   "values": "控制器控制时域 3 (default) | positive integer | vector of positive integers",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Weight on velocity tracking",
+   "default": "0.1",
+   "values": "纵向速度跟踪的整定权重 0.1 (default) | positive scalar",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Weight on lateral error",
+   "default": "1",
+   "values": "横向误差的整定权重 1 (default) | positive scalar",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Weight on change of longitudinal acceleration",
+   "default": "0.1",
+   "values": "纵向加速度变化的整定权重 0.1 (default) | positive scalar",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Weight on change of steering angle",
+   "default": "0.1",
+   "values": "转向角变化的整定权重 0.1 (default) | positive scalar",
+   "group": "Controller Tab"
+  },
+  {
+   "name": "Use suboptimal solution",
+   "default": "off",
+   "values": "在指定迭代次数后应用次优解 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Maximum iteration number",
+   "default": "10",
+   "values": "最大优化迭代次数 10 (default) | positive integer",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external signal to enable or disable optimization",
+   "default": "off",
+   "values": "添加用于启用优化的端口 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external signal for bumpless transfer between PFC and other controllers",
+   "default": "off",
+   "values": "添加外部控制信号输入端口 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Create PFC subsystem",
+   "default": "",
+   "values": "创建自定义控制器 button",
+   "group": "Block Tab"
+  }
+ ]
+}

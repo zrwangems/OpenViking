@@ -1,0 +1,38 @@
+{
+ "key": "StringConstant",
+ "title": "String Constant",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Constant.md"
+ ],
+ "text": "输出指定的字符串；输出 1 路；{字符串}、{输出数据类型}、{模式} 指定数据类别 string，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出字符串 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "字符串",
+   "default": "\"Hello!\"",
+   "values": "输入字符串 \"Hello!\" (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "string",
+   "values": "输出数据类型 string (默认) | <数据类型表达式>",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "string",
+   "values": "数据类别 string (默认) | scalar",
+   "group": ""
+  }
+ ]
+}

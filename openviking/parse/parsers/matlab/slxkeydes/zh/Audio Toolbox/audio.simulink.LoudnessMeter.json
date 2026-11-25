@@ -1,0 +1,77 @@
+{
+ "key": "audio.simulink.LoudnessMeter",
+ "title": "Loudness Meter",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Measurements/Loudness_Meter.md"
+ ],
+ "text": "符合标准的响度测量，输入 1 路、输出 3 路、无直接馈通；{Channel weights} 指定应用于每个输入通道的线性加权、{Use relative scale for loudness measurements} 指定模块输出相对于目标级别的响度测量值、{Target loudness level (LUFS)} 指定相对响度测量的参考电平、{Output true-peak value} 添加用于真峰值的输出端口、{Inherit sample rate from input} 指定输入采样率的来源、{Input sample rate (Hz)} 指定输入的采样率、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 matrix | 1-D vector"
+  },
+  {
+   "name": "M",
+   "direction": "output",
+   "summary": "瞬时响度测量 column vector"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "短期响度测量 column vector"
+  },
+  {
+   "name": "TP",
+   "direction": "output",
+   "summary": "真峰值 real scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Channel weights",
+   "default": "1.41]",
+   "values": "应用于每个输入通道的线性加权 [1, 1, 1, 1.41, 1.41] (default) | nonnegative row vector",
+   "group": ""
+  },
+  {
+   "name": "Use relative scale for loudness measurements",
+   "default": "off",
+   "values": "指定模块输出相对于目标级别的响度测量值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Target loudness level (LUFS)",
+   "default": "–23",
+   "values": "相对响度测量的参考电平 –23 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output true-peak value",
+   "default": "off",
+   "values": "添加用于真峰值的输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "指定输入采样率的来源 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "指定要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

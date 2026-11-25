@@ -1,0 +1,132 @@
+{
+ "key": "phased.WidebandCollector",
+ "title": "Wideband Receive Array",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Transmitters and Receivers/Wideband_Receive_Array.md"
+ ],
+ "text": "Receiver, 2 inputs, 1 output, {Output IP3 (dBm)} sets Output IP3; {Enable signal enabling input} sets the enablng signal input, {Add noise to input signal}, {Input noise temperature (K)}, {Sample rate (Hz)} sets the sample rate 1e6, {Inherit sample rate}, {Simulate using} sets the block simulation method Interpreted, {Noise method}, {Noise figure (dB)}, {Noise factor}, {Reference temperature (K)}, {Gain method}, {Gain (dB)} sets the linear receiver gain, {Lookup table}, {Phased offset (degrees)} sets the phase offset, {Source of seed for random number generator} and {Seed for random number generator}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Received signal complex-valued vector | complex-valued matrix"
+  },
+  {
+   "name": "EN",
+   "direction": "input",
+   "summary": "Enabling signal real-valued vector (default) | real-valued matrix | logical-valued vector | logical-valued matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Amplified signal complex-valued vector | complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable signal enabling input",
+   "default": "0",
+   "values": "Enablng signal input false 0 (default) | true 1",
+   "group": ""
+  },
+  {
+   "name": "Add noise to input signal",
+   "default": "off",
+   "values": "Add noise to input signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input noise temperature (K)",
+   "default": "290",
+   "values": "Input noise temperature 290 (default) | positive scalar | length- N vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sample rate 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Noise method",
+   "default": "",
+   "values": "Noise method None | Noise figure | Noise factor | Noise temperature",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "3",
+   "values": "Noise figure 3 (default) | real scalar | length- N vector or real values",
+   "group": ""
+  },
+  {
+   "name": "Noise factor",
+   "default": "2",
+   "values": "Noise factor 2 (default) | positive scalar | length- N vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Reference temperature (K)",
+   "default": "290",
+   "values": "Reference temperature 290 (default) | positive scalar | length- N vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Gain method",
+   "default": "Linear",
+   "values": "Gain method Linear (default) | Cubic polynomial | Lookup table",
+   "group": ""
+  },
+  {
+   "name": "Gain (dB)",
+   "default": "20",
+   "values": "Linear receiver gain 20 (default) | real scalar | length- N vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Output IP3 (dBm)",
+   "default": "Inf",
+   "values": "Output IP3 Inf (default) | scalar | length- N vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Lookup table",
+   "default": "12]",
+   "values": "Lookup table [-25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12] (default) | M -by- N real-valued matrix | M -by- N real-valued matrix",
+   "group": ""
+  },
+  {
+   "name": "Phased offset (degrees)",
+   "default": "0",
+   "values": "Phase offset 0 (default) | scalar | length- N vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Source of seed for random number generator",
+   "default": "Auto",
+   "values": "Source of seed for random number generator Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Seed for random number generator",
+   "default": "0",
+   "values": "Seed for random number generator 0 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

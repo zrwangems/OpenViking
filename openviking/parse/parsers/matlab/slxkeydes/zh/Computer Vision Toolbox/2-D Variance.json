@@ -1,0 +1,110 @@
+{
+ "key": "2-D Variance",
+ "title": "2-D Variance",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Variance.md"
+ ],
+ "text": "计算输入或输入序列的方差，输入 5 路、输出 2 路；按 {Reset port} 指定重置事件；{Running variance} 指定跟踪运行方差、{Find the variance value over} 指定计算方差所沿的维度 Entire、{Dimension} 指定自定义维度、{Enable ROI processing} 指定在特定区域内计算方差、{ROI type} 指定 ROI 类型、{ROI portion to process} 指定计算方差的 ROI 部分、{Output} 指定计算单个 ROI 或整个 ROI 的方差 Individual statistics for each、{Output flag indicating if ROI is within image bounds} 启用 Flag 端口、{Lock data type settings against change by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数组 vector | matrix | array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "复位端口 scalar"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "感兴趣区域 vector | matrix"
+  },
+  {
+   "name": "Label",
+   "direction": "input",
+   "summary": "标签矩阵 matrix"
+  },
+  {
+   "name": "Label Numbers",
+   "direction": "input",
+   "summary": "ROI 的标签值 vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "计算得到的输出方差 scalar | vector | matrix | N-D -array"
+  },
+  {
+   "name": "Flag",
+   "direction": "output",
+   "summary": "ROI 的验证 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Running variance",
+   "default": "off",
+   "values": "跟踪运行方差 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "重置事件 None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main"
+  },
+  {
+   "name": "Find the variance value over",
+   "default": "input",
+   "values": "计算方差所沿的维度 Entire input (default) | Each row | Each column | Specified dimension",
+   "group": "Main"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "自定义维度 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Enable ROI processing",
+   "default": "off",
+   "values": "在特定区域内计算方差 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "ROI type",
+   "default": "Rectangles",
+   "values": "ROI 类型 Rectangles (default) | Lines | Label matrix | Binary mask",
+   "group": "Main"
+  },
+  {
+   "name": "ROI portion to process",
+   "default": "ROI",
+   "values": "计算方差的 ROI 部分 Entire ROI (default) | ROI perimeter",
+   "group": "Main"
+  },
+  {
+   "name": "Output",
+   "default": "ROI",
+   "values": "计算单个 ROI 或整个 ROI 的方差 Individual statistics for each ROI (default) | Single statistic for all ROIs",
+   "group": "Main"
+  },
+  {
+   "name": "Output flag indicating if ROI is within image bounds",
+   "default": "off",
+   "values": "启用 Flag 端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

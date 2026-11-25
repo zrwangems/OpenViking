@@ -1,0 +1,29 @@
+{
+ "key": "Calculate Range",
+ "title": "Calculate Range",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Guidance/Calculate_Range.md"
+ ],
+ "text": "根据两辆车各自的位置计算它们之间的距离，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x 1",
+   "direction": "input",
+   "summary": "车辆 1 位置 3-element vector"
+  },
+  {
+   "name": "x 2",
+   "direction": "input",
+   "summary": "车辆 2 位置 3-element vector"
+  },
+  {
+   "name": "R 2-1",
+   "direction": "output",
+   "summary": "距离 scalar"
+  }
+ ],
+ "params": []
+}

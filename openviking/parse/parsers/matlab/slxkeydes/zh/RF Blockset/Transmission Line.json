@@ -1,0 +1,262 @@
+{
+ "key": "Transmission Line",
+ "title": "Transmission Line",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Transmission_Line.md",
+  "RF Blockset/Equivalent Baseband/Transmission Lines/Transmission_Line.md",
+  "Simscape/Electrical/Passive/Lines/Transmission_Line.md"
+ ],
+ "text": "使用 Transmission Line 模块对基于延迟的传输线、集总传输线和分布传输线进行建模；按 {Interpolation method} 指定用于计算建模频率处值的插值方法；{Model type} 指定传输线模型 Delay-based、{Transmission delay} 指定传输线中的延迟 4.7e-9、{Characteristic impedance} 指定传输线的阻抗、{Resistance per unit length} 指定传输线单位长度电阻、{Number of segments} 指定传输线中的段数、{Parameterization} 用于对传输线中的段进行建模的参数类型 By characterisitc impedance、{Capacitance per unit length} 指定传输线单位长度电容 94e-12、{Conductance per unit length} 指定传输线单位长度电导 5e-6、{Inductance per unit length} 指定传输线单位长度电感 235e-9、{Outer radius} 指定同轴传输线的外半径、{Inner radius} 指定同轴传输线的内半径、{Conductor width} 指定导体的物理宽度、{Slot width} 指定槽的物理宽度、{Conductor backed} 指定无限大底部导体、{Structure} 指定微带传输线的类型、{Strip Width} 指定微带传输线的宽度、{Strip thickness} 指定导体的物理厚度、{Strip Height} 指定微带传输线的条带高度、{Wire radius} 指定双线传输线导线的半径、{Wire separation} 指定双线传输线导线之间的物理距离、{Plate width} 指定平行板传输线的宽度、{Plate separation} 指定分隔极板的电介质厚度、{Phase velocity (m/s)} 指定传输线上均匀平面波的传播速度、{Loss (dB/m)} 指定信号沿传输线传播时的强度衰减、{Frequency} 指定建模频率 1e9、{Conductivity of conductor} 指定导体电导率、{Dielectric Thickness} 指定导体所在电介质的厚度、{Relative permeability of dielectric} 指定电介质的相对磁导率、{Relative permittivity of dielectric} 指定电介质的相对介电常数、{Loss tangent of dielectric} 指定电介质的损耗角正切、{Line length} 指定传输线的物理长度、{Stub mode} 指定短截线类型 Not、{Termination of stub} 指定短截线的终端类型、{Ground and hide negative terminals} 指定 RF 电路端子接地、{Modeling Options} 用于对 S 参数建模的选项 Frequency、{Automatically estimate impulse response duration} 指定自动计算冲激响应持续时间、{Impulse response duration} 指定手动指定冲激响应持续时间、{Fitting options} 指定 rationalfit 的拟合选项 Share all、{Relative error desired (dB)} 指定 rational 拟合输出中可接受的相对误差、{Rational fitting results} 指定 rationalfit 计算的值，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Model type",
+   "default": "lossless",
+   "values": "传输线模型 Delay-based and lossless (default) | Delay-based and lossy | Lumped parameter L-section | Lumped parameter Pi-section | Coaxial | Coplanar waveguide | Microstrip | Stripline | Two-wire | Parallel-plate | Equation-based | RLCG |...",
+   "group": "Main"
+  },
+  {
+   "name": "Transmission delay",
+   "default": "s",
+   "values": "传输线中的延迟 4.7e-9 s (default) | real scalar | s | ms | us | ns",
+   "group": "Main"
+  },
+  {
+   "name": "Characteristic impedance",
+   "default": "ohm",
+   "values": "传输线的阻抗 50 ohm (default) | real scalar | Ohm | kOhm | MOhm | GOhm",
+   "group": "Main"
+  },
+  {
+   "name": "Resistance per unit length",
+   "default": "Ohm/m",
+   "values": "传输线单位长度电阻 0.3 Ohm/m (default) | positive scalar | Ohm/m | kOhm/m | MOhm/m | GOhm/m",
+   "group": "Main"
+  },
+  {
+   "name": "Number of segments",
+   "default": "10",
+   "values": "传输线中的段数 10 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Parameterization",
+   "default": "capacitance",
+   "values": "用于对传输线中的段进行建模的参数类型 By characterisitc impedance and capacitance (default) | By inductance and capacitance",
+   "group": "Main"
+  },
+  {
+   "name": "Capacitance per unit length",
+   "default": "F/m",
+   "values": "传输线单位长度电容 94e-12 F/m (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Conductance per unit length",
+   "default": "S/m",
+   "values": "传输线单位长度电导 5e-6 S/m (default) | positive scalar | S/m | mS/m | uS/m | nS/m",
+   "group": "Main"
+  },
+  {
+   "name": "Inductance per unit length",
+   "default": "H/m",
+   "values": "传输线单位长度电感 235e-9 H/m (default) | positive scalar | H/m | mH/m | uH/m | nH/m",
+   "group": "Main"
+  },
+  {
+   "name": "Outer radius",
+   "default": "mm",
+   "values": "同轴传输线的外半径 2.57 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Inner radius",
+   "default": "mm",
+   "values": "同轴传输线的内半径 2.57 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Conductor width",
+   "default": "mm",
+   "values": "导体的物理宽度 0.6 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Slot width",
+   "default": "mm",
+   "values": "槽的物理宽度 0.2 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Conductor backed",
+   "default": "off",
+   "values": "无限大底部导体 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Structure",
+   "default": "Standard",
+   "values": "微带传输线的类型 Standard (default) | Embedded | Inverted | Suspended",
+   "group": "Main"
+  },
+  {
+   "name": "Strip Width",
+   "default": "mm",
+   "values": "微带传输线的宽度 0.6 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Strip thickness",
+   "default": "um",
+   "values": "导体的物理厚度 5 um (default) | nonnegative scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Strip Height",
+   "default": "mm",
+   "values": "微带传输线的条带高度 0.635 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Wire radius",
+   "default": "mm",
+   "values": "双线传输线导线的半径 0.67 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Wire separation",
+   "default": "mm",
+   "values": "双线传输线导线之间的物理距离 1.62 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Plate width",
+   "default": "mm",
+   "values": "平行板传输线的宽度 5 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Plate separation",
+   "default": "mm",
+   "values": "分隔极板的电介质厚度 1 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Phase velocity (m/s)",
+   "default": "299792458",
+   "values": "传输线上均匀平面波的传播速度 299792458 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Loss (dB/m)",
+   "default": "0",
+   "values": "信号沿传输线传播时的强度衰减 0 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency",
+   "default": "Hz",
+   "values": "建模频率 1e9 Hz (default) | positive scalar | Hz | kHz | MHz | GHz",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "用于计算建模频率处值的插值方法 Linear (default) | Spline | Cubic",
+   "group": "Main"
+  },
+  {
+   "name": "Conductivity of conductor",
+   "default": "inf",
+   "values": "导体电导率 inf (default) | scalar | S/m | mS/m | uS/m | nS/m",
+   "group": "Main"
+  },
+  {
+   "name": "Dielectric Thickness",
+   "default": "mm",
+   "values": "导体所在电介质的厚度 0.635 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Relative permeability of dielectric",
+   "default": "1",
+   "values": "电介质的相对磁导率 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Relative permittivity of dielectric",
+   "default": "2.2",
+   "values": "电介质的相对介电常数 2.2 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Loss tangent of dielectric",
+   "default": "0",
+   "values": "电介质的损耗角正切 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Line length",
+   "default": "cm",
+   "values": "传输线的物理长度 1 cm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Stub mode",
+   "default": "stub",
+   "values": "短截线类型 Not a stub (default) | Shunt | Series",
+   "group": "Main"
+  },
+  {
+   "name": "Termination of stub",
+   "default": "Open",
+   "values": "短截线的终端类型 Open (default) | Short",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling Options",
+   "default": "domain",
+   "values": "用于对 S 参数建模的选项 Frequency domain (default) | Time domain",
+   "group": "Modeling"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "off",
+   "values": "自动计算冲激响应持续时间 off (default) | on",
+   "group": "Modeling"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "手动指定冲激响应持续时间 0 s (default) | positive scalar | s | ms | us | ns",
+   "group": "Modeling"
+  },
+  {
+   "name": "Fitting options",
+   "default": "poles",
+   "values": "rationalfit 的拟合选项 Share all poles (default) | Share poles by columns | Fit individually",
+   "group": "Modeling"
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "rational 拟合输出中可接受的相对误差 -40 (default) | real scalar",
+   "group": "Modeling"
+  },
+  {
+   "name": "Rational fitting results",
+   "default": "read-only",
+   "values": "rationalfit 计算的值 read-only (default)",
+   "group": "Modeling"
+  }
+ ]
+}

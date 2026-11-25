@@ -1,0 +1,146 @@
+{
+ "key": "PMSM Parameter Estimation Configurator",
+ "title": "Parameter Estimation Configurator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/PMSM Parameter Estimation/Parameter_Estimation_Configurator.md"
+ ],
+ "text": "Generate configuration elements for PMSM parameter estimation, 1 output; {Number of pole pairs} sets the number of motor pole pairs, {Rated speed (RPM)} sets the motor rated speed, {Rated motor current (A)} sets the motor rated current, {Maximum inverter current (A)} sets the maximum measurable current, {Board resistance (ohm)} sets the inverter bridge resistance, {Current sense gain (A/ADC Count)} sets the current per ADC count, {Voltage sense gain (V/ADC Count)} sets the voltage per ADC count, {Maximum frequency (Hz)} sets the maximum frequency injected for frequency, {Minimum frequency (Hz)} sets the minimum frequency injected for frequency, {Step for frequency sweep (Hz)} sets the step size for frequency sweep, {Frequency step size for estimation (Hz)} sets the frequency step size for L d and L q, {Number of frequencies for estimation} sets the number of injected frequencies for L d and L q, {Current measurement delay (s)} sets the delay in current measurement, {Back EMF estimation time (s)} sets the motor run duration when estimating, {Back EMF estimation maximum speed limit (RPM)} sets the motor speed when estimating back-EMF, {Iq reference current as a ratio of rated motor current} sets the reference current for FOC when estimating K e, J, {Specify current controller gains} sets the pI current controller gains, {Proportional gain}, {Integral gain}, {Speed lower limit for inertia estimation (RPM)} sets the lower speed limit during coast-down and {Parameter estimation sample time (s)} sets the sample time for parameter. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "Number of motor pole pairs 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rated speed (RPM)",
+   "default": "4000",
+   "values": "Motor rated speed 4000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rated motor current (A)",
+   "default": "7",
+   "values": "Motor rated current 7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum inverter current (A)",
+   "default": "21",
+   "values": "Maximum measurable current 21 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Board resistance (ohm)",
+   "default": "0.0043",
+   "values": "Inverter bridge resistance 0.0043 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current sense gain (A/ADC Count)",
+   "default": "0.0105",
+   "values": "Current per ADC count 0.0105 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Voltage sense gain (V/ADC Count)",
+   "default": "0.0098",
+   "values": "Voltage per ADC count 0.0098 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum frequency (Hz)",
+   "default": "1000",
+   "values": "Maximum frequency injected for frequency sweep 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum frequency (Hz)",
+   "default": "400",
+   "values": "Minimum frequency injected for frequency sweep 400 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Step for frequency sweep (Hz)",
+   "default": "100",
+   "values": "Step size for frequency sweep 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency step size for estimation (Hz)",
+   "default": "10",
+   "values": "Frequency step size for L d and L q estimation 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of frequencies for estimation",
+   "default": "10",
+   "values": "Number of injected frequencies for L d and L q estimation 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current measurement delay (s)",
+   "default": "50e-6",
+   "values": "Delay in current measurement 2 * 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Back EMF estimation time (s)",
+   "default": "5",
+   "values": "Motor run duration when estimating back-EMF 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Back EMF estimation maximum speed limit (RPM)",
+   "default": "3500",
+   "values": "Motor speed when estimating back-EMF 3500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Iq reference current as a ratio of rated motor current",
+   "default": "0.2",
+   "values": "Reference current for FOC when estimating K e, J, and B 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify current controller gains",
+   "default": "off",
+   "values": "Specify PI current controller gains off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "Proportional gain of PI controller 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "1000",
+   "values": "Integral gain of PI controller 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed lower limit for inertia estimation (RPM)",
+   "default": "1000",
+   "values": "Lower speed limit during coast-down 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Parameter estimation sample time (s)",
+   "default": "50e-6",
+   "values": "Sample time for parameter estimation 50e-6 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

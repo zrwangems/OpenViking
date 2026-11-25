@@ -1,0 +1,13 @@
+{
+ "key": "PCCCS2",
+ "title": "PCCCS2",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PCCCS2.md"
+ ],
+ "text": "Polynomial current-controlled current source with two controlling inputs.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

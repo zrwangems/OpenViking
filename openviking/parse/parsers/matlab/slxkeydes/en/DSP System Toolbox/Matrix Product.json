@@ -1,0 +1,85 @@
+{
+ "key": "Matrix Product",
+ "title": "Matrix Product",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Matrix_Product.md"
+ ],
+ "text": "Multiply matrix elements along rows, columns, or entire input, 1 input, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode; {Multiply over} sets the dimension over which, {Saturate on integer overflow}, {Intermediate product}, {Product output}, {Accumulator}, {Output}, {Output Minimum}, {Output Maximum} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Matrix product output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Multiply over",
+   "default": "Columns",
+   "values": "Dimension over which to multiply Columns (default) | Rows | Entire input",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Intermediate product",
+   "default": "input",
+   "values": "Intermediate product data type Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "output",
+   "values": "Output data type Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Output minimum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Output maximum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+ "key": "phased.CFARDetector",
+ "title": "CFAR Detector",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/CFAR_Detector.md"
+ ],
+ "text": "恒虚警率 (CFAR) 检测器，输入 3 路、输出 3 路；按 {CFAR algorithm} 指定CFAR 算法；{Number of guard cells} 指定保护单元数、{Number of training cells} 指定训练单元数、{Rank of order statistic} 指定顺序统计量的秩、{Threshold factor method} 指定获取阈值因子的方法、{Probability of false alarm} 指定期望虚警概率、{Custom threshold factor} 指定自定义阈值因子、{Output format} 指定检测结果的格式 CUT、{Output detection threshold} 输出检测阈值、{Output estimated noise power} 输出估计噪声功率、{Source of the number of detections} 指定检测数来源、{Maximum number of detections} 指定要报告的最大检测数、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "单元矩阵 real-valued M -by-1 column vector | real-valued M -by- N matrix"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "待测单元的索引 real-valued length- D vector"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "阈值因子 positive scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "检测结果 D -by-1 vector | D -by- N matrix | 1 -by- L | 2-by- L matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "output",
+   "summary": "检测阈值 scalar"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "估计的噪声功率 positive scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CFAR algorithm",
+   "default": "CA",
+   "values": "CFAR 算法 CA (default) | GOCA | SOCA | OS",
+   "group": ""
+  },
+  {
+   "name": "Number of guard cells",
+   "default": "2",
+   "values": "保护单元数 2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of training cells",
+   "default": "2",
+   "values": "训练单元数 2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Rank of order statistic",
+   "default": "1",
+   "values": "顺序统计量的秩 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Threshold factor method",
+   "default": "Auto",
+   "values": "获取阈值因子的方法 Auto (default) | Input port | Custom",
+   "group": ""
+  },
+  {
+   "name": "Probability of false alarm",
+   "default": "0.1",
+   "values": "期望虚警概率 0.1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Custom threshold factor",
+   "default": "1",
+   "values": "自定义阈值因子 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Output format",
+   "default": "result",
+   "values": "检测结果的格式 CUT result (default) | Detection index",
+   "group": ""
+  },
+  {
+   "name": "Output detection threshold",
+   "default": "off",
+   "values": "输出检测阈值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output estimated noise power",
+   "default": "off",
+   "values": "输出估计噪声功率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of the number of detections",
+   "default": "Auto",
+   "values": "检测数来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of detections",
+   "default": "1",
+   "values": "要报告的最大检测数 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

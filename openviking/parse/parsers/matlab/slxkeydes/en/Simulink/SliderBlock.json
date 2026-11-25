@@ -1,0 +1,50 @@
+{
+ "key": "SliderBlock",
+ "title": "Slider",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Slider.md"
+ ],
+ "text": "Tune parameter value with sliding scale, {Label} sets Block label position; {Connection} sets the block parameter value to connect parameter value connection, {Scale Type} sets the type of scale, {Minimum}, {Maximum} and {Tick Interval} sets the interval between major tick marks. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Block parameter value to connect parameter value connection options",
+   "group": ""
+  },
+  {
+   "name": "Scale Type",
+   "default": "Linear",
+   "values": "Type of scale Linear (default) | Log",
+   "group": ""
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "Minimum tick mark value 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "100",
+   "values": "Maximum tick mark value 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Tick Interval",
+   "default": "auto",
+   "values": "Interval between major tick marks auto (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "Block label position Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

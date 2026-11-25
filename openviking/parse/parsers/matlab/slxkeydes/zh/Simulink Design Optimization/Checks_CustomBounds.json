@@ -1,0 +1,98 @@
+{
+ "key": "Checks_CustomBounds",
+ "title": "Check Custom Bounds",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/Model Verification/Check_Custom_Bounds.md",
+  "Simulink Design Optimization/Signal Constraints/Check_Custom_Bounds.md"
+ ],
+ "text": "在仿真期间检查模型信号是否满足边界，输入 1 路、输出 1 路；按 {Amplitudes} 指定下界幅值；{Show Plot} 打开绘图窗口、{Show plot on block open} 指定双击模块以打开绘图、{Response Optimization} 打开 Response Optimizer、{Include upper bound in assertion} 指定检查信号是否满足上限、{Times} 指定上限时间向量、{Include lower bound in assertion} 指定检查信号是否满足下界、{Enable zero-crossing detection} 指定在界限边界处计算模型、{Enable assertion} 启用或禁用检查、{Simulation callback when assertion fails (optional)} 指定断言失败时要计算的表达式、{Stop simulation when assertion fails} 指定断言失败时停止仿真、{Output assertion signal} 指定创建输出信号，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1 (u)",
+   "direction": "input",
+   "summary": "要对照指定边界检查的信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1 (out)",
+   "direction": "output",
+   "summary": "Output assertion signal 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show Plot",
+   "default": "",
+   "values": "打开绘图窗口 button",
+   "group": ""
+  },
+  {
+   "name": "Show plot on block open",
+   "default": "off",
+   "values": "双击模块以打开绘图 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Response Optimization",
+   "default": "",
+   "values": "打开 Response Optimizer button",
+   "group": ""
+  },
+  {
+   "name": "Include upper bound in assertion",
+   "default": "on",
+   "values": "检查信号是否满足上限 on (default) | off",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Times",
+   "default": "10]",
+   "values": "上限时间向量 [0 5; 5 10] (default) | two-element vector | two-column matrix | cell array",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1.01]",
+   "values": "上限幅值 [1.1 1.1; 1.01 1.01] (default) | two-element vector | two-column matrix | cell array",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Include lower bound in assertion",
+   "default": "off",
+   "values": "检查信号是否满足下界 off (default) | on",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "在界限边界处计算模型 on (default) | off",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "启用或禁用检查 on (default) | off",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "’’",
+   "values": "断言失败时要计算的表达式 ’’ (default) | MATLAB expression",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "断言失败时停止仿真 off (default) | on",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "创建输出信号 off (default) | on",
+   "group": "Assertion Tab"
+  }
+ ]
+}

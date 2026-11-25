@@ -1,0 +1,13 @@
+{
+ "key": "Open Circuit (Three-Phase)",
+ "title": "Open Circuit (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Open_Circuit_Three_Phase.md"
+ ],
+ "text": "不汲取电流的三相终端。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

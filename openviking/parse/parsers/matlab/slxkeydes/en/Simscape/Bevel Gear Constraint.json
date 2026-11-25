@@ -1,0 +1,13 @@
+{
+ "key": "Bevel Gear Constraint",
+ "title": "Bevel Gear Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Gears and Couplings/Gears/Bevel_Gear_Constraint.md"
+ ],
+ "text": "Kinematic constraint between two bevel gear bodies with angled intersecting rotation axes.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

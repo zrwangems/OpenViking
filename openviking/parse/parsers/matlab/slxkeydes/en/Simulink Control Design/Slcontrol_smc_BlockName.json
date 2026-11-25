@@ -1,0 +1,116 @@
+{
+ "key": "Slcontrol:smc:BlockName",
+ "title": "Sliding Mode Controller (Reaching Law)",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Sliding Mode/Sliding_Mode_Controller_Reaching_Law.md"
+ ],
+ "text": "Design sliding mode controller based on reaching law, 5 inputs, 2 outputs, {Control Gain (K)} sets Control gain; {Task Mode} sets the block operation mode, {Sliding Coefficient Matrix (C)} sets the sliding coefficient, {Use externally sourced derivative} sets the derivative of state reference externally, {Output Switching Function}, {Reaching Law} sets the reaching law Constant, {Reaching Rate (Eta)} sets the reaching rate, {Power Rate Exponent (Alpha)} sets the power rate exponent, {Select Boundary Layer} sets the boundary layer function, {Enable zero-crossing detection} and {Phi} sets the boundary layer thickness. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "System states vector"
+  },
+  {
+   "name": "f(x)",
+   "direction": "input",
+   "summary": "System dynamics function vector"
+  },
+  {
+   "name": "g(x)",
+   "direction": "input",
+   "summary": "Input function vector"
+  },
+  {
+   "name": "x.ref",
+   "direction": "input",
+   "summary": "State reference trajectories vector"
+  },
+  {
+   "name": "x.ref.dot",
+   "direction": "input",
+   "summary": "Derivative of state reference trajectories vector"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Control action vector"
+  },
+  {
+   "name": "s(x)",
+   "direction": "output",
+   "summary": "Sliding variable value vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task Mode",
+   "default": "Mode",
+   "values": "Block operation mode Regulation Mode (default) | Tracking Mode",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Sliding Coefficient Matrix (C)",
+   "default": "1",
+   "values": "Sliding coefficient matrix 1 (default) | scalar | column vector | matrix",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Use externally sourced derivative",
+   "default": "off",
+   "values": "Specify derivative of state reference externally off (default) | on",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Output Switching Function",
+   "default": "off",
+   "values": "Output switching function off (default) | on",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Reaching Law",
+   "default": "Rate",
+   "values": "Reaching law Constant Rate (default) | Exponential | Power Rate",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Reaching Rate (Eta)",
+   "default": "0.01",
+   "values": "Reaching rate 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Control Gain (K)",
+   "default": "0.01",
+   "values": "Control gain 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Power Rate Exponent (Alpha)",
+   "default": "0.01",
+   "values": "Power rate exponent 0.01 (default) | positive scalar between 0 and 1 | column vector of positive values between 0 and 1",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Select Boundary Layer",
+   "default": "Sign",
+   "values": "Boundary layer function Sign (default) | Relay | Hyperbolic Tangent | Saturation",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "Enable zero-crossing detection off (default) | on",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Phi",
+   "default": "0.01",
+   "values": "Boundary layer thickness 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  }
+ ]
+}

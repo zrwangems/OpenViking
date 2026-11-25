@@ -1,0 +1,13 @@
+{
+ "key": "Length Actuator (PB)",
+ "title": "Length Actuator (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/Length_Actuator_PB.md"
+ ],
+ "text": "Ideal actuator that maintains length proportional to the input signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

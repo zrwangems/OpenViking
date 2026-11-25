@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Machine Salient Pole",
+ "title": "Synchronous Machine Salient Pole",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Synchronous_Machine_Salient_Pole.md"
+ ],
+ "text": "具有基波或标准参数化的凸极同步电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

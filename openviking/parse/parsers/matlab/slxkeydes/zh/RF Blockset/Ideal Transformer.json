@@ -1,0 +1,14 @@
+{
+ "key": "Ideal Transformer",
+ "title": "Ideal Transformer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Ideal_Transformer.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Ideal_Transformer.md"
+ ],
+ "text": "对理想变压器进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

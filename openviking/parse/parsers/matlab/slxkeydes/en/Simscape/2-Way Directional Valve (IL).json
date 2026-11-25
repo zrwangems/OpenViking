@@ -1,0 +1,13 @@
+{
+ "key": "2-Way Directional Valve (IL)",
+ "title": "2-Way Directional Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Directional Control Valves/b_2_Way_Directional_Valve_IL.md"
+ ],
+ "text": "2-way flow control valve in an isothermal liquid systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

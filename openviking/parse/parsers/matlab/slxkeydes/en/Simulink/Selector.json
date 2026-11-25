@@ -1,0 +1,81 @@
+{
+ "key": "Selector",
+ "title": "Selector",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Selector.md",
+  "DSP System Toolbox HDL Support/Signal Management/Selector.md",
+  "HDL Coder/Signal Routing/Selector.md",
+  "DSP System Toolbox/Signal Management/Indexing/Selector.md"
+ ],
+ "text": "Select input elements from vector, matrix, or multidimensional signal, 2 inputs, 1 output, no direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Number of input dimensions} sets the number of dimensions of input signal, {Index mode}, {Index Option} sets the index method for elements, {Index}, {Output Size} sets the width of block output signal, {Input port size} sets the width of input signal and {Check for out-of-range index in accelerated simulation} sets the option to check for out-of-range index values in accelerator and rapid accelerator simulation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | multidimensional"
+  },
+  {
+   "name": "IndxN",
+   "direction": "input",
+   "summary": "N th index signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | multidimensional"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input dimensions",
+   "default": "1",
+   "values": "Number of dimensions of input signal 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Index mode",
+   "default": "One-based",
+   "values": "Index mode One-based (default) | Zero-based",
+   "group": ""
+  },
+  {
+   "name": "Index Option",
+   "default": "(dialog)",
+   "values": "Index method for elements Index vector (dialog) (default) | Select all | Index vector (port) | Starting index (dialog) | Starting index (port) | Starting and ending indices (port)",
+   "group": ""
+  },
+  {
+   "name": "Index",
+   "default": "3]",
+   "values": "Index of elements [1 3] (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output Size",
+   "default": "1",
+   "values": "Width of block output signal 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Input port size",
+   "default": "3",
+   "values": "Width of input signal 3 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Check for out-of-range index in accelerated simulation",
+   "default": "off",
+   "values": "Option to check for out-of-range index values in accelerator and rapid accelerator simulation modes off (default) | on",
+   "group": ""
+  }
+ ]
+}

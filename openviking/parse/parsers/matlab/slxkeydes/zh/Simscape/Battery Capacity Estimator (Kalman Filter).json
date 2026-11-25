@@ -1,0 +1,95 @@
+{
+ "key": "Battery Capacity Estimator (Kalman Filter)",
+ "title": "Battery Capacity Estimator (Kalman Filter)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/Battery_Capacity_Estimator_Kalman_Filter.md"
+ ],
+ "text": "使用卡尔曼滤波器的电池容量估计器，输入 3 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Specify Current input as cell current(s)} 指定将电流输入端口指定为向量、{Filter type} 指定卡尔曼滤波器类型 Extended Kalman、{Alpha}、{Beta}、{Kappa}、{Covariance of the process noise, Q} 指定过程噪声的协方差 3e-4、{Covariance of the measurement noise, R} 指定测量噪声的协方差 5e-7、{Initial state error covariance, P0} 指定初始状态误差协方差 1e-8、{Algorithm data type} 用于选择模块算法数据类型的选项 Inherit，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Current",
+   "direction": "input",
+   "summary": "电池电流，安培 scalar | vector"
+  },
+  {
+   "name": "CellSOC",
+   "direction": "input",
+   "summary": "电芯荷电状态，无量纲 scalar | vector"
+  },
+  {
+   "name": "InitialCellAH",
+   "direction": "input",
+   "summary": "初始电芯容量，A*Hr scalar | vector"
+  },
+  {
+   "name": "CellAH",
+   "direction": "output",
+   "summary": "估计的电芯容量 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Current input as cell current(s)",
+   "default": "off",
+   "values": "将电流输入端口指定为向量的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter type",
+   "default": "filter",
+   "values": "卡尔曼滤波器类型 Extended Kalman filter (default) | Extended Kalman-Bucy filter | Unscented Kalman filter | Unscented Kalman-Bucy filter",
+   "group": ""
+  },
+  {
+   "name": "Alpha",
+   "default": "1",
+   "values": "Alpha 系数 1 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Beta",
+   "default": "2",
+   "values": "Beta 系数 2 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Kappa",
+   "default": "0",
+   "values": "Kappa 系数 0 (default) | scalar in the range [0, 3]",
+   "group": ""
+  },
+  {
+   "name": "Covariance of the process noise, Q",
+   "default": "3e-4",
+   "values": "过程噪声的协方差 3e-4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Covariance of the measurement noise, R",
+   "default": "5e-7",
+   "values": "测量噪声的协方差 5e-7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state error covariance, P0",
+   "default": "1e-8",
+   "values": "初始状态误差协方差 1e-8 (default) | scalar | matrix",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "模块采样时间 1 (default) | 0 | -1 | integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

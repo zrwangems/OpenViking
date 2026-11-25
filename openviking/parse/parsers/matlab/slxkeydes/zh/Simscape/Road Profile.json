@@ -1,0 +1,13 @@
+{
+ "key": "Road Profile",
+ "title": "Road Profile",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Road_Profile.md"
+ ],
+ "text": "具有变化高程和摩擦属性的道路剖面。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

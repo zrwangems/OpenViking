@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Reluctance Machine",
+ "title": "Synchronous Reluctance Machine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Reluctance & Stepper/Synchronous_Reluctance_Machine.md"
+ ],
+ "text": "Synchronous reluctance machine with sinusoidal flux distribution.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

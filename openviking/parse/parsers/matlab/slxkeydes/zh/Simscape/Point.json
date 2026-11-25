@@ -1,0 +1,13 @@
+{
+ "key": "Point",
+ "title": "Point",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Point.md"
+ ],
+ "text": "用于接触建模的点几何。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

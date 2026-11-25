@@ -1,0 +1,66 @@
+{
+ "key": "Video Test Sink",
+ "title": "Video Test Sink",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/Video_Test_Sink.md"
+ ],
+ "text": "Receive continuous video stream data, 2 inputs, 1 output, {Color space} sets Color space; {Frame size} sets the frame dimensions, {Reorder input frame} sets the input frame reorder, {Save data in workspace}, {Variable name} sets the workspace variable name and {View input} displays input in MATLAB. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "rdData",
+   "direction": "input",
+   "summary": "Input video stream data vector"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "Input control bus bus"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "Output control bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frame size",
+   "default": "160x120p",
+   "values": "Frame dimensions 160x120p (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Color space",
+   "default": "YCbCr422",
+   "values": "Color space YCbCr422 (default) | RGB | YOnly",
+   "group": ""
+  },
+  {
+   "name": "Reorder input frame",
+   "default": "off",
+   "values": "Input frame reorder off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Save data in workspace",
+   "default": "off",
+   "values": "Save data in workspace off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "simOut",
+   "values": "Workspace variable name simOut (default) | any MATLAB-supported variable name",
+   "group": ""
+  },
+  {
+   "name": "View input",
+   "default": "off",
+   "values": "Display input in MATLAB off (default) | on",
+   "group": ""
+  }
+ ]
+}

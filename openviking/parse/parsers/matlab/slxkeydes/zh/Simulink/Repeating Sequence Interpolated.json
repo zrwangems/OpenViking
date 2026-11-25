@@ -1,0 +1,68 @@
+{
+ "key": "Repeating Sequence Interpolated",
+ "title": "Repeating Sequence Interpolated",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Repeating_Sequence_Interpolated.md"
+ ],
+ "text": "输出离散时间序列并重复，从而在数据点之间插值；输出 1 路；按 {输出数据类型} 指定输出数据类型；{输出值的向量}、{时间值的向量}、{查找方法}、{采样时间}、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "周期性输出信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出值的向量",
+   "default": "1].’",
+   "values": "输出值的向量 [3 1 4 2 1].’ (默认) | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "时间值的向量",
+   "default": "1].’",
+   "values": "时间值的向量 [0 0.1 0.5 0.6 1].’ (默认) | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "查找方法",
+   "default": "使用最终值",
+   "values": "输出的查找方法 插值 - 使用最终值 (默认) | 取最邻近的输入值 | 向下取输入值 | 向上取输入值",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间",
+   "default": "0.01",
+   "values": "采样时间间隔 0.01 (默认) | 标量",
+   "group": "常设"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "double",
+   "values": "指定输出数据类型 double (默认) | 继承: 通过反向传播继承 | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <数据类型表达式> |...",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "信号属性"
+  }
+ ]
+}

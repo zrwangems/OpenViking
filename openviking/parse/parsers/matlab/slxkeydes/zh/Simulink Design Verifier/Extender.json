@@ -1,0 +1,43 @@
+{
+ "key": "Extender",
+ "title": "Extender",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Temporal Operators/Extender.md"
+ ],
+ "text": "延长输入的 true 持续期，输入 1 路、输出 1 路；{外部重置} 是否可以重置模块、{延长期} 指定延长的固定时间步数、{延长时间步数} 指定延长 true 持续期的时间步数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号指定为布尔值 布尔"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号以布尔值形式返回 布尔"
+  }
+ ],
+ "params": [
+  {
+   "name": "外部重置",
+   "default": "off",
+   "values": "指定是否可以重置模块 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "延长期",
+   "default": "有限",
+   "values": "指定延长的固定时间步数 有限 (默认) | 无限",
+   "group": ""
+  },
+  {
+   "name": "延长时间步数",
+   "default": "3",
+   "values": "指定延长 true 持续期的时间步数 3 (默认) | 布尔",
+   "group": ""
+  }
+ ]
+}

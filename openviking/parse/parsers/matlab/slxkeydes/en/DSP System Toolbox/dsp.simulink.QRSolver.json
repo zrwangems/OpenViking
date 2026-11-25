@@ -1,0 +1,36 @@
+{
+ "key": "dsp.simulink.QRSolver",
+ "title": "QR Solver",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/QR_Solver.md"
+ ],
+ "text": "Find minimum-norm-residual solution to A X =B, 2 inputs, 1 output, no direct feedthrough; {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "System matrix vector | matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Right-side matrix of system equation vector | matrix"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "Minimum-norm-residual solution vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

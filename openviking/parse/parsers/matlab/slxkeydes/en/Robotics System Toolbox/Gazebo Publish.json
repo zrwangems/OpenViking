@@ -1,0 +1,44 @@
+{
+ "key": "Gazebo Publish",
+ "title": "Gazebo Publish",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Publish.md"
+ ],
+ "text": "Send custom messages to Gazebo server, 1 input; {Topic source} sets the source for specifying topic, {Topic}, {Message type} sets the gazebo custom message type and {Sample time} sets the sampling time of input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "Gazebo custom message bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic source",
+   "default": "Gazebo",
+   "values": "Source for specifying topic From Gazebo (default) | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "/my_topic",
+   "values": "Topic name of custom message /my_topic (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "gazebo_msgs/TestPose",
+   "values": "Gazebo custom message type gazebo_msgs/TestPose (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Sampling time of input 0.001 (default) | positive",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "key": "Multiport Selector",
+ "title": "Multiport Selector",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Management/Multiport_Selector.md",
+  "DSP System Toolbox/Signal Management/Indexing/Multiport_Selector.md"
+ ],
+ "text": "将输入行或列的任意子集分配到多个输出端口，输入 1 路、输出 1 路、无直接馈通；按 {Invalid index} 指定对无效索引采取的操作 Clip；{Select} 指定将输入维度选择为： Rows –– 该模块使用您指定的一维索引选择矩阵行，所选行上的所有元素都包括在内。 Columns –– 该模块使用您指定的一维索引选择矩阵列，所选列上的所有元素都包括在内。 给定的输入行或列可以在任何输出中出现任意次数，也可以完全不出现。 当索引引用输入中不存在的行或列时，该模块将使用 Invalid index 参数指定的操作进行响应、{Indices to output}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入 vector | matrix"
+  },
+  {
+   "name": "Output(s)",
+   "direction": "output",
+   "summary": "输入的行子集或列子集 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select",
+   "default": "Rows",
+   "values": "将输入维度选择为： Rows –– 该模块使用您指定的一维索引选择矩阵行，所选行上的所有元素都包括在内。 Columns –– 该模块使用您指定的一维索引选择矩阵列，所选列上的所有元素都包括在内。 给定的输入行或列可以在任何输出中出现任意次数，也可以完全不出现。 当索引引用输入中不存在的行或列时，该模块将使用 Invalid index 参数指定的操作进行响应。 Rows (default) | Columns",
+   "group": ""
+  },
+  {
+   "name": "Indices to output",
+   "default": "}",
+   "values": "Indices to output { 4, [1:2 5], [7; 8], 10:-1:6 } (default) | cell array",
+   "group": ""
+  },
+  {
+   "name": "Invalid index",
+   "default": "Index",
+   "values": "对无效索引采取的操作 Clip Index (default) | Clip and Warn | Generate Error",
+   "group": ""
+  }
+ ]
+}

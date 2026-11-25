@@ -1,0 +1,13 @@
+{
+ "key": "Random Deinterleaver",
+ "title": "Random Deinterleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Random_Deinterleaver.md"
+ ],
+ "text": "使用随机置换恢复输入符号的顺序。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

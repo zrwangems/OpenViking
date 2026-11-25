@@ -1,0 +1,143 @@
+{
+ "key": "Attitude Profile",
+ "title": "Attitude Profile (Geographic Pointing)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Attitude_Profile_Geographic_Pointing.md",
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Attitude_Profile_Nadir_Pointing.md",
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Attitude_Profile_Sun_Tracking.md"
+ ],
+ "text": "Calculate shortest quaternion rotation, 10 inputs, 2 outputs, {Celestial target} sets Celestial body; {Output rotation from current to updated attitude}, {Output attitude} sets the output updated attitude, {Port coordinate frame} sets the coordinate frame for position, velocity, and attitude ports, {Pointing mode} sets the primary vector alignment pointing mode Point, {Allow pointing mode change during run}, {Primary alignment (body-frame)} sets the primary alignment vector, {Secondary alignment (body-frame)} sets the secondary alignment vector, {Constraint coordinate frame, CCF} sets the constraint coordinate frame, {Primary constraint (CCF)} sets the primary constraint and {Secondary constraint (CCF)} sets the secondary constraint. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Velocity state vector position 3-element vector"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Velocity state vector 3-element vector"
+  },
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "Spacecraft attitude 4-element vector"
+  },
+  {
+   "name": "t utc",
+   "direction": "input",
+   "summary": "Current data or time scalar"
+  },
+  {
+   "name": "μ l",
+   "direction": "input",
+   "summary": "Geodetic latitude and longitude 2-element vector"
+  },
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "Altitude scalar"
+  },
+  {
+   "name": "A1 b",
+   "direction": "input",
+   "summary": "Primary alignment vector 3-element vector"
+  },
+  {
+   "name": "A2 b",
+   "direction": "input",
+   "summary": "Secondary alignment vector 3-element vector"
+  },
+  {
+   "name": "C1 lvlh",
+   "direction": "input",
+   "summary": "Primary constraint vector 3-element vector"
+  },
+  {
+   "name": "C2 lvlh",
+   "direction": "input",
+   "summary": "Secondary constraint 3-element vector"
+  },
+  {
+   "name": "q tgt b",
+   "direction": "output",
+   "summary": "Quaternion rotation 4-element vector (scalar first)"
+  },
+  {
+   "name": "q new",
+   "direction": "output",
+   "summary": "Updated spacecraft attitude 4-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output rotation from current to updated attitude",
+   "default": "on",
+   "values": "Output rotation on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output attitude",
+   "default": "off",
+   "values": "Output updated attitude off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Port coordinate frame",
+   "default": "ICRF",
+   "values": "Coordinate frame for position, velocity, and attitude ports ICRF (default) | Fixed-frame",
+   "group": ""
+  },
+  {
+   "name": "Pointing mode",
+   "default": "nadir",
+   "values": "Primary vector alignment pointing mode Point at nadir (default) | Point at celestial body | Point at LatLonAlt | Custom",
+   "group": ""
+  },
+  {
+   "name": "Allow pointing mode change during run",
+   "default": "off",
+   "values": "Allow pointing mode change during run off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Celestial target",
+   "default": "Sun",
+   "values": "Celestial body Sun (default) | Mercury | Venus | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system barycenter | Earth-Moon barycenter",
+   "group": ""
+  },
+  {
+   "name": "Primary alignment (body-frame)",
+   "default": "Dialog",
+   "values": "Primary alignment vector Dialog (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Secondary alignment (body-frame)",
+   "default": "Dialog",
+   "values": "Secondary alignment vector Dialog (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Constraint coordinate frame, CCF",
+   "default": "ICRF",
+   "values": "Constraint coordinate frame ICRF (default) | Fixed-frame | LVLH | NED | Body-fixed",
+   "group": ""
+  },
+  {
+   "name": "Primary constraint (CCF)",
+   "default": "Dialog",
+   "values": "Primary constraint Dialog (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Secondary constraint (CCF)",
+   "default": "Dialog",
+   "values": "Secondary constraint Dialog (default) | Port",
+   "group": ""
+  }
+ ]
+}

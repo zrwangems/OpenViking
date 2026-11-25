@@ -1,0 +1,152 @@
+{
+ "key": "audio.simulink.GammatoneFilterBank",
+ "title": "Gammatone Filter Bank",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/Gammatone_Filter_Bank.md",
+  "Audio Toolbox/Filters/Gammatone_Filter_Bank.md"
+ ],
+ "text": "从音频提取梅尔频率倒谱系数，输入 1 路、输出 1 路、无直接馈通；按 {Filter bank normalization} 指定滤波器组的归一化方法；{Window} 指定分析窗 hamming、{Overlap length} 指定相邻窗之间的重叠采样数、{Number of cepstral coefficients} 指定每个特征向量中的倒谱系数数、{Rectification} 指定非线性整流类型、{Append delta} 指定将 MFCC 的 delta 追加到特征向量、{Append delta-delta} 指定将 MFCC 的 delta-delta、{Delta window length} 用于计算 delta 和 delta-delta、{Number of feature vectors} 输出中的 MFCC 特征向量数量、{Number of overlapped feature vectors} 输出中重叠的特征向量数量、{Inherit sample rate from input} 指定输入采样率的来源、{Input sample rate (Hz)} 指定输入的采样率 44.1e3、{Number of bands} 指定 mel 滤波器组中的频带数量、{Auto-determine frequency range} 指定自动确定频率范围、{Frequency range (Hz)} 指定 mel 滤波器组的频率范围、{Filter bank design domain} 指定 mel 滤波器组的设计域、{Mel style} 指定 Mel 样式、{Normalize window} 指定归一化分析窗、{Spectrum type} 指定频谱类型 power、{Auto-determine FFT length} 指定自动确定 FFT 长度、{FFT length} 指定 DFT 点数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "音频输入 column vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "MFCC 特征 matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window",
+   "default": "hamming(1024,’periodic’)",
+   "values": "分析窗 hamming(1024,’periodic’) (default) | real vector",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "512",
+   "values": "相邻窗之间的重叠采样数 512 (default) | integer in the range [0, windowLength )",
+   "group": ""
+  },
+  {
+   "name": "Number of cepstral coefficients",
+   "default": "13",
+   "values": "每个特征向量中的倒谱系数数 13 (default) | positive integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Rectification",
+   "default": "Logarithm",
+   "values": "非线性整流类型 Logarithm (default) | Cubic root",
+   "group": ""
+  },
+  {
+   "name": "Append delta",
+   "default": "on",
+   "values": "将 MFCC 的 delta 追加到特征向量 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Append delta-delta",
+   "default": "on",
+   "values": "将 MFCC 的 delta-delta 追加到特征向量 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Delta window length",
+   "default": "9",
+   "values": "用于计算 delta 和 delta-delta 的系数数量 9 (default) | odd integer greater than 2",
+   "group": ""
+  },
+  {
+   "name": "Number of feature vectors",
+   "default": "1",
+   "values": "输出中的 MFCC 特征向量数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of overlapped feature vectors",
+   "default": "0",
+   "values": "输出中重叠的特征向量数量 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "指定输入采样率的来源 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44.1e3",
+   "values": "输入的采样率 44.1e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bands",
+   "default": "32",
+   "values": "mel 滤波器组中的频带数量 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine frequency range",
+   "default": "on",
+   "values": "自动确定频率范围 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Frequency range (Hz)",
+   "default": "[0,22050]",
+   "values": "mel 滤波器组的频率范围 [0,22050] (default) | two-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Filter bank design domain",
+   "default": "linear",
+   "values": "mel 滤波器组的设计域 linear (default) | warped",
+   "group": ""
+  },
+  {
+   "name": "Filter bank normalization",
+   "default": "bandwidth",
+   "values": "滤波器组的归一化方法 bandwidth (default) | area | none",
+   "group": ""
+  },
+  {
+   "name": "Mel style",
+   "default": "oshaughnessy",
+   "values": "Mel 样式 oshaughnessy (default) | slaney",
+   "group": ""
+  },
+  {
+   "name": "Normalize window",
+   "default": "on",
+   "values": "归一化分析窗 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Spectrum type",
+   "default": "power",
+   "values": "频谱类型 power (default) | magnitude",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine FFT length",
+   "default": "on",
+   "values": "自动确定 FFT 长度 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "DFT 点数 1024 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

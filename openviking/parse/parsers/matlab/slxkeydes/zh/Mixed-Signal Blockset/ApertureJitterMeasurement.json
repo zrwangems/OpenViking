@@ -1,0 +1,55 @@
+{
+ "key": "ApertureJitterMeasurement",
+ "title": "Aperture Jitter Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Measurements & Testbenches/Aperture_Jitter_Measurement.md"
+ ],
+ "text": "测量周期信号的孔径抖动，输入 1 路、输出 1 路；{Frequency} 指定输入时钟频率 1e6、{Recommended min. simulation stop time} 指定仿真必须运行以获得有意义结果的最短时间、{Min} 指定时钟信号的最小值、{Max} 指定时钟信号的最大值、{Hold off time (s)} 指定测量分析前的延迟，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk",
+   "direction": "input",
+   "summary": "时钟信号输入 scalar"
+  },
+  {
+   "name": "jitter",
+   "direction": "output",
+   "summary": "抖动输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency",
+   "default": "1e6",
+   "values": "输入时钟频率 1e6 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Recommended min. simulation stop time",
+   "default": "9.901e-05",
+   "values": "仿真必须运行以获得有意义结果的最短时间 9.901e-05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Min",
+   "default": "0",
+   "values": "时钟信号的最小值 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Max",
+   "default": "1",
+   "values": "时钟信号的最大值 1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "测量分析前的延迟 0 (default) | nonnegative real scalar",
+   "group": ""
+  }
+ ]
+}

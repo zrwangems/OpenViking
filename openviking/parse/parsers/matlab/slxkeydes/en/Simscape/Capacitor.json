@@ -1,0 +1,15 @@
+{
+ "key": "Capacitor",
+ "title": "Capacitor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Capacitor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Capacitor.md",
+  "RF Blockset/Circuit Envelope/Elements/C.md"
+ ],
+ "text": "Linear or nonlinear capacitor with optional tolerance, operational limits and fault behavior.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

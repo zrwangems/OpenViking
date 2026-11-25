@@ -1,0 +1,42 @@
+{
+ "key": "2-D Convolution",
+ "title": "2-D Convolution",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Filtering/b_2_D_Convolution.md"
+ ],
+ "text": "Compute 2-D discrete convolution of two input matrices, 2 inputs, 1 output; {Output size} and {Normalized output}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I1",
+   "direction": "input",
+   "summary": "Input matrix matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "Input matrix matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Convolution matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output size",
+   "default": "",
+   "values": "Output size matrix",
+   "group": ""
+  },
+  {
+   "name": "Normalized output",
+   "default": "",
+   "values": "Normalized output matrix",
+   "group": ""
+  }
+ ]
+}

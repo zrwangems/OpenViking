@@ -1,0 +1,37 @@
+{
+ "key": "Pressure Altitude",
+ "title": "Pressure Altitude",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Atmosphere/Pressure_Altitude.md"
+ ],
+ "text": "基于环境压力计算压力高度，输入 1 路、输出 1 路；按 {Action for out-of-range input} 指定超出范围时的模块行为；{Units} 指定输入单位 Metric，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "静态压力 scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "压力高度 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

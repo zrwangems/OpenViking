@@ -1,0 +1,135 @@
+{
+ "key": "C28x CAN Receive",
+ "title": "CAN Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C2805x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C2806x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C280x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C281x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C2833x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C2834x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F280013x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28002x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28004x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2807x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xD/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xS/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F280015x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/CAN_Receive.md"
+ ],
+ "text": "增强型控制器局域网接收邮箱；输出 4 路；按 {消息标识符掩码} 指定标识符掩码；{模块}、{邮箱编号(0–31)} 指定邮箱号码寄存器、{消息标识符}、{消息类型} 指定消息标识符类型 标准、{启用接受过滤器} 启用以使用 ID 过滤功能、{采样时间} 指定邮箱轮询新邮件的频率、{数据类型}、{初始输出} 指定在接收数据之前设置输出、{Action when message not received} 指定当未收到新的 CAN 消息时执行的操作、{输出消息 ID} 输出消息标识符状态、{输出消息长度}、{消息接收时发出中断} 指定收到消息时发布异步中断、{中断线}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "f()",
+   "direction": "output",
+   "summary": "函数调用端口 标量"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "消息数据端口 向量"
+  },
+  {
+   "name": "len",
+   "direction": "output",
+   "summary": "输出消息的长度 标量"
+  },
+  {
+   "name": "ID",
+   "direction": "output",
+   "summary": "输出消息标识符 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "模块",
+   "default": "CAN_A",
+   "values": "模块配置的 CAN 模块 CAN_A (默认) | CAN_B",
+   "group": ""
+  },
+  {
+   "name": "邮箱编号(0–31)",
+   "default": "0",
+   "values": "设置邮箱号码寄存器 (MBNR) 的值 0 (默认) | [0 31] 范围内的整数",
+   "group": ""
+  },
+  {
+   "name": "消息标识符",
+   "default": "bin2dec(’111000111’)",
+   "values": "设置消息标识符寄存器 (MID) 的值 bin2dec(’111000111’) (默认) | 长度为 11 位或 29 位的数字标识符",
+   "group": ""
+  },
+  {
+   "name": "消息类型",
+   "default": "位标识符)",
+   "values": "消息标识符类型 标准(11 位标识符) (默认) | 扩展(29 位标识符)",
+   "group": ""
+  },
+  {
+   "name": "启用接受过滤器",
+   "default": "off",
+   "values": "启用以使用 ID 过滤功能 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "消息标识符掩码",
+   "default": "0",
+   "values": "标识符掩码 0 (默认) | 1 | 长度为 11 位或 29 位的数字标识符",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "1",
+   "values": "邮箱轮询新邮件的频率 1 (默认) | -1 | 标量",
+   "group": ""
+  },
+  {
+   "name": "数据类型",
+   "default": "uint16",
+   "values": "输出消息数据类型 uint16 (默认) | uint8 | uint32 | CAN_MESSAGE_TYPE",
+   "group": ""
+  },
+  {
+   "name": "初始输出",
+   "default": "0",
+   "values": "在接收数据之前设置输出 0 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "Action when message not received",
+   "default": "输出上次收到的消息",
+   "values": "当未收到新的 CAN 消息时执行的操作 输出上次收到的消息 (默认) | Reset all fields to zero",
+   "group": ""
+  },
+  {
+   "name": "输出消息 ID",
+   "default": "off",
+   "values": "输出消息标识符状态 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "输出消息长度",
+   "default": "off",
+   "values": "输出消息长度（以字节为单位） off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "消息接收时发出中断",
+   "default": "off",
+   "values": "收到消息时发布异步中断 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "中断线",
+   "default": "0",
+   "values": "异步中断的中断线 0 (默认) | 1",
+   "group": ""
+  }
+ ]
+}

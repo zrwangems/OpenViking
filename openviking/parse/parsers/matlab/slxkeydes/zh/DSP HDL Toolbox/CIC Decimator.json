@@ -1,0 +1,105 @@
+{
+ "key": "CIC Decimator",
+ "title": "CIC Decimator",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/CIC_Decimator.md"
+ ],
+ "text": "使用 CIC 滤波器对信号进行抽取，输入 4 路、输出 2 路；按 {Output data type} 指定输出数据类型 Full；{Decimation factor source} 指定抽取因子来源、{Decimation factor (R)} 指定抽取因子、{Decimation factor (Rmax)} 指定可变抽取因子的上限、{Differential delay (M)} 指定差分延迟、{Number of sections (N)} 指定积分器和梳状器的节数、{Gain correction} 输出增益补偿、{Output word length} 输出字长、{Enable reset input port} 指定重置信号、{Use HDL global reset} 指定将数据路径寄存器连接到生成的 HDL，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "可变抽取率 scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "清除内部状态 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "CIC 抽取后的输出数据 scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Decimation factor source",
+   "default": "Property",
+   "values": "抽取因子来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Decimation factor (R)",
+   "default": "2",
+   "values": "抽取因子 2 (default) | integer from 1 to 2048",
+   "group": "Main"
+  },
+  {
+   "name": "Decimation factor (Rmax)",
+   "default": "2",
+   "values": "可变抽取因子的上限 2 (default) | integer from 1 to 2048",
+   "group": "Main"
+  },
+  {
+   "name": "Differential delay (M)",
+   "default": "1",
+   "values": "差分延迟 1 (default) | 2",
+   "group": "Main"
+  },
+  {
+   "name": "Number of sections (N)",
+   "default": "2",
+   "values": "积分器和梳状器的节数 2 (default) | 1 | 3 | 4 | 5 | 6",
+   "group": "Main"
+  },
+  {
+   "name": "Gain correction",
+   "default": "off",
+   "values": "输出增益补偿 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "precision",
+   "values": "输出数据类型 Full precision (default) | Same word length as input | Minimum section word lengths",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output word length",
+   "default": "16",
+   "values": "输出字长 16 (default) | integer from 2 to 104",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "重置信号 off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Use HDL global reset",
+   "default": "off",
+   "values": "将数据路径寄存器连接到生成的 HDL 全局复位信号的选项 off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

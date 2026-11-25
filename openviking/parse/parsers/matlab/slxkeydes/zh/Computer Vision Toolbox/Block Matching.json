@@ -1,0 +1,83 @@
+{
+ "key": "Block Matching",
+ "title": "Block Matching",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Block_Matching.md"
+ ],
+ "text": "估计图像或视频帧之间的运动，输入 2 路、输出 2 路；{Estimate motion between} 指定估计图像或帧之间的运动 Current frame and N-th frame、{N} 指定帧数、{Search method} 指定块匹配搜索方法、{Block matching criteria} 指定块匹配准则 Mean square error、{Block size [height width]} 指定块大小、{Overlap size [r c]} 指定块重叠、{Maximum displacement [r c]} 指定最大位移、{Velocity output} 指定速度输出 Magnitude-squared，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I/I1",
+   "direction": "input",
+   "summary": "图像或视频帧 scalar | vector | matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "图像或视频帧 scalar | vector | matrix"
+  },
+  {
+   "name": "|V|^2",
+   "direction": "output",
+   "summary": "速度幅值 scalar | vector | matrix"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "复数形式的速度分量 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Estimate motion between",
+   "default": "back",
+   "values": "估计图像或帧之间的运动 Current frame and N-th frame back (default) | Two images",
+   "group": ""
+  },
+  {
+   "name": "N",
+   "default": "1",
+   "values": "帧数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Search method",
+   "default": "Exhaustive",
+   "values": "块匹配搜索方法 Exhaustive (default) | Three-step",
+   "group": ""
+  },
+  {
+   "name": "Block matching criteria",
+   "default": "(MSE)",
+   "values": "块匹配准则 Mean square error (MSE) (default) | Mean absolute difference (MAD)",
+   "group": ""
+  },
+  {
+   "name": "Block size [height width]",
+   "default": "17]",
+   "values": "块大小 [17 17] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Overlap size [r c]",
+   "default": "0]",
+   "values": "块重叠 [0 0] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum displacement [r c]",
+   "default": "7]",
+   "values": "最大位移 [7 7] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Velocity output",
+   "default": "Magnitude-squared",
+   "values": "速度输出 Magnitude-squared (default) | Horizontal and vertical components in complex form",
+   "group": ""
+  }
+ ]
+}

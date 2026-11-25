@@ -1,0 +1,162 @@
+{
+ "key": "phased.BeamscanEstimator2D",
+ "title": "Beamscan Spectrum",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/Beamscan_Spectrum.md"
+ ],
+ "text": "Beamscan spatial spectrum estimator, 1 input, 2 outputs, {Geometry} sets Array geometry; {Signal propagation speed (m/s)} sets the signal propagation speed physconst, {Operating frequency (Hz)} sets the system operating frequency 3e8, {Number of bits in phase shifters} sets the number of phase shift quantization bits, {Forward-backward averaging} enables forward-backward averaging, {Azimuth scan angles (deg)} sets the scan angles in azimuth, {Elevation scan angles (deg)} sets the scan angles in elevation, {Enable DOA output} sets the output directions of arrival through output, {Number of signals} sets the expected number of arriving signals, {Simulate using} sets the block simulation method Interpreted, {Specify sensor array as} sets the method to specify array Array, {Expression} sets the mATLAB expression used to create an array Phased Array System Toolbox™ array System, {Number of elements} sets the number of array elements 2 for ULA arrays and 5 for UCA, {Element spacing (m)} sets the spacing between array elements 0.5 for ULA arrays, {Array axis} sets the linear axis direction, {Array size} sets the dimensions of URA array, {Element lattice} sets the lattice of URA element positions, {Array normal}, {Radius of UCA (m)} sets the uCA array radius, {Element positions (m)} sets the positions of conformal array elements, {Element normals (deg)} sets the direction of conformal array element normal vectors and {Taper} sets the array element tapers. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Received signal M -by- N complex-valued matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Beamscan 2-D spatial spectrum non-negative real-valued P -by- Q matrix"
+  },
+  {
+   "name": "Ang",
+   "direction": "output",
+   "summary": "Directions of arrival non-negative, real-valued 2-by- L matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency (Hz)",
+   "default": "3e8",
+   "values": "System operating frequency 3e8 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bits in phase shifters",
+   "default": "0",
+   "values": "Number of phase shift quantization bits 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Forward-backward averaging",
+   "default": "off",
+   "values": "Enable forward-backward averaging off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Azimuth scan angles (deg)",
+   "default": "-180:180",
+   "values": "Scan angles in azimuth direction -180:180 (default) | real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation scan angles (deg)",
+   "default": "-90:90",
+   "values": "Scan angles in elevation direction -90:90 (default) | real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Enable DOA output",
+   "default": "off",
+   "values": "Output directions of arrival through output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of signals",
+   "default": "1",
+   "values": "Expected number of arriving signals 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Specify sensor array as",
+   "default": "subarrays)",
+   "values": "Method to specify array Array (no subarrays) (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Expression",
+   "default": "",
+   "values": "MATLAB expression used to create an array Phased Array System Toolbox™ array System object",
+   "group": ""
+  },
+  {
+   "name": "Geometry",
+   "default": "ULA",
+   "values": "Array geometry ULA (default) | URA | UCA | Conformal Array",
+   "group": ""
+  },
+  {
+   "name": "Number of elements",
+   "default": "arrays",
+   "values": "Number of array elements 2 for ULA arrays and 5 for UCA arrays (default) | integer greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Element spacing (m)",
+   "default": "arrays",
+   "values": "Spacing between array elements 0.5 for ULA arrays and [0.5,0.5] for URA arrays (default) | positive scalar for ULA or URA arrays | 2-element vector of positive values for URA arrays",
+   "group": ""
+  },
+  {
+   "name": "Array axis",
+   "default": "y",
+   "values": "Linear axis direction of ULA y (default) | x | z",
+   "group": ""
+  },
+  {
+   "name": "Array size",
+   "default": "[2,2]",
+   "values": "Dimensions of URA array [2,2] (default) | positive integer | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Element lattice",
+   "default": "Rectangular",
+   "values": "Lattice of URA element positions Rectangular (default) | Triangular",
+   "group": ""
+  },
+  {
+   "name": "Array normal",
+   "default": "arrays",
+   "values": "Array normal direction x for URA arrays or z for UCA arrays (default) | y",
+   "group": ""
+  },
+  {
+   "name": "Radius of UCA (m)",
+   "default": "0.5",
+   "values": "UCA array radius 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Element positions (m)",
+   "default": "[0;0;0]",
+   "values": "Positions of conformal array elements [0;0;0] (default) | 3-by- N matrix of real values",
+   "group": ""
+  },
+  {
+   "name": "Element normals (deg)",
+   "default": "",
+   "values": "Direction of conformal array element normal vectors [0;0] | 2-by-1 column vector | 2-by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Taper",
+   "default": "1",
+   "values": "Array element tapers 1 (default) | complex scalar | complex-valued row vector",
+   "group": ""
+  }
+ ]
+}

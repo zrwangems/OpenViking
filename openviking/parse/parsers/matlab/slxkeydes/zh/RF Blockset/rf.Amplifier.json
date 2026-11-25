@@ -1,0 +1,193 @@
+{
+ "key": "rf.Amplifier",
+ "title": "Amplifier",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Idealized Baseband/Amplifier.md"
+ ],
+ "text": "带噪声和非线性的放大器复数基带模型，输入 1 路、输出 1 路；按 {Specify noise type} 指定噪声表示；{Model} 指定放大器非线性模型、{Linear power gain (dB)} 指定放大器的线性增益、{Type of Non-Linearity} 指定三阶非线性类型、{IIP3 (dBm)} 指定输入三阶截点、{OIP3 (dBm)} 输出三阶截点、{IP1dB (dBm)} 指定输入 1 dB、{OP1dB (dBm)} 输出 1 dB、{IPsat (dBm)} 指定输入饱和点、{OPsat (dBm)} 输出饱和点、{Simulate using} 指定要运行的仿真类型 Code、{Plot power characteristics} 绘制功率特性、{Lookup table (Pin(dBm), Pout(dBm), deg)} 查找表、{Output saturation level (V)} 输出饱和电平、{Magnitude smoothness factor} 指定幅度平滑因子、{Phase gain (rad)} 指定相位增益、{Phase saturation} 指定相位饱和、{Phase smoothness factor} 指定相位平滑因子、{Input scaling (dB)} 指定输入信号电平的缩放因子、{AM / AM parameters [alpha beta]} 指定 AM/AM 转换参数、{AM / PM parameters [alpha beta]} 指定 AM/PM 转换参数、{Output scaling (dB)} 输出信号电平的缩放因子、{Include Noise} 指定向系统添加噪声、{Noise temperature (K)} 用于对放大器中的噪声进行建模的噪声温度、{Noise figure (dB)} 用于对放大器中的噪声进行建模的噪声系数 10 *、{Noise factor} 用于对放大器中的噪声进行建模的噪声因子、{Seed source} 指定初始种子的来源、{Seed} 指定随机数生成器的种子，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入基带信号 real scalar | real column | complex scalar | complex column"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出基带信号 real scalar | real column | complex scalar | complex column"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model",
+   "default": "cubic",
+   "values": "放大器非线性模型 cubic (default) | ampm | modified-rapp | saleh",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Linear power gain (dB)",
+   "default": "0",
+   "values": "放大器的线性增益 0 (default) | real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Type of Non-Linearity",
+   "default": "OIP3",
+   "values": "三阶非线性类型 OIP3 (default) | IIP3 | IP1dB | OP1dB | IPsat | OPsat",
+   "group": "Main Tab"
+  },
+  {
+   "name": "IIP3 (dBm)",
+   "default": "Inf",
+   "values": "输入三阶截点 Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "OIP3 (dBm)",
+   "default": "Inf",
+   "values": "输出三阶截点 Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "IP1dB (dBm)",
+   "default": "Inf",
+   "values": "输入 1 dB 压缩点 Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "OP1dB (dBm)",
+   "default": "Inf",
+   "values": "输出 1 dB 压缩点 Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "IPsat (dBm)",
+   "default": "Inf",
+   "values": "输入饱和点 Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "OPsat (dBm)",
+   "default": "Inf",
+   "values": "输出饱和点 Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "指定要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Plot power characteristics",
+   "default": "button",
+   "values": "绘制功率特性 button (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Lookup table (Pin(dBm), Pout(dBm), deg)",
+   "default": "]",
+   "values": "查找表 [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ] (default) | M -by-3 real matrix",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output saturation level (V)",
+   "default": "1",
+   "values": "输出饱和电平 1 (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Magnitude smoothness factor",
+   "default": "2",
+   "values": "幅度平滑因子 2 (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Phase gain (rad)",
+   "default": "-0.45",
+   "values": "相位增益 -0.45 (default) | real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Phase saturation",
+   "default": "0.88",
+   "values": "相位饱和 0.88 (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Phase smoothness factor",
+   "default": "3.43]",
+   "values": "相位平滑因子 [3.43, 3.43] (default) | real positive number | two-tuple vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input scaling (dB)",
+   "default": "0",
+   "values": "输入信号电平的缩放因子 0 (default) | nonnegative real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "AM / AM parameters [alpha beta]",
+   "default": "]",
+   "values": "AM/AM 转换参数 [ 2.1587, 1.1517 ] (default) | two-element vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "AM / PM parameters [alpha beta]",
+   "default": "]",
+   "values": "AM/PM 转换参数 [ 4.0033, 9.1040 ] (default) | two-element vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output scaling (dB)",
+   "default": "0",
+   "values": "输出信号电平的缩放因子 0 (default) | nonnegative real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Include Noise",
+   "default": "off",
+   "values": "向系统添加噪声 off (default) | on",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Specify noise type",
+   "default": "NF",
+   "values": "噪声表示 NF (default) | noise-temperature | noise-factor",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise temperature (K)",
+   "default": "290",
+   "values": "用于对放大器中的噪声进行建模的噪声温度 290 (default) | nonnegative real number",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": ")",
+   "values": "用于对放大器中的噪声进行建模的噪声系数 10 * log10( 2 ) (default) | nonnegative real number",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise factor",
+   "default": "2",
+   "values": "用于对放大器中的噪声进行建模的噪声因子 2 (default) | positive integer scalar greater than or equal to 1",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed source",
+   "default": "auto",
+   "values": "初始种子的来源 auto (default) | user",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed",
+   "default": "67987",
+   "values": "随机数生成器的种子 67987 (default) | nonnegative integer",
+   "group": "Noise Tab"
+  }
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "key": "Normalization",
+ "title": "Normalization",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Math Operations/Normalization.md"
+ ],
+ "text": "沿行、列或指定维度执行向量归一化，输入 1 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Norm} 指定归一化类型 Squared、{Normalization bias} 指定归一化偏置 1e-10、{Normalize over} 指定要进行归一化的维度 Each、{Dimension} 指定维度、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Output} 输出数据类型、{Output Minimum} 输出最小值、{Output Maximum} 输出最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "归一化输出 scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Norm",
+   "default": "2-norm",
+   "values": "归一化类型 Squared 2-norm (default) | 2-norm",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalization bias",
+   "default": "1e-10",
+   "values": "归一化偏置 1e-10 (default) | nonnegative scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalize over",
+   "default": "column",
+   "values": "要进行归一化的维度 Each column (default) | Each row | Specified dimension",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "指定维度 1 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "乘积输出数据类型 Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "累加器数据类型 Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "output",
+   "values": "输出数据类型 Inherit: Same as product output (default) | Inherit: Same as input | Inherit: Same as accumulator | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "输出最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "输出最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+ "key": "M-PSK Modulator Baseband",
+ "title": "M-PSK Modulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/PM/M_PSK_Modulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/M_PSK_Modulator_Baseband.md"
+ ],
+ "text": "使用 M 进制相移键控进行调制，输入 1 路、输出 1 路；按 {Constellation ordering} 指定符号映射；{M-ary number} 指定 PSK 星座图的调制阶数、{Input type} 指定输入信号的类型、{Constellation mapping} 指定用户定义符号映射、{Phase offset (rad)} 以弧度表示的相位偏移、{View constellation} 绘制参考星座的选项、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Out_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "8",
+   "values": "PSK 星座图的调制阶数 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "输入信号的类型 Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Gray",
+   "values": "符号映射 Gray (default) | Binary | User-defined",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "[0:7]",
+   "values": "用户定义符号映射 [0:7] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "pi/8",
+   "values": "以弧度表示的相位偏移 pi/8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "View constellation",
+   "default": "",
+   "values": "绘制参考星座的选项 button",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | Inherit via back propagation | fixdt(1,16) | fixdt(1,16,0) |",
+   "group": "Data Types"
+  }
+ ]
+}

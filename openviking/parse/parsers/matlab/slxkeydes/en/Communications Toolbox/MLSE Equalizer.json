@@ -1,0 +1,76 @@
+{
+ "key": "MLSE Equalizer",
+ "title": "MLSE Equalizer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Equalizers/MLSE_Equalizer.md"
+ ],
+ "text": "Equalize OFDM modulated signals, 3 inputs, 2 outputs; {Data format} sets the format of signals, {Algorithm} sets the equalization algorithm Minimum mean squared, {Noise variance source} sets the source of noise variance, {Noise variance}, {Output soft channel state information} enables soft channel state information and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input signal 3-D array | 2-D array"
+  },
+  {
+   "name": "hEst",
+   "direction": "input",
+   "summary": "Channel estimate 3-D array"
+  },
+  {
+   "name": "noiseVar",
+   "direction": "input",
+   "summary": "Noise variance 0 (default) | nonnegative scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "Equalized symbols 3-D array | 2-D array"
+  },
+  {
+   "name": "csi",
+   "direction": "output",
+   "summary": "Soft channel state information matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data format",
+   "default": "3-D",
+   "values": "Format of signals 3-D (default) | 2-D",
+   "group": ""
+  },
+  {
+   "name": "Algorithm",
+   "default": "error",
+   "values": "Equalization algorithm Minimum mean squared error (default) | Zero-forcing",
+   "group": ""
+  },
+  {
+   "name": "Noise variance source",
+   "default": "port",
+   "values": "Source of noise variance Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Noise variance",
+   "default": "0",
+   "values": "Noise variance 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output soft channel state information",
+   "default": "off",
+   "values": "Enable soft channel state information output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

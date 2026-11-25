@@ -1,0 +1,135 @@
+{
+ "key": "EntityGenerator",
+ "title": "Entity Generator",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Generator.md"
+ ],
+ "text": "Entity Generator 模块生成实体。实体是离散事件仿真中可以定义的离散关注项。实体可以携带标量、总线或向量数据。实体的含义取决于模型。实体可以表示排队系统中的客户、从远程控制器发送到执行器的数据包，或你定义的任何离散项。 默认情况下，模块的实体生成方法为 `Time-based`。在此方法中，模块使用由 **Period** 指定的生成间隔时间（来自输入信号或统计分布）生成实体。有关创建基于时间的实体和随机实体的详细信息，请参阅 Entities in a SimEvents Model。 该模块还可以创建基于事件的实体。选择 `Event-based` 作为 **Generation Method**，以便由外部事件指定实体生成间隔时间。有关示例，请参阅 Generate Entities When Events Occur。 若要在生成实体或实体离开模块时自定义操作，请在 **Event actions** 选项卡的 `Generate action` 或 `Exit action` 字段中输入 MATLAB® 代码。有关详细信息，请参阅 Events and Event Actions，输入 2 路、输出 4 路；按 {Entity type} 指定要生成的实体类型；{Generation method} 指定实体生成方法、{Time source} 指定生成间隔时间的来源、{Period} 定义实体生成之间的周期、{Intergeneration time action} 指定实体生成之间的时间 dt = rand、{Generate entity at simulation start} 指定在仿真开始时生成实体、{Entity priority} 指定生成的实体的优先级、{Entity type name} 指定生成的实体的名称、{Data initial value} 指定匿名实体数据的初始值、{Attribute Name} 定义生成的实体属性的名称、{Attribute Initial Value} 定义生成的实体属性的初始值、{Event actions} 指定实体在特定事件发生时的行为、{Number of entities departed, d} 输出已离开该模块的实体数、{Pending entity present in block, pe} 指定待处理实体、{Average intergeneration time, w} 指定实体生成之间的平均时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "用于在事件到达时触发实体生成的输入 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "用于确定下一次实体生成的生成间隔时间值的信号输入 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出生成的实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_pe",
+   "direction": "output",
+   "summary": "模块中的待处理实体 off (default) | on"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "平均生成间隔时间 off (default) | on"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generation method",
+   "default": "Time-based",
+   "values": "选择实体生成方法 Time-based (default) | Event-based",
+   "group": ""
+  },
+  {
+   "name": "Time source",
+   "default": "Dialog",
+   "values": "选择生成间隔时间的来源 Dialog (default) | Signal port | MATLAB action",
+   "group": ""
+  },
+  {
+   "name": "Period",
+   "default": "1",
+   "values": "定义实体生成之间的周期 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Intergeneration time action",
+   "default": "rand(1,1)",
+   "values": "指定实体生成之间的时间 dt = rand(1,1) (default) | MATLAB code",
+   "group": ""
+  },
+  {
+   "name": "Generate entity at simulation start",
+   "default": "on",
+   "values": "在仿真开始时生成实体 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Entity type",
+   "default": "Structured",
+   "values": "选择要生成的实体类型 Structured (default) | Anonymous | Bus object",
+   "group": ""
+  },
+  {
+   "name": "Entity priority",
+   "default": "300",
+   "values": "指定生成的实体的优先级 300 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Entity type name",
+   "default": "Entity",
+   "values": "指定生成的实体的名称 Entity (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Data initial value",
+   "default": "0",
+   "values": "指定匿名实体数据的初始值 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Attribute Name",
+   "default": "Attribute1",
+   "values": "定义生成的实体属性的名称 Attribute1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Attribute Initial Value",
+   "default": "1",
+   "values": "定义生成的实体属性的初始值 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Event actions",
+   "default": "Generate",
+   "values": "指定实体在特定事件发生时的行为 Generate (default) | Exit",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pending entity present in block, pe",
+   "default": "off",
+   "values": "待处理实体 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average intergeneration time, w",
+   "default": "off",
+   "values": "实体生成之间的平均时间 off (default) | on",
+   "group": ""
+  }
+ ]
+}

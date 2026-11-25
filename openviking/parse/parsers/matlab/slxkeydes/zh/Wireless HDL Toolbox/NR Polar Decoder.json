@@ -1,0 +1,102 @@
+{
+ "key": "NR Polar Decoder",
+ "title": "NR Polar Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/NR_Polar_Decoder.md"
+ ],
+ "text": "根据 5G NR 标准执行极化解码，输入 5 路、输出 4 路；{Link direction} 指定 5G NR 链路方向、{List length} 指定解码路径数、{Configuration source} 指定 K 和 E、{Message length (K)} 指定信息块的长度、{Rate-matched length (E)} 指定速率匹配后的输出长度、{Full checksum mismatch} 指定返回最终解码阶段的校验和、{Enable target RNTI port} 用于指定目标 RNTI 值的可选端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入样本 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "信息块的长度（以位为单位） positive integer"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "速率匹配后的输出长度（以位为单位） scalar positive integer"
+  },
+  {
+   "name": "RNTI",
+   "direction": "input",
+   "summary": "目标 RNTI 16-bit unsigned integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "解码后的数据位 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "err",
+   "direction": "output",
+   "summary": "CRC 结果 scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "准备好接受新输入 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Link direction",
+   "default": "Downlink",
+   "values": "5G NR 链路方向 Downlink (default) | Uplink",
+   "group": ""
+  },
+  {
+   "name": "List length",
+   "default": "2",
+   "values": "解码路径数 2 (default) | 4 | 8",
+   "group": ""
+  },
+  {
+   "name": "Configuration source",
+   "default": "Property",
+   "values": "K 和 E 的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Message length (K)",
+   "default": "56",
+   "values": "信息块的长度（以位为单位） 56 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Rate-matched length (E)",
+   "default": "864",
+   "values": "速率匹配后的输出长度（以位为单位） 864 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Full checksum mismatch",
+   "default": "off",
+   "values": "返回最终解码阶段的校验和 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable target RNTI port",
+   "default": "off",
+   "values": "用于指定目标 RNTI 值的可选端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

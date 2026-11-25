@@ -1,0 +1,53 @@
+{
+ "key": "Burg AR Estimator",
+ "title": "Burg AR Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Parametric Estimation/Burg_AR_Estimator.md"
+ ],
+ "text": "Compute estimate of autoregressive (AR) model parameters using Burg method, 1 input, 3 outputs, {Output(s)} sets Output; {Inherit estimation order from input dimensions} and {Estimation order} sets the order of AR model. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input column vector | unoriented vector"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "Normalized estimate of the AR model polynomial coefficients column vector"
+  },
+  {
+   "name": "K",
+   "direction": "output",
+   "summary": "Reflection coefficients column vector"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Model gain scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output(s)",
+   "default": "A",
+   "values": "Output A (default) | A and K | K",
+   "group": ""
+  },
+  {
+   "name": "Inherit estimation order from input dimensions",
+   "default": "on",
+   "values": "Inherit estimation order from input dimensions on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Estimation order",
+   "default": "4",
+   "values": "Order of AR model 4 (default) | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

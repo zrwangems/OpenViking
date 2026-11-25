@@ -1,0 +1,43 @@
+{
+ "key": "Change Detector",
+ "title": "Change Detector",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Change_Detector.md"
+ ],
+ "text": "Boolean signal change detector, 1 input, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Change detection} sets the change criteria Rising and {Initial condition} sets the initial Boolean value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Boolean input 0 or 1"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Change report 0 or 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Change detection",
+   "default": "edge",
+   "values": "Change criteria Rising edge (default) | Falling edge | Either edge",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial Boolean value 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Matrix Interleaver",
+ "title": "Matrix Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Matrix_Interleaver.md"
+ ],
+ "text": "Permute input symbols by filling matrix by rows and emptying it by columns.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

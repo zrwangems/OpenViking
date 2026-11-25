@@ -1,0 +1,126 @@
+{
+ "key": "AllpoleFilter",
+ "title": "Allpole Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Allpole_Filter.md"
+ ],
+ "text": "Model allpole filters, 2 inputs, 1 output, no direct feedthrough, {Integer rounding mode} sets Integer rounding mode; {Coefficient source}, {Filter structure}, {Coefficients} sets the filter denominator coefficients, {Input processing}, {Initial states} sets the initial conditions of filter states, {Coefficients Minimum} sets the minimum value of filter coefficients, {Coefficients Maximum} sets the maximum value of filter coefficients, {Product output}, {Accumulator}, {State}, {Output}, {Output Minimum}, {Output Maximum}, {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data and {Saturate on integer overflow}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "Filter denominator coefficients scalar | row vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Filtered output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "Coefficient source Dialog parameters (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter structure",
+   "default": "form",
+   "values": "Specify filter structure Direct form (default) | Direct form transposed | Lattice AR",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "0.1]",
+   "values": "Filter denominator coefficients [1 0.1] (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Input processing Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial states",
+   "default": "0",
+   "values": "Initial conditions of filter states 0 (default) | scalar | vector | matrix",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Coefficients Minimum",
+   "default": "[]",
+   "values": "Minimum value of filter coefficients [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Maximum",
+   "default": "[]",
+   "values": "Maximum value of filter coefficients [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "State",
+   "default": "accumulator",
+   "values": "State data type Inherit: Same as accumulator (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Output data type Inherit: Same as input (default) | Inherit: Same as accumulator | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Output minimum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Output maximum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Integer rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

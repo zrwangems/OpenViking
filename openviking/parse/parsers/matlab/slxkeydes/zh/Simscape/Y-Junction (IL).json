@@ -1,0 +1,13 @@
+{
+ "key": "Y-Junction (IL)",
+ "title": "Y-Junction (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pipes & Fittings/Y_Junction_IL.md"
+ ],
+ "text": "等温液体系统中的 Y 形接头。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

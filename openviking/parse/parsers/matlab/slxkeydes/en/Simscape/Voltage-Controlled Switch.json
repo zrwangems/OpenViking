@@ -1,0 +1,13 @@
+{
+ "key": "Voltage-Controlled Switch",
+ "title": "Voltage-Controlled Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Passives/Voltage_Controlled_Switch.md"
+ ],
+ "text": "Voltage-controlled switch with hysteresis.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

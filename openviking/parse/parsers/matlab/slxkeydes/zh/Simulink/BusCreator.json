@@ -1,0 +1,57 @@
+{
+ "key": "BusCreator",
+ "title": "Bus Creator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Bus_Creator.md",
+  "Simulink/Signal Routing/Bus_Creator.md",
+  "HDL Coder/Signal Routing/Bus_Creator.md"
+ ],
+ "text": "将输入信号、总线或消息组合到总线中，输入 1 路、输出 1 路；{输入数目} 指定模块输入的数目、{输入}、{输出数据类型} 输出总线的数据类型 Inherit、{元素名称}、{以非虚拟总线输出} 输出非虚拟总线，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要包含在总线中的输入元素 标量 | 向量 | 矩阵 | 数组 | 总线"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出虚拟或非虚拟总线 标量 | 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入数目",
+   "default": "2",
+   "values": "模块输入的数目 2 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "输入",
+   "default": "",
+   "values": "模块输入 元素名称列表",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "auto",
+   "values": "输出总线的数据类型 Inherit: auto (默认) | Bus:",
+   "group": ""
+  },
+  {
+   "name": "元素名称",
+   "default": "根据输入",
+   "values": "输出总线元素名称的源 根据输入 (默认) | 根据输出数据类型",
+   "group": ""
+  },
+  {
+   "name": "以非虚拟总线输出",
+   "default": "off",
+   "values": "输出非虚拟总线的选项 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

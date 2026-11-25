@@ -1,0 +1,64 @@
+{
+ "key": "EarthNutation",
+ "title": "Earth Nutation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Earth_Nutation.md"
+ ],
+ "text": "Implement Earth nutation, 3 inputs, 2 outputs, {Ephemeris model} sets Ephemeris model; {Epoch}, {Action for out-of-range input} sets the out-of-range block behavior and {Calculate rates} sets the calculate rate of Earth nutation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T JD",
+   "direction": "input",
+   "summary": "Julian date scalar | positive | between minimum and maximum Julian dates"
+  },
+  {
+   "name": "T0 JD",
+   "direction": "input",
+   "summary": "Fixed Julian date scalar | positive"
+  },
+  {
+   "name": "ΔT JD",
+   "direction": "input",
+   "summary": "Elapsed Julian time scalar | positive"
+  },
+  {
+   "name": "Δψ Δε (rad)",
+   "direction": "output",
+   "summary": "Earth nutation vector"
+  },
+  {
+   "name": "Δψ dot Δε dot (rad/day)",
+   "direction": "output",
+   "summary": "Earth nutation angular rate scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Epoch",
+   "default": "date",
+   "values": "Epoch Julian date (default) | T0 and elapsed Julian time",
+   "group": ""
+  },
+  {
+   "name": "Ephemeris model",
+   "default": "DE405",
+   "values": "Ephemeris model DE405 (default) | DE421 | DE423 | DE430",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Calculate rates",
+   "default": "on",
+   "values": "Calculate rate of Earth nutation on (default) | off",
+   "group": ""
+  }
+ ]
+}

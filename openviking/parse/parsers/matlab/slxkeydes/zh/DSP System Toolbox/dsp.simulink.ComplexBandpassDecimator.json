@@ -1,0 +1,126 @@
+{
+ "key": "dsp.simulink.ComplexBandpassDecimator",
+ "title": "Complex Bandpass Decimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Complex_Bandpass_Decimator.md"
+ ],
+ "text": "使用单边（复数）带通抽取器提取频率子带，输入 2 路、输出 1 路；按 {Filter specification} 指定滤波器设计参数 Decimation；{Decimation factor} 指定抽取因子、{Bandwidth} 指定目标频带的宽度、{Specify center frequency from input port} 指定中心频率的来源、{Center frequency} 指定目标频带的中心频率、{Stopband attenuation (dB)} 指定阻带衰减、{Passband ripple (dB)} 指定通带波纹，单位为 dB、{Transition width} 指定过渡带宽、{Reduce number of complex coefficients} 指定最小化复数系数的数量、{Mix signal to baseband}、{Sample rate mode} 用于指定输入采样率的模式 Use normalized、{Input sample rate (Hz)} 指定 Input sample rate in Hz、{Allow arbitrary frame length for fixed-size input signals} 允许固定大小输入信号的任意帧长度、{View Filter Response} 指定可视化频率响应、{View Info} 指定查看滤波器信息、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入数据 vector | matrix"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "中心频率 real scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "滤波后输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter specification",
+   "default": "factor",
+   "values": "滤波器设计参数 Decimation factor (default) | Bandwidth | Decimation factor and bandwidth",
+   "group": ""
+  },
+  {
+   "name": "Decimation factor",
+   "default": "2",
+   "values": "抽取因子 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Bandwidth",
+   "default": "0.2268",
+   "values": "目标频带的宽度 0.2268 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "off",
+   "values": "指定中心频率的来源 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Center frequency",
+   "default": "0",
+   "values": "目标频带的中心频率 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "阻带衰减 (dB) 80 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Passband ripple (dB)",
+   "default": "1",
+   "values": "通带波纹，单位为 dB 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Transition width",
+   "default": "0.0045",
+   "values": "过渡带宽 0.0045 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reduce number of complex coefficients",
+   "default": "on",
+   "values": "最小化复数系数的数量 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Mix signal to baseband",
+   "default": "on",
+   "values": "Mix signal to baseband on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "用于指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Input sample rate in Hz 44100 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "允许固定大小输入信号的任意帧长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "可视化频率响应 button",
+   "group": ""
+  },
+  {
+   "name": "View Info",
+   "default": "",
+   "values": "查看滤波器信息 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

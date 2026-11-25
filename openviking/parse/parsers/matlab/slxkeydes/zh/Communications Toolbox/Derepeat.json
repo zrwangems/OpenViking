@@ -1,0 +1,49 @@
+{
+ "key": "Derepeat",
+ "title": "Derepeat",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Derepeat.md"
+ ],
+ "text": "通过对连续样本求平均值来降低采样率，输入 1 路、输出 1 路；按 {Initial condition} 指定初始条件；{Derepeat factor, N} 指定 Derepeat 因子、{Input processing} 指定输入处理控制 Columns as channels、{Rate options} 指定模块处理速率 Allow multirate，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Derepeat factor, N",
+   "default": "5",
+   "values": "Derepeat 因子 5 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "输入处理控制 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "模块处理速率 Allow multirate processing (default) | Enforce single-rate processing",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "初始条件 0 (default) | scalar | vector | matrix",
+   "group": ""
+  }
+ ]
+}

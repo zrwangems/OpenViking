@@ -1,0 +1,70 @@
+{
+ "key": "Unicycle Kinematic Model",
+ "title": "Unicycle Kinematic Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Mobile Robot Algorithms/Unicycle_Kinematic_Model.md"
+ ],
+ "text": "使用独轮车运动学模型计算车辆运动，输入 3 路、输出 2 路；{Vehicle inputs} 指定车辆的速度和方向输入类型 Vehicle Speed & Heading Angular、{Wheel radius} 指定车辆车轮半径、{Wheel speed range} 指定最小和最大车辆速度、{Initial state} 指定前轴和后轴之间的距离、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dϕ/dt",
+   "direction": "input",
+   "summary": "车轮角速度 numeric scalar"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "车速 numeric scalar"
+  },
+  {
+   "name": "ω",
+   "direction": "input",
+   "summary": "转向角速度 numeric scalar"
+  },
+  {
+   "name": "state",
+   "direction": "output",
+   "summary": "车辆位姿 three-element vector"
+  },
+  {
+   "name": "stateDot",
+   "direction": "output",
+   "summary": "状态输出的导数 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vehicle inputs",
+   "default": "Velocity",
+   "values": "车辆的速度和方向输入类型 Vehicle Speed & Heading Angular Velocity (default) | Wheel Speed & Heading Angular Velocity",
+   "group": ""
+  },
+  {
+   "name": "Wheel radius",
+   "default": "0.1",
+   "values": "车辆车轮半径 0.1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Wheel speed range",
+   "default": "Inf]",
+   "values": "最小和最大车辆速度 [-Inf Inf] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "[0;0;0]",
+   "values": "前轴和后轴之间的距离 [0;0;0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

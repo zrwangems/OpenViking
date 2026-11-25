@@ -1,0 +1,13 @@
+{
+ "key": "Cylinder Cushion (IL)",
+ "title": "Cylinder Cushion (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Auxiliary Components/Cylinder_Cushion_IL.md"
+ ],
+ "text": "Cushion in cylinder in isothermal liquid network。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

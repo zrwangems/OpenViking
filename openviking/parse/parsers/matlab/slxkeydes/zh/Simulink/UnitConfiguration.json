@@ -1,0 +1,32 @@
+{
+ "key": "UnitConfiguration",
+ "title": "Unit System Configuration",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Unit_System_Configuration.md"
+ ],
+ "text": "将单位限制为指定的允许单位制；按 {Allowed unit systems} 指定允许的单位制 SI；{Disallowed unit systems} 指定不允许的单位制 SI、{Allow all unit systems} 允许所有单位制，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Disallowed unit systems",
+   "default": "",
+   "values": "不允许的单位制 SI | English | SI (extended) | CGS",
+   "group": ""
+  },
+  {
+   "name": "Allowed unit systems",
+   "default": "",
+   "values": "允许的单位制 SI | English | SI (extended) | CGS",
+   "group": ""
+  },
+  {
+   "name": "Allow all unit systems",
+   "default": "on",
+   "values": "允许所有单位制 on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,116 @@
+{
+ "key": "CIC Interpolator",
+ "title": "CIC Interpolator",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/CIC_Interpolator.md"
+ ],
+ "text": "Interpolate signal using CIC filter, 4 inputs, 3 outputs, {Output data type} sets Data type of output Full; {Interpolation factor source} sets the source of interpolation, {Interpolation factor (R)}, {Interpolation factor (Rmax)} sets the upper bound of variable interpolation, {Differential delay (M)}, {Number of sections (N)} sets the number of integrator and comb sections, {Minimum number of cycles between valid input samples}, {Gain correction} sets the output gain compensation, {Output word length} sets the word length of output, {Enable reset input port} sets the option to enable reset input port and {Use HDL global reset} sets the option to connect data path registers to generated HDL global reset. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Variable interpolation rate scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clears internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "CIC-interpolated output data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready for new input data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation factor source",
+   "default": "Property",
+   "values": "Source of interpolation factor Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation factor (R)",
+   "default": "2",
+   "values": "Interpolation factor 2 (default) | integer from 1 to 2048",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation factor (Rmax)",
+   "default": "2",
+   "values": "Upper bound of variable interpolation factor 2 (default) | integer from 1 to 2048",
+   "group": "Main"
+  },
+  {
+   "name": "Differential delay (M)",
+   "default": "1",
+   "values": "Differential delay 1 (default) | 2",
+   "group": "Main"
+  },
+  {
+   "name": "Number of sections (N)",
+   "default": "2",
+   "values": "Number of integrator and comb sections 2 (default) | 1 | 3 | 4 | 5 | 6",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum number of cycles between valid input samples",
+   "default": "1",
+   "values": "Minimum number of cycles between valid input samples 1 (default) | factors or multiples of R",
+   "group": "Main"
+  },
+  {
+   "name": "Gain correction",
+   "default": "off",
+   "values": "Output gain compensation off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "precision",
+   "values": "Data type of output Full precision (default) | Same word length as input | Minimum section word lengths",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output word length",
+   "default": "16",
+   "values": "Word length of output 16 (default) | integer from 2 to 104",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Option to enable reset input port off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Use HDL global reset",
+   "default": "off",
+   "values": "Option to connect data path registers to generated HDL global reset signal off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

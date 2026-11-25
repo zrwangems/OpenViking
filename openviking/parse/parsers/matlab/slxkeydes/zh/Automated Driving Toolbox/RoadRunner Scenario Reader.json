@@ -1,0 +1,91 @@
+{
+ "key": "RoadRunner Scenario Reader",
+ "title": "RoadRunner Scenario Reader",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_block",
+ "source_docs": [
+  "Automated Driving Toolbox/RoadRunner Scenario/RoadRunner_Scenario_Reader.md"
+ ],
+ "text": "从 RoadRunner 场景读取所选主题，输入 1 路、输出 1 路；按 {Topic Category} 指定主题类别；{Actor Type} 指定场景中的 actor 类型、{Action Type} 指定动作类型 Path、{Sensor View} 指定从场景真值派生的传感器数据 Target、{Event Type} 指定事件类型 User-Defined、{Topic} 指定 actor 数据，或通过传感器视图捕获的车道边界数据 Actor、{Filter} 指定筛选条件 Self、{Additional Relationship} 指定与筛选后的实体的关系、{Sensor ID} 指定传感器的唯一索引、{Sample Time} 指定仿真的采样时间 positive real、{Event Name} 指定事件名称 string，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "参与者 ID scalar"
+  },
+  {
+   "name": "Message",
+   "direction": "output",
+   "summary": "来自场景的状态信息 Simulink message"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic Category",
+   "default": "Actor",
+   "values": "主题类别 Actor (default) | Action | Sensor | Event",
+   "group": ""
+  },
+  {
+   "name": "Actor Type",
+   "default": "Types",
+   "values": "场景中的 actor 类型 All Types (default) | Vehicle | Traffic Signal | Traffic Signal Controller",
+   "group": ""
+  },
+  {
+   "name": "Action Type",
+   "default": "Following",
+   "values": "动作类型 Path Following (default) | Change Parameter | Lane Change | Lateral Offset | Longitudinal Distance | Speed Change | User Defined",
+   "group": ""
+  },
+  {
+   "name": "Sensor View",
+   "default": "Poses",
+   "values": "从场景真值派生的传感器数据 Target Poses (default) | Target Poses For Host | Lane Boundaries | Target Poses And Lane Boundaries",
+   "group": ""
+  },
+  {
+   "name": "Event Type",
+   "default": "",
+   "values": "事件类型 User-Defined",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "actor 数据，或通过传感器视图捕获的车道边界数据 Actor Specifications | Actor Pose | Actor Pose (Driving Scenario compatible) | Actor Lane Location | Vehicle Specifications |...",
+   "group": ""
+  },
+  {
+   "name": "Filter",
+   "default": "Self",
+   "values": "筛选条件 Self (default) | None | Actor ID (provided by input)",
+   "group": ""
+  },
+  {
+   "name": "Additional Relationship",
+   "default": "None",
+   "values": "与筛选后的实体的关系 None (default) | Parent | Children",
+   "group": ""
+  },
+  {
+   "name": "Sensor ID",
+   "default": "1",
+   "values": "传感器的唯一索引 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "",
+   "values": "仿真的采样时间 positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Event Name",
+   "default": "",
+   "values": "事件名称 string",
+   "group": ""
+  }
+ ]
+}

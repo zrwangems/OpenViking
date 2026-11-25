@@ -1,0 +1,115 @@
+{
+ "key": "Rescale-Zero-One 2D",
+ "title": "Rescale-Zero-One 2D",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Input Layer Normalizations/Rescale_Zero_One_2D.md"
+ ],
+ "text": "具有 rescale-zero-one 归一化的二维输入层，输入 1 路、输出 1 路；按 {Internal integer rounding mode} 指定内部定点运算的舍入模式；{Layer} 指定对应的层对象、{Data format} 指定输入数据的格式、{Output minimum} 用于范围检查的最小输出值、{Output maximum} 用于范围检查的最大输出值、{Output data type} 输出数据类型、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型、{Output integer rounding mode} 指定定点输出转换操作的舍入模式、{Output saturate on integer overflow} 输出转换操作的溢出操作方式、{Min} 指定最小值的数据类型、{Max} 指定最大值的数据类型、{Divide output} 指定除法输出的数据类型、{Subtract Min Accumulator} 指定 SubtractMin 模块的累加器数据类型、{Internal saturate on integer overflow} 指定内部模块操作的溢出操作方式、{Sample time} 用于指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 3-dimensional array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "归一化后的输出数据 3-dimensional array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Layer",
+   "default": "layerObject",
+   "values": "对应的层对象 layerObject (default) | imageInputLayer object",
+   "group": "Main"
+  },
+  {
+   "name": "Data format",
+   "default": "SSC",
+   "values": "输入数据的格式 SSC (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "用于范围检查的最小输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "用于范围检查的最大输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via back propagation | Inherit: Same as first input | Inherit: Same as accumulator |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output integer rounding mode",
+   "default": "Floor",
+   "values": "定点输出转换操作的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output saturate on integer overflow",
+   "default": "off",
+   "values": "输出转换操作的溢出操作方式 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Min",
+   "default": "propagation",
+   "values": "最小值的数据类型 Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Max",
+   "default": "propagation",
+   "values": "最大值的数据类型 Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Divide output",
+   "default": "rule",
+   "values": "除法输出的数据类型 Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Subtract Min Accumulator",
+   "default": "rule",
+   "values": "SubtractMin 模块的累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal integer rounding mode",
+   "default": "Floor",
+   "values": "内部定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal saturate on integer overflow",
+   "default": "off",
+   "values": "内部模块操作的溢出操作方式 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "用于指定采样时间的选项 -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

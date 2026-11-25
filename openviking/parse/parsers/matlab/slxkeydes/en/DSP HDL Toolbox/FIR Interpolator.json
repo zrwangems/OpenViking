@@ -1,0 +1,122 @@
+{
+ "key": "FIR Interpolator",
+ "title": "FIR Interpolator",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/FIR_Interpolator.md"
+ ],
+ "text": "Finite impulse response (FIR) interpolation filter, 4 inputs, 3 outputs, {Rounding mode} sets Rounding mode for type-casting the output; {Coefficient source} sets the source of filter, {Coefficients} sets the fIR filter coefficients fir1, {Coefficients prototype} sets the prototype filter coefficients, {Filter structure} sets the hDL filter architecture Direct form, {Interpolation factor}, {Minimum number of cycles between valid input samples} sets the serialization requirement for input timing, {Optimize symmetric coefficients} sets the share multipliers for symmetric, {Saturate on integer overflow} sets the overflow handling for type-casting, {Output} sets the data type of filter output, {Enable reset input port} sets the option to enable reset input port and {Use HDL global reset} sets the option to connect data path registers to generated HDL global reset. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data real or complex scalar or vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "coeff",
+   "direction": "input",
+   "summary": "Filter coefficients real or complex row vector"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clears internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Interpolated output data real or complex scalar or vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready for new input data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "Property",
+   "values": "Source of filter coefficients Property (default) | Input port (Parallel interface)",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fir1(35,0.4)",
+   "values": "FIR filter coefficients fir1(35,0.4) (default) | real- or complex-valued vector",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients prototype",
+   "default": "[]",
+   "values": "Prototype filter coefficients [] (default) | real or complex vector",
+   "group": "Main"
+  },
+  {
+   "name": "Filter structure",
+   "default": "systolic",
+   "values": "HDL filter architecture Direct form systolic (default) | Direct form transposed",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation factor",
+   "default": "2",
+   "values": "Interpolation factor 2 (default) | integer greater than two",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum number of cycles between valid input samples",
+   "default": "1",
+   "values": "Serialization requirement for input timing 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Optimize symmetric coefficients",
+   "default": "on",
+   "values": "Share multipliers for symmetric coefficients on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for type-casting the output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow handling for type-casting the output off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "Data type of filter output Inherit: Inherit via internal rule (default) | Inherit: Same word length as input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Option to enable reset input port off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Use HDL global reset",
+   "default": "off",
+   "values": "Option to connect data path registers to generated HDL global reset signal off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

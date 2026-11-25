@@ -1,0 +1,230 @@
+{
+ "key": "General Mixer",
+ "title": "General Mixer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Mixers/General_Mixer.md"
+ ],
+ "text": "对由 rfdata 对象描述的混频器和本振进行建模；按 {Interpolation method} 指定对网络参数进行插值的方法；{Data source} 指定描述混频器行为的数据源 Data、{Data file} 指定包含混频器数据的文件名、{RFDATA object} 指定包含混频器数据的 RF 数据对象 read、{Mixer Type} 指定混频器类型、{LO frequency (Hz)} 指定本振频率 0.9e9、{Phase noise frequency offset (Hz)} 指定相位噪声频率偏移、{Phase noise level (dBc/Hz)} 指定相位噪声电平、{Noise type} 指定噪声数据类型。 Noise、{Noise figure (dB)} 指定输入端可用信噪比与输出端可用信噪比之比、{Minimum noise figure} 指定输入端可用信噪比与输出端可用信噪比的最小比值、{Optimal reflection coefficient} 指定最佳源阻抗、{Equivalent normalized noise resistance} 用于进行噪声测量的归一化电阻值、{Noise factor} 指定输入端可用信噪功率与输出端可用信噪功率之比、{Noise temperature (K)} 指定产生与混频器相同噪声量的等效温度、{Frequency (Hz)} 用于表示噪声数据的频率域。 2.0e9、{IP3 type} 指定三阶截获点类型、{IP3 (dBm)} 指定 IP3 值、{1dB gain compression power (dBm)} 指定增益下降 1 dB、{Output saturation power (dBm)} 指定混频器完全饱和时产生的输出功率值、{Gain compression at saturation (dB)} 指定增益下降值、{Source of frequency data} 指定频率数据源 Extracted from data、{Frequency data (Hz)} 指定频率数据范围、{Source of input power data} 指定输入功率数据源 Extracted from data、{Input power data (dBm)} 指定输入功率数据、{Reference impedance (ohms)} 指定参考阻抗、{Plot type} 指定数据绘图类型 X-Y、{Y parameter1} 指定要绘制的参数类型、{Y parameter2} 指定要绘制的参数类型 S11、{Y format1} 指定绘图格式 Magnitude、{Y format2} 指定绘图格式 Magnitude、{X parameter} 指定频率图 Freq、{X format} 指定频率图格式、{Y scale} 指定 Y 轴刻度、{X scale} 指定 X 轴刻度、{Plot} 绘制指定数据，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Data source",
+   "default": "file",
+   "values": "描述混频器行为的数据源 Data file (default) | RFDATA object",
+   "group": "Main"
+  },
+  {
+   "name": "Data file",
+   "default": "default.s2d",
+   "values": "包含混频器数据的文件名 default.s2d (default) | string | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "RFDATA object",
+   "default": "’default.s2p’)",
+   "values": "包含混频器数据的 RF 数据对象 read(rfdata.data, ’default.s2p’) (default) | rfdata.data object",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "对网络参数进行插值的方法。 Linear (default) | Spline | Cubic",
+   "group": "Main"
+  },
+  {
+   "name": "Mixer Type",
+   "default": "Downconverter",
+   "values": "混频器类型 Downconverter (default) | Upconverter",
+   "group": "Main"
+  },
+  {
+   "name": "LO frequency (Hz)",
+   "default": "0.9e9",
+   "values": "本振频率 0.9e9 (default) | M -element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "100]*1e3",
+   "values": "相位噪声频率偏移 [0.1 1 10 100]*1e3 (default) | numeric vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-150]",
+   "values": "相位噪声电平 [-70 -120 -140 -150] (default) | numeric vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise type",
+   "default": "figure",
+   "values": "噪声数据类型。 Noise figure (default) | Spot noise data | Noise factor | Noise temperature",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "输入端可用信噪比与输出端可用信噪比之比。 0 (default) | scalar ratio | vector of ratios",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Minimum noise figure",
+   "default": "0",
+   "values": "输入端可用信噪比与输出端可用信噪比的最小比值。 0 (default) | scalar ratio | vector of ratios",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Optimal reflection coefficient",
+   "default": "1+0i",
+   "values": "最佳源阻抗。 1+0i (default) | complex scalar | complex vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Equivalent normalized noise resistance",
+   "default": "1",
+   "values": "用于进行噪声测量的归一化电阻值。 1 (default) | positive scalar | positive vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise factor",
+   "default": "1",
+   "values": "输入端可用信噪功率与输出端可用信噪功率之比。 1 (default) | scalar ratio | vector of ratios",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise temperature (K)",
+   "default": "0",
+   "values": "产生与混频器相同噪声量的等效温度 0 (default) | nonnegative scalar | nonnegative vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "2.0e9",
+   "values": "用于表示噪声数据的频率域。 2.0e9 (default) | nonnegative scalar | nonnegative vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "IP3 type",
+   "default": "OIP3",
+   "values": "三阶截获点类型。 OIP3 (default) | IIP3",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "IP3 (dBm)",
+   "default": "inf",
+   "values": "IP3 值。 inf (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "1dB gain compression power (dBm)",
+   "default": "inf",
+   "values": "增益下降 1 dB 时的输出功率值。 inf (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "Output saturation power (dBm)",
+   "default": "inf",
+   "values": "混频器完全饱和时产生的输出功率值 inf (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "Gain compression at saturation (dB)",
+   "default": "3",
+   "values": "增益下降值 3 (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "source",
+   "values": "频率数据源 Extracted from data source (default) | User-specified",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1e9:1e8:2.9e9]",
+   "values": "频率数据范围 [1e9:1e8:2.9e9] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Source of input power data",
+   "default": "source",
+   "values": "输入功率数据源 Extracted from data source (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "Input power data (dBm)",
+   "default": "[0:19]",
+   "values": "输入功率数据 [0:19] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "参考阻抗 50 (default) | nonnegative scalar",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "数据绘图类型 X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "",
+   "values": "要绘制的参数类型 S11 | S12 | S21 | S22 | GroupDelay | OIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Magnitude (linear) | Angle(degrees) | Angle(radians) | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Magnitude (linear) | Angle(degrees) | Angle(radians) | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "频率图 Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "频率图格式 Hz (default) | Auto | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制指定数据 button",
+   "group": "Visualization"
+  }
+ ]
+}

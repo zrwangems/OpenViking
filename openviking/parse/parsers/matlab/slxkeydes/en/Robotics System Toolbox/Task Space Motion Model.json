@@ -1,0 +1,99 @@
+{
+ "key": "Task Space Motion Model",
+ "title": "Task Space Motion Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Task_Space_Motion_Model.md"
+ ],
+ "text": "Model rigid body tree motion given task-space inputs, 3 inputs, 3 outputs, {Joint damping} sets Damping ratios [1; {Rigid body tree}, {End effector}, {Proportional gain}, {Derivative gain}, {Show external force input} displays FExt port, {Initial joint configuration} sets the initial joint positions, {Initial joint velocities} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "refPose",
+   "direction": "input",
+   "summary": "Desired end-effector pose 4-by-4 matrix"
+  },
+  {
+   "name": "refVel",
+   "direction": "input",
+   "summary": "Desired end-effector velocities 6-element vector"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "External forces 6-by- m matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "Joint positions n -element vector"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "Joint velocities n -element"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "Joint accelerations n -element"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "object",
+   "values": "Rigid body tree twoJointRigidBodyTree object (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "End effector",
+   "default": "tool",
+   "values": "End effector body tool (default)",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain",
+   "default": "500*eye(6)",
+   "values": "Proportional gain for PD Control 500*eye(6) (default) | 6-by-6 matrix",
+   "group": ""
+  },
+  {
+   "name": "Derivative gain",
+   "default": "100*eye(6)",
+   "values": "Derivative gain for PD Control 100*eye(6) (default) | 6-by-6 matrix",
+   "group": ""
+  },
+  {
+   "name": "Joint damping",
+   "default": "1]",
+   "values": "Damping ratios [1 1] (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show external force input",
+   "default": "off",
+   "values": "Display FExt port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial joint configuration",
+   "default": "0",
+   "values": "Initial joint positions 0 (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial joint velocities",
+   "default": "0",
+   "values": "Initial joint velocities 0 (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

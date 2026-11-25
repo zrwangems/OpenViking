@@ -1,0 +1,13 @@
+{
+ "key": "PS Concatenate",
+ "title": "PS Concatenate",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Concatenate.md"
+ ],
+ "text": "拼接两个向量或矩阵物理信号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

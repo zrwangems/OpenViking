@@ -1,0 +1,71 @@
+{
+ "key": "Video To Workspace",
+ "title": "Video To Workspace",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Video_To_Workspace.md"
+ ],
+ "text": "将图像或视频导出到 MATLAB 工作区，输入 4 路；{Variable name} 指定 MATLAB 工作区变量名称、{Number of inputs} 指定输入端口数、{Limit data points to last} 指定要导出的最大帧数、{Decimation} 指定对视频信号进行下采样、{Log fixed-point data as a fi object} 指定创建定点数值对象、{Input port labels} 指定输入端口名称 R，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入视频 matrix | 3-D array | 4-D array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "红色通道 scalar | vector | matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "绿色通道 scalar | vector | matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "蓝色通道 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variable name",
+   "default": "vout",
+   "values": "MATLAB 工作区变量名称 vout (default) | valid MATLAB variable name",
+   "group": ""
+  },
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "输入端口数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Limit data points to last",
+   "default": "10",
+   "values": "要导出的最大帧数 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "对视频信号进行下采样 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Log fixed-point data as a fi object",
+   "default": "off",
+   "values": "创建定点数值对象 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input port labels",
+   "default": "R|G|B",
+   "values": "输入端口名称 R|G|B (default)",
+   "group": ""
+  }
+ ]
+}

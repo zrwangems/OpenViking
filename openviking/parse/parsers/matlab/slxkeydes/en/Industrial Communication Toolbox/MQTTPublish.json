@@ -1,0 +1,44 @@
+{
+ "key": "MQTTPublish",
+ "title": "MQTT Client Publish",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/MQTT/MQTT_Client_Publish.md"
+ ],
+ "text": "Publish messages to MQTT Topics, 1 input; {Client} selects MQTT client, {Topics to publish} sets the list of MQTT, {Publish only on input data change} Determines when to publish messages and {Block sample time} sets the sample time for read operation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Topic_ x",
+   "direction": "input",
+   "summary": "Messages to publish to MQTT topics double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Client",
+   "default": "",
+   "values": "Select MQTT client drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Topics to publish",
+   "default": "",
+   "values": "List of MQTT topics table",
+   "group": ""
+  },
+  {
+   "name": "Publish only on input data change",
+   "default": "on",
+   "values": "Determines when to publish messages on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "-1",
+   "values": "Sample time for read operation -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

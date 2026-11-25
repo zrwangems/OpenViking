@@ -1,0 +1,109 @@
+{
+ "key": "Curve",
+ "title": "Curve",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Interpolation/Curve.md"
+ ],
+ "text": "近似一维函数，输入 1 路、输出 1 路；按 {Index search method} 指定计算表索引的方法 Linear；{Targeted Routine Library} 指示用于模块代码替换的 AUTOSAR 例程库、{Targeted Routine} 用于代码替换的 AUTOSAR 库例程、{Data specification} 指定表和断点的指定方法 Table、{Name} 查找表对象的名称、{Table data} 定义输出值表、{Breakpoints specification} 指定断点的指定方法 Explicit、{Breakpoints} 指定显式断点值，或断点的第一点和间距、{First point} 指定均匀间隔断点数据中的第一个点、{Spacing} 指定均匀间隔断点之间的间距、{Edit table and breakpoints} 指定启动 Lookup Table Editor、{Begin index search using previous index result} 指定从上一时间步开始使用索引、{Interpolation method} 指定断点值之间的插值方法 Linear、{Integer rounding mode} 指定定点运算的舍入模式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u1",
+   "direction": "input",
+   "summary": "第一维输入 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "通过查找或估计表值计算得到的输出 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Targeted Routine Library",
+   "default": "",
+   "values": "指示用于模块代码替换的 AUTOSAR 例程库 IFX (fixed-point) | IFL (floating-point)",
+   "group": ""
+  },
+  {
+   "name": "Targeted Routine",
+   "default": "",
+   "values": "用于代码替换的 AUTOSAR 库例程 Ifx_IntIpoCur | Ifl_IntIpoCur",
+   "group": ""
+  },
+  {
+   "name": "Data specification",
+   "default": "breakpoints",
+   "values": "表和断点的指定方法 Table and breakpoints (default) | Lookup table object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Name",
+   "default": "[]",
+   "values": "查找表对象的名称 [] (default) | Simulink.LookupTable object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Table data",
+   "default": "4]",
+   "values": "定义输出值表 [1 2 4] (default) | character vector",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Breakpoints specification",
+   "default": "values",
+   "values": "断点的指定方法 Explicit values (default) | Even spacing",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Breakpoints",
+   "default": "[10,22,31]",
+   "values": "显式断点值，或断点的第一点和间距 [10,22,31] (default) | 1-by-n or n-by-1 vector of monotonically increasing values",
+   "group": "Table Specification"
+  },
+  {
+   "name": "First point",
+   "default": "1",
+   "values": "均匀间隔断点数据中的第一个点 1 (default) | scalar",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Spacing",
+   "default": "1",
+   "values": "均匀间隔断点之间的间距 1 (default) | scalar",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Edit table and breakpoints",
+   "default": "",
+   "values": "启动 Lookup Table Editor 对话框 button",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Index search method",
+   "default": "search",
+   "values": "计算表索引的方法 Linear search (default) | Evenly spaced points | Binary search",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Begin index search using previous index result",
+   "default": "off",
+   "values": "从上一时间步开始使用索引 off (default) | on",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "point-slope",
+   "values": "断点值之间的插值方法 Linear point-slope (default) | Flat",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Zero",
+   "values": "定点运算的舍入模式 Zero (default) | Round",
+   "group": "Algorithm"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Active Interface",
+ "title": "Active Interface",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/HIL/Active_Interface.md"
+ ],
+ "text": "电池与电芯监控电路之间的主动接口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

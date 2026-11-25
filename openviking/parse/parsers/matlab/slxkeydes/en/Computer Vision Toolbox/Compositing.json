@@ -1,0 +1,87 @@
+{
+ "key": "Compositing",
+ "title": "Compositing",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Text & Graphics/Compositing.md"
+ ],
+ "text": "Combine two images or apply mask to image, 5 inputs, 1 output, {Operation} sets operation; {Opacity factor(s) source} sets the source of opacity factor Specify via, {Opacity factor(s)}, {Location source} sets the source of overlay location Specify via, {Location [x y]} sets the overlay location index, {Mask source} sets the source of mask Specify and {Mask} sets the binary mask. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image1",
+   "direction": "input",
+   "summary": "Input image one matrix | array"
+  },
+  {
+   "name": "Image2",
+   "direction": "input",
+   "summary": "Input image two matrix | array"
+  },
+  {
+   "name": "Mask",
+   "direction": "input",
+   "summary": "Binary mask scalar | matrix"
+  },
+  {
+   "name": "Factor",
+   "direction": "input",
+   "summary": "Opacity factor scalar | matrix"
+  },
+  {
+   "name": "Location",
+   "direction": "input",
+   "summary": "Location index vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "Blend",
+   "values": "Specify operation Blend (default) | Binary mask | Highlight selected pixels",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity factor(s) source",
+   "default": "dialog",
+   "values": "Source of opacity factor Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity factor(s)",
+   "default": "0.75",
+   "values": "Opacity factor 0.75 (default) | scalar | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Location source",
+   "default": "dialog",
+   "values": "Source of overlay location Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Location [x y]",
+   "default": "1]",
+   "values": "Overlay location index [1 1] (default) | two-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Mask source",
+   "default": "dialog",
+   "values": "Source of mask Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Mask",
+   "default": "0",
+   "values": "Binary mask 0 (default) | 1 | matrix",
+   "group": "Main"
+  }
+ ]
+}

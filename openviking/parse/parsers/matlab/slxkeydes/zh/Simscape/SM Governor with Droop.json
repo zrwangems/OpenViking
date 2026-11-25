@@ -1,0 +1,53 @@
+{
+ "key": "SM Governor with Droop",
+ "title": "SM Governor with Droop",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_Governor_with_Droop.md"
+ ],
+ "text": "具有下垂特性的同步电机调速器，输入 3 路、输出 1 路；{Percentage droop, (%)} 指定下垂 5 %、{Time constant of governor, (s)} 指定一阶滞后时间常数、{Initial throttle position, (pu)} 指定初始油门输出，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "P_ref",
+   "direction": "input",
+   "summary": "期望的发电机标幺负载 scalar"
+  },
+  {
+   "name": "speed_ref",
+   "direction": "input",
+   "summary": "期望的发电机标幺转速 scalar"
+  },
+  {
+   "name": "speed",
+   "direction": "input",
+   "summary": "实际的发电机标幺转速 scalar"
+  },
+  {
+   "name": "throttle",
+   "direction": "output",
+   "summary": "油门位置 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Percentage droop, (%)",
+   "default": "%",
+   "values": "下垂 5 % (default)",
+   "group": ""
+  },
+  {
+   "name": "Time constant of governor, (s)",
+   "default": "0.2",
+   "values": "一阶滞后时间常数 0.2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial throttle position, (pu)",
+   "default": "0.5",
+   "values": "初始油门输出 0.5 (default)",
+   "group": ""
+  }
+ ]
+}

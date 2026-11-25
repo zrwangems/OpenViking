@@ -1,0 +1,32 @@
+{
+ "key": "RockerSwitchBlock",
+ "title": "Rocker Switch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Rocker_Switch.md"
+ ],
+ "text": "Toggle parameter between two values, {Label} sets Block label position; {Connection} sets the block parameter value to connect parameter value connection and {States} sets the pair values and labels scalar and character. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Block parameter value to connect parameter value connection options",
+   "group": ""
+  },
+  {
+   "name": "States",
+   "default": "",
+   "values": "Pair values and labels scalar and character vector",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "Block label position Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

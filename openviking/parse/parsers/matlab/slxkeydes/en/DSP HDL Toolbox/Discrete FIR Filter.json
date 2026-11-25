@@ -1,0 +1,160 @@
+{
+ "key": "Discrete FIR Filter",
+ "title": "Discrete FIR Filter",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/Discrete_FIR_Filter.md"
+ ],
+ "text": "Finite-impulse response filter, {Coefficient source} sets Source of filter coefficients, and so does the port count; {Coefficients} sets the discrete FIR filter coefficients, {Coefficients prototype} sets the prototype filter coefficients, {Filter structure} sets the hDL filter architecture Direct form, {Specify serialization factor as} sets the rule to define serial implementation Minimum number of cycles between valid input, {Number of cycles} sets the serialization requirement for input timing, {Number of multipliers} sets the serialization requirement for resource, {Optimize symmetric coefficients} sets the share multipliers for symmetric coefficients with frame-based, {Rounding mode}, {Saturate on integer overflow} sets the overflow handling for type-casting, {Output} sets the data type of filter output, {Enable reset input port} sets the option to enable reset input port, {Use HDL global reset} sets the option to connect data path registers to generated HDL global reset, {Coefficient multiplication} sets the coefficient multiplier implementation in hardware and {Use multiplier for +/- 1 and power of 2 coefficients} sets the special-value coefficient multiplier implementation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar | column vector | row vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "coeff",
+   "direction": "input",
+   "summary": "Filter coefficients (Parallel interface) real or complex row vector"
+  },
+  {
+   "name": "coeff",
+   "direction": "input",
+   "summary": "Filter coefficients (Memory interface) real or complex scalar"
+  },
+  {
+   "name": "caddr",
+   "direction": "input",
+   "summary": "Filter coefficient address (Memory interface) scalar"
+  },
+  {
+   "name": "cwren",
+   "direction": "input",
+   "summary": "Filter coefficients write enable (Memory interface) scalar"
+  },
+  {
+   "name": "cdone",
+   "direction": "input",
+   "summary": "Filter coefficient write complete (Memory interface) scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clears internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Filtered output data scalar | column vector | row vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready for new input data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "Property",
+   "values": "Source of filter coefficients Property (default) | Input port (Parallel interface) | Input port (Memory interface)",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients",
+   "default": "0.5]",
+   "values": "Discrete FIR filter coefficients [0.5, 0.5] (default) | row vector | multichannel matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients prototype",
+   "default": "[]",
+   "values": "Prototype filter coefficients [] (default) | real or complex vector",
+   "group": "Main"
+  },
+  {
+   "name": "Filter structure",
+   "default": "systolic",
+   "values": "HDL filter architecture Direct form systolic (default) | Direct form transposed | Partly serial systolic",
+   "group": "Main"
+  },
+  {
+   "name": "Specify serialization factor as",
+   "default": "samples",
+   "values": "Rule to define serial implementation Minimum number of cycles between valid input samples (default) | Maximum number of multipliers",
+   "group": "Main"
+  },
+  {
+   "name": "Number of cycles",
+   "default": "2",
+   "values": "Serialization requirement for input timing 2 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Number of multipliers",
+   "default": "2",
+   "values": "Serialization requirement for resource usage 2 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Optimize symmetric coefficients",
+   "default": "on",
+   "values": "Share multipliers for symmetric coefficients with frame-based input on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for type-casting the output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow handling for type-casting the output off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "Data type of filter output Inherit: Inherit via internal rule (default) | Inherit: Same word length as input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Option to enable reset input port off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Use HDL global reset",
+   "default": "off",
+   "values": "Option to connect data path registers to generated HDL global reset signal off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Coefficient multiplication",
+   "default": "Multiplier",
+   "values": "Coefficient multiplier implementation in hardware Multiplier (default) | CSD/Factored-CSD",
+   "group": "Implementation"
+  },
+  {
+   "name": "Use multiplier for +/- 1 and power of 2 coefficients",
+   "default": "on",
+   "values": "Special-value coefficient multiplier implementation in hardware on (default) | off",
+   "group": "Implementation"
+  }
+ ]
+}

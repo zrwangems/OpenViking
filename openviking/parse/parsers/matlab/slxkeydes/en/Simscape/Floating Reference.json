@@ -1,0 +1,14 @@
+{
+ "key": "Floating Reference",
+ "title": "Floating Reference",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Floating_Reference.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Floating_Reference.md"
+ ],
+ "text": "Reference for measuring voltage of other nodes in floating electrical network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

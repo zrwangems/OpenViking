@@ -1,0 +1,65 @@
+{
+ "key": "OFDM Channel Response",
+ "title": "OFDM Channel Response",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Channels/OFDM_Channel_Response.md"
+ ],
+ "text": "Calculate OFDM channel response, 3 inputs, 1 output, {Active subcarrier indices} sets Number of active subcarriers; {FFT length}, {Cyclic prefix length}, {Enable timing offset input port} sets the option to add input port for timing offset and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Path gains",
+   "direction": "input",
+   "summary": "Channel path gains array"
+  },
+  {
+   "name": "Path filters",
+   "direction": "input",
+   "summary": "Channel path filter coefficients matrix"
+  },
+  {
+   "name": "Offset",
+   "direction": "input",
+   "summary": "Timing offset scalar"
+  },
+  {
+   "name": "hEst",
+   "direction": "output",
+   "summary": "Frequency response array"
+  }
+ ],
+ "params": [
+  {
+   "name": "FFT length",
+   "default": "512",
+   "values": "FFT length 512 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Cyclic prefix length",
+   "default": "16",
+   "values": "Cyclic prefix length of one OFDM symbol 16 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Active subcarrier indices",
+   "default": "1:512",
+   "values": "Number of active subcarriers 1:512 (default) | positive integer | column vector",
+   "group": ""
+  },
+  {
+   "name": "Enable timing offset input port",
+   "default": "off",
+   "values": "Option to add input port for timing offset off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

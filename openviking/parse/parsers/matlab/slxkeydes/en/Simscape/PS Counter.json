@@ -1,0 +1,13 @@
+{
+ "key": "PS Counter",
+ "title": "PS Counter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Sources/PS_Counter.md"
+ ],
+ "text": "Increment output signal by 1 with every time step.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

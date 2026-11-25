@@ -1,0 +1,13 @@
+{
+ "key": "Heatsink",
+ "title": "Heatsink",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Thermal/Heatsink.md"
+ ],
+ "text": "将功率半导体的热量耗散至环境温度。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

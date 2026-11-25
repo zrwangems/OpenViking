@@ -1,0 +1,54 @@
+{
+ "key": "CompositeEntityCreator",
+ "title": "Composite Entity Creator",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Composite_Entity_Creator.md"
+ ],
+ "text": "Create composite entities, 2 inputs, 1 output; {Number of input ports} sets the number of input ports, {Entity type name} sets the type name of the composite entity, {Bus object} sets the output and {Define input entity names} sets the names of the input entities used to generate the composite entity E1. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "port_2",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "port_1",
+   "direction": "output",
+   "summary": "Output composite entity scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "2",
+   "values": "Specify the number of input ports 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Entity type name",
+   "default": "Combined",
+   "values": "Specify the type name of the composite entity Combined (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Bus object",
+   "default": "off",
+   "values": "Specify the output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Define input entity names",
+   "default": "E2}",
+   "values": "Specify the names of the input entities used to generate the composite entity {E1, E2} (default) | character vector",
+   "group": ""
+  }
+ ]
+}

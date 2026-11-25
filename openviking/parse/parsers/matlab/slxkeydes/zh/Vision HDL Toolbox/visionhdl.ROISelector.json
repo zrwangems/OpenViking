@@ -1,0 +1,64 @@
+{
+ "key": "visionhdl.ROISelector",
+ "title": "ROI Selector",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/ROI_Selector.md"
+ ],
+ "text": "从像素流中选择感兴趣区域 (ROI)，输入 3 路、输出 2 路；{Reuse output ports for vertically aligned regions} 为每一列区域返回一个像素流、{Regions source} 输出区域定义的位置、{Regions} 指定要从输入帧中选择的矩形 ROI R -by-4、{Number of regions} 指定区域输入端口数 integer in the range，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "region1,...,regionR",
+   "direction": "input",
+   "summary": "感兴趣区域 four-element row vector"
+  },
+  {
+   "name": "pixel1,...,pixelR",
+   "direction": "output",
+   "summary": "输出像素流 scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl1,...,ctrlR",
+   "direction": "output",
+   "summary": "控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reuse output ports for vertically aligned regions",
+   "default": "off",
+   "values": "为每一列区域返回一个像素流的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Regions source",
+   "default": "Property",
+   "values": "输出区域定义的位置 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Regions",
+   "default": "",
+   "values": "要从输入帧中选择的矩形 ROI R -by-4 matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of regions",
+   "default": "",
+   "values": "区域输入端口数 integer in the range [1, 16]",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,170 @@
+{
+ "key": "Flux-Based PMSM",
+ "title": "Flux-Based PMSM",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Electric Motors and Inverters/Flux_Based_PMSM.md"
+ ],
+ "text": "Flux-based permanent magnet synchronous motor, 3 inputs, 4 outputs; {Simulation type} selects simulation type, {Sample time, Ts} sets the sample time for discrete integration, {Port Configuration} selects port configuration, {Enable memory optimized 2D LUT} sets the selection, {Vector of d-axis flux, flux_d} sets the flux breakpoints 1 -by, {Resample storage size for flux_d, n1} sets the flux bit size, {Vector of q-axis flux, flux_q} sets the flux breakpoints 1 -by, {Resample storage size for flux_q, n2} sets the flux bit size, {Corresponding d-axis current, id} sets the 2D lookup table M -by, {Corresponding q-axis current, iq} sets the 2D lookup table M -by, {flux_d max endpoint, u1max} sets the flux breakpoint, {flux_d min endpoint, u1min} sets the flux breakpoint, {flux_q max endpoint, u2max} sets the flux breakpoint, {flux_q min endpoint, u2min} sets the flux breakpoint, {Stator phase resistance, Rs} sets the resistance, {Number of pole pairs, P} sets the pole pairs, {Initial flux, fluxdq0} sets the flux, {Initial mechanical position, theta_init} sets the angle, {Initial mechanical speed, omega_init} sets the speed and {Physical inertia, viscous damping, and static friction, mechanical} sets the inertia, damping, friction. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LdTrq",
+   "direction": "input",
+   "summary": "Rotor shaft torque scalar"
+  },
+  {
+   "name": "Spd",
+   "direction": "input",
+   "summary": "Rotor shaft speed scalar"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "input",
+   "summary": "Stator terminal voltages 1 -by- 3 array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "PhaseCurr",
+   "direction": "output",
+   "summary": "Phase a, b, c current 1 -by- 3 array"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "output",
+   "summary": "Motor torque scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "output",
+   "summary": "Motor speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulation type",
+   "default": "Continuous",
+   "values": "Select simulation type Continuous (default) | Discrete",
+   "group": ""
+  },
+  {
+   "name": "Sample time, Ts",
+   "default": "0.001",
+   "values": "Sample time for discrete integration 0.001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Port Configuration",
+   "default": "Torque",
+   "values": "Select port configuration Torque (default) | Speed",
+   "group": ""
+  },
+  {
+   "name": "Enable memory optimized 2D LUT",
+   "default": "off",
+   "values": "Selection off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Vector of d-axis flux, flux_d",
+   "default": "",
+   "values": "Flux breakpoints 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Resample storage size for flux_d, n1",
+   "default": "2",
+   "values": "Flux bit size 2 (default) | 4 | 8 | 16 | 32 | 64 | 128 | 256",
+   "group": ""
+  },
+  {
+   "name": "Vector of q-axis flux, flux_q",
+   "default": "",
+   "values": "Flux breakpoints 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Resample storage size for flux_q, n2",
+   "default": "2",
+   "values": "Flux bit size 2 (default) | 4 | 8 | 16 | 32 | 64 | 128 | 256",
+   "group": ""
+  },
+  {
+   "name": "Corresponding d-axis current, id",
+   "default": "",
+   "values": "2D lookup table M -by- N array",
+   "group": ""
+  },
+  {
+   "name": "Corresponding q-axis current, iq",
+   "default": "",
+   "values": "2D lookup table M -by- N array",
+   "group": ""
+  },
+  {
+   "name": "flux_d max endpoint, u1max",
+   "default": "0.22457",
+   "values": "Flux breakpoint 0.22457 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "flux_d min endpoint, u1min",
+   "default": "-0.22607",
+   "values": "Flux breakpoint -0.22607 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "flux_q max endpoint, u2max",
+   "default": "0.42959",
+   "values": "Flux breakpoint 0.42959 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "flux_q min endpoint, u2min",
+   "default": "-0.4296",
+   "values": "Flux breakpoint -0.4296 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator phase resistance, Rs",
+   "default": "0.02",
+   "values": "Resistance 0.02 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs, P",
+   "default": "4",
+   "values": "Pole pairs 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial flux, fluxdq0",
+   "default": "0]",
+   "values": "Flux [0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial mechanical position, theta_init",
+   "default": "0",
+   "values": "Angle 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial mechanical speed, omega_init",
+   "default": "0",
+   "values": "Speed 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Physical inertia, viscous damping, and static friction, mechanical",
+   "default": "0]",
+   "values": "Inertia, damping, friction [0.0027, 4.924e-4, 0] (default) | vector",
+   "group": ""
+  }
+ ]
+}

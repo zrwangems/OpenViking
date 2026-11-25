@@ -1,0 +1,44 @@
+{
+ "key": "Attenuator",
+ "title": "Attenuator",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Attenuator.md"
+ ],
+ "text": "Model attenuator for RF circuit; {Attenuation (dB)} sets the level of insertion loss or attenuation, {Input impedance (Ohm)}, {Output impedance (Ohm)}, {Simulate noise} sets the simulate thermal noise and {Ground and hide negative terminals} sets the ground RF circuit terminals. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Attenuation (dB)",
+   "default": "3",
+   "values": "Level of insertion loss or attenuation 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "Input impedance 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "Output impedance 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "Simulate thermal noise on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

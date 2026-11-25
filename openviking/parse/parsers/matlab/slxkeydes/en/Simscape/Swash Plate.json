@@ -1,0 +1,13 @@
+{
+ "key": "Swash Plate",
+ "title": "Swash Plate",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pumps & Motors/Auxiliary Components/Swash_Plate.md"
+ ],
+ "text": "Swash plate in a single-piston, isothermal axial piston pump.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

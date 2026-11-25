@@ -1,0 +1,13 @@
+{
+ "key": "Generic Engine",
+ "title": "Generic Engine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Generic_Engine.md"
+ ],
+ "text": "通用内燃机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

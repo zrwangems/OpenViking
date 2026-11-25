@@ -1,0 +1,69 @@
+{
+ "key": "MATLABSystem",
+ "title": "MATLAB System",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/MATLAB_System.md",
+  "HDL Coder/User-Defined Functions/MATLAB_System.md",
+  "Audio Toolbox/User-Defined Functions/Audio_Plugin.md"
+ ],
+ "text": "在模型中包含 System object，输入 1 路、输出 1 路；按 {新建} 指定从模板创建 System object；{System object 名称} 指定 System object 的名称、{仿真方式} 指定仿真模式、{依赖关系}、{对整数溢出进行饱和处理} 是否做溢出饱和处理、{将这些继承的 Simulink 信号类型视为 fi 对象} 指定 fi 数据类型、{MATLAB System fimath} 指定要使用的定点设置 Same，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "MATLAB System 模块的信号输入 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "MATLAB System 模块 的信号输出 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "System object 名称",
+   "default": "元胞数组",
+   "values": "System object 的名称 元胞数组 (默认)",
+   "group": ""
+  },
+  {
+   "name": "新建",
+   "default": "基本",
+   "values": "从模板创建 System object 基本 (默认) | 高级 | Simulink 扩展",
+   "group": ""
+  },
+  {
+   "name": "仿真方式",
+   "default": "代码生成",
+   "values": "选择仿真模式。 代码生成 (默认) | 解释执行",
+   "group": ""
+  },
+  {
+   "name": "依赖关系",
+   "default": "auto",
+   "values": "MATLAB System 模块 的依赖关系参数 auto (默认)",
+   "group": ""
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "Off",
+   "values": "指定是否做溢出饱和处理。 Off (默认) | On",
+   "group": ""
+  },
+  {
+   "name": "将这些继承的 Simulink 信号类型视为 fi 对象",
+   "default": "定点",
+   "values": "指定 fi 数据类型 定点 (默认) | 定点和整数",
+   "group": ""
+  },
+  {
+   "name": "MATLAB System fimath",
+   "default": "MATLAB",
+   "values": "指定要使用的定点设置 Same as MATLAB (默认) | Specify Other",
+   "group": ""
+  }
+ ]
+}

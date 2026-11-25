@@ -1,0 +1,140 @@
+{
+ "key": "DataStoreMemory",
+ "title": "Data Store Memory",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Data_Store_Memory.md"
+ ],
+ "text": "Define data store, {Data store name} sets Name for data store; {Rename All} sets the option to rename data store throughout model, {Data store reference} sets the to access the memory defined in higher-level, {Corresponding Data Store Read/Write blocks} sets the path to connected Data Store Read/Write blocks block, {Initial value}, {Minimum}, {Maximum}, {Data type} sets the output data type Inherit, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Dimensions (-1 to infer from Initial value)} sets the dimensions of data store, {Interpret vector parameters as 1-D} sets the option to interpret vectors as 1-D, {Signal type} sets the complexity of data store values, {Share across model instances} sets the option to allow Model blocks to read from the same data, {Data store name must resolve to Simulink signal object} sets the option to resolve data store name to Simulink signal, {Detect Read Before Write} sets the action when model attempts to read data before writing in current time step, {Detect Write After Read} sets the action when block attempts to write after reading in same time step, {Detect Write After Write} sets the action when model writes twice in same time step, {Log data store data} sets the option to log data store data, {Logging name} sets the name associated with logged signal data Use data store, {Limit data points to last} sets the option to discard all but last N data and {Decimation} sets the option to log every N th data point. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Data store name",
+   "default": "A",
+   "values": "Name for data store A (default) | character vector | string",
+   "group": "Main"
+  },
+  {
+   "name": "Rename All",
+   "default": "",
+   "values": "Option to rename data store throughout model button",
+   "group": "Main"
+  },
+  {
+   "name": "Data store reference",
+   "default": "off",
+   "values": "To access the memory defined in higher-level model off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Corresponding Data Store Read/Write blocks",
+   "default": "",
+   "values": "Path to connected Data Store Read/Write blocks block path",
+   "group": "Main"
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "Initial value of data store 0 (default) | scalar | vector | matrix | N-D array",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "auto",
+   "values": "Output data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | string | Enum: | Simulink.ImageType(480,640,3)",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Dimensions (-1 to infer from Initial value)",
+   "default": "-1",
+   "values": "Dimensions of data store -1 (default) | scalar | vector | matrix",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "Option to interpret vectors as 1-D on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signal type",
+   "default": "auto",
+   "values": "Complexity of data store values auto (default) | real | complex",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Share across model instances",
+   "default": "off",
+   "values": "Option to allow Model blocks to read from the same data store off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data store name must resolve to Simulink signal object",
+   "default": "off",
+   "values": "Option to resolve data store name to Simulink signal object off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Detect Read Before Write",
+   "default": "warning",
+   "values": "Action when model attempts to read data before writing in current time step warning (default) | none | error",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "Detect Write After Read",
+   "default": "warning",
+   "values": "Action when block attempts to write after reading in same time step warning (default) | none | error",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "Detect Write After Write",
+   "default": "warning",
+   "values": "Action when model writes twice in same time step warning (default) | none | error",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "Log data store data",
+   "default": "off",
+   "values": "Option to log data store data off (default) | on",
+   "group": "Logging"
+  },
+  {
+   "name": "Logging name",
+   "default": "name",
+   "values": "Name associated with logged signal data Use data store name (default) | Custom",
+   "group": "Logging"
+  },
+  {
+   "name": "Limit data points to last",
+   "default": "",
+   "values": "Option to discard all but last N data points 5000 | non-zero integer",
+   "group": "Logging"
+  },
+  {
+   "name": "Decimation",
+   "default": "2",
+   "values": "Option to log every N th data point 2 (default) | integer",
+   "group": "Logging"
+  }
+ ]
+}

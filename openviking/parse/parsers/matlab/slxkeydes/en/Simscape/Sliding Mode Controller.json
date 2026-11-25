@@ -1,0 +1,60 @@
+{
+ "key": "Sliding Mode Controller",
+ "title": "Sliding Mode Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Sliding_Mode_Controller.md"
+ ],
+ "text": "Hysteresis-based sliding mode control, 2 inputs, 1 output; {Sliding factor}, {Hysteresis band} sets the total hysteresis bandwidth, {Control action upper limit} controls signal upper limit, u max, {Control action lower limit} controls signal lower limit, u min and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Plant reference scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Controller output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sliding factor",
+   "default": "1",
+   "values": "Sliding factor 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Hysteresis band",
+   "default": "0.2",
+   "values": "Total hysteresis bandwidth 0.2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "10",
+   "values": "Control signal upper limit, u max 10 (default) | scalar greater than the value of the Control action lower limit parameter",
+   "group": ""
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "-10",
+   "values": "Control signal lower limit, u min -10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

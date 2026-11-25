@@ -1,0 +1,13 @@
+{
+ "key": "Force Noise Source",
+ "title": "Force Noise Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Force_Noise_Source.md"
+ ],
+ "text": "Model zero-mean normally (Gaussian) distributed force.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

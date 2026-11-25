@@ -1,0 +1,89 @@
+{
+ "key": "VirtualReferenceFeedbackTuning",
+ "title": "Virtual Reference Feedback Tuning",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/Virtual_Reference_Feedback_Tuning.md"
+ ],
+ "text": "基于输入输出数据自动整定线性参数化控制器，输入 3 路、输出 1 路；按 {Weighting Function} 指定加权函数；{Sample time (Ts)} 指定采样时间、{Reference Model} 指定参考模型 tf、{Controller Structure} 控制器结构、{Type} 指定 PID 控制器类型、{Integrator Method} 指定离散积分方法 Forward、{FIR Filter Order} 指定 FIR 滤波器阶数、{SISO Linear Systems Ci(z)} 指定 SISO 线性系统数组 tf、{Show θ values while tuning} 输出整定后的参数值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "被控对象输入信号 scalar signal"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出信号 scalar signal"
+  },
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "整定区间信号 scalar signal"
+  },
+  {
+   "name": "θ",
+   "direction": "output",
+   "summary": "整定后的控制器参数 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "采样时间 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference Model",
+   "default": "1])",
+   "values": "参考模型 tf(1,[3 1]) (default) | tf model object | ss model object | zpk model object",
+   "group": ""
+  },
+  {
+   "name": "Weighting Function",
+   "default": "1",
+   "values": "加权函数 1 (default) | tf model object | ss model object | zpk model object",
+   "group": ""
+  },
+  {
+   "name": "Controller Structure",
+   "default": "PID",
+   "values": "控制器结构 PID (default) | FIR Filter | Generic Form",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "PI",
+   "values": "PID 控制器类型 PI (default) | P | I | PD | PID",
+   "group": ""
+  },
+  {
+   "name": "Integrator Method",
+   "default": "Euler",
+   "values": "离散积分方法 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "FIR Filter Order",
+   "default": "2",
+   "values": "FIR 滤波器阶数 2 (default) | positive integer between 2 and 10",
+   "group": ""
+  },
+  {
+   "name": "SISO Linear Systems Ci(z)",
+   "default": "-1],0.1)}",
+   "values": "SISO 线性系统数组 {tf([1],[1],0.1);0.1*tf([1],[1 -1],0.1)} (default) | cell array | LTI model array",
+   "group": ""
+  },
+  {
+   "name": "Show θ values while tuning",
+   "default": "on",
+   "values": "输出整定后的参数值 on (default) | off",
+   "group": ""
+  }
+ ]
+}

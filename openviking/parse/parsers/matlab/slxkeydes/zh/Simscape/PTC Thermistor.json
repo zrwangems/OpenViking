@@ -1,0 +1,13 @@
+{
+ "key": "PTC Thermistor",
+ "title": "PTC Thermistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/PTC_Thermistor.md"
+ ],
+ "text": "Positive temperature coefficient (PTC) thermistor。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

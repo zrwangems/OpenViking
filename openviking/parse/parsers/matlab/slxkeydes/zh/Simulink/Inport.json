@@ -1,0 +1,143 @@
+{
+ "key": "Inport",
+ "title": "Inport",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Quick Insert/Ports & Subsystems/Inport.md",
+  "Simulink/Ports & Subsystems/In_Bus_Element.md",
+  "Simulink/Signal Routing/Bus_Element_In.md",
+  "Simulink/Sources/In_Bus_Element.md",
+  "Simulink/Commonly Used Blocks/In1.md",
+  "Simulink/Ports & Subsystems/In1.md",
+  "Simulink/Sources/In1.md",
+  "Simulink/Quick Insert/Ports & Subsystems/Input.md",
+  "Simulink/Ports & Subsystems/Function_Element_Call.md",
+  "RF Blockset/Circuit Envelope/Utilities/Inport.md",
+  "HDL Coder/Ports & Subsystems/In_Bus_Element.md",
+  "HDL Coder/Signal Routing/Bus_Element_In.md",
+  "HDL Coder/Sources/In_Bus_Element.md",
+  "HDL Coder/Commonly Used Blocks/In1.md",
+  "HDL Coder/Ports & Subsystems/In1.md",
+  "HDL Coder/Sources/In1.md"
+ ],
+ "text": "为子系统或外部输入创建输入端口；输出 1 路；按 {图标显示} 指定图标显示；{端口号} 指定端口在父模块上的位置、{通过延迟外部信号锁存输入} 指定通过延迟锁存信号、{针对函数调用子系统输出的反馈信号锁存输入} 指定锁存信号以防止更改、{连接输入} 打开根输入端口映射器工具的选项 按钮、{输出函数调用} 指定产生函数调用事件、{最小}、{最大}、{数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{以非虚拟总线输出} 指定总线输出的虚拟性、{单位(例如，m、m/s^2、N*m)} 指定模块的输入信号的物理单位、{端口维度(-1 表示继承)} 指定端口维度、{可变大小信号}、{信号类型}、{采样时间(-1 表示继承)} 指定采样时间、{数据插值} 指定对输出数据进行线性插值、{事件} 指定根据流入端口的数据流触发模型分区，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "端口号",
+   "default": "1",
+   "values": "端口在父模块上的位置 1 (默认) | 实整数",
+   "group": "常设"
+  },
+  {
+   "name": "图标显示",
+   "default": "端口号",
+   "values": "图标显示 端口号 (默认) | 信号名称 | 端口号和信号名称",
+   "group": "常设"
+  },
+  {
+   "name": "通过延迟外部信号锁存输入",
+   "default": "off",
+   "values": "通过延迟锁存信号的选项 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "针对函数调用子系统输出的反馈信号锁存输入",
+   "default": "off",
+   "values": "锁存信号以防止更改 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "连接输入",
+   "default": "",
+   "values": "打开根输入端口映射器工具的选项 按钮",
+   "group": "常设"
+  },
+  {
+   "name": "输出函数调用",
+   "default": "off",
+   "values": "产生函数调用事件的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "最小",
+   "default": "[]",
+   "values": "最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "最大",
+   "default": "[]",
+   "values": "最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "数据类型",
+   "default": "auto",
+   "values": "输出数据类型 Inherit: auto (默认) | double | single | half | int8 | uint8 | int16 | uint16 |...",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "以非虚拟总线输出",
+   "default": "off",
+   "values": "指定总线输出的虚拟性的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "单位(例如，m、m/s^2、N*m)",
+   "default": "inherit",
+   "values": "模块的输入信号的物理单位 inherit (默认) | <Enter unit>",
+   "group": "信号属性"
+  },
+  {
+   "name": "端口维度(-1 表示继承)",
+   "default": "-1",
+   "values": "端口维度 -1 (默认) | 整数 | [整数 整数]",
+   "group": "信号属性"
+  },
+  {
+   "name": "可变大小信号",
+   "default": "继承",
+   "values": "允许或不允许可变大小信号的选项 继承 (默认) | 否 | 是",
+   "group": "信号属性"
+  },
+  {
+   "name": "信号类型",
+   "default": "自动",
+   "values": "输出信号类型 自动 (默认) | 实数 | 复",
+   "group": "信号属性"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "指定采样时间的选项 -1 (默认) | 标量",
+   "group": "执行"
+  },
+  {
+   "name": "数据插值",
+   "default": "on",
+   "values": "对输出数据进行线性插值的选项 on (默认) | off",
+   "group": "执行"
+  },
+  {
+   "name": "事件",
+   "default": "",
+   "values": "根据流入端口的数据流触发模型分区的选项 事件触发器对象的元胞数组",
+   "group": "执行"
+  }
+ ]
+}

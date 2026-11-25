@@ -1,0 +1,13 @@
+{
+ "key": "Revolved Solid",
+ "title": "Revolved Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Revolved_Solid.md"
+ ],
+ "text": "包含几何、惯性和颜色的旋转实体元素。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Magnetic Core",
+ "title": "Magnetic Core",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Magnetic_Core.md"
+ ],
+ "text": "非线性磁阻、磁滞和可选涡流损耗。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,31 @@
+{
+ "key": "CombinatorialLogic",
+ "title": "Combinatorial Logic",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Combinatorial_Logic.md"
+ ],
+ "text": "Combinatorial Logic 模块实现一个标准真值表，用于建模可编程逻辑数组 (PLA)、逻辑电路、决策表和其他布尔表达式，输入 1 路、输出 1 路；{真值表} 输出矩阵 矩阵，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 向量"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "真值表",
+   "default": "",
+   "values": "输出矩阵 矩阵",
+   "group": ""
+  }
+ ]
+}

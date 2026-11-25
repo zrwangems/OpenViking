@@ -1,0 +1,258 @@
+{
+ "key": "Active Slip Differential",
+ "title": "Active Differential",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Final Drive Unit/Active_Differential.md"
+ ],
+ "text": "Spur or planetary active differential gear, 4 outputs, {Coupling type} sets Torque coupling Ideal pre-loaded; {Active differential type} sets the differential Spur gears, superposition, {Clutch 1 to differential case gear ratio, Ns1} sets the clutch 1-spur gear, {Clutch 2 to differential case gear ratio, Ns2} sets the clutch 2-spur gear ratio, {Three-gang gear inertia, Jgc} sets the rotational inertia .003, {Axle 1 planetary carrier to axle gear ratio, Np1} sets the planetary 1 carrier gear ratio, {Axle 1 sun gear inertia, Js1} sets the planetary 1 sun gear, {Axle 1 carrier inertia, Jc1} sets the planetary 1 carrier, {Axle 1 ring inertia, Jr1} sets the planetary 1 ring gear, {Axle 2 planetary carrier to axle gear ratio, Np2} sets the planetary 2 carrier gear ratio, {Axle 2 sun gear inertia, Js2} sets the planetary 2 sun gear, {Axle 2 carrier inertia, Jc2} sets the planetary 2 carrier, {Axle 2 ring inertia, Jr2} sets the planetary 2 ring gear, {Crown wheel (ring gear) located} sets the crown wheel connection To the left, {Carrier to drive shaft ratio, NC/ND} sets the ratio, {Carrier inertia, Jd} sets the inertia .1, {Carrier damping, bd} sets the damping 1e-3, {Axle 1 inertia, Jw1} sets the inertia .1, {Axle 1 damping, bw1} sets the damping 1e-3, {Axle 2 inertia, Jw2} sets the inertia .1, {Axle 2 damping, bw2} sets the damping 1e-3, {Axle 1 initial velocity, omegaw1o} sets the angular velocity, {Axle 2 initial velocity, omegaw2o} sets the angular velocity, {Effective applied pressure area} sets the pressure area, {Number of disks, Ndisks} sets the torque coupling, {Effective radius, Reff} sets the radius .20, {Nominal preload force, Fc} sets the force, {Friction coefficient vector, mu} sets the friction, {Slip speed vector, dw} sets the angular velocity, {Torque - slip speed matrix, TdPdw} sets the clutch torque, {Clutch pressure vector, pT} sets the clutch pressure breakpoints, {Slip speed vector, dwT} sets the slip speed breakpoints and {Coupling time constant, tauC} sets the constant .01. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Prs1",
+   "direction": "unknown",
+   "summary": "Clutch 1 pressure scalar"
+  },
+  {
+   "name": "Prs2",
+   "direction": "unknown",
+   "summary": "Clutch 2 pressure scalar"
+  },
+  {
+   "name": "DriveshftTrq",
+   "direction": "unknown",
+   "summary": "Driveshaft torque scalar"
+  },
+  {
+   "name": "Axl1Trq",
+   "direction": "unknown",
+   "summary": "Torque scalar"
+  },
+  {
+   "name": "Axl2Trq",
+   "direction": "unknown",
+   "summary": "Torque scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "DriveshftSpd",
+   "direction": "output",
+   "summary": "Angular velocity scalar"
+  },
+  {
+   "name": "Axl1Spd",
+   "direction": "output",
+   "summary": "Angular velocity scalar"
+  },
+  {
+   "name": "Axl2Spd",
+   "direction": "output",
+   "summary": "Angular velocity scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Active differential type",
+   "default": "clutches",
+   "values": "Differential Spur gears, superposition clutches (default) | Double planetary gears, stationary clutches",
+   "group": ""
+  },
+  {
+   "name": "Clutch 1 to differential case gear ratio, Ns1",
+   "default": ".875",
+   "values": "Clutch 1-spur gear ratio .875 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch 2 to differential case gear ratio, Ns2",
+   "default": "1.125",
+   "values": "Clutch 2-spur gear ratio 1.125 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Three-gang gear inertia, Jgc",
+   "default": ".003",
+   "values": "Rotational inertia .003 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 planetary carrier to axle gear ratio, Np1",
+   "default": "1.125",
+   "values": "Planetary 1 carrier gear ratio 1.125 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 sun gear inertia, Js1",
+   "default": ".001",
+   "values": "Planetary 1 sun gear inertia .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 carrier inertia, Jc1",
+   "default": ".001",
+   "values": "Planetary 1 carrier inertia .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 ring inertia, Jr1",
+   "default": ".002",
+   "values": "Planetary 1 ring gear inertia .002 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 planetary carrier to axle gear ratio, Np2",
+   "default": "1.125",
+   "values": "Planetary 2 carrier gear ratio 1.125 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 sun gear inertia, Js2",
+   "default": ".001",
+   "values": "Planetary 2 sun gear inertia .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 carrier inertia, Jc2",
+   "default": ".001",
+   "values": "Planetary 2 carrier inertia .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 ring inertia, Jr2",
+   "default": ".002",
+   "values": "Planetary 2 ring gear inertia .002 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Crown wheel (ring gear) located",
+   "default": "center-line",
+   "values": "Specify crown wheel connection To the left of center-line (default) | To the right of center-line",
+   "group": ""
+  },
+  {
+   "name": "Carrier to drive shaft ratio, NC/ND",
+   "default": "4",
+   "values": "Ratio 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier inertia, Jd",
+   "default": ".1",
+   "values": "Inertia .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier damping, bd",
+   "default": "1e-3",
+   "values": "Damping 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 inertia, Jw1",
+   "default": ".1",
+   "values": "Inertia .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 damping, bw1",
+   "default": "1e-3",
+   "values": "Damping 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 inertia, Jw2",
+   "default": ".1",
+   "values": "Inertia .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 damping, bw2",
+   "default": "1e-3",
+   "values": "Damping 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 initial velocity, omegaw1o",
+   "default": "0",
+   "values": "Angular velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 initial velocity, omegaw2o",
+   "default": "0",
+   "values": "Angular velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Coupling type",
+   "default": "clutch",
+   "values": "Torque coupling Ideal pre-loaded clutch (default) | Slip speed dependent torque data | Input torque dependent torque data",
+   "group": ""
+  },
+  {
+   "name": "Effective applied pressure area",
+   "default": "0.01",
+   "values": "Pressure area 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of disks, Ndisks",
+   "default": "4",
+   "values": "Torque coupling 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Effective radius, Reff",
+   "default": ".20",
+   "values": "Radius .20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal preload force, Fc",
+   "default": "500",
+   "values": "Force 500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Friction coefficient vector, mu",
+   "default": "0.10125.10125]",
+   "values": "Friction [.16 0.13 0.115 0.11 0.105 0.1025 0.10125.10125] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Slip speed vector, dw",
+   "default": "500]",
+   "values": "Angular velocity [0 10 20 40 60 80 100 500] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Torque - slip speed matrix, TdPdw",
+   "default": "[-1000,-500,-90,-50,-5,0,5,50,90,500,1000].*ones(11)",
+   "values": "Clutch torque [-1000,-500,-90,-50,-5,0,5,50,90,500,1000].*ones(11) (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Clutch pressure vector, pT",
+   "default": "5e6]",
+   "values": "Clutch pressure breakpoints [0 1e3 5e3 7e3 1e4 2e4 5e4 1e5 5e5 1e6 5e6] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Slip speed vector, dwT",
+   "default": "500]",
+   "values": "Slip speed breakpoints [-500 -200, -175, -100, - 50, 0, 50, 100, 175, 200, 500] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Coupling time constant, tauC",
+   "default": ".01",
+   "values": "Constant .01 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

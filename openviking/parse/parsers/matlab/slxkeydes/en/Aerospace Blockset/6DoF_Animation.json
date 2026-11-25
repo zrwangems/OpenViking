@@ -1,0 +1,73 @@
+{
+ "key": "6DoF_Animation",
+ "title": "6DoF Animation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/MATLAB-Based Animation/b_6DoF_Animation.md"
+ ],
+ "text": "Create 3-D MATLAB Graphics animation of six-degrees-of-freedom object, 2 inputs, {Enter view} sets Entrance view Fixed; {Axes limits [xmin xmax ymin ymax zmin zmax]} sets the axes limits, {Time interval between updates}, {Size of craft displayed} scales factor, {Static object position [xp yp zp]} sets the static object position, {Position of camera [xc yc zc]} sets the camera position, {View angle} and {Enable animation} displays animation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x e",
+   "direction": "input",
+   "summary": "Downrange position, crossrange position, and altitude (positive down) three-element vector"
+  },
+  {
+   "name": "φ θ ψ",
+   "direction": "input",
+   "summary": "Euler angles three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Axes limits [xmin xmax ymin ymax zmin zmax]",
+   "default": "-3000]",
+   "values": "Axes limits [0 4000 -2000 2000 -5000 -3000] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Time interval between updates",
+   "default": "0.1",
+   "values": "Time interval 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Size of craft displayed",
+   "default": "1.0",
+   "values": "Scale factor 1.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static object position [xp yp zp]",
+   "default": "-5000]",
+   "values": "Static object position [4000 0 -5000] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Enter view",
+   "default": "position",
+   "values": "Entrance view Fixed position (default) | Cockpit | Fly alongside",
+   "group": ""
+  },
+  {
+   "name": "Position of camera [xc yc zc]",
+   "default": "-3150]",
+   "values": "Camera position [2000 500 -3150] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "View angle",
+   "default": "10",
+   "values": "View angle 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable animation",
+   "default": "on",
+   "values": "Display animation on (default) | off",
+   "group": ""
+  }
+ ]
+}

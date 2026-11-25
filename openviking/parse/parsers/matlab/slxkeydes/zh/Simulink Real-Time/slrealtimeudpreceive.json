@@ -1,0 +1,79 @@
+{
+ "key": "slrealtimeudpreceive",
+ "title": "UDP Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/UDP_Receive.md"
+ ],
+ "text": "通过 UDP 网络从远程设备接收数据；输出 2 路；{Use host-target connection} 指定在开发计算机和目标计算机之间使用以太网连接、{Local IP address} 指定接收数据的目标 IP 地址 Use host-target、{Local port} 指定接收数据的目标 UDP 端口 1–65535、{Receive width} 指定 Data 输出向量的宽度 1–65504、{Receive from any source} 指定使接收方接受来自任何 IP 地址的数据、{From IP address} 指定接收数据的来源 x.x.x.x、{Sample time (-1 for inherited)} 指定模块采样时间、{Enable Simulink messages} 指定数据作为消息、{Maximum messages per timestep} 指定消息限值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "接收到的数据 向量"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "接收的字节数 双精度"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use host-target connection",
+   "default": "’off’",
+   "values": "在开发计算机和目标计算机之间使用以太网连接 ’off’ (默认) | ’on’",
+   "group": "通用参数"
+  },
+  {
+   "name": "Local IP address",
+   "default": "connection",
+   "values": "接收数据的目标 IP 地址 Use host-target connection (默认)",
+   "group": "通用参数"
+  },
+  {
+   "name": "Local port",
+   "default": "",
+   "values": "接收数据的目标 UDP 端口 1–65535",
+   "group": "通用参数"
+  },
+  {
+   "name": "Receive width",
+   "default": "",
+   "values": "Data 输出向量的宽度 1–65504",
+   "group": "通用参数"
+  },
+  {
+   "name": "Receive from any source",
+   "default": "on",
+   "values": "使接收方接受来自任何 IP 地址的数据 on (默认) | off",
+   "group": "通用参数"
+  },
+  {
+   "name": "From IP address",
+   "default": "",
+   "values": "接收数据的来源 x.x.x.x",
+   "group": "通用参数"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 数值",
+   "group": "通用参数"
+  },
+  {
+   "name": "Enable Simulink messages",
+   "default": "off",
+   "values": "数据作为消息 off (默认) | on",
+   "group": "通用参数"
+  },
+  {
+   "name": "Maximum messages per timestep",
+   "default": "1",
+   "values": "消息限值 1 (默认) | int",
+   "group": "通用参数"
+  }
+ ]
+}

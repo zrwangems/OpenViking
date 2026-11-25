@@ -1,0 +1,83 @@
+{
+ "key": "Find Local Maxima",
+ "title": "Find Local Maxima",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/Find_Local_Maxima.md"
+ ],
+ "text": "在矩阵中查找局部最大值，输入 2 路、输出 2 路；按 {Index output data type} 指定局部最大值坐标的数据类型；{Maximum number of local maxima} 指定要检测的局部最大值的最大数量、{Neighborhood size} 指定邻域区域的大小、{Source of threshold value} 指定输入阈值值的来源 Specify via、{Threshold} 用于检测局部最大值的阈值、{Input is Hough matrix spanning full theta range} 指定输入是否为 Hough 矩阵、{Output variable size signal} 指定支持长度可变的输入信号、{Count output data type} 指定局部最大值数量的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入 M -by- N matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "input",
+   "summary": "用于检测局部最大值的阈值 scalar"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "局部最大值的坐标 P -by-2 matrix"
+  },
+  {
+   "name": "Count",
+   "direction": "output",
+   "summary": "局部最大值的数量 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum number of local maxima",
+   "default": "2",
+   "values": "要检测的局部最大值的最大数量 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Neighborhood size",
+   "default": "]",
+   "values": "邻域区域的大小 [ 5 7 ] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Source of threshold value",
+   "default": "dialog",
+   "values": "输入阈值值的来源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "10",
+   "values": "用于检测局部最大值的阈值 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input is Hough matrix spanning full theta range",
+   "default": "off",
+   "values": "输入是否为 Hough 矩阵 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Index output data type",
+   "default": "uint32",
+   "values": "局部最大值坐标的数据类型 uint32 (default) | double | single | uint8 | uint16",
+   "group": ""
+  },
+  {
+   "name": "Output variable size signal",
+   "default": "on",
+   "values": "支持长度可变的输入信号 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Count output data type",
+   "default": "uint32",
+   "values": "局部最大值数量的数据类型 uint32 (default) | double | single | uint8 | uint16",
+   "group": ""
+  }
+ ]
+}

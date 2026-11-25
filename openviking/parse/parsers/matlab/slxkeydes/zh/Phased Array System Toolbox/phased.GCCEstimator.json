@@ -1,0 +1,334 @@
+{
+ "key": "phased.GCCEstimator",
+ "title": "GCC DOA and TOA",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/GCC_DOA_and_TOA.md"
+ ],
+ "text": "带相位变换的广义互相关器，输入 1 路、输出 4 路；按 {Null axis direction} 指定零轴方向；{Signal propagation speed (m/s)} 指定信号传播速度 physconst、{Inherit sample rate} 指定从上游模块继承采样率、{Sample rate (Hz)} 指定信号采样率 1e6、{Source of sensor pairs} 指定传感器对来源、{Sensor pairs} 指定传感器对、{Enable correlation output} 启用互相关输出、{Enable delay output} 启用延迟输出、{Simulate using} 指定模块仿真方法 Interpreted、{Specify sensor array as} 指定阵列的方法 Array、{Element type} 指定阵列阵元类型 Isotropic、{Operating frequency range (Hz)} 指定天线或麦克风阵元的工作频率范围、{Baffle the back of the element} 指定将 Isotropic Antenna 阵元或 Omni Microphone、{Exponent of cosine pattern} 指定方位角和俯仰角余弦方向图的指数、{Operating frequency vector (Hz)} 指定自定义天线或麦克风阵元的工作频率范围、{Frequency responses (dB)} 指定天线和麦克风频率响应、{Input Pattern Coordinate System} 指定自定义天线方向图的坐标系、{Azimuth angles (deg)} 指定天线辐射方向图的方位角、{Elevation angles (deg)} 指定天线辐射方向图的俯仰角、{Phi Angles (deg)} 指定自定义天线辐射方向图的 Phi 角坐标 0:360、{Theta Angles (deg)} 指定自定义天线辐射方向图的 Theta 角坐标、{Magnitude pattern (dB)} 指定组合天线辐射方向图的幅值 zeros、{Phase pattern (deg)} 指定自定义天线辐射相位方向图 zeros、{Align element normal with array normal} 指定将阵元法线与阵列法线对齐、{Radiation pattern beamwidth (deg)} 指定辐射方向图波束宽度、{Polar pattern frequencies (Hz)} 指定极性图麦克风响应频率 1e3、{Polar pattern angles (deg)} 指定极性图响应角度、{Polar pattern (dB)} 指定自定义麦克风极性响应 zeros、{Geometry} 指定阵列几何结构、{Number of elements} 指定阵列阵元数 2 for ULA arrays and 5 for UCA、{Array size} 指定 URA 阵列的维度、{Element spacing (m)} 指定阵列阵元间距 0.5 for ULA arrays、{Array axis} 指定 ULA 的线性轴方向、{Element lattice} 指定 URA 阵元位置的格点、{Array normal} 指定阵列法线方向 x for URA arrays or z for UCA、{Radius of UCA (m)} 指定 UCA 阵列半径、{Element positions (m)} 指定共形阵列阵元的位置、{Element normals (deg)} 指定共形阵列阵元法向量方向、{Taper} 指定阵列阵元渐削、{Subarray definition matrix} 定义属于子阵的元素 logical matrix、{Subarray steering method} 指定子阵导向方法、{Phase shifter frequency (Hz)} 指定子阵相移频率 3.0e8、{Number of bits in phase shifters} 指定子阵导向相移量化位数、{Subarrays layout} 指定子阵位置指定、{Grid size} 指定矩形子阵网格的维度、{Grid spacing (m)} 指定矩形网格上子阵之间的间距、{Subarray positions (m)} 指定子阵的位置、{Subarray normals} 指定子阵法向量的方向、{Expression} 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ array System，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "接收信号 M -by- N complex-valued matrix"
+  },
+  {
+   "name": "Ang",
+   "direction": "output",
+   "summary": "到达方向 2-by-1 real-valued column vector | scalar"
+  },
+  {
+   "name": "Tau",
+   "direction": "output",
+   "summary": "到达时间延迟 1-by- P real-valued row vector"
+  },
+  {
+   "name": "Rxy",
+   "direction": "output",
+   "summary": "估计的互相关 (2 M +1)-by- P complex-valued matrix"
+  },
+  {
+   "name": "Lag",
+   "direction": "output",
+   "summary": "时间滞后 M -by-1 real-valued column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "从上游模块继承采样率 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "信号采样率 1e6 (default) | positive real-valued scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Source of sensor pairs",
+   "default": "Auto",
+   "values": "传感器对来源 Auto (default) | Property",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sensor pairs",
+   "default": "[2;1]",
+   "values": "传感器对 [2;1] (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Enable correlation output",
+   "default": "off",
+   "values": "启用互相关输出的选项 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Enable delay output",
+   "default": "off",
+   "values": "启用延迟输出的选项 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Specify sensor array as",
+   "default": "subarrays)",
+   "values": "指定阵列的方法 Array (no subarrays) (default) | Partitioned array | Replicated subarray | MATLAB expression",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Element type",
+   "default": "Antenna",
+   "values": "阵列阵元类型 Isotropic Antenna (default) | Cardioid Antenna | Cosine Antenna | Custom Antenna | Gaussian Antenna | Sinc Antenna | Omni Microphone | Custom Microphone",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Operating frequency range (Hz)",
+   "default": "[0,1e20]",
+   "values": "天线或麦克风阵元的工作频率范围 [0,1e20] (default) | real-valued 1-by-2 row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Baffle the back of the element",
+   "default": "off",
+   "values": "将 Isotropic Antenna 阵元或 Omni Microphone 阵元的后向响应设置为零 off (default) | on",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Null axis direction",
+   "default": "-x",
+   "values": "零轴方向 -x (default) | +x | +y | -y | +z | -z",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Exponent of cosine pattern",
+   "default": "1.5]",
+   "values": "方位角和俯仰角余弦方向图的指数 [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2 matrix of nonnegative values",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Operating frequency vector (Hz)",
+   "default": "[0,1e20]",
+   "values": "自定义天线或麦克风阵元的工作频率范围 [0,1e20] (default) | real-valued row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Frequency responses (dB)",
+   "default": "[0,0]",
+   "values": "天线和麦克风频率响应 [0,0] (default) | real-valued row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Input Pattern Coordinate System",
+   "default": "az-el",
+   "values": "自定义天线方向图的坐标系 az-el (default) | phi-theta",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Azimuth angles (deg)",
+   "default": "[-180:180]",
+   "values": "天线辐射方向图的方位角 [-180:180] (default) | real-valued row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "[-90:90]",
+   "values": "天线辐射方向图的俯仰角 [-90:90] (default) | real-valued row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Phi Angles (deg)",
+   "default": "",
+   "values": "自定义天线辐射方向图的 Phi 角坐标 0:360 | real-valued 1-by- P row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Theta Angles (deg)",
+   "default": "",
+   "values": "自定义天线辐射方向图的 Theta 角坐标 0:180 | real-valued 1-by- Q row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Magnitude pattern (dB)",
+   "default": "zeros(181,361)",
+   "values": "组合天线辐射方向图的幅值 zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Phase pattern (deg)",
+   "default": "zeros(181,361)",
+   "values": "自定义天线辐射相位方向图 zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Align element normal with array normal",
+   "default": "on",
+   "values": "将阵元法线与阵列法线对齐 on (default) | off",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Radiation pattern beamwidth (deg)",
+   "default": "[10,10]",
+   "values": "辐射方向图波束宽度 [10,10] (default)",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Polar pattern frequencies (Hz)",
+   "default": "1e3",
+   "values": "极性图麦克风响应频率 1e3 (default) | real scalar | real-valued 1-by- L row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Polar pattern angles (deg)",
+   "default": "[-180:180]",
+   "values": "极性图响应角度 [-180:180] (default) | real-valued -by- P row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Polar pattern (dB)",
+   "default": "zeros(1,361)",
+   "values": "自定义麦克风极性响应 zeros(1,361) (default) | real-valued L -by- P matrix",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Geometry",
+   "default": "ULA",
+   "values": "阵列几何结构 ULA (default) | URA | UCA | Conformal Array",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Number of elements",
+   "default": "arrays",
+   "values": "阵列阵元数 2 for ULA arrays and 5 for UCA arrays (default) | integer greater than or equal to 2",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Array size",
+   "default": "[2,2]",
+   "values": "URA 阵列的维度 [2,2] (default) | positive integer | 1-by-2 vector of positive integers",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Element spacing (m)",
+   "default": "arrays",
+   "values": "阵列阵元间距 0.5 for ULA arrays and [0.5,0.5] for URA arrays (default) | positive scalar for ULA or URA arrays | 2-element vector of positive values for URA arrays",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Array axis",
+   "default": "y",
+   "values": "ULA 的线性轴方向 y (default) | x | z",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Element lattice",
+   "default": "Rectangular",
+   "values": "URA 阵元位置的格点 Rectangular (default) | Triangular",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Array normal",
+   "default": "arrays",
+   "values": "阵列法线方向 x for URA arrays or z for UCA arrays (default) | y",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Radius of UCA (m)",
+   "default": "0.5",
+   "values": "UCA 阵列半径 0.5 (default) | positive scalar",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Element positions (m)",
+   "default": "[0;0;0]",
+   "values": "共形阵列阵元的位置 [0;0;0] (default) | 3-by- N matrix of real values",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Element normals (deg)",
+   "default": "",
+   "values": "共形阵列阵元法向量方向 [0;0] | 2-by-1 column vector | 2-by- N matrix",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Taper",
+   "default": "1",
+   "values": "阵列阵元渐削 1 (default) | complex-valued scalar | complex-valued row vector",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Subarray definition matrix",
+   "default": "",
+   "values": "定义属于子阵的元素 logical matrix",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Subarray steering method",
+   "default": "None",
+   "values": "指定子阵导向方法 None (default) | Phase | Time",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Phase shifter frequency (Hz)",
+   "default": "3.0e8",
+   "values": "子阵相移频率 3.0e8 (default) | positive real-valued scalar",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Number of bits in phase shifters",
+   "default": "0",
+   "values": "子阵导向相移量化位数 0 (default) | non-negative integer",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Subarrays layout",
+   "default": "Rectangular",
+   "values": "子阵位置指定 Rectangular (default) | Custom",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Grid size",
+   "default": "[1,2]",
+   "values": "矩形子阵网格的维度 [1,2] (default)",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Grid spacing (m)",
+   "default": "Auto",
+   "values": "矩形网格上子阵之间的间距 Auto (default) | positive real-valued scalar | 1-by-2 vector of positive real-values",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Subarray positions (m)",
+   "default": "[0,0;0.5,0.5;0,0]",
+   "values": "子阵的位置 [0,0;0.5,0.5;0,0] (default) | 3-by- N real-valued matrix",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Subarray normals",
+   "default": "[0,0;0,0]",
+   "values": "子阵法向量的方向 [0,0;0,0] (default) | 2-by- N real matrix",
+   "group": "Sensor Array Tab"
+  },
+  {
+   "name": "Expression",
+   "default": "",
+   "values": "用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ array System object",
+   "group": "Sensor Array Tab"
+  }
+ ]
+}

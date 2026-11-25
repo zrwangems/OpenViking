@@ -1,0 +1,144 @@
+{
+ "key": "Motorcycle Chain",
+ "title": "Motorcycle Chain",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Motorcycle_Chain.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Motorcycle_Chain.md"
+ ],
+ "text": "Implement motorcycle chain, 6 inputs, 4 outputs; {Coordinates, SprktFrPxz} sets the front sprocket position, {Mass moment of inertia, SprktFrIyy} sets the front sprocket inertia, {Radius, SprktFrR} sets the front sprocket radius, {Mass moment of inertia, SprktRrIyy} sets the rear sprocket inertia, {Radius, SprktRrR} sets the rear sprocket radius, {Mass moment of inertia, WhlRrIyy} sets the rear wheel inertia, {Radius, WhlRrR} sets the rear wheel radius, {Arm length, ArmRrLen} sets the swing arm length, {Stiffness, WhlDmpK} sets the wheel damper stiffness 1e4, {Damping, WhlDmpC} sets the wheel damping 1e2, {Equilibrium angle} sets the wheel damper equilibrium, {Rear sprocket angular velocity, SprktRrAngV0} sets the angular velocity and {Rear wheel angular velocity, WhlRrAngV0} sets the angular velocity. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "MDshft",
+   "direction": "input",
+   "summary": "Drive shaft moment on front sprocket scalar"
+  },
+  {
+   "name": "FCpR",
+   "direction": "input",
+   "summary": "Longitudinal and vertical forces at rear wheel contact patch vector"
+  },
+  {
+   "name": "ThetaFrm",
+   "direction": "input",
+   "summary": "Main frame pitch angle scalar"
+  },
+  {
+   "name": "ThetaArmR",
+   "direction": "input",
+   "summary": "Rear arm pitch angle scalar"
+  },
+  {
+   "name": "MBrkR",
+   "direction": "input",
+   "summary": "Brake moment at rear wheel scalar"
+  },
+  {
+   "name": "AngAWhlR",
+   "direction": "input",
+   "summary": "Rear wheel angular acceleration scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "MDrvSprtR",
+   "direction": "output",
+   "summary": "Wheel damper moment at rear sprocket scalar"
+  },
+  {
+   "name": "MDrvArmR",
+   "direction": "output",
+   "summary": "Drive chain moment at rear arm scalar"
+  },
+  {
+   "name": "MDrvFrm",
+   "direction": "output",
+   "summary": "Drive chain moment at frame scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coordinates, SprktFrPxz",
+   "default": "-0.05]",
+   "values": "Front sprocket position [0.05 -0.05] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Mass moment of inertia, SprktFrIyy",
+   "default": "0.005",
+   "values": "Front sprocket inertia 0.005 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Radius, SprktFrR",
+   "default": "0.04",
+   "values": "Front sprocket radius 0.04 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mass moment of inertia, SprktRrIyy",
+   "default": "0.01",
+   "values": "Rear sprocket inertia 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Radius, SprktRrR",
+   "default": "0.12",
+   "values": "Rear sprocket radius 0.12 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mass moment of inertia, WhlRrIyy",
+   "default": "0.66",
+   "values": "Rear wheel inertia 0.66 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Radius, WhlRrR",
+   "default": "0.33",
+   "values": "Rear wheel radius 0.33 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Arm length, ArmRrLen",
+   "default": "0.535",
+   "values": "Swing arm length 0.535 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stiffness, WhlDmpK",
+   "default": "1e4",
+   "values": "Wheel damper stiffness 1e4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Damping, WhlDmpC",
+   "default": "1e2",
+   "values": "Wheel damping 1e2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equilibrium angle",
+   "default": "-15e-3",
+   "values": "Wheel damper equilibrium angle -15e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rear sprocket angular velocity, SprktRrAngV0",
+   "default": "0",
+   "values": "Angular velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rear wheel angular velocity, WhlRrAngV0",
+   "default": "0",
+   "values": "Angular velocity 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

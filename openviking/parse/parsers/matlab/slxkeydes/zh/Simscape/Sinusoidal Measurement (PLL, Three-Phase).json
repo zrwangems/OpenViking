@@ -1,0 +1,77 @@
+{
+ "key": "Sinusoidal Measurement (PLL, Three-Phase)",
+ "title": "Sinusoidal Measurement (PLL, Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Sinusoidal_Measurement_PLL_Three_Phase.md"
+ ],
+ "text": "使用锁相环估计三相正弦特征，输入 1 路、输出 3 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Enable moving average filter on input} 启用频率相关移动平均滤波器、{Enable input normalization} 启用输入归一化、{Loop filter proportional gain} 指定 LF 比例增益、{Loop filter integral gain} 指定 LF 积分增益、{Initial frequency (Hz)} 指定输入频率的初始估计值、{Initial phase angle (rad)} 指定相位角的初始估计值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "input",
+   "summary": "输入信号 vector"
+  },
+  {
+   "name": "freq",
+   "direction": "output",
+   "summary": "频率，Hz scalar"
+  },
+  {
+   "name": "angle",
+   "direction": "output",
+   "summary": "相位角，rad scalar"
+  },
+  {
+   "name": "mag",
+   "direction": "output",
+   "summary": "幅值，无单位 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable moving average filter on input",
+   "default": "On",
+   "values": "启用频率相关移动平均滤波器的选项 On (default) | Off",
+   "group": ""
+  },
+  {
+   "name": "Enable input normalization",
+   "default": "Off",
+   "values": "启用输入归一化的选项 Off (default) | On",
+   "group": ""
+  },
+  {
+   "name": "Loop filter proportional gain",
+   "default": "1",
+   "values": "LF 比例增益 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Loop filter integral gain",
+   "default": "10",
+   "values": "LF 积分增益 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "Hz",
+   "values": "输入频率的初始估计值 60 Hz (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase angle (rad)",
+   "default": "rad",
+   "values": "相位角的初始估计值 0 rad (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

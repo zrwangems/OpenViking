@@ -1,0 +1,59 @@
+{
+ "key": "Find Delay",
+ "title": "Find Delay",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Find_Delay.md"
+ ],
+ "text": "查找两个信号之间的延迟，输入 2 路、输出 2 路；{Correlation window length (samples)} 指定样本数、{Include \"change signal\" output port} 指定向模块添加 chg 端口、{Disable recurring updates} 指定此项以设置延迟计算的停止条件、{Number of constant delay outputs to disable updates} 指定在经过此数量的延迟值不变计算后禁用更新，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "sRef",
+   "direction": "input",
+   "summary": "参考信号 vector | matrix"
+  },
+  {
+   "name": "sDel",
+   "direction": "input",
+   "summary": "延迟后的信号 vector | matrix"
+  },
+  {
+   "name": "delay",
+   "direction": "output",
+   "summary": "延迟输出 scalar | vector"
+  },
+  {
+   "name": "chg",
+   "direction": "output",
+   "summary": "延迟标志 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Correlation window length (samples)",
+   "default": "200",
+   "values": "样本数 200 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Include \"change signal\" output port",
+   "default": "off",
+   "values": "向模块添加 chg 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Disable recurring updates",
+   "default": "off",
+   "values": "选择此项以设置延迟计算的停止条件 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of constant delay outputs to disable updates",
+   "default": "3",
+   "values": "在经过此数量的延迟值不变计算后禁用更新 3 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

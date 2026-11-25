@@ -1,0 +1,38 @@
+{
+ "key": "F2838x-M4 IPC Transmit",
+ "title": "IPC Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F2838x/M4/IPC_Transmit.md"
+ ],
+ "text": "Transmit data to either core while using separate model for each core, 1 input; {Destination}, {Channel} and {Enable blocking} sets the if Core must wait until sent data is read. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Data to be send to the other Core uint16 | single | int8 | uint8 | int16 | int32 | uint32 | boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Destination",
+   "default": "(CPU1/CPU2)/CPU1",
+   "values": "Destination selected to send data C28x (CPU1/CPU2)/CPU1 (default) | ARM Cortex-M4 (CM)/CPU2",
+   "group": ""
+  },
+  {
+   "name": "Channel",
+   "default": "0",
+   "values": "Channel selected to transmit data 0 (default) | 0–31",
+   "group": ""
+  },
+  {
+   "name": "Enable blocking",
+   "default": "off",
+   "values": "Specify if Core must wait until sent data is read off (default) | on",
+   "group": ""
+  }
+ ]
+}

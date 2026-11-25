@@ -1,0 +1,13 @@
+{
+ "key": "Fuel Cell",
+ "title": "Fuel Cell",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Fuel_Cell.md"
+ ],
+ "text": "燃料电池电气系统。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

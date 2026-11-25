@@ -1,0 +1,128 @@
+{
+ "key": "Joint Space Motion Model",
+ "title": "Joint Space Motion Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Joint_Space_Motion_Model.md"
+ ],
+ "text": "Model rigid body tree motion given joint-space inputs, 4 inputs, 3 outputs, {Initial joint configuration} sets Initial joint positions; {Rigid body tree} sets the robot model, {Motion Type} sets the type of motion computed by motion model Computed Torque, {Specification format} sets the inputs to control robot Damping Ratio / Natural, {Damping ratio}, {Natural frequency}, {Settling time} sets the tling time of system, {Overshoot} sets the system overshoot, {Proportional gain}, {Derivative gain}, {Show external force input} displays FExt port, {Initial joint velocities} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "qRef",
+   "direction": "input",
+   "summary": "Joint positions n -element vector"
+  },
+  {
+   "name": "qRefDot",
+   "direction": "input",
+   "summary": "Joint velocities n -element vector"
+  },
+  {
+   "name": "qRefDDot",
+   "direction": "input",
+   "summary": "Joint accelerations n -element vector"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "External forces acting on system 6-by- m matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "Joint positions n -element vector"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "Joint velocities n -element vector"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "Joint accelerations n -element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "Robot model twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "Motion Type",
+   "default": "Control",
+   "values": "Type of motion computed by motion model Computed Torque Control (default) | Independent Joint Motion | PD Control | Open Loop Dynamics",
+   "group": ""
+  },
+  {
+   "name": "Specification format",
+   "default": "Frequency",
+   "values": "Inputs to control robot Damping Ratio / Natural Frequency (default) | Step Response",
+   "group": ""
+  },
+  {
+   "name": "Damping ratio",
+   "default": "1",
+   "values": "Damping ratio of system 1 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Natural frequency",
+   "default": "10",
+   "values": "Natural frequency of system 10 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time",
+   "default": "0.59",
+   "values": "Settling time of system 0.59 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Overshoot",
+   "default": "0.0",
+   "values": "System overshoot 0.0 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain",
+   "default": "100",
+   "values": "Proportional gain for PD Control 100 (default) | n -by- n matrix | scalar",
+   "group": ""
+  },
+  {
+   "name": "Derivative gain",
+   "default": "10",
+   "values": "Derivative gain for PD control 10 (default) | n -by- n matrix | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show external force input",
+   "default": "off",
+   "values": "Display FExt port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial joint configuration",
+   "default": "0",
+   "values": "Initial joint positions 0 (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial joint velocities",
+   "default": "0",
+   "values": "Initial joint velocities 0 (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "key": "VxWorks Interrupt Block",
+ "title": "Async Interrupt",
+ "toolbox": "Simulink Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Coder/Asynchronous/Interrupt Templates/Async_Interrupt.md"
+ ],
+ "text": "生成执行下游子系统或 Task Sync 模块的 Versa Module Eurocard (VME) 中断服务例程 (ISR)，输入 1 路、输出 1 路；按 {计时器大小} 指定存储时钟计时单元的；{VME 中断编号}、{VME 中断向量偏移} 指定对应于 VME 中断编号的中断向量偏移编号、{Simulink 任务优先级} 指定下游模块的优先级、{Preemption flag(s); preemptable-1; non-preemptable-0} 指定抢占、{管理自己的计时器} 指定计时器管理器、{计时器分辨率(秒)} 指定 ISR 计时器的分辨率、{启用仿真输入} 添加仿真输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "仿真的中断源 标量 | 向量"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "控制信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "VME 中断编号",
+   "default": "2]",
+   "values": "要安装的中断的 VME 中断编号 [1 2] (默认) | 整数数组",
+   "group": ""
+  },
+  {
+   "name": "VME 中断向量偏移",
+   "default": "193]",
+   "values": "对应于 VME 中断编号的中断向量偏移编号 [192 193] (默认) | 整数数组",
+   "group": ""
+  },
+  {
+   "name": "Simulink 任务优先级",
+   "default": "11]",
+   "values": "下游模块的优先级 [10 11] (默认) | 整数数组",
+   "group": ""
+  },
+  {
+   "name": "Preemption flag(s); preemptable-1; non-preemptable-0",
+   "default": "1]",
+   "values": "选择抢占 [0 1] (默认) | 整数数组",
+   "group": ""
+  },
+  {
+   "name": "管理自己的计时器",
+   "default": "on",
+   "values": "选择计时器管理器 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "计时器分辨率(秒)",
+   "default": "1/60",
+   "values": "ISR 计时器的分辨率 1/60 (默认)",
+   "group": ""
+  },
+  {
+   "name": "计时器大小",
+   "default": "位",
+   "values": "存储时钟计时单元的位数 32 位 (默认) | 16 位 | 8 位 | 自动",
+   "group": ""
+  },
+  {
+   "name": "启用仿真输入",
+   "default": "on",
+   "values": "选择添加仿真输入端口 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

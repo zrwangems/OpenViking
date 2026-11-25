@@ -1,0 +1,13 @@
+{
+ "key": "Current and Voltage Sensor (Three-Phase)",
+ "title": "Current and Voltage Sensor (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Current_and_Voltage_Sensor_Three_Phase.md"
+ ],
+ "text": "Ideal three-phase current and voltage sensor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

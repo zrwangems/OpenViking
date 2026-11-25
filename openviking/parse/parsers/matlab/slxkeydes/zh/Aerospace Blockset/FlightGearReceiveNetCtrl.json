@@ -1,0 +1,49 @@
+{
+ "key": "FlightGearReceiveNetCtrl",
+ "title": "Receive net_ctrl Packet from FlightGear",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/Receive_net_ctrl_Packet_from_FlightGear.md"
+ ],
+ "text": "从 FlightGear 接收 net_ctrl 数据包；输出 2 路；{Origin IP address} 指定源 IP 地址 127.0.0.1、{Origin port} 指定源端口、{Sample time} 指定采样时间 1/30、{Enable received flag port} 启用接收标志输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "net_ctrl",
+   "direction": "output",
+   "summary": "来自 FlightGear 的操纵信息 744-by-1 vector"
+  },
+  {
+   "name": "Rx bytes",
+   "direction": "output",
+   "summary": "接收到的 FlightGear 数据包大小 0 | 744"
+  }
+ ],
+ "params": [
+  {
+   "name": "Origin IP address",
+   "default": "127.0.0.1",
+   "values": "源 IP 地址 127.0.0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Origin port",
+   "default": "5505",
+   "values": "源端口 5505 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "采样时间 1/30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable received flag port",
+   "default": "off",
+   "values": "启用接收标志输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

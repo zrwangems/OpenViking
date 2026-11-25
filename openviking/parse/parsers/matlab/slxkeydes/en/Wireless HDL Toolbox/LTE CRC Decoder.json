@@ -1,0 +1,58 @@
+{
+ "key": "LTE CRC Decoder",
+ "title": "LTE CRC Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/LTE_CRC_Decoder.md"
+ ],
+ "text": "Detect errors in input samples using checksum, 2 inputs, 3 outputs, {CRC Type} sets Encode polynomial; {Full checksum mismatch} sets the return bit-by-bit mismatch information and {CRC Mask} sets the mask applied to checksum. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input sample binary scalar | unsigned integer scalar | binary vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Output sample binary scalar | integer scalar | binary vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "err",
+   "direction": "output",
+   "summary": "Indicator of checksum mismatch binary scalar | integer scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CRC Type",
+   "default": "CRC16",
+   "values": "Encode polynomial CRC16 (default) | CRC8 | CRC24A | CRC24B",
+   "group": ""
+  },
+  {
+   "name": "Full checksum mismatch",
+   "default": "off",
+   "values": "Return bit-by-bit mismatch information off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "CRC Mask",
+   "default": "0",
+   "values": "Mask applied to checksum 0 (default) | integer from 0 to 2 CRCLength – 1",
+   "group": ""
+  }
+ ]
+}

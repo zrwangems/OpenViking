@@ -1,0 +1,69 @@
+{
+ "key": "NR Symbol Demodulator",
+ "title": "NR Symbol Demodulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/NR_Symbol_Demodulator.md"
+ ],
+ "text": "Demodulate complex NR data symbols to data bits or LLR values, 3 inputs, 3 outputs, {Modulation} sets Modulation type; {Modulation source} sets the source for modulation, {Decision type} sets the type of demapping and {Rounding Method} sets the rounding mode for internal fixed-point calculations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data symbols complex scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicate valid input data scalar"
+  },
+  {
+   "name": "modSel",
+   "direction": "input",
+   "summary": "Modulation selection integer from 0 to 5"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Demodulated data bits or LLR values scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Valid output data indication scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "Property",
+   "values": "Source for modulation type Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Modulation",
+   "default": "BPSK",
+   "values": "Modulation type BPSK (default) | QPSK | 16-QAM | 64-QAM | 256-QAM | pi/2-BPSK",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "Soft",
+   "values": "Type of demapping Soft (default) | Hard",
+   "group": ""
+  },
+  {
+   "name": "Rounding Method",
+   "default": "Floor",
+   "values": "Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": ""
+  }
+ ]
+}

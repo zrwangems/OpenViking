@@ -1,0 +1,84 @@
+{
+ "key": "Stream Data Source",
+ "title": "Stream Data Source",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/Stream_Data_Source.md"
+ ],
+ "text": "生成连续流数据，输入 1 路、输出 2 路；按 {Data type} 指定输出数据类型；{Dimensions} 输出数据维度、{Burst length} 指定单次突发的长度、{Total bursts} 指定突发总数、{Data generation} 输出生成类型、{Counter init value} 指定计数器初始值、{Variable name} 指定工作区变量名称、{Sample time} 指定采样时间间隔、{Transfer delay (in samples)} 指定突发之间的延迟，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "输入控制总线 bus"
+  },
+  {
+   "name": "wrData",
+   "direction": "output",
+   "summary": "输出流数据 scalar | vector"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "输出控制总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "输出数据类型 uint8 (default) | double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Dimensions",
+   "default": "10",
+   "values": "输出数据维度 10 (default) | positive integer | array",
+   "group": ""
+  },
+  {
+   "name": "Burst length",
+   "default": "20",
+   "values": "单次突发的长度 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Total bursts",
+   "default": "4",
+   "values": "突发总数 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Data generation",
+   "default": "counter",
+   "values": "输出生成类型 counter (default) | random | ones | workspace",
+   "group": ""
+  },
+  {
+   "name": "Counter init value",
+   "default": "0",
+   "values": "计数器初始值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "simOut",
+   "values": "工作区变量名称 simOut (default) | any MATLAB supported variable name",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "采样时间间隔 1 (default) | positive scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Transfer delay (in samples)",
+   "default": "0",
+   "values": "突发之间的延迟 0 (default) | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "key": "Convolutional Deinterleaver",
+ "title": "Convolutional Deinterleaver",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Interleaving/Convolutional_Deinterleaver.md",
+  "Communications Toolbox/Interleaving/Convolutional/Convolutional_Deinterleaver.md"
+ ],
+ "text": "恢复使用移位寄存器进行置换的符号的顺序。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

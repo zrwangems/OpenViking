@@ -1,0 +1,68 @@
+{
+ "key": "J1939 Transmit",
+ "title": "J1939 Transmit",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/J1939 Communication/J1939_Transmit.md",
+  "Simulink Real-Time/J1939/J1939_Transmit.md"
+ ],
+ "text": "发送 J1939 消息，输入 2 路；{Config name} 指定要关联的 J1939 网络配置的名称、{Node name} 指定 J1939 节点的名称、{Parameter Group} 指定组编号、{Signals} 指定参数组中定义的信号 array of character、{PG Priority} 指定参数组的优先级 int8、{Destination Address} 指定目标节点的名称 int8、{Sample time} 指定仿真传输速率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "输入数据 signal"
+  },
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "启用消息传输 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "ConfigX",
+   "values": "要关联的 J1939 网络配置的名称 ConfigX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Node name",
+   "default": "NodeX",
+   "values": "J1939 节点的名称 NodeX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Parameter Group",
+   "default": "",
+   "values": "组编号 (PGN) 和名称 int8",
+   "group": ""
+  },
+  {
+   "name": "Signals",
+   "default": "",
+   "values": "参数组中定义的信号 array of character vectors",
+   "group": ""
+  },
+  {
+   "name": "PG Priority",
+   "default": "",
+   "values": "参数组的优先级 int8",
+   "group": ""
+  },
+  {
+   "name": "Destination Address",
+   "default": "",
+   "values": "目标节点的名称 int8",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "仿真传输速率 -1 (default) | double",
+   "group": ""
+  }
+ ]
+}

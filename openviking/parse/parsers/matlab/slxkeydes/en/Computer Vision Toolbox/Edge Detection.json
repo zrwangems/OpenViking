@@ -1,0 +1,110 @@
+{
+ "key": "Edge Detection",
+ "title": "Edge Detection",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Edge_Detection.md"
+ ],
+ "text": "Find edges of objects in images using Sobel, Prewitt, Roberts, or Canny method, 2 inputs, 5 outputs, {Output Type} sets Output; {Method} sets the edge detection method, {User-defined threshold}, {Threshold source}, {Threshold}, {Threshold, [Low High]} sets the threshold for Canny edge detection, {Threshold scale factor:(used to automatically calculate threshold value)}, {Edge Thinning}, {Approximate percentage of weak edge and nonedge pixels (used to automatically calculate threshold values)} and {Standard deviation of Gaussian filter}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "input",
+   "summary": "Threshold scalar | vector"
+  },
+  {
+   "name": "Edge",
+   "direction": "output",
+   "summary": "Edge detections matrix"
+  },
+  {
+   "name": "Gv",
+   "direction": "output",
+   "summary": "Gradient responses to vertical edges matrix"
+  },
+  {
+   "name": "Gh",
+   "direction": "output",
+   "summary": "Gradient responses to horizontal edges matrix"
+  },
+  {
+   "name": "G45",
+   "direction": "output",
+   "summary": "Gradient responses to edges at 45 degrees matrix"
+  },
+  {
+   "name": "G135",
+   "direction": "output",
+   "summary": "Gradient responses to edges at 135 degrees matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Sobel",
+   "values": "Edge detection method Sobel (default) | Prewitt | Roberts | Canny",
+   "group": ""
+  },
+  {
+   "name": "Output Type",
+   "default": "image",
+   "values": "Output image type Binary image (default) | Gradient components | Binary image and gradient components",
+   "group": ""
+  },
+  {
+   "name": "User-defined threshold",
+   "default": "off",
+   "values": "User-defined threshold off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Threshold source",
+   "default": "port",
+   "values": "Threshold source Input port (default) | Specify via dialog",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "20",
+   "values": "Threshold 20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold, [Low High]",
+   "default": "0.60]",
+   "values": "Threshold for Canny edge detection [0.25 0.60] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Threshold scale factor:(used to automatically calculate threshold value)",
+   "default": "4",
+   "values": "Threshold scale factor 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Edge Thinning",
+   "default": "off",
+   "values": "Edge thinning off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Approximate percentage of weak edge and nonedge pixels (used to automatically calculate threshold values)",
+   "default": "70",
+   "values": "Approximate percentage of weak edge and nonedge pixels 70 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation of Gaussian filter",
+   "default": "1",
+   "values": "Standard deviation of Gaussian filter 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

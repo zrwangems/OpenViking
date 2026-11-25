@@ -1,0 +1,44 @@
+{
+ "key": "Digital Output (Single Sample)",
+ "title": "Digital Output (Single Sample)",
+ "toolbox": "Data Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Data Acquisition Toolbox/Digital_Output_Single_Sample.md"
+ ],
+ "text": "将单个样本输出到数据采集设备的多个数字线路，输入 1 路；按 {Number of ports} 指定输入数据端口数 1 for all lines；{Device} 指定要用于生成数据的设备、{Lines} 指定设备线路选择和配置 options depend、{Sample time} 指定模块执行速率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "生成的数字输出数据 boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "要用于生成数据的设备",
+   "group": ""
+  },
+  {
+   "name": "Lines",
+   "default": "",
+   "values": "设备线路选择和配置 options depend on device",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "",
+   "values": "输入数据端口数 1 for all lines | 1 per line",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "模块执行速率 1 (default)",
+   "group": ""
+  }
+ ]
+}

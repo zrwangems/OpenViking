@@ -1,0 +1,53 @@
+{
+ "key": "Stream Write",
+ "title": "Stream Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Stream_Write.md"
+ ],
+ "text": "Stream data from processor algorithms to shared memory, 2 inputs, 2 outputs; {Device name} sets the name of IP core, {Number of buffers} sets the number of data buffers and {Enable event-based execution} sets the option to enable event-driven task. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Data frame from software algorithm vector"
+  },
+  {
+   "name": "done",
+   "direction": "input",
+   "summary": "Notification of available buffer in memory scalar"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "Data message to memory scalar"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "Status of completed write transaction scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device name",
+   "default": "ip:MM2S",
+   "values": "Name of IP core device ip:MM2S (default) | colon-separated list of IP core name and channel",
+   "group": ""
+  },
+  {
+   "name": "Number of buffers",
+   "default": "3",
+   "values": "Number of data buffers 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable event-based execution",
+   "default": "on",
+   "values": "Option to enable event-driven task execution on (default) | off",
+   "group": ""
+  }
+ ]
+}

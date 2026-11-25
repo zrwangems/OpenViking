@@ -1,0 +1,13 @@
+{
+ "key": "PS Transfer Function",
+ "title": "PS Transfer Function",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Linear Operators/PS_Transfer_Function.md"
+ ],
+ "text": "Model low-pass and lead-lag filters.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,154 @@
+{
+ "key": "Write Binary File",
+ "title": "Write Binary File",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Write_Binary_File.md"
+ ],
+ "text": "将二进制视频数据写入文件，输入 5 路；按 {Four character code} 指定二进制文件的格式；{File name} 指定二进制文件的名称、{Video format} 指定视频数据的格式 Four character、{Line ordering} 指定二进制文件的填充方向 Top line、{Bit stream format} 指定二进制文件的数据格式、{Number of inputs} 指定输入视频流中的分量数、{Inherit size of components from input data type} 指定所有分量具有相同的位数、{Component1} 指定亮度分量输入端口的名称 Y、{Component2} 指定蓝色差分量的名称、{Component3} 指定红色差分量的名称、{Component4} 指定 Alpha 分量的名称、{Bits1} 指定亮度分量的大小、{Bits2} 指定蓝色差分量的大小、{Bits3} 指定红色差分量的大小、{Bits4} 指定 Alpha 分量的大小、{Component order in binary file} 指定二进制文件中分量的排列方式、{Interlaced video} 以隔行方式读取视频数据、{Write signed data to output file} 指定将有符号数据写入输出二进制文件、{Byte order in binary file} 输出二进制文件中的字节顺序 Little，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Y’",
+   "direction": "input",
+   "summary": "输入视频流的亮度分量 scalar | vector | matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "input",
+   "summary": "输入视频流的蓝色差分量 scalar | vector | matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "input",
+   "summary": "输入视频流的红色差分量 scalar | vector | matrix"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入视频流的 Alpha 分量 scalar | vector | matrix"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "输入视频流的透明度分量 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "output.bin",
+   "values": "二进制文件的名称 output.bin (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Video format",
+   "default": "codes",
+   "values": "视频数据的格式 Four character codes (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Four character code",
+   "default": "I420",
+   "values": "二进制文件的格式 I420 (default) | AYUV | CLJR | cyuv | GREY | IF09 | IMC1 | IMC2 | IMC3 | IMC4 | IUYV | IY41 | IYU1 | IYU2 | IYUV | NV12 | NV21 | UYNV | UYNY | V210 | Y411 | Y41P | Y41T | Y422 | Y42T | Y8 | Y800 | YUNV | YUY2 | YUYV | YV12 | YV16 | YVU9 | YVYU |...",
+   "group": ""
+  },
+  {
+   "name": "Line ordering",
+   "default": "first",
+   "values": "二进制文件的填充方向 Top line first (default) | Bottom line first",
+   "group": ""
+  },
+  {
+   "name": "Bit stream format",
+   "default": "Planar",
+   "values": "二进制文件的数据格式 Planar (default) | Packed",
+   "group": ""
+  },
+  {
+   "name": "Number of inputs",
+   "default": "3",
+   "values": "输入视频流中的分量数 3 (default) | 1 | 2 | 4",
+   "group": ""
+  },
+  {
+   "name": "Inherit size of components from input data type",
+   "default": "on",
+   "values": "所有分量具有相同的位数 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Component1",
+   "default": "Y’",
+   "values": "亮度分量输入端口的名称 Y’ (default) | component name",
+   "group": ""
+  },
+  {
+   "name": "Component2",
+   "default": "Cb",
+   "values": "蓝色差分量的名称 Cb (default) | component name",
+   "group": ""
+  },
+  {
+   "name": "Component3",
+   "default": "Cr",
+   "values": "红色差分量的名称 Cr (default) | component name",
+   "group": ""
+  },
+  {
+   "name": "Component4",
+   "default": "Alpha",
+   "values": "Alpha 分量的名称 Alpha (default) | component name",
+   "group": ""
+  },
+  {
+   "name": "Bits1",
+   "default": "8",
+   "values": "亮度分量的大小 8 (default) | 0 | 16 | 24 | 32",
+   "group": ""
+  },
+  {
+   "name": "Bits2",
+   "default": "8",
+   "values": "蓝色差分量的大小 8 (default) | 0 | 16 | 24 | 32",
+   "group": ""
+  },
+  {
+   "name": "Bits3",
+   "default": "8",
+   "values": "红色差分量的大小 8 (default) | 0 | 16 | 24 | 32",
+   "group": ""
+  },
+  {
+   "name": "Bits4",
+   "default": "8",
+   "values": "Alpha 分量的大小 8 (default) | 0 | 16 | 24 | 32",
+   "group": ""
+  },
+  {
+   "name": "Component order in binary file",
+   "default": "]",
+   "values": "二进制文件中分量的排列方式 [ 1 2 3 ] (default) | vector of valid component identifiers",
+   "group": ""
+  },
+  {
+   "name": "Interlaced video",
+   "default": "off",
+   "values": "以隔行方式读取视频数据 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Write signed data to output file",
+   "default": "off",
+   "values": "将有符号数据写入输出二进制文件 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Byte order in binary file",
+   "default": "endian",
+   "values": "输出二进制文件中的字节顺序 Little endian (default) | Big endian",
+   "group": ""
+  }
+ ]
+}

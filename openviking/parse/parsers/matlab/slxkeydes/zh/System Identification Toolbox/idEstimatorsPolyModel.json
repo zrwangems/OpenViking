@@ -1,0 +1,238 @@
+{
+ "key": "idEstimatorsPolyModel",
+ "title": "Recursive Polynomial Model Estimator",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Estimators/Recursive_Polynomial_Model_Estimator.md"
+ ],
+ "text": "估计输入-输出及时间序列多项式模型系数，输入 8 路、输出 3 路；按 {Parameter Covariance Matrix} 指定初始参数协方差；{Initial Estimate} 指定初始参数估计的来源、{Number of Parameters in A(q) (na)}、{Number of Parameters in B(q) (nb)}、{Number of Parameters in C(q) (nc)}、{Number of Parameters in D(q) (nd)}、{Number of Parameters in F(q) (nf)}、{Input Delay (nk)} 指定输入延迟、{Initial A(q)}、{Initial B(q)}、{Initial C(q)}、{Initial D(q)}、{Initial F(q)}、{Initial Inputs} 指定输入缓冲区的初始值、{Initial Outputs} 指定测量输出缓冲区的初始值、{Input Processing} 指定基于样本或基于帧的处理、{Sample Time} 指定模块采样时间、{History} 指定无限或有限数据历史、{Window Length} 指定有限滑动窗口估计的窗口大小、{Estimation Method} 指定递归估计算法 Forgetting、{Forgetting Factor} 使用遗忘因子对旧数据进行折减、{Process Noise Covariance} 指定 Kalman 滤波器估计方法的过程噪声协方差、{Adaptation Gain} 指定梯度估计方法的自适应增益指定、{Normalization Bias} 指定归一化梯度估计方法中自适应增益缩放的偏置、{Output estimation error} 为模块添加 Error 输出端口、{Output parameter covariance matrix} 为模块添加协方差输出端口、{Add enable port} 为模块添加 Enable 输入端口、{External reset} 指定外部复位的触发方式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Inputs",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "input",
+   "summary": "测量输出信号 scalar | vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "启用估计更新 true (default) | false"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "重置触发 scalar"
+  },
+  {
+   "name": "InitialParameters",
+   "direction": "input",
+   "summary": "初始参数估计 bus object"
+  },
+  {
+   "name": "InitialCovariance",
+   "direction": "input",
+   "summary": "参数的初始协方差 positive scalar (default) | vector of positive scalars | symmetric positive-definite matrix"
+  },
+  {
+   "name": "InitialInputs",
+   "direction": "input",
+   "summary": "输入的初始值 matrix"
+  },
+  {
+   "name": "InitialOutputs",
+   "direction": "input",
+   "summary": "测量输出缓冲区的初始值 vector"
+  },
+  {
+   "name": "Parameters",
+   "direction": "output",
+   "summary": "估计参数 bus object"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "估计误差 scalar | vector"
+  },
+  {
+   "name": "Covariance",
+   "direction": "output",
+   "summary": "参数估计误差协方差 P matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial Estimate",
+   "default": "None",
+   "values": "初始参数估计的来源 None (default) | Internal | External",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of Parameters in A(q) (na)",
+   "default": "1",
+   "values": "A ( q ) 多项式中的估计参数数量 1 (default) | non-negative integer",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of Parameters in B(q) (nb)",
+   "default": "1",
+   "values": "B ( q ) 多项式中的估计参数数量 1 (default) | vector of positive integers",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of Parameters in C(q) (nc)",
+   "default": "1",
+   "values": "C ( q ) 多项式中估计参数的数量 1 (default) | positive integer",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of Parameters in D(q) (nd)",
+   "default": "1",
+   "values": "D ( q ) 多项式中估计参数的数量 1 (default) | positive integer",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of Parameters in F(q) (nf)",
+   "default": "1",
+   "values": "F ( q ) 多项式中估计参数的数量 1 (default) | positive integer",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Input Delay (nk)",
+   "default": "1",
+   "values": "输入延迟 1 (default) | vector of non-negative integers",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Parameter Covariance Matrix",
+   "default": "1e4",
+   "values": "初始参数协方差 1e4 (default) | scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial A(q)",
+   "default": "eps]",
+   "values": "A ( q ) 多项式系数的初始值 [1 eps] (default) | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial B(q)",
+   "default": "eps]",
+   "values": "B ( q ) 多项式系数的初始值 [0 eps] (default) | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial C(q)",
+   "default": "eps]",
+   "values": "C ( q ) 多项式系数的初始值 [1 eps] (default) | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial D(q)",
+   "default": "eps]",
+   "values": "D ( q ) 多项式系数的初始值 [1 eps] (default) | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial F(q)",
+   "default": "eps]",
+   "values": "F ( q ) 多项式系数的初始值 [1 eps] (default) | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial Inputs",
+   "default": "0",
+   "values": "输入缓冲区的初始值 0 (default) | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial Outputs",
+   "default": "0",
+   "values": "测量输出缓冲区的初始值 0 (default) | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Input Processing",
+   "default": "Sample-based",
+   "values": "选择基于样本或基于帧的处理 Sample-based (default) | Frame-based",
+   "group": "Input Processing and Sample Time"
+  },
+  {
+   "name": "Sample Time",
+   "default": "–1",
+   "values": "模块采样时间 –1 (default) | positive scalar",
+   "group": "Input Processing and Sample Time"
+  },
+  {
+   "name": "History",
+   "default": "Infinite",
+   "values": "选择无限或有限数据历史 Infinite (default) | Finite",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Window Length",
+   "default": "200",
+   "values": "有限滑动窗口估计的窗口大小 200 (default) | positive integer",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Estimation Method",
+   "default": "Factor",
+   "values": "递归估计算法 Forgetting Factor (default) | Kalman Filter | Normalized Gradient | Gradient",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Forgetting Factor",
+   "default": "1",
+   "values": "使用遗忘因子对旧数据进行折减 1 (default) | positive scalar in (0 1] range",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Process Noise Covariance",
+   "default": "1",
+   "values": "Kalman 滤波器估计方法的过程噪声协方差 1 (default) | nonnegative scalar | vector of nonnegative scalars | symmetric positive semidefinite matrix",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Adaptation Gain",
+   "default": "1",
+   "values": "梯度估计方法的自适应增益指定 1 (default) | positive scalar",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Normalization Bias",
+   "default": "eps",
+   "values": "归一化梯度估计方法中自适应增益缩放的偏置 eps (default) | nonnegative scalar",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Output estimation error",
+   "default": "off",
+   "values": "为模块添加 Error 输出端口 off (default) | on",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Output parameter covariance matrix",
+   "default": "off",
+   "values": "为模块添加协方差输出端口 off (default) | on",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Add enable port",
+   "default": "off",
+   "values": "为模块添加 Enable 输入端口 off (default) | on",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "External reset",
+   "default": "None",
+   "values": "指定外部复位的触发方式 None (default) | Rising | Falling | Either | Level | Level hold",
+   "group": "Algorithm and Block Options"
+  }
+ ]
+}

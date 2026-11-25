@@ -1,0 +1,13 @@
+{
+ "key": "Conductive Heat Transfer",
+ "title": "Conductive Heat Transfer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Conductive_Heat_Transfer.md"
+ ],
+ "text": "Heat transfer by conduction.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

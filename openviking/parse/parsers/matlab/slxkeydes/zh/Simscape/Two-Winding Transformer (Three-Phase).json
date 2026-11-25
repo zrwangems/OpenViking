@@ -1,0 +1,13 @@
+{
+ "key": "Two-Winding Transformer (Three-Phase)",
+ "title": "Two-Winding Transformer (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Two_Winding_Transformer_Three_Phase.md"
+ ],
+ "text": "具有饱和能力、可配置为星形和三角形的三相线性非理想双绕组变压器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

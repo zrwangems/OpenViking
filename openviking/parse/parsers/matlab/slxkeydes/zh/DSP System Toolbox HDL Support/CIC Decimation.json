@@ -1,0 +1,98 @@
+{
+ "key": "CIC Decimation",
+ "title": "CIC Decimation",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Filtering/CIC_Decimation.md",
+  "DSP System Toolbox/Filtering/Multirate Filters/CIC_Decimation.md"
+ ],
+ "text": "使用级联积分梳状滤波器对信号进行抽取，输入 1 路、输出 1 路、无直接馈通；按 {Data type specification mode} 指定滤波器节和输出的字长和小数长度 Full；{Coefficient source} 指定滤波器信息的来源、{Decimation factor (R)} 指定抽取因子、{Differential Delay (M)} 指定差分延迟、{Number of sections (N)} 指定滤波器节数、{Section word lengths} 指定滤波器节的字长、{Section fraction lengths} 指定滤波器节的小数长度、{Output word length} 指定滤波器输出的字长、{Output fraction length} 指定滤波器输出的小数长度、{Rate options} 指定速率处理规则 Enforce single-rate、{Filter object} 指定多速率滤波器对象 dsp.CICDecimator、{View Filter Response} 指定查看滤波器响应 gui，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "CIC 抽取输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "滤波器信息的来源 Dialog parameters (default) | Filter object",
+   "group": ""
+  },
+  {
+   "name": "Decimation factor (R)",
+   "default": "2",
+   "values": "抽取因子 2 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Differential Delay (M)",
+   "default": "1",
+   "values": "差分延迟 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of sections (N)",
+   "default": "2",
+   "values": "滤波器节数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Data type specification mode",
+   "default": "precision",
+   "values": "指定滤波器节和输出的字长和小数长度 Full precision (default) | Minimum section word lengths | Specify word lengths | Binary point scaling",
+   "group": ""
+  },
+  {
+   "name": "Section word lengths",
+   "default": "]",
+   "values": "滤波器节的字长 [ 16 16 16 16 ] (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Section fraction lengths",
+   "default": "0",
+   "values": "滤波器节的小数长度 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output word length",
+   "default": "32",
+   "values": "滤波器输出的字长 32 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output fraction length",
+   "default": "0",
+   "values": "滤波器输出的小数长度 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "速率处理规则 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Filter object",
+   "default": "",
+   "values": "多速率滤波器对象 dsp.CICDecimator",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 gui button",
+   "group": ""
+  }
+ ]
+}

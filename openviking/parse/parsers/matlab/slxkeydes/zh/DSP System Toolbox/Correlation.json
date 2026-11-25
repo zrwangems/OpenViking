@@ -1,0 +1,84 @@
+{
+ "key": "Correlation",
+ "title": "Correlation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Correlation.md"
+ ],
+ "text": "两个输入的互相关，输入 2 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入运算的方法；{Computation domain} 指定模块计算互相关的域、{Saturate on integer overflow} 指定溢出操作的方法、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Output} 输出数据类型、{Output Minimum} 指定模块可输出的最小值、{Output Maximum} 指定模块可输出的最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个数据输入信号 vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个数据输入信号 vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "互相关输出 vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Computation domain",
+   "default": "Time",
+   "values": "模块计算互相关的域 Time (default) | Frequency | Fastest",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "输出数据类型 Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "模块可输出的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "模块可输出的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

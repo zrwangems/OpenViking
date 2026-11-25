@@ -1,0 +1,127 @@
+{
+ "key": "CFunction",
+ "title": "C Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/C_Function.md"
+ ],
+ "text": "从 Simulink 模型中集成并调用外部 C/C++ 代码，输入 1 路、输出 1 路、无直接馈通；按 {Sample time} 指定采样周期；{Configure custom code settings} 用于指定自定义代码位置的选项、{Port and Parameter Symbols} 指定符号和符号属性 table、{Block specified custom code supports multiple instances} 用于在多个 C Function、{Output} 输出代码 no default、{Start} 指定初始化代码 no default、{Initialize Conditions} 指定重新初始化代码 no default、{Terminate} 指定终止代码 no default、{Headers} 指定本地指定自定义代码的头文件 no default、{Sources} 指定本地指定自定义代码的源文件 no default、{Libraries} 指定本地指定静态库或共享库的列表 no default、{Search Directories} 指定本地指定包含自定义代码头文件和源文件的目录 no、{Defines} 指定本地指定要添加到编译器命令行的预处理器宏定义 no、{Compiler Flags} 指定本地指定要添加到编译器命令行的附加标志 no、{Linker Flags} 指定本地指定要添加到链接器命令行的附加标志 no、{Use same code as simulation} 用于选择对仿真和代码生成使用相同代码还是不同代码的选、{Generate code as - is (optimizations off)} 允许对代码生成代码进行解析，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入端口 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出端口 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Configure custom code settings",
+   "default": "",
+   "values": "用于指定自定义代码位置的选项 button",
+   "group": ""
+  },
+  {
+   "name": "Port and Parameter Symbols",
+   "default": "",
+   "values": "符号和符号属性 table",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样周期 -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Block specified custom code supports multiple instances",
+   "default": "off",
+   "values": "用于在多个 C Function 模块中本地指定相同自定义代码的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "",
+   "values": "输出代码 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Start",
+   "default": "",
+   "values": "初始化代码 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Initialize Conditions",
+   "default": "",
+   "values": "重新初始化代码 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Terminate",
+   "default": "",
+   "values": "终止代码 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Headers",
+   "default": "",
+   "values": "本地指定自定义代码的头文件 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Sources",
+   "default": "",
+   "values": "本地指定自定义代码的源文件 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Libraries",
+   "default": "",
+   "values": "本地指定静态库或共享库的列表 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Search Directories",
+   "default": "",
+   "values": "本地指定包含自定义代码头文件和源文件的目录 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Defines",
+   "default": "",
+   "values": "本地指定要添加到编译器命令行的预处理器宏定义 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Compiler Flags",
+   "default": "",
+   "values": "本地指定要添加到编译器命令行的附加标志 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Linker Flags",
+   "default": "",
+   "values": "本地指定要添加到链接器命令行的附加标志 no default",
+   "group": "Simulation"
+  },
+  {
+   "name": "Use same code as simulation",
+   "default": "on",
+   "values": "用于选择对仿真和代码生成使用相同代码还是不同代码的选项 on (default) | off",
+   "group": "Code generation"
+  },
+  {
+   "name": "Generate code as - is (optimizations off)",
+   "default": "on",
+   "values": "允许对代码生成代码进行解析的选项 on (default) | off",
+   "group": "Code generation"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Heat Exchanger Interface (TL)",
+ "title": "Heat Exchanger Interface (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Fundamental Components/Heat_Exchanger_Interface_TL.md"
+ ],
+ "text": "热液体与其周围环境之间的热接口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

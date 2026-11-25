@@ -1,0 +1,13 @@
+{
+ "key": "Flow Resistance (2P)",
+ "title": "Flow Resistance (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Flow_Resistance_2P.md"
+ ],
+ "text": "General resistance in a two-phase fluid branch.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

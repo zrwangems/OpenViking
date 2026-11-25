@@ -1,0 +1,99 @@
+{
+ "key": "codertarget.tic2000.blocks.SPIMasterTransfer",
+ "title": "SPI Controller Transfer",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/C2803x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/C2805x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/C2806x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/C280x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/C281x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/C2833x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/C2834x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F280013x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F280015x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F28002x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F28003x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F28004x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F2807x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F2837xD/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F2837xS/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F28p55x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F28p65x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/SPI_Controller_Transfer.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/SPI_Controller_Transfer.md"
+ ],
+ "text": "向 SPI 外设写入数据和从 SPI 外设读取数据，输入 1 路、输出 1 路；按 {寄存器地址} 指定SPI 寄存器地址；{SPI 模块}、{时钟极性}、{时钟相位}、{启用寄存器地址} 启用 SPI 寄存器地址、{数据位} 指定 SPI 传输中的位数、{片选调用方法} 指定 SPI 外围设备的方法 由、{片选引脚极性} 指定 SPI 外设选择引脚极性、{片选引脚} 指定 SPI 外设选择引脚，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tx",
+   "direction": "input",
+   "summary": "写入 SPI 外围设备 (MOSI) 寄存器的数据 向量"
+  },
+  {
+   "name": "Rx",
+   "direction": "output",
+   "summary": "从 SPI 外围设备 (MISO) 寄存器读取的数据 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "SPI 模块",
+   "default": "SPI_A",
+   "values": "SPI 模块用于写入和读取数据 SPI_A (默认) | SPI_B | SPI_C | SPI_D",
+   "group": "主要"
+  },
+  {
+   "name": "时钟极性",
+   "default": "Rising_edge",
+   "values": "SPI 时钟极性 Rising_edge (默认) | Falling_edge",
+   "group": "主要"
+  },
+  {
+   "name": "时钟相位",
+   "default": "No_delay",
+   "values": "SPI 时钟相位 No_delay (默认) | Delay_half_cycle",
+   "group": "主要"
+  },
+  {
+   "name": "启用寄存器地址",
+   "default": "on",
+   "values": "启用 SPI 寄存器地址 on (默认) | off",
+   "group": "主要"
+  },
+  {
+   "name": "寄存器地址",
+   "default": "0",
+   "values": "SPI 寄存器地址 0 (默认) | 正整数标量 | 正整数向量",
+   "group": "主要"
+  },
+  {
+   "name": "数据位",
+   "default": "8",
+   "values": "SPI 传输中的位数 8 (默认) | [1 16] 范围内的整数",
+   "group": "高级"
+  },
+  {
+   "name": "片选调用方法",
+   "default": "外设提供",
+   "values": "选择 SPI 外围设备的方法 由 SPI 外设提供 (默认) | 显式 GPIO 调用",
+   "group": "高级"
+  },
+  {
+   "name": "片选引脚极性",
+   "default": "低电平有效",
+   "values": "SPI 外设选择引脚极性 低电平有效 (默认) | 高电平有效",
+   "group": "高级"
+  },
+  {
+   "name": "片选引脚",
+   "default": "1",
+   "values": "SPI 外设选择引脚 1 (默认) | 正整数标量",
+   "group": "高级"
+  }
+ ]
+}

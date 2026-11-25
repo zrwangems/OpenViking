@@ -1,0 +1,32 @@
+{
+ "key": "UAV Scenario Get Transform",
+ "title": "UAV Scenario Get Transform",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Get_Transform.md"
+ ],
+ "text": "从 UAV 场景平台获取变换；输出 1 路；按 {Source Frame} 指定源坐标系；{Target Frame} 指定目标坐标系，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "transform",
+   "direction": "output",
+   "summary": "变换矩阵 4-by-4 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source Frame",
+   "default": "’ENU’",
+   "values": "源坐标系 ’ENU’ (default) | ’NED’ | string from UAV Scenario",
+   "group": ""
+  },
+  {
+   "name": "Target Frame",
+   "default": "’NED’",
+   "values": "目标坐标系 ’NED’ (default) | ’ENU’ | string from UAV Scenario",
+   "group": ""
+  }
+ ]
+}

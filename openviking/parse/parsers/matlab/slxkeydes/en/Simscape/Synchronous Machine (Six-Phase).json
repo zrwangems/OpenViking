@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Machine (Six-Phase)",
+ "title": "Synchronous Machine (Six-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Synchronous_Machine_Six_Phase.md"
+ ],
+ "text": "Six-phase synchronous machine.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

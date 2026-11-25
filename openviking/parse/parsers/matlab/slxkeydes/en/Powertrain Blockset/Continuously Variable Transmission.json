@@ -1,0 +1,204 @@
+{
+ "key": "Continuously Variable Transmission",
+ "title": "Continuously Variable Transmission",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Transmission Systems/Continuously_Variable_Transmission.md"
+ ],
+ "text": "Push belt continuously variable transmission with independent radii control, 3 outputs; {Control mode} sets the external or internal Ideal integrated, {Maximum variator primary pulley radius, rp_max} sets the radius .08, {Maximum variator secondary pulley radius, rs_max} sets the radius .07, {Minimum variator primary pulley radius, rp_min} sets the radius .03, {Minimum variator secondary pulley radius, rs_min} sets the radius .03, {Gap distance between variator pulleys, rgap} sets the crown wheel, {Variator wedge angle, thetawedge} sets the crown wheel connection, {Primary pulley inertia, J_pri} sets the inertia, {Secondary pulley inertia, J_sec} sets the inertia, {Primary pulley damping coefficient, b_pri} sets the damping, {Secondary pulley damping coefficient, b_sec} sets the damping, {Belt damping coefficient, b_b} sets the damping, {Static friction coefficient, mu_static} sets the friction, {Kinetic friction coefficient, mu_kin} sets the friction, {Belt mass, m_b} sets the mass, {Pulley clamp force, F_ax}, {Forward inertia, J_fwd} sets the inertia, {Reverse inertia, J_rev} sets the inertia, {Forward efficiency, eta_fwd} sets the efficiency, {Reverse efficiency, eta_rev} sets the efficiency, {Reverse gear ratio, N_rev} sets the ratio, {Shift time constant, tau_s} sets the constant .01, {Output gear ratio, N_o} sets the ratio and {Output gear efficiency, eta_o} sets the efficiency. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Dir",
+   "direction": "unknown",
+   "summary": "Direction request scalar"
+  },
+  {
+   "name": "PllyRatioReq",
+   "direction": "unknown",
+   "summary": "Pulley ratio request scalar"
+  },
+  {
+   "name": "PriDisp",
+   "direction": "unknown",
+   "summary": "Primary pulley displacement scalar"
+  },
+  {
+   "name": "SecDisp",
+   "direction": "unknown",
+   "summary": "Secondary pulley displacement scalar"
+  },
+  {
+   "name": "EngTrq",
+   "direction": "unknown",
+   "summary": "Input drive shaft torque scalar"
+  },
+  {
+   "name": "DiffTrq",
+   "direction": "unknown",
+   "summary": "Output drive shaft torque scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "output",
+   "summary": "Input drive shaft speed scalar"
+  },
+  {
+   "name": "DiffSpd",
+   "direction": "output",
+   "summary": "Output drive shaft speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control mode",
+   "default": "controller",
+   "values": "External or internal Ideal integrated controller (default) | External control",
+   "group": ""
+  },
+  {
+   "name": "Maximum variator primary pulley radius, rp_max",
+   "default": ".08",
+   "values": "Radius .08 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum variator secondary pulley radius, rs_max",
+   "default": ".07",
+   "values": "Radius .07 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum variator primary pulley radius, rp_min",
+   "default": ".03",
+   "values": "Radius .03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum variator secondary pulley radius, rs_min",
+   "default": ".03",
+   "values": "Radius .03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gap distance between variator pulleys, rgap",
+   "default": ".025",
+   "values": "Specify crown wheel connection .025 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Variator wedge angle, thetawedge",
+   "default": "11",
+   "values": "Specify crown wheel connection 11 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Primary pulley inertia, J_pri",
+   "default": "0.1",
+   "values": "Inertia 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Secondary pulley inertia, J_sec",
+   "default": "0.1",
+   "values": "Inertia 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Primary pulley damping coefficient, b_pri",
+   "default": "0.001",
+   "values": "Damping 0.001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Secondary pulley damping coefficient, b_sec",
+   "default": "0.001",
+   "values": "Damping 0.001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Belt damping coefficient, b_b",
+   "default": "0.0025",
+   "values": "Damping 0.0025 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static friction coefficient, mu_static",
+   "default": "0.3",
+   "values": "Friction 0.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Kinetic friction coefficient, mu_kin",
+   "default": "0.2",
+   "values": "Friction 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Belt mass, m_b",
+   "default": "3",
+   "values": "Mass 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pulley clamp force, F_ax",
+   "default": "5000",
+   "values": "Pulley clamp force 5000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Forward inertia, J_fwd",
+   "default": "0.1",
+   "values": "Inertia 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reverse inertia, J_rev",
+   "default": "0.1",
+   "values": "Inertia 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Forward efficiency, eta_fwd",
+   "default": "0.95",
+   "values": "Efficiency 0.95 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reverse efficiency, eta_rev",
+   "default": "0.95",
+   "values": "Efficiency 0.95 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reverse gear ratio, N_rev",
+   "default": "2",
+   "values": "Ratio 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Shift time constant, tau_s",
+   "default": ".01",
+   "values": "Constant .01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output gear ratio, N_o",
+   "default": "2",
+   "values": "Ratio 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output gear efficiency, eta_o",
+   "default": "0.98",
+   "values": "Efficiency 0.98 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

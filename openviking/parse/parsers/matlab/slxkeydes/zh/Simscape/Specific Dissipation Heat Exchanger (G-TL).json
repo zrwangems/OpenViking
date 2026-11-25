@@ -1,0 +1,13 @@
+{
+ "key": "Specific Dissipation Heat Exchanger (G-TL)",
+ "title": "Specific Dissipation Heat Exchanger (G-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid - Gas/Specific_Dissipation_Heat_Exchanger_G_TL.md"
+ ],
+ "text": "基于比耗散数据参数化、适用于气体和热液体流动系统的热交换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

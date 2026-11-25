@@ -1,0 +1,180 @@
+{
+ "key": "MultiPortSwitch",
+ "title": "Multiport Switch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Multiport_Switch.md",
+  "Simulink/Signal Routing/Index_Vector.md",
+  "HDL Coder/Signal Routing/Multiport_Switch.md",
+  "HDL Coder/Signal Routing/Index_Vector.md"
+ ],
+ "text": "Select output signal based on control signal, 5 inputs, 1 output, direct feedthrough, {Mode} sets Select data type mode; {Data port order} sets the type of ordering for data input ports One-based, {Number of data ports} sets the number of data input ports, {Data port indices} sets the array of indices for data ports 1,2,3, {Data port for default case} sets the port to use for out-of-range inputs Last data, {Diagnostic for default case} sets the diagnostic action when control port value does not match data port indices, {Sample time (-1 for inherited)} sets the interval between samples, {Require all data port inputs to have the same data type} requires all inputs to have the same data, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the output data type, {Lock output data type setting against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Allow different data input sizes (Results in variable-size output signal)} allows input signals with different sizes, {Data type override} sets the data type override mode for this signal, {Signedness} sets the signed, {Scaling} sets the method for scaling fixed-point data Best, {Word length} sets the bit size of the word that holds the quantized, {Fraction length} sets the fraction length for fixed-point data type, {Slope} sets the slope for the fixed-point data and {Bias} sets the bias for the fixed-point data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Control signal scalar"
+  },
+  {
+   "name": "1",
+   "direction": "input",
+   "summary": "First data input scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "2",
+   "direction": "input",
+   "summary": "Second data input scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "Nth data input scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "*",
+   "direction": "input",
+   "summary": "Data port for out-of-range inputs scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Selected data input, based on control signal value scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data port order",
+   "default": "",
+   "values": "Type of ordering for data input ports One-based contiguous | Zero-based contiguous | Specify indices",
+   "group": "Main"
+  },
+  {
+   "name": "Number of data ports",
+   "default": "",
+   "values": "Number of data input ports 1 | 3 | integer between 1 and 65535",
+   "group": "Main"
+  },
+  {
+   "name": "Data port indices",
+   "default": "{1,2,3}",
+   "values": "Array of indices for data ports {1,2,3} (default) | array of indices",
+   "group": "Main"
+  },
+  {
+   "name": "Data port for default case",
+   "default": "port",
+   "values": "Port to use for out-of-range inputs Last data port (default) | Additional data port",
+   "group": "Main"
+  },
+  {
+   "name": "Diagnostic for default case",
+   "default": "Error",
+   "values": "Diagnostic action when control port value does not match data port indices Error (default) | Warning | None",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Require all data port inputs to have the same data type",
+   "default": "off",
+   "values": "Require all inputs to have the same data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Specify the output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | Inherit: Same as first data input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | string | Simulink.ImageType(480,640,3) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Allow different data input sizes (Results in variable-size output signal)",
+   "default": "off",
+   "values": "Allow input signals with different sizes off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Select data type mode Inherit (default) | Built in | Fixed Point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Specify signed or unsigned Signed (default) | Unsigned",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Specify bias for the fixed-point data type 0 (default) | real-valued scalar",
+   "group": "Signal Attributes"
+  }
+ ]
+}

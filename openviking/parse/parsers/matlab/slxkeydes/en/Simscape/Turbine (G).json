@@ -1,0 +1,13 @@
+{
+ "key": "Turbine (G)",
+ "title": "Turbine (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Turbomachinery/Turbine_G.md"
+ ],
+ "text": "Gas turbine in a thermodynamic cycle.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

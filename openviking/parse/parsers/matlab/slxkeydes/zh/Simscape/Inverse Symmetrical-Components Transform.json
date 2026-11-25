@@ -1,0 +1,31 @@
+{
+ "key": "Inverse Symmetrical-Components Transform",
+ "title": "Inverse Symmetrical-Components Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Inverse_Symmetrical_Components_Transform.md"
+ ],
+ "text": "实现 +-0 到 abc 变换，输入 1 路、输出 1 路；{Power invariant} 指定变换类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "+-0",
+   "direction": "input",
+   "summary": "平衡的 *a* 相量分量 vector"
+  },
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "*a*、*b* 和 *c* 相量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power invariant",
+   "default": "off",
+   "values": "变换类型 off (default) | on",
+   "group": ""
+  }
+ ]
+}

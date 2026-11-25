@@ -1,0 +1,13 @@
+{
+ "key": "Inductive Rotor Position Sensor",
+ "title": "Inductive Rotor Position Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Inductive_Rotor_Position_Sensor.md"
+ ],
+ "text": "Inductive rotor position sensor with four inductive coils.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

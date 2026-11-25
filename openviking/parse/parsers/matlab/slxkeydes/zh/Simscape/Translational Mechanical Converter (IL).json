@@ -1,0 +1,13 @@
+{
+ "key": "Translational Mechanical Converter (IL)",
+ "title": "Translational Mechanical Converter (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Translational_Mechanical_Converter_IL.md"
+ ],
+ "text": "Interface between isothermal liquid and mechanical translational networks。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

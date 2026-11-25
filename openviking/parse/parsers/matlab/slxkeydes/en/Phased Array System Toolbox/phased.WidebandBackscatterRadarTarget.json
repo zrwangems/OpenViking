@@ -1,0 +1,101 @@
+{
+ "key": "phased.WidebandBackscatterRadarTarget",
+ "title": "Wideband Backscatter Radar Target",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Wideband_Backscatter_Radar_Target.md"
+ ],
+ "text": "Backscatter wideband signals from radar target, 3 inputs, 1 output, {Azimuth angles (deg)} sets Azimuth angles; {Backscatter pattern frequency vector (Hz)} sets the wideband backscatter pattern frequencies, {Elevation angles (deg)} sets the elevation angles, {RCS pattern (m^2)} sets the radar cross-section pattern ones, {Fluctuation model} sets the target fluctuation model, {Propagation speed (m/s)} sets the signal propagation speed physconst, {Operating frequency (Hz)} sets the signal carrier frequency 300.0e6, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate, {Number of subbands} sets the number of processing subbands and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Wideband incident nonpolarized signal N -by- 1 complex-valued vector | N -by- M complex-valued matrix"
+  },
+  {
+   "name": "Ang",
+   "direction": "input",
+   "summary": "Incident signal direction 2-by-1 real-valued column vector | 2-by- M real-valued column matrix"
+  },
+  {
+   "name": "Update",
+   "direction": "input",
+   "summary": "Switch to update RCS false | true"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Narrowband reflected signal 1-by- M complex-valued vector | N -by- M complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Backscatter pattern frequency vector (Hz)",
+   "default": "[0,1e20]",
+   "values": "Wideband backscatter pattern frequencies [0,1e20] (default) | real-valued row vector of positive values in strictly increasing order",
+   "group": ""
+  },
+  {
+   "name": "Azimuth angles (deg)",
+   "default": "[-180:180]",
+   "values": "Azimuth angles [-180:180] (default) | 1-by- P real-valued row vector | P -by-1 real-valued column vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "[-90:90]",
+   "values": "Elevation angles [-90:90] (default) | 1-by- Q real-valued row vector | Q -by-1 real-valued column vector",
+   "group": ""
+  },
+  {
+   "name": "RCS pattern (m^2)",
+   "default": "ones(181,361)",
+   "values": "Radar cross-section pattern ones(181,361) (default) | Q -by- P real-valued matrix | Q -by- P -by- K real-valued array | 1-by- P -by- K real-valued array | K -by- P real-valued matrix",
+   "group": ""
+  },
+  {
+   "name": "Fluctuation model",
+   "default": "Nonfluctuating",
+   "values": "Target fluctuation model Nonfluctuating (default) | Swerling1 | Swerling2 | Swerling3 | Swerling4",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency (Hz)",
+   "default": "300.0e6",
+   "values": "Signal carrier frequency 300.0e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of subbands",
+   "default": "64",
+   "values": "Number of processing subbands 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

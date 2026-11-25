@@ -1,0 +1,62 @@
+{
+ "key": "FromFile",
+ "title": "From File",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/From_File.md"
+ ],
+ "text": "将 MAT 文件中的数据加载到 Simulink 模型中；输出 1 路；按 {文件名} 指定MAT 文件名或 MAT 文件的路径；{输出数据类型} 指定 MAT 文件中数据的数据类型 Inherit、{采样时间} 输出采样周期和可选时间偏移量、{第一个数据点之前的数据外插} 指定在 MAT 文件中第一个数据点之前确定模块输出的方法、{时间范围内的数据插值} 指定插值方法 线性插值、{末尾数据点后的数据外插} 确定 MAT 文件中最后一个数据点之后的模块输出的方法、{启用过零检测}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "使用 MAT 文件数据创建的输出 标量 | 向量 | 矩阵 | 数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "文件名",
+   "default": "untitled.mat",
+   "values": "MAT 文件名或 MAT 文件的路径 untitled.mat (默认) | MAT 文件名 | MAT 文件的路径",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "auto",
+   "values": "MAT 文件中数据的数据类型 Inherit: auto (默认) | double | single | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: | Bus: | <数据类型表达式> |...",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "",
+   "values": "输出采样周期和可选时间偏移量 0 | 标量 | 1 × 2 向量",
+   "group": ""
+  },
+  {
+   "name": "第一个数据点之前的数据外插",
+   "default": "线性外插",
+   "values": "在 MAT 文件中第一个数据点之前确定模块输出的方法 线性外插 (默认) | 保持第一个值 | 接地值",
+   "group": ""
+  },
+  {
+   "name": "时间范围内的数据插值",
+   "default": "线性插值",
+   "values": "插值方法 线性插值 (默认) | 零阶保持",
+   "group": ""
+  },
+  {
+   "name": "末尾数据点后的数据外插",
+   "default": "线性外插",
+   "values": "确定 MAT 文件中最后一个数据点之后的模块输出的方法 线性外插 (默认) | 保留最后一个值 | 接地值",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "off",
+   "values": "用于对此模块启用过零检测的选项 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

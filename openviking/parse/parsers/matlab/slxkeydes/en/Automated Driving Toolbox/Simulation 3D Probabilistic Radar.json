@@ -1,0 +1,212 @@
+{
+ "key": "Simulation 3D Probabilistic Radar",
+ "title": "Simulation 3D Probabilistic Radar",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Probabilistic_Radar.md"
+ ],
+ "text": "Probabilistic radar sensor model in 3D simulation environment, 1 output, {Mounting location} sets Sensor mounting location; {Sensor identifier} sets the unique sensor identifier, {Parent name} sets the name of parent vehicle, {Specify offset} sets the offset from mounting location, {Relative translation [X, Y, Z] (m)} sets the translation offset relative to mounting location, {Relative rotation [Roll, Pitch, Yaw] (deg)} sets the rotational offset relative to mounting location, {Sample time}, {Azimuthal resolution of radar (deg)} sets the azimuth resolution of radar, {Elevation resolution of radar (deg)}, {Range resolution of radar (m)}, {Range rate resolution of radar (m/s)} sets the range rate resolution of the radar, {Fractional azimuthal bias component} sets the azimuth bias fraction, {Fractional elevation bias component} sets the elevation bias fraction, {Fractional range bias component} sets the range bias fraction, {Fractional range rate bias component} sets the range rate bias fraction, {Field of view (deg)} sets the field of view, {Detection ranges (m)} sets the detection range, {Range rates (m/s)} sets the minimum and maximum detection range rates, {Detection probability} sets the probability that radar detects a target, {False alarm rate}, {Detection probability range (m):} sets the reference range for given probability, {Reference radar cross section (dBsm)} sets the reference radar cross section for given probability, {Enable elevation angle measurements} enables radar to measure elevation, {Enable range rate measurements} enables radar to measure range rate, {Enable measurement noise} enables adding noise to radar sensor, {Enable false detections} enables reporting false alarm radar, {Random number generator method} sets the method to set random number generator seed, {Initial seed} sets the random number generator seed, {Maximum reported} sets the maximum number of reported detections, {Coordinate system}, {Specify output bus name} sets the name of output bus and {Output bus name} sets the name of output bus. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "Object detections Simulink bus containing MATLAB ® structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "Name of parent vehicle Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "Specify offset from mounting location off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Azimuthal resolution of radar (deg)",
+   "default": "4",
+   "values": "Azimuth resolution of radar 4 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Elevation resolution of radar (deg)",
+   "default": "5",
+   "values": "Elevation resolution of radar 5 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Range resolution of radar (m)",
+   "default": "2.5",
+   "values": "Range resolution of radar 2.5 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Range rate resolution of radar (m/s)",
+   "default": "0.5",
+   "values": "Range rate resolution of the radar 0.5 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Fractional azimuthal bias component",
+   "default": "0.1",
+   "values": "Azimuth bias fraction 0.1 (default) | nonnegative real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Fractional elevation bias component",
+   "default": "0.1",
+   "values": "Elevation bias fraction 0.1 (default) | nonnegative real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Fractional range bias component",
+   "default": "0.05",
+   "values": "Range bias fraction 0.05 (default) | nonnegative real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Fractional range rate bias component",
+   "default": "0.05",
+   "values": "Range rate bias fraction 0.05 (default) | nonnegative real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Field of view (deg)",
+   "default": "5]",
+   "values": "Field of view [20, 5] (default) | positive real-valued 1-by-2 vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Detection ranges (m)",
+   "default": "150]",
+   "values": "Detection range [1, 150] (default) | positive real-valued 1-by-2 vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Range rates (m/s)",
+   "default": "100]",
+   "values": "Minimum and maximum detection range rates [-100, 100] (default) | real-valued 1-by-2 vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Detection probability",
+   "default": "0.9",
+   "values": "Probability that radar detects a target 0.9 (default) | real scalar in the range (0, 1]",
+   "group": "Parameters"
+  },
+  {
+   "name": "False alarm rate",
+   "default": "1e-6",
+   "values": "False alarm rate 1e-6 (default) | positive real scalar in range [10 –7, 10 –3 ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Detection probability range (m):",
+   "default": "100",
+   "values": "Reference range for given probability of detection 100 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Reference radar cross section (dBsm)",
+   "default": "0",
+   "values": "Reference radar cross section for given probability of detection 0 (default) | real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable elevation angle measurements",
+   "default": "on",
+   "values": "Enable radar to measure elevation on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable range rate measurements",
+   "default": "on",
+   "values": "Enable radar to measure range rate on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable measurement noise",
+   "default": "on",
+   "values": "Enable adding noise to radar sensor measurements on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable false detections",
+   "default": "on",
+   "values": "Enable reporting false alarm radar detections on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Random number generator method",
+   "default": "Repeatable",
+   "values": "Method to set random number generator seed Repeatable (default) | Specify seed | Not repeatable",
+   "group": "Parameters"
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "Random number generator seed 0 (default) | scalar in range [0, 2 32 )",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum reported",
+   "default": "50",
+   "values": "Maximum number of reported detections 50 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Coordinate system",
+   "default": "Cartesian",
+   "values": "Coordinate system of reported detections Ego Cartesian (default) | Sensor Cartesian | Sensor spherical",
+   "group": "Parameters"
+  },
+  {
+   "name": "Specify output bus name",
+   "default": "off",
+   "values": "Specify name of output bus off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output bus name",
+   "default": "BusSimulation3DRadarTruthSensor",
+   "values": "Name of output bus BusSimulation3DRadarTruthSensor (default) | valid bus name",
+   "group": "Parameters"
+  }
+ ]
+}

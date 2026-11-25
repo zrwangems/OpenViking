@@ -1,0 +1,128 @@
+{
+ "key": "Farrow Rate Converter",
+ "title": "Farrow Rate Converter",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Signal Operations/Farrow_Rate_Converter.md"
+ ],
+ "text": "Polynomial sample-rate converter, 4 inputs, 3 outputs, {Rounding mode} sets Rounding mode for type-casting the output; {Rate change source} sets the source of rate, {Rate change (fsin/fsout)} sets the rate change factor, {Coefficients matrix} sets the fIR filter coefficients, {Filter structure} sets the hDL filter architecture Direct form, {Minimum number of cycles between valid input samples} sets the serialization requirement for input timing, {Saturate on integer overflow} sets the overflow handling for type-casting, {Coefficients} sets the data type of filter coefficients, {RateChange} sets the data type of rate change factor fixdt, {Multiplicand} sets the data type of multiplicand, {Output} sets the data type of filter output, {Enable reset input port} sets the option to enable reset input port and {Use HDL global reset} sets the option to connect data path registers to generated HDL global reset. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data real or complex scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "rate",
+   "direction": "input",
+   "summary": "Rate change factor scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clears internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Filtered output data real or complex scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready for new input data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rate change source",
+   "default": "Property",
+   "values": "Source of rate change Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Rate change (fsin/fsout)",
+   "default": "147/160",
+   "values": "Rate change factor 147/160 (default) | positive real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients matrix",
+   "default": "0]",
+   "values": "FIR filter coefficients [-1/6 1/2 -1/3 0;1/2 -1 -1/2 1;-1/2 1/2 1 0;1/6 0 -1/6 0] (default) | matrix of real values",
+   "group": "Main"
+  },
+  {
+   "name": "Filter structure",
+   "default": "systolic",
+   "values": "HDL filter architecture Direct form systolic (default) | Direct form transposed",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum number of cycles between valid input samples",
+   "default": "1",
+   "values": "Serialization requirement for input timing 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for type-casting the output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow handling for type-casting the output off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Data type of filter coefficients Inherit: Same word length as input (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "RateChange",
+   "default": "fixdt(0,16)",
+   "values": "Data type of rate change factor fixdt(0,16) (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Multiplicand",
+   "default": "rule",
+   "values": "Data type of multiplicand Inherit: Inherit via internal rule (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Data type of filter output Inherit: Same as first input (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Option to enable reset input port off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Use HDL global reset",
+   "default": "off",
+   "values": "Option to connect data path registers to generated HDL global reset signal off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

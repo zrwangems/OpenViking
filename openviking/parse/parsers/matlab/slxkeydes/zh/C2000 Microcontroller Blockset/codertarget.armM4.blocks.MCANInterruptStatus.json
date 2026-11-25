@@ -1,0 +1,169 @@
+{
+ "key": "codertarget.armM4.blocks.MCANInterruptStatus",
+ "title": "MCAN Interrupt Status",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F280015x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F28003x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F28p55x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F28p65x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F2838x/M4/MCAN_Interrupt_Status.md"
+ ],
+ "text": "输出 MCAN 中断寄存器的特定位或整个寄存器；输出 30 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "MCAN_IR",
+   "direction": "output",
+   "summary": "MCAN 中断寄存器状态 uint32"
+  },
+  {
+   "name": "TEFN",
+   "direction": "output",
+   "summary": "TX 事件 FIFO 新条目状态 boolean"
+  },
+  {
+   "name": "TEFW",
+   "direction": "output",
+   "summary": "TX 事件 FIFO 水位达到状态 boolean"
+  },
+  {
+   "name": "TEFF",
+   "direction": "output",
+   "summary": "TX 事件 FIFO 已满状态 boolean"
+  },
+  {
+   "name": "TEFL",
+   "direction": "output",
+   "summary": "TX 事件 FIFO 元素丢失状态 boolean"
+  },
+  {
+   "name": "TC",
+   "direction": "output",
+   "summary": "发送完成状态 boolean"
+  },
+  {
+   "name": "TCF",
+   "direction": "output",
+   "summary": "发送取消完成状态 boolean"
+  },
+  {
+   "name": "TFE",
+   "direction": "output",
+   "summary": "发送 FIFO 为空状态 boolean"
+  },
+  {
+   "name": "HPM",
+   "direction": "output",
+   "summary": "高优先级消息状态 boolean"
+  },
+  {
+   "name": "RF0N",
+   "direction": "output",
+   "summary": "RX FIFO 0 新消息状态 boolean"
+  },
+  {
+   "name": "RF0W",
+   "direction": "output",
+   "summary": "RX FIFO 0 水位达到状态 boolean"
+  },
+  {
+   "name": "RF0FL",
+   "direction": "output",
+   "summary": "RX FIFO 0 满状态 boolean"
+  },
+  {
+   "name": "RF0ML",
+   "direction": "output",
+   "summary": "RX FIFO 0 消息丢失状态 boolean"
+  },
+  {
+   "name": "DRX",
+   "direction": "output",
+   "summary": "专用 RX 缓冲区消息状态 boolean"
+  },
+  {
+   "name": "RF1N",
+   "direction": "output",
+   "summary": "RX FIFO 1 新消息状态 boolean"
+  },
+  {
+   "name": "RF1W",
+   "direction": "output",
+   "summary": "RX FIFO 1 水位达到状态 boolean"
+  },
+  {
+   "name": "RF1FL",
+   "direction": "output",
+   "summary": "RX FIFO 1 满状态 boolean"
+  },
+  {
+   "name": "RF1ML",
+   "direction": "output",
+   "summary": "RX FIFO 1 消息丢失状态 boolean"
+  },
+  {
+   "name": "TSW",
+   "direction": "output",
+   "summary": "时间戳回绕状态 boolean"
+  },
+  {
+   "name": "TOO",
+   "direction": "output",
+   "summary": "发生超时状态 boolean"
+  },
+  {
+   "name": "ELO",
+   "direction": "output",
+   "summary": "错误日志记录溢出状态 boolean"
+  },
+  {
+   "name": "EW",
+   "direction": "output",
+   "summary": "错误警告状态 boolean"
+  },
+  {
+   "name": "WD",
+   "direction": "output",
+   "summary": "看门狗事件状态 boolean"
+  },
+  {
+   "name": "PED",
+   "direction": "output",
+   "summary": "数据阶段中的协议错误状态 boolean"
+  },
+  {
+   "name": "MRAF",
+   "direction": "output",
+   "summary": "消息 RAM 访问失败状态 boolean"
+  },
+  {
+   "name": "BEU",
+   "direction": "output",
+   "summary": "位错误未纠正状态 boolean"
+  },
+  {
+   "name": "EP",
+   "direction": "output",
+   "summary": "错误被动状态 boolean"
+  },
+  {
+   "name": "BO",
+   "direction": "output",
+   "summary": "总线关闭状态 boolean"
+  },
+  {
+   "name": "PEA",
+   "direction": "output",
+   "summary": "仲裁协议错误状态 boolean"
+  },
+  {
+   "name": "ARA",
+   "direction": "output",
+   "summary": "保留地址访问状态 boolean"
+  }
+ ],
+ "params": []
+}

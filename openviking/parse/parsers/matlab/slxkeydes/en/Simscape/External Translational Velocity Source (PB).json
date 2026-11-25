@@ -1,0 +1,13 @@
+{
+ "key": "External Translational Velocity Source (PB)",
+ "title": "External Translational Velocity Source (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/External_Translational_Velocity_Source_PB.md"
+ ],
+ "text": "Ideal source of mechanical energy that generates velocity proportional to the input signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

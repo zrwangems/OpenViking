@@ -1,0 +1,32 @@
+{
+ "key": "Gazebo Blank Message",
+ "title": "Gazebo Blank Message",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Blank_Message.md"
+ ],
+ "text": "创建空白 Gazebo 命令；输出 1 路；按 {Message type} 指定消息类型；{Sample time} 指定输入的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "空白消息 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Message type",
+   "default": "ApplyLinkWrench",
+   "values": "消息类型 ApplyLinkWrench (default) | ApplyJointTorque | SetLinkWorldPose | SetLinkLinearVelocity | SetLinkAngularVelocity | SetJointPosition | SetJointVelocity",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "输入的采样时间 0.001 (default) | positive",
+   "group": ""
+  }
+ ]
+}

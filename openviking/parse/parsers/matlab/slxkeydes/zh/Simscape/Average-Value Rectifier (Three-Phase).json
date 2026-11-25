@@ -1,0 +1,13 @@
+{
+ "key": "Average-Value Rectifier (Three-Phase)",
+ "title": "Average-Value Rectifier (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Average_Value_Rectifier_Three_Phase.md"
+ ],
+ "text": "具有固定功率损耗的平均值型三相交流-直流电压转换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

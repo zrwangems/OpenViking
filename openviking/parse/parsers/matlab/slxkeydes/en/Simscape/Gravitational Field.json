@@ -1,0 +1,13 @@
+{
+ "key": "Gravitational Field",
+ "title": "Gravitational Field",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Gravitational_Field.md"
+ ],
+ "text": "Model planar contact between two geometries.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

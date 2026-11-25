@@ -1,0 +1,13 @@
+{
+ "key": "ELLIOT2SIG",
+ "title": "elliot2sig",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/elliot2sig.md"
+ ],
+ "text": "Elliot 2 对称 sigmoid 传递函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

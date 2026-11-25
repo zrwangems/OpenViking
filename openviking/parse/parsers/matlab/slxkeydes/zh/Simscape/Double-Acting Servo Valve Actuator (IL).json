@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Servo Valve Actuator (IL)",
+ "title": "Double-Acting Servo Valve Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Double_Acting_Servo_Valve_Actuator_IL.md"
+ ],
+ "text": "等温液体系统中带弹簧对中滑阀的双作用伺服缸。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

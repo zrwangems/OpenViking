@@ -1,0 +1,37 @@
+{
+ "key": "Joint Space Mass Matrix",
+ "title": "Joint Space Mass Matrix",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Joint_Space_Mass_Matrix.md"
+ ],
+ "text": "Joint-space mass matrix for robot configuration, 1 input, 1 output; {Rigid body tree} sets the robot model and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Robot configuration vector"
+  },
+  {
+   "name": "MassMatrix",
+   "direction": "output",
+   "summary": "Joint-space mass matrix for configuration positive-definite symmetric matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "Robot model twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

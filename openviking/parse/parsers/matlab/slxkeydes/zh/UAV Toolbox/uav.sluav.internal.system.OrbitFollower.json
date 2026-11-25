@@ -1,0 +1,116 @@
+{
+ "key": "uav.sluav.internal.system.OrbitFollower",
+ "title": "Orbit Follower",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Orbit_Follower.md"
+ ],
+ "text": "UAV 关注的轨道位置，输入 6 路、输出 7 路；{UAV type} 指定 UAV 类型、{Minimum orbit radius (m)} 指定最小轨道半径、{Minimum lookahead distance (m)} 指定最小前视距离、{External reset} 指定重置触发源、{Show CrossTrackError output port} 输出横向轨迹误差、{Show NumTurns output port} 输出 UAV 航点状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "当前 UAV 位姿 [x y z course] vector"
+  },
+  {
+   "name": "Center",
+   "direction": "input",
+   "summary": "轨道中心 [x y z] vector"
+  },
+  {
+   "name": "Radius",
+   "direction": "input",
+   "summary": "轨道半径 positive scalar"
+  },
+  {
+   "name": "TurnDirection",
+   "direction": "input",
+   "summary": "轨道方向 scalar"
+  },
+  {
+   "name": "LookaheadDistance",
+   "direction": "input",
+   "summary": "用于跟踪轨道的预瞄距离 positive scalar"
+  },
+  {
+   "name": "ResetNumTurns",
+   "direction": "input",
+   "summary": "圈数计数的复位 numeric signal"
+  },
+  {
+   "name": "LookaheadPoint",
+   "direction": "output",
+   "summary": "路径上的预瞄点 [x y z] position vector"
+  },
+  {
+   "name": "DesiredCourse",
+   "direction": "output",
+   "summary": "期望航向 numeric scalar"
+  },
+  {
+   "name": "DesiredYaw",
+   "direction": "output",
+   "summary": "期望偏航角 numeric scalar"
+  },
+  {
+   "name": "OrbitRadiusFlag",
+   "direction": "output",
+   "summary": "轨道半径标志 0 (default) | 1"
+  },
+  {
+   "name": "LookaheadDistFlag",
+   "direction": "output",
+   "summary": "预瞄距离标志 0 (default) | 1"
+  },
+  {
+   "name": "CrossTrackError",
+   "direction": "output",
+   "summary": "从 UAV 位置到路径的横向轨迹误差 positive numeric scalar"
+  },
+  {
+   "name": "NumTurns",
+   "direction": "output",
+   "summary": "UAV 完成轨道的次数 numeric scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "UAV type",
+   "default": "fixed-wing",
+   "values": "UAV 类型 fixed-wing (default) | multirotor",
+   "group": ""
+  },
+  {
+   "name": "Minimum orbit radius (m)",
+   "default": "1",
+   "values": "最小轨道半径 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum lookahead distance (m)",
+   "default": "0.1",
+   "values": "最小前视距离 0.1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "External reset",
+   "default": "none",
+   "values": "重置触发源 none (default) | rising",
+   "group": ""
+  },
+  {
+   "name": "Show CrossTrackError output port",
+   "default": "off",
+   "values": "输出横向轨迹误差 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show NumTurns output port",
+   "default": "off",
+   "values": "输出 UAV 航点状态 off (default) | on",
+   "group": ""
+  }
+ ]
+}

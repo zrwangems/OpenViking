@@ -1,0 +1,45 @@
+{
+ "key": "From",
+ "title": "From",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/From.md",
+  "HDL Coder/Signal Routing/From.md"
+ ],
+ "text": "Accept input from Goto block, 1 output, no direct feedthrough, {Icon Display} sets Text to display on block icon Tag; {Goto Tag} sets the tag of the Goto block that forwards its signal to this block, {Update Tags} sets the update list of visible and {Goto Source} sets the path to connected Goto block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Signal from connected Goto block scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Goto Tag",
+   "default": "A",
+   "values": "Tag of the Goto block that forwards its signal to this block A (default) | <More Tags...> |...",
+   "group": ""
+  },
+  {
+   "name": "Update Tags",
+   "default": "",
+   "values": "Update list of visible tags button",
+   "group": ""
+  },
+  {
+   "name": "Goto Source",
+   "default": "",
+   "values": "Path to connected Goto block block path",
+   "group": ""
+  },
+  {
+   "name": "Icon Display",
+   "default": "",
+   "values": "Text to display on block icon Tag | Tag and signal name | Signal name",
+   "group": ""
+  }
+ ]
+}

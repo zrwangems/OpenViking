@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Heat Exchanger (TL-G)",
+ "title": "System-Level Heat Exchanger (TL-G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid - Gas/System_Level_Heat_Exchanger_TL_G.md"
+ ],
+ "text": "基于热液体网络与气体网络之间性能数据的热交换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

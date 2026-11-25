@@ -1,0 +1,37 @@
+{
+ "key": "FloatExtractBits",
+ "title": "Float Extract Bits",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Float_Extract_Bits.md"
+ ],
+ "text": "从浮点输入采样中提取位，输入 1 路、输出 1 路、直接馈通；按 {Output mode} 指定要输出的数据部分 All；{Bit range ([start end], 0-based relative to LSB)} 指定要返回的位范围，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "包含浮点数据的信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "数据的二进制表示 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output mode",
+   "default": "bits",
+   "values": "要输出的数据部分 All bits (default) | Range of bits | Sign | Mantissa | Exponent",
+   "group": ""
+  },
+  {
+   "name": "Bit range ([start end], 0-based relative to LSB)",
+   "default": "15]",
+   "values": "要返回的位范围 [0 15] (default) | vector",
+   "group": ""
+  }
+ ]
+}

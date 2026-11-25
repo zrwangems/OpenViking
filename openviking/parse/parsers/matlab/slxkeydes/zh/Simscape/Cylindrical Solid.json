@@ -1,0 +1,13 @@
+{
+ "key": "Cylindrical Solid",
+ "title": "Cylindrical Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Cylindrical_Solid.md"
+ ],
+ "text": "具有几何、惯性和颜色的实心圆柱体元件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

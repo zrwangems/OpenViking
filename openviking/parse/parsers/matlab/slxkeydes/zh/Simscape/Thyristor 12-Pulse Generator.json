@@ -1,0 +1,59 @@
+{
+ "key": "Thyristor 12-Pulse Generator",
+ "title": "Thyristor 12-Pulse Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/Thyristor_12_Pulse_Generator.md"
+ ],
+ "text": "在单脉冲模式下生成晶闸管 12 脉冲波形，输入 2 路、输出 2 路；{Pulse ordering} 指定脉冲排序策略 Sequential device、{Delta connection} 指定三角形正弦相位差模型 Leading、{Pulse width (rad)} 指定脉冲宽度 5*pi/6、{Sample time (-1 for inherited)} 指定模块采样时间 1e-5，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "同步角，rad scalar"
+  },
+  {
+   "name": "alpha",
+   "direction": "input",
+   "summary": "触发角，rad scalar"
+  },
+  {
+   "name": "Pdelta",
+   "direction": "output",
+   "summary": "三角形脉冲向量 vector"
+  },
+  {
+   "name": "Pwye",
+   "direction": "output",
+   "summary": "星形脉冲向量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pulse ordering",
+   "default": "order",
+   "values": "脉冲排序策略 Sequential device order (default) | Natural order of commutation",
+   "group": ""
+  },
+  {
+   "name": "Delta connection",
+   "default": "(Delta11)",
+   "values": "三角形正弦相位差模型 Leading (Delta11) (default) | Lagging (Delta1)",
+   "group": ""
+  },
+  {
+   "name": "Pulse width (rad)",
+   "default": "rad",
+   "values": "脉冲宽度 5*pi/6 rad (default) | positive scalar in range [0, pi]",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1e-5",
+   "values": "模块采样时间 1e-5 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

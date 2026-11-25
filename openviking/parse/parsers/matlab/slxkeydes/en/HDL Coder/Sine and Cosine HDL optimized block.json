@@ -1,0 +1,66 @@
+{
+ "key": "Sine and Cosine HDL optimized block",
+ "title": "Cosine HDL Optimized",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Lookup Tables/Cosine_HDL_Optimized.md",
+  "HDL Coder/Lookup Tables/Sine_HDL_Optimized.md"
+ ],
+ "text": "Implement fixed-point sine and cosine wave by using lookup table approach optimized for HDL code generation, 1 input, 3 outputs, {Output formula} sets Select the signal(s) to output cos(2*pi*u); {Number of data points} sets the number of data points to retrieve from the lookup, {Table data type} sets the table data type fixdt, {Data type assistant} selects the mode of data type specification Fixed and {Simulate RAM Delay} sets the insert a unit delay. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal to implement sine or cosine wave real-valued signal"
+  },
+  {
+   "name": "sin(2*pi*u)",
+   "direction": "output",
+   "summary": "Fixed-point sine wave real-valued fixed-point signal"
+  },
+  {
+   "name": "cos(2*pi*u)",
+   "direction": "output",
+   "summary": "Fixed-point cosine wave real-valued fixed-point signal"
+  },
+  {
+   "name": "exp(j*2*pi*u)",
+   "direction": "output",
+   "summary": "Complex exponential complex-valued fixed-point signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output formula",
+   "default": "",
+   "values": "Select the signal(s) to output cos(2*pi*u) | sin(2*pi*u) | exp(j*2*pi*u) | sin(2*pi*u) and cos(2*pi*u)",
+   "group": ""
+  },
+  {
+   "name": "Number of data points",
+   "default": "64",
+   "values": "Specify the number of data points to retrieve from the lookup table 64 (default) | integer, greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Table data type",
+   "default": "fixdt(0,16,15)",
+   "values": "Specify the table data type fixdt(0,16,15) (default) | fixed point expression",
+   "group": ""
+  },
+  {
+   "name": "Data type assistant",
+   "default": "point",
+   "values": "Select the mode of data type specification Fixed point (default) | Expression",
+   "group": ""
+  },
+  {
+   "name": "Simulate RAM Delay",
+   "default": "off",
+   "values": "Insert a unit delay off (default) | on",
+   "group": ""
+  }
+ ]
+}

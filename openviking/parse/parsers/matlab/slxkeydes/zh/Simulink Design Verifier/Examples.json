@@ -1,0 +1,14 @@
+{
+ "key": "Examples",
+ "title": "Examples",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_block",
+ "source_docs": [
+  "Simulink Design Verifier/Examples.md",
+  "SoC Blockset/Examples.md"
+ ],
+ "text": "示例。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

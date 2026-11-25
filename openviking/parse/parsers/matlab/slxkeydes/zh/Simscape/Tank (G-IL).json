@@ -1,0 +1,13 @@
+{
+ "key": "Tank (G-IL)",
+ "title": "Tank (G-IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Tanks & Accumulators/Tank_G_IL.md"
+ ],
+ "text": "具有可变气体体积和等温液体体积的加压罐。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

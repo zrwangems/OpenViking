@@ -1,0 +1,38 @@
+{
+ "key": "MultiStateImageBlock",
+ "title": "MultiStateImage",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/MultiStateImage.md"
+ ],
+ "text": "Display image reflecting input value, {Label} sets Block label position; {Connection} sets the signal to connect and display signal connection, {Scale Mode} sets how to scale image Fill with fixed aspect and {States} sets the match values with images to display scalar. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Signal to connect and display signal connection options",
+   "group": ""
+  },
+  {
+   "name": "Scale Mode",
+   "default": "ratio",
+   "values": "Specify how to scale image Fill with fixed aspect ratio (default) | Fixed | Fill",
+   "group": ""
+  },
+  {
+   "name": "States",
+   "default": "",
+   "values": "Match values with images to display scalar and image",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "Block label position Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

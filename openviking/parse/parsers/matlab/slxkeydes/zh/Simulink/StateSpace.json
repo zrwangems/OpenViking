@@ -1,0 +1,79 @@
+{
+ "key": "StateSpace",
+ "title": "State-Space",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/State_Space.md"
+ ],
+ "text": "实现线性状态空间系统，输入 1 路、输出 1 路；按 {A} 指定矩阵系数，A；{B}、{C}、{D}、{初始条件} 指定初始状态向量、{参数可调性} 指定模块参数的可调表示、{允许最初指定为零的 D 矩阵具有非零值} 指定当 D = 0 时允许调整 D 矩阵、{绝对容差}、{状态名称(例如，’position’)} 用于为各状态指定唯一名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出向量 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "A",
+   "default": "1",
+   "values": "矩阵系数，A 1 (默认) | 标量 | 向量 | 矩阵 | 稀疏矩阵",
+   "group": ""
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "矩阵系数，B 1 (默认) | 标量 | 向量 | 矩阵 | 稀疏矩阵",
+   "group": ""
+  },
+  {
+   "name": "C",
+   "default": "1",
+   "values": "矩阵系数 C 1 (默认) | 标量 | 向量 | 矩阵 | 稀疏矩阵",
+   "group": ""
+  },
+  {
+   "name": "D",
+   "default": "1",
+   "values": "矩阵系数 D 1 (默认) | 标量 | 向量 | 矩阵 | 稀疏矩阵",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "初始状态向量 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "参数可调性",
+   "default": "Auto",
+   "values": "选择模块参数的可调表示 Auto (默认) | Optimized | Unconstrained",
+   "group": ""
+  },
+  {
+   "name": "允许最初指定为零的 D 矩阵具有非零值",
+   "default": "off",
+   "values": "当 D = 0 时允许调整 D 矩阵 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "绝对容差",
+   "default": "auto",
+   "values": "用于计算模块状态的绝对容差 auto (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "状态名称(例如，’position’)",
+   "default": "’’",
+   "values": "用于为各状态指定唯一名称的选项 ’’ (默认) | 字符向量 | 字符向量元胞数组 | MATLAB ® 变量 |...",
+   "group": ""
+  }
+ ]
+}

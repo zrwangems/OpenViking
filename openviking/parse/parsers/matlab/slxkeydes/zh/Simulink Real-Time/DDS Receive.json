@@ -1,0 +1,50 @@
+{
+ "key": "DDS Receive",
+ "title": "DDS Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/DDS/DDS_Receive.md"
+ ],
+ "text": "接收 DDS 消息；输出 1 路；按 {Data Dictionary} 指定关联数据字典 string；{Topic} 指定主题名称 string scalar、{Reader XML Path} 指定数据写入器 XML 路径、{Reader QoS} 指定服务质量 string、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DDS Msg",
+   "direction": "output",
+   "summary": "DDS 消息 simulink message of Bus type"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data Dictionary",
+   "default": "",
+   "values": "关联数据字典 string | char",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "选择主题名称 string scalar | char vector",
+   "group": ""
+  },
+  {
+   "name": "Reader XML Path",
+   "default": "string",
+   "values": "数据写入器 XML 路径 string (default)",
+   "group": ""
+  },
+  {
+   "name": "Reader QoS",
+   "default": "string",
+   "values": "服务质量 string (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

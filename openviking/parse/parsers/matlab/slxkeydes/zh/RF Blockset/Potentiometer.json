@@ -1,0 +1,39 @@
+{
+ "key": "Potentiometer",
+ "title": "Potentiometer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/Potentiometer.md",
+  "Simscape/Electrical/Passive/Potentiometer.md"
+ ],
+ "text": "Simulink 受控电位器；按 {Potentiometer type} 指定电位器的曲线类型；{Minimum resistance} 指定电位器的最小输入电阻、{Maximum resistance} 指定电位器的最大输入电阻 1e6、{Percentage of resistance at half wiper} 指定电位器的最大输入电阻 positive scalar，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Minimum resistance",
+   "default": "Ohm",
+   "values": "电位器的最小输入电阻 10 Ohm (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum resistance",
+   "default": "Ohm",
+   "values": "电位器的最大输入电阻 1e6 Ohm (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Potentiometer type",
+   "default": "Linear",
+   "values": "电位器的曲线类型 Linear (default) | Logarithmic | Antilog",
+   "group": ""
+  },
+  {
+   "name": "Percentage of resistance at half wiper",
+   "default": "",
+   "values": "电位器的最大输入电阻 positive scalar",
+   "group": ""
+  }
+ ]
+}

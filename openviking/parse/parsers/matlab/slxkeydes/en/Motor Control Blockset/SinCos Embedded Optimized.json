@@ -1,0 +1,72 @@
+{
+ "key": "SinCos Embedded Optimized",
+ "title": "SinCos Embedded Optimized",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Math Transforms/SinCos_Embedded_Optimized.md"
+ ],
+ "text": "Implement sine and cosine functions, 1 input, 2 outputs, {Theta units} sets Unit of θ e; {Optimize for selected embedded target hardware} sets the optimize block for selected hardware, {Approximation method}, {Number of data points for lookup table} sets the size of lookup table array, {Table data type} sets the data type of lookup table array, {Number of iterations} and {Theta data type} sets the data type of lookup table array fixdt. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "Reference voltage position scalar"
+  },
+  {
+   "name": "sin",
+   "direction": "output",
+   "summary": "Sine voltage waveform scalar"
+  },
+  {
+   "name": "cos",
+   "direction": "output",
+   "summary": "Cosine voltage waveform scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Optimize for selected embedded target hardware",
+   "default": "off",
+   "values": "Optimize block for selected hardware off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Approximation method",
+   "default": "Lookup",
+   "values": "Approximation method for computing sine and cosine signals Lookup (default) | None | CORDIC | TI IQMATH",
+   "group": ""
+  },
+  {
+   "name": "Theta units",
+   "default": "Per-unit",
+   "values": "Unit of θ e Per-unit (default) | Radians | Degrees",
+   "group": ""
+  },
+  {
+   "name": "Number of data points for lookup table",
+   "default": "1024",
+   "values": "Size of lookup table array 1024 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Table data type",
+   "default": "input",
+   "values": "Data type of lookup table array Inherit: Inherit via input (default) | double | single | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "11",
+   "values": "Number of iterations for CORDIC algorithm 11 (default) | positive integer, less than or equal to word length of fixed-point input",
+   "group": ""
+  },
+  {
+   "name": "Theta data type",
+   "default": "fixdt([],16,0)",
+   "values": "Data type of lookup table array fixdt([],16,0) (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

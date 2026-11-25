@@ -1,0 +1,43 @@
+{
+ "key": "Width",
+ "title": "Width",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Width.md"
+ ],
+ "text": "输出输入向量的宽度，输入 1 路、输出 1 路；按 {输出数据类型} 指定输出数据类型；{输出数据类型模式}、{始终使用常量采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入信号的宽度 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出数据类型模式",
+   "default": "选择固有数据类型",
+   "values": "输出数据类型模式 选择固有数据类型 (默认) | 通过反向传播继承 | 所有端口都具有相同数据类型",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "double",
+   "values": "输出数据类型 double (默认) | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  },
+  {
+   "name": "始终使用常量采样时间",
+   "default": "off",
+   "values": "始终使用常量采样时间 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

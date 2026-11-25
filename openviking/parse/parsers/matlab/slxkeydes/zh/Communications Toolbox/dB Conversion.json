@@ -1,0 +1,50 @@
+{
+ "key": "dB Conversion",
+ "title": "dB Conversion",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/dB_Conversion.md",
+  "DSP System Toolbox/Math Functions/Math Operations/dB_Conversion.md"
+ ],
+ "text": "将幅值数据转换为分贝（dB 或 dBm），输入 1 路、输出 1 路、无直接馈通；按 {Load resistance (ohms)} 指定比例因子；{Convert to} 指定要转换的信号、{Input signal} 指定信号类型 Amplitude、{Add eps to input to protect against \"log(0) = -inf\"} 添加 eps，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Convert to",
+   "default": "dB",
+   "values": "要转换的信号 dB (default) | dBm",
+   "group": ""
+  },
+  {
+   "name": "Input signal",
+   "default": "Amplitude",
+   "values": "信号类型 Amplitude (default) | Power",
+   "group": ""
+  },
+  {
+   "name": "Load resistance (ohms)",
+   "default": "1",
+   "values": "比例因子 1 (default) | positive scalar | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Add eps to input to protect against \"log(0) = -inf\"",
+   "default": "off",
+   "values": "添加 eps off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Saturation Properties Sensor (2P)",
+ "title": "Saturation Properties Sensor (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Sensors/Saturation_Properties_Sensor_2P.md"
+ ],
+ "text": "测量两相流体中液相和气相的饱和属性。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

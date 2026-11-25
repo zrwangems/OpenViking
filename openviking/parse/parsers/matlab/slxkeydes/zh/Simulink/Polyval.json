@@ -1,0 +1,31 @@
+{
+ "key": "Polyval",
+ "title": "Polynomial",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Polynomial.md"
+ ],
+ "text": "对输入值执行多项式系数计算，输入 1 路、输出 1 路；{多项式系数} 指定要计算的多项式的系数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 实数标量或向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "计算多项式所得到的值 实数标量或向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "多项式系数",
+   "default": "]",
+   "values": "要计算的多项式的系数 [ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001 ] (默认) | 实数数组",
+   "group": ""
+  }
+ ]
+}

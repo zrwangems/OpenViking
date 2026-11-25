@@ -1,0 +1,37 @@
+{
+ "key": "Joint Space Mass Matrix",
+ "title": "Joint Space Mass Matrix",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Joint_Space_Mass_Matrix.md"
+ ],
+ "text": "机器人构型的关节空间质量矩阵，输入 1 路、输出 1 路；{Rigid body tree} 指定机器人模型 twoJointRigidBodyTre、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "机器人配置 vector"
+  },
+  {
+   "name": "MassMatrix",
+   "direction": "output",
+   "summary": "构型的关节空间质量矩阵 positive-definite symmetric matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "机器人模型 twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

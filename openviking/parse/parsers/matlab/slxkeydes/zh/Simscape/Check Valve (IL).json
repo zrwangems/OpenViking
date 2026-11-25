@@ -1,0 +1,13 @@
+{
+ "key": "Check Valve (IL)",
+ "title": "Check Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Directional Control Valves/Check_Valve_IL.md"
+ ],
+ "text": "等温液体系统中的单向阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

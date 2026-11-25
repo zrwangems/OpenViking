@@ -1,0 +1,13 @@
+{
+ "key": "Variable Mass",
+ "title": "Variable Mass",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Inertias & Loads/Variable_Mass.md"
+ ],
+ "text": "具有角度相关转动惯量的负载。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

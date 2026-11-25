@@ -1,0 +1,74 @@
+{
+ "key": "J1939 Receive",
+ "title": "J1939 Receive",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/J1939 Communication/J1939_Receive.md",
+  "Simulink Real-Time/J1939/J1939_Receive.md"
+ ],
+ "text": "Receive J1939 parameter group messages, 2 outputs, {Destination Address Filter} sets Filter out message based on destination address global and node; {Config name} sets the name of the J1939 network configuration to associate, {Node name} sets the name of the J1939, {Parameter Group} sets the parameter group number, {Signals}, {Source Address Filter} sets the filter messages based on source address Allow, {Sample time} sets the simulation refresh rate and {Output New Message Received status} sets the create a Msg Status output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Data output double"
+  },
+  {
+   "name": "Msg Status",
+   "direction": "output",
+   "summary": "Message received status 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "ConfigX",
+   "values": "Name of the J1939 network configuration to associate ConfigX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Node name",
+   "default": "NodeX",
+   "values": "Name of the J1939 node NodeX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Parameter Group",
+   "default": "",
+   "values": "Parameter group number (PGN) and name from database character vector",
+   "group": ""
+  },
+  {
+   "name": "Signals",
+   "default": "",
+   "values": "Signals defined in the parameter group array of character vectors",
+   "group": ""
+  },
+  {
+   "name": "Source Address Filter",
+   "default": "all",
+   "values": "Filter messages based on source address Allow all (default) | Allow only",
+   "group": ""
+  },
+  {
+   "name": "Destination Address Filter",
+   "default": "specific",
+   "values": "Filter out message based on destination address global and node specific (default) | global only | node specific only",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Simulation refresh rate 0.01 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Output New Message Received status",
+   "default": "0",
+   "values": "Create a Msg Status output 0 (default) | 1",
+   "group": ""
+  }
+ ]
+}

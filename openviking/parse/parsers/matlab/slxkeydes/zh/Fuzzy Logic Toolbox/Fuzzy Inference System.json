@@ -1,0 +1,130 @@
+{
+ "key": "Fuzzy Inference System",
+ "title": "Fuzzy Logic Controller",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Fuzzy_Logic_Controller.md",
+  "Fuzzy Logic Toolbox/Fuzzy_Logic_Controller_with_Ruleviewer.md"
+ ],
+ "text": "评估模糊推理系统，输入 1 路、输出 5 路；按 {Data type} 指定信号数据类型；{FIS name} 指定要评估的模糊推理系统 mamfis object、{Design}、{Number of samples for output discretization} 输出模糊集中的点数、{Implement FIS as lookup table} 指定将 FIS 转换为查找表、{Number of input breakpoints (samples)} 查找表断点数量、{Fuzzified inputs (fi)} 启用 fi 输出端口、{Rule firing strengths (rfs)} 启用 rfs 输出端口、{Rule outputs (ro)} 启用 ro 输出端口、{Aggregated outputs (ao)} 启用 ao 输出端口、{Simulate using} 指定仿真模式 Interpreted、{Out of range input value} 指定输入超出范围时的诊断消息行为、{No rule fired} 指定没有规则触发时的诊断消息行为、{Empty output fuzzy set} 输出模糊集为空时的诊断消息行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "去模糊化输出信号 scalar | vector"
+  },
+  {
+   "name": "fi",
+   "direction": "output",
+   "summary": "模糊化输入值 matrix"
+  },
+  {
+   "name": "rfs",
+   "direction": "output",
+   "summary": "规则触发强度 column vector"
+  },
+  {
+   "name": "ro",
+   "direction": "output",
+   "summary": "规则输出 matrix"
+  },
+  {
+   "name": "ao",
+   "direction": "output",
+   "summary": "聚合输出 matrix | row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "FIS name",
+   "default": "",
+   "values": "要评估的模糊推理系统 mamfis object | sugfis object | mamfistype2 object | sugfistype2 object | FIS file name in quotes | MAT file name in quotes",
+   "group": "General"
+  },
+  {
+   "name": "Design",
+   "default": "",
+   "values": "打开 Fuzzy Logic Designer button",
+   "group": "General"
+  },
+  {
+   "name": "Number of samples for output discretization",
+   "default": "101",
+   "values": "输出模糊集中的点数 101 (default) | integer greater than 1",
+   "group": "General"
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "信号数据类型 double (default) | single | fixed-point | expression",
+   "group": "General"
+  },
+  {
+   "name": "Implement FIS as lookup table",
+   "default": "off",
+   "values": "将 FIS 转换为查找表 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Number of input breakpoints (samples)",
+   "default": "10",
+   "values": "查找表断点数量 10 (default) | positive integer",
+   "group": "General"
+  },
+  {
+   "name": "Fuzzified inputs (fi)",
+   "default": "off",
+   "values": "启用 fi 输出端口 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Rule firing strengths (rfs)",
+   "default": "off",
+   "values": "启用 rfs 输出端口 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Rule outputs (ro)",
+   "default": "off",
+   "values": "启用 ro 输出端口 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Aggregated outputs (ao)",
+   "default": "off",
+   "values": "启用 ao 输出端口 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "仿真模式 Interpreted execution (default) | Code generation",
+   "group": "General"
+  },
+  {
+   "name": "Out of range input value",
+   "default": "warning",
+   "values": "输入超出范围时的诊断消息行为 warning (default) | error | none",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "No rule fired",
+   "default": "warning",
+   "values": "没有规则触发时的诊断消息行为 warning (default) | error | none",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "Empty output fuzzy set",
+   "default": "warning",
+   "values": "输出模糊集为空时的诊断消息行为 warning (default) | error | none",
+   "group": "Diagnostics"
+  }
+ ]
+}

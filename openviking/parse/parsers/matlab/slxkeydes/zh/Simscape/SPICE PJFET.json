@@ -1,0 +1,13 @@
+{
+ "key": "SPICE PJFET",
+ "title": "SPICE PJFET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Semiconductors/SPICE_PJFET.md"
+ ],
+ "text": "SPICE 兼容的 P 沟道 JFET。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

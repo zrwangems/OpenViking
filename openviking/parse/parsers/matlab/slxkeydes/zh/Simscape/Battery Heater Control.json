@@ -1,0 +1,54 @@
+{
+ "key": "Battery Heater Control",
+ "title": "Battery Heater Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Thermal Management/Battery_Heater_Control.md"
+ ],
+ "text": "电池加热器控制算法，输入 2 路、输出 1 路；按 {Algorithm data type} 指定用于选择模块算法数据类型的选项 Inherit:；{Ambient temperature threshold for heater} 指定加热器环境温度阈值、{Switch-on coolant temperature} 指定冷却液开启温度、{Switch-off coolant temperature} 指定冷却液关闭温度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "AmbientTemperature",
+   "direction": "input",
+   "summary": "环境温度 scalar"
+  },
+  {
+   "name": "CoolantTemperature",
+   "direction": "input",
+   "summary": "冷却液温度 scalar"
+  },
+  {
+   "name": "Command",
+   "direction": "output",
+   "summary": "加热器指令 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Ambient temperature threshold for heater",
+   "default": "278.15",
+   "values": "加热器环境温度阈值 278.15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Switch-on coolant temperature",
+   "default": "278.15",
+   "values": "冷却液开启温度 278.15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Switch-off coolant temperature",
+   "default": "290.15",
+   "values": "冷却液关闭温度 290.15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

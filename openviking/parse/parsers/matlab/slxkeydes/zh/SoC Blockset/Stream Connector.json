@@ -1,0 +1,54 @@
+{
+ "key": "Stream Connector",
+ "title": "Stream Connector",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/Stream_Connector.md"
+ ],
+ "text": "连接两个具有数据流接口的 IP，输入 4 路、输出 4 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "输入流数据 scalar"
+  },
+  {
+   "name": "wrValid",
+   "direction": "input",
+   "summary": "有效输入流数据指示 boolean scalar"
+  },
+  {
+   "name": "wrLast",
+   "direction": "input",
+   "summary": "突发中最后一个节拍的指示 boolean scalar"
+  },
+  {
+   "name": "rdReady",
+   "direction": "input",
+   "summary": "来自下游接口的就绪信号 boolean scalar"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "输出流数据 scalar"
+  },
+  {
+   "name": "rdValid",
+   "direction": "output",
+   "summary": "有效输出流数据的指示 boolean scalar"
+  },
+  {
+   "name": "rdLast",
+   "direction": "output",
+   "summary": "指示突发中的最后一个节拍 boolean scalar"
+  },
+  {
+   "name": "wrReady",
+   "direction": "output",
+   "summary": "到上游接口的就绪信号 boolean scalar"
+  }
+ ],
+ "params": []
+}

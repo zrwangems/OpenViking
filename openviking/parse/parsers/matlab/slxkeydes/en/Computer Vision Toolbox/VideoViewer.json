@@ -1,0 +1,95 @@
+{
+ "key": "VideoViewer",
+ "title": "Video Viewer",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Video_Viewer.md"
+ ],
+ "text": "Display images or video frames, 4 inputs, no direct feedthrough, {Colormap} sets colormap; {Open at Start of Simulation} sets the open video viewer window at start, {Separate Color Signals} enables separate R, G, and B color channels, {One Multi-Dimensional Signal} enables one multi-dimensional signal, {Display the full path} displays full path of source data in the title, {Open new Image Viewer window for each export}, {Specify range of displayed pixel values [-Inf to Inf]} sets the range of intensity value to display, {Min}, {Max} and {Drop Frames to Improve Performance} sets the drop frame rate of input video signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input image or video matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Red color component of image or video matrix | array"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Green color component of image or video matrix | array"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Blue color component of image or video matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Open at Start of Simulation",
+   "default": "on",
+   "values": "Open video viewer window at start of simulation on (default) | off",
+   "group": "File"
+  },
+  {
+   "name": "Separate Color Signals",
+   "default": "off",
+   "values": "Enable separate R, G, and B color channels as input off (default) | on",
+   "group": "File"
+  },
+  {
+   "name": "One Multi-Dimensional Signal",
+   "default": "on",
+   "values": "Enable one multi-dimensional signal as input on (default) | off",
+   "group": "File"
+  },
+  {
+   "name": "Display the full path",
+   "default": "off",
+   "values": "Display full path of source data in the title bar off (default) | on",
+   "group": "File > Configuration > Edit > Core"
+  },
+  {
+   "name": "Open new Image Viewer window for each export",
+   "default": "on",
+   "values": "Open new Image Viewer window for each exported video frame on (default) | off",
+   "group": "File > Configuration > Edit > Tools"
+  },
+  {
+   "name": "Colormap",
+   "default": "gray(256)",
+   "values": "Set colormap gray(256) (default) | parula(256) | jet(256) | hot(256) | bone(256) | cool(256) | copper(256)",
+   "group": "Tools > Colormap"
+  },
+  {
+   "name": "Specify range of displayed pixel values [-Inf to Inf]",
+   "default": "off",
+   "values": "Specify range of intensity value to display off (default) | on",
+   "group": "Tools > Colormap"
+  },
+  {
+   "name": "Min",
+   "default": "0",
+   "values": "Minimum intensity value 0 (default) | numeric scalar",
+   "group": "Tools > Colormap"
+  },
+  {
+   "name": "Max",
+   "default": "255",
+   "values": "Maximum intensity value 255 (default) | numeric scalar",
+   "group": "Tools > Colormap"
+  },
+  {
+   "name": "Drop Frames to Improve Performance",
+   "default": "on",
+   "values": "Drop frame rate of input video signal on (default) | off",
+   "group": "Simulation"
+  }
+ ]
+}

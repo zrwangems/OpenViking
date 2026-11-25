@@ -1,0 +1,95 @@
+{
+ "key": "DC Voltage Controller",
+ "title": "DC Voltage Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Machine Control/DC_Voltage_Controller.md"
+ ],
+ "text": "Discrete-time DC voltage PI control with feedforward zero cancellation and integral anti-windup, 3 inputs, 1 output; {Proportional gain}, {Integral gain}, {Anti-windup gain}, {Control action upper limit} sets the upper limit for the control signal, control, {Control action lower limit} sets the lower limit for the control signal, control, {Sample time (-1 for inherited)} sets the block sample time, {Discretization sample time} sets the sample time for discretization, {Time constant voltage filter} sets the dC voltage filter time constant, τ, {Enable zero cancellation} sets the feedforward zero cancellation and {Filter DC voltage} sets the dC voltage filter. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vRef",
+   "direction": "input",
+   "summary": "Reference DC voltage scalar"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "Measured DC voltage scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset scalar"
+  },
+  {
+   "name": "Control",
+   "direction": "output",
+   "summary": "Control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "0.1",
+   "values": "Proportional gain, K p 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "50",
+   "values": "Integral gain, K i 50 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "Anti-windup gain, K aw 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "1",
+   "values": "Upper limit for the control signal, control max 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "0",
+   "values": "Lower limit for the control signal, control min 0 (default) | non-negative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "Sample time for discretization 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time constant voltage filter",
+   "default": "0.001",
+   "values": "DC voltage filter time constant, τ 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "Feedforward zero cancellation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter DC voltage",
+   "default": "on",
+   "values": "DC voltage filter option on (default) | off",
+   "group": ""
+  }
+ ]
+}

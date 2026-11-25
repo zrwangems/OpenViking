@@ -1,0 +1,276 @@
+{
+ "key": "CubeSat Vehicle",
+ "title": "CubeSat Vehicle (Custom Pointing)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Spacecraft/CubeSat Vehicles/CubeSat_Vehicle_Custom_Pointing.md",
+  "Aerospace Blockset/Spacecraft/CubeSat Vehicles/CubeSat_Vehicle_Nadir_Pointing.md",
+  "Aerospace Blockset/Spacecraft/CubeSat Vehicles/CubeSat_Vehicle_Sun_Tracking.md"
+ ],
+ "text": "Model CubeSat vehicle whose primary alignment vector points towards center of Earth, {Camera field-of-view (FOV) half angle (deg)} sets Half angle of field of view, and so does the port count; {Start date [Julian date]} sets the initial start date of simulation, {Input method} sets the initial vehicle Keplerian, {Epoch of ECI frame [Julian date]}, {Semi-major axis [m]} sets the cubeSat semi-major axis, {Eccentricity} sets the orbital eccentricity, {Inclination [deg]} sets the tilt angle of CubeSat orbital plane, {Right ascension of the ascending node [deg]} sets the angular distance in equatorial plane, {Argument of periapsis [deg]} sets the angle from CubeSat body ascending node, {True anomaly [deg]} sets the angle between periapsis and current position, {True longitude [deg] (circular equatorial)} sets the angle between x -axis of periapsis and position of CubeSat, {Argument of latitude [deg] (circular inclined)} sets the angle between ascending node and satellite position, {Longitude of periapsis [deg] (elliptical equatorial)} sets the angle between x -axis of periapsis and eccentricity, {ECI position vector [m]} sets the cartesian position, {ECI velocity vector [m/s]} sets the cartesian, {ECEF position vector [m]} sets the cartesian position, {ECEF velocity vector [m/s]} sets the cartesian, {Geodetic latitude, longitude, altitude [deg, deg, m]} sets the geodetic latitude and longitude, and altitude, {NED velocity vector [m/s]} sets the body velocity, {Initial Euler angles (roll, pitch, yaw) [deg]} sets the initial Euler rotation angles, {Initial body angular rates [deg/s]} sets the initial angular rates, {Pointing mode} sets the cubeSat vehicle pointing mode Earth, {Primary alignment vector (Body wrt B CM )} sets the primary alignment vector, {Secondary alignment vector (Body wrt B CM )} sets the secondary alignment vector, {Constraint coordinate system}, {Primary constraint vector (wrt B CM )} sets the primary constraint vector, {Secondary constraint vector (wrt B CM )} sets the secondary constraint vector, {Analysis run time source} sets the source of run time for mission analysis live script, {Run time [sec]} sets the run time for mission analysis live script, {Ground station geodetic latitude, longitude [deg, deg]} sets the ground station location, {Run TOI analysis} enables time of interest mission analysis, {Time of interest [Julian date]} sets the time of interest for mission analysis live script, {Live script file name} sets the file name for mission analysis live script report blank and {Create Live Script Report} sets the analyze mission and create live script report. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A ECEF (m/s 2 )",
+   "direction": "input",
+   "summary": "Vehicle accelerations vector of size 3"
+  },
+  {
+   "name": "1st Alignment Body",
+   "direction": "input",
+   "summary": "Primary alignment vector three-element vector"
+  },
+  {
+   "name": "1st Constraint ECI",
+   "direction": "input",
+   "summary": "Primary constraint vector three-element vector"
+  },
+  {
+   "name": "1st Alignment Body",
+   "direction": "input",
+   "summary": "Primary alignment vector three-element vector"
+  },
+  {
+   "name": "1st Constraint ECI",
+   "direction": "input",
+   "summary": "Primary constraint vector three-element vector"
+  },
+  {
+   "name": "2nd Alignment Body",
+   "direction": "input",
+   "summary": "Secondary alignment vector three-element vector"
+  },
+  {
+   "name": "2nd Constraint ECI",
+   "direction": "input",
+   "summary": "Secondary constraint vector three-element vector"
+  },
+  {
+   "name": "X ECEF",
+   "direction": "output",
+   "summary": "CubeSat position three-element vector"
+  },
+  {
+   "name": "V ECEF",
+   "direction": "output",
+   "summary": "Velocity components 3-by-1 array"
+  },
+  {
+   "name": "q ECI2Body",
+   "direction": "output",
+   "summary": "Quaternion rotation 4-by-1 array"
+  },
+  {
+   "name": "q ECEF2Body",
+   "direction": "output",
+   "summary": "Quaternion array 4-by-1 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Start date [Julian date]",
+   "default": "2458488",
+   "values": "Initial start date of simulation 2458488 (default) | Julian date",
+   "group": ""
+  },
+  {
+   "name": "Input method",
+   "default": "Elements",
+   "values": "Initial vehicle Keplerian Orbital Elements (default) | ECI Position and Velocity | ECEF Position and Velocity | Geodetic LatLonAlt and Velocity in NED",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Epoch of ECI frame [Julian date]",
+   "default": "2451545",
+   "values": "Epoch of ECI frame 2451545 (default) | Julian date",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Semi-major axis [m]",
+   "default": "6878137",
+   "values": "CubeSat semi-major axis 6878137 (default) | axis in meters",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Eccentricity",
+   "default": "0",
+   "values": "Orbital eccentricity 0 (default) | eccentricity greater than or equal to 0",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Inclination [deg]",
+   "default": "",
+   "values": "Tilt angle of CubeSat orbital plane 0 | degrees between 0 and 180",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Right ascension of the ascending node [deg]",
+   "default": "0",
+   "values": "Angular distance in equatorial plane 0 (default) | degrees between 0 and 360",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Argument of periapsis [deg]",
+   "default": "0",
+   "values": "Angle from CubeSat body ascending node to periapsis 0 (default) | degrees between 0 and 360",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "True anomaly [deg]",
+   "default": "0",
+   "values": "Angle between periapsis and current position of CubeSat 0 (default) | degrees between 0 and 360",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "True longitude [deg] (circular equatorial)",
+   "default": "0",
+   "values": "Angle between x -axis of periapsis and position of CubeSat vector 0 (default) | degrees between 0 and 360",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Argument of latitude [deg] (circular inclined)",
+   "default": "0",
+   "values": "Angle between ascending node and satellite position vector 0 (default) | degrees between 0 and 360",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Longitude of periapsis [deg] (elliptical equatorial)",
+   "default": "0",
+   "values": "Angle between x -axis of periapsis and eccentricity vector 0 (default) | degrees between 0 and 360",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "ECI position vector [m]",
+   "default": "0]",
+   "values": "Cartesian position vector [0 0 0] (default) | vector",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "ECI velocity vector [m/s]",
+   "default": "0]",
+   "values": "Cartesian velocity vector [0 0 0] (default) | velocity vector",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "ECEF position vector [m]",
+   "default": "0]",
+   "values": "Cartesian position vector [0 0 0] (default) | vector",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "ECEF velocity vector [m/s]",
+   "default": "0]",
+   "values": "Cartesian velocity vector [0 0 0] (default) | velocity vector",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Geodetic latitude, longitude, altitude [deg, deg, m]",
+   "default": "0]",
+   "values": "Geodetic latitude and longitude, and altitude [0 0 0] (default) | velocity vector",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "NED velocity vector [m/s]",
+   "default": "0]",
+   "values": "Body velocity [0 0 0] (default) | velocity vector",
+   "group": "CubeSat Orbit"
+  },
+  {
+   "name": "Initial Euler angles (roll, pitch, yaw) [deg]",
+   "default": "0]",
+   "values": "Initial Euler rotation angles [0 0 0] (default) | vector | degrees",
+   "group": "CubeSat Attitude"
+  },
+  {
+   "name": "Initial body angular rates [deg/s]",
+   "default": "-0.05168]",
+   "values": "Initial angular rates [0 0 -0.05168] (default) | vector",
+   "group": "CubeSat Attitude"
+  },
+  {
+   "name": "Pointing mode",
+   "default": "Pointing",
+   "values": "CubeSat vehicle pointing mode Earth (Nadir) Pointing (default) | Sun Tracking | Custom Pointing | Standby (Off)",
+   "group": "CubeSat Attitude"
+  },
+  {
+   "name": "Primary alignment vector (Body wrt B CM )",
+   "default": "Dialog",
+   "values": "Primary alignment vector Dialog (default) | Input port",
+   "group": "CubeSat Attitude"
+  },
+  {
+   "name": "Secondary alignment vector (Body wrt B CM )",
+   "default": "Dialog",
+   "values": "Secondary alignment vector Dialog (default) | Input port",
+   "group": "CubeSat Attitude"
+  },
+  {
+   "name": "Constraint coordinate system",
+   "default": "Axes",
+   "values": "Constraint coordinate system ECI Axes (default) | ECEF Axes | NED Axes | Body-Fixed Axes",
+   "group": "CubeSat Attitude"
+  },
+  {
+   "name": "Primary constraint vector (wrt B CM )",
+   "default": "Dialog",
+   "values": "Primary constraint vector Dialog (default) | Input port",
+   "group": "CubeSat Attitude"
+  },
+  {
+   "name": "Secondary constraint vector (wrt B CM )",
+   "default": "Dialog",
+   "values": "Secondary constraint vector Dialog (default) | Input port",
+   "group": "CubeSat Attitude"
+  },
+  {
+   "name": "Analysis run time source",
+   "default": "Dialog",
+   "values": "Source of run time for mission analysis live script Dialog (default) | Model Stop Time",
+   "group": "Mission Analysis"
+  },
+  {
+   "name": "Run time [sec]",
+   "default": "6*60*60",
+   "values": "Run time for mission analysis live script 6*60*60 (default) | scalar",
+   "group": "Mission Analysis"
+  },
+  {
+   "name": "Ground station geodetic latitude, longitude [deg, deg]",
+   "default": "-71]",
+   "values": "Ground station location [42, -71] (default) | vector",
+   "group": "Mission Analysis"
+  },
+  {
+   "name": "Run TOI analysis",
+   "default": "on",
+   "values": "Enable time of interest mission analysis on (default) | off",
+   "group": "Mission Analysis"
+  },
+  {
+   "name": "Time of interest [Julian date]",
+   "default": "[]",
+   "values": "Time of interest for mission analysis live script [] (default) | Julian date",
+   "group": "Mission Analysis"
+  },
+  {
+   "name": "Camera field-of-view (FOV) half angle (deg)",
+   "default": "55",
+   "values": "Half angle of field of view 55 (default) | [] | scalar",
+   "group": "Mission Analysis"
+  },
+  {
+   "name": "Live script file name",
+   "default": "entry",
+   "values": "File name for mission analysis live script report blank entry (default) | live script file name",
+   "group": "Mission Analysis"
+  },
+  {
+   "name": "Create Live Script Report",
+   "default": "",
+   "values": "Analyze mission and create live script report button",
+   "group": "Mission Analysis"
+  }
+ ]
+}

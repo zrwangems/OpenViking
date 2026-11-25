@@ -1,0 +1,113 @@
+{
+ "key": "Simulink Desktop Real-Time Stream Output",
+ "title": "Stream Output",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Stream_Output.md"
+ ],
+ "text": "将格式化的 ASCII 数据写入通信通道，输入 1 路、输出 3 路；{Install new board} 指定注册板卡 < no board、{Delete current board} 指定删除当前板卡、{Board setup} 指定板卡、{Sample time} 指定模块的采样时间、{Maximum missed ticks} 指定模型可以落后内核的定时器节拍数、{Show “Missed Ticks” port} 指定将错过的节拍数发送到 Missed Ticks 端口、{Yield CPU when waiting} 指定内核等待硬件时让出 CPU、{Input port sizes} 指定端口的数量和宽度、{Format string} 指定要写入流的数据项的格式、{Show “Data Ready” port} 添加端口 Data Ready、{Show “Data Error” port} 添加端口 Data Error，在发生错误时信号为、{Initial string} 指定仿真开始时发送的数据 character、{Final string} 指定仿真结束时发送的数据 character，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input Data",
+   "direction": "input",
+   "summary": "要写入通信通道的数据 numeric vector | string"
+  },
+  {
+   "name": "Data Ready",
+   "direction": "output",
+   "summary": "数据就绪端口（可选） 1 | 0"
+  },
+  {
+   "name": "Data Error",
+   "direction": "output",
+   "summary": "数据错误端口（可选） 1 | 0"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "错过的节拍计数（可选） double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "注册板卡 < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "删除当前板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "设置板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "模块的采样时间 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "模型可以落后内核的定时器节拍数 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "将错过的节拍数发送到 Missed Ticks 端口 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "内核等待硬件时让出 CPU ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Input port sizes",
+   "default": "1",
+   "values": "指定端口的数量和宽度 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Format string",
+   "default": "’%g’",
+   "values": "要写入流的数据项的格式 ’%g’ (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Ready” port",
+   "default": "’off’",
+   "values": "添加端口 Data Ready，在模块可以接受新数据时信号为 1 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Error” port",
+   "default": "’off’",
+   "values": "添加端口 Data Error，在发生错误时信号为 1 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Initial string",
+   "default": "",
+   "values": "仿真开始时发送的数据 character vector",
+   "group": ""
+  },
+  {
+   "name": "Final string",
+   "default": "",
+   "values": "仿真结束时发送的数据 character vector",
+   "group": ""
+  }
+ ]
+}

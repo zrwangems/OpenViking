@@ -1,0 +1,130 @@
+{
+ "key": "Inverse Kinematics",
+ "title": "Inverse Kinematics",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Inverse_Kinematics.md"
+ ],
+ "text": "Compute joint configurations to achieve an end-effector pose, 3 inputs, 2 outputs, {End effector} sets End-effector name ’tool’; {Rigid body tree}, {Show solution diagnostic outputs} enables info port, {Solver} sets the algorithm for solving inverse kinematics BFGS Gradient, {Enforce joint limits} sets the enforce rigid body tree joint limits, {Maximum iterations} sets the maximum number of iterations, {Maximum time} sets the maximum number of seconds, {Gradient tolerance} sets the threshold on gradient of cost function, {Solution tolerance} sets the threshold on pose, {Step tolerance} sets the minimum step size 1e-14, {Error change tolerance} sets the threshold on change in pose, {Use error damping} enables error damping, {Damping bias} sets the damping on cost function, {Constraint tolerance} sets the threshold of the constraint violations and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "End-effector pose 4-by-4 homogeneous transform"
+  },
+  {
+   "name": "Weights",
+   "direction": "input",
+   "summary": "Weights for pose tolerances six-element vector"
+  },
+  {
+   "name": "InitialGuess",
+   "direction": "input",
+   "summary": "Initial guess of robot configuration vector"
+  },
+  {
+   "name": "Config",
+   "direction": "output",
+   "summary": "Robot configuration solution vector"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Solution information bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "Rigid body tree model twoJointRigidBodyTree (default) | rigidBodyTree object",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "End effector",
+   "default": "",
+   "values": "End-effector name ’tool’ | Select body",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "Show solution diagnostic outputs",
+   "default": "on",
+   "values": "Enable info port on (default) | off",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "Solver",
+   "default": "Projection",
+   "values": "Algorithm for solving inverse kinematics BFGS Gradient Projection (default) | Levenberg-Marquardt | fminconsqp",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Enforce joint limits",
+   "default": "on",
+   "values": "Enforce rigid body tree joint limits on (default) | off",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Maximum iterations",
+   "default": "1500",
+   "values": "Maximum number of iterations 1500 (default) | positive integer",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Maximum time",
+   "default": "10",
+   "values": "Maximum number of seconds 10 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Gradient tolerance",
+   "default": "1e-7",
+   "values": "Threshold on gradient of cost function 1e-7 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Solution tolerance",
+   "default": "1e-6",
+   "values": "Threshold on pose error 1e-6 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Step tolerance",
+   "default": "1e-14",
+   "values": "Minimum step size 1e-14 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Error change tolerance",
+   "default": "1e-12",
+   "values": "Threshold on change in pose error 1e-12 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Use error damping",
+   "default": "on",
+   "values": "Enable error damping on (default) | off",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Damping bias",
+   "default": "0.0025",
+   "values": "Damping on cost function 0.0025 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Constraint tolerance",
+   "default": "1e-6",
+   "values": "Threshold of the constraint violations 1e-6 (default) | nonnegative numeric scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Solver Parameters"
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "key": "PWM Gate Signal Generator (three-phase, three-level)",
+ "title": "PWM Gate Signal Generator (Three-phase, Three-level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Gate_Signal_Generator_Three_phase_Three_level.md"
+ ],
+ "text": "Generate twelve switch-controlling pulses for three-phase, three-level gating switching devices, 3 inputs, 1 output, {Sampling mode} sets Wave-sampling method; {Switching frequency (Hz)} sets the switching rate 1e3 and {Sample time (s)} sets the block sample time 5e-5. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TgabcON",
+   "direction": "input",
+   "summary": "Switch-on gating time vector"
+  },
+  {
+   "name": "TgabcOFF",
+   "direction": "input",
+   "summary": "Switch-off gating time vector"
+  },
+  {
+   "name": "SmallHexNum",
+   "direction": "input",
+   "summary": "Small hexagon number scalar"
+  },
+  {
+   "name": "g",
+   "direction": "output",
+   "summary": "Gate control vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "Wave-sampling method Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1e3",
+   "values": "Switching rate 1e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "5e-5",
+   "values": "Block sample time 5e-5 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

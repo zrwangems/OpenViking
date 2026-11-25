@@ -1,0 +1,61 @@
+{
+ "key": "ScikitLearnModelPredict",
+ "title": "Scikit-learn Model Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Python Models/Scikit_learn_Model_Predict.md"
+ ],
+ "text": "使用预训练的 Python scikit-learn 模型预测响应，输入 1 路、输出 1 路、直接馈通；{Path to scikit-learn model file} 指定 Python scikit-learn 模型文件的名称或路径、{Sample time (–1 for inherited)} 用于指定采样时间、{Input} 指定输入端口属性 table、{Output} 输出端口属性 table、{Path to Python file defining preprocess()} 指定 Python 预处理函数文件的名称或路径 character、{Path to Python file defining postprocess()} 指定 Python 后处理函数文件的名称或路径 character，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "预测变量数据 numeric matrix"
+  },
+  {
+   "name": "yfit",
+   "direction": "output",
+   "summary": "预测响应 numeric vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Path to scikit-learn model file",
+   "default": "untitled",
+   "values": "Python scikit-learn 模型文件的名称或路径 untitled (default) | character vector",
+   "group": "Specify model file"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "用于指定采样时间的选项 –1 (default) | scalar",
+   "group": "Specify model file"
+  },
+  {
+   "name": "Input",
+   "default": "",
+   "values": "输入端口属性 table",
+   "group": "Input"
+  },
+  {
+   "name": "Output",
+   "default": "",
+   "values": "输出端口属性 table",
+   "group": "Output"
+  },
+  {
+   "name": "Path to Python file defining preprocess()",
+   "default": "",
+   "values": "Python 预处理函数文件的名称或路径 character vector",
+   "group": "Pre/Post-processing"
+  },
+  {
+   "name": "Path to Python file defining postprocess()",
+   "default": "",
+   "values": "Python 后处理函数文件的名称或路径 character vector",
+   "group": "Pre/Post-processing"
+  }
+ ]
+}

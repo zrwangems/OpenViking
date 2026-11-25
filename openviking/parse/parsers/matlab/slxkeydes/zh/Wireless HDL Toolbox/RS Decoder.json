@@ -1,0 +1,103 @@
+{
+ "key": "RS Decoder",
+ "title": "RS Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/RS_Decoder.md"
+ ],
+ "text": "从 RS 码字解码并恢复消息，输入 3 路、输出 5 路；{Codeword length (N)} 指定码字长度、{Message length (K)} 指定消息长度、{Source of primitive polynomial} 指定本原多项式来源、{Primitive polynomial} 指定本原多项式、{Source of B, the starting power for roots of the primitive polynomial} 指定本原多项式根的起始幂来源、{B value} 指定根的起始幂、{Output number of corrected symbol errors} 指定已纠正符号错误数、{Enable erasure input port} 启用擦除输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入码字数据 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "erasure",
+   "direction": "input",
+   "summary": "擦除位置 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "解码后的消息数据 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "err",
+   "direction": "output",
+   "summary": "接收数据损坏指示 scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "模块就绪指示 scalar"
+  },
+  {
+   "name": "numErrors",
+   "direction": "output",
+   "summary": "已纠正错误数 nonnegative scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length (N)",
+   "default": "7",
+   "values": "码字长度 7 (default) | range from 7 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Message length (K)",
+   "default": "3",
+   "values": "消息长度 3 (default) | integer in the range from 3 to ( Codeword length (N) – 2 )",
+   "group": ""
+  },
+  {
+   "name": "Source of primitive polynomial",
+   "default": "Auto",
+   "values": "本原多项式来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "1]",
+   "values": "本原多项式 [1 0 1 1] (default) | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Source of B, the starting power for roots of the primitive polynomial",
+   "default": "Auto",
+   "values": "本原多项式根的起始幂来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "B value",
+   "default": "1",
+   "values": "根的起始幂 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output number of corrected symbol errors",
+   "default": "off",
+   "values": "已纠正符号错误数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable erasure input port",
+   "default": "off",
+   "values": "启用擦除输入端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

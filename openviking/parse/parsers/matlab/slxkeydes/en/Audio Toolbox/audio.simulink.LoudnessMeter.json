@@ -1,0 +1,77 @@
+{
+ "key": "audio.simulink.LoudnessMeter",
+ "title": "Loudness Meter",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Measurements/Loudness_Meter.md"
+ ],
+ "text": "Standard-compliant loudness measurements, 1 input, 3 outputs, no direct feedthrough; {Channel weights} sets the linear weighting applied to each input channel, {Use relative scale for loudness measurements} sets the block to output loudness measurements relative to target, {Target loudness level (LUFS)} sets the reference level for relative loudness measurements, {Output true-peak value} adds output port for true-peak value, {Inherit sample rate from input} sets the source of input sample rate, {Input sample rate (Hz)} sets the sample rate of input and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal matrix | 1-D vector"
+  },
+  {
+   "name": "M",
+   "direction": "output",
+   "summary": "Momentary loudness measurement column vector"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "Short-term loudness measurement column vector"
+  },
+  {
+   "name": "TP",
+   "direction": "output",
+   "summary": "True-peak value real scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Channel weights",
+   "default": "1.41]",
+   "values": "Linear weighting applied to each input channel [1, 1, 1, 1.41, 1.41] (default) | nonnegative row vector",
+   "group": ""
+  },
+  {
+   "name": "Use relative scale for loudness measurements",
+   "default": "off",
+   "values": "Specify block to output loudness measurements relative to target level off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Target loudness level (LUFS)",
+   "default": "–23",
+   "values": "Reference level for relative loudness measurements –23 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output true-peak value",
+   "default": "off",
+   "values": "Add output port for true-peak value off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Specify source of input sample rate on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Specify type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

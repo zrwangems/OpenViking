@@ -1,0 +1,128 @@
+{
+ "key": "Scalar Quantizer Encoder",
+ "title": "Scalar Quantizer Encoder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/Scalar_Quantizer_Encoder.md"
+ ],
+ "text": "Encode each input value by associating it with index value of quantization region, 3 inputs, 4 outputs, no direct feedthrough, {Rounding mode} sets Rounding mode; {Source of quantizer parameters}, {Partitioning}, {Boundary points}, {Searching method}, {Tie-breaking rule} sets the action when input value is same as boundary point Choose the lower, {Output codeword}, {Output quantization error}, {Codebook} sets the quantized output values, {Output clipping status}, {Action for out of range input}, {Index output data type} and {Saturate on integer overflow}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "U",
+   "direction": "input",
+   "summary": "Input data values vector | matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Boundary points vector"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Codebook values vector"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "Index values vector | matrix"
+  },
+  {
+   "name": "Q(U)",
+   "direction": "output",
+   "summary": "Quantized output values vector | matrix"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "Quantization error vector | matrix"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "Clipping status vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of quantizer parameters",
+   "default": "dialog",
+   "values": "Source of quantizer parameters Specify via dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Partitioning",
+   "default": "Bounded",
+   "values": "Partitioning method Bounded (default) | Unbounded",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Boundary points",
+   "default": "[1:10]",
+   "values": "Boundary points [1:10] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Searching method",
+   "default": "Linear",
+   "values": "Searching method Linear (default) | Binary",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Tie-breaking rule",
+   "default": "index",
+   "values": "Action when input value is same as boundary point Choose the lower index (default) | Choose the higher index",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output codeword",
+   "default": "off",
+   "values": "Output codeword off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output quantization error",
+   "default": "off",
+   "values": "Output quantization error off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Codebook",
+   "default": "[1.5:9.5]",
+   "values": "Quantized output values [1.5:9.5] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output clipping status",
+   "default": "off",
+   "values": "Output clipping status off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Action for out of range input",
+   "default": "",
+   "values": "Action for out of range input Clip | Clip and warn | Error",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Index output data type",
+   "default": "int32",
+   "values": "Index output data type int32 (default) | int8 | uint8 | int16 | uint16 | int32 | uint32 | Inherit via back propagation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

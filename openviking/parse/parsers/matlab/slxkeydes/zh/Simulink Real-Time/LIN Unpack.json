@@ -1,0 +1,48 @@
+{
+ "key": "LIN Unpack",
+ "title": "LIN Unpack",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/LIN/LIN_Unpack.md"
+ ],
+ "text": "通过 LIN 描述文件中的配置，从数据帧中解包信号，输入 2 路、输出 1 路；按 {Select Frame} 指定LIN 帧；{LDF File Name} 指定 LDF 文件的路径、{Frame ID} 指定 LIN 帧 ID，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "message_updated",
+   "direction": "input",
+   "summary": "表示消息更新 0（逻辑假） | 1（逻辑真）"
+  },
+  {
+   "name": "Lin_data_8_bytes",
+   "direction": "input",
+   "summary": "输入 LIN 数据进行解包 LIN 数据"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "输出数据 数据"
+  }
+ ],
+ "params": [
+  {
+   "name": "LDF File Name",
+   "default": "空",
+   "values": "LDF 文件的路径 空 (默认) | 字符向量 | 字符串标量",
+   "group": ""
+  },
+  {
+   "name": "Select Frame",
+   "default": "None",
+   "values": "LIN 帧 None (默认) | 字符向量 | 字符串标量",
+   "group": ""
+  },
+  {
+   "name": "Frame ID",
+   "default": "1",
+   "values": "LIN 帧 ID 1 (默认) | uint8",
+   "group": ""
+  }
+ ]
+}

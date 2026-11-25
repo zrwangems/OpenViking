@@ -1,0 +1,13 @@
+{
+ "key": "Elbow (MA)",
+ "title": "Elbow (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/Elbow_MA.md"
+ ],
+ "text": "Pipe turn in an moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

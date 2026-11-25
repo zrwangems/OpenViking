@@ -1,0 +1,13 @@
+{
+ "key": "Air Intake",
+ "title": "Air Intake",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Engine Subcomponents/Air_Intake.md"
+ ],
+ "text": "Combustion cylinder air supply intake.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

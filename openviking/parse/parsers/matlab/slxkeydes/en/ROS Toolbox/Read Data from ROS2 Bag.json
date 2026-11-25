@@ -1,0 +1,37 @@
+{
+ "key": "Read Data from ROS2 Bag",
+ "title": "Read Data",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Read_Data.md"
+ ],
+ "text": "Play back data from ROS 2 log file, 2 outputs, {Topic} sets Topic name to extract from log file string scalar; {Sample time} sets the interval between outputs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "New message indicator logical scalar"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "ROS 2 message nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "Topic name to extract from log file string scalar | character vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Interval between outputs -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

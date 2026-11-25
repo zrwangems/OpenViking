@@ -1,0 +1,13 @@
+{
+ "key": "Translational Velocity Noise Source",
+ "title": "Translational Velocity Noise Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Translational_Velocity_Noise_Source.md"
+ ],
+ "text": "生成零均值正态（高斯）分布的平移速度。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

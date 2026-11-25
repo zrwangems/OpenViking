@@ -1,0 +1,52 @@
+{
+ "key": "CCSDS RS Encoder",
+ "title": "CCSDS RS Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/CCSDS_RS_Encoder.md"
+ ],
+ "text": "Encode message into RS codeword according to CCSDS standard, 2 inputs, 3 outputs; {Message length (k)} sets the length of message and {Interleaving depth (I)} sets the depth of interleaving. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input message symbols integer in the range 0 to 255"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Encoded codeword symbols integer in the range 0 to 255"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Block ready indicator Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Message length (k)",
+   "default": "223",
+   "values": "Length of message 223 (default) | 239",
+   "group": ""
+  },
+  {
+   "name": "Interleaving depth (I)",
+   "default": "1",
+   "values": "Depth of interleaving 1 (default) | 2 | 3 | 4 | 5 | 8",
+   "group": ""
+  }
+ ]
+}

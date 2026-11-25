@@ -1,0 +1,41 @@
+{
+ "key": "Gain Scheduled Lead-Lag",
+ "title": "Gain Scheduled Lead-Lag",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/Gain_Scheduled_Lead_Lag.md"
+ ],
+ "text": "使用增益调度系数实现一阶超前-滞后，输入 3 路、输出 1 路；{Initial state, x_initial} 指定初始内部状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "e",
+   "direction": "input",
+   "summary": "滤波器输入 scalar"
+  },
+  {
+   "name": "a",
+   "direction": "input",
+   "summary": "分子系数 scalar"
+  },
+  {
+   "name": "b",
+   "direction": "input",
+   "summary": "分母系数 positive scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "滤波器输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "初始内部状态 0 (default) | vector",
+   "group": ""
+  }
+ ]
+}

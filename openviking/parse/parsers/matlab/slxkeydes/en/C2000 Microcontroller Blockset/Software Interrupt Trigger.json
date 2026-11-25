@@ -1,0 +1,58 @@
+{
+ "key": "Software Interrupt Trigger",
+ "title": "Software Interrupt Trigger",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2803x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2805x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2806x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C280x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C281x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2833x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2834x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F280013x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F280015x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28002x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28003x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28004x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F2807x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F2837xD/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F2837xS/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28p55x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28p65x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/Software_Interrupt_Trigger.md"
+ ],
+ "text": "Generate software-triggered nonmaskable interrupt, 1 input; {CPU interrupt number}, {PIE interrupt number} and {Trigger software interrupt when input value is greater than} sets the s value above which block posts. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PIEIFRx.INTy",
+   "direction": "input",
+   "summary": "Triggers software interrupt scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CPU interrupt number",
+   "default": "7",
+   "values": "CPU interrupt number corresponding to hardware interrupt 7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PIE interrupt number",
+   "default": "8",
+   "values": "PIE interrupt number corresponding to hardware interrupt 8 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Trigger software interrupt when input value is greater than",
+   "default": "0",
+   "values": "Sets value above which block posts an interrupt 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

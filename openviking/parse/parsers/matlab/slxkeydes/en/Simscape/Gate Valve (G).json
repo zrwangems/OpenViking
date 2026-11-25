@@ -1,0 +1,13 @@
+{
+ "key": "Gate Valve (G)",
+ "title": "Gate Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Flow Control Valves/Gate_Valve_G.md"
+ ],
+ "text": "Gate valve in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,56 @@
+{
+ "key": "Interprocess Data Write",
+ "title": "Interprocess Data Write",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/Interprocess_Data_Write.md",
+  "SoC Blockset/Processor Interconnect/Interprocess_Data_Write.md"
+ ],
+ "text": "Send messages to another processor using interprocessor data write, 1 input, 1 output, {Channels number} sets Select the channel number; {Enable simulation port} enables peripheral simulation port to block, {Circular FIFO depth} sets the number of storage buffers, {Trigger interrupt on receiving core} selects to trigger interrupt and {Participating cores} selects the participating cores of the processor The options vary based on the hardware board you. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Data input vector"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "Output data message scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable simulation port",
+   "default": "on",
+   "values": "Enable peripheral simulation port to block on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Channels number",
+   "default": "0",
+   "values": "Select the channel number 0 (default) | 1 | 2 |...",
+   "group": ""
+  },
+  {
+   "name": "Circular FIFO depth",
+   "default": "1",
+   "values": "Number of storage buffers 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Trigger interrupt on receiving core",
+   "default": "off",
+   "values": "Select to trigger interrupt off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Participating cores",
+   "default": "",
+   "values": "Select the participating cores of the processor The options vary based on the hardware board you select",
+   "group": ""
+  }
+ ]
+}

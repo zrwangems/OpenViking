@@ -1,0 +1,43 @@
+{
+ "key": "Fault Qualification",
+ "title": "Fault Qualification",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Protection/Fault_Qualification.md"
+ ],
+ "text": "故障确认算法，输入 1 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Qualification time (s)} 指定错误确认时间、{Disqualification time (s)} 指定错误取消确认时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Symptom",
+   "direction": "input",
+   "summary": "征兆标志 0 | 1 | vector of 0 or 1 values"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "错误标志 0 | 1 | vector of 0 or 1 values"
+  }
+ ],
+ "params": [
+  {
+   "name": "Qualification time (s)",
+   "default": "2",
+   "values": "错误确认时间 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time (s)",
+   "default": "4",
+   "values": "错误取消确认时间 4 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive integer",
+   "group": ""
+  }
+ ]
+}

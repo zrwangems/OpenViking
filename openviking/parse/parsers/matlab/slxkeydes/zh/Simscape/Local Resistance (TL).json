@@ -1,0 +1,13 @@
+{
+ "key": "Local Resistance (TL)",
+ "title": "Local Resistance (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Local_Resistance_TL.md"
+ ],
+ "text": "热液体网络中的管道阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,39 @@
+{
+ "key": "Hyperbolic Tangent HDL Optimized",
+ "title": "Hyperbolic Tangent HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Math Operations/Hyperbolic_Tangent_HDL_Optimized.md"
+ ],
+ "text": "计算基于 CORDIC 的双曲正切，并生成优化的 HDL 代码，输入 2 路、输出 3 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "以弧度表示的角度 real finite scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入是否有效 Boolean scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "x 的双曲正切 scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据是否有效 Boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "模块是否就绪 Boolean scalar"
+  }
+ ],
+ "params": []
+}

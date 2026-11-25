@@ -1,0 +1,130 @@
+{
+ "key": "dsp.simulink.VariableBandwidthFIRFilter",
+ "title": "Variable Bandwidth FIR Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Variable_Bandwidth_FIR_Filter.md"
+ ],
+ "text": "Design tunable bandwidth FIR filter, 4 inputs, 1 output, {Filter type} sets Filter type; {FIR filter order}, {Specify cutoff frequency from input port}, {Filter cutoff frequency}, {Specify center frequency from input port}, {Filter center frequency}, {Specify bandwidth from input port}, {Filter bandwidth}, {Window function}, {Chebyshev window sidelobe attenuation (dB)}, {Kaiser window parameter}, {Sample rate mode} sets the mode to specify the input sample rate Use normalized, {Input sample rate (Hz)}, {View Filter Response} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Fcut",
+   "direction": "input",
+   "summary": "Filter cutoff frequency positive scalar"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "Filter center frequency positive scalar"
+  },
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "Filter bandwidth positive scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Filtered output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "FIR filter order",
+   "default": "30",
+   "values": "FIR filter order 30 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "Filter type Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": ""
+  },
+  {
+   "name": "Specify cutoff frequency from input port",
+   "default": "off",
+   "values": "Specify cutoff frequency from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter cutoff frequency",
+   "default": "512",
+   "values": "Filter cutoff frequency 512 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "off",
+   "values": "Specify center frequency from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter center frequency",
+   "default": "44100/4",
+   "values": "Filter center frequency 44100/4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify bandwidth from input port",
+   "default": "off",
+   "values": "Specify bandwidth from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter bandwidth",
+   "default": "7680",
+   "values": "Filter bandwidth 7680 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "Window function Hann (default) | Hamming | Chebyshev | Kaiser",
+   "group": ""
+  },
+  {
+   "name": "Chebyshev window sidelobe attenuation (dB)",
+   "default": "60",
+   "values": "Chebyshev window sidelobe attenuation 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Kaiser window parameter",
+   "default": "0.5",
+   "values": "Kaiser window parameter 0.5 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Input sample rate 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View Filter Response button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

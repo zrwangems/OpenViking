@@ -1,0 +1,13 @@
+{
+ "key": "Mu-Law Expander",
+ "title": "Mu-Law Expander",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Mu_Law_Expander.md"
+ ],
+ "text": "Implement µ-law expander for source coding.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,62 @@
+{
+ "key": "Random Integer Generator",
+ "title": "Random Integer Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Random Data Sources/Random_Integer_Generator.md"
+ ],
+ "text": "生成在指定范围内随机分布的整数；输出 1 路；按 {Sample time} 指定采样时间；{Set size} 指定 size、{Source of initial seed} 指定初始种子的来源、{Initial seed} 指定初始种子值、{Samples per frame}、{Output data type} 输出数据类型、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "随机整数输出 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Set size",
+   "default": "8",
+   "values": "Set size 8 (default) | positive integer | row vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Source of initial seed",
+   "default": "Auto",
+   "values": "初始种子的来源 Auto (default) | Parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "初始种子值 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "采样时间 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | uint8 | uint16 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

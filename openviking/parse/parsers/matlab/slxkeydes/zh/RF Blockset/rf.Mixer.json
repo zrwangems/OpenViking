@@ -1,0 +1,217 @@
+{
+ "key": "rf.Mixer",
+ "title": "Mixer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Idealized Baseband/Mixer.md"
+ ],
+ "text": "对带损伤和噪声的 RF 和 IQ 调制器以及 RF 和 IQ 解调器进行建模，输入 1 路、输出 1 路；按 {Mixer noise type} 指定噪声表示；{Mixer type} 指定混频器类型、{Sideband} 指定混频器的边带、{RF (Hz)} 指定 RF 载波频率 1e9、{LO (Hz)} 指定本振频率 1e8、{Gain (dB)} 指定混频器的转换增益、{Simulate using} 指定要运行的仿真类型 Interpreted、{LO phase offset (deg)} 指定 LO 相位偏移、{I/Q gain imbalance (dB)} 指定 IQ 增益不平衡、{I/Q phase imbalance (deg)} 指定 IQ 相位不平衡、{Non-Linearity} 指定三阶非线性类型、{IIP3 (dBm)} 指定输入三阶截点、{OIP3 (dBm)} 输出三阶截点、{IP1dB (dBm)} 指定输入 1 dB、{OP1dB (dBm)} 输出 1 dB、{IPsat (dBm)} 指定输入饱和点、{OPsat (dBm)} 输出饱和点、{Plot power characteristics} 绘制功率特性、{Include mixer noise} 指定向系统添加混频器噪声、{Noise temperature (K)} 用于对混频器噪声建模的噪声温度、{Noise figure (dB)} 用于对混频器噪声建模的噪声系数 10 * log10、{Noise factor} 用于对混频器噪声建模的噪声因子、{Seed source, mixer noise} 指定初始种子的来源、{Seed for mixer noise} 指定随机数生成器的种子、{Include phase noise} 指定向 LO 信号添加 LO 相位噪声、{Phase noise level (dBc/Hz)} 指定相对于载波的相位噪声电平、{Frequency offset (Hz)} 指定相位频率偏移、{Automatic frequency resolution} 指定自动确定频率 bin 数、{Number of signal samples} 指定时域信号中的样本数、{Seed source, phase noise} 指定初始种子的来源、{Seed for phase noise} 指定随机数生成器的种子、{Plot phase characteristics} 绘制相位特性，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "时变输入信号 real scalar | real column | complex scalar | complex column"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "时变输出信号 complex scalar | complex column"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mixer type",
+   "default": "mod",
+   "values": "混频器类型 mod (default) | demod | iqmod | iqdemod",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sideband",
+   "default": "upper",
+   "values": "混频器的边带 upper (default) | lower",
+   "group": "Main Tab"
+  },
+  {
+   "name": "RF (Hz)",
+   "default": "1e9",
+   "values": "RF 载波频率 1e9 (default) | real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LO (Hz)",
+   "default": "1e8",
+   "values": "本振频率 1e8 (default) | real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Gain (dB)",
+   "default": "0",
+   "values": "混频器的转换增益 0 (default) | real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "指定要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LO phase offset (deg)",
+   "default": "0",
+   "values": "LO 相位偏移 0 (default) | real number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "I/Q gain imbalance (dB)",
+   "default": "0",
+   "values": "IQ 增益不平衡 0 (default) | nonnegative real numbers",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "I/Q phase imbalance (deg)",
+   "default": "0",
+   "values": "IQ 相位不平衡 0 (default) | real numbers",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "Non-Linearity",
+   "default": "OIP3",
+   "values": "三阶非线性类型 OIP3 (default) | IIP3 | IP1dB | OP1dB | IPsat | OPsat",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "IIP3 (dBm)",
+   "default": "Inf",
+   "values": "输入三阶截点 Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "OIP3 (dBm)",
+   "default": "Inf",
+   "values": "输出三阶截点 Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "IP1dB (dBm)",
+   "default": "Inf",
+   "values": "输入 1 dB 压缩点 Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "OP1dB (dBm)",
+   "default": "Inf",
+   "values": "输出 1 dB 压缩点 Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "IPsat (dBm)",
+   "default": "Inf",
+   "values": "输入饱和点 Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "OPsat (dBm)",
+   "default": "Inf",
+   "values": "输出饱和点 Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "Plot power characteristics",
+   "default": "",
+   "values": "绘制功率特性 button",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "Include mixer noise",
+   "default": "off",
+   "values": "向系统添加混频器噪声 off (default) | on",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Mixer noise type",
+   "default": "NF",
+   "values": "噪声表示 NF (default) | noise-temperature | noise-factor",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise temperature (K)",
+   "default": "290",
+   "values": "用于对混频器噪声建模的噪声温度 290 (default) | nonnegative real number",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": ")",
+   "values": "用于对混频器噪声建模的噪声系数 10 * log10( 2 ) (default) | nonnegative real number",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise factor",
+   "default": "2",
+   "values": "用于对混频器噪声建模的噪声因子 2 (default) | positive integer scalar greater than or equal to 1",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed source, mixer noise",
+   "default": "auto",
+   "values": "初始种子的来源 auto (default) | user",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed for mixer noise",
+   "default": "67987",
+   "values": "随机数生成器的种子 67987 (default) | nonnegative integer less than 2 32",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Include phase noise",
+   "default": "off",
+   "values": "向 LO 信号添加 LO 相位噪声 off (default) | on",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-150]",
+   "values": "相对于载波的相位噪声电平 [-145 -150] (default) | negative real scalar | negative real vector",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Frequency offset (Hz)",
+   "default": "20000]",
+   "values": "相位频率偏移 [2000 20000] (default) | positive real scalar | vector of positive increasing real values",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Automatic frequency resolution",
+   "default": "on",
+   "values": "自动确定频率 bin 数 on (default) | off",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Number of signal samples",
+   "default": "0",
+   "values": "时域信号中的样本数 0 (default) | real nonnegative integer less than or equaled to 65536",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed source, phase noise",
+   "default": "auto",
+   "values": "初始种子的来源 auto (default) | user",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed for phase noise",
+   "default": "67987",
+   "values": "随机数生成器的种子 67987 (default) | nonnegative integer less than 2 32",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Plot phase characteristics",
+   "default": "",
+   "values": "绘制相位特性 button",
+   "group": "Noise Tab"
+  }
+ ]
+}

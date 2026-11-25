@@ -1,0 +1,13 @@
+{
+ "key": "Machine Mechanical Power",
+ "title": "Machine Mechanical Power",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechanical/Machine_Mechanical_Power.md"
+ ],
+ "text": "Machine mechanical power defined in the SI or per-unit system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

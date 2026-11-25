@@ -1,0 +1,102 @@
+{
+ "key": "Mean",
+ "title": "Mean",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Mean.md"
+ ],
+ "text": "Find mean value of input or sequence of inputs, 2 inputs, 1 output, no direct feedthrough, {Reset port} sets Reset event; {Running mean} sets the option to select running mean, {Find the mean value over} sets the dimension over which the block computes the mean value Each, {Dimension} sets the custom dimension, {Input processing} sets the method to process the input in running mode Columns, {Rounding mode} sets the method of rounding, {Saturate on integer overflow} sets the method of overflow action, {Accumulator}, {Output}, {Output Minimum} sets the minimum value the block can output, {Output Maximum} sets the maximum value the block can output and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Data input vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset port scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Mean value along the specified dimension scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Running mean",
+   "default": "off",
+   "values": "Option to select running mean off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Find the mean value over",
+   "default": "column",
+   "values": "Dimension over which the block computes the mean value Each column (default) | Entire input | Each row | Specified dimension",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Custom dimension 1 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process the input in running mode Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "Accumulator data type Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Output data type Inherit: Same as accumulator (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Minimum value the block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Maximum value the block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "key": "SRM Commutation",
+ "title": "SRM Commutation",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/SRM_Commutation.md"
+ ],
+ "text": "为 n 相开关磁阻电机 (SRM) 生成开关序列，输入 3 路、输出 1 路；按 {Input position units} 指定位置输入的单位；{Number of motor phases} 指定 SRM 中的相数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "电机电角度位置 scalar"
+  },
+  {
+   "name": "θ eOn",
+   "direction": "input",
+   "summary": "导通电机电角度位置 scalar"
+  },
+  {
+   "name": "θ eOff",
+   "direction": "input",
+   "summary": "关断电机电角度位置 scalar"
+  },
+  {
+   "name": "Ctrl",
+   "direction": "output",
+   "summary": "控制信号 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of motor phases",
+   "default": "3",
+   "values": "SRM 中的相数 3 (default) | 4 | 5 | 6",
+   "group": ""
+  },
+  {
+   "name": "Input position units",
+   "default": "Radians",
+   "values": "位置输入的单位 Radians (default) | Per unit | Degrees",
+   "group": ""
+  }
+ ]
+}

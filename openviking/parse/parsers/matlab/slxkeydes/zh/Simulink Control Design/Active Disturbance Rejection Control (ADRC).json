@@ -1,0 +1,101 @@
+{
+ "key": "Active Disturbance Rejection Control (ADRC)",
+ "title": "Active Disturbance Rejection Control",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Adaptive Control/Active_Disturbance_Rejection_Control.md"
+ ],
+ "text": "为具有未知动态特性和扰动的被控对象设计控制器，输入 2 路、输出 2 路；按 {初始条件} 指定扩张状态观测器的初始状态值；{时域}、{采样时间}、{模型类型} 指定被控对象阶数类型、{临界增益}、{控制器带宽(弧度/秒)} 控制器带宽、{观测器带宽(弧度/秒)} 指定观测器带宽、{限制输出(u)} 指定将模块输出限制到指定的饱和界限、{上限}、{下限}、{估计的扩张状态(xhat)} 指定从观测器输出估计的状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "参考信号 标量"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 标量"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制输入 标量"
+  },
+  {
+   "name": "xhat",
+   "direction": "output",
+   "summary": "估计的扩张状态 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "时域",
+   "default": "离散时间",
+   "values": "控制器时域 离散时间 (默认) | 连续时间",
+   "group": "“参数”选项卡"
+  },
+  {
+   "name": "采样时间",
+   "default": "0.01",
+   "values": "控制器采样时间 0.01 (默认) | 有限正标量",
+   "group": "“参数”选项卡"
+  },
+  {
+   "name": "模型类型",
+   "default": "一阶",
+   "values": "被控对象阶数类型 一阶 (默认) | 二阶",
+   "group": "“参数”选项卡"
+  },
+  {
+   "name": "临界增益",
+   "default": "1",
+   "values": "临界增益 1 (默认) | 有限非零标量",
+   "group": "“参数”选项卡"
+  },
+  {
+   "name": "控制器带宽(弧度/秒)",
+   "default": "1",
+   "values": "控制器带宽 1 (默认) | 有限正标量",
+   "group": "“参数”选项卡"
+  },
+  {
+   "name": "观测器带宽(弧度/秒)",
+   "default": "10",
+   "values": "观测器带宽 10 (默认) | 有限正标量",
+   "group": "“参数”选项卡"
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "扩张状态观测器的初始状态值 0 (默认) | 标量 | 向量",
+   "group": "“模块”选项卡"
+  },
+  {
+   "name": "限制输出(u)",
+   "default": "off",
+   "values": "将模块输出限制到指定的饱和界限 off (默认) | on",
+   "group": "“模块”选项卡"
+  },
+  {
+   "name": "上限",
+   "default": "inf",
+   "values": "模块输出的饱和上限 inf (默认) | 标量",
+   "group": "“模块”选项卡"
+  },
+  {
+   "name": "下限",
+   "default": "–inf",
+   "values": "模块输出的饱和下限 –inf (默认) | 标量",
+   "group": "“模块”选项卡"
+  },
+  {
+   "name": "估计的扩张状态(xhat)",
+   "default": "off",
+   "values": "从观测器输出估计的状态 off (默认) | on",
+   "group": "“模块”选项卡"
+  }
+ ]
+}

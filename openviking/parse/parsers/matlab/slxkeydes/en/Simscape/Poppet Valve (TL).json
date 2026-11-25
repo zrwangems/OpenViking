@@ -1,0 +1,13 @@
+{
+ "key": "Poppet Valve (TL)",
+ "title": "Poppet Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Flow Control Valves/Poppet_Valve_TL.md"
+ ],
+ "text": "Poppet flow control valve in a thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

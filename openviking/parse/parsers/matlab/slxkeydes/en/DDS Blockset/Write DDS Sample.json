@@ -1,0 +1,42 @@
+{
+ "key": "Write DDS Sample",
+ "title": "Write DDS Sample",
+ "toolbox": "DDS Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "DDS Blockset/Write_DDS_Sample.md"
+ ],
+ "text": "Send data samples to DDS network, 2 inputs, 1 output; {Show enable port} displays the enable port and {Connect to live network} sets the connect DDS simulation to live network. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_Enable",
+   "direction": "input",
+   "summary": "External enable signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output DDS sample scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show enable port",
+   "default": "off",
+   "values": "Display the enable port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Connect to live network",
+   "default": "off",
+   "values": "Connect DDS simulation to live network off (default) | on",
+   "group": ""
+  }
+ ]
+}

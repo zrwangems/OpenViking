@@ -1,0 +1,80 @@
+{
+ "key": "DemStatusInject",
+ "title": "Dem Status Inject",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/Dem_Status_Inject.md"
+ ],
+ "text": "注入事件故障以测试恢复；按 {Trigger type} 指定注入条件；{EventID} 指定事件、{Fault type} 指定故障类型 Event、{Test Failed} 指示最近执行的测试的结果、{Test Failed this Operation Cycle} 指示诊断测试在当前操作周期内是否报告了失败、{Pending DTC} 指示诊断测试在当前或最近完成的操作周期内是否报告了失败、{Confirmed DTC} 指示是否已检测到足够多次故障，从而需要将 DTC 存储在长期内存中、{Test Not Complete Since Last Clear} 指示自上次调用 ClearDiagnosticInformation 以来测试是否已运行并完成、{Test Failed Since Last Clear} 指示自上次调用 ClearDiagnosticInformation 以来测试是否失败过、{Test Not Complete This Operation Cycle} 指定当前操作周期内未执行测试、{Warning Indicator Requested} 指示与特定 DTC 关联的任何警告指示器的状态，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "EventID",
+   "default": "0",
+   "values": "指定事件 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Fault type",
+   "default": "Fail",
+   "values": "指定故障类型 Event Fail (default) | Event Pass | Operation Cycle Start | Operation Cycle End | Fault Record Overwritten | Fault Maturation | Clear Diagnostic | Aging | Healing | Indicator Conditions Met",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "rising",
+   "values": "指定注入条件 rising (default) | falling | either | function-call",
+   "group": ""
+  },
+  {
+   "name": "Test Failed",
+   "default": "Clear",
+   "values": "指示最近执行的测试的结果 Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Test Failed this Operation Cycle",
+   "default": "Clear",
+   "values": "指示诊断测试在当前操作周期内是否报告了失败 Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Pending DTC",
+   "default": "Clear",
+   "values": "指示诊断测试在当前或最近完成的操作周期内是否报告了失败 Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Confirmed DTC",
+   "default": "Clear",
+   "values": "指示是否已检测到足够多次故障，从而需要将 DTC 存储在长期内存中 Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Test Not Complete Since Last Clear",
+   "default": "Clear",
+   "values": "指示自上次调用 ClearDiagnosticInformation 以来测试是否已运行并完成 Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Test Failed Since Last Clear",
+   "default": "Clear",
+   "values": "指示自上次调用 ClearDiagnosticInformation 以来测试是否失败过 Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Test Not Complete This Operation Cycle",
+   "default": "Clear",
+   "values": "当前操作周期内未执行测试 Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Warning Indicator Requested",
+   "default": "Clear",
+   "values": "指示与特定 DTC 关联的任何警告指示器的状态 Clear (default) | Set",
+   "group": ""
+  }
+ ]
+}

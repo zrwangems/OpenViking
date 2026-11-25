@@ -1,0 +1,13 @@
+{
+ "key": "Circuit Breaker (with arc)",
+ "title": "Circuit Breaker (with arc)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/Circuit_Breaker_with_arc.md"
+ ],
+ "text": "Single-pole single-throw circuit breaker with Mayr arc representation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

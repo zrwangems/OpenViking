@@ -1,0 +1,123 @@
+{
+ "key": "Three-axis Accelerometer",
+ "title": "Three-axis Accelerometer",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Navigation/Three_axis_Accelerometer.md"
+ ],
+ "text": "Implement three-axis accelerometer, 5 inputs, 1 output; {Units}, {Accelerometer location}, {Subtract gravity}, {Second order dynamics} sets the second-order, {Natural frequency (rad/sec)}, {Damping ratio}, {Scale factors and cross-coupling} scales factors and cross coupling {Measurement bias}, {Update rate (sec)}, {Noise on} sets the white noise, {Noise seeds}, {Noise power} and {Lower and upper output limits} sets the minimum and maximum values of acceleration. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A b",
+   "direction": "input",
+   "summary": "Actual accelerations three-element vector"
+  },
+  {
+   "name": "ω",
+   "direction": "input",
+   "summary": "Angular rates three-element vector"
+  },
+  {
+   "name": "dω/dt",
+   "direction": "input",
+   "summary": "Angular accelerations three-element vector"
+  },
+  {
+   "name": "CG",
+   "direction": "input",
+   "summary": "Location of center of gravity three-element vector"
+  },
+  {
+   "name": "g",
+   "direction": "input",
+   "summary": "Gravity three-element vector"
+  },
+  {
+   "name": "A meas",
+   "direction": "output",
+   "summary": "Measured accelerations three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer location",
+   "default": "0]",
+   "values": "Accelerometer location [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Subtract gravity",
+   "default": "on",
+   "values": "Subtract gravity on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Second order dynamics",
+   "default": "on",
+   "values": "Second-order dynamics on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Natural frequency (rad/sec)",
+   "default": "190",
+   "values": "Natural frequency 190 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Damping ratio",
+   "default": "0.707",
+   "values": "Damping ratio 0.707 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Scale factors and cross-coupling",
+   "default": "1]",
+   "values": "Scale factors and cross coupling [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Measurement bias",
+   "default": "0]",
+   "values": "Measurement bias [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Update rate (sec)",
+   "default": "0",
+   "values": "Update rate 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Noise on",
+   "default": "on",
+   "values": "White noise on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Noise seeds",
+   "default": "23095]",
+   "values": "Noise seeds [23093 23094 23095] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Noise power",
+   "default": "0.001]",
+   "values": "Noise power [0.001 0.001 0.001] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Lower and upper output limits",
+   "default": "inf]",
+   "values": "Minimum and maximum values of acceleration [-inf -inf -inf inf inf inf] (default) | six-element vector",
+   "group": ""
+  }
+ ]
+}

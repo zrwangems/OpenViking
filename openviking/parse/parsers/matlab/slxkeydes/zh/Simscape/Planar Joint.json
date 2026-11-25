@@ -1,0 +1,13 @@
+{
+ "key": "Planar Joint",
+ "title": "Planar Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Planar_Joint.md"
+ ],
+ "text": "具有一个旋转和两个平移自由度的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

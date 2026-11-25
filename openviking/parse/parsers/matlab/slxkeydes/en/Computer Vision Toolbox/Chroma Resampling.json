@@ -1,0 +1,71 @@
+{
+ "key": "Chroma Resampling",
+ "title": "Chroma Resampling",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Chroma_Resampling.md"
+ ],
+ "text": "Downsample or upsample chrominance components of images, 2 inputs, 2 outputs, {Resampling} sets Chrominance resampling method 4:4:4 to; {Antialiasing filter} sets the chroma downsampling antialiasing filter, {Horizontal filter coefficients} sets the coefficients for horizontal lowpass filter, {Vertical filter coefficients} sets the coefficients for vertical lowpass filter, {Interpolation} sets the chrominance upsampling interpolation method and {Input image is transposed (data order is row major)} sets the read data row-wise. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Cb",
+   "direction": "input",
+   "summary": "Blue-difference chrominance component of image matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "input",
+   "summary": "Red-difference chrominance component of image matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "output",
+   "summary": "Blue-difference chrominance component of image matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "output",
+   "summary": "Red-difference chrominance component of image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resampling",
+   "default": "4:2:2",
+   "values": "Chrominance resampling method 4:4:4 to 4:2:2 (default) | 4:4:4 to 4:2:0 (MPEG1) | 4:4:4 to 4:2:0 (MPEG2) |...",
+   "group": ""
+  },
+  {
+   "name": "Antialiasing filter",
+   "default": "Default",
+   "values": "Chroma downsampling antialiasing filter Default (default) | User-defined | None",
+   "group": ""
+  },
+  {
+   "name": "Horizontal filter coefficients",
+   "default": "0.2]",
+   "values": "Coefficients for horizontal lowpass filter [0.2 0.6 0.2] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Vertical filter coefficients",
+   "default": "0.5]",
+   "values": "Coefficients for vertical lowpass filter [0.5 0.5] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Interpolation",
+   "default": "linear",
+   "values": "Chrominance upsampling interpolation method linear (default) | pixel replication",
+   "group": ""
+  },
+  {
+   "name": "Input image is transposed (data order is row major)",
+   "default": "off",
+   "values": "Read data row-wise off (default) | on",
+   "group": ""
+  }
+ ]
+}

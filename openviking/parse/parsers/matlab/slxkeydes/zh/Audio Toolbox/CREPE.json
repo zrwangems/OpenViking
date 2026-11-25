@@ -1,0 +1,37 @@
+{
+ "key": "CREPE",
+ "title": "CREPE",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/CREPE.md"
+ ],
+ "text": "CREPE 深度音高估计神经网络，输入 1 路、输出 1 路、无直接馈通；按 {Model capacity} 指定训练后神经网络的大小；{Mini-batch size} 指定小批量的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "预处理后的音频输入 vector | 4-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "网络激活值 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model capacity",
+   "default": "Full",
+   "values": "训练后神经网络的大小 Full (default) | Large | Medium | Small | Tiny",
+   "group": ""
+  },
+  {
+   "name": "Mini-batch size",
+   "default": "128",
+   "values": "小批量的大小 128 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

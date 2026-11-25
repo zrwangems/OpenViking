@@ -1,0 +1,228 @@
+{
+ "key": "ChangeOperatingPoint",
+ "title": "Change Operating Points",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/Change_Operating_Points.md"
+ ],
+ "text": "tSwitch between operating points during simulation, 7 inputs, 2 outputs, {Settling time interval} sets tling time interval; {Operating mode} sets the mode for operating point data Import operating, {Input method}, {Number of inputs} sets the number of model inputs, {Workspace}, {Data dictionary name}, {Operating point variable} sets the name of operating point variable, {Snapshot mode} sets the operating point snapshot, {Snapshot times (sec)} sets the simulation snapshot times, {Use external source} uses input port for snapshot times, {Sample time (-1 for inherited)}, {Operating point definitions} sets the operating point data multiple table, {Bus name} sets the name of bus, {Specify bus name}, {Data Type} sets the floating point precision, {Use block for autotuning} uses block for PID autotuning workflow, {Method for starting autotuning}, {Add enable/disable port for autotuning}, {Autotuning time span (sec)} sets the autotuning experiment duration, {Number of samples to start autotuning after reaching steady-state} sets the delay to start autotuning, {Transition method} sets the operating point transition method Internal time, {Change operating point algorithm} sets the operating point transition, {Rising slew rate (/sec)} limits of derivative for increasing input, {Falling slew rate (/sec)} limits of derivative for decreasing input, {Number of samples to transition after reaching steady-state} sets the delay to transition operating points, {Number of samples to transition after completing autotuning} sets the delay to transition operating points, {Settling time upper bounds} sets the upper bound for settling time and {Settling time lower bounds} sets the lower bound for settling time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "systeminputs_in",
+   "direction": "input",
+   "summary": "System inputs array"
+  },
+  {
+   "name": "enable/disable",
+   "direction": "input",
+   "summary": "Enable and disable changing operating points scalar"
+  },
+  {
+   "name": "autotuning times",
+   "direction": "input",
+   "summary": "Time vector to start autotuning vector"
+  },
+  {
+   "name": "next OP",
+   "direction": "input",
+   "summary": "Next operating point scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar | vector"
+  },
+  {
+   "name": "enable autotuning",
+   "direction": "input",
+   "summary": "Enable or disable autotuning scalar"
+  },
+  {
+   "name": "snapshot trigger",
+   "direction": "input",
+   "summary": "Snapshot trigger vector"
+  },
+  {
+   "name": "systeminputs_out",
+   "direction": "output",
+   "summary": "Operating point output bus"
+  },
+  {
+   "name": "start_stop",
+   "direction": "output",
+   "summary": "Signal to start and stop the autotuning scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operating mode",
+   "default": "points",
+   "values": "Mode for operating point data Import operating points (default) | Snapshot operating points",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Input method",
+   "default": "table",
+   "values": "Input method for operating point data Manually edit table (default) | Automatically fill Table",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Number of inputs",
+   "default": "3",
+   "values": "Number of model inputs 3 (default) | positive scalar",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Workspace",
+   "default": "workspace",
+   "values": "Workspace to import operating point data Base workspace (default) | Model workspace | Data dictionary",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Data dictionary name",
+   "default": "myDataDictionary.sldd",
+   "values": "Data dictionary name myDataDictionary.sldd (default) | string",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Operating point variable",
+   "default": "myOperatingPoint",
+   "values": "Name of operating point variable myOperatingPoint (default) | string",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Snapshot mode",
+   "default": "Time-based",
+   "values": "Operating point snapshot mode Time-based (default) | Event-based",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Snapshot times (sec)",
+   "default": "2]",
+   "values": "Simulation snapshot times [0 1 2] (default) | scalar | vector",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Use external source",
+   "default": "off",
+   "values": "Use input port for snapshot times off (default) | on",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Operating point definitions",
+   "default": "",
+   "values": "Operating point data multiple table entries",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Bus name",
+   "default": "scdPlantOPsBusObject",
+   "values": "Name of bus object scdPlantOPsBusObject (default) | string",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Specify bus name",
+   "default": "off",
+   "values": "Specify bus name off (default) | on",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Data Type",
+   "default": "Double",
+   "values": "Floating point precision Double (default) | Single",
+   "group": "Import operating point Tab"
+  },
+  {
+   "name": "Use block for autotuning",
+   "default": "on",
+   "values": "Use block for PID autotuning workflow on (default) | off",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Method for starting autotuning",
+   "default": "vector",
+   "values": "Method for starting autotuning External time vector (default) | Time after reaching steady-state",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Add enable/disable port for autotuning",
+   "default": "off",
+   "values": "Add enable/disable port for autotuning off (default) | on",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Autotuning time span (sec)",
+   "default": "10",
+   "values": "Autotuning experiment duration 10 (default) | positive scalar | vector",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Number of samples to start autotuning after reaching steady-state",
+   "default": "2",
+   "values": "Delay to start autotuning 2 (default) | positive scalar",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Transition method",
+   "default": "table)",
+   "values": "Operating point transition method Internal time vector (from operating point table) (default) | Time after reaching steady-state | Time after completing autotuning | External trigger",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Change operating point algorithm",
+   "default": "Step",
+   "values": "Operating point transition algorithm Step (default) | Ramp",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Rising slew rate (/sec)",
+   "default": "1",
+   "values": "Limit of derivative for increasing input 1 (default) | scalar | vector",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Falling slew rate (/sec)",
+   "default": "-1",
+   "values": "Limit of derivative for decreasing input -1 (default) | scalar | vector",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Number of samples to transition after reaching steady-state",
+   "default": "2",
+   "values": "Delay to transition operating points 2 (default) | nonnegative scalar",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Number of samples to transition after completing autotuning",
+   "default": "2",
+   "values": "Delay to transition operating points 2 (default) | nonnegative scalar",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Settling time upper bounds",
+   "default": "3.1]",
+   "values": "Upper bound for settling time [1.1 2.1 3.1] (default) | vector",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Settling time lower bounds",
+   "default": "2.9]",
+   "values": "Lower bound for settling time [0.9 1.9 2.9] (default) | vector",
+   "group": "Change operating point setting Tab"
+  },
+  {
+   "name": "Settling time interval",
+   "default": "5",
+   "values": "Settling time interval 5 (default) | scalar | vector",
+   "group": "Change operating point setting Tab"
+  }
+ ]
+}

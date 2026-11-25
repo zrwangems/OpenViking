@@ -1,0 +1,108 @@
+{
+ "key": "ROS2 Receive Service Request",
+ "title": "Receive Service Request",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Receive_Service_Request.md"
+ ],
+ "text": "从 ROS 2 网络接收服务请求；输出 3 路；{Name} 指定服务名称 character vector、{Type} 指定服务类型 character vector、{Paired Send Response Block} 指定配对 Send Service Response 模块的路径 block、{Sample time} 输出之间的间隔、{Show Default Response output port} 启用默认响应输出端口、{History} 指定在队列中存储请求的模式 Keep、{Depth} 指定请求队列的大小、{Reliability} 指定请求的传递保证、{Durability} 指定请求的持久性、{Deadline} 指定接收服务请求与发送响应之间允许的最长时间、{Lifespan} 指定服务请求被视为有效的时间长度、{Liveliness} 指定该模块提供的、并期望服务客户端提供的活跃性报告级别、{Lease Duration} 指定已连接服务客户端必须在此之前声明活跃性的最长时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "新服务请求指示符 0 | 1"
+  },
+  {
+   "name": "Req",
+   "direction": "output",
+   "summary": "服务请求消息 non-virtual bus"
+  },
+  {
+   "name": "DefaultResp",
+   "direction": "output",
+   "summary": "默认响应消息 non-virtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Name",
+   "default": "",
+   "values": "服务名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "服务类型 character vector",
+   "group": ""
+  },
+  {
+   "name": "Paired Send Response Block",
+   "default": "",
+   "values": "配对 Send Service Response 模块的路径 block path",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "输出之间的间隔 –1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Default Response output port",
+   "default": "on",
+   "values": "启用默认响应输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "History",
+   "default": "last",
+   "values": "在队列中存储请求的模式 Keep last (default) | Keep all",
+   "group": ""
+  },
+  {
+   "name": "Depth",
+   "default": "1",
+   "values": "请求队列的大小 1 (default) | non-negative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Reliability",
+   "default": "Reliable",
+   "values": "请求的传递保证 Reliable (default) | Best effort",
+   "group": ""
+  },
+  {
+   "name": "Durability",
+   "default": "Volatile",
+   "values": "请求的持久性 Volatile (default) | Transient local",
+   "group": ""
+  },
+  {
+   "name": "Deadline",
+   "default": "Inf",
+   "values": "接收服务请求与发送响应之间允许的最长时间 Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lifespan",
+   "default": "Inf",
+   "values": "服务请求被视为有效的时间长度 Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Liveliness",
+   "default": "automatic",
+   "values": "该模块提供的、并期望服务客户端提供的活跃性报告级别 automatic (default)",
+   "group": ""
+  },
+  {
+   "name": "Lease Duration",
+   "default": "Inf",
+   "values": "已连接服务客户端必须在此之前声明活跃性的最长时间 Inf (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

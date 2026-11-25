@@ -1,0 +1,41 @@
+{
+ "key": "Lookup Table",
+ "title": "Lookup Table",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Conversions/Lookup_Table.md"
+ ],
+ "text": "使用自定义规则将输入像素映射到输出像素，输入 2 路、输出 2 路；{Table data} 指定输入像素与输出像素之间的映射 uint8，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "输出像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Table data",
+   "default": "uint8(0:1:255)",
+   "values": "输入像素与输出像素之间的映射 uint8(0:1:255) (default) | vector",
+   "group": ""
+  }
+ ]
+}

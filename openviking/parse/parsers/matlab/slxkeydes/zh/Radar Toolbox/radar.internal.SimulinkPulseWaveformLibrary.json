@@ -1,0 +1,49 @@
+{
+ "key": "radar.internal.SimulinkPulseWaveformLibrary",
+ "title": "Pulse Waveform Library",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Pulse_Waveform_Library.md"
+ ],
+ "text": "Pulse Waveform Library 模块从波形库生成不同类型的脉冲波形，输入 1 路、输出 1 路；{Sample rate (Hz)} 输出波形的采样率 1e6、{Specification of each waveform in the library} 指定库中的脉冲波形、{Source of simulation sample time} 指定仿真采样时间的来源 Derive from waveform、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "波形索引 positive integer"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "脉冲波形采样 complex-valued column vector | complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "输出波形的采样率 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specification of each waveform in the library",
+   "default": "{{’Rectangular’,’PRF’,1e4,’PulseWidth’,50e-6},{’LinearFM’,’PRF’,1e4,’PulseWidth’,50e-6,’SweepBandwidth’,1e5,’SweepDirection’,’Up’,’SweepInterval’,’Positive’}}",
+   "values": "库中的脉冲波形 {{’Rectangular’,’PRF’,1e4,’PulseWidth’,50e-6},{’LinearFM’,’PRF’,1e4,’PulseWidth’,50e-6,’SweepBandwidth’,1e5,’SweepDirection’,’Up’,’SweepInterval’,’Positive’}} (default) | cell array",
+   "group": ""
+  },
+  {
+   "name": "Source of simulation sample time",
+   "default": "parameters",
+   "values": "仿真采样时间的来源 Derive from waveform parameters (default) | Inherit from Simulink engine",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

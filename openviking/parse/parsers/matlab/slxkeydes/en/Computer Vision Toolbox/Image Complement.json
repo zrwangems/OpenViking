@@ -1,0 +1,24 @@
+{
+ "key": "Image Complement",
+ "title": "Image Complement",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Image_Complement.md"
+ ],
+ "text": "Compute the complement of pixel values in binary or intensity images, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input image matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image matrix"
+  }
+ ],
+ "params": []
+}

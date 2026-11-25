@@ -1,0 +1,13 @@
+{
+ "key": "3-Zone Pipe (2P)",
+ "title": "3-Zone Pipe (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Pipes & Fittings/b_3_Zone_Pipe_2P.md"
+ ],
+ "text": "两相流体网络中带相变流体的管道。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

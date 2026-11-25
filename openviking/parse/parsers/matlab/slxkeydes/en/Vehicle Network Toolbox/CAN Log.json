@@ -1,0 +1,56 @@
+{
+ "key": "CAN Log",
+ "title": "CAN Log",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN Communication/CAN_Log.md"
+ ],
+ "text": "Log received CAN messages, 1 input; {File name} sets the log file location, {Variable name}, {Maximum number of messages to log} limits quantity of messages, {Log messages from} sets the source of messages, {Device} sets the cAN device and channel and {Sample time} sets the block sampling time in simulation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "input",
+   "summary": "CAN messages to log CAN_MESSAGE | CAN_MESSAGE_BUS"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "untitled.mat",
+   "values": "Log file location and name untitled.mat (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "ans",
+   "values": "Variable name for CAN message in log file ans (default) | variable name",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of messages to log",
+   "default": "10000",
+   "values": "Limit quantity of messages 10000 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Log messages from",
+   "default": "Bus",
+   "values": "Source of messages CAN Bus (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN device and channel list option",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Block sampling time in simulation 0.01 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

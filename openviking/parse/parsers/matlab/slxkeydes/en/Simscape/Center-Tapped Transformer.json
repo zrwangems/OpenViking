@@ -1,0 +1,13 @@
+{
+ "key": "Center-Tapped Transformer",
+ "title": "Center-Tapped Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Center_Tapped_Transformer.md"
+ ],
+ "text": "Single-phase center-tapped transformer.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,45 @@
+{
+ "key": "Enumerated Constant",
+ "title": "Enumerated Constant",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Enumerated_Constant.md",
+  "HDL Coder/Sources/Enumerated_Constant.md"
+ ],
+ "text": "Generate enumerated constant value, 1 output, no direct feedthrough, {Sample time} sets Sample time; {Output data type}, {Mode} sets the category of data and {Value} sets the enumerated value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Enumerated constant scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output data type",
+   "default": "SlDemoSign",
+   "values": "Output data type Enum: SlDemoSign (default) | Enum:<ClassName>",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Enumerated",
+   "values": "Category of data to specify Enumerated (default)",
+   "group": ""
+  },
+  {
+   "name": "Value",
+   "default": "SlDemoSign.Positive",
+   "values": "Enumerated value SlDemoSign.Positive (default) | Enum:<ClassName.Value>",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "Sample time inf (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

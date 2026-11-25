@@ -1,0 +1,163 @@
+{
+ "key": "Programmable Signal Generator (Three-Phase)",
+ "title": "Programmable Signal Generator (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Programmable_Signal_Generator_Three_Phase.md"
+ ],
+ "text": "Discrete-time or continuous-time three-phase sinusoidal signal generator with programmable magnitude, phase, frequency, and overlapping harmonics, 2 outputs, {Sample time} sets Block sample time; {Variation configuration} sets the type of magnitude, {Magnitude (value)} sets the magnitude of generated three-phase sine, {Rate of change (value/s)} sets the magnitude rate of change, {Step value (value)} sets the magnitude step value, {Modulation magnitude}, {Modulation frequency}, {Start time}, {Stop time}, {Table data} sets the magnitude table values, {Time values} sets the magnitude time values, {Frequency (Hz)} sets the frequency of generated three-phase sine, {Rate of change (Hz/s)} sets the frequency rate of change, {Step value (Hz)} sets the frequency step value, {Phase shift (deg)} sets the phase shift of generated three-phase sine, {Rate of change (deg/s)} sets the phase rate of change, {Step value (deg)} sets the phase step value, {Enable harmonic A} sets the harmonic A overlap, {Harmonic sequence} sets the type of harmonic A sequence, {Harmonic order} sets the order of harmonic, {Harmonic magnitude} sets the magnitude of harmonic, {Harmonic phase shift} sets the phase shift of harmonic and {Enable harmonic B} sets the harmonic B overlap. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "Three-phase sinusoidal signal vector"
+  },
+  {
+   "name": "m",
+   "direction": "output",
+   "summary": "Signal measurements vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "1e-5",
+   "values": "Block sample time 1e-5 (default) | 0 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Variation configuration",
+   "default": "Constant",
+   "values": "Type of magnitude variation Constant (default) | Ramp | Step | Modulation | Table",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Magnitude (value)",
+   "default": "100",
+   "values": "Magnitude of generated three-phase sine wave 100 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Rate of change (value/s)",
+   "default": "100",
+   "values": "Magnitude rate of change 100 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Step value (value)",
+   "default": "100",
+   "values": "Magnitude step value 100 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Modulation magnitude",
+   "default": "50",
+   "values": "Modulation magnitude 50 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Modulation frequency",
+   "default": "10",
+   "values": "Modulation frequency 10 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Start time",
+   "default": "0.1",
+   "values": "Start time of magnitude variation 0.1 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Stop time",
+   "default": "0.6",
+   "values": "Stop time of magnitude variation 0.6 (default) | scalar",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Table data",
+   "default": "90]",
+   "values": "Magnitude table values [0 30 60 90] (default) | vector",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Time values",
+   "default": "0.9]",
+   "values": "Magnitude time values [0 0.3 0.6 0.9] (default) | vector",
+   "group": "Magnitude"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "100",
+   "values": "Frequency of generated three-phase sine wave 100 (default) | scalar",
+   "group": "Frequency"
+  },
+  {
+   "name": "Rate of change (Hz/s)",
+   "default": "100",
+   "values": "Frequency rate of change 100 (default) | scalar",
+   "group": "Frequency"
+  },
+  {
+   "name": "Step value (Hz)",
+   "default": "100",
+   "values": "Frequency step value 100 (default) | scalar",
+   "group": "Frequency"
+  },
+  {
+   "name": "Phase shift (deg)",
+   "default": "100",
+   "values": "Phase shift of generated three-phase sine wave 100 (default) | scalar",
+   "group": "Phase"
+  },
+  {
+   "name": "Rate of change (deg/s)",
+   "default": "100",
+   "values": "Phase rate of change 100 (default) | scalar",
+   "group": "Phase"
+  },
+  {
+   "name": "Step value (deg)",
+   "default": "100",
+   "values": "Phase step value 100 (default) | scalar",
+   "group": "Phase"
+  },
+  {
+   "name": "Enable harmonic A",
+   "default": "off",
+   "values": "Harmonic A overlap off (default) | on",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Harmonic sequence",
+   "default": "Sequence",
+   "values": "Type of harmonic A sequence Zero Sequence (default) | Positive Sequence | Negative Sequence",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Harmonic order",
+   "default": "3",
+   "values": "Order of harmonic A 3 (default) | scalar",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Harmonic magnitude",
+   "default": "50",
+   "values": "Magnitude of harmonic A 50 (default) | scalar",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Harmonic phase shift",
+   "default": "180",
+   "values": "Phase shift of harmonic A 180 (default) | scalar",
+   "group": "Harmonics"
+  },
+  {
+   "name": "Enable harmonic B",
+   "default": "off",
+   "values": "Harmonic B overlap off (default) | on",
+   "group": "Harmonics"
+  }
+ ]
+}

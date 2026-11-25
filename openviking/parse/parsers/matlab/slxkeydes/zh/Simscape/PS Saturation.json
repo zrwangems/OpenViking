@@ -1,0 +1,13 @@
+{
+ "key": "PS Saturation",
+ "title": "PS Saturation",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Saturation.md"
+ ],
+ "text": "限制物理信号的范围。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

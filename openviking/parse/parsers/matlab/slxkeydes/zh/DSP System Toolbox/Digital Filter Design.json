@@ -1,0 +1,24 @@
+{
+ "key": "Digital Filter Design",
+ "title": "Digital Filter Design",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Digital_Filter_Design.md"
+ ],
+ "text": "设计和实现数字 FIR 和 IIR 滤波器，输入 1 路、输出 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 vector | matrix"
+  }
+ ],
+ "params": []
+}

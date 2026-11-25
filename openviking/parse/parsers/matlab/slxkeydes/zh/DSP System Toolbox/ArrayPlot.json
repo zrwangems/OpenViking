@@ -1,0 +1,19 @@
+{
+ "key": "ArrayPlot",
+ "title": "Array Plot",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/Array_Plot.md"
+ ],
+ "text": "显示向量或数组，输入 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要可视化的信号 scalar | vector | matrix | array"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,37 @@
+{
+ "key": "Pressure Conversion",
+ "title": "Pressure Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Pressure_Conversion.md"
+ ],
+ "text": "Convert from pressure units to desired pressure units, 1 input, 1 output, {Initial unit} sets Input units; {Final unit} sets the output units. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Pressure scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Pressure scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "psi",
+   "values": "Input units psi (default) | Pa | psf | atm",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "Pa",
+   "values": "Output units Pa (default) | psi | psf | atm",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "key": "Dead-Time Compensator",
+ "title": "Dead-Time Compensator",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Signal Management/Dead_Time_Compensator.md",
+  "Motor Control Blockset/Signal Management/Dead_Time_Compensator.md"
+ ],
+ "text": "通过修改参考电压克服死区时间效应，输入 5 路、输出 1 路；{Dead time (s)} 指定逆变器开关死区时间 1e-6、{Enable hysteresis for currents near zero-crossing} 为过零附近电流启用滞环算法、{Current hysteresis band (A)} 指定过零附近的电流滞环带、{Motor current input} 指定电机电流输入的类型 Two currents、{Show enable port} 启用输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V abc",
+   "direction": "input",
+   "summary": "参考电压 scalar"
+  },
+  {
+   "name": "I ab",
+   "direction": "input",
+   "summary": "测得的电机电流 scalar"
+  },
+  {
+   "name": "f PWM",
+   "direction": "input",
+   "summary": "PWM 频率 scalar"
+  },
+  {
+   "name": "V dc",
+   "direction": "input",
+   "summary": "逆变器直流电压 scalar"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "用于使能模块输出的信号 scalar"
+  },
+  {
+   "name": "V abc ± Δ",
+   "direction": "output",
+   "summary": "补偿后的三相电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Dead time (s)",
+   "default": "1e-6",
+   "values": "逆变器开关死区时间 1e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable hysteresis for currents near zero-crossing",
+   "default": "off",
+   "values": "为过零附近电流启用滞环算法的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Current hysteresis band (A)",
+   "default": "0.1",
+   "values": "过零附近的电流滞环带 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Motor current input",
+   "default": "(Ia,Ib)",
+   "values": "电机电流输入的类型 Two currents (Ia,Ib) (default) | Three currents (Ia,Ib,Ic)",
+   "group": ""
+  },
+  {
+   "name": "Show enable port",
+   "default": "off",
+   "values": "启用输入端口的选项 off (default) | on",
+   "group": "Inputs"
+  }
+ ]
+}

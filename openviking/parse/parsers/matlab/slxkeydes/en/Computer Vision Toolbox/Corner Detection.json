@@ -1,0 +1,101 @@
+{
+ "key": "Corner Detection",
+ "title": "Corner Detection",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Corner_Detection.md"
+ ],
+ "text": "Calculate corner metric matrix and find corners in images, 1 input, 3 outputs, {Output} sets Block output Corner; {Method} sets the corner detection method Harris corner, {Sensitivity factor (0<k<0.25)}, {Coefficients for separable smoothing filter} sets the filter coefficients fspecial, {Intensity comparison threshold} sets the intensity threshold, {Maximum angle to be considered a corner (in degrees)} sets the maximum corner angle, {Maximum number of corners}, {Minimum metric value that indicates a corner} sets the minimum corner metric, {Neighborhood size}, {Output variable size signal} sets the variable size signal and {Lock data type settings against change by the fixed-point tools} sets the data type override. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix of intensity values"
+  },
+  {
+   "name": "Loc",
+   "direction": "output",
+   "summary": "Corner locations M -by-2 matrix"
+  },
+  {
+   "name": "Count",
+   "direction": "output",
+   "summary": "Number of detected corners scalar"
+  },
+  {
+   "name": "Metric",
+   "direction": "output",
+   "summary": "Corner metric values matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Stephens)",
+   "values": "Corner detection method Harris corner detection (Harris & Stephens) (default) | Minimum eigenvalue (Shi & Tomasi) | Local intensity comparison (Rosten & Drummond)",
+   "group": "Main"
+  },
+  {
+   "name": "Sensitivity factor (0<k<0.25)",
+   "default": "0.04",
+   "values": "Sensitivity factor 0.04 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients for separable smoothing filter",
+   "default": "1.5)",
+   "values": "Filter coefficients fspecial(’gaussian’, [1 5], 1.5) (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Intensity comparison threshold",
+   "default": "0.1",
+   "values": "Intensity threshold 0.1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum angle to be considered a corner (in degrees)",
+   "default": "157.5",
+   "values": "Maximum corner angle 157.5 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output",
+   "default": "location",
+   "values": "Block output Corner location (default) | Corner location and metric matrix | Metric matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum number of corners",
+   "default": "200",
+   "values": "Maximum number of corners 200 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum metric value that indicates a corner",
+   "default": "0.0005",
+   "values": "Minimum corner metric 0.0005 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Neighborhood size",
+   "default": "11]",
+   "values": "Neighborhood size [11 11] (default) | 2-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output variable size signal",
+   "default": "on",
+   "values": "Variable size signal on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Data type override off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "key": "Assertion for DPI-C",
+ "title": "Assertion",
+ "toolbox": "HDL Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Verifier/For Use with DPI-C SystemVerilog/Assertion.md"
+ ],
+ "text": "Generate SystemVerilog assertions from Simulink assertion, 1 input, {Severity} sets Severity of assertion failure; {Enable assertion} enables or disable assertion, {Simulation callback when assertion fails} sets the expression to evaluate when assertion fails MATLAB, {Stop simulation when assertion fails} sets the stop Simulink simulation when assertion, {Assertion fail message} sets the custom message when assertion fails no and {Assertion custom command} sets the custom command to execute when assertion fails SystemVerilog. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Signal to check for nonzero value scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "Enable or disable assertion on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulation callback when assertion fails",
+   "default": "",
+   "values": "Expression to evaluate when assertion fails MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "Stop Simulink simulation when assertion fails off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Severity",
+   "default": "error",
+   "values": "Severity of assertion failure error (default) | warning | custom",
+   "group": "DPI-C Assertion Options"
+  },
+  {
+   "name": "Assertion fail message",
+   "default": "",
+   "values": "Custom message when assertion fails no default",
+   "group": "DPI-C Assertion Options"
+  },
+  {
+   "name": "Assertion custom command",
+   "default": "",
+   "values": "Custom command to execute when assertion fails SystemVerilog command",
+   "group": "DPI-C Assertion Options"
+  }
+ ]
+}

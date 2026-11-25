@@ -1,0 +1,34 @@
+{
+ "key": "Simulation 3D Message Set",
+ "title": "Simulation 3D Message Set",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Message_Set.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Message_Set.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Message_Set.md"
+ ],
+ "text": "Send data to Unreal Engine visualization environment, 1 input, {Sample time} sets Sample time; {Signal name, SigName} sets the message signal name. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WriteMsg",
+   "direction": "input",
+   "summary": "Data sent to scene scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal name, SigName",
+   "default": "mySignal",
+   "values": "Message signal name mySignal (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.02",
+   "values": "Sample time 0.02 (default) | -1 | scalar",
+   "group": ""
+  }
+ ]
+}

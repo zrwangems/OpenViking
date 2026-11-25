@@ -1,0 +1,13 @@
+{
+ "key": "Centrifugal Pump (IL)",
+ "title": "Centrifugal Pump (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pumps & Motors/Centrifugal_Pump_IL.md"
+ ],
+ "text": "Centrifugal pump in isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

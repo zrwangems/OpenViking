@@ -1,0 +1,43 @@
+{
+ "key": "Unipolar to Bipolar Converter",
+ "title": "Unipolar to Bipolar Converter",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Unipolar_to_Bipolar_Converter.md"
+ ],
+ "text": "Map unipolar signal in range [0, M – 1] to bipolar signal, 1 input, 1 output, {Output data type} sets Output data type of bipolar signal Inherit via internal; {M-ary number} sets the number of symbols and {Polarity} sets the relative ordering. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "4",
+   "values": "Number of symbols 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Polarity",
+   "default": "Positive",
+   "values": "Relative ordering of symbols Positive (default) | Negative",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type of bipolar signal Inherit via internal rule (default) | Same as input | double | int8 | int16 | int32",
+   "group": ""
+  }
+ ]
+}

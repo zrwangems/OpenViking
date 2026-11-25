@@ -1,0 +1,67 @@
+{
+ "key": "Analog Input",
+ "title": "Analog Input",
+ "toolbox": "Data Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Data Acquisition Toolbox/Analog_Input.md"
+ ],
+ "text": "Acquire data from multiple analog channels of data acquisition device, 2 outputs, {Acquisition Mode} sets Synchronous setting Asynchronous; {Device}, {Channels} sets the device channel selection and configuration options depend, {Number of ports} sets the number of output data ports 1 for all, {Input sample rate} sets the device sampling rate, {Block size} sets the number of scans per time step integer and {Output relative timestamps} adds timestamp output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Acquired analog input double"
+  },
+  {
+   "name": "Relative timestamp",
+   "direction": "output",
+   "summary": "Relative timestamps of scans"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "Device from which you want to acquire data",
+   "group": ""
+  },
+  {
+   "name": "Acquisition Mode",
+   "default": "",
+   "values": "Synchronous setting Asynchronous | Synchronous",
+   "group": ""
+  },
+  {
+   "name": "Channels",
+   "default": "",
+   "values": "Device channel selection and configuration options depend on device",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "",
+   "values": "Number of output data ports 1 for all channels | 1 per channel",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate",
+   "default": "",
+   "values": "Device sampling rate numeric value",
+   "group": ""
+  },
+  {
+   "name": "Block size",
+   "default": "",
+   "values": "Number of scans per time step integer value",
+   "group": ""
+  },
+  {
+   "name": "Output relative timestamps",
+   "default": "",
+   "values": "Add timestamp output port",
+   "group": ""
+  }
+ ]
+}

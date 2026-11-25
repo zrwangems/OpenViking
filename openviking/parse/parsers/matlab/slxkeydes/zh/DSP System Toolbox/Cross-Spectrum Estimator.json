@@ -1,0 +1,120 @@
+{
+ "key": "Cross-Spectrum Estimator",
+ "title": "Cross-Spectrum Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Cross_Spectrum_Estimator.md"
+ ],
+ "text": "估计互功率谱密度，输入 2 路、输出 1 路；按 {Window function} 指定窗函数；{Window length source} 指定窗长度来源 Same as input frame、{Window length} 指定窗长度，以样本为单位、{Window overlap (%)} 指定窗口之间的重叠百分比、{Averaging method} 指定平均方法 Running、{Specify forgetting factor from input port} 指定从输入端口指定遗忘因子、{Forgetting factor} 指定指数加权遗忘因子、{Number of spectral averages} 指定频谱平均次数、{FFT length source} 指定 FFT 长度值的来源、{FFT length} 指定 FFT 长度、{Sidelobe attenuation of window (dB)} 指定窗的旁瓣衰减、{Frequency range} 指定互谱估计的频率范围、{Inherit sample rate from input} 指定从输入继承采样率、{Sample rate (Hz)} 指定输入的采样率、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "第一个数据输入 vector | matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "第二个数据输入 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "互功率谱密度 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length source",
+   "default": "length",
+   "values": "窗长度来源 Same as input frame length (default) | Specify on dialog",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "1024",
+   "values": "窗长度，以样本为单位 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Window overlap (%)",
+   "default": "0",
+   "values": "窗口之间的重叠百分比 0 (default) | scalar in the range [ 0, 100 )",
+   "group": ""
+  },
+  {
+   "name": "Averaging method",
+   "default": "Running",
+   "values": "平均方法 Running (default) | Exponential",
+   "group": ""
+  },
+  {
+   "name": "Specify forgetting factor from input port",
+   "default": "off",
+   "values": "从输入端口指定遗忘因子 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.9",
+   "values": "指数加权遗忘因子 0.9 (default) | scalar in the range ( 0, 1 ]",
+   "group": ""
+  },
+  {
+   "name": "Number of spectral averages",
+   "default": "1",
+   "values": "频谱平均次数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "FFT length source",
+   "default": "Auto",
+   "values": "FFT 长度值的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "128",
+   "values": "FFT 长度 128 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "窗函数 Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation of window (dB)",
+   "default": "60",
+   "values": "窗的旁瓣衰减 (dB) 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency range",
+   "default": "Centered",
+   "values": "互谱估计的频率范围 Centered (default) | One-sided | Two-sided",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "从输入继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,191 @@
+{
+ "key": "Extended EMF Observer",
+ "title": "Extended EMF Observer",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensorless Estimators/Extended_EMF_Observer.md"
+ ],
+ "text": "计算永磁同步电机 (PMSM) 的电气位置和机械转速，输入 6 路、输出 4 路；按 {转速单位} 指定转速输出单位；{使用输入端口提供计算参数(运行时电机更换)} 启用输入端口以接受计算参数、{输入单位} 指定模块输入的单位 SI、{位置输出}、{离散步长(秒)} 指定采样时间，在此采样时间过后模块将再次执行 50e-6、{定子电阻(欧姆)} 指定电阻、{定子 d 轴电感(H)} 指定 D 轴电感 0.2e-3、{最大应用转速(RPM)} 指定支持的最大机械转速、{极对数}、{最大电压(V)} 指定对应于一个标幺的标称电压、{最大电流(A)} 指定对应于一个标幺的标称电流、{EEMF 观测器增益} 指定扩展电动势观测器增益、{EEMF 滤波器截止频率(Hz)} 指定 EEMF 滤波器的截止频率、{比例(P)} 指定转速观测器的比例增益、{积分(I)} 指定转速观测器的积分增益、{正弦-余弦查找表的数据点数} 用于转速计算的数据点数、{转速滤波器截止频率(Hz)} 指定转速滤波器的截止频率、{位置单位} 指定位置输出的单位、{位置数据类型} 指定位置输出的数据类型、{转速数据类型} 指定转速输出的数据类型、{表数据类型} 指定表的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V α",
+   "direction": "input",
+   "summary": "α 轴电压 标量"
+  },
+  {
+   "name": "V β",
+   "direction": "input",
+   "summary": "β 轴电压 标量"
+  },
+  {
+   "name": "I α",
+   "direction": "input",
+   "summary": "α 轴电流 标量"
+  },
+  {
+   "name": "I β",
+   "direction": "input",
+   "summary": "β 轴电流 标量"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置模块 标量"
+  },
+  {
+   "name": "ParameterBus",
+   "direction": "input",
+   "summary": "扩展 EMF 观测器的计算参数 总线"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "PMSM 的电气位置 标量"
+  },
+  {
+   "name": "Sin θ e",
+   "direction": "output",
+   "summary": "PMSM 电气位置的正弦值 标量"
+  },
+  {
+   "name": "Cos θ e",
+   "direction": "output",
+   "summary": "PMSM 的电气位置的余弦值 标量"
+  },
+  {
+   "name": "⍵ m",
+   "direction": "output",
+   "summary": "PMSM 的机械转速 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "使用输入端口提供计算参数(运行时电机更换)",
+   "default": "off",
+   "values": "启用输入端口以接受计算参数的选项 off (默认) | 打开",
+   "group": ""
+  },
+  {
+   "name": "输入单位",
+   "default": "单位",
+   "values": "模块输入的单位 SI 单位 (默认) | 标幺",
+   "group": ""
+  },
+  {
+   "name": "位置输出",
+   "default": "电气位置",
+   "values": "位置输出的类型 电气位置 (默认) | 正弦和余弦电气位置",
+   "group": ""
+  },
+  {
+   "name": "离散步长(秒)",
+   "default": "50e-6",
+   "values": "采样时间，在此采样时间过后模块将再次执行 50e-6 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "定子电阻(欧姆)",
+   "default": "0.36",
+   "values": "电阻 0.36 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "定子 d 轴电感(H)",
+   "default": "0.2e-3",
+   "values": "D 轴电感 0.2e-3 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "最大应用转速(RPM)",
+   "default": "6000",
+   "values": "支持的最大机械转速 6000 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "极对数",
+   "default": "4",
+   "values": "电机中可用的极对数 4 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "最大电压(V)",
+   "default": "13.8564",
+   "values": "对应于一个标幺的标称电压 13.8564 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "最大电流(A)",
+   "default": "21.4286",
+   "values": "对应于一个标幺的标称电流 21.4286 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "EEMF 观测器增益",
+   "default": "10",
+   "values": "扩展电动势观测器增益 10 (默认) | 标量",
+   "group": "观测器参数"
+  },
+  {
+   "name": "EEMF 滤波器截止频率(Hz)",
+   "default": "7500",
+   "values": "EEMF 滤波器的截止频率 7500 (默认) | 标量",
+   "group": "观测器参数"
+  },
+  {
+   "name": "比例(P)",
+   "default": "250",
+   "values": "转速观测器的比例增益 250 (默认) | 标量",
+   "group": "观测器参数"
+  },
+  {
+   "name": "积分(I)",
+   "default": "200000",
+   "values": "转速观测器的积分增益 200000 (默认) | 标量",
+   "group": "观测器参数"
+  },
+  {
+   "name": "正弦-余弦查找表的数据点数",
+   "default": "1024",
+   "values": "用于转速计算的数据点数 1024 (默认) | 标量",
+   "group": "观测器参数"
+  },
+  {
+   "name": "转速滤波器截止频率(Hz)",
+   "default": "15",
+   "values": "转速滤波器的截止频率 15 (默认) | 标量",
+   "group": "观测器参数"
+  },
+  {
+   "name": "位置单位",
+   "default": "度",
+   "values": "位置输出的单位 度 (默认) | 弧度 | 标幺",
+   "group": "数据类型"
+  },
+  {
+   "name": "位置数据类型",
+   "default": "单精度",
+   "values": "位置输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "数据类型"
+  },
+  {
+   "name": "转速单位",
+   "default": "度/秒",
+   "values": "转速输出单位 度/秒 (默认) | 弧度/秒 | RPM | 标幺",
+   "group": "数据类型"
+  },
+  {
+   "name": "转速数据类型",
+   "default": "单精度",
+   "values": "转速输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "数据类型"
+  },
+  {
+   "name": "表数据类型",
+   "default": "单精度",
+   "values": "表的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "数据类型"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Three-Winding Nonlinear Transformer",
+ "title": "Three-Winding Nonlinear Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Three_Winding_Nonlinear_Transformer.md"
+ ],
+ "text": "Single-phase nonlinear three-winding transformer.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

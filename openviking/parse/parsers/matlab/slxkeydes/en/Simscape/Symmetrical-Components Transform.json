@@ -1,0 +1,31 @@
+{
+ "key": "Symmetrical-Components Transform",
+ "title": "Symmetrical-Components Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Symmetrical_Components_Transform.md"
+ ],
+ "text": "Implement abc to +-0 transform, 1 input, 1 output; {Power invariant} sets the transform type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "input",
+   "summary": "a, b, and c phasors vector"
+  },
+  {
+   "name": "+-0",
+   "direction": "output",
+   "summary": "Balanced a phasor components vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power invariant",
+   "default": "off",
+   "values": "Transform type off (default) | on",
+   "group": ""
+  }
+ ]
+}

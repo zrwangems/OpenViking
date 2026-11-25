@@ -1,0 +1,13 @@
+{
+ "key": "Tank (IL)",
+ "title": "Tank (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Tanks & Accumulators/Tank_IL.md"
+ ],
+ "text": "Tank in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

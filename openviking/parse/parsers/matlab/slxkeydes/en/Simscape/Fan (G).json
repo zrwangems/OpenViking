@@ -1,0 +1,13 @@
+{
+ "key": "Fan (G)",
+ "title": "Fan (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Turbomachinery/Fan_G.md"
+ ],
+ "text": "Fan in gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

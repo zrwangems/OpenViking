@@ -1,0 +1,126 @@
+{
+ "key": "Simulink Desktop Real-Time Frequency Output",
+ "title": "Frequency Output",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Frequency_Output.md"
+ ],
+ "text": "Write to one or multiple frequency or PWM output channels, 2 inputs, 1 output; {Install new board} sets the register a board < no board, {Delete current board} sets the delete the current board, {Board setup} sets the up the board, {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {Output channels} selects frequency output, {Output signal frequency source} sets the source of output frequency, {Frequency} sets the output frequency, {Frequency initial value} sets the frequency that the board generates before execution starts, {Frequency final value} sets the frequency that the board generates after execution ends, {Output signal duty source} sets the source of output signal duty cycle, {Duty} sets the time during which the output signal, {Duty initial value} sets the duty cycle of the board before execution starts and {Duty final value} sets the duty cycle of the board after execution ends. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Frequency",
+   "direction": "input",
+   "summary": "Frequency of output waveform (optional) vector"
+  },
+  {
+   "name": "Duty Cycle",
+   "direction": "input",
+   "summary": "Duty cycle of output waveform (optional) vector"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "Missed tick count (optional) double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "Register a board < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "Delete the current board (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "Set up the board (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Output channels",
+   "default": "",
+   "values": "Select frequency output channels vector",
+   "group": ""
+  },
+  {
+   "name": "Output signal frequency source",
+   "default": "external",
+   "values": "Specify source of output frequency (Hz) external (default) | internal",
+   "group": ""
+  },
+  {
+   "name": "Frequency",
+   "default": "",
+   "values": "Specify the output frequency (Hz) scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency initial value",
+   "default": "",
+   "values": "Specify the frequency that the board generates before execution starts scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency final value",
+   "default": "",
+   "values": "Specify the frequency that the board generates after execution ends scalar",
+   "group": ""
+  },
+  {
+   "name": "Output signal duty source",
+   "default": "internal",
+   "values": "Specify source of output signal duty cycle internal (default) | external",
+   "group": ""
+  },
+  {
+   "name": "Duty",
+   "default": "0.5",
+   "values": "Specify the time during which the output signal is high 0.5 (default) | 0–1",
+   "group": ""
+  },
+  {
+   "name": "Duty initial value",
+   "default": "",
+   "values": "Specify the duty cycle of the board before execution starts 0–1",
+   "group": ""
+  },
+  {
+   "name": "Duty final value",
+   "default": "",
+   "values": "Specify the duty cycle of the board after execution ends 0–1",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Quantizing Decoder",
+ "title": "Quantizing Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Quantizing_Decoder.md"
+ ],
+ "text": "根据码本解码量化索引。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

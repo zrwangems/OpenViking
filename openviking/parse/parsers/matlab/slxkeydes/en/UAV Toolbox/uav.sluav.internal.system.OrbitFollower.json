@@ -1,0 +1,116 @@
+{
+ "key": "uav.sluav.internal.system.OrbitFollower",
+ "title": "Orbit Follower",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Orbit_Follower.md"
+ ],
+ "text": "Orbit location of interest using UAV, 6 inputs, 7 outputs; {UAV type} sets the type of UAV, {Minimum orbit radius (m)}, {Minimum lookahead distance (m)}, {External reset} sets the reset trigger source, {Show CrossTrackError output port} sets the output cross track error and {Show NumTurns output port} sets the output UAV waypoint status. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "Current UAV pose [x y z course] vector"
+  },
+  {
+   "name": "Center",
+   "direction": "input",
+   "summary": "Center of orbit [x y z] vector"
+  },
+  {
+   "name": "Radius",
+   "direction": "input",
+   "summary": "Radius of orbit positive scalar"
+  },
+  {
+   "name": "TurnDirection",
+   "direction": "input",
+   "summary": "Direction of orbit scalar"
+  },
+  {
+   "name": "LookaheadDistance",
+   "direction": "input",
+   "summary": "Lookahead distance for tracking orbit positive scalar"
+  },
+  {
+   "name": "ResetNumTurns",
+   "direction": "input",
+   "summary": "Reset for counting turns numeric signal"
+  },
+  {
+   "name": "LookaheadPoint",
+   "direction": "output",
+   "summary": "Lookahead point on path [x y z] position vector"
+  },
+  {
+   "name": "DesiredCourse",
+   "direction": "output",
+   "summary": "Desired course numeric scalar"
+  },
+  {
+   "name": "DesiredYaw",
+   "direction": "output",
+   "summary": "Desired yaw numeric scalar"
+  },
+  {
+   "name": "OrbitRadiusFlag",
+   "direction": "output",
+   "summary": "Orbit radius flag 0 (default) | 1"
+  },
+  {
+   "name": "LookaheadDistFlag",
+   "direction": "output",
+   "summary": "Lookahead distance flag 0 (default) | 1"
+  },
+  {
+   "name": "CrossTrackError",
+   "direction": "output",
+   "summary": "Cross track error from UAV position to path positive numeric scalar"
+  },
+  {
+   "name": "NumTurns",
+   "direction": "output",
+   "summary": "Number of times the UAV has completed the orbit numeric scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "UAV type",
+   "default": "fixed-wing",
+   "values": "Type of UAV fixed-wing (default) | multirotor",
+   "group": ""
+  },
+  {
+   "name": "Minimum orbit radius (m)",
+   "default": "1",
+   "values": "Minimum orbit radius 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum lookahead distance (m)",
+   "default": "0.1",
+   "values": "Minimum lookahead distance 0.1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "External reset",
+   "default": "none",
+   "values": "Reset trigger source none (default) | rising",
+   "group": ""
+  },
+  {
+   "name": "Show CrossTrackError output port",
+   "default": "off",
+   "values": "Output cross track error off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show NumTurns output port",
+   "default": "off",
+   "values": "Output UAV waypoint status off (default) | on",
+   "group": ""
+  }
+ ]
+}

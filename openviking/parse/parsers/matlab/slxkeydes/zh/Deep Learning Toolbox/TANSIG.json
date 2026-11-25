@@ -1,0 +1,13 @@
+{
+ "key": "TANSIG",
+ "title": "tansig",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/tansig.md"
+ ],
+ "text": "双曲正切 sigmoid 传递函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

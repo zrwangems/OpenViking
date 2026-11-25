@@ -1,0 +1,55 @@
+{
+ "key": "Transfer Fcn Real Zero",
+ "title": "Transfer Fcn Real Zero",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discrete/Transfer_Fcn_Real_Zero.md"
+ ],
+ "text": "实现具有实零点且无极点的离散时间传递函数，输入 1 路、输出 1 路；按 {整数舍入模式} 指定定点运算的舍入模式；{零点(在 Z 平面内)} 指定零、{上一输入的初始条件}、{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{发生溢出时饱和处理为最大值或最小值} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "零点(在 Z 平面内)",
+   "default": "0.75",
+   "values": "零 0.75 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "上一输入的初始条件",
+   "default": "0.0",
+   "values": "上一输入的初始条件 0.0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "指定基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": ""
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": ""
+  },
+  {
+   "name": "发生溢出时饱和处理为最大值或最小值",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

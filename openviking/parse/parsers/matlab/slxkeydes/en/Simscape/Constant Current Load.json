@@ -1,0 +1,13 @@
+{
+ "key": "Constant Current Load",
+ "title": "Constant Current Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Constant_Current_Load.md"
+ ],
+ "text": "Constant current load for DC or AC supply.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

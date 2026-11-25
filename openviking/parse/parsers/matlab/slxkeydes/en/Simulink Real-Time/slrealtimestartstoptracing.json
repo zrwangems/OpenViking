@@ -1,0 +1,24 @@
+{
+ "key": "slrealtimestartstoptracing",
+ "title": "Enable Profiler",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Profiling/Enable_Profiler.md"
+ ],
+ "text": "Start and stop execution profiler on target computer, 2 inputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Start",
+   "direction": "input",
+   "summary": "Starts the profiler 0 | 1"
+  },
+  {
+   "name": "Stop",
+   "direction": "input",
+   "summary": "Stops the profiler 0 | 1"
+  }
+ ],
+ "params": []
+}

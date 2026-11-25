@@ -1,0 +1,63 @@
+{
+ "key": "Image Statistics",
+ "title": "Image Statistics",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Statistics/Image_Statistics.md"
+ ],
+ "text": "计算均值、方差和标准差，输入 2 路、输出 4 路；{Enable mean output} 指定计算每个输入帧的均值、{Enable variance output} 指定计算每个输入帧的方差、{Enable std. deviation} 指定计算每个输入帧的标准差，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "mean",
+   "direction": "output",
+   "summary": "最近完成的输入帧的均值 scalar"
+  },
+  {
+   "name": "var",
+   "direction": "output",
+   "summary": "最近完成的输入帧的方差 scalar"
+  },
+  {
+   "name": "stdDev",
+   "direction": "output",
+   "summary": "最近完成的输入帧的标准差 scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "计算完成 boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable mean output",
+   "default": "on",
+   "values": "计算每个输入帧的均值 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable variance output",
+   "default": "on",
+   "values": "计算每个输入帧的方差 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable std. deviation",
+   "default": "on",
+   "values": "计算每个输入帧的标准差 on (default) | off",
+   "group": ""
+  }
+ ]
+}

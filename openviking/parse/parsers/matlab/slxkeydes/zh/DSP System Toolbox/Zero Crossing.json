@@ -1,0 +1,31 @@
+{
+ "key": "Zero Crossing",
+ "title": "Zero Crossing",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Zero_Crossing.md"
+ ],
+ "text": "统计信号在单个时间步内穿过零点的次数，输入 1 路、输出 1 路、无直接馈通；{Input processing} 指定处理输入信号的方法 Columns，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Cnt",
+   "direction": "output",
+   "summary": "过零次数 scalar | row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "处理输入信号的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  }
+ ]
+}

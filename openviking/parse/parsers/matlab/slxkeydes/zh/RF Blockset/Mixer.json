@@ -1,0 +1,110 @@
+{
+ "key": "Mixer",
+ "title": "Mixer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Mixer.md"
+ ],
+ "text": "在 RF 系统中对混频器建模；按 {Source of conversion gain} 指定转换增益的源参数 Available power；{Available power gain} 指定混频器的线性增益、{Open circuit voltage gain} 指定开路电压增益、{Polynomial coefficients} 指定多项式阶数、{Input impedance (Ohm)} 指定混频器的输入阻抗、{Output impedance (Ohm)} 指定混频器的输出阻抗、{LO impedance (Ohm)} 指定混频器 LO 端口的阻抗、{Noise figure (dB)} 指定混频器的单边带 IEEE 噪声系数、{Ground and hide negative terminals} 指定 RF 电路端子接地、{Nonlinear polynomial type} 指定多项式非线性 Even、{Intercept points convention} 指定截点约定 Output、{IP2} 指定二阶截点 inf、{IP3} 指定三阶截点 inf、{1-dB gain compression power}、{Output saturation power}、{Gain compression at saturation}，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source of conversion gain",
+   "default": "gain",
+   "values": "转换增益的源参数 Available power gain (default) | Open circuit voltage gain | Polynomial coefficients",
+   "group": ""
+  },
+  {
+   "name": "Available power gain",
+   "default": "dB",
+   "values": "混频器的线性增益 0 dB (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open circuit voltage gain",
+   "default": "dB",
+   "values": "开路电压增益 0 dB (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Polynomial coefficients",
+   "default": "1]",
+   "values": "多项式阶数 [0 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "混频器的输入阻抗 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "混频器的输出阻抗 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "LO impedance (Ohm)",
+   "default": "inf",
+   "values": "混频器 LO 端口的阻抗 inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "dB",
+   "values": "混频器的单边带 IEEE 噪声系数 0 dB (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Nonlinear polynomial type",
+   "default": "order",
+   "values": "多项式非线性 Even and odd order (default) | Odd order",
+   "group": ""
+  },
+  {
+   "name": "Intercept points convention",
+   "default": "Output",
+   "values": "截点约定 Output (default) | Input",
+   "group": ""
+  },
+  {
+   "name": "IP2",
+   "default": "dBm",
+   "values": "二阶截点 inf dBm (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "IP3",
+   "default": "dBm",
+   "values": "三阶截点 inf dBm (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "1-dB gain compression power",
+   "default": "dBm",
+   "values": "1-dB gain compression power inf dBm (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output saturation power",
+   "default": "dBm",
+   "values": "Output saturation power inf dBm (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gain compression at saturation",
+   "default": "dBm",
+   "values": "Gain compression at saturation inf dBm (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,342 @@
+{
+ "key": "FlightGearPackNetFdm",
+ "title": "Pack net_fdm Packet for FlightGear",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/Pack_net_fdm_Packet_for_FlightGear.md"
+ ],
+ "text": "为 FlightGear 生成 net_fdm 数据包，输入 56 路、输出 1 路；{Show position/altitude inputs} 指定位置和高度输入、{Show velocity/acceleration inputs} 指定速度和加速度输入、{Show control surface position inputs} 指定操纵面位置输入、{Show engine/fuel inputs} 指定发动机和燃油输入、{Show landing gear inputs} 指定起落架输入、{Show environment inputs} 指定环境输入、{Sample time} 指定采样时间 1/30，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "l",
+   "direction": "input",
+   "summary": "经度 scalar"
+  },
+  {
+   "name": "μ",
+   "direction": "input",
+   "summary": "纬度 scalar"
+  },
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "高度 scalar"
+  },
+  {
+   "name": "ϕ",
+   "direction": "input",
+   "summary": "滚转 scalar"
+  },
+  {
+   "name": "θ",
+   "direction": "input",
+   "summary": "俯仰 scalar"
+  },
+  {
+   "name": "ψ",
+   "direction": "input",
+   "summary": "偏航 scalar"
+  },
+  {
+   "name": "α",
+   "direction": "input",
+   "summary": "迎角 scalar"
+  },
+  {
+   "name": "β",
+   "direction": "input",
+   "summary": "侧滑角 scalar"
+  },
+  {
+   "name": "dφ/dt",
+   "direction": "input",
+   "summary": "滚转角速率 scalar"
+  },
+  {
+   "name": "dθ/dt",
+   "direction": "input",
+   "summary": "俯仰角速率 scalar"
+  },
+  {
+   "name": "dψ/dt",
+   "direction": "input",
+   "summary": "偏航角速率 scalar"
+  },
+  {
+   "name": "V cas",
+   "direction": "input",
+   "summary": "校准空速 scalar"
+  },
+  {
+   "name": "climb_rate",
+   "direction": "input",
+   "summary": "爬升率 scalar"
+  },
+  {
+   "name": "v north",
+   "direction": "input",
+   "summary": "机体坐标系中的北向速度 scalar"
+  },
+  {
+   "name": "v east",
+   "direction": "input",
+   "summary": "机体坐标系中的东向速度 scalar"
+  },
+  {
+   "name": "v down",
+   "direction": "input",
+   "summary": "向下速度 scalar"
+  },
+  {
+   "name": "v wind body north",
+   "direction": "input",
+   "summary": "相对于当地气团的机体坐标系中的北向速度 scalar"
+  },
+  {
+   "name": "v wind body east",
+   "direction": "input",
+   "summary": "相对于局部空气团的机体坐标系东向速度 scalar"
+  },
+  {
+   "name": "v wind body down",
+   "direction": "input",
+   "summary": "相对于空气团的机体坐标系下向速度 scalar"
+  },
+  {
+   "name": "A X pilot",
+   "direction": "input",
+   "summary": "机体坐标系 X 加速度 scalar"
+  },
+  {
+   "name": "A Y pilot",
+   "direction": "input",
+   "summary": "机体坐标系 Y 加速度 scalar"
+  },
+  {
+   "name": "A Z pilot",
+   "direction": "input",
+   "summary": "机体坐标系 Z 加速度 scalar"
+  },
+  {
+   "name": "stall_warning",
+   "direction": "input",
+   "summary": "失速量 scalar"
+  },
+  {
+   "name": "slip_degree",
+   "direction": "input",
+   "summary": "侧滑球偏转 scalar"
+  },
+  {
+   "name": "elevator",
+   "direction": "input",
+   "summary": "归一化升降舵位置 scalar"
+  },
+  {
+   "name": "elevator_trim_tab",
+   "direction": "input",
+   "summary": "归一化升降舵配平片位置 scalar"
+  },
+  {
+   "name": "left_flap",
+   "direction": "input",
+   "summary": "归一化左襟翼位置 scalar"
+  },
+  {
+   "name": "right_flap",
+   "direction": "input",
+   "summary": "归一化右襟翼位置 scalar"
+  },
+  {
+   "name": "left_aileron",
+   "direction": "input",
+   "summary": "归一化左副翼位置 scalar"
+  },
+  {
+   "name": "right_aileron",
+   "direction": "input",
+   "summary": "归一化右副翼位置 scalar"
+  },
+  {
+   "name": "rudder",
+   "direction": "input",
+   "summary": "归一化方向舵位置 scalar"
+  },
+  {
+   "name": "nose_wheel",
+   "direction": "input",
+   "summary": "归一化前轮位置 scalar"
+  },
+  {
+   "name": "speedbrake",
+   "direction": "input",
+   "summary": "归一化减速板位置 scalar"
+  },
+  {
+   "name": "spoilers",
+   "direction": "input",
+   "summary": "归一化扰流板位置 scalar"
+  },
+  {
+   "name": "num_engines",
+   "direction": "input",
+   "summary": "发动机数量 scalar"
+  },
+  {
+   "name": "eng_state",
+   "direction": "input",
+   "summary": "发动机状态 vector"
+  },
+  {
+   "name": "rpm",
+   "direction": "input",
+   "summary": "发动机 RPM vector"
+  },
+  {
+   "name": "fuel_flow",
+   "direction": "input",
+   "summary": "燃油流量 vector"
+  },
+  {
+   "name": "fuel_px",
+   "direction": "input",
+   "summary": "燃油压力 vector"
+  },
+  {
+   "name": "egt",
+   "direction": "input",
+   "summary": "排气温度 vector"
+  },
+  {
+   "name": "cht",
+   "direction": "input",
+   "summary": "气缸盖温度 scalar"
+  },
+  {
+   "name": "mp_osi",
+   "direction": "input",
+   "summary": "歧管压力 vector"
+  },
+  {
+   "name": "tit",
+   "direction": "input",
+   "summary": "涡轮进口温度 vector"
+  },
+  {
+   "name": "oil_temp",
+   "direction": "input",
+   "summary": "油温 vector"
+  },
+  {
+   "name": "oil_px",
+   "direction": "input",
+   "summary": "油压 vector"
+  },
+  {
+   "name": "num_tanks",
+   "direction": "input",
+   "summary": "燃油箱数量 scalar"
+  },
+  {
+   "name": "fuel_quantity",
+   "direction": "input",
+   "summary": "每个燃油箱的燃油量 vector"
+  },
+  {
+   "name": "num_wheels",
+   "direction": "input",
+   "summary": "机轮数量 scalar"
+  },
+  {
+   "name": "wow",
+   "direction": "input",
+   "summary": "轮载开关 vector"
+  },
+  {
+   "name": "gear_pos",
+   "direction": "input",
+   "summary": "起落架归一化位置 vector"
+  },
+  {
+   "name": "gear_steer",
+   "direction": "input",
+   "summary": "起落架归一化转向 vector"
+  },
+  {
+   "name": "gear_compression",
+   "direction": "input",
+   "summary": "起落架归一化压缩量 vector"
+  },
+  {
+   "name": "agl",
+   "direction": "input",
+   "summary": "离地高度 scalar"
+  },
+  {
+   "name": "cur_time",
+   "direction": "input",
+   "summary": "当前 UNIX® 时间 scalar"
+  },
+  {
+   "name": "warp",
+   "direction": "input",
+   "summary": "相对于 UNIX 时间的偏移量（秒） scalar"
+  },
+  {
+   "name": "visibility",
+   "direction": "input",
+   "summary": "能见度 scalar"
+  },
+  {
+   "name": "net_fdm",
+   "direction": "output",
+   "summary": "为 FlightGear 生成的数据包 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show position/altitude inputs",
+   "default": "on",
+   "values": "位置和高度输入 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show velocity/acceleration inputs",
+   "default": "off",
+   "values": "速度和加速度输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show control surface position inputs",
+   "default": "off",
+   "values": "操纵面位置输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show engine/fuel inputs",
+   "default": "off",
+   "values": "发动机和燃油输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show landing gear inputs",
+   "default": "off",
+   "values": "起落架输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show environment inputs",
+   "default": "off",
+   "values": "环境输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "采样时间 1/30 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

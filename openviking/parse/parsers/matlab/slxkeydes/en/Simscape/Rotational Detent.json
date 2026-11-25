@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Detent",
+ "title": "Rotational Detent",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Rotational/Rotational_Detent.md"
+ ],
+ "text": "Frictional brake with flexible band wrapped around rotating drum.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

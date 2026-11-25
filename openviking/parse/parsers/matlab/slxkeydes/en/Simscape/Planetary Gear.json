@@ -1,0 +1,13 @@
+{
+ "key": "Planetary Gear",
+ "title": "Planetary Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Planetary_Gear.md"
+ ],
+ "text": "Gear train with sun, planet, and ring gears.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

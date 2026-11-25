@@ -1,0 +1,13 @@
+{
+ "key": "Hall-Effect Rotary Encoder",
+ "title": "Hall-Effect Rotary Encoder",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Hall_Effect_Rotary_Encoder.md"
+ ],
+ "text": "四元件霍尔效应旋转编码器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

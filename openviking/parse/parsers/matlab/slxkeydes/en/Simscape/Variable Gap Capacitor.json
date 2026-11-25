@@ -1,0 +1,13 @@
+{
+ "key": "Variable Gap Capacitor",
+ "title": "Variable Gap Capacitor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Variable_Gap_Capacitor.md"
+ ],
+ "text": "Capacitor with parallel plates and variable gap.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

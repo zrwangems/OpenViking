@@ -1,0 +1,13 @@
+{
+ "key": "Current-Controlled Switch",
+ "title": "Current-Controlled Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Passives/Current_Controlled_Switch.md"
+ ],
+ "text": "具有迟滞的电流控制开关。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

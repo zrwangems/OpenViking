@@ -1,0 +1,61 @@
+{
+ "key": "slrealtimeudpmulticastreceive",
+ "title": "UDP Multicast Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/UDP_Multicast_Receive.md"
+ ],
+ "text": "Receive data over UDP network from a remote device, 2 outputs, {Group address} sets Multicast group to join; {Bind address} sets the bind IP address for receiving multicast data, {Local port} sets the destination UDP port to receive data, {Receive width} sets the width of Data output vector, {Group interface} sets the local IP interface from which to receive and {Sample time (-1 for inherited)} sets the sample time of block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Data received vector"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "Number of bytes received double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Bind address",
+   "default": "0.0.0.0",
+   "values": "Bind IP address for receiving multicast data 0.0.0.0 (default)",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Local port",
+   "default": "",
+   "values": "Destination UDP port to receive data 1–65535",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Receive width",
+   "default": "16",
+   "values": "Width of Data output vector 16 (default) | 1–65504",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Group address",
+   "default": "{}",
+   "values": "Multicast group to join {} (default) | {’x.x.x.x’} | dotted decimal character vector",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Group interface",
+   "default": "{}",
+   "values": "Local IP interface from which to receive data {} (default) | {’x.x.x.x’} | dotted decimal character vector",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": "General Parameters"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "key": "Display",
+ "title": "Display",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/Display.md",
+  "DSP System Toolbox HDL Support/Sinks/Display.md",
+  "DSP System Toolbox/Sinks/Display.md",
+  "HDL Coder/Sinks/Display.md"
+ ],
+ "text": "显示输入的值，输入 1 路；按 {数值显示格式} 指定数值输入数据的显示格式；{抽取} 显示速率、{浮动显示}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "数值显示格式",
+   "default": "short",
+   "values": "数值输入数据的显示格式 short (默认) | long | short_e | long_e | 货币格式 | 十六进制(存储整数) | 二进制(存储整数) | 十进制(存储整数) | 八进制(存储整数)",
+   "group": ""
+  },
+  {
+   "name": "抽取",
+   "default": "1",
+   "values": "显示速率 1 (默认) | integer",
+   "group": ""
+  },
+  {
+   "name": "浮动显示",
+   "default": "off",
+   "values": "浮动显示 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

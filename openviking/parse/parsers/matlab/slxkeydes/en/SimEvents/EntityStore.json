@@ -1,0 +1,86 @@
+{
+ "key": "EntityStore",
+ "title": "Entity Store",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Store.md"
+ ],
+ "text": "Store entities, 1 input, 6 outputs; {Capacity} sets the capacity of the storage, {Number of entities departed, d} sets the outputs the number of entities that have departed, {Number of entities in block, n} sets the outputs the number of entities present in the block, which have yet, {Average wait, w} sets the outputs the average wait time, {Average store size, l} sets the outputs the average store size and {Number of entities extracted, ex} sets the number of entities extracted from this. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "Number of entities that have departed the block scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "Number of entities that have not yet departed the block scalar"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "Average wait time for entities in the block scalar"
+  },
+  {
+   "name": "Port_l",
+   "direction": "output",
+   "summary": "Average store size scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "Number of entities extracted scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Capacity",
+   "default": "25",
+   "values": "Specify the capacity of the storage 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "Outputs the number of entities that have departed the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "Outputs the number of entities present in the block, which have yet to depart off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average wait, w",
+   "default": "off",
+   "values": "Outputs the average wait time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average store size, l",
+   "default": "off",
+   "values": "Outputs the average store size off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "Number of entities extracted from this block off (default) | on",
+   "group": ""
+  }
+ ]
+}

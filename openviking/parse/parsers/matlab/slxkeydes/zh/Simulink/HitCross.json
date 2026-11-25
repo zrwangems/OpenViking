@@ -1,0 +1,78 @@
+{
+ "key": "HitCross",
+ "title": "Hit Crossing",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Hit_Crossing.md",
+  "Simulink/Messages & Events/Hit_Crossing_Probe.md",
+  "SimEvents/Hit_Crossing.md",
+  "HDL Coder/Discontinuities/Hit_Crossing.md"
+ ],
+ "text": "Hit Crossing 模块检测输入何时在由**穿越方向**属性指定的方向上到达**穿越偏移量**参数值，输入 1 路、输出 5 路；按 {穿越方向} 指定输入信号的穿越方向；{穿越偏移量} 指定检测的穿越值、{显示输出端口}、{输出类型} 指定信号、消息或函数调用输出 信号、{启用过零检测}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 消息 | 函数调用事件"
+  },
+  {
+   "name": "CrossingType",
+   "direction": "output",
+   "summary": "过零的方向 None | NegativeToPositive | NegativeToZero | ZeroToPositive | PositiveToNegative | PositiveToZero | ZeroToNegative"
+  },
+  {
+   "name": "Index",
+   "direction": "output",
+   "summary": "发生穿越事件的输入信号的索引 非负整数"
+  },
+  {
+   "name": "Time",
+   "direction": "output",
+   "summary": "穿越事件的时间 有限实数"
+  },
+  {
+   "name": "Offset",
+   "direction": "output",
+   "summary": "检测的穿越值 0 (默认) | 实数值"
+  }
+ ],
+ "params": [
+  {
+   "name": "穿越偏移量",
+   "default": "0",
+   "values": "检测的穿越值 0 (默认) | 实数值",
+   "group": ""
+  },
+  {
+   "name": "穿越方向",
+   "default": "任一沿",
+   "values": "输入信号的穿越方向 任一沿 (默认) | 下降沿 | 上升沿",
+   "group": ""
+  },
+  {
+   "name": "显示输出端口",
+   "default": "off",
+   "values": "显示输出端口 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "输出类型",
+   "default": "",
+   "values": "选择信号、消息或函数调用输出 信号 （Simulink ® 的默认值） | 消息 （SimEvents 的默认值） | 函数调用",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "启用过零检测 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

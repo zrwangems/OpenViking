@@ -1,0 +1,134 @@
+{
+ "key": "SM Current Controller",
+ "title": "SM Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_Current_Controller.md"
+ ],
+ "text": "Discrete-time synchronous machine current PI controller, 6 inputs, 1 output, {Axis prioritization} sets Axis prioritization for voltage limiter; {Sample time (-1 for inherited)} sets the block sample time, {Discretization sample time} sets the block discretization sample time, {Enable zero cancellation} sets the feedforward zero-cancellation, {Enable pre-control voltage} sets the pre-control voltage, {D-axis current proportional gain} sets the d-axis proportional gain, {D-axis current integral gain} sets the d-axis integral gain, {D-axis current anti-windup gain} sets the d-axis anti-windup gain, {Q-axis current proportional gain} sets the q-axis proportional gain, {Q-axis current integral gain} sets the q-axis integral gain, {Q-axis current anti-windup gain} sets the q-axis anti-windup gain, {Field current proportional gain}, {Field current integral gain} and {Field current anti-windup gain}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "idqfRef",
+   "direction": "input",
+   "summary": "Reference currents, A vector"
+  },
+  {
+   "name": "idqf",
+   "direction": "input",
+   "summary": "Measured currents, A vector"
+  },
+  {
+   "name": "vdqFF",
+   "direction": "input",
+   "summary": "Purpose, V vector"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "Maximum phase voltage, V scalar"
+  },
+  {
+   "name": "VfMax",
+   "direction": "input",
+   "summary": "Maximum field voltage, V scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset scalar"
+  },
+  {
+   "name": "vdqfRef",
+   "direction": "output",
+   "summary": "Reference voltages, V vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "Block discretization sample time 0.001 (default) | -1 or positive number",
+   "group": ""
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "q-axis",
+   "values": "Axis prioritization for voltage limiter q-axis (default) | d-axis | d-q equivalence",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "Feedforward zero-cancellation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable pre-control voltage",
+   "default": "on",
+   "values": "Pre-control voltage on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "D-axis current proportional gain",
+   "default": "1",
+   "values": "D-axis proportional gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current integral gain",
+   "default": "100",
+   "values": "D-axis integral gain 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current anti-windup gain",
+   "default": "1",
+   "values": "D-axis anti-windup gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current proportional gain",
+   "default": "1",
+   "values": "Q-axis proportional gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current integral gain",
+   "default": "100",
+   "values": "Q-axis integral gain 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current anti-windup gain",
+   "default": "1",
+   "values": "Q-axis anti-windup gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Field current proportional gain",
+   "default": "9",
+   "values": "Field current proportional gain 9 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Field current integral gain",
+   "default": "350",
+   "values": "Field current integral gain 350 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Field current anti-windup gain",
+   "default": "1",
+   "values": "Field current anti-windup gain 1 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

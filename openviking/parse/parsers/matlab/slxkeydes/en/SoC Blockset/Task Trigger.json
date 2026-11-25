@@ -1,0 +1,19 @@
+{
+ "key": "Task Trigger",
+ "title": "Task Trigger",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor Task Execution/Task_Trigger.md"
+ ],
+ "text": "Trigger task execution in your application, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output trigger scalar"
+  }
+ ],
+ "params": []
+}

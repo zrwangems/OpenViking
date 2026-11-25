@@ -1,0 +1,512 @@
+{
+ "key": "Predictive Driver",
+ "title": "Predictive Driver",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Driver/Predictive_Driver.md"
+ ],
+ "text": "预测型驾驶员控制器，用于跟踪纵向速度和横向路径，输入 26 路、输出 5 路；按 {Longitudinal control type, cntrlType} 指定纵向控制；{Accelerator override} 指定覆盖加速度指令、{Accelerator hold} 保持加速度指令、{Accelerator disable} 指定禁用加速指令、{Decelerator override} 指定覆盖减速度指令、{Decelerator hold} 保持减速度指令、{Decelerator disable} 指定禁用减速度指令、{Steering override} 指定覆盖转向指令、{Steering hold} 保持转向指令、{Steering disable} 指定禁用转向命令、{Lateral control type, controlTypeLat} 控制器 Predictive、{Shift type, shftType} 指定换挡类型 None、{Longitudinal velocity units, velUnits} 指定速度单位 m/s、{Angular units, angUnits} 指定横摆、转向和位姿角单位、{Output gear signal} 指定创建 GearCmd 输出端口、{Output handwheel angle} 指定转向端口单位采用 rad、{Proportional gain, Kp} 指定 Gain、{Integral gain, Ki} 指定 Gain、{Velocity feed-forward, Kff} 指定 Gain .1、{Grade angle feed-forward, Kg} 指定 Gain、{Velocity gain breakpoints, VehVelVec} 指定断点、{Velocity feed-forward gain values, KffVec} 指定 Gain、{Proportional gain values, KpVec} 指定 Gain、{Integral gain values, KiVec} 指定 Gain、{Grade angle feed-forward values, KgVec} 指定坡度增益、{Nominal speed, vnom} 指定标称车速、{Anti-windup, Kaw} 指定 Gain、{Error filter time constant, tauerr} 指定滤波器 .01、{Driver response time, tau} 指定响应时间、{Preview distance, L} 指定距离、{Effective vehicle total tractive force, Kpt} 指定牵引力、{Rolling resistance coefficient, aR} 指定电阻、{Rolling and driveline resistance coefficient, bR} 指定电阻、{Aerodynamic drag coefficient, cR} 指定阻力 .5、{Gravitational constant, g} 指定重力常数、{Vector input for poses} 以创建 RefPose 和 CurrPose、{Include dynamics} 以包含动力学、{Position gain of forward motion, PositionGainF} 指定车辆前向运动时的位置增益、{Position gain of reverse motion, PositionGainR} 指定车辆倒车运动时的位置增益、{Yaw rate feedback gain, YawRateGain} 指定横摆角速度反馈增益 .2、{Steering angle feedback gain, DelayGain} 指定转向角反馈增益 .2、{Forward location of tire, a} 指定沿车辆纵轴、{Rearward location of tire, b} 指定沿车辆纵轴、{Vehicle mass, m} 指定质量、{Front tire cornering coefficient, Cy_f} 指定系数、{Rear tire cornering coefficient, Cy_r} 指定系数、{Vehicle rotational inertia, I} 指定绕横摆轴的转动惯量、{Nominal steering ratio, Ksteer} 指定转向比、{Tire wheel angle limit, theta} 指定角度限制 45*pi/180、{Initial gear, GearInit} 指定初始挡位、{Time required to shift, tShift} 指定时间 .1、{Up and down shift accelerator pedal positions, pdlVec} 指定踏板位置断点、{Upshift velocity data table, upShftTbl} 指定表、{Downshift velocity data table, dwnShftTbl} 指定表、{Time required to shift, tClutch} 指定时间 .5、{Time required to engage reverse from neutral, tRev} 指定时间 .5、{Time required to engage park from neutral, tPark} 指定时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VelRef",
+   "direction": "input",
+   "summary": "参考车辆速度 scalar"
+  },
+  {
+   "name": "LongRef",
+   "direction": "input",
+   "summary": "纵向位移参考 scalar"
+  },
+  {
+   "name": "LatRef",
+   "direction": "input",
+   "summary": "横向位移参考 scalar"
+  },
+  {
+   "name": "YawRef",
+   "direction": "input",
+   "summary": "横摆角参考 scalar"
+  },
+  {
+   "name": "EnblSteerOvr",
+   "direction": "input",
+   "summary": "启用转向命令覆盖 scalar"
+  },
+  {
+   "name": "SteerOvrCmd",
+   "direction": "input",
+   "summary": "转向覆盖命令 scalar"
+  },
+  {
+   "name": "SteerHld",
+   "direction": "input",
+   "summary": "转向保持 scalar"
+  },
+  {
+   "name": "SteerZero",
+   "direction": "input",
+   "summary": "禁用转向命令 scalar"
+  },
+  {
+   "name": "EnblAccelOvr",
+   "direction": "input",
+   "summary": "启用加速指令覆盖 scalar"
+  },
+  {
+   "name": "AccelOvrCmd",
+   "direction": "input",
+   "summary": "加速覆盖指令 scalar"
+  },
+  {
+   "name": "AccelHld",
+   "direction": "input",
+   "summary": "加速保持 scalar"
+  },
+  {
+   "name": "AccelZero",
+   "direction": "input",
+   "summary": "禁用加速指令 scalar"
+  },
+  {
+   "name": "EnblDecelOvr",
+   "direction": "input",
+   "summary": "启用减速指令覆盖 scalar"
+  },
+  {
+   "name": "DecelOvrCmd",
+   "direction": "input",
+   "summary": "减速覆盖指令 scalar"
+  },
+  {
+   "name": "DecelHld",
+   "direction": "input",
+   "summary": "减速保持 scalar"
+  },
+  {
+   "name": "DecelZero",
+   "direction": "input",
+   "summary": "禁用减速度指令 scalar"
+  },
+  {
+   "name": "ExtGear",
+   "direction": "input",
+   "summary": "Gear scalar"
+  },
+  {
+   "name": "Grade",
+   "direction": "input",
+   "summary": "道路坡度角 scalar"
+  },
+  {
+   "name": "Curvature",
+   "direction": "input",
+   "summary": "路径曲率 scalar"
+  },
+  {
+   "name": "RefPose",
+   "direction": "input",
+   "summary": "参考位姿 [ X ref, Y ref, φ ref ] vector"
+  },
+  {
+   "name": "VelFdbk",
+   "direction": "input",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "CurrPose",
+   "direction": "input",
+   "summary": "当前位姿 [ X curr, Y curr, φ curr ] vector"
+  },
+  {
+   "name": "LatFdbk",
+   "direction": "input",
+   "summary": "横向位移 scalar"
+  },
+  {
+   "name": "LatVelFdbk",
+   "direction": "input",
+   "summary": "车辆横向速度 scalar"
+  },
+  {
+   "name": "YawFdbk",
+   "direction": "input",
+   "summary": "车辆横摆角 scalar"
+  },
+  {
+   "name": "YawVelFdbk",
+   "direction": "input",
+   "summary": "偏航角速率 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "SteerCmd",
+   "direction": "output",
+   "summary": "转向角指令 scalar"
+  },
+  {
+   "name": "AccelCmd",
+   "direction": "output",
+   "summary": "车辆加速度指令 scalar"
+  },
+  {
+   "name": "DecelCmd",
+   "direction": "output",
+   "summary": "车辆减速度指令 scalar"
+  },
+  {
+   "name": "GearCmd",
+   "direction": "output",
+   "summary": "车辆挡位指令 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Accelerator override",
+   "default": "off",
+   "values": "覆盖加速度指令 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Accelerator hold",
+   "default": "off",
+   "values": "保持加速度指令 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Accelerator disable",
+   "default": "off",
+   "values": "禁用加速指令 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Decelerator override",
+   "default": "off",
+   "values": "覆盖减速度指令 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Decelerator hold",
+   "default": "off",
+   "values": "保持减速度指令 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Decelerator disable",
+   "default": "off",
+   "values": "禁用减速度指令 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Steering override",
+   "default": "off",
+   "values": "覆盖转向指令 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Steering hold",
+   "default": "off",
+   "values": "保持转向指令 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Steering disable",
+   "default": "off",
+   "values": "禁用转向命令 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Longitudinal control type, cntrlType",
+   "default": "PI",
+   "values": "纵向控制 PI (default) | Scheduled PI | Predictive",
+   "group": "Configuration"
+  },
+  {
+   "name": "Lateral control type, controlTypeLat",
+   "default": "Predictive",
+   "values": "控制器 Predictive (default) | Stanley",
+   "group": "Configuration"
+  },
+  {
+   "name": "Shift type, shftType",
+   "default": "None",
+   "values": "换挡类型 None (default) | Reverse, Neutral, Drive | Scheduled | External",
+   "group": "Configuration"
+  },
+  {
+   "name": "Longitudinal velocity units, velUnits",
+   "default": "m/s",
+   "values": "速度单位 m/s (default)",
+   "group": "Configuration"
+  },
+  {
+   "name": "Angular units, angUnits",
+   "default": "rad",
+   "values": "横摆、转向和位姿角单位 rad (default) | deg",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output gear signal",
+   "default": "off",
+   "values": "创建 GearCmd 输出端口 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output handwheel angle",
+   "default": "off",
+   "values": "转向端口单位采用 rad off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Proportional gain, Kp",
+   "default": "10",
+   "values": "Gain 10 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Integral gain, Ki",
+   "default": "5",
+   "values": "Gain 5 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Velocity feed-forward, Kff",
+   "default": ".1",
+   "values": "Gain .1 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Grade angle feed-forward, Kg",
+   "default": "0",
+   "values": "Gain 0 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Velocity gain breakpoints, VehVelVec",
+   "default": "100]",
+   "values": "断点 [0 100] (default) | vector",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Velocity feed-forward gain values, KffVec",
+   "default": "[.1.1]",
+   "values": "Gain [.1.1] (default) | vector",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Proportional gain values, KpVec",
+   "default": "10]",
+   "values": "Gain [10 10] (default) | vector",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Integral gain values, KiVec",
+   "default": "5]",
+   "values": "Gain [5 5] (default) | vector",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Grade angle feed-forward values, KgVec",
+   "default": "0]",
+   "values": "坡度增益 [0 0] (default) | vector",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Nominal speed, vnom",
+   "default": "5",
+   "values": "标称车速 5 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Anti-windup, Kaw",
+   "default": "1",
+   "values": "Gain 1 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Error filter time constant, tauerr",
+   "default": ".01",
+   "values": "滤波器 .01 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Driver response time, tau",
+   "default": "0.1",
+   "values": "响应时间 0.1 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Preview distance, L",
+   "default": "3",
+   "values": "距离 3 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Effective vehicle total tractive force, Kpt",
+   "default": "3000",
+   "values": "牵引力 3000 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Rolling resistance coefficient, aR",
+   "default": "200",
+   "values": "电阻 200 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Rolling and driveline resistance coefficient, bR",
+   "default": "2.5",
+   "values": "电阻 2.5 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Aerodynamic drag coefficient, cR",
+   "default": ".5",
+   "values": "阻力 .5 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Gravitational constant, g",
+   "default": "9.81",
+   "values": "重力常数 9.81 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Vector input for poses",
+   "default": "off",
+   "values": "选择以创建 RefPose 和 CurrPose 输入端口 off (default) | on",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Include dynamics",
+   "default": "off",
+   "values": "选择以包含动力学 off (default) | on",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Position gain of forward motion, PositionGainF",
+   "default": "2.5",
+   "values": "车辆前向运动时的位置增益 2.5 (default) | positive real scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Position gain of reverse motion, PositionGainR",
+   "default": "2.5",
+   "values": "车辆倒车运动时的位置增益 2.5 (default) | positive real scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Yaw rate feedback gain, YawRateGain",
+   "default": ".2",
+   "values": "横摆角速度反馈增益 .2 (default) | nonnegative real scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Steering angle feedback gain, DelayGain",
+   "default": ".2",
+   "values": "转向角反馈增益 .2 (default) | nonnegative real scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Forward location of tire, a",
+   "default": "1.41",
+   "values": "沿车辆纵轴 1.41 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Rearward location of tire, b",
+   "default": "1.41",
+   "values": "沿车辆纵轴 1.41 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Vehicle mass, m",
+   "default": "2016",
+   "values": "质量 2016 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Front tire cornering coefficient, Cy_f",
+   "default": "25266",
+   "values": "系数 25266 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Rear tire cornering coefficient, Cy_r",
+   "default": "70933",
+   "values": "系数 70933 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Vehicle rotational inertia, I",
+   "default": "4013",
+   "values": "绕横摆轴的转动惯量 4013 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Nominal steering ratio, Ksteer",
+   "default": "18",
+   "values": "转向比 18 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Tire wheel angle limit, theta",
+   "default": "45*pi/180",
+   "values": "角度限制 45*pi/180 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Initial gear, GearInit",
+   "default": "0",
+   "values": "初始挡位 0 (default) | scalar",
+   "group": "Shift"
+  },
+  {
+   "name": "Time required to shift, tShift",
+   "default": ".1",
+   "values": "时间 .1 (default) | scalar",
+   "group": "Shift"
+  },
+  {
+   "name": "Up and down shift accelerator pedal positions, pdlVec",
+   "default": "0.9]",
+   "values": "踏板位置断点 [0.1 0.4 0.5 0.9] (default) | [1-by-m] vector",
+   "group": "Shift"
+  },
+  {
+   "name": "Upshift velocity data table, upShftTbl",
+   "default": "",
+   "values": "表 [m-by-n] array",
+   "group": "Shift"
+  },
+  {
+   "name": "Downshift velocity data table, dwnShftTbl",
+   "default": "",
+   "values": "表 [m-by-n] array",
+   "group": "Shift"
+  },
+  {
+   "name": "Time required to shift, tClutch",
+   "default": ".5",
+   "values": "时间 .5 (default) | scalar",
+   "group": "Shift"
+  },
+  {
+   "name": "Time required to engage reverse from neutral, tRev",
+   "default": ".5",
+   "values": "时间 .5 (default) | scalar",
+   "group": "Shift"
+  },
+  {
+   "name": "Time required to engage park from neutral, tPark",
+   "default": "120",
+   "values": "时间 120 (default) | scalar",
+   "group": "Shift"
+  }
+ ]
+}

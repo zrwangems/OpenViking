@@ -1,0 +1,13 @@
+{
+ "key": "Photodiode",
+ "title": "Photodiode",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Photodiode.md"
+ ],
+ "text": "Photodiode with incident flux input port.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

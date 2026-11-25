@@ -1,0 +1,42 @@
+{
+ "key": "ManualSwitch",
+ "title": "Manual Switch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Manual_Switch.md"
+ ],
+ "text": "Switch between two inputs, 2 inputs, 1 output, direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Allow the two inputs to differ in size (Results in variable-size output signal)} allows inputs of different sizes. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input signal scalar | vector"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Second input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Allow the two inputs to differ in size (Results in variable-size output signal)",
+   "default": "off",
+   "values": "Allow inputs of different sizes off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

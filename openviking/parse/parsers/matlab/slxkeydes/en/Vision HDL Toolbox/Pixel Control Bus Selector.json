@@ -1,0 +1,44 @@
+{
+ "key": "Pixel Control Bus Selector",
+ "title": "Pixel Control Bus Selector",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_block",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Pixel_Control_Bus_Selector.md"
+ ],
+ "text": "Select signals from control signal bus used by Vision HDL Toolbox blocks, 1 input, 5 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Control signals accompanying pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "First pixel in a horizontal line of a frame scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Last pixel in a horizontal line of a frame scalar"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "First pixel in the first (top) line of a frame scalar"
+  },
+  {
+   "name": "Port_4",
+   "direction": "output",
+   "summary": "Last pixel in the last (bottom) line of a frame scalar"
+  },
+  {
+   "name": "Port_5",
+   "direction": "output",
+   "summary": "Valid pixel indicator scalar"
+  }
+ ],
+ "params": []
+}

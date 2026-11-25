@@ -1,0 +1,13 @@
+{
+ "key": "Push-Pull Output",
+ "title": "Push-Pull Output",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Push_Pull_Output.md"
+ ],
+ "text": "CMOS 互补输出级的行为级表示。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

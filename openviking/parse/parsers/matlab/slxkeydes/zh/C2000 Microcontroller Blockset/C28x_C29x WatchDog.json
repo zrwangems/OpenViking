@@ -1,0 +1,50 @@
+{
+ "key": "C28x/C29x WatchDog",
+ "title": "Watchdog",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2803x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2805x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2806x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C281x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2833x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2834x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F280013x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F280015x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28002x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28003x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28004x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F2807x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F2837xD/Watchdog.md",
+  "C2000 Microcontroller Blockset/F2837xS/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28p55x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28p65x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F29H85x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/Watchdog.md"
+ ],
+ "text": "配置处理器 Watchdog 模块的计数器复位源，输入 1 路；{Watchdog 计数器复位源}、{采样时间} 指定处理器重置 Watchdog 定时器的频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "重置 Watchdog 计数器 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "Watchdog 计数器复位源",
+   "default": "通过对话框指定",
+   "values": "Watchdog 计数器复位源 通过对话框指定 (默认) | 输入端口",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "–1",
+   "values": "处理器重置 Watchdog 定时器的频率 –1 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

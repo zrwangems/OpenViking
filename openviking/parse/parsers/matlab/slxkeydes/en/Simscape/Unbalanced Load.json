@@ -1,0 +1,13 @@
+{
+ "key": "Unbalanced Load",
+ "title": "Unbalanced Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Inertias & Loads/Unbalanced_Load.md"
+ ],
+ "text": "Load with angle-dependent rotational inertia.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

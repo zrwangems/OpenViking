@@ -1,0 +1,101 @@
+{
+ "key": "CCSDS LDPC Decoder",
+ "title": "CCSDS LDPC Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/CCSDS_LDPC_Decoder.md"
+ ],
+ "text": "根据 CCSDS 标准解码 LDPC 码，输入 5 路、输出 5 路；{Configuration type} 指定配置类型、{Decoding termination criteria} 指定终止条件 Max、{Source for number of iterations} 指定迭代次数的来源选择、{Number of iterations} 指定解码迭代次数、{Maximum number of iterations} 指定最大解码迭代次数、{Enable parity check output port} 指定奇偶校验状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "LLR 值 scalar | column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "codeRateIdx",
+   "direction": "input",
+   "summary": "码率索引 0 | 1 | 2"
+  },
+  {
+   "name": "blkLenIdx",
+   "direction": "input",
+   "summary": "块长度索引 0 | 1 | 2"
+  },
+  {
+   "name": "iter",
+   "direction": "input",
+   "summary": "迭代次数 integer in the range [1, 63]"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "解码比特 scalar | column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "模块就绪指示 0 | 1"
+  },
+  {
+   "name": "actIter",
+   "direction": "output",
+   "summary": "实际迭代次数 positive scalar"
+  },
+  {
+   "name": "parityCheck",
+   "direction": "output",
+   "summary": "奇偶校验状态指示 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Configuration type",
+   "default": "LDPC",
+   "values": "配置类型 (8160,7136) LDPC (default) | AR4JA LDPC",
+   "group": ""
+  },
+  {
+   "name": "Decoding termination criteria",
+   "default": "Max",
+   "values": "终止条件 Max (default) | Early",
+   "group": ""
+  },
+  {
+   "name": "Source for number of iterations",
+   "default": "Property",
+   "values": "迭代次数的来源选择 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "8",
+   "values": "解码迭代次数 8 (default) | integer in the range [1, 63]",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of iterations",
+   "default": "8",
+   "values": "最大解码迭代次数 8 (default) | integer in the range [1, 63]",
+   "group": ""
+  },
+  {
+   "name": "Enable parity check output port",
+   "default": "off",
+   "values": "奇偶校验状态 off (default) | on",
+   "group": ""
+  }
+ ]
+}

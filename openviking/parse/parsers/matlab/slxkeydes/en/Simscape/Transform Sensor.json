@@ -1,0 +1,13 @@
+{
+ "key": "Transform Sensor",
+ "title": "Transform Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Frames and Transforms/Transform_Sensor.md"
+ ],
+ "text": "Sensor that measures the relative spatial relationship between two frames.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,49 @@
+{
+ "key": "slrealtime.EthernetSend",
+ "title": "Ethernet Send",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/Ethernet/Ethernet_Send.md"
+ ],
+ "text": "从目标计算机发送以太网数据包，输入 2 路；按 {Interface Name} 指定目标计算机接口名称 wm0；{Overwrite source MAC address} 指定将源 MAC 地址替换为数据端口的 MAC 地址、{Enable Simulink messages} 指定数据作为消息、{Sample Time} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "以太网数据包的输入端口 构造以太网数据包的信号输入"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "要传输的数据字节数 双精度"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interface Name",
+   "default": "",
+   "values": "目标计算机接口名称 wm0 | wm1 | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "Overwrite source MAC address",
+   "default": "off",
+   "values": "将源 MAC 地址替换为数据端口的 MAC 地址 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable Simulink messages",
+   "default": "off",
+   "values": "数据作为消息 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 数值",
+   "group": ""
+  }
+ ]
+}

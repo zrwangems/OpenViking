@@ -1,0 +1,53 @@
+{
+ "key": "driving.scenario.internal.CuboidTo3DSimulation",
+ "title": "Cuboid To 3D Simulation",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Cuboid_To_3D_Simulation.md"
+ ],
+ "text": "将参与者从长方体坐标转换为 3D 仿真坐标，输入 1 路、输出 3 路；{Specify Actor ID} 启用长方体参与者的 ID 指定、{ActorID used for conversion} 指定长方体参与者的 ActorID 值、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Actor",
+   "direction": "input",
+   "summary": "世界坐标中的长方体参与者位姿 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "3D 仿真坐标中参与者的纵向位置 numeric scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "3D 仿真坐标中参与者的横向位置 numeric scalar"
+  },
+  {
+   "name": "Yaw",
+   "direction": "output",
+   "summary": "3D 仿真坐标中参与者的偏航朝向角 numeric scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Actor ID",
+   "default": "off",
+   "values": "启用长方体参与者的 ID 指定 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ActorID used for conversion",
+   "default": "1",
+   "values": "长方体参与者的 ActorID 值 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

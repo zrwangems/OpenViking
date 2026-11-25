@@ -1,0 +1,90 @@
+{
+ "key": "Real Partial-Systolic Matrix Solve Using Q-less QR Decomposition with Forgetting Factor",
+ "title": "Real Partial-Systolic Matrix Solve Using Q-less QR Decomposition with Forgetting Factor",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Matrices and Linear Algebra/Linear System Solvers/Real_Partial_Systolic_Matrix_Solve_Using_Q_less_QR_Decomposit_2.md"
+ ],
+ "text": "Compute value of X in the equation A ’ A X = B for real-valued matrices with infinite number of rows using Q-less QR decomposition, 5 inputs, 4 outputs, {Output datatype} sets Data type of output matrix X; {Number of columns in matrix A and rows in matrix B}, {Number of columns in matrix B}, {Forgetting factor} and {Regularization parameter}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A(i,:)",
+   "direction": "input",
+   "summary": "Rows of real matrix A vector"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Matrix B matrix"
+  },
+  {
+   "name": "validInA",
+   "direction": "input",
+   "summary": "Whether A input is valid Boolean scalar"
+  },
+  {
+   "name": "validInB",
+   "direction": "input",
+   "summary": "Whether B input is valid Boolean scalar"
+  },
+  {
+   "name": "restart",
+   "direction": "input",
+   "summary": "Whether to clear internal states Boolean scalar"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "Matrix X vector | matrix"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Whether output data is valid Boolean scalar"
+  },
+  {
+   "name": "readyA",
+   "direction": "output",
+   "summary": "Whether block is ready for input A Boolean scalar"
+  },
+  {
+   "name": "readyB",
+   "direction": "output",
+   "summary": "Whether block is ready for input B Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of columns in matrix A and rows in matrix B",
+   "default": "4",
+   "values": "Number of columns in matrix A and rows in matrix B 4 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in matrix B",
+   "default": "1",
+   "values": "Number of columns in matrix B 1 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.99",
+   "values": "Forgetting factor applied after each row of matrix is factored 0.99 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Regularization parameter",
+   "default": "0",
+   "values": "Regularization parameter 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output datatype",
+   "default": "fixdt(1,18,14)",
+   "values": "Data type of output matrix X fixdt(1,18,14) (default) | double | single | fixdt(1,16,0) |",
+   "group": ""
+  }
+ ]
+}

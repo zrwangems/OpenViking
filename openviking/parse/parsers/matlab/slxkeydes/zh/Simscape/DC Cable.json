@@ -1,0 +1,13 @@
+{
+ "key": "DC Cable",
+ "title": "DC Cable",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Lines/DC_Cable.md"
+ ],
+ "text": "高保真频率相关直流电缆。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

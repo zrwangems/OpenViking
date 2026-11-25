@@ -1,0 +1,140 @@
+{
+ "key": "Linear Circuit Wizard",
+ "title": "Linear Circuit Wizard",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Linear_Circuit_Wizard.md"
+ ],
+ "text": "Generate or modify linear circuit, {Frequency [min,max]} sets Minimum control frequency; {Circuit design name} sets the name of circuit displayed on block icon, {Netlist file name} sets the name of netlist file that defines circuit character, {Configuration name} sets the name of configuration file character, {Parse netlist file and start new configuration} sets the parse named netlist, {Save configuration} sets the save current configuration, {Load configuration} sets the load existing configuration, {Attach configuration to block} sets the attach selected configuration file to Simulink, {Build Simulink block} sets the create Simulink block or object to model circuit defined by netlist, {Pole/zero report} adds pole -zero report to base workspace, {Transfer function plot} plots transfer functions, {Linear control system} adds matrices for control system differential equations to base, {Analyze}, {Output port} sets the outport port for primary output value drop-down menu created from port, {Steady state output value(s)} sets the desired primary output value, {Primary control variable} sets the variable used to regulate output Duty, {Duty cycle value [min,max]} sets the minimum control duty cycle, {Phase offset(s)} sets the phase of rising edge of control signal as fraction of control, {Pulse Duration(s)} sets the pulse duration of control signal as function of control, {Samples per waveform} sets the number of samples in single switching cycle output and {Analyze operating point} sets the operating point analysis of switched circuit. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Circuit design name",
+   "default": "Circuit’",
+   "values": "Name of circuit displayed on block icon ’Linear Circuit’ (default) | character vector | string scalar",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Netlist file name",
+   "default": "",
+   "values": "Name of netlist file that defines circuit character vector | string scalar",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Configuration name",
+   "default": "",
+   "values": "Name of configuration file character vector | string scalar",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Parse netlist file and start new configuration",
+   "default": "",
+   "values": "Parse named netlist file button",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Save configuration",
+   "default": "",
+   "values": "Save current configuration to file button",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Load configuration",
+   "default": "",
+   "values": "Load existing configuration file button",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Attach configuration to block",
+   "default": "on",
+   "values": "Attach selected configuration file to Simulink block on (default) | off",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Build Simulink block",
+   "default": "",
+   "values": "Create Simulink block or object to model circuit defined by netlist button",
+   "group": "Circuit Definition"
+  },
+  {
+   "name": "Pole/zero report",
+   "default": "on",
+   "values": "Add pole -zero report to base workspace on (default) | off",
+   "group": "Linear Analysis"
+  },
+  {
+   "name": "Transfer function plot",
+   "default": "on",
+   "values": "Plot transfer functions on (default) | off",
+   "group": "Linear Analysis"
+  },
+  {
+   "name": "Linear control system",
+   "default": "on",
+   "values": "Add matrices for control system differential equations to base workspace on (default) | off",
+   "group": "Linear Analysis"
+  },
+  {
+   "name": "Analyze",
+   "default": "",
+   "values": "Analyze linear circuit to produce selected outputs button",
+   "group": "Linear Analysis"
+  },
+  {
+   "name": "Output port",
+   "default": "",
+   "values": "Outport port for primary output value drop-down menu created from port definitions",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Steady state output value(s)",
+   "default": "0",
+   "values": "Desired primary output value(s) 0 (default) | scalar | vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Primary control variable",
+   "default": "cycle",
+   "values": "Variable used to regulate output Duty cycle (default) | Frequency",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Duty cycle value [min,max]",
+   "default": "0",
+   "values": "Minimum control duty cycle 0 (default) | scalar | 2-element vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Frequency [min,max]",
+   "default": "0",
+   "values": "Minimum control frequency 0 (default) | scalar | 2-element vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Phase offset(s)",
+   "default": "0",
+   "values": "Phase of rising edge of control signal as fraction of control cycle 0 (default) | scalar | vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Pulse Duration(s)",
+   "default": "0",
+   "values": "Pulse duration of control signal as function of control cycle 0 (default) | scalar | vector",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Samples per waveform",
+   "default": "1024",
+   "values": "Number of samples in single switching cycle output wave 1024 (default) | positive integer scalar",
+   "group": "Operating Point Analysis"
+  },
+  {
+   "name": "Analyze operating point",
+   "default": "",
+   "values": "Operating point analysis of switched circuit button",
+   "group": "Operating Point Analysis"
+  }
+ ]
+}

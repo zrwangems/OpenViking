@@ -1,0 +1,68 @@
+{
+ "key": "DemStatusOverride",
+ "title": "Dem Status Override",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/Dem_Status_Override.md"
+ ],
+ "text": "Override an event to simulate and verify behavior; {EventID} sets the event, {Test Failed} Indicates the result of the most recently performed test, {Test Failed this Operation Cycle} Indicates whether a diagnostic test has reported a failure during the current operation cycle, {Pending DTC} Indicates whether a diagnostic test has reported a failure during the current or last completed operation cycle, {Confirmed DTC} Indicates whether a malfunction was detected enough times to warrant that the DTC should be stored in long-term memory, {Test Not Completed Since Last Clear} Indicates whether a test has run and completed since the last time a call was made to ClearDiagnosticInformation, {Test Failed Since Last Clear} Indicates whether a test has failed since the last time a call was made to ClearDiagnosticInformation, {Test Not Completed This Operation Cycle} sets the test not performed during the current operation cycle and {Warning Indicator Requested} Indicates the status of any warning indicators associated with a particular DTC. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "EventID",
+   "default": "0",
+   "values": "Specify the event 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Test Failed",
+   "default": "Clear",
+   "values": "Indicates the result of the most recently performed test Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Test Failed this Operation Cycle",
+   "default": "Clear",
+   "values": "Indicates whether a diagnostic test has reported a failure during the current operation cycle Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Pending DTC",
+   "default": "Clear",
+   "values": "Indicates whether a diagnostic test has reported a failure during the current or last completed operation cycle Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Confirmed DTC",
+   "default": "Clear",
+   "values": "Indicates whether a malfunction was detected enough times to warrant that the DTC should be stored in long-term memory Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Test Not Completed Since Last Clear",
+   "default": "Clear",
+   "values": "Indicates whether a test has run and completed since the last time a call was made to ClearDiagnosticInformation Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Test Failed Since Last Clear",
+   "default": "Clear",
+   "values": "Indicates whether a test has failed since the last time a call was made to ClearDiagnosticInformation Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Test Not Completed This Operation Cycle",
+   "default": "Clear",
+   "values": "Test not performed during the current operation cycle Clear (default) | Set",
+   "group": ""
+  },
+  {
+   "name": "Warning Indicator Requested",
+   "default": "Clear",
+   "values": "Indicates the status of any warning indicators associated with a particular DTC Clear (default) | Set",
+   "group": ""
+  }
+ ]
+}

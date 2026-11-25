@@ -1,0 +1,218 @@
+{
+ "key": "Stimulus",
+ "title": "Stimulus",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Utilities/Stimulus.md"
+ ],
+ "text": "Set waveform generation method and number of symbols to simulate in SerDes model, 1 output, {Waveform creation method} sets Define how stimulus waveform is created Random; {Number of symbols} sets the length of stimulus pattern used, {Use recommended simulation stop time} sets the recommended simulation stop time as simulation stop, {Random symbols seed} sets the seed for generating random symbol waveform, {PRBS order} sets the order of pseudorandom binary sequence, {PRBS seed} sets the seed of pseudorandom binary sequence, {Reverse PRBS in time}, {Invert PRBS in voltage}, {Symbol pattern} sets the vector of symbol integers spaced at symbol time interval, {Binary pattern} sets the vector of 1s and 0s spaced at sample time interval, {Symbol voltage pattern} sets the vector of symbol voltages spaced at symbol time interval 1/2*, {Sampled voltage pattern} sets the vector of voltages spaced at sample interval, {Sub symbol time delay (s)} sets the delay stimulus waveform by modulo symbol, {Change in IBIS-AMI Manager} sets the modify Rx_Use_Clock_Input reserved AMI parameter, {Generate Clock or Strobe Waveform} sets the generate clock or strobe waveform from waveform, {Use External Waveform or Clock Times Array} uses external waveform to forward, {Include Analog Channel Model in clock waveform} sets the include analog channel model in clock, {Clock Pattern} sets the forwarding clock pattern, {Strobe Pattern} sets the forwarding strobe pattern, {Delay (s)} sets the delay forwarding clock, {Burst Length} sets the number of symbols between strobe burst, {Idle Length} sets the number of symbol between bursts, {Preamble} sets the number of additional clock cycles added to beginning of each, {Postamble} sets the number of additional clock cycles added to end of each, {Include Transmitter Jitter} sets the include transmitter jitter in forwarded, {Tx_Dj (UI)} sets the transmitter deterministic jitter, {Tx_Rj (UI)} sets the transmitter random jitter, {Tx_DCD (UI)} sets the transmitter duty cycle distortion, {Tx_Sj (UI)} sets the transmitter sinusoidal jitter, {Tx_Sj_Frequency (Hz)} sets the transmitter sinusoidal jitter frequency, {Waveform Name} sets the name of waveform parameter in workspace, {Waveform Delay (s)} sets the delay forwarding clock and {Clock Times Name} sets the name of clock times parameter in workspace. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "Output signal with specific PRBS pattern vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of symbols",
+   "default": "20000",
+   "values": "Length of stimulus pattern used for simulation 20000 (default) | positive real integer",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Use recommended simulation stop time",
+   "default": "on",
+   "values": "Set recommended simulation stop time as simulation stop time on (default) | off",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Waveform creation method",
+   "default": "Symbols",
+   "values": "Define how stimulus waveform is created Random Symbols (default) | Serial PRBS | Symbol Pattern | Binary Pattern | Symbol Voltage Pattern | Sampled Voltage | Parallel PRBS",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Random symbols seed",
+   "default": "1431655765",
+   "values": "Seed for generating random symbol waveform 1431655765 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "PRBS order",
+   "default": "11",
+   "values": "Order of pseudorandom binary sequence 11 (default) | 7 | 9 | 13 | 15 | 20 | 23 | 31 | 47",
+   "group": "Stimulus"
+  },
+  {
+   "name": "PRBS seed",
+   "default": "1",
+   "values": "Seed of pseudorandom binary sequence 1 (default) | integer in the range [1, 2 Order -1]",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Reverse PRBS in time",
+   "default": "off",
+   "values": "Reverse PRBS in time by reversing tap positions of characteristic polynomial off (default) | on",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Invert PRBS in voltage",
+   "default": "off",
+   "values": "Invert PRBS in voltage by flipping the values of 0 and 1 off (default) | on",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Symbol pattern",
+   "default": "0]",
+   "values": "Vector of symbol integers spaced at symbol time interval [0 0 1 0 0 1 1 0 1 0 1 1 1 1 0] (default) | vector with element values in the range [0, (Number of modulation levels-1)]",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Binary pattern",
+   "default": "0]",
+   "values": "Vector of 1s and 0s spaced at sample time interval [0 0 0 1 0 0 1 0 1 1 0 0 1 1 1 1 1 0 0 0 1 1 0 1 1 1 0 1 0 1 0] (default) | vector with binary elements",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Symbol voltage pattern",
+   "default": "-1]",
+   "values": "Vector of symbol voltages spaced at symbol time interval 1/2*[1 1 1 1 -1 -1 -1 -1] (default) | vector with decimal values",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Sampled voltage pattern",
+   "default": "[zeros(1,(SymbolTime/SampleInterval)),ones(1,(SymbolTime/SampleInterval))]-0.5",
+   "values": "Vector of voltages spaced at sample interval [zeros(1,(SymbolTime/SampleInterval)),ones(1,(SymbolTime/SampleInterval))]-0.5 (default) | real valued vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Sub symbol time delay (s)",
+   "default": "0",
+   "values": "Delay stimulus waveform by modulo symbol time 0 (default) | nonnegative real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Change in IBIS-AMI Manager",
+   "default": "",
+   "values": "Modify Rx_Use_Clock_Input reserved AMI parameter button",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Generate Clock or Strobe Waveform",
+   "default": "off",
+   "values": "Generate clock or strobe waveform from waveform parameters off (default) | on",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Use External Waveform or Clock Times Array",
+   "default": "on",
+   "values": "Use external waveform to forward on (default) | off",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Include Analog Channel Model in clock waveform",
+   "default": "on",
+   "values": "Include analog channel model in clock waveform on (default) | off",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Clock Pattern",
+   "default": "off",
+   "values": "Forwarding clock pattern off (default) | on",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Strobe Pattern",
+   "default": "on",
+   "values": "Forwarding strobe pattern on (default) | off",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Delay (s)",
+   "default": "0",
+   "values": "Delay forwarding clock 0 (default) | nonnegative real scalar",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Burst Length",
+   "default": "16",
+   "values": "Number of symbols between strobe burst pattern 16 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Idle Length",
+   "default": "8",
+   "values": "Number of symbol between bursts 8 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Preamble",
+   "default": "2",
+   "values": "Number of additional clock cycles added to beginning of each burst 2 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Postamble",
+   "default": "0",
+   "values": "Number of additional clock cycles added to end of each burst 0 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Include Transmitter Jitter",
+   "default": "on",
+   "values": "Include transmitter jitter in forwarded clock on (default) | off",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_Dj (UI)",
+   "default": "0",
+   "values": "Transmitter deterministic jitter 0 (default) | scalar in the range [0 1]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_Rj (UI)",
+   "default": "0",
+   "values": "Transmitter random jitter 0 (default) | scalar in the range [0 1]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_DCD (UI)",
+   "default": "0",
+   "values": "Transmitter duty cycle distortion 0 (default) | scalar in the range [0 1]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_Sj (UI)",
+   "default": "0",
+   "values": "Transmitter sinusoidal jitter 0 (default) | scalar in the range [0 1]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_Sj_Frequency (Hz)",
+   "default": "0",
+   "values": "Transmitter sinusoidal jitter frequency 0 (default) | scalar in the range [0 100e9]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Waveform Name",
+   "default": "defaultClockWave",
+   "values": "Name of waveform parameter in workspace defaultClockWave (default) | character string",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Waveform Delay (s)",
+   "default": "0",
+   "values": "Delay forwarding clock 0 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Clock Times Name",
+   "default": "defaultClockTimes",
+   "values": "Name of clock times parameter in workspace defaultClockTimes (default) | character string",
+   "group": "Clock Forwarding"
+  }
+ ]
+}

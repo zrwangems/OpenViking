@@ -1,0 +1,74 @@
+{
+ "key": "FIL Samples To Frame",
+ "title": "FIL Samples To Frame",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/I_O Interfaces/FIL_Samples_To_Frame.md"
+ ],
+ "text": "Convert sample stream from FPGA-in-the-loop to frame-based data, 4 inputs, 3 outputs; {Number of input samples} sets the number of values representing each sample, {Output size} sets the maximum samples per frame, {Compose output from interleaved input samples} sets the order of output samples relative to input and {Enable frame length output port} sets the output number of valid samples. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "sampleN",
+   "direction": "input",
+   "summary": "Stream of samples vector"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "Start of frame vector"
+  },
+  {
+   "name": "end",
+   "direction": "input",
+   "summary": "End of frame vector"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Validity of samples vector"
+  },
+  {
+   "name": "frame",
+   "direction": "output",
+   "summary": "Frame of output samples column vector"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Validity of output frame scalar"
+  },
+  {
+   "name": "len",
+   "direction": "output",
+   "summary": "Number of valid samples in output frame integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input samples",
+   "default": "1",
+   "values": "Number of values representing each sample 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "1024",
+   "values": "Maximum samples per frame 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Compose output from interleaved input samples",
+   "default": "off",
+   "values": "Order of output samples relative to input order off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable frame length output port",
+   "default": "off",
+   "values": "Output number of valid samples off (default) | on",
+   "group": ""
+  }
+ ]
+}

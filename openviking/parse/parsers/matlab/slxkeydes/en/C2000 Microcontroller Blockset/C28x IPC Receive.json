@@ -1,0 +1,63 @@
+{
+ "key": "C28x IPC Receive",
+ "title": "IPC Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F2837xD/IPC_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/IPC_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/IPC_Receive.md"
+ ],
+ "text": "Receive data from either core while using separate model for each core, 2 outputs, {Data type} sets Type of data to be received; {Source}, {Channel}, {Data length} sets the size of data to be received, {Enable blocking} sets the if Core must wait to read data and {Sample time} sets the interval at which block reads data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "IPC receive vector | scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "IPC receive status 0 | 1 | 2 | 3 | 4 | 6"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source",
+   "default": "(CPU1/CPU2)/CPU1",
+   "values": "Source selected to receive data C28x (CPU1/CPU2)/CPU1 (default) | ARM Cortex-M4 (CM)/CPU2",
+   "group": ""
+  },
+  {
+   "name": "Channel",
+   "default": "0",
+   "values": "Channel selected to receive data 0 (default) | 0–31",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "uint16",
+   "values": "Type of data to be received uint16 (default) | single | int8 | uint8 | int16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Data length",
+   "default": "1",
+   "values": "Size of data to be received 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable blocking",
+   "default": "off",
+   "values": "Specify if Core must wait to read data off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Interval at which block reads data 0.001 (default) | –1 | positive scalar",
+   "group": ""
+  }
+ ]
+}

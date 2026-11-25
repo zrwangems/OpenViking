@@ -1,0 +1,13 @@
+{
+ "key": "Translational Detent",
+ "title": "Translational Detent",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Translational/Translational_Detent.md"
+ ],
+ "text": "双面、弹簧加载的平移定位棘爪。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,66 @@
+{
+ "key": "Video Test Sink",
+ "title": "Video Test Sink",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/Video_Test_Sink.md"
+ ],
+ "text": "接收连续视频流数据，输入 2 路、输出 1 路；按 {Color space} 指定色彩空间；{Frame size} 指定帧尺寸 160x120p、{Reorder input frame} 指定输入帧重排序、{Save data in workspace} 指定在工作区中保存数据、{Variable name} 指定工作区变量名称、{View input} 指定在 MATLAB 中显示输入，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "rdData",
+   "direction": "input",
+   "summary": "输入视频流数据 vector"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "输入控制总线 bus"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "输出控制总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frame size",
+   "default": "160x120p",
+   "values": "帧尺寸 160x120p (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Color space",
+   "default": "YCbCr422",
+   "values": "色彩空间 YCbCr422 (default) | RGB | YOnly",
+   "group": ""
+  },
+  {
+   "name": "Reorder input frame",
+   "default": "off",
+   "values": "输入帧重排序 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Save data in workspace",
+   "default": "off",
+   "values": "在工作区中保存数据 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "simOut",
+   "values": "工作区变量名称 simOut (default) | any MATLAB-supported variable name",
+   "group": ""
+  },
+  {
+   "name": "View input",
+   "default": "off",
+   "values": "在 MATLAB 中显示输入 off (default) | on",
+   "group": ""
+  }
+ ]
+}

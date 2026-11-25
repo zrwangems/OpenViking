@@ -1,0 +1,104 @@
+{
+ "key": "Y-Parameters Passive Network",
+ "title": "Y-Parameters Passive Network",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Black Box Elements/Y_Parameters_Passive_Network.md"
+ ],
+ "text": "Model passive network using Y-parameters, {Interpolation method} sets Method to interpolate network parameters; {Y-Parameters} sets the y-parameters for two-port passive network, {Frequency (Hz)} sets the frequency of Y-parameters 2.0e9, {Source of frequency data} sets the frequency data source Same, {Frequency data (Hz)} sets the frequency data range, {Plot type} sets the type of data plot, {Y parameter1} sets the type of parameters, {Y parameter2} sets the type of parameters, {Y format1} plots format Magnitude, {Y format2} plots format Magnitude, {X parameter} sets the frequency plot, {X format} sets the frequency plot format, {Y scale} sets the y-axis scale, {X scale} sets the x-axis scale and {Plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Y-Parameters",
+   "default": "0.0200]",
+   "values": "Y-parameters for two-port passive network [0.0200,0;-0.0400, 0.0200] (default) | 2-by-2-by- M array",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "2.0e9",
+   "values": "Frequency of Y-parameters 2.0e9 (default) | M -element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "Method to interpolate network parameters Linear (default) | Spline | Cubic",
+   "group": "Main"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "Y-Parameters",
+   "values": "Frequency data source Same as the Y-Parameters (default) | User-specified",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1.9e9:1.0e6:2.2e9]",
+   "values": "Frequency data range [1.9e9:1.0e6:2.2e9] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "Frequency plot Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "Frequency plot format Hz (default) | Auto | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y-axis scale Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X-axis scale Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Plot specified data button",
+   "group": "Visualization"
+  }
+ ]
+}

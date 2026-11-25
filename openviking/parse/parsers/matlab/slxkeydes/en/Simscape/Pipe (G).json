@@ -1,0 +1,13 @@
+{
+ "key": "Pipe (G)",
+ "title": "Pipe (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Pipe_G.md"
+ ],
+ "text": "Rigid conduit for gas flow.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,61 @@
+{
+ "key": "slrealtimetcpclient",
+ "title": "TCP Client",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/TCP_Client.md"
+ ],
+ "text": "Configure TCP client, 1 input, 1 output; {Use host-target connection} uses Ethernet connection between development and target, {Remote server IP address} sets the iP address of the server, {Remote server port} sets the port number of the server, {Use Nagle’s algorithm} enables Nagle, {Client IP address} sets the iP address of the client device that is being configured no and {Client local port} sets the iP port of the client device that is being configured no. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Connect block to remote Ethernet device integer"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Device returns a status of not connected or connected 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use host-target connection",
+   "default": "’off’",
+   "values": "Use Ethernet connection between development and target computers ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Remote server IP address",
+   "default": "",
+   "values": "IP address of the server device x.x.x.x",
+   "group": ""
+  },
+  {
+   "name": "Remote server port",
+   "default": "",
+   "values": "Port number of the server device 1–65535",
+   "group": ""
+  },
+  {
+   "name": "Use Nagle’s algorithm",
+   "default": "on",
+   "values": "Enable Nagle’s algorithm to combine packets on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Client IP address",
+   "default": "value",
+   "values": "IP address of the client device that is being configured no value (default) | x.x.x.x",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Client local port",
+   "default": "value",
+   "values": "IP port of the client device that is being configured no value (default) | 0–65535",
+   "group": "Advanced Parameters"
+  }
+ ]
+}

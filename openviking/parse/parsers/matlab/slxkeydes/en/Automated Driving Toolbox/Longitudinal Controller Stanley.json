@@ -1,0 +1,75 @@
+{
+ "key": "Longitudinal Controller Stanley",
+ "title": "Longitudinal Controller Stanley",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Vehicle Control/Longitudinal_Controller_Stanley.md"
+ ],
+ "text": "Control longitudinal velocity of vehicle by using Stanley method, 4 inputs, 2 outputs; {Proportional gain, Kp}, {Integral gain, Ki}, {Sample time (s)}, {Maximum longitudinal acceleration (m/s^2)} and {Maximum longitudinal deceleration (m/s^2)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RefVelocity",
+   "direction": "input",
+   "summary": "Reference velocity real scalar"
+  },
+  {
+   "name": "CurrVelocity",
+   "direction": "input",
+   "summary": "Current velocity real scalar"
+  },
+  {
+   "name": "Direction",
+   "direction": "input",
+   "summary": "Driving direction 1 (forward motion) | -1 (reverse motion)"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Trigger to reset integral of velocity error 0 (hold steady) | nonzero scalar (reset)"
+  },
+  {
+   "name": "AccelCmd",
+   "direction": "output",
+   "summary": "Acceleration command real scalar in the range [0, M A ]"
+  },
+  {
+   "name": "DecelCmd",
+   "direction": "output",
+   "summary": "Deceleration command real scalar in the range [0, M D ]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain, Kp",
+   "default": "2.5",
+   "values": "Proportional gain 2.5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain, Ki",
+   "default": "1",
+   "values": "Integral gain 1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "0.05",
+   "values": "Sample time 0.05 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum longitudinal acceleration (m/s^2)",
+   "default": "3",
+   "values": "Maximum longitudinal acceleration 3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum longitudinal deceleration (m/s^2)",
+   "default": "6",
+   "values": "Maximum longitudinal deceleration 6 (default) | positive real scalar",
+   "group": ""
+  }
+ ]
+}

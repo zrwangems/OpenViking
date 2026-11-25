@@ -1,0 +1,122 @@
+{
+ "key": "Channel",
+ "title": "Channel",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Systems/Channel.md"
+ ],
+ "text": "对基于各向同性自由空间或射线追踪的信道建模；按 {Antenna gain} 指定发射天线的增益 0；{Source of channel model} 指定信道源 Isotropic、{Impedance (Ohm)} 指定发射天线的输入阻抗、{Path loss} 指定自由空间路径损耗、{Path delay} 指定自由空间路径延迟、{Map} 用于可视化或表面数据的地图、{Propagation model} 指定传播模型、{Tx site} 指定发射机站点 txsite object、{Rx site} 指定接收机站点 rxsite object、{View Site} 显示 RF 传播场景、{Carrier frequencies} 指定信道的载波频率、{Simulate noise} 指定模拟热噪声、{Ground and hide negative terminals} 指定 RF 电路端子接地、{Edit System} 指定编辑或展开 Channel 模块、{Modeling options} 指定对频率相关信道参数建模的技术 Time、{Relative error desired (dB)} 指定有理拟合的相对误差、{Automatically estimate impulse response duration} 指定自动计算冲激响应持续时间、{Impulse response duration} 指定冲激响应持续时间，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source of channel model",
+   "default": "free-space",
+   "values": "信道源 Isotropic free-space (default) | Ray-tracing",
+   "group": "Main"
+  },
+  {
+   "name": "Antenna gain",
+   "default": "dBi",
+   "values": "发射天线的增益 0 dBi (default) | real scalar or vector | positive scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Impedance (Ohm)",
+   "default": "50",
+   "values": "发射天线的输入阻抗 50 (default) | complex scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Path loss",
+   "default": "dB",
+   "values": "自由空间路径损耗 10 dB (default) | real scalar or vector | positive scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Path delay",
+   "default": "s",
+   "values": "自由空间路径延迟 0 s (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Map",
+   "default": "\"none\"",
+   "values": "用于可视化或表面数据的地图 \"none\" (default) | siteviewer object | triangulation object | string scalar | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Propagation model",
+   "default": "’raytracing’",
+   "values": "传播模型 ’raytracing’ (default) | RayTracing object",
+   "group": "Main"
+  },
+  {
+   "name": "Tx site",
+   "default": "",
+   "values": "发射机站点 txsite object | array of txsite objects",
+   "group": "Main"
+  },
+  {
+   "name": "Rx site",
+   "default": "",
+   "values": "接收机站点 rxsite object",
+   "group": "Main"
+  },
+  {
+   "name": "View Site",
+   "default": "",
+   "values": "显示 RF 传播场景 button",
+   "group": "Main"
+  },
+  {
+   "name": "Carrier frequencies",
+   "default": "GHz",
+   "values": "信道的载波频率 2.1 GHz (default) | nonnegative scalar or row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Simulate noise",
+   "default": "’on’",
+   "values": "模拟热噪声 ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "’on’",
+   "values": "RF 电路端子接地 ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Edit System",
+   "default": "",
+   "values": "编辑或展开 Channel 模块 button",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling options",
+   "default": "domain",
+   "values": "对频率相关信道参数建模的技术 Time domain (default) | Frequency domain",
+   "group": "TX Modeling"
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "有理拟合的相对误差 -40 (default) | scalar",
+   "group": "TX Modeling"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "’on’",
+   "values": "自动计算冲激响应持续时间 ’on’ (default) | ’off’",
+   "group": "TX Modeling"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "冲激响应持续时间 0 s (default) | scalar",
+   "group": "TX Modeling"
+  }
+ ]
+}

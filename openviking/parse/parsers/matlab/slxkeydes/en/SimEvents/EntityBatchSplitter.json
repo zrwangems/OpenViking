@@ -1,0 +1,75 @@
+{
+ "key": "EntityBatchSplitter",
+ "title": "Entity Batch Splitter",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Batch_Splitter.md"
+ ],
+ "text": "Split batch entities, 1 input, 5 outputs, {Event actions} sets the event action; {Number of entities arrived, a} sets the outputs the number of entities that have arrived, {Number of entities departed, d} sets the outputs the number of entities that have departed, {Number of entities remaining to depart, rem} sets the outputs the number of entities that remain and {Pending entity in block, pe} sets the pending entities. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "port_1",
+   "direction": "input",
+   "summary": "Input batch entity scalar | vector | matrix"
+  },
+  {
+   "name": "port_1",
+   "direction": "output",
+   "summary": "Output entity scalar | vector | matrix"
+  },
+  {
+   "name": "port_a",
+   "direction": "output",
+   "summary": "Number of entities arrived scalar"
+  },
+  {
+   "name": "port_d",
+   "direction": "output",
+   "summary": "Number of entities that have departed the block scalar"
+  },
+  {
+   "name": "port_rem",
+   "direction": "output",
+   "summary": "Number of entities remaining in the block scalar"
+  },
+  {
+   "name": "port_pe",
+   "direction": "output",
+   "summary": "Pending entity in block off (default) | on"
+  }
+ ],
+ "params": [
+  {
+   "name": "Event actions",
+   "default": "Entry",
+   "values": "Specify the event action Entry (default) | Unbatch | Exit | Blocked",
+   "group": ""
+  },
+  {
+   "name": "Number of entities arrived, a",
+   "default": "off",
+   "values": "Outputs the number of entities that have arrived at the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "Outputs the number of entities that have departed the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities remaining to depart, rem",
+   "default": "off",
+   "values": "Outputs the number of entities that remain in the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pending entity in block, pe",
+   "default": "off",
+   "values": "Pending entities off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "FEM-Parameterized Induction Machine (Wound Rotor)",
+ "title": "FEM-Parameterized Induction Machine (Wound Rotor)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/FEM_Parameterized_Induction_Machine_Wound_Rotor.md"
+ ],
+ "text": "基于磁链定义的绕线转子感应电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

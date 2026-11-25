@@ -1,0 +1,317 @@
+{
+ "key": "Equivalent Consumption Minimization Strategy",
+ "title": "Equivalent Consumption Minimization Strategy",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Supervisory Controllers/Equivalent_Consumption_Minimization_Strategy.md"
+ ],
+ "text": "用于 P0–P4 混合动力电动汽车的能量管理控制器，输入 7 路、输出 3 路；按 {Motor location} 指定电机位置；{ECMS method} 指定 ECMS 方法、{Differential gear ratio, N_diff} 指定差速器传动比、{Differential efficiency factor, eta_diff} 指定差速器效率因子、{Loaded wheel radius, Re} 指定负载车轮半径、{Transmission efficiency factors} 指定变速器效率因子 Gear, input torque, input speed、{Transmission gear number vector, G_trans} 指定变速器挡位编号向量、{Transmission gear ratio vector, N_trans} 指定变速器传动比向量、{Transmission efficiency vector, eta_trans} 指定变速器效率向量、{Transmission efficiency torque breakpoints, Trq_trans_bpts} 指定变速器效率转矩断点、{Transmission efficiency speed breakpoints, omega_trans_bpts} 指定变速器效率速度断点、{Transmission efficiency temperature breakpoints, Temp_trans_bpts} 指定变速器效率温度断点、{Transmission efficiency vector, eta_trans_tbl} 指定变速器效率向量 array、{Speed breakpoints, f_tbrake_n_bpt} 指定速度断点、{Commanded torque breakpoints, f_tbrake_t_bpt} 指定指令转矩断点、{Brake torque map, f_tbrake} 指定制动转矩映射表 array、{Minimum engine torque command table, f_tbrake_min} 指定最小发动机转矩指令表 vector、{Fuel flow map, f_fuel} 指定燃油流量映射表 array、{Minimum engine torque command, HEVEngTrq_min} 指定最小发动机转矩指令、{Fuel lower heating value, LHV} 指定燃料低热值、{Engine idle speed, N_idle} 指定发动机怠速转速、{Battery state-of-charge breakpoints, SOC_bpt} 指定电池荷电状态断点、{Battery charge limit table, ChrgLmt} 指定电池充电限值表、{Battery discharge limit table, DischrgLmt} 指定电池放电限值表、{Maximum battery current, BattCurrMax} 指定最大电池电流、{DC/DC converter efficiency, eta_dcdc} 指定 DC/DC 变换器效率、{Maximum battery charge power, BattChrgPwrMax} 指定最大电池充电功率、{Maximum battery discharge power, BattDischrgPwrMax} 指定最大电池放电功率、{Motor maximum torque table, f_tmtr_max} 指定电机最大转矩表 vector、{Motor speed breakpoints, f_mtr_w_bpt} 指定电机转速断点 vector、{Motor torque breakpoints, f_mtr_t_bpt} 指定电机转矩断点 vector、{Motor efficiency map, f_mtr_eta} 指定电机效率映射表 array、{Number of motor torque calculation points, Ngrid} 指定电机转矩计算点数、{P0 belt ratio, N_P0} 指定 P0 皮带传动比、{ECMS weighting factor, ECMS_s} 指定 ECMS 加权因子、{Penalty factor power, a} 指定惩罚因子幂、{Adaptive ECMS proportional gain, ECMS_Kp} 指定自适应 ECMS 比例增益、{Adaptive ECMS integral gain, ECMS_Ki} 指定自适应 ECMS 积分增益、{Constraint penalty factor, PenaltyFctr} 指定约束惩罚因子、{Target battery state-of-charge, SOCTrgt} 指定目标电池荷电状态、{Minimum battery state-of-charge, SOCmin} 指定最小电池荷电状态、{Maximum battery state-of-charge, SOCmax} 指定最大电池荷电状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WhlTrqCmd",
+   "direction": "input",
+   "summary": "车轮转矩指令 scalar"
+  },
+  {
+   "name": "BattSoc",
+   "direction": "input",
+   "summary": "电池荷电状态 scalar"
+  },
+  {
+   "name": "BattVolt",
+   "direction": "input",
+   "summary": "电池电压 scalar"
+  },
+  {
+   "name": "Gear",
+   "direction": "input",
+   "summary": "变速器挡位 scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "input",
+   "summary": "电机转速 scalar"
+  },
+  {
+   "name": "VehSpd",
+   "direction": "input",
+   "summary": "车速 scalar"
+  },
+  {
+   "name": "TransTemp",
+   "direction": "input",
+   "summary": "变速器温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "模块数据 bus"
+  },
+  {
+   "name": "EngTrqCmd",
+   "direction": "output",
+   "summary": "发动机转矩指令 scalar"
+  },
+  {
+   "name": "MtrTrqCmd",
+   "direction": "output",
+   "summary": "电机转矩指令 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Motor location",
+   "default": "P0",
+   "values": "电机位置 P0 (default) | P1 | P2 | P3 | P4",
+   "group": ""
+  },
+  {
+   "name": "ECMS method",
+   "default": "Non-adaptive",
+   "values": "ECMS 方法 Non-adaptive (default) | Adaptive",
+   "group": ""
+  },
+  {
+   "name": "Differential gear ratio, N_diff",
+   "default": "3.32",
+   "values": "差速器传动比 3.32 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Differential efficiency factor, eta_diff",
+   "default": "0.98",
+   "values": "差速器效率因子 0.98 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Loaded wheel radius, Re",
+   "default": "0.327",
+   "values": "负载车轮半径 0.327 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency factors",
+   "default": "temperature",
+   "values": "变速器效率因子 Gear, input torque, input speed, and temperature (default) | Gear only",
+   "group": ""
+  },
+  {
+   "name": "Transmission gear number vector, G_trans",
+   "default": "6]",
+   "values": "变速器挡位编号向量 [0 1 2 3 4 5 6] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission gear ratio vector, N_trans",
+   "default": "0.772]",
+   "values": "变速器传动比向量 [1 4.212 2.637 1.8 1.386 1 0.772] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency vector, eta_trans",
+   "default": "1]",
+   "values": "变速器效率向量 [1 1 1 1 1 1 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency torque breakpoints, Trq_trans_bpts",
+   "default": "250]",
+   "values": "变速器效率转矩断点 [25 50 75 100 150 200 250] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency speed breakpoints, omega_trans_bpts",
+   "default": "5003.83141080919]",
+   "values": "变速器效率速度断点 [500.383141080919 749.619781962827 1002.676141478941 1250.957852702297 1499.239563925654 1747.521275149011 1995.802986372368 2501.915705404595 2998.479127851308 4001.155269330249 5003.83141080919] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency temperature breakpoints, Temp_trans_bpts",
+   "default": "358]",
+   "values": "变速器效率温度断点 [313 358] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency vector, eta_trans_tbl",
+   "default": "",
+   "values": "变速器效率向量 array",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints, f_tbrake_n_bpt",
+   "default": "5000]",
+   "values": "速度断点 [0 750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857 2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Commanded torque breakpoints, f_tbrake_t_bpt",
+   "default": "175]",
+   "values": "指令转矩断点 [0 15 26.4285714285714 37.8571428571429 49.2857142857143 60.7142857142857 72.1428571428571 83.5714285714286 95 106.428571428571 117.857142857143 129.285714285714 140.714285714286 152.142857142857 163.571428571429 175] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Brake torque map, f_tbrake",
+   "default": "",
+   "values": "制动转矩映射表 array",
+   "group": ""
+  },
+  {
+   "name": "Minimum engine torque command table, f_tbrake_min",
+   "default": "",
+   "values": "最小发动机转矩指令表 vector",
+   "group": ""
+  },
+  {
+   "name": "Fuel flow map, f_fuel",
+   "default": "",
+   "values": "燃油流量映射表 array",
+   "group": ""
+  },
+  {
+   "name": "Minimum engine torque command, HEVEngTrq_min",
+   "default": "16.18610438796213",
+   "values": "最小发动机转矩指令 16.18610438796213 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fuel lower heating value, LHV",
+   "default": "46000000",
+   "values": "燃料低热值 46000000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Engine idle speed, N_idle",
+   "default": "750",
+   "values": "发动机怠速转速 750 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Battery state-of-charge breakpoints, SOC_bpt",
+   "default": "1]",
+   "values": "电池荷电状态断点 [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Battery charge limit table, ChrgLmt",
+   "default": "0]",
+   "values": "电池充电限值表 [1 1 1 1 1 1 1 0.9 0.7 0.5 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Battery discharge limit table, DischrgLmt",
+   "default": "1]",
+   "values": "电池放电限值表 [0 0.5 0.7 0.9 1 1 1 1 1 1 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum battery current, BattCurrMax",
+   "default": "150",
+   "values": "最大电池电流 150 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "DC/DC converter efficiency, eta_dcdc",
+   "default": "1",
+   "values": "DC/DC 变换器效率 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum battery charge power, BattChrgPwrMax",
+   "default": "-30000",
+   "values": "最大电池充电功率 -30000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum battery discharge power, BattDischrgPwrMax",
+   "default": "46000",
+   "values": "最大电池放电功率 46000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Motor maximum torque table, f_tmtr_max",
+   "default": "",
+   "values": "电机最大转矩表 vector",
+   "group": ""
+  },
+  {
+   "name": "Motor speed breakpoints, f_mtr_w_bpt",
+   "default": "",
+   "values": "电机转速断点 vector",
+   "group": ""
+  },
+  {
+   "name": "Motor torque breakpoints, f_mtr_t_bpt",
+   "default": "",
+   "values": "电机转矩断点 vector",
+   "group": ""
+  },
+  {
+   "name": "Motor efficiency map, f_mtr_eta",
+   "default": "",
+   "values": "电机效率映射表 array",
+   "group": ""
+  },
+  {
+   "name": "Number of motor torque calculation points, Ngrid",
+   "default": "200",
+   "values": "电机转矩计算点数 200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "P0 belt ratio, N_P0",
+   "default": "3",
+   "values": "P0 皮带传动比 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "ECMS weighting factor, ECMS_s",
+   "default": "3.385",
+   "values": "ECMS 加权因子 3.385 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Penalty factor power, a",
+   "default": "3",
+   "values": "惩罚因子幂 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Adaptive ECMS proportional gain, ECMS_Kp",
+   "default": "0",
+   "values": "自适应 ECMS 比例增益 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Adaptive ECMS integral gain, ECMS_Ki",
+   "default": "0",
+   "values": "自适应 ECMS 积分增益 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Constraint penalty factor, PenaltyFctr",
+   "default": "10000000",
+   "values": "约束惩罚因子 10000000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Target battery state-of-charge, SOCTrgt",
+   "default": "60",
+   "values": "目标电池荷电状态 60 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum battery state-of-charge, SOCmin",
+   "default": "40",
+   "values": "最小电池荷电状态 40 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum battery state-of-charge, SOCmax",
+   "default": "80",
+   "values": "最大电池荷电状态 80 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

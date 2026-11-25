@@ -1,0 +1,13 @@
+{
+ "key": "Absolute IQN",
+ "title": "Absolute IQN",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/Absolute_IQN.md"
+ ],
+ "text": "，没有文字。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

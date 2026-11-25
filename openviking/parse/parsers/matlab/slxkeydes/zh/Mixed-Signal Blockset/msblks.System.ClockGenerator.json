@@ -1,0 +1,217 @@
+{
+ "key": "msblks.System.ClockGenerator",
+ "title": "Clock Generator",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Clock_Generator.md"
+ ],
+ "text": "生成具有一个或多个相位的时钟信号，输入 3 路、输出 5 路；按 {Output phase} 指定输出时钟信号的相位；{Specify using} 定义时钟生成器的控制灵敏度 Voltage、{Voltage sensitivity (Hz/V)} 输出频率变化的度量 100e6、{Free running frequency (Hz)} 指定无控制电压时的输出频率 10e9、{Control voltage (V)} 控制电压值、{Output frequency (Hz)} 指定时钟发生器输出频率值、{Output amplitude (V)} 指定时钟发生器输出电压的最大幅度、{Phase unit} 输出相位和占空比的单位、{Output duty cycle} 输出时钟信号的占空比、{PhaseOffsetPort} 指定通过输入端口定义占空比相位偏移、{Phase offset (symbol time)} 指定占空比相位偏移、{ReferenceOffsetPort} 指定通过输入端口定义参考频率偏移、{Reference clock frequency offset (ppm)} 指定标称输出频率的偏移因子、{Simulate using} 指定仿真模式 Code、{Add phase noise} 指定将相位噪声作为频率的函数添加、{Phase noise frequency offset (Hz)} 指定相位噪声相对于载波频率的频率偏移、{Phase noise level (dBc/Hz)} 指定在相对于载波的相位噪声频率偏移处指定的相位噪声功率、{Estimate phase noise parameters} 指定根据测得的相位噪声数据估计相位噪声参数、{Period jitter (S)} 指定周期抖动的标准差 1.7e-15、{Flicker corner frequency (Hz)} 指定闪烁噪声的转角频率、{Customize flicker exponent (Advanced feature)} 指定自定义闪烁噪声功率谱分布、{Flicker exponent} 指定闪烁噪声功率指数、{Plot fit} 绘制拟合的相位噪声分布、{Symbol time (s)} 指定单个符号持续时间 100e-12、{Sample interval (s)} 指定波形的均匀时间步长 6.25e-12、{Modulation (2:NRZ, 3:PAM3, 4:PAM4)} 指定调制方案、{Input waveform type} 指定输入波形类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vctrl",
+   "direction": "input",
+   "summary": "用于控制输出频率的电压 scalar | vector"
+  },
+  {
+   "name": "ReferenceOffset",
+   "direction": "input",
+   "summary": "参考频率偏移 scalar"
+  },
+  {
+   "name": "PhaseOffset",
+   "direction": "input",
+   "summary": "占空比相位偏移 scalar"
+  },
+  {
+   "name": "clock0",
+   "direction": "output",
+   "summary": "饱和输出时钟信号，以标量形式返回。每个输出相位都有一个 clock 输出端口。 clock0 是端口的默认名称。端口名称 clock 后面的非负标量指示时钟相位。例如，clock1 表示相位 1 的饱和输出时钟信号。 输出是方波，其幅值由 Output amplitude 参数定义。 scalar"
+  },
+  {
+   "name": "clockTime0",
+   "direction": "output",
+   "summary": "上次时钟跳变时的仿真时间，以标量形式返回。每个输出相位都有一个 clockTime 输出端口。 clockTime0 是端口的默认名称。端口名称 clockTime 后面的非负标量指示时钟相位。例如，clockTime1 表示相位 1 的时钟跳变时间。 scalar"
+  },
+  {
+   "name": "Phase",
+   "direction": "output",
+   "summary": "基频时钟的最近时钟相位，以标量形式返回。 scalar"
+  },
+  {
+   "name": "clockValid",
+   "direction": "output",
+   "summary": "变步长离散采样时钟，指定为标量。clockValid 端口处信号的边沿采样时间与时钟时间信号中的值完全匹配。 scalar"
+  },
+  {
+   "name": "clockTime",
+   "direction": "output",
+   "summary": "最近一次时钟变化的绝对时钟时间 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify using",
+   "default": "sensitivity",
+   "values": "定义时钟生成器的控制灵敏度 Voltage sensitivity (default) | Output frequency vs. control voltage | Period offset",
+   "group": ""
+  },
+  {
+   "name": "Voltage sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "输出频率变化的度量 100e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Free running frequency (Hz)",
+   "default": "10e9",
+   "values": "无控制电压时的输出频率 10e9 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "5]",
+   "values": "控制电压值 [-5 0 5] (default) | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "10.5e9]",
+   "values": "时钟发生器输出频率值 [9.9e9 10e9 10.5e9] (default) | positive real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Output amplitude (V)",
+   "default": "1",
+   "values": "时钟发生器输出电压的最大幅度 1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase unit",
+   "default": "Degrees",
+   "values": "输出相位和占空比的单位 Degrees (default) | Fraction of a clock cycle",
+   "group": ""
+  },
+  {
+   "name": "Output phase",
+   "default": "[0]",
+   "values": "输出时钟信号的相位 [0] (default) | nonnegative real scalar | nonnegative real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Output duty cycle",
+   "default": "[180]",
+   "values": "输出时钟信号的占空比 [180] (default) | positive real scalar | positive real valued vector",
+   "group": ""
+  },
+  {
+   "name": "PhaseOffsetPort",
+   "default": "on",
+   "values": "通过输入端口定义占空比相位偏移 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Phase offset (symbol time)",
+   "default": "0",
+   "values": "占空比相位偏移 0 (default) | scalar in the range [-0.5,0.5]",
+   "group": ""
+  },
+  {
+   "name": "ReferenceOffsetPort",
+   "default": "on",
+   "values": "通过输入端口定义参考频率偏移 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Reference clock frequency offset (ppm)",
+   "default": "0",
+   "values": "标称输出频率的偏移因子 0 (default) | scalar in the range of [-300,300]",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "选择仿真模式 Code generation (default) | Interpreted execution",
+   "group": ""
+  },
+  {
+   "name": "Add phase noise",
+   "default": "on",
+   "values": "将相位噪声作为频率的函数添加 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "10e6]",
+   "values": "指定相位噪声相对于载波频率的频率偏移 [30e3 100e3 1e6 3e6 10e6] (default) | positive real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-152]",
+   "values": "在相对于载波的相位噪声频率偏移处指定的相位噪声功率 [-56 -106 -132 -143 -152] (default) | negative real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Estimate phase noise parameters",
+   "default": "",
+   "values": "根据测得的相位噪声数据估计相位噪声参数 button",
+   "group": ""
+  },
+  {
+   "name": "Period jitter (S)",
+   "default": "1.7e-15",
+   "values": "周期抖动的标准差 1.7e-15 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Flicker corner frequency (Hz)",
+   "default": "0",
+   "values": "闪烁噪声的转角频率 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Customize flicker exponent (Advanced feature)",
+   "default": "off",
+   "values": "自定义闪烁噪声功率谱分布 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Flicker exponent",
+   "default": "1.0",
+   "values": "闪烁噪声功率指数 1.0 (default) | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5",
+   "group": ""
+  },
+  {
+   "name": "Plot fit",
+   "default": "",
+   "values": "绘制拟合的相位噪声分布 button",
+   "group": ""
+  },
+  {
+   "name": "Symbol time (s)",
+   "default": "100e-12",
+   "values": "单个符号持续时间 100e-12 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample interval (s)",
+   "default": "6.25e-12",
+   "values": "波形的均匀时间步长 6.25e-12 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Modulation (2:NRZ, 3:PAM3, 4:PAM4)",
+   "default": "2",
+   "values": "调制方案 2 (default) | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Input waveform type",
+   "default": "Sample",
+   "values": "输入波形类型 Sample (default) | Impulse",
+   "group": ""
+  }
+ ]
+}

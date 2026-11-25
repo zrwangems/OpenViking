@@ -1,0 +1,48 @@
+{
+ "key": "PropagationDelay",
+ "title": "Propagation Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Propagation_Delay.md"
+ ],
+ "text": "模型环路延迟、时延、脉冲延迟，输入 2 路、输出 1 路、无直接馈通；{Initial output} 输出信号的初始值、{Run at fixed time intervals} 用于以固定速率执行模块、{Sample time} 输出采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "要延迟的信号 scalar"
+  },
+  {
+   "name": "dt",
+   "direction": "input",
+   "summary": "延迟信号 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "延迟后的信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "输出信号的初始值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Run at fixed time intervals",
+   "default": "off",
+   "values": "用于以固定速率执行模块的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "输出采样时间 0.1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

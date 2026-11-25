@@ -1,0 +1,13 @@
+{
+ "key": "Variable Overlapping Orifice (IL)",
+ "title": "Variable Overlapping Orifice (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Orifices/Variable_Overlapping_Orifice_IL.md"
+ ],
+ "text": "在等温液体系统中由可变重叠的开口段形成的孔口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

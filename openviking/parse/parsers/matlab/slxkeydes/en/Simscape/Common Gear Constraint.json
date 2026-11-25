@@ -1,0 +1,13 @@
+{
+ "key": "Common Gear Constraint",
+ "title": "Common Gear Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Gears and Couplings/Gears/Common_Gear_Constraint.md"
+ ],
+ "text": "Kinematic constraint between two coplanar spur gear bodies with parallel rotation axes.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

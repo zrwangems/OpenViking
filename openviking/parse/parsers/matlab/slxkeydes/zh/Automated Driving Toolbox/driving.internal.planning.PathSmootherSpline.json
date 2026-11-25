@@ -1,0 +1,75 @@
+{
+ "key": "driving.internal.planning.PathSmootherSpline",
+ "title": "Path Smoother Spline",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Path_Smoother_Spline.md"
+ ],
+ "text": "使用三次样条插值平滑车辆路径，输入 2 路、输出 4 路；{Number of output poses} 指定要返回的平滑位姿数、{Minimum separation of input poses} 指定位姿之间的最小间距 1e-3、{Sample time} 指定采样时间、{Show CumLengths and Curvatures output ports} 输出累积路径长度和曲率、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RefPoses",
+   "direction": "input",
+   "summary": "参考位姿 M -by-3 matrix of [ x, y, Θ ] vectors"
+  },
+  {
+   "name": "RefDirections",
+   "direction": "input",
+   "summary": "参考方向 M -by-1 column vector of 1s (forward motion) and –1s (reverse motion)"
+  },
+  {
+   "name": "Poses",
+   "direction": "output",
+   "summary": "平滑路径的离散位姿 N -by-3 matrix of [ x, y, Θ ] vectors"
+  },
+  {
+   "name": "Directions",
+   "direction": "output",
+   "summary": "每个输出位姿处的行驶方向 N -by-1 column vector of 1s (forward motion) and –1s (reverse motion)"
+  },
+  {
+   "name": "CumLengths",
+   "direction": "output",
+   "summary": "累积路径长度 N -by-1 real-valued column vector"
+  },
+  {
+   "name": "Curvatures",
+   "direction": "output",
+   "summary": "带符号的路径曲率 N -by-1 real-valued column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of output poses",
+   "default": "100",
+   "values": "要返回的平滑位姿数 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Minimum separation of input poses",
+   "default": "1e-3",
+   "values": "位姿之间的最小间距 1e-3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Show CumLengths and Curvatures output ports",
+   "default": "off",
+   "values": "输出累积路径长度和曲率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Generation",
+   "values": "要运行的仿真类型 Code Generation (default) | Interpreted Execution",
+   "group": ""
+  }
+ ]
+}

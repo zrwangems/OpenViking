@@ -1,0 +1,54 @@
+{
+ "key": "Sequence Analyzer",
+ "title": "Sequence Analyzer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Sequence_Analyzer.md"
+ ],
+ "text": "计算三相信号正序、负序或零序的幅值和相位，输入 1 路、输出 2 路；按 {Sequence} 指定序分量选择；{Base frequency (Hz)} 指定基频、{Harmonic numbers} 指定谐波次数、{Sample Time (s)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "周期输入信号 vector"
+  },
+  {
+   "name": "mag",
+   "direction": "output",
+   "summary": "幅值 scalar | vector"
+  },
+  {
+   "name": "angle",
+   "direction": "output",
+   "summary": "相移 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Base frequency (Hz)",
+   "default": "60",
+   "values": "基频 60 (default)",
+   "group": ""
+  },
+  {
+   "name": "Harmonic numbers",
+   "default": "2]",
+   "values": "谐波次数 [1 2] (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Sequence",
+   "default": "Positive",
+   "values": "序分量选择 Positive (default) | Negative | Zero",
+   "group": ""
+  },
+  {
+   "name": "Sample Time (s)",
+   "default": "0",
+   "values": "模块采样时间 0 (default)",
+   "group": ""
+  }
+ ]
+}

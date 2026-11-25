@@ -1,0 +1,43 @@
+{
+ "key": "Dcm2Angle",
+ "title": "Direction Cosine Matrix to Rotation Angles",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Direction_Cosine_Matrix_to_Rotation_Angles.md"
+ ],
+ "text": "Convert direction cosine matrix to rotation angles, 1 input, 1 output, {Action for invalid DCM} sets Block behavior; {Rotation Order} sets the block output rotation and {Tolerance for DCM validation} sets the tolerance eps. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DCM",
+   "direction": "input",
+   "summary": "Direction cosine matrix 3-by-3 matrix"
+  },
+  {
+   "name": "[R 1,R 2,R 3 ]",
+   "direction": "output",
+   "summary": "Rotation angles 3-by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rotation Order",
+   "default": "ZYX",
+   "values": "Block output rotation order ZYX (default) | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX",
+   "group": ""
+  },
+  {
+   "name": "Action for invalid DCM",
+   "default": "None",
+   "values": "Block behavior None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Tolerance for DCM validation",
+   "default": "eps(2)",
+   "values": "Tolerance eps(2) (default) | scalar",
+   "group": ""
+  }
+ ]
+}

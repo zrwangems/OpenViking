@@ -1,0 +1,66 @@
+{
+ "key": "Translate",
+ "title": "Translate",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Translate.md"
+ ],
+ "text": "平移图像或视频帧，输入 2 路、输出 1 路；按 {Interpolation method} 指定平移后像素值的插值方法；{Output size after translation} 指定平移后的图像大小、{Offset source} 指定平移值的来源 Specify via、{Offset} 指定平移值、{Maximum offset} 指定平移值限制、{Background fill value} 指定平移后图像中背景的强度或颜色，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像或视频 matrix | array"
+  },
+  {
+   "name": "Offset",
+   "direction": "input",
+   "summary": "平移值 vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "平移后的图像或视频 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output size after translation",
+   "default": "Full",
+   "values": "平移后的图像大小 Full (default) | Same as input image",
+   "group": ""
+  },
+  {
+   "name": "Offset source",
+   "default": "dialog",
+   "values": "平移值的来源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Offset",
+   "default": "2.3]",
+   "values": "平移值 [1.5 2.3] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum offset",
+   "default": "10]",
+   "values": "平移值限制 [8 10] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Background fill value",
+   "default": "0",
+   "values": "平移后图像中背景的强度或颜色 0 (default) | scalar | RGB triplet",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "平移后像素值的插值方法 Bilinear (default) | Nearest neighbor | Bicubic",
+   "group": ""
+  }
+ ]
+}

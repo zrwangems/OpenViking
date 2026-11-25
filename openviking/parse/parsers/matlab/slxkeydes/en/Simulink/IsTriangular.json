@@ -1,0 +1,31 @@
+{
+ "key": "IsTriangular",
+ "title": "IsTriangular",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/IsTriangular.md"
+ ],
+ "text": "Check if matrix is upper or lower triangular, 1 input, 1 output, direct feedthrough; {Mode} sets the whether matrix is upper triangular or lower triangular. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input matrix matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Upper triangular or lower triangular matrix real scalar boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Upper",
+   "values": "Whether matrix is upper triangular or lower triangular Upper (default) | Lower",
+   "group": ""
+  }
+ ]
+}

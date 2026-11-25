@@ -1,0 +1,49 @@
+{
+ "key": "PWM Generator",
+ "title": "PWM Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Generator.md"
+ ],
+ "text": "生成脉冲宽度调制信号或波形，输入 1 路、输出 1 路；按 {载波计数器} 指定载波计数器策略；{计时器周期(秒)} 指定 PWM 周期、{相位延迟(秒)} 指定相位延迟、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DC",
+   "direction": "input",
+   "summary": "占空比 标量"
+  },
+  {
+   "name": "PWM",
+   "direction": "output",
+   "summary": "PWM 信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "载波计数器",
+   "default": "递增",
+   "values": "载波计数器策略 递增 (默认) | 递减 | 增减",
+   "group": ""
+  },
+  {
+   "name": "计时器周期(秒)",
+   "default": "0.001",
+   "values": "PWM 周期 0.001 (默认) | 正数",
+   "group": ""
+  },
+  {
+   "name": "相位延迟(秒)",
+   "default": "0",
+   "values": "相位延迟 0 (默认) | 非负数",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "5e-5",
+   "values": "模块采样时间 5e-5 (默认) | 正数",
+   "group": ""
+  }
+ ]
+}

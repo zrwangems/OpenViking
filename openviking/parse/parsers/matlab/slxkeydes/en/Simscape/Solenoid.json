@@ -1,0 +1,13 @@
+{
+ "key": "Solenoid",
+ "title": "Solenoid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Solenoid.md"
+ ],
+ "text": "Electrical characteristics and generated force of solenoid.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

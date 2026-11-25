@@ -1,0 +1,13 @@
+{
+ "key": "Thyristor (Piecewise Linear)",
+ "title": "Thyristor (Piecewise Linear)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Thyristor_Piecewise_Linear.md"
+ ],
+ "text": "Thyristor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

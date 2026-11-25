@@ -1,0 +1,13 @@
+{
+ "key": "Finite-Gain Op-Amp",
+ "title": "Finite-Gain Op-Amp",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Finite_Gain_Op_Amp.md"
+ ],
+ "text": "具有可选噪声的增益受限运算放大器模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

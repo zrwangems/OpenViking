@@ -1,0 +1,80 @@
+{
+ "key": "Input 2nd Intercept Point Testbench",
+ "title": "IIP2 Testbench",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Testbenches/IIP2_Testbench.md"
+ ],
+ "text": "测量系统的输入二阶截点；{Use Internal Configuration block} 使用测试台内部配置模块、{Simulate noise (both stimulus and DUT internal)} 指定在激励信号中启用噪声建模、{Input power amplitude (dBm)} 指定 DUT 的输入功率、{Input frequency (Hz)} 指定 DUT 的载波频率 2.1e9、{Output frequency (Hz)} 指定 DUT 的输出频率 2.1e9、{Baseband bandwidth (Hz)} 指定输入信号的基带带宽 10e6、{Ratio of test tone frequency to baseband bandwidth} 指定测试音调的位置、{Source resistance (Ohm)} 用于测量 DUT 的源电阻、{Load resistance (Ohm)} 用于测量 DUT 的负载电阻、{Show Response spectrum} 指定在仿真期间使用频谱示波器查看响应频谱、{Ground and hide negative terminals} 指定在内部接地并隐藏 RF 电路端子，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Use Internal Configuration block",
+   "default": "on",
+   "values": "使用测试台内部配置模块 on (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise (both stimulus and DUT internal)",
+   "default": "on",
+   "values": "在激励信号中启用噪声建模 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input power amplitude (dBm)",
+   "default": "-30",
+   "values": "DUT 的输入功率 -30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input frequency (Hz)",
+   "default": "2.1e9",
+   "values": "DUT 的载波频率 2.1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "2.1e9",
+   "values": "DUT 的输出频率 2.1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Baseband bandwidth (Hz)",
+   "default": "10e6",
+   "values": "输入信号的基带带宽 10e6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ratio of test tone frequency to baseband bandwidth",
+   "default": "1/8",
+   "values": "测试音调的位置 1/8 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Source resistance (Ohm)",
+   "default": "50",
+   "values": "用于测量 DUT 的源电阻 50 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Load resistance (Ohm)",
+   "default": "50",
+   "values": "用于测量 DUT 的负载电阻 50 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Response spectrum",
+   "default": "on",
+   "values": "在仿真期间使用频谱示波器查看响应频谱 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "在内部接地并隐藏 RF 电路端子 on (default) | off",
+   "group": ""
+  }
+ ]
+}

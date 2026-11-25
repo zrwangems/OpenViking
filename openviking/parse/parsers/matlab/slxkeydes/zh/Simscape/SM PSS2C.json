@@ -1,0 +1,210 @@
+{
+ "key": "SM PSS2C",
+ "title": "SM PSS2C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_PSS2C.md"
+ ],
+ "text": "离散时间或连续时间单输入 PSS2C 电力系统稳定器，输入 2 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{PSS gain, K_S1 (pu)} 指定电力系统稳定器前向通路增益、{PSS gain, K_S2 (pu)} 指定电力系统稳定器传感器增益、{PSS gain, K_S3 (pu)} 指定电力系统稳定器增益、{PSS transducer time constant, T_6 (s)} 指定传感器时间常数、{PSS transducer time constant, T_7 (s)} 指定传感器时间常数、{PSS washout time constant, T_w1 (s)} 指定 Washout 时间常数、{PSS washout time constant, T_w2 (s)} 指定 Washout 时间常数、{PSS washout time constant, T_w3 (s)} 指定 Washout 时间常数、{PSS washout time constant, T_w4 (s)} 指定 Washout 时间常数、{PSS transducer time constant, T_8 (s)} 指定传感器时间常数、{PSS washout time constant, T_9 (s)} 指定 Washout 时间常数、{Denominator exponent for ramp-track filter, M} 指定斜坡跟踪滤波器分母的指数、{Overall exponent for ramp-track filter, N} 指定斜坡跟踪滤波器的总指数、{PSS numerator (lead) compensating time constant (first block), T_1 (s)} 指定超前时间常数、{PSS denominator (lag) compensating time constant (first block), T_2 (s)} 指定滞后时间常数、{PSS numerator (lead) compensating time constant (second block), T_3 (s)} 指定超前时间常数、{PSS denominator (lag) compensating time constant (second block), T_4 (s)} 指定滞后时间常数、{PSS denominator (lead) compensating time constant (third block), T_10 (s)} 指定滞后时间常数、{PSS denominator (lag) compensating time constant (third block), T_11 (s)} 指定滞后时间常数、{PSS denominator (lead) compensating time constant (fourth block), T_12 (s)} 指定滞后时间常数、{PSS denominator (lag) compensating time constant (fourth block), T_13 (s)} 指定滞后时间常数、{Maximum PSS output, V_STmax (pu)} 指定最大稳定、{Minimum PSS output, V_STmin (pu)} 指定最小稳定、{Input signal #1 maximum limit, V_S1max (pu)} 指定第一个输入的最大限值、{Input signal #1 minimum limit, V_S1min (pu)} 指定第一个输入的最小限值、{Input signal #2 maximum limit, V_S2max (pu)} 指定第二个输入的最大限值、{Input signal #2 minimum limit, V_S2min (pu)} 指定第二个输入的最小限值、{Generator MW threshold for PSS activation, P_PSSon (pu)} 指定电力系统稳定器激活的发电机阈值、{Generator MW threshold for PSS de-activation, P_PSSoff (pu)} 指定电力系统稳定器停用的发电机阈值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_SI1",
+   "direction": "input",
+   "summary": "转速、频率或功率 scalar"
+  },
+  {
+   "name": "V_SI2",
+   "direction": "input",
+   "summary": "电功率 scalar"
+  },
+  {
+   "name": "V_ST",
+   "direction": "output",
+   "summary": "稳定转速、频率或功率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "PSS gain, K_S1 (pu)",
+   "default": "5",
+   "values": "电力系统稳定器前向通路增益 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS gain, K_S2 (pu)",
+   "default": "1.4184",
+   "values": "电力系统稳定器传感器增益 1.4184 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS gain, K_S3 (pu)",
+   "default": "1",
+   "values": "电力系统稳定器增益 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_6 (s)",
+   "default": "0",
+   "values": "传感器时间常数 6 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_7 (s)",
+   "default": "10",
+   "values": "传感器时间常数 7 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w1 (s)",
+   "default": "10",
+   "values": "Washout 时间常数 1 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w2 (s)",
+   "default": "10",
+   "values": "Washout 时间常数 2 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w3 (s)",
+   "default": "10",
+   "values": "Washout 时间常数 3 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w4 (s)",
+   "default": "0",
+   "values": "Washout 时间常数 4 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_8 (s)",
+   "default": "0.5",
+   "values": "传感器时间常数 8 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_9 (s)",
+   "default": "0.1",
+   "values": "Washout 时间常数 9 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Denominator exponent for ramp-track filter, M",
+   "default": "5",
+   "values": "斜坡跟踪滤波器分母的指数 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Overall exponent for ramp-track filter, N",
+   "default": "1",
+   "values": "斜坡跟踪滤波器的总指数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS numerator (lead) compensating time constant (first block), T_1 (s)",
+   "default": "0.16",
+   "values": "超前时间常数 1 0.16 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant (first block), T_2 (s)",
+   "default": "0.04",
+   "values": "滞后时间常数 2 0.04 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS numerator (lead) compensating time constant (second block), T_3 (s)",
+   "default": "0.16",
+   "values": "超前时间常数 3 0.16 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant (second block), T_4 (s)",
+   "default": "0.04",
+   "values": "滞后时间常数 4 0.04 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lead) compensating time constant (third block), T_10 (s)",
+   "default": "0.18",
+   "values": "滞后时间常数 10 0.18 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant (third block), T_11 (s)",
+   "default": "0.03",
+   "values": "滞后时间常数 11 0.03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lead) compensating time constant (fourth block), T_12 (s)",
+   "default": "0",
+   "values": "滞后时间常数 12 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant (fourth block), T_13 (s)",
+   "default": "0",
+   "values": "滞后时间常数 13 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum PSS output, V_STmax (pu)",
+   "default": "0.1",
+   "values": "最大稳定 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum PSS output, V_STmin (pu)",
+   "default": "-0.1",
+   "values": "最小稳定 -0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #1 maximum limit, V_S1max (pu)",
+   "default": "2",
+   "values": "第一个输入的最大限值 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #1 minimum limit, V_S1min (pu)",
+   "default": "-2",
+   "values": "第一个输入的最小限值 -2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #2 maximum limit, V_S2max (pu)",
+   "default": "2",
+   "values": "第二个输入的最大限值 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #2 minimum limit, V_S2min (pu)",
+   "default": "-2",
+   "values": "第二个输入的最小限值 -2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Generator MW threshold for PSS activation, P_PSSon (pu)",
+   "default": "0",
+   "values": "电力系统稳定器激活的发电机阈值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Generator MW threshold for PSS de-activation, P_PSSoff (pu)",
+   "default": "0",
+   "values": "电力系统稳定器停用的发电机阈值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

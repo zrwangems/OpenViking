@@ -1,0 +1,70 @@
+{
+ "key": "Resolver-to-Digital Converter",
+ "title": "Resolver-to-Digital Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Observers/Resolver_to_Digital_Converter.md"
+ ],
+ "text": "旋转变压器-数字转换器，输入 3 路、输出 2 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Number of pole pairs} 指定所连接电机中的极对数、{Phase-looked loop proportional gain} 指定 PLL 比例增益、{Phase-looked loop integral gain} 指定 PLL 积分增益 2.5e5、{Initial position (rad)} 指定初始相位角，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vp",
+   "direction": "input",
+   "summary": "电压相位角 scalar"
+  },
+  {
+   "name": "Vx",
+   "direction": "input",
+   "summary": "x 轴电压 scalar"
+  },
+  {
+   "name": "Vy",
+   "direction": "input",
+   "summary": "y 轴电压 scalar"
+  },
+  {
+   "name": "Velocity",
+   "direction": "output",
+   "summary": "旋转速度 scalar"
+  },
+  {
+   "name": "Angle",
+   "direction": "output",
+   "summary": "旋转角度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "所连接电机中的极对数 4 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Phase-looked loop proportional gain",
+   "default": "15",
+   "values": "PLL 比例增益 15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase-looked loop integral gain",
+   "default": "2.5e5",
+   "values": "PLL 积分增益 2.5e5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial position (rad)",
+   "default": "rad",
+   "values": "初始相位角 0 rad (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

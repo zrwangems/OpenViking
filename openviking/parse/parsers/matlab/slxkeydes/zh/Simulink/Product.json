@@ -1,0 +1,189 @@
+{
+ "key": "Product",
+ "title": "Product",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Product.md",
+  "Simulink/Math Operations/Product.md",
+  "Simulink/Math Operations/Product_of_Elements.md",
+  "Simulink/Math Operations/Divide.md",
+  "Simulink/Matrix Operations/Matrix_Multiply.md",
+  "Simulink/Quick Insert/Math Operations/Matrix_Divide.md",
+  "Simulink/Quick Insert/Math Operations/Matrix_Multiply.md",
+  "Simulink/Quick Insert/Math Operations/Reciprocal.md",
+  "HDL Coder/Commonly Used Blocks/Product.md",
+  "HDL Coder/HDL Floating Point Operations/Product.md",
+  "HDL Coder/HDL Floating Point Operations/Product_of_Elements.md",
+  "HDL Coder/Math Operations/Product.md",
+  "HDL Coder/Math Operations/Product_of_Elements.md",
+  "HDL Coder/HDL Floating Point Operations/Divide.md",
+  "HDL Coder/Math Operations/Divide.md",
+  "HDL Coder/Math Operations/MatrixMultiply.md",
+  "HDL Coder/HDL Floating Point Operations/Reciprocal.md",
+  "HDL Coder/Math Operations/Reciprocal.md",
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Matrix_Multiply.md",
+  "Deep Learning Toolbox/Shallow Neural Networks/Net Input Functions/netprod.md"
+ ],
+ "text": "标量和非标量的乘除运算或者矩阵的乘法和逆运算，输入 6 路、输出 1 路；按 {模式} 指定数据类型模式；{输入数目}、{乘法} 按元素、{应用于} 指定如何沿指定维度应用函数、{维度}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{要求所有输入具有相同的数据类型}、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{输出数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 用于防止定点工具覆盖输出数据类型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法、{数据类型覆盖}、{符号性} 指定有符号或无符号、{字长} 指定存储量化整数的字的位大小、{小数长度}、{定标}、{斜率}、{偏置}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要进行乘法或除法运算的第一个输入 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "要进行乘法或除法运算的第 N 个输入 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "要相乘的输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "÷",
+   "direction": "input",
+   "summary": "要进行除法或逆运算的输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "*",
+   "direction": "input",
+   "summary": "要相乘的输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Inv",
+   "direction": "input",
+   "summary": "要进行除法或逆运算的输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "通过对输入进行乘法、除法或逆运算来计算得出输出 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入数目",
+   "default": "2",
+   "values": "控制输入数目和运算的类型 2 (默认) | 标量 | 对每个输入端口应用 * 或 /",
+   "group": "常设"
+  },
+  {
+   "name": "乘法",
+   "default": "按元素(.*)",
+   "values": "按元素 (.*) 或矩阵 (*) 乘法 按元素(.*) (默认) | 矩阵(*)",
+   "group": "常设"
+  },
+  {
+   "name": "应用于",
+   "default": "所有维度",
+   "values": "如何沿指定维度应用函数 所有维度 (默认) | 指定的维度",
+   "group": "常设"
+  },
+  {
+   "name": "维度",
+   "default": "1",
+   "values": "要沿其相乘的维度 1 (默认) | 正整数",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "要求所有输入具有相同的数据类型",
+   "default": "off",
+   "values": "要求所有输入具有相同的数据类型 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "从内部规则继承",
+   "values": "指定输出数据类型 继承: 从内部规则继承 (默认) | 继承: Keep MSB | 继承: Match scaling | 继承: 通过反向传播继承 | 继承: 与第一个输入相同 | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "信号属性"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "模式",
+   "default": "Inherit",
+   "values": "选择数据类型模式 Inherit (默认) | Built in | Fixed Point",
+   "group": "信号属性"
+  },
+  {
+   "name": "数据类型覆盖",
+   "default": "",
+   "values": "为此信号指定数据类型覆盖模式 Inherit | Off",
+   "group": "信号属性"
+  },
+  {
+   "name": "符号性",
+   "default": "Signed",
+   "values": "指定有符号或无符号 Signed (默认) | Unsigned",
+   "group": "信号属性"
+  },
+  {
+   "name": "字长",
+   "default": "16",
+   "values": "存储量化整数的字的位大小 16 (默认) | 从 0 到 32 的整数",
+   "group": "信号属性"
+  },
+  {
+   "name": "小数长度",
+   "default": "0",
+   "values": "指定定点数据类型的小数长度 0 (默认) | 整数标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "定标",
+   "default": "最佳精度",
+   "values": "定标定点数据的方法 最佳精度 (默认) | 二进制小数点 | 斜率和偏置",
+   "group": "信号属性"
+  },
+  {
+   "name": "斜率",
+   "default": "2^0",
+   "values": "指定定点数据类型的斜率。 2^0 (默认) | 正实数值标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "偏置",
+   "default": "0",
+   "values": "指定定点数据类型的偏置。 0 (默认) | 实数值标量",
+   "group": "信号属性"
+  }
+ ]
+}

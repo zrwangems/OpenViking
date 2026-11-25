@@ -1,0 +1,13 @@
+{
+ "key": "N-Channel LDMOS FET",
+ "title": "N-Channel LDMOS FET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/N_Channel_LDMOS_FET.md"
+ ],
+ "text": "N-Channel laterally-diffused metal-oxide-semiconductor or vertically-diffused metal-oxide-semiconductor transistors suitable for high voltage.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

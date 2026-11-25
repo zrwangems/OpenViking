@@ -1,0 +1,94 @@
+{
+ "key": "Thyristor Rectifier Voltage Controller (Three-Phase)",
+ "title": "Thyristor Rectifier Voltage Controller (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Converter Control/Thyristor_Rectifier_Voltage_Controller_Three_Phase.md"
+ ],
+ "text": "晶闸管整流器的离散时间直流母线电压 PI 控制，输入 4 路、输出 1 路；{Loop filter proportional gain} 指定环路滤波器 K p、{Loop filter integral gain} 指定环路滤波器 K i、{Proportional gain} 控制器 K p、{Integral gain} 控制器 K i、{Thyristor pulse width (rad)} 指定脉冲宽度 5*pi/6、{Pulse ordering} 指定脉冲排序规则 Sequential device、{Sample time (-1 for inherited)} 指定模块采样时间、{Time constant voltage filter} 指定直流电压滤波器 τ、{Filter DC voltage} 指定直流电压滤波器，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VdcRef",
+   "direction": "input",
+   "summary": "参考直流电压，V scalar"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "直流母线电压，V scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部复位 scalar"
+  },
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "三相电压，V vector"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "脉冲 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Loop filter proportional gain",
+   "default": "2",
+   "values": "环路滤波器 K p 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Loop filter integral gain",
+   "default": "20",
+   "values": "环路滤波器 K i 20 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "控制器 K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "1",
+   "values": "控制器 K i 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Thyristor pulse width (rad)",
+   "default": "5*pi/6",
+   "values": "脉冲宽度 5*pi/6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Pulse ordering",
+   "default": "order",
+   "values": "脉冲排序规则 Sequential device order (default) | Natural order of commutation",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time constant voltage filter",
+   "default": "0.001",
+   "values": "直流电压滤波器 τ 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter DC voltage",
+   "default": "on",
+   "values": "直流电压滤波器选项 on (default) | off",
+   "group": ""
+  }
+ ]
+}

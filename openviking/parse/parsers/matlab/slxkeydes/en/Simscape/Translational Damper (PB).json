@@ -1,0 +1,13 @@
+{
+ "key": "Translational Damper (PB)",
+ "title": "Translational Damper (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Damper_PB.md"
+ ],
+ "text": "Viscous damper in position-based mechanical translational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

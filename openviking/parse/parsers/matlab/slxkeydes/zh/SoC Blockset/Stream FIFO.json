@@ -1,0 +1,57 @@
+{
+ "key": "Stream FIFO",
+ "title": "Stream FIFO",
+ "toolbox": "SoC Blockset",
+ "kind": "source_block",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/Stream_FIFO.md"
+ ],
+ "text": "硬件逻辑与上游数据接口之间的背压控制，输入 3 路、输出 3 路；{Depth of FIFO} 指定 FIFO 深度、{Almost full threshold} 指定几乎满阈值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dataIn",
+   "direction": "input",
+   "summary": "输入流数据 scalar"
+  },
+  {
+   "name": "dValidIn",
+   "direction": "input",
+   "summary": "有效输入流数据指示 Boolean scalar"
+  },
+  {
+   "name": "rdyFromDown",
+   "direction": "input",
+   "summary": "来自下游接口的就绪信号 Boolean scalar"
+  },
+  {
+   "name": "dataOut",
+   "direction": "output",
+   "summary": "输出流数据 scalar"
+  },
+  {
+   "name": "dValidOut",
+   "direction": "output",
+   "summary": "有效输出流数据的指示 Boolean scalar"
+  },
+  {
+   "name": "rdyToUp",
+   "direction": "output",
+   "summary": "到上游接口的就绪信号 Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Depth of FIFO",
+   "default": "16",
+   "values": "FIFO 深度 16 (default) | integer greater than or equal to four",
+   "group": ""
+  },
+  {
+   "name": "Almost full threshold",
+   "default": "8",
+   "values": "几乎满阈值 8 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

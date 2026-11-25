@@ -1,0 +1,108 @@
+{
+ "key": "Image Pad",
+ "title": "Image Pad",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Utilities/Image_Pad.md"
+ ],
+ "text": "通过添加行、列或二者来填充图像，输入 2 路、输出 1 路；按 {Method} 指定填充方法；{Pad value source} 指定常量填充值来源 Specify via、{Pad value} 指定填充值、{Specify} 指定填充大小指定格式 Pad、{Add columns to} 指定列填充位置、{Output column mode} 输出列大小调整方法、{Number of output columns} 输出图像中的列数、{Number of added columns} 添加到输入图像的列数、{Add rows to} 指定行填充位置、{Output row mode} 输出行大小调整方法、{Number of output rows} 输出图像中的行数、{Number of added rows} 添加到输入图像的行数、{Action when truncation occurs} 指定输入信号被截断时的操作，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix | array"
+  },
+  {
+   "name": "PVal",
+   "direction": "input",
+   "summary": "填充值 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Constant",
+   "values": "填充方法 Constant (default) | Replicate | Symmetric | Circular",
+   "group": ""
+  },
+  {
+   "name": "Pad value source",
+   "default": "dialog",
+   "values": "常量填充值来源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pad value",
+   "default": "0",
+   "values": "填充值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify",
+   "default": "size",
+   "values": "填充大小指定格式 Pad size (default) | Output size",
+   "group": ""
+  },
+  {
+   "name": "Add columns to",
+   "default": "Left",
+   "values": "列填充位置 Left (default) | Right | Both left and right | No padding",
+   "group": ""
+  },
+  {
+   "name": "Output column mode",
+   "default": "User-specified",
+   "values": "输出列大小调整方法 User-specified (default) | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Number of output columns",
+   "default": "10",
+   "values": "输出图像中的列数 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of added columns",
+   "default": "2",
+   "values": "添加到输入图像的列数 2 (default) | positive integer | two-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Add rows to",
+   "default": "Top",
+   "values": "行填充位置 Top (default) | Bottom | Both top and bottom | No padding",
+   "group": ""
+  },
+  {
+   "name": "Output row mode",
+   "default": "User-specified",
+   "values": "输出行大小调整方法 User-specified (default) | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Number of output rows",
+   "default": "12",
+   "values": "输出图像中的行数 12 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of added rows",
+   "default": "3]",
+   "values": "添加到输入图像的行数 [2 3] (default) | positive integer | two-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Action when truncation occurs",
+   "default": "None",
+   "values": "输入信号被截断时的操作 None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

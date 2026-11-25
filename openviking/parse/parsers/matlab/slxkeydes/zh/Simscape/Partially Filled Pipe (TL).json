@@ -1,0 +1,13 @@
+{
+ "key": "Partially Filled Pipe (TL)",
+ "title": "Partially Filled Pipe (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Partially_Filled_Pipe_TL.md"
+ ],
+ "text": "在热液体组件之间输送流体的封闭导管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

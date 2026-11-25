@@ -1,0 +1,13 @@
+{
+ "key": "FEM-Parameterized Induction Machine (Wound Rotor)",
+ "title": "FEM-Parameterized Induction Machine (Wound Rotor)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/FEM_Parameterized_Induction_Machine_Wound_Rotor.md"
+ ],
+ "text": "Wound-rotor induction machine defined in terms of magnetic flux linkage.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

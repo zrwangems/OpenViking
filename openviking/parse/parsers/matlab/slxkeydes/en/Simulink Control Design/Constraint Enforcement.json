@@ -1,0 +1,127 @@
+{
+ "key": "Constraint Enforcement",
+ "title": "Constraint Enforcement",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Constraint Control/Constraint_Enforcement.md"
+ ],
+ "text": "Modify control actions to satisfy constraints and action bounds, 6 inputs, 2 outputs, {Constraint bound} sets Constraint bounds; {Number of constraints}, {Number of actions}, {Use external source} adds external constraint bound input port, {Use external source for upper bound} adds upper action bound input port, {Use external source for lower bound} adds lower action bound input port, {Sample time} sets the optimization sample time, {Maximum iterations} sets the maximum optimization iterations, {Constraint tolerance} sets the tolerance for constraint, {Optimization status} adds exit flag output port, {Ignore constraints when QP is infeasible} sets the disable constraints when optimization and {Ignore action bounds when QP is infeasible} sets the disable action bounds when optimization. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u0",
+   "direction": "input",
+   "summary": "Control actions scalar | vector"
+  },
+  {
+   "name": "fx",
+   "direction": "input",
+   "summary": "Constraint function offset coefficient scalar | vector"
+  },
+  {
+   "name": "gx",
+   "direction": "input",
+   "summary": "Constraint function linear coefficient scalar | vector | matrix"
+  },
+  {
+   "name": "c",
+   "direction": "input",
+   "summary": "Constraint bounds scalar | vector"
+  },
+  {
+   "name": "umax",
+   "direction": "input",
+   "summary": "Action signal upper bounds scalar | vector"
+  },
+  {
+   "name": "umin",
+   "direction": "input",
+   "summary": "Action signal lower bounds scalar | vector"
+  },
+  {
+   "name": "u*",
+   "direction": "output",
+   "summary": "Modified control action scalar | vector"
+  },
+  {
+   "name": "exitflag",
+   "direction": "output",
+   "summary": "Optimization status 1 | 2 | 3 | 4 | 0 | negative integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of constraints",
+   "default": "1",
+   "values": "Number of constraints 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of actions",
+   "default": "1",
+   "values": "Number of actions 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Constraint bound",
+   "default": "0",
+   "values": "Constraint bounds 0 (default) | finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Use external source",
+   "default": "off",
+   "values": "Add external constraint bound input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use external source for upper bound",
+   "default": "off",
+   "values": "Add upper action bound input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use external source for lower bound",
+   "default": "off",
+   "values": "Add lower action bound input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Optimization sample time 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum iterations",
+   "default": "200",
+   "values": "Maximum optimization iterations 200 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Constraint tolerance",
+   "default": "1e-6",
+   "values": "Tolerance for constraint violations 1e-6 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Optimization status",
+   "default": "off",
+   "values": "Add exit flag output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Ignore constraints when QP is infeasible",
+   "default": "off",
+   "values": "Disable constraints when optimization is infeasible off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Ignore action bounds when QP is infeasible",
+   "default": "off",
+   "values": "Disable action bounds when optimization is infeasible off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "AlgebraicConstraint",
+ "title": "Algebraic Constraint",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Algebraic_Constraint.md"
+ ],
+ "text": "Constrain input signal, 1 input, 1 output, no direct feedthrough, {Solver} sets Algebraic Loop Solver; {Constraint}, {Tolerance} and {Initial Guess} sets the initial guess of solution value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "f(z)",
+   "direction": "input",
+   "summary": "Input signal real scalar or vector"
+  },
+  {
+   "name": "z",
+   "direction": "output",
+   "summary": "Output state real scalar or vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Constraint",
+   "default": "0",
+   "values": "Constraint on input signal f(z) = 0 (default) | f(z) = z",
+   "group": ""
+  },
+  {
+   "name": "Solver",
+   "default": "auto",
+   "values": "Algebraic Loop Solver auto (default) | Trust region | Line search",
+   "group": ""
+  },
+  {
+   "name": "Tolerance",
+   "default": "auto",
+   "values": "Solver Tolerance auto (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial Guess",
+   "default": "0",
+   "values": "Initial guess of solution value 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

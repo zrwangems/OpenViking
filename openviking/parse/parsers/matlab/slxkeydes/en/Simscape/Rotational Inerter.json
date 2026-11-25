@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Inerter",
+ "title": "Rotational Inerter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Rotational_Inerter.md"
+ ],
+ "text": "Two-port inertia in mechanical rotational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Mechanical Converter (2P)",
+ "title": "Rotational Mechanical Converter (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Rotational_Mechanical_Converter_2P.md"
+ ],
+ "text": "完全隔热的流体流动止挡。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

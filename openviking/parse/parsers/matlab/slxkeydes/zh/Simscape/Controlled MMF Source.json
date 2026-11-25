@@ -1,0 +1,13 @@
+{
+ "key": "Controlled MMF Source",
+ "title": "Controlled MMF Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Sources/Controlled_MMF_Source.md"
+ ],
+ "text": "由输入信号驱动的理想磁动势源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

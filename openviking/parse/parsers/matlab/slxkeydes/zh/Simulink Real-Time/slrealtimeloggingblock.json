@@ -1,0 +1,32 @@
+{
+ "key": "slrealtimeloggingblock",
+ "title": "File Log",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Logging/File_Log.md"
+ ],
+ "text": "在目标计算机上写入信号数据文件日志，输入 1 路；{Decimation} 指定对文件日志数据应用抽取处理、{Input Processing} 指定文件日志数据的处理模式 Elements，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "文件日志的信号数据 标量 | 向量 | 矩阵 | 数组 | 总线 | 非虚拟总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "对文件日志数据应用抽取处理 1 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "Input Processing",
+   "default": "based)",
+   "values": "选择文件日志数据的处理模式 Elements as channels (sample based) (默认) | Columns as channels (frame based)",
+   "group": ""
+  }
+ ]
+}

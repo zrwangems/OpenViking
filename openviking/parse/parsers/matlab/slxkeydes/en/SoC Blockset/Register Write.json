@@ -1,0 +1,55 @@
+{
+ "key": "Register Write",
+ "title": "Register Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Register_Write.md"
+ ],
+ "text": "Write data to a register region on the specified IP core, 1 input, 1 output, {Output sink} sets Direct output to; {Simulink.Parameter object name} sets the name of Simulink.Parameter, {Register name} sets the name of a register in IP, {Device name} sets the path and file name of IP core device and {Offset address} sets the offset from the base address of the IP core to the register. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Data input vector"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "Output register data message scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output sink",
+   "default": "port",
+   "values": "Direct output to port or base workspace To output port (default) | Base workspace | IP core register",
+   "group": ""
+  },
+  {
+   "name": "Simulink.Parameter object name",
+   "default": "A",
+   "values": "Name of Simulink.Parameter object A (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Register name",
+   "default": "RegA",
+   "values": "Name of a register in IP Core RegA (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Device name",
+   "default": "/dev/mwipcore",
+   "values": "Path and file name of IP core device /dev/mwipcore (default) | character array",
+   "group": ""
+  },
+  {
+   "name": "Offset address",
+   "default": "hex2dec(’0100’)",
+   "values": "Offset from the base address of the IP core to the register hex2dec(’0100’) (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

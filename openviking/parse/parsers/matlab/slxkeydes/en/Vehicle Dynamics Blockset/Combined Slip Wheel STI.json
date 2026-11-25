@@ -1,0 +1,1359 @@
+{
+ "key": "Combined Slip Wheel STI",
+ "title": "Combined Slip Wheel STI",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Wheels and Tires/Combined_Slip_Wheel_STI.md"
+ ],
+ "text": "Combined slip wheel compliant with STI Tydex standard, 9 inputs, 3 outputs, {Tire side} sets Select tire side; {Tire type} selects type External file, {Tire file or object, tireParamSet} sets the tire file .mat, {Tire pressure} selects tire side scalar, {Ply steer} sets the include ply steer, {Turn slip} sets the include turn slip, {Install Extended Tire Features} sets the option to install Extended Tire Features for Vehicle Dynamics Blockset™ support package, {Plot steady state force, moment response} sets the option to plot steady-state force and moment tire responses, {Nominal pressure, NOMPRES} sets the pressure scalar, {Maximum pressure, PRESMAX} sets the maximum pressure scalar, {Minimum pressure, PRESMIN} sets the minimum pressure scalar, {Nominal normal force, FNOMIN} sets the force scalar, {Maximum normal force, FZMAX} sets the force scalar, {Minimum normal force, FZMIN} sets the force scalar, {Velocity tolerance used to handle low velocity situations, VXLOW} sets the tolerance scalar, {Max allowable slip ratio (absolute), KPUMAX} sets the max allowable slip, {Minimum allowable slip ratio (absolute), KPUMIN} sets the minimum allowable slip, {Max allowable slip angle (absolute), ALPMAX} sets the max allowable slip, {Minimum allowable slip angle (absolute), ALPMIN} sets the minimum allowable slip, {Maximum allowable camber angle, CAMMAX} sets the maximum allowable camber, {Minimum allowable camber angle, CAMMIN} sets the minimum allowable camber, {Nominal longitudinal speed, LONGVL} sets the speed scalar, {Default tyre side, tyreside} sets the side, {Initial wheel rotational velocity, omegao} sets the velocity scalar, {Tire unloaded radius, UNLOADED_RADIUS} sets the radius scalar, {Tire nominal section width, WIDTH} sets the width scalar, {Rim radius, RIM_RADIUS} sets the radius scalar, {Nominal aspect ratio, ASPECT_RATIO} sets the ratio scalar, {Tire mass, MASS} sets the mass scalar, {Tire rotational inertia (rolling axis), IYY} sets the inertia scalar, {Rotational damping, br} sets the damping scalar, {Gravity, GRAVITY} sets the gravity scalar, {Initial tire displacement, zo} sets the displacement scalar, {Initial wheel vertical velocity (wheel fixed frame), zdoto} sets the velocity scalar, {Effective rolling radius at low load stiffness, BREFF} sets the stiffness scalar, {Effective rolling radius peak value, DREFF} sets the radius scalar, {Effective rolling radius at high load stiffness, FREFF} sets the radius scalar, {Unloaded to nominal rolling radius ratio, Q_RE0} sets the ratio scalar, {Radius rotational speed dependence, Q_V1} sets the speed scalar, {Stiffness rotational speed dependence, Q_V2} sets the speed scalar, {Linear load change with deflection, Q_FZ1} sets the load change scalar, {Quadratic load change with deflection, Q_FZ2} sets the load change scalar, {Linear load change with deflection and quadratic camber, Q_FZ3} sets the load change scalar, {Load response to longitudinal force, Q_FCX} sets the force scalar, {Load response to lateral force, Q_FCY} sets the force scalar, {Vertical stiffness change due to lateral load dependency on lateral stiffness, Q_FCY2} sets the stiffness scalar, {Stiffness response to pressure, PFZ1} sets the stiffness scalar, {Vertical tire stiffness, VERTICAL_STIFFNESS} sets the stiffness scalar, {Vertical tire damping, VERTICAL_DAMPING} sets the damping scalar, {Rim bottoming out offset, BOTTOM_OFFST} sets the offset scalar, {Bottoming out stiffness, BOTTOM_STIFF} sets the stiffness scalar, {Linear load dependent camber angle effect on vertical stiffness, Q_CAM1} sets the stiffness scalar, {Quadratic load dependent camber angle effect on vertical stiffness, Q_CAM2} sets the stiffness scalar, {Linear reduction of stiffness with load and camber angle, Q_CAM3} sets the stiffness scalar, {Constant camber and slip angle effect on vertical stiffness, Q_FYS1} sets the stiffness scalar, {Linear camber and slip angle effect on vertical stiffness, Q_FYS2} sets the stiffness scalar, {Quadratic camber and slip angle effect on vertical stiffness, Q_FYS3} sets the stiffness scalar, {Longitudinal stiffness, LONGITUDINAL_STIFFNESS} sets the stiffness scalar, {Lateral stiffness, LATERAL_STIFFNESS} sets the stiffness scalar, {Linear vertical deflection influence on longitudinal stiffness, PCFX1} sets the deflection influence scalar, {Quadratic vertical deflection influence on longitudinal stiffness, PCFX2} sets the deflection influence scalar, {Pressure dependency on longitudinal stiffness, PCFX3} sets the pressure dependency scalar, {Linear vertical deflection influence on lateral stiffness, PCFY1} sets the deflection influence scalar, {Quadratic vertical deflection influence on lateral stiffness, PCFY2} sets the deflection influence scalar, {Pressure dependency on longitudinal stiffness, PCFY3} sets the pressure dependency scalar, {Contact length square root term, Q_RA1} sets the length term scalar, {Contact length linear term, Q_RA2} sets the length term scalar, {Contact width root term, Q_RB1} sets the width term scalar, {Contact width linear term, Q_RB2} sets the width term scalar, {Cfx shape factor, PCX1} sets the shape factor scalar, {Longitudinal friction at nominal normal load, PDX1} sets the friction scalar, {Frictional variation with load, PDX2} sets the friction variation scalar, {Frictional variation with camber, PDX3} sets the friction variation scalar, {Longitudinal curvature at nominal normal load, PEX1} sets the curvature scalar, {Variation of curvature factor with load, PEX2} sets the curvature variation scalar, {Variation of curvature factor with square of load, PEX3} sets the curvature variation scalar, {Longitudinal curvature factor with slip, PEX4} sets the curvature scalar, {Longitudinal slip stiffness at nominal normal load, PKX1} sets the stiffness scalar, {Variation of slip stiffness with load, PKX2} sets the stiffness variation scalar, {Slip stiffness exponent factor, PKX3} sets the slip stiffness scalar, {Horizontal shift in slip ratio at nominal normal load, PHX1} sets the slip ratio shift scalar, {Variation of horizontal slip ratio with load, PHX2} sets the slip variation scalar, {Vertical shift in load at nominal normal load, PVX1} sets the load shift scalar, {Variation of vertical shift with load, PVX2} sets the load variation scalar, {Linear variation of longitudinal slip stiffness with tire pressure, PPX1} sets the stiffness variation scalar, {Quadratic variation of longitudinal slip stiffness with tire pressure, PPX2} sets the stiffness variation scalar, {Linear variation of peak longitudinal friction with tire pressure, PPX3} sets the friction variation scalar, {Quadratic variation of peak longitudinal friction with tire pressure, PPX4} sets the friction variation scalar, {Combined slip Fx slope factor reduction, RBX1} sets the combined slip longitudinal force slope factor reduction, {Slip ratio Fx slope reduction variation, RBX2} sets the slip ratio longitudinal force slope reduction variation, {Camber influence on combined slip Fx stiffness, RBX3} sets the camber influence on combined slip longitudinal force stiffness, {Shape factor for combined slip Fx reduction, RCX1} sets the shape factor for combined slip longitudinal force reduction, {Combined Fx curvature factor, REX1} sets the combined longitudinal force curvature factor, {Combined Fx curvature factor with load, REX2} sets the combined longitudinal force curvature factor, {Combined slip Fx shift factor reduction, RHX1} sets the combined slip longitudinal force slip factor, {Vertical shift of overturning moment, QSX1} sets the overturning moment scalar, {Overturning moment due to camber, QSX2} sets the overturning moment due, {Overturning moment due to Fy, QSX3} sets the overturning moment due to lateral force, {Mx combined lateral force load and camber, QSX4} sets the overturning moment scalar, {Mx load effect due to lateral force and camber, QSX5} sets the overturning moment scalar, {Mx load effect due to B-factor, QSX6} sets the overturning moment scalar, {Mx due to camber and load, QSX7} sets the overturning moment scalar, {Mx due to lateral force and load, QSX8} sets the overturning moment scalar, {Mx due to B-factor of lateral force and load, QSX9} sets the overturning moment scalar, {Mx due to vertical force and camber, QSX10} sets the overturning moment scalar, {Mx due to B-factor of vertical force and camber, QSX11} sets the overturning moment scalar, {Mx due to squared camber, QSX12} sets the overturning moment scalar, {Mx due to lateral force, QSX13} sets the overturning moment scalar, {Mx due to lateral force with camber, QSX14} sets the overturning moment scalar, {Mx due to inflation pressure, PPMX1} sets the overturning moment due, {Cfy shape factor for lateral force, PCY1} sets the lateral force shape, {Lateral friction muy, PDY1} sets the lateral friction scalar, {Lateral friction variation of muy with load, PDY2} sets the lateral friction variation scalar, {Lateral friction variation of muy with squared camber, PDY3} sets the lateral friction variation scalar, {Efy lateral curvature at nominal force FZNOM, PEY1} sets the lateral curvature at nominal, {Efy curvature variation with load, PEY2} sets the lateral curvature variation scalar, {Efy curvature constant camber dependency, PEY3} sets the lateral curvature constant scalar, {Efy curvature variation with camber, PEY4} sets the lateral curvature variation scalar, {Efy curvature variation with camber squared, PEY5} sets the lateral curvature variation scalar, {Maximum KFy/FZNOM stiffness, PKY1} sets the maximum stiffness scalar, {Load at maximum KFy/FZNOM stiffness, PKY2} sets the load scalar, {KFy/FZNOM stiffness variation with camber, PKY3} sets the stiffness variation scalar, {KFy curvature, PKY4} sets the lateral force stiffness, {Variation of peak stiffness with squared camber, PKY5} sets the stiffness variation scalar, {Fy camber stiffness factor, PKY6} sets the lateral force camber stiffness factor, {Camber stiffness vertical load dependency, PKY7} sets the stiffness scalar, {SHY horizontal shift at FZNOM, PHY1} sets the horizontal shift at nominal, {SHY variation with load, PHY2} sets the horizontal shift variation scalar, {Svy/Fz vertical shift at FZNOM, PVY1} sets the vertical shift at nominal, {Svy/Fz variation with load, PVY2} sets the vertical shift variation, {Svy/Fz variation with camber, PVY3} sets the vertical shift variation with camber, {Svy/Fz variation with load and camber, PVY4} sets the vertical shift variation with load and camber, {Cornering stiffness variation with inflation pressure, PPY1} sets the stiffness variation, {Cornering stiffness variation with inflation pressure induced nominal load dependency, PPY2} sets the stiffness variation, {Linear inflation pressure on peak lateral friction, PPY3} sets the pressure scalar, {Quadratic inflation pressure on peak lateral friction, PPY4} sets the pressure scalar, {Inflation pressure effect on camber stiffness, PPY5} sets the pressure scalar, {Combined Fy reduction slope factor, RBY1} sets the combined lateral force reduction slope factor, {Fy slope reduction with slip angle, RBY2} sets the lateral force slope reduction with slip angle, {Fy shift reduction with slip angle, RBY3} sets the lateral force shift reduction with slip angle, {Fy combined stiffness variation from camber, RBY4} sets the lateral force combined stiffness variation from camber, {Fy combined reduction shape factor, RCY1} sets the lateral force combined reduction shape factor, {Fy combined curvature factor, REY1} sets the lateral force combined curvature factor, {Fy combined curvature factor with load, REY2} sets the lateral force combined curvature factor with load, {Fy combined reduction shift factor, RHY1} sets the lateral force combined reduction shift factor, {Fy combined reduction shift factor with load, RHY2} sets the lateral force combined reduction shift factor with load, {Slip ratio side force Svyk/Muy*Fz at FZNOM, RVY1} sets the slip ratio slide force at nominal force, {Side force Svyk/Muy*Fz variation with load, RVY2} sets the side force variation, {Side force Svyk/Muy*Fz variation with camber, RVY3} sets the side force variation, {Side force Svyk/Muy*Fz variation with slip angle, RVY4} sets the side force variation with slip angle, {Side force Svyk/Muy*Fz variation with slip ratio, RVY5} sets the side force variation with slip ratio, {Side force Svyk/Muy*Fz variation with slip ratio arctangent, RVY6} sets the side force variation with slip ratio arctangent, {Torque resistance coefficient, QSY1} sets the torque resistance scalar, {Torque resistance due to Fx, QSY2} sets the torque resistance due to longitudinal force, {Torque resistance due to speed, QSY3} sets the torque resistance due, {Torque resistance due to speed^4, QSY4} sets the torque resistance due, {Torque resistance due to square of camber, QSY5} sets the torque resistance due, {Torque resistance due to square of camber and load, QSY6} sets the torque resistance due to camber and load, {Torque resistance due to load, QSY7} sets the torque resistance due, {Torque resistance due to pressure, QSY8} sets the torque resistance due, {Trail slope factor for trail Bpt at FZNOM, QBZ1} sets the trail slope factor at nominal, {Bpt slope variation with load, QBZ2} sets the slope variation, {Bpt slope variation with square of load, QBZ3} sets the slope variation with load, {Bpt slope variation with camber, QBZ4} sets the slope variation, {Bpt slope variation with absolute value of camber, QBZ5} sets the slope variation, {Bpt slope variation with square of camber, QBZ6} sets the slope variation, {Br of Mzr slope scaling factor, QBZ9} sets the slope scaling factor scalar, {Br of Mzr cornering stiffness factor, QBZ10} sets the cornering stiffness factor scalar, {Cpt pneumatic trail shape factor, QCZ1} sets the pneumatic trail shape, {Dpt peak trail, QDZ1} sets the peak trail scalar, {Dpt peak trail variation with load, QDZ2} sets the peak trail variation, {Dpt peak trail variation with camber, QDZ3} sets the peak trail variation, {Dpt peak trail variation with square of camber, QDZ4} sets the peak trail variation, {Dmr peak residual torque, QDZ6} sets the peak residual torque scalar, {Dmr peak residual torque variation with load, QDZ7} sets the peak residual torque variation with load, {Dmr peak residual torque variation with camber, QDZ8} sets the peak residual torque variation with camber, {Dmr peak residual torque variation with camber and load, QDZ9} sets the peak residual torque variation with camber and load, {Dmr peak residual torque variation with square of camber, QDZ10} sets the peak residual torque variation with camber, {Dmr peak residual torque variation with square of load, QDZ11} sets the peak residual torque variation with load, {Ept trail curvature at FZNOM, QEZ1} sets the trail curvature at nominal, {Ept variation with load, QEZ2} sets the trail curvature variation, {Ept variation with square of load, QEZ3} sets the trail curvature variation, {Ept variation with sign of alpha-t, QEZ4} sets the trail curvature variation scalar, {Ept variation with sign of alpha-t and camber, QEZ5} sets the variation scalar, {Sht horizontal trail shift at FZNOM, QHZ1} sets the horizontal trail shift at nominal load, {Sht variation with load, QHZ2} sets the horizontal trail shift variation with load, {Sht variation with camber, QHZ3} sets the horizontal trail shift variation with camber, {Sht variation with load and camber, QHZ4} sets the horizontal trail shift variation with load and camber, {Inflation pressure influence on trail length, PPZ1} sets the pressure influence on trail, {Inflation pressure influence on residual aligning torque, PPZ2} sets the pressure influence on aligning torque, {Nominal value of s/R0: effect of Fx on Mz, SSZ1} sets the effect of longitudinal force on aligning torque, {s/R0 variation with lateral to nominal force ratio, SSZ2} sets the variation with lateral to nominal force ratio, {s/R0 variation with camber, SSZ3} sets the variation with camber scalar, {s/R0 variation with camber and load, SSZ4} sets the variation with camber, {Fx peak reduction due to spin, PDXP1} sets the longitudinal force peak reduction due to spin, {Fx peak reduction due to spin with varying load, PDXP2} sets the longitudinal force peak reduction due to spin, {Fx peak reduction due to spin with slip ratio, PDXP3} sets the longitudinal force peak reduction due to spin, {Cornering stiffness reduction due to spin, PKYP1} sets the stiffness reduction due, {Fy peak reduction due to spin, PDYP1} sets the lateral force peak reduction due to spin, {Fy peak reduction due to spin with varying load, PDYP2} sets the lateral force peak reduction due to spin, {Fy peak reduction due to spin with slip angle, PDYP3} sets the lateral force peak reduction due to spin, {Fy peak reduction due to square root of spin, PDYP4} sets the lateral force peak reduction due to spin, {Fy vs. slip angle response lateral shift limit, PHYP1} sets the lateral force versus slip angle response, {Fy vs. slip angle response max lateral shift limit, PHYP2} sets the lateral force versus slip angle response, {Fy vs. slip angle response max lateral shift limit with load, PHYP3} sets the lateral force versus slip angle response, {Fy vs. slip angle response lateral shift curvature factor, PHYP4} sets the lateral force versus slip angle response, {Camber stiffness reduction due to spin, PECP1} sets the camber stiffness reduction scalar, {Camber stiffness reduction due to spin with load, PECP2} sets the camber stiffness reduction scalar, {Turn slip pneumatic trail reduction factor, QDTP1}, {Turn moment for constant turning and zero longitudinal speed, QCRP1} sets the turn moment for constant, {Turn slip moment increase with spin at 90deg slip angle, QCRP2} sets the turn slip moment scalar, {Residual spin torque reduction from side slip, QBRP1} sets the residual spin torque, {Turn slip moment peak magnitude, QDRP1} sets the turn slip moment peak and {Turn slip moment curvature, QDRP2} sets the turn slip moment. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Xe",
+   "direction": "input",
+   "summary": "Wheel position in inertial reference frame N -by- 3 vector"
+  },
+  {
+   "name": "DCM",
+   "direction": "input",
+   "summary": "Direction cosine matrix 3 -by- 3 vector"
+  },
+  {
+   "name": "Ang",
+   "direction": "input",
+   "summary": "Rotation angle of the rim 3 -by- 3 vector"
+  },
+  {
+   "name": "Ve",
+   "direction": "input",
+   "summary": "Wheel velocity in inertial reference frame N -by- 3 vector"
+  },
+  {
+   "name": "Omega",
+   "direction": "input",
+   "summary": "Rotational velocity N -by- 3 vector"
+  },
+  {
+   "name": "OmegaWc",
+   "direction": "input",
+   "summary": "Rim rotational velocity scalar"
+  },
+  {
+   "name": "Road",
+   "direction": "input",
+   "summary": "Wheel position, rotation matrix, velocity 1 -by- 18 vector"
+  },
+  {
+   "name": "ScaleFctrs",
+   "direction": "input",
+   "summary": "Scale factors 27 -by- N array"
+  },
+  {
+   "name": "Prs",
+   "direction": "input",
+   "summary": "Tire inflation pressure scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Block data bus"
+  },
+  {
+   "name": "Fwc",
+   "direction": "output",
+   "summary": "Force at wheel center 1 -by- 3 vector"
+  },
+  {
+   "name": "Mwc",
+   "direction": "output",
+   "summary": "Moment at wheel center 1 -by- 3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tire type",
+   "default": "",
+   "values": "Select type External file | Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car 235/45R18 | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Tire file or object, tireParamSet",
+   "default": "",
+   "values": "Tire file .mat |.tir |.txt",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Tire side",
+   "default": "Right",
+   "values": "Select tire side Right (default) | Left | Symmetric",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Tire pressure",
+   "default": "",
+   "values": "Select tire side scalar",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Ply steer",
+   "default": "on",
+   "values": "Include ply steer on (default) | off",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Turn slip",
+   "default": "on",
+   "values": "Include turn slip on (default) | off",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Install Extended Tire Features",
+   "default": "",
+   "values": "Option to install Extended Tire Features for Vehicle Dynamics Blockset™ support package button",
+   "group": "Plotting"
+  },
+  {
+   "name": "Plot steady state force, moment response",
+   "default": "",
+   "values": "Option to plot steady-state force and moment tire responses button",
+   "group": "Plotting"
+  },
+  {
+   "name": "Nominal pressure, NOMPRES",
+   "default": "",
+   "values": "Pressure scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Maximum pressure, PRESMAX",
+   "default": "",
+   "values": "Maximum pressure scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum pressure, PRESMIN",
+   "default": "",
+   "values": "Minimum pressure scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Nominal normal force, FNOMIN",
+   "default": "",
+   "values": "Force scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Maximum normal force, FZMAX",
+   "default": "",
+   "values": "Force scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum normal force, FZMIN",
+   "default": "",
+   "values": "Force scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Velocity tolerance used to handle low velocity situations, VXLOW",
+   "default": "",
+   "values": "Tolerance scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Max allowable slip ratio (absolute), KPUMAX",
+   "default": "",
+   "values": "Max allowable slip ratio scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum allowable slip ratio (absolute), KPUMIN",
+   "default": "",
+   "values": "Minimum allowable slip ratio scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Max allowable slip angle (absolute), ALPMAX",
+   "default": "",
+   "values": "Max allowable slip angle scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum allowable slip angle (absolute), ALPMIN",
+   "default": "",
+   "values": "Minimum allowable slip angle scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Maximum allowable camber angle, CAMMAX",
+   "default": "",
+   "values": "Maximum allowable camber angle scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Minimum allowable camber angle, CAMMIN",
+   "default": "",
+   "values": "Minimum allowable camber angle scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Nominal longitudinal speed, LONGVL",
+   "default": "",
+   "values": "Speed scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Default tyre side, tyreside",
+   "default": "’Right’",
+   "values": "Side ’Right’ (default) | char",
+   "group": "Simulation"
+  },
+  {
+   "name": "Initial wheel rotational velocity, omegao",
+   "default": "",
+   "values": "Velocity scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Tire unloaded radius, UNLOADED_RADIUS",
+   "default": "",
+   "values": "Radius scalar",
+   "group": "Dimension"
+  },
+  {
+   "name": "Tire nominal section width, WIDTH",
+   "default": "",
+   "values": "Width scalar",
+   "group": "Dimension"
+  },
+  {
+   "name": "Rim radius, RIM_RADIUS",
+   "default": "",
+   "values": "Radius scalar",
+   "group": "Dimension"
+  },
+  {
+   "name": "Nominal aspect ratio, ASPECT_RATIO",
+   "default": "",
+   "values": "Ratio scalar",
+   "group": "Dimension"
+  },
+  {
+   "name": "Tire mass, MASS",
+   "default": "",
+   "values": "Mass scalar",
+   "group": "Inertial and Damping"
+  },
+  {
+   "name": "Tire rotational inertia (rolling axis), IYY",
+   "default": "",
+   "values": "Inertia scalar",
+   "group": "Inertial and Damping"
+  },
+  {
+   "name": "Rotational damping, br",
+   "default": "",
+   "values": "Damping scalar",
+   "group": "Inertial and Damping"
+  },
+  {
+   "name": "Gravity, GRAVITY",
+   "default": "",
+   "values": "Gravity scalar",
+   "group": "Inertial and Damping"
+  },
+  {
+   "name": "Initial tire displacement, zo",
+   "default": "",
+   "values": "Displacement scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Initial wheel vertical velocity (wheel fixed frame), zdoto",
+   "default": "",
+   "values": "Velocity scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Effective rolling radius at low load stiffness, BREFF",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Effective rolling radius peak value, DREFF",
+   "default": "",
+   "values": "Radius scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Effective rolling radius at high load stiffness, FREFF",
+   "default": "",
+   "values": "Radius scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Unloaded to nominal rolling radius ratio, Q_RE0",
+   "default": "",
+   "values": "Ratio scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Radius rotational speed dependence, Q_V1",
+   "default": "",
+   "values": "Speed scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Stiffness rotational speed dependence, Q_V2",
+   "default": "",
+   "values": "Speed scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear load change with deflection, Q_FZ1",
+   "default": "",
+   "values": "Load change scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Quadratic load change with deflection, Q_FZ2",
+   "default": "",
+   "values": "Load change scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear load change with deflection and quadratic camber, Q_FZ3",
+   "default": "",
+   "values": "Load change scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Load response to longitudinal force, Q_FCX",
+   "default": "",
+   "values": "Force scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Load response to lateral force, Q_FCY",
+   "default": "",
+   "values": "Force scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical stiffness change due to lateral load dependency on lateral stiffness, Q_FCY2",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Stiffness response to pressure, PFZ1",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical tire stiffness, VERTICAL_STIFFNESS",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical tire damping, VERTICAL_DAMPING",
+   "default": "",
+   "values": "Damping scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Rim bottoming out offset, BOTTOM_OFFST",
+   "default": "",
+   "values": "Offset scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Bottoming out stiffness, BOTTOM_STIFF",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear load dependent camber angle effect on vertical stiffness, Q_CAM1",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Quadratic load dependent camber angle effect on vertical stiffness, Q_CAM2",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear reduction of stiffness with load and camber angle, Q_CAM3",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Constant camber and slip angle effect on vertical stiffness, Q_FYS1",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Linear camber and slip angle effect on vertical stiffness, Q_FYS2",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Quadratic camber and slip angle effect on vertical stiffness, Q_FYS3",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Longitudinal stiffness, LONGITUDINAL_STIFFNESS",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Lateral stiffness, LATERAL_STIFFNESS",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Linear vertical deflection influence on longitudinal stiffness, PCFX1",
+   "default": "",
+   "values": "Deflection influence scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Quadratic vertical deflection influence on longitudinal stiffness, PCFX2",
+   "default": "",
+   "values": "Deflection influence scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Pressure dependency on longitudinal stiffness, PCFX3",
+   "default": "",
+   "values": "Pressure dependency scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Linear vertical deflection influence on lateral stiffness, PCFY1",
+   "default": "",
+   "values": "Deflection influence scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Quadratic vertical deflection influence on lateral stiffness, PCFY2",
+   "default": "",
+   "values": "Deflection influence scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Pressure dependency on longitudinal stiffness, PCFY3",
+   "default": "",
+   "values": "Pressure dependency scalar",
+   "group": "Structural"
+  },
+  {
+   "name": "Contact length square root term, Q_RA1",
+   "default": "",
+   "values": "Length term scalar",
+   "group": "Contact Patch"
+  },
+  {
+   "name": "Contact length linear term, Q_RA2",
+   "default": "",
+   "values": "Length term scalar",
+   "group": "Contact Patch"
+  },
+  {
+   "name": "Contact width root term, Q_RB1",
+   "default": "",
+   "values": "Width term scalar",
+   "group": "Contact Patch"
+  },
+  {
+   "name": "Contact width linear term, Q_RB2",
+   "default": "",
+   "values": "Width term scalar",
+   "group": "Contact Patch"
+  },
+  {
+   "name": "Cfx shape factor, PCX1",
+   "default": "",
+   "values": "Shape factor scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal friction at nominal normal load, PDX1",
+   "default": "",
+   "values": "Friction scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Frictional variation with load, PDX2",
+   "default": "",
+   "values": "Friction variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Frictional variation with camber, PDX3",
+   "default": "",
+   "values": "Friction variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal curvature at nominal normal load, PEX1",
+   "default": "",
+   "values": "Curvature scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of curvature factor with load, PEX2",
+   "default": "",
+   "values": "Curvature variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of curvature factor with square of load, PEX3",
+   "default": "",
+   "values": "Curvature variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal curvature factor with slip, PEX4",
+   "default": "",
+   "values": "Curvature scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal slip stiffness at nominal normal load, PKX1",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of slip stiffness with load, PKX2",
+   "default": "",
+   "values": "Stiffness variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Slip stiffness exponent factor, PKX3",
+   "default": "",
+   "values": "Slip stiffness scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Horizontal shift in slip ratio at nominal normal load, PHX1",
+   "default": "",
+   "values": "Slip ratio shift scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of horizontal slip ratio with load, PHX2",
+   "default": "",
+   "values": "Slip variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Vertical shift in load at nominal normal load, PVX1",
+   "default": "",
+   "values": "Load shift scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of vertical shift with load, PVX2",
+   "default": "",
+   "values": "Load variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Linear variation of longitudinal slip stiffness with tire pressure, PPX1",
+   "default": "",
+   "values": "Stiffness variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Quadratic variation of longitudinal slip stiffness with tire pressure, PPX2",
+   "default": "",
+   "values": "Stiffness variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Linear variation of peak longitudinal friction with tire pressure, PPX3",
+   "default": "",
+   "values": "Friction variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Quadratic variation of peak longitudinal friction with tire pressure, PPX4",
+   "default": "",
+   "values": "Friction variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Combined slip Fx slope factor reduction, RBX1",
+   "default": "",
+   "values": "Combined slip longitudinal force slope factor reduction scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Slip ratio Fx slope reduction variation, RBX2",
+   "default": "",
+   "values": "Slip ratio longitudinal force slope reduction variation scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Camber influence on combined slip Fx stiffness, RBX3",
+   "default": "",
+   "values": "Camber influence on combined slip longitudinal force stiffness scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Shape factor for combined slip Fx reduction, RCX1",
+   "default": "",
+   "values": "Shape factor for combined slip longitudinal force reduction scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Combined Fx curvature factor, REX1",
+   "default": "",
+   "values": "Combined longitudinal force curvature factor scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Combined Fx curvature factor with load, REX2",
+   "default": "",
+   "values": "Combined longitudinal force curvature factor scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Combined slip Fx shift factor reduction, RHX1",
+   "default": "",
+   "values": "Combined slip longitudinal force slip factor scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Vertical shift of overturning moment, QSX1",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Overturning moment due to camber, QSX2",
+   "default": "",
+   "values": "Overturning moment due to camber scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Overturning moment due to Fy, QSX3",
+   "default": "",
+   "values": "Overturning moment due to lateral force scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx combined lateral force load and camber, QSX4",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx load effect due to lateral force and camber, QSX5",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx load effect due to B-factor, QSX6",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to camber and load, QSX7",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to lateral force and load, QSX8",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to B-factor of lateral force and load, QSX9",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to vertical force and camber, QSX10",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to B-factor of vertical force and camber, QSX11",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to squared camber, QSX12",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to lateral force, QSX13",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to lateral force with camber, QSX14",
+   "default": "",
+   "values": "Overturning moment scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Mx due to inflation pressure, PPMX1",
+   "default": "",
+   "values": "Overturning moment due to pressure scalar",
+   "group": "Overturning"
+  },
+  {
+   "name": "Cfy shape factor for lateral force, PCY1",
+   "default": "",
+   "values": "Lateral force shape factor scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Lateral friction muy, PDY1",
+   "default": "",
+   "values": "Lateral friction scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Lateral friction variation of muy with load, PDY2",
+   "default": "",
+   "values": "Lateral friction variation scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Lateral friction variation of muy with squared camber, PDY3",
+   "default": "",
+   "values": "Lateral friction variation scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy lateral curvature at nominal force FZNOM, PEY1",
+   "default": "",
+   "values": "Lateral curvature at nominal force scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy curvature variation with load, PEY2",
+   "default": "",
+   "values": "Lateral curvature variation scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy curvature constant camber dependency, PEY3",
+   "default": "",
+   "values": "Lateral curvature constant scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy curvature variation with camber, PEY4",
+   "default": "",
+   "values": "Lateral curvature variation scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Efy curvature variation with camber squared, PEY5",
+   "default": "",
+   "values": "Lateral curvature variation scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Maximum KFy/FZNOM stiffness, PKY1",
+   "default": "",
+   "values": "Maximum stiffness scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Load at maximum KFy/FZNOM stiffness, PKY2",
+   "default": "",
+   "values": "Load scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "KFy/FZNOM stiffness variation with camber, PKY3",
+   "default": "",
+   "values": "Stiffness variation scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "KFy curvature, PKY4",
+   "default": "",
+   "values": "Lateral force stiffness curvature scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Variation of peak stiffness with squared camber, PKY5",
+   "default": "",
+   "values": "Stiffness variation scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy camber stiffness factor, PKY6",
+   "default": "",
+   "values": "Lateral force camber stiffness factor scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Camber stiffness vertical load dependency, PKY7",
+   "default": "",
+   "values": "Stiffness scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "SHY horizontal shift at FZNOM, PHY1",
+   "default": "",
+   "values": "Horizontal shift at nominal force scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "SHY variation with load, PHY2",
+   "default": "",
+   "values": "Horizontal shift variation scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Svy/Fz vertical shift at FZNOM, PVY1",
+   "default": "",
+   "values": "Vertical shift at nominal force scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Svy/Fz variation with load, PVY2",
+   "default": "",
+   "values": "Vertical shift variation with load scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Svy/Fz variation with camber, PVY3",
+   "default": "",
+   "values": "Vertical shift variation with camber scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Svy/Fz variation with load and camber, PVY4",
+   "default": "",
+   "values": "Vertical shift variation with load and camber scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Cornering stiffness variation with inflation pressure, PPY1",
+   "default": "",
+   "values": "Stiffness variation with pressure scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Cornering stiffness variation with inflation pressure induced nominal load dependency, PPY2",
+   "default": "",
+   "values": "Stiffness variation with pressure scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Linear inflation pressure on peak lateral friction, PPY3",
+   "default": "",
+   "values": "Pressure scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Quadratic inflation pressure on peak lateral friction, PPY4",
+   "default": "",
+   "values": "Pressure scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Inflation pressure effect on camber stiffness, PPY5",
+   "default": "",
+   "values": "Pressure scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Combined Fy reduction slope factor, RBY1",
+   "default": "",
+   "values": "Combined lateral force reduction slope factor scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy slope reduction with slip angle, RBY2",
+   "default": "",
+   "values": "Lateral force slope reduction with slip angle scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy shift reduction with slip angle, RBY3",
+   "default": "",
+   "values": "Lateral force shift reduction with slip angle scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined stiffness variation from camber, RBY4",
+   "default": "",
+   "values": "Lateral force combined stiffness variation from camber scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined reduction shape factor, RCY1",
+   "default": "",
+   "values": "Lateral force combined reduction shape factor scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined curvature factor, REY1",
+   "default": "",
+   "values": "Lateral force combined curvature factor scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined curvature factor with load, REY2",
+   "default": "",
+   "values": "Lateral force combined curvature factor with load scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined reduction shift factor, RHY1",
+   "default": "",
+   "values": "Lateral force combined reduction shift factor scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Fy combined reduction shift factor with load, RHY2",
+   "default": "",
+   "values": "Lateral force combined reduction shift factor with load scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Slip ratio side force Svyk/Muy*Fz at FZNOM, RVY1",
+   "default": "",
+   "values": "Slip ratio slide force at nominal force scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with load, RVY2",
+   "default": "",
+   "values": "Side force variation with load scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with camber, RVY3",
+   "default": "",
+   "values": "Side force variation with camber scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with slip angle, RVY4",
+   "default": "",
+   "values": "Side force variation with slip angle scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with slip ratio, RVY5",
+   "default": "",
+   "values": "Side force variation with slip ratio scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Side force Svyk/Muy*Fz variation with slip ratio arctangent, RVY6",
+   "default": "",
+   "values": "Side force variation with slip ratio arctangent scalar",
+   "group": "Lateral"
+  },
+  {
+   "name": "Torque resistance coefficient, QSY1",
+   "default": "",
+   "values": "Torque resistance scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to Fx, QSY2",
+   "default": "",
+   "values": "Torque resistance due to longitudinal force scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to speed, QSY3",
+   "default": "",
+   "values": "Torque resistance due to speed scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to speed^4, QSY4",
+   "default": "",
+   "values": "Torque resistance due to speed scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to square of camber, QSY5",
+   "default": "",
+   "values": "Torque resistance due to camber scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to square of camber and load, QSY6",
+   "default": "",
+   "values": "Torque resistance due to camber and load scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to load, QSY7",
+   "default": "",
+   "values": "Torque resistance due to load scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Torque resistance due to pressure, QSY8",
+   "default": "",
+   "values": "Torque resistance due to pressure scalar",
+   "group": "Rolling"
+  },
+  {
+   "name": "Trail slope factor for trail Bpt at FZNOM, QBZ1",
+   "default": "",
+   "values": "Trail slope factor at nominal force scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with load, QBZ2",
+   "default": "",
+   "values": "Slope variation with load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with square of load, QBZ3",
+   "default": "0",
+   "values": "Slope variation with load 0 (default) | scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with camber, QBZ4",
+   "default": "",
+   "values": "Slope variation with camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with absolute value of camber, QBZ5",
+   "default": "",
+   "values": "Slope variation with camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Bpt slope variation with square of camber, QBZ6",
+   "default": "",
+   "values": "Slope variation with camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Br of Mzr slope scaling factor, QBZ9",
+   "default": "",
+   "values": "Slope scaling factor scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Br of Mzr cornering stiffness factor, QBZ10",
+   "default": "",
+   "values": "Cornering stiffness factor scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Cpt pneumatic trail shape factor, QCZ1",
+   "default": "",
+   "values": "Pneumatic trail shape factor scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dpt peak trail, QDZ1",
+   "default": "",
+   "values": "Peak trail scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dpt peak trail variation with load, QDZ2",
+   "default": "",
+   "values": "Peak trail variation with load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dpt peak trail variation with camber, QDZ3",
+   "default": "",
+   "values": "Peak trail variation with camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dpt peak trail variation with square of camber, QDZ4",
+   "default": "",
+   "values": "Peak trail variation with camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque, QDZ6",
+   "default": "",
+   "values": "Peak residual torque scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with load, QDZ7",
+   "default": "",
+   "values": "Peak residual torque variation with load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with camber, QDZ8",
+   "default": "",
+   "values": "Peak residual torque variation with camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with camber and load, QDZ9",
+   "default": "",
+   "values": "Peak residual torque variation with camber and load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with square of camber, QDZ10",
+   "default": "",
+   "values": "Peak residual torque variation with camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Dmr peak residual torque variation with square of load, QDZ11",
+   "default": "",
+   "values": "Peak residual torque variation with load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept trail curvature at FZNOM, QEZ1",
+   "default": "",
+   "values": "Trail curvature at nominal force scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept variation with load, QEZ2",
+   "default": "",
+   "values": "Trail curvature variation with load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept variation with square of load, QEZ3",
+   "default": "",
+   "values": "Trail curvature variation with load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept variation with sign of alpha-t, QEZ4",
+   "default": "",
+   "values": "Trail curvature variation scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Ept variation with sign of alpha-t and camber, QEZ5",
+   "default": "",
+   "values": "Variation scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Sht horizontal trail shift at FZNOM, QHZ1",
+   "default": "",
+   "values": "Horizontal trail shift at nominal load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Sht variation with load, QHZ2",
+   "default": "",
+   "values": "Horizontal trail shift variation with load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Sht variation with camber, QHZ3",
+   "default": "",
+   "values": "Horizontal trail shift variation with camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Sht variation with load and camber, QHZ4",
+   "default": "",
+   "values": "Horizontal trail shift variation with load and camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Inflation pressure influence on trail length, PPZ1",
+   "default": "",
+   "values": "Pressure influence on trail length scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Inflation pressure influence on residual aligning torque, PPZ2",
+   "default": "",
+   "values": "Pressure influence on aligning torque scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Nominal value of s/R0: effect of Fx on Mz, SSZ1",
+   "default": "",
+   "values": "Effect of longitudinal force on aligning torque scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "s/R0 variation with lateral to nominal force ratio, SSZ2",
+   "default": "",
+   "values": "Variation with lateral to nominal force ratio scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "s/R0 variation with camber, SSZ3",
+   "default": "",
+   "values": "Variation with camber scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "s/R0 variation with camber and load, SSZ4",
+   "default": "",
+   "values": "Variation with camber and load scalar",
+   "group": "Aligning"
+  },
+  {
+   "name": "Fx peak reduction due to spin, PDXP1",
+   "default": "",
+   "values": "Longitudinal force peak reduction due to spin scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fx peak reduction due to spin with varying load, PDXP2",
+   "default": "",
+   "values": "Longitudinal force peak reduction due to spin scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fx peak reduction due to spin with slip ratio, PDXP3",
+   "default": "",
+   "values": "Longitudinal force peak reduction due to spin scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Cornering stiffness reduction due to spin, PKYP1",
+   "default": "",
+   "values": "Stiffness reduction due to spin scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy peak reduction due to spin, PDYP1",
+   "default": "",
+   "values": "Lateral force peak reduction due to spin scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy peak reduction due to spin with varying load, PDYP2",
+   "default": "",
+   "values": "Lateral force peak reduction due to spin scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy peak reduction due to spin with slip angle, PDYP3",
+   "default": "",
+   "values": "Lateral force peak reduction due to spin scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy peak reduction due to square root of spin, PDYP4",
+   "default": "",
+   "values": "Lateral force peak reduction due to spin scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy vs. slip angle response lateral shift limit, PHYP1",
+   "default": "",
+   "values": "Lateral force versus slip angle response scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy vs. slip angle response max lateral shift limit, PHYP2",
+   "default": "",
+   "values": "Lateral force versus slip angle response scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy vs. slip angle response max lateral shift limit with load, PHYP3",
+   "default": "",
+   "values": "Lateral force versus slip angle response scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Fy vs. slip angle response lateral shift curvature factor, PHYP4",
+   "default": "",
+   "values": "Lateral force versus slip angle response scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Camber stiffness reduction due to spin, PECP1",
+   "default": "",
+   "values": "Camber stiffness reduction scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Camber stiffness reduction due to spin with load, PECP2",
+   "default": "",
+   "values": "Camber stiffness reduction scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn slip pneumatic trail reduction factor, QDTP1",
+   "default": "",
+   "values": "Turn slip pneumatic trail reduction factor scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn moment for constant turning and zero longitudinal speed, QCRP1",
+   "default": "",
+   "values": "Turn moment for constant turning scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn slip moment increase with spin at 90deg slip angle, QCRP2",
+   "default": "",
+   "values": "Turn slip moment scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Residual spin torque reduction from side slip, QBRP1",
+   "default": "",
+   "values": "Residual spin torque reduction scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn slip moment peak magnitude, QDRP1",
+   "default": "",
+   "values": "Turn slip moment peak magnitude scalar",
+   "group": "Turnslip"
+  },
+  {
+   "name": "Turn slip moment curvature, QDRP2",
+   "default": "",
+   "values": "Turn slip moment curvature scalar",
+   "group": "Turnslip"
+  }
+ ]
+}

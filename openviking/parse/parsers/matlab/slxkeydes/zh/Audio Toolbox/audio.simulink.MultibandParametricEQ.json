@@ -1,0 +1,265 @@
+{
+ "key": "audio.simulink.MultibandParametricEQ",
+ "title": "Multiband Parametric EQ",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Multiband_Parametric_EQ.md"
+ ],
+ "text": "多频带参数均衡器，输入 1 路、输出 1 路、无直接馈通；{EQ order} 指定各个均衡器频带的阶数、{Number of bands} 指定均衡器频带数、{Specify frequencies from input port} 指定从输入端口指定频率、{Frequencies (Hz)} 指定均衡器频带的中心频率、{Specify peak gains from input port} 指定从输入端口指定峰值增益、{Peak Gains (dB)} 指定峰值或凹陷滤波器增益、{Specify quality factors from input port} 指定从输入端口指定品质因数、{Quality factors} 指定均衡器频带的品质因数、{Inherit sample rate from input} 指定从输入端口指定采样率、{Input sample rate (Hz)} 指定输入采样率、{Visualize filter response} 指定可视化均衡器的幅值响应、{Variable name} 指定导出滤波器的变量名、{Overwrite variable if it already exists} 指定如果变量已存在则覆盖、{Export filter to workspace} 指定将滤波器导出到工作区、{Add low-shelf filter} 指定向均衡器添加低架滤波器、{Specify low-shelf cutoff from input port} 指定从输入端口指定低架截止频率、{Low-shelf cutoff frequency (Hz)} 指定低架截止频率、{Specify low-shelf slope from input port} 指定低架斜率、{Low-shelf filter slope} 指定低架斜率、{Specify low-shelf gain from input port} 指定从输入端口指定低架增益、{Low-shelf filter gain (dB)} 指定低架增益、{Add high-shelf filter} 指定向均衡器添加高架滤波器、{Specify high-shelf cutoff from input port} 指定从输入端口指定高架截止频率、{High-shelf cutoff frequency (Hz)} 指定高架截止频率 15e3、{Specify high-shelf slope from input port} 指定从输入端口指定高架斜率、{High-shelf filter slope} 指定高架斜率、{Specify high-shelf gain from input port} 指定从输入端口指定高架增益、{High-shelf filter gain (dB)} 指定高架增益、{Add lowpass filter} 指定向均衡器添加低通滤波器、{Specify lowpass cutoff from input port} 指定从输入端口指定低通截止频率、{Lowpass cutoff frequency (Hz)} 指定低通截止频率 18e3、{Specify lowpass slope from input port} 指定从输入端口指定低通斜率、{Lowpass filter slope} 指定低通斜率、{Add highpass filter} 指定向均衡器添加高通滤波器、{Specify highpass cutoff from input port} 指定从输入端口指定高通截止频率、{Highpass cutoff frequency (Hz)} 指定高通截止频率、{Specify highpass slope from input port} 指定从输入端口指定高通斜率、{Highpass filter slope} 指定高通斜率、{Oversample} 指定过采样切换、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "均衡器的音频输入 matrix | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "均衡器的音频输出 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "EQ order",
+   "default": "2",
+   "values": "各个均衡器频带的阶数 2 (default) | even positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Number of bands",
+   "default": "3",
+   "values": "均衡器频带数 3 (default) | integer in the range [1,10]",
+   "group": "Main"
+  },
+  {
+   "name": "Specify frequencies from input port",
+   "default": "off",
+   "values": "从输入端口指定频率 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Frequencies (Hz)",
+   "default": "[100,181,325]",
+   "values": "均衡器频带的中心频率 [100,181,325] (default) | row vector of length equal to Number of bands",
+   "group": "Main"
+  },
+  {
+   "name": "Specify peak gains from input port",
+   "default": "off",
+   "values": "从输入端口指定峰值增益 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Peak Gains (dB)",
+   "default": "[0,0,0]",
+   "values": "峰值或凹陷滤波器增益 [0,0,0] (default) | row vector of length equal to Number of bands",
+   "group": "Main"
+  },
+  {
+   "name": "Specify quality factors from input port",
+   "default": "off",
+   "values": "从输入端口指定品质因数 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Quality factors",
+   "default": "[1.6,1.6,1.6]",
+   "values": "均衡器频带的品质因数 [1.6,1.6,1.6] (default) | row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "从输入端口指定采样率 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入采样率 44100 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Visualize filter response",
+   "default": "",
+   "values": "可视化均衡器的幅值响应 button",
+   "group": "Main"
+  },
+  {
+   "name": "Variable name",
+   "default": "myFilt",
+   "values": "导出滤波器的变量名 myFilt (default) | valid variable name",
+   "group": "Main"
+  },
+  {
+   "name": "Overwrite variable if it already exists",
+   "default": "on",
+   "values": "如果变量已存在则覆盖 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Export filter to workspace",
+   "default": "",
+   "values": "将滤波器导出到工作区 button",
+   "group": "Main"
+  },
+  {
+   "name": "Add low-shelf filter",
+   "default": "off",
+   "values": "向均衡器添加低架滤波器 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify low-shelf cutoff from input port",
+   "default": "off",
+   "values": "从输入端口指定低架截止频率 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Low-shelf cutoff frequency (Hz)",
+   "default": "200",
+   "values": "低架截止频率 200 (default) | scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify low-shelf slope from input port",
+   "default": "off",
+   "values": "指定低架斜率 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Low-shelf filter slope",
+   "default": "1.5",
+   "values": "低架斜率 1.5 (default) | positive scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify low-shelf gain from input port",
+   "default": "off",
+   "values": "从输入端口指定低架增益 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Low-shelf filter gain (dB)",
+   "default": "0",
+   "values": "低架增益 0 (default) | real scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Add high-shelf filter",
+   "default": "off",
+   "values": "向均衡器添加高架滤波器 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify high-shelf cutoff from input port",
+   "default": "off",
+   "values": "从输入端口指定高架截止频率 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "High-shelf cutoff frequency (Hz)",
+   "default": "15e3",
+   "values": "高架截止频率 15e3 (default) | scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify high-shelf slope from input port",
+   "default": "off",
+   "values": "从输入端口指定高架斜率 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "High-shelf filter slope",
+   "default": "1.5",
+   "values": "高架斜率 1.5 (default) | positive scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify high-shelf gain from input port",
+   "default": "off",
+   "values": "从输入端口指定高架增益 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "High-shelf filter gain (dB)",
+   "default": "0",
+   "values": "高架增益 0 (default) | real scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Add lowpass filter",
+   "default": "off",
+   "values": "向均衡器添加低通滤波器 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify lowpass cutoff from input port",
+   "default": "off",
+   "values": "从输入端口指定低通截止频率 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Lowpass cutoff frequency (Hz)",
+   "default": "18e3",
+   "values": "低通截止频率 18e3 (default) | scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify lowpass slope from input port",
+   "default": "off",
+   "values": "从输入端口指定低通斜率 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Lowpass filter slope",
+   "default": "12",
+   "values": "低通斜率 12 (default) | real scalar in the range [0:6:48]",
+   "group": "Advanced"
+  },
+  {
+   "name": "Add highpass filter",
+   "default": "off",
+   "values": "向均衡器添加高通滤波器 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify highpass cutoff from input port",
+   "default": "off",
+   "values": "从输入端口指定高通截止频率 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Highpass cutoff frequency (Hz)",
+   "default": "20",
+   "values": "高通截止频率 20 (default) | nonnegative real scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Specify highpass slope from input port",
+   "default": "off",
+   "values": "从输入端口指定高通斜率 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Highpass filter slope",
+   "default": "30",
+   "values": "高通斜率 30 (default) | real scalar in the range [0:6:48]",
+   "group": "Advanced"
+  },
+  {
+   "name": "Oversample",
+   "default": "off",
+   "values": "过采样切换 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "指定要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": "Advanced"
+  }
+ ]
+}

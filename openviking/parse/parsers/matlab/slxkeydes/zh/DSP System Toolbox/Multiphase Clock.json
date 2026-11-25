@@ -1,0 +1,57 @@
+{
+ "key": "Multiphase Clock",
+ "title": "Multiphase Clock",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Multiphase_Clock.md",
+  "DSP System Toolbox/Signal Management/Switches and Counters/Multiphase_Clock.md"
+ ],
+ "text": "生成多个二进制时钟信号；输出 1 路；{Clock frequency (Hz)} 指定所有时钟信号的频率、{Number of phases, N} 输出向量中的相位数、{Starting phase (1 to N)} 指定起始相位的向量索引、{Number of phase intervals over which clock is active (1 to N-1)} 指定每个输出的活动电平持续时间、{Active level (polarity)} 指定 Active level High、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "时钟信号向量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Clock frequency (Hz)",
+   "default": "1",
+   "values": "所有时钟信号的频率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of phases, N",
+   "default": "4",
+   "values": "输出向量中的相位数 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Starting phase (1 to N)",
+   "default": "1",
+   "values": "起始相位的向量索引 1 (default) | integer from 1 to N",
+   "group": ""
+  },
+  {
+   "name": "Number of phase intervals over which clock is active (1 to N-1)",
+   "default": "3",
+   "values": "每个输出的活动电平持续时间 3 (default) | integer from 1 to N -1",
+   "group": ""
+  },
+  {
+   "name": "Active level (polarity)",
+   "default": "(1)",
+   "values": "Active level High (1) (default) | Low (0)",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Logical",
+   "values": "输出数据类型 Logical (default) | Boolean",
+   "group": ""
+  }
+ ]
+}

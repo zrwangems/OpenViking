@@ -1,0 +1,101 @@
+{
+ "key": "audio.simulink.AudioOscillator",
+ "title": "Audio Oscillator",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sources/Audio_Oscillator.md"
+ ],
+ "text": "生成正弦波、方波和锯齿波，输入 3 路、输出 1 路、无直接馈通；按 {Signal type} 指定所生成波形的类型；{Frequency (Hz)} 指定所生成波形的频率、{Amplitude} 指定所生成波形的幅值、{Phase offset} 指定所生成波形的归一化相位偏移、{DC offset} 指定加到所生成波形每个元素上的值、{Duty cycle} 指定方波占空比、{Width} 指定锯齿波宽度、{Samples per frame} 指定每帧样本数、{Sample rate (Hz)} 指定所生成波形的采样率、{Output data type} 指定所生成波形的数据类型、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "Frequency (Hz) nonnegative scalar | vector of nonnegative values"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Amplitude nonnegative scalar | vector of nonnegative values"
+  },
+  {
+   "name": "DC",
+   "direction": "input",
+   "summary": "DC offset scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal type",
+   "default": "sine",
+   "values": "所生成波形的类型 sine (default) | square | sawtooth",
+   "group": ""
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "100",
+   "values": "所生成波形的频率 100 (default) | nonnegative scalar | vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Amplitude",
+   "default": "1",
+   "values": "所生成波形的幅值 1 (default) | nonnegative scalar | vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Phase offset",
+   "default": "0",
+   "values": "所生成波形的归一化相位偏移 0 (default) | scalar in the range [0, 1] | vector with values in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "DC offset",
+   "default": "0",
+   "values": "加到所生成波形每个元素上的值 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Duty cycle",
+   "default": "0.5",
+   "values": "方波占空比 0.5 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Width",
+   "default": "1",
+   "values": "锯齿波宽度 1 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "512",
+   "values": "每帧样本数 512 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "所生成波形的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "所生成波形的数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "指定要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

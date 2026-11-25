@@ -1,0 +1,13 @@
+{
+ "key": "Earthing Transformer",
+ "title": "Earthing Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Earthing_Transformer.md"
+ ],
+ "text": "Three-phase earthing transformer in zigzag configuration.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

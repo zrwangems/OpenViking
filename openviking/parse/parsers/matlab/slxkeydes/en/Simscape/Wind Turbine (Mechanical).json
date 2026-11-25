@@ -1,0 +1,13 @@
+{
+ "key": "Wind Turbine (Mechanical)",
+ "title": "Wind Turbine (Mechanical)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Wind_Turbine_Mechanical.md"
+ ],
+ "text": "Turbine that converts wind kinetic energy into mechanical power.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

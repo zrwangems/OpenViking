@@ -1,0 +1,13 @@
+{
+ "key": "Check Valve (MA)",
+ "title": "Check Valve (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Valves & Orifices/Directional Control Valves/Check_Valve_MA.md"
+ ],
+ "text": "湿空气网络中的单向阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

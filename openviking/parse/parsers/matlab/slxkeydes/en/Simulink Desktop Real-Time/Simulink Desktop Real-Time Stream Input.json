@@ -1,0 +1,107 @@
+{
+ "key": "Simulink Desktop Real-Time Stream Input",
+ "title": "Stream Input",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Stream_Input.md"
+ ],
+ "text": "Read formatted ASCII data from communication channel, 4 outputs, {Message termination} sets end of message,; {Install new board} sets the register a board < no board, {Delete current board} sets the delete the current board, {Board setup} sets the up the board, {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {Block output data types} sets the output type and grouping of data sent to the block, {Format string} sets the format of data items being read, {Show “Data Ready” port} adds port Data Ready that signals 1 when data and {Show “Data Error” port} adds port Data Error that signals 1 if error. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Output Data",
+   "direction": "output",
+   "summary": "Data received from communication channel numeric vector | string"
+  },
+  {
+   "name": "Data Ready",
+   "direction": "output",
+   "summary": "Data ready port (optional) 1 | 0"
+  },
+  {
+   "name": "Data Error",
+   "direction": "output",
+   "summary": "Data error port (optional) 1 | 0"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "Missed tick count (optional) double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "Register a board < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "Delete the current board (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "Set up the board (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Block output data types",
+   "default": "’double’",
+   "values": "Output type and grouping of data sent to the block outputs ’double’ (default) | character vector | cell array of character vector",
+   "group": ""
+  },
+  {
+   "name": "Format string",
+   "default": "’%f’",
+   "values": "Format of data items being read from the stream ’%f’ (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Message termination",
+   "default": "’\\n’}",
+   "values": "Specify end of message {’\\r’, ’\\n’} (default) | character vector | cell array of character vector | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Ready” port",
+   "default": "’off’",
+   "values": "Add port Data Ready that signals 1 when data is available ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Error” port",
+   "default": "’off’",
+   "values": "Add port Data Error that signals 1 if error occurs ’off’ (default) | ’on’",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,186 @@
+{
+ "key": "Biquad Filter",
+ "title": "Biquad Filter",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/Biquad_Filter.md",
+  "DSP System Toolbox HDL Support/Filtering/Biquad_Filter.md",
+  "DSP System Toolbox/Filtering/Filter Implementations/Biquad_Filter.md"
+ ],
+ "text": "Model biquadratic IIR (SOS) filters, 4 inputs, 1 output, no direct feedthrough, {Scale values} sets Scale values; {Coefficient source} sets the mode of operation, {Filter} sets the name of filter, {Filter structure}, {SOS Matrix (Mx6)} sets the sOS matrix, {Initial conditions}, {Initial conditions on zeros side}, {Initial conditions on poles side}, {Scale values mode} sets the mode to specify scale values Specify via input, {Action when the a0 values of the SOS matrix are not one} sets the action when a0 values of SOS matrix are not one, {Optimize unity scale values}, {Input processing}, {View Filter Response}, {Rounding mode}, {Saturate on integer overflow} sets the method of overflow action, {Section input}, {Section output}, {Multiplicand}, {Coefficients}, {Product output}, {Accumulator}, {States}, {Output} and {Lock data type settings against changes by the fixed-point tools}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Numerator coefficients matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "Denominator coefficients matrix"
+  },
+  {
+   "name": "g",
+   "direction": "input",
+   "summary": "Scale values row vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Filtered output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "Mode of operation Dialog parameters (default) | Input port(s) | Filter object",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter",
+   "default": "BQF",
+   "values": "Name of filter object BQF (default) | dsp.BiquadFilter System object name",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter structure",
+   "default": "transposed",
+   "values": "Filter structure Direct form II transposed (default) | Direct form I | Direct form I transposed | Direct form II",
+   "group": "Main Tab"
+  },
+  {
+   "name": "SOS Matrix (Mx6)",
+   "default": "0.2]",
+   "values": "SOS matrix [1 0.3 0.4 1 0.1 0.2] (default) | M -by-6 matrix",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Scale values",
+   "default": "1",
+   "values": "Scale values 1 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial conditions 0 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial conditions on zeros side",
+   "default": "0",
+   "values": "Initial conditions on zeros side 0 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial conditions on poles side",
+   "default": "0",
+   "values": "Initial conditions on poles side 0 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Scale values mode",
+   "default": "(g)",
+   "values": "Mode to specify scale values Specify via input port (g) (default) | Assume all are unity and optimize",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Action when the a0 values of the SOS matrix are not one",
+   "default": "Warning",
+   "values": "Action when a0 values of SOS matrix are not one Warning (default) | None | Error",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Optimize unity scale values",
+   "default": "on",
+   "values": "Optimize unity scale values on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Input processing Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View filter response button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Section input",
+   "default": "input",
+   "values": "Section input data type Same as input (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Section output",
+   "default": "input",
+   "values": "Section output data type Same as section input (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Multiplicand",
+   "default": "output",
+   "values": "Multiplicand data type Same as output (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Coefficients data type Same word length as input (default) | Specify word length | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output data type Same as input (default) | Inherit via internal rule | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "Accumulator data type Same as product output (default) | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "States",
+   "default": "accumulator",
+   "values": "States data type Same as accumulator (default) | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Output data type Same as accumulator (default) | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Lock data type settings off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,67 @@
+{
+ "key": "RF Budget",
+ "title": "RF Budget",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Idealized Baseband/RF_Budget.md"
+ ],
+ "text": "Simulate RF budget chain of 2-port elements in Idealized Baseband simulation environment, 1 input, 1 output; {RF budget source}, {rfbudget object}, {Open RF Budget Analyzer App} sets the rF Budget Analyzer app, {Simulate supported blocks using code generation} sets the simulate model using generated C code, {Edit System} sets the edit or expand RF Budget, {Frequency resolution} and {Modeling bandwidth (Hz)} sets the modeling bandwidth for calculating mismatch loss. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Time-dependent input signal real scalar | real column | complex scalar | complex column"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Time-dependent output signal complex scalar | complex column"
+  }
+ ],
+ "params": [
+  {
+   "name": "RF budget source",
+   "default": "object",
+   "values": "RF budget source rfbudget object (default) | RF Budget Analyzer App",
+   "group": "Main"
+  },
+  {
+   "name": "rfbudget object",
+   "default": "rfbudget([],2.1e9,-30,100e6)",
+   "values": "rfbudget object as source rfbudget([],2.1e9,-30,100e6) (default) | rfbudget object",
+   "group": "Main"
+  },
+  {
+   "name": "Open RF Budget Analyzer App",
+   "default": "",
+   "values": "RF Budget Analyzer app as source button",
+   "group": "Main"
+  },
+  {
+   "name": "Simulate supported blocks using code generation",
+   "default": "off",
+   "values": "Simulate model using generated C code off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Edit System",
+   "default": "",
+   "values": "Edit or expand RF Budget block button",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency resolution",
+   "default": "51",
+   "values": "Frequency resolution for calculating mismatch loss 51 (default) | positive scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Modeling bandwidth (Hz)",
+   "default": "100e6",
+   "values": "Modeling bandwidth for calculating mismatch loss 100e6 (default) | positive scalar",
+   "group": "Advanced"
+  }
+ ]
+}

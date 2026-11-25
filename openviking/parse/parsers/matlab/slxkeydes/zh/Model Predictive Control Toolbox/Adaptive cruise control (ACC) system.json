@@ -1,0 +1,149 @@
+{
+ "key": "Adaptive cruise control (ACC) system",
+ "title": "Adaptive Cruise Control System",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Automated Driving/Adaptive_Cruise_Control_System.md"
+ ],
+ "text": "使用模型预测控制器仿真自适应巡航控制，输入 9 路、输出 1 路；按 {Linear model from longitudinal acceleration to longitudinal velocity} 指定自车模型；{Initial condition for longitudinal velocity} 指定自车模型的初始速度、{Default spacing} 指定与前车的最小间距、{Maximum velocity} 指定最大纵向速度、{Minimum longitudinal acceleration} 指定自车最小加速度、{Maximum longitudinal acceleration} 指定自车最大加速度、{Sample time} 控制器采样时间、{Prediction horizon} 控制器预测时域、{Controller behavior} 指定闭环控制器性能、{Use suboptimal solution} 指定在指定迭代次数后应用次优解、{Maximum iteration number} 指定最大优化迭代次数、{Use external signal to enable or disable optimization} 添加用于启用优化的端口、{Use external signal for bumpless transfer between ACC and other controllers} 添加外部控制信号输入端口、{Create ACC subsystem} 指定创建自定义控制器，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Set velocity",
+   "direction": "input",
+   "summary": "自车速度设定值 nonnegative scalar"
+  },
+  {
+   "name": "Time gap",
+   "direction": "input",
+   "summary": "安全时距 nonnegative scalar"
+  },
+  {
+   "name": "Longitudinal velocity",
+   "direction": "input",
+   "summary": "自车速度 nonnegative scalar"
+  },
+  {
+   "name": "Relative distance",
+   "direction": "input",
+   "summary": "前车与自车之间的距离 positive scalar"
+  },
+  {
+   "name": "Relative velocity",
+   "direction": "input",
+   "summary": "前车与自车之间的速度差 scalar"
+  },
+  {
+   "name": "Minimum longitudinal acceleration",
+   "direction": "input",
+   "summary": "自车最小加速度 negative scalar"
+  },
+  {
+   "name": "Maximum longitudinal acceleration",
+   "direction": "input",
+   "summary": "自车最大加速度 positive scalar"
+  },
+  {
+   "name": "Enable optimization",
+   "direction": "input",
+   "summary": "控制器优化启用信号 scalar"
+  },
+  {
+   "name": "External control signal",
+   "direction": "input",
+   "summary": "施加到自车的纵向加速度 scalar"
+  },
+  {
+   "name": "Longitudinal acceleration",
+   "direction": "output",
+   "summary": "加速度控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Linear model from longitudinal acceleration to longitudinal velocity",
+   "default": "tf(1,[0.5,1,0])",
+   "values": "自车模型 tf(1,[0.5,1,0]) (default) | LTI model | linear System Identification Toolbox™ model",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Initial condition for longitudinal velocity",
+   "default": "20",
+   "values": "自车模型的初始速度 20 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Default spacing",
+   "default": "10",
+   "values": "与前车的最小间距 10 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Maximum velocity",
+   "default": "50",
+   "values": "最大纵向速度 50 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Minimum longitudinal acceleration",
+   "default": "-3",
+   "values": "自车最小加速度 -3 (default) | negative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Maximum longitudinal acceleration",
+   "default": "2",
+   "values": "自车最大加速度 2 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "控制器采样时间 0.1 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Prediction horizon",
+   "default": "10",
+   "values": "控制器预测时域 10 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Controller behavior",
+   "default": "0.5",
+   "values": "闭环控制器性能 0.5 (default) | scalar between 0 and 1",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use suboptimal solution",
+   "default": "off",
+   "values": "在指定迭代次数后应用次优解 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Maximum iteration number",
+   "default": "10",
+   "values": "最大优化迭代次数 10 (default) | positive integer",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external signal to enable or disable optimization",
+   "default": "off",
+   "values": "添加用于启用优化的端口 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external signal for bumpless transfer between ACC and other controllers",
+   "default": "off",
+   "values": "添加外部控制信号输入端口 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Create ACC subsystem",
+   "default": "",
+   "values": "创建自定义控制器 button",
+   "group": "Block Tab"
+  }
+ ]
+}

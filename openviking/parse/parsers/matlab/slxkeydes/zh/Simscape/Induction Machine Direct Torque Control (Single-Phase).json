@@ -1,0 +1,135 @@
+{
+ "key": "Induction Machine Direct Torque Control (Single-Phase)",
+ "title": "Induction Machine Direct Torque Control (Single-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Induction Machine Control/Induction_Machine_Direct_Torque_Control_Single_Phase.md"
+ ],
+ "text": "单相感应电机直接转矩控制，输入 4 路、输出 2 路；{Control mode} 控制模式 Speed、{Rated electrical frequency (Hz)} 指定额定电频率、{Number of pole pairs} 指定极对数、{Main winding stator resistance, Ras (Ohm)} 指定主绕组定子电阻、{Auxiliary winding stator resistance, Rbs (Ohm)} 指定辅助绕组定子电阻、{Auxiliary/main windings turn ratio} 指定辅助绕组与主绕组的匝数比、{Sample time (-1 for inherited)} 指定模块采样时间、{Speed controller proportional gain} 指定速度控制器比例增益、{Speed controller integral gain} 指定速度控制器积分增益、{Speed controller integral anti-windup gain} 指定速度控制器积分抗饱和增益、{Maximum torque (Nm)} 指定最大转矩、{Minimum torque (Nm)} 指定最小转矩、{Rated flux (Wb)} 指定额定磁链、{Flux hysteresis band (Wb)} 指定磁链滞环带、{Torque hysteresis band (Nm)} 指定转矩滞环带，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Reference",
+   "direction": "input",
+   "summary": "转矩或角速度参考 scalar"
+  },
+  {
+   "name": "iab",
+   "direction": "input",
+   "summary": "定子电流 scalar"
+  },
+  {
+   "name": "vab",
+   "direction": "input",
+   "summary": "定子电压 scalar"
+  },
+  {
+   "name": "wr",
+   "direction": "input",
+   "summary": "转子角速度 scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "逆变器门极脉冲 0 | 1"
+  },
+  {
+   "name": "Visualization",
+   "direction": "output",
+   "summary": "用于可视化的内部信号 Reference | Rotor velocity | TqRef | FluxRef | Torque | Flux"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control mode",
+   "default": "control",
+   "values": "指定控制模式 Speed control (default) | Torque control",
+   "group": "General"
+  },
+  {
+   "name": "Rated electrical frequency (Hz)",
+   "default": "60",
+   "values": "指定额定电频率 60 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "2",
+   "values": "指定极对数 2 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Main winding stator resistance, Ras (Ohm)",
+   "default": "1.8180",
+   "values": "指定主绕组定子电阻 1.8180 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Auxiliary winding stator resistance, Rbs (Ohm)",
+   "default": "6.4260",
+   "values": "指定辅助绕组定子电阻 6.4260 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Auxiliary/main windings turn ratio",
+   "default": "1.1",
+   "values": "指定辅助绕组与主绕组的匝数比 1.1 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Speed controller proportional gain",
+   "default": "1",
+   "values": "指定速度控制器比例增益 1 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Speed controller integral gain",
+   "default": "10",
+   "values": "指定速度控制器积分增益 10 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Speed controller integral anti-windup gain",
+   "default": "1000",
+   "values": "指定速度控制器积分抗饱和增益 1000 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Maximum torque (Nm)",
+   "default": "5",
+   "values": "指定最大转矩 5 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Minimum torque (Nm)",
+   "default": "-5",
+   "values": "指定最小转矩 -5 (default) | scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Rated flux (Wb)",
+   "default": "0.5",
+   "values": "指定额定磁链 0.5 (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Flux hysteresis band (Wb)",
+   "default": "0.02",
+   "values": "指定磁链滞环带 0.02 (default) | positive scalar",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Torque hysteresis band (Nm)",
+   "default": "0.1",
+   "values": "指定转矩滞环带 0.1 (default) | positive scalar",
+   "group": "Inner Loop"
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+{
+ "key": "XCP CAN FD Data Stimulation",
+ "title": "XCP CAN FD Data Stimulation",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/CAN FD/XCP_CAN_FD_Data_Stimulation.md",
+  "Vehicle Network Toolbox/XCP Communication/CAN FD/XCP_CAN_FD_Data_Stimulation.md"
+ ],
+ "text": "Perform data stimulation on selected measurements, 1 input, {Block Input Settings} sets the port input as Compu method conversion values or raw values Raw values as double; {Config name} sets the xCP CAN FD session name select, {Event name} selects an event select, {All Measurements} sets the list all measurements available for event measurements, {Selected Measurements} sets the list selected measurements measurement and {Enable Timestamp} enables sending Simulink timestamp in STIM DTO. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Input samples for data stimulation defined by A2L file"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "",
+   "values": "Specify XCP CAN FD session name select from list",
+   "group": ""
+  },
+  {
+   "name": "Event name",
+   "default": "",
+   "values": "Select an event select from list",
+   "group": ""
+  },
+  {
+   "name": "All Measurements",
+   "default": "",
+   "values": "List all measurements available for event measurements list",
+   "group": ""
+  },
+  {
+   "name": "Selected Measurements",
+   "default": "",
+   "values": "List selected measurements measurement names",
+   "group": ""
+  },
+  {
+   "name": "Block Input Settings",
+   "default": "conversion)",
+   "values": "Set the port input as Compu method conversion values or raw values Raw values as double (no Compu method conversion) (default) | Raw values (no Compu method conversion) | Physical values (apply Compu method conversion)",
+   "group": ""
+  },
+  {
+   "name": "Enable Timestamp",
+   "default": "off",
+   "values": "Enable sending Simulink timestamp in STIM DTO packets off (default) | on",
+   "group": ""
+  }
+ ]
+}

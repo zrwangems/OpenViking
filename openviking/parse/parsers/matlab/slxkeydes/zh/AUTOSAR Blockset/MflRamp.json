@@ -1,0 +1,70 @@
+{
+ "key": "MflRamp",
+ "title": "Ramp",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Math Operations/Ramp.md"
+ ],
+ "text": "生成跟随输入值且受上升或下降斜率约束的信号，输入 4 路、输出 1 路；按 {Sample time} 指定采样周期；{Rise slope} 输出值的增加、{Fall slope} 输出值的减小 scalar、{Show reset port} 添加 R 输入端口、{Initial condition} 输出信号的初始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "复位端口 scalar"
+  },
+  {
+   "name": "rs",
+   "direction": "input",
+   "summary": "Rise slope scalar"
+  },
+  {
+   "name": "fs",
+   "direction": "input",
+   "summary": "Fall slope scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rise slope",
+   "default": "",
+   "values": "输出值的增加 Dialog | Input port",
+   "group": ""
+  },
+  {
+   "name": "Fall slope",
+   "default": "",
+   "values": "输出值的减小 scalar",
+   "group": ""
+  },
+  {
+   "name": "Show reset port",
+   "default": "’off’",
+   "values": "添加 R 输入端口的选项 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "输出信号的初始值 0 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样周期 -1 (default) | [-1, 0] | vector",
+   "group": ""
+  }
+ ]
+}

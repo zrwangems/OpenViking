@@ -1,0 +1,79 @@
+{
+ "key": "QPSK Demodulator Baseband",
+ "title": "QPSK Demodulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/PM/QPSK_Demodulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/QPSK_Demodulator_Baseband.md"
+ ],
+ "text": "解调 QPSK 调制数据，输入 2 路、输出 1 路；按 {Decision type} 指定解调器输出 Hard；{Output type} 指定整数或比特对输出指示、{Noise variance source} 指定噪声方差估计的来源、{Noise variance} 指定噪声方差估计、{Constellation ordering} 指定符号映射 Gray、{Phase offset (rad)} 指定第 0 个点的相位偏移、{Output} 输出数据类型 Same as input、{Output data type} 输出数据类型 Inherit via internal，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入 QPSK 调制信号 scalar | vector"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "噪声方差估计 positive scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "整数或比特对输出指示 Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "解调器输出 Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Dialog",
+   "values": "噪声方差估计的来源 Dialog (default) | Port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "噪声方差估计 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Gray",
+   "values": "符号映射 Gray (default) | Binary",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "pi/4",
+   "values": "第 0 个点的相位偏移 pi/4 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output",
+   "default": "",
+   "values": "输出数据类型 Same as input",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": "Data Types"
+  }
+ ]
+}

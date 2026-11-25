@@ -1,0 +1,68 @@
+{
+ "key": "ADC Type 0",
+ "title": "ADC",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C281x/ADC.md"
+ ],
+ "text": "模数转换器 (ADC)；输出 1 路；按 {转换开始} 指定转换开始；{模块}、{转换模式} 指定转换类型 Sequential、{采样时间} 指定模块读取数据的时间间隔、{数据类型}、{会话结束时发出中断} 启用此功能以发布异步中断、{转换次数} 用于转换的 ADC 通道数、{使用多个输出端口} 启用以输出多个端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "ADC 数据 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "模块",
+   "default": "A",
+   "values": "选择要使用的模块 A (默认) | B | A and B",
+   "group": "ADC 控制"
+  },
+  {
+   "name": "转换模式",
+   "default": "Sequential",
+   "values": "选择转换类型 Sequential (默认) | Simultaneous",
+   "group": "ADC 控制"
+  },
+  {
+   "name": "转换开始",
+   "default": "Software",
+   "values": "选择转换开始 Software (默认) | EVA | External pin",
+   "group": "ADC 控制"
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "模块读取数据的时间间隔 0.1 (默认)",
+   "group": "ADC 控制"
+  },
+  {
+   "name": "数据类型",
+   "default": "uint16",
+   "values": "选择输出数据类型 uint16 (默认) | double | single | int8 | uint8 | int16 | int32 | uint32",
+   "group": "ADC 控制"
+  },
+  {
+   "name": "会话结束时发出中断",
+   "default": "Off",
+   "values": "启用此功能以发布异步中断 Off (默认) | on",
+   "group": "ADC 控制"
+  },
+  {
+   "name": "转换次数",
+   "default": "1",
+   "values": "选择用于转换的 ADC 通道数 1 (默认) | 2 | 3 | …",
+   "group": "输入通道"
+  },
+  {
+   "name": "使用多个输出端口",
+   "default": "off",
+   "values": "启用以输出多个端口 off (默认) | on",
+   "group": "输入通道"
+  }
+ ]
+}

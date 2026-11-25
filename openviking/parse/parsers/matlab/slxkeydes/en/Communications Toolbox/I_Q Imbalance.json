@@ -1,0 +1,49 @@
+{
+ "key": "I/Q Imbalance",
+ "title": "I/Q Imbalance",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/I_Q_Imbalance.md"
+ ],
+ "text": "Apply I/Q imbalances to complex signal, 1 input, 1 output; {I/Q amplitude imbalance (dB)}, {I/Q phase imbalance (deg)}, {I dc offset} sets the in-phase component DC offset and {Q dc offset} sets the quadrature component DC offset. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "Complex signal scalar | vector"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "I/Q amplitude imbalance (dB)",
+   "default": "0",
+   "values": "I/Q amplitude imbalance 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "I/Q phase imbalance (deg)",
+   "default": "0",
+   "values": "I/Q phase imbalance 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "I dc offset",
+   "default": "0",
+   "values": "In-phase component DC offset 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Q dc offset",
+   "default": "0",
+   "values": "Quadrature component DC offset 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

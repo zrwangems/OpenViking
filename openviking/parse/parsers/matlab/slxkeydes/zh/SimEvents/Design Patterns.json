@@ -1,0 +1,54 @@
+{
+ "key": "Design Patterns",
+ "title": "Design Patterns",
+ "toolbox": "SimEvents",
+ "kind": "source_type",
+ "source_docs": [
+  "SimEvents/Design_Patterns.md"
+ ],
+ "text": "创建复合实体，输入 2 路、输出 1 路；{Number of input ports} 指定输入端口数、{Entity type name} 指定复合实体的类型名称、{Bus object} 输出、{Define input entity names} 用于生成复合实体的输入实体的名称 E1, E2，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "port_2",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "port_1",
+   "direction": "output",
+   "summary": "输出复合实体 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "2",
+   "values": "指定输入端口数 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Entity type name",
+   "default": "Combined",
+   "values": "指定复合实体的类型名称 Combined (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Bus object",
+   "default": "off",
+   "values": "指定输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Define input entity names",
+   "default": "E2}",
+   "values": "指定用于生成复合实体的输入实体的名称 {E1, E2} (default) | character vector",
+   "group": ""
+  }
+ ]
+}

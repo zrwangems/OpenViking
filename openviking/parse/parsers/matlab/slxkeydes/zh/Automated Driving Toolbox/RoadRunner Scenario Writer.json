@@ -1,0 +1,44 @@
+{
+ "key": "RoadRunner Scenario Writer",
+ "title": "RoadRunner Scenario Writer",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_block",
+ "source_docs": [
+  "Automated Driving Toolbox/RoadRunner Scenario/RoadRunner_Scenario_Writer.md"
+ ],
+ "text": "将选定主题写入 RoadRunner 场景，输入 1 路；按 {Topic Category} 指定主题类别；{Actor Type} 指定场景中的 actor 类型、{Topic} 指定参与者或车辆数据 Actor Pose、{Event Type} 指定事件类型 Action，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Message",
+   "direction": "input",
+   "summary": "状态信息 Simulink message"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic Category",
+   "default": "Actor",
+   "values": "主题类别 Actor (default) | Event | Diagnostics",
+   "group": ""
+  },
+  {
+   "name": "Actor Type",
+   "default": "Types",
+   "values": "场景中的 actor 类型 All Types (default) | Vehicle",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "参与者或车辆数据 Actor Pose | Actor Pose (Driving Scenario compatible) | Vehicle Pose",
+   "group": ""
+  },
+  {
+   "name": "Event Type",
+   "default": "Complete",
+   "values": "事件类型 Action Complete (default) | User-Defined",
+   "group": ""
+  }
+ ]
+}

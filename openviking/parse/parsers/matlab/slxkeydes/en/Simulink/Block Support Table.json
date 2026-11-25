@@ -1,0 +1,13 @@
+{
+ "key": "Block Support Table",
+ "title": "Block Support Table",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model-Wide Utilities/Block_Support_Table.md"
+ ],
+ "text": "View data type support for Simulink blocks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

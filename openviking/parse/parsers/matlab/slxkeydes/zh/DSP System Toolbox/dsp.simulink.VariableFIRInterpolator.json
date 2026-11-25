@@ -1,0 +1,89 @@
+{
+ "key": "dsp.simulink.VariableFIRInterpolator",
+ "title": "Variable FIR Interpolation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Variable_FIR_Interpolation.md"
+ ],
+ "text": "具有可调插值因子的多相 FIR 插值，输入 3 路、输出 1 路、无直接馈通；按 {Numerator source} 指定FIR 滤波器系数来源；{Specification} 控制插值因子的模式 Interpolation、{Maximum interpolation factor} 指定最大插值因子、{Specify interpolation factor from input port} 指定从输入端口指定插值因子、{Interpolation factor} 指定插值因子、{Output frame length} 输出帧长度、{Prototype filter numerator coefficients} 指定原型滤波器系数 designMultirateFIR、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "插值因子输入端口 positive integer"
+  },
+  {
+   "name": "coeffs",
+   "direction": "input",
+   "summary": "原型滤波器系数 vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "插值输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specification",
+   "default": "factor",
+   "values": "指定控制插值因子的模式 Interpolation factor (default) | Output frame length",
+   "group": ""
+  },
+  {
+   "name": "Maximum interpolation factor",
+   "default": "24",
+   "values": "最大插值因子 24 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify interpolation factor from input port",
+   "default": "on",
+   "values": "从输入端口指定插值因子 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Interpolation factor",
+   "default": "24",
+   "values": "插值因子 24 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output frame length",
+   "default": "48",
+   "values": "输出帧长度 48 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Numerator source",
+   "default": "Auto",
+   "values": "FIR 滤波器系数来源 Auto (default) | Dialog parameter | Input port",
+   "group": ""
+  },
+  {
+   "name": "Prototype filter numerator coefficients",
+   "default": "designMultirateFIR(24,1)",
+   "values": "原型滤波器系数 designMultirateFIR(24,1) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

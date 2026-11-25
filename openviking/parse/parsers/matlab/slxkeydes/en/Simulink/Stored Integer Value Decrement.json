@@ -1,0 +1,25 @@
+{
+ "key": "Stored Integer Value Decrement",
+ "title": "Decrement Stored Integer",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Math_ Increment - Decrement/Decrement_Stored_Integer.md",
+  "HDL Coder/Math Operations/Decrement_Stored_Integer.md"
+ ],
+ "text": "Decrease stored integer value of signal by one, 1 input, 1 output, direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

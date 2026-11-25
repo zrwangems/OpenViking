@@ -1,0 +1,38 @@
+{
+ "key": "C2805x GPIO Digital Input",
+ "title": "Digital Input",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2805x/Digital_Input.md"
+ ],
+ "text": "Configure general-purpose input/output pins as digital input, 1 output, {Data type} sets Data type of GPIO input; {GPIO Group} sets the gPIO pins you want to configure and {Sample time} sets the frequency at which block reads input pin. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pin #",
+   "direction": "output",
+   "summary": "GPIO pin status scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "GPIO Group",
+   "default": "GPIO0-GPIO7",
+   "values": "GPIO pins you want to configure GPIO0-GPIO7 (default) | GPIO8-GPIO15 GPIO16-GPIO23 …",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Frequency at which block reads input pin values -1 (default) | 0.1",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "auto",
+   "values": "Data type of GPIO input auto (default) | unit8 | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  }
+ ]
+}

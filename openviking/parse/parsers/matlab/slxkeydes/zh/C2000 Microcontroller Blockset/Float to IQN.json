@@ -1,0 +1,13 @@
+{
+ "key": "Float to IQN",
+ "title": "Float to IQN",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/Float_to_IQN.md"
+ ],
+ "text": "将浮点数转换为 IQ 数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

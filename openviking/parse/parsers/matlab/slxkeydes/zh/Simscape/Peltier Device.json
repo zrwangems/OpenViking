@@ -1,0 +1,13 @@
+{
+ "key": "Peltier Device",
+ "title": "Peltier Device",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Peltier_Device.md"
+ ],
+ "text": "电热冷却器或热电发电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,86 @@
+{
+ "key": "FluxSolarAndGeomagnetic",
+ "title": "Solar Flux and Geomagnetic Index",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Solar_Flux_and_Geomagnetic_Index.md"
+ ],
+ "text": "返回太阳通量和地磁指数，输入 4 路、输出 3 路；按 {Magnetic index extrapolation method} 指定地磁指数信息的外插方法 None -；{Space weather data file} 指定空间天气数据的 MAT、{Input time specification} 指定输入时间格式 Year, day、{F10.7 extrapolation method} 指定 f107Average 和 f107Daily 的外插方法 None、{F10.7 extrapolation value} 指定要分配给 f107Average 并用于计算 f107Daily、{Magnetic index extrapolation value} 用于计算地磁指数元素的外插值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Year",
+   "direction": "input",
+   "summary": "年份 scalar"
+  },
+  {
+   "name": "DOY",
+   "direction": "input",
+   "summary": "年积日 scalar"
+  },
+  {
+   "name": "UTC (sec)",
+   "direction": "input",
+   "summary": "协调世界时 (UCT) scalar"
+  },
+  {
+   "name": "T JD",
+   "direction": "input",
+   "summary": "协调世界时 (UTC) scalar"
+  },
+  {
+   "name": "F107A",
+   "direction": "output",
+   "summary": "F10.7 通量的 81 天平均值 scalar"
+  },
+  {
+   "name": "F107",
+   "direction": "output",
+   "summary": "前一天的每日 F10.7 通量 scalar"
+  },
+  {
+   "name": "aph",
+   "direction": "output",
+   "summary": "磁指数信息 1-by-7 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Space weather data file",
+   "default": "aeroSpaceWeatherData.mat",
+   "values": "空间天气数据的 MAT 文件 aeroSpaceWeatherData.mat (default) | MAT file name",
+   "group": ""
+  },
+  {
+   "name": "Input time specification",
+   "default": "sec",
+   "values": "输入时间格式 Year, day, sec (default) | Julian date",
+   "group": ""
+  },
+  {
+   "name": "F10.7 extrapolation method",
+   "default": "clip",
+   "values": "f107Average 和 f107Daily 的外插方法 None - clip (default) | Constant | Least squares fit",
+   "group": ""
+  },
+  {
+   "name": "F10.7 extrapolation value",
+   "default": "150.0",
+   "values": "要分配给 f107Average 并用于计算 f107Daily 的外插值 150.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Magnetic index extrapolation method",
+   "default": "clip",
+   "values": "地磁指数信息的外插方法 None - clip (default) | Constant | IGRF",
+   "group": ""
+  },
+  {
+   "name": "Magnetic index extrapolation value",
+   "default": "4.0",
+   "values": "用于计算地磁指数元素的外插值 4.0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

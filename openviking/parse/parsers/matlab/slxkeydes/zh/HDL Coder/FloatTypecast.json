@@ -1,0 +1,24 @@
+{
+ "key": "FloatTypecast",
+ "title": "Float Typecast",
+ "toolbox": "HDL Coder",
+ "kind": "block_type",
+ "source_docs": [
+  "HDL Coder/HDL Floating Point Operations/Float_Typecast.md"
+ ],
+ "text": "将浮点类型转换为无符号整数，或者反之，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(u)",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Port_1(y)",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": []
+}

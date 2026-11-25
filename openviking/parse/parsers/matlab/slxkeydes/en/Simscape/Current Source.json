@@ -1,0 +1,13 @@
+{
+ "key": "Current Source",
+ "title": "Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Current_Source.md"
+ ],
+ "text": "Current source with optional DC, AC, and noise components.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

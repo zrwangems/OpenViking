@@ -1,0 +1,71 @@
+{
+ "key": "ClockJitterMeasurement",
+ "title": "Clock Jitter Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Clock_Jitter_Measurement.md"
+ ],
+ "text": "Measure jitter in periodic signals, 1 input, 3 outputs; {Clock Frequency} sets the frequency of input clock, {Threshold}, {Period Jitter} sets the rMS period jitter, {Cycle-2-Cycle (C2C) Jitter} sets the rMS cycle-to-cycle jitter, {Duty Cycle Distortion (DCD)} sets the duty cycle distortion for each cycle and {Simulate using} selects simulation mode. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clock",
+   "direction": "input",
+   "summary": "Input clock signal scalar"
+  },
+  {
+   "name": "Period Jitter",
+   "direction": "output",
+   "summary": "Running RMS value of period jitter scalar"
+  },
+  {
+   "name": "C2C",
+   "direction": "output",
+   "summary": "Running RMS value of cycle-to-cycle jitter scalar"
+  },
+  {
+   "name": "DCD",
+   "direction": "output",
+   "summary": "Difference between real duty cycle and 50% value scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Clock Frequency",
+   "default": "1e6",
+   "values": "Frequency of input clock signal 1e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "0",
+   "values": "Threshold signal level 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Period Jitter",
+   "default": "on",
+   "values": "RMS period jitter on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Cycle-2-Cycle (C2C) Jitter",
+   "default": "off",
+   "values": "RMS cycle-to-cycle jitter off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Duty Cycle Distortion (DCD)",
+   "default": "off",
+   "values": "Duty cycle distortion for each cycle off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Select simulation mode Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

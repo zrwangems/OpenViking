@@ -1,0 +1,49 @@
+{
+ "key": "PWM Generator (Multilevel)",
+ "title": "PWM Generator (Multilevel)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Generator_Multilevel.md"
+ ],
+ "text": "Generate pulse width modulated signal or waveform for modular multilevel converters, 1 input, 1 output; {Converter topology} sets the modular multilevel converter topology, {Number of power submodules} sets the number of modular multilevel submodules, {Timer period (s)} sets the pWM period and {Sample time} sets the block sample time 5e-5. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ref",
+   "direction": "input",
+   "summary": "Reference signal vector"
+  },
+  {
+   "name": "PWM",
+   "direction": "output",
+   "summary": "PWM signal vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Converter topology",
+   "default": "Half-bridge",
+   "values": "Modular multilevel converter topology Half-bridge (default) | Full-bridge",
+   "group": ""
+  },
+  {
+   "name": "Number of power submodules",
+   "default": "1",
+   "values": "Number of modular multilevel submodules 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Timer period (s)",
+   "default": "0.001",
+   "values": "PWM period 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "5e-5",
+   "values": "Block sample time 5e-5 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

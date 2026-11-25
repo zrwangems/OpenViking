@@ -1,0 +1,94 @@
+{
+ "key": "audio.simulink.VoiceActivityDetector",
+ "title": "Voice Activity Detector",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Measurements/Voice_Activity_Detector.md"
+ ],
+ "text": "检测音频信号中是否存在语音，输入 3 路、输出 2 路、无直接馈通；按 {Window} 指定在 FFT 之前应用的窗函数；{Domain of the input} 指定输入的域 Time、{Sidelobe attenuation of the window (dB)} 指定窗的旁瓣衰减、{Inherit FFT length from input dimensions} 指定将 FFT 长度设置为输入采样数、{FFT length} 指定频域中的 bin 数、{Probability of transition from a silence frame to a speech frame} 指定静音帧之后出现语音帧的概率、{Probability of transition from a speech frame to a silence frame} 指定语音帧之后出现静音帧的概率、{Output noise variance} 输出每个频率 bin 的噪声方差估计值、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入信号 matrix | 1-D vector"
+  },
+  {
+   "name": "SilenceToSpeech",
+   "direction": "input",
+   "summary": "Threshold (dB) scalar in the range [0, 1]"
+  },
+  {
+   "name": "SpeechToSilence",
+   "direction": "input",
+   "summary": "Threshold (dB) scalar in the range [0, 1]"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "存在语音的概率 scalar | row vector"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "每个频率 bin 的噪声方差估计 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Domain of the input",
+   "default": "Time",
+   "values": "输入的域 Time (default) | Frequency",
+   "group": ""
+  },
+  {
+   "name": "Window",
+   "default": "Hann",
+   "values": "在 FFT 之前应用的窗函数 Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation of the window (dB)",
+   "default": "60",
+   "values": "窗的旁瓣衰减 (dB) 60 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT length from input dimensions",
+   "default": "on",
+   "values": "将 FFT 长度设置为输入采样数 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "频域中的 bin 数 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Probability of transition from a silence frame to a speech frame",
+   "default": "0.2",
+   "values": "静音帧之后出现语音帧的概率 0.2 (default) | scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Probability of transition from a speech frame to a silence frame",
+   "default": "0.1",
+   "values": "语音帧之后出现静音帧的概率 0.1 (default) | scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Output noise variance",
+   "default": "off",
+   "values": "输出每个频率 bin 的噪声方差估计值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "指定要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

@@ -14,6 +14,7 @@ from typing import Iterable
 from defusedxml import ElementTree as ET
 
 from openviking.parse.parsers.matlab._zip import read_xml_member
+from openviking.parse.parsers.matlab.keydes import KeydesLibrary, default_library
 
 
 @dataclass
@@ -259,44 +260,6 @@ def _read_line(
         _read_line(branch, edges, source, name)
 
 
-_UI_PARAMETERS = {
-    "Position",
-    "ZOrder",
-    "ShowName",
-    "HideAutomaticName",
-    "FontSize",
-    "FontName",
-    "FontWeight",
-    "FontAngle",
-    "ForegroundColor",
-    "BackgroundColor",
-    "DropShadow",
-    "NameLocation",
-    "NamePlacement",
-    "IconDisplay",
-    "PortRotation",
-    "BlockRotation",
-    "BlockMirror",
-    "LibraryVersion",
-    "RTWMemSecFuncInitTerm",
-    "RTWMemSecFuncExecute",
-    "RTWMemSecDataParameters",
-    "RTWMemSecDataConstants",
-    "RTWMemSecDataInternal",
-    "ContentPreviewEnabled",
-    "RefBlkName",
-    "VectorParamsAs1DForOutWhenUnconnected",
-}
-
-
-def _display_parameters(block: Block) -> dict[str, str]:
-    return {
-        k: v
-        for k, v in block.parameters.items()
-        if k not in _UI_PARAMETERS and not k.startswith("SID")
-    }
-
-
 def _slug(value: str) -> str:
     value = re.sub(r"[^\w.-]+", "_", value, flags=re.UNICODE).strip("._")
     return value or "subsystem"
@@ -319,16 +282,20 @@ def _endpoint_kind(value: str) -> str:
     return match.group(1) if match else "port"
 
 
-def system_json_documents(model: System, language: str = "en") -> dict[str, dict]:
+def system_json_documents(
+    model: System, language: str = "en", library: KeydesLibrary | None = None
+) -> dict[str, dict]:
     """Return one JSON object per system, keyed by its resource path.
 
     The model root and systems with children use ``main.json``. A leaf system is
     one sibling JSON file, for example ``xCU/xCU_Output.json``. The document is
-    the primary representation: each block carries its ports (by name when the
-    file states one, otherwise by port index) and parameters, and each line
-    carries one source endpoint and every destination it fans out to.
+    the primary representation: each block carries the key its description was
+    rendered from, that description in the requested language, and its ports (by
+    name when the file states one, otherwise by port index); each line carries
+    one source endpoint and every destination it fans out to.
     """
     documents: dict[str, dict] = {}
+    keydes = library if library is not None else default_library()
 
     def visit(system: System, directory: str, is_root: bool = False) -> None:
         if is_root:
@@ -337,7 +304,7 @@ def system_json_documents(model: System, language: str = "en") -> dict[str, dict
             path = f"{directory}/main.json"
         else:
             path = f"{directory}.json"
-        documents[path] = _system_json(system, is_root, path, language)
+        documents[path] = _system_json(system, is_root, path, language, keydes)
         for child in system.children:
             child_dir = (
                 f"{directory}/{_child_directory(child)}" if directory else _child_directory(child)
@@ -389,7 +356,13 @@ def _port_names(system: System) -> dict[str, dict[str, dict[int, str]]]:
     return names
 
 
-def _system_json(system: System, is_root: bool, path: str, language: str) -> dict:
+def _system_json(
+    system: System,
+    is_root: bool,
+    path: str,
+    language: str,
+    library: KeydesLibrary,
+) -> dict:
     block_names = {block.sid: block.name for block in system.blocks}
     port_names = _port_names(system)
     ports: dict[str, dict[str, dict[str, object]]] = {
@@ -470,19 +443,27 @@ def _system_json(system: System, is_root: bool, path: str, language: str) -> dic
                 )
 
     blocks = []
+    described = 0
+    missing_templates: set[str] = set()
     for block in system.blocks:
         block_ports = {}
         for kind, values in ports[block.sid].items():
             if not values:
                 continue
             block_ports[kind] = [values[index] for index in sorted(values, key=_port_sort_key)]
+        key, description = library.describe(block, language)
+        if description:
+            described += 1
+        elif key:
+            missing_templates.add(key)
         blocks.append(
             {
                 "name": block.name,
                 "block_type": block.block_type,
                 "source_block": block.source_block,
+                "key": key,
+                "description": description or "",
                 "ports": block_ports,
-                "params": _display_parameters(block),
             }
         )
 
@@ -518,10 +499,13 @@ def _system_json(system: System, is_root: bool, path: str, language: str) -> dic
         "children": children,
         "coverage": {
             "blocks": len(blocks),
+            "described_blocks": described,
             "edges": len(edge_documents),
             "unresolved_endpoints": len(unresolved),
         },
     }
+    if missing_templates:
+        document["coverage"]["blocks_without_description"] = sorted(missing_templates)
     if unresolved:
         document["unresolved_endpoints"] = unresolved
     return document

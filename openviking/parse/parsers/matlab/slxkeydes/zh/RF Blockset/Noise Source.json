@@ -1,0 +1,56 @@
+{
+ "key": "Noise Source",
+ "title": "Noise",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Sources/Noise.md"
+ ],
+ "text": "在 RF 系统中使用电流或电压噪声源对噪声建模；按 {Noise distribution} 指定噪声分布类型；{Source type} 指定噪声类型 Ideal、{Noise power spectral density} 指定单边噪声功率谱分布、{Frequencies} 指定分段线性噪声分布的频率、{Automatically estimate impulse response duration} 指定估计冲激响应持续时间、{Impulse response duration} 用于模拟有色噪声的冲激响应持续时间 1e-10、{Ground and hide negative terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source type",
+   "default": "voltage",
+   "values": "噪声类型 Ideal voltage (default) | Ideal current",
+   "group": ""
+  },
+  {
+   "name": "Noise distribution",
+   "default": "White",
+   "values": "噪声分布类型 White (default) | Piece-wise linear | Colored",
+   "group": ""
+  },
+  {
+   "name": "Noise power spectral density",
+   "default": "0",
+   "values": "单边噪声功率谱分布 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Frequencies",
+   "default": "Hz",
+   "values": "分段线性噪声分布的频率 0 Hz (default) | vector of non-negative frequencies | Hz | kHz | MHz | GHz",
+   "group": ""
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "on",
+   "values": "估计冲激响应持续时间 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "用于模拟有色噪声的冲激响应持续时间 1e-10 s (default) | scalar | s | ms | us | ns",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

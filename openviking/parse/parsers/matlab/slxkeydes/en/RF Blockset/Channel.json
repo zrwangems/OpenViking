@@ -1,0 +1,122 @@
+{
+ "key": "Channel",
+ "title": "Channel",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Systems/Channel.md"
+ ],
+ "text": "Model isotropic free-space or ray-tracing based channel, {Path loss} sets Free-space path loss 10; {Source of channel model} sets the channel source Isotropic, {Antenna gain} sets the gain of transmitter antenna, {Impedance (Ohm)} sets the input impedance of transmitter antenna, {Path delay} sets the free-space path delay, {Map}, {Propagation model}, {Tx site} sets the transmitter site txsite object, {Rx site} sets the receiver site rxsite object, {View Site} displays RF propagation, {Carrier frequencies}, {Simulate noise} sets the simulate thermal noise, {Ground and hide negative terminals} sets the ground RF circuit terminals, {Edit System} sets the edit or expand channel, {Modeling options} sets the technique to model frequency-dependent channel parameters Time, {Relative error desired (dB)} sets the relative error for the rational fit, {Automatically estimate impulse response duration} sets the automatically calculate impulse response and {Impulse response duration}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source of channel model",
+   "default": "free-space",
+   "values": "Channel source Isotropic free-space (default) | Ray-tracing",
+   "group": "Main"
+  },
+  {
+   "name": "Antenna gain",
+   "default": "dBi",
+   "values": "Gain of transmitter antenna 0 dBi (default) | real scalar or vector | positive scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Impedance (Ohm)",
+   "default": "50",
+   "values": "Input impedance of transmitter antenna 50 (default) | complex scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Path loss",
+   "default": "dB",
+   "values": "Free-space path loss 10 dB (default) | real scalar or vector | positive scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Path delay",
+   "default": "s",
+   "values": "Free-space path delay 0 s (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Map",
+   "default": "\"none\"",
+   "values": "Map for visualization or surface data \"none\" (default) | siteviewer object | triangulation object | string scalar | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Propagation model",
+   "default": "’raytracing’",
+   "values": "Propagation model ’raytracing’ (default) | RayTracing object",
+   "group": "Main"
+  },
+  {
+   "name": "Tx site",
+   "default": "",
+   "values": "Transmitter site txsite object | array of txsite objects",
+   "group": "Main"
+  },
+  {
+   "name": "Rx site",
+   "default": "",
+   "values": "Receiver site rxsite object",
+   "group": "Main"
+  },
+  {
+   "name": "View Site",
+   "default": "",
+   "values": "Display RF propagation scenarios button",
+   "group": "Main"
+  },
+  {
+   "name": "Carrier frequencies",
+   "default": "GHz",
+   "values": "Carrier frequencies of channel 2.1 GHz (default) | nonnegative scalar or row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Simulate noise",
+   "default": "’on’",
+   "values": "Simulate thermal noise ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "’on’",
+   "values": "Ground RF circuit terminals ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Edit System",
+   "default": "",
+   "values": "Edit or expand channel block button",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling options",
+   "default": "domain",
+   "values": "Technique to model frequency-dependent channel parameters Time domain (default) | Frequency domain",
+   "group": "TX Modeling"
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "Relative error for the rational fit -40 (default) | scalar",
+   "group": "TX Modeling"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "’on’",
+   "values": "Automatically calculate impulse response duration ’on’ (default) | ’off’",
+   "group": "TX Modeling"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "Impulse response duration 0 s (default) | scalar",
+   "group": "TX Modeling"
+  }
+ ]
+}

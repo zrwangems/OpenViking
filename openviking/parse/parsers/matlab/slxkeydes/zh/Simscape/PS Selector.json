@@ -1,0 +1,13 @@
+{
+ "key": "PS Selector",
+ "title": "PS Selector",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Selector.md"
+ ],
+ "text": "从向量或矩阵输入物理信号中选择元素。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

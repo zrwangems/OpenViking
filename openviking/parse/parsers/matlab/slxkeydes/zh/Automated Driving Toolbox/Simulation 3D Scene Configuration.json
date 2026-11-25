@@ -1,0 +1,217 @@
+{
+ "key": "Simulation 3D Scene Configuration",
+ "title": "Simulation 3D Scene Configuration",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Scene_Configuration.md",
+  "Robotics System Toolbox/Simulation 3D/Simulation_3D_Scene_Configuration.md",
+  "UAV Toolbox/Simulation 3D/Simulation_3D_Scene_Configuration.md",
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Scene_Configuration.md",
+  "Simulink 3D Animation/Simulation 3D/Environment/Simulation_3D_Scene_Configuration.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Scene_Configuration.md"
+ ],
+ "text": "3D 仿真环境的场景配置；按 {Name} 指定自定义视点的名称；{Scene source} 指定场景来源 Default、{Scene name} 指定预构建 3D 场景的名称、{Project name} 指定 Unreal Engine 可执行文件的名称、{Select ASAM OpenDRIVE file} 指定 ASAM OpenDRIVE®、{Scene} 指定可执行文件中的场景名称、{Project} 指定 Unreal Engine 项目文件或 RoadRunner 文件的名称 valid project file、{Scene view} 显示场景的虚拟相机的位置 Scene、{Translation} 指定视点平移、{Rotation} 指定视点旋转、{Viewer relative translation [X, Y, Z] (m)} 指定相对于 actor 的视点平移、{Viewer relative rotation [Roll, Pitch, Yaw] (deg)} 指定相对于 actor 的视点旋转、{Sample time} 指定可视化引擎的采样时间、{Display 3D simulation window} 指定 Unreal Engine 可视化、{Override scene weather} 用于控制场景天气和太阳位置、{Sun azimuth} 指定从正南到太阳光线水平投影的方位角、{Sun altitude} 指定太阳与地平线之间的高度角、{Enable geospatial sun} 启用地理空间太阳、{Latitude} 指定地球地理位置的纬度、{Longitude} 指定地球地理位置的经度、{Date (YYYY-MM-DD)} 指定日期 2023-01-01、{Time (HH:MM:SS)} 指定时间 10:30:00、{Time zone} 指定时区、{Daylight saving time} 启用夏令时、{Cloud speed} 指定 Unreal Editor Cloud Speed 全局 actor、{Cloud opacity} 指定 Unreal Editor Cloud Opacity 全局 actor、{Enable volumetric clouds} 启用体积云、{Cloud coverage} 指定 Unreal Editor Cloud Density、{Cloud layer altitude} 指定 Unreal Editor Layer Bottom Altitude 全局 actor、{Fog density} 指定 Unreal Editor Set Fog Density 和 Set Start Distance、{Rain density} 控制雨密度、湿度、雨坑和涟漪的 Unreal Editor 局部、{Enable raindrops on camera lens} 启用相机镜头上的雨滴、{Snow density} 控制雪密度的 Unreal Editor 全局，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Scene source",
+   "default": "Scenes",
+   "values": "场景来源 Default Scenes (default) | RoadRunner | Unreal Executable | Unreal Editor",
+   "group": "Scene"
+  },
+  {
+   "name": "Scene name",
+   "default": "",
+   "values": "预构建 3D 场景的名称 Empty Grass | Straight road | Curved road | US city block | Large parking lot | installed scene name",
+   "group": "Scene"
+  },
+  {
+   "name": "Project name",
+   "default": "VehicleSimulation.exe",
+   "values": "Unreal Engine 可执行文件的名称 VehicleSimulation.exe (default) | valid executable file name",
+   "group": "Scene"
+  },
+  {
+   "name": "Select ASAM OpenDRIVE file",
+   "default": "off",
+   "values": "指定 ASAM OpenDRIVE® 文件 off (default) | on",
+   "group": "Scene"
+  },
+  {
+   "name": "Scene",
+   "default": "/Game/Maps/HwStrght",
+   "values": "可执行文件中的场景名称 /Game/Maps/HwStrght (default) | path to valid scene name",
+   "group": "Scene"
+  },
+  {
+   "name": "Project",
+   "default": "",
+   "values": "Unreal Engine 项目文件或 RoadRunner 文件的名称 valid project file name",
+   "group": "Scene"
+  },
+  {
+   "name": "Scene view",
+   "default": "Origin",
+   "values": "显示场景的虚拟相机的位置 Scene Origin (default) | Custom | vehicle name | sim3d actor name | viewpoint name",
+   "group": "Scene"
+  },
+  {
+   "name": "Name",
+   "default": "custom",
+   "values": "自定义视点的名称 custom (default) | character array | string scalar",
+   "group": "Scene"
+  },
+  {
+   "name": "Translation",
+   "default": "0]",
+   "values": "视点平移 [0 0 0] (default) | real 1-by-3 vector",
+   "group": "Scene"
+  },
+  {
+   "name": "Rotation",
+   "default": "0]",
+   "values": "视点旋转 [0 0 0] (default) | real 1-by-3 vector",
+   "group": "Scene"
+  },
+  {
+   "name": "Viewer relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "相对于 actor 的视点平移 [0 0 0] (default) | real 1-by-3 vector",
+   "group": "Scene"
+  },
+  {
+   "name": "Viewer relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "相对于 actor 的视点旋转 [0 0 0] (default) | real 1-by-3 vector",
+   "group": "Scene"
+  },
+  {
+   "name": "Sample time",
+   "default": "1/60",
+   "values": "可视化引擎的采样时间 1/60 (default) | real positive scalar",
+   "group": "Scene"
+  },
+  {
+   "name": "Display 3D simulation window",
+   "default": "on",
+   "values": "Unreal Engine 可视化 on (default) | off",
+   "group": "Scene"
+  },
+  {
+   "name": "Override scene weather",
+   "default": "off",
+   "values": "用于控制场景天气和太阳位置的选项 off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Sun azimuth",
+   "default": "90",
+   "values": "从正南到太阳光线水平投影的方位角 90 (default) | any value between 0 and 360",
+   "group": "Weather"
+  },
+  {
+   "name": "Sun altitude",
+   "default": "40",
+   "values": "太阳与地平线之间的高度角 40 (default) | any value between -90 and 90",
+   "group": "Weather"
+  },
+  {
+   "name": "Enable geospatial sun",
+   "default": "off",
+   "values": "启用地理空间太阳的选项 off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Latitude",
+   "default": "0",
+   "values": "地球地理位置的纬度 0 (default) | scalar",
+   "group": "Weather"
+  },
+  {
+   "name": "Longitude",
+   "default": "0",
+   "values": "地球地理位置的经度 0 (default) | scalar",
+   "group": "Weather"
+  },
+  {
+   "name": "Date (YYYY-MM-DD)",
+   "default": "2023-01-01",
+   "values": "日期 2023-01-01 (default) | integer",
+   "group": "Weather"
+  },
+  {
+   "name": "Time (HH:MM:SS)",
+   "default": "10:30:00",
+   "values": "时间 10:30:00 (default) | integer",
+   "group": "Weather"
+  },
+  {
+   "name": "Time zone",
+   "default": "-5.0",
+   "values": "时区 -5.0 (default) | any value between -12.0 and 12.0",
+   "group": "Weather"
+  },
+  {
+   "name": "Daylight saving time",
+   "default": "off",
+   "values": "启用夏令时的选项 off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Cloud speed",
+   "default": "1",
+   "values": "Unreal Editor Cloud Speed 全局 actor 目标值 1 (default) | any value between -100 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Cloud opacity",
+   "default": "10",
+   "values": "Unreal Editor Cloud Opacity 全局 actor 目标值 10 (default) | any value between 0 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Enable volumetric clouds",
+   "default": "off",
+   "values": "启用体积云的选项 off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Cloud coverage",
+   "default": "1.0",
+   "values": "Unreal Editor Cloud Density 全局目标值 1.0 (default) | any value between 0 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Cloud layer altitude",
+   "default": "6",
+   "values": "Unreal Editor Layer Bottom Altitude 全局 actor 目标值 6 (default) | any value between 5 and 20",
+   "group": "Weather"
+  },
+  {
+   "name": "Fog density",
+   "default": "0",
+   "values": "Unreal Editor Set Fog Density 和 Set Start Distance 目标值 0 (default) | any value between 0 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Rain density",
+   "default": "0",
+   "values": "控制雨密度、湿度、雨坑和涟漪的 Unreal Editor 局部 actor 0 (default) | any value between 0 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Enable raindrops on camera lens",
+   "default": "off",
+   "values": "启用相机镜头上的雨滴的选项 off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Snow density",
+   "default": "0",
+   "values": "控制雪密度的 Unreal Editor 全局 actor 0 (default) | any value between 0 and 100",
+   "group": "Weather"
+  }
+ ]
+}

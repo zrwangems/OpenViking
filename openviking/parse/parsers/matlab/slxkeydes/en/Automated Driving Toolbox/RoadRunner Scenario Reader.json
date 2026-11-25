@@ -1,0 +1,91 @@
+{
+ "key": "RoadRunner Scenario Reader",
+ "title": "RoadRunner Scenario Reader",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_block",
+ "source_docs": [
+  "Automated Driving Toolbox/RoadRunner Scenario/RoadRunner_Scenario_Reader.md"
+ ],
+ "text": "Reads selected topic from RoadRunner scenario, 1 input, 1 output, {Topic Category} sets Topic category; {Actor Type} sets the type of actor in scenario, {Action Type} sets the type of action, {Sensor View} sets the sensor data derived from scenario ground truth Target, {Event Type} sets the type of event User-Defined, {Topic} sets the actor data, or lane boundary data captured through sensor views Actor, {Filter}, {Additional Relationship} sets the relationship to filtered entity, {Sensor ID} sets the unique index of sensor, {Sample Time} sets the sample time of simulation positive real and {Event Name} sets the name of event string. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Actor ID scalar"
+  },
+  {
+   "name": "Message",
+   "direction": "output",
+   "summary": "State information from scenario Simulink message"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic Category",
+   "default": "Actor",
+   "values": "Topic category Actor (default) | Action | Sensor | Event",
+   "group": ""
+  },
+  {
+   "name": "Actor Type",
+   "default": "Types",
+   "values": "Type of actor in scenario All Types (default) | Vehicle | Traffic Signal | Traffic Signal Controller",
+   "group": ""
+  },
+  {
+   "name": "Action Type",
+   "default": "Following",
+   "values": "Type of action Path Following (default) | Change Parameter | Lane Change | Lateral Offset | Longitudinal Distance | Speed Change | User Defined",
+   "group": ""
+  },
+  {
+   "name": "Sensor View",
+   "default": "Poses",
+   "values": "Sensor data derived from scenario ground truth Target Poses (default) | Target Poses For Host | Lane Boundaries | Target Poses And Lane Boundaries",
+   "group": ""
+  },
+  {
+   "name": "Event Type",
+   "default": "",
+   "values": "Type of event User-Defined",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "Actor data, or lane boundary data captured through sensor views Actor Specifications | Actor Pose | Actor Pose (Driving Scenario compatible) | Actor Lane Location | Vehicle Specifications |...",
+   "group": ""
+  },
+  {
+   "name": "Filter",
+   "default": "Self",
+   "values": "Filter criteria Self (default) | None | Actor ID (provided by input)",
+   "group": ""
+  },
+  {
+   "name": "Additional Relationship",
+   "default": "None",
+   "values": "Relationship to filtered entity None (default) | Parent | Children",
+   "group": ""
+  },
+  {
+   "name": "Sensor ID",
+   "default": "1",
+   "values": "Unique index of sensor 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "",
+   "values": "Sample time of simulation positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Event Name",
+   "default": "",
+   "values": "Name of event string",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Array of Electrical Nodes Connector",
+ "title": "Array of Electrical Nodes Connector",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Connectors/Array_of_Electrical_Nodes_Connector.md"
+ ],
+ "text": "(To be removed) Concatenate arrays of electrical nodes into single array of electrical nodes port.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

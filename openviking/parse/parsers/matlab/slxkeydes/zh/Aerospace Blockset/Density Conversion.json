@@ -1,0 +1,37 @@
+{
+ "key": "Density Conversion",
+ "title": "Density Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Density_Conversion.md"
+ ],
+ "text": "从密度单位转换为所需密度单位，输入 1 路、输出 1 路；按 {Initial unit} 指定输入单位；{Final unit} 输出单位 kg/m^3，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "密度 scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "密度 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "lbm/ft^3",
+   "values": "输入单位 lbm/ft^3 (default) | kg/m^3 | slug/ft^3 | lbm/in^3",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "kg/m^3",
+   "values": "输出单位 kg/m^3 (default) | lbm/ft^3 | slug/ft^3 | lbm/in^3",
+   "group": ""
+  }
+ ]
+}

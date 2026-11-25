@@ -1,0 +1,51 @@
+{
+ "key": "ToFile",
+ "title": "To File",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/To_File.md",
+  "HDL Coder/Sinks/To_File.md"
+ ],
+ "text": "Write data to file, 1 input, no direct feedthrough, {Sample time} sets Sample period and offset; {File name} sets the path or file, {Variable name} sets the matrix name, {Save format} sets the data format and {Decimation}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "untitled.mat",
+   "values": "Path or file name untitled.mat (default) | MAT file path or name",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "ans",
+   "values": "Matrix name ans (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Save format",
+   "default": "Timeseries",
+   "values": "Data format Timeseries (default) | Array",
+   "group": ""
+  },
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "Decimation factor that determines when data writes 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample period and offset -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

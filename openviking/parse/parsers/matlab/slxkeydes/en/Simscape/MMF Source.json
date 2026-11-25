@@ -1,0 +1,13 @@
+{
+ "key": "MMF Source",
+ "title": "MMF Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Sources/MMF_Source.md"
+ ],
+ "text": "Ideal magnetomotive force source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

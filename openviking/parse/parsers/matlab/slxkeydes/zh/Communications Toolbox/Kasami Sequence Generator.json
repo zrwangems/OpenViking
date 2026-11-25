@@ -1,0 +1,101 @@
+{
+ "key": "Kasami Sequence Generator",
+ "title": "Kasami Sequence Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Sequence Generators/Kasami_Sequence_Generator.md"
+ ],
+ "text": "从 Kasami 序列集合生成 Kasami 序列，输入 3 路、输出 1 路；按 {Sequence index(es)} 指定序列索引；{Generator polynomial} 指定生成多项式、{Initial states} 指定初始状态、{Shift} 指定序列相对于起始点的偏移、{Output variable-size signals} 输出可变长度信号、{Maximum output size source} 指定最大输出大小来源、{Maximum output size} 指定最大输出大小、{Sample time} 输出采样时间、{Samples per frame}、{Reset on nonzero input} 指定复位输出信号、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "oSiz",
+   "direction": "input",
+   "summary": "当前输出大小 scalar | vector"
+  },
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "参考输入信号 scalar | column vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置信号 scalar | vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generator polynomial",
+   "default": "1’",
+   "values": "生成多项式 ’z^6 + z + 1’ (default) | polynomial character vector | string scalar | binary-valued row vector | integer-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states",
+   "default": "1]",
+   "values": "初始状态 [0 0 0 0 0 1] (default) | binary-valued scalar | binary-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Sequence index(es)",
+   "default": "0",
+   "values": "序列索引 0 (default) | integer | vector of the form [ k m ]",
+   "group": ""
+  },
+  {
+   "name": "Shift",
+   "default": "0",
+   "values": "序列相对于起始点的偏移 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "输出可变长度信号的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size source",
+   "default": "parameter",
+   "values": "最大输出大小来源 Dialog parameter (default) | Inherit from reference port",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size",
+   "default": "1]",
+   "values": "最大输出大小 [10 1] (default) | vector of the form [ n 1]",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出采样时间 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Reset on nonzero input",
+   "default": "off",
+   "values": "复位输出信号的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | boolean",
+   "group": ""
+  }
+ ]
+}

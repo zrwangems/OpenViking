@@ -1,0 +1,13 @@
+{
+ "key": "Logic-Controlled Clutch",
+ "title": "Logic-Controlled Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Logic_Controlled_Clutch.md"
+ ],
+ "text": "带输入控制的摩擦离合器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

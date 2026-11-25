@@ -1,0 +1,13 @@
+{
+ "key": "Load Flow Source",
+ "title": "Load Flow Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Load_Flow_Source.md"
+ ],
+ "text": "Three-phase voltage source for performing load flow analysis.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

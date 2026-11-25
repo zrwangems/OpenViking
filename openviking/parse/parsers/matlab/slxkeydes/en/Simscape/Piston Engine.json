@@ -1,0 +1,13 @@
+{
+ "key": "Piston Engine",
+ "title": "Piston Engine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Piston_Engine.md"
+ ],
+ "text": "Reciprocating combustion engine with variable number of pistons.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

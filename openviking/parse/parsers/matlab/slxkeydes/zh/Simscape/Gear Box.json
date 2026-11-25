@@ -1,0 +1,13 @@
+{
+ "key": "Gear Box",
+ "title": "Gear Box",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanisms/Gear_Box.md"
+ ],
+ "text": "机械系统中的齿轮箱。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

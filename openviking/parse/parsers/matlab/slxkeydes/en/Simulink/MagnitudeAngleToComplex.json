@@ -1,0 +1,79 @@
+{
+ "key": "MagnitudeAngleToComplex",
+ "title": "Magnitude-Angle to Complex",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Magnitude_Angle_to_Complex.md",
+  "HDL Coder/Math Operations/Magnitude_Angle_to_Complex.md",
+  "HDL Coder/HDL Floating Point Operations/Magnitude_Angle_to_Complex.md"
+ ],
+ "text": "Convert magnitude and/or a phase angle signal to complex signal, 3 inputs, 1 output, direct feedthrough, {Input} sets Type of input; {Angle} sets the phase angle of output, {Magnitude}, {Approximation method} sets the cORDIC, {Number of iterations}, {Scale output by reciprocal of gain factor} scales real and imaginary parts of complex and {Sample time (-1 for inherited)} sets the interval between samples. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "|u|",
+   "direction": "input",
+   "summary": "Magnitude scalar | vector | matrix"
+  },
+  {
+   "name": "∠u",
+   "direction": "input",
+   "summary": "Radian phase angle scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Magnitude or radian phase angle scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Complex signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "Magnitude",
+   "values": "Type of input Magnitude (default) | Angle | Magnitude and angle",
+   "group": ""
+  },
+  {
+   "name": "Angle",
+   "default": "0",
+   "values": "Phase angle of output 0 (default) | real-valued scalar, vector, or matrix",
+   "group": ""
+  },
+  {
+   "name": "Magnitude",
+   "default": "0",
+   "values": "Magnitude of output 0 (default) | real-valued scalar, vector, or matrix",
+   "group": ""
+  },
+  {
+   "name": "Approximation method",
+   "default": "None",
+   "values": "CORDIC or none None (default) | CORDIC",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "11",
+   "values": "Number of iterations for CORDIC algorithm 11 (default) | positive integer, less than or equal to word length of fixed-point input",
+   "group": ""
+  },
+  {
+   "name": "Scale output by reciprocal of gain factor",
+   "default": "on",
+   "values": "Scale real and imaginary parts of complex output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

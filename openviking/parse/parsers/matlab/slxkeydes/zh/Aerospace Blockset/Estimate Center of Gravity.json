@@ -1,0 +1,59 @@
+{
+ "key": "Estimate Center of Gravity",
+ "title": "Estimate Center of Gravity",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Mass Properties/Estimate_Center_of_Gravity.md"
+ ],
+ "text": "计算重心位置，输入 2 路、输出 2 路；{Full mass} 指定质量、{Empty mass} 指定空载质量、{Full center of gravity} 指定满载重心、{Empty center of gravity} 指定空载重心，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mass",
+   "direction": "input",
+   "summary": "质量 scalar"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "变化率 scalar | 3-element vector"
+  },
+  {
+   "name": "CG",
+   "direction": "output",
+   "summary": "重心位置 3-element vector"
+  },
+  {
+   "name": "dCG/dt",
+   "direction": "output",
+   "summary": "变化率 3-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Full mass",
+   "default": "2",
+   "values": "质量 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Empty mass",
+   "default": "1",
+   "values": "空载质量 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Full center of gravity",
+   "default": "1]’",
+   "values": "满载重心 [1 1 1]’ (default) | 3-element vector",
+   "group": ""
+  },
+  {
+   "name": "Empty center of gravity",
+   "default": "0.5]’",
+   "values": "空载重心 [0.5 0.5 0.5]’ (default) | 3-element vector",
+   "group": ""
+  }
+ ]
+}

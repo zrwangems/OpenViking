@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Power Sensor",
+ "title": "Rotational Power Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sensors/Rotational_Power_Sensor.md"
+ ],
+ "text": "测量平均或瞬时旋转功率。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

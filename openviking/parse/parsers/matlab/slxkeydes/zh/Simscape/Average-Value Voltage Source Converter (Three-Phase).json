@@ -1,0 +1,13 @@
+{
+ "key": "Average-Value Voltage Source Converter (Three-Phase)",
+ "title": "Average-Value Voltage Source Converter (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Average_Value_Voltage_Source_Converter_Three_Phase.md"
+ ],
+ "text": "三相平均值双向 AC/DC 电压源变换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

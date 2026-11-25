@@ -1,0 +1,13 @@
+{
+ "key": "Incremental Shaft Encoder",
+ "title": "Incremental Shaft Encoder",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Incremental_Shaft_Encoder.md"
+ ],
+ "text": "将角位置转换为电脉冲的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,37 @@
+{
+ "key": "Bit Rotate",
+ "title": "Bit Rotate",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Bit_Rotate.md"
+ ],
+ "text": "按位位置旋转输入信号，输入 1 路、输出 1 路；{Rotate Mode} 指定旋转方向：向左或向右 Rotate、{Rotate Length} 指定要旋转的位数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rotate Mode",
+   "default": "Left",
+   "values": "指定旋转方向：向左或向右 Rotate Left (default) | Rotate Right",
+   "group": ""
+  },
+  {
+   "name": "Rotate Length",
+   "default": "0",
+   "values": "指定要旋转的位数 0 (default) | integer greater than or equal to zero",
+   "group": ""
+  }
+ ]
+}

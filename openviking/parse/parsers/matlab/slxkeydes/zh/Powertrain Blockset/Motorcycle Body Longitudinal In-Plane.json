@@ -1,0 +1,486 @@
+{
+ "key": "Motorcycle Body Longitudinal In-Plane",
+ "title": "Motorcycle Body Longitudinal In-Plane",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Vehicle Dynamics/Motorcycle_Body_Longitudinal_In_Plane.md",
+  "Vehicle Dynamics Blockset/Vehicle Body/Motorcycle_Body_Longitudinal_In_Plane.md"
+ ],
+ "text": "摩托车纵向平面内运动，输入 15 路、输出 7 路；{Suspension type} 指定悬架类型 Simple、{External forces} 指定 FExt 输入端口、{External moments} 指定 MExt 输入端口、{External front wheel moment} 指定 MWhlF 输入端口、{External rear wheel moment} 指定 MWhlR 输入端口、{Grade angle} 指定 Grade 输入端口、{Wind velocity} 指定 WindXYZ 输入端口、{Ambient temperature} 指定 Temp 输入端口、{Center of mass location, FrmCmPxz} 指定车架位置、{Mass, FrmMass} 指定车架质量、{Mass moment of inertia, FrmIyy} 指定车架惯量、{Length, FrmLen} 指定车架长度、{Center of mass location, RdrCmPxz} 指定骑手位置、{Mass, RdrMass} 指定骑手质量、{Mass moment of inertia, RdrIyy} 指定骑手惯量、{Position, FrkUpCmPxz} 指定上叉位置、{Mass, FrkUpMass} 指定上叉质量、{Mass moment of inertia, FrkUpIyy} 指定上叉惯量、{Offset, FrkOfs} 指定上叉偏移、{Position, FrkLwCmPxz} 指定下叉位置、{Mass, FrkLwMass} 指定下叉质量、{Mass moment of inertia, FrkLwIyy} 指定下叉惯量、{Position, ArmRrCmPxz} 指定后臂位置、{Mass, ArmRrMass} 指定后臂质量、{Mass moment of inertia, ArmRrIyy} 指定后臂惯量、{Length, ArmRrLen} 指定后臂长度、{Mass, WhlFrMass} 指定前轮质量、{Radius, WhlFrR} 指定前轮半径、{Mass, WhlRrMass} 指定后轮质量、{Radius, WhlRrR} 指定后轮半径、{Stiffness, SuspFrK} 指定前悬架刚度 25e3、{Damping, SuspFrC} 指定前悬架阻尼、{Equilibrium length, FrkLwL0} 指定前悬架平衡长度、{Stiffness, SuspRrK} 指定后臂悬架刚度、{Damping, SuspRrC} 指定后臂悬架阻尼、{Equilibrium angle, ShkRrAng0} 指定后悬架平衡角度、{Longitudinal drag area, Af} 指定面积、{Longitudinal drag coefficient, Cd} 指定阻力 .2、{Longitudinal lift coefficient, Cl} 指定升力 .1、{Longitudinal drag pitch moment, Cpm} 指定俯仰阻力 .1、{Pitch moment length, Lcpm} 指定俯仰阻力、{Gravitational acceleration, g} 指定重力、{Absolute air pressure, Pabs} 指定压力、{Air temperature, Tair} 指定环境空气温度、{Rear contact patch longitudinal coordinate, CpRrX0} 指定纵向坐标、{Rear contact patch vertical coordinate, CpRrZ0} 指定垂直坐标、{Pitch angle of rear arm, ArmRrAng0} 指定后臂角度、{Pitch angle of main frame, FrmAng0} 指定角度长度、{Fork length, FrkFrL0} 指定前叉长度、{Longitudinal velocity of rear contact patch} 指定纵向速度、{Vertical velocity of rear contact patch, CpRrVz0} 指定垂直速度、{Pitch rate of rear arm, ArmRrAngV0} 指定俯仰角速率、{Pitch rate of main frame, FrmAngV0} 指定俯仰角速率、{Lower fork deformation velocity, FrkLwV0} 指定变形速度、{Longitudinal offset, longOff} 指定纵向偏移、{Lateral offset, latOff} 指定侧向偏移、{Vertical offset, vertOff} 指定垂直偏移、{Roll offset, pitchOff} 指定侧倾偏移、{Pitch offset, pitchOff} 指定俯仰偏移、{Yaw offset, pitchOff} 指定横摆偏移，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FCpF",
+   "direction": "input",
+   "summary": "前轮接地点处的纵向力和垂向力 vector"
+  },
+  {
+   "name": "FCpR",
+   "direction": "input",
+   "summary": "后轮接地点处的纵向力和垂向力 vector"
+  },
+  {
+   "name": "MDrvArmR",
+   "direction": "input",
+   "summary": "后摇臂处的驱动链力矩 scalar"
+  },
+  {
+   "name": "MDrvFrm",
+   "direction": "input",
+   "summary": "车架处的驱动链力矩 scalar"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "车架处的外部纵向力和垂向力 vector"
+  },
+  {
+   "name": "MExt",
+   "direction": "input",
+   "summary": "绕车架的外部力矩 scalar"
+  },
+  {
+   "name": "MBrkF",
+   "direction": "input",
+   "summary": "前轮制动力矩 scalar"
+  },
+  {
+   "name": "MBrkR",
+   "direction": "input",
+   "summary": "后轮制动力矩 scalar"
+  },
+  {
+   "name": "MWhlF",
+   "direction": "input",
+   "summary": "前轮处的外部力矩 scalar"
+  },
+  {
+   "name": "MWhlR",
+   "direction": "input",
+   "summary": "后轮处的外部力矩 scalar"
+  },
+  {
+   "name": "FSuspF",
+   "direction": "input",
+   "summary": "上叉处的外部悬架力 scalar"
+  },
+  {
+   "name": "MSuspR",
+   "direction": "input",
+   "summary": "后臂处的外部悬架力矩 scalar"
+  },
+  {
+   "name": "Grade",
+   "direction": "input",
+   "summary": "道路坡度角 scalar"
+  },
+  {
+   "name": "WindXYZ",
+   "direction": "input",
+   "summary": "风速 array"
+  },
+  {
+   "name": "Temp",
+   "direction": "input",
+   "summary": "环境空气温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "VCpF",
+   "direction": "output",
+   "summary": "前轮接地点处的纵向、横向和垂向速度 vector"
+  },
+  {
+   "name": "PCpF",
+   "direction": "output",
+   "summary": "前轮接地点处的纵向、横向和垂向位置 vector"
+  },
+  {
+   "name": "VCpR",
+   "direction": "output",
+   "summary": "后轮接地点处的纵向、横向和垂向速度 vector"
+  },
+  {
+   "name": "PCpR",
+   "direction": "output",
+   "summary": "后轮接地点处的纵向、横向和垂向位置 vector"
+  },
+  {
+   "name": "ThetaFrm",
+   "direction": "output",
+   "summary": "主车架俯仰角 scalar"
+  },
+  {
+   "name": "ThetaArmR",
+   "direction": "output",
+   "summary": "后摇臂俯仰角 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Suspension type",
+   "default": "Simple",
+   "values": "悬架类型 Simple (default) | User-defined",
+   "group": "Options"
+  },
+  {
+   "name": "External forces",
+   "default": "off",
+   "values": "FExt 输入端口 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "External moments",
+   "default": "off",
+   "values": "MExt 输入端口 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "External front wheel moment",
+   "default": "off",
+   "values": "MWhlF 输入端口 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "External rear wheel moment",
+   "default": "off",
+   "values": "MWhlR 输入端口 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Grade angle",
+   "default": "on",
+   "values": "Grade 输入端口 on (default) | off",
+   "group": "Options"
+  },
+  {
+   "name": "Wind velocity",
+   "default": "on",
+   "values": "WindXYZ 输入端口 on (default) | off",
+   "group": "Options"
+  },
+  {
+   "name": "Ambient temperature",
+   "default": "off",
+   "values": "Temp 输入端口 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Center of mass location, FrmCmPxz",
+   "default": "-0.02]",
+   "values": "车架位置 [0.255, -0.02] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, FrmMass",
+   "default": "223",
+   "values": "车架质量 223 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, FrmIyy",
+   "default": "26.2",
+   "values": "车架惯量 26.2 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Length, FrmLen",
+   "default": "0.730",
+   "values": "车架长度 0.730 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Center of mass location, RdrCmPxz",
+   "default": "-0.61]",
+   "values": "骑手位置 [0.275, -0.61] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, RdrMass",
+   "default": "78",
+   "values": "骑手质量 78 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, RdrIyy",
+   "default": "26.2",
+   "values": "骑手惯量 26.2 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Position, FrkUpCmPxz",
+   "default": "-0.098]",
+   "values": "上叉位置 [0.023, -0.098] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, FrkUpMass",
+   "default": "8.8",
+   "values": "上叉质量 8.8 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, FrkUpIyy",
+   "default": "0.14",
+   "values": "上叉惯量 0.14 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Offset, FrkOfs",
+   "default": "0.034",
+   "values": "上叉偏移 0.034 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Position, FrkLwCmPxz",
+   "default": "-0.189]",
+   "values": "下叉位置 [-0.029, -0.189] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, FrkLwMass",
+   "default": "7.0",
+   "values": "下叉质量 7.0 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, FrkLwIyy",
+   "default": "0.18",
+   "values": "下叉惯量 0.18 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Position, ArmRrCmPxz",
+   "default": "-0.052]",
+   "values": "后臂位置 [0.275, -0.052] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, ArmRrMass",
+   "default": "10",
+   "values": "后臂质量 10 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, ArmRrIyy",
+   "default": "0.8",
+   "values": "后臂惯量 0.8 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Length, ArmRrLen",
+   "default": "0.535",
+   "values": "后臂长度 0.535 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, WhlFrMass",
+   "default": "12",
+   "values": "前轮质量 12 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Radius, WhlFrR",
+   "default": "0.3",
+   "values": "前轮半径 0.3 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, WhlRrMass",
+   "default": "16.2",
+   "values": "后轮质量 16.2 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Radius, WhlRrR",
+   "default": "0.33",
+   "values": "后轮半径 0.33 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Stiffness, SuspFrK",
+   "default": "25e3",
+   "values": "前悬架刚度 25e3 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Damping, SuspFrC",
+   "default": "1250",
+   "values": "前悬架阻尼 1250 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Equilibrium length, FrkLwL0",
+   "default": "0.473",
+   "values": "前悬架平衡长度 0.473 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Stiffness, SuspRrK",
+   "default": "1500",
+   "values": "后臂悬架刚度 1500 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Damping, SuspRrC",
+   "default": "150",
+   "values": "后臂悬架阻尼 150 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Equilibrium angle, ShkRrAng0",
+   "default": "0",
+   "values": "后悬架平衡角度 0 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Longitudinal drag area, Af",
+   "default": "2",
+   "values": "面积 2 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal drag coefficient, Cd",
+   "default": ".2",
+   "values": "阻力 .2 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal lift coefficient, Cl",
+   "default": ".1",
+   "values": "升力 .1 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal drag pitch moment, Cpm",
+   "default": ".1",
+   "values": "俯仰阻力 .1 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Pitch moment length, Lcpm",
+   "default": "2",
+   "values": "俯仰阻力 2 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.80665",
+   "values": "重力 9.80665 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Absolute air pressure, Pabs",
+   "default": "101325",
+   "values": "压力 101325 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Air temperature, Tair",
+   "default": "273",
+   "values": "环境空气温度 273 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Rear contact patch longitudinal coordinate, CpRrX0",
+   "default": "0",
+   "values": "纵向坐标 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Rear contact patch vertical coordinate, CpRrZ0",
+   "default": "0",
+   "values": "垂直坐标 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Pitch angle of rear arm, ArmRrAng0",
+   "default": "0.0590379",
+   "values": "后臂角度 0.0590379 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Pitch angle of main frame, FrmAng0",
+   "default": "0.377024",
+   "values": "角度长度 0.377024 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Fork length, FrkFrL0",
+   "default": "0.4262193",
+   "values": "前叉长度 0.4262193 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Longitudinal velocity of rear contact patch",
+   "default": "0",
+   "values": "纵向速度 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Vertical velocity of rear contact patch, CpRrVz0",
+   "default": "0",
+   "values": "垂直速度 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Pitch rate of rear arm, ArmRrAngV0",
+   "default": "0",
+   "values": "俯仰角速率 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Pitch rate of main frame, FrmAngV0",
+   "default": "0",
+   "values": "俯仰角速率 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Lower fork deformation velocity, FrkLwV0",
+   "default": "0",
+   "values": "变形速度 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Longitudinal offset, longOff",
+   "default": "0",
+   "values": "纵向偏移 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Lateral offset, latOff",
+   "default": "0",
+   "values": "侧向偏移 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Vertical offset, vertOff",
+   "default": "0",
+   "values": "垂直偏移 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Roll offset, pitchOff",
+   "default": "0",
+   "values": "侧倾偏移 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Pitch offset, pitchOff",
+   "default": "0",
+   "values": "俯仰偏移 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Yaw offset, pitchOff",
+   "default": "0",
+   "values": "横摆偏移 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  }
+ ]
+}

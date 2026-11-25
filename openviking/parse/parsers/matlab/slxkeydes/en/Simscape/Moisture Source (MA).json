@@ -1,0 +1,13 @@
+{
+ "key": "Moisture Source (MA)",
+ "title": "Moisture Source (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sources/Moisture & Trace Gas Sources/Moisture_Source_MA.md"
+ ],
+ "text": "Inject or extract moisture at a constant or time-varying rate.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

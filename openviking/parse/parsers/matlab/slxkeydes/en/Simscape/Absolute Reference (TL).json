@@ -1,0 +1,13 @@
+{
+ "key": "Absolute Reference (TL)",
+ "title": "Absolute Reference (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Absolute_Reference_TL.md"
+ ],
+ "text": "(Not recommended) Reference point at zero absolute temperature and pressure.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

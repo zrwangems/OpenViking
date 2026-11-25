@@ -1,0 +1,50 @@
+{
+ "key": "Extract Bits",
+ "title": "Extract Bits",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Extract_Bits.md",
+  "HDL Coder/Logic and Bit Operations/Extract_Bits.md"
+ ],
+ "text": "Output selection of contiguous bits from input signal, 1 input, 1 output, direct feedthrough, {Bits to extract} sets Method for extracting bits Upper; {Number of bits}, {Bit indices} sets the contiguous range of bits to output and {Output scaling mode}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Extracted bits scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Bits to extract",
+   "default": "half",
+   "values": "Method for extracting bits Upper half (default) | Lower half | Range starting with most significant bit | Range ending with least significant big | Range of bits",
+   "group": ""
+  },
+  {
+   "name": "Number of bits",
+   "default": "8",
+   "values": "Number of bits to output 8 (default) | scalar positive integer",
+   "group": ""
+  },
+  {
+   "name": "Bit indices",
+   "default": "7]",
+   "values": "Contiguous range of bits to output [0 7] (default) | two-element vector | scalar positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output scaling mode",
+   "default": "scaling",
+   "values": "Output scaling mode Preserve fixed-point scaling (default) | Treat bit field as an integer",
+   "group": ""
+  }
+ ]
+}

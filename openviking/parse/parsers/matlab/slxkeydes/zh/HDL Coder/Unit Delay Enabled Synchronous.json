@@ -1,0 +1,42 @@
+{
+ "key": "Unit Delay Enabled Synchronous",
+ "title": "Unit Delay Enabled Synchronous",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Discrete/Unit_Delay_Enabled_Synchronous.md"
+ ],
+ "text": "当外部 Enable 信号为 true 时，将输入信号延迟一个采样周期，输入 2 路、输出 1 路；按 {Initial condition} 指定仿真的初始输出；{Sample time} 指定采样之间的时间间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 Scalar | Vector | Matrix | Array | Bus"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "使能信号 Scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "输出信号 Scalar | Vector | Matrix | Array | Bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "0.0",
+   "values": "仿真的初始输出 0.0 (default) | Scalar | Vector | Matrix | Array | Bus",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (default) | Scalar | Vector",
+   "group": ""
+  }
+ ]
+}

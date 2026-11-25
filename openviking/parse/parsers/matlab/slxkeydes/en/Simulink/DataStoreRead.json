@@ -1,0 +1,103 @@
+{
+ "key": "DataStoreRead",
+ "title": "Data Store Read",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Data_Store_Read.md"
+ ],
+ "text": "Read data from data store, 1 input, 1 output, no direct feedthrough, {Sample time} sets Sample time; {Data store name} sets the name of data store from which block reads, {Data store memory block} sets the data Store Memory block name Read-only: block, {Corresponding Data Store Write blocks} sets the list of corresponding Data Store Write blocks Read-only: block, {Elements in the array (Signals in the bus)} sets the elements in associated data store character, {Specify element(s) to select} sets the mATLAB expression that defines element to select character, {Selected element(s)} sets the list of selected elements, {Enable indexing}, {Number of dimensions}, {Index mode}, {Index Option} sets the index method for subelements, {Index} sets the indices or starting index of subelements and {Output Size} sets the size of range of subelements to read. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IdxN",
+   "direction": "input",
+   "summary": "N th index signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Values from specified data store scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data store name",
+   "default": "A",
+   "values": "Name of data store from which block reads A (default) | name of data store",
+   "group": "Parameters"
+  },
+  {
+   "name": "Data store memory block",
+   "default": "",
+   "values": "Data Store Memory block name Read-only: block path",
+   "group": "Parameters"
+  },
+  {
+   "name": "Corresponding Data Store Write blocks",
+   "default": "",
+   "values": "List of corresponding Data Store Write blocks Read-only: block path",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar | vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Elements in the array (Signals in the bus)",
+   "default": "",
+   "values": "Elements in associated data store character vector",
+   "group": "Element Selection"
+  },
+  {
+   "name": "Specify element(s) to select",
+   "default": "",
+   "values": "MATLAB expression that defines element to select character vector",
+   "group": "Element Selection"
+  },
+  {
+   "name": "Selected element(s)",
+   "default": "",
+   "values": "List of selected elements character vector",
+   "group": "Element Selection"
+  },
+  {
+   "name": "Enable indexing",
+   "default": "off",
+   "values": "Enable indexing to specify subelements of data store element to read off (default) | on",
+   "group": "Element Selection"
+  },
+  {
+   "name": "Number of dimensions",
+   "default": "1",
+   "values": "Number of dimensions of data store element 1 (default) | positive integer",
+   "group": "Element Selection"
+  },
+  {
+   "name": "Index mode",
+   "default": "One-based",
+   "values": "Index mode One-based (default) | Zero-based",
+   "group": "Element Selection"
+  },
+  {
+   "name": "Index Option",
+   "default": "(dialog)",
+   "values": "Index method for subelements Index vector (dialog) (default) | Select all | Index vector (port) | Starting index (dialog) | Starting index (port)",
+   "group": "Element Selection"
+  },
+  {
+   "name": "Index",
+   "default": "1",
+   "values": "Indices or starting index of subelements 1 (default) | integer | vector of integers",
+   "group": "Element Selection"
+  },
+  {
+   "name": "Output Size",
+   "default": "1",
+   "values": "Size of range of subelements to read 1 (default) | integer",
+   "group": "Element Selection"
+  }
+ ]
+}

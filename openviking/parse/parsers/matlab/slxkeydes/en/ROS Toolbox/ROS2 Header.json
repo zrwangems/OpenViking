@@ -1,0 +1,43 @@
+{
+ "key": "ROS2 Header",
+ "title": "Header Assignment",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Header_Assignment.md"
+ ],
+ "text": "Update fields of ROS 2 message header, 1 input, 1 output; {Set Frame ID} sets the frame associated with message data, {Set Timestamp} sets the timestamp in header and {Header field name}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "InputMsg",
+   "direction": "input",
+   "summary": "ROS 2 message to update nonvirtual bus"
+  },
+  {
+   "name": "OutputMsg",
+   "direction": "output",
+   "summary": "ROS 2 message with an updated header nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Set Frame ID",
+   "default": "off",
+   "values": "Specify frame associated with message data off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Set Timestamp",
+   "default": "off",
+   "values": "Set timestamp in header off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Header field name",
+   "default": "name",
+   "values": "Specify Header field name Use the default Header field name (default) | Specify your own",
+   "group": ""
+  }
+ ]
+}

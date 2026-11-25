@@ -1,0 +1,59 @@
+{
+ "key": "Autocorrelation LPC",
+ "title": "Autocorrelation LPC",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Linear Prediction/Autocorrelation_LPC.md"
+ ],
+ "text": "确定 N 阶前向线性预测器的系数，输入 1 路、输出 3 路、无直接馈通；按 {Output(s)} 指定预测系数类型；{Output prediction error power (P)} 输出预测误差功率、{Inherit prediction order from input dimensions} 指定从输入维度继承预测阶数、{Prediction order (N)} 指定预测阶数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "输入数组 unoriented vector | column vector | matrix"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "多项式系数 column vector | matrix"
+  },
+  {
+   "name": "K",
+   "direction": "output",
+   "summary": "反射系数 column vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "预测误差功率 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output(s)",
+   "default": "A",
+   "values": "预测系数类型 A (default) | A and K | K",
+   "group": ""
+  },
+  {
+   "name": "Output prediction error power (P)",
+   "default": "off",
+   "values": "输出预测误差功率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Inherit prediction order from input dimensions",
+   "default": "off",
+   "values": "从输入维度继承预测阶数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Prediction order (N)",
+   "default": "1",
+   "values": "预测阶数 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

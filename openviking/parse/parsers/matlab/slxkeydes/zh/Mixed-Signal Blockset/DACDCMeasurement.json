@@ -1,0 +1,108 @@
+{
+ "key": "DACDCMeasurement",
+ "title": "DAC DC Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Measurements & Testbenches/DAC_DC_Measurement.md"
+ ],
+ "text": "测量 DAC 输出的 DC 性能指标，输入 3 路；{Input polarity} 指定 DAC 输入信号的极性、{Reference (V)} 指定参考电压、{Bias (V)} 添加到输出的偏置电压、{Settling time (s)} 输出稳定所需的时间 3e-7、{Hold off time (s)} 指定测量分析前的延迟 1e-3、{Number of bits} 指定输入字的位数、{Start conversion frequency (Hz)} 指定内部启动转换时钟的频率 1e6、{Recommended simulation stop time (s)} 指定仿真必须运行以获得有意义结果的最短时间、{Endpoint} 使用端点法测量 DNL、INL、{Best fit} 使用最佳拟合方法测量 DNL、INL、{Output result to base workspace} 指定将详细测试结果存储到基础工作区、{Workspace variable name} 指定存储详细测试结果的变量名称、{Plot} 绘制测量结果，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "来自 DAC 的数字输入信号 scalar"
+  },
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "来自 DAC 的转换后模拟信号 scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "用于启动转换的外部时钟 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input polarity",
+   "default": "Bipolar",
+   "values": "DAC 输入信号的极性 Bipolar (default) | Unipolar",
+   "group": ""
+  },
+  {
+   "name": "Reference (V)",
+   "default": "2",
+   "values": "参考电压 2 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias (V)",
+   "default": "0",
+   "values": "添加到输出的偏置电压 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time (s)",
+   "default": "3e-7",
+   "values": "输出稳定所需的时间 3e-7 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "1e-3",
+   "values": "测量分析前的延迟 1e-3 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bits",
+   "default": "10",
+   "values": "输入字的位数 10 (default) | positive real integer",
+   "group": ""
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "1e6",
+   "values": "内部启动转换时钟的频率 1e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Recommended simulation stop time (s)",
+   "default": "0.02148",
+   "values": "仿真必须运行以获得有意义结果的最短时间 0.02148 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Endpoint",
+   "default": "on",
+   "values": "使用端点法测量 DNL、INL on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Best fit",
+   "default": "on",
+   "values": "使用最佳拟合方法测量 DNL、INL on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output result to base workspace",
+   "default": "off",
+   "values": "将详细测试结果存储到基础工作区 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "dac_dc_out",
+   "values": "存储详细测试结果的变量名称 dac_dc_out (default) | character string",
+   "group": ""
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制测量结果 button",
+   "group": ""
+  }
+ ]
+}

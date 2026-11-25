@@ -1,0 +1,60 @@
+{
+ "key": "Modem Status",
+ "title": "Modem Status",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Modem_Status.md"
+ ],
+ "text": "Return state of modem control lines, 3 outputs, {Serial port} sets Port that is being accessed Legacy Serial Port; {CTS} sets the enables clear to send status output, {DSR} sets the enables data set ready status output, {DCD} sets the enables data carrier detect status output and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CTS",
+   "direction": "output",
+   "summary": "Status of clear to send line true | false"
+  },
+  {
+   "name": "DSR",
+   "direction": "output",
+   "summary": "Status of data set ready line true | false"
+  },
+  {
+   "name": "DCD",
+   "direction": "output",
+   "summary": "Status of data carrier detect line true | false"
+  }
+ ],
+ "params": [
+  {
+   "name": "CTS",
+   "default": "on",
+   "values": "Enables clear to send status output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "DSR",
+   "default": "on",
+   "values": "Enables data set ready status output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "DCD",
+   "default": "on",
+   "values": "Enables data carrier detect status output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "Port that is being accessed Legacy Serial Port 1 (default) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  }
+ ]
+}

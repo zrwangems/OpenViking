@@ -1,0 +1,13 @@
+{
+ "key": "Rectangular QAM TCM Encoder",
+ "title": "Rectangular QAM TCM Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/TCM/Rectangular_QAM_TCM_Encoder.md"
+ ],
+ "text": "Convolutionally encode binary data and modulate using QAM method.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

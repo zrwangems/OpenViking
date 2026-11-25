@@ -1,0 +1,13 @@
+{
+ "key": "Planar Joint",
+ "title": "Planar Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Planar_Joint.md"
+ ],
+ "text": "Joint with one rotational and two translational degrees of freedom.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

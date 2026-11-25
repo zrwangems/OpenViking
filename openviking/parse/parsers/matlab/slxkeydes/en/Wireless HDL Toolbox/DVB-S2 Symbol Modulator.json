@@ -1,0 +1,86 @@
+{
+ "key": "DVB-S2 Symbol Modulator",
+ "title": "DVB-S2 Symbol Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/DVB_S2_Symbol_Modulator.md"
+ ],
+ "text": "Modulate data bits to complex constellation symbols according to DVB-S2 standard, 5 inputs, 2 outputs, {Code rate} sets Code rate; {Modulation source} sets the source for modulation, {Modulation}, {Unit average power} sets the spectral growth reduction, {Output data type} and {Word length}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Data bits Boolean scalar | real scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indication of whether input data is valid 0 | 1"
+  },
+  {
+   "name": "modIdx",
+   "direction": "input",
+   "summary": "Modulation index 0 | 1 | 2 | 3 | 4"
+  },
+  {
+   "name": "codeRateIdx",
+   "direction": "input",
+   "summary": "Code rate index 5 | 6 | 7 | 8 | 9 | 10"
+  },
+  {
+   "name": "load",
+   "direction": "input",
+   "summary": "Modulation and code rate control 0 | 1"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Modulated constellation data symbols complex scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Valid output data indication 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "Property",
+   "values": "Source for modulation type Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Modulation",
+   "default": "QPSK",
+   "values": "Modulation type QPSK (default) | 8-PSK | 16-APSK | 32-APSK | pi/2-BPSK",
+   "group": "Main"
+  },
+  {
+   "name": "Code rate",
+   "default": "3/4",
+   "values": "Code rate 3/4 (default) | 2/3 | 4/5 | 5/6 | 8/9 | 9/10",
+   "group": "Main"
+  },
+  {
+   "name": "Unit average power",
+   "default": "off",
+   "values": "Spectral growth reduction off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "Custom",
+   "values": "Output data type Custom (default) | double | single",
+   "group": "Data Types"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Word length 16 (default) | integer in the range [3, 32]",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "key": "Preamble Detector",
+ "title": "Preamble Detector",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Synchronization/Preamble_Detector.md"
+ ],
+ "text": "检测数据包中的前导码，输入 1 路、输出 2 路；{Input} 指定输入类型 Symbol、{Preamble} 指定前导码序列、{Detection threshold} 指定检测阈值、{Output detection metric} 输出检测度量、{Detections} 指定返回的检测结果、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数据 [ ] | scalar | column vector"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "最后一个前导码符号的索引 [ ] | scalar | column vector"
+  },
+  {
+   "name": "DtMt",
+   "direction": "output",
+   "summary": "检测度量 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "Symbol",
+   "values": "输入类型 Symbol (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Preamble",
+   "default": "1i]",
+   "values": "前导码序列 [1 + 1i; 1 - 1i] (default) | column vector",
+   "group": ""
+  },
+  {
+   "name": "Detection threshold",
+   "default": "3",
+   "values": "检测阈值 3 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output detection metric",
+   "default": "off",
+   "values": "输出检测度量的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Detections",
+   "default": "All",
+   "values": "返回的检测结果 All (default) | First",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

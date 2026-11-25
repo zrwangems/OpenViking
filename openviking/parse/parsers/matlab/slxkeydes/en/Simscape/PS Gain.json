@@ -1,0 +1,13 @@
+{
+ "key": "PS Gain",
+ "title": "PS Gain",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Gain.md"
+ ],
+ "text": "Multiply input physical signal by constant.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

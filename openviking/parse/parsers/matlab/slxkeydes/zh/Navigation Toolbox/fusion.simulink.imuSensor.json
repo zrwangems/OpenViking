@@ -1,0 +1,266 @@
+{
+ "key": "fusion.simulink.imuSensor",
+ "title": "IMU",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Multisensor Positioning/Sensor Models/IMU.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Sensor Models/IMU.md"
+ ],
+ "text": "IMU 仿真模型，输入 5 路、输出 3 路；按 {Constant offset bias (μT)} 指定恒定传感器偏移偏置 (μT) [0 0；{Reference frame} 指定导航参考坐标系、{Specify temperature from input port} 指定从输入端口指定温度、{Temperature ( o C)} 指定 IMU 的工作温度、{Specify magnetic field from input port} 指定从输入端口指定磁场、{Magnetic field (NED)} 指定在 NED 导航坐标系中表示的磁场向量、{MagneticField (ENU)} 指定在 ENU 导航坐标系中表示的磁场向量、{Seed} 用于随机化的初始种子、{Simulate using} 指定要运行的仿真类型 Interpreted、{Maximum readings (m/s 2 )} 指定最大传感器读数、{Resolution ((m/s 2 )/LSB)} 指定传感器测量分辨率、{Constant offset bias (m/s 2 )} 指定恒定传感器偏移偏置、{Axis skew (%)} 指定传感器轴偏斜、{Velocity random walk (m/s 2 /√Hz)} 指定速度随机游走、{Bias Instability (m/s 2 )} 指定偏置偏移的不稳定性、{Bias instability filter numerator coefficients} 指定偏置不稳定性滤波器分子系数、{Bias instability filter denominator coefficients} 指定偏置不稳定性滤波器分母系数、{Acceleration random walk ((m/s 2 )(√Hz))} 指定加速度随机游走、{Noise Type} 指定随机噪声的类型、{Bias from temperature ((m/s 2 )/℃)} 由温度引起的传感器偏置、{Temperature scale factor (%/℃)} 由温度引起的比例因子误差、{Maximum readings (rad/s)} 指定传感器最大读数、{Resolution ((rad/s)/LSB)} 指定传感器测量分辨率、{Constant offset bias (rad/s)} 指定恒定传感器偏移偏置、{Bias from acceleration ((rad/s)/(m/s 2 )} 由线性加速度引起的传感器偏置、{Angle random walk ((rad/s)/(√Hz))} 指定角度随机游走、{Bias Instability (rad/s)} 指定偏置偏移的不稳定性、{Rate random walk ((rad/s)(√Hz))} 指定传感器的积分白噪声、{Bias from temperature ((rad/s)/℃)} 由温度引起的传感器偏置、{Maximum readings (μT)} 指定传感器最大读数、{Resolution ((μT)/LSB)} 指定传感器测量分辨率、{White noise PSD (μT/√Hz)} 指定传感器噪声的功率谱密度、{Bias Instability (μT)} 指定偏置偏移的不稳定性、{Random walk ((μT)*√Hz)} 指定传感器的积分白噪声、{Bias from temperature (μT/℃)} 由温度引起的传感器偏置，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Linear Acceleration",
+   "direction": "input",
+   "summary": "IMU 在本地导航坐标系中的加速度 (m/s 2 ) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Angular Velocity",
+   "direction": "input",
+   "summary": "IMU 在局部导航坐标系中的角速度 (rad/s) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Orientation",
+   "direction": "input",
+   "summary": "IMU 在局部导航坐标系中的姿态 N -by-4 array of real scalar | 3-by-3-by- N -element rotation matrix"
+  },
+  {
+   "name": "Temperature",
+   "direction": "input",
+   "summary": "IMU 的温度 (℃) N -by-1 vector of real scalar"
+  },
+  {
+   "name": "Magnetic Field",
+   "direction": "input",
+   "summary": "局部导航坐标系中的磁场向量 (μT) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Accel",
+   "direction": "output",
+   "summary": "IMU 在传感器机体坐标系中的加速度计测量值 (m/s²) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Gyro",
+   "direction": "output",
+   "summary": "IMU 在传感器机体坐标系中的陀螺仪测量值 (rad/s) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Mag",
+   "direction": "output",
+   "summary": "IMU 在传感器机体坐标系中的磁力计测量值 (μT) N -by-3 matrix of real scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference frame",
+   "default": "NED",
+   "values": "导航参考坐标系 NED (default) | ENU",
+   "group": ""
+  },
+  {
+   "name": "Specify temperature from input port",
+   "default": "off",
+   "values": "从输入端口指定温度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Temperature ( o C)",
+   "default": "25",
+   "values": "IMU 的工作温度 (℃) 25 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify magnetic field from input port",
+   "default": "off",
+   "values": "从输入端口指定磁场 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Magnetic field (NED)",
+   "default": "-16.0849]",
+   "values": "在 NED 导航坐标系中表示的磁场向量 (μT) [27.5550, -2.4169, -16.0849] (default) | 1-by-3 vector of scalar",
+   "group": ""
+  },
+  {
+   "name": "MagneticField (ENU)",
+   "default": "16.0849]",
+   "values": "在 ENU 导航坐标系中表示的磁场向量 (μT) [-2.4169, 27.5550, 16.0849] (default) | 1-by-3 vector of scalar",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "67",
+   "values": "用于随机化的初始种子 67 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "要运行的仿真类型 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Maximum readings (m/s 2 )",
+   "default": "inf",
+   "values": "最大传感器读数 (m/s²) inf (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Resolution ((m/s 2 )/LSB)",
+   "default": "0",
+   "values": "传感器测量分辨率 ((m/s²)/LSB) 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant offset bias (m/s 2 )",
+   "default": "0]",
+   "values": "恒定传感器偏移偏置 (m/s²) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Axis skew (%)",
+   "default": "100])",
+   "values": "传感器轴偏斜 (%) diag([100 100 100]) (default) | scalar | 3-element row vector | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Velocity random walk (m/s 2 /√Hz)",
+   "default": "0]",
+   "values": "速度随机游走 (m/s²/√Hz) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias Instability (m/s 2 )",
+   "default": "0]",
+   "values": "偏置偏移的不稳定性 (m/s²) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias instability filter numerator coefficients",
+   "default": "fractalcoef.Numerator",
+   "values": "偏置不稳定性滤波器分子系数 fractalcoef.Numerator (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias instability filter denominator coefficients",
+   "default": "fractalcoef.Denominator",
+   "values": "偏置不稳定性滤波器分母系数 fractalcoef.Denominator (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Acceleration random walk ((m/s 2 )(√Hz))",
+   "default": "0]",
+   "values": "加速度随机游走 ((m/s²)(√Hz)) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Noise Type",
+   "default": "double-sided",
+   "values": "随机噪声的类型 double-sided (default) | single-sided",
+   "group": ""
+  },
+  {
+   "name": "Bias from temperature ((m/s 2 )/℃)",
+   "default": "0]",
+   "values": "由温度引起的传感器偏置 ((m/s 2 )/℃) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Temperature scale factor (%/℃)",
+   "default": "0]",
+   "values": "由温度引起的比例因子误差 (%/℃) [0 0 0] (default) | real scalar in the range [0,100] | real 3-element row vector in the range [0,100]",
+   "group": ""
+  },
+  {
+   "name": "Maximum readings (rad/s)",
+   "default": "inf",
+   "values": "传感器最大读数 (rad/s) inf (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Resolution ((rad/s)/LSB)",
+   "default": "0",
+   "values": "传感器测量分辨率 ((rad/s)/LSB) 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant offset bias (rad/s)",
+   "default": "0]",
+   "values": "恒定传感器偏移偏置 (rad/s) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias from acceleration ((rad/s)/(m/s 2 )",
+   "default": "0]",
+   "values": "由线性加速度引起的传感器偏置 (rad/s)/(m/s 2 ) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Angle random walk ((rad/s)/(√Hz))",
+   "default": "0]",
+   "values": "角度随机游走 ((rad/s)/(√Hz)) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias Instability (rad/s)",
+   "default": "0]",
+   "values": "偏置偏移的不稳定性 (rad/s) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Rate random walk ((rad/s)(√Hz))",
+   "default": "0]",
+   "values": "传感器的积分白噪声 ((rad/s)(√Hz)) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias from temperature ((rad/s)/℃)",
+   "default": "0]",
+   "values": "由温度引起的传感器偏置 ((rad/s)/℃) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum readings (μT)",
+   "default": "inf",
+   "values": "传感器最大读数 (μT) inf (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Resolution ((μT)/LSB)",
+   "default": "0",
+   "values": "传感器测量分辨率 ((μT)/LSB) 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant offset bias (μT)",
+   "default": "0]",
+   "values": "恒定传感器偏移偏置 (μT) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "White noise PSD (μT/√Hz)",
+   "default": "0]",
+   "values": "传感器噪声的功率谱密度 (μT/√Hz) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias Instability (μT)",
+   "default": "0]",
+   "values": "偏置偏移的不稳定性 (μT) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Random walk ((μT)*√Hz)",
+   "default": "0]",
+   "values": "传感器的积分白噪声 ((μT)*√Hz) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias from temperature (μT/℃)",
+   "default": "0]",
+   "values": "由温度引起的传感器偏置 (μT/℃) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  }
+ ]
+}

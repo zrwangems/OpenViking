@@ -1,0 +1,13 @@
+{
+ "key": "Cable",
+ "title": "Cable",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Cable.md"
+ ],
+ "text": "实现张力传递的电缆连接。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

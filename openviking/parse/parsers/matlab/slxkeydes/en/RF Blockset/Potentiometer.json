@@ -1,0 +1,39 @@
+{
+ "key": "Potentiometer",
+ "title": "Potentiometer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/Potentiometer.md",
+  "Simscape/Electrical/Passive/Potentiometer.md"
+ ],
+ "text": "Simulink controlled potentiometer, {Potentiometer type} sets Curve type of potentiometer; {Minimum resistance} sets the minimum input resistance of potentiometer, {Maximum resistance} sets the maximum input resistance of potentiometer 1e6 and {Percentage of resistance at half wiper} sets the maximum input resistance of potentiometer positive. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Minimum resistance",
+   "default": "Ohm",
+   "values": "Minimum input resistance of potentiometer 10 Ohm (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum resistance",
+   "default": "Ohm",
+   "values": "Maximum input resistance of potentiometer 1e6 Ohm (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Potentiometer type",
+   "default": "Linear",
+   "values": "Curve type of potentiometer Linear (default) | Logarithmic | Antilog",
+   "group": ""
+  },
+  {
+   "name": "Percentage of resistance at half wiper",
+   "default": "",
+   "values": "Maximum input resistance of potentiometer positive scalar",
+   "group": ""
+  }
+ ]
+}

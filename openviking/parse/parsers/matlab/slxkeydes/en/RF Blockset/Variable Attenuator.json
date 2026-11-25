@@ -1,0 +1,56 @@
+{
+ "key": "Variable Attenuator",
+ "title": "Variable Attenuator",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Variable_Attenuator.md"
+ ],
+ "text": "Model variable attenuator, 1 input; {Minimum attenuation (dB)} sets the lowest value for insertion loss, {Maximum attenuation (dB)} sets the highest value of insertion loss, {Input impedance (Ohm)}, {Output impedance (Ohm)}, {Simulate noise} sets the simulate thermal noise and {Ground and hide negative terminals} sets the ground RF circuit terminals. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Att",
+   "direction": "input",
+   "summary": "Simulink control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Minimum attenuation (dB)",
+   "default": "0.001",
+   "values": "Lowest value for insertion loss or attenuation 0.001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum attenuation (dB)",
+   "default": "1000",
+   "values": "Highest value of insertion loss or attenuation 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "Input impedance 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "Output impedance 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "Simulate thermal noise on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

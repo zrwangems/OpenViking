@@ -1,0 +1,13 @@
+{
+ "key": "N-Channel LDMOS FET",
+ "title": "N-Channel LDMOS FET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/N_Channel_LDMOS_FET.md"
+ ],
+ "text": "适用于高压的 N 沟道横向扩散金属氧化物半导体或垂直扩散金属氧化物半导体晶体管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,44 @@
+{
+ "key": "Design Verifier Test Objective",
+ "title": "Test Objective",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Objectives and Constraints/Test_Objective.md"
+ ],
+ "text": "Define custom objectives that signals must satisfy in test cases, 1 input, {Values} sets the test objective scalar; {Enable} sets the whether the block is enabled, {Display values} displays the contents of values parameter and {Pass through style} sets the whether the block displays an output port in the Simulink. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Values",
+   "direction": "input",
+   "summary": "Input signal scalar | cell array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable",
+   "default": "on",
+   "values": "Specify whether the block is enabled on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Values",
+   "default": "",
+   "values": "Specify the test objective scalar | cell array",
+   "group": ""
+  },
+  {
+   "name": "Display values",
+   "default": "on",
+   "values": "Display the contents of values parameter on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Pass through style",
+   "default": "on",
+   "values": "Specify whether the block displays an output port in the Simulink Editor on (default) | off",
+   "group": ""
+  }
+ ]
+}

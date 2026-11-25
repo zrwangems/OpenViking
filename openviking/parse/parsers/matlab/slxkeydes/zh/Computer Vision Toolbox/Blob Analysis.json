@@ -1,0 +1,167 @@
+{
+ "key": "Blob Analysis",
+ "title": "Blob Analysis",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/Blob_Analysis.md"
+ ],
+ "text": "标记区域的统计量，输入 1 路、输出 3 路；按 {Statistics output data type} 指定输出数据类型；{Area} 指定标记区域中的像素数 vector、{Centroid} 指定质心坐标 M -by-2 matrix、{BBox} 指定边界框坐标 M -by-4 matrix、{Major axis length} 指定椭圆的长轴长度、{Minor axis length} 指定椭圆的短轴长度、{Orientation} 指定方向、{Eccentricity} 指定离心率、{Equivalent diameter squared} 指定等效直径的平方、{Extent} 指定范围、{Perimeter} 指定周长、{Connectivity} 指定标记区域的数量、{Output label matrix} 输出标签矩阵、{Maximum number of blobs} 指定斑点最大数量 scalar、{Warn if maximum number of blobs is exceeded} 指定超过最大斑点数量时发出警告、{Output actual number of blobs} 指定斑点数量、{Specify minimum blob area in pixels} 指定斑点最小面积、{Specify maximum blob area in pixels} 指定斑点最大面积、{Exclude blobs touching image border} 指定排除接触图像边界的斑点、{Output blob statistics as a variable size signal} 指定将斑点统计量输出为可变大小信号、{Fill empty spaces in output} 指定填充输出中的空位、{Fill values} 用于填充输出中空位的标量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "二值图像 vector | matrix"
+  },
+  {
+   "name": "Area",
+   "direction": "output",
+   "summary": "标记区域中的像素数 vector"
+  },
+  {
+   "name": "Centroid",
+   "direction": "output",
+   "summary": "质心坐标 M -by-2 matrix"
+  },
+  {
+   "name": "BBox",
+   "direction": "output",
+   "summary": "边界框坐标 M -by-4 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Area",
+   "default": "",
+   "values": "标记区域中的像素数 vector",
+   "group": ""
+  },
+  {
+   "name": "Centroid",
+   "default": "",
+   "values": "质心坐标 M -by-2 matrix",
+   "group": ""
+  },
+  {
+   "name": "BBox",
+   "default": "",
+   "values": "边界框坐标 M -by-4 matrix",
+   "group": ""
+  },
+  {
+   "name": "Major axis length",
+   "default": "off",
+   "values": "椭圆的长轴长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Minor axis length",
+   "default": "off",
+   "values": "椭圆的短轴长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Orientation",
+   "default": "off",
+   "values": "方向 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Eccentricity",
+   "default": "off",
+   "values": "离心率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Equivalent diameter squared",
+   "default": "off",
+   "values": "等效直径的平方 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Extent",
+   "default": "off",
+   "values": "范围 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Perimeter",
+   "default": "off",
+   "values": "周长 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Statistics output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | specify via Data Types tab",
+   "group": ""
+  },
+  {
+   "name": "Connectivity",
+   "default": "8",
+   "values": "标记区域的数量 8 (default) | 4",
+   "group": ""
+  },
+  {
+   "name": "Output label matrix",
+   "default": "off",
+   "values": "输出标签矩阵 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of blobs",
+   "default": "",
+   "values": "斑点最大数量 scalar",
+   "group": ""
+  },
+  {
+   "name": "Warn if maximum number of blobs is exceeded",
+   "default": "on",
+   "values": "超过最大斑点数量时发出警告 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output actual number of blobs",
+   "default": "off",
+   "values": "斑点数量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Specify minimum blob area in pixels",
+   "default": "0",
+   "values": "斑点最小面积（像素） 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify maximum blob area in pixels",
+   "default": "intmax(’uint32’)",
+   "values": "斑点最大面积（像素） intmax(’uint32’) (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Exclude blobs touching image border",
+   "default": "off",
+   "values": "排除接触图像边界的斑点 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output blob statistics as a variable size signal",
+   "default": "off",
+   "values": "将斑点统计量输出为可变大小信号 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Fill empty spaces in output",
+   "default": "off",
+   "values": "填充输出中的空位 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Fill values",
+   "default": "-1",
+   "values": "用于填充输出中空位的标量 -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

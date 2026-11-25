@@ -1,0 +1,13 @@
+{
+ "key": "Telescoping Joint",
+ "title": "Telescoping Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Telescoping_Joint.md"
+ ],
+ "text": "包含一个球面关节基元和一个移动关节基元的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

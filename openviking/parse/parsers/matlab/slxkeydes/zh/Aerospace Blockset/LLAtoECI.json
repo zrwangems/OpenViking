@@ -1,0 +1,134 @@
+{
+ "key": "LLAtoECI",
+ "title": "LLA to ECI Position",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/LLA_to_ECI_Position.md"
+ ],
+ "text": "将纬度、经度、高度 (LLA) 坐标转换为地心惯性 (ECI) 坐标，输入 6 路、输出 1 路；按 {Month} 指定月份；{Reduction} 指定归算方法 IAU-76/FK5、{Year} 指定年份、{Day} 指定日、{Hour} 指定小时、{Minutes} 指定分钟、{Seconds} 指定秒、{Time increment} 指定时间增量 Day、{Action for out-of-range input} 指定超出范围时的模块行为、{Higher accuracy parameters} 启用更高精度参数、{Units} 指定单位 Metric、{Earth model} 指定地球模型 WGS84、{Flattening} 指定行星扁率 1/298.257223563、{Equatorial radius} 指定行星赤道半径，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "[μ l h]",
+   "direction": "input",
+   "summary": "纬度、经度和高度 three-element vector"
+  },
+  {
+   "name": "ΔUT1",
+   "direction": "input",
+   "summary": "UTC 与世界时之间的差 scalar"
+  },
+  {
+   "name": "ΔAT",
+   "direction": "input",
+   "summary": "国际原子时与 UTC 之间的差 scalar"
+  },
+  {
+   "name": "[xp,yp]",
+   "direction": "input",
+   "summary": "地球极移 1-by-2 array"
+  },
+  {
+   "name": "Port_5",
+   "direction": "input",
+   "summary": "基于归算方法的调整 1-by-2 array"
+  },
+  {
+   "name": "Port_6",
+   "direction": "input",
+   "summary": "时间增量源 scalar"
+  },
+  {
+   "name": "X i",
+   "direction": "output",
+   "summary": "原始位置 3-by-1 element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reduction",
+   "default": "IAU-76/FK5",
+   "values": "归算方法 IAU-76/FK5 (default) | IAU-2000/2006",
+   "group": ""
+  },
+  {
+   "name": "Year",
+   "default": "2013",
+   "values": "年份 2013 (default) | double, whole number, greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "月份 January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Day",
+   "default": "1",
+   "values": "日 1 (default) | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31",
+   "group": ""
+  },
+  {
+   "name": "Hour",
+   "default": "0",
+   "values": "小时 0 (default) | double, whole number, 0 to 24",
+   "group": ""
+  },
+  {
+   "name": "Minutes",
+   "default": "0",
+   "values": "分钟 0 (default) | double, whole number, 0 to 60",
+   "group": ""
+  },
+  {
+   "name": "Seconds",
+   "default": "0",
+   "values": "秒 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Time increment",
+   "default": "Day",
+   "values": "时间增量 Day (default) | None | Hour | Min | Sec",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Higher accuracy parameters",
+   "default": "on",
+   "values": "启用更高精度参数 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Earth model",
+   "default": "WGS84",
+   "values": "地球模型 WGS84 (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "行星扁率 1/298.257223563 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "6378137",
+   "values": "行星赤道半径 6378137 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

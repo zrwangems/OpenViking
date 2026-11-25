@@ -1,0 +1,13 @@
+{
+ "key": "PS Switch",
+ "title": "PS Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Switch.md"
+ ],
+ "text": "由外部物理信号控制的单刀双掷开关。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

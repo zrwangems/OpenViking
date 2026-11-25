@@ -1,0 +1,13 @@
+{
+ "key": "SPST Relay",
+ "title": "SPST Relay",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/Relays/SPST_Relay.md"
+ ],
+ "text": "带延迟和故障的单刀单掷继电器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

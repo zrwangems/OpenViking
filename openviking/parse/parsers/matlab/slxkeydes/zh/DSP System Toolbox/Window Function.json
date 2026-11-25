@@ -1,0 +1,180 @@
+{
+ "key": "Window Function",
+ "title": "Window Function",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Window_Function.md"
+ ],
+ "text": "计算窗并将其应用于输入信号，输入 1 路、输出 2 路、无直接馈通；按 {Window type} 指定窗类型；{Operation} 指定操作模式 Apply window、{Sampling} 指定采样类型 Symmetric、{Sample mode} 指定采样模式 Continuous、{Sample time} 指定采样时间、{Window length} 指定窗长度、{Stopband attenuation in dB} 指定阻带衰减、{Beta} 指定 Kaiser 窗 β 参数、{Number of sidelobes} 指定旁瓣数、{Maximum sidelobe level relative to mainlobe (dB)} 指定相对于主瓣的最大旁瓣电平、{Window function name} 指定窗函数名称、{Specify additional arguments to the hamming function} 指定窗函数的附加参数、{Cell array of additional arguments} 指定附加参数、{Window data type} 指定窗数据类型、{Signed} 指定窗输出为有符号、{Word length} 指定字长、{User-defined data type (e.g. sfix(16), float(’single))} 指定用户定义数据类型 sfix、{Set fraction length in output to} 指定定点窗数据类型的定标 Best、{Fraction length} 指定用户定义的小数长度、{Rounding mode} 指定舍入模式 Floor、{Overflow mode} 指定溢出模式 Wrap、{Window} 指定窗数据类型 Same word length、{Product output} 指定乘积输出数据类型 Inherit via internal、{Output} 输出数据类型 Same as product、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix | N -D array"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出 vector | matrix | N -D array"
+  },
+  {
+   "name": "Win",
+   "direction": "output",
+   "summary": "窗输出 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "input",
+   "values": "操作模式 Apply window to input (default) | Generate window | Generate and apply window",
+   "group": "Main"
+  },
+  {
+   "name": "Window type",
+   "default": "Hamming",
+   "values": "窗类型 Hamming (default) | Bartlett | Blackman |...",
+   "group": "Main"
+  },
+  {
+   "name": "Sampling",
+   "default": "Symmetric",
+   "values": "采样类型 Symmetric (default) | Periodic",
+   "group": "Main"
+  },
+  {
+   "name": "Sample mode",
+   "default": "Continuous",
+   "values": "采样模式 Continuous (default) | Discrete",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "采样时间 1 (default) | real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Window length",
+   "default": "64",
+   "values": "窗长度 64 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Stopband attenuation in dB",
+   "default": "50",
+   "values": "阻带衰减 (dB) 50 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Beta",
+   "default": "10",
+   "values": "Kaiser 窗 β 参数 10 (default) | real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Number of sidelobes",
+   "default": "4",
+   "values": "旁瓣数 4 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum sidelobe level relative to mainlobe (dB)",
+   "default": "-30",
+   "values": "相对于主瓣的最大旁瓣电平 -30 (default) | scalar less than or equal to zero",
+   "group": "Main"
+  },
+  {
+   "name": "Window function name",
+   "default": "hamming",
+   "values": "窗函数名称 hamming (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Specify additional arguments to the hamming function",
+   "default": "off",
+   "values": "指定窗函数的附加参数 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Cell array of additional arguments",
+   "default": "{’symmetric’}",
+   "values": "附加参数 {’symmetric’} (default) | cell array",
+   "group": "Main"
+  },
+  {
+   "name": "Window data type",
+   "default": "double",
+   "values": "窗数据类型 double (default) | single | Fixed-point | User-defined | Inherit via back propagation",
+   "group": "Data Types"
+  },
+  {
+   "name": "Signed",
+   "default": "on",
+   "values": "窗输出为有符号 on (default) | off",
+   "group": "Data Types"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "字长 16 (default) | positive integer in the range [2 128]",
+   "group": "Data Types"
+  },
+  {
+   "name": "User-defined data type (e.g. sfix(16), float(’single))",
+   "default": "sfix(16)",
+   "values": "用户定义数据类型 sfix(16) (default) | built-in data type | fixed-point data type",
+   "group": "Data Types"
+  },
+  {
+   "name": "Set fraction length in output to",
+   "default": "precision",
+   "values": "定点窗数据类型的定标 Best precision (default) | User-defined",
+   "group": "Data Types"
+  },
+  {
+   "name": "Fraction length",
+   "default": "15",
+   "values": "用户定义的小数长度 15 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Overflow mode",
+   "default": "Wrap",
+   "values": "溢出模式 Wrap (default) | Saturate",
+   "group": "Data Types"
+  },
+  {
+   "name": "Window",
+   "default": "input",
+   "values": "窗数据类型 Same word length as input (default) | Specify word length | Binary point scaling | Slope and bias scaling",
+   "group": "Data Types"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit via internal rule (default) | Same as input | Binary point scaling | Slope and bias scaling",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "output",
+   "values": "输出数据类型 Same as product output (default) | Same as input | Binary point scaling | Slope and bias scaling",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

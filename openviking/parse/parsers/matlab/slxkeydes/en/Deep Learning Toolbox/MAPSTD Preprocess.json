@@ -1,0 +1,13 @@
+{
+ "key": "MAPSTD Preprocess",
+ "title": "mapstd",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/mapstd.md"
+ ],
+ "text": "Process matrices by mapping each row’s means to 0 and deviations to 1.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

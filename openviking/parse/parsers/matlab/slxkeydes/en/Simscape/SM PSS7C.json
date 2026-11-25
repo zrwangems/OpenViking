@@ -1,0 +1,228 @@
+{
+ "key": "SM PSS7C",
+ "title": "SM PSS7C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_PSS7C.md"
+ ],
+ "text": "Discrete-time or continuous-time single input PSS7C power system stabilizer, 2 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Power system stabilizer main gain, K_S1 (pu)} sets the power system stabilizer forward path gain, {Power system stabilizer gain, K_S2 (pu)} sets the power system stabilizer transducer gain, {Power system stabilizer gain, K_S3 (pu)}, {PSS transducer time constant, T_6 (s)} sets the transducer time constant, {PSS transducer time constant, T_7 (s)} sets the transducer time constant, {PSS washout time constant, T_w1 (s)} sets the washout time constant, {PSS washout time constant, T_w2 (s)} sets the washout time constant, {PSS washout time constant, T_w3 (s)} sets the washout time constant, {PSS washout time constant, T_w4 (s)} sets the washout time constant, {PSS transducer time constant, T_8 (s)} sets the transducer time constant, {PSS washout time constant, T_9 (s)} sets the washout time constant, {Denominator exponent for ramp-track filter, M} sets the exponent of denominator of the ramp-track, {Overall exponent for ramp-track filter, N} sets the overall exponent of ramp-track filter, {PSS canonical gain 0, K_0 (pu)} sets the power system stabilizer canonical gain, {PSS canonical gain 1, K_1 (pu)} sets the power system stabilizer canonical gain, {PSS canonical gain 2, K_2 (pu)} sets the power system stabilizer canonical gain, {PSS canonical gain 3, K_3 (pu)} sets the power system stabilizer canonical gain, {PSS canonical gain 4, K_4 (pu)} sets the power system stabilizer canonical gain, {PSS third block gain, K_i3 (pu)} sets the power system stabilizer third block gain, {PSS fourth block gain, K_i4 (pu)} sets the power system stabilizer fourth block gain, {PSS time constant (first block), T_i1 (s)} sets the power system stabilizer time constant for the first, {PSS time constant (second block), T_i2 (s)} sets the power system stabilizer time constant for the second, {PSS time constant (third block), T_i3 (s)} sets the power system stabilizer time constant for the third, {PSS time constant (fourth block), T_i4 (s)} sets the power system stabilizer time constant for the fourth, {Maximum PSS output, V_STmax (pu)} sets the maximum stabilization, {Minimum PSS output, V_STmin (pu)} sets the minimum stabilization, {Input signal #1 maximum limit, V_S1max (pu)} sets the maximum limit for the first input, {Input signal #1 minimum limit, V_S1min (pu)} sets the minimum limit for the first input, {Input signal #2 maximum limit, V_S2max (pu)} sets the maximum limit for the second input, {Input signal #2 minimum limit, V_S2min (pu)} sets the minimum limit for the second input, {Generator MW threshold for PSS activation, P_PSSon (pu)} sets the generator threshold for power system stabilizer and {Generator MW threshold for PSS de-activation, P_PSSoff (pu)} sets the generator threshold for power system stabilizer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_SI1",
+   "direction": "input",
+   "summary": "Speed, frequency, or power scalar"
+  },
+  {
+   "name": "V_SI2",
+   "direction": "input",
+   "summary": "Electrical power scalar"
+  },
+  {
+   "name": "V_ST",
+   "direction": "output",
+   "summary": "Stabilization speed, frequency, or power scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power system stabilizer main gain, K_S1 (pu)",
+   "default": "50",
+   "values": "Power system stabilizer forward path gain 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Power system stabilizer gain, K_S2 (pu)",
+   "default": "0.7052",
+   "values": "Power system stabilizer transducer gain 0.7052 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Power system stabilizer gain, K_S3 (pu)",
+   "default": "1",
+   "values": "Power system stabilizer gain 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_6 (s)",
+   "default": "0",
+   "values": "Transducer time constant 6 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_7 (s)",
+   "default": "10",
+   "values": "Transducer time constant 7 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w1 (s)",
+   "default": "10",
+   "values": "Washout time constant 1 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w2 (s)",
+   "default": "10",
+   "values": "Washout time constant 2 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w3 (s)",
+   "default": "10",
+   "values": "Washout time constant 3 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w4 (s)",
+   "default": "0",
+   "values": "Washout time constant 4 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_8 (s)",
+   "default": "0.5",
+   "values": "Transducer time constant 8 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_9 (s)",
+   "default": "0.1",
+   "values": "Washout time constant 9 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Denominator exponent for ramp-track filter, M",
+   "default": "5",
+   "values": "Exponent of denominator of the ramp-track filter 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Overall exponent for ramp-track filter, N",
+   "default": "1",
+   "values": "Overall exponent of ramp-track filter 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS canonical gain 0, K_0 (pu)",
+   "default": "0.399",
+   "values": "Power system stabilizer canonical gain 0 0.399 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS canonical gain 1, K_1 (pu)",
+   "default": "1.8462",
+   "values": "Power system stabilizer canonical gain 1 1.8462 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS canonical gain 2, K_2 (pu)",
+   "default": "0.4231",
+   "values": "Power system stabilizer canonical gain 2 0.4231 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS canonical gain 3, K_3 (pu)",
+   "default": "0.2104",
+   "values": "Power system stabilizer canonical gain 3 0.2104 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS canonical gain 4, K_4 (pu)",
+   "default": "0",
+   "values": "Power system stabilizer canonical gain 4 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS third block gain, K_i3 (pu)",
+   "default": "1",
+   "values": "Power system stabilizer third block gain 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS fourth block gain, K_i4 (pu)",
+   "default": "0",
+   "values": "Power system stabilizer fourth block gain 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS time constant (first block), T_i1 (s)",
+   "default": "0.03",
+   "values": "Power system stabilizer time constant for the first block 0.03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS time constant (second block), T_i2 (s)",
+   "default": "0.0293",
+   "values": "Power system stabilizer time constant for the second block 0.0293 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS time constant (third block), T_i3 (s)",
+   "default": "0.2804",
+   "values": "Power system stabilizer time constant for the third block 0.2804 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS time constant (fourth block), T_i4 (s)",
+   "default": "1",
+   "values": "Power system stabilizer time constant for the fourth block 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum PSS output, V_STmax (pu)",
+   "default": "0.05",
+   "values": "Maximum stabilization 0.05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum PSS output, V_STmin (pu)",
+   "default": "-0.05",
+   "values": "Minimum stabilization -0.05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #1 maximum limit, V_S1max (pu)",
+   "default": "2",
+   "values": "Maximum limit for the first input 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #1 minimum limit, V_S1min (pu)",
+   "default": "-2",
+   "values": "Minimum limit for the first input -2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #2 maximum limit, V_S2max (pu)",
+   "default": "2",
+   "values": "Maximum limit for the second input 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #2 minimum limit, V_S2min (pu)",
+   "default": "-2",
+   "values": "Minimum limit for the second input -2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Generator MW threshold for PSS activation, P_PSSon (pu)",
+   "default": "0",
+   "values": "Generator threshold for power system stabilizer activation 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Generator MW threshold for PSS de-activation, P_PSSoff (pu)",
+   "default": "0",
+   "values": "Generator threshold for power system stabilizer deactivation 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

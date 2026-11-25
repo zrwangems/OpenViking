@@ -1,0 +1,13 @@
+{
+ "key": "P-Channel MOSFET",
+ "title": "P-Channel MOSFET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/P_Channel_MOSFET.md"
+ ],
+ "text": "P-Channel MOSFET，使用 Shichman-Hodges 方程或基于表面势的模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

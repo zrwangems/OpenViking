@@ -1,0 +1,56 @@
+{
+ "key": "MultiPlot Graph",
+ "title": "MultiPlot Graph",
+ "toolbox": "Robust Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robust Control Toolbox/MultiPlot_Graph.md"
+ ],
+ "text": "Plot results of multiple simulations, 1 input, {t-min} sets X-axis lower limit; {t-max} sets the x-axis upper limit, {y-min} sets the y-axis lower limit, {y-max} sets the y-axis upper limit, {Plot title} sets the figure title and {Workspace variable for export} sets the variable name for saving plot data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(y)",
+   "direction": "input",
+   "summary": "Signal to plot scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "t-min",
+   "default": "0",
+   "values": "X-axis lower limit 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "t-max",
+   "default": "20",
+   "values": "X-axis upper limit 20 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "y-min",
+   "default": "–1",
+   "values": "Y-axis lower limit –1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "y-max",
+   "default": "1",
+   "values": "Y-axis upper limit 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Plot title",
+   "default": "empty",
+   "values": "Figure title empty (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable for export",
+   "default": "multisimout",
+   "values": "Variable name for saving plot data multisimout (default) | character vector",
+   "group": ""
+  }
+ ]
+}

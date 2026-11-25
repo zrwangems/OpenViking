@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Heat Exchanger (TL-TL)",
+ "title": "System-Level Heat Exchanger (TL-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid/System_Level_Heat_Exchanger_TL_TL.md"
+ ],
+ "text": "Heat exchanger based on performance data between two thermal liquid networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

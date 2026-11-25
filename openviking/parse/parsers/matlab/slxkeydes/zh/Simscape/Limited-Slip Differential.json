@@ -1,0 +1,13 @@
+{
+ "key": "Limited-Slip Differential",
+ "title": "Limited-Slip Differential",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Limited_Slip_Differential.md"
+ ],
+ "text": "减小两个相连轴之间的速度差。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

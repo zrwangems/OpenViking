@@ -1,0 +1,50 @@
+{
+ "key": "Barker Code Generator",
+ "title": "Barker Code Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Sequence Generators/Barker_Code_Generator.md"
+ ],
+ "text": "Generate bipolar Barker Code, 1 output, {Sample time} sets Output sample time; {Code length} sets the length of generated code, {Samples per frame} sets the samples per output frame, {Output data type} and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "output",
+   "direction": "output",
+   "summary": "Barker code frame column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Code length",
+   "default": "7",
+   "values": "Length of generated code 7 (default) | 1 | 2 | 3 | 4 | 5 | 11 | 13",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Output sample time 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per output frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | int8",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

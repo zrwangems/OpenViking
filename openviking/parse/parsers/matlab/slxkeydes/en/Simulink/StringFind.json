@@ -1,0 +1,42 @@
+{
+ "key": "StringFind",
+ "title": "String Find",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Find.md"
+ ],
+ "text": "Return index of first occurrence of pattern string, 2 inputs, 1 output, direct feedthrough, {Mode} sets Category of data type; {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "str",
+   "direction": "input",
+   "summary": "String in which to find pattern scalar"
+  },
+  {
+   "name": "sub",
+   "direction": "input",
+   "summary": "Pattern scalar"
+  },
+  {
+   "name": "idx",
+   "direction": "output",
+   "summary": "Position index of found pattern scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | int8 | int16 | int32 |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Category of data type Inherit (default) | Built in | Expression",
+   "group": ""
+  }
+ ]
+}

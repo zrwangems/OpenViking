@@ -1,0 +1,24 @@
+{
+ "key": "ethercatgetsbdata",
+ "title": "EtherCAT Get Scanbus Error Data",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Get_Scanbus_Error_Data.md"
+ ],
+ "text": "Detects when an EtherCAT device in the model is not responding, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Values",
+   "direction": "input",
+   "summary": "Input from EtherCAT Get Notifications block [ Length 20 * Notification ]"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "Indicates scanbus error false (default) | true"
+  }
+ ],
+ "params": []
+}

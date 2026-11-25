@@ -1,0 +1,188 @@
+{
+ "key": "Update Metrics",
+ "title": "Update Metrics",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Update_Metrics.md"
+ ],
+ "text": "在给定新数据的情况下更新增量学习模型中的性能指标，输入 5 路、输出 2 路、直接馈通；按 {Model performance metrics to track} 指定性能指标函数；{Select initial machine learning model} 指定初始增量学习模型、{Add input port for observation weights} 添加用于观测权重的第二个输入端口、{Add input port for resetting trained learner} 添加用于重置已训练的增量学习器的输入端口、{Predictor data observation dimension} 指定预测变量数据的观测维度、{Sample time (–1 for inherited)} 用于指定采样时间、{Integer rounding mode} 指定定点运算的舍入模式、{Saturate on integer overflow} 指定溢出操作的方法、{Lock output data type setting against changes by the fixed-point tools} 防止定点工具覆盖数据类型、{Metrics data type} 指定指标输出的数据类型、{Metrics data type Minimum} 用于范围检查的指标最小值、{Metrics data type Maximum} 用于范围检查的指标最大值、{Predict response data type} 指定预测响应的数据类型 Inherit、{Predict response data type Minimum} 用于范围检查的预测响应最小值、{Predict response data type Maximum} 用于范围检查的预测响应最大值、{Loss data type} 指定损失输出的数据类型 Inherit、{Loss data type Minimum} 用于范围检查的损失最小值、{Loss data type Maximum} 用于范围检查的损失最大值、{Additional predict data type} 指定附加预测数据类型、{Additional predict data type Maximum} 用于范围检查的附加预测最大值、{Additional loss data type} 指定附加损失数据类型、{Additional loss data type Minimum} 用于范围检查的附加损失最小值、{Additional loss data type Maximum} 用于范围检查的附加损失最大值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mdl",
+   "direction": "input",
+   "summary": "增量学习模型 bus signal"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "预测变量数据块 numeric matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "响应（标签）数据块 numeric vector | logical vector | enumerated vector"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "观测权重数据块 vector of positive values"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "重置信号 0 ( false ) | 1 ( true ) | numeric scalar"
+  },
+  {
+   "name": "IsWarm",
+   "direction": "output",
+   "summary": "指示模型是否跟踪性能指标的标志 logical"
+  },
+  {
+   "name": "metrics",
+   "direction": "output",
+   "summary": "模型性能指标 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "Mdl",
+   "values": "初始增量学习模型 Mdl (default) | incrementalRegressionLinear model object | incrementalClassificationLinear model object | incrementalClassificationECOC model object",
+   "group": "Main"
+  },
+  {
+   "name": "Model performance metrics to track",
+   "default": "classiferror",
+   "values": "性能指标函数 classiferror (default) | binodeviance | exponential | hinge | logit | quadratic | mse | epsiloninsensitive",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for observation weights",
+   "default": "off",
+   "values": "添加用于观测权重的第二个输入端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for resetting trained learner",
+   "default": "off",
+   "values": "添加用于重置已训练的增量学习器的输入端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Predictor data observation dimension",
+   "default": "rows",
+   "values": "预测变量数据的观测维度 rows (default) | columns",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "用于指定采样时间的选项 –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Metrics data type",
+   "default": "double",
+   "values": "指标输出的数据类型 double (default) | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Metrics data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的指标最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Metrics data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的指标最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Predict response data type",
+   "default": "auto",
+   "values": "预测响应的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Predict response data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的预测响应最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Predict response data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的预测响应最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Loss data type",
+   "default": "auto",
+   "values": "损失输出的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Loss data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的损失最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Loss data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的损失最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional predict data type",
+   "default": "rule",
+   "values": "附加预测数据类型 Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional predict data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的附加预测最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional loss data type",
+   "default": "rule",
+   "values": "附加损失数据类型 Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional loss data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的附加损失最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional loss data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的附加损失最大值 [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

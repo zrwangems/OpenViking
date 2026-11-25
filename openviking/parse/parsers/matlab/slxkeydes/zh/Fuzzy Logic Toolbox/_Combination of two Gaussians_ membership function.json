@@ -1,0 +1,49 @@
+{
+ "key": "\"Combination of two Gaussians\" membership function",
+ "title": "Gaussian2 MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Gaussian2_MF.md"
+ ],
+ "text": "两个高斯隶属度函数的组合，输入 1 路、输出 1 路；{Standard deviation for left curve sigma1} 指定左侧高斯标准差、{Mean for left curve c1} 指定左侧高斯均值、{Standard deviation for right curve sigma2} 指定右侧高斯标准差、{Mean for right curve c2} 指定右侧高斯均值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入值 scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "隶属度值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Standard deviation for left curve sigma1",
+   "default": "3",
+   "values": "左侧高斯标准差 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mean for left curve c1",
+   "default": "-1",
+   "values": "左侧高斯均值 -1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation for right curve sigma2",
+   "default": "1",
+   "values": "右侧高斯标准差 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mean for right curve c2",
+   "default": "5",
+   "values": "右侧高斯均值 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

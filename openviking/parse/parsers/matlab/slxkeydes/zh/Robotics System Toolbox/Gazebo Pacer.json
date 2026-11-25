@@ -1,0 +1,32 @@
+{
+ "key": "Gazebo Pacer",
+ "title": "Gazebo Pacer",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Pacer.md"
+ ],
+ "text": "Gazebo 与 Simulink 之间同步步进的设置；输出 1 路；{Reset behavior} 指定重置仿真时间或场景 Reset Gazebo simulation、{Sample time} 指定输入的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "同步状态 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reset behavior",
+   "default": "time",
+   "values": "重置仿真时间或场景 Reset Gazebo simulation time (default) | Reset Gazebo simulation time and scene",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "输入的采样时间 0.001 (default) | positive",
+   "group": ""
+  }
+ ]
+}

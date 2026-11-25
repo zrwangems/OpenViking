@@ -1,0 +1,13 @@
+{
+ "key": "Pressure & Temperature Sensor (MA)",
+ "title": "Pressure & Temperature Sensor (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sensors/Pressure_Temperature_Sensor_MA.md"
+ ],
+ "text": "Measure pressure and temperature in moist air networks。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

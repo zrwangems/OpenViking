@@ -1,0 +1,48 @@
+{
+ "key": "TustinPilotModel",
+ "title": "Tustin Pilot Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Pilot Models/Tustin_Pilot_Model.md"
+ ],
+ "text": "Represent Tustin pilot model, 2 inputs, 1 output; {Pilot gain}, {Pilot time delay(s)} and {Pilot lead constant}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x com",
+   "direction": "input",
+   "summary": "Signal command scalar"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Signal controlled by pilot scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Aircraft command scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pilot gain",
+   "default": "1",
+   "values": "Pilot gain 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot time delay(s)",
+   "default": "0.1",
+   "values": "Pilot time delay 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot lead constant",
+   "default": "5",
+   "values": "Pilot lead constant 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

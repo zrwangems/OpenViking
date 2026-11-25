@@ -1,0 +1,162 @@
+{
+ "key": "ModelReference",
+ "title": "Model",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Model.md",
+  "HDL Coder/Ports & Subsystems/Model.md"
+ ],
+ "text": "Reference another model to create model hierarchy, 1 input, 1 output, no direct feedthrough, {Simulation mode} sets Simulation mode for model reference; {Model name} sets the file name of referenced model, {Code interface} sets the option to generate code from top model or referenced model Model, {Show model initialize port} sets the option to display initialize event port, {Show model reinitialize ports} sets the option to display reinitialize event ports, {Show model reset ports} sets the option to display reset event ports, {Show model terminate port} sets the option to display terminate event port, {Schedule rates} sets the option to schedule periodic events, {Schedule rates with} sets the option to create partitions or periodic event ports, {Instance parameters} displays instance parameters and specify values for referenced model, {Use local solver} sets the option to use local solver to solve referenced model link to referenced model configuration, {Solver} sets the option to select local solver link to referenced model configuration, {Fixed step} sets the option to specify step size for fixed-step local solver link to referenced model configuration, {Communication step size} sets the discrete interval of communication between local solver and parent solver positive scalar, {Input signal handling} sets the extrapolation method for local solver and {Output signal handling} sets the interpolation method for outputs from local. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input that corresponds to root-level blocks of referenced model scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output that corresponds to root-level blocks of referenced model scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "Enable",
+   "direction": "unknown",
+   "summary": "Control signal that enables referenced model scalar | vector | matrix"
+  },
+  {
+   "name": "Trigger",
+   "direction": "unknown",
+   "summary": "Control signal that triggers referenced model scalar | vector | matrix"
+  },
+  {
+   "name": "Function Call",
+   "direction": "unknown",
+   "summary": "Control signal for function-call event scalar"
+  },
+  {
+   "name": "initialize",
+   "direction": "unknown",
+   "summary": "Control signal for model initialize event scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "unknown",
+   "summary": "Control signal for model reset event scalar"
+  },
+  {
+   "name": "reinit",
+   "direction": "unknown",
+   "summary": "Control signal for model reinitialize event scalar"
+  },
+  {
+   "name": "terminate",
+   "direction": "unknown",
+   "summary": "Control signal for model terminate event scalar"
+  },
+  {
+   "name": "D",
+   "direction": "unknown",
+   "summary": "Control signal for scheduling periodic events scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model name",
+   "default": "",
+   "values": "File name of referenced model no default",
+   "group": "Main"
+  },
+  {
+   "name": "Simulation mode",
+   "default": "Normal",
+   "values": "Simulation mode for model reference Normal (default) | Accelerator | Software-in-the-loop (SIL) | Processor-in-the-loop (PIL)",
+   "group": "Main"
+  },
+  {
+   "name": "Code interface",
+   "default": "reference",
+   "values": "Option to generate code from top model or referenced model Model reference (default) | Top model",
+   "group": "Main"
+  },
+  {
+   "name": "Show model initialize port",
+   "default": "off",
+   "values": "Option to display initialize event port off (default) | on",
+   "group": "Model Events Simulation"
+  },
+  {
+   "name": "Show model reinitialize ports",
+   "default": "off",
+   "values": "Option to display reinitialize event ports off (default) | on",
+   "group": "Model Events Simulation"
+  },
+  {
+   "name": "Show model reset ports",
+   "default": "off",
+   "values": "Option to display reset event ports off (default) | on",
+   "group": "Model Events Simulation"
+  },
+  {
+   "name": "Show model terminate port",
+   "default": "off",
+   "values": "Option to display terminate event port off (default) | on",
+   "group": "Model Events Simulation"
+  },
+  {
+   "name": "Schedule rates",
+   "default": "off",
+   "values": "Option to schedule periodic events off (default) | on",
+   "group": "Model Events Simulation"
+  },
+  {
+   "name": "Schedule rates with",
+   "default": "Ports",
+   "values": "Option to create partitions or periodic event ports Ports (default) | Schedule Editor",
+   "group": "Model Events Simulation"
+  },
+  {
+   "name": "Instance parameters",
+   "default": "",
+   "values": "Display instance parameters and specify values for referenced model number | workspace variable | mathematical expression | structure or structure field",
+   "group": "Instance Parameters"
+  },
+  {
+   "name": "Use local solver",
+   "default": "",
+   "values": "Option to use local solver to solve referenced model link to referenced model configuration parameter",
+   "group": "Solver"
+  },
+  {
+   "name": "Solver",
+   "default": "",
+   "values": "Option to select local solver link to referenced model configuration parameter",
+   "group": "Solver"
+  },
+  {
+   "name": "Fixed step",
+   "default": "",
+   "values": "Option to specify step size for fixed-step local solver link to referenced model configuration parameter",
+   "group": "Solver"
+  },
+  {
+   "name": "Communication step size",
+   "default": "",
+   "values": "Discrete interval of communication between local solver and parent solver positive scalar double",
+   "group": "Solver"
+  },
+  {
+   "name": "Input signal handling",
+   "default": "Auto",
+   "values": "Extrapolation method for local solver inputs Auto (default) | Zero-order hold",
+   "group": "Solver"
+  },
+  {
+   "name": "Output signal handling",
+   "default": "Auto",
+   "values": "Interpolation method for outputs from local solver Auto (default) | Use solver interpolant | Zero-order hold",
+   "group": "Solver"
+  }
+ ]
+}

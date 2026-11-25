@@ -1,0 +1,13 @@
+{
+ "key": "Single-Acting Actuator (IL)",
+ "title": "Single-Acting Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Single_Acting_Actuator_IL.md"
+ ],
+ "text": "Single-acting linear actuator in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

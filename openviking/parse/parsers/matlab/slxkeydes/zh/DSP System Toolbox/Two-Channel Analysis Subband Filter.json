@@ -1,0 +1,126 @@
+{
+ "key": "Two-Channel Analysis Subband Filter",
+ "title": "Two-Channel Analysis Subband Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Two_Channel_Analysis_Subband_Filter.md"
+ ],
+ "text": "将信号分解为高频子带和低频子带，输入 1 路、输出 2 路、无直接馈通；按 {Rounding mode} 指定定点运算的舍入模式；{Lowpass FIR filter coefficients}、{Highpass FIR filter coefficients}、{Input processing} 指定输入处理 Columns as channels、{Rate options} 指定速率选项 Enforce single-rate、{Allow arbitrary frame length for fixed-size input signals} 允许固定大小输入信号的任意帧长度、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Coefficients} 指定系数的数据类型、{Coefficients Minimum} 指定滤波器系数的最小值、{Coefficients Maximum} 指定滤波器系数的最大值、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器的数据类型、{Output} 输出数据类型、{Output Minimum} 输出最小值、{Output Maximum} 输出最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "数据输入 column vector | matrix"
+  },
+  {
+   "name": "Hi band",
+   "direction": "output",
+   "summary": "高频子带 column vector | matrix"
+  },
+  {
+   "name": "Lo band",
+   "direction": "output",
+   "summary": "低频子带 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lowpass FIR filter coefficients",
+   "default": "0.3327]",
+   "values": "Lowpass FIR filter coefficients [0.0352 -0.0854 -0.1350 0.4599 0.8069 0.3327] (default) | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Highpass FIR filter coefficients",
+   "default": "0.0352]",
+   "values": "Highpass FIR filter coefficients [-0.3327 0.8069 -0.4599 -0.1350 0.0854 0.0352] (default) | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "输入处理 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "速率选项 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "允许固定大小输入信号的任意帧长度 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "系数的数据类型 Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Minimum",
+   "default": "[]",
+   "values": "滤波器系数的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Maximum",
+   "default": "[]",
+   "values": "滤波器系数的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器的数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "输出数据类型 Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "输出最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "输出最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PS Divide",
+ "title": "PS Divide",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Divide.md"
+ ],
+ "text": "Compute element-wise division of two input physical signals.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

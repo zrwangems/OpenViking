@@ -1,0 +1,111 @@
+{
+ "key": "Sinestream Signal Generator",
+ "title": "Sinestream Signal Generator",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Signal Generation/Sinestream_Signal_Generator.md"
+ ],
+ "text": "Generate sinestream input signal for plant frequency response estimation, 3 inputs, 3 outputs, {Sample time (Ts)} sets Sample time; {Data Type} sets the floating point precision, {Excitation signal source}, {Frequencies}, {Amplitudes}, {Number of frequencies} sets the number of externally supplied frequencies, {Number of signal periods} sets the number of periods each sine wave is at maximum, {Waveform Type}, {Phase Shift} sets the phase shift of the wave, {Generate three-phase perturbation signal} and {Show frequency index port} enables frequency index port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "Start and stop the signal generation scalar"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "Frequencies for estimation experiment vector"
+  },
+  {
+   "name": "amp",
+   "direction": "input",
+   "summary": "Perturbation amplitudes scalar | vector"
+  },
+  {
+   "name": "sin",
+   "direction": "output",
+   "summary": "Sinestream perturbation signal scalar | vector"
+  },
+  {
+   "name": "3ϕ-sin",
+   "direction": "output",
+   "summary": "Three-phase sinestream perturbation signal vector"
+  },
+  {
+   "name": "idx w",
+   "direction": "output",
+   "summary": "Output frequency indices scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "Sample time 0.1 (default) | positive scalar | –1",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Floating point precision double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Excitation signal source",
+   "default": "parameters",
+   "values": "Excitation signal source Block parameters (default) | External ports",
+   "group": ""
+  },
+  {
+   "name": "Frequencies",
+   "default": "2]",
+   "values": "Frequencies for estimation [0.5 1 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1",
+   "values": "Amplitudes of injected perturbations 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of frequencies",
+   "default": "3",
+   "values": "Number of externally supplied frequencies 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of signal periods",
+   "default": "6",
+   "values": "Number of periods each sine wave is at maximum amplitude 6 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Waveform Type",
+   "default": "sine",
+   "values": "Waveform type sine (default) | cosine | both",
+   "group": "Advanced Settings"
+  },
+  {
+   "name": "Phase Shift",
+   "default": "0",
+   "values": "Phase shift of the wave 0 (default) | scalar | vector",
+   "group": "Advanced Settings"
+  },
+  {
+   "name": "Generate three-phase perturbation signal",
+   "default": "off",
+   "values": "Generate three-phase perturbation signal off (default) | on",
+   "group": "Advanced Settings"
+  },
+  {
+   "name": "Show frequency index port",
+   "default": "off",
+   "values": "Enable frequency index port off (default) | on",
+   "group": "Advanced Settings"
+  }
+ ]
+}

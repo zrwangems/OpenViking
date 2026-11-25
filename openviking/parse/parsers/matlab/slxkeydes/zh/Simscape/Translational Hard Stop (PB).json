@@ -1,0 +1,13 @@
+{
+ "key": "Translational Hard Stop (PB)",
+ "title": "Translational Hard Stop (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Hard_Stop_PB.md"
+ ],
+ "text": "基于位置的机械平移系统中的硬限位。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

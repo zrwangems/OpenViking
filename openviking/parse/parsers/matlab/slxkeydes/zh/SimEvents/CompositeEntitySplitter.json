@@ -1,0 +1,36 @@
+{
+ "key": "CompositeEntitySplitter",
+ "title": "Composite Entity Splitter",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Composite_Entity_Splitter.md"
+ ],
+ "text": "拆分复合实体，输入 1 路、输出 2 路；{Number of output ports} 输出端口数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "port_1",
+   "direction": "input",
+   "summary": "输入复合实体 scalar | vector | matrix"
+  },
+  {
+   "name": "port_1",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  },
+  {
+   "name": "port_2",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of output ports",
+   "default": "2",
+   "values": "指定输出端口数 2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

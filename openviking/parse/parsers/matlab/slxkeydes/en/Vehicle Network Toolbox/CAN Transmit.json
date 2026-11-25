@@ -1,0 +1,44 @@
+{
+ "key": "CAN Transmit",
+ "title": "CAN Transmit",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN Communication/CAN_Transmit.md"
+ ],
+ "text": "Transmit CAN message to selected CAN device, 1 input; {Device} sets the cAN device and channel, {Transmit Options: On data change} enables event-based transmission when data, {Transmit Options: Periodic} enables periodic transmission and {Transmit Options: Message period} sets the period of message transmission rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "input",
+   "summary": "CAN message to transmit packed CAN message"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN device and channel list option",
+   "group": ""
+  },
+  {
+   "name": "Transmit Options: On data change",
+   "default": "’off’",
+   "values": "Enable event-based transmission when data changes ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Transmit Options: Periodic",
+   "default": "’off’",
+   "values": "Enable periodic transmission ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Transmit Options: Message period",
+   "default": "1.000",
+   "values": "Period of message transmission rate 1.000 (default) | positive numeric scalar",
+   "group": ""
+  }
+ ]
+}

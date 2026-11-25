@@ -1,0 +1,137 @@
+{
+ "key": "Operational Amplifier",
+ "title": "Operational Amplifier",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Operational_Amplifier.md"
+ ],
+ "text": "Model operational amplifier with two or more poles, 2 inputs, 2 outputs; {Operational Amplifier Circuit} sets the type of operational amplifier circuit Double-pole, {Inherit sample interval from input}, {Sample interval (s)} sets the sample interval value used in MATLAB analyses, {Simulate using} selects simulation mode, {Supply rail high (V)} sets the maximum supply voltage, {Supply rail low (V)} sets the minimum supply voltage, {Input offset voltage (V)} sets the offset voltage at input terminals, {Open loop gain (V/V)} sets the operational amplifier gain without feedback, {Unity gain bandwidth (Hz)} sets the frequency at which operational amplifier gain equals unity, {Maximum tail current (A)} sets the maximum current passing through tail MOSFET in operational amplifier circuit, {Slew rate (V/s)} sets the rate of change of operational amplifier output voltage, {Output resistance (Ohms)} sets the resistance at output, {Output Capacitance (F)} sets the capacitance at output, {Transfer function poles} sets the poles in transfer function in Laplace domain, {Transfer function zeroes} sets the zeros in transfer function in Laplace domain, {Include Z-domain approximation} sets the include z -domain approximation while plotting open loop and {Plot open loop response}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "InP",
+   "direction": "input",
+   "summary": "Positive input terminal scalar"
+  },
+  {
+   "name": "InN",
+   "direction": "input",
+   "summary": "Negative input terminal scalar"
+  },
+  {
+   "name": "OutP",
+   "direction": "output",
+   "summary": "Positive output terminal scalar"
+  },
+  {
+   "name": "OutN",
+   "direction": "output",
+   "summary": "Negative output terminal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operational Amplifier Circuit",
+   "default": "Circuit",
+   "values": "Type of operational amplifier circuit Double-pole Circuit (default) | Multipole Circuit",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample interval from input",
+   "default": "off",
+   "values": "Inherit sample interval from input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample interval (s)",
+   "default": "1e-8",
+   "values": "Sample interval value used in MATLAB analyses 1e-8 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Select simulation mode Code generation (default) | Interpreted execution",
+   "group": ""
+  },
+  {
+   "name": "Supply rail high (V)",
+   "default": "5",
+   "values": "Maximum supply voltage 5 (default) | real scalar",
+   "group": "Signal Parameters"
+  },
+  {
+   "name": "Supply rail low (V)",
+   "default": "-5",
+   "values": "Minimum supply voltage -5 (default) | real scalar",
+   "group": "Signal Parameters"
+  },
+  {
+   "name": "Input offset voltage (V)",
+   "default": "0",
+   "values": "Offset voltage at input terminals 0 (default) | scalar",
+   "group": "Signal Parameters"
+  },
+  {
+   "name": "Open loop gain (V/V)",
+   "default": "3e3",
+   "values": "Operational amplifier gain without feedback 3e3 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Unity gain bandwidth (Hz)",
+   "default": "10e6",
+   "values": "Frequency at which operational amplifier gain equals unity 10e6 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Maximum tail current (A)",
+   "default": "100e-6",
+   "values": "Maximum current passing through tail MOSFET in operational amplifier circuit 100e-6 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Slew rate (V/s)",
+   "default": "10e6",
+   "values": "Rate of change of operational amplifier output voltage 10e6 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Output resistance (Ohms)",
+   "default": "10e3",
+   "values": "Resistance at output terminals 10e3 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Output Capacitance (F)",
+   "default": "50e-12",
+   "values": "Capacitance at output terminals 50e-12 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Transfer function poles",
+   "default": "-8.62e+07]",
+   "values": "Poles in transfer function in Laplace domain [-2.09e+04 -8.62e+07] (default) | column vector",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Transfer function zeroes",
+   "default": "[-9.14e+07]",
+   "values": "Zeros in transfer function in Laplace domain [-9.14e+07] (default) | column vector",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Include Z-domain approximation",
+   "default": "off",
+   "values": "Include z -domain approximation while plotting open loop response off (default) | on",
+   "group": "Analysis"
+  },
+  {
+   "name": "Plot open loop response",
+   "default": "",
+   "values": "Plot open loop response of op-amp button",
+   "group": "Analysis"
+  }
+ ]
+}

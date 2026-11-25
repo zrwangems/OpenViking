@@ -1,0 +1,156 @@
+{
+ "key": "Variable Fractional Delay",
+ "title": "Variable Fractional Delay",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Variable_Fractional_Delay.md"
+ ],
+ "text": "Delay input by time-varying fractional number of sample periods, 2 inputs, 1 output, no direct feedthrough, {Interpolation mode} sets Method of interpolation; {Interpolation filter half-length (P)} sets the half length of interpolation filter, {Interpolation points per input sample} sets the number of interpolation points per input, {Normalized input bandwidth (0 to 1)}, {Farrow filter length (N)} sets the length of Farrow filter, {Maximum delay (Dmax) in samples}, {Input processing} sets the method to process the input Columns, {InitialConditions} sets the initial values in the memory, {Disable direct feedthrough by increasing minimum possible delay by one}, {For small input delay values} sets the action to take for small input delay values Clip to the minimum value necessary, {Valid delay range (in samples)} sets the range of valid delay values Read-only, {Rounding mode} sets the rounding method for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Coefficients} sets the data type of the coefficients Same word length, {Product output} sets the data type of the product output Same as first, {Accumulator} sets the data type of accumulation operation Same as product, {Product output polyval} sets the data type of the product polynomial value Same as first, {Accumulator polyval} sets the data type of the accumulator polynomial value Same as first, {Multiplicand polyval} sets the data type of multiplicand polynomial value Same as first, {Output} sets the data type of block output Same and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Delay",
+   "direction": "input",
+   "summary": "Delay input scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Delayed output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation mode",
+   "default": "Linear",
+   "values": "Method of interpolation Linear (default) | FIR | Farrow",
+   "group": ""
+  },
+  {
+   "name": "Interpolation filter half-length (P)",
+   "default": "4",
+   "values": "Half length of interpolation filter 4 (default) | positive integer in the range [1 65535]",
+   "group": ""
+  },
+  {
+   "name": "Interpolation points per input sample",
+   "default": "10",
+   "values": "Number of interpolation points per input sample 10 (default) | positive integer in the range [2, 65,535]",
+   "group": ""
+  },
+  {
+   "name": "Normalized input bandwidth (0 to 1)",
+   "default": "1",
+   "values": "Normalized input bandwidth 1 (default) | real scalar in the range (0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Farrow filter length (N)",
+   "default": "4",
+   "values": "Length of Farrow filter 4 (default) | integer greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Maximum delay (Dmax) in samples",
+   "default": "100",
+   "values": "Maximum delay 100 (default) | integer in the range [0 65535]",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process the input Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "InitialConditions",
+   "default": "0",
+   "values": "Initial values in the memory 0 (default) | scalar | 1-by- R -by- D array | 1-by- R -by-( D+L ) array",
+   "group": ""
+  },
+  {
+   "name": "Disable direct feedthrough by increasing minimum possible delay by one",
+   "default": "off",
+   "values": "Disable direct feedthrough off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "For small input delay values",
+   "default": "kernel",
+   "values": "Action to take for small input delay values Clip to the minimum value necessary for centered kernel (default) | Use off-centered kernel | Switch to linear interpolation if kernel cannot be centered",
+   "group": ""
+  },
+  {
+   "name": "Valid delay range (in samples)",
+   "default": "100]",
+   "values": "Range of valid delay values Read-only: [0 100] (default) | [ D min D max ]",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Zero",
+   "values": "Rounding method for fixed-point operations Zero (default) | Ceiling | Convergent | Floor | Nearest | Round | Simplest",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Data type of the coefficients Same word length as input (default) | Specify word length",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Data type of the product output Same as first input (default) | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "Data type of accumulation operation Same as product output (default) | Same as first input | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Product output polyval",
+   "default": "input",
+   "values": "Data type of the product polynomial value Same as first input (default) | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Accumulator polyval",
+   "default": "input",
+   "values": "Data type of the accumulator polynomial value Same as first input (default) | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Multiplicand polyval",
+   "default": "input",
+   "values": "Data type of multiplicand polynomial value Same as first input (default) | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Data type of block output Same as accumulator (default) | Same as first input | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Fixed-Point Properties"
+  }
+ ]
+}

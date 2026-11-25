@@ -1,0 +1,126 @@
+{
+ "key": "Symbol Demodulator",
+ "title": "Symbol Demodulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/Symbol_Demodulator.md"
+ ],
+ "text": "将复星座符号解调为一组 LLR 值或数据位，输入 5 路、输出 4 路；按 {Modulation} 指定调制类型；{Modulation source} 指定调制类型来源、{Maximum modulation} 指定最大调制类型、{Constellation ordering} 指定星座排序 Default、{Constellation mapping} 指定星座映射、{Decision type} 指定解映射类型 Approximate log-likelihood、{Phase offset} 指定星座点的相位偏移、{Output type} 输出类型 Vector、{Normalization method} 指定缩放信号星座 Unit average、{Minimum distance between symbols} 指定符号间最小距离、{Enable noise variance input port} 启用噪声方差端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "数据符号 real-valued scalar | complex-valued scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "有效输入数据指示 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "modSel",
+   "direction": "input",
+   "summary": "调制选择 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7"
+  },
+  {
+   "name": "nVar",
+   "direction": "input",
+   "summary": "噪声方差 real-valued positive scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "解调后的 LLR 值或数据位 scalar | real-valued column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "输出数据有效指示 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "指示模块已就绪 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "Property",
+   "values": "调制类型来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Modulation",
+   "default": "BPSK",
+   "values": "调制类型 BPSK (default) | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM | 256-QAM",
+   "group": ""
+  },
+  {
+   "name": "Maximum modulation",
+   "default": "256-QAM",
+   "values": "最大调制类型 256-QAM (default) | BPSK | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM",
+   "group": ""
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Default",
+   "values": "星座排序 Default (default) | User-defined",
+   "group": ""
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "8]",
+   "values": "星座映射 [2, 3, 1, 0, 6, 7, 5, 4, 14, 15, 13, 12, 10, 11, 9, 8] (default) | unique integer-valued gray-coded row vector",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "ratio",
+   "values": "解映射类型 Approximate log-likelihood ratio (default) | Hard",
+   "group": ""
+  },
+  {
+   "name": "Phase offset",
+   "default": "pi/2",
+   "values": "星座点的相位偏移 pi/2 (default) | pi/4 | pi/8 | pi/16 | pi/32 | 0 | -pi/32 | -pi/16 | -pi/8 | -pi/4 | -pi/2",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Vector",
+   "values": "输出类型 Vector (default) | Scalar",
+   "group": ""
+  },
+  {
+   "name": "Normalization method",
+   "default": "power",
+   "values": "缩放信号星座 Unit average power (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Minimum distance between symbols",
+   "default": "2",
+   "values": "符号间最小距离 2 (default) | values in the range from 1/32 to 2",
+   "group": ""
+  },
+  {
+   "name": "Enable noise variance input port",
+   "default": "off",
+   "values": "启用噪声方差端口的选项 off (default) | on",
+   "group": ""
+  }
+ ]
+}

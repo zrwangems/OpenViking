@@ -1,0 +1,141 @@
+{
+ "key": "Ideal Fixed Gear Transmission",
+ "title": "Ideal Fixed Gear Transmission",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Transmission Systems/Ideal_Fixed_Gear_Transmission.md",
+  "Vehicle Dynamics Blockset/Powertrain/Transmission/Ideal_Fixed_Gear_Transmission.md"
+ ],
+ "text": "无离合器或同步的理想固定挡变速器；输出 3 路；按 {Gear property interpolation method} 指定插值；{Efficiency factors} 指定效率计算 Gear、{Gear number vector, G} 指定变速器挡位数、{Efficiency torque breakpoints, Trq_bpts} 指定断点、{Efficiency speed breakpoints, omega_bpts} 指定断点、{Efficiency temperature breakpoints, Temp_bpts} 指定断点、{Gear ratio vector, N} 指定输入速度与输出速度之比、{Inertia vector, Jout} 指定挡位旋转惯性、{Damping vector, bout} 指定挡位粘性阻尼系数、{Efficiency vector, eta} 指定挡位效率、{Efficiency lookup table, eta_tbl} 指定挡位效率 array、{Initial gear number, G_o} 指定 Gear、{Initial output velocity, omega_o} 输出转速、{Initial neutral input velocity, omegainN_o} 指定空挡输入转速、{Shift time constant, tau_s} 指定时间 .01，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Gear",
+   "direction": "",
+   "summary": "要啮合的挡位编号 scalar"
+  },
+  {
+   "name": "EngTrq",
+   "direction": "",
+   "summary": "施加的输入扭矩 scalar"
+  },
+  {
+   "name": "DiffTrq",
+   "direction": "",
+   "summary": "施加的负载扭矩 scalar"
+  },
+  {
+   "name": "Temp",
+   "direction": "",
+   "summary": "油温 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "DiffSpd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Efficiency factors",
+   "default": "only",
+   "values": "指定效率计算 Gear only (default) | Gear, input torque, input speed, and temperature",
+   "group": ""
+  },
+  {
+   "name": "Gear property interpolation method",
+   "default": "Nearest",
+   "values": "插值 Nearest (default) | Linear | Flat | Cubic spline",
+   "group": ""
+  },
+  {
+   "name": "Gear number vector, G",
+   "default": "[-1,0,1,2,3,4,5]",
+   "values": "指定变速器挡位数 [-1,0,1,2,3,4,5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency torque breakpoints, Trq_bpts",
+   "default": "[25,50,75,100,150,200,250]",
+   "values": "断点 [25,50,75,100,150,200,250] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency speed breakpoints, omega_bpts",
+   "default": "524]",
+   "values": "断点 [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency temperature breakpoints, Temp_bpts",
+   "default": "358]",
+   "values": "断点 [313 358] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Gear ratio vector, N",
+   "default": "[-4.47,4.47,4.47,2.47,1.47,1,0.8]",
+   "values": "输入速度与输出速度之比 [-4.47,4.47,4.47,2.47,1.47,1,0.8] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Inertia vector, Jout",
+   "default": "0.01]",
+   "values": "挡位旋转惯性 [0.128 0.01 0.128 0.1 0.062 0.028 0.01] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Damping vector, bout",
+   "default": "[.003.001.003.0025.002.001.001]",
+   "values": "挡位粘性阻尼系数 [.003.001.003.0025.002.001.001] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency vector, eta",
+   "default": "[0.9,0.9,0.9,0.9,0.9,0.95,0.95]",
+   "values": "挡位效率 [0.9,0.9,0.9,0.9,0.9,0.95,0.95] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency lookup table, eta_tbl",
+   "default": "",
+   "values": "挡位效率 array",
+   "group": ""
+  },
+  {
+   "name": "Initial gear number, G_o",
+   "default": "0",
+   "values": "Gear 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial output velocity, omega_o",
+   "default": "0",
+   "values": "输出转速 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial neutral input velocity, omegainN_o",
+   "default": "0",
+   "values": "空挡输入转速 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Shift time constant, tau_s",
+   "default": ".01",
+   "values": "时间 .01 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

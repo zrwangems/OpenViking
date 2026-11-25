@@ -1,0 +1,66 @@
+{
+ "key": "Fourier Analysis",
+ "title": "Fourier Analysis",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Fourier_Analysis.md"
+ ],
+ "text": "离散或连续时间傅里叶分析，输入 1 路、输出 2 路；按 {Fundamental frequency (Hz)} 指定信号基频；{Harmonic numbers} 指定信号谐波次数、{Initial magnitude} 指定初始信号幅值、{Initial phase (rad)} 指定初始信号相位、{Buffer size} 指定缓冲区大小、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "傅里叶分析输入 scalar | vector"
+  },
+  {
+   "name": "Magnitude",
+   "direction": "output",
+   "summary": "信号幅值 scalar | vector"
+  },
+  {
+   "name": "Angle",
+   "direction": "output",
+   "summary": "信号角度 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Fundamental frequency (Hz)",
+   "default": "60",
+   "values": "信号基频 60 (default) | positive scalar | vector with positive values",
+   "group": ""
+  },
+  {
+   "name": "Harmonic numbers",
+   "default": "2]",
+   "values": "信号谐波次数 [1 2] (default) | vector with elements ≥ 0",
+   "group": ""
+  },
+  {
+   "name": "Initial magnitude",
+   "default": "1",
+   "values": "初始信号幅值 1 (default) | vector with elements ≥ 0",
+   "group": ""
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "初始信号相位 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "8192",
+   "values": "缓冲区大小 8192 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

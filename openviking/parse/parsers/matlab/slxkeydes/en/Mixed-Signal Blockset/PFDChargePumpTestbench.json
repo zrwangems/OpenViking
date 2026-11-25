@@ -1,0 +1,148 @@
+{
+ "key": "PFDChargePumpTestbench",
+ "title": "PFD and Charge Pump Testbench",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Measurements & Testbenches/PFD_and_Charge_Pump_Testbench.md"
+ ],
+ "text": "Generic test environment for phase/frequency detectors and charge pumps, 3 inputs, 2 outputs; {Phase sweep (°)} sets the maximum phase excursion from phase offset, {Phase offset (°)} sets the relative phase value at center of phase, {Clock frequency (Hz)} sets the desired reference clock frequency, {Number of phases in sweep} sets the total number of evenly spaced phase offsets, {Duty cycle (%)} sets the duty cycle of stimulus clock, {Plot figures on top after simulation}, {Report PFD metrics}, {Report Charge Pump metrics}, {Logic Threshold (V)} sets the switching threshold at input of charge, {Enable increased buffer size}, {Buffer size} sets the number of samples of the input buffering available during, {Target deadband (°)} sets the maximum acceptable size of reduced sensitivity region near zero phase, {Target linear range (°)} sets the maximum phase offset at which the output remains approximately equal to the input, {Target propagation delay (s)} sets the maximum acceptable delay from input to output, {Target rise/fall time (s)} sets the maximum acceptable 20% – 80% rise/fall time, {Target sensitivity (A/°)} sets the maximum acceptable charge pump sensitivity, {Target phase offset (°)} sets the maximum acceptable phase offset at output of charge and {Target spur current (A)} sets the charge pump output current. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "from PFD up",
+   "direction": "input",
+   "summary": "Measures PFD reference frequency scalar"
+  },
+  {
+   "name": "from PFD down",
+   "direction": "input",
+   "summary": "Measures PFD feedback frequency scalar"
+  },
+  {
+   "name": "from charge pump",
+   "direction": "input",
+   "summary": "Measures charge pump output current scalar"
+  },
+  {
+   "name": "to PFD reference",
+   "direction": "output",
+   "summary": "Provides reference frequency to PFD scalar"
+  },
+  {
+   "name": "to PFD feedback",
+   "direction": "output",
+   "summary": "Provides feedback frequency to PFD scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase sweep (°)",
+   "default": "300",
+   "values": "Maximum phase excursion from phase offset 300 (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Phase offset (°)",
+   "default": "0",
+   "values": "Relative phase value at center of phase sweep 0 (default) | real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Clock frequency (Hz)",
+   "default": "Hz",
+   "values": "Desired reference clock frequency 2.5e9 Hz (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Number of phases in sweep",
+   "default": "2000",
+   "values": "Total number of evenly spaced phase offsets to simulate 2000 (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Duty cycle (%)",
+   "default": "50",
+   "values": "Duty cycle of stimulus clock 50 (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Plot figures on top after simulation",
+   "default": "on",
+   "values": "Plot figures on top after simulation on (default) | off",
+   "group": "Setup"
+  },
+  {
+   "name": "Report PFD metrics",
+   "default": "on",
+   "values": "Report PFD metrics on (default) | off",
+   "group": "Setup"
+  },
+  {
+   "name": "Report Charge Pump metrics",
+   "default": "on",
+   "values": "Report Charge Pump metrics on (default) | off",
+   "group": "Setup"
+  },
+  {
+   "name": "Logic Threshold (V)",
+   "default": "0.5",
+   "values": "Switching threshold at input of charge pump 0.5 (default) | real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Buffer size",
+   "default": "5",
+   "values": "Number of samples of the input buffering available during simulation 5 (default) | positive integer scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Target deadband (°)",
+   "default": "0",
+   "values": "Maximum acceptable size of reduced sensitivity region near zero phase offset 0 (default) | real nonnegative scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target linear range (°)",
+   "default": "290",
+   "values": "Maximum phase offset at which the output remains approximately equal to the input offset 290 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target propagation delay (s)",
+   "default": "60e-12",
+   "values": "Maximum acceptable delay from input to output 60e-12 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target rise/fall time (s)",
+   "default": "30e-12",
+   "values": "Maximum acceptable 20% – 80% rise/fall time 30e-12 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target sensitivity (A/°)",
+   "default": "1e-9",
+   "values": "Maximum acceptable charge pump sensitivity 1e-9 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target phase offset (°)",
+   "default": "10",
+   "values": "Maximum acceptable phase offset at output of charge pump 10 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target spur current (A)",
+   "default": "1e-7",
+   "values": "Charge pump output current magnitude 1e-7 (default)",
+   "group": "Target Metrics"
+  }
+ ]
+}

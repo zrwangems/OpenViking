@@ -1,0 +1,56 @@
+{
+ "key": "Checkbox",
+ "title": "Check Box",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Check_Box.md"
+ ],
+ "text": "Select parameter or variable value, {Label} sets Block label position; {Connection} sets the block parameter value to connect parameter value connection, {Check Box Label} sets the description of check box, {Checked/Unchecked Values} sets the values to assign for checked and unchecked states Unchecked, {Opacity} sets the block background opacity, {Foreground Color} sets the block foreground color and {Background Color} sets the block background color. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Block parameter value to connect parameter value connection options",
+   "group": "Connection"
+  },
+  {
+   "name": "Check Box Label",
+   "default": "Label",
+   "values": "Description of check box action Label (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Checked/Unchecked Values",
+   "default": "1",
+   "values": "Values to assign for checked and unchecked states Unchecked: 0 Checked: 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Label",
+   "default": "Hide",
+   "values": "Block label position Hide (default) | Bottom | Top",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "Block background opacity 1 (default) | scalar",
+   "group": "Format"
+  },
+  {
+   "name": "Foreground Color",
+   "default": "",
+   "values": "Block foreground color [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Background Color",
+   "default": "",
+   "values": "Block background color [r g b] vector",
+   "group": "Format"
+  }
+ ]
+}

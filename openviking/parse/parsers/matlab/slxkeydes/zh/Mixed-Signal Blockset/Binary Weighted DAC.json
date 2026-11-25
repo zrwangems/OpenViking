@@ -1,0 +1,131 @@
+{
+ "key": "Binary Weighted DAC",
+ "title": "Binary Weighted DAC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Architectures/Binary_Weighted_DAC.md"
+ ],
+ "text": "基于 R-2R 加权电阻架构的 N 位 DAC，输入 2 路、输出 2 路；按 {Rising slew rate} 指定DAC 开关的上升压摆率；{Number of bits} 指定输入字的位数、{Input polarity} 指定 DAC 输入信号的极性、{Use external start clock} 指定连接到外部启动转换时钟、{Conversion start frequency (Hz)} 指定内部启动转换时钟的频率 1e6、{Reference (V)} 指定参考电压、{Bias (V)} 添加到输出的偏置电压、{Show ready port} 启用模块上的 ready 端口、{Enable linearity impairments} 指定在 DAC 仿真中启用偏移误差和增益误差、{Offset error} 按特定值移动量化步长、{Gain error} 指定 DAC 传输曲线斜率的误差、{Enable timing impairments} 指定在 DAC 仿真中启用时序损伤、{Specify switch timing using} 指定 DAC 如何计算开关时序、{Settling time (s)} 输出稳定所需的时间 2e-7、{Settling time tolerance (LSB)} 指定计算稳定时间的容差、{Falling slew rate} 指定 DAC 开关的下降压摆率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "DAC 的数字输入信号 integer"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "用于启动转换的外部时钟 scalar"
+  },
+  {
+   "name": "analog",
+   "direction": "output",
+   "summary": "转换后的模拟输出信号 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "指示数模转换是否完成 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits",
+   "default": "5",
+   "values": "输入字的位数 5 (default) | positive real integer",
+   "group": "General"
+  },
+  {
+   "name": "Input polarity",
+   "default": "Bipolar",
+   "values": "DAC 输入信号的极性 Bipolar (default) | Unipolar",
+   "group": "General"
+  },
+  {
+   "name": "Use external start clock",
+   "default": "on",
+   "values": "连接到外部启动转换时钟 on (default) | off",
+   "group": "General"
+  },
+  {
+   "name": "Conversion start frequency (Hz)",
+   "default": "1e6",
+   "values": "内部启动转换时钟的频率 1e6 (default) | positive real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Reference (V)",
+   "default": "2",
+   "values": "参考电压 2 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Bias (V)",
+   "default": "0",
+   "values": "添加到输出的偏置电压 0 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Show ready port",
+   "default": "off",
+   "values": "启用模块上的 ready 端口 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Enable linearity impairments",
+   "default": "on",
+   "values": "在 DAC 仿真中启用偏移误差和增益误差 on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "按特定值移动量化步长 0 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "DAC 传输曲线斜率的误差 0 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable timing impairments",
+   "default": "on",
+   "values": "在 DAC 仿真中启用时序损伤 on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Specify switch timing using",
+   "default": "time",
+   "values": "指定 DAC 如何计算开关时序 Settling time (default) | Slew rate",
+   "group": "Impairments"
+  },
+  {
+   "name": "Settling time (s)",
+   "default": "2e-7",
+   "values": "输出稳定所需的时间 2e-7 (default) | nonnegative real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Settling time tolerance (LSB)",
+   "default": "0.5",
+   "values": "计算稳定时间的容差 0.5 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Rising slew rate",
+   "default": "5015625",
+   "values": "DAC 开关的上升压摆率 5015625 (default) | positive real scalar | positive real vector",
+   "group": "Impairments"
+  },
+  {
+   "name": "Falling slew rate",
+   "default": "-5015625",
+   "values": "DAC 开关的下降压摆率 -5015625 (default) | negative real scalar | negative real vector",
+   "group": "Impairments"
+  }
+ ]
+}

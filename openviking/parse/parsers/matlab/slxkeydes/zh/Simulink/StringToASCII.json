@@ -1,0 +1,31 @@
+{
+ "key": "StringToASCII",
+ "title": "String to ASCII",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_to_ASCII.md"
+ ],
+ "text": "将字符串信号转换为 uint8 向量，输入 1 路、输出 1 路；{输出向量大小}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入字符串信号 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "转换后的 uint8 向量信号 向量 | N 元素的一维向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出向量大小",
+   "default": "31",
+   "values": "输出向量大小 31 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

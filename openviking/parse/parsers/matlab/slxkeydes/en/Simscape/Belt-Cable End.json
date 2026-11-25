@@ -1,0 +1,13 @@
+{
+ "key": "Belt-Cable End",
+ "title": "Belt-Cable End",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Belts and Cables/Belt_Cable_End.md"
+ ],
+ "text": "Tip of the cord of a pulley system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Limited-Slip Differential",
+ "title": "Limited-Slip Differential",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Limited_Slip_Differential.md"
+ ],
+ "text": "Reduce velocity difference between two connected shafts.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

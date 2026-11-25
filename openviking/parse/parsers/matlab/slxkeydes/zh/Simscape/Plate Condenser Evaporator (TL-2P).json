@@ -1,0 +1,13 @@
+{
+ "key": "Plate Condenser Evaporator (TL-2P)",
+ "title": "Plate Condenser Evaporator (TL-2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Two-Phase Fluid - Thermal Liquid/Plate_Condenser_Evaporator_TL_2P.md"
+ ],
+ "text": "两相流体网络和热液体网络之间的板式几何冷凝蒸发器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

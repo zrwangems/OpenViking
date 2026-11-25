@@ -1,0 +1,49 @@
+{
+ "key": "Audio Capture",
+ "title": "Audio Capture",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Audio_Capture.md"
+ ],
+ "text": "Capture audio samples from an input audio device and send to an algorithm, 1 input, 1 output, {Data type} sets Data type of audio device; {Number of channels} sets the number of data channels, {Samples per frame} sets the size of data vector read from audio device and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "Data message from audio capture interface scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Data frame from captured audio M -element vector | M -by- C matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data type",
+   "default": "int16",
+   "values": "Data type of audio device int16 (default) | int8 | int32",
+   "group": ""
+  },
+  {
+   "name": "Number of channels",
+   "default": "2",
+   "values": "Number of data channels 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "4410",
+   "values": "Size of data vector read from audio device 4410 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time in seconds -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

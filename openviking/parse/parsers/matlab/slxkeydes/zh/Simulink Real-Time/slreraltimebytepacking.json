@@ -1,0 +1,43 @@
+{
+ "key": "slreraltimebytepacking",
+ "title": "Byte Unpacking",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Utilities/Byte_Unpacking.md"
+ ],
+ "text": "Byte Unpacking 模块将不同数据类型的向量转换为用户可选数据类型的一个或多个信号，输入 1 路、输出 1 路；按 {Output port (unpacked) data types (cell array)} 指定未封装输出信号的数据类型；{Output port (unpacked) dimensions (cell array)} 指定每个输出端口的尺寸、{Byte Alignment} 指定解包前输出信号数据类型的对齐，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "包含紧凑数据的输入端口 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "第一个 N 输出端口 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output port (unpacked) data types (cell array)",
+   "default": "uint8",
+   "values": "未封装输出信号的数据类型 uint8 (默认) | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Output port (unpacked) dimensions (cell array)",
+   "default": "{[1]}",
+   "values": "每个输出端口的尺寸（未打包） {[1]} (默认) | {[ N ], [ M ],...}",
+   "group": ""
+  },
+  {
+   "name": "Byte Alignment",
+   "default": "1",
+   "values": "解包前输出信号数据类型的对齐 1 (默认) | 2 | 4 | 8",
+   "group": ""
+  }
+ ]
+}

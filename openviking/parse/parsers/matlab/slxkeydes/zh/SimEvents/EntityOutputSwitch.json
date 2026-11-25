@@ -1,0 +1,65 @@
+{
+ "key": "EntityOutputSwitch",
+ "title": "Entity Output Switch",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Output_Switch.md"
+ ],
+ "text": "Entity Output Switch 模块允许您在多个实体输出端口中选择一个输出端口供实体离开，输入 2 路、输出 2 路；按 {Switching criterion} 指定切换准则 First port that is not；{Number of output ports} 输出端口数、{Initial port selection} 指定仿真开始时的输出端口、{Switch Attribute name} 决定输出端口的属性、{Seed} 指定种子，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "control",
+   "direction": "input",
+   "summary": "输入控制实体 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of output ports",
+   "default": "2",
+   "values": "指定输出端口数 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Switching criterion",
+   "default": "blocked",
+   "values": "选择切换准则 First port that is not blocked (default) | Round robin | From control port | From attribute | Equiprobable",
+   "group": ""
+  },
+  {
+   "name": "Initial port selection",
+   "default": "1",
+   "values": "指定仿真开始时的输出端口 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Switch Attribute name",
+   "default": "Attribute1",
+   "values": "指定决定输出端口的属性 Attribute1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "34567",
+   "values": "指定种子 34567 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

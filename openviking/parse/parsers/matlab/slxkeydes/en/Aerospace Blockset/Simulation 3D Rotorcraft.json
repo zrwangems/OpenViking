@@ -1,0 +1,315 @@
+{
+ "key": "Simulation 3D Rotorcraft",
+ "title": "Simulation 3D Rotorcraft",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Rotorcraft.md"
+ ],
+ "text": "Implement 3D Rotorcraft, 4 inputs, 2 outputs, {Color} sets Rotorcraft color; {Sample time}, {Type} sets the rotorcraft type Light, {Path to light helicopter mesh}, {Path to helicopter mesh}, {Path to multirotor mesh}, {Name} sets the rotorcraft name, {Initial translation (m)} sets the initial translation of rotorcraft zeros, {Initial rotation (rad)} sets the rotorcraft rotation zeros, {Scale source}, {Initial scale} sets the initial mesh scale, {Scale} sets the mesh scale, {Enable altitude and WoW sensors} sets the altitude and WoW sensors, {Show sensor rays in viewer} sets the option to show sensor rays, {Interpret vector outputs as 1-D} controls reshaping on sensor output ports, {Length of rays (m)}, {Rotorcraft body Z offset (m)}, {Ground-contact location 1 (m)} sets the first ground contact location, {Ground-contact location 2 (m)} sets the second ground contact location, {Ground-contact location 3 (m)} sets the third ground contact location, {Ground-contact location 4 (m)} sets the fourth ground contact location, {Front tire radius (m)} sets the front gear tire radius, {Left tire radius (m)} sets the left gear tire radius, {Right tire radius (m)} sets the right gear tire radius, {WoW sensor tolerance (m)} sets the wow sensor tolerance, {Light configuration}, {Landing light intensity (cd)} sets the landing lights intensity, {Landing light cone half angle (deg)} sets the landing lights cone half angle, {Landing light color [r g b]} sets the landing light color, {Landing light location}, {Landing light orientation (deg)} sets the landing light orientation, {Nose light intensity (cd)} sets the nose lights intensity, {Nose light cone half angle (deg)}, {Nose light location}, {Nose light orientation (deg)} sets the nose light orientation, {Navigation lights intensity}, {Position light intensity}, {Strobe light intensity}, {Strobe color [r g b]} sets the strobe color, {Strobe period (s)}, {Strobe pulse width (% of period)}, {Beacon light intensity}, {Beacon color [r g b]} sets the beacon color, {Beacon period (s)} and {Beacon pulse width (% of period)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Rotorcraft translation 6 -by- 3 array | 19 -by- 3 array | 11 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Rotorcraft and wheel rotation 6 -by- 3 array | 19 -by- 3 array | 11 -by- 3 array"
+  },
+  {
+   "name": "LightStates",
+   "direction": "input",
+   "summary": "Rotorcraft light control 1-by-7 vector of double values"
+  },
+  {
+   "name": "Scale",
+   "direction": "input",
+   "summary": "Mesh scale [1 1 1] (default) | 1-by-3 array"
+  },
+  {
+   "name": "Altitude",
+   "direction": "output",
+   "summary": "Rotorcraft attitude 1-by-5 vector"
+  },
+  {
+   "name": "WoW",
+   "direction": "output",
+   "summary": "Weight on wheels true | false"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "helicopter",
+   "values": "Rotorcraft type Light helicopter (default) | Helicopter | Multirotor",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Path to light helicopter mesh",
+   "default": "’/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter’",
+   "values": "Path to light helicopter mesh ’/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter’ (default) | character vector",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Path to helicopter mesh",
+   "default": "’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter’",
+   "values": "Path to helicopter mesh ’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter’ (default) | character vector",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Path to multirotor mesh",
+   "default": "’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter’",
+   "values": "Path to multirotor mesh ’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter’ (default) | ’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_QuadcopterMini.SK_QuadcopterMini’ | character vector",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Color",
+   "default": "Red",
+   "values": "Rotorcraft color Red (default) | Orange | Yellow | Green | Cyan | Blue | Black | White | Silver | Metal",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "Rotorcraft name SimulinkVehicle1 (default) | character vector",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Initial translation (m)",
+   "default": "zeros(6,3)",
+   "values": "Initial translation of rotorcraft zeros(6,3) (default) | 19-by-3 array | 11-by-3 array",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Initial rotation (rad)",
+   "default": "zeros(6,3)",
+   "values": "Rotorcraft rotation zeros(6,3) (default) | 19-by-3 array | 11-by-3 array",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Scale source",
+   "default": "Dialog",
+   "values": "Scale source Dialog (default) | Port",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Initial scale",
+   "default": "1]",
+   "values": "Initial mesh scale [1 1 1] (default) | 1-by-3 array",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Scale",
+   "default": "1]",
+   "values": "Mesh scale [1 1 1] (default) | 1-by-3 array",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Enable altitude and WoW sensors",
+   "default": "on",
+   "values": "Altitude and WoW sensors on (default) | off",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Show sensor rays in viewer",
+   "default": "off",
+   "values": "Option to show sensor rays off (default) | on",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Interpret vector outputs as 1-D",
+   "default": "off",
+   "values": "Control reshaping on sensor output ports off (default) | on",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Length of rays (m)",
+   "default": "1524",
+   "values": "Length of rays 1524 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Rotorcraft body Z offset (m)",
+   "default": "1.169",
+   "values": "Rotorcraft body Z offset 1.169 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Ground-contact location 1 (m)",
+   "default": "1.169]",
+   "values": "First ground contact location [1.47 -1.04 1.169] (default) | 3-element vector",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Ground-contact location 2 (m)",
+   "default": "1.169]",
+   "values": "Second ground contact location [-1.24 -1.04 1.169] (default) | 3-element vector",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Ground-contact location 3 (m)",
+   "default": "",
+   "values": "Third ground contact location [-1.24 1.04 1.169] | 3-element vector",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Ground-contact location 4 (m)",
+   "default": "",
+   "values": "Fourth ground contact location [1.47 1.04 1.169] | 3-element vector",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Front tire radius (m)",
+   "default": "0.196",
+   "values": "Front gear tire radius 0.196 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Left tire radius (m)",
+   "default": "0.203",
+   "values": "Left gear tire radius 0.203 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Right tire radius (m)",
+   "default": "0.203",
+   "values": "Right gear tire radius 0.203 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "WoW sensor tolerance (m)",
+   "default": "0.05",
+   "values": "Wow sensor tolerance 0.05 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Light configuration",
+   "default": "lights",
+   "values": "Light configurations options Automatic lights (default) | Configurable lights | Lights off",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light intensity (cd)",
+   "default": "300000",
+   "values": "Landing lights intensity 300000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light cone half angle (deg)",
+   "default": "15",
+   "values": "Landing lights cone half angle 15 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light color [r g b]",
+   "default": "1]",
+   "values": "Landing light color [1 1 1] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light location",
+   "default": "0]",
+   "values": "Landing light location [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light orientation (deg)",
+   "default": "0]",
+   "values": "Landing light orientation [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Nose light intensity (cd)",
+   "default": "150000",
+   "values": "Nose lights intensity 150000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Nose light cone half angle (deg)",
+   "default": "36",
+   "values": "Nose light cone half angle 36 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Nose light location",
+   "default": "0]",
+   "values": "Nose light location [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Nose light orientation (deg)",
+   "default": "0]",
+   "values": "Nose light orientation [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Navigation lights intensity",
+   "default": "500",
+   "values": "Navigation lights intensity 500 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Position light intensity",
+   "default": "500",
+   "values": "Position light intensity 500 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe light intensity",
+   "default": "5000",
+   "values": "Strobe light intensity 5000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe color [r g b]",
+   "default": "1]",
+   "values": "Strobe color [1 1 1] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe period (s)",
+   "default": "1.5",
+   "values": "Strobe period 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe pulse width (% of period)",
+   "default": "6",
+   "values": "Strobe pulse width 6 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon light intensity",
+   "default": "4000",
+   "values": "Beacon light intensity 4000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon color [r g b]",
+   "default": "0]",
+   "values": "Beacon color [1 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon period (s)",
+   "default": "1.5",
+   "values": "Beacon period 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon pulse width (% of period)",
+   "default": "10",
+   "values": "Beacon pulse width 10 (default) | positive scalar",
+   "group": "Light Configuration"
+  }
+ ]
+}

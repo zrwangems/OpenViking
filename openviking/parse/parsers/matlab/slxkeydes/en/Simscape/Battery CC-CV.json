@@ -1,0 +1,82 @@
+{
+ "key": "Battery CC-CV",
+ "title": "Battery CC-CV",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Current Management/Battery_CC_CV.md"
+ ],
+ "text": "Constant current constant voltage charging algorithm, 4 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Specify CellVoltage input as [Min,Max]} sets the option to specify CellVoltage input as minimum and maximum, {Cell voltage threshold (V)} sets the maximum allowable cell voltage, {Controller proportional gain} sets the proportional gain of PI controller, {Controller integral gain} sets the integral gain of PI controller, {Controller anti-windup gain} sets the anti-windup gain of PI controller and {Gain of signal-tracking feedback loop} sets the tracking coefficient of PI controller. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ChargingEnabled",
+   "direction": "input",
+   "summary": "Whether to enable battery charging boolean"
+  },
+  {
+   "name": "CellVoltage",
+   "direction": "input",
+   "summary": "Cell voltages, V scalar | vector"
+  },
+  {
+   "name": "CurrentWhenCharging",
+   "direction": "input",
+   "summary": "Current for charging, A scalar"
+  },
+  {
+   "name": "CurrentWhenDischarging",
+   "direction": "input",
+   "summary": "Current for discharging, A scalar"
+  },
+  {
+   "name": "Current",
+   "direction": "output",
+   "summary": "Computed reference current, A scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify CellVoltage input as [Min,Max]",
+   "default": "off",
+   "values": "Option to specify CellVoltage input as minimum and maximum values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cell voltage threshold (V)",
+   "default": "4.5",
+   "values": "Maximum allowable cell voltage 4.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller proportional gain",
+   "default": "100",
+   "values": "Proportional gain of PI controller 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller integral gain",
+   "default": "10",
+   "values": "Integral gain of PI controller 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller anti-windup gain",
+   "default": "1",
+   "values": "Anti-windup gain of PI controller 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gain of signal-tracking feedback loop",
+   "default": "1",
+   "values": "Tracking coefficient of PI controller 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "Block sample time 1 (default) | 0 | -1 | positive integer",
+   "group": ""
+  }
+ ]
+}

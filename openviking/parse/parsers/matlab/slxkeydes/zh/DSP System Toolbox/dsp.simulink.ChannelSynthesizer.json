@@ -1,0 +1,72 @@
+{
+ "key": "dsp.simulink.ChannelSynthesizer",
+ "title": "Channel Synthesizer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Channel_Synthesizer.md"
+ ],
+ "text": "多相 FFT 合成滤波器组，输入 2 路、输出 1 路；{InterpolationFactor} 指定插值因子 Number of frequency、{Polyphase filter specification} 指定滤波器设计参数或系数 Number of taps per band and stopband、{Number of filter taps per frequency band} 指定每个频带的滤波器系数数量、{Stopband attenuation (dB)} 指定阻带衰减、{Specify coefficients from input port} 用于指定低通滤波器系数的标志、{Prototype lowpass filter coefficients} 指定原型低通滤波器的系数 rcosdesign、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入窄带信号 Q -by- M matrix | L -by- M -by- N array"
+  },
+  {
+   "name": "coeffs",
+   "direction": "input",
+   "summary": "原型低通滤波器系数 row vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "宽带信号 Q×M -by-1 vector | L×M -by- N matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "InterpolationFactor",
+   "default": "bands",
+   "values": "插值因子 Number of frequency bands (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Polyphase filter specification",
+   "default": "attenuation",
+   "values": "滤波器设计参数或系数 Number of taps per band and stopband attenuation (default) | Coefficients",
+   "group": ""
+  },
+  {
+   "name": "Number of filter taps per frequency band",
+   "default": "12",
+   "values": "每个频带的滤波器系数数量 12 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "阻带衰减 80 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify coefficients from input port",
+   "default": "off",
+   "values": "用于指定低通滤波器系数的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Prototype lowpass filter coefficients",
+   "default": "rcosdesign(0.25,6,8,’sqrt’)",
+   "values": "原型低通滤波器的系数 rcosdesign(0.25,6,8,’sqrt’) (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

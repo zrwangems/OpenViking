@@ -1,0 +1,78 @@
+{
+ "key": "dsp.simulink.MovingAverage",
+ "title": "Moving Average",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Moving_Average.md"
+ ],
+ "text": "Moving average, 2 inputs, 1 output; {Method} sets the averaging method Sliding, {Specify window length} sets the flag to specify window length, {Window length} sets the length of sliding window, {Overlap length}, {Allow arbitrary frame length for fixed-size input signals}, {Specify forgetting factor from input port} sets the flag to specify forgetting factor, {Forgetting factor} sets the exponential weighting factor and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "lambda",
+   "direction": "input",
+   "summary": "Forgetting factor non-negative real scalar in the range [0,1]"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Moving average output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "window",
+   "values": "Averaging method Sliding window (default) | Exponential weighting",
+   "group": ""
+  },
+  {
+   "name": "Specify window length",
+   "default": "on",
+   "values": "Flag to specify window length on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "4",
+   "values": "Length of sliding window 4 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "3",
+   "values": "Overlap length between windows 3 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "Allow arbitrary frame length for fixed-size input signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Specify forgetting factor from input port",
+   "default": "off",
+   "values": "Flag to specify forgetting factor off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.9",
+   "values": "Exponential weighting factor 0.9 (default) | non-negative real scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

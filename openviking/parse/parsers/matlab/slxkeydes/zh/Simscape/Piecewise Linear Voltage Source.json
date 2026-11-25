@@ -1,0 +1,14 @@
+{
+ "key": "Piecewise Linear Voltage Source",
+ "title": "Piecewise Linear Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Piecewise_Linear_Voltage_Source.md",
+  "Simscape/Electrical/Additional Components/SPICE Sources/Piecewise_Linear_Voltage_Source.md"
+ ],
+ "text": "使用查找表的时变电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

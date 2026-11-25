@@ -1,0 +1,13 @@
+{
+ "key": "rptgen_generate_report",
+ "title": "Launch Report",
+ "toolbox": "Report Generator",
+ "kind": "source_type",
+ "source_docs": [
+  "Report Generator/Launch_Report.md"
+ ],
+ "text": "Reports on the current system or model.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

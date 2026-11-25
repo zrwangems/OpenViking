@@ -1,0 +1,143 @@
+{
+ "key": "FlashADC",
+ "title": "Flash ADC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Architectures/Flash_ADC.md"
+ ],
+ "text": "采用 Flash 架构的 N 位 ADC，输入 2 路、输出 2 路；按 {Output polarity} 指定定义 ADC 输出极性；{Number of bits} 指定物理输出位数、{Input range (V)} 指定 ADC 动态范围、{Use external start clock} 指定连接到外部启动转换时钟、{Conversion start frequency (Hz)} 指定内部启动转换时钟的频率 1e6、{RMS aperture jitter (s)} 添加到启动转换时钟的 RMS 孔径抖动 1e-12、{Edge trigger type} 指定触发输出更新的时钟边沿类型 Rising、{Match input scale} 指定从输入继承输出极性和数据类型、{Output data type} 定义 ADC 输出数据类型 fixdt、{Simulate using} 定义如何仿真 ADC Simulink、{Enable Linearity Impairments} 指定在 ADC 仿真中启用线性度损伤、{Offset error} 按特定值移动量化步长、{Gain error} 指定 ADC 转换曲线斜率的误差、{Missing codes} 指定失效比较器的位置、{Enable Timing Impairments} 指定在 ADC 仿真中启用时序损伤、{Conversion delay (s)} 指定 ADC 延迟、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定额外缓冲区滤波器数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "模拟输入信号 scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "用于启动转换的外部时钟 scalar"
+  },
+  {
+   "name": "digital",
+   "direction": "output",
+   "summary": "转换后的数字输出信号 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "确定模数转换是否完成 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits",
+   "default": "10",
+   "values": "物理输出位数 10 (default) | positive real integer in the range [1, 26]",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "ADC 动态范围 [-1 1] (default) | 2-element row vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Use external start clock",
+   "default": "on",
+   "values": "连接到外部启动转换时钟 on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Conversion start frequency (Hz)",
+   "default": "1e6",
+   "values": "内部启动转换时钟的频率 1e6 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "RMS aperture jitter (s)",
+   "default": "1e-12",
+   "values": "添加到启动转换时钟的 RMS 孔径抖动 1e-12 (default) | real nonnegative scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Edge trigger type",
+   "default": "edge",
+   "values": "触发输出更新的时钟边沿类型 Rising edge (default) | Falling edge | Either edge",
+   "group": "Configuration"
+  },
+  {
+   "name": "Match input scale",
+   "default": "off",
+   "values": "从输入继承输出极性和数据类型 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output polarity",
+   "default": "Auto",
+   "values": "定义 ADC 输出极性 Auto (default) | Bipolar | Unipolar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output data type",
+   "default": "fixdt(1,Nbits)",
+   "values": "定义 ADC 输出数据类型 fixdt(1,Nbits) (default) | fixdt(0,Nbits) | double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Inherit: Inherit via back propagation",
+   "group": "Configuration"
+  },
+  {
+   "name": "Simulate using",
+   "default": "blocks",
+   "values": "定义如何仿真 ADC Simulink blocks (default) | System object (interpreted) | System object (code generation)",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable Linearity Impairments",
+   "default": "off",
+   "values": "在 ADC 仿真中启用线性度损伤 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "按特定值移动量化步长 3 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "ADC 转换曲线斜率的误差 2 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Missing codes",
+   "default": "[]",
+   "values": "失效比较器的位置 [] (default) | row vector with positive real values",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable Timing Impairments",
+   "default": "off",
+   "values": "在 ADC 仿真中启用时序损伤 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Conversion delay (s)",
+   "default": "0",
+   "values": "ADC 延迟 0 (default) | nonnegative real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Buffer size",
+   "default": "100",
+   "values": "额外缓冲区滤波器数量 100 (default) | positive real scalar",
+   "group": "Impairments"
+  }
+ ]
+}

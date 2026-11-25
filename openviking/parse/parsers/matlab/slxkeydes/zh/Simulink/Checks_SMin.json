@@ -1,0 +1,68 @@
+{
+ "key": "Checks_SMin",
+ "title": "Check Static Lower Bound",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model Verification/Check_Static_Lower_Bound.md",
+  "HDL Coder/Model Verification/Check_Static_Lower_Bound.md"
+ ],
+ "text": "检查信号大于（或可选地等于）静态下界，输入 1 路、输出 1 路、无直接馈通；按 {Lower bound} 指定下边界值 scalar；{Inclusive boundary} 指定在范围中包括下界、{Enable assertion} 启用或禁用检查、{Simulation callback when assertion fails (optional)} 指定断言失败时要计算的表达式、{Stop simulation when assertion fails} 指定检查失败时是否停止仿真、{Output assertion signal} 指定创建输出信号、{Select icon type} 指定图标类型 graphic，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "根据边界进行检查的输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "断言输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lower bound",
+   "default": "",
+   "values": "下边界值 scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Inclusive boundary",
+   "default": "on",
+   "values": "在范围中包括下界 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "启用或禁用检查 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "\"\"",
+   "values": "断言失败时要计算的表达式 \"\" (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "on",
+   "values": "检查失败时是否停止仿真 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "创建输出信号 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Select icon type",
+   "default": "graphic",
+   "values": "选择图标类型 graphic (default) | text",
+   "group": ""
+  }
+ ]
+}

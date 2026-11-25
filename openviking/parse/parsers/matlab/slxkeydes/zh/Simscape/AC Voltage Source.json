@@ -1,0 +1,13 @@
+{
+ "key": "AC Voltage Source",
+ "title": "AC Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Sources/AC_Voltage_Source.md"
+ ],
+ "text": "理想恒定电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

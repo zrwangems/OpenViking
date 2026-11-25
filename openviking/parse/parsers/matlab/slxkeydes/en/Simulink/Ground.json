@@ -1,0 +1,21 @@
+{
+ "key": "Ground",
+ "title": "Ground",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Ground.md",
+  "Simulink/Sources/Ground.md",
+  "HDL Coder/Sources/Ground.md"
+ ],
+ "text": "Ground unconnected input port, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Ground signal scalar"
+  }
+ ],
+ "params": []
+}

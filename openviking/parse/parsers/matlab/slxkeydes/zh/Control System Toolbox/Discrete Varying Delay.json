@@ -1,0 +1,66 @@
+{
+ "key": "Discrete Varying Delay",
+ "title": "Discrete Varying Delay",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_Delay.md"
+ ],
+ "text": "支持固定延迟和零延迟（直接馈通）的离散可变延迟，输入 2 路、输出 1 路；按 {Initial output} 指定初始输出；{Nominal delay (number of samples)} 指定延迟的标称值、{Maximum delay} 指定延迟长度输入的最大值、{Fixed delays (indices)} 指定具有固定延迟的信号索引、{Sample time (-1 for inherited)} 指定采样时间、{Prevent direct feedthrough with minimum delay of 1} 防止直接馈通，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "数据输入信号 scalar | vector"
+  },
+  {
+   "name": "d",
+   "direction": "input",
+   "summary": "延迟长度 scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Nominal delay (number of samples)",
+   "default": "1",
+   "values": "延迟的标称值 1 (default) | nonnegative integer | vector of nonnegative integer values",
+   "group": ""
+  },
+  {
+   "name": "Maximum delay",
+   "default": "10",
+   "values": "延迟长度输入的最大值 10 (default) | nonnegative integer | vector of nonnegative integer values",
+   "group": ""
+  },
+  {
+   "name": "Fixed delays (indices)",
+   "default": "[]",
+   "values": "具有固定延迟的信号索引 [] (default) | positive scalar | vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "初始输出 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Prevent direct feedthrough with minimum delay of 1",
+   "default": "off",
+   "values": "防止直接馈通 off (default) | on",
+   "group": ""
+  }
+ ]
+}

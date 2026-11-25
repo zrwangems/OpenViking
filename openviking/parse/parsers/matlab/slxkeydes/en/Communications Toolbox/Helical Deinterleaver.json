@@ -1,0 +1,13 @@
+{
+ "key": "Helical Deinterleaver",
+ "title": "Helical Deinterleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Convolutional/Helical_Deinterleaver.md"
+ ],
+ "text": "Restore ordering of symbols permuted by helical interleaver.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

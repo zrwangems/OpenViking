@@ -1,0 +1,60 @@
+{
+ "key": "fusion.simulink.referenceFrameTransform",
+ "title": "Scenario To Platform",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Tracking Scenario and Sensor Models/Scenario_To_Platform.md"
+ ],
+ "text": "Transform platform poses from scenario frame to platform body frame, 2 inputs, 1 output; {Reference platform index}, {Enable reference platform pose input}, {Source of output bus name}, {Specify an output bus name} sets the output port bus and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Platforms (Scenario Frame)",
+   "direction": "input",
+   "summary": "Platform pose in scenario frame Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Reference Platform Pose (Scenario Frame)",
+   "direction": "input",
+   "summary": "Reference platform pose in scenario frame Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Platforms (Platform Body Frame)",
+   "direction": "output",
+   "summary": "Target platform poses in body frame of reference platform Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference platform index",
+   "default": "0",
+   "values": "Reference platform index 0 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable reference platform pose input",
+   "default": "off",
+   "values": "Enable reference platform pose input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "Source of output bus name Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "BusPlatforms",
+   "values": "Output port bus name BusPlatforms (default) | valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

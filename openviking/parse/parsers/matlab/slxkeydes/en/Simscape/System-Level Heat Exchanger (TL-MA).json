@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Heat Exchanger (TL-MA)",
+ "title": "System-Level Heat Exchanger (TL-MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid - Moist Air/System_Level_Heat_Exchanger_TL_MA.md"
+ ],
+ "text": "Heat exchanger based on performance data between thermal liquid and moist air networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

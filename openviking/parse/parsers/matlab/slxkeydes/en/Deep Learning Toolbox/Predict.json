@@ -1,0 +1,67 @@
+{
+ "key": "Predict",
+ "title": "Predict",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Neural Networks/Predict.md"
+ ],
+ "text": "Predict responses using a trained deep learning neural network, 1 input, 1 output, {Input data formats} sets Input data format of dlnetwork character vector; {Network}, {File path} sets the mAT file containing trained network, {MATLAB function}, {Mini-batch size} sets the size of mini-batches, {Predictions} sets the output predicted scores or responses and {Activations} sets the output network activations for a specific layer layers. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "input",
+   "direction": "input",
+   "summary": "Image, feature, sequence, or time series data numeric array"
+  },
+  {
+   "name": "output",
+   "direction": "output",
+   "summary": "Predicted scores, responses, or activations numeric array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network",
+   "default": "file",
+   "values": "Source for trained network Network from MAT file (default) | Network from MATLAB function",
+   "group": ""
+  },
+  {
+   "name": "File path",
+   "default": "untitled.mat",
+   "values": "MAT file containing trained network untitled.mat (default) | MAT file path or name",
+   "group": ""
+  },
+  {
+   "name": "MATLAB function",
+   "default": "squeezenet",
+   "values": "MATLAB function name squeezenet (default) | MATLAB function name",
+   "group": ""
+  },
+  {
+   "name": "Mini-batch size",
+   "default": "128",
+   "values": "Size of mini-batches 128 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Predictions",
+   "default": "on",
+   "values": "Output predicted scores or responses on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input data formats",
+   "default": "",
+   "values": "Input data format of dlnetwork character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Activations",
+   "default": "",
+   "values": "Output network activations for a specific layer layers of the network",
+   "group": ""
+  }
+ ]
+}

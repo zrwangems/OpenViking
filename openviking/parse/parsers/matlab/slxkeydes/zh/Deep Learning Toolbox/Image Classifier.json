@@ -1,0 +1,83 @@
+{
+ "key": "Image Classifier",
+ "title": "Image Classifier",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Neural Networks/Image_Classifier.md"
+ ],
+ "text": "使用经过训练的深度学习神经网络对数据进行分类，输入 1 路、输出 3 路；按 {类名称工作区变量} 指定包含网络输出类名称的工作区变量；{网络}、{文件路径} 指定包含经过训练的网络的 MAT、{MATLAB 函数}、{小批量大小} 指定小批量的大小、{调整输入大小} 指定调整输入维度大小、{分类} 输出具有最高分数的预测标签、{预测} 输出所有分数和相关联的标签，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "image",
+   "direction": "input",
+   "summary": "图像或特征数据 数值数组"
+  },
+  {
+   "name": "ypred",
+   "direction": "output",
+   "summary": "预测的类标签 枚举"
+  },
+  {
+   "name": "scores",
+   "direction": "output",
+   "summary": "预测的类分数 矩阵"
+  },
+  {
+   "name": "labels",
+   "direction": "output",
+   "summary": "预测的分数的类标签 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "网络",
+   "default": "文件创建网络",
+   "values": "经过训练的网络的源 从 MAT 文件创建网络 (默认) | 从 MATLAB 函数创建网络",
+   "group": ""
+  },
+  {
+   "name": "文件路径",
+   "default": "untitled.mat",
+   "values": "包含经过训练的网络的 MAT 文件 untitled.mat (默认) | MAT 文件路径或名称",
+   "group": ""
+  },
+  {
+   "name": "MATLAB 函数",
+   "default": "squeezenet",
+   "values": "MATLAB 函数名称 squeezenet (默认) | MATLAB 函数名称",
+   "group": ""
+  },
+  {
+   "name": "小批量大小",
+   "default": "128",
+   "values": "小批量的大小 128 (默认) | 正整数",
+   "group": ""
+  },
+  {
+   "name": "调整输入大小",
+   "default": "on",
+   "values": "调整输入维度大小 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "分类",
+   "default": "on",
+   "values": "输出具有最高分数的预测标签 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "预测",
+   "default": "off",
+   "values": "输出所有分数和相关联的标签 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "类名称工作区变量",
+   "default": "classNames",
+   "values": "包含网络输出类名称的工作区变量 classNames (默认) | 分类向量变量 | 字符串数组变量 | 字符向量元胞数组变量名称",
+   "group": ""
+  }
+ ]
+}

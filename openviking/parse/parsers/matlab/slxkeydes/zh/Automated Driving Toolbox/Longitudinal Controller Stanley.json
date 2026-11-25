@@ -1,0 +1,75 @@
+{
+ "key": "Longitudinal Controller Stanley",
+ "title": "Longitudinal Controller Stanley",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Vehicle Control/Longitudinal_Controller_Stanley.md"
+ ],
+ "text": "使用 Stanley 方法控制车辆的纵向速度，输入 4 路、输出 2 路；{Proportional gain, Kp} 指定比例增益、{Integral gain, Ki} 指定积分增益、{Sample time (s)} 指定采样时间、{Maximum longitudinal acceleration (m/s^2)} 指定最大纵向加速度、{Maximum longitudinal deceleration (m/s^2)} 指定最大纵向减速度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RefVelocity",
+   "direction": "input",
+   "summary": "参考速度 real scalar"
+  },
+  {
+   "name": "CurrVelocity",
+   "direction": "input",
+   "summary": "当前速度 real scalar"
+  },
+  {
+   "name": "Direction",
+   "direction": "input",
+   "summary": "行驶方向 1 (forward motion) | -1 (reverse motion)"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "用于重置速度误差积分的触发 0 (hold steady) | nonzero scalar (reset)"
+  },
+  {
+   "name": "AccelCmd",
+   "direction": "output",
+   "summary": "加速度命令 real scalar in the range [0, M A ]"
+  },
+  {
+   "name": "DecelCmd",
+   "direction": "output",
+   "summary": "减速度命令 real scalar in the range [0, M D ]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain, Kp",
+   "default": "2.5",
+   "values": "比例增益 2.5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain, Ki",
+   "default": "1",
+   "values": "积分增益 1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "0.05",
+   "values": "采样时间 0.05 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum longitudinal acceleration (m/s^2)",
+   "default": "3",
+   "values": "最大纵向加速度 3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum longitudinal deceleration (m/s^2)",
+   "default": "6",
+   "values": "最大纵向减速度 6 (default) | positive real scalar",
+   "group": ""
+  }
+ ]
+}

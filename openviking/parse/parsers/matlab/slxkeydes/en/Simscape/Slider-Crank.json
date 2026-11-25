@@ -1,0 +1,13 @@
+{
+ "key": "Slider-Crank",
+ "title": "Slider-Crank",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanisms/Slider_Crank.md"
+ ],
+ "text": "Generic slider-crank mechanism.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

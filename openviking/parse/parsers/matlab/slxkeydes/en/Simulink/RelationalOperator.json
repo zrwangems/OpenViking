@@ -1,0 +1,178 @@
+{
+ "key": "RelationalOperator",
+ "title": "Relational Operator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Relational_Operator.md",
+  "Simulink/Logic and Bit Operations/Relational_Operator.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Equal.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/GT.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/GTE.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/GreaterThan.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/GreaterThanOrEqual.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsFinite.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsInf.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/IsNaN.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/LT.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/LTE.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/LessThanOrEqual.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Less_Than.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NotEqual.md",
+  "HDL Coder/Commonly Used Blocks/Relational_Operator.md",
+  "HDL Coder/HDL Floating Point Operations/Relational_Operator.md",
+  "HDL Coder/Logic and Bit Operations/Relational_Operator.md"
+ ],
+ "text": "Perform specified relational operation on inputs, 2 inputs, 1 output, direct feedthrough, {Relational operator} sets Relational operator; {Enable zero-crossing detection}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires all inputs to have same data type, {Output data type}, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Mode} sets the category of data to specify, {Data type override} sets the data type override mode for this signal, {Signedness}, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance.",
+ "variants": [
+  {
+   "when": {
+    "Relational operator": [
+     "~="
+    ]
+   },
+   "text": "Tests whether the two inputs are not equal; {Relational operator}, {Enable zero-crossing detection}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires all inputs to have same data, {Output data type}, {Integer rounding mode} sets the rounding mode for fixed-point, {Mode} sets the category of data to specify, {Data type override} specifies data type override mode for this, {Signedness} sets the signedness of fixed-point, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance."
+  },
+  {
+   "when": {
+    "Relational operator": [
+     "=="
+    ]
+   },
+   "text": "Tests whether the two inputs are equal; {Relational operator}, {Enable zero-crossing detection}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires all inputs to have same data, {Output data type}, {Integer rounding mode} sets the rounding mode for fixed-point, {Mode} sets the category of data to specify, {Data type override} specifies data type override mode for this, {Signedness} sets the signedness of fixed-point, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance."
+  },
+  {
+   "when": {
+    "Relational operator": [
+     "<"
+    ]
+   },
+   "text": "Tests whether input 1 is less than input 2; {Relational operator}, {Enable zero-crossing detection}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires all inputs to have same data, {Output data type}, {Integer rounding mode} sets the rounding mode for fixed-point, {Mode} sets the category of data to specify, {Data type override} specifies data type override mode for this, {Signedness} sets the signedness of fixed-point, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance."
+  },
+  {
+   "when": {
+    "Relational operator": [
+     ">="
+    ]
+   },
+   "text": "Tests whether input 1 is greater than or equal to input 2; {Relational operator}, {Enable zero-crossing detection}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires all inputs to have same data, {Output data type}, {Integer rounding mode} sets the rounding mode for fixed-point, {Mode} sets the category of data to specify, {Data type override} specifies data type override mode for this, {Signedness} sets the signedness of fixed-point, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance."
+  },
+  {
+   "when": {
+    "Relational operator": [
+     ">"
+    ]
+   },
+   "text": "Tests whether input 1 is greater than input 2; {Relational operator}, {Enable zero-crossing detection}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires all inputs to have same data, {Output data type}, {Integer rounding mode} sets the rounding mode for fixed-point, {Mode} sets the category of data to specify, {Data type override} specifies data type override mode for this, {Signedness} sets the signedness of fixed-point, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance."
+  },
+  {
+   "when": {
+    "Relational operator": [
+     "isInf"
+    ]
+   },
+   "text": "Tests whether the single input is Inf; {Relational operator}, {Enable zero-crossing detection}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires all inputs to have same data, {Output data type}, {Integer rounding mode} sets the rounding mode for fixed-point, {Mode} sets the category of data to specify, {Data type override} specifies data type override mode for this, {Signedness} sets the signedness of fixed-point, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance."
+  },
+  {
+   "when": {
+    "Relational operator": [
+     "isNaN"
+    ]
+   },
+   "text": "Tests whether the single input is NaN; {Relational operator}, {Enable zero-crossing detection}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires all inputs to have same data, {Output data type}, {Integer rounding mode} sets the rounding mode for fixed-point, {Mode} sets the category of data to specify, {Data type override} specifies data type override mode for this, {Signedness} sets the signedness of fixed-point, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance."
+  },
+  {
+   "when": {
+    "Relational operator": [
+     "isFinite"
+    ]
+   },
+   "text": "Tests whether the single input is finite; {Relational operator}, {Enable zero-crossing detection}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires all inputs to have same data, {Output data type}, {Integer rounding mode} sets the rounding mode for fixed-point, {Mode} sets the category of data to specify, {Data type override} specifies data type override mode for this, {Signedness} sets the signedness of fixed-point, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance."
+  }
+ ],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Second input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Relational operator",
+   "default": "<=",
+   "values": "Relational operator <= (default) | ~= | == | < | >= | > | isInf | isNaN | isFinite",
+   "group": "Main"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Require all inputs to have the same data type",
+   "default": "off",
+   "values": "Require all inputs to have same data type off (default) | on",
+   "group": "Data Type"
+  },
+  {
+   "name": "Output data type",
+   "default": "boolean",
+   "values": "Output data type boolean (default) | Inherit: Logical (see Configuration Parameters: Optimization) | Inherit: Inherit via back propagation | fixdt(1,16) |",
+   "group": "Data Type"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Simplest",
+   "values": "Rounding mode for fixed-point operations Simplest (default) | Convergent | Floor | Nearest | Round | Ceiling | Zero",
+   "group": "Data Type"
+  },
+  {
+   "name": "Mode",
+   "default": "in",
+   "values": "Category of data to specify Built in (default) | Inherit | Fixed point | Expression",
+   "group": "Data Type"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": "Data Type"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Signedness of fixed-point data Signed (default) | Unsigned",
+   "group": "Data Type"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": "Data Type"
+  },
+  {
+   "name": "Scaling",
+   "default": "Integer",
+   "values": "Method of scaling Integer (default)",
+   "group": "Data Type"
+  }
+ ]
+}

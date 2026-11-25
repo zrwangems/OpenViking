@@ -1,0 +1,69 @@
+{
+ "key": "phased.internal.SimulinkLRTDetector",
+ "title": "LRT Detector",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/LRT_Detector.md"
+ ],
+ "text": "似然比检验检测器，输入 3 路、输出 3 路；{Probability of false alarm} 指定虚警概率、{Output format} 输出数据的格式 Detection、{Output detection statistics and threshold} 输出检测统计量和阈值、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入数据 real-valued N -by- 1 vector | complex-valued N -by- 1 vector | real-valued N -by- M matrix | complex-valued N -by- M matrix"
+  },
+  {
+   "name": "XK",
+   "direction": "input",
+   "summary": "已知信号 real-valued N -by-1 vector | complex-valued N -by-1 vector"
+  },
+  {
+   "name": "NCov",
+   "direction": "input",
+   "summary": "噪声功率 positive scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "检测结果 1-by- M logical-valued vector | 1-by- L integer-valued vector"
+  },
+  {
+   "name": "Stat",
+   "direction": "output",
+   "summary": "检测统计量 D -by- M (default) | matrix | 1-by- L vector"
+  },
+  {
+   "name": "Th",
+   "direction": "output",
+   "summary": "检测阈值 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Probability of false alarm",
+   "default": "0.1",
+   "values": "虚警概率 0.1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output format",
+   "default": "result",
+   "values": "输出数据的格式 Detection result (default) | Detection index",
+   "group": ""
+  },
+  {
+   "name": "Output detection statistics and threshold",
+   "default": "false",
+   "values": "输出检测统计量和阈值 false (default) | true",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

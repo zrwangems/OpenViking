@@ -1,0 +1,48 @@
+{
+ "key": "Top-hat",
+ "title": "Top-hat",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Morphological Operations/Top_hat.md"
+ ],
+ "text": "Perform morphological top-hat filtering on intensity or binary images, 2 inputs, 1 output, {Neighborhood or structuring element} sets Neighborhood or structuring element; {Input image type} sets the type of input and {Neighborhood or structuring element source} sets the source of neighborhood or structuring element Specify via. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix"
+  },
+  {
+   "name": "Nhood",
+   "direction": "input",
+   "summary": "Neighborhood values vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Filtered image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input image type",
+   "default": "Intensity",
+   "values": "Type of input image Intensity (default) | Binary",
+   "group": ""
+  },
+  {
+   "name": "Neighborhood or structuring element source",
+   "default": "dialog",
+   "values": "Source of neighborhood or structuring element Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Neighborhood or structuring element",
+   "default": "strel(’square’,4)",
+   "values": "Neighborhood or structuring element strel(’square’,4) (default) | vector | matrix",
+   "group": ""
+  }
+ ]
+}

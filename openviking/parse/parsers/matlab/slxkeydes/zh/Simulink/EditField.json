@@ -1,0 +1,50 @@
+{
+ "key": "EditField",
+ "title": "Edit",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Edit.md"
+ ],
+ "text": "为参数输入新值；按 {对齐} 指定文本对齐方式；{连接}、{标签}、{不透明度}、{前景颜色}、{背景颜色} 指定模块的背景色，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "连接",
+   "default": "",
+   "values": "要连接的模块参数值 参数值连接选项",
+   "group": "连接"
+  },
+  {
+   "name": "对齐",
+   "default": "居中",
+   "values": "文本对齐方式 居中 (默认) | 左侧 | 右侧",
+   "group": "常设"
+  },
+  {
+   "name": "标签",
+   "default": "Hide",
+   "values": "模块标签位置 Hide (默认) | Bottom | Top",
+   "group": "常设"
+  },
+  {
+   "name": "不透明度",
+   "default": "1",
+   "values": "模块背景不透明度 1 (默认) | 标量",
+   "group": "格式"
+  },
+  {
+   "name": "前景颜色",
+   "default": "",
+   "values": "模块前景颜色 [r g b] 向量",
+   "group": "格式"
+  },
+  {
+   "name": "背景颜色",
+   "default": "",
+   "values": "模块的背景色。 [r g b] 向量",
+   "group": "格式"
+  }
+ ]
+}

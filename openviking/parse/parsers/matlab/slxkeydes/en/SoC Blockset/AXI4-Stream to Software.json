@@ -1,0 +1,129 @@
+{
+ "key": "AXI4-Stream to Software",
+ "title": "AXI4-Stream to Software",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/AXI4_Stream_to_Software.md"
+ ],
+ "text": "Stream AXI4 data from FPGA to software, 3 inputs, 3 outputs, {Data type} sets Data type of writer data; {Memory simulation} sets the simulation timing accuracy, {Memory selection} sets the between memory regions, {Region size (bytes)} sets the size of the allocated memory region, in bytes Read-only, {Number of buffers}, {Burst length}, {FIFO depth (number of bursts)} sets the depth of FIFO for data, {FIFO almost-full depth (number of bursts)} sets the depth of FIFO when backpressure, {Clock frequency (MHz)} sets the interconnect frequency of manager datapath, {Data width (bits)} sets the data width of manager datapath, {Dimensions}, {Sample time} sets the time interval of sampling, {Enable sample packing (last signal dimension as channel)} sets the pack data on the last dimension and {View performance plots} displays performance metrics. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "Writer data bus signal scalar | vector | matrix"
+  },
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "Writer input control signal bus"
+  },
+  {
+   "name": "done",
+   "direction": "input",
+   "summary": "Notification message of completed read scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "Task read event signal scalar"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "Output data signal to software scalar | vector | matrix"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "Writer control signal to data producer bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Memory simulation",
+   "default": "accurate",
+   "values": "Set simulation timing accuracy Burst accurate (default) | Protocol accurate | Behavioral",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "Choose between memory regions PS memory (default) | PL memory",
+   "group": "Main"
+  },
+  {
+   "name": "Region size (bytes)",
+   "default": "",
+   "values": "Size of the allocated memory region, in bytes Read-only: calculated",
+   "group": "Main"
+  },
+  {
+   "name": "Number of buffers",
+   "default": "8",
+   "values": "Number of buffers in region 8 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Burst length",
+   "default": "256",
+   "values": "Burst length for memory transactions 256 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO depth (number of bursts)",
+   "default": "8",
+   "values": "Depth of FIFO for data 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO almost-full depth (number of bursts)",
+   "default": "6",
+   "values": "Depth of FIFO when backpressure is asserted 6 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Clock frequency (MHz)",
+   "default": "100",
+   "values": "Interconnect frequency of manager datapath 100 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Data width (bits)",
+   "default": "64",
+   "values": "Data width of manager datapath 64 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Dimensions",
+   "default": "1",
+   "values": "Dimensions of input data signal 1 (default) | scalar | array",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "uint32",
+   "values": "Data type of writer data uint32 (default) | double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint64 | Boolean | fixed point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Time interval of sampling 1 (default) | positive scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "off",
+   "values": "Pack data on the last dimension of the signal off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "View performance plots",
+   "default": "",
+   "values": "Display performance metrics button",
+   "group": "Performance"
+  }
+ ]
+}

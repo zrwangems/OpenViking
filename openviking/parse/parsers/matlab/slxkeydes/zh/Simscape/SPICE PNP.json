@@ -1,0 +1,13 @@
+{
+ "key": "SPICE PNP",
+ "title": "SPICE PNP",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Semiconductors/SPICE_PNP.md"
+ ],
+ "text": "兼容 SPICE 的 Gummel-Poon PNP 晶体管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

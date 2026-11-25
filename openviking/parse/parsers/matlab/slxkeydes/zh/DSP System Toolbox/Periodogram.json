@@ -1,0 +1,91 @@
+{
+ "key": "Periodogram",
+ "title": "Periodogram",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Periodogram.md"
+ ],
+ "text": "使用周期图法的功率谱密度或均方谱估计，输入 1 路、输出 1 路；按 {Window} 指定窗类型；{Measurement} 指定测量类型 Power spectral、{Beta}、{Window sampling} 指定窗采样 Symmetric、{FFT implementation}、{Stopband attenuation in dB} 指定阻带衰减、{Inherit FFT length from input dimensions} 指定继承 FFT 长度、{FFT length} 指定数据点数、{Number of spectral averages} 指定频谱平均次数、{Inherit sample time from input} 指定从输入继承采样时间、{Sample time of original time series} 指定原始时间序列的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "density",
+   "values": "测量类型 Power spectral density (default) | Mean-square spectrum",
+   "group": ""
+  },
+  {
+   "name": "Window",
+   "default": "Hamming",
+   "values": "窗类型 Hamming (default) | Bartlett | Blackman | Boxcar | Chebyshev | Hann | Hanning | Kaiser | Triang",
+   "group": ""
+  },
+  {
+   "name": "Beta",
+   "default": "5",
+   "values": "Beta 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Window sampling",
+   "default": "Symmetric",
+   "values": "窗采样 Symmetric (default) | Periodic",
+   "group": ""
+  },
+  {
+   "name": "FFT implementation",
+   "default": "Auto",
+   "values": "FFT implementation Auto (default) | Radix-2 | FFTW",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation in dB",
+   "default": "50",
+   "values": "阻带衰减 (dB) 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT length from input dimensions",
+   "default": "off",
+   "values": "继承 FFT 长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "256",
+   "values": "数据点数 256 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of spectral averages",
+   "default": "4",
+   "values": "频谱平均次数 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time from input",
+   "default": "on",
+   "values": "从输入继承采样时间 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time of original time series",
+   "default": "1",
+   "values": "原始时间序列的采样时间 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "key": "Quaternion Normalize",
+ "title": "Quaternion Normalize",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Normalize.md"
+ ],
+ "text": "归一化四元数，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "四元数 quaternion | vector of quaternions"
+  },
+  {
+   "name": "normal(q)",
+   "direction": "output",
+   "summary": "归一化四元数 normalized quaternion | vector of normalized quaternions"
+  }
+ ],
+ "params": []
+}

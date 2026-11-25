@@ -1,0 +1,55 @@
+{
+ "key": "Nonlinear ARX Model",
+ "title": "Nonlinear ARX Model",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Models/Nonlinear_ARX_Model.md"
+ ],
+ "text": "在 Simulink 软件中仿真非线性 ARX 模型，输入 1 路、输出 1 路；{模型}、{初始条件}、{Input level} 指定稳态输入信号电平、{Output level} 指定稳态输出信号电平、{Specify initial states as a vector} 指定初始状态值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "仿真输入数据 标量 | 向量"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "仿真输出 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "模型",
+   "default": "",
+   "values": "待仿真的非线性 ARX 模型 idnlarx 对象",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "values",
+   "values": "仿真初始条件设定 Input and output values (默认) | State values",
+   "group": ""
+  },
+  {
+   "name": "Input level",
+   "default": "0",
+   "values": "稳态输入信号电平 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "Output level",
+   "default": "0",
+   "values": "稳态输出信号电平 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "Specify initial states as a vector",
+   "default": "0",
+   "values": "初始状态值 0 (默认) | 向量",
+   "group": ""
+  }
+ ]
+}

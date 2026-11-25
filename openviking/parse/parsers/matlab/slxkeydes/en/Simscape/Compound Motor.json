@@ -1,0 +1,13 @@
+{
+ "key": "Compound Motor",
+ "title": "Compound Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Brushed Motors/Compound_Motor.md"
+ ],
+ "text": "Compound motor model with electrical and torque characteristics and fault modeling.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

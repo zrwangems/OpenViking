@@ -1,0 +1,13 @@
+{
+ "key": "Cycloidal Drive",
+ "title": "Cycloidal Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Cycloidal_Drive.md"
+ ],
+ "text": "High-ratio speed reducer based on cycloidal disc motion.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

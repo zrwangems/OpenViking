@@ -1,0 +1,70 @@
+{
+ "key": "PWM Timing and Waveform Generator (Three-phase, Two-level)",
+ "title": "PWM Timing and Waveform Generator (Three-phase, Two-level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Timing_and_Waveform_Generator_Three_phase_Two_level.md"
+ ],
+ "text": "Generate three-phase, two-level gating time information, 2 inputs, 3 outputs, {Sampling mode} sets Wave-sampling method; {PWM mode} sets the pulse width modulation method Continuous, {Continuous PWM} sets the continuous pulse width modulation method SVM: space vector, {Discontinuous PWM (DPWM)} sets the clamping method 60 DPWM: 60 degree discontinuous and {Switching frequency (Hz)} sets the switching rate 1e3. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "Three-phase sinusoidal reference signal vector"
+  },
+  {
+   "name": "vdc",
+   "direction": "input",
+   "summary": "DC-link voltage signal scalar"
+  },
+  {
+   "name": "TgabcON",
+   "direction": "output",
+   "summary": "Switch-on gating time vector"
+  },
+  {
+   "name": "TgabcOFF",
+   "direction": "output",
+   "summary": "Switch-off gating time vector"
+  },
+  {
+   "name": "ModWave",
+   "direction": "output",
+   "summary": "Modulation waves vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "PWM mode",
+   "default": "(CPWM)",
+   "values": "Pulse width modulation method Continuous PWM (CPWM) (default) | Discontinuous PWM (DPWM)",
+   "group": ""
+  },
+  {
+   "name": "Continuous PWM",
+   "default": "modulation",
+   "values": "Continuous pulse width modulation method SVM: space vector modulation (default) | SPWM: sinusoidal PWM",
+   "group": ""
+  },
+  {
+   "name": "Discontinuous PWM (DPWM)",
+   "default": "PWM",
+   "values": "Clamping method 60 DPWM: 60 degree discontinuous PWM (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "Wave-sampling method Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1e3",
+   "values": "Switching rate 1e3 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

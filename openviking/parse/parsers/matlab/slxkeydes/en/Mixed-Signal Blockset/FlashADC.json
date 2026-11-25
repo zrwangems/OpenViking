@@ -1,0 +1,143 @@
+{
+ "key": "FlashADC",
+ "title": "Flash ADC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Architectures/Flash_ADC.md"
+ ],
+ "text": "N-bit ADC with flash architecture, 2 inputs, 2 outputs, {Edge trigger type} sets Clock; {Number of bits} sets the number of physical output bits, {Input range (V)} sets the aDC dynamic range, {Use external start clock} sets the connect to external start conversion clock, {Conversion start frequency (Hz)} sets the frequency of internal start conversion clock, {RMS aperture jitter (s)} sets the rMS aperture jitter added to the start conversion clock, {Match input scale} sets the inherit output polarity and data type, {Output polarity} Defines ADC output polarity, {Output data type} Defines ADC output data type fixdt, {Simulate using} defines how to simulate ADC, {Enable Linearity Impairments} enables linearity impairments in ADC, {Offset error} sets the shifts quantization steps by specific value, {Gain error} sets the error on slope of ADC transfer curve, {Missing codes} sets the position of the failed comparators, {Enable Timing Impairments} enables timing impairments in ADC, {Conversion delay (s)} sets the latency of ADC, {Enable increased buffer size} and {Buffer size} sets the number of extra buffer filters. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "Analog input signal scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "External clock to start conversion scalar"
+  },
+  {
+   "name": "digital",
+   "direction": "output",
+   "summary": "Converted digital output signal scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Determines whether analog to digital conversion is complete scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits",
+   "default": "10",
+   "values": "Number of physical output bits 10 (default) | positive real integer in the range [1, 26]",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "ADC dynamic range [-1 1] (default) | 2-element row vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Use external start clock",
+   "default": "on",
+   "values": "Connect to external start conversion clock on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Conversion start frequency (Hz)",
+   "default": "1e6",
+   "values": "Frequency of internal start conversion clock 1e6 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "RMS aperture jitter (s)",
+   "default": "1e-12",
+   "values": "RMS aperture jitter added to the start conversion clock 1e-12 (default) | real nonnegative scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Edge trigger type",
+   "default": "edge",
+   "values": "Clock edge type that triggers the output update Rising edge (default) | Falling edge | Either edge",
+   "group": "Configuration"
+  },
+  {
+   "name": "Match input scale",
+   "default": "off",
+   "values": "Inherit output polarity and data type from input off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output polarity",
+   "default": "Auto",
+   "values": "Defines ADC output polarity Auto (default) | Bipolar | Unipolar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output data type",
+   "default": "fixdt(1,Nbits)",
+   "values": "Defines ADC output data type fixdt(1,Nbits) (default) | fixdt(0,Nbits) | double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Inherit: Inherit via back propagation",
+   "group": "Configuration"
+  },
+  {
+   "name": "Simulate using",
+   "default": "blocks",
+   "values": "Define how to simulate ADC Simulink blocks (default) | System object (interpreted) | System object (code generation)",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable Linearity Impairments",
+   "default": "off",
+   "values": "Enable linearity impairments in ADC simulation off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "Shifts quantization steps by specific value 3 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "Error on slope of ADC transfer curve 2 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Missing codes",
+   "default": "[]",
+   "values": "Position of the failed comparators [] (default) | row vector with positive real values",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable Timing Impairments",
+   "default": "off",
+   "values": "Enable timing impairments in ADC simulation off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Conversion delay (s)",
+   "default": "0",
+   "values": "Latency of ADC 0 (default) | nonnegative real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Buffer size",
+   "default": "100",
+   "values": "Number of extra buffer filters 100 (default) | positive real scalar",
+   "group": "Impairments"
+  }
+ ]
+}

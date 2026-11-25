@@ -1,0 +1,45 @@
+{
+ "key": "Assertion",
+ "title": "Assertion",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Model Verification/Assertion.md",
+  "HDL Coder/Model Verification/Assertion.md"
+ ],
+ "text": "Check whether signal is zero, 1 input, no direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Enable assertion} enables or disable check, {Simulation callback when assertion fails} sets the expression to evaluate when assertion and {Stop simulation when assertion fails} sets the whether to stop simulation when check. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "Enable or disable check on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulation callback when assertion fails",
+   "default": "\"\"",
+   "values": "Expression to evaluate when assertion fails \"\" (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "on",
+   "values": "Whether to stop simulation when check fails on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

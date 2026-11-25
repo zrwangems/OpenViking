@@ -1,0 +1,95 @@
+{
+ "key": "IIR Filter",
+ "title": "IIR Filter",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Signal Management/IIR_Filter.md",
+  "Motor Control Blockset/Signal Management/IIR_Filter.md"
+ ],
+ "text": "实现无限冲激响应 (IIR) 滤波器，输入 4 路、输出 1 路；按 {理论截止频率(Hz)} 指定IIR 滤波器的理论截止频率 32.1525；{滤波器类型}、{滤波器系数}、{滤波器系数值} 指定 IIR 滤波器的滤波器系数、{初始状态}、{初始状态值} 指定状态初始值、{外部重置}、{显示截止频率}、{离散步长(秒)} 指定采样时间，在此采样时间过后模块将再次执行 50e-6，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "采样的输入信号 标量"
+  },
+  {
+   "name": "a",
+   "direction": "input",
+   "summary": "滤波器系数 标量"
+  },
+  {
+   "name": "x 0",
+   "direction": "input",
+   "summary": "初始状态信号 标量"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部重置信号 标量"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "滤波后的输出信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "滤波器类型",
+   "default": "低通",
+   "values": "IIR 滤波器类型 低通 (默认) | 高通",
+   "group": ""
+  },
+  {
+   "name": "滤波器系数",
+   "default": "通过对话框指定",
+   "values": "滤波器系数输入方法 通过对话框指定 (默认) | 输入端口",
+   "group": ""
+  },
+  {
+   "name": "滤波器系数值",
+   "default": "0.01",
+   "values": "IIR 滤波器的滤波器系数 0.01 (默认) | 范围 (0,1] 中的标量",
+   "group": ""
+  },
+  {
+   "name": "初始状态",
+   "default": "通过对话框指定",
+   "values": "指定如何提供初始状态值 通过对话框指定 (默认) | 输入端口",
+   "group": ""
+  },
+  {
+   "name": "初始状态值",
+   "default": "0",
+   "values": "状态初始值 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "外部重置",
+   "default": "无",
+   "values": "指定是否提供外部重置信号 无 (默认) | 高电平重置为初始条件",
+   "group": ""
+  },
+  {
+   "name": "显示截止频率",
+   "default": "off",
+   "values": "显示截止频率参数 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "离散步长(秒)",
+   "default": "50e-6",
+   "values": "采样时间，在此采样时间过后模块将再次执行 50e-6 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "理论截止频率(Hz)",
+   "default": "",
+   "values": "IIR 滤波器的理论截止频率 32.1525 | 标量",
+   "group": ""
+  }
+ ]
+}

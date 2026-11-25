@@ -1,0 +1,43 @@
+{
+ "key": "Bipolar to Unipolar Converter",
+ "title": "Bipolar to Unipolar Converter",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Bipolar_to_Unipolar_Converter.md"
+ ],
+ "text": "将双极性信号映射为范围 [0, M – 1] 内的单极性信号，输入 1 路、输出 1 路；按 {Output data type} 指定单极性信号的输出数据类型 Inherit via internal；{M-ary number} 指定符号数、{Polarity} 指定符号的相对顺序，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "4",
+   "values": "符号数 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Polarity",
+   "default": "Positive",
+   "values": "符号的相对顺序 Positive (default) | Negative",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "单极性信号的输出数据类型 Inherit via internal rule (default) | Same as input | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | boolean",
+   "group": ""
+  }
+ ]
+}

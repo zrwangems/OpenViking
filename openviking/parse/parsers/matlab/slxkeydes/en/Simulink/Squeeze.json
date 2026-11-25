@@ -1,0 +1,24 @@
+{
+ "key": "Squeeze",
+ "title": "Squeeze",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Squeeze.md"
+ ],
+ "text": "Remove singleton dimensions from multidimensional signal, 1 input, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Multidimensional input signal multidimensional signal"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal with no singleton dimensions multidimensional signal"
+  }
+ ],
+ "params": []
+}

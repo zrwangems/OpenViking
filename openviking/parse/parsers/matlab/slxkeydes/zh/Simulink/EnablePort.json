@@ -1,0 +1,87 @@
+{
+ "key": "EnablePort",
+ "title": "Enable",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Enable.md",
+  "HDL Coder/Ports & Subsystems/Enable.md"
+ ],
+ "text": "将使能端口添加到子系统或模型；输出 1 路；按 {采样时间} 指定时间间隔；{启用时的状态} 指定当禁用的子系统或模型被激活时要采用的模块状态、{传播可变大小信号的大小} 指定何时传播可变大小信号、{显示输出端口} 控制使能信号的输出端口的显示、{启用过零检测} 控制过零检测、{端口维度} 指定使能信号的维度、{最小}、{最大}、{数据类型}、{模式} 指定数据类型类别、{数据插值} 指定缺失的工作区数据的值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable signal",
+   "direction": "output",
+   "summary": "子系统或模型的外部使能信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "启用时的状态",
+   "default": "保持",
+   "values": "选择当禁用的子系统或模型被激活时要采用的模块状态 保持 (默认) | 重置",
+   "group": ""
+  },
+  {
+   "name": "传播可变大小信号的大小",
+   "default": "仅在启用时",
+   "values": "选择何时传播可变大小信号 仅在启用时 (默认) | 执行期间",
+   "group": ""
+  },
+  {
+   "name": "显示输出端口",
+   "default": "off",
+   "values": "控制使能信号的输出端口的显示 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "控制过零检测 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "端口维度",
+   "default": "1",
+   "values": "指定使能信号的维度 1 (默认) | [n] | [m n]",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "指定时间间隔 -1 (默认) | Ts | [Ts, To]",
+   "group": ""
+  },
+  {
+   "name": "最小",
+   "default": "[]",
+   "values": "指定使能信号的最小输出值 [] (默认) | 实数标量",
+   "group": ""
+  },
+  {
+   "name": "最大",
+   "default": "[]",
+   "values": "指定使能信号的最大输出值 [] (默认) | 实数标量",
+   "group": ""
+  },
+  {
+   "name": "数据类型",
+   "default": "double",
+   "values": "指定使能信号的输出数据类型 double (默认) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^,0) | <数据类型表达式>",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "内置",
+   "values": "选择数据类型类别 内置 (默认) | 定点 | 表达式",
+   "group": ""
+  },
+  {
+   "name": "数据插值",
+   "default": "on",
+   "values": "指定缺失的工作区数据的值 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

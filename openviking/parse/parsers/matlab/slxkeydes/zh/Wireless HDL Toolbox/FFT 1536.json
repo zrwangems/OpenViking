@@ -1,0 +1,64 @@
+{
+ "key": "FFT 1536",
+ "title": "FFT 1536",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/FFT_1536.md"
+ ],
+ "text": "计算 LTE 标准传输带宽 15 MHz 的快速傅里叶变换 (FFT)，输入 3 路、输出 2 路；按 {Rounding method} 指定内部定点计算的舍入模式；{Complex multiplication} 指定 HDL 实现 Use 3 multipliers、{Normalize butterfly output} 输出归一化、{Enable reset input port} 指定可选复位信号，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 scalar of real or complex values"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "复位控制信号 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "频率通道输出数据 scalar of real or complex values"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Complex multiplication",
+   "default": "adders",
+   "values": "HDL 实现 Use 3 multipliers and 5 adders (default) | Use 4 multipliers and 2 adders",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding method",
+   "default": "Floor",
+   "values": "内部定点计算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Main"
+  },
+  {
+   "name": "Normalize butterfly output",
+   "default": "off",
+   "values": "输出归一化 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "可选复位信号 off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

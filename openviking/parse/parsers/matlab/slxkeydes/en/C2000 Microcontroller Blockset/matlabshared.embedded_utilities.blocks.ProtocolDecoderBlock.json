@@ -1,0 +1,130 @@
+{
+ "key": "matlabshared.embedded_utilities.blocks.ProtocolDecoderBlock",
+ "title": "Protocol Decoder",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/Protocol_Decoder.md",
+  "Motor Control Blockset/Signal Management/Protocol_Decoder.md",
+  "Simulink Real-Time/Utilities/Protocol_Decoder.md"
+ ],
+ "text": "Decode a uint8 byte stream by specifying the packet structure, 2 inputs, 5 outputs, {Terminator} sets Terminator of the; {Parse comma separated variables} sets the parse input data that contains comma separated variables, {Header}, {Field name} sets the name of the field in the packet structure, {Output field length} sets the length of the field in the packet structure as per the data, {Output field data type} sets the data type, {Byte order} sets the endianess of the field in the packet Little, {Specify maximum length if last field has variable size} enables last field to output variable-size data and specify maximum length of the field numeric, {Specify logic for checksum validation} enables the logic for checksum validation and select the logic XOR, {Checksum size} sets the number of bytes of checksum data numeric, {File path} sets the path of the function, {Custom terminator} and {Is input data stream length available} enables additional input for data stream. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "uint8 byte stream packet vector"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Length of data stream packet at Data input port numeric scalar"
+  },
+  {
+   "name": "Field1",
+   "direction": "output",
+   "summary": "First field decoded by the block scalar"
+  },
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "New data indicator 0 | 1"
+  },
+  {
+   "name": "IsValid",
+   "direction": "output",
+   "summary": "Checksum validation indicator 0 | 1"
+  },
+  {
+   "name": "Variable field length",
+   "direction": "output",
+   "summary": "Actual data length of the last field that is variable-size numeric scalar"
+  },
+  {
+   "name": "Variable field lengths",
+   "direction": "output",
+   "summary": "Actual data lengths of comma separated variables array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Parse comma separated variables",
+   "default": "",
+   "values": "Parse input data that contains comma separated variables array",
+   "group": ""
+  },
+  {
+   "name": "Header",
+   "default": "",
+   "values": "Header of the packet character array | array of numeric values less than 255",
+   "group": ""
+  },
+  {
+   "name": "Field name",
+   "default": "Field1",
+   "values": "Name of the field in the packet structure Field1 (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Output field length",
+   "default": "1",
+   "values": "Length of the field in the packet structure as per the data type 1 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Output field data type",
+   "default": "uint8",
+   "values": "Data type of the field uint8 (default) | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | single | double",
+   "group": ""
+  },
+  {
+   "name": "Byte order",
+   "default": "endian",
+   "values": "Endianess of the field in the packet Little endian (default) | Big endian",
+   "group": ""
+  },
+  {
+   "name": "Specify maximum length if last field has variable size",
+   "default": "",
+   "values": "Enable last field to output variable-size data and specify maximum length of the field numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify logic for checksum validation",
+   "default": "",
+   "values": "Enable the logic for checksum validation and select the logic XOR of bytes | 2’s complement of sum of bytes | Custom algorithm",
+   "group": ""
+  },
+  {
+   "name": "Checksum size",
+   "default": "",
+   "values": "Number of bytes of checksum data numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "File path",
+   "default": "",
+   "values": "Path of the function (.m) used for custom checksum logic MATLAB ® path",
+   "group": ""
+  },
+  {
+   "name": "Terminator",
+   "default": "packet",
+   "values": "Terminator of the packet (default) | CR (’\\r’) | LF (’\\n’) | CR/LF (’\\r\\n’) | NULL (’\\0’) | Custom Terminator",
+   "group": ""
+  },
+  {
+   "name": "Custom terminator",
+   "default": "",
+   "values": "Custom terminator of the packet character array",
+   "group": ""
+  },
+  {
+   "name": "Is input data stream length available",
+   "default": "off",
+   "values": "Enable additional input for data stream length off (default) | on",
+   "group": ""
+  }
+ ]
+}

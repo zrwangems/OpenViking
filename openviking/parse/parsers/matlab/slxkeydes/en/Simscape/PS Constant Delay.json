@@ -1,0 +1,13 @@
+{
+ "key": "PS Constant Delay",
+ "title": "PS Constant Delay",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Delays/PS_Constant_Delay.md"
+ ],
+ "text": "Delay input physical signal by specified time.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

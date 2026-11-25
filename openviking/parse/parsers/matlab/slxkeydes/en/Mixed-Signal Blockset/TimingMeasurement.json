@@ -1,0 +1,121 @@
+{
+ "key": "TimingMeasurement",
+ "title": "Timing Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Timing_Measurement.md"
+ ],
+ "text": "Measure period, frequency, duty cycle, rise time, fall time, and delay of a signal, 2 inputs, 6 outputs; {Period} sets the measure period of input signal, {Frequency} sets the measure frequency of input signal, {Rise Time} sets the measure rise time of input signal, {Fall Time} sets the measure fall time of input signal, {Duty Cycle} sets the measure duty cycle of input signal, {Delay} sets the measure delay of input signal, {Use same reference threshold for all measurements} uses the same reference threshold for measuring all timing, {Reference threshold (V)} sets the reference threshold used for measuring timing, {Input range (V)} sets the peak-to-peak value of input signal, {Type} sets the input threshold levels to measure rise/fall times and {Test threshold (V)} sets the threshold voltage level in test signal used to measure. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "reference",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "test",
+   "direction": "input",
+   "summary": "Test signal scalar"
+  },
+  {
+   "name": "period",
+   "direction": "output",
+   "summary": "Period of input signal scalar"
+  },
+  {
+   "name": "frequency",
+   "direction": "output",
+   "summary": "Frequency of input signal scalar"
+  },
+  {
+   "name": "rise time",
+   "direction": "output",
+   "summary": "Rise time of input signal scalar"
+  },
+  {
+   "name": "fall time",
+   "direction": "output",
+   "summary": "Fall time of input signal scalar"
+  },
+  {
+   "name": "duty cycle",
+   "direction": "output",
+   "summary": "Duty cycle of input signal scalar"
+  },
+  {
+   "name": "delay",
+   "direction": "output",
+   "summary": "Delay of input signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Period",
+   "default": "on",
+   "values": "Measure period of input signal on (default) | off",
+   "group": "Selection"
+  },
+  {
+   "name": "Frequency",
+   "default": "off",
+   "values": "Measure frequency of input signal off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Rise Time",
+   "default": "off",
+   "values": "Measure rise time of input signal off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Fall Time",
+   "default": "off",
+   "values": "Measure fall time of input signal off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Duty Cycle",
+   "default": "off",
+   "values": "Measure duty cycle of input signal off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Delay",
+   "default": "off",
+   "values": "Measure delay of input signal off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Use same reference threshold for all measurements",
+   "default": "on",
+   "values": "Use the same reference threshold for measuring all timing metrics on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Reference threshold (V)",
+   "default": "0",
+   "values": "Reference threshold used for measuring timing metrics 0 (default) | scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "Peak-to-peak value of input signal [-1 1] (default) | 2-element row vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Type",
+   "default": "80%/20%",
+   "values": "Input threshold levels to measure rise/fall times 80%/20% (default) | 90%/10%",
+   "group": "Configuration"
+  },
+  {
+   "name": "Test threshold (V)",
+   "default": "0",
+   "values": "Threshold voltage level in test signal used to measure delay 0 (default) | scalar",
+   "group": "Configuration"
+  }
+ ]
+}

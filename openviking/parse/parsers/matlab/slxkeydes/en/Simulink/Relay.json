@@ -1,0 +1,92 @@
+{
+ "key": "Relay",
+ "title": "Relay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Relay.md",
+  "HDL Coder/Discontinuities/Relay.md"
+ ],
+ "text": "Switch output between two constants, 1 input, 1 output, direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Switch on point} sets the input value which switches the relay, {Switch off point} sets the input value which switches the relay, {Output when on} sets the output value when the relay, {Output when off} sets the output value when the relay, {Input processing} sets the sample- or frame-based processing Elements, {Enable zero-crossing detection}, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the data type of output signal and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Switch on point",
+   "default": "’eps’",
+   "values": "Input value which switches the relay on ’eps’ (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Switch off point",
+   "default": "’eps’",
+   "values": "Input value which switches the relay off ’eps’ (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output when on",
+   "default": "1",
+   "values": "Output value when the relay is on 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output when off",
+   "default": "0",
+   "values": "Output value when the relay is off 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "datatype",
+   "values": "Data type of output signal Inherit: All ports same datatype (default) | Inherit: Inherit via back propagation | double | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | |...",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  }
+ ]
+}

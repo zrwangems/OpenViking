@@ -1,0 +1,89 @@
+{
+ "key": "dsp.simulink.VariableFIRInterpolator",
+ "title": "Variable FIR Interpolation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Variable_FIR_Interpolation.md"
+ ],
+ "text": "Polyphase FIR interpolation with tunable interpolation factor, 3 inputs, 1 output, no direct feedthrough, {Numerator source} sets FIR filter coefficient source; {Specification} sets the mode to control interpolation factor Interpolation, {Maximum interpolation factor}, {Specify interpolation factor from input port}, {Interpolation factor}, {Output frame length}, {Prototype filter numerator coefficients} sets the prototype filter coefficients, {View Filter Response} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "Interpolation factor input port positive integer"
+  },
+  {
+   "name": "coeffs",
+   "direction": "input",
+   "summary": "Prototype filter coefficients vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Interpolated output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specification",
+   "default": "factor",
+   "values": "Specify mode to control interpolation factor Interpolation factor (default) | Output frame length",
+   "group": ""
+  },
+  {
+   "name": "Maximum interpolation factor",
+   "default": "24",
+   "values": "Maximum interpolation factor 24 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify interpolation factor from input port",
+   "default": "on",
+   "values": "Specify interpolation factor from input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Interpolation factor",
+   "default": "24",
+   "values": "Interpolation factor 24 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output frame length",
+   "default": "48",
+   "values": "Output frame length 48 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Numerator source",
+   "default": "Auto",
+   "values": "FIR filter coefficient source Auto (default) | Dialog parameter | Input port",
+   "group": ""
+  },
+  {
+   "name": "Prototype filter numerator coefficients",
+   "default": "designMultirateFIR(24,1)",
+   "values": "Prototype filter coefficients designMultirateFIR(24,1) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View Filter Response button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "key": "robotics.slcore.internal.block.TransformTrajSys",
+ "title": "Transform Trajectory",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Utilities/Transform_Trajectory.md"
+ ],
+ "text": "Generate trajectory between two homogeneous transforms, 6 inputs, 3 outputs, {Time scaling time} sets Time scaling time points; {Waypoint source} sets the source for waypoints, {Initial transform}, {Final transform}, {Time interval} sets the start and end times for trajectory, {Use custom time scaling} enables custom time scaling, {Parameter source} sets the source for waypoints, {Time scaling values} sets the time scaling vector and first two derivatives and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "Time point along trajectory scalar | vector"
+  },
+  {
+   "name": "T0",
+   "direction": "input",
+   "summary": "Initial transformation matrix 4-by-4 homogeneous transformation"
+  },
+  {
+   "name": "TF",
+   "direction": "input",
+   "summary": "Final transformation matrix 4-by-4 homogeneous transformation"
+  },
+  {
+   "name": "TimeInterval",
+   "direction": "input",
+   "summary": "Start and end times for trajectory two-element vector"
+  },
+  {
+   "name": "TSTime",
+   "direction": "input",
+   "summary": "Time scaling time points scalar | p -element vector"
+  },
+  {
+   "name": "TimeScaling",
+   "direction": "input",
+   "summary": "Time scaling vector and first two derivatives three-element vector | 3-by- p matrix"
+  },
+  {
+   "name": "tform",
+   "direction": "output",
+   "summary": "Homogeneous transformation matrices 4-by-4-by- m homogenous matrix array"
+  },
+  {
+   "name": "vel",
+   "direction": "output",
+   "summary": "Transform velocities 6-by- m matrix"
+  },
+  {
+   "name": "alpha",
+   "direction": "output",
+   "summary": "Transform accelerations 6-by- m matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Waypoint source",
+   "default": "Internal",
+   "values": "Source for waypoints Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Initial transform",
+   "default": "-1])",
+   "values": "Initial transformation matrix trvec2tform([1 10 -1]) (default) | 4-by-4 homogeneous transformation",
+   "group": ""
+  },
+  {
+   "name": "Final transform",
+   "default": "pi/2])",
+   "values": "Final transformation matrix eul2tform([0 pi pi/2]) (default) | 4-by-4 homogeneous transformation",
+   "group": ""
+  },
+  {
+   "name": "Time interval",
+   "default": "",
+   "values": "Start and end times for trajectory [2 3] | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Use custom time scaling",
+   "default": "off",
+   "values": "Enable custom time scaling off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Parameter source",
+   "default": "Internal",
+   "values": "Source for waypoints Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Time scaling time",
+   "default": "2:0.1:3",
+   "values": "Time scaling time points 2:0.1:3 (default) | scalar | p -element vector",
+   "group": ""
+  },
+  {
+   "name": "Time scaling values",
+   "default": "zeros(1,11)]",
+   "values": "Time scaling vector and first two derivatives [0:0.1:1; ones(1,11); zeros(1,11)] (default) | three-element vector | 3-by- m matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

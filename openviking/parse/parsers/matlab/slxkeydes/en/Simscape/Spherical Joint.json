@@ -1,0 +1,13 @@
+{
+ "key": "Spherical Joint",
+ "title": "Spherical Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Spherical_Joint.md"
+ ],
+ "text": "Joint allows 3-D rotations.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

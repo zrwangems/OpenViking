@@ -1,0 +1,13 @@
+{
+ "key": "Flexible I Beam",
+ "title": "Flexible I Beam",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Flexible Bodies/Beams/Flexible_I_Beam.md"
+ ],
+ "text": "I-beam with elastic properties for deformation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

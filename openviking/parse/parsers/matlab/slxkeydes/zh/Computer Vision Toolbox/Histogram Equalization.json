@@ -1,0 +1,54 @@
+{
+ "key": "Histogram Equalization",
+ "title": "Histogram Equalization",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Histogram_Equalization.md"
+ ],
+ "text": "使用直方图均衡化增强图像对比度，输入 2 路、输出 1 路；{Target histogram} 指定所需直方图的类型、{Number of bins} 指定目标直方图的 bin 数量、{Histogram source} 指定目标直方图的来源 Specify via、{Histogram} 指定目标直方图的 bin 计数 ones，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix"
+  },
+  {
+   "name": "Hist",
+   "direction": "input",
+   "summary": "目标直方图 vector of integers"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Target histogram",
+   "default": "Uniform",
+   "values": "所需直方图的类型 Uniform (default) | User-defined",
+   "group": ""
+  },
+  {
+   "name": "Number of bins",
+   "default": "64",
+   "values": "目标直方图的 bin 数量 64 (default) | integer greater than one",
+   "group": ""
+  },
+  {
+   "name": "Histogram source",
+   "default": "dialog",
+   "values": "目标直方图的来源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Histogram",
+   "default": "ones(1,64)",
+   "values": "目标直方图的 bin 计数 ones(1,64) (default) | vector of integers",
+   "group": ""
+  }
+ ]
+}

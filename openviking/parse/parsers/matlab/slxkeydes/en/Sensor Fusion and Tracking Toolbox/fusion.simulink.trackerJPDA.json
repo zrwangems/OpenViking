@@ -1,0 +1,282 @@
+{
+ "key": "fusion.simulink.trackerJPDA",
+ "title": "Joint Probabilistic Data Association Multi Object Tracker",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Multi-Object Tracking Algorithms/Joint_Probabilistic_Data_Association_Multi_Object_Tracker.md"
+ ],
+ "text": "Joint probabilistic data association tracker, 5 inputs, 4 outputs, {Out-of-sequence measurements handling} sets Out-of-sequence measurements handling; {Tracker identifier} sets the unique tracker identifier, {Filter initialization function}, {Value of k for k-best JPDA}, {Feasible joint events generation function name}, {Maximum number of tracks}, {Maximum number of sensors}, {Absolute tolerance between time stamps of detections}, {Maximum number of OOSM steps}, {Track state parameters} sets the parameters of track state reference frame, {Update track state parameters with time}, {Enable memory management}, {Simulate using} sets the type of simulation to run Interpreted, {Threshold for assigning detections to tracks}, {Threshold to initialize a track}, {Probability of detection}, {Spatial density of clutter measurements}, {Type of track confirmation and deletion logic} sets the confirmation and deletion logic type, {Confirmation threshold [M N]} sets the track confirmation threshold for history logic, {Deletion threshold [P Q]} sets the track deletion threshold for history logic, {Threshold for registering ’hit’ or ’miss’} sets the threshold for registering, {Confirmation threshold [Probability]} sets the track confirmation threshold for integrated, {Deletion threshold [Probability]} sets the track deletion threshold for integrated, {Spatial density of new targets}, {Time rate of true target deaths}, {Prediction time source} sets the source of prediction time, {Enable cost matrix input} enables input port for cost matrix, {Enable detectable track IDs input}, {Enable tentative tracks output} enables output port for tentative tracks, {Enable all tracks output} enables output port for all tracks, {Enable information output} enables output port for analysis, {Source of output bus name} sets the source of output track bus name, {Source of output info bus name}, {Maximum number of detections per sensor}, {Maximum number of detections per cluster}, {Maximum number of tracks per cluster} and {Handle run-time violation of cluster size}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Detections",
+   "direction": "input",
+   "summary": "Detection list Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "Track update time real scalar"
+  },
+  {
+   "name": "Cost Matrix",
+   "direction": "input",
+   "summary": "Cost matrix real-valued N t -by- N d matrix"
+  },
+  {
+   "name": "Detectable TrackIDs",
+   "direction": "input",
+   "summary": "Detectable track IDs real-valued M -by-1 vector | real-valued M -by-2 matrix"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "Track state parameters Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "Confirmed tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "Tentative tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "Confirmed and tentative tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Additional information for analyzing track updates Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tracker identifier",
+   "default": "0",
+   "values": "Unique tracker identifier 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Filter initialization function",
+   "default": "initcvekf",
+   "values": "Filter initialization function initcvekf (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Value of k for k-best JPDA",
+   "default": "inf",
+   "values": "Value of k for k-best JPDA inf (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Feasible joint events generation function name",
+   "default": "jpdaEvents",
+   "values": "Feasible joint events generation function name jpdaEvents (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of tracks",
+   "default": "100",
+   "values": "Maximum number of tracks 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "20",
+   "values": "Maximum number of sensors 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Absolute tolerance between time stamps of detections",
+   "default": "20",
+   "values": "Absolute tolerance between time stamps of detections 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Out-of-sequence measurements handling",
+   "default": "Terminate",
+   "values": "Out-of-sequence measurements handling Terminate (default) | Neglect | Retrodiction",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of OOSM steps",
+   "default": "3",
+   "values": "Maximum number of OOSM steps 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "Parameters of track state reference frame structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "Update track state parameters with time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable memory management",
+   "default": "off",
+   "values": "Enable memory management off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Type of simulation to run Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Threshold for assigning detections to tracks",
+   "default": "Inf]",
+   "values": "Threshold for assigning detections to tracks 30*[1 Inf] (default) | positive scalar | 1-by-2 vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Threshold to initialize a track",
+   "default": "0",
+   "values": "Threshold to initialize a track 0 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Probability of detection",
+   "default": "0.9",
+   "values": "Probability of detection 0.9 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Spatial density of clutter measurements",
+   "default": "1e-5",
+   "values": "Spatial density of clutter measurements 1e-5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Type of track confirmation and deletion logic",
+   "default": "History",
+   "values": "Confirmation and deletion logic type History (default) | Integrated",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [M N]",
+   "default": "3]",
+   "values": "Track confirmation threshold for history logic [2, 3] (default) | real-valued 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [P Q]",
+   "default": "5]",
+   "values": "Track deletion threshold for history logic [5, 5] (default) | real-valued 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Threshold for registering ’hit’ or ’miss’",
+   "default": "0.2",
+   "values": "Threshold for registering a ’Hit’ or a ’Miss’ 0.2 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [Probability]",
+   "default": "0.95",
+   "values": "Track confirmation threshold for integrated logic 0.95 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [Probability]",
+   "default": "0.1",
+   "values": "Track deletion threshold for integrated logic 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Spatial density of new targets",
+   "default": "1e-5",
+   "values": "Spatial density of new targets 1e-5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time rate of true target deaths",
+   "default": "0.01",
+   "values": "Time rate of true target deaths 0.01 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Prediction time source",
+   "default": "Auto",
+   "values": "Source of prediction time Auto (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Enable cost matrix input",
+   "default": "off",
+   "values": "Enable input port for cost matrix off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable detectable track IDs input",
+   "default": "off",
+   "values": "Enable detectable track IDs input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "Enable output port for tentative tracks off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "Enable output port for all tracks off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable information output",
+   "default": "off",
+   "values": "Enable output port for analysis information off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "Source of output track bus name Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Source of output info bus name",
+   "default": "Auto",
+   "values": "Source of output info bus name Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of detections per sensor",
+   "default": "100",
+   "values": "Maximum number of detections per sensor 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of detections per cluster",
+   "default": "5",
+   "values": "Maximum number of detections per cluster 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of tracks per cluster",
+   "default": "5",
+   "values": "Maximum number of tracks per cluster 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Handle run-time violation of cluster size",
+   "default": "Auto",
+   "values": "Handle run-time violation of cluster size Auto (default) | Property",
+   "group": ""
+  }
+ ]
+}

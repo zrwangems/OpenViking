@@ -1,0 +1,13 @@
+{
+ "key": "Crankshaft",
+ "title": "Crankshaft",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Engine Subcomponents/Crankshaft.md"
+ ],
+ "text": "Combustion engine crankshaft that connects to one or more pistons.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

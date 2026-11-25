@@ -1,0 +1,110 @@
+{
+ "key": "SampleTimeMath",
+ "title": "Weighted Sample Time Math",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Weighted_Sample_Time_Math.md",
+  "Simulink/Signal Attributes/Weighted_Sample_Time.md"
+ ],
+ "text": "支持涉及采样时间的计算，输入 1 路、输出 1 路、直接馈通；按 {Operation} 指定数学运算；{Weight value} 指定采样时间的权重、{Implement using} 指定调整采样时间的方法 Online、{Output data type} 输出信号的数据类型、{Integer rounding mode} 指定定点运算的舍入模式、{Saturate on integer overflow} 指定溢出操作的方法、{Mode} 指定数据类型模式、{Signedness} 指定定点数据的有符号性、{Scaling} 指定定点数据的定标方法 Best、{Word length} 指定保存量化整数的字的位大小、{Fraction length} 指定定点数据类型的小数长度、{Slope} 指定定点数据类型的斜率、{Bias} 指定定点数据类型的偏置、{Data type override} 指定数据类型覆盖模式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "+",
+   "values": "数学运算 + (default) | - | * | / | Ts Only | 1/Ts Only",
+   "group": "Main"
+  },
+  {
+   "name": "Weight value",
+   "default": "1.0",
+   "values": "采样时间的权重 1.0 (default) | real-valued scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Implement using",
+   "default": "Calculations",
+   "values": "调整采样时间的方法 Online Calculations (default) | Offline Scaling Adjustment",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出信号的数据类型 Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2 0,0) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "数据类型模式 Inherit (default) | Built in | Fixed point | Expression",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "定点数据的有符号性 Signed (default) | Unsigned",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "定点数据的定标方法 Best precision (default) | Binary point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "保存量化整数的字的位大小 16 (default) | integer from 2 to 128",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "定点数据类型的小数长度 0 (default) | integer scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "指定定点数据类型的斜率 2^0 (default) | positive, real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "指定定点数据类型的偏置 0 (default) | real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type override",
+   "default": "Inherit",
+   "values": "数据类型覆盖模式 Inherit (default) | Off",
+   "group": "Signal Attributes"
+  }
+ ]
+}

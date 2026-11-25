@@ -1,0 +1,13 @@
+{
+ "key": "SimscapeArrayConnection",
+ "title": "Array Connection",
+ "toolbox": "Simscape",
+ "kind": "block_type",
+ "source_docs": [
+  "Simscape/Utilities/Array_Connection.md"
+ ],
+ "text": "将守恒连接数组串联为单个节点数组端口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

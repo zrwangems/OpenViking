@@ -1,0 +1,13 @@
+{
+ "key": "RC Servo",
+ "title": "RC Servo",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Brushed Motors/RC_Servo.md"
+ ],
+ "text": "Radio control servomotor with PWM-based angular position tracking and fault modeling.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

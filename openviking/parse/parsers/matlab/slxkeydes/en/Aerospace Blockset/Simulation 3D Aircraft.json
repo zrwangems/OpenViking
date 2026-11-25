@@ -1,0 +1,297 @@
+{
+ "key": "Simulation 3D Aircraft",
+ "title": "Simulation 3D Aircraft",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Aircraft.md"
+ ],
+ "text": "Implement aircraft in 3D environment, 4 inputs, 2 outputs, {Color} sets Aircraft color; {Sample time}, {Type} sets the aircraft type Sky, {Path to general aviation mesh}, {Path to air transport mesh}, {Path to custom mesh}, {Name} sets the aircraft name, {Initial translation (m)} sets the initial translation of aircraft zeros, {Initial rotation (rad)} sets the aircraft rotation zeros, {Scale source}, {Initial scale} sets the initial mesh scale, {Scale} sets the mesh scale, {Enable altitude and WoW sensors} sets the altitude and WoW sensors, {Show sensor rays in viewer} sets the option to show sensor rays, {Interpret vector outputs as 1-D} controls reshaping on sensor output ports, {Length of rays (m)}, {Body Z offset (m)} sets the aircraft body Z offset, {Front tire radius (m)} sets the front gear tire radius, {Left tire radius (m)} sets the left gear tire radius, {Right tire radius (m)} sets the right gear tire radius, {WoW sensor tolerance (m)} sets the wow sensor tolerance, {Light configuration}, {Landing lights intensity (cd)}, {Landing lights cone half angle (deg)}, {Left landing light location}, {Left landing light orientation (deg)} sets the left landing light orientation, {Right landing light location}, {Right landing light orientation (deg)} sets the right landing light orientation, {Taxi lights intensity (cd)}, {Taxi lights cone half angle (deg)}, {Taxi lights location}, {Taxi lights orientation (deg)} sets the taxi lights orientation, {Navigation lights intensity}, {Position light intensity}, {Strobe lights intensity}, {Wingtip strobe period (s)}, {Wingtip strobe pulse width (% of period)}, {Tail strobe period (s)}, {Tail strobe pulse width (% of period)}, {Beacon lights intensity}, {Beacon period (s)} and {Beacon pulse width (% of period)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Aircraft translation 11 -by- 3 array | 12 -by- 3 array | 15 -by- 3 array | 30 -by- 3 array | 57 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Aircraft and wheel rotation 11 -by- 3 array | 12 -by- 3 array | 15 -by- 3 array | 30 -by- 3 array | 57 -by- 3 array"
+  },
+  {
+   "name": "LightStates",
+   "direction": "input",
+   "summary": "Aircraft light control 1-by-7 vector of double values"
+  },
+  {
+   "name": "Scale",
+   "direction": "input",
+   "summary": "Mesh scale [1 1 1] (default) | 1-by-3 array"
+  },
+  {
+   "name": "Altitude",
+   "direction": "output",
+   "summary": "Aircraft attitude 1-by-4 vector"
+  },
+  {
+   "name": "WoW",
+   "direction": "output",
+   "summary": "Weight on wheels 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "Hogg",
+   "values": "Aircraft type Sky Hogg (default) | Airliner | General Aviation | Air Transport | Custom",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Path to general aviation mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation’",
+   "values": "Path to general aviation mesh /MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation’ (default) | character vector",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Path to air transport mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport",
+   "values": "Path to air transport mesh /MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport (default) | character vector",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Path to custom mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20",
+   "values": "Path to custom mesh /MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20 (default) | /MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_Aircraft.SK_Aircraft | character vector",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Color",
+   "default": "Red",
+   "values": "Aircraft color Red (default) | Orange | Yellow | Green | Cyan | Blue | Black | White | Silver | Metal",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "Aircraft name SimulinkVehicle1 (default) | character vector",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Initial translation (m)",
+   "default": "zeros(11,3)",
+   "values": "Initial translation of aircraft zeros(11,3) (default) | 11 -by- 3 array | 12 -by- 3 array | 15 -by- 3 array | 30 -by- 3 array | 57 -by- 3 array",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Initial rotation (rad)",
+   "default": "zeros(11,3)",
+   "values": "Aircraft rotation zeros(11,3) (default) | 11 -by- 3 array | 12 -by- 3 array | 15 -by- 3 array | 30 -by- 3 array | 57 -by- 3 array",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Scale source",
+   "default": "Dialog",
+   "values": "Scale source Dialog (default) | Port",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Initial scale",
+   "default": "1]",
+   "values": "Initial mesh scale [1 1 1] (default) | 1-by-3 array",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Scale",
+   "default": "1]",
+   "values": "Mesh scale [1 1 1] (default) | 1-by-3 array",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Enable altitude and WoW sensors",
+   "default": "on",
+   "values": "Altitude and WoW sensors on (default) | off",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Show sensor rays in viewer",
+   "default": "off",
+   "values": "Option to show sensor rays off (default) | on",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Interpret vector outputs as 1-D",
+   "default": "off",
+   "values": "Control reshaping on sensor output ports off (default) | on",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Length of rays (m)",
+   "default": "1524",
+   "values": "Length of rays 1524 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Body Z offset (m)",
+   "default": "0.90",
+   "values": "Aircraft body Z offset 0.90 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Front tire radius (m)",
+   "default": "0.21",
+   "values": "Front gear tire radius 0.21 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Left tire radius (m)",
+   "default": "0.21",
+   "values": "Left gear tire radius 0.21 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Right tire radius (m)",
+   "default": "0.21",
+   "values": "Right gear tire radius 0.21 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "WoW sensor tolerance (m)",
+   "default": "0.05",
+   "values": "Wow sensor tolerance 0.05 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Light configuration",
+   "default": "lights",
+   "values": "Light configurations options Automatic lights (default) | Configurable lights | Lights off",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing lights intensity (cd)",
+   "default": "30000",
+   "values": "Landing lights intensity 30000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing lights cone half angle (deg)",
+   "default": "15",
+   "values": "Landing lights cone half angle 15 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Left landing light location",
+   "default": "0]",
+   "values": "Left landing light location [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Left landing light orientation (deg)",
+   "default": "0]",
+   "values": "Left landing light orientation [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Right landing light location",
+   "default": "0]",
+   "values": "Right landing light location [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Right landing light orientation (deg)",
+   "default": "0]",
+   "values": "Right landing light orientation [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Taxi lights intensity (cd)",
+   "default": "150000",
+   "values": "Taxi lights intensity 150000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Taxi lights cone half angle (deg)",
+   "default": "36",
+   "values": "Taxi lights cone half angle 36 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Taxi lights location",
+   "default": "0]",
+   "values": "Taxi lights location [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Taxi lights orientation (deg)",
+   "default": "0]",
+   "values": "Taxi lights orientation [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Navigation lights intensity",
+   "default": "500",
+   "values": "Navigation lights intensity 500 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Position light intensity",
+   "default": "500",
+   "values": "Position light intensity 500 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe lights intensity",
+   "default": "5000",
+   "values": "Strobe lights intensity 5000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Wingtip strobe period (s)",
+   "default": "1.5",
+   "values": "Wingtip strobe period 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Wingtip strobe pulse width (% of period)",
+   "default": "6",
+   "values": "Wingtip strobe pulse width 6 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Tail strobe period (s)",
+   "default": "1.5",
+   "values": "Tail strobe period 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Tail strobe pulse width (% of period)",
+   "default": "6",
+   "values": "Tail strobe pulse width 6 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon lights intensity",
+   "default": "4000",
+   "values": "Beacon lights intensity 4000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon period (s)",
+   "default": "1.5",
+   "values": "Beacon period 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon pulse width (% of period)",
+   "default": "10",
+   "values": "Beacon pulse width 10 (default) | positive scalar",
+   "group": "Light Configuration"
+  }
+ ]
+}

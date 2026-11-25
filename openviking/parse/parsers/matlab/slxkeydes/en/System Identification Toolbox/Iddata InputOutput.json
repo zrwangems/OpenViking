@@ -1,0 +1,37 @@
+{
+ "key": "Iddata InputOutput",
+ "title": "Iddata Source",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Iddata_Source.md"
+ ],
+ "text": "Import time-domain data stored in iddata object in MATLAB workspace, 2 outputs; {IDDATA object} sets the time-domain data to be imported iddata and {Start time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "output",
+   "summary": "Input data stored in iddata object scalar | vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output data stored in iddata object scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "IDDATA object",
+   "default": "iddata(1,1)",
+   "values": "Time-domain data to be imported iddata(1,1) (default) | iddata object",
+   "group": ""
+  },
+  {
+   "name": "Start time",
+   "default": "-1",
+   "values": "Start time for signals in iddata object -1 (default) | non-negative real scalar",
+   "group": ""
+  }
+ ]
+}

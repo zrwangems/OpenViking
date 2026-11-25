@@ -1,0 +1,91 @@
+{
+ "key": "General CRC Generator HDL Optimized",
+ "title": "General CRC Generator HDL Optimized",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Error Detection and Correction/CRC/General_CRC_Generator_HDL_Optimized.md"
+ ],
+ "text": "Generate CRC code bits and append them to input data, 4 inputs, 4 outputs, {Final XOR value} sets Checksum; {Polynomial} sets the generator polynomial, {Initial state} sets the initial conditions of shift register, {Direct method} sets the method of calculating checksum, {Reflect input} sets the input byte order and {Reflect CRC checksum} sets the checksum byte order. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dataIn",
+   "direction": "input",
+   "summary": "Input data scalar | vector"
+  },
+  {
+   "name": "startIn",
+   "direction": "input",
+   "summary": "Start of input frame indicator Boolean scalar"
+  },
+  {
+   "name": "endIn",
+   "direction": "input",
+   "summary": "End of input frame indicator Boolean scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Valid input data indicator Boolean scalar"
+  },
+  {
+   "name": "dataOut",
+   "direction": "output",
+   "summary": "Output data scalar | vector"
+  },
+  {
+   "name": "startOut",
+   "direction": "output",
+   "summary": "Start of output frame indicator scalar"
+  },
+  {
+   "name": "endOut",
+   "direction": "output",
+   "summary": "End of output frame indicator scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Valid output data indicator scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Polynomial",
+   "default": "1]",
+   "values": "Generator polynomial [1 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1] (default) | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "Initial conditions of shift register 0 (default) | binary scalar | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Direct method",
+   "default": "off",
+   "values": "Method of calculating checksum off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reflect input",
+   "default": "off",
+   "values": "Input byte order off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reflect CRC checksum",
+   "default": "off",
+   "values": "Checksum byte order off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Final XOR value",
+   "default": "0",
+   "values": "Checksum 0 (default) | binary scalar | binary vector",
+   "group": ""
+  }
+ ]
+}

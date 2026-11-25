@@ -1,0 +1,13 @@
+{
+ "key": "Flexible I Beam",
+ "title": "Flexible I Beam",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Flexible Bodies/Beams/Flexible_I_Beam.md"
+ ],
+ "text": "具有用于变形的弹性属性的工字梁。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

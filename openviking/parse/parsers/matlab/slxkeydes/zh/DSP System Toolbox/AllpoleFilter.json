@@ -1,0 +1,126 @@
+{
+ "key": "AllpoleFilter",
+ "title": "Allpole Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Allpole_Filter.md"
+ ],
+ "text": "全极点滤波器建模，输入 2 路、输出 1 路、无直接馈通；按 {Integer rounding mode} 指定整数舍入模式；{Coefficient source} 指定系数来源、{Filter structure} 指定滤波器结构 Direct、{Coefficients} 指定滤波器分母系数、{Input processing} 指定输入处理 Columns as channels、{Initial states} 指定滤波器状态的初始条件、{Coefficients Minimum} 指定滤波器系数的最小值、{Coefficients Maximum} 指定滤波器系数的最大值、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{State} 指定状态数据类型、{Output} 输出数据类型、{Output Minimum} 输出最小值、{Output Maximum} 输出最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型、{Saturate on integer overflow} 指定对整数溢出进行饱和，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "滤波器分母系数 scalar | row vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "滤波后输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "系数来源 Dialog parameters (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter structure",
+   "default": "form",
+   "values": "指定滤波器结构 Direct form (default) | Direct form transposed | Lattice AR",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "0.1]",
+   "values": "滤波器分母系数 [1 0.1] (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "输入处理 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial states",
+   "default": "0",
+   "values": "滤波器状态的初始条件 0 (default) | scalar | vector | matrix",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Coefficients Minimum",
+   "default": "[]",
+   "values": "滤波器系数的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Maximum",
+   "default": "[]",
+   "values": "滤波器系数的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "State",
+   "default": "accumulator",
+   "values": "状态数据类型 Inherit: Same as accumulator (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出数据类型 Inherit: Same as input (default) | Inherit: Same as accumulator | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "输出最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "输出最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "整数舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "key": "Probabilistic rule aggregation method",
+ "title": "Probabilistic Rule Agg",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Probabilistic_Rule_Agg.md"
+ ],
+ "text": "Probabilistic OR function for rule aggregation, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "Input values row vector"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "Input values row vector"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "Probabilistic OR values row vector"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,95 @@
+{
+ "key": "Autothreshold",
+ "title": "Autothreshold",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Autothreshold.md"
+ ],
+ "text": "Convert intensity image to binary image, 1 input, 3 outputs, {When data range is exceeded} sets Operation to perform when data range is exceeded; {Thresholding operator}, {Output threshold}, {Output effectiveness metric}, {Specify data range} sets the input pixel value range, {Minimum value of input} sets the minimum input pixel value, {Maximum value of input} sets the maximum input pixel value, {Scale threshold}, {Threshold scaling factor} scales factor for thresholding and {Lock data type settings against change by the fixed-point tools} sets the data type override. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix"
+  },
+  {
+   "name": "BW",
+   "direction": "output",
+   "summary": "Output binary image matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "output",
+   "summary": "Threshold value scalar"
+  },
+  {
+   "name": "EMetric",
+   "direction": "output",
+   "summary": "Effectiveness metric value scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Thresholding operator",
+   "default": ">",
+   "values": "Specify thresholding operator > (default) | <=",
+   "group": "Main"
+  },
+  {
+   "name": "Output threshold",
+   "default": "off",
+   "values": "Output threshold off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output effectiveness metric",
+   "default": "off",
+   "values": "Output effectiveness metric off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Specify data range",
+   "default": "off",
+   "values": "Specify input pixel value range off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum value of input",
+   "default": "0",
+   "values": "Minimum input pixel value 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum value of input",
+   "default": "255",
+   "values": "Maximum input pixel value 255 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "When data range is exceeded",
+   "default": "Ignore",
+   "values": "Operation to perform when data range is exceeded Ignore (default) | Saturate | Warn and saturate | Error",
+   "group": "Main"
+  },
+  {
+   "name": "Scale threshold",
+   "default": "off",
+   "values": "Specify scale threshold off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Threshold scaling factor",
+   "default": "1",
+   "values": "Scale factor for thresholding 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Data type override off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

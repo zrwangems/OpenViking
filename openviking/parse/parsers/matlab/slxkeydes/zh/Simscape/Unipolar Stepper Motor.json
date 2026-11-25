@@ -1,0 +1,13 @@
+{
+ "key": "Unipolar Stepper Motor",
+ "title": "Unipolar Stepper Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Reluctance & Stepper/Unipolar_Stepper_Motor.md"
+ ],
+ "text": "两个绕组各带中心抽头的永磁步进电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

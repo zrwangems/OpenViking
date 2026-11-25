@@ -1,0 +1,84 @@
+{
+ "key": "dsp.simulink.ZoomFFT",
+ "title": "Zoom FFT",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Zoom_FFT.md"
+ ],
+ "text": "High-resolution FFT of a portion of a spectrum, 2 inputs, {Sample rate mode} sets Mode to specify input sample rate Use normalized frequency; {Decimation factor}, {Specify center frequency from input port} sets the flag to specify center frequency from input, {Center frequency}, {Inherit FFT Length from input dimensions} sets the flag to inherit FFT length from input, {FFT length}, {Input sample rate (Hz)}, {Allow arbitrary frame length for fixed-size input signals} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input data vector | matrix"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "Center frequency input real scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "unknown",
+   "summary": "Zoom FFT output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Decimation factor",
+   "default": "2",
+   "values": "Decimation factor 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "’off’",
+   "values": "Flag to specify center frequency from input port ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Center frequency",
+   "default": "0",
+   "values": "Center frequency 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT Length from input dimensions",
+   "default": "’on’",
+   "values": "Flag to inherit FFT length from input dimensions ’on’ (default) | ’off’",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "64",
+   "values": "FFT length 64 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Input sample rate 44100 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "Allow arbitrary frame length for fixed-size input signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

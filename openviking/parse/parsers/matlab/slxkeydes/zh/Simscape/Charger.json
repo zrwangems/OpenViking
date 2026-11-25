@@ -1,0 +1,13 @@
+{
+ "key": "Charger",
+ "title": "Charger",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Cyclers/Charger.md"
+ ],
+ "text": "理想电池充电器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

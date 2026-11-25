@@ -1,0 +1,47 @@
+{
+ "key": "Toeplitz",
+ "title": "Toeplitz",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Toeplitz.md"
+ ],
+ "text": "Generate matrix with Toeplitz symmetry, 3 inputs, 1 output, no direct feedthrough; {Symmetric} and {Saturate on integer overflow}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input vector"
+  },
+  {
+   "name": "Toep Col",
+   "direction": "input",
+   "summary": "First column of asymmetric Toeplitz matrix vector"
+  },
+  {
+   "name": "Toep Row",
+   "direction": "input",
+   "summary": "First row of asymmetric Toeplitz matrix vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Toeplitz matrix matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Symmetric",
+   "default": "on",
+   "values": "Symmetric Toeplitz matrix output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "on",
+   "values": "Saturate on integer overflow on (default) | off",
+   "group": ""
+  }
+ ]
+}

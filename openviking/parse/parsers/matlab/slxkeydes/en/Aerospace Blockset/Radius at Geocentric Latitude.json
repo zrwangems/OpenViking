@@ -1,0 +1,49 @@
+{
+ "key": "Radius at Geocentric Latitude",
+ "title": "Radius at Geocentric Latitude",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Radius_at_Geocentric_Latitude.md"
+ ],
+ "text": "Estimate radius of ellipsoid planet at geocentric latitude, 1 input, 1 output; {Units} sets the output units Metric, {Planet model}, {Flattening} and {Equatorial radius of planet} sets the radius of planet at equator. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "λ s",
+   "direction": "input",
+   "summary": "Geocentric latitude scalar | vector"
+  },
+  {
+   "name": "r s",
+   "direction": "output",
+   "summary": "Radius scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Output units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Planet model",
+   "default": "(WGS84)",
+   "values": "Planet model Earth (WGS84) (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "Flattening of planet 1/298.257223563 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius of planet",
+   "default": "6378137",
+   "values": "Radius of planet at equator 6378137 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

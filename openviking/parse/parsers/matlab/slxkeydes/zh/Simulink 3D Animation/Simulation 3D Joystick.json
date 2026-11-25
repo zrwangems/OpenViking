@@ -1,0 +1,53 @@
+{
+ "key": "Simulation 3D Joystick",
+ "title": "Simulation 3D Joystick",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Hardware Interface/Simulation_3D_Joystick.md"
+ ],
+ "text": "处理来自异步操纵杆设备的输入，输入 1 路、输出 3 路；{Joystick ID} 指定分配给给定操纵杆设备的 ID、{Adjust I/O ports according to joystick capabilities} 用于动态调整端口以对应于操纵杆能力、{Enable force-feedback input} 用于支持带力反馈的操纵杆，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Force",
+   "direction": "input",
+   "summary": "力反馈输入 scalar | vector"
+  },
+  {
+   "name": "Axes",
+   "direction": "output",
+   "summary": "沿任意给定轴的操纵杆位置 vector with each element in the range [-1,1]"
+  },
+  {
+   "name": "Buttons",
+   "direction": "output",
+   "summary": "操纵杆按钮的状态 vector of 0 and 1"
+  },
+  {
+   "name": "Point of view",
+   "direction": "output",
+   "summary": "操纵杆视角选择器的当前状态 -1 (selector inactive) | scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Joystick ID",
+   "default": "1",
+   "values": "分配给给定操纵杆设备的 ID 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Adjust I/O ports according to joystick capabilities",
+   "default": "on",
+   "values": "用于动态调整端口以对应于操纵杆能力的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable force-feedback input",
+   "default": "on",
+   "values": "用于支持带力反馈的操纵杆的选项 on (default) | off",
+   "group": ""
+  }
+ ]
+}

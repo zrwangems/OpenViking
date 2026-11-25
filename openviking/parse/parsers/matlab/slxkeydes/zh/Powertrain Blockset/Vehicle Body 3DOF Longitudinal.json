@@ -1,0 +1,283 @@
+{
+ "key": "Vehicle Body 3DOF Longitudinal",
+ "title": "Vehicle Body 3DOF Longitudinal",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Vehicle Dynamics/Vehicle_Body_3DOF_Longitudinal.md",
+  "Vehicle Dynamics Blockset/Vehicle Body/Vehicle_Body_3DOF_Longitudinal.md"
+ ],
+ "text": "用于计算纵向、垂直和俯仰运动的 3DOF 刚性车身，输入 11 路、输出 4 路；按 {Ground interaction type} 指定车轴与车辆的连接 Grade；{External forces} 指定 FExt 输入端口、{External moments} 指定 MExt 输入端口、{Air temperature} 指定 AirTemp 输入端口、{Number of wheels on front axle, NF} 指定前轮数量、{Number of wheels on rear axle, NR} 指定后轮数量、{Mass, m} 指定车辆质量、{Horizontal distance from CG to front axle, a} 指定前轴距离、{Horizontal distance from CG to rear axle, b} 指定后轴距离、{CG height above axles, h} 指定高度、{Longitudinal drag coefficient, Cd} 指定阻力 .3、{Frontal area, Af} 指定面积、{Initial position, x_o} 指定位置、{Initial velocity, xdot_o} 指定速度、{Longitudinal lift coefficient, Cl} 指定升力 .1、{Initial vertical position, z_o} 指定位置 -.35、{Initial vertical velocity, zdot_o} 指定速度、{Inertia, Iyy} 指定绕车身 y 轴、{Longitudinal drag pitch moment, Cpm} 指定阻力系数 .1、{Initial pitch angle, theta_o} 指定俯仰、{Initial angular velocity, q_o} 指定俯仰速度、{Front axle stiffness force data, FskF} 指定力、{Front axle displacement data, dzsF} 指定位移、{Front axle damping force data, FsbF} 指定阻尼力、{Front axle velocity data, dzdotsF} 指定速度、{Rear axle stiffness force data, FskR} 指定力、{Rear axle displacement data, dzsR} 指定位移、{Rear axle damping force data, FsbR} 指定阻尼力、{Rear axle velocity data, dzdotsR} 指定速度、{Absolute air pressure, Pabs} 指定压力、{Air temperature, Tair} 指定环境空气温度、{Gravitational acceleration, g} 指定重力，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "车辆质心处的外力 array"
+  },
+  {
+   "name": "MExt",
+   "direction": "input",
+   "summary": "绕车辆质心的外力矩 array"
+  },
+  {
+   "name": "FwF",
+   "direction": "input",
+   "summary": "前轴总纵向力 scalar"
+  },
+  {
+   "name": "FwR",
+   "direction": "input",
+   "summary": "后轴总纵向力 scalar"
+  },
+  {
+   "name": "Grade",
+   "direction": "input",
+   "summary": "道路坡度角 scalar"
+  },
+  {
+   "name": "FsF",
+   "direction": "input",
+   "summary": "前轴每个车轮的悬架力 vector"
+  },
+  {
+   "name": "FsR",
+   "direction": "input",
+   "summary": "后轴每个车轮的悬架力 vector"
+  },
+  {
+   "name": "WindXYZ",
+   "direction": "input",
+   "summary": "风速 array"
+  },
+  {
+   "name": "AirTemp",
+   "direction": "input",
+   "summary": "环境空气温度 scalar"
+  },
+  {
+   "name": "zF,R",
+   "direction": "input",
+   "summary": "前轴和后轴位置 vector"
+  },
+  {
+   "name": "zdotF,R",
+   "direction": "input",
+   "summary": "前轴和后轴速度 vector"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "xdot",
+   "direction": "output",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "FzF",
+   "direction": "output",
+   "summary": "前轮法向力 scalar"
+  },
+  {
+   "name": "FzR",
+   "direction": "output",
+   "summary": "后轮法向力 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Ground interaction type",
+   "default": "angle",
+   "values": "车轴与车辆的连接 Grade angle (default) | Axle displacement, velocity | External suspension",
+   "group": ""
+  },
+  {
+   "name": "External forces",
+   "default": "off",
+   "values": "FExt 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External moments",
+   "default": "off",
+   "values": "MExt 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Air temperature",
+   "default": "off",
+   "values": "AirTemp 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels on front axle, NF",
+   "default": "2",
+   "values": "前轮数量 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels on rear axle, NR",
+   "default": "2",
+   "values": "后轮数量 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mass, m",
+   "default": "1200",
+   "values": "车辆质量 1200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Horizontal distance from CG to front axle, a",
+   "default": "1.4",
+   "values": "前轴距离 1.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Horizontal distance from CG to rear axle, b",
+   "default": "1.8",
+   "values": "后轴距离 1.8 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "CG height above axles, h",
+   "default": "0.35",
+   "values": "高度 0.35 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal drag coefficient, Cd",
+   "default": ".3",
+   "values": "阻力 .3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frontal area, Af",
+   "default": "2",
+   "values": "面积 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial position, x_o",
+   "default": "0",
+   "values": "位置 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity, xdot_o",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal lift coefficient, Cl",
+   "default": ".1",
+   "values": "升力 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial vertical position, z_o",
+   "default": "-.35",
+   "values": "位置 -.35 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial vertical velocity, zdot_o",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Inertia, Iyy",
+   "default": "3500",
+   "values": "绕车身 y 轴 3500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal drag pitch moment, Cpm",
+   "default": ".1",
+   "values": "阻力系数 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial pitch angle, theta_o",
+   "default": "0",
+   "values": "俯仰 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial angular velocity, q_o",
+   "default": "0",
+   "values": "俯仰速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Front axle stiffness force data, FskF",
+   "default": "52].*1.5e4",
+   "values": "力 [-50, -1, 0, 2, 3, 52].*1.5e4 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Front axle displacement data, dzsF",
+   "default": "0,.2,.2001,.2051]",
+   "values": "位移 [-5e-3, -1e-4, 0,.2,.2001,.2051] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Front axle damping force data, FsbF",
+   "default": "10000]",
+   "values": "阻尼力 [-10000 -100 -10 0 10 100 10000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Front axle velocity data, dzdotsF",
+   "default": "10]",
+   "values": "速度 [-10 -1 -.1 0.1 1 10] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rear axle stiffness force data, FskR",
+   "default": "52].*1e4",
+   "values": "力 [-50, -1, 0, 2, 3, 52].*1e4 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rear axle displacement data, dzsR",
+   "default": "0,.2,.2001,.2051]",
+   "values": "位移 [-5e-3, -1e-4, 0,.2,.2001,.2051] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rear axle damping force data, FsbR",
+   "default": "10000]",
+   "values": "阻尼力 [-10000 -100 -10 0 10 100 10000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rear axle velocity data, dzdotsR",
+   "default": "10]",
+   "values": "速度 [-10 -1 -.1 0.1 1 10] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Absolute air pressure, Pabs",
+   "default": "101325",
+   "values": "压力 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air temperature, Tair",
+   "default": "273",
+   "values": "环境空气温度 273 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.81",
+   "values": "重力 9.81 (default)",
+   "group": ""
+  }
+ ]
+}

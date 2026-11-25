@@ -1,0 +1,118 @@
+{
+ "key": "IncrementalClassificationNaiveBayes Fit",
+ "title": "IncrementalClassificationNaiveBayes Fit",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Classification/NaiveBayes/IncrementalClassificationNaiveBayes_Fit.md"
+ ],
+ "text": "Fit incremental naive Bayes classification model, 4 inputs, 1 output, direct feedthrough, {Prior data type} sets Data type of prior term; {Select initial machine learning model} sets the initial incremental naive Bayes classification model, {Add input port for observation weights} adds second input port for observation, {Add input port for resetting trained learner} adds input port for resetting trained incremental, {Sample time (–1 for inherited)} sets the option to specify sample, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Internal states data type} sets the data type of internal states Inherit, {Internal states data type Minimum} sets the minimum value of internal states for range checking, {Internal states data type Maximum} sets the maximum value of internal states for range checking, {Prior data type Minimum} sets the minimum value of prior term for range checking and {Prior data type Maximum} sets the maximum value of prior term for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Chunk of predictor data numeric matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Chunk of class labels numeric vector | logical vector | enumerated vector"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "Chunk of observation weights vector of positive values"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Reset signal 0 ( false ) | 1 ( true ) | numeric scalar"
+  },
+  {
+   "name": "mdl",
+   "direction": "output",
+   "summary": "Updated incremental learning model parameters bus signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "nbMdl",
+   "values": "Initial incremental naive Bayes classification model nbMdl (default) | incrementalClassificationNaiveBayes model object",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for observation weights",
+   "default": "off",
+   "values": "Add second input port for observation weights off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for resetting trained learner",
+   "default": "off",
+   "values": "Add input port for resetting trained incremental learner off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal states data type",
+   "default": "auto",
+   "values": "Data type of internal states Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal states data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of internal states for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal states data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of internal states for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Prior data type",
+   "default": "double",
+   "values": "Data type of prior term double (default) | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Prior data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of prior term for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Prior data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of prior term for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

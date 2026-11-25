@@ -1,0 +1,62 @@
+{
+ "key": "Memory",
+ "title": "Memory",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Memory.md",
+  "HDL Coder/Discrete/Memory.md"
+ ],
+ "text": "Output input from previous time step, 1 input, 1 output, no direct feedthrough, {Initial condition} sets Initial condition; {Inherit sample time}, {Direct feedthrough of input during linearization} sets the output the input during linearization, {Treat as a unit delay when linearizing with discrete sample time} sets the linearize to unit delay for discrete, {State name} sets the unique name for block state and {State name must resolve to Simulink signal object} requires state name resolve to a signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Input delayed by one major integration time step scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial condition 0 (default) | scalar | vector | matrix | N-D array",
+   "group": "Main"
+  },
+  {
+   "name": "Inherit sample time",
+   "default": "off",
+   "values": "Inherit sample time off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Direct feedthrough of input during linearization",
+   "default": "off",
+   "values": "Output the input during linearization and trim off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Treat as a unit delay when linearizing with discrete sample time",
+   "default": "off",
+   "values": "Linearize to unit delay for discrete inputs off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "State name",
+   "default": "’’",
+   "values": "Unique name for block state ’’ (default) | alphanumeric string",
+   "group": "State Attributes"
+  },
+  {
+   "name": "State name must resolve to Simulink signal object",
+   "default": "off",
+   "values": "Require state name resolve to a signal object off (default) | on",
+   "group": "State Attributes"
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "key": "Incidence,Sideslip,&Airspeed",
+ "title": "Incidence, Sideslip, & Airspeed",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Incidence_Sideslip_Airspeed.md"
+ ],
+ "text": "Calculate incidence, sideslip, and airspeed, 1 input, 3 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V b",
+   "direction": "input",
+   "summary": "Velocity of body three-element vector"
+  },
+  {
+   "name": "ɑ",
+   "direction": "output",
+   "summary": "Incidence angle scalar"
+  },
+  {
+   "name": "β",
+   "direction": "output",
+   "summary": "Sideslip angle scalar"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "Airspeed scalar"
+  }
+ ],
+ "params": []
+}

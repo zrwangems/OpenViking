@@ -1,0 +1,102 @@
+{
+ "key": "phased.internal.SimulinkGLRTDetector",
+ "title": "GLRT Detector",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/GLRT_Detector.md"
+ ],
+ "text": "Perform generalized likelihood ratio test detection, 4 inputs, 5 outputs; {Probability of false alarm}, {Output format} sets the format of output data, {Output detection statistics and threshold}, {Enable known noise power input}, {Output MLEs of unknown signal parameters}, {Output estimated noise power} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input data real-valued N -by- 1 vector | complex-valued N -by- 1 vector | real-valued N -by- M matrix | complex-valued N -by- M matrix"
+  },
+  {
+   "name": "Hyp",
+   "direction": "input",
+   "summary": "Augmented linear equality constraint matrix real-valued R -by-( P + 1) matrix | complex-valued R -by-( P + 1) matrix"
+  },
+  {
+   "name": "Obs",
+   "direction": "input",
+   "summary": "Observation matrix N -by- P -by- D array"
+  },
+  {
+   "name": "Ncov",
+   "direction": "input",
+   "summary": "Known noise power positive scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Detection results D -by- M logical-valued vector | 1-by- L integer-valued vector | 2-by- L integer-valued matrix"
+  },
+  {
+   "name": "Stat",
+   "direction": "output",
+   "summary": "detection statistic N -by- M (default) | 1-by- L"
+  },
+  {
+   "name": "Th",
+   "direction": "output",
+   "summary": "Detection threshold scalar"
+  },
+  {
+   "name": "Param",
+   "direction": "output",
+   "summary": "Maximum likelihood estimates of signal parameters P -by- M -by- D array"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "Estimated noise power positive scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Probability of false alarm",
+   "default": "0.1",
+   "values": "Probability of false alarm 0.1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output format",
+   "default": "result",
+   "values": "Format of output data Detection result (default) | Detection index",
+   "group": ""
+  },
+  {
+   "name": "Output detection statistics and threshold",
+   "default": "0",
+   "values": "Output detection statistics and threshold 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Enable known noise power input",
+   "default": "1",
+   "values": "Enable known noise power input 1 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Output MLEs of unknown signal parameters",
+   "default": "0",
+   "values": "Output MLEs of unknown signal parameters 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Output estimated noise power",
+   "default": "0",
+   "values": "Output estimated noise power 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "key": "Polynomial Evaluation",
+ "title": "Polynomial Evaluation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Polynomial Functions/Polynomial_Evaluation.md"
+ ],
+ "text": "计算多项式表达式，输入 2 路、输出 1 路；{Use constant coefficients} 使用常量系数、{Constant coefficients} 指定常量系数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数据 vector | matrix"
+  },
+  {
+   "name": "Coeffs",
+   "direction": "input",
+   "summary": "多项式系数 vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "多项式求值的输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use constant coefficients",
+   "default": "off",
+   "values": "使用常量系数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Constant coefficients",
+   "default": "1]",
+   "values": "常量系数 [5 4 3 2 1] (default) | vector",
+   "group": ""
+  }
+ ]
+}

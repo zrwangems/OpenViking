@@ -1,0 +1,13 @@
+{
+ "key": "Controlled Voltage Source (Three-Phase)",
+ "title": "Controlled Voltage Source (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Controlled_Voltage_Source_Three_Phase.md"
+ ],
+ "text": "理想三相受控电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

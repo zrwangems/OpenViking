@@ -1,0 +1,13 @@
+{
+ "key": "Thyristor",
+ "title": "Thyristor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Thyristor.md"
+ ],
+ "text": "Thyristor using NPN and PNP transistors.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

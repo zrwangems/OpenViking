@@ -1,0 +1,59 @@
+{
+ "key": "Gamma Correction",
+ "title": "Gamma Correction",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Gamma_Correction.md"
+ ],
+ "text": "Apply or remove gamma correction to or from image or video stream, 2 inputs, 2 outputs; {Operation} sets the block operation, {Gamma}, {Linear segment} and {Break point}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix | array"
+  },
+  {
+   "name": "I’",
+   "direction": "input",
+   "summary": "Gamma-corrected input image matrix | array"
+  },
+  {
+   "name": "I’",
+   "direction": "output",
+   "summary": "Gamma-corrected output image matrix | array"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "Gamma-removed output image matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "Gamma",
+   "values": "Block operation Gamma (default) | De-gamma",
+   "group": ""
+  },
+  {
+   "name": "Gamma",
+   "default": "2.2",
+   "values": "Gamma value 2.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Linear segment",
+   "default": "on",
+   "values": "Linear segment on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Break point",
+   "default": "0.018",
+   "values": "Break point value 0.018 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

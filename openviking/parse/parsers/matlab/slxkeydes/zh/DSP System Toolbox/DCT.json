@@ -1,0 +1,85 @@
+{
+ "key": "DCT",
+ "title": "DCT",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/DCT.md"
+ ],
+ "text": "输入的离散余弦变换 (DCT)，输入 1 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Sine and cosine computation} 指定正弦和余弦计算 Table、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Sine table} 指定正弦表、{Product output}、{Accumulator}、{Output} 输出数据类型、{Output Minimum} 输出最小值、{Output Maximum} 输出最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix | N -D array"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "DCT 输出 vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sine and cosine computation",
+   "default": "lookup",
+   "values": "正弦和余弦计算 Table lookup (default) | Trigonometric fcn",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Sine table",
+   "default": "input",
+   "values": "正弦表 Inherit: Same word length as input (default) | fixdt(1,16)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "输出最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "输出最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

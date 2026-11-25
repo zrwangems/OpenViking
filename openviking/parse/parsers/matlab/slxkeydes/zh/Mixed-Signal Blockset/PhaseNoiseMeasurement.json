@@ -1,0 +1,74 @@
+{
+ "key": "PhaseNoiseMeasurement",
+ "title": "Phase Noise Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Measurements & Testbenches/Phase_Noise_Measurement.md"
+ ],
+ "text": "计算特定频率偏移向量处的相位噪声，输入 1 路；{Resolution bandwidth (Hz)} 指定可分辨的最小正频率 30e3、{No. of spectral averages} 指定频谱平均次数、{Hold off time (s)} 指定延迟测量分析以避免瞬态、{Frequency offset vector (Hz)} 指定相对于基频计算相位噪声的频率点、{Specify target} 指定目标相位噪声向量、{Phase noise vector (dBc/Hz)} 指定给定频率偏移向量对应的目标相位噪声曲线、{Set stop time} 指定将建议的最小仿真停止时间设置为模型停止时间、{Plot phase noise} 绘制输入信号的相位噪声曲线、{Export measurement results} 指定仿真后导出测量结果，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "sig",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "30e3",
+   "values": "可分辨的最小正频率 30e3 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "No. of spectral averages",
+   "default": "4",
+   "values": "频谱平均次数 4 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "延迟测量分析以避免瞬态 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency offset vector (Hz)",
+   "default": "10e6]",
+   "values": "相对于基频计算相位噪声的频率点 [30e3 100e3 1e6 3e6 10e6] (default) | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Specify target",
+   "default": "off",
+   "values": "指定目标相位噪声向量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Phase noise vector (dBc/Hz)",
+   "default": "-300]",
+   "values": "给定频率偏移向量对应的目标相位噪声曲线 [-300 -300 -300 -300 -300] (default) | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Set stop time",
+   "default": "",
+   "values": "将建议的最小仿真停止时间设置为模型停止时间 button",
+   "group": ""
+  },
+  {
+   "name": "Plot phase noise",
+   "default": "",
+   "values": "绘制输入信号的相位噪声曲线 button",
+   "group": ""
+  },
+  {
+   "name": "Export measurement results",
+   "default": "",
+   "values": "仿真后导出测量结果 button",
+   "group": ""
+  }
+ ]
+}

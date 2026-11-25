@@ -1,0 +1,13 @@
+{
+ "key": "Piston",
+ "title": "Piston",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Piston.md"
+ ],
+ "text": "Piston mechanism of reciprocating combustion engine.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

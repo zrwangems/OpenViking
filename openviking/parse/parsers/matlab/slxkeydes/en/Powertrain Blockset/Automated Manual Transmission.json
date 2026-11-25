@@ -1,0 +1,205 @@
+{
+ "key": "Automated Manual Transmission",
+ "title": "Automated Manual Transmission",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Transmission Systems/Automated_Manual_Transmission.md"
+ ],
+ "text": "Ideal automated manual transmission, 5 inputs, 3 outputs; {Control type} controls type Ideal, {Efficiency factors} sets the efficiency calculation, {Input shaft inertia, Jin} sets the inertia .01, {Input shaft damping, bin} sets the damping .001, {Initial input velocity, omegain_o} sets the angular velocity, {Gear number vector, G} sets the number of transmission speeds, {Efficiency torque breakpoints, Trq_bpts} sets the breakpoints, {Efficiency speed breakpoints, omega_bpts} sets the breakpoints, {Efficiency temperature breakpoints, Temp_bpts} sets the breakpoints, {Gear ratio vector, N} sets the ratio of input speed to output speed, {Transmission inertia vector, Jout} sets the gear rotational inertia, {Transmission damping vector, bout} sets the gear viscous damping coefficient, {Efficiency vector, eta} sets the gear efficiency, {Efficiency lookup table, eta_tbl} sets the gear efficiency array, {Initial output velocity, omegaout_o} sets the transmission, {Initial gear, G_o} sets the engaged gear, {Clutch pressure time constant, tauc} sets the time .02, {Synchronization time, ts} sets the time .25, {Clutch time, tc} sets the time .5, {Effective clutch radius, R} sets the radius .2, {Clutch force gain, K_c} sets the force 5e3, {Clutch static friction coefficient, mus} sets the coefficient, {Clutch kinematic friction coefficient, muk} sets the coefficient, {Start simulation with clutch locked} selects to initially lock clutch and {Start simulation with synchronizer locked} selects to initially lock synchronizer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Gear",
+   "direction": "input",
+   "summary": "Gear number to engage scalar"
+  },
+  {
+   "name": "CltchCmd",
+   "direction": "input",
+   "summary": "Clutch command scalar"
+  },
+  {
+   "name": "EngTrq",
+   "direction": "input",
+   "summary": "Applied input torque scalar"
+  },
+  {
+   "name": "DiffTrq",
+   "direction": "input",
+   "summary": "Applied load torque scalar"
+  },
+  {
+   "name": "Temp",
+   "direction": "input",
+   "summary": "Oil temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "output",
+   "summary": "Angular speed scalar"
+  },
+  {
+   "name": "DiffSpd",
+   "direction": "output",
+   "summary": "Angular speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control type",
+   "default": "controller",
+   "values": "Specify control type Ideal integrated controller (default) | External control",
+   "group": ""
+  },
+  {
+   "name": "Efficiency factors",
+   "default": "only",
+   "values": "Specify efficiency calculation Gear only (default) | Gear, input torque, input speed, and temperature",
+   "group": ""
+  },
+  {
+   "name": "Input shaft inertia, Jin",
+   "default": ".01",
+   "values": "Inertia .01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft damping, bin",
+   "default": ".001",
+   "values": "Damping .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial input velocity, omegain_o",
+   "default": "0",
+   "values": "Angular velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gear number vector, G",
+   "default": "5]",
+   "values": "Specify number of transmission speeds [-1, 0, 1, 2, 3, 4, 5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency torque breakpoints, Trq_bpts",
+   "default": "250]",
+   "values": "Breakpoints [25, 50, 75, 100, 150, 200, 250] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency speed breakpoints, omega_bpts",
+   "default": "524]",
+   "values": "Breakpoints [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency temperature breakpoints, Temp_bpts",
+   "default": "358]",
+   "values": "Breakpoints [313 358] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Gear ratio vector, N",
+   "default": "0.8]",
+   "values": "Ratio of input speed to output speed [-4.47, 1, 4.47, 2.47, 1.47, 1, 0.8] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission inertia vector, Jout",
+   "default": "0.01]",
+   "values": "Gear rotational inertia [0.128 0.01 0.128 0.1 0.062 0.028 0.01] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission damping vector, bout",
+   "default": "[.003.001.003.0025.002.001.001]",
+   "values": "Gear viscous damping coefficient [.003.001.003.0025.002.001.001] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency vector, eta",
+   "default": "0.95]",
+   "values": "Gear efficiency [0.9, 0.9, 0.9, 0.9, 0.9, 0.95, 0.95] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency lookup table, eta_tbl",
+   "default": "",
+   "values": "Gear efficiency array",
+   "group": ""
+  },
+  {
+   "name": "Initial output velocity, omegaout_o",
+   "default": "0",
+   "values": "Transmission 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial gear, G_o",
+   "default": "0",
+   "values": "Engaged gear 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch pressure time constant, tauc",
+   "default": ".02",
+   "values": "Time .02 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Synchronization time, ts",
+   "default": ".25",
+   "values": "Time .25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch time, tc",
+   "default": ".5",
+   "values": "Time .5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Effective clutch radius, R",
+   "default": ".2",
+   "values": "Radius .2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch force gain, K_c",
+   "default": "5e3",
+   "values": "Force 5e3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch static friction coefficient, mus",
+   "default": "0.6",
+   "values": "Coefficient 0.6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch kinematic friction coefficient, muk",
+   "default": "0.4",
+   "values": "Coefficient 0.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with clutch locked",
+   "default": "off",
+   "values": "Select to initially lock clutch off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with synchronizer locked",
+   "default": "off",
+   "values": "Select to initially lock synchronizer off (default) | on",
+   "group": ""
+  }
+ ]
+}

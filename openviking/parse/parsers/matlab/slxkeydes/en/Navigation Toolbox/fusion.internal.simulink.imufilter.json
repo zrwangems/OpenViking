@@ -1,0 +1,96 @@
+{
+ "key": "fusion.internal.simulink.imufilter",
+ "title": "IMU Filter",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Multisensor Positioning/Navigation Filters/IMU_Filter.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Navigation Filters/IMU_Filter.md"
+ ],
+ "text": "Estimate orientation using IMU Filter, 2 inputs, 2 outputs; {Reference frame} sets the navigation reference frame, {Orientation format} sets the orientation output format, {Decimation factor}, {Initial process noise}, {Accelerometer noise ((m/s 2 ) 2 )} sets the variance of accelerometer signal noise, {Gyroscope noise ((rad/s) 2 )} sets the variance of gyroscope signal noise, {Gyroscope drift noise ((rad/s) 2 )} sets the variance of gyroscope offset drift, {Linear acceleration noise ((m/s 2 ) 2 )} sets the variance of linear acceleration noise, {Linear acceleration decay factor} sets the decay factor for linear acceleration drift and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Accel",
+   "direction": "input",
+   "summary": "Accelerometer readings in sensor body coordinate system (m/s 2 ) matrix"
+  },
+  {
+   "name": "Gyro",
+   "direction": "input",
+   "summary": "Gyroscope readings in sensor body coordinate system (rad/s) matrix"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "Orientation of sensor body frame relative to navigation frame matrix | array"
+  },
+  {
+   "name": "Angular Velocity",
+   "direction": "output",
+   "summary": "Angular velocity in sensor body coordinate system (rad/s) matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference frame",
+   "default": "NED",
+   "values": "Navigation reference frame NED (default) | ENU",
+   "group": ""
+  },
+  {
+   "name": "Orientation format",
+   "default": "quaternion",
+   "values": "Orientation output format quaternion (default) | Rotation Matrix",
+   "group": ""
+  },
+  {
+   "name": "Decimation factor",
+   "default": "1",
+   "values": "Decimation factor 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Initial process noise",
+   "default": "imufilter.defaultProcessNoise",
+   "values": "Initial process noise imufilter.defaultProcessNoise (default) | 9-by-9 matrix of real numbers",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer noise ((m/s 2 ) 2 )",
+   "default": "0.0001924722",
+   "values": "Variance of accelerometer signal noise (m/s 2 ) 2 0.0001924722 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Gyroscope noise ((rad/s) 2 )",
+   "default": "9.1385e-5",
+   "values": "Variance of gyroscope signal noise (rad/s) 2 9.1385e-5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Gyroscope drift noise ((rad/s) 2 )",
+   "default": "3.0462e-13",
+   "values": "Variance of gyroscope offset drift (rad/s) 2 3.0462e-13 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Linear acceleration noise ((m/s 2 ) 2 )",
+   "default": "0.0096236100000000012",
+   "values": "Variance of linear acceleration noise (m/s 2 ) 2 0.0096236100000000012 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Linear acceleration decay factor",
+   "default": "0.5",
+   "values": "Decay factor for linear acceleration drift 0.5 (default) | scalar in the range [0 1)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

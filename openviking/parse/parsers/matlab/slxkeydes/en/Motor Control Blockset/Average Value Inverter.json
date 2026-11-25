@@ -1,0 +1,29 @@
+{
+ "key": "Average Value Inverter",
+ "title": "Average-Value Inverter",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Electrical Systems/Inverters/Average_Value_Inverter.md"
+ ],
+ "text": "Compute three-phase AC voltage from inverter DC voltage, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D abc",
+   "direction": "input",
+   "summary": "Duty cycle for three-phase voltage 1 -by- 3 array"
+  },
+  {
+   "name": "V dc",
+   "direction": "input",
+   "summary": "Inverter DC voltage scalar"
+  },
+  {
+   "name": "V abc",
+   "direction": "output",
+   "summary": "Three-phase voltage output 1 -by- 3 array"
+  }
+ ],
+ "params": []
+}

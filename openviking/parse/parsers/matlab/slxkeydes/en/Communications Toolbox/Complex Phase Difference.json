@@ -1,0 +1,29 @@
+{
+ "key": "Complex Phase Difference",
+ "title": "Complex Phase Difference",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Complex_Phase_Difference.md"
+ ],
+ "text": "Phase difference between two complex signals, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "First input signal scalar | column vector | matrix"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "Second input signal scalar | column vector | matrix"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "Phase shift difference scalar | column vector | matrix"
+  }
+ ],
+ "params": []
+}

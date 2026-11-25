@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Sensor (IL)",
+ "title": "Flow Rate Sensor (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Sensors/Flow_Rate_Sensor_IL.md"
+ ],
+ "text": "Measure mass flow rate and volumetric flow rate.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

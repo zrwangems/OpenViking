@@ -1,0 +1,13 @@
+{
+ "key": "Single-Acting Actuator (MA)",
+ "title": "Single-Acting Actuator (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Actuators/Single_Acting_Actuator_MA.md"
+ ],
+ "text": "Single-acting linear actuator in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Orifice (IL)",
+ "title": "Orifice (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Orifices/Orifice_IL.md"
+ ],
+ "text": "Constant-area or variable-area orifice in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

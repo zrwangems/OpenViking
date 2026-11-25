@@ -1,0 +1,43 @@
+{
+ "key": "slrealtimebytepacking",
+ "title": "Byte Packing",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Utilities/Byte_Packing.md"
+ ],
+ "text": "Byte Packing 模块将一个或多个用户可选数据类型的信号转换为单个变长数据类型的向量，输入 1 路、输出 1 路；按 {Output port (packed) data type} 指定打包输出信号的数据类型；{Input port (unpacked) data types (cell array)} 指定未封装输入信号的数据类型、{Byte Alignment} 指定输入信号数据类型在打包后的对齐，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个 N 输入端口 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出端口包含打包数据 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output port (packed) data type",
+   "default": "uint8",
+   "values": "打包输出信号的数据类型 uint8 (默认) | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Input port (unpacked) data types (cell array)",
+   "default": "{’uint8’}",
+   "values": "未封装输入信号的数据类型 {’uint8’} (默认) | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Byte Alignment",
+   "default": "1",
+   "values": "输入信号数据类型在打包后的对齐 1 (默认) | 2 | 4 | 8",
+   "group": ""
+  }
+ ]
+}

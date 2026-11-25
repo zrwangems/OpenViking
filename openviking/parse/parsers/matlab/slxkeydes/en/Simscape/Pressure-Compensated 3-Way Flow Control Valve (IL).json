@@ -1,0 +1,13 @@
+{
+ "key": "Pressure-Compensated 3-Way Flow Control Valve (IL)",
+ "title": "Pressure-Compensated 3-Way Flow Control Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Flow Control Valves/Pressure_Compensated_3_Way_Flow_Control_Valve_IL.md"
+ ],
+ "text": "3-way flow control in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,54 @@
+{
+ "key": "NR LDPC Encoder",
+ "title": "NR LDPC Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/NR_LDPC_Encoder.md"
+ ],
+ "text": "根据 5G NR 标准执行 LDPC 编码，输入 4 路、输出 4 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据比特 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "bgn",
+   "direction": "input",
+   "summary": "基图编号 scalar"
+  },
+  {
+   "name": "liftingSize",
+   "direction": "input",
+   "summary": "输入提升大小 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "编码输出数据比特 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "liftingSize",
+   "direction": "output",
+   "summary": "输出提升大小 scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "准备好接受新输入 scalar"
+  }
+ ],
+ "params": []
+}

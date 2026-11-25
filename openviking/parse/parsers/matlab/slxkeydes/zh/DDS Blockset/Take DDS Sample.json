@@ -1,0 +1,42 @@
+{
+ "key": "Take DDS Sample",
+ "title": "Take DDS Sample",
+ "toolbox": "DDS Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "DDS Blockset/Take_DDS_Sample.md"
+ ],
+ "text": "从 DDS 网络接收数据样本，输入 1 路、输出 2 路；{Show receive status} 显示是否接收到 DDS 样本、{Connect to live network} 指定将 DDS 仿真连接到实时网络，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入 DDS 样本 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_S",
+   "direction": "output",
+   "summary": "显示是否接收到 DDS 样本 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show receive status",
+   "default": "off",
+   "values": "显示是否接收到 DDS 样本 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Connect to live network",
+   "default": "off",
+   "values": "将 DDS 仿真连接到实时网络 off (default) | on",
+   "group": ""
+  }
+ ]
+}

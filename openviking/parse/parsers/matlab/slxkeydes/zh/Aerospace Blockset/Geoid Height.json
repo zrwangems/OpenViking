@@ -1,0 +1,60 @@
+{
+ "key": "Geoid Height",
+ "title": "Geoid Height",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/Geoid_Height.md"
+ ],
+ "text": "计算起伏/高度，输入 2 路、输出 1 路；按 {Geopotential model} 指定重力场模型；{Units} 指定参数和输出单位 Metric、{Geopotential mat-file} 指定 Geopotential MAT、{Data type} 指定输入和输出信号的数据类型、{Action for out-of-range input} 指定超出范围输入的行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ (deg)",
+   "direction": "input",
+   "summary": "大地纬度 scalar"
+  },
+  {
+   "name": "l (deg)",
+   "direction": "input",
+   "summary": "经度 scalar"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "大地水准面高度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "参数和输出单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Geopotential model",
+   "default": "EGM96",
+   "values": "重力场模型 EGM96 (default) | EGM2008 | Custom",
+   "group": ""
+  },
+  {
+   "name": "Geopotential mat-file",
+   "default": "’geoidegm96grid’",
+   "values": "Geopotential MAT 文件 ’geoidegm96grid’ (default) | MAT-file",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "输入和输出信号的数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "超出范围输入的行为 Warning (default) | Error | None",
+   "group": ""
+  }
+ ]
+}

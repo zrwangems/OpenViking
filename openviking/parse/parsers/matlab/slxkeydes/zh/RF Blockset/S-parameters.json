@@ -1,0 +1,194 @@
+{
+ "key": "S-parameters",
+ "title": "S-parameters",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/S_parameters.md"
+ ],
+ "text": "对 S 参数网络进行建模；按 {Network parameter type} 指定网络参数类型；{Data source} 指定数据源 Data、{Data file} 指定网络参数数据文件的名称、{Network-parameter object} 指定网络参数对象作为数据源、{Network-parameters} 指定网络参数值、{Frequency (dB)} 指定网络参数的频率 1e9、{Reference Impedance(Ohm)} 指定网络参数的参考阻抗、{Use rational object} 指定有理对象作为数据源、{Residues} 按有理模型顺序排列的留数、{Poles} 按有理模型顺序排列的留数、{Direct feedthrough} 指定直接馈通 0 0:1、{Simulate noise} 指定仿真热噪声波、{Ground and hide negative terminals} 指定 RF 电路端子接地、{Modeling options} 指定对 S 参数建模、{Fitting options} 指定 Rational fit 拟合选项 Fit、{Relative error desired (dB)} 指定有理拟合可接受的相对误差、{Maximum number of poles} 指定最大极点数、{Automatically estimate impulse response duration} 指定自动计算冲激响应、{Impulse response duration} 指定冲激响应持续时间 1e-10、{Use only S-parameter magnitude with appropriate delay} 指定仅使用具有适当延迟的 S 参数幅值、{Source of frequency data} 指定频率数据源 Extracted from data、{Frequency data} 指定频率数据范围、{Plot type} 指定数据绘图类型 X-Y、{Parameter 1} 指定要绘制的 S 参数类型、{Parameter 2} 指定要绘制的 S 参数类型、{Format1} 指定绘图格式 Magnitude、{Format2} 指定绘图格式 Magnitude、{Y-axis scale} 指定 Y 轴刻度、{X-axis scale} 指定 X 轴刻度、{Plot} 绘制指定数据，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Data source",
+   "default": "file",
+   "values": "数据源 Data file (default) | Network-parameters | Rational model",
+   "group": ""
+  },
+  {
+   "name": "Data file",
+   "default": "simrfV2_unitygain.s2p",
+   "values": "网络参数数据文件的名称 simrfV2_unitygain.s2p (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Network-parameter object",
+   "default": "off",
+   "values": "网络参数对象作为数据源 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Network parameter type",
+   "default": "S-parameters",
+   "values": "网络参数类型 S-parameters (default) | Y-parameters | Z-parameters",
+   "group": ""
+  },
+  {
+   "name": "Network-parameters",
+   "default": "0]",
+   "values": "网络参数值 [0 0;1 0] (default) | multidimensional array | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency (dB)",
+   "default": "Hz",
+   "values": "网络参数的频率 1e9 Hz (default) | scalar | vector | Hz | kHz | MHz | GHz",
+   "group": ""
+  },
+  {
+   "name": "Reference Impedance(Ohm)",
+   "default": "50",
+   "values": "网络参数的参考阻抗 50 (default) | positive scalar | vector of positive scalars",
+   "group": ""
+  },
+  {
+   "name": "Use rational object",
+   "default": "off",
+   "values": "有理对象作为数据源 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Residues",
+   "default": "0",
+   "values": "按有理模型顺序排列的留数 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Poles",
+   "default": "0",
+   "values": "按有理模型顺序排列的留数 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Direct feedthrough",
+   "default": "0}",
+   "values": "直接馈通 {0 0:1 0} (default) | array of vectors",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise",
+   "default": "off",
+   "values": "仿真热噪声波 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Modeling options",
+   "default": "domain",
+   "values": "对 S 参数建模 Time domain (default) | Frequency domain",
+   "group": ""
+  },
+  {
+   "name": "Fitting options",
+   "default": "individually",
+   "values": "Rational fit 拟合选项 Fit individually (default) | Share poles by column | Share all poles",
+   "group": ""
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "有理拟合可接受的相对误差 -40 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of poles",
+   "default": "48",
+   "values": "最大极点数 48 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "",
+   "values": "自动计算冲激响应 on | off",
+   "group": ""
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "1e-10",
+   "values": "冲激响应持续时间 1e-10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Use only S-parameter magnitude with appropriate delay",
+   "default": "off",
+   "values": "仅使用具有适当延迟的 S 参数幅值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "source",
+   "values": "频率数据源 Extracted from data source (default) | User-defined",
+   "group": ""
+  },
+  {
+   "name": "Frequency data",
+   "default": "Hz",
+   "values": "频率数据范围 [1e9:1e6:3e9] Hz (default) | vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "数据绘图类型 X-Y plane (default) | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": ""
+  },
+  {
+   "name": "Parameter 1",
+   "default": "S11",
+   "values": "要绘制的 S 参数类型 S11 (default) | SNN",
+   "group": ""
+  },
+  {
+   "name": "Parameter 2",
+   "default": "None",
+   "values": "要绘制的 S 参数类型 None (default) | SNN",
+   "group": ""
+  },
+  {
+   "name": "Format1",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Angle(degrees) | Real | Imaginary",
+   "group": ""
+  },
+  {
+   "name": "Format2",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Angle(degrees) | Real | Imaginary",
+   "group": ""
+  },
+  {
+   "name": "Y-axis scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Logarithmic",
+   "group": ""
+  },
+  {
+   "name": "X-axis scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Logarithmic",
+   "group": ""
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制指定数据 button",
+   "group": ""
+  }
+ ]
+}

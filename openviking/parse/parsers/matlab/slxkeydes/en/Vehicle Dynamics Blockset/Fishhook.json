@@ -1,0 +1,101 @@
+{
+ "key": "Fishhook",
+ "title": "Fishhook",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Fishhook.md"
+ ],
+ "text": "Generate commands to conduct fishhook maneuver, 2 inputs, 2 outputs; {Maneuver start time, tStart [s]} sets the start time, {Longitudinal velocity setpoint, velRef} sets the target velocity, {Longitudinal velocity setpoint units, velRefUnit []} sets the units, {Steer and countersteer speed, steerRate [deg/s]} sets the steer and countersteer rate, {Steer amplitude, steerAmp [deg]} sets the handwheel steer amplitude, {Use roll rate to determine initial steer dwell time} sets the option to use roll rate to determine initial steer dwell, {Initial dwell time, tDwellSteer [s]}, {Countersteer dwell time, tDwellCntrSteer [s]}, {Return to center time, tZero [s]} sets the time to return countersteer amplitude to zero, {Roll rate countersteer initiation zero crossing threshold, pZero [deg/s]} sets the roll rate tolerance and {Initial steer direction}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "Vehicle longitudinal velocity scalar"
+  },
+  {
+   "name": "p",
+   "direction": "input",
+   "summary": "Vehicle roll rate scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "Driver reference data bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "Driver command data bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "2",
+   "values": "Start time 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity setpoint, velRef",
+   "default": "30",
+   "values": "Target velocity 30 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "Units mph (default)",
+   "group": ""
+  },
+  {
+   "name": "Steer and countersteer speed, steerRate [deg/s]",
+   "default": "720",
+   "values": "Steer and countersteer rate 720 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Steer amplitude, steerAmp [deg]",
+   "default": "540",
+   "values": "Handwheel steer amplitude 540 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Use roll rate to determine initial steer dwell time",
+   "default": "off",
+   "values": "Option to use roll rate to determine initial steer dwell time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial dwell time, tDwellSteer [s]",
+   "default": "0.5",
+   "values": "Initial dwell time 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Countersteer dwell time, tDwellCntrSteer [s]",
+   "default": "3",
+   "values": "Countersteer dwell time 3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Return to center time, tZero [s]",
+   "default": "2",
+   "values": "Time to return countersteer amplitude to zero steer 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Roll rate countersteer initiation zero crossing threshold, pZero [deg/s]",
+   "default": "1.5",
+   "values": "Roll rate tolerance 1.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial steer direction",
+   "default": "Right",
+   "values": "Initial steer direction Right (default) | Left",
+   "group": ""
+  }
+ ]
+}

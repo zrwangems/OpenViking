@@ -1,0 +1,13 @@
+{
+ "key": "PS Harmonic Estimator (Real, Imaginary)",
+ "title": "PS Harmonic Estimator (Real, Imaginary)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Periodic Operators/PS_Harmonic_Estimator_Real_Imaginary.md"
+ ],
+ "text": "Measure real and imaginary parts of periodic signal harmonic.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

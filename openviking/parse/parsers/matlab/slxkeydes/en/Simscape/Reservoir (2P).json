@@ -1,0 +1,13 @@
+{
+ "key": "Reservoir (2P)",
+ "title": "Reservoir (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Reservoir_2P.md"
+ ],
+ "text": "Two-phase fluid reservoir at constant temperature and pressure.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

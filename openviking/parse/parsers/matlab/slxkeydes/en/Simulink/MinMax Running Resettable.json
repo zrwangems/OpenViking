@@ -1,0 +1,42 @@
+{
+ "key": "MinMax Running Resettable",
+ "title": "MinMax Running Resettable",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Math Operations/MinMax_Running_Resettable.md"
+ ],
+ "text": "Determine minimum or maximum of signal over time, 2 inputs, 1 output, no direct feedthrough; {Function} sets the minimum and {Initial condition} sets the value to reset output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Reset signal scalar | vector | matrix"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Running minimum or maximum value scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function",
+   "default": "min",
+   "values": "Specify minimum or maximum min (default) | max",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0.0",
+   "values": "Value to reset output to 0.0 (default) | scalar or vector",
+   "group": ""
+  }
+ ]
+}

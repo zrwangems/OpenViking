@@ -1,0 +1,13 @@
+{
+ "key": "Rectangular QAM TCM Decoder",
+ "title": "Rectangular QAM TCM Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/TCM/Rectangular_QAM_TCM_Decoder.md"
+ ],
+ "text": "Decode trellis-coded modulation data, modulated using QAM method.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,38 @@
+{
+ "key": "Coulombic and Viscous Friction",
+ "title": "Coulomb & Viscous Friction",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Coulomb_Viscous_Friction.md",
+  "HDL Coder/Discontinuities/Coulomb_Viscous_Friction.md"
+ ],
+ "text": "对值为零时的不连续性以及非零时的线性增益建模，输入 1 路、输出 1 路；{库仑摩擦值} 指定静态摩擦偏移量、{粘性摩擦系数} 指定动态摩擦系数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "库仑摩擦值",
+   "default": "[1320]",
+   "values": "静态摩擦偏移量 [1320] (默认) | 实数值",
+   "group": ""
+  },
+  {
+   "name": "粘性摩擦系数",
+   "default": "1",
+   "values": "动态摩擦系数 1 (默认) | 实数值",
+   "group": ""
+  }
+ ]
+}

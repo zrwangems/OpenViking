@@ -1,0 +1,108 @@
+{
+ "key": "Array-Vector Multiply",
+ "title": "Array-Vector Multiply",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Array_Vector_Multiply.md"
+ ],
+ "text": "Multiply array by vector along specified dimension, 2 inputs, 1 output, no direct feedthrough, {Rounding mode} sets Method of rounding operation; {Multiply along dimension} sets the dimension along which to multiply input, {Vector (V) source} sets the source of vector, {Vector (V)} sets the vector parameter, {Saturate on integer overflow} sets the method of overflow action, {Vector (V) Minimum} sets the minimum value for elements of vector, {Vector (V) Maximum} sets the maximum value for elements of vector, {Product output}, {Accumulator}, {Output}, {Output Minimum} sets the minimum value of block output, {Output Maximum} sets the maximum value of block output and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Array input vector | matrix"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Vector input vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Multiplied output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Multiply along dimension",
+   "default": "2",
+   "values": "Dimension along which to multiply input array 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V) source",
+   "default": "port",
+   "values": "Source of vector Input port (default) | Dialog parameter",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V)",
+   "default": "0.25]",
+   "values": "Vector parameter [0.5 0.25] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Vector (V) Minimum",
+   "default": "(unspecified)",
+   "values": "Minimum value for elements of vector [] (unspecified) (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Vector (V) Maximum",
+   "default": "(unspecified)",
+   "values": "Maximum value for elements of vector [] (unspecified) (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as first input | fixdt([],16,0) |",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as first input | Inherit: Same as product output | fixdt([],16,0) |",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "output",
+   "values": "Output data type Inherit: Same as product output (default) | Inherit: Same as first input | Inherit: Same as first input | fixdt([],16,0) |",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "(unspecified)",
+   "values": "Minimum value of block output [] (unspecified) (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "(unspecified)",
+   "values": "Maximum value of block output [] (unspecified) (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

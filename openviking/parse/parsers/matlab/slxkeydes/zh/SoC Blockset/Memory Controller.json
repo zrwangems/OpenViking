@@ -1,0 +1,91 @@
+{
+ "key": "Memory Controller",
+ "title": "Memory Controller",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Memory_Controller.md"
+ ],
+ "text": "为一个或多个 Memory Channel 模块仲裁内存事务，输入 1 路、输出 1 路；{Hardware board} 指定查看或修改当前硬件设置 Read-only: name of current hardware、{Memory selection} 指定在内存区域之间选择 PS、{Number of masters} 指定连接到此控制器的主设备数量、{Interconnect arbitration} 指定仲裁策略 Round、{Use hardware board settings} 使用配置参数中的硬件实现设置、{Bandwidth} 指定面向外部内存的事务带宽 Read-only、{Frequency (MHz)} 控制器时钟频率，单位为 MHz、{Data width (bits)} 指定数据通路位宽、{Bandwidth derating (%)} 指定存储器事务低效 0-100、{Request to first transfer (in clocks)} 指定请求与传输开始之间的时钟周期数 nonnegative、{Last transfer to transaction complete (in clocks)} 指定传输结束与事务完成之间的时钟周期数 nonnegative，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "burstReq N",
+   "direction": "input",
+   "summary": "内存访问请求 scalar"
+  },
+  {
+   "name": "burstDone N",
+   "direction": "output",
+   "summary": "送往主设备的信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hardware board",
+   "default": "",
+   "values": "查看或修改当前硬件设置 Read-only: name of current hardware board",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "在内存区域之间选择 PS memory (default) | PL memory",
+   "group": "Main"
+  },
+  {
+   "name": "Number of masters",
+   "default": "2",
+   "values": "连接到此控制器的主设备数量 2 (default) | positive integer from 1 to 12",
+   "group": "Main"
+  },
+  {
+   "name": "Interconnect arbitration",
+   "default": "robin",
+   "values": "仲裁策略 Round robin (default) | Fixed port priority",
+   "group": "Main"
+  },
+  {
+   "name": "Use hardware board settings",
+   "default": "off",
+   "values": "使用配置参数中的硬件实现设置 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Bandwidth",
+   "default": "",
+   "values": "面向外部内存的事务带宽 Read-only: scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (MHz)",
+   "default": "200",
+   "values": "控制器时钟频率，单位为 MHz 200 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Data width (bits)",
+   "default": "64",
+   "values": "数据通路位宽 64 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Bandwidth derating (%)",
+   "default": "",
+   "values": "存储器事务低效 0-100",
+   "group": "Main"
+  },
+  {
+   "name": "Request to first transfer (in clocks)",
+   "default": "",
+   "values": "请求与传输开始之间的时钟周期数 nonnegative integer",
+   "group": "Main"
+  },
+  {
+   "name": "Last transfer to transaction complete (in clocks)",
+   "default": "",
+   "values": "传输结束与事务完成之间的时钟周期数 nonnegative integer",
+   "group": "Main"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Earthing Transformer",
+ "title": "Earthing Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Earthing_Transformer.md"
+ ],
+ "text": "采用锯齿形配置的三相接地变压器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

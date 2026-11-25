@@ -1,0 +1,56 @@
+{
+ "key": "ScheduleMatrix-3D",
+ "title": "Interpolate Matrix(x,y,z)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/Interpolate_Matrix_x_y_z.md"
+ ],
+ "text": "Return interpolated matrix for given inputs, 6 inputs, 1 output; {Matrix to interpolate}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x_k",
+   "direction": "input",
+   "summary": "First interpolation index scalar"
+  },
+  {
+   "name": "x_f",
+   "direction": "input",
+   "summary": "First interpolation fraction scalar"
+  },
+  {
+   "name": "y_k",
+   "direction": "input",
+   "summary": "Second interpolation index scalar"
+  },
+  {
+   "name": "y_f",
+   "direction": "input",
+   "summary": "Second interpolation fraction scalar"
+  },
+  {
+   "name": "z_k",
+   "direction": "input",
+   "summary": "Third interpolation index scalar"
+  },
+  {
+   "name": "z_f",
+   "direction": "input",
+   "summary": "Third interpolation fraction scalar"
+  },
+  {
+   "name": "Matrix(x,y,z)",
+   "direction": "output",
+   "summary": "Interpolated matrix matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Matrix to interpolate",
+   "default": "matrix",
+   "values": "Matrix to interpolate matrix (default)",
+   "group": ""
+  }
+ ]
+}

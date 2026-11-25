@@ -1,0 +1,81 @@
+{
+ "key": "BLDC Current Controller",
+ "title": "BLDC Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/BLDC Control/BLDC_Current_Controller.md"
+ ],
+ "text": "离散时间无刷直流电机电流 PI 控制器，输入 5 路、输出 1 路；{Proportional gain} 控制器比例增益 K p、{Integral gain} 指定积分增益 K i、{Anti-windup gain} 指定抗饱和增益 K aw、{Sample time (-1 for inherited)} 指定模块采样时间、{Discretization sample time} 指定离散化采样时间、{Enable zero cancellation} 指定前馈零消去，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsRef",
+   "direction": "input",
+   "summary": "参考电流 scalar"
+  },
+  {
+   "name": "Is",
+   "direction": "input",
+   "summary": "测得电流 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部复位 scalar"
+  },
+  {
+   "name": "Hall",
+   "direction": "input",
+   "summary": "霍尔传感器 vector"
+  },
+  {
+   "name": "Direction",
+   "direction": "input",
+   "summary": "电机方向 scalar"
+  },
+  {
+   "name": "vabcRef",
+   "direction": "output",
+   "summary": "参考电压 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "控制器比例增益 K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "5",
+   "values": "积分增益 K i 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "抗饱和增益 K aw 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "离散化采样时间 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "前馈零消去 off (default) | on",
+   "group": ""
+  }
+ ]
+}

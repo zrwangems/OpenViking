@@ -1,0 +1,121 @@
+{
+ "key": "FindEntity",
+ "title": "Entity Find",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Find.md"
+ ],
+ "text": "Entity Find 模块查找使用特定资源的实体，输入 1 路、输出 7 路；按 {Event actions} 指定事件动作；{Resource}、{Extract found entities} 指定提取并重新路由找到的实体、{Additional filtering condition} 添加可选筛选条件、{Matching condition} 定义匹配条件 match = true、{Number of entities found, f} 输出找到的实体数、{Number of entities departed, d} 输出已离开该模块的实体数、{Number of found entities in block, n} 输出尚未离开的找到实体数、{Average wait, w} 输出平均等待时间、{Average queue length, l} 输出实体队列的平均长度、{Number of entities extracted, ex} 指定从该模块中提取的实体数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "用于触发查找实体的输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出找到的实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_f",
+   "direction": "output",
+   "summary": "找到的实体数 scalar"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "尚未离开该模块的找到实体数 scalar"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "找到的实体在该模块中的平均等待时间 scalar"
+  },
+  {
+   "name": "Port_l",
+   "direction": "output",
+   "summary": "找到实体队列的平均长度 scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "已提取的实体数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resource",
+   "default": "Resource1",
+   "values": "指定实体使用的引用资源的名称 Resource1 (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Extract found entities",
+   "default": "off",
+   "values": "提取并重新路由找到的实体 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Additional filtering condition",
+   "default": "off",
+   "values": "添加可选筛选条件 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Matching condition",
+   "default": "true;",
+   "values": "定义匹配条件 match = true; (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Event actions",
+   "default": "OnFound",
+   "values": "指定事件动作 OnFound (default) | Entry | Exit | Blocked",
+   "group": "Event Actions"
+  },
+  {
+   "name": "Number of entities found, f",
+   "default": "off",
+   "values": "输出找到的实体数 off (default) | on",
+   "group": "Statistics"
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": "Statistics"
+  },
+  {
+   "name": "Number of found entities in block, n",
+   "default": "off",
+   "values": "输出尚未离开的找到实体数 off (default) | on",
+   "group": "Statistics"
+  },
+  {
+   "name": "Average wait, w",
+   "default": "off",
+   "values": "输出平均等待时间 off (default) | on",
+   "group": "Statistics"
+  },
+  {
+   "name": "Average queue length, l",
+   "default": "off",
+   "values": "输出实体队列的平均长度 off (default) | on",
+   "group": "Statistics"
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "从该模块中提取的实体数 off (default) | on",
+   "group": "Statistics"
+  }
+ ]
+}

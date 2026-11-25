@@ -1,0 +1,13 @@
+{
+ "key": "Circuit Breaker (Three-Phase)",
+ "title": "Circuit Breaker (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/Circuit_Breaker_Three_Phase.md"
+ ],
+ "text": "Three-phase circuit breaker controlled by external signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Reference Frame",
+ "title": "Reference Frame",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Frames and Transforms/Reference_Frame.md"
+ ],
+ "text": "Non-inertial reference frame.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

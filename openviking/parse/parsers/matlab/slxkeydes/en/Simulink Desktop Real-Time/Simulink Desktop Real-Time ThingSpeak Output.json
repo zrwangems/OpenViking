@@ -1,0 +1,104 @@
+{
+ "key": "Simulink Desktop Real-Time ThingSpeak Output",
+ "title": "ThingSpeak Output",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Internet of Things/ThingSpeak_Output.md"
+ ],
+ "text": "Write output fields to ThingSpeak channel, 1 input; {Channel number} sets the thingSpeak channel being accessed, {Configure channel parameters} selects and configure channel to access, {ThingSpeak server} sets the server for data transfer, {Channel ID} sets the unique channel, {Write API key} sets the access key for writing to channel character, {Update period (secs)} sets the write update period, in seconds, {View channel web page} sets the access web page for channel, {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {Output fields} defines which parts of data to write, {Initial value} sets the first value transmitted and {Final value} sets the last value transmitted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Data to write to channel numeric"
+  }
+ ],
+ "params": [
+  {
+   "name": "Channel number",
+   "default": "0",
+   "values": "ThingSpeak channel being accessed Read-only: 0 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Configure channel parameters",
+   "default": "",
+   "values": "Select and configure channel to access (button)",
+   "group": ""
+  },
+  {
+   "name": "ThingSpeak server",
+   "default": "api.thingspeak.com",
+   "values": "Server for data transfer api.thingspeak.com (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Channel ID",
+   "default": "0",
+   "values": "Unique channel 0 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Write API key",
+   "default": "",
+   "values": "Access key for writing to channel character vector",
+   "group": ""
+  },
+  {
+   "name": "Update period (secs)",
+   "default": "20",
+   "values": "Write update period, in seconds 20 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "View channel web page",
+   "default": "",
+   "values": "Access web page for channel (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Output fields",
+   "default": "1",
+   "values": "Define which parts of data to write 1 (default) | [1–8]",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "[]",
+   "values": "First value transmitted [] (default) | [integer]",
+   "group": ""
+  },
+  {
+   "name": "Final value",
+   "default": "[]",
+   "values": "Last value transmitted [] (default) | [integer]",
+   "group": ""
+  }
+ ]
+}

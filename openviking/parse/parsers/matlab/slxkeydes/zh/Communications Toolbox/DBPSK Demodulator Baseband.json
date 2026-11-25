@@ -1,0 +1,60 @@
+{
+ "key": "DBPSK Demodulator Baseband",
+ "title": "DBPSK Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/DBPSK_Demodulator_Baseband.md"
+ ],
+ "text": "解调 DBPSK 调制数据，输入 2 路、输出 1 路；按 {Output data type} 指定输出数据类型 Inherit via；{Phase rotation (rad)} 指定附加相移、{Decision type} 指定解调的判决方法 Hard、{Noise variance source} 指定噪声方差源、{Noise variance} 指定噪声的方差，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "DBPSK 调制的基带信号 scalar | column vector"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "噪声方差 positive scalar | vector of positive values"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase rotation (rad)",
+   "default": "0",
+   "values": "附加相移 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "解调的判决方法 Hard decision (default) | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Property",
+   "values": "噪声方差源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "噪声的方差 1 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "internal",
+   "values": "输出数据类型 Inherit via internal (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": "Main"
+  }
+ ]
+}

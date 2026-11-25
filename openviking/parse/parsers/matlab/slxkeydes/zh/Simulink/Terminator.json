@@ -1,0 +1,21 @@
+{
+ "key": "Terminator",
+ "title": "Terminator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Terminator.md",
+  "Simulink/Sinks/Terminator.md",
+  "HDL Coder/Sinks/Terminator.md"
+ ],
+ "text": "终止未连接的输出端口，输入 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组 | 总线"
+  }
+ ],
+ "params": []
+}

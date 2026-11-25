@@ -1,0 +1,49 @@
+{
+ "key": "Washout (Discrete or Continuous)",
+ "title": "Washout (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Washout_Discrete_or_Continuous.md"
+ ],
+ "text": "Discrete-time or continuous-time washout or high-pass filter, 1 input, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Time constant} sets the washout time constant, {Initialization} sets the initial state specification Inherited from block and {Initial state}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Washout input vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Washout output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time constant",
+   "default": "0.1",
+   "values": "Washout time constant 0.1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Initialization",
+   "default": "input",
+   "values": "Initial state specification Inherited from block input (default) | Specify as parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "Initial state 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "General QAM Demodulator Baseband",
+ "title": "General QAM Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/General_QAM_Demodulator_Baseband.md"
+ ],
+ "text": "解调 QAM 调制数据。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

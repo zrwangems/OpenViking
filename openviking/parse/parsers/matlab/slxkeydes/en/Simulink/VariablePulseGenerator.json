@@ -1,0 +1,48 @@
+{
+ "key": "VariablePulseGenerator",
+ "title": "Variable Pulse Generator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Variable_Pulse_Generator.md"
+ ],
+ "text": "Generate ideal, time varying pulse signal, 2 inputs, 1 output, no direct feedthrough; {Allow zero pulse width} allows zero magnitude of output signal, {Run at fixed time intervals} sets the continuous or discrete-time behavior and {Sampling rate} sets the pulse resolution. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "Duty Cycle scalar"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "Period scalar"
+  },
+  {
+   "name": "Port 1",
+   "direction": "output",
+   "summary": "Modulated pulse signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Allow zero pulse width",
+   "default": "off",
+   "values": "Allow zero magnitude of output signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Run at fixed time intervals",
+   "default": "continuous",
+   "values": "Choose continuous or discrete-time behavior continuous (default) | discrete",
+   "group": ""
+  },
+  {
+   "name": "Sampling rate",
+   "default": "0.1",
+   "values": "Set pulse resolution 0.1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

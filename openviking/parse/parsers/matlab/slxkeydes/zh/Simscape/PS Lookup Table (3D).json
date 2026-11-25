@@ -1,0 +1,13 @@
+{
+ "key": "PS Lookup Table (3D)",
+ "title": "PS Lookup Table (3D)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Lookup Tables/PS_Lookup_Table_3D.md"
+ ],
+ "text": "使用指定的查找方法近似三维函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

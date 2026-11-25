@@ -1,0 +1,60 @@
+{
+ "key": "Delay Line",
+ "title": "Delay Line",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Buffers/Delay_Line.md"
+ ],
+ "text": "Rebuffer sequence of inputs, 2 inputs, 1 output, no direct feedthrough, {Initial conditions} sets Initial conditions; {Delay line size}, {Allow directfeedthrough}, {Show En_Out port for selectively enabling output} and {Hold previous value when the output is disabled}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "En_Out",
+   "direction": "input",
+   "summary": "Linearize the block output true | false"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Rebuffered output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delay line size",
+   "default": "64",
+   "values": "Delay line size 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial conditions 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Allow directfeedthrough",
+   "default": "off",
+   "values": "Allow direct feed through off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show En_Out port for selectively enabling output",
+   "default": "off",
+   "values": "Show En_Out port for selectively enabling output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Hold previous value when the output is disabled",
+   "default": "off",
+   "values": "Hold previous value when the output is disabled off (default) | on",
+   "group": ""
+  }
+ ]
+}

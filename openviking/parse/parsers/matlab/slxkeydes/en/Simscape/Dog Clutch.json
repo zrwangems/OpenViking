@@ -1,0 +1,13 @@
+{
+ "key": "Dog Clutch",
+ "title": "Dog Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Dog_Clutch.md"
+ ],
+ "text": "Clutch with toothed plates that engage when plate teeth become enmeshed.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

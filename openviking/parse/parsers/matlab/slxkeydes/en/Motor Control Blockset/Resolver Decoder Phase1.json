@@ -1,0 +1,193 @@
+{
+ "key": "Resolver Decoder Phase1",
+ "title": "Resolver Decoder",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensor Decoders/Resolver_Decoder.md"
+ ],
+ "text": "Compute motor mechanical position and speed and sine and cosine values of motor electrical position, 3 inputs, 5 outputs, {Speed unit} sets Unit of speed output; {Computation method}, {Block Output} sets the output of block, {Number of pole-pairs for resolver} sets the resolver pole pair count, {Type of excitation method} sets the resolver excitation method Sinusoidal, {Enable input normalization} enables block to normalize inputs, {Discrete step size (s)} sets the sample time after which block executes again, {Number of pole-pairs for motor} sets the motor pole pair count, {Position offset (mechanical radians)} sets the resolver mechanical position offset, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Phase delay (electrical radians)} sets the phase delay for input signals, {Number of samples per excitation cycle} sets the samples per cycle of input signal, {Maximum application frequency (Hz)} sets the maximum applicable input frequency, {Speed filter cutoff frequency (Hz)} sets the cutoff frequency of lowpass filter, {Number of data points for lookup table} sets the size of lookup table array, {Proportional (P)} sets the proportional controller gain, {Integral (I)} sets the integral controller gain, {Error threshold (Hz)} sets the pLL error threshold 2e-2, {Position unit} sets the unit of position, {Position data type} sets the data type of angular position output, {Table data type} sets the data type of sine-cosine lookup table, {Speed data type} sets the data type of angular speed and {Base speed (RPM)} sets the base speed of the motor. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V Sin",
+   "direction": "input",
+   "summary": "Sampled secondary sine signal vector"
+  },
+  {
+   "name": "V Cos",
+   "direction": "input",
+   "summary": "Sampled secondary cosine signal vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Reset PLL scalar"
+  },
+  {
+   "name": "θ m",
+   "direction": "output",
+   "summary": "Motor mechanical position scalar"
+  },
+  {
+   "name": "sinθ e",
+   "direction": "output",
+   "summary": "Sine of electrical motor position scalar"
+  },
+  {
+   "name": "cosθ e",
+   "direction": "output",
+   "summary": "Cosine of electrical motor position scalar"
+  },
+  {
+   "name": "ω m",
+   "direction": "output",
+   "summary": "Motor mechanical speed scalar"
+  },
+  {
+   "name": "PLL En",
+   "direction": "output",
+   "summary": "PLL status scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Computation method",
+   "default": "Arithmetic",
+   "values": "Computation method used by block Arithmetic (default) | PLL",
+   "group": ""
+  },
+  {
+   "name": "Block Output",
+   "default": "position",
+   "values": "Output of block Mechanical position (default) | Sine and Cosine electrical position | Mechanical speed",
+   "group": ""
+  },
+  {
+   "name": "Number of pole-pairs for resolver",
+   "default": "1",
+   "values": "Resolver pole pair count 1 (default) | scalar",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Type of excitation method",
+   "default": "Excitation",
+   "values": "Resolver excitation method Sinusoidal Excitation (default) | Square Pulse Excitation",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Enable input normalization",
+   "default": "off",
+   "values": "Enable block to normalize inputs off (default) | on",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Sample time after which block executes again 50e-6 (default) | scalar",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Number of pole-pairs for motor",
+   "default": "3",
+   "values": "Motor pole pair count 3 (default) | scalar",
+   "group": "Inputs for Sine and Cosine electrical position"
+  },
+  {
+   "name": "Position offset (mechanical radians)",
+   "default": "0",
+   "values": "Resolver mechanical position offset (in radians) 0 (default) | scalar",
+   "group": "Inputs for Sine and Cosine electrical position"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Zero",
+   "values": "Rounding mode for fixed-point operations Zero (default) | Simplest",
+   "group": "Inputs for Sine and Cosine electrical position"
+  },
+  {
+   "name": "Phase delay (electrical radians)",
+   "default": "0.1746",
+   "values": "Phase delay for input signals 0.1746 (default) | scalar",
+   "group": "Inputs for sinusoidal excitation method"
+  },
+  {
+   "name": "Number of samples per excitation cycle",
+   "default": "16",
+   "values": "Samples per cycle of input signal 16 (default) | even scalar greater than zero",
+   "group": "Inputs for sinusoidal excitation method"
+  },
+  {
+   "name": "Maximum application frequency (Hz)",
+   "default": "7500",
+   "values": "Maximum applicable input frequency 7500 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Speed filter cutoff frequency (Hz)",
+   "default": "10",
+   "values": "Cutoff frequency of lowpass filter 10 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Number of data points for lookup table",
+   "default": "1024",
+   "values": "Size of lookup table array 1024 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Proportional (P)",
+   "default": "942.4778",
+   "values": "Proportional controller gain 942.4778 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Integral (I)",
+   "default": "222066.099",
+   "values": "Integral controller gain 222066.099 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Error threshold (Hz)",
+   "default": "2e-2",
+   "values": "PLL error threshold 2e-2 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Position unit",
+   "default": "Radians",
+   "values": "Unit of position output Radians (default) | Degrees | Per-unit",
+   "group": "Output Parameters"
+  },
+  {
+   "name": "Position data type",
+   "default": "single",
+   "values": "Data type of angular position output single (default) | double | fixed point",
+   "group": "Output Parameters"
+  },
+  {
+   "name": "Table data type",
+   "default": "single",
+   "values": "Data type of sine-cosine lookup table single (default) | double | fixed point",
+   "group": "Output Parameters"
+  },
+  {
+   "name": "Speed unit",
+   "default": "Degrees/Sec",
+   "values": "Unit of speed output Degrees/Sec (default) | Radians/Sec | RPM | Per-unit",
+   "group": "Output Parameters"
+  },
+  {
+   "name": "Speed data type",
+   "default": "single",
+   "values": "Data type of angular speed output single (default) | double | fixed point",
+   "group": "Output Parameters"
+  },
+  {
+   "name": "Base speed (RPM)",
+   "default": "2000",
+   "values": "Base speed of the motor (RPM) 2000 (default) | scalar",
+   "group": "Output Parameters"
+  }
+ ]
+}

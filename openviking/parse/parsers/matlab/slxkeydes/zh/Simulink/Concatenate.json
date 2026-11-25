@@ -1,0 +1,56 @@
+{
+ "key": "Concatenate",
+ "title": "Vector Concatenate",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Vector_Concatenate.md",
+  "Simulink/Math Operations/Matrix_Concatenate.md",
+  "Simulink/Math Operations/Vector_Concatenate.md",
+  "Simulink/Matrix Operations/Matrix_Concatenate.md",
+  "Simulink/Signal Routing/Vector_Concatenate.md",
+  "HDL Coder/Math Operations/Matrix_Concatenate.md",
+  "HDL Coder/Math Operations/Vector_Concatenate.md",
+  "HDL Coder/Signal Routing/Vector_Concatenate.md",
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Matrix_Concatenate.md"
+ ],
+ "text": "串联相同数据类型的输入向量以进行迭代处理，输入 2 路、输出 1 路；按 {模式} 指定串联类型 向量；{输入数目} 指定输入端口数目、{串联维度} 指定沿其串联输入数组的输出维度 整数标量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要串联的第一个输入 标量 | 向量 | 矩阵 | 数组"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "要串联的第 N 个输入 标量 | 向量 | 矩阵 | 数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入信号的串联 标量 | 向量 | 矩阵 | 数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入数目",
+   "default": "2",
+   "values": "输入端口数目 2 (默认) | 正整数",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "",
+   "values": "串联类型 向量 | 多维数组",
+   "group": ""
+  },
+  {
+   "name": "串联维度",
+   "default": "",
+   "values": "沿其串联输入数组的输出维度 整数标量",
+   "group": ""
+  }
+ ]
+}

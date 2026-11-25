@@ -1,0 +1,13 @@
+{
+ "key": "Buck-Boost Converter",
+ "title": "Buck-Boost Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Buck_Boost_Converter.md"
+ ],
+ "text": "由控制器驱动的 DC-DC 反相或四开关升压或降压电压调节器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

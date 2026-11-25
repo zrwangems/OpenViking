@@ -1,0 +1,297 @@
+{
+ "key": "6DOF EoM (ECEF)",
+ "title": "Simple Variable Mass 6DOF ECEF (Quaternion)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/6DOF/Simple_Variable_Mass_6DOF_ECEF_Quaternion.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/b_6DOF_ECEF_Quaternion.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/Custom_Variable_Mass_6DOF_ECEF_Quaternion.md"
+ ],
+ "text": "实现简单变质量六自由度运动方程在地心地球固连（ECEF）坐标中的四元数表示，输入 6 路、输出 14 路；按 {Mass type} 指定质量类型 Simple；{Units}、{Initial position in geodetic latitude, longitude and altitude [mu,l,h]}、{Initial velocity in body axes [U,v,w]}、{Initial Euler orientation [roll, pitch, yaw]}、{Initial body rotation rates [p,q,r]}、{Initial mass}、{Empty mass}、{Full mass}、{Inertia}、{Empty inertia}、{Full inertia}、{Include mass flow relative velocity}、{Include inertial acceleration}、{Planet model}、{Equatorial radius}、{Flattening}、{Rotational rate}、{Celestial longitude of Greenwich source}、{Celestial longitude of Greenwich [deg]}、{Celestial longitude of prime meridian source}、{Celestial longitude of prime meridian [deg]}、{Quaternion vector: e.g., ’qr’,’qi’,’qj’,’qk’}、{Body rotation rates: e.g., ’p’,’q’,’r’}、{Velocity: e.g., ’U’,’v’,’w’}、{Fixed frame position: e.g., ’Xff’, ’Yff’, ’Zff’}、{Inertial position: e.g., ’Xinertial’, ’Yinertial’, ’Zinertial’}、{Celestial longitude of Greenwich: e.g., ’LG’}、{Celestial longitude of prime meridian: e.g., ’LPM’}、{Mass: e.g., ’mass’} 同样影响行为。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F xyz",
+   "direction": "input",
+   "summary": "施加的力 three-element vector"
+  },
+  {
+   "name": "M xyz",
+   "direction": "input",
+   "summary": "施加的力矩 three-element vector"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "质量变化率 scalar"
+  },
+  {
+   "name": "L G (0)",
+   "direction": "input",
+   "summary": "格林尼治初始天体经度 scalar"
+  },
+  {
+   "name": "L PM (0)",
+   "direction": "input",
+   "summary": "本初子午线初始天体经度角 scalar"
+  },
+  {
+   "name": "V re",
+   "direction": "input",
+   "summary": "相对速度 three-element vector"
+  },
+  {
+   "name": "V ff",
+   "direction": "output",
+   "summary": "物体相对于 ECEF 坐标系的速度， three-element vector"
+  },
+  {
+   "name": "X ff",
+   "direction": "output",
+   "summary": "ECEF 参考坐标系中的位置 three-element vector"
+  },
+  {
+   "name": "μ l h",
+   "direction": "output",
+   "summary": "以大地纬度、经度和高度表示的位置 three-element vector | M-by-3 array"
+  },
+  {
+   "name": "φ θ Ψ (rad)",
+   "direction": "output",
+   "summary": "物体旋转角度 three-element vector"
+  },
+  {
+   "name": "DCM bi",
+   "direction": "output",
+   "summary": "从 ECI 轴的坐标变换 3-by-3 matrix"
+  },
+  {
+   "name": "DCM be",
+   "direction": "output",
+   "summary": "从 NED 轴到体轴系的坐标变换 3-by-3 matrix"
+  },
+  {
+   "name": "DCM ef",
+   "direction": "output",
+   "summary": "从固定坐标系轴的坐标变换 3-by-3 matrix"
+  },
+  {
+   "name": "V b",
+   "direction": "output",
+   "summary": "物体相对于固定坐标系的速度 three-element vector"
+  },
+  {
+   "name": "ω rel",
+   "direction": "output",
+   "summary": "物体相对于 NED 坐标系的相对角速率 three-element vector"
+  },
+  {
+   "name": "ω b",
+   "direction": "output",
+   "summary": "物体相对于惯性坐标系的角速率 three-element vector"
+  },
+  {
+   "name": "dω b /dt",
+   "direction": "output",
+   "summary": "物体相对于惯性坐标系的角加速度 three-element vector"
+  },
+  {
+   "name": "A bb",
+   "direction": "output",
+   "summary": "体轴系中的加速度 three-element vector"
+  },
+  {
+   "name": "Fuel",
+   "direction": "output",
+   "summary": "燃料箱状态 scalar"
+  },
+  {
+   "name": "A b ff",
+   "direction": "output",
+   "summary": "体轴系中的加速度 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Variable",
+   "values": "质量类型 Simple Variable (default) | Fixed | Custom Variable",
+   "group": "Main"
+  },
+  {
+   "name": "Initial position in geodetic latitude, longitude and altitude [mu,l,h]",
+   "default": "0]",
+   "values": "刚体的初始位置 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial velocity in body axes [U,v,w]",
+   "default": "0]",
+   "values": "体轴中的速度 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial Euler orientation [roll, pitch, yaw]",
+   "default": "0]",
+   "values": "初始欧拉姿态 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial body rotation rates [p,q,r]",
+   "default": "0]",
+   "values": "初始机体旋转 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial mass",
+   "default": "1.0",
+   "values": "初始质量 1.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty mass",
+   "default": "0.5",
+   "values": "空载质量 0.5 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Full mass",
+   "default": "2.0",
+   "values": "机体的满载质量 2.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Inertia",
+   "default": "eye(3)",
+   "values": "惯性 eye(3) (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty inertia",
+   "default": "eye(3)",
+   "values": "空载惯性矩阵 eye(3) (default) | 3-by-3 matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Full inertia",
+   "default": "2*eye(3)",
+   "values": "机体的满载惯性 2*eye(3) (default) | 3-by-3 matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Include mass flow relative velocity",
+   "default": "off",
+   "values": "质量流相对速度端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Include inertial acceleration",
+   "default": "off",
+   "values": "包括惯性加速度端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Planet model",
+   "default": "(WGS84)",
+   "values": "行星模型 Earth (WGS84) (default) | Custom",
+   "group": "Planet"
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "6378137",
+   "values": "行星赤道半径 6378137 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "行星扁率 1/298.257223563 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Rotational rate",
+   "default": "7292115e-11",
+   "values": "旋转速率 7292115e-11 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Celestial longitude of Greenwich source",
+   "default": "Internal",
+   "values": "格林尼治子午线初始天体经度的来源 Internal (default) | External",
+   "group": "Planet"
+  },
+  {
+   "name": "Celestial longitude of Greenwich [deg]",
+   "default": "0",
+   "values": "初始角度 0 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Celestial longitude of prime meridian source",
+   "default": "Internal",
+   "values": "本初子午线初始天体经度的来源 Internal (default) | External",
+   "group": "Planet"
+  },
+  {
+   "name": "Celestial longitude of prime meridian [deg]",
+   "default": "0",
+   "values": "初始角度 0 (default) | scalar",
+   "group": "Planet"
+  },
+  {
+   "name": "Quaternion vector: e.g., {’qr’,’qi’,’qj’,’qk’}",
+   "default": "’’",
+   "values": "四元数向量状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Body rotation rates: e.g., {’p’,’q’,’r’}",
+   "default": "’’",
+   "values": "机体旋转状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Velocity: e.g., {’U’,’v’,’w’}",
+   "default": "’’",
+   "values": "速度状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Fixed frame position: e.g., {’Xff’, ’Yff’, ’Zff’}",
+   "default": "’’",
+   "values": "ECEF 位置状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Inertial position: e.g., {’Xinertial’, ’Yinertial’, ’Zinertial’}",
+   "default": "’’",
+   "values": "惯性位置状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Celestial longitude of Greenwich: e.g., ’LG’",
+   "default": "’’",
+   "values": "天体经度状态名称 ’’ (default) | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Celestial longitude of prime meridian: e.g., ’LPM’",
+   "default": "’’",
+   "values": "本初子午线天体经度 ’’ (default) | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Mass: e.g., ’mass’",
+   "default": "’’",
+   "values": "质量状态名称 ’’ (default) | character vector",
+   "group": "State Attributes"
+  }
+ ]
+}

@@ -1,0 +1,127 @@
+{
+ "key": "dsp.simulink.CICCompensationDecimator",
+ "title": "CIC Compensation Decimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/CIC_Compensation_Decimator.md"
+ ],
+ "text": "Compensate for CIC filter using FIR decimator, 1 input, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode for output fixed-point operations; {Rate change factor} sets the rate-change factor of the CIC filter, {Number of sections}, {Differential delay}, {Decimation factor}, {Minimum order filter design} sets the design compensation filter of minimum order or of specified, {Filter order} sets the order of compensation filter, {Passband edge frequency (Hz)} sets the passband edge frequency of compensation, {Stopband edge frequency (Hz)} sets the stopband edge frequency of compensation, {Passband ripple (dB)} sets the passband ripple of compensation filter, {Stopband attenuation (dB)} sets the stopband attenuation of compensation, {Sample rate mode} sets the mode to specify the input sample rate Use normalized, {Input sample rate (Hz)} sets the sample rate of input signal, {Allow arbitrary frame length for fixed-size input signals}, {View Filter Response}, {Simulate using} sets the type of simulation to run Interpreted and {Coefficients} sets the word and fraction lengths of coefficients. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Filtered and downsampled signal vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rate change factor",
+   "default": "2",
+   "values": "Rate-change factor of the CIC filter 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of sections",
+   "default": "2",
+   "values": "Number of sections in the CIC filter 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Differential delay",
+   "default": "1",
+   "values": "Differential delay of the CIC filter 1 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Decimation factor",
+   "default": "2",
+   "values": "Decimation factor of compensation filter 2 (default) | positive integer scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Minimum order filter design",
+   "default": "on",
+   "values": "Design compensation filter of minimum order or of specified order on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter order",
+   "default": "12",
+   "values": "Order of compensation filter 12 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Passband edge frequency (Hz)",
+   "default": "100000",
+   "values": "Passband edge frequency of compensation filter 100000 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband edge frequency (Hz)",
+   "default": "400000",
+   "values": "Stopband edge frequency of compensation filter 400000 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Passband ripple (dB)",
+   "default": "0.1",
+   "values": "Passband ripple of compensation filter 0.1 (default) | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "60",
+   "values": "Stopband attenuation of compensation filter 60 (default) | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "1200000",
+   "values": "Sample rate of input signal 1200000 (default) | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "Allow arbitrary frame length for fixed-size input signals off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "button",
+   "values": "View Filter Response button (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for output fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(1,16)",
+   "values": "Word and fraction lengths of coefficients fixdt(1,16) (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  }
+ ]
+}

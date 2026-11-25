@@ -1,0 +1,79 @@
+{
+ "key": "JulianDate",
+ "title": "Julian Date Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Julian_Date_Conversion.md"
+ ],
+ "text": "计算儒略日或修正儒略日，输入 1 路、输出 1 路；按 {Month} 指定月份；{Year} 指定年份、{Day} 指定日、{Hour} 指定小时、{Minutes} 指定分钟、{Seconds} 指定秒、{Calculate modified Julian date} 指定修正儒略日数据、{Time increment} 指定时间增量 Day、{Action for out-of-range input} 指定超出范围时的模块行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "day",
+   "direction": "input",
+   "summary": "时钟源 scalar | array"
+  },
+  {
+   "name": "JD",
+   "direction": "output",
+   "summary": "儒略日 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Year",
+   "default": "2013",
+   "values": "年份 2013 (default) | double, whole number, greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "月份 January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Day",
+   "default": "1",
+   "values": "日 1 (default) | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31",
+   "group": ""
+  },
+  {
+   "name": "Hour",
+   "default": "0",
+   "values": "小时 0 (default) | double, whole number, 0 to 24",
+   "group": ""
+  },
+  {
+   "name": "Minutes",
+   "default": "0",
+   "values": "分钟 0 (default) | double, whole number, 0 to 60",
+   "group": ""
+  },
+  {
+   "name": "Seconds",
+   "default": "0",
+   "values": "秒 0 (default) | double, whole number, 0 to 60",
+   "group": ""
+  },
+  {
+   "name": "Calculate modified Julian date",
+   "default": "off",
+   "values": "修正儒略日数据 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Time increment",
+   "default": "Day",
+   "values": "时间增量 Day (default) | Hour | Min | Sec | None",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

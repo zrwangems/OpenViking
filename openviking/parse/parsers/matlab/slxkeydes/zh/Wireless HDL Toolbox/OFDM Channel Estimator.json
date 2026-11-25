@@ -1,0 +1,91 @@
+{
+ "key": "OFDM Channel Estimator",
+ "title": "OFDM Channel Estimator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/OFDM_Channel_Estimator.md"
+ ],
+ "text": "使用输入数据和参考子载波估计信道，输入 6 路、输出 2 路；{Enable averaging} 指定平均 LS 估计、{Number of symbols to be averaged} 指定要平均的符号数、{Enable interpolation} 指定插值 LS 估计、{Interpolation factor} 指定插值因子、{Maximum number of subcarriers per symbol} 指定每个符号的最大子载波数、{Enable reset input port} 指定重置信号，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据子载波 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "refData",
+   "direction": "input",
+   "summary": "参考数据子载波 scalar"
+  },
+  {
+   "name": "refValid",
+   "direction": "input",
+   "summary": "指示参考数据有效 scalar"
+  },
+  {
+   "name": "numScPerSym",
+   "direction": "input",
+   "summary": "每个 OFDM 符号的有效子载波数 scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "清除内部状态 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "输出信道估计 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable averaging",
+   "default": "off",
+   "values": "平均 LS 估计 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of symbols to be averaged",
+   "default": "2",
+   "values": "要平均的符号数 2 (default) | integer in range from 2 to 14",
+   "group": ""
+  },
+  {
+   "name": "Enable interpolation",
+   "default": "off",
+   "values": "插值 LS 估计 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Interpolation factor",
+   "default": "3",
+   "values": "插值因子 3 (default) | integer in range from 2 to 12",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of subcarriers per symbol",
+   "default": "52",
+   "values": "每个符号的最大子载波数 52 (default) | integer in range from 2 to 65, 536",
+   "group": ""
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "重置信号 off (default) | on",
+   "group": ""
+  }
+ ]
+}

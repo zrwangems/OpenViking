@@ -1,0 +1,13 @@
+{
+ "key": "Wye-Connected Variable Load (lagging)",
+ "title": "Wye-Connected Variable Load (lagging)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/RLC Assemblies/Wye_Connected_Variable_Load_lagging.md"
+ ],
+ "text": "Three-phase variable, lagging load wired in wye configuration.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

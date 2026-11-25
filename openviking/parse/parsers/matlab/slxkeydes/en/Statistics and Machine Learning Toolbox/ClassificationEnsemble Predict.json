@@ -1,0 +1,132 @@
+{
+ "key": "ClassificationEnsemble Predict",
+ "title": "ClassificationEnsemble Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Classification/ClassificationEnsemble_Predict.md"
+ ],
+ "text": "Classify observations using ensemble of decision trees, 1 input, 2 outputs, direct feedthrough, {Select trained machine learning model} sets Classification ensemble model; {Add output port for predicted class scores} adds second output port for predicted class, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Label data type} sets the data type of label output, {Label data type Minimum} sets the minimum value of label output for range checking, {Label data type Maximum} sets the maximum value of label output for range checking, {Score data type} sets the data type of score output Inherit, {Score data type Minimum} sets the minimum value of score output for range checking, {Score data type Maximum} sets the maximum value of score output for range checking, {Raw score data type} sets the untransformed score data type Inherit, {Raw score data type Minimum} sets the minimum untransformed score for range checking, {Raw score data type Maximum} sets the maximum untransformed score for range checking, {Weak learner data type} sets the data type of weak learner outputs Inherit, {Weak learner data type Minimum} sets the minimum value of weak learner outputs for range checking and {Weak learner data type Maximum} sets the maximum value of weak learner outputs for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Predictor data row vector | column vector"
+  },
+  {
+   "name": "label",
+   "direction": "output",
+   "summary": "Predicted class label scalar"
+  },
+  {
+   "name": "score",
+   "direction": "output",
+   "summary": "Predicted class scores or posterior probabilities row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select trained machine learning model",
+   "default": "ensMdl",
+   "values": "Classification ensemble model ensMdl (default) | ClassificationEnsemble object | ClassificationBaggedEnsemble object | CompactClassificationEnsemble object",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for predicted class scores",
+   "default": "off",
+   "values": "Add second output port for predicted class scores off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type",
+   "default": "",
+   "values": "Data type of label output Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of label output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of label output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type",
+   "default": "auto",
+   "values": "Data type of score output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of score output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of score output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Raw score data type",
+   "default": "auto",
+   "values": "Untransformed score data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Raw score data type Minimum",
+   "default": "[]",
+   "values": "Minimum untransformed score for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Raw score data type Maximum",
+   "default": "[]",
+   "values": "Maximum untransformed score for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Weak learner data type",
+   "default": "auto",
+   "values": "Data type of weak learner outputs Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Weak learner data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of weak learner outputs for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Weak learner data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of weak learner outputs for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

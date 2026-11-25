@@ -1,0 +1,26 @@
+{
+ "key": "Triggered Operating Condition/Linearization Snapshot",
+ "title": "Trigger-Based Operating Point Snapshot",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Utilities/Trigger_Based_Operating_Point_Snapshot.md"
+ ],
+ "text": "Generate operating points at triggered events, 1 input, {Trigger type} sets Type of control signal.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "Trigger control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger type",
+   "default": "rising",
+   "values": "Type of control signal rising (default) | falling | either | function-call",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,177 @@
+{
+ "key": "Continuous Time Delta Sigma Modulator",
+ "title": "Continuous Time Delta Sigma Modulator",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Building Blocks/Continuous_Time_Delta_Sigma_Modulator.md"
+ ],
+ "text": "ADC based on continuous-time delta-sigma modulator, 3 inputs, 3 outputs, {Delta Sigma Modulator order} sets Order of delta-sigma modulator 2nd; {Delta Sigma Modulator architecture} sets the architecture of delta-sigma, {System bandwidth (Hz)} sets the bandwidth of delta-sigma modulator system, {OSR} sets the ratio of delta-sigma modulator sampling rate to Nyquist, {Sampling frequency (Hz)} sets the sampling frequency of delta-sigma modulator, {Quantizer levels} sets the number of quantizer levels in delta-sigma, {Quantizer output} sets the range of quantizer output, {Use custom coefficient values} sets the option to use custom values, {Coefficient ’a’} sets the feedback/feed-forward coefficients from/to the quantizer, {Coefficient ’g’} sets the resonator coefficients, {Coefficient ’b’} sets the feed-in coefficients from the modulator input to each integrator, {Coefficient ’c’} sets the integrator inter-stage coefficients, {Integrator opamp gain} sets the open loop gain, {Enable Noise Impairment} enables noise calculations in delta-sigma modulator, {Thermal noise value} sets the thermal noise density 200e-6, {Reference resistance (ohm)} sets the reference resistance for power calculation, {1/f corner frequency (Hz)} sets the corner frequency for flicker noise, {NTF zeros opitimization flag} sets the method to optimize zeros in NTF, {Modulator passband} sets the type of modulator, {Center frequency}, {Use custom value of H_inf} sets the option to use custom value of H_inf and {Maximum out-of-band H_inf} sets the maximum out-of-band gain of NTF. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "input",
+   "direction": "input",
+   "summary": "Analog input signal scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Reset delta-sigma modulator scalar"
+  },
+  {
+   "name": "feedback",
+   "direction": "input",
+   "summary": "Output from next stage scalar"
+  },
+  {
+   "name": "dsmOut",
+   "direction": "output",
+   "summary": "Digital output signal scalar"
+  },
+  {
+   "name": "filterOut",
+   "direction": "output",
+   "summary": "Output of loop filter scalar"
+  },
+  {
+   "name": "quantOut",
+   "direction": "output",
+   "summary": "Output of quantizer scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delta Sigma Modulator architecture",
+   "default": "CIFB",
+   "values": "Architecture of delta-sigma modulator CIFB (default) | CIFF",
+   "group": ""
+  },
+  {
+   "name": "Delta Sigma Modulator order",
+   "default": "order",
+   "values": "Order of delta-sigma modulator 2nd order (default) | 1st order | 3rd order | 4th order",
+   "group": ""
+  },
+  {
+   "name": "System bandwidth (Hz)",
+   "default": "1000",
+   "values": "Bandwidth of delta-sigma modulator system 1000 (default) | nonnegative real scalar",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "OSR",
+   "default": "64",
+   "values": "Ratio of delta-sigma modulator sampling rate to Nyquist rate 64 (default) | nonnegative real scalar",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Sampling frequency (Hz)",
+   "default": "128e3",
+   "values": "Sampling frequency of delta-sigma modulator 128e3 (default) | positive real scalar",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Quantizer levels",
+   "default": "2",
+   "values": "Number of quantizer levels in delta-sigma modulator 2 (default) | positive real integer",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Quantizer output",
+   "default": "[-1,1]",
+   "values": "Range of quantizer output [-1,1] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Use custom coefficient values",
+   "default": "off",
+   "values": "Option to use custom values for coefficients ’a’, ’g’, ’b’, and ’c’ off (default) | on",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Coefficient ’a’",
+   "default": "0.1601]",
+   "values": "Feedback/feed-forward coefficients from/to the quantizer [0.5714 0.1601] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Coefficient ’g’",
+   "default": "[0.0000]",
+   "values": "Resonator coefficients [0.0000] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Coefficient ’b’",
+   "default": "0.1601]",
+   "values": "Feed-in coefficients from the modulator input to each integrator [1.000 0.5714 0.1601] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Coefficient ’c’",
+   "default": "1.0000]",
+   "values": "Integrator inter-stage coefficients [1.0000 1.0000] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Integrator opamp gain",
+   "default": "Inf",
+   "values": "Open loop gain of op-amp Inf (default) | positive real scalar",
+   "group": "Impairment"
+  },
+  {
+   "name": "Enable Noise Impairment",
+   "default": "off",
+   "values": "Enable noise calculations in delta-sigma modulator ADC off (default) | on",
+   "group": "Impairment"
+  },
+  {
+   "name": "Thermal noise value",
+   "default": "200e-6",
+   "values": "Thermal noise density 200e-6 (default) | real scalar",
+   "group": "Impairment"
+  },
+  {
+   "name": "Reference resistance (ohm)",
+   "default": "50",
+   "values": "Reference resistance for power calculation 50 (default) | positive real scalar",
+   "group": "Impairment"
+  },
+  {
+   "name": "1/f corner frequency (Hz)",
+   "default": "1000",
+   "values": "Corner frequency for flicker noise 1000 (default) | positive real scalar",
+   "group": "Impairment"
+  },
+  {
+   "name": "NTF zeros opitimization flag",
+   "default": "2",
+   "values": "Method to optimize zeros in NTF 2 (default) | 0 | 1",
+   "group": "Advanced"
+  },
+  {
+   "name": "Modulator passband",
+   "default": "Lowpass",
+   "values": "Type of modulator passband Lowpass (default) | Bandpass",
+   "group": "Advanced"
+  },
+  {
+   "name": "Center frequency",
+   "default": "0",
+   "values": "Center frequency of modulator 0 (default) | scalar in the range [0 0.5]",
+   "group": "Advanced"
+  },
+  {
+   "name": "Use custom value of H_inf",
+   "default": "off",
+   "values": "Option to use custom value of H_inf off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Maximum out-of-band H_inf",
+   "default": "1.4",
+   "values": "Maximum out-of-band gain of NTF 1.4 (default) | positive real scalar",
+   "group": "Advanced"
+  }
+ ]
+}

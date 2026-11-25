@@ -1,0 +1,135 @@
+{
+ "key": "audio.simulink.ParamEQDesign",
+ "title": "Parametric EQ Design",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Parametric_EQ_Design.md"
+ ],
+ "text": "Design tunable parametric equalizer coefficients, 4 inputs, 2 outputs, no direct feedthrough; {Smooth tuned filter parameters} sets the smooth filter parameters when tuning, {Smoothing factor}, {Maximum filter order}, {Specify filter order from input port} uses additional input port to specify filter, {Filter order}, {Specify gain from input port} uses additional input port to specify gain, {Gain (dB)}, {Specify normalized center frequency from input port} uses additional input port to specify normalized center, {Normalized center frequency}, {Specify normalized bandwidth from input port} uses additional input port to specify normalized, {Normalized bandwidth}, {Filter cascade sections form} sets the form of cascaded filter sections Second-order, {Output data type} sets the data type of output, {Sample time} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "Filter order positive even integer"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Gain (dB) real scalar"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "Normalized center frequency scalar in range [0,1]"
+  },
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "Normalized bandwidth scalar in range [0,1]"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "Numerator filter coefficients matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "output",
+   "summary": "Denominator filter coefficients matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Smooth tuned filter parameters",
+   "default": "off",
+   "values": "Smooth filter parameters when tuning off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor",
+   "default": "0.6",
+   "values": "Smoothing factor for tuned parameters 0.6 (default) | scalar in range [0,1)",
+   "group": ""
+  },
+  {
+   "name": "Maximum filter order",
+   "default": "2",
+   "values": "Maximum filter order 2 (default) | positive even integer",
+   "group": ""
+  },
+  {
+   "name": "Specify filter order from input port",
+   "default": "off",
+   "values": "Use additional input port to specify filter order off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "2",
+   "values": "Filter order 2 (default) | positive even integer",
+   "group": ""
+  },
+  {
+   "name": "Specify gain from input port",
+   "default": "off",
+   "values": "Use additional input port to specify gain off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Gain (dB)",
+   "default": "0",
+   "values": "Gain (dB) 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify normalized center frequency from input port",
+   "default": "off",
+   "values": "Use additional input port to specify normalized center frequency off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Normalized center frequency",
+   "default": "0.2",
+   "values": "Normalized center frequency 0.2 (default) | scalar in range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify normalized bandwidth from input port",
+   "default": "off",
+   "values": "Use additional input port to specify normalized bandwidth off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Normalized bandwidth",
+   "default": "0.1",
+   "values": "Normalized bandwidth 0.1 (default) | scalar in range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Filter cascade sections form",
+   "default": "sections",
+   "values": "Form of cascaded filter sections Second-order sections (default) | Fourth-order sections",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of output coefficients double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

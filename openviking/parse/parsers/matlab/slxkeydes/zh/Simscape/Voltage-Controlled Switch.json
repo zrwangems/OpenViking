@@ -1,0 +1,13 @@
+{
+ "key": "Voltage-Controlled Switch",
+ "title": "Voltage-Controlled Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Passives/Voltage_Controlled_Switch.md"
+ ],
+ "text": "具有滞回的电压控制开关。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

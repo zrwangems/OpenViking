@@ -1,0 +1,13 @@
+{
+ "key": "Cone Clutch",
+ "title": "Cone Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Cone_Clutch.md"
+ ],
+ "text": "锥形离合器，当法向力超过阈值时其盘片接合。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

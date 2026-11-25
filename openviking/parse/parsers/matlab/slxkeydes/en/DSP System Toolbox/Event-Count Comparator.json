@@ -1,0 +1,36 @@
+{
+ "key": "Event-Count Comparator",
+ "title": "Event-Count Comparator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Switches and Counters/Event_Count_Comparator.md"
+ ],
+ "text": "Detect threshold crossing of accumulated nonzero inputs, 2 inputs, 1 output, no direct feedthrough; {Event threshold}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Data input scalar"
+  },
+  {
+   "name": "Int",
+   "direction": "input",
+   "summary": "Interval enable signal scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Detect required number of nonzero inputs true or 1 | false or 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Event threshold",
+   "default": "10",
+   "values": "Event threshold 10 (default) | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

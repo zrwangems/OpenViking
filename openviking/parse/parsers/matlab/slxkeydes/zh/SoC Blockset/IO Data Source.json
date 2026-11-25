@@ -1,0 +1,43 @@
+{
+ "key": "IO Data Source",
+ "title": "IO Data Source",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor Testbench/IO_Data_Source.md"
+ ],
+ "text": "仿真并回放录制的任务事件，输入 1 路、输出 1 路；按 {Input} 指定输入数据的来源 From；{Sample time} 指定采样时间间隔、{Object name} 指定 timeseries 对象的名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 numeric vector"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "任务事件信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "dialog",
+   "values": "输入数据的来源 From dialog (default) | From input port | From timeseries object",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间间隔 -1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Object name",
+   "default": "[]",
+   "values": "timeseries 对象的名称 [] (default) | timeseries object",
+   "group": ""
+  }
+ ]
+}

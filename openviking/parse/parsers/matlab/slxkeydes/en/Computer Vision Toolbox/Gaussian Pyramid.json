@@ -1,0 +1,55 @@
+{
+ "key": "Gaussian Pyramid",
+ "title": "Gaussian Pyramid",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/Gaussian_Pyramid.md"
+ ],
+ "text": "Perform Gaussian pyramid decomposition, 1 input, 1 output; {Operation} selects operation, {Pyramid level} sets the image scaling factor, {Coefficient source} sets the lowpass filter coefficient source Default separable filter, {Coefficients for separable filter} sets the separable filter coefficient and {Hidden coefficients} sets the hidden separable filter coefficients. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image scalar | vector | matrix | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "Reduce",
+   "values": "Select operation Reduce (default) | Expand",
+   "group": ""
+  },
+  {
+   "name": "Pyramid level",
+   "default": "1",
+   "values": "Image scaling factor 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Coefficient source",
+   "default": "1/4-a/2]",
+   "values": "Lowpass filter coefficient source Default separable filter [1/4-a/2 1/4 a 1/4 1/4-a/2] (default) | Specify via dialog",
+   "group": ""
+  },
+  {
+   "name": "Coefficients for separable filter",
+   "default": "0.0625]",
+   "values": "Separable filter coefficient [0.0625 0.25 0.375 0.25 0.0625] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Hidden coefficients",
+   "default": "1/4-0.375/2]",
+   "values": "Hidden separable filter coefficients [1/4-0.375/2 1/4 0.375 1/4 1/4-0.375/2] (default) | vector",
+   "group": ""
+  }
+ ]
+}

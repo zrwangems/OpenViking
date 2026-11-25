@@ -1,0 +1,68 @@
+{
+ "key": "CAN Configuration",
+ "title": "CAN Configuration",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN Communication/CAN_Configuration.md"
+ ],
+ "text": "配置指定 CAN 设备的参数；{设备}、{总线速度} 指定 CAN 总线比特率 整数、{手动配置位参数} 允许指定单独的位参数、{同步跳转宽度} 允许的最大时间调整量 整数、{时间段 1} 指定采样前的时间量子数量 整数、{时间段 2} 指定采样后的时间量子数量 整数、{采样数}、{验证位参数设置的有效性} 指定检查设置的有效性、{确认模式} 控制 CAN 总线上的通道活动，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "设备",
+   "default": "",
+   "values": "CAN 设备和通道 列表选项",
+   "group": ""
+  },
+  {
+   "name": "总线速度",
+   "default": "",
+   "values": "CAN 总线比特率 整数",
+   "group": ""
+  },
+  {
+   "name": "手动配置位参数",
+   "default": "off",
+   "values": "允许指定单独的位参数 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "同步跳转宽度",
+   "default": "",
+   "values": "允许的最大时间调整量 整数",
+   "group": ""
+  },
+  {
+   "name": "时间段 1",
+   "default": "",
+   "values": "采样前的时间量子数量 整数",
+   "group": ""
+  },
+  {
+   "name": "时间段 2",
+   "default": "",
+   "values": "采样后的时间量子数量 整数",
+   "group": ""
+  },
+  {
+   "name": "采样数",
+   "default": "",
+   "values": "每位采样数 整数",
+   "group": ""
+  },
+  {
+   "name": "验证位参数设置的有效性",
+   "default": "",
+   "values": "检查设置的有效性",
+   "group": ""
+  },
+  {
+   "name": "确认模式",
+   "default": "Normal",
+   "values": "控制 CAN 总线上的通道活动 Normal (默认) | Silent",
+   "group": ""
+  }
+ ]
+}

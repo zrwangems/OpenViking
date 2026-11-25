@@ -1,0 +1,43 @@
+{
+ "key": "audio.simulink.CepstralCoefficients",
+ "title": "Cepstral Coefficients",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/Cepstral_Coefficients.md"
+ ],
+ "text": "Extract cepstral coefficients from spectrogram, 1 input, 1 output, no direct feedthrough, {Rectification} sets Type of nonlinear rectification; {Number of cepstral coefficients} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Spectrogram or auditory spectrogram matrix | 3-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Cepstral Coefficients matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of cepstral coefficients",
+   "default": "13",
+   "values": "Number of cepstral coefficients returned 13 (default) | positive integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Rectification",
+   "default": "Logarithm",
+   "values": "Type of nonlinear rectification Logarithm (default) | Cubic root | None",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

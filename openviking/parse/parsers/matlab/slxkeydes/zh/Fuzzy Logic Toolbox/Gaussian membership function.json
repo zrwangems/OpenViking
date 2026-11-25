@@ -1,0 +1,37 @@
+{
+ "key": "Gaussian membership function",
+ "title": "Gaussian MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Gaussian_MF.md"
+ ],
+ "text": "高斯隶属度函数，输入 1 路、输出 1 路；{Standard deviation sigma} 指定标准差、{Mean c} 指定均值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入值 scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "隶属度值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Standard deviation sigma",
+   "default": "1",
+   "values": "标准差 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mean c",
+   "default": "0",
+   "values": "均值 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

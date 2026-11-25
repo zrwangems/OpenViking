@@ -1,0 +1,71 @@
+{
+ "key": "pulseCompressionLibrary",
+ "title": "Pulse Compression Library",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Pulse_Compression_Library.md"
+ ],
+ "text": "Library of pulse compression specifications, 2 inputs, 2 outputs; {Signal propagation speed (m/s)} sets the signal propagation speed physconst, {Specification of each waveform in the library} sets the specification of pulse waveforms, {Pulse compression specifications} sets the type of pulse compression, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input signal complex-valued K -by- L matrix | complex-valued K -by- N matrix | complex-valued K -by- N -by- L array"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "Index of processing specification positive integer"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Output signal complex-valued K -by- L matrix | complex-valued K -by- N matrix | complex-valued K -by- N -by- L array"
+  },
+  {
+   "name": "Range",
+   "direction": "output",
+   "summary": "Sample range real-valued length- M vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specification of each waveform in the library",
+   "default": "{{’Rectangular’,’PRF’,1e4,’PulseWidth’,50e-6},{’LinearFM’,’PRF’,1e4,’PulseWidth’,50e-6,’SweepBandwidth’,1e5,’SweepDirection’,’Up’,’SweepInterval’,’Positive’}}",
+   "values": "Specification of pulse waveforms in the library {{’Rectangular’,’PRF’,1e4,’PulseWidth’,50e-6},{’LinearFM’,’PRF’,1e4,’PulseWidth’,50e-6,’SweepBandwidth’,1e5,’SweepDirection’,’Up’,’SweepInterval’,’Positive’}} (default) | cell array",
+   "group": ""
+  },
+  {
+   "name": "Pulse compression specifications",
+   "default": "{{’MatchedFilter’,’SpectrumWindow’,’None’},{’StretchProcessor’,’RangeSpan’,200,’ReferenceRange’,5e3,’RangeWindow’,’None’}}",
+   "values": "Specify type of pulse compression {{’MatchedFilter’,’SpectrumWindow’,’None’},{’StretchProcessor’,’RangeSpan’,200,’ReferenceRange’,5e3,’RangeWindow’,’None’}} (default) | cell array",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

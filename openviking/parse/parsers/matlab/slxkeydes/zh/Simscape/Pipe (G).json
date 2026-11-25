@@ -1,0 +1,13 @@
+{
+ "key": "Pipe (G)",
+ "title": "Pipe (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Pipe_G.md"
+ ],
+ "text": "用于气体流动的刚性导管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

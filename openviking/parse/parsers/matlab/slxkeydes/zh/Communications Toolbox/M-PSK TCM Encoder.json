@@ -1,0 +1,13 @@
+{
+ "key": "M-PSK TCM Encoder",
+ "title": "M-PSK TCM Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/TCM/M_PSK_TCM_Encoder.md"
+ ],
+ "text": "对二进制数据进行卷积编码并使用 PSK 方法调制。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

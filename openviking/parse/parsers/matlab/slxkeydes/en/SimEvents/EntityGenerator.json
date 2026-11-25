@@ -1,0 +1,135 @@
+{
+ "key": "EntityGenerator",
+ "title": "Entity Generator",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Generator.md"
+ ],
+ "text": "Generate entities, 2 inputs, 4 outputs, {Entity type} sets the type of entity to generate; {Generation method} selects the method of entity generation, {Time source} selects the source of the intergeneration time, {Period} defines the period between the generation, {Intergeneration time action} sets the time between entity generations dt =, {Generate entity at simulation start} sets the generate an entity at the start, {Entity priority} sets the priority of the generated entity, {Entity type name} sets the name of the generated, {Data initial value} sets the initial value of anonymous entity data, {Attribute Name} defines the name of the generated entity attribute, {Attribute Initial Value} defines the generated entity attribute initial, {Event actions} sets the behavior of the entity on certain events, {Number of entities departed, d} sets the outputs the number of entities that have departed, {Pending entity present in block, pe} sets the pending entities and {Average intergeneration time, w} sets the average time between generation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input to trigger entity generation upon arrival of events scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Input for the signal that determines the intergeneration time value for the next entity generation scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output generated entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "Number of entities that have departed the block scalar"
+  },
+  {
+   "name": "Port_pe",
+   "direction": "output",
+   "summary": "Pending entity in block off (default) | on"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "Average intergeneration time off (default) | on"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generation method",
+   "default": "Time-based",
+   "values": "Select the method of entity generation Time-based (default) | Event-based",
+   "group": ""
+  },
+  {
+   "name": "Time source",
+   "default": "Dialog",
+   "values": "Select the source of the intergeneration time Dialog (default) | Signal port | MATLAB action",
+   "group": ""
+  },
+  {
+   "name": "Period",
+   "default": "1",
+   "values": "Define the period between the generation of entities 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Intergeneration time action",
+   "default": "rand(1,1)",
+   "values": "Specify the time between entity generations dt = rand(1,1) (default) | MATLAB code",
+   "group": ""
+  },
+  {
+   "name": "Generate entity at simulation start",
+   "default": "on",
+   "values": "Generate an entity at the start of the simulation on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Entity type",
+   "default": "Structured",
+   "values": "Choose the type of entity to generate Structured (default) | Anonymous | Bus object",
+   "group": ""
+  },
+  {
+   "name": "Entity priority",
+   "default": "300",
+   "values": "Specify the priority of the generated entity 300 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Entity type name",
+   "default": "Entity",
+   "values": "Specify the name of the generated entity Entity (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Data initial value",
+   "default": "0",
+   "values": "Specify the initial value of anonymous entity data 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Attribute Name",
+   "default": "Attribute1",
+   "values": "Define the name of the generated entity attribute Attribute1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Attribute Initial Value",
+   "default": "1",
+   "values": "Define the generated entity attribute initial value 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Event actions",
+   "default": "Generate",
+   "values": "Specify the behavior of the entity on certain events Generate (default) | Exit",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "Outputs the number of entities that have departed the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pending entity present in block, pe",
+   "default": "off",
+   "values": "Pending entities off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average intergeneration time, w",
+   "default": "off",
+   "values": "Average time between generation of entities off (default) | on",
+   "group": ""
+  }
+ ]
+}

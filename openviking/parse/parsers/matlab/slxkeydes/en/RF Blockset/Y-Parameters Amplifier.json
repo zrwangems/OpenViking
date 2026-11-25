@@ -1,0 +1,182 @@
+{
+ "key": "Y-Parameters Amplifier",
+ "title": "Y-Parameters Amplifier",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Amplifiers/Y_Parameters_Amplifier.md"
+ ],
+ "text": "Model nonlinear amplifier using Y-parameters, {Interpolation method} sets Method to interpolate network parameters; {Y-Parameters} sets the y-parameters for nonlinear amplifier, {Frequency (Hz)} sets the frequency of Y-parameters 2.0e9, {Noise type} sets the type of noise data, {Noise figure (dB)} sets the available signal-to-noise ratio at the input to available signal-to-noise ratio, {Minimum noise figure} sets the minimum ratio of available signal-to-noise ratio at input to available signal-to-noise ratio, {Optimal reflection coefficient} sets the optimal source impedance, {Equivalent normalized noise resistance} sets the normalized resistance values used to take noise, {Noise factor} sets the ratio of available signal-to-noise power at input to available signal-to-noise power, {Noise temperature (K)} sets the equivalent temperature that produces the same amount of noise, {IP3 type} sets the type of third order, {IP3 (dBm)} sets the iP3 value, {1dB gain compression power (dBm)} sets the output power value at which gain has decreased by 1 dB, {Output saturation power (dBm)} sets the output power value that amplifier produces when fully saturated, {Gain compression at saturation (dB)} sets the decrease in gain value, {Source of frequency data} sets the frequency data source Same, {Frequency data (Hz)} sets the frequency data range, {Reference impedance (ohms)}, {Plot type} sets the type of data plot, {Y parameter1} sets the type of parameters, {Y parameter2} sets the type of parameters, {Y format1} plots format Magnitude, {Y format2} plots format Magnitude, {X parameter} sets the frequency plot, {X format} sets the frequency plot format, {Y scale} sets the y-axis scale, {X scale} sets the x-axis scale and {Plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Y-Parameters",
+   "default": "0.0200]",
+   "values": "Y-parameters for nonlinear amplifier [0.0200,0;-0.0400, 0.0200] (default) | 2-by-2-by- M array",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "2.0e9",
+   "values": "Frequency of Y-parameters 2.0e9 (default) | M -element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "Method to interpolate network parameters Linear (default) | Spline | Cubic",
+   "group": "Main"
+  },
+  {
+   "name": "Noise type",
+   "default": "figure",
+   "values": "Type of noise data Noise figure (default) | Spot noise data | Noise factor | Noise temperature",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "Available signal-to-noise ratio at the input to available signal-to-noise ratio at the output 0 (default) | scalar ratio | vector of ratios",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Minimum noise figure",
+   "default": "0",
+   "values": "Minimum ratio of available signal-to-noise ratio at input to available signal-to-noise ratio at output 0 (default) | scalar ratio | vector of ratios",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Optimal reflection coefficient",
+   "default": "1+0i",
+   "values": "Optimal source impedance 1+0i (default) | complex scalar | complex vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Equivalent normalized noise resistance",
+   "default": "1",
+   "values": "Normalized resistance values used to take noise measurement 1 (default) | positive scalar | positive vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise factor",
+   "default": "1",
+   "values": "Ratio of available signal-to-noise power at input to available signal-to-noise power at output 1 (default) | scalar ratio | vector of ratios",
+   "group": "Noise Data"
+  },
+  {
+   "name": "Noise temperature (K)",
+   "default": "0",
+   "values": "Equivalent temperature that produces the same amount of noise as amplifier 0 (default) | nonnegative scalar | nonnegative vector",
+   "group": "Noise Data"
+  },
+  {
+   "name": "IP3 type",
+   "default": "OIP3",
+   "values": "Type of third order intercept OIP3 (default) | IIP3",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "IP3 (dBm)",
+   "default": "inf",
+   "values": "IP3 value inf (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "1dB gain compression power (dBm)",
+   "default": "inf",
+   "values": "Output power value at which gain has decreased by 1 dB inf (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "Output saturation power (dBm)",
+   "default": "inf",
+   "values": "Output power value that amplifier produces when fully saturated inf (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "Gain compression at saturation (dB)",
+   "default": "3",
+   "values": "Decrease in gain value 3 (default) | scalar | vector",
+   "group": "Nonlinearity Data"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "Y-Parameters",
+   "values": "Frequency data source Same as the Y-Parameters (default) | User-specified",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1.9e9:1.0e8:2.2e9]",
+   "values": "Frequency data range [1.9e9:1.0e8:2.2e9] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "Reference impedance 50 (default) | nonnegative scalar",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "Frequency plot Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "Frequency plot format Hz (default) | Auto | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y-axis scale Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X-axis scale Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Plot specified data button",
+   "group": "Visualization"
+  }
+ ]
+}

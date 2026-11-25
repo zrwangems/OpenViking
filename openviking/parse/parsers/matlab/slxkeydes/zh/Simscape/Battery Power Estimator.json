@@ -1,0 +1,149 @@
+{
+ "key": "Battery Power Estimator",
+ "title": "Battery Power Estimator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/Battery_Power_Estimator.md"
+ ],
+ "text": "计算电池包在时间范围内的最大充电和放电功率，输入 2 路、输出 2 路；按 {Algorithm data type} 指定用于选择模块算法数据类型的选项 Inherit:；{Vector of state-of-charge values, SOC (-)} 指定 SOC 断点、{Vector of temperatures, T} 指定温度断点、{No-load voltage, V0(SOC,T), (V)} 指定 V 0 查找表、{Charging pulse test resistance, R0Dt(SOC,T), (ohm)} 指定Δt 秒脉冲期间的充电电阻、{Discharging pulse test resistance, R0Dt(SOC,T), (ohm)} 指定Δt 秒脉冲期间的放电电阻、{Cell capacity, AH (A*Hr)} 指定完全充电时的电池容量、{Number of series modules, Ns} 指定串联模组数、{Number of parallel modules, Np} 指定并联模组数、{Charging efficiency ratio} 指定充电效率比、{Minimum cell voltage (V)} 指定电芯最小电压、{Maximum cell voltage (V)} 指定电芯最大电压、{Minimum state of charge, SOCmin(-)} 指定最小荷电状态、{Maximum state of charge, SOCmax(-)} 指定最大荷电状态、{Minimum pack current (A)} 指定电池包最小电流、{Maximum pack current (A)} 指定电池包最大电流、{Minimum cell power (W)} 指定电池电芯最小功率、{Maximum cell power (W)} 指定电池电芯最大功率、{Time horizon (s)} 指定时间区间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellSOC",
+   "direction": "input",
+   "summary": "电芯荷电状态，无量纲 scalar | vector"
+  },
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "电芯温度，K scalar | vector"
+  },
+  {
+   "name": "MaxPowerDischarging",
+   "direction": "output",
+   "summary": "电池放电的最大功率，W scalar"
+  },
+  {
+   "name": "MaxPowerCharging",
+   "direction": "output",
+   "summary": "电池充电的最大功率，W scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vector of state-of-charge values, SOC (-)",
+   "default": "1]",
+   "values": "SOC 断点 [0,.1,.25,.5,.75,.9, 1] (default) | vector of scalars in the range [0, 1]",
+   "group": "Battery"
+  },
+  {
+   "name": "Vector of temperatures, T",
+   "default": "313]",
+   "values": "温度断点 [278, 293, 313] (default) | vector of positive scalars",
+   "group": "Battery"
+  },
+  {
+   "name": "No-load voltage, V0(SOC,T), (V)",
+   "default": "4.19]",
+   "values": "V 0 查找表 [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07, 4.08, 4.08; 4.19, 4.19, 4.19] (default) | matrix of nonnegative entries",
+   "group": "Battery"
+  },
+  {
+   "name": "Charging pulse test resistance, R0Dt(SOC,T), (ohm)",
+   "default": "[.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089]",
+   "values": "Δt 秒脉冲期间的充电电阻 [.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089] (default) | matrix of nonnegative entries",
+   "group": "Battery"
+  },
+  {
+   "name": "Discharging pulse test resistance, R0Dt(SOC,T), (ohm)",
+   "default": "[.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089]",
+   "values": "Δt 秒脉冲期间的放电电阻 [.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089] (default) | matrix of nonnegative entries",
+   "group": "Battery"
+  },
+  {
+   "name": "Cell capacity, AH (A*Hr)",
+   "default": "27",
+   "values": "完全充电时的电池容量 27 (default) | nonnegative scalar",
+   "group": "Battery"
+  },
+  {
+   "name": "Number of series modules, Ns",
+   "default": "10",
+   "values": "串联模组数 10 (default) | positive scalar",
+   "group": "Battery"
+  },
+  {
+   "name": "Number of parallel modules, Np",
+   "default": "1",
+   "values": "并联模组数 1 (default) | positive scalar",
+   "group": "Battery"
+  },
+  {
+   "name": "Charging efficiency ratio",
+   "default": "1",
+   "values": "充电效率比 1 (default) | nonnegative scalar in the range (0,1]",
+   "group": "Battery"
+  },
+  {
+   "name": "Minimum cell voltage (V)",
+   "default": "2.5",
+   "values": "电芯最小电压 2.5 (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Maximum cell voltage (V)",
+   "default": "4.5",
+   "values": "电芯最大电压 4.5 (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Minimum state of charge, SOCmin(-)",
+   "default": "0.1",
+   "values": "最小荷电状态 0.1 (default) | nonnegative scalar in the range [0,1]",
+   "group": "Limits"
+  },
+  {
+   "name": "Maximum state of charge, SOCmax(-)",
+   "default": "0.9",
+   "values": "最大荷电状态 0.9 (default) | nonnegative scalar in the range [0,1]",
+   "group": "Limits"
+  },
+  {
+   "name": "Minimum pack current (A)",
+   "default": "-200",
+   "values": "电池包最小电流 -200 (default) | negative scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Maximum pack current (A)",
+   "default": "200",
+   "values": "电池包最大电流 200 (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Minimum cell power (W)",
+   "default": "-inf",
+   "values": "电池电芯最小功率 -inf (default) | negative scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Maximum cell power (W)",
+   "default": "inf",
+   "values": "电池电芯最大功率 inf (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Time horizon (s)",
+   "default": "10",
+   "values": "时间区间 10 (default) | positive scalar",
+   "group": "Limits"
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": "Signal Attributes"
+  }
+ ]
+}

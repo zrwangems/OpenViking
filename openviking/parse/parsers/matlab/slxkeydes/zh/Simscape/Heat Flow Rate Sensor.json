@@ -1,0 +1,13 @@
+{
+ "key": "Heat Flow Rate Sensor",
+ "title": "Heat Flow Rate Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Sensors/Heat_Flow_Rate_Sensor.md"
+ ],
+ "text": "库：** Simscape / Foundation Library / Thermal / Thermal Sensors Heat Flow Rate Sensor 模块表示一个理想热流计，即一种将流过该仪表的热流转换为与该热流成比例的控制信号的设备。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

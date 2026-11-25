@@ -1,0 +1,13 @@
+{
+ "key": "Heat Flow Rate Source",
+ "title": "Heat Flow Rate Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Sources/Heat_Flow_Rate_Source.md"
+ ],
+ "text": "恒定热能源，由热流表征。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,75 @@
+{
+ "key": "driving.internal.planning.PathSmootherSpline",
+ "title": "Path Smoother Spline",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Path_Smoother_Spline.md"
+ ],
+ "text": "Smooth vehicle path using cubic spline interpolation, 2 inputs, 4 outputs; {Number of output poses} sets the number of smooth poses to return, {Minimum separation of input poses} sets the minimum separation between, {Sample time}, {Show CumLengths and Curvatures output ports} sets the output cumulative path lengths and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RefPoses",
+   "direction": "input",
+   "summary": "Reference poses M -by-3 matrix of [ x, y, Θ ] vectors"
+  },
+  {
+   "name": "RefDirections",
+   "direction": "input",
+   "summary": "Reference directions M -by-1 column vector of 1s (forward motion) and –1s (reverse motion)"
+  },
+  {
+   "name": "Poses",
+   "direction": "output",
+   "summary": "Discretized poses of smoothed path N -by-3 matrix of [ x, y, Θ ] vectors"
+  },
+  {
+   "name": "Directions",
+   "direction": "output",
+   "summary": "Driving directions at each output pose N -by-1 column vector of 1s (forward motion) and –1s (reverse motion)"
+  },
+  {
+   "name": "CumLengths",
+   "direction": "output",
+   "summary": "Cumulative path lengths N -by-1 real-valued column vector"
+  },
+  {
+   "name": "Curvatures",
+   "direction": "output",
+   "summary": "Signed path curvatures N -by-1 real-valued column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of output poses",
+   "default": "100",
+   "values": "Number of smooth poses to return 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Minimum separation of input poses",
+   "default": "1e-3",
+   "values": "Minimum separation between poses 1e-3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Show CumLengths and Curvatures output ports",
+   "default": "off",
+   "values": "Output cumulative path lengths and curvatures off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Generation",
+   "values": "Type of simulation to run Code Generation (default) | Interpreted Execution",
+   "group": ""
+  }
+ ]
+}

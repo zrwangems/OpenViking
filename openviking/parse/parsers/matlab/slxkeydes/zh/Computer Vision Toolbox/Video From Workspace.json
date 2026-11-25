@@ -1,0 +1,65 @@
+{
+ "key": "Video From Workspace",
+ "title": "Video From Workspace",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sources/Video_From_Workspace.md"
+ ],
+ "text": "从 MATLAB 工作区导入视频；输出 4 路；按 {Signal} 指定要读取的视频；{Sample time} 输出视频的采样周期、{Form output after final value by} 指定最终视频帧之后的模块输出形式 Setting、{Image signal} 指定视频信号的输出模式 One multidimensional、{Output port labels} 输出端口名称 R，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "输出图像或视频 M -by- N -by- T array | M -by- N -by- C -by- T array"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "输入视频的红色分量 3-D array"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "输入视频的绿色分量 3-D array"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "输入视频的蓝色分量 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal",
+   "default": "rand(32,32,3,5)",
+   "values": "要读取的视频 rand(32,32,3,5) (default) | M -by- N -by- T array | M -by- N -by- C -by- T array | MATLAB workspace variable",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出视频的采样周期 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Form output after final value by",
+   "default": "zero",
+   "values": "最终视频帧之后的模块输出形式 Setting to zero (default) | Holding final value | Cyclic repetition",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "视频信号的输出模式 One multidimensional signal (default) | Separate color signals",
+   "group": ""
+  },
+  {
+   "name": "Output port labels",
+   "default": "R|G|B",
+   "values": "输出端口名称 R|G|B (default) | text labels separated by vertical bars",
+   "group": ""
+  }
+ ]
+}

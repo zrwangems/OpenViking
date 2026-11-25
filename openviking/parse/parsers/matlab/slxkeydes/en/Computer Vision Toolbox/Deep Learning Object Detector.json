@@ -1,0 +1,89 @@
+{
+ "key": "Deep Learning Object Detector",
+ "title": "Deep Learning Object Detector",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Deep_Learning_Object_Detector.md"
+ ],
+ "text": "Detect objects using trained deep learning object detector, 1 input, 3 outputs; {Detector}, {File path} sets the mAT file containing detector object, {MATLAB function}, {Region of interest} sets the search region of interest vector of the form, {Detection threshold}, {Number of Strongest Regions} sets the maximum number of strongest region, {Maximum Region Size} sets the maximum region size vector of the form, {Minimum Region Size} sets the minimum region size vector of the form and {Maximum Number of Detections}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Image data array"
+  },
+  {
+   "name": "Bboxes",
+   "direction": "output",
+   "summary": "Locations of objects detected matrix"
+  },
+  {
+   "name": "Labels",
+   "direction": "output",
+   "summary": "Labels for bounding boxes vector"
+  },
+  {
+   "name": "Scores",
+   "direction": "output",
+   "summary": "Detection scores vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Detector",
+   "default": "file",
+   "values": "Source for trained detector object Detector from MAT file (default) | Detector from MATLAB function",
+   "group": ""
+  },
+  {
+   "name": "File path",
+   "default": "untitled.mat",
+   "values": "MAT file containing detector object untitled.mat (default) | MAT file name",
+   "group": ""
+  },
+  {
+   "name": "MATLAB function",
+   "default": "untitled",
+   "values": "MATLAB function name untitled (default) | MATLAB function name",
+   "group": ""
+  },
+  {
+   "name": "Region of interest",
+   "default": "",
+   "values": "Search region of interest vector of the form [ x y width height ]",
+   "group": ""
+  },
+  {
+   "name": "Detection threshold",
+   "default": "",
+   "values": "Detection threshold scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Number of Strongest Regions",
+   "default": "2000",
+   "values": "Maximum number of strongest region proposals 2000 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum Region Size",
+   "default": "",
+   "values": "Maximum region size vector of the form [ height width ]",
+   "group": ""
+  },
+  {
+   "name": "Minimum Region Size",
+   "default": "",
+   "values": "Minimum region size vector of the form [ height width ]",
+   "group": ""
+  },
+  {
+   "name": "Maximum Number of Detections",
+   "default": "500",
+   "values": "Maximum number of detections 500 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "key": "HitScheduler",
+ "title": "Hit Scheduler",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Messages & Events/Hit_Scheduler.md"
+ ],
+ "text": "为可变步长求解器调度主时间步，输入 2 路、输出 1 路、直接馈通；{Output type} 指定 Type of block、{Initial buffer size} 指定调度时间步的缓冲区初始大小、{Use fixed buffer size} 使用固定大小缓冲区，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "En",
+   "direction": "input",
+   "summary": "Enable signal for scheduling time step scalar | vector"
+  },
+  {
+   "name": "Δt",
+   "direction": "input",
+   "summary": "Interval between current simulation time and time step to schedule scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Indication of scheduled time step scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output type",
+   "default": "Signal",
+   "values": "Type of block output Signal (default) | Function Call",
+   "group": ""
+  },
+  {
+   "name": "Initial buffer size",
+   "default": "256",
+   "values": "调度时间步的缓冲区初始大小 256 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Use fixed buffer size",
+   "default": "off",
+   "values": "使用固定大小缓冲区的选项 off (default) | on",
+   "group": ""
+  }
+ ]
+}

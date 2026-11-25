@@ -1,0 +1,13 @@
+{
+ "key": "Motor & Drive",
+ "title": "Motor & Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Motor_Drive.md"
+ ],
+ "text": "具有闭环转矩控制的通用电机和驱动。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

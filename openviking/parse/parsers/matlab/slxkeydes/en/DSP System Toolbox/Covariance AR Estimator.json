@@ -1,0 +1,36 @@
+{
+ "key": "Covariance AR Estimator",
+ "title": "Covariance AR Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Parametric Estimation/Covariance_AR_Estimator.md"
+ ],
+ "text": "Compute estimate of autoregressive (AR) model parameters using covariance method, 1 input, 2 outputs; {Estimation order} sets the order of AR model. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input column vector | unoriented vector"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "Normalized estimate of the AR model polynomial coefficients column vector"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Model gain scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Estimation order",
+   "default": "4",
+   "values": "Order of AR model 4 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

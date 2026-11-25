@@ -1,0 +1,56 @@
+{
+ "key": "Checkbox",
+ "title": "Check Box",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Check_Box.md"
+ ],
+ "text": "选择参数或变量值；按 {Label} 指定模块标签位置；{Connection} 指定要连接的模块参数值 parameter value connection、{Check Box Label} 指定复选框操作的描述、{Checked/Unchecked Values} 为选中和未选中状态要赋的值 Unchecked、{Opacity} 指定模块背景不透明度、{Foreground Color} 指定模块前景色、{Background Color} 指定模块背景色，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "要连接的模块参数值 parameter value connection options",
+   "group": "Connection"
+  },
+  {
+   "name": "Check Box Label",
+   "default": "Label",
+   "values": "复选框操作的描述 Label (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Checked/Unchecked Values",
+   "default": "1",
+   "values": "为选中和未选中状态要赋的值 Unchecked: 0 Checked: 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Label",
+   "default": "Hide",
+   "values": "模块标签位置 Hide (default) | Bottom | Top",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "模块背景不透明度 1 (default) | scalar",
+   "group": "Format"
+  },
+  {
+   "name": "Foreground Color",
+   "default": "",
+   "values": "模块前景色 [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Background Color",
+   "default": "",
+   "values": "模块背景色 [r g b] vector",
+   "group": "Format"
+  }
+ ]
+}

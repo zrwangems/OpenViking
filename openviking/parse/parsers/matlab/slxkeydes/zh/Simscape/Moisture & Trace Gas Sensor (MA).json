@@ -1,0 +1,13 @@
+{
+ "key": "Moisture & Trace Gas Sensor (MA)",
+ "title": "Moisture & Trace Gas Sensor (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sensors/Moisture_Trace_Gas_Sensor_MA.md"
+ ],
+ "text": "测量湿空气网络中的湿度、水滴和微量气体水平。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

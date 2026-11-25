@@ -1,0 +1,67 @@
+{
+ "key": "Deinterlacing",
+ "title": "Deinterlacing",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Deinterlacing.md"
+ ],
+ "text": "去除隔行扫描效应，输入 1 路、输出 1 路；按 {Method} 指定去隔行方法 Line；{Input image is transposed (data order is row major)} 指定数据顺序、{Rounding mode} 指定计算定点值时的舍入模式、{Saturate on integer overflow} 指定溢出模式、{Accumulator} 指定累加器数据类型 Binary point、{Output} 输出的数据类型 Same、{Lock data type settings against change by the fixed-point tools} 指定数据类型覆盖，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "隔行扫描输入 numeric matrix | 3-D numeric array | image | video"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "去隔行输出 numeric matrix | 3-D numeric array | image | video"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "repetition",
+   "values": "去隔行方法 Line repetition (default) | Linear interpolation | Vertical temporal median filtering",
+   "group": ""
+  },
+  {
+   "name": "Input image is transposed (data order is row major)",
+   "default": "off",
+   "values": "指定数据顺序 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "计算定点值时的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "on",
+   "values": "指定溢出模式 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Accumulator",
+   "default": "scaling",
+   "values": "累加器数据类型 Binary point scaling (default) | Same as input",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出的数据类型 Same as input (default) | Binary point scaling",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "数据类型覆盖 off (default) | on",
+   "group": ""
+  }
+ ]
+}

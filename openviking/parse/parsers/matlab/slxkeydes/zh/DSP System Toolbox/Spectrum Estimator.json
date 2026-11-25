@@ -1,0 +1,213 @@
+{
+ "key": "Spectrum Estimator",
+ "title": "Spectrum Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Spectrum_Estimator.md"
+ ],
+ "text": "估计功率谱或功率密度谱，输入 1 路、输出 5 路；按 {Window function} 指定窗函数；{Method} 指定 Welch 或滤波器组 Filter、{Number of taps per band} 指定每个频带的滤波器抽头数、{Spectrum type} 指定频谱类型 Power、{Frequency resolution method} 指定频率分辨率方法、{RBW (Hz)} 指定分辨率带宽、{Window length source} 指定窗口长度来源 Same as input frame、{Window length} 指定窗口长度、{Number of bands source} 指定频带数来源 Same as input frame、{Number of bands} 指定频带数、{FFT length source} 指定 FFT 长度值的来源、{FFT length} 指定 FFT 长度、{Inherit sample rate from input} 指定从输入继承采样率、{Sample rate (Hz)} 指定输入的采样率、{Sidelobe attenuation of window (dB)} 指定窗的旁瓣衰减、{Averaging method} 指定平均方法 Exponential、{Number of spectral averages} 指定频谱平均次数、{Specify forgetting factor from input port} 指定从输入端口指定遗忘因子、{Forgetting factor} 指定遗忘因子、{Window overlap (%)} 指定窗口之间的重叠百分比、{Reference load (ohms)} 指定参考负载、{Frequency range} 指定频谱估计器的频率范围、{Power units} 指定功率单位 dBm、{Output max-hold spectrum} 输出最大保持频谱、{Output min-hold spectrum} 输出最小保持频谱、{Output frequency vector} 输出频率向量、{Output effective RBW} 输出有效 RBW、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "功率谱或功率密度谱 vector | matrix"
+  },
+  {
+   "name": "P_max",
+   "direction": "output",
+   "summary": "最大保持谱 vector | matrix"
+  },
+  {
+   "name": "P_min",
+   "direction": "output",
+   "summary": "最小保持谱 vector | matrix"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "输出频率 column vector"
+  },
+  {
+   "name": "RBW",
+   "direction": "output",
+   "summary": "有效分辨率带宽 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "bank",
+   "values": "Welch 或滤波器组 Filter bank (default) | Welch",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of taps per band",
+   "default": "12",
+   "values": "每个频带的滤波器抽头数 12 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Spectrum type",
+   "default": "Power",
+   "values": "频谱类型 Power (default) | Power density",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Frequency resolution method",
+   "default": "Auto",
+   "values": "频率分辨率方法 Auto (default) | RBW | Number of frequency bands",
+   "group": "Main Tab"
+  },
+  {
+   "name": "RBW (Hz)",
+   "default": "5",
+   "values": "分辨率带宽 5 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Window length source",
+   "default": "length",
+   "values": "窗口长度来源 Same as input frame length (default) | Specify on dialog",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Window length",
+   "default": "1024",
+   "values": "窗口长度 1024 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of bands source",
+   "default": "size",
+   "values": "频带数来源 Same as input frame size (default) | Specify on dialog",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of bands",
+   "default": "1024",
+   "values": "频带数 1024 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "FFT length source",
+   "default": "Auto",
+   "values": "FFT 长度值的来源 Auto (default) | Property",
+   "group": "Main Tab"
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "FFT 长度 1024 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "从输入继承采样率 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "窗函数 Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sidelobe attenuation of window (dB)",
+   "default": "60",
+   "values": "窗的旁瓣衰减 60 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Averaging method",
+   "default": "Exponential",
+   "values": "平均方法 Exponential (default) | Running",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of spectral averages",
+   "default": "1",
+   "values": "频谱平均次数 1 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Specify forgetting factor from input port",
+   "default": "off",
+   "values": "从输入端口指定遗忘因子 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.9",
+   "values": "遗忘因子 0.9 (default) | scalar in the range ( 0,1 ]",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Window overlap (%)",
+   "default": "0",
+   "values": "窗口之间的重叠百分比 0 (default)",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Reference load (ohms)",
+   "default": "1",
+   "values": "参考负载 1 (default) | positive scalar",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Frequency range",
+   "default": "Centered",
+   "values": "频谱估计器的频率范围 Centered (default) | One-sided | Two-sided",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Power units",
+   "default": "dBm",
+   "values": "功率单位 dBm (default) | Watts | dBW",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Output max-hold spectrum",
+   "default": "off",
+   "values": "输出最大保持频谱 off (default) | on",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Output min-hold spectrum",
+   "default": "off",
+   "values": "输出最小保持频谱 off (default) | on",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Output frequency vector",
+   "default": "off",
+   "values": "输出频率向量 off (default) | on",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Output effective RBW",
+   "default": "off",
+   "values": "输出有效 RBW off (default) | on",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Advanced Tab"
+  }
+ ]
+}

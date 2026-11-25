@@ -1,0 +1,115 @@
+{
+ "key": "Pad",
+ "title": "Pad",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Pad.md"
+ ],
+ "text": "Pad or truncate specified dimension(s), 1 input, 1 output, no direct feedthrough, {Row size} sets Row length of output 1; {Pad over} sets the dimension over which to pad or truncate, {Dimensions to pad} sets the dimension over which to pad or truncate, {Pad value source} sets the source of pad value Specify, {Pad value}, {Output column mode} sets the mode of specifying column length, {Column size} sets the column length of output, {Output row mode} sets the mode of specifying row length, {Specify} sets the output size or pad, {Output size mode} sets the mode of specifying output length, {Output size} sets the output length along specified dimension, {Pad size at beginning} sets the number of values to add to beginning of input, {Pad size at end} sets the number of values to add to end of input, {Pad signal at} sets the where to pad or truncate and {Action when truncation occurs} sets the action to take when truncation occurs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "Data input scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Padded or truncated output scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pad over",
+   "default": "Columns",
+   "values": "Dimension over which to pad or truncate Columns (default) | Rows | Columns and rows | None | Specified dimensions",
+   "group": ""
+  },
+  {
+   "name": "Dimensions to pad",
+   "default": "1",
+   "values": "Specify dimension over which to pad or truncate 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Pad value source",
+   "default": "dialog",
+   "values": "Source of pad value Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pad value",
+   "default": "0",
+   "values": "Pad value 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output column mode",
+   "default": "",
+   "values": "Mode of specifying column length User-specified | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Column size",
+   "default": "",
+   "values": "Column length of output 1 | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output row mode",
+   "default": "User-specified",
+   "values": "Mode of specifying row length User-specified (default) | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Row size",
+   "default": "",
+   "values": "Row length of output 1 | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify",
+   "default": "size",
+   "values": "Specify output size or pad size Output size (default) | Pad size",
+   "group": ""
+  },
+  {
+   "name": "Output size mode",
+   "default": "",
+   "values": "Mode of specifying output length User-specified | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "",
+   "values": "Output length along specified dimension 1 | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Pad size at beginning",
+   "default": "",
+   "values": "Specify number of values to add to beginning of input signal 0 | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Pad size at end",
+   "default": "",
+   "values": "Specify number of values to add to end of input signal 0 | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Pad signal at",
+   "default": "End",
+   "values": "Specify where to pad or truncate signal End (default) | Beginning | Beginning and end",
+   "group": ""
+  },
+  {
+   "name": "Action when truncation occurs",
+   "default": "",
+   "values": "Action to take when truncation occurs None | Warning | Error",
+   "group": ""
+  }
+ ]
+}

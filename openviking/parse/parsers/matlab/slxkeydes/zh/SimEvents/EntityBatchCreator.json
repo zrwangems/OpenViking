@@ -1,0 +1,99 @@
+{
+ "key": "EntityBatchCreator",
+ "title": "Entity Batch Creator",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Batch_Creator.md"
+ ],
+ "text": "Entity Batch Creator 接收预期数量的实体，并创建一个包含所有这些实体的批实体，输入 1 路、输出 5 路；按 {Event actions} 指定事件动作；{Number of entities in batch} 指定一个批中的实体数、{Entity type name} 指定合并输入实体后创建的批实体的名称、{Bus object} 是否将批实体输出为总线对象、{Input entity name} 指定要附加到输入实体的名称、{Number of entities arrived, a} 输出已到达该模块的实体数、{Number of entities departed, d} 输出已离开该模块的实体数、{Number of entities remaining for next batch, rem} 输出下一批剩余的实体数、{Pending entity in block, pe} 指定待处理实体，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出批实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_a",
+   "direction": "output",
+   "summary": "已到达实体数 scalar"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_rem",
+   "direction": "output",
+   "summary": "下一批剩余的实体数 scalar"
+  },
+  {
+   "name": "Port_pe",
+   "direction": "output",
+   "summary": "模块中的待处理实体 off (default) | on"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of entities in batch",
+   "default": "4",
+   "values": "一个批中的实体数 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Entity type name",
+   "default": "Batch",
+   "values": "合并输入实体后创建的批实体的名称 Batch (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Bus object",
+   "default": "off",
+   "values": "指定是否将批实体输出为总线对象 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input entity name",
+   "default": "batch",
+   "values": "指定要附加到输入实体的名称 batch (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Event actions",
+   "default": "Entry",
+   "values": "指定事件动作 Entry (default) | Batch generate | Exit | Blocked",
+   "group": ""
+  },
+  {
+   "name": "Number of entities arrived, a",
+   "default": "off",
+   "values": "输出已到达该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities remaining for next batch, rem",
+   "default": "off",
+   "values": "输出下一批剩余的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pending entity in block, pe",
+   "default": "off",
+   "values": "待处理实体 off (default) | on",
+   "group": ""
+  }
+ ]
+}

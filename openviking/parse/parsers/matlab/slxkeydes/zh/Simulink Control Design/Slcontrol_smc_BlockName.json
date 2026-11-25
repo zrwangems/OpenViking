@@ -1,0 +1,116 @@
+{
+ "key": "Slcontrol:smc:BlockName",
+ "title": "Sliding Mode Controller (Reaching Law)",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Sliding Mode/Sliding_Mode_Controller_Reaching_Law.md"
+ ],
+ "text": "基于趋近律设计滑模控制器，输入 5 路、输出 2 路；按 {Reaching Rate (Eta)} 指定趋近速率；{Task Mode} 指定模块运行模式 Regulation、{Sliding Coefficient Matrix (C)} 指定滑动系数矩阵、{Use externally sourced derivative} 指定从外部指定状态参考的导数、{Output Switching Function} 输出切换函数、{Reaching Law} 指定趋近律 Constant、{Control Gain (K)} 控制增益、{Power Rate Exponent (Alpha)} 指定幂次趋近律指数、{Select Boundary Layer} 指定边界层函数、{Enable zero-crossing detection} 启用过零检测、{Phi} 指定边界层厚度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "系统状态 vector"
+  },
+  {
+   "name": "f(x)",
+   "direction": "input",
+   "summary": "系统动力学函数 vector"
+  },
+  {
+   "name": "g(x)",
+   "direction": "input",
+   "summary": "输入函数 vector"
+  },
+  {
+   "name": "x.ref",
+   "direction": "input",
+   "summary": "状态参考轨迹 vector"
+  },
+  {
+   "name": "x.ref.dot",
+   "direction": "input",
+   "summary": "状态参考轨迹的导数 vector"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制作用 vector"
+  },
+  {
+   "name": "s(x)",
+   "direction": "output",
+   "summary": "滑动变量值 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task Mode",
+   "default": "Mode",
+   "values": "模块运行模式 Regulation Mode (default) | Tracking Mode",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Sliding Coefficient Matrix (C)",
+   "default": "1",
+   "values": "滑动系数矩阵 1 (default) | scalar | column vector | matrix",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Use externally sourced derivative",
+   "default": "off",
+   "values": "从外部指定状态参考的导数 off (default) | on",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Output Switching Function",
+   "default": "off",
+   "values": "输出切换函数 off (default) | on",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Reaching Law",
+   "default": "Rate",
+   "values": "趋近律 Constant Rate (default) | Exponential | Power Rate",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Reaching Rate (Eta)",
+   "default": "0.01",
+   "values": "趋近速率 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Control Gain (K)",
+   "default": "0.01",
+   "values": "控制增益 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Power Rate Exponent (Alpha)",
+   "default": "0.01",
+   "values": "幂次趋近律指数 0.01 (default) | positive scalar between 0 and 1 | column vector of positive values between 0 and 1",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Select Boundary Layer",
+   "default": "Sign",
+   "values": "边界层函数 Sign (default) | Relay | Hyperbolic Tangent | Saturation",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "启用过零检测 off (default) | on",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Phi",
+   "default": "0.01",
+   "values": "边界层厚度 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  }
+ ]
+}

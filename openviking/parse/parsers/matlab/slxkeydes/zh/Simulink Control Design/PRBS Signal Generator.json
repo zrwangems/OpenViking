@@ -1,0 +1,89 @@
+{
+ "key": "PRBS Signal Generator",
+ "title": "PRBS Signal Generator",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Signal Generation/PRBS_Signal_Generator.md"
+ ],
+ "text": "生成用于被控对象频率响应估计的 PRBS 输入信号，输入 3 路、输出 1 路；按 {Sample time (Ts)} 指定采样时间；{Data Type} 指定浮点精度 double、{Excitation signal source} 指定激励信号源 Block、{Frequencies} 用于估计的频率、{Amplitudes} 指定注入扰动的幅值、{Number of frequencies} 指定外部提供的频率数、{Number of periods} 指定 PRBS 信号中的周期数、{Signal order} 指定 PRBS 信号阶数、{Use Auto-Generated Value} 指定自动设置 PRBS 信号参数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "启动和停止估计实验 scalar"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "用于估计实验的频率 vector"
+  },
+  {
+   "name": "amp",
+   "direction": "input",
+   "summary": "扰动幅值 scalar | vector"
+  },
+  {
+   "name": "prbs",
+   "direction": "output",
+   "summary": "PRBS 扰动信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "采样时间 0.1 (default) | positive scalar | –1",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "浮点精度 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Excitation signal source",
+   "default": "parameters",
+   "values": "激励信号源 Block parameters (default) | External ports",
+   "group": ""
+  },
+  {
+   "name": "Frequencies",
+   "default": "2]",
+   "values": "用于估计的频率 [0.5 1 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1",
+   "values": "注入扰动的幅值 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of frequencies",
+   "default": "3",
+   "values": "外部提供的频率数 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of periods",
+   "default": "1",
+   "values": "PRBS 信号中的周期数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Signal order",
+   "default": "12",
+   "values": "PRBS 信号阶数 12 (default) | positive integer ≤ 24",
+   "group": ""
+  },
+  {
+   "name": "Use Auto-Generated Value",
+   "default": "off",
+   "values": "自动设置 PRBS 信号参数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "key": "FFE",
+ "title": "FFE",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/FFE.md"
+ ],
+ "text": "对前馈均衡器建模，输入 1 路、输出 1 路；按 {Tap Spacing} 指定用于子符号均衡控制的分式抽头；{Mode} 指定 FFE 工作模式、{Tap weights} 指定 FFE 抽头权重、{Normalize} 指定归一化抽头权重、{Visualize Response} 绘制 FFE FIR，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "输入基带信号 scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "估计的信道输出 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Fixed",
+   "values": "FFE 工作模式 Fixed (default) | Off",
+   "group": ""
+  },
+  {
+   "name": "Tap Spacing",
+   "default": "T-spaced",
+   "values": "用于子符号均衡控制的分式抽头 T-spaced (default) | T/2-spaced | T/4-spaced",
+   "group": ""
+  },
+  {
+   "name": "Tap weights",
+   "default": "[0,1,0,0,0]",
+   "values": "FFE 抽头权重 [0,1,0,0,0] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Normalize",
+   "default": "on",
+   "values": "归一化抽头权重 on (default) | fff",
+   "group": ""
+  },
+  {
+   "name": "Visualize Response",
+   "default": "",
+   "values": "绘制 FFE FIR 滤波器响应 button",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Pipe Bend (MA)",
+ "title": "Pipe Bend (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/Pipe_Bend_MA.md"
+ ],
+ "text": "Pipe bend segment in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

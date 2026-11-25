@@ -1,0 +1,13 @@
+{
+ "key": "Passive Balancing Interface",
+ "title": "Passive Balancing Interface",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/HIL/Passive_Balancing_Interface.md"
+ ],
+ "text": "用于电池与电芯监控电路之间电芯均衡的接口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

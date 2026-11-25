@@ -1,0 +1,13 @@
+{
+ "key": "Voltage-Controlled Oscillator",
+ "title": "Voltage-Controlled Oscillator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Voltage_Controlled_Oscillator.md"
+ ],
+ "text": "压控振荡器的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

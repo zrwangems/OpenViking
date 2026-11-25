@@ -1,0 +1,140 @@
+{
+ "key": "C28x SCI Receive",
+ "title": "SCI Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2803x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2805x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2806x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C280x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C281x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2833x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2834x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F280013x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F280015x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28002x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28004x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F2807x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xD/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xS/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28p55x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/SCI_Receive.md"
+ ],
+ "text": "Receive data on target via serial communication interface (SCI) from host, 1 input, 2 outputs, {Additional package terminator} sets Indicates end of data; {SCI module}, {Additional package header} Indicates start of data, {Number of retries for header receive check} sets the custom retrial count for header receive, {Data type}, {Data length option} sets the data length the block receives Length via, {Data length} sets the number of data types the block receives, {Max data length} sets the maximum number of data types the block, {Initial output} sets the default value output from block, {Action taken when connection times out} selects type of output when connection times out Output the last received, {Output value when connection times out} sets the custom output value from block when connection times, {Sample time} sets the frequency at which data is read from SCI, {Wait until data received} sets the wait until requested data is available, {Timeout} sets the amount of time in seconds the block waits until data is received and {Output receiving status} sets the status of serial communication. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Data length received from input port scalar"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Data received from serial bus scalar | vector"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "Status of serial communication scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "SCI module",
+   "default": "A",
+   "values": "SCI module for communication A (default) | B | C | D",
+   "group": ""
+  },
+  {
+   "name": "Additional package header",
+   "default": "’S’",
+   "values": "Indicates start of data ’S’ (default) | string | char | number from 0 to 255",
+   "group": ""
+  },
+  {
+   "name": "Additional package terminator",
+   "default": "’E’",
+   "values": "Indicates end of data ’E’ (default) | string | char | number from 0 to 255",
+   "group": ""
+  },
+  {
+   "name": "Number of retries for header receive check",
+   "default": "16",
+   "values": "Custom retrial count for header receive check 16 (default) | positive integer, finite | scalar",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Data type of output data uint8 (default) | single | int8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Data length option",
+   "default": "dialog",
+   "values": "Data length the block receives Length via dialog (default) | Length via input port | Variable length",
+   "group": ""
+  },
+  {
+   "name": "Data length",
+   "default": "1",
+   "values": "Number of data types the block receives 1 (default) | positive integer, finite | scalar",
+   "group": ""
+  },
+  {
+   "name": "Max data length",
+   "default": "1",
+   "values": "Maximum number of data types the block receives 1 (default) | positive integer, finite | positive integer, finite",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Default value output from block 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Action taken when connection times out",
+   "default": "value",
+   "values": "Select type of output when connection times out Output the last received value (default) | Output custom value",
+   "group": ""
+  },
+  {
+   "name": "Output value when connection times out",
+   "default": "0",
+   "values": "Custom output value from block when connection times out 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Frequency at which data is read from SCI device 0.1 (default) | -1 | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wait until data received",
+   "default": "off",
+   "values": "Wait until requested data is available off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "inf",
+   "values": "Amount of time in seconds the block waits until data is received inf (default) | positive value greater than 0",
+   "group": ""
+  },
+  {
+   "name": "Output receiving status",
+   "default": "off",
+   "values": "Status of serial communication off (default) | on",
+   "group": ""
+  }
+ ]
+}

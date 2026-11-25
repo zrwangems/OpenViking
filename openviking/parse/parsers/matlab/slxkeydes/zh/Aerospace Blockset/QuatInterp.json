@@ -1,0 +1,47 @@
+{
+ "key": "QuatInterp",
+ "title": "Quaternion Interpolation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Interpolation.md"
+ ],
+ "text": "两个四元数之间的四元数插值，输入 3 路、输出 1 路；按 {Methods} 指定四元数插值方法；{Action for out-of-range input} 指定超出范围时的模块行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q 0",
+   "direction": "input",
+   "summary": "第一个归一化四元数 4-by-1 vector | 1-by-4 vector"
+  },
+  {
+   "name": "q 1",
+   "direction": "input",
+   "summary": "第二个归一化四元数 4-by-1 vector | 1-by-4 vector"
+  },
+  {
+   "name": "f",
+   "direction": "input",
+   "summary": "区间比例 scalar"
+  },
+  {
+   "name": "q f",
+   "direction": "output",
+   "summary": "自然对数 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Methods",
+   "default": "SLERP",
+   "values": "四元数插值方法 SLERP (default) | LERP | NLERP",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+ "key": "Switch SPST",
+ "title": "SPST",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/SPST.md"
+ ],
+ "text": "Single pole single throw switch, 1 input, {Port terminations (Ohm)} sets Port terminations; {Threshold voltage}, {Characterization}, {On resistance}, {Off resistance}, {Insertion loss (dB)}, {Isolation (dB)} sets the isolation value, {Loading type} and {Ground and hide reference terminals} sets the ground RF circuit terminals. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vctl",
+   "direction": "input",
+   "summary": "Simulink control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Threshold voltage",
+   "default": "0",
+   "values": "Threshold voltage 0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Characterization",
+   "default": "Resistance",
+   "values": "Characterization Resistance (default) | Insertion loss",
+   "group": ""
+  },
+  {
+   "name": "On resistance",
+   "default": "10",
+   "values": "On resistance 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Off resistance",
+   "default": "1e-6",
+   "values": "Off resistance 1e-6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Insertion loss (dB)",
+   "default": "1",
+   "values": "Insertion loss 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Isolation (dB)",
+   "default": "70",
+   "values": "Isolation value 70 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Loading type",
+   "default": "Reflective",
+   "values": "Loading type Reflective (default) | Absorptive",
+   "group": ""
+  },
+  {
+   "name": "Port terminations (Ohm)",
+   "default": "50",
+   "values": "Port terminations 50 (default) | scalar | vector of size 1-by-2",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide reference terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

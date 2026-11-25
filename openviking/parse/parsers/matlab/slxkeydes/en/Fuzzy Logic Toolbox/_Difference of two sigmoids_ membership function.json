@@ -1,0 +1,49 @@
+{
+ "key": "\"Difference of two sigmoids\" membership function",
+ "title": "Diff. Sigmoidal MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Diff_Sigmoidal_MF.md"
+ ],
+ "text": "Difference of two sigmoids membership function, 1 input, 1 output; {Left curve a1} sets the transition area shape parameter for left, {Left curve c1} sets the transition area center for left curve, {Right curve a2} sets the transition area shape parameter for right and {Right curve c2} sets the transition area center for right curve. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input value scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "Membership value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Left curve a1",
+   "default": "3",
+   "values": "Transition area shape parameter for left curve 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left curve c1",
+   "default": "-5",
+   "values": "Transition area center for left curve -5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right curve a2",
+   "default": "1",
+   "values": "Transition area shape parameter for right curve 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right curve c2",
+   "default": "5",
+   "values": "Transition area center for right curve 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

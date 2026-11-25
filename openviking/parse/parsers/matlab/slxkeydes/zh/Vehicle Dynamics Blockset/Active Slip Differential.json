@@ -1,0 +1,258 @@
+{
+ "key": "Active Slip Differential",
+ "title": "Active Differential",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Final Drive Unit/Active_Differential.md"
+ ],
+ "text": "直齿或行星式主动差速器齿轮；输出 4 路；按 {Coupling type} 指定扭矩耦合 Ideal pre-loaded；{Active differential type} 指定差速器 Spur gears, superposition、{Clutch 1 to differential case gear ratio, Ns1} 指定离合器 1-直齿轮传动比 .875、{Clutch 2 to differential case gear ratio, Ns2} 指定离合器 2-直齿轮传动比、{Three-gang gear inertia, Jgc} 指定转动惯量 .003、{Axle 1 planetary carrier to axle gear ratio, Np1} 指定行星齿轮 1 行星架齿轮比、{Axle 1 sun gear inertia, Js1} 指定行星齿轮 1 太阳轮转动惯量 .001、{Axle 1 carrier inertia, Jc1} 指定行星齿轮 1 行星架转动惯量 .001、{Axle 1 ring inertia, Jr1} 指定行星齿轮 1 齿圈转动惯量 .002、{Axle 2 planetary carrier to axle gear ratio, Np2} 指定行星齿轮 2 行星架齿轮比、{Axle 2 sun gear inertia, Js2} 指定行星齿轮 2 太阳轮转动惯量 .001、{Axle 2 carrier inertia, Jc2} 指定行星齿轮 2 行星架转动惯量 .001、{Axle 2 ring inertia, Jr2} 指定行星齿轮 2 齿圈转动惯量 .002、{Crown wheel (ring gear) located} 指定冠状齿轮连接 To the left、{Carrier to drive shaft ratio, NC/ND} 指定比值、{Carrier inertia, Jd} 指定惯性 .1、{Carrier damping, bd} 指定阻尼 1e-3、{Axle 1 inertia, Jw1} 指定惯性 .1、{Axle 1 damping, bw1} 指定阻尼 1e-3、{Axle 2 inertia, Jw2} 指定惯性 .1、{Axle 2 damping, bw2} 指定阻尼 1e-3、{Axle 1 initial velocity, omegaw1o} 指定角速度、{Axle 2 initial velocity, omegaw2o} 指定角速度、{Effective applied pressure area} 指定压力面积、{Number of disks, Ndisks} 指定扭矩耦合、{Effective radius, Reff} 指定半径 .20、{Nominal preload force, Fc} 指定力、{Friction coefficient vector, mu} 指定摩擦、{Slip speed vector, dw} 指定角速度、{Torque - slip speed matrix, TdPdw} 指定离合器扭矩、{Clutch pressure vector, pT} 指定离合器压力断点、{Slip speed vector, dwT} 指定滑差速度断点、{Coupling time constant, tauC} 指定常量 .01，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Prs1",
+   "direction": "",
+   "summary": "离合器 1 压力 scalar"
+  },
+  {
+   "name": "Prs2",
+   "direction": "",
+   "summary": "离合器 2 压力 scalar"
+  },
+  {
+   "name": "DriveshftTrq",
+   "direction": "",
+   "summary": "传动轴扭矩 scalar"
+  },
+  {
+   "name": "Axl1Trq",
+   "direction": "",
+   "summary": "转矩 scalar"
+  },
+  {
+   "name": "Axl2Trq",
+   "direction": "",
+   "summary": "转矩 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "DriveshftSpd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "Axl1Spd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "Axl2Spd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Active differential type",
+   "default": "clutches",
+   "values": "差速器 Spur gears, superposition clutches (default) | Double planetary gears, stationary clutches",
+   "group": ""
+  },
+  {
+   "name": "Clutch 1 to differential case gear ratio, Ns1",
+   "default": ".875",
+   "values": "离合器 1-直齿轮传动比 .875 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch 2 to differential case gear ratio, Ns2",
+   "default": "1.125",
+   "values": "离合器 2-直齿轮传动比 1.125 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Three-gang gear inertia, Jgc",
+   "default": ".003",
+   "values": "转动惯量 .003 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 planetary carrier to axle gear ratio, Np1",
+   "default": "1.125",
+   "values": "行星齿轮 1 行星架齿轮比 1.125 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 sun gear inertia, Js1",
+   "default": ".001",
+   "values": "行星齿轮 1 太阳轮转动惯量 .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 carrier inertia, Jc1",
+   "default": ".001",
+   "values": "行星齿轮 1 行星架转动惯量 .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 ring inertia, Jr1",
+   "default": ".002",
+   "values": "行星齿轮 1 齿圈转动惯量 .002 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 planetary carrier to axle gear ratio, Np2",
+   "default": "1.125",
+   "values": "行星齿轮 2 行星架齿轮比 1.125 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 sun gear inertia, Js2",
+   "default": ".001",
+   "values": "行星齿轮 2 太阳轮转动惯量 .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 carrier inertia, Jc2",
+   "default": ".001",
+   "values": "行星齿轮 2 行星架转动惯量 .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 ring inertia, Jr2",
+   "default": ".002",
+   "values": "行星齿轮 2 齿圈转动惯量 .002 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Crown wheel (ring gear) located",
+   "default": "center-line",
+   "values": "指定冠状齿轮连接 To the left of center-line (default) | To the right of center-line",
+   "group": ""
+  },
+  {
+   "name": "Carrier to drive shaft ratio, NC/ND",
+   "default": "4",
+   "values": "比值 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier inertia, Jd",
+   "default": ".1",
+   "values": "惯性 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier damping, bd",
+   "default": "1e-3",
+   "values": "阻尼 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 inertia, Jw1",
+   "default": ".1",
+   "values": "惯性 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 damping, bw1",
+   "default": "1e-3",
+   "values": "阻尼 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 inertia, Jw2",
+   "default": ".1",
+   "values": "惯性 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 damping, bw2",
+   "default": "1e-3",
+   "values": "阻尼 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 initial velocity, omegaw1o",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 initial velocity, omegaw2o",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Coupling type",
+   "default": "clutch",
+   "values": "扭矩耦合 Ideal pre-loaded clutch (default) | Slip speed dependent torque data | Input torque dependent torque data",
+   "group": ""
+  },
+  {
+   "name": "Effective applied pressure area",
+   "default": "0.01",
+   "values": "压力面积 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of disks, Ndisks",
+   "default": "4",
+   "values": "扭矩耦合 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Effective radius, Reff",
+   "default": ".20",
+   "values": "半径 .20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal preload force, Fc",
+   "default": "500",
+   "values": "力 500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Friction coefficient vector, mu",
+   "default": "0.10125.10125]",
+   "values": "摩擦 [.16 0.13 0.115 0.11 0.105 0.1025 0.10125.10125] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Slip speed vector, dw",
+   "default": "500]",
+   "values": "角速度 [0 10 20 40 60 80 100 500] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Torque - slip speed matrix, TdPdw",
+   "default": "[-1000,-500,-90,-50,-5,0,5,50,90,500,1000].*ones(11)",
+   "values": "离合器扭矩 [-1000,-500,-90,-50,-5,0,5,50,90,500,1000].*ones(11) (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Clutch pressure vector, pT",
+   "default": "5e6]",
+   "values": "离合器压力断点 [0 1e3 5e3 7e3 1e4 2e4 5e4 1e5 5e5 1e6 5e6] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Slip speed vector, dwT",
+   "default": "500]",
+   "values": "滑差速度断点 [-500 -200, -175, -100, - 50, 0, 50, 100, 175, 200, 500] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Coupling time constant, tauC",
+   "default": ".01",
+   "values": "常量 .01 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

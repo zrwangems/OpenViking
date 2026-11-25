@@ -1,0 +1,170 @@
+{
+ "key": "Open Differential",
+ "title": "Open Differential",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Final Drive Unit/Open_Differential.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Final Drive Unit/Open_Differential.md"
+ ],
+ "text": "作为行星锥齿轮的差速器；输出 4 路；按 {Interpolation method} 指定方法 Flat；{Efficiency factors} 指定配置 Constant、{Input ambient temperature} 指定创建输入端口、{Crown wheel (ring gear) located} 指定冠状齿轮连接 To the left、{Carrier to drive shaft ratio, Ndiff} 指定比值、{Carrier inertia, Jd} 指定惯性 .1、{Carrier damping, bd} 指定阻尼 1e-3、{Axle 1 inertia, Jw1} 指定惯性 .1、{Axle 1 damping, bw1} 指定阻尼 1e-3、{Axle 2 inertia, Jw2} 指定惯性 .1、{Axle 2 damping, bw2} 指定阻尼 1e-3、{Axle 1 initial velocity, omegaw1o} 指定角速度、{Axle 2 initial velocity, omegaw2o} 指定角速度、{Constant efficiency factor, eta} 指定效率、{Efficiency lookup table, eta_tbl} 查找表 M -by- N -by、{Efficiency torque breakpoints, Trq_bpts} 指定扭矩断点、{Efficiency speed breakpoints, omega_bpts} 指定速度断点、{Efficiency temperature breakpoints, Temp_bpts} 指定温度断点、{Ambient temperature, Tamb} 指定环境温度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DriveshftTrq",
+   "direction": "",
+   "summary": "转矩 scalar"
+  },
+  {
+   "name": "Axl1Trq",
+   "direction": "",
+   "summary": "转矩 scalar"
+  },
+  {
+   "name": "Axl2Trq",
+   "direction": "",
+   "summary": "转矩 scalar"
+  },
+  {
+   "name": "Temp",
+   "direction": "",
+   "summary": "温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "DriveshftSpd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "Axl1Spd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "Axl2Spd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Efficiency factors",
+   "default": "Constant",
+   "values": "指定配置 Constant (default) | Driveshaft torque, speed and temperature",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "",
+   "values": "方法 Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline",
+   "group": ""
+  },
+  {
+   "name": "Input ambient temperature",
+   "default": "off",
+   "values": "创建输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Crown wheel (ring gear) located",
+   "default": "center-line",
+   "values": "指定冠状齿轮连接 To the left of center-line (default) | To the right of center-line",
+   "group": ""
+  },
+  {
+   "name": "Carrier to drive shaft ratio, Ndiff",
+   "default": "4",
+   "values": "比值 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier inertia, Jd",
+   "default": ".1",
+   "values": "惯性 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier damping, bd",
+   "default": "1e-3",
+   "values": "阻尼 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 inertia, Jw1",
+   "default": ".1",
+   "values": "惯性 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 damping, bw1",
+   "default": "1e-3",
+   "values": "阻尼 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 inertia, Jw2",
+   "default": ".1",
+   "values": "惯性 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 damping, bw2",
+   "default": "1e-3",
+   "values": "阻尼 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 initial velocity, omegaw1o",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 initial velocity, omegaw2o",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant efficiency factor, eta",
+   "default": "1",
+   "values": "效率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Efficiency lookup table, eta_tbl",
+   "default": "",
+   "values": "查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency torque breakpoints, Trq_bpts",
+   "default": "250]",
+   "values": "扭矩断点 [25, 50, 75, 100, 150, 200, 250] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency speed breakpoints, omega_bpts",
+   "default": "524]",
+   "values": "速度断点 [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency temperature breakpoints, Temp_bpts",
+   "default": "358]",
+   "values": "温度断点 [290 358] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Ambient temperature, Tamb",
+   "default": "297.15",
+   "values": "环境温度 297.15 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

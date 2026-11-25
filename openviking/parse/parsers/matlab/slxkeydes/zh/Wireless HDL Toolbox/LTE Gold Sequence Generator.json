@@ -1,0 +1,39 @@
+{
+ "key": "LTE Gold Sequence Generator",
+ "title": "LTE Gold Sequence Generator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Utilities/LTE_Gold_Sequence_Generator.md"
+ ],
+ "text": "生成 Gold 序列，输入 3 路、输出 2 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "load",
+   "direction": "input",
+   "summary": "加载初始移位寄存器值 scalar"
+  },
+  {
+   "name": "init",
+   "direction": "input",
+   "summary": "初始移位寄存器值 scalar | vector"
+  },
+  {
+   "name": "enable",
+   "direction": "input",
+   "summary": "启用序列生成 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "生成的 Gold 序列 scalar | vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  }
+ ],
+ "params": []
+}

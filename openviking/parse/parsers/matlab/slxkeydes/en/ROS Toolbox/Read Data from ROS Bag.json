@@ -1,0 +1,37 @@
+{
+ "key": "Read Data from ROS Bag",
+ "title": "Read Data",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Read_Data.md"
+ ],
+ "text": "Play back data from log file, 2 outputs; {Topic} and {Sample time} sets the interval between outputs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "New message indicator 0 | 1"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "ROS message nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "Topic name to extract from log file string",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "Interval between outputs –1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

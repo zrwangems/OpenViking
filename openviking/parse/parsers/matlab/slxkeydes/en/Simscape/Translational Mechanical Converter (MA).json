@@ -1,0 +1,13 @@
+{
+ "key": "Translational Mechanical Converter (MA)",
+ "title": "Translational Mechanical Converter (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Translational_Mechanical_Converter_MA.md"
+ ],
+ "text": "Interface between moist air and mechanical translational networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

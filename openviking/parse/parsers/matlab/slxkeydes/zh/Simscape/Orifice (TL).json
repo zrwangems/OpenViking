@@ -1,0 +1,13 @@
+{
+ "key": "Orifice (TL)",
+ "title": "Orifice (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Orifice_TL.md"
+ ],
+ "text": "热液体系统中的固定面积或可变面积节流孔。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

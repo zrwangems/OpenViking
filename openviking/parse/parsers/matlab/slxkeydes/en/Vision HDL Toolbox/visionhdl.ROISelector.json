@@ -1,0 +1,64 @@
+{
+ "key": "visionhdl.ROISelector",
+ "title": "ROI Selector",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/ROI_Selector.md"
+ ],
+ "text": "Select a region of interest (ROI) from pixel stream, 3 inputs, 2 outputs; {Reuse output ports for vertically aligned regions} sets the option to return one pixel stream for each column, {Regions source} sets the location of output region definitions, {Regions} sets the rectangular ROIs to select from input frame R -by-4 and {Number of regions} sets the number of region input ports integer in the range. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "region1,...,regionR",
+   "direction": "input",
+   "summary": "Region of interest four-element row vector"
+  },
+  {
+   "name": "pixel1,...,pixelR",
+   "direction": "output",
+   "summary": "Output pixel stream scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl1,...,ctrlR",
+   "direction": "output",
+   "summary": "Control signals pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reuse output ports for vertically aligned regions",
+   "default": "off",
+   "values": "Option to return one pixel stream for each column of regions off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Regions source",
+   "default": "Property",
+   "values": "Location of output region definitions Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Regions",
+   "default": "",
+   "values": "Rectangular ROIs to select from input frame R -by-4 matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of regions",
+   "default": "",
+   "values": "Number of region input ports integer in the range [1, 16]",
+   "group": ""
+  }
+ ]
+}

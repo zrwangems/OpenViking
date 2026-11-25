@@ -1,0 +1,66 @@
+{
+ "key": "Video Test Source",
+ "title": "Video Test Source",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/Video_Test_Source.md"
+ ],
+ "text": "生成连续视频流数据，输入 1 路、输出 2 路；按 {Color space} 指定色彩空间；{Frame size} 指定帧尺寸 160x120p、{Video source} 指定视频源类型 Video、{Input file name} 指定输入视频文件、{Reorder output frame} 输出帧重排序、{Frame sample time} 指定帧采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "输入控制总线 bus"
+  },
+  {
+   "name": "wrData",
+   "direction": "output",
+   "summary": "输出视频流数据 vector"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "输出控制总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frame size",
+   "default": "160x120p",
+   "values": "帧尺寸 160x120p (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Video source",
+   "default": "file",
+   "values": "选择视频源类型 Video file (default) | Color bar | Ramp",
+   "group": ""
+  },
+  {
+   "name": "Input file name",
+   "default": "handshake_left.avi",
+   "values": "选择输入视频文件 handshake_left.avi (default) | any supported video file format",
+   "group": ""
+  },
+  {
+   "name": "Color space",
+   "default": "YCbCr422",
+   "values": "色彩空间 YCbCr422 (default) | RGB | YOnly",
+   "group": ""
+  },
+  {
+   "name": "Reorder output frame",
+   "default": "off",
+   "values": "输出帧重排序 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Frame sample time",
+   "default": "1/60",
+   "values": "帧采样时间 1/60 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

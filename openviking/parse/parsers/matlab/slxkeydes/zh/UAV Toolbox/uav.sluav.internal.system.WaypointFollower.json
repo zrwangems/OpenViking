@@ -1,0 +1,120 @@
+{
+ "key": "uav.sluav.internal.system.WaypointFollower",
+ "title": "Waypoint Follower",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Waypoint_Follower.md"
+ ],
+ "text": "无人机跟随航点，输入 3 路、输出 6 路；{UAV type} 指定 UAV 类型、{StartFrom} 指定航点起始行为、{Transition radius source} 指定过渡半径来源、{Transition radius (r)} 指定航点的过渡半径、{Minimum lookahead distance (m)} 指定最小前视距离、{Hover at last waypoint} 指定最后一个航点处的前视点位置、{Show Yaw input variable} 指定接受航点的偏航角输入、{Show CrossTrackError output port} 输出横向轨迹误差、{Show UAV Status output port} 输出 UAV 航点状态、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "当前 UAV 位姿 [x y z chi] vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "航点集 n -by-3 matrix | n -by-4 matrix | n -by-5 matrix"
+  },
+  {
+   "name": "LookaheadDistance",
+   "direction": "input",
+   "summary": "前视距离 positive numeric scalar"
+  },
+  {
+   "name": "LookaheadPoint",
+   "direction": "output",
+   "summary": "路径上的预瞄点 [x y z] position vector"
+  },
+  {
+   "name": "DesiredCourse",
+   "direction": "output",
+   "summary": "期望航向 numeric scalar"
+  },
+  {
+   "name": "DesiredYaw",
+   "direction": "output",
+   "summary": "期望偏航角 numeric scalar"
+  },
+  {
+   "name": "LookaheadDistFlag",
+   "direction": "output",
+   "summary": "预瞄距离标志 0 (default) | 1"
+  },
+  {
+   "name": "CrossTrackError",
+   "direction": "output",
+   "summary": "从 UAV 位置到路径的横向轨迹误差 positive numeric scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "航点导航状态 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "UAV type",
+   "default": "fixed-wing",
+   "values": "UAV 类型 fixed-wing (default) | multirotor",
+   "group": ""
+  },
+  {
+   "name": "StartFrom",
+   "default": "first",
+   "values": "航点起始行为 first (default) | closest",
+   "group": ""
+  },
+  {
+   "name": "Transition radius source",
+   "default": "internal",
+   "values": "过渡半径来源 internal (default) | external",
+   "group": ""
+  },
+  {
+   "name": "Transition radius (r)",
+   "default": "10",
+   "values": "航点的过渡半径 10 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum lookahead distance (m)",
+   "default": "0.1",
+   "values": "最小前视距离 0.1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Hover at last waypoint",
+   "default": "off",
+   "values": "最后一个航点处的前视点位置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show Yaw input variable",
+   "default": "off",
+   "values": "接受航点的偏航角输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show CrossTrackError output port",
+   "default": "off",
+   "values": "输出横向轨迹误差 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show UAV Status output port",
+   "default": "off",
+   "values": "输出 UAV 航点状态 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,124 @@
+{
+ "key": "audio.simulink.ShelvingFilter",
+ "title": "Shelving Filter",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Shelving_Filter.md"
+ ],
+ "text": "二阶 IIR 搁架式滤波器，输入 4 路、输出 1 路、无直接馈通；{Specify gain from input port} 使用附加输入端口指定增益、{Gain (dB)} 指定峰值增益、{Specify slope from input port} 使用附加输入端口指定斜率、{Slope} 指定滤波器斜率、{Specify cutoff frequency from input port} 使用附加输入端口指定截止频率、{Cutoff frequency (Hz)} 指定滤波器截止频率、{Type} 指定滤波器类型、{Inherit sample rate from input} 指定输入采样率的来源、{Input sample rate (Hz)} 指定输入的采样率、{Visualize filter response} 打开绘图以可视化滤波器响应、{Variable name} 指定导出滤波器的变量名、{Overwrite variable if it already exists} 指定如果变量已存在则覆盖、{Export filter to workspace} 指定将滤波器导出到工作区、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入信号 column vector | matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "峰值增益 (dB) real scalar"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "斜率 positive scalar"
+  },
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "截止频率 nonnegative scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify gain from input port",
+   "default": "off",
+   "values": "使用附加输入端口指定增益 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Gain (dB)",
+   "default": "0",
+   "values": "峰值增益 (dB) 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify slope from input port",
+   "default": "off",
+   "values": "使用附加输入端口指定斜率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Slope",
+   "default": "1.5",
+   "values": "滤波器斜率 1.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify cutoff frequency from input port",
+   "default": "off",
+   "values": "使用附加输入端口指定截止频率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cutoff frequency (Hz)",
+   "default": "200",
+   "values": "滤波器截止频率 200 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "lowpass",
+   "values": "滤波器类型 lowpass (default) | highpass",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "指定输入采样率的来源 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Visualize filter response",
+   "default": "",
+   "values": "打开绘图以可视化滤波器响应 button",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "myFilt",
+   "values": "导出滤波器的变量名 myFilt (default) | valid variable name",
+   "group": ""
+  },
+  {
+   "name": "Overwrite variable if it already exists",
+   "default": "on",
+   "values": "如果变量已存在则覆盖 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Export filter to workspace",
+   "default": "",
+   "values": "将滤波器导出到工作区 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "指定要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

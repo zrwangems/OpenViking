@@ -1,0 +1,13 @@
+{
+ "key": "Gate Valve (IL)",
+ "title": "Gate Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Flow Control Valves/Gate_Valve_IL.md"
+ ],
+ "text": "Gate valve in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

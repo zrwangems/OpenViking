@@ -1,0 +1,13 @@
+{
+ "key": "Variable Translational Damper",
+ "title": "Variable Translational Damper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Variable_Translational_Damper.md"
+ ],
+ "text": "线性平移阻尼器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

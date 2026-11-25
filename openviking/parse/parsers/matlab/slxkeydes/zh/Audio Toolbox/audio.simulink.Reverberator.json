@@ -1,0 +1,109 @@
+{
+ "key": "audio.simulink.Reverberator",
+ "title": "Reverberator",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Effects/Reverberator.md"
+ ],
+ "text": "为音频信号添加混响，输入 7 路、输出 1 路、无直接馈通；{Pre-delay (s)} 指定混响预延迟、{Highcut frequency (Hz)} 指定低通滤波器截止频率、{Diffusion} 指定混响尾音密度、{Decay factor} 指定混响尾音衰减因子、{High frequency damping} 指定高频阻尼、{Wet/dry mix} 指定湿、{Inherit sample rate from input} 指定输入采样率的来源、{Input sample rate (Hz)} 指定输入的采样率、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入信号 matrix | 1-D vector"
+  },
+  {
+   "name": "Delay",
+   "direction": "input",
+   "summary": "混响预延迟 (s) scalar in the range [0,1]"
+  },
+  {
+   "name": "HighCut",
+   "direction": "input",
+   "summary": "低通滤波器截止频率 positive scalar in the range [0, (Sample Rate)/2]"
+  },
+  {
+   "name": "Diffusion",
+   "direction": "input",
+   "summary": "混响尾音密度 scalar in the range [0,1]"
+  },
+  {
+   "name": "Decay",
+   "direction": "input",
+   "summary": "混响尾音衰减因子 scalar in the range [0,1]"
+  },
+  {
+   "name": "Damping",
+   "direction": "input",
+   "summary": "高频阻尼 scalar in the range [0,1]"
+  },
+  {
+   "name": "WetDry",
+   "direction": "input",
+   "summary": "湿（混响）信号与干（原始）信号之比 scalar in the range [0,1]"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pre-delay (s)",
+   "default": "0",
+   "values": "混响预延迟 0 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Highcut frequency (Hz)",
+   "default": "20000",
+   "values": "低通滤波器截止频率 20000 (default) | scalar in the range [0, (Sample Rate)/2]",
+   "group": ""
+  },
+  {
+   "name": "Diffusion",
+   "default": "0.50",
+   "values": "混响尾音密度 0.50 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Decay factor",
+   "default": "0.50",
+   "values": "混响尾音衰减因子 0.50 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "High frequency damping",
+   "default": "0.0005",
+   "values": "高频阻尼 0.0005 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Wet/dry mix",
+   "default": "0.3",
+   "values": "湿（混响）信号与干（原始）信号之比 0.3 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "指定输入采样率的来源 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "指定要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "key": "Cholesky Factorization",
+ "title": "Cholesky Factorization",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Factorizations/Cholesky_Factorization.md"
+ ],
+ "text": "将 Hermitian 正定方阵分解为三角分量，输入 1 路、输出 1 路、无直接馈通；按 {Non-positive definite input} 指定非正定输入。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "输入矩阵 square matrix"
+  },
+  {
+   "name": "LL’",
+   "direction": "output",
+   "summary": "下三角因子和上三角因子 square matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Non-positive definite input",
+   "default": "Warning",
+   "values": "非正定输入 Warning (default) | Ignore | Error",
+   "group": ""
+  }
+ ]
+}

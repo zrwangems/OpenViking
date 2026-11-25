@@ -1,0 +1,13 @@
+{
+ "key": "Unbalanced Load",
+ "title": "Unbalanced Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Inertias & Loads/Unbalanced_Load.md"
+ ],
+ "text": "具有角度相关转动惯量的负载。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

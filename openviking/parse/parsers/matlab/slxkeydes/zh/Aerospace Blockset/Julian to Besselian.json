@@ -1,0 +1,34 @@
+{
+ "key": "Julian to Besselian",
+ "title": "Julian Epoch to Besselian Epoch",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Julian_Epoch_to_Besselian_Epoch.md"
+ ],
+ "text": "将位置和速度分量从标准儒略历元 (J2000) 转换为已停用的标准贝塞尔历元 (B1950)，输入 2 路、输出 2 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r J2000",
+   "direction": "input",
+   "summary": "位置 3-by-1 vector"
+  },
+  {
+   "name": "v J2000",
+   "direction": "input",
+   "summary": "速度 3-by-1 vector"
+  },
+  {
+   "name": "r B1950",
+   "direction": "output",
+   "summary": "位置 3-by-1 vector"
+  },
+  {
+   "name": "v B1950",
+   "direction": "output",
+   "summary": "速度 3-by-1 vector"
+  }
+ ],
+ "params": []
+}

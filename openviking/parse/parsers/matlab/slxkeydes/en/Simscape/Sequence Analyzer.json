@@ -1,0 +1,54 @@
+{
+ "key": "Sequence Analyzer",
+ "title": "Sequence Analyzer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Sequence_Analyzer.md"
+ ],
+ "text": "Calculate the magnitude and phase of the positive, negative, or zero sequence of a three-phase signal, 1 input, 2 outputs, {Sequence} sets Sequence selection; {Base frequency (Hz)}, {Harmonic numbers} and {Sample Time (s)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Periodic input signal vector"
+  },
+  {
+   "name": "mag",
+   "direction": "output",
+   "summary": "Magnitude scalar | vector"
+  },
+  {
+   "name": "angle",
+   "direction": "output",
+   "summary": "Phase shift scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Base frequency (Hz)",
+   "default": "60",
+   "values": "Base frequency 60 (default)",
+   "group": ""
+  },
+  {
+   "name": "Harmonic numbers",
+   "default": "2]",
+   "values": "Harmonic numbers [1 2] (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Sequence",
+   "default": "Positive",
+   "values": "Sequence selection Positive (default) | Negative | Zero",
+   "group": ""
+  },
+  {
+   "name": "Sample Time (s)",
+   "default": "0",
+   "values": "Block sample time 0 (default)",
+   "group": ""
+  }
+ ]
+}

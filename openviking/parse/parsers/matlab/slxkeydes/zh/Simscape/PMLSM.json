@@ -1,0 +1,13 @@
+{
+ "key": "PMLSM",
+ "title": "PMLSM",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/PMLSM.md"
+ ],
+ "text": "具有正弦磁通分布的永磁直线同步电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

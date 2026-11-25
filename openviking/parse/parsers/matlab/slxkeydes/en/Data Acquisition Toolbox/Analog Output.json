@@ -1,0 +1,44 @@
+{
+ "key": "Analog Output",
+ "title": "Analog Output",
+ "toolbox": "Data Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Data Acquisition Toolbox/Analog_Output.md"
+ ],
+ "text": "Output data to multiple analog channels of data acquisition device, 1 input, {Number of ports} sets Number of input data ports 1 for all channels; {Device}, {Channels} sets the device channel selection and configuration options depend and {Output sample rate} sets the device sampling rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Analog output to generate double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "Device through which you want to output data select available device",
+   "group": ""
+  },
+  {
+   "name": "Channels",
+   "default": "",
+   "values": "Device channel selection and configuration options depend on device",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "",
+   "values": "Number of input data ports 1 for all channels | 1 per channel",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate",
+   "default": "",
+   "values": "Device sampling rate numeric value",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Spool Orifice (IL)",
+ "title": "Spool Orifice (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Orifices/Spool_Orifice_IL.md"
+ ],
+ "text": "等温液体系统中的可变面积滑阀节流孔。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

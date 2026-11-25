@@ -1,0 +1,89 @@
+{
+ "key": "dsp.simulink.VariableFIRDecimator",
+ "title": "Variable FIR Decimation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Variable_FIR_Decimation.md"
+ ],
+ "text": "Polyphase FIR decimation with tunable decimation factor, 3 inputs, 1 output, no direct feedthrough, {Numerator source} sets FIR filter coefficient source; {Specification} sets the mode to control decimation factor Decimation, {Maximum decimation factor}, {Specify decimation factor from input port}, {Decimation factor}, {Output frame length}, {Prototype filter numerator coefficients} sets the prototype lowpass FIR filter coefficients, {View Filter Response} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "M",
+   "direction": "input",
+   "summary": "Decimation factor input port positive integer"
+  },
+  {
+   "name": "coeffs",
+   "direction": "input",
+   "summary": "Prototype filter coefficients vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Decimated output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specification",
+   "default": "factor",
+   "values": "Specify mode to control decimation factor Decimation factor (default) | Output frame length",
+   "group": ""
+  },
+  {
+   "name": "Maximum decimation factor",
+   "default": "24",
+   "values": "Maximum decimation factor 24 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify decimation factor from input port",
+   "default": "on",
+   "values": "Specify decimation factor from input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Decimation factor",
+   "default": "24",
+   "values": "Decimation factor 24 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output frame length",
+   "default": "48",
+   "values": "Output frame length 48 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Numerator source",
+   "default": "Auto",
+   "values": "FIR filter coefficient source Auto (default) | Dialog parameter | Input port",
+   "group": ""
+  },
+  {
+   "name": "Prototype filter numerator coefficients",
+   "default": "designMultirateFIR(1,24)",
+   "values": "Prototype lowpass FIR filter coefficients designMultirateFIR(1,24) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View Filter Response button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

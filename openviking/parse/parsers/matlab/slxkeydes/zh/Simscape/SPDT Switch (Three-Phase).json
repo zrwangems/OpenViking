@@ -1,0 +1,13 @@
+{
+ "key": "SPDT Switch (Three-Phase)",
+ "title": "SPDT Switch (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/SPDT_Switch_Three_Phase.md"
+ ],
+ "text": "Three-phase single-pole double-throw switch。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

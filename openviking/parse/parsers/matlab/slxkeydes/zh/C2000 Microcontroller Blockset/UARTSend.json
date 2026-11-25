@@ -1,0 +1,47 @@
+{
+ "key": "UARTSend",
+ "title": "UART Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F29H85x/UART_Transmit.md",
+  "C2000 Microcontroller Blockset/F2838x/M4/UART_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M35x/M3/UART_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M36x/M3/UART_Transmit.md"
+ ],
+ "text": "将串行数据发送到通用异步收发器 (UART) 端口，输入 1 路；{UART module} 指定 UART 模块、{Additional package header} 指定前缀报头 S、{Additional package terminator} 指定后缀终止符 E、{Enable blocking mode} 启用数据传输的阻塞模式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "UART 发送数据 vector | scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "UART module",
+   "default": "A",
+   "values": "UART 模块 A (default) | B",
+   "group": ""
+  },
+  {
+   "name": "Additional package header",
+   "default": "S",
+   "values": "前缀报头 S (default)",
+   "group": ""
+  },
+  {
+   "name": "Additional package terminator",
+   "default": "E",
+   "values": "后缀终止符 E (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable blocking mode",
+   "default": "off",
+   "values": "启用数据传输的阻塞模式 off (default) | on",
+   "group": ""
+  }
+ ]
+}

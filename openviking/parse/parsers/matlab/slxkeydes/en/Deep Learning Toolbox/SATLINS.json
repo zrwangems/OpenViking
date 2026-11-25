@@ -1,0 +1,13 @@
+{
+ "key": "SATLINS",
+ "title": "satlins",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/satlins.md"
+ ],
+ "text": "Symmetric saturating linear transfer function.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

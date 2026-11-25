@@ -1,0 +1,65 @@
+{
+ "key": "Ackermann Kinematic Model",
+ "title": "Ackermann Kinematic Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Mobile Robot Algorithms/Ackermann_Kinematic_Model.md"
+ ],
+ "text": "Car-like vehicle motion using Ackermann kinematic model, 2 inputs, 2 outputs; {Wheel base} sets the distance between front and rear axles, {Vehicle speed range} sets the minimum and maximum vehicle speeds, {Maximum steering angle}, {Initial state} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "Vehicle speed numeric scalar"
+  },
+  {
+   "name": "dψ/dt",
+   "direction": "input",
+   "summary": "Steering angular velocity numeric scalar"
+  },
+  {
+   "name": "state",
+   "direction": "output",
+   "summary": "State of vehicle four-element vector"
+  },
+  {
+   "name": "stateDot",
+   "direction": "output",
+   "summary": "Derivatives of state output four-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Wheel base",
+   "default": "1",
+   "values": "Distance between front and rear axles 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle speed range",
+   "default": "Inf]",
+   "values": "Minimum and maximum vehicle speeds [-Inf Inf] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum steering angle",
+   "default": "pi/4",
+   "values": "Maximum steering angle pi/4 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "[0;0;0;0]",
+   "values": "Initial state of vehicle [0;0;0;0] (default) | four-element vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

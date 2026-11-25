@@ -1,0 +1,53 @@
+{
+ "key": "Concatenation Layer",
+ "title": "Concatenation Layer",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Combination Layers/Concatenation_Layer.md"
+ ],
+ "text": "Concatenation Layer 模块接受输入，并沿指定维度串联这些输入，输入 3 路、输出 1 路；按 {Data format} 指定输入数据的格式；{Layer} 指定对应的层对象、{Sample time} 用于指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入数据 array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个输入数据 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "第 N 个输入数据 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "串联后的输出数据 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Layer",
+   "default": "layerObject",
+   "values": "对应的层对象 layerObject (default) | concatenationLayer object",
+   "group": "Main"
+  },
+  {
+   "name": "Data format",
+   "default": "SSC",
+   "values": "输入数据的格式 SSC (default) | C | CT | SC | SSSC",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "用于指定采样时间的选项 -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

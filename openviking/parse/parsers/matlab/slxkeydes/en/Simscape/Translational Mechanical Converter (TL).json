@@ -1,0 +1,13 @@
+{
+ "key": "Translational Mechanical Converter (TL)",
+ "title": "Translational Mechanical Converter (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Translational_Mechanical_Converter_TL.md"
+ ],
+ "text": "Interface between thermal liquid and mechanical translational networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,24 @@
+{
+ "key": "Quat2Dcm",
+ "title": "Quaternions to Direction Cosine Matrix",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Quaternions_to_Direction_Cosine_Matrix.md"
+ ],
+ "text": "将四元数向量转换为方向余弦矩阵，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "四元数 4-by-1 vector"
+  },
+  {
+   "name": "DCM be",
+   "direction": "output",
+   "summary": "方向余弦矩阵 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

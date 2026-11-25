@@ -1,0 +1,78 @@
+{
+ "key": "Battery Cell Contact Monitoring",
+ "title": "Battery Cell Contact Monitoring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Protection/Battery_Cell_Contact_Monitoring.md"
+ ],
+ "text": "Monitor for battery cell contact, 1 input, 2 outputs, {Sample time (-1 for inherited)} sets Block sample time; {Time constant for voltage change smoothing (s)}, {Threshold for voltage change detection (dV/dt)}, {Allowed voltage change peak-to-average ratio} sets the allowed peak-to-average ratio of voltage, {Cumulative error threshold}, {Qualification time (s)} sets the time to qualify contact loss error, {Disqualification time (s)} sets the time to disqualify contact loss error and {Algorithm data type} sets the option to choose data type for block algorithm. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Voltage",
+   "direction": "input",
+   "summary": "Parallel assembly voltages, V vector"
+  },
+  {
+   "name": "CellConnectionError",
+   "direction": "output",
+   "summary": "Indication of contact loss error, unitless vector"
+  },
+  {
+   "name": "CellConnectionSymptom",
+   "direction": "output",
+   "summary": "Indication of contact loss symptom, unitless vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time constant for voltage change smoothing (s)",
+   "default": "10",
+   "values": "Time constant for voltage change smoothing 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold for voltage change detection (dV/dt)",
+   "default": "5e-4",
+   "values": "Threshold for voltage change detection 5e-4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Allowed voltage change peak-to-average ratio",
+   "default": "0.02",
+   "values": "Allowed peak-to-average ratio of voltage change 0.02 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Cumulative error threshold",
+   "default": "1e-4",
+   "values": "Cumulative error threshold for contact loss symptom 1e-4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time (s)",
+   "default": "20",
+   "values": "Time to qualify contact loss error 20 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time (s)",
+   "default": "0",
+   "values": "Time to disqualify contact loss error 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "Block sample time 1 (default) | 0 | -1 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

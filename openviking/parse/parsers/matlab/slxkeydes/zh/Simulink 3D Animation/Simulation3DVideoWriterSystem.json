@@ -1,0 +1,32 @@
+{
+ "key": "Simulation3DVideoWriterSystem",
+ "title": "Simulation 3D Video Writer",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Video_Writer.md"
+ ],
+ "text": "将 3D 仿真捕获为视频文件；按 {Filename} 指定视频文件名；{File action} 指定如何管理视频文件、{Recording interval (s)} 指定录制时间区间，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Filename",
+   "default": "output.avi",
+   "values": "视频文件名 output.avi (default) | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "File action",
+   "default": "Preserve",
+   "values": "如何管理视频文件 Preserve (default) | Overwrite | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Recording interval (s)",
+   "default": "inf]",
+   "values": "录制时间区间 [0 inf] (default) | real positive 1-by-2 vector",
+   "group": ""
+  }
+ ]
+}

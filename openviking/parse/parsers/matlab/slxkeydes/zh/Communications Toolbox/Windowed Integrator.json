@@ -1,0 +1,61 @@
+{
+ "key": "Windowed Integrator",
+ "title": "Windowed Integrator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Filters/Windowed_Integrator.md"
+ ],
+ "text": "阻断直流分量，输入 1 路、输出 1 路、无直接馈通；按 {Algorithm for estimating DC offset} 指定估计直流偏置的算法；{Normalized bandwidth of lowpass IIR or CIC filter} 指定归一化带宽、{Order of lowpass IIR elliptic filter} 指定低通 IIR 椭圆滤波器的阶数、{Number of past input samples for FIR algorithm} 指定 FIR 算法使用的过去输入采样数、{View Filter Response} 指定可视化频率响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "不含直流分量的输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Algorithm for estimating DC offset",
+   "default": "IIR",
+   "values": "估计直流偏置的算法 IIR (default) | FIR | CIC | Subtract mean",
+   "group": ""
+  },
+  {
+   "name": "Normalized bandwidth of lowpass IIR or CIC filter",
+   "default": "0.001",
+   "values": "归一化带宽 0.001 (default) | real scalar in the range (0 1)",
+   "group": ""
+  },
+  {
+   "name": "Order of lowpass IIR elliptic filter",
+   "default": "6",
+   "values": "低通 IIR 椭圆滤波器的阶数 6 (default) | integer greater than 3",
+   "group": ""
+  },
+  {
+   "name": "Number of past input samples for FIR algorithm",
+   "default": "50",
+   "values": "FIR 算法使用的过去输入采样数 50 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "可视化频率响应 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

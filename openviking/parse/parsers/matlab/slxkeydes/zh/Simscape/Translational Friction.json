@@ -1,0 +1,13 @@
+{
+ "key": "Translational Friction",
+ "title": "Translational Friction",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Translational_Friction.md"
+ ],
+ "text": "运动物体接触中的摩擦。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

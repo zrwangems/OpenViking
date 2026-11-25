@@ -1,0 +1,13 @@
+{
+ "key": "Motor & Drive (System Level)",
+ "title": "Motor & Drive (System Level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Motor_Drive_System_Level.md"
+ ],
+ "text": "定子齿与旋转永磁转子之间的气隙。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

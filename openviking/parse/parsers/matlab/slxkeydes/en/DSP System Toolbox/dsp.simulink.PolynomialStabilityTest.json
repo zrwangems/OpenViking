@@ -1,0 +1,31 @@
+{
+ "key": "dsp.simulink.PolynomialStabilityTest",
+ "title": "Polynomial Stability Test",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Polynomial Functions/Polynomial_Stability_Test.md"
+ ],
+ "text": "Use Schur-Cohn algorithm to determine whether all roots of input polynomial are inside unit circle, 1 input, 1 output; {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input polynomial vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Polynomial stability test output scalar | 1-by- N matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

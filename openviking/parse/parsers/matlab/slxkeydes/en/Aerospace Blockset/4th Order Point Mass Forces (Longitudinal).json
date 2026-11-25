@@ -1,0 +1,59 @@
+{
+ "key": "4th Order Point Mass Forces (Longitudinal)",
+ "title": "4th Order Point Mass Forces (Longitudinal)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/Point Mass/b_4th_Order_Point_Mass_Forces_Longitudinal.md"
+ ],
+ "text": "Calculate forces used by fourth-order point mass, 7 inputs, 2 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Lift",
+   "direction": "input",
+   "summary": "Lift scalar | array"
+  },
+  {
+   "name": "Drag",
+   "direction": "input",
+   "summary": "Drag scalar | array"
+  },
+  {
+   "name": "Weight",
+   "direction": "input",
+   "summary": "Weight scalar | array"
+  },
+  {
+   "name": "Thrust",
+   "direction": "input",
+   "summary": "Thrust scalar | array"
+  },
+  {
+   "name": "ɣ",
+   "direction": "input",
+   "summary": "Flight path angle scalar | array"
+  },
+  {
+   "name": "μ",
+   "direction": "input",
+   "summary": "Bank angle scalar | array"
+  },
+  {
+   "name": "ɑ",
+   "direction": "input",
+   "summary": "Angle of attack scalar | array"
+  },
+  {
+   "name": "F x",
+   "direction": "output",
+   "summary": "Force in x -axis scalar | array"
+  },
+  {
+   "name": "F z",
+   "direction": "output",
+   "summary": "Force in z -axis scalar | array"
+  }
+ ],
+ "params": []
+}

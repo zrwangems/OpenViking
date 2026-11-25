@@ -1,0 +1,13 @@
+{
+ "key": "Belt Drive",
+ "title": "Belt Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Belt_Drive.md"
+ ],
+ "text": "通过张紧皮带连接两个带轮的功率传输系统。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

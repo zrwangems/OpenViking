@@ -1,0 +1,13 @@
+{
+ "key": "Mechanical Translational Reference",
+ "title": "Mechanical Translational Reference",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Mechanical_Translational_Reference.md"
+ ],
+ "text": "Reference connection for mechanical translational ports.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

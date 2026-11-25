@@ -1,0 +1,100 @@
+{
+ "key": "Image Filter",
+ "title": "Image Filter",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Filtering/Image_Filter.md"
+ ],
+ "text": "2-D FIR filtering, 3 inputs, 2 outputs, {Padding method} sets Method for padding; {Filter coefficients source} sets the source to provide filter coefficients, {Filter coefficients} sets the coefficients of filter {Padding value} sets the value used to pad boundary of input image, {Line buffer size} sets the size of line buffer, {Rounding mode} sets the rounding method for internal fixed-point calculations, {Saturate on integer overflow} sets the overflow action for internal fixed-point, {Coefficients} sets the filter coefficients data type, {Output} and {Lock data type settings against changes by the fixed-point tools}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "coeff",
+   "direction": "input",
+   "summary": "Filter coefficients matrix"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Output pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter coefficients source",
+   "default": "Property",
+   "values": "Source to provide filter coefficients Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Filter coefficients",
+   "default": "]",
+   "values": "Coefficients of filter [ 1, 0; 0, -1 ] (default) | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Padding method",
+   "default": "Constant",
+   "values": "Method for padding Constant (default) | Replicate | Symmetric | Reflection | None",
+   "group": "Main"
+  },
+  {
+   "name": "Padding value",
+   "default": "0",
+   "values": "Value used to pad boundary of input image 0 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "Size of line buffer 2048 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow action for internal fixed-point calculations off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Filter coefficients data type Inherit: Same as first input (default) | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Output data type Inherit: Same as first input (default) | Inherit: Inherit via internal rule | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Lock data type settings off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

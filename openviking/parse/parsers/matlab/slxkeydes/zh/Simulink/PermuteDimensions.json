@@ -1,0 +1,31 @@
+{
+ "key": "PermuteDimensions",
+ "title": "Permute Dimensions",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Permute_Dimensions.md"
+ ],
+ "text": "重新排列多维数组的维度，输入 1 路、输出 1 路、直接馈通；{Order} 指定置换向量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入信号的置换 scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Order",
+   "default": "[2,1]",
+   "values": "置换向量 [2,1] (default) | N -element vector, where N is the number of dimensions of the input signal",
+   "group": ""
+  }
+ ]
+}

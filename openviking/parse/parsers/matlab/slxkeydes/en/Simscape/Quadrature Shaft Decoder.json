@@ -1,0 +1,52 @@
+{
+ "key": "Quadrature Shaft Decoder",
+ "title": "Quadrature Shaft Decoder",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Observers/Quadrature_Shaft_Decoder.md"
+ ],
+ "text": "Decode incremental shaft encoder output, 3 inputs, 2 outputs; {Pulses per revolution} and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Digital signal A scalar"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Digital signal B scalar"
+  },
+  {
+   "name": "Z",
+   "direction": "input",
+   "summary": "Index pulse scalar"
+  },
+  {
+   "name": "Velocity",
+   "direction": "output",
+   "summary": "Shaft rotational velocity scalar"
+  },
+  {
+   "name": "Position",
+   "direction": "output",
+   "summary": "Shaft angle of rotation scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pulses per revolution",
+   "default": "4",
+   "values": "Pulses per revolution 4 (default) | integer > 0",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

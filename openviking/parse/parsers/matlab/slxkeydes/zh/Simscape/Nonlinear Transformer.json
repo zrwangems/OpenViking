@@ -1,0 +1,13 @@
+{
+ "key": "Nonlinear Transformer",
+ "title": "Nonlinear Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Nonlinear_Transformer.md"
+ ],
+ "text": "具有非理想铁芯的变压器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

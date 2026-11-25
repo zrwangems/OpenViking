@@ -1,0 +1,36 @@
+{
+ "key": "asciidecode2",
+ "title": "V2 Ascii Decode",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/V2_Ascii_Decode.md"
+ ],
+ "text": "Parse ASCII character vector into Simulink values, 1 input, 2 outputs, {Format} sets Format specifier for parsing input vector.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Input vector to parse character vector"
+  },
+  {
+   "name": "cnt",
+   "direction": "output",
+   "summary": "Number of format specifiers satisfied by input integer"
+  },
+  {
+   "name": "Value",
+   "direction": "output",
+   "summary": "Inlined ports that send Simulink values numeric"
+  }
+ ],
+ "params": [
+  {
+   "name": "Format",
+   "default": "’%f\\n’",
+   "values": "Format specifier for parsing input vector ’%f\\n’ (default) | %c | %d | %i | %o | %u | %x | %e | %g",
+   "group": ""
+  }
+ ]
+}

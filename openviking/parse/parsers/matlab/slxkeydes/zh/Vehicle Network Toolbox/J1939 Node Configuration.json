@@ -1,0 +1,62 @@
+{
+ "key": "J1939 Node Configuration",
+ "title": "J1939 Node Configuration",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/J1939 Communication/J1939_Node_Configuration.md",
+  "Simulink Real-Time/J1939/J1939_Node_Configuration.md"
+ ],
+ "text": "配置具有地址和网络管理属性的 J1939 节点；输出 2 路；{Config name} 指定要与此节点关联的 J1939 网络配置的 ID、{Node name} 指定此 J1939 节点的名称、{Message} 由与 J1939 协议一致的数据库文件定义的九个网络属性 vector、{Sample time} 指定仿真刷新率、{Output current node address} 启用或禁用 Address 端口显示、{Output address claim status} 启用或禁用地址声明 AC Status，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Address",
+   "direction": "output",
+   "summary": "返回节点的有效地址 int8"
+  },
+  {
+   "name": "AC Status",
+   "direction": "output",
+   "summary": "指示节点地址声明的成功 (1) 或失败 (0) 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "ConfigX",
+   "values": "要与此节点关联的 J1939 网络配置的 ID ConfigX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Node name",
+   "default": "NodeX",
+   "values": "此 J1939 节点的名称 NodeX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Message",
+   "default": "",
+   "values": "由与 J1939 协议一致的数据库文件定义的九个网络属性 vector array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "仿真刷新率 0.01 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Output current node address",
+   "default": "off",
+   "values": "启用或禁用 Address 端口显示 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output address claim status",
+   "default": "off",
+   "values": "启用或禁用地址声明 AC Status 显示 off (default) | on",
+   "group": ""
+  }
+ ]
+}

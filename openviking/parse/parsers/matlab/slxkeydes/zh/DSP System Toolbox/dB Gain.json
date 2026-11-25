@@ -1,0 +1,37 @@
+{
+ "key": "dB Gain",
+ "title": "dB Gain",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Math Operations/dB_Gain.md"
+ ],
+ "text": "应用分贝增益，输入 1 路、输出 1 路、无直接馈通；按 {Gain, dB} 指定Gain；{Input signal} 指定输入信号 Amplitude，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "应用分贝增益后的输出 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Gain, dB",
+   "default": "-40",
+   "values": "Gain -40 (default) | scalar | matrix",
+   "group": ""
+  },
+  {
+   "name": "Input signal",
+   "default": "Amplitude",
+   "values": "输入信号 Amplitude (default) | Power",
+   "group": ""
+  }
+ ]
+}

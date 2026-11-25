@@ -1,0 +1,358 @@
+{
+ "key": "FOCAutoTuner",
+ "title": "Field Oriented Control Autotuner",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/Field_Oriented_Control_Autotuner.md"
+ ],
+ "text": "Automatically and sequentially tune multiple PID control loops in field-oriented control application, 13 inputs, 10 outputs, {Type} sets Flux loop; {Tune D-axis current loop} enables d-axis current loop tuning, {Tune Q-axis current loop} enables q-axis current loop tuning, {Tune speed loop} enables speed loop tuning, {Tune flux loop} enables flux loop tuning, {Use same settings for current loop controllers (D-axis + Q-axis)} enables same tuning and experiment settings for direct-axis and quadrature-axis current, {Use same settings for outer loop controllers (Speed + Flux)} enables same tuning and experiment settings for speed and flux, {Experiment sample time} sets the sample time of frequency response estimation experiment, {Use different sample time for tuning} enables tuning at different sample time from loop PID controller, {Tuning sample time (sec)} sets the sample time of tuning algorithm, {Form} sets the d-axis current loop PID controller form, {Controller sample time (sec)} sets the d-axis current loop PID controller sample, {Integrator method} sets the d-axis current loop controller discrete integration formula for integrator term Forward, {Filter method} sets the d-axis current loop controller discrete integration formula for derivative filter term Forward, {Target bandwidth (rad/sec)} sets the d-axis current loop target crossover frequency of tuned, {Target phase margin (degrees)} sets the d-axis current loop target minimum phase, {D-axis current loop start time (sec)} sets the direct-axis current loop tuning experiment start, {D-axis current loop experiment duration (sec)} sets the direct-axis current loop tuning experiment, {Q-axis current loop start time (sec)} sets the quadrature-axis current loop tuning experiment start, {Q-axis current loop experiment duration (sec)} sets the quadrature-axis current loop tuning experiment, {Speed loop start time (sec)} sets the speed loop tuning experiment start time, {Speed loop experiment duration (sec)} sets the speed loop tuning experiment duration, {Flux loop start time (sec)} sets the flux loop tuning experiment start time, {Flux loop experiment duration (sec)} sets the flux loop tuning experiment duration, {Experiment Mode} sets the sinusoidal perturbation signal type, {Plant Type} sets the stability of direct-axis current plant, {Plant Sign} sets the sign of direct-axis current, {Sine Amplitudes} sets the amplitude of sinusoidal perturbations in direct-axis current, {Use external source for bandwidths} sets the supply external signal for target, {Use external source for target phase margins} sets the supply external signal for target phase, {Use external source for start/stops of experiment} sets the supply external signal for start and stop of tuning, {Use external source for sine amplitudes} sets the supply external signal for sinusoidal perturbation, {Data Type} sets the floating point precision, {Estimated phase margin achieved by tuned controllers} sets the phase margin achieved by most recently tuned, {Plant frequency responses near bandwidth} sets the estimated frequency response for most recently tuned, {Plant nominal input and output} sets the plant input and output at nominal operating, {Start/stop of autotuning process} sets the signal indicating start and end of experiment for each tuned and {Export to MATLAB} sets the send experiment and tuning results to MATLAB workspace. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PIDout daxis",
+   "direction": "input",
+   "summary": "Signal from direct-axis current controller scalar"
+  },
+  {
+   "name": "measured feedback daxis",
+   "direction": "input",
+   "summary": "Measured direct-axis current scalar"
+  },
+  {
+   "name": "PIDout qaxis",
+   "direction": "input",
+   "summary": "Signal from quadrature-axis current controller scalar"
+  },
+  {
+   "name": "measured feedback qaxis",
+   "direction": "input",
+   "summary": "Measured quadrature-axis current scalar"
+  },
+  {
+   "name": "PIDout spd",
+   "direction": "input",
+   "summary": "Signal from speed controller scalar"
+  },
+  {
+   "name": "measured feedback spd",
+   "direction": "input",
+   "summary": "Measured speed scalar"
+  },
+  {
+   "name": "PIDout flux",
+   "direction": "input",
+   "summary": "Signal from flux controller scalar"
+  },
+  {
+   "name": "measured feedback flux",
+   "direction": "input",
+   "summary": "Measured flux scalar"
+  },
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "Start and stop autotuning experiment scalar"
+  },
+  {
+   "name": "ActiveLoop",
+   "direction": "input",
+   "summary": "Specify active loop for autotuning experiment scalar"
+  },
+  {
+   "name": "bandwidth",
+   "direction": "input",
+   "summary": "Target bandwidth for tuning scalar | vector | bus"
+  },
+  {
+   "name": "target PM",
+   "direction": "input",
+   "summary": "Target phase margin for tuning scalar | vector | bus"
+  },
+  {
+   "name": "sine Amp",
+   "direction": "input",
+   "summary": "Amplitudes of injected sinusoidal perturbation signals vector | matrix"
+  },
+  {
+   "name": "perturbation daxis",
+   "direction": "output",
+   "summary": "Direct-axis current input perturbation scalar"
+  },
+  {
+   "name": "perturbation qaxis",
+   "direction": "output",
+   "summary": "Quadrature-axis current input perturbation scalar"
+  },
+  {
+   "name": "perturbation spd",
+   "direction": "output",
+   "summary": "Speed input perturbation scalar"
+  },
+  {
+   "name": "perturbation flux",
+   "direction": "output",
+   "summary": "Flux input perturbation scalar"
+  },
+  {
+   "name": "pid gains",
+   "direction": "output",
+   "summary": "Tuned PID coefficients bus"
+  },
+  {
+   "name": "convergence",
+   "direction": "output",
+   "summary": "Convergence of FRD estimation during experiment scalar"
+  },
+  {
+   "name": "estimated PM",
+   "direction": "output",
+   "summary": "Estimated phase margin for most recently tuned loop scalar"
+  },
+  {
+   "name": "frd",
+   "direction": "output",
+   "summary": "Estimated frequency response for most recently tuned loop vector"
+  },
+  {
+   "name": "nominal",
+   "direction": "output",
+   "summary": "Plant input and output at nominal operating point for most recently tuned loop vector"
+  },
+  {
+   "name": "loop startstops",
+   "direction": "output",
+   "summary": "Active loop bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tune D-axis current loop",
+   "default": "on",
+   "values": "Enable d-axis current loop tuning on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Tune Q-axis current loop",
+   "default": "on",
+   "values": "Enable q-axis current loop tuning on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Tune speed loop",
+   "default": "on",
+   "values": "Enable speed loop tuning on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Tune flux loop",
+   "default": "on",
+   "values": "Enable flux loop tuning on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Use same settings for current loop controllers (D-axis + Q-axis)",
+   "default": "off",
+   "values": "Enable same tuning and experiment settings for direct-axis and quadrature-axis current loops off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use same settings for outer loop controllers (Speed + Flux)",
+   "default": "off",
+   "values": "Enable same tuning and experiment settings for speed and flux loops off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Experiment sample time",
+   "default": "–1",
+   "values": "Sample time of frequency response estimation experiment –1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Use different sample time for tuning",
+   "default": "off",
+   "values": "Enable tuning at different sample time from loop PID controller and experiment off (default) | on",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Tuning sample time (sec)",
+   "default": "0.2",
+   "values": "Sample time of tuning algorithm 0.2 (default) | positive scalar",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Type",
+   "default": "PI",
+   "values": "D-axis current loop PID controller actions PI (default) | PID | PIDF |...",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Form",
+   "default": "Parallel",
+   "values": "D-axis current loop PID controller form Parallel (default) | Ideal",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Controller sample time (sec)",
+   "default": "0.001",
+   "values": "D-axis current loop PID controller sample time 0.001 (default) | positive scalar | –1",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "D-axis current loop controller discrete integration formula for integrator term Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Filter method",
+   "default": "Euler",
+   "values": "D-axis current loop controller discrete integration formula for derivative filter term Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Target bandwidth (rad/sec)",
+   "default": "100",
+   "values": "D-axis current loop target crossover frequency of tuned response 100 (default) | positive scalar",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Target phase margin (degrees)",
+   "default": "60",
+   "values": "D-axis current loop target minimum phase margin 60 (default) | scalar in range 0–90",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "D-axis current loop start time (sec)",
+   "default": "1",
+   "values": "Specify direct-axis current loop tuning experiment start time 1 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "D-axis current loop experiment duration (sec)",
+   "default": "0.05",
+   "values": "Specify direct-axis current loop tuning experiment duration 0.05 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Q-axis current loop start time (sec)",
+   "default": "1.1",
+   "values": "Specify quadrature-axis current loop tuning experiment start time 1.1 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Q-axis current loop experiment duration (sec)",
+   "default": "0.05",
+   "values": "Specify quadrature-axis current loop tuning experiment duration 0.05 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Speed loop start time (sec)",
+   "default": "2",
+   "values": "Specify speed loop tuning experiment start time 2 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Speed loop experiment duration (sec)",
+   "default": "3",
+   "values": "Specify speed loop tuning experiment duration 3 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Flux loop start time (sec)",
+   "default": "6",
+   "values": "Specify flux loop tuning experiment start time 6 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Flux loop experiment duration (sec)",
+   "default": "3",
+   "values": "Specify flux loop tuning experiment duration 3 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Experiment Mode",
+   "default": "Superposition",
+   "values": "Sinusoidal perturbation signal type Superposition (default) | Sinestream | PRBS (since R2024a)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Plant Type",
+   "default": "Stable",
+   "values": "Stability of direct-axis current plant Stable (default) | Integrating",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Plant Sign",
+   "default": "Positive",
+   "values": "Sign of direct-axis current plant Positive (default) | Negative",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Sine Amplitudes",
+   "default": "1",
+   "values": "Amplitude of sinusoidal perturbations in direct-axis current loop 1 (default) | scalar | vector of length 5",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Use external source for bandwidths",
+   "default": "off",
+   "values": "Supply external signal for target bandwidths off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external source for target phase margins",
+   "default": "off",
+   "values": "Supply external signal for target phase margin off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external source for start/stops of experiment",
+   "default": "off",
+   "values": "Supply external signal for start and stop of tuning experiment off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external source for sine amplitudes",
+   "default": "off",
+   "values": "Supply external signal for sinusoidal perturbation amplitude off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Floating point precision double (default) | single",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Estimated phase margin achieved by tuned controllers",
+   "default": "off",
+   "values": "Phase margin achieved by most recently tuned loop off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Plant frequency responses near bandwidth",
+   "default": "off",
+   "values": "Estimated frequency response for most recently tuned loop off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Plant nominal input and output",
+   "default": "off",
+   "values": "Plant input and output at nominal operating point off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Start/stop of autotuning process",
+   "default": "off",
+   "values": "Signal indicating start and end of experiment for each tuned loop off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Export to MATLAB",
+   "default": "",
+   "values": "Send experiment and tuning results to MATLAB workspace button",
+   "group": "Block Tab"
+  }
+ ]
+}

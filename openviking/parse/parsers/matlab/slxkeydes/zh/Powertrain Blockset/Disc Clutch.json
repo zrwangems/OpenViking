@@ -1,0 +1,145 @@
+{
+ "key": "Disc Clutch",
+ "title": "Disc Clutch",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Disc_Clutch.md"
+ ],
+ "text": "理想化盘式离合器耦合器，输入 4 路、输出 4 路；{Port Configuration} 指定配置 Simulink、{Clutch force equivalent net radius, Reff} 指定半径、{Number of disks, Ndisk} 指定比值、{Effective applied pressure area, Aeff} 指定压力面积 .01、{Engagement pressure threshold, Peng} 指定压力阈值、{Input shaft inertia, Jin} 指定惯性 .1、{Output shaft inertia, Jout} 指定惯性 .1、{Kinetic friction coefficient, muk} 指定系数 .3、{Static friction coefficient, mus} 指定系数 .5、{Input shaft viscous damping, bin} 指定阻尼 .001、{Output shaft viscous damping, bout} 指定阻尼 .001、{Initial input shaft velocity, win_o} 指定初始速度、{Initial output shaft velocity, wout_o} 指定初始速度、{Clutch actuation time constant, tauC} 指定常量 .01、{Start simulation with clutch locked} 以初始锁定离合器，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Press",
+   "direction": "input",
+   "summary": "施加的离合器压力 scalar"
+  },
+  {
+   "name": "BTrq",
+   "direction": "input",
+   "summary": "施加的输入扭矩 scalar"
+  },
+  {
+   "name": "FTrq",
+   "direction": "input",
+   "summary": "施加的负载扭矩 scalar"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "施加的驱动轴角速度和扭矩 two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "BSpd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "FSpd",
+   "direction": "output",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "输出速度和扭矩 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "指定配置 Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Clutch force equivalent net radius, Reff",
+   "default": "1",
+   "values": "半径 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of disks, Ndisk",
+   "default": "1",
+   "values": "比值 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Effective applied pressure area, Aeff",
+   "default": ".01",
+   "values": "压力面积 .01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Engagement pressure threshold, Peng",
+   "default": "0",
+   "values": "压力阈值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft inertia, Jin",
+   "default": ".1",
+   "values": "惯性 .1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output shaft inertia, Jout",
+   "default": ".1",
+   "values": "惯性 .1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Kinetic friction coefficient, muk",
+   "default": ".3",
+   "values": "系数 .3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Static friction coefficient, mus",
+   "default": ".5",
+   "values": "系数 .5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft viscous damping, bin",
+   "default": ".001",
+   "values": "阻尼 .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output shaft viscous damping, bout",
+   "default": ".001",
+   "values": "阻尼 .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial input shaft velocity, win_o",
+   "default": "0",
+   "values": "初始速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial output shaft velocity, wout_o",
+   "default": "0",
+   "values": "初始速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch actuation time constant, tauC",
+   "default": ".01",
+   "values": "常量 .01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with clutch locked",
+   "default": "off",
+   "values": "选择以初始锁定离合器 off (default) | on",
+   "group": ""
+  }
+ ]
+}

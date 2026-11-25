@@ -1,0 +1,13 @@
+{
+ "key": "VariantPMConnector",
+ "title": "Variant Connector",
+ "toolbox": "Simscape",
+ "kind": "block_type",
+ "source_docs": [
+  "Simscape/Utilities/Variant_Connector.md"
+ ],
+ "text": "Remove or disconnect physical components from network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

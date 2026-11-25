@@ -1,0 +1,42 @@
+{
+ "key": "Write DDS Sample",
+ "title": "Write DDS Sample",
+ "toolbox": "DDS Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "DDS Blockset/Write_DDS_Sample.md"
+ ],
+ "text": "将数据样本发送到 DDS 网络，输入 2 路、输出 1 路；{Show enable port} 显示启用端口、{Connect to live network} 指定将 DDS 仿真连接到实时网络，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_Enable",
+   "direction": "input",
+   "summary": "外部使能信号 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出 DDS 样本 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show enable port",
+   "default": "off",
+   "values": "显示启用端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Connect to live network",
+   "default": "off",
+   "values": "将 DDS 仿真连接到实时网络 off (default) | on",
+   "group": ""
+  }
+ ]
+}

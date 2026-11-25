@@ -1,0 +1,13 @@
+{
+ "key": "Light-Emitting Diode",
+ "title": "Light-Emitting Diode",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Light_Emitting_Diode.md"
+ ],
+ "text": "Exponential light-emitting diode with optical power output port.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,55 @@
+{
+ "key": "CAN FD Receive",
+ "title": "CAN FD Receive",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN FD Communication/CAN_FD_Receive.md"
+ ],
+ "text": "接收来自指定的 CAN FD 设备的 CAN FD 报文；输出 2 路；按 {标准 ID 过滤器} 指定基于标准 ID 限制或允许报文 Allow；{设备}、{扩展 ID 过滤器} 指定基于扩展 ID 限制或允许报文、{采样时间} 指定模块执行速率、{每个时间步收到的报文数} 指定接收一条或所有报文，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "output",
+   "summary": "接收的 CAN 报文 CAN_FD_MESSAGE_BUS"
+  },
+  {
+   "name": "f()",
+   "direction": "output",
+   "summary": "函数调用事件输出 函数调用事件"
+  }
+ ],
+ "params": [
+  {
+   "name": "设备",
+   "default": "",
+   "values": "CAN 设备和通道 列表选项",
+   "group": ""
+  },
+  {
+   "name": "标准 ID 过滤器",
+   "default": "all",
+   "values": "基于标准 ID 限制或允许报文 Allow all (默认) | Allow only | Block all",
+   "group": ""
+  },
+  {
+   "name": "扩展 ID 过滤器",
+   "default": "all",
+   "values": "基于扩展 ID 限制或允许报文 Allow all (默认) | Allow only | Block all",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.01",
+   "values": "模块执行速率 0.01 (默认)",
+   "group": ""
+  },
+  {
+   "name": "每个时间步收到的报文数",
+   "default": "all",
+   "values": "接收一条或所有报文 all (默认) | 1",
+   "group": ""
+  }
+ ]
+}

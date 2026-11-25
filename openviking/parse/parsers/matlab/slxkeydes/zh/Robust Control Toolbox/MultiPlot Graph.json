@@ -1,0 +1,56 @@
+{
+ "key": "MultiPlot Graph",
+ "title": "MultiPlot Graph",
+ "toolbox": "Robust Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robust Control Toolbox/MultiPlot_Graph.md"
+ ],
+ "text": "绘制多次仿真结果，输入 1 路；按 {t-min} 指定X 轴下限；{t-max} 指定 X 轴上限、{y-min} 指定 Y 轴下限、{y-max} 指定 Y 轴上限、{Plot title} 指定图窗标题 empty、{Workspace variable for export} 用于保存绘图数据的变量名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(y)",
+   "direction": "input",
+   "summary": "要绘制的信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "t-min",
+   "default": "0",
+   "values": "X 轴下限 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "t-max",
+   "default": "20",
+   "values": "X 轴上限 20 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "y-min",
+   "default": "–1",
+   "values": "Y 轴下限 –1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "y-max",
+   "default": "1",
+   "values": "Y 轴上限 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Plot title",
+   "default": "empty",
+   "values": "图窗标题 empty (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable for export",
+   "default": "multisimout",
+   "values": "用于保存绘图数据的变量名称 multisimout (default) | character vector",
+   "group": ""
+  }
+ ]
+}

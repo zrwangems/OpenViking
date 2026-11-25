@@ -1,0 +1,24 @@
+{
+ "key": "PassThrough",
+ "title": "PassThrough",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/PassThrough.md"
+ ],
+ "text": "在不做修改的情况下传播基带信号，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "输入基带信号 scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "未更改的输出电压 scalar | vector"
+  }
+ ],
+ "params": []
+}

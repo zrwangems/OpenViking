@@ -1,0 +1,37 @@
+{
+ "key": "M-S-Function",
+ "title": "Level-2 MATLAB S-Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/Level_2_MATLAB_S_Function.md"
+ ],
+ "text": "Use Level-2 MATLAB S-function in model, 1 input, 1 output, direct feedthrough; {S-Function Name} and {Parameters} sets the values of parameters for this block no. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Signal input to a Level-2 MATLAB S-function block scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Signal output of a Level-2 MATLAB S-function block scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "S-Function Name",
+   "default": "matlabfile",
+   "values": "Specify S-Function name matlabfile (default) | S-Function name",
+   "group": ""
+  },
+  {
+   "name": "Parameters",
+   "default": "default",
+   "values": "Specify values of parameters for this block no default (default)",
+   "group": ""
+  }
+ ]
+}

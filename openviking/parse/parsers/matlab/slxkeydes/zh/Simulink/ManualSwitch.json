@@ -1,0 +1,42 @@
+{
+ "key": "ManualSwitch",
+ "title": "Manual Switch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Manual_Switch.md"
+ ],
+ "text": "在两个输入之间切换，输入 2 路、输出 1 路；按 {采样时间(-1 表示继承)} 指定采样之间的时间间隔；{允许两个输入具有不同大小(产生可变大小的输出信号)} 允许不同大小的输入，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "允许两个输入具有不同大小(产生可变大小的输出信号)",
+   "default": "off",
+   "values": "允许不同大小的输入 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

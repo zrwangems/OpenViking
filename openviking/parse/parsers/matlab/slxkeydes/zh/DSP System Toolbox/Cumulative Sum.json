@@ -1,0 +1,90 @@
+{
+ "key": "Cumulative Sum",
+ "title": "Cumulative Sum",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Math Operations/Cumulative_Sum.md"
+ ],
+ "text": "通道、列或行元素的累积和，输入 2 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Sum input along} 指定沿其求和的维度 Channels、{Input processing} 指定处理输入的方法 Columns、{Reset port} 指定 Reset type、{Saturate on integer overflow} 指定定点运算时饱和、{Accumulator} 指定累加器的数据类型、{Output} 输出数据类型、{Output Minimum} 指定模块可以输出的最小值、{Output Maximum} 指定模块可以输出的最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "复位端口 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "累积和 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sum input along",
+   "default": "sum)",
+   "values": "沿其求和的维度 Channels (running sum) (default) | Columns | Rows",
+   "group": "Main"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "处理输入的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset type None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "定点运算时饱和 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "累加器的数据类型 Inherit: Same as first input (default) | fixdt([],16,0)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "输出数据类型 Inherit: Same as accumulator (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "模块可以输出的最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "模块可以输出的最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

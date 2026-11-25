@@ -1,0 +1,44 @@
+{
+ "key": "Id0 Estimator",
+ "title": "Id0 Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/ACIM Parameter Estimation/Id0_Estimator.md"
+ ],
+ "text": "估计交流感应电机 (ACIM) 的励磁电流 ( I d0 )，输入 3 路、输出 3 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "三相电流响应 scalar"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "用于 I d0 估计的控制信号 logical"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "总线信号输入 bus"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a、b 和 c 轴定子参考电压分量 scalar"
+  },
+  {
+   "name": "Id0",
+   "direction": "output",
+   "summary": "估计的励磁电流 scalar"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "调试信号 bus"
+  }
+ ],
+ "params": []
+}

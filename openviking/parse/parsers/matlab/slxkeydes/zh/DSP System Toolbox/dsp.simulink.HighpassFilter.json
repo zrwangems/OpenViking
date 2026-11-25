@@ -1,0 +1,103 @@
+{
+ "key": "dsp.simulink.HighpassFilter",
+ "title": "Highpass Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Highpass_Filter.md"
+ ],
+ "text": "设计 FIR 或 IIR 高通滤波器，输入 1 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入方法；{Filter type} 指定 FIR 或、{Design minimum order filter} 以最小阶数设计滤波器、{Filter order} 指定高通滤波器的阶数、{Stopband edge frequency (Hz)} 指定阻带边缘频率 8e3、{Passband edge frequency (Hz)} 指定通带边缘频率 12e3、{Minimum stopband attenuation (dB)} 指定最小阻带衰减、{Maximum passband ripple (dB)} 指定最大通带波纹、{Sample rate mode} 用于指定输入采样率的模式 Use normalized、{Input sample rate (Hz)} 指定输入采样率、{Simulate using} 指定要运行的仿真类型 Interpreted、{View Filter Response} 打开滤波器可视化工具、{Coefficients} 指定系数数据类型 fixdt，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要滤波的输入信号 column vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "滤波后的信号 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter type",
+   "default": "FIR",
+   "values": "FIR 或 IIR 滤波器 FIR (default) | IIR",
+   "group": "Main"
+  },
+  {
+   "name": "Design minimum order filter",
+   "default": "on",
+   "values": "以最小阶数设计滤波器 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Filter order",
+   "default": "50",
+   "values": "高通滤波器的阶数 50 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Stopband edge frequency (Hz)",
+   "default": "8e3",
+   "values": "阻带边缘频率 8e3 (default) | real positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Passband edge frequency (Hz)",
+   "default": "12e3",
+   "values": "通带边缘频率 12e3 (default) | real positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum stopband attenuation (dB)",
+   "default": "80",
+   "values": "最小阻带衰减 80 (default) | real positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum passband ripple (dB)",
+   "default": "0.1",
+   "values": "最大通带波纹 0.1 (default) | real positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "用于指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": "Main"
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入采样率 44100 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Main"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "打开滤波器可视化工具 button",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(1,16)",
+   "values": "系数数据类型 fixdt(1,16) (default) | fixdt(1,16,0) |",
+   "group": "Data Types"
+  }
+ ]
+}

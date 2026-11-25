@@ -1,0 +1,44 @@
+{
+ "key": "Analog Output",
+ "title": "Analog Output",
+ "toolbox": "Data Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Data Acquisition Toolbox/Analog_Output.md"
+ ],
+ "text": "将数据输出到数据采集设备的多个模拟通道，输入 1 路；按 {Number of ports} 指定输入数据端口数 1 for all channels；{Device} 指定要通过其输出数据的设备 select available、{Channels} 指定设备通道选择和配置 options depend、{Output sample rate} 指定设备采样率 numeric value，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "要生成的模拟输出 double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "要通过其输出数据的设备 select available device",
+   "group": ""
+  },
+  {
+   "name": "Channels",
+   "default": "",
+   "values": "设备通道选择和配置 options depend on device",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "",
+   "values": "输入数据端口数 1 for all channels | 1 per channel",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate",
+   "default": "",
+   "values": "设备采样率 numeric value",
+   "group": ""
+  }
+ ]
+}

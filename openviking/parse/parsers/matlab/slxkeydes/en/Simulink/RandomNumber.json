@@ -1,0 +1,50 @@
+{
+ "key": "RandomNumber",
+ "title": "Random Number",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Random_Number.md"
+ ],
+ "text": "Generate normally distributed random numbers, 1 output, no direct feedthrough, {Seed} sets Starting seed; {Mean}, {Variance}, {Sample time} sets the time between intervals and {Interpret vector parameters as 1-D} treats vectors as 1-D. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mean",
+   "default": "0",
+   "values": "Mean of random numbers 0 (default) | scalar | array",
+   "group": ""
+  },
+  {
+   "name": "Variance",
+   "default": "1",
+   "values": "Variance of random numbers 1 (default) | scalar | array",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "0",
+   "values": "Starting seed 0 (default) | positive integer | scalar | array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Time between intervals 0.1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "Treat vectors as 1-D on (default) | off",
+   "group": ""
+  }
+ ]
+}

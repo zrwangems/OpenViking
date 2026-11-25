@@ -1,0 +1,207 @@
+{
+ "key": "Disturbance Compensator",
+ "title": "Disturbance Compensator",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Disturbance Observer/Disturbance_Compensator.md"
+ ],
+ "text": "Modify control actions to compensate for unknown dynamics and disturbances, 9 inputs, 3 outputs, {Time delay} sets time delays; {Time domain} sets the controller time domain, {LTI state-space variable} sets the known plant dynamics, {Use external source for model matrices (A,Bu,Cm)} sets the model matrices at block input ports, {Number of states}, {Number of inputs}, {Number of outputs}, {Specify gain k (such that Bd = k*Bu)} sets the gain value for computing disturbance input, {Use external source for matrix Bd} sets the disturbance matrix at block input port, {Number of disturbances}, {Initial conditions}, {Use external source for initial conditions S0 (x0,d0)} sets the initial conditions at block input port, {Bandwidth (rad/s)} sets the observer bandwidth, {Spacing (rad/s)} sets the observer bandwidth spacing, {Use external source for matrix L} sets the observer matrix at block input port, {Use external source for matrix Kd} sets the compensation gain matrix at block input, {Limit output (u)} limits block output to specified saturation, {Upper limit} sets the upper saturation limit for block output, {Lower limit} sets the lower saturation limit for block output, {Data type} sets the floating point precision, {Output estimated model states xhat} sets the output estimated states at block output and {Output estimated model states dhat} sets the output estimated disturbances at block output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u0",
+   "direction": "input",
+   "summary": "Nominal controller inputs scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Measured outputs scalar | vector"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "State matrix scalar | vector | matrix"
+  },
+  {
+   "name": "Bu",
+   "direction": "input",
+   "summary": "Input matrix scalar | vector | matrix"
+  },
+  {
+   "name": "Cm",
+   "direction": "input",
+   "summary": "Output matrix scalar | vector | matrix"
+  },
+  {
+   "name": "Bd",
+   "direction": "input",
+   "summary": "Disturbance matrix scalar | vector | matrix"
+  },
+  {
+   "name": "S0",
+   "direction": "input",
+   "summary": "Initial conditions scalar | vector"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "Observer matrix scalar | vector | matrix"
+  },
+  {
+   "name": "Kd",
+   "direction": "input",
+   "summary": "Compensation gain matrix scalar | vector | matrix"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Modified control input scalar"
+  },
+  {
+   "name": "dhat",
+   "direction": "output",
+   "summary": "Estimated disturbances vector"
+  },
+  {
+   "name": "xhat",
+   "direction": "output",
+   "summary": "Estimated states vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time domain",
+   "default": "discrete-time",
+   "values": "Controller time domain discrete-time (default) | continuous-time",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "LTI state-space variable",
+   "default": "",
+   "values": "Known plant dynamics ss object | idss object",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use external source for model matrices (A,Bu,Cm)",
+   "default": "off",
+   "values": "Specify model matrices at block input ports off (default) | on",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Number of states",
+   "default": "1",
+   "values": "Number of states in the model 1 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "Number of inputs in the model 1 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Number of outputs",
+   "default": "1",
+   "values": "Number of outputs in the model 1 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Specify gain k (such that Bd = k*Bu)",
+   "default": "1",
+   "values": "Gain value for computing disturbance input matrix 1 (default) | nonzero scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use external source for matrix Bd",
+   "default": "off",
+   "values": "Specify disturbance matrix at block input port off (default) | on",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Number of disturbances",
+   "default": "1",
+   "values": "Number of disturbances in the model 1 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial conditions for the extended states 0 (default) | scalar | vector",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use external source for initial conditions S0 (x0,d0)",
+   "default": "off",
+   "values": "Specify initial conditions at block input port off (default) | on",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Bandwidth (rad/s)",
+   "default": "1",
+   "values": "Observer bandwidth 1 (default) | positive scalar",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Spacing (rad/s)",
+   "default": "0.01",
+   "values": "Observer bandwidth spacing 0.01 (default) | positive scalar",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Use external source for matrix L",
+   "default": "off",
+   "values": "Specify observer matrix at block input port off (default) | on",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Use external source for matrix Kd",
+   "default": "off",
+   "values": "Specify compensation gain matrix at block input port off (default) | on",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Limit output (u)",
+   "default": "off",
+   "values": "Limit block output to specified saturation limits off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Upper limit",
+   "default": "inf",
+   "values": "Upper saturation limit for block output inf (default) | scalar",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Lower limit",
+   "default": "–inf",
+   "values": "Lower saturation limit for block output –inf (default) | scalar",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "Floating point precision double (default) | single",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Time delay",
+   "default": "1",
+   "values": "Specify time delays 1 (default) | positive scalar | vector",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Output estimated model states xhat",
+   "default": "off",
+   "values": "Output estimated states at block output port off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Output estimated model states dhat",
+   "default": "off",
+   "values": "Output estimated disturbances at block output port off (default) | on",
+   "group": "Block Tab"
+  }
+ ]
+}

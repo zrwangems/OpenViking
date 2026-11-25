@@ -1,0 +1,158 @@
+{
+ "key": "LTV Block",
+ "title": "LTV System",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/LTV_System.md"
+ ],
+ "text": "仿真线性时变 (LTV) 系统，输入 2 路、输出 5 路；按 {Interpolation method} 指定插值方法；{State-space array} 指定状态空间模型数组 ss or idss model、{Initial condition source} 使用外部信号设置初始条件、{Initial condition} 指定初始条件、{Operating Point Offsets} 指定偏移量指定格式 Specify Offsets as double、{Input offset} 指定输入偏移量、{Output offset} 输出偏移量、{State offset} 指定状态偏移量、{State derivative/update offset} 指定状态导数或更新偏移量 array、{Struct array} 指定偏移量结构体数组、{Coefficients To Fix} 指定状态空间矩阵的固定系数 false、{Read values from} 指定固定系数值的来源 First model in state-space、{Extrapolation method} 指定外插方法 Clip、{Index search method} 指定 Prelookup 算法 Binary、{Begin index search using previous index result} 指定选中此复选框后，模块将使用上一时间步找到的索引开始搜索。有关此参数的详细信息，请参阅、{Block data type (discrete-time case only)} 指定模块数据类型、{Initial buffer size for delays} 指定初始缓冲区大小、{Use fixed buffer size} 使用固定缓冲区大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "IC",
+   "direction": "input",
+   "summary": "初始条件 vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "模型输出 scalar | vector"
+  },
+  {
+   "name": "x",
+   "direction": "output",
+   "summary": "状态值 scalar | vector"
+  },
+  {
+   "name": "dx",
+   "direction": "output",
+   "summary": "状态导数值 scalar | vector"
+  },
+  {
+   "name": "ss",
+   "direction": "output",
+   "summary": "局部状态空间模型 bus"
+  },
+  {
+   "name": "offset",
+   "direction": "output",
+   "summary": "LPV 模型偏移量 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "State-space array",
+   "default": "",
+   "values": "状态空间模型数组 ss or idss model array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Initial condition source",
+   "default": "internal",
+   "values": "使用外部信号设置初始条件的选项 internal (default) | external",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "初始条件 0 (default) | vector",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Operating Point Offsets",
+   "default": "arrays",
+   "values": "偏移量指定格式 Specify Offsets as double arrays (default) | Specify offsets as struct array | Use offsets in state-space array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Input offset",
+   "default": "0",
+   "values": "输入偏移量 0 (default) | array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Output offset",
+   "default": "0",
+   "values": "输出偏移量 0 (default) | array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "State offset",
+   "default": "0",
+   "values": "状态偏移量 0 (default) | array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "State derivative/update offset",
+   "default": "",
+   "values": "状态导数或更新偏移量 array",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Struct array",
+   "default": "struct",
+   "values": "偏移量结构体数组 struct (default) | structure array name",
+   "group": "LTV Model Tab"
+  },
+  {
+   "name": "Coefficients To Fix",
+   "default": "0",
+   "values": "状态空间矩阵的固定系数 false or 0 (default) | true or 1 | logical matrix",
+   "group": "Fixed Entries Tab"
+  },
+  {
+   "name": "Read values from",
+   "default": "array",
+   "values": "固定系数值的来源 First model in state-space array (default) | Custom state-space model",
+   "group": "Fixed Entries Tab"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "插值方法 Linear (default) | Nearest | Flat",
+   "group": "Scheduling Tab"
+  },
+  {
+   "name": "Extrapolation method",
+   "default": "Clip",
+   "values": "外插方法 Clip (default) | Linear",
+   "group": "Scheduling Tab"
+  },
+  {
+   "name": "Index search method",
+   "default": "search",
+   "values": "Prelookup 算法 Binary search (default) | Linear search",
+   "group": "Scheduling Tab"
+  },
+  {
+   "name": "Begin index search using previous index result",
+   "default": "on",
+   "values": "选中此复选框后，模块将使用上一时间步找到的索引开始搜索。有关此参数的详细信息，请参阅 Prelookup (Simulink) 模块参考页。 要以编程方式设置模块参数值，请使用 set_param (Simulink) 函数。 示例：set_param(gcb,\"IndexBegin\",\"off\") on (default) | off",
+   "group": "Scheduling Tab"
+  },
+  {
+   "name": "Block data type (discrete-time case only)",
+   "default": "double",
+   "values": "模块数据类型 double (default) | single",
+   "group": "Code Generation Tab"
+  },
+  {
+   "name": "Initial buffer size for delays",
+   "default": "1024",
+   "values": "初始缓冲区大小 1024 (default) | positive integer greater than 5",
+   "group": "Code Generation Tab"
+  },
+  {
+   "name": "Use fixed buffer size",
+   "default": "off",
+   "values": "使用固定缓冲区大小 off (default) | on",
+   "group": "Code Generation Tab"
+  }
+ ]
+}

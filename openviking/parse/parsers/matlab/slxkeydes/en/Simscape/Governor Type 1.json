@@ -1,0 +1,179 @@
+{
+ "key": "Governor Type 1",
+ "title": "Governor Type 1",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Turbine-Governors/Governor_Type_1.md"
+ ],
+ "text": "IEEE type 1 linearized speed-governing steam turbine model, 2 inputs, 2 outputs, {Sample time (-1 for inherited)} sets Block sample time; {Speed reference (pu)}, {Initial torque (pu)}, {Governor gain (1/droop), K (pu)} sets the gain of governor, {Lag time constant, T_1 (s)} sets the governor lag time constant, {Lead time constant, T_2 (s)} sets the governor lead time constant, {Valve position time constant, T_3 (s)} sets the time constant of valve position, {Maximum valve opening rate, U_o (pu/s)} sets the maximum opening rate of the valve, {Maximum valve closing rate, U_c (pu/s)} sets the maximum closing rate of the valve, {Maximum valve opening, on MW capability, P_max (pu)} sets the maximum opening of the valve on MW, {Minimum valve opening, on MW capability, P_min (pu)} sets the minimum opening of the valve, on MW, {Time constant for steam inlet, T_4 (s)} sets the time constant of the inlet steam, {HP fraction, K_1} sets the fraction of high-pressure shaft power, {LP fraction, K2} sets the fraction of low-pressure shaft power, {Time constant for second boiler pass, T_5 (s)}, {HP fraction, K_3} sets the fraction of high-pressure shaft power, {LP fraction, K_4} sets the fraction of low-pressure shaft power, {Time constant for third boiler pass, T_6 (s)}, {HP fraction, K_5} sets the fraction of high-pressure shaft power, {LP fraction, K_6} sets the fraction of low-pressure shaft power, {Time constant for fourth boiler pass, T_7 (s)}, {HP fraction, K_7} sets the fraction of high-pressure shaft power, {LP fraction, K_8} sets the fraction of low-pressure shaft power and {Deadband}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "speed_pu",
+   "direction": "input",
+   "summary": "Turbine speed scalar"
+  },
+  {
+   "name": "Pref",
+   "direction": "input",
+   "summary": "Speed reference bias scalar"
+  },
+  {
+   "name": "Pmech(HP)",
+   "direction": "output",
+   "summary": "High-pressure mechanical power scalar"
+  },
+  {
+   "name": "Pmech(LP)",
+   "direction": "output",
+   "summary": "Low-pressure mechanical power scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Speed reference (pu)",
+   "default": "1",
+   "values": "Speed reference 1 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Initial torque (pu)",
+   "default": "0.45",
+   "values": "Initial torque 0.45 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Governor gain (1/droop), K (pu)",
+   "default": "20",
+   "values": "Gain of governor 20 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Lag time constant, T_1 (s)",
+   "default": "0.2",
+   "values": "Governor lag time constant 0.2 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Lead time constant, T_2 (s)",
+   "default": "0",
+   "values": "Governor lead time constant 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Valve position time constant, T_3 (s)",
+   "default": "0.1",
+   "values": "Time constant of valve position 0.1 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Maximum valve opening rate, U_o (pu/s)",
+   "default": "0.1",
+   "values": "Maximum opening rate of the valve 0.1 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Maximum valve closing rate, U_c (pu/s)",
+   "default": "-0.1",
+   "values": "Maximum closing rate of the valve -0.1 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Maximum valve opening, on MW capability, P_max (pu)",
+   "default": "0.98",
+   "values": "Maximum opening of the valve on MW capability 0.98 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Minimum valve opening, on MW capability, P_min (pu)",
+   "default": "0",
+   "values": "Minimum opening of the valve, on MW capability 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Time constant for steam inlet, T_4 (s)",
+   "default": "0.25",
+   "values": "Time constant of the inlet steam 0.25 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "HP fraction, K_1",
+   "default": "0.22",
+   "values": "Fraction of high-pressure shaft power 0.22 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "LP fraction, K2",
+   "default": "0",
+   "values": "Fraction of low-pressure shaft power 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Time constant for second boiler pass, T_5 (s)",
+   "default": "4",
+   "values": "Time constant for second boiler pass 4 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "HP fraction, K_3",
+   "default": "0.22",
+   "values": "Fraction of high-pressure shaft power 0.22 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "LP fraction, K_4",
+   "default": "0",
+   "values": "Fraction of low-pressure shaft power 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Time constant for third boiler pass, T_6 (s)",
+   "default": "4",
+   "values": "Time constant for third boiler pass 4 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "HP fraction, K_5",
+   "default": "0.3",
+   "values": "Fraction of high-pressure shaft power 0.3 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "LP fraction, K_6",
+   "default": "0",
+   "values": "Fraction of low-pressure shaft power 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Time constant for fourth boiler pass, T_7 (s)",
+   "default": "0.4",
+   "values": "Time constant for fourth boiler pass 0.4 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "HP fraction, K_7",
+   "default": "0.26",
+   "values": "Fraction of high-pressure shaft power 0.26 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "LP fraction, K_8",
+   "default": "0",
+   "values": "Fraction of low-pressure shaft power 0 (default) | scalar",
+   "group": "Governor"
+  },
+  {
+   "name": "Deadband",
+   "default": "0.02",
+   "values": "Deadband width 0.02 (default) | scalar",
+   "group": "Governor"
+  }
+ ]
+}

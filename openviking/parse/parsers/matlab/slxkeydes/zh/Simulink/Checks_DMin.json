@@ -1,0 +1,61 @@
+{
+ "key": "Checks_DMin",
+ "title": "Check Dynamic Lower Bound",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model Verification/Check_Dynamic_Lower_Bound.md",
+  "HDL Coder/Model Verification/Check_Dynamic_Lower_Bound.md"
+ ],
+ "text": "检查一个信号是否始终小于另一个信号，输入 2 路、输出 1 路、无直接馈通；{Enable assertion} 启用或禁用检查、{Simulation callback when assertion fails (optional)} 指定断言失败时要计算的表达式、{Stop simulation when assertion fails} 指定检查失败时是否停止仿真、{Output assertion signal} 指定创建输出信号、{Select icon type} 指定图标类型 graphic，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "min",
+   "direction": "input",
+   "summary": "动态范围检查的下界 scalar | vector | matrix"
+  },
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "根据边界进行检查的输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "断言输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "启用或禁用检查 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "\"\"",
+   "values": "断言失败时要计算的表达式 \"\" (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "on",
+   "values": "检查失败时是否停止仿真 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "创建输出信号 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Select icon type",
+   "default": "graphic",
+   "values": "选择图标类型 graphic (default) | text",
+   "group": ""
+  }
+ ]
+}

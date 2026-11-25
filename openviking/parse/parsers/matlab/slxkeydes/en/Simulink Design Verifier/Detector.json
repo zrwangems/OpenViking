@@ -1,0 +1,55 @@
+{
+ "key": "Detector",
+ "title": "Detector",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Temporal Operators/Detector.md"
+ ],
+ "text": "Detect true duration on input and construct output true duration based on output type, 1 input, 1 output; {External reset} sets the whether the block can be reset, {Output type} specifies a fixed true duration length for the output Delayed fixed, {Time steps for input detection} sets the length of the true duration for input, {Time steps for delay} specifies the length of the delay duration and {Time steps for output durations} specifies the length of the output true. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal specified as boolean boolean"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal returns as boolean boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "External reset",
+   "default": "off",
+   "values": "whether the block can be reset off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "duration",
+   "values": "specify a fixed true duration length for the output Delayed fixed duration (default) | Synchronized",
+   "group": ""
+  },
+  {
+   "name": "Time steps for input detection",
+   "default": "2",
+   "values": "Length of the true duration for input detection 2 (default) | boolean",
+   "group": ""
+  },
+  {
+   "name": "Time steps for delay",
+   "default": "1",
+   "values": "specify the length of the delay duration 1 (default) | boolean",
+   "group": ""
+  },
+  {
+   "name": "Time steps for output durations",
+   "default": "3",
+   "values": "specify the length of the output true duration 3 (default) | boolean",
+   "group": ""
+  }
+ ]
+}

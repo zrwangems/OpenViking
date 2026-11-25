@@ -1,0 +1,125 @@
+{
+ "key": "Simulation 3D Ray Tracer",
+ "title": "Simulation 3D Ray Tracer",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Ray_Tracer.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Ray_Tracer.md"
+ ],
+ "text": "在 3D 环境中实现射线追踪；输出 5 路；按 {Mounting location} 指定传感器安装位置；{Sensor identifier} 指定唯一传感器标识符、{Parent name} 指定父级名称 Scene、{Coordinate system} 用于参与者变换的坐标系、{Specify offset} 指定相对于安装位置的偏移、{Relative translation [X, Y, Z]} 指定相对于安装位置的平移偏移量、{Relative rotation [Roll, Pitch, Yaw]} 指定相对于安装位置的旋转偏移量、{Ray origins} 指定射线原点 zeros、{Ray directions} 指定归一化射线方向 ones、{Max ray lengths} 指定最大射线总长度 ones、{Number of bounces} 指定每条射线的反弹次数、{Visualize trace line} 指定可视化射线追踪、{Enable optimization} 启用优化、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "HitLocations",
+   "direction": "output",
+   "summary": "命中位置 real-valued N(B+1) -by-3 array"
+  },
+  {
+   "name": "HitNormals",
+   "direction": "output",
+   "summary": "射线在命中位置处的法向 real-valued N(B+1) -by-3 array"
+  },
+  {
+   "name": "HitDistances",
+   "direction": "output",
+   "summary": "射线到命中位置的距离 real-valued N(B+1) -by-1 array"
+  },
+  {
+   "name": "SurfaceIds",
+   "direction": "output",
+   "summary": "命中表面的对象 ID integer-valued N(B+1) -by-1 vector | 0"
+  },
+  {
+   "name": "IsValidHit",
+   "direction": "output",
+   "summary": "命中标志 N -by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "唯一传感器标识符 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "父级名称 Scene Origin (default)",
+   "group": ""
+  },
+  {
+   "name": "Coordinate system",
+   "default": "Default",
+   "values": "用于参与者变换的坐标系 Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE",
+   "group": ""
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "传感器安装位置 Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": ""
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "指定相对于安装位置的偏移 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Relative translation [X, Y, Z]",
+   "default": "0]",
+   "values": "相对于安装位置的平移偏移量 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": ""
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw]",
+   "default": "0]",
+   "values": "相对于安装位置的旋转偏移量 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": ""
+  },
+  {
+   "name": "Ray origins",
+   "default": "zeros(10,3)",
+   "values": "射线原点 zeros(10,3) (default) | real-valued N -by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Ray directions",
+   "default": "ones(10,3)",
+   "values": "归一化射线方向 ones(10,3) (default) | real-valued N -by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Max ray lengths",
+   "default": "ones(10,1)*10",
+   "values": "最大射线总长度 ones(10,1)*10 (default) | real-valued N -by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Number of bounces",
+   "default": "2",
+   "values": "每条射线的反弹次数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Visualize trace line",
+   "default": "on",
+   "values": "可视化射线追踪 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable optimization",
+   "default": "on",
+   "values": "启用优化 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

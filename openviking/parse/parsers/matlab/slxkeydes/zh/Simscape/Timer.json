@@ -1,0 +1,13 @@
+{
+ "key": "Timer",
+ "title": "Timer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Timer.md"
+ ],
+ "text": "定时器集成电路的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

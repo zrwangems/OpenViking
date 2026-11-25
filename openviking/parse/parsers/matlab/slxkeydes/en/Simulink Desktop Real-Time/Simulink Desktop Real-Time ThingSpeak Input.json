@@ -1,0 +1,116 @@
+{
+ "key": "Simulink Desktop Real-Time ThingSpeak Input",
+ "title": "ThingSpeak Input",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Internet of Things/ThingSpeak_Input.md"
+ ],
+ "text": "Read input fields from ThingSpeak channel, 1 output, {Type} sets Data type selector; {Channel number} sets the thingSpeak channel being accessed, {Configure channel parameters} selects and configure channel to access, {ThingSpeak server} sets the server for data transfer, {Channel ID} sets the unique channel, {Read API key} sets the access key for reading from channel character, {Update period (secs)} sets the read update period, in seconds, {View channel web page} sets the access web page for channel, {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {Channel fields to read} defines which parts of channel to read, {Output data type} defines data type of output, {Mode} sets the method of defining type and {Data type override} sets the policy on a signal type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Data read from channel numeric"
+  }
+ ],
+ "params": [
+  {
+   "name": "Channel number",
+   "default": "0",
+   "values": "ThingSpeak channel being accessed Read-only: 0 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Configure channel parameters",
+   "default": "",
+   "values": "Select and configure channel to access (button)",
+   "group": ""
+  },
+  {
+   "name": "ThingSpeak server",
+   "default": "api.thingspeak.com",
+   "values": "Server for data transfer api.thingspeak.com (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Channel ID",
+   "default": "12397",
+   "values": "Unique channel 12397 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Read API key",
+   "default": "",
+   "values": "Access key for reading from channel character vector",
+   "group": ""
+  },
+  {
+   "name": "Update period (secs)",
+   "default": "20",
+   "values": "Read update period, in seconds 20 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "View channel web page",
+   "default": "",
+   "values": "Access web page for channel (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Channel fields to read",
+   "default": "1",
+   "values": "Define which parts of channel to read 1 (default) | [1–8]",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Define data type of output port double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "in",
+   "values": "Method of defining type Built in (default) | Expression",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "double",
+   "values": "Data type selector double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Data type override",
+   "default": "inherit",
+   "values": "Policy on a signal type mismatch inherit (default) | off",
+   "group": ""
+  }
+ ]
+}

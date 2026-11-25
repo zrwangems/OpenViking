@@ -1,0 +1,226 @@
+{
+ "key": "MIMO Fading Channel",
+ "title": "MIMO Fading Channel",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Channels/MIMO_Fading_Channel.md",
+  "Communications Toolbox/MIMO/MIMO_Fading_Channel.md"
+ ],
+ "text": "Filter input signal through MIMO multipath fading channel, 4 inputs, 2 outputs, {Specify spatial correlation} sets Spatial correlation mode; {Inherit sample rate from input} sets the option to inherit the sample rate, {Sample rate (Hz)} sets the input signal sample rate, {Discrete path delays (s)} sets the delays for each discrete path, {Average path gains (dB)} sets the average gain for each discrete path, {Normalize average path gains to 0 dB} sets the option to normalize average path gains, {Fading distribution}, {K-factors} sets the k-factor of Rician fading channel, {LOS path Doppler shifts (Hz)} sets the doppler shifts for line-of-sight, {LOS path initial phases (rad)} sets the initial phases for line-of-sight, {Maximum Doppler shift (Hz)} sets the maximum Doppler shift for all channel, {Doppler spectrum}, {Number of transmit antennas}, {Number of receive antennas}, {Transmit spatial correlation} sets the spatial correlation of transmitter, {Receive spatial correlation} sets the spatial correlation of receiver {Combined spatial correlation}, {Normalize outputs by number of receive antennas} sets the normalize channel output, {Simulate using} sets the compilation type Interpreted, {Antenna selection scheme}, {Technique for generating fading samples} sets the channel modeling technique Filtered Gaussian, {Number of sinusoids}, {Initial time source} sets the source of initial time, {Initial time (s)} sets the initial time offset, {Initial seed} sets the random number generator initial seed, {Output channel path gains} sets the option to output channel path gains, {Channel visualization} selects the channel visualization, {Antenna pair to display} sets the transmit-receive antenna pair to display, {Percentage of samples to display} and {Path for Doppler spectrum display} sets the path for which Doppler spectrum. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input data signal vector"
+  },
+  {
+   "name": "Tx Sel",
+   "direction": "input",
+   "summary": "Select active transmit antennas binary vector"
+  },
+  {
+   "name": "Rx Sel",
+   "direction": "input",
+   "summary": "Select active receive antennas binary vector"
+  },
+  {
+   "name": "Init Time",
+   "direction": "input",
+   "summary": "Initial time offset nonnegative scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output data signal for fading channel vector"
+  },
+  {
+   "name": "Gain",
+   "direction": "output",
+   "summary": "Discrete path gains 4-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Option to inherit the sample rate from input on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1",
+   "values": "Input signal sample rate 1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Discrete path delays (s)",
+   "default": "0",
+   "values": "Delays for each discrete path 0 (default) | nonnegative scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Average path gains (dB)",
+   "default": "0",
+   "values": "Average gain for each discrete path 0 (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalize average path gains to 0 dB",
+   "default": "on",
+   "values": "Option to normalize average path gains to 0 dB on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Fading distribution",
+   "default": "Rayleigh",
+   "values": "Fading distribution of channel Rayleigh (default) | Rician",
+   "group": "Main Tab"
+  },
+  {
+   "name": "K-factors",
+   "default": "3",
+   "values": "K-factor of Rician fading channel 3 (default) | positive scalar | row vector of nonnegative values",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LOS path Doppler shifts (Hz)",
+   "default": "0",
+   "values": "Doppler shifts for line-of-sight components 0 (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LOS path initial phases (rad)",
+   "default": "0",
+   "values": "Initial phases for line-of-sight components 0 (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Maximum Doppler shift (Hz)",
+   "default": "0.001",
+   "values": "Maximum Doppler shift for all channel paths 0.001 (default) | nonnegative scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Doppler spectrum",
+   "default": "doppler(’Jakes’)",
+   "values": "Doppler spectrum shape for all channel paths doppler(’Jakes’) (default) | doppler(’Flat’) | doppler(’Rounded’,...) | doppler(’Bell’,...) | doppler(’Asymmetric Jakes’,...) | doppler(’Restricted Jakes’,...) | doppler(’Gaussian’,...) | doppler(’BiGaussian’,...)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Specify spatial correlation",
+   "default": "None",
+   "values": "Spatial correlation mode None (default) | Separate Tx Rx | Combined",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of transmit antennas",
+   "default": "2",
+   "values": "Number of transmit antennas 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of receive antennas",
+   "default": "2",
+   "values": "Number of receive antennas 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Transmit spatial correlation",
+   "default": "1]",
+   "values": "Spatial correlation of transmitter [1 0; 0 1] (default) | matrix | 3-D array",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Receive spatial correlation",
+   "default": "1]",
+   "values": "Spatial correlation of receiver [1 0; 0 1] (default) | matrix | 3-D array",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Combined spatial correlation",
+   "default": "1]",
+   "values": "Combined spatial correlation matrix [1 0 0 0; 0 1 0 0; 0 0 1 0; 0 0 0 1] (default) | matrix | 3-D array",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalize outputs by number of receive antennas",
+   "default": "on",
+   "values": "Normalize channel output on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Compilation type Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Antenna selection scheme",
+   "default": "Off",
+   "values": "Antenna selection scheme Off (default) | Tx | Rx | Tx and Rx",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Technique for generating fading samples",
+   "default": "noise",
+   "values": "Channel modeling technique Filtered Gaussian noise (default) | Sum of sinusoids",
+   "group": "Realization Tab"
+  },
+  {
+   "name": "Number of sinusoids",
+   "default": "48",
+   "values": "Number of sinusoids used 48 (default) | positive integer",
+   "group": "Realization Tab"
+  },
+  {
+   "name": "Initial time source",
+   "default": "Property",
+   "values": "Source of initial time offset Property (default) | Input port",
+   "group": "Realization Tab"
+  },
+  {
+   "name": "Initial time (s)",
+   "default": "0",
+   "values": "Initial time offset 0 (default) | nonnegative scalar",
+   "group": "Realization Tab"
+  },
+  {
+   "name": "Initial seed",
+   "default": "73",
+   "values": "Random number generator initial seed 73 (default) | nonnegative integer",
+   "group": "Realization Tab"
+  },
+  {
+   "name": "Output channel path gains",
+   "default": "off",
+   "values": "Option to output channel path gains off (default) | on",
+   "group": "Realization Tab"
+  },
+  {
+   "name": "Channel visualization",
+   "default": "Off",
+   "values": "Select the channel visualization Off (default) | Impulse response | Frequency response | Doppler spectrum | Impulse and frequency responses",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Antenna pair to display",
+   "default": "[1,1]",
+   "values": "Transmit-receive antenna pair to display [1,1] (default) | vector",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Percentage of samples to display",
+   "default": "25%",
+   "values": "Percentage of samples to display 25% (default) | 10% | 50% | 100%",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Path for Doppler spectrum display",
+   "default": "1",
+   "values": "Path for which Doppler spectrum is displayed 1 (default) | positive integer",
+   "group": "Visualization Tab"
+  }
+ ]
+}

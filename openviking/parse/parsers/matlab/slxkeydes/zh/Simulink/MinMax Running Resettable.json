@@ -1,0 +1,42 @@
+{
+ "key": "MinMax Running Resettable",
+ "title": "MinMax Running Resettable",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Math Operations/MinMax_Running_Resettable.md"
+ ],
+ "text": "确定信号随时间而改变的最小值或最大值，输入 2 路、输出 1 路；{函数} 指定最小值或最大值、{初始条件} 指定将输出重置后的值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "重置信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "动态最小值或最大值 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "函数",
+   "default": "min",
+   "values": "指定最小值或最大值 min (默认) | max",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "0.0",
+   "values": "将输出重置后的值 0.0 (默认) | 标量或向量",
+   "group": ""
+  }
+ ]
+}

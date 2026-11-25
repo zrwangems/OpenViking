@@ -1,0 +1,13 @@
+{
+ "key": "Radiative Heat Transfer",
+ "title": "Radiative Heat Transfer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Radiative_Heat_Transfer.md"
+ ],
+ "text": "通过辐射进行的热传递 - **库：** Simscape / Foundation Library / Thermal / Thermal Elements 辐射传热模块表示两个物体之间的辐射热传递。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

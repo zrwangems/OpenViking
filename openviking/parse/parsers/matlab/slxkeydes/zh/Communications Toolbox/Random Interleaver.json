@@ -1,0 +1,13 @@
+{
+ "key": "Random Interleaver",
+ "title": "Random Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Random_Interleaver.md"
+ ],
+ "text": "使用随机置换重新排列输入符号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

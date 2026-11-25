@@ -1,0 +1,13 @@
+{
+ "key": "Translational Mechanical Converter (G)",
+ "title": "Translational Mechanical Converter (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Translational_Mechanical_Converter_G.md"
+ ],
+ "text": "气体网络与机械平移网络之间的接口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

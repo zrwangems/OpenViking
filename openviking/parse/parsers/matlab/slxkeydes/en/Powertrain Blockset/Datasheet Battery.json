@@ -1,0 +1,118 @@
+{
+ "key": "Datasheet Battery",
+ "title": "Datasheet Battery",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/Datasheet Battery/Datasheet_Battery.md"
+ ],
+ "text": "Lithium-ion, lithium-polymer, or lead-acid battery, 2 outputs; {Initial battery capacity} sets the input or parameter, {Output battery voltage} sets the unfiltered or Filter, {Rated capacity at nominal temperature, BattChargeMax} sets the constant, {Open circuit voltage table data, Em} sets the 1-D lookup table 1 -by, {State of charge breakpoints for open circuit voltage, SOCEmBp} sets the breakpoints 1 -by, {Internal resistance table data, RInt} sets the 2-D lookup table N -by, {Battery temperature breakpoints, BattTempBp} sets the breakpoints, {State of charge breakpoints for internal resistance, SOCRintBp} sets the breakpoints, {Number of cells in series, Ns} sets the integer, {Number of cells in parallel, Np} sets the integer, {Initial battery capacity, BattCapInit} sets the capacity, {Output battery voltage time constant, Tc} sets the filter time constant and {Output battery voltage initial value, Vinit} sets the filter initial voltage. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CapInit",
+   "direction": "unknown",
+   "summary": "Battery capacity scalar"
+  },
+  {
+   "name": "BattCurr",
+   "direction": "unknown",
+   "summary": "Battery load current scalar"
+  },
+  {
+   "name": "BattTemp",
+   "direction": "unknown",
+   "summary": "Battery temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "BattVolt",
+   "direction": "output",
+   "summary": "Battery output voltage scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial battery capacity",
+   "default": "Parameter",
+   "values": "Input or parameter Parameter (default) | External Input",
+   "group": ""
+  },
+  {
+   "name": "Output battery voltage",
+   "default": "Unfiltered",
+   "values": "Unfiltered or Filter Unfiltered (default) | Filtered",
+   "group": ""
+  },
+  {
+   "name": "Rated capacity at nominal temperature, BattChargeMax",
+   "default": "100",
+   "values": "Constant 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open circuit voltage table data, Em",
+   "default": "",
+   "values": "1-D lookup table 1 -by- P matrix",
+   "group": ""
+  },
+  {
+   "name": "State of charge breakpoints for open circuit voltage, SOCEmBp",
+   "default": "",
+   "values": "Breakpoints 1 -by- P matrix",
+   "group": ""
+  },
+  {
+   "name": "Internal resistance table data, RInt",
+   "default": "",
+   "values": "2-D lookup table N -by- M matrix",
+   "group": ""
+  },
+  {
+   "name": "Battery temperature breakpoints, BattTempBp",
+   "default": "313.1]",
+   "values": "Breakpoints [243.1 253.1 263.1 273.1 283.1 298.1 313.1] (default) | 1 -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "State of charge breakpoints for internal resistance, SOCRintBp",
+   "default": "1]",
+   "values": "Breakpoints [0 0.2 0.4 0.6 0.8 1] (default) | 1 -by- M matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of cells in series, Ns",
+   "default": "1",
+   "values": "Integer 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of cells in parallel, Np",
+   "default": "1",
+   "values": "Integer 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial battery capacity, BattCapInit",
+   "default": "100",
+   "values": "Capacity 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output battery voltage time constant, Tc",
+   "default": "1/1000",
+   "values": "Filter time constant 1/1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output battery voltage initial value, Vinit",
+   "default": "4.221",
+   "values": "Filter initial voltage 4.221 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

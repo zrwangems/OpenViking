@@ -1,0 +1,438 @@
+{
+ "key": "C28x eQEP",
+ "title": "eQEP",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/eQEP.md",
+  "C2000 Microcontroller Blockset/C2805x/eQEP.md",
+  "C2000 Microcontroller Blockset/C2806x/eQEP.md",
+  "C2000 Microcontroller Blockset/C280x/eQEP.md",
+  "C2000 Microcontroller Blockset/C2833x/eQEP.md",
+  "C2000 Microcontroller Blockset/C2834x/eQEP.md",
+  "C2000 Microcontroller Blockset/F280013x/eQEP.md",
+  "C2000 Microcontroller Blockset/F280015x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28002x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28003x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28004x/eQEP.md",
+  "C2000 Microcontroller Blockset/F2807x/eQEP.md",
+  "C2000 Microcontroller Blockset/F2837xD/eQEP.md",
+  "C2000 Microcontroller Blockset/F2837xS/eQEP.md",
+  "C2000 Microcontroller Blockset/F28p55x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28p65x/eQEP.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/eQEP.md"
+ ],
+ "text": "用于推导位置、方向和速度的正交编码器脉冲模块，输入 3 路、输出 12 路；按 {Sample time} 指定模块读取位置计数器的频率；{Module} 用于获取位置、方向和速度的 eQEP 模块、{Position counter mode} 指定与 eQEP 外设输入编码方式相匹配的模式、{Positive rotation} 指定旋转方向 Clockwise、{External clock rate} 指定测量分辨率 2x resolution: Count the rising/falling、{Quadrature direction flag output port} 指定创建方向标志端口、{Invert input QEPxX polarity} 指定反转 eQEP 输入的极性、{Index pulse gating option} 指定使能索引脉冲由选通输入进行门控、{Output position counter} 输出位置计数器信号、{Maximum position counter value (0~4294967295)} 指定位置计数器最大值、{Enable set to init value on index event} 指定使能设置位置计数器初始化值、{Set to init value on index event} 指定位置计数器的初始化值 Rising、{Enable set to init value on strobe event} 指定使能设置位置计数器初始化值、{Set to init value on strobe event} 指定位置计数器的初始化值 Rising、{Enable software initialization} 指定使能设置位置计数器初始化值、{Software initialization source} 指定位置计数器的初始化源 Input、{Initialization value (0~4294967295)} 指定位置计数器的初始化值、{Position counter reset mode} 指定复位位置计数器 Reset on an index、{Output position counter error flag} 指定发生错误时输出位置计数器错误标志、{Output latch position counter on index event} 指定在索引事件时锁存位置计数器、{Index event latch of position counter} 指定将位置计数器配置为在事件发生时锁存 Rising、{Output latch position counter on strobe event} 指定在选通事件时锁存位置计数器、{Strobe event of latched position counter} 指定将位置计数器配置为在选通事件时锁存 Rising、{Enable QEP capture} 启用边沿捕获单元、{Output capture timer} 输出捕获定时器、{Output capture period timer} 输出捕获周期、{eQEP capture timer prescaler} 指定对捕获定时器时钟频率进行预分频、{Unit position event prescaler} 指定对正交时钟进行预分频、{Enable and output overflow error flag} 指定捕获定时器溢出时输出溢出错误标志、{Enable and output direction change error flag} 输出方向变化错误标志、{Capture timer and position} 指定 QEP 捕获锁存模式 On position counter、{Unit timer period (0~4294967295)} 指定单位定时器周期、{Output capture timer latched value} 输出捕获定时器锁存值、{Output capture timer period latched value} 输出捕获定时器周期锁存值、{Output position counter latched value} 输出位置计数器锁存值、{Enable position-compare sync signal output} 启用位置比较同步信号输出、{Sync output pin selection} 用于同步信号的 GPIO 引脚 Index pin is used for sync、{Compare value source} 指定位置比较值的来源 Specify via、{Position compare shadow load mode} 用于生成位置比较同步信号的影子模式 Load、{Position compare value (0~4294967295)} 用于比较位置的值、{Sync output pulse width (1~4096)} 指定位置比较同步输出信号的脉冲宽度、{Polarity of sync output} 指定同步输出的极性 Active、{Watchdog timer enable} 启用看门狗超时标志、{Watchdog timer} 指定看门狗定时器的超时值、{Position counter error interrupt enable} 启用位置计数器错误中断、{Quadrature phase error interrupt enable} 启用正交相位错误中断、{Quadrature direction change interrupt enable} 启用正交方向改变中断、{Watchdog timeout interrupt enable} 启用看门狗超时中断、{Position counter underflow interrupt enable} 启用位置计数器下溢中断、{Position counter overflow interrupt enable} 启用位置计数器溢出中断、{Position-compare ready interrupt enable} 启用位置比较就绪中断、{Position-compare match interrupt enable} 启用位置比较匹配中断、{Strobe event latch interrupt enable} 启用选通事件锁存中断、{Index event latch interrupt enable} 启用索引事件锁存中断、{Unit timeout interrupt enable} 启用单元超时中断，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "swi",
+   "direction": "input",
+   "summary": "动态更新位置计数器的初始化值 scalar"
+  },
+  {
+   "name": "cmp",
+   "direction": "input",
+   "summary": "用于比较位置的值 scalar"
+  },
+  {
+   "name": "iel",
+   "direction": "input",
+   "summary": "软件索引标记 scalar"
+  },
+  {
+   "name": "qposcnt",
+   "direction": "output",
+   "summary": "位置计数器信号 scalar"
+  },
+  {
+   "name": "pcef",
+   "direction": "output",
+   "summary": "发生错误时的位置计数器错误标志 scalar"
+  },
+  {
+   "name": "qdf",
+   "direction": "output",
+   "summary": "正交模块的方向标志 scalar"
+  },
+  {
+   "name": "qctmr",
+   "direction": "output",
+   "summary": "捕获定时器信号 scalar"
+  },
+  {
+   "name": "qcprd",
+   "direction": "output",
+   "summary": "捕获周期信号 scalar"
+  },
+  {
+   "name": "coef",
+   "direction": "output",
+   "summary": "eQEP 溢出错误标志 scalar"
+  },
+  {
+   "name": "cdef",
+   "direction": "output",
+   "summary": "方向变化错误标志 scalar"
+  },
+  {
+   "name": "qctmrlat",
+   "direction": "output",
+   "summary": "捕获定时器锁存值 scalar"
+  },
+  {
+   "name": "qcprdlat",
+   "direction": "output",
+   "summary": "捕获定时器周期锁存值 scalar"
+  },
+  {
+   "name": "qposlat",
+   "direction": "output",
+   "summary": "位置计数器锁存值 scalar"
+  },
+  {
+   "name": "qposilat",
+   "direction": "output",
+   "summary": "在索引事件时锁存位置计数器 scalar"
+  },
+  {
+   "name": "qposslat",
+   "direction": "output",
+   "summary": "在选通事件时锁存位置计数器 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Module",
+   "default": "eQEP1",
+   "values": "用于获取位置、方向和速度的 eQEP 模块 eQEP1 (default) | eQEP2 | eQEP3",
+   "group": "General"
+  },
+  {
+   "name": "Position counter mode",
+   "default": "Quadrature-count",
+   "values": "与 eQEP 外设输入编码方式相匹配的模式 Quadrature-count (default) | Direction-count | Up-count | Down-count",
+   "group": "General"
+  },
+  {
+   "name": "Positive rotation",
+   "default": "Clockwise",
+   "values": "旋转方向 Clockwise (default) | Counterclockwise",
+   "group": "General"
+  },
+  {
+   "name": "External clock rate",
+   "default": "edge",
+   "values": "测量分辨率 2x resolution: Count the rising/falling edge (default) | 1x resolution: Count the rising edge only",
+   "group": "General"
+  },
+  {
+   "name": "Quadrature direction flag output port",
+   "default": "off",
+   "values": "创建方向标志端口 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Invert input QEPxX polarity",
+   "default": "off",
+   "values": "反转 eQEP 输入的极性 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Index pulse gating option",
+   "default": "off",
+   "values": "使能索引脉冲由选通输入进行门控 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.0001",
+   "values": "模块读取位置计数器的频率 0.0001 (default) | -1 | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Output position counter",
+   "default": "on",
+   "values": "输出位置计数器信号 on (default) | off",
+   "group": "Position counter"
+  },
+  {
+   "name": "Maximum position counter value (0~4294967295)",
+   "default": "4294967295",
+   "values": "指定位置计数器最大值 4294967295 (default) | integer in [0, 4,294,967,295]",
+   "group": "Position counter"
+  },
+  {
+   "name": "Enable set to init value on index event",
+   "default": "off",
+   "values": "使能设置位置计数器初始化值的选项 off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Set to init value on index event",
+   "default": "edge",
+   "values": "位置计数器的初始化值 Rising edge (default) | Falling edge",
+   "group": "Position counter"
+  },
+  {
+   "name": "Enable set to init value on strobe event",
+   "default": "off",
+   "values": "使能设置位置计数器初始化值的选项 off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Set to init value on strobe event",
+   "default": "edge",
+   "values": "设置位置计数器的初始化值 Rising edge (default) | Depending on direction",
+   "group": "Position counter"
+  },
+  {
+   "name": "Enable software initialization",
+   "default": "off",
+   "values": "使能设置位置计数器初始化值的选项 off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Software initialization source",
+   "default": "port",
+   "values": "指定位置计数器的初始化源 Input port (default) | Set to init value at start up",
+   "group": "Position counter"
+  },
+  {
+   "name": "Initialization value (0~4294967295)",
+   "default": "",
+   "values": "位置计数器的初始化值 2147483648 | integer in [0, 4,294,967,295]",
+   "group": "Position counter"
+  },
+  {
+   "name": "Position counter reset mode",
+   "default": "event",
+   "values": "复位位置计数器 Reset on an index event (default) | Reset on the maximum position | Reset on the first index event | Reset on a time unit event",
+   "group": "Position counter"
+  },
+  {
+   "name": "Output position counter error flag",
+   "default": "off",
+   "values": "发生错误时输出位置计数器错误标志 off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Output latch position counter on index event",
+   "default": "off",
+   "values": "在索引事件时锁存位置计数器 off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Index event latch of position counter",
+   "default": "edge",
+   "values": "将位置计数器配置为在事件发生时锁存 Rising edge (default) | Falling edge | Software index marker via input port",
+   "group": "Position counter"
+  },
+  {
+   "name": "Output latch position counter on strobe event",
+   "default": "off",
+   "values": "在选通事件时锁存位置计数器 off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Strobe event of latched position counter",
+   "default": "edge",
+   "values": "将位置计数器配置为在选通事件时锁存 Rising edge (default) | Depending on direction",
+   "group": "Position counter"
+  },
+  {
+   "name": "Enable QEP capture",
+   "default": "off",
+   "values": "启用边沿捕获单元 off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output capture timer",
+   "default": "off",
+   "values": "输出捕获定时器 off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output capture period timer",
+   "default": "off",
+   "values": "输出捕获周期 off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "eQEP capture timer prescaler",
+   "default": "128",
+   "values": "对捕获定时器时钟频率进行预分频 128 (default) | 1 | 2 | 4 | 8 | 16 | 32 | 64",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Unit position event prescaler",
+   "default": "128",
+   "values": "对正交时钟进行预分频 128 (default) | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Enable and output overflow error flag",
+   "default": "off",
+   "values": "捕获定时器溢出时输出溢出错误标志 off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Enable and output direction change error flag",
+   "default": "off",
+   "values": "输出方向变化错误标志 off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Capture timer and position",
+   "default": "read",
+   "values": "QEP 捕获锁存模式 On position counter read (default) | On unit time-out event",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Unit timer period (0~4294967295)",
+   "default": "100000000",
+   "values": "设置单位定时器周期 100000000 (default) | value in the range [0, 4,294,967,295]",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output capture timer latched value",
+   "default": "off",
+   "values": "输出捕获定时器锁存值 off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output capture timer period latched value",
+   "default": "off",
+   "values": "输出捕获定时器周期锁存值 off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output position counter latched value",
+   "default": "off",
+   "values": "输出位置计数器锁存值 off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Enable position-compare sync signal output",
+   "default": "off",
+   "values": "启用位置比较同步信号输出 off (default) | on",
+   "group": "Compare output"
+  },
+  {
+   "name": "Sync output pin selection",
+   "default": "output",
+   "values": "用于同步信号的 GPIO 引脚 Index pin is used for sync output (default) | Strobe pin is used for sync output",
+   "group": "Compare output"
+  },
+  {
+   "name": "Compare value source",
+   "default": "dialog",
+   "values": "位置比较值的来源 Specify via dialog (default) | Input port",
+   "group": "Compare output"
+  },
+  {
+   "name": "Position compare shadow load mode",
+   "default": "QPOSCNT=0",
+   "values": "用于生成位置比较同步信号的影子模式 Load on QPOSCNT=0 (default) | Shadow disabled(load immediate) | Load on QPOSCNT=QPOSCMP",
+   "group": "Compare output"
+  },
+  {
+   "name": "Position compare value (0~4294967295)",
+   "default": "4294967295",
+   "values": "用于比较位置的值 4294967295 (default) | value in the range [0, 4,294,967,295]",
+   "group": "Compare output"
+  },
+  {
+   "name": "Sync output pulse width (1~4096)",
+   "default": "1",
+   "values": "位置比较同步输出信号的脉冲宽度 1 (default) | value in the range [0, 4,096]",
+   "group": "Compare output"
+  },
+  {
+   "name": "Polarity of sync output",
+   "default": "high",
+   "values": "同步输出的极性 Active high (default) | Active low",
+   "group": "Compare output"
+  },
+  {
+   "name": "Watchdog timer enable",
+   "default": "off",
+   "values": "启用看门狗超时标志 off (default) | on",
+   "group": "Watchdog unit"
+  },
+  {
+   "name": "Watchdog timer",
+   "default": "65535",
+   "values": "看门狗定时器的超时值 65535 (default) | value in the range [0, 65,535]",
+   "group": "Watchdog unit"
+  },
+  {
+   "name": "Position counter error interrupt enable",
+   "default": "off",
+   "values": "启用位置计数器错误中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Quadrature phase error interrupt enable",
+   "default": "off",
+   "values": "启用正交相位错误中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Quadrature direction change interrupt enable",
+   "default": "off",
+   "values": "启用正交方向改变中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Watchdog timeout interrupt enable",
+   "default": "off",
+   "values": "启用看门狗超时中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Position counter underflow interrupt enable",
+   "default": "off",
+   "values": "启用位置计数器下溢中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Position counter overflow interrupt enable",
+   "default": "off",
+   "values": "启用位置计数器溢出中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Position-compare ready interrupt enable",
+   "default": "off",
+   "values": "启用位置比较就绪中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Position-compare match interrupt enable",
+   "default": "off",
+   "values": "启用位置比较匹配中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Strobe event latch interrupt enable",
+   "default": "off",
+   "values": "启用选通事件锁存中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Index event latch interrupt enable",
+   "default": "off",
+   "values": "启用索引事件锁存中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Unit timeout interrupt enable",
+   "default": "off",
+   "values": "启用单元超时中断 off (default) | on",
+   "group": "Interrupt"
+  }
+ ]
+}

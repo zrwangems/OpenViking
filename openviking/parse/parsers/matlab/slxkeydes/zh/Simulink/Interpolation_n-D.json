@@ -1,0 +1,204 @@
+{
+ "key": "Interpolation_n-D",
+ "title": "Interpolation Using Prelookup",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/Interpolation_Using_Prelookup.md"
+ ],
+ "text": "使用预先计算的索引和区间比值快速逼近 N 维函数，输入 8 路、输出 1 路；按 {插值方法} 指定Linear point-slope 、 Flat 、 Nearest 或 Linear Lagrange ；{维数}、{需要以总线输出的索引和区间比} 指定索引和区间比输入可以合并为一个总线、{设定} 指定如何输入表数据、{源}、{值}、{名称}、{外插方法} 指定处理超出断点数据集范围的输入的方法、{有效的索引输入可到达最后一个索引} 允许输入访问表数据最后的元素、{假设索引在范围内} 指定检查超范围索引值、{输入超出范围的诊断} 指定当输入超出范围时的模块操作、{子表选择维数} 用于计算输出的子表维数、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{表数据} 指定表值的数据类型、{表数据最小值} 指定表数据的最小值、{表数据最大值} 指定表数据的最大值、{中间结果}、{输出}、{输出最小值} 指定模块可以输出的最小值、{输出最大值} 指定模块可以输出的最大值、{内部规则优先级} 指定进行中间计算的内部规则、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "k1",
+   "direction": "input",
+   "summary": "索引 k ，用于表的第一个维度 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "f1",
+   "direction": "input",
+   "summary": "区间比 f ，用于表的第一个维度 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "kn",
+   "direction": "input",
+   "summary": "索引 k ，用于表的第 n 个维度 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "fn",
+   "direction": "input",
+   "summary": "区间比 f ，用于表的第 n 个维度 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "kf1",
+   "direction": "input",
+   "summary": "包含索引 k 和区间比 f 的输入 总线对象"
+  },
+  {
+   "name": "kfn",
+   "direction": "input",
+   "summary": "包含索引 k 和区间比 f 的输入 总线对象"
+  },
+  {
+   "name": "sm",
+   "direction": "input",
+   "summary": "选择表数据的子集并对其进行插值 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "表数据 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "N 维函数的逼近 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "维数",
+   "default": "2",
+   "values": "表数据的维数 2 (默认) | 在 1 和 30 之间的整数",
+   "group": "常设"
+  },
+  {
+   "name": "需要以总线输出的索引和区间比",
+   "default": "off",
+   "values": "索引和区间比输入可以合并为一个总线 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "设定",
+   "default": "显式值",
+   "values": "选择如何输入表数据 显式值 (默认) | 查找表对象",
+   "group": "常设"
+  },
+  {
+   "name": "源",
+   "default": "对话框",
+   "values": "表数据源 对话框 (默认) | 输入端口",
+   "group": "常设"
+  },
+  {
+   "name": "值",
+   "default": "[1:11])",
+   "values": "指定表数据值 sqrt([1:11]’ * [1:11]) (默认) | 表数据的多维数组",
+   "group": "常设"
+  },
+  {
+   "name": "名称",
+   "default": "",
+   "values": "Simulink.LookupTable 对象的名称 Simulink.LookupTable object",
+   "group": "常设"
+  },
+  {
+   "name": "插值方法",
+   "default": "线性点-斜率",
+   "values": "选择 Linear point-slope 、 Flat 、 Nearest 或 Linear Lagrange 。 线性点-斜率 (默认) | 最邻近值 | 均一 | Linear Lagrange",
+   "group": "常设"
+  },
+  {
+   "name": "外插方法",
+   "default": "线性",
+   "values": "处理超出断点数据集范围的输入的方法 线性 (默认) | 裁剪",
+   "group": "常设"
+  },
+  {
+   "name": "有效的索引输入可到达最后一个索引",
+   "default": "off",
+   "values": "允许输入访问表数据最后的元素 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "假设索引在范围内",
+   "default": "off",
+   "values": "检查超范围索引值的选项 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "输入超出范围的诊断",
+   "default": "无",
+   "values": "当输入超出范围时的模块操作 无 (默认) | 警告 | 错误",
+   "group": "常设"
+  },
+  {
+   "name": "子表选择维数",
+   "default": "0",
+   "values": "用于计算输出的子表维数 0 (默认) | 正整数，小于或等于表维数",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "表数据",
+   "default": "与输出相同",
+   "values": "表值的数据类型 继承: 与输出相同 (默认) | 继承: 从 ’表数据’ 继承 | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "表数据最小值",
+   "default": "[]",
+   "values": "表数据的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "表数据最大值",
+   "default": "[]",
+   "values": "表数据的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "中间结果",
+   "default": "rule",
+   "values": "中间结果的数据类型 Inherit: Inherit via internal rule (默认) | Inherit: Same as output | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出",
+   "default": "继承",
+   "values": "输出数据类型 继承: 从 ’表数据’ 继承 (默认) | 继承: 通过反向传播继承 | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "模块可以输出的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "模块可以输出的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "内部规则优先级",
+   "default": "速度",
+   "values": "进行中间计算的内部规则 速度 (默认) | 精度",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 收敛 | 向上 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "数据类型"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Partially Filled Pipe (IL)",
+ "title": "Partially Filled Pipe (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pipes & Fittings/Partially_Filled_Pipe_IL.md"
+ ],
+ "text": "Pipe with variable liquid volume in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

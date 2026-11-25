@@ -1,0 +1,13 @@
+{
+ "key": "PMSM (Four-Phase)",
+ "title": "PMSM (Four-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/PMSM_Four_Phase.md"
+ ],
+ "text": "Four-phase permanent magnet synchronous motor with sinusoidal flux distribution.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

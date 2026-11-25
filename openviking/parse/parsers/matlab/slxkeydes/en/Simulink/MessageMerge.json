@@ -1,0 +1,36 @@
+{
+ "key": "MessageMerge",
+ "title": "Message Merge",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Messages & Events/Message_Merge.md"
+ ],
+ "text": "Combine message paths, 2 inputs, 1 output, no direct feedthrough; {Number of input ports} sets the number message lines to combine. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input message line to merge scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Input message line to merge scalar | vector | matrix"
+  },
+  {
+   "name": "Port",
+   "direction": "output",
+   "summary": "Output message line scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "2",
+   "values": "Specify the number message lines to combine 2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

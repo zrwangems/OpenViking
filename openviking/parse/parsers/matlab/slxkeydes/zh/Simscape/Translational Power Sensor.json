@@ -1,0 +1,13 @@
+{
+ "key": "Translational Power Sensor",
+ "title": "Translational Power Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sensors/Translational_Power_Sensor.md"
+ ],
+ "text": "平均或瞬时平移功率传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

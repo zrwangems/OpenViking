@@ -1,0 +1,13 @@
+{
+ "key": "Mechanical Translational Properties (PB)",
+ "title": "Mechanical Translational Properties (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Utilities/Mechanical_Translational_Properties_PB.md"
+ ],
+ "text": "Specify gravitational acceleration and rail incline angle for circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

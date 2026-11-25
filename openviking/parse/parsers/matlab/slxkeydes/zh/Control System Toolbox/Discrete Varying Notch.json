@@ -1,0 +1,52 @@
+{
+ "key": "Discrete Varying Notch",
+ "title": "Discrete Varying Notch",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_Notch.md"
+ ],
+ "text": "具有可变系数的离散时间陷波滤波器，输入 4 路、输出 1 路；{预修正频率 w0 (弧度/秒)} 指定预修正频率、{采样时间 Ts} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "滤波器输入 标量"
+  },
+  {
+   "name": "freq",
+   "direction": "input",
+   "summary": "陷波频率 标量"
+  },
+  {
+   "name": "gmin",
+   "direction": "input",
+   "summary": "陷波频率下的增益 标量"
+  },
+  {
+   "name": "damp",
+   "direction": "input",
+   "summary": "滤波器极点的阻尼比 标量"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "滤波器输出 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "预修正频率 w0 (弧度/秒)",
+   "default": "0",
+   "values": "预修正频率 0 (默认) | 正标量",
+   "group": ""
+  },
+  {
+   "name": "采样时间 Ts",
+   "default": "1",
+   "values": "采样时间 1 (默认) | 正标量",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Shunt Motor",
+ "title": "Shunt Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Brushed Motors/Shunt_Motor.md"
+ ],
+ "text": "Shunt motor with electrical and torque characteristics.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

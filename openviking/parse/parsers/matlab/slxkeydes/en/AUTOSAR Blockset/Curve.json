@@ -1,0 +1,109 @@
+{
+ "key": "Curve",
+ "title": "Curve",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Interpolation/Curve.md"
+ ],
+ "text": "Approximate one-dimensional function, 1 input, 1 output, {Table data} sets Data type of table data Inherit: Same as; {Targeted Routine Library} Indicates the AUTOSAR routine library used for block code replacement, {Targeted Routine} sets the aUTOSAR library routine used for code replacement, {Data specification} sets the method of table and breakpoint specification Table, {Name}, {Breakpoints specification} sets the method of breakpoint specification Explicit, {Breakpoints} sets the explicit breakpoint values, or first point and spacing of breakpoints, {First point}, {Spacing}, {Edit table and breakpoints} sets the launch Lookup Table Editor dialog box, {Index search method} sets the method of calculating table indices Linear, {Begin index search using previous index result} sets the start using the index from the previous time, {Interpolation method} sets the method of interpolation between breakpoint values Linear and {Integer rounding mode} sets the rounding mode for fixed-point operations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u1",
+   "direction": "input",
+   "summary": "First-dimension inputs scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output computed by looking up or estimating table values scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Targeted Routine Library",
+   "default": "",
+   "values": "Indicates the AUTOSAR routine library used for block code replacement IFX (fixed-point) | IFL (floating-point)",
+   "group": ""
+  },
+  {
+   "name": "Targeted Routine",
+   "default": "",
+   "values": "AUTOSAR library routine used for code replacement Ifx_IntIpoCur | Ifl_IntIpoCur",
+   "group": ""
+  },
+  {
+   "name": "Data specification",
+   "default": "breakpoints",
+   "values": "Method of table and breakpoint specification Table and breakpoints (default) | Lookup table object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Name",
+   "default": "[]",
+   "values": "Name of the lookup table object [] (default) | Simulink.LookupTable object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Table data",
+   "default": "4]",
+   "values": "Define the table of output values [1 2 4] (default) | character vector",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Breakpoints specification",
+   "default": "values",
+   "values": "Method of breakpoint specification Explicit values (default) | Even spacing",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Breakpoints",
+   "default": "[10,22,31]",
+   "values": "Explicit breakpoint values, or first point and spacing of breakpoints [10,22,31] (default) | 1-by-n or n-by-1 vector of monotonically increasing values",
+   "group": "Table Specification"
+  },
+  {
+   "name": "First point",
+   "default": "1",
+   "values": "First point in evenly spaced breakpoint data 1 (default) | scalar",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Spacing",
+   "default": "1",
+   "values": "Spacing between evenly spaced breakpoints 1 (default) | scalar",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Edit table and breakpoints",
+   "default": "",
+   "values": "Launch Lookup Table Editor dialog box button",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Index search method",
+   "default": "search",
+   "values": "Method of calculating table indices Linear search (default) | Evenly spaced points | Binary search",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Begin index search using previous index result",
+   "default": "off",
+   "values": "Start using the index from the previous time step off (default) | on",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "point-slope",
+   "values": "Method of interpolation between breakpoint values Linear point-slope (default) | Flat",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Zero",
+   "values": "Rounding mode for fixed-point operations Zero (default) | Round",
+   "group": "Algorithm"
+  }
+ ]
+}

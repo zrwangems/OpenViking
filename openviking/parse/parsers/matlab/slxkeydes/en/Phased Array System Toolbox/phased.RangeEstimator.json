@@ -1,0 +1,92 @@
+{
+ "key": "phased.RangeEstimator",
+ "title": "Range Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Range_Estimator.md"
+ ],
+ "text": "Range estimation, 5 inputs, 2 outputs; {Maximum number of estimates}, {Enable cluster ID input}, {Output variance for parameter estimates} enables output variance port, {Root-mean-square range resolution} sets the range resolution, {Source of noise power}, {Noise power} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Resp",
+   "direction": "input",
+   "summary": "Range-processed response data cube complex-valued P -by-1 column vector | complex-valued M -by- P matrix | complex-valued M -by- N -by- P matrix"
+  },
+  {
+   "name": "Range",
+   "direction": "input",
+   "summary": "Range grid values along range dimension real-valued M -by-1 column vector"
+  },
+  {
+   "name": "DetIdx",
+   "direction": "input",
+   "summary": "Detection indices real-valued N d -by- Q matrix"
+  },
+  {
+   "name": "NoisePower",
+   "direction": "input",
+   "summary": "Noise power at detection locations positive scalar | real-valued 1-by- Q row vector of positive values"
+  },
+  {
+   "name": "Clusters",
+   "direction": "input",
+   "summary": "Cluster IDs real-valued 1-by- Q row vector of positive values"
+  },
+  {
+   "name": "Est",
+   "direction": "output",
+   "summary": "Range estimate real-valued K -by-1 column vector"
+  },
+  {
+   "name": "Var",
+   "direction": "output",
+   "summary": "Range estimation variance positive, real-valued K -by-1 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum number of estimates",
+   "default": "1",
+   "values": "Maximum number of estimates to report 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable cluster ID input",
+   "default": "off",
+   "values": "Enable cluster ID input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output variance for parameter estimates",
+   "default": "off",
+   "values": "Enable output variance port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Root-mean-square range resolution",
+   "default": "2",
+   "values": "Range resolution 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Source of noise power",
+   "default": "Property",
+   "values": "Source of noise power values Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise power",
+   "default": "1.0",
+   "values": "Noise power values 1.0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,155 @@
+{
+ "key": "Three-Phase Voltage Source Inverter",
+ "title": "Three-Phase Voltage Source Inverter",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Electric Motors and Inverters/Three_Phase_Voltage_Source_Inverter.md"
+ ],
+ "text": "Three-phase voltage source inverter, 7 inputs, 3 outputs; {Input inverter temperature} sets the create input port, {Enable memory optimized 2D LUT} sets the selection, {Calibrate Maps} sets the calibrate tables with measured data, {Switching voltage function} sets the selection Commanded phase, {Breakpoints for speeds (w), w_eff_bp} sets the speed breakpoints, {Resample storage size for w_eff_bp, n1} sets the speed bit size, {Breakpoints for load input (T), T_eff_bp} sets the torque breakpoints, {Resample storage size for T_eff_bp, n2} sets the torque bit size, {Breakpoints for temperature input, Temp_eff_bp} sets the temperature breakpoints, {Corresponding power loss, ploss_table} sets the 2D lookup table, {Corresponding power loss, ploss_table_3d} sets the 3D lookup table M -by- N -by, {w_eff_bp max endpoint, u1max} sets the speed breakpoint, {w_eff_bp min endpoint, u1min} sets the speed breakpoint, {T_eff_bp max endpoint, u2max} sets the torque breakpoint and {T_eff_bp min endpoint, u2min} sets the torque breakpoint. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PhaseVoltCmd",
+   "direction": "input",
+   "summary": "Phase a, b, c line-to-neutral voltage command 1 -by- 3 array"
+  },
+  {
+   "name": "SwitchCmd",
+   "direction": "input",
+   "summary": "Switch commands 1 -by- 3 array"
+  },
+  {
+   "name": "BusVolt",
+   "direction": "input",
+   "summary": "Power source bus voltage bus"
+  },
+  {
+   "name": "PhaseCurr",
+   "direction": "input",
+   "summary": "Phase a, b, c current 1 -by- 3 array"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "input",
+   "summary": "Motor torque scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "input",
+   "summary": "Motor speed scalar"
+  },
+  {
+   "name": "InvrtrTemp",
+   "direction": "input",
+   "summary": "Inverter operating temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "output",
+   "summary": "Phase a, b, c line-to-neutral voltage 1 -by- 3 array"
+  },
+  {
+   "name": "BusCurr",
+   "direction": "output",
+   "summary": "Power source bus current scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input inverter temperature",
+   "default": "off",
+   "values": "Create input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable memory optimized 2D LUT",
+   "default": "off",
+   "values": "Selection off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Calibrate Maps",
+   "default": "",
+   "values": "Calibrate tables with measured data selection",
+   "group": ""
+  },
+  {
+   "name": "Switching voltage function",
+   "default": "voltage",
+   "values": "Selection Commanded phase voltage (default) | Switch inputs",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for speeds (w), w_eff_bp",
+   "default": "1000]",
+   "values": "Speed breakpoints [-1000 -500 0 500 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Resample storage size for w_eff_bp, n1",
+   "default": "128",
+   "values": "Speed bit size 128 (default) | 2 | 4 | 8 | 16 | 32 | 64 | 256",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for load input (T), T_eff_bp",
+   "default": "200]",
+   "values": "Torque breakpoints [-200 -100 0 100 200] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Resample storage size for T_eff_bp, n2",
+   "default": "128",
+   "values": "Torque bit size 128 (default) | 2 | 4 | 8 | 16 | 32 | 64 | 256",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for temperature input, Temp_eff_bp",
+   "default": "373.15]",
+   "values": "Temperature breakpoints [213.15 293.15 373.15] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding power loss, ploss_table",
+   "default": "0.976]",
+   "values": "2D lookup table [1 0.999 0.989 0.997 0.996;0.995 0.994 0.993 0.992 0.991;0.990 0.989 0.988 0.987 0.986;0.985 0.984 0.983 0.982 0.981;0.980 0.979 0.978 0.977 0.976] (default) | M -by- N array",
+   "group": ""
+  },
+  {
+   "name": "Corresponding power loss, ploss_table_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "w_eff_bp max endpoint, u1max",
+   "default": "1000",
+   "values": "Speed breakpoint 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "w_eff_bp min endpoint, u1min",
+   "default": "-1000",
+   "values": "Speed breakpoint -1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "T_eff_bp max endpoint, u2max",
+   "default": "200",
+   "values": "Torque breakpoint 200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "T_eff_bp min endpoint, u2min",
+   "default": "-200",
+   "values": "Torque breakpoint -200 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

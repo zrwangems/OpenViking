@@ -1,0 +1,408 @@
+{
+ "key": "Vehicle Body 6DOF Three Axles",
+ "title": "Vehicle Body 6DOF Three Axles",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Body/Vehicle_Body_6DOF_Three_Axles.md"
+ ],
+ "text": "具有平移和旋转运动的三轴车辆牵引车车身，输入 8 路、输出 7 路；{Hitch forces} 指定创建挂钩力输入端口、{Hitch moments} 指定创建牵引点力矩输入端口、{Vehicle mass, m} 指定质量、{Longitudinal distance from center of mass to front axle, a} 指定从质心到前轴的距离、{Longitudinal distance from center of mass to middle axle, b} 指定从质心到中轴的距离、{Longitudinal distance from center of mass to rear axle, c} 指定从质心到后轴的距离、{Lateral distance from geometric centerline to center of mass, d} 指定从几何中心线到质心的距离、{Vertical distance from center of mass to axle plane, h} 指定距离 .35、{Longitudinal distance from center of mass to hitch, dh} 指定从质心到挂钩的纵向距离、{Longitudinal distance from center of mass to hitch, hl} 指定从质心到牵引点的横向距离、{Vertical distance from hitch to axle plane, hh} 指定从牵引点到车轴平面的距离、{Initial position in the inertial frame [Xeo,Yeo,Zeo], Xe_o} 指定初始位置、{Initial velocity in body axes [xdot_o,ydot_o,zdot_o], xbdot_o} 指定初始速度、{Initial Euler orientation [roll, pitch, yaw], eul_o} 指定初始欧拉旋转、{Initial body rotation rates [p,q,r], p_o} 指定初始旋转速率、{Chassis inertia tensor, Iveh} 指定惯性、{Track widths [front,rear], w} 指定宽度、{Mass, z1m} 指定牵引车前部质量、{Distance vector from front axle, z1R} 指定牵引车前部到前轴的距离、{Inertia tensor, z1I} 指定牵引车前部惯性、{Mass, z2m} 指定驾驶室顶部质量、{Distance vector from front axle, z2R} 指定驾驶室顶部到前轴的距离、{Inertia tensor, z2I} 指定驾驶室顶部惯性、{Mass, z3m} 指定牵引车车架左侧质量、{Distance vector from front axle, z3R} 指定牵引车车架左侧到前轴的距离、{Inertia tensor, z3I} 指定牵引车车架左侧惯性、{Mass, z4m} 指定牵引车车架右侧质量、{Distance vector from front axle, z4R} 指定牵引车车架右侧到前轴的距离、{Inertia tensor, z4I} 指定牵引车车架右侧惯性、{Mass, z5m} 指定驾驶室左侧质量、{Distance vector from front axle, z5R} 指定驾驶室左侧到前轴的距离、{Inertia tensor, z5I} 指定驾驶室左侧惯性、{Mass, z6m} 指定驾驶室右侧质量、{Distance vector from front axle, z6R} 指定驾驶室右侧到前轴的距离、{Inertia tensor, z6I} 指定驾驶室右侧惯性、{Mass, z7m} 指定牵引车后部质量、{Distance vector from front axle, z7R} 指定牵引车后部质量距前轴的距离、{Inertia tensor, z7I} 指定牵引车后部惯性、{Longitudinal drag area, Af} 指定车辆横截面积、{Longitudinal drag coefficient, Cd} 指定空气阻力系数 .3、{Longitudinal lift coefficient, Cl} 指定空气升力系数 .1、{Longitudinal drag pitch moment, Cpm} 指定俯仰阻力 .1、{Relative wind angle vector, beta_w} 指定风向角、{Side force coefficient vector, Cs} 指定侧向力阻力、{Yaw moment coefficient vector, Cym} 指定横摆力矩阻力、{Absolute air pressure, Pabs} 指定压力、{Air temperature, Tair} 指定环境空气温度、{Gravitational acceleration, g} 指定重力、{Longitudinal velocity tolerance, xdot_tol} 指定容差 .1、{Geometric longitudinal offset from axle plane, longOff} 指定纵向偏移、{Geometric lateral offset from center plane, latOff} 指定侧向偏移、{Geometric vertical offset from axle plane, vertOff} 指定垂直偏移、{Wrap Euler angles, wrapAng} 指定 on，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FSusp",
+   "direction": "input",
+   "summary": "作用在车辆上的悬架力 3-by-6 array"
+  },
+  {
+   "name": "MSusp",
+   "direction": "input",
+   "summary": "车辆上的悬架力矩 3-by-6 array"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "作用在车辆上的外力 vector"
+  },
+  {
+   "name": "MExt",
+   "direction": "input",
+   "summary": "作用在车辆上的外力矩 vector"
+  },
+  {
+   "name": "Fh",
+   "direction": "input",
+   "summary": "车体上的挂钩力 array"
+  },
+  {
+   "name": "Mh",
+   "direction": "input",
+   "summary": "绕车体的挂钩力矩 array"
+  },
+  {
+   "name": "WindXYZ",
+   "direction": "input",
+   "summary": "风速 array"
+  },
+  {
+   "name": "AirTemp",
+   "direction": "input",
+   "summary": "环境空气温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "车辆车身信息 bus"
+  },
+  {
+   "name": "Vb",
+   "direction": "output",
+   "summary": "沿车辆固定坐标系的车辆速度 vector"
+  },
+  {
+   "name": "pqr",
+   "direction": "output",
+   "summary": "绕车辆固定坐标系的车辆角速度 vector"
+  },
+  {
+   "name": "DCM",
+   "direction": "output",
+   "summary": "方向余弦矩阵 array"
+  },
+  {
+   "name": "Euler",
+   "direction": "output",
+   "summary": "欧拉角 array"
+  },
+  {
+   "name": "Xe",
+   "direction": "output",
+   "summary": "惯性参考系中的车辆位置 vector"
+  },
+  {
+   "name": "Ve",
+   "direction": "output",
+   "summary": "惯性参考系中的车辆速度 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hitch forces",
+   "default": "off",
+   "values": "创建挂钩力输入端口 off (default) | on",
+   "group": "Block Options"
+  },
+  {
+   "name": "Hitch moments",
+   "default": "off",
+   "values": "创建牵引点力矩输入端口 off (default) | on",
+   "group": "Block Options"
+  },
+  {
+   "name": "Vehicle mass, m",
+   "default": "2000",
+   "values": "质量 2000 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to front axle, a",
+   "default": "1.4",
+   "values": "从质心到前轴的距离 1.4 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to middle axle, b",
+   "default": "1.6",
+   "values": "从质心到中轴的距离 1.6 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to rear axle, c",
+   "default": "1.8",
+   "values": "从质心到后轴的距离 1.8 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Lateral distance from geometric centerline to center of mass, d",
+   "default": "0",
+   "values": "从几何中心线到质心的距离 0 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Vertical distance from center of mass to axle plane, h",
+   "default": ".35",
+   "values": "距离 .35 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to hitch, dh",
+   "default": "1",
+   "values": "从质心到挂钩的纵向距离 1 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to hitch, hl",
+   "default": "0",
+   "values": "从质心到牵引点的横向距离 0 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Vertical distance from hitch to axle plane, hh",
+   "default": "0.1",
+   "values": "从牵引点到车轴平面的距离 0.1 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial position in the inertial frame [Xeo,Yeo,Zeo], Xe_o",
+   "default": "[0,0,0]",
+   "values": "初始位置 [0,0,0] (default) | vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial velocity in body axes [xdot_o,ydot_o,zdot_o], xbdot_o",
+   "default": "[0,0,0]",
+   "values": "初始速度 [0,0,0] (default) | vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial Euler orientation [roll, pitch, yaw], eul_o",
+   "default": "[0,0,0]",
+   "values": "初始欧拉旋转 [0,0,0] (default) | vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial body rotation rates [p,q,r], p_o",
+   "default": "[0,0,0]",
+   "values": "初始旋转速率 [0,0,0] (default) | vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Chassis inertia tensor, Iveh",
+   "default": "2100]",
+   "values": "惯性 [430 0 0; 0 1900 0; 0 0 2100] (default) | array",
+   "group": "Chassis"
+  },
+  {
+   "name": "Track widths [front,rear], w",
+   "default": "[1.9,1.9,1.9]",
+   "values": "宽度 [1.9,1.9,1.9] (default) | vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Mass, z1m",
+   "default": "0",
+   "values": "牵引车前部质量 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z1R",
+   "default": "[-.25,.125,.15]",
+   "values": "牵引车前部到前轴的距离 [-.25,.125,.15] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z1I",
+   "default": "[1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0",
+   "values": "牵引车前部惯性 [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z2m",
+   "default": "0",
+   "values": "驾驶室顶部质量 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z2R",
+   "default": "[1.4,0,.8]",
+   "values": "驾驶室顶部到前轴的距离 [1.4,0,.8] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z2I",
+   "default": "[1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0",
+   "values": "驾驶室顶部惯性 [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z3m",
+   "default": "0",
+   "values": "牵引车车架左侧质量 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z3R",
+   "default": "[.75,-.5,.4]",
+   "values": "牵引车车架左侧到前轴的距离 [.75,-.5,.4] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z3I",
+   "default": "[5,-.1,-2;-2,9,.1;-.1,.1,6].*0",
+   "values": "牵引车车架左侧惯性 [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z4m",
+   "default": "0",
+   "values": "牵引车车架右侧质量 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z4R",
+   "default": "[.75,.5,.4]",
+   "values": "牵引车车架右侧到前轴的距离 [.75,.5,.4] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z4I",
+   "default": "[5,-.1,-2;-2,9,.1;-.1,.1,6].*0",
+   "values": "牵引车车架右侧惯性 [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z5m",
+   "default": "0",
+   "values": "驾驶室左侧质量 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z5R",
+   "default": "[1.25,-.5,.4]",
+   "values": "驾驶室左侧到前轴的距离 [1.25,-.5,.4] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z5I",
+   "default": "[5,-.1,-2;-2,9,.1;-.1,.1,6].*0",
+   "values": "驾驶室左侧惯性 [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z6m",
+   "default": "0",
+   "values": "驾驶室右侧质量 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z6R",
+   "default": "[1.25,-.5,.4]",
+   "values": "驾驶室右侧到前轴的距离 [1.25,-.5,.4] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z6I",
+   "default": "[5,-.1,-2;-2,9,.1;-.1,.1,6].*0",
+   "values": "驾驶室右侧惯性 [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z7m",
+   "default": "0",
+   "values": "牵引车后部质量 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z7R",
+   "default": "[2,0,.25]",
+   "values": "牵引车后部质量距前轴的距离 [2,0,.25] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z7I",
+   "default": "[1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0",
+   "values": "牵引车后部惯性 [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Longitudinal drag area, Af",
+   "default": "2",
+   "values": "车辆横截面积 2 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal drag coefficient, Cd",
+   "default": ".3",
+   "values": "空气阻力系数 .3 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal lift coefficient, Cl",
+   "default": ".1",
+   "values": "空气升力系数 .1 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal drag pitch moment, Cpm",
+   "default": ".1",
+   "values": "俯仰阻力 .1 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Relative wind angle vector, beta_w",
+   "default": "[0:0.001:0.01]",
+   "values": "风向角 [0:0.001:0.01] (default) | vector",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Side force coefficient vector, Cs",
+   "default": "[0:0.01:0.1]",
+   "values": "侧向力阻力 [0:0.01:0.1] (default) | vector",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Yaw moment coefficient vector, Cym",
+   "default": "[0:0.001:0.01]",
+   "values": "横摆力矩阻力 [0:0.001:0.01] (default) | vector",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Absolute air pressure, Pabs",
+   "default": "101325",
+   "values": "压力 101325 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Air temperature, Tair",
+   "default": "273",
+   "values": "环境空气温度 273 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.81",
+   "values": "重力 9.81 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Longitudinal velocity tolerance, xdot_tol",
+   "default": ".1",
+   "values": "容差 .1 (default) | scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Geometric longitudinal offset from axle plane, longOff",
+   "default": "0",
+   "values": "纵向偏移 0 (default) | scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Geometric lateral offset from center plane, latOff",
+   "default": "0",
+   "values": "侧向偏移 0 (default) | scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Geometric vertical offset from axle plane, vertOff",
+   "default": "0",
+   "values": "垂直偏移 0 (default) | scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Wrap Euler angles, wrapAng",
+   "default": "on",
+   "values": "选择 on (default) | off",
+   "group": "Simulation"
+  }
+ ]
+}

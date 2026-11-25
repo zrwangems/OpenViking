@@ -1,0 +1,13 @@
+{
+ "key": "PS Ceil",
+ "title": "PS Ceil",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Ceil.md"
+ ],
+ "text": "Output the smallest integer larger than or equal to input physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

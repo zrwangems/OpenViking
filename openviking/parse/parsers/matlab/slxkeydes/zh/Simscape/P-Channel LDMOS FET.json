@@ -1,0 +1,13 @@
+{
+ "key": "P-Channel LDMOS FET",
+ "title": "P-Channel LDMOS FET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/P_Channel_LDMOS_FET.md"
+ ],
+ "text": "适用于高压的 P 沟道横向扩散金属氧化物半导体或垂直扩散金属氧化物半导体晶体管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

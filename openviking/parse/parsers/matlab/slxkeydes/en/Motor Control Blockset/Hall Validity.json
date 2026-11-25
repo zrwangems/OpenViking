@@ -1,0 +1,78 @@
+{
+ "key": "Hall Validity",
+ "title": "Hall Validity",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensor Decoders/Hall_Validity.md"
+ ],
+ "text": "Compute rotor spin direction and validity of Hall sensor sequence, 4 inputs, 5 outputs, {Counter size} sets Size of external counter register 16; {Expected hall sequence in positive direction} sets the sequence indicating positive and {Sequence} sets the custom sequence indicating positive direction. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "HallVal",
+   "direction": "input",
+   "summary": "Current Hall sensor output state scalar"
+  },
+  {
+   "name": "PrevHallVal",
+   "direction": "input",
+   "summary": "Previous Hall sensor output state scalar"
+  },
+  {
+   "name": "Cnt",
+   "direction": "input",
+   "summary": "External counter value scalar"
+  },
+  {
+   "name": "PrevDir",
+   "direction": "input",
+   "summary": "Rotor spin direction during previous Hall state scalar"
+  },
+  {
+   "name": "Invalid",
+   "direction": "output",
+   "summary": "Indicator of Hall state validity scalar"
+  },
+  {
+   "name": "SpdCnt",
+   "direction": "output",
+   "summary": "Count at Hall state change scalar"
+  },
+  {
+   "name": "Dir",
+   "direction": "output",
+   "summary": "Rotor spin direction during current Hall state scalar"
+  },
+  {
+   "name": "SpdVal",
+   "direction": "output",
+   "summary": "Validity of current and previous Hall states and speed calculation scalar"
+  },
+  {
+   "name": "HallChng",
+   "direction": "output",
+   "summary": "Set flag to one, indicating Hall state change scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Expected hall sequence in positive direction",
+   "default": "ABC",
+   "values": "Sequence indicating positive direction ABC (default) | CBA | Custom sequence",
+   "group": ""
+  },
+  {
+   "name": "Sequence",
+   "default": "[5,4,6,2,3,1]",
+   "values": "Custom sequence indicating positive direction [5,4,6,2,3,1] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Counter size",
+   "default": "bits",
+   "values": "Size of external counter register 16 bits (default) | 8 bits | 32 bits",
+   "group": ""
+  }
+ ]
+}

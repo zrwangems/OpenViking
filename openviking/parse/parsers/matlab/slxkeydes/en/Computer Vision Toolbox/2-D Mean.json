@@ -1,0 +1,116 @@
+{
+ "key": "2-D Mean",
+ "title": "2-D Mean",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Mean.md"
+ ],
+ "text": "Find 2-D mean of input array, 5 inputs, 2 outputs, {Reset port} sets Reset event; {Running mean}, {Find the mean value over} sets the dimension along which mean is computed Entire, {Dimension} sets the custom dimension, {Enable ROI processing} sets the compute mean value within ROI, {ROI type} sets the type of ROI, {ROI portion to process} sets the portion of ROI for which to compute mean Entire, {Output} sets the compute individual or universal mean for ROIs Individual statistics for each, {Output flag indicating if ROI is within image bounds} enables flag output port, {Output flag indicating if input label numbers are valid} enables flag output port and {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input array vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset running mean scalar"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "Region of interest vector | matrix"
+  },
+  {
+   "name": "Label",
+   "direction": "input",
+   "summary": "Label matrix matrix"
+  },
+  {
+   "name": "Label Numbers",
+   "direction": "input",
+   "summary": "Label values of ROIs vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Mean value of input scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Flag",
+   "direction": "output",
+   "summary": "Validation of ROI scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Running mean",
+   "default": "off",
+   "values": "Running mean values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Find the mean value over",
+   "default": "input",
+   "values": "Dimension along which mean is computed Entire input (default) | Each row | Each column | Specified dimension",
+   "group": ""
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Custom dimension 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable ROI processing",
+   "default": "off",
+   "values": "Compute mean value within ROI off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ROI type",
+   "default": "Rectangles",
+   "values": "Type of ROI Rectangles (default) | Lines | Label matrix | Binary mask",
+   "group": ""
+  },
+  {
+   "name": "ROI portion to process",
+   "default": "ROI",
+   "values": "Portion of ROI for which to compute mean Entire ROI (default) | ROI perimeter",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "ROI",
+   "values": "Compute individual or universal mean for ROIs Individual statistics for each ROI (default) | Single statistic for all ROIs",
+   "group": ""
+  },
+  {
+   "name": "Output flag indicating if ROI is within image bounds",
+   "default": "off",
+   "values": "Enable flag output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output flag indicating if input label numbers are valid",
+   "default": "off",
+   "values": "Enable flag output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  }
+ ]
+}

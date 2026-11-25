@@ -1,0 +1,52 @@
+{
+ "key": "Quadrature Shaft Decoder",
+ "title": "Quadrature Shaft Decoder",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Observers/Quadrature_Shaft_Decoder.md"
+ ],
+ "text": "解码增量式轴编码器输出，输入 3 路、输出 2 路；{Pulses per revolution} 指定每转脉冲数、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "数字信号 A scalar"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "数字信号 B scalar"
+  },
+  {
+   "name": "Z",
+   "direction": "input",
+   "summary": "索引脉冲 scalar"
+  },
+  {
+   "name": "Velocity",
+   "direction": "output",
+   "summary": "轴旋转速度 scalar"
+  },
+  {
+   "name": "Position",
+   "direction": "output",
+   "summary": "轴旋转角度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pulses per revolution",
+   "default": "4",
+   "values": "每转脉冲数 4 (default) | integer > 0",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

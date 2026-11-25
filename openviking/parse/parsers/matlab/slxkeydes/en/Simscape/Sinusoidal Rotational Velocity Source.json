@@ -1,0 +1,13 @@
+{
+ "key": "Sinusoidal Rotational Velocity Source",
+ "title": "Sinusoidal Rotational Velocity Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Sinusoidal_Rotational_Velocity_Source.md"
+ ],
+ "text": "Produce sinusoidal rotational velocity.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

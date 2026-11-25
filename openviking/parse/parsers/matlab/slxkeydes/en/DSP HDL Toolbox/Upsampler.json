@@ -1,0 +1,75 @@
+{
+ "key": "Upsampler",
+ "title": "Upsampler",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Signal Operations/Upsampler.md"
+ ],
+ "text": "Upsample by adding zeros between input samples, 3 inputs, 3 outputs, {Minimum number of cycles between valid input samples} sets Minimum number of cycles between valid input samples; {Upsample factor (L)} sets the upsampling factor, {Sample offset (0 to L-1)}, {Enable reset input port} sets the option to enable reset input port and {Enable ready output port} sets the option to enable ready output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Valid input data indicator 0 | 1"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Option to clear internal states 0 | 1"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Upsampled data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Valid output data indicator 0 | 1"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Block ready indicator 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Upsample factor (L)",
+   "default": "3",
+   "values": "Upsampling factor 3 (default) | integer in the range [1, 2.^16]",
+   "group": "Main"
+  },
+  {
+   "name": "Sample offset (0 to L-1)",
+   "default": "0",
+   "values": "Sample offset 0 (default) | integer in the range [0, 2.^16 – 1]",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum number of cycles between valid input samples",
+   "default": "1",
+   "values": "Minimum number of cycles between valid input samples 1 (default) | factor or multiple of Upsample factor (L) | integer in the range [1, Inf]",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Option to enable reset input port off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Enable ready output port",
+   "default": "off",
+   "values": "Option to enable ready output port off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

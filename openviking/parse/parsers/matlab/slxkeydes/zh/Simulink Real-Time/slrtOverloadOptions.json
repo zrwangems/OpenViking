@@ -1,0 +1,49 @@
+{
+ "key": "slrtOverloadOptions",
+ "title": "Overload Options",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Target Management/Overload_Options.md"
+ ],
+ "text": "选择 CPU 过载选项，输入 1 路、输出 1 路；{Startup Duration} 指定启动步骤以忽略 CPU 过载、{Source} 指定启动时选择 CPU 过载输入 Tunable、{Max Overloads} 指定最大 CPU 负载、{Enable TET Output} 启用输出 TET 数据，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TID",
+   "direction": "input",
+   "summary": "任务 ID int"
+  },
+  {
+   "name": "Count",
+   "direction": "output",
+   "summary": "过载计数 int"
+  }
+ ],
+ "params": [
+  {
+   "name": "Startup Duration",
+   "default": "1",
+   "values": "选择启动步骤以忽略 CPU 过载 1 (默认) | int",
+   "group": ""
+  },
+  {
+   "name": "Source",
+   "default": "Parameter",
+   "values": "启动时选择 CPU 过载输入 Tunable Parameter (默认) | Input Port",
+   "group": ""
+  },
+  {
+   "name": "Max Overloads",
+   "default": "0",
+   "values": "选择最大 CPU 负载 0 (默认) | int",
+   "group": ""
+  },
+  {
+   "name": "Enable TET Output",
+   "default": "off",
+   "values": "启用输出 TET 数据 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

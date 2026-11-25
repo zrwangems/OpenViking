@@ -1,0 +1,37 @@
+{
+ "key": "FM Modulator Baseband",
+ "title": "FM Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Baseband Modulation/FM_Modulator_Baseband.md"
+ ],
+ "text": "使用 FM 方法调制，输入 1 路、输出 1 路；{Frequency deviation (Hz)} 指定调制器的频率偏差 75e3、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数据信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出数据信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency deviation (Hz)",
+   "default": "75e3",
+   "values": "调制器的频率偏差 75e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

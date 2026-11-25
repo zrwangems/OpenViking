@@ -1,0 +1,43 @@
+{
+ "key": "Buffer",
+ "title": "Buffer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Buffers/Buffer.md"
+ ],
+ "text": "Buffer input sequence to smaller or larger frame size, 1 input, 1 output, no direct feedthrough, {Initial conditions} sets Initial output; {Output buffer size (per channel)} sets the buffer size and {Buffer overlap}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output buffer size (per channel)",
+   "default": "64",
+   "values": "Buffer size 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Buffer overlap",
+   "default": "0",
+   "values": "Buffer overlap 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial output 0 (default) | scalar | vector | matrix",
+   "group": ""
+  }
+ ]
+}

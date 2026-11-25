@@ -1,0 +1,105 @@
+{
+ "key": "codertarget.tic2000.blocks.SPIRead",
+ "title": "SPI Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2803x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2805x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2806x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C280x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C281x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2833x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2834x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F280013x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F280015x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28002x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28004x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F2807x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xD/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xS/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28p55x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/SPI_Receive.md"
+ ],
+ "text": "Receive data through Serial Peripheral Interface (SPI) on target, 2 outputs, {SPI module} sets SPI module to read data; {Clock polarity} sets the sPI clock polarity, {Clock phase} sets the sPI clock phase, {Output data length} sets the sPI output data length, {Enable blocking mode} enables SPI blocking mode, {Sample time} sets the sPI sample time selection, {Data bits} sets the number of bits in SPI transfer, {Chip select calling method} sets the method to select SPI peripheral device Provided by the SPI, {Chip select pin polarity} sets the sPI peripheral select pin polarity Active and {Chip select pin} sets the sPI peripheral select pin. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rx",
+   "direction": "output",
+   "summary": "SPI receive data vector"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "SPI receive status 0 | 1 | 2"
+  }
+ ],
+ "params": [
+  {
+   "name": "SPI module",
+   "default": "SPI_A",
+   "values": "SPI module to read data SPI_A (default) | SPI_B | SPI_C | SPI_D",
+   "group": "Main"
+  },
+  {
+   "name": "Clock polarity",
+   "default": "Rising_edge",
+   "values": "SPI clock polarity Rising_edge (default) | Falling_edge",
+   "group": "Main"
+  },
+  {
+   "name": "Clock phase",
+   "default": "No_delay",
+   "values": "SPI clock phase No_delay (default) | Delay_half_cycle",
+   "group": "Main"
+  },
+  {
+   "name": "Output data length",
+   "default": "1",
+   "values": "SPI output data length 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Enable blocking mode",
+   "default": "off",
+   "values": "Enable SPI blocking mode off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "SPI sample time selection 0.1 (default) | –1 | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Data bits",
+   "default": "8",
+   "values": "Number of bits in SPI transfer 8 (default) | integer in [1 16]",
+   "group": "Advanced"
+  },
+  {
+   "name": "Chip select calling method",
+   "default": "peripheral",
+   "values": "Method to select SPI peripheral device Provided by the SPI peripheral (default) | Explicit GPIO calls",
+   "group": "Advanced"
+  },
+  {
+   "name": "Chip select pin polarity",
+   "default": "low",
+   "values": "SPI peripheral select pin polarity Active low (default) | Active high",
+   "group": "Advanced"
+  },
+  {
+   "name": "Chip select pin",
+   "default": "0",
+   "values": "SPI peripheral select pin 0 (default) | positive integer scalar",
+   "group": "Advanced"
+  }
+ ]
+}

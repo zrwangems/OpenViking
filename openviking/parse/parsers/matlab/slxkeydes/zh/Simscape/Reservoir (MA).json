@@ -1,0 +1,13 @@
+{
+ "key": "Reservoir (MA)",
+ "title": "Reservoir (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Reservoir_MA.md"
+ ],
+ "text": "湿空气网络在恒定压力、温度、湿度和痕量气体水平下的边界条件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

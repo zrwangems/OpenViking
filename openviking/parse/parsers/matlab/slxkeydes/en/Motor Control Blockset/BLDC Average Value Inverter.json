@@ -1,0 +1,29 @@
+{
+ "key": "BLDC Average Value Inverter",
+ "title": "BLDC Average-Value Inverter",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Electrical Systems/Inverters/BLDC_Average_Value_Inverter.md"
+ ],
+ "text": "Compute three-phase trapezoidal AC voltage from inverter DC voltage, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D sw",
+   "direction": "input",
+   "summary": "Duty cycles corresponding to six inverter switches 1 -by- 6 array"
+  },
+  {
+   "name": "V dc",
+   "direction": "input",
+   "summary": "Inverter DC voltage scalar"
+  },
+  {
+   "name": "V abc",
+   "direction": "output",
+   "summary": "Three-phase voltage output 1 -by- 3 array"
+  }
+ ],
+ "params": []
+}

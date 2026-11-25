@@ -1,0 +1,50 @@
+{
+ "key": "UDP Write",
+ "title": "UDP Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Host I_O/UDP_Write.md",
+  "SoC Blockset/Processor I_O/UDP_Write.md"
+ ],
+ "text": "Send UDP packets to remote host, 1 input, 1 output; {Remote IP address (255.255.255.255 for broadcast)} sets the iP address of remote host to which data is sent, {Remote port} sets the iP port of remote host to which data, {Local port} sets the iP port number of application on target from which data and {Byte order}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input signal numeric vector"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "UDP packet sent to remote host numeric vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Remote IP address (255.255.255.255 for broadcast)",
+   "default": "127.0.0.1",
+   "values": "IP address of remote host to which data is sent 127.0.0.1 (default) | dotted-quad expression",
+   "group": ""
+  },
+  {
+   "name": "Remote port",
+   "default": "25000",
+   "values": "IP port of remote host to which data is sent 25000 (default) | integer from 1 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Local port",
+   "default": "-1",
+   "values": "IP port number of application on target from which data is sent -1 (default) | integer from 1 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Byte order",
+   "default": "LittleEndian",
+   "values": "Byte order LittleEndian (default) | BigEndian",
+   "group": ""
+  }
+ ]
+}

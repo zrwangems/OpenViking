@@ -1,0 +1,13 @@
+{
+ "key": "NN Model Reference Control",
+ "title": "Model Reference Controller",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Control Systems/Model_Reference_Controller.md"
+ ],
+ "text": "Model Reference Controller.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

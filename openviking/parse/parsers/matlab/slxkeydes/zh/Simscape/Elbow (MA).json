@@ -1,0 +1,13 @@
+{
+ "key": "Elbow (MA)",
+ "title": "Elbow (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/Elbow_MA.md"
+ ],
+ "text": "湿空气网络中的管道转弯。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

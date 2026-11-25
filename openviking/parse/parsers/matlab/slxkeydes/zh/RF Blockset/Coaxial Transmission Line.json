@@ -1,0 +1,146 @@
+{
+ "key": "Coaxial Transmission Line",
+ "title": "Coaxial Transmission Line",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Transmission Lines/Coaxial_Transmission_Line.md"
+ ],
+ "text": "对同轴传输线建模；按 {X format} 指定频率图格式；{Outer radius (m)} 指定外导体半径 2.57e-3、{Inner radius(m)} 指定内导体半径 0.725e-3、{Relative permeability constant} 指定电介质的相对磁导率、{Relative permittivity constant} 指定电介质的相对介电常数、{Loss tangent of dielectric} 指定介质损耗角正切、{Conductivity of the conductor (S/m)} 指定导体电导率、{Transmission line length (m)} 指定传输线的物理长度、{Stub mode} 指定短截线类型 Not、{Termination of stub} 指定短截线端接、{Source of frequency data} 指定频率数据源、{Frequency data (Hz)} 指定频率数据范围、{Reference impedance (ohms)} 指定参考阻抗、{Plot type} 指定数据绘图类型 X-Y、{Y parameter1} 指定要绘制的参数类型、{Y parameter2} 指定要绘制的参数类型、{Y format1} 指定绘图格式 Magnitude、{Y format2} 指定绘图格式 Magnitude、{X parameter} 指定频率图 Freq、{Y scale} 指定 Y 轴刻度、{X scale} 指定 X 轴刻度、{Plot} 绘制指定数据，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Outer radius (m)",
+   "default": "2.57e-3",
+   "values": "外导体半径 2.57e-3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Inner radius(m)",
+   "default": "0.725e-3",
+   "values": "内导体半径 0.725e-3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Relative permeability constant",
+   "default": "1",
+   "values": "电介质的相对磁导率 1 (default) | real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Relative permittivity constant",
+   "default": "2.3",
+   "values": "电介质的相对介电常数 2.3 (default) | real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Loss tangent of dielectric",
+   "default": "0",
+   "values": "介质损耗角正切 0 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Conductivity of the conductor (S/m)",
+   "default": "inf",
+   "values": "导体电导率 inf (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Transmission line length (m)",
+   "default": "0.01",
+   "values": "传输线的物理长度 0.01 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Stub mode",
+   "default": "stub",
+   "values": "短截线类型 Not a stub (default) | Shunt | Series",
+   "group": "Main"
+  },
+  {
+   "name": "Termination of stub",
+   "default": "Open",
+   "values": "短截线端接 Open (default) | Short",
+   "group": "Main"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "User-specified",
+   "values": "频率数据源 User-specified (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1e9:1e6:3e9]",
+   "values": "频率数据范围 [1e9:1e6:3e9] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "参考阻抗 50 (default) | nonnegative scalar",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "数据绘图类型 X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "频率图 Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "频率图格式 Hz (default) | Auto | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制指定数据 button",
+   "group": "Visualization"
+  }
+ ]
+}

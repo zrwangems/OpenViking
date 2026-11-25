@@ -1,0 +1,63 @@
+{
+ "key": "XCP UDP Data Acquisition",
+ "title": "XCP UDP Data Acquisition",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/UDP/XCP_UDP_Data_Acquisition.md",
+  "Vehicle Network Toolbox/XCP Communication/UDP/XCP_UDP_Data_Acquisition.md"
+ ],
+ "text": "从已配置的服务器连接采集选定测量值；按 {Block Output Settings} 指定将端口输出设置为 Compu 方法转换值或原始值 Raw values as double；{Config name} 指定 XCP UDP 会话名称 select、{Event name} 指定事件 select from list、{All Measurements} 指定列出事件可用的所有测量值 measurements、{Selected Measurements} 指定列出选定的测量值 measurement names、{DAQ List Priority} 为服务器设备驱动程序指定优先级值 priority、{Sample time} 指定模块的采样时间、{Enable Timestamp} 启用从传入 DTO 数据包读取时间戳，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "",
+   "values": "指定 XCP UDP 会话名称 select from list",
+   "group": ""
+  },
+  {
+   "name": "Event name",
+   "default": "",
+   "values": "选择事件 select from list",
+   "group": ""
+  },
+  {
+   "name": "All Measurements",
+   "default": "",
+   "values": "列出事件可用的所有测量值 measurements list",
+   "group": ""
+  },
+  {
+   "name": "Selected Measurements",
+   "default": "",
+   "values": "列出选定的测量值 measurement names",
+   "group": ""
+  },
+  {
+   "name": "Block Output Settings",
+   "default": "conversion)",
+   "values": "将端口输出设置为 Compu 方法转换值或原始值 Raw values as double (no Compu method conversion) (default) | Raw values (no Compu method conversion) | Physical values (apply Compu method conversion)",
+   "group": ""
+  },
+  {
+   "name": "DAQ List Priority",
+   "default": "",
+   "values": "为服务器设备驱动程序指定优先级值 priority value",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "指定模块的采样时间 -1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable Timestamp",
+   "default": "off",
+   "values": "启用从传入 DTO 数据包读取时间戳 off (default) | on",
+   "group": ""
+  }
+ ]
+}

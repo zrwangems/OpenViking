@@ -1,0 +1,67 @@
+{
+ "key": "SaturatingAmplifier",
+ "title": "SaturatingAmplifier",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/SaturatingAmplifier.md"
+ ],
+ "text": "对饱和放大器建模，输入 1 路、输出 1 路；按 {VinVout} 指定输入电压响应及对应的输出电压响应 N ×2 matrix；{Mode} 指定放大器工作模式、{Specification} 指定限幅放大器输出的输入规格、{Limit} 指定限幅放大器的限幅电压、{LinearGain} 指定线性区域中的放大器增益、{Slice select} 指定要使用的 3D GPZ 矩阵的角点、{Visualize Response} 绘制输入电压与输出电压响应，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "输入基带信号 scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "限幅后的输出电压 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "On",
+   "values": "放大器工作模式 On (default) | Off",
+   "group": ""
+  },
+  {
+   "name": "Specification",
+   "default": "Gain’",
+   "values": "限幅放大器输出的输入规格 ’Limit and Linear Gain’ (default) | ’VinVout’",
+   "group": ""
+  },
+  {
+   "name": "Limit",
+   "default": "1.2",
+   "values": "限幅放大器的限幅电压 1.2 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "LinearGain",
+   "default": "1",
+   "values": "线性区域中的放大器增益 1 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "VinVout",
+   "default": "",
+   "values": "输入电压响应及对应的输出电压响应 N ×2 matrix | N ×2× M matrix",
+   "group": ""
+  },
+  {
+   "name": "Slice select",
+   "default": "0",
+   "values": "选择要使用的 3D GPZ 矩阵的角点 0 (default) | nonegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Visualize Response",
+   "default": "",
+   "values": "绘制输入电压与输出电压响应 button",
+   "group": ""
+  }
+ ]
+}

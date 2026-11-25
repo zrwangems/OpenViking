@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Machine Salient Pole",
+ "title": "Synchronous Machine Salient Pole",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Synchronous_Machine_Salient_Pole.md"
+ ],
+ "text": "Salient-pole synchronous machine with fundamental or standard parameterization.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

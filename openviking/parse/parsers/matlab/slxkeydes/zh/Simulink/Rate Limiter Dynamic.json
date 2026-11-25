@@ -1,0 +1,34 @@
+{
+ "key": "Rate Limiter Dynamic",
+ "title": "Rate Limiter Dynamic",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Rate_Limiter_Dynamic.md"
+ ],
+ "text": "限制信号变化的速率，输入 3 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 标量"
+  },
+  {
+   "name": "lo",
+   "direction": "input",
+   "summary": "递减输入的导数的限制 标量"
+  },
+  {
+   "name": "up",
+   "direction": "input",
+   "summary": "递增输入的导数的限制 标量"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "输出信号 标量"
+  }
+ ],
+ "params": []
+}

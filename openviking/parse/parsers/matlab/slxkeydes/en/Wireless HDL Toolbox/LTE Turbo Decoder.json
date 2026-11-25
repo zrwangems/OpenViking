@@ -1,0 +1,58 @@
+{
+ "key": "LTE Turbo Decoder",
+ "title": "LTE Turbo Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/LTE_Turbo_Decoder.md"
+ ],
+ "text": "Decode turbo-encoded samples, 3 inputs, 2 outputs; {Block size source} sets how to specify the block size, {Block size} sets the turbo code block size and {Number of decoding iterations} sets how many MAX decoding iterations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input sample three-element vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "blockSize",
+   "direction": "input",
+   "summary": "Turbo code block size integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Output sample scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Block size source",
+   "default": "port",
+   "values": "How to specify the block size Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Block size",
+   "default": "6144",
+   "values": "Turbo code block size 6144 (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of decoding iterations",
+   "default": "6",
+   "values": "How many MAX decoding iterations to perform 6 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "key": "Ideal Couplers",
+ "title": "Coupler",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/Coupler.md"
+ ],
+ "text": "使用 S 参数对理想的频率无关耦合器进行建模；按 {Reference impedances (Ohm)} 指定耦合器的参考阻抗；{Select component} 指定耦合器类型 Directional、{Coupling (dB)} 指定耦合到输出端口的输入信号功率占比、{Directivity (dB)} 指定耦合端口功率与隔离端口功率之比、{Insertion loss (dB)} 指定输入端口和输出端口之间的信号功率损耗、{Return loss (dB)} 指定因阻抗失配造成的信号功率损耗、{Power transmission coefficient} 指定传输信号功率、{Ground and hide negative terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Select component",
+   "default": "coupler",
+   "values": "耦合器类型 Directional coupler (default) | Coupler symmetrical | Coupler antisymmetrical | Hybrid quadrature (90 deg) | Hybrid rat-race | Magic tee",
+   "group": ""
+  },
+  {
+   "name": "Coupling (dB)",
+   "default": "0",
+   "values": "耦合到输出端口的输入信号功率占比 0 (default) | nonnegative and real scalar",
+   "group": ""
+  },
+  {
+   "name": "Directivity (dB)",
+   "default": "inf",
+   "values": "耦合端口功率与隔离端口功率之比 inf (default) | nonnegative and real scalar",
+   "group": ""
+  },
+  {
+   "name": "Insertion loss (dB)",
+   "default": "inf",
+   "values": "输入端口和输出端口之间的信号功率损耗 inf (default) | nonnegative and real scalar",
+   "group": ""
+  },
+  {
+   "name": "Return loss (dB)",
+   "default": "inf",
+   "values": "因阻抗失配造成的信号功率损耗 inf (default) | nonnegative and real scalar",
+   "group": ""
+  },
+  {
+   "name": "Power transmission coefficient",
+   "default": "0",
+   "values": "传输信号功率 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference impedances (Ohm)",
+   "default": "50",
+   "values": "耦合器的参考阻抗 50 (default) | positive scalar | positive three-tuple vector",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

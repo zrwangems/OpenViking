@@ -1,0 +1,184 @@
+{
+ "key": "Slcontrol:smcstatefeedback:BlockName",
+ "title": "Linear Sliding Mode Controller (State Feedback)",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Sliding Mode/Linear_Sliding_Mode_Controller_State_Feedback.md"
+ ],
+ "text": "Design sliding mode control with knowledge of linear systems using state feedback, 3 inputs, 2 outputs, {Control Gain (K)} sets Control gain; {A} sets the state matrix, {B} sets the input, {C} sets the output, {Am} sets the reference model state, {Bm} sets the reference model input {Task Mode} sets the mode of operation, {Output Switching Function}, {Include derivative reference signal} sets the derivative of reference signal externally, {Sr} sets the design matrix for reference tracking, {Tuning Method} sets the sliding surface design method Pole, {Pole Location} sets the pole location for pole placement method, {Weighted Matrix} sets the weighted matrix for quadratic performance index, {Export Hyperplane Matrix S} sets the send designed hyperplane matrix to MATLAB ® workspace, {S} sets the user-defined hyperplane, {Reaching Law} sets the reaching law Constant, {Reaching Rate (η)} sets the reaching rate, {Power Rate Exponent (α)} sets the power rate exponent, {Select Boundary Layer} sets the boundary layer function, {Phi} sets the boundary layer thickness, {Enable zero-crossing detection}, {Time domain} sets the controller time domain, {Sample time} and {Integrator method} sets the discrete-time integration method Forward. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "System states scalar | vector"
+  },
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Reference signal scalar | vector"
+  },
+  {
+   "name": "r.dot",
+   "direction": "input",
+   "summary": "Derivative of reference signal scalar | vector"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Control action scalar | vector"
+  },
+  {
+   "name": "s(x)",
+   "direction": "output",
+   "summary": "Switching function value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A",
+   "default": "0]",
+   "values": "State matrix [0 1; 0 0] (default) | square matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "B",
+   "default": "1]",
+   "values": "Input matrix [0; 1] (default) | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "C",
+   "default": "0]",
+   "values": "Output matrix [1 0] (default) | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Am",
+   "default": "0]",
+   "values": "Reference model state matrix [0 1; 0 0] (default) | matrix",
+   "group": "Reference Model Parameters"
+  },
+  {
+   "name": "Bm",
+   "default": "1]",
+   "values": "Reference model input matrix [0; 1] (default) | matrix",
+   "group": "Reference Model Parameters"
+  },
+  {
+   "name": "Task Mode",
+   "default": "Regulation",
+   "values": "Mode of operation Regulation (default) | Reference Tracking | Model-Reference Tracking",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Output Switching Function",
+   "default": "off",
+   "values": "Output switching function off (default) | on",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Include derivative reference signal",
+   "default": "off",
+   "values": "Specify derivative of reference signal externally off (default) | on",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Sr",
+   "default": "0.1",
+   "values": "Design matrix for reference tracking 0.1 (default) | scalar | matrix",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Tuning Method",
+   "default": "Placement",
+   "values": "Sliding surface design method Pole Placement (default) | Quadratic Minimization | User-Defined Matrix (S)",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Pole Location",
+   "default": "-1",
+   "values": "Pole location for pole placement method -1 (default) | column vector",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Weighted Matrix",
+   "default": "eye(2)",
+   "values": "Weighted matrix for quadratic performance index eye(2) (default) | square matrix",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Export Hyperplane Matrix S",
+   "default": "",
+   "values": "Send designed hyperplane matrix to MATLAB ® workspace button",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "S",
+   "default": "1]",
+   "values": "User-defined hyperplane matrix [1 1] (default) | matrix",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Reaching Law",
+   "default": "Rate",
+   "values": "Reaching law Constant Rate (default) | Exponential | Power Rate | Unit Vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Reaching Rate (η)",
+   "default": "0.01",
+   "values": "Reaching rate 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Control Gain (K)",
+   "default": "0.01",
+   "values": "Control gain 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Power Rate Exponent (α)",
+   "default": "0.01",
+   "values": "Power rate exponent 0.01 (default) | positive scalar between 0 and 1 | column vector of positive values between 0 and 1",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Select Boundary Layer",
+   "default": "Sign",
+   "values": "Boundary layer function Sign (default) | Relay | Hyperbolic Tangent | Saturation",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Phi",
+   "default": "0.01",
+   "values": "Boundary layer thickness 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "Enable zero-crossing detection off (default) | on",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Time domain",
+   "default": "Continuous-Time",
+   "values": "Controller time domain Continuous-Time (default) | Discrete-Time",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | finite positive scalar",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "Discrete-time integration method Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Block Tab"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Proportional Valve Actuator",
+ "title": "Proportional Valve Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Valve Actuators/Proportional_Valve_Actuator.md"
+ ],
+ "text": "Power-controlled valve actuator in any fluid domain.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

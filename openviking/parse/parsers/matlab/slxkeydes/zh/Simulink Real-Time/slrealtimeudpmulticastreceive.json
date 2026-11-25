@@ -1,0 +1,61 @@
+{
+ "key": "slrealtimeudpmulticastreceive",
+ "title": "UDP Multicast Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/UDP_Multicast_Receive.md"
+ ],
+ "text": "通过 UDP 网络从远程设备接收数据；输出 2 路；按 {Group address} 指定要加入的多播组；{Bind address} 用于接收多播数据的绑定 IP 地址 0.0.0.0、{Local port} 用于接收数据的目标 UDP 端口 1–65535、{Receive width} 指定 Data 输出向量的宽度、{Group interface} 用于接收数据的本地 IP 接口、{Sample time (-1 for inherited)} 指定模块的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "接收的数据 vector"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "接收到的字节数 double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Bind address",
+   "default": "0.0.0.0",
+   "values": "用于接收多播数据的绑定 IP 地址 0.0.0.0 (default)",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Local port",
+   "default": "",
+   "values": "用于接收数据的目标 UDP 端口 1–65535",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Receive width",
+   "default": "16",
+   "values": "Data 输出向量的宽度 16 (default) | 1–65504",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Group address",
+   "default": "{}",
+   "values": "要加入的多播组 {} (default) | {’x.x.x.x’} | dotted decimal character vector",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Group interface",
+   "default": "{}",
+   "values": "用于接收数据的本地 IP 接口 {} (default) | {’x.x.x.x’} | dotted decimal character vector",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块的采样时间 -1 (default) | numeric",
+   "group": "General Parameters"
+  }
+ ]
+}

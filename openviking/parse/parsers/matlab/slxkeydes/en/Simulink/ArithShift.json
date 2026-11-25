@@ -1,0 +1,67 @@
+{
+ "key": "ArithShift",
+ "title": "Shift Arithmetic",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Shift_Arithmetic.md",
+  "HDL Coder/Logic and Bit Operations/Shift_Arithmetic.md"
+ ],
+ "text": "Shift bits or binary point of signal, 2 inputs, 1 output, direct feedthrough, {Bits to shift: Number} sets Bits to shift; {Bits to shift: Source} sets the source of bits, {Bits to shift: Direction} sets the direction in which to shift bits, {Binary points to shift: Number} sets the number of places to shift binary point, {Diagnostic for out of range shift value} sets the diagnostic action and {Check for out-of-range ’Bits to shift’ in generated code} sets the check for out-of-range bits to shift in generated. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Number to be operated on scalar | vector | array"
+  },
+  {
+   "name": "s",
+   "direction": "input",
+   "summary": "Number of bits to shift scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Result of operation scalar | vector | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Bits to shift: Source",
+   "default": "Dialog",
+   "values": "Source of bits to shift Dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Bits to shift: Direction",
+   "default": "Bidirectional",
+   "values": "Direction in which to shift bits Bidirectional (default) | Left | Right",
+   "group": ""
+  },
+  {
+   "name": "Bits to shift: Number",
+   "default": "8",
+   "values": "Bits to shift 8 (default) | scalar | vector | array",
+   "group": ""
+  },
+  {
+   "name": "Binary points to shift: Number",
+   "default": "0",
+   "values": "Number of places to shift binary point 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Diagnostic for out of range shift value",
+   "default": "None",
+   "values": "Diagnostic action None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Check for out-of-range ’Bits to shift’ in generated code",
+   "default": "off",
+   "values": "Check for out-of-range bits to shift in generated code off (default) | on",
+   "group": ""
+  }
+ ]
+}

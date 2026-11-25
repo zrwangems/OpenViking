@@ -1,0 +1,277 @@
+{
+ "key": "Filter Visualizer",
+ "title": "Filter Visualizer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/Filter_Visualizer.md"
+ ],
+ "text": "显示时变数字滤波器的幅值和相位响应，输入 2 路、无直接馈通；按 {Style} 指定线型；{Num Filters} 指定要显示的滤波器数量、{Filter Type} 指定滤波器响应类型、{Legend} 显示信号图例、{Magnitude Phase} 绘制滤波器的幅值响应和相位响应、{FFT Length} 指定 FFT 长度、{Normalized Frequency} 以归一化单位显示频率响应、{Sample Rate (Hz)} 指定采样率、{Range} 指定频率范围、{Display Unit} 指定幅值单位 Magnitude、{Display Precision} 指定示波器显示中数据的精度、{Title} 显示标题 character vector、{X-Scale} 指定频率轴刻度、{Y-Limits} 指定 y 轴范围、{Show Grid} 显示内部网格线、{Plot Type} 指定绘图类型 Line、{Font Size} 指定标签字体大小、{Background} 指定窗口背景 black、{Axes} 指定坐标区背景颜色、{Labels} 指定标签颜色 gray、{Line} 用于线属性设置的滤波器 filter names、{Visible} 指定滤波器可见性、{Width} 指定线宽、{Marker} 指定数据点标记、{Color} 指定线颜色 yellow、{Copy to Clipboard} 指定将显示发送到剪贴板、{Preserve Colors} 指定复制到剪贴板时保留颜色、{Print} 指定打印显示、{Channel} 指定要为其获取测量的滤波器、{Data Cursors} 启用游标测量、{Snap to data} 指定将游标吸附到数据、{Lock cursor spacing} 指定锁定游标间距、{Peak Finder} 启用峰值查找器测量、{Num Peaks} 指定要显示的最大峰值数、{Min Height} 指定示波器检测峰值所高于的电平、{Min Distance} 指定相邻峰值之间的最小采样数、{Threshold} 指定峰值与其相邻样本之间的最小高度差、{Label Peaks} 指定标记峰值、{Filter Names} 指定输入滤波器名称、{Maximize Axes} 指定最大化绘图大小、{Axes Scaling} 指定 Y 轴缩放模式、{Number of Updates} 指定缩放前的更新次数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "分子系数 column vector | row vector | L -by-3 matrix | L -by-5 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "分母系数 column vector | row vector | L -by-3 matrix | L -by-5 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Num Filters",
+   "default": "1",
+   "values": "要显示的滤波器数量 1 (default) | positive integer in the range [1 20]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Filter Type",
+   "default": "FIR",
+   "values": "滤波器响应类型 FIR (default) | IIR",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Legend",
+   "default": "off",
+   "values": "显示信号图例 off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Magnitude Phase",
+   "default": "",
+   "values": "绘制滤波器的幅值响应和相位响应 button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "FFT Length",
+   "default": "2048",
+   "values": "FFT 长度 2048 (default) | positive integer",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Normalized Frequency",
+   "default": "on",
+   "values": "以归一化单位显示频率响应 on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Sample Rate (Hz)",
+   "default": "44100",
+   "values": "采样率 (Hz) 44100 (default) | positive scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Range",
+   "default": "[0,1]",
+   "values": "频率范围 [0,1] (default) | two-element numeric vector",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Display Unit",
+   "default": "(dB)",
+   "values": "幅值单位 Magnitude (dB) (default) | Magnitude | Magnitude squared",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Display Precision",
+   "default": "4",
+   "values": "示波器显示中数据的精度 4 (default) | positive integer ≤ 15",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Title",
+   "default": "",
+   "values": "显示标题 character vector | string",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "X-Scale",
+   "default": "Linear",
+   "values": "频率轴刻度 Linear (default) | Log",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-Limits",
+   "default": "",
+   "values": "y 轴范围 [ −25 25 ] | [ ymin ymax ]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Show Grid",
+   "default": "on",
+   "values": "显示内部网格线 on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Plot Type",
+   "default": "Line",
+   "values": "绘图类型 Line (default) | Stairs | Stem",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Font Size",
+   "default": "8.5",
+   "values": "标签字体大小 8.5 (default) | scalar in the range [1,100]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Background",
+   "default": "black",
+   "values": "窗口背景 black (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Axes",
+   "default": "black",
+   "values": "坐标区背景颜色 black (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Labels",
+   "default": "gray",
+   "values": "标签颜色 gray (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Line",
+   "default": "",
+   "values": "用于线属性设置的滤波器 filter names",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Visible",
+   "default": "on",
+   "values": "滤波器可见性 on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Style",
+   "default": "-",
+   "values": "线型 - (default) |: | -. | -- | None",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Width",
+   "default": "1.5",
+   "values": "线宽 1.5 (default) | 0.5 | 1 | 2 |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Marker",
+   "default": "None",
+   "values": "数据点标记 None (default) | + | x |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Color",
+   "default": "yellow",
+   "values": "线颜色 yellow (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Copy to Clipboard",
+   "default": "",
+   "values": "将显示发送到剪贴板 button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Preserve Colors",
+   "default": "off",
+   "values": "复制到剪贴板时保留颜色 off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Print",
+   "default": "",
+   "values": "打印显示 button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Channel",
+   "default": "Filter",
+   "values": "要为其获取测量的滤波器 Filter (default) | filter name",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Data Cursors",
+   "default": "",
+   "values": "启用游标测量 button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Snap to data",
+   "default": "off",
+   "values": "将游标吸附到数据 off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Lock cursor spacing",
+   "default": "off",
+   "values": "锁定游标间距 off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Peak Finder",
+   "default": "",
+   "values": "启用峰值查找器测量 button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Num Peaks",
+   "default": "3",
+   "values": "要显示的最大峰值数 3 (default) | positive integer less than 100",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Min Height",
+   "default": "-Inf",
+   "values": "示波器检测峰值所高于的电平 -Inf (default) | real scalar value",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Min Distance",
+   "default": "1",
+   "values": "相邻峰值之间的最小采样数 1 (default) | positive integer",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Threshold",
+   "default": "0",
+   "values": "峰值与其相邻样本之间的最小高度差 0 (default) | nonnegative scalar",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Peaks",
+   "default": "",
+   "values": "标记峰值 button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Filter Names",
+   "default": "[]",
+   "values": "输入滤波器名称 [] (default) | character vector | string | array of strings or character vectors.",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Maximize Axes",
+   "default": "Auto",
+   "values": "最大化绘图大小 Auto (default) | Off | On",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Axes Scaling",
+   "default": "Auto",
+   "values": "Y 轴缩放模式 Auto (default) | Manual | Updates | OnceAtStop",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Number of Updates",
+   "default": "100",
+   "values": "缩放前的更新次数 100 (default) | integer",
+   "group": "Property Inspector Only"
+  }
+ ]
+}

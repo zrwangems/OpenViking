@@ -1,0 +1,13 @@
+{
+ "key": "Line Voltage Sensor (Three-Phase)",
+ "title": "Line Voltage Sensor (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Line_Voltage_Sensor_Three_Phase.md"
+ ],
+ "text": "Ideal three-phase line voltage measurement.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

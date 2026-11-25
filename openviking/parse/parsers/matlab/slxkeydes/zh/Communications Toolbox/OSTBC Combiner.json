@@ -1,0 +1,90 @@
+{
+ "key": "OSTBC Combiner",
+ "title": "OSTBC Combiner",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/MIMO/OSTBC_Combiner.md"
+ ],
+ "text": "使用正交空时分组码合并输入，输入 2 路、输出 1 路；按 {Rounding mode} 指定定点计算的舍入模式；{Number of transmit antennas} 指定发射天线数量、{Rate} 指定符号率 3/4、{Number of receive antennas} 指定接收天线数量、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Product Output} 指定分集合并中分子的复数乘积、{Accumulator} 指定分集合并中分子的求和、{Energy product output} 指定分母中的复数乘积、{Energy accumulator} 用于计算 MIMO 信道总能量的分母求和、{Division output} 按 MIMO 信道总能量进行归一化的分集合并，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rx",
+   "direction": "input",
+   "summary": "接收信号 column vector | matrix | 3-D array"
+  },
+  {
+   "name": "cEst",
+   "direction": "input",
+   "summary": "信道估计 matrix | 3-D array | 4-D array"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出数据 matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of transmit antennas",
+   "default": "2",
+   "values": "发射天线数量 2 (default) | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Rate",
+   "default": "3/4",
+   "values": "符号率 3/4 (default) | 1/2",
+   "group": ""
+  },
+  {
+   "name": "Number of receive antennas",
+   "default": "1",
+   "values": "接收天线数量 1 (default) | integer in range [1,8]",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "定点计算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Product Output",
+   "default": "rule",
+   "values": "分集合并中分子的复数乘积 Inherit: Inherit via internal rule (default) | Inherit: Same as product output | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "分集合并中分子的求和 Inherit: Inherit via internal rule (default) | Inherit: Same as product output | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Energy product output",
+   "default": "rule",
+   "values": "分母中的复数乘积 Inherit: Inherit via internal rule (default) | Inherit: Same as product output | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Energy accumulator",
+   "default": "rule",
+   "values": "用于计算 MIMO 信道总能量的分母求和 Inherit: Inherit via internal rule (default) | Inherit: Same as accumulator | Inherit: Same as energy product output | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Division output",
+   "default": "",
+   "values": "按 MIMO 信道总能量进行归一化的分集合并 Inherit: Same as accumulator | fixdt(1,16,0) |",
+   "group": ""
+  }
+ ]
+}

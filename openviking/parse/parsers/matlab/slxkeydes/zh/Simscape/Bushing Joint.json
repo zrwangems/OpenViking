@@ -1,0 +1,13 @@
+{
+ "key": "Bushing Joint",
+ "title": "Bushing Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Bushing_Joint.md"
+ ],
+ "text": "具有三个移动副和三个转动副基元的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

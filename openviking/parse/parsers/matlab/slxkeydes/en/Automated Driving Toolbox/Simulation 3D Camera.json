@@ -1,0 +1,161 @@
+{
+ "key": "Simulation 3D Camera",
+ "title": "Simulation 3D Camera",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Camera.md",
+  "Robotics System Toolbox/Simulation 3D/Simulation_3D_Camera.md",
+  "UAV Toolbox/Simulation 3D/Simulation_3D_Camera.md",
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Camera.md"
+ ],
+ "text": "Camera sensor model with lens in 3D simulation environment, 2 inputs, 5 outputs, {Mounting location} sets Sensor mounting location; {Sensor identifier} sets the unique sensor identifier, {Parent name} sets the name of parent vehicle, {Specify offset} sets the offset from mounting location, {Relative translation [X, Y, Z] (m)} sets the translation offset relative to mounting location, {Relative rotation [Roll, Pitch, Yaw] (deg)} sets the rotational offset relative to mounting location, {Sample time}, {Focal length (pixels)} sets the focal length of camera, {Optical center (pixels)} sets the optical center of camera, {Image size (pixels)} sets the image size produced by camera, {Radial distortion coefficients}, {Tangential distortion coefficients}, {Axis skew} sets the skew angle of camera axes, {Visualize field of view} sets the option to visualize camera field of view, {Field of view range (m)} sets the visualization range, {Output depth}, {Output semantic segmentation} and {Output location (m) and orientation (rad)} sets the output location and orientation of sensor. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rel Translation",
+   "direction": "input",
+   "summary": "Relative translation of sensor from mounting point (m) [0 0 0] (default) | real-valued 1-by-3 vector of form [ X Y Z ]"
+  },
+  {
+   "name": "Rel Rotation",
+   "direction": "input",
+   "summary": "Relative rotation of sensor from mounting point (deg) [0 0 0] (default) | real-valued 1-by-3 vector of form [ Roll Pitch Yaw ]"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "3D output camera image m -by- n -by-3 array of RGB triplet values"
+  },
+  {
+   "name": "Depth",
+   "direction": "output",
+   "summary": "Object depth from 0 m to 1000 m m -by- n array of object depths"
+  },
+  {
+   "name": "Labels",
+   "direction": "output",
+   "summary": "Label identifiers m -by- n array of label identifiers"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Sensor location real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Sensor orientation real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "Name of parent vehicle Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "Specify offset from mounting location off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Focal length (pixels)",
+   "default": "1109]",
+   "values": "Focal length of camera [1109, 1109] (default) | 1-by-2 positive integer vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Optical center (pixels)",
+   "default": "360]",
+   "values": "Optical center of camera [640, 360] (default) | 1-by-2 positive integer vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Image size (pixels)",
+   "default": "1280]",
+   "values": "Image size produced by camera [720, 1280] (default) | 1-by-2 positive integer vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Radial distortion coefficients",
+   "default": "0]",
+   "values": "Radial distortion coefficients [0, 0] (default) | real-valued 2-element vector | real-valued 3-element vector | real-valued 6-element vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Tangential distortion coefficients",
+   "default": "0]",
+   "values": "Tangential distortion coefficients [0, 0] (default) | real-valued 2-element vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Axis skew",
+   "default": "0",
+   "values": "Skew angle of camera axes 0 (default) | nonnegative real-valued scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Visualize field of view",
+   "default": "off",
+   "values": "Option to visualize camera field of view off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Field of view range (m)",
+   "default": "61",
+   "values": "Visualization range 61 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output depth",
+   "default": "off",
+   "values": "Output depth map off (default) | on",
+   "group": "Ground Truth"
+  },
+  {
+   "name": "Output semantic segmentation",
+   "default": "off",
+   "values": "Output semantic segmentation map of label IDs off (default) | on",
+   "group": "Ground Truth"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "Output location and orientation of sensor off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

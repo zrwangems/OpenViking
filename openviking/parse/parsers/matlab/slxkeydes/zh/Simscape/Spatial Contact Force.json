@@ -1,0 +1,13 @@
+{
+ "key": "Spatial Contact Force",
+ "title": "Spatial Contact Force",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Spatial_Contact_Force.md"
+ ],
+ "text": "对两个几何体之间的空间接触进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

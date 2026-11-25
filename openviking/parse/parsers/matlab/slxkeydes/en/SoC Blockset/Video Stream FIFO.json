@@ -1,0 +1,57 @@
+{
+ "key": "Video Stream FIFO",
+ "title": "Video Stream FIFO",
+ "toolbox": "SoC Blockset",
+ "kind": "source_block",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/Video_Stream_FIFO.md"
+ ],
+ "text": "Control backpressure between hardware logic and upstream video interface, 3 inputs, 3 outputs; {Depth of FIFO} sets the fIFO depth and {Almost full threshold}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixelIn",
+   "direction": "input",
+   "summary": "Input pixel data scalar"
+  },
+  {
+   "name": "ctrlIn",
+   "direction": "input",
+   "summary": "Control signals accompanying input pixel data pixelcontrol bus"
+  },
+  {
+   "name": "rdyFromDown",
+   "direction": "input",
+   "summary": "Ready signal from downstream interface Boolean scalar"
+  },
+  {
+   "name": "pixelOut",
+   "direction": "output",
+   "summary": "Output pixel data scalar"
+  },
+  {
+   "name": "ctrlOut",
+   "direction": "output",
+   "summary": "Control signals accompanying output pixel data pixelcontrol bus"
+  },
+  {
+   "name": "rdyToUp",
+   "direction": "output",
+   "summary": "Ready signal to upstream interface Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Depth of FIFO",
+   "default": "16",
+   "values": "FIFO depth 16 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Almost full threshold",
+   "default": "8",
+   "values": "Almost full threshold value 8 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

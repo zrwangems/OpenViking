@@ -1,0 +1,13 @@
+{
+ "key": "Cartridge Valve Actuator (IL)",
+ "title": "Cartridge Valve Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Cartridge_Valve_Actuator_IL.md"
+ ],
+ "text": "Actuator that maintains equilibrium between valve and pilot pressures in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

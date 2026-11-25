@@ -1,0 +1,37 @@
+{
+ "key": "LockTimeMeasurement",
+ "title": "Lock Time Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Measurements & Testbenches/Lock_Time_Measurement.md"
+ ],
+ "text": "测量 PLL 达到目标频率并在给定容差内所需的时间，输入 1 路、输出 1 路；{Target frequency (Hz)} 用于测量锁定时间的 PLL 目标工作频率 2.1e9、{Error tolerance (Hz)} 指定锁定时间测量的误差容差 1e5，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pll out",
+   "direction": "input",
+   "summary": "输入时钟信号 scalar"
+  },
+  {
+   "name": "lock time",
+   "direction": "output",
+   "summary": "PLL 中实现锁定所需的时间 real positive scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Target frequency (Hz)",
+   "default": "2.1e9",
+   "values": "用于测量锁定时间的 PLL 目标工作频率 2.1e9 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Error tolerance (Hz)",
+   "default": "1e5",
+   "values": "锁定时间测量的误差容差 1e5 (default) | real positive scalar",
+   "group": ""
+  }
+ ]
+}

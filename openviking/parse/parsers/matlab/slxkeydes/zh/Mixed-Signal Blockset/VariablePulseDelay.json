@@ -1,0 +1,42 @@
+{
+ "key": "VariablePulseDelay",
+ "title": "Variable Pulse Delay",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Variable_Pulse_Delay.md"
+ ],
+ "text": "按受控且连续可变的量延迟采样，输入 2 路、输出 1 路；{Initial Input} 指定仿真前输出端口处的值、{Buffer Size} 指定仿真期间可用的输入缓冲样本数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入采样数据 fixed step discrete sample | variable step discrete sample"
+  },
+  {
+   "name": "delay",
+   "direction": "input",
+   "summary": "向输入信号引入延迟 nonnegative scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "延迟后的输出采样 fixed step discrete sample | variable step discrete sample"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial Input",
+   "default": "0",
+   "values": "仿真前输出端口处的值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer Size",
+   "default": "1",
+   "values": "仿真期间可用的输入缓冲样本数 1 (default) | positive scalar integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "2-D Median",
+ "title": "2-D Median",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Median.md"
+ ],
+ "text": "输入数组的 2-D Median 值，输入 1 路、输出 1 路；按 {Find the median value over} 指定Dimension in which to compute median Entire；{Sort algorithm} 指定 Algorithm to sort input array、{Dimension} 指定自定义维度、{Lock data type settings against change by the fixed-point tools} 用于防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数组 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output median values scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sort algorithm",
+   "default": "sort",
+   "values": "Algorithm to sort input array Quick sort (default) | Insertion sort",
+   "group": ""
+  },
+  {
+   "name": "Find the median value over",
+   "default": "input",
+   "values": "Dimension in which to compute median Entire input (default) | Each row | Each column | Specified dimension",
+   "group": ""
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "自定义维度 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "用于防止定点工具覆盖数据类型的选项 off (default) | on",
+   "group": ""
+  }
+ ]
+}

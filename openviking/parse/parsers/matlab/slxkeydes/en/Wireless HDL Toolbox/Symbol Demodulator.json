@@ -1,0 +1,126 @@
+{
+ "key": "Symbol Demodulator",
+ "title": "Symbol Demodulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/Symbol_Demodulator.md"
+ ],
+ "text": "Demodulate complex constellation symbol to set of LLR values or data bits, 5 inputs, 4 outputs, {Modulation} sets Modulation type; {Modulation source} sets the source for modulation, {Maximum modulation}, {Constellation ordering}, {Constellation mapping}, {Decision type} sets the type of demapping Approximate log-likelihood, {Phase offset}, {Output type} sets the type of output, {Normalization method} scales signal constellation Unit average, {Minimum distance between symbols} and {Enable noise variance input port} sets the option to enable noise variance port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Data symbols real-valued scalar | complex-valued scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Valid input data indication scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "modSel",
+   "direction": "input",
+   "summary": "Modulation selection 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7"
+  },
+  {
+   "name": "nVar",
+   "direction": "input",
+   "summary": "Noise variance real-valued positive scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Demodulated LLR values or data bits scalar | real-valued column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Valid output data indication scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "Property",
+   "values": "Source for modulation type Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Modulation",
+   "default": "BPSK",
+   "values": "Modulation type BPSK (default) | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM | 256-QAM",
+   "group": ""
+  },
+  {
+   "name": "Maximum modulation",
+   "default": "256-QAM",
+   "values": "Maximum modulation type 256-QAM (default) | BPSK | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM",
+   "group": ""
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Default",
+   "values": "Constellation ordering Default (default) | User-defined",
+   "group": ""
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "8]",
+   "values": "Constellation mapping [2, 3, 1, 0, 6, 7, 5, 4, 14, 15, 13, 12, 10, 11, 9, 8] (default) | unique integer-valued gray-coded row vector",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "ratio",
+   "values": "Type of demapping Approximate log-likelihood ratio (default) | Hard",
+   "group": ""
+  },
+  {
+   "name": "Phase offset",
+   "default": "pi/2",
+   "values": "Phase offset for constellation points pi/2 (default) | pi/4 | pi/8 | pi/16 | pi/32 | 0 | -pi/32 | -pi/16 | -pi/8 | -pi/4 | -pi/2",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Vector",
+   "values": "Type of output Vector (default) | Scalar",
+   "group": ""
+  },
+  {
+   "name": "Normalization method",
+   "default": "power",
+   "values": "Scale signal constellation Unit average power (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Minimum distance between symbols",
+   "default": "2",
+   "values": "Minimum distance between symbols 2 (default) | values in the range from 1/32 to 2",
+   "group": ""
+  },
+  {
+   "name": "Enable noise variance input port",
+   "default": "off",
+   "values": "Option to enable noise variance port off (default) | on",
+   "group": ""
+  }
+ ]
+}

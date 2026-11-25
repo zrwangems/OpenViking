@@ -1,0 +1,130 @@
+{
+ "key": "Starter Motor",
+ "title": "Starter",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/Starter/Starter.md"
+ ],
+ "text": "起动机作为直流电机；输出 3 路；按 {Motor Type} 指定电机类型 Separately Excited DC；{Armature winding resistance, Ra} 指定电阻、{Armature winding inductance, La} 指定电感 .1、{Field winding resistance, Rf} 指定电阻 .3、{Field winding inductance, Lf} 指定电感 .2、{Mutual inductance, Laf} 指定电感 .3、{Initial armature current and field current, Iaf} 指定电流、{Armature winding resistance, Rapm} 指定电阻 .5、{Armature winding inductance, Lapm} 指定电感 .1、{Torque constant, Kt} 指定电机转矩常数 .1、{Initial armature current, Ia} 指定电流 .1、{Total resistance, Rser} 指定电阻 .1、{Total inductance, Lser} 指定电感 .1、{Initial current, Iafser} 指定电流、{Mutual inductance, Lafser} 指定电感 .3，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "MtrSpd",
+   "direction": "",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "StartVolt",
+   "direction": "",
+   "summary": "电枢和励磁电压 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "LdCurr",
+   "direction": "output",
+   "summary": "起动机负载电流 scalar"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "output",
+   "summary": "起动机轴转矩 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Motor Type",
+   "default": "Motor",
+   "values": "选择电机类型 Separately Excited DC Motor (default) | Permanent Magnet Excited DC Motor | Series Connection DC Motor",
+   "group": ""
+  },
+  {
+   "name": "Armature winding resistance, Ra",
+   "default": "1",
+   "values": "电阻 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Armature winding inductance, La",
+   "default": ".1",
+   "values": "电感 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field winding resistance, Rf",
+   "default": ".3",
+   "values": "电阻 .3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field winding inductance, Lf",
+   "default": ".2",
+   "values": "电感 .2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mutual inductance, Laf",
+   "default": ".3",
+   "values": "电感 .3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial armature current and field current, Iaf",
+   "default": "0]",
+   "values": "电流 [0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Armature winding resistance, Rapm",
+   "default": ".5",
+   "values": "电阻 .5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Armature winding inductance, Lapm",
+   "default": ".1",
+   "values": "电感 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque constant, Kt",
+   "default": ".1",
+   "values": "电机转矩常数 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial armature current, Ia",
+   "default": ".1",
+   "values": "电流 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Total resistance, Rser",
+   "default": ".1",
+   "values": "电阻 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Total inductance, Lser",
+   "default": ".1",
+   "values": "电感 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial current, Iafser",
+   "default": "0",
+   "values": "电流 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mutual inductance, Lafser",
+   "default": ".3",
+   "values": "电感 .3 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

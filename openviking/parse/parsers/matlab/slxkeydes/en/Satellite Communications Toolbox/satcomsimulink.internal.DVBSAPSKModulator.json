@@ -1,0 +1,79 @@
+{
+ "key": "satcomsimulink.internal.DVBSAPSKModulator",
+ "title": "DVBS-APSK Modulator Baseband",
+ "toolbox": "Satellite Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Satellite Communications Toolbox/Modulation/Digital Baseband Modulation/DVBS_APSK_Modulator_Baseband.md"
+ ],
+ "text": "DVB-S2/S2X/SH standard-specific APSK modulation, 1 input, 1 output, {DVB standard suffix} sets Standard suffix; {Frame length}, {Modulation order}, {Code identifier}, {Constellation scaling}, {Input type}, {Output data type}, {View Constellation} plots reference constellation and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "DVB-S2/S2X/SH standard-specific APSK modulated signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "DVB standard suffix",
+   "default": "S2",
+   "values": "Standard suffix S2 (default) | S2X | SH",
+   "group": ""
+  },
+  {
+   "name": "Frame length",
+   "default": "Normal",
+   "values": "Frame length Normal (default) | Short",
+   "group": ""
+  },
+  {
+   "name": "Modulation order",
+   "default": "16",
+   "values": "Modulation order 16 (default) | 8 | 32 | 64 | 256",
+   "group": ""
+  },
+  {
+   "name": "Code identifier",
+   "default": "",
+   "values": "Code identifier 2/3 | character vector",
+   "group": ""
+  },
+  {
+   "name": "Constellation scaling",
+   "default": "1",
+   "values": "Constellation scaling Outer radius as 1 (default) | Unit average power",
+   "group": ""
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "Input type Integer (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "View Constellation",
+   "default": "",
+   "values": "Plot reference constellation button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

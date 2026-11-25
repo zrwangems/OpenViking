@@ -1,0 +1,91 @@
+{
+ "key": "OFDM Channel Estimator",
+ "title": "OFDM Channel Estimator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/OFDM_Channel_Estimator.md"
+ ],
+ "text": "Estimate channel using input data and reference subcarriers, 6 inputs, 2 outputs; {Enable averaging} sets the average LS estimates, {Number of symbols to be averaged}, {Enable interpolation} sets the interpolate LS estimates, {Interpolation factor}, {Maximum number of subcarriers per symbol} and {Enable reset input port} sets the reset signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data subcarriers scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "refData",
+   "direction": "input",
+   "summary": "Reference data subcarriers scalar"
+  },
+  {
+   "name": "refValid",
+   "direction": "input",
+   "summary": "Indicates valid reference data scalar"
+  },
+  {
+   "name": "numScPerSym",
+   "direction": "input",
+   "summary": "Number of valid subcarriers per OFDM symbol scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clear internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Output channel estimates scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable averaging",
+   "default": "off",
+   "values": "Average LS estimates off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of symbols to be averaged",
+   "default": "2",
+   "values": "Number of symbols to be averaged 2 (default) | integer in range from 2 to 14",
+   "group": ""
+  },
+  {
+   "name": "Enable interpolation",
+   "default": "off",
+   "values": "Interpolate LS estimates off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Interpolation factor",
+   "default": "3",
+   "values": "Interpolation factor 3 (default) | integer in range from 2 to 12",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of subcarriers per symbol",
+   "default": "52",
+   "values": "Maximum number of subcarriers per symbol 52 (default) | integer in range from 2 to 65, 536",
+   "group": ""
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Reset signal off (default) | on",
+   "group": ""
+  }
+ ]
+}

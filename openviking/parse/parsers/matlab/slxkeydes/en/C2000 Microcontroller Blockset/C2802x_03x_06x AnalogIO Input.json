@@ -1,0 +1,107 @@
+{
+ "key": "C2802x/03x/06x AnalogIO Input",
+ "title": "AnalogIO Input",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/AnalogIO_Input.md",
+  "C2000 Microcontroller Blockset/C2806x/AnalogIO_Input.md",
+  "C2000 Microcontroller Blockset/C2802x/AnalogIO_Input.md"
+ ],
+ "text": "Capture pulse width in normal or high resolution modes for F2803x and F2806x processors, 6 outputs, {HRCAP module} sets Select HRCAP module; {HRCAP mode}, {HRCAP clock}, {Enable rising edge interrupt} enables interrupt when rising edge, {Enable falling edge interrupt} enables interrupt when falling edge, {Enable counter overflow interrupt} enables interrupt when counter overflow, {Output type} selects output data type, {Enable counter overflow output} selects to capture HCCOUNTER overflows, {HRCAP output} and {Sample time} sets the frequency at which block reads data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rise[0,1]",
+   "direction": "output",
+   "summary": "Output capture value vector"
+  },
+  {
+   "name": "Fall[0,1]",
+   "direction": "output",
+   "summary": "Output capture value vector"
+  },
+  {
+   "name": "CounterOverflow",
+   "direction": "output",
+   "summary": "Overflow status scalar"
+  },
+  {
+   "name": "Period",
+   "direction": "output",
+   "summary": "Output capture data scalar"
+  },
+  {
+   "name": "On",
+   "direction": "output",
+   "summary": "Output capture data scalar"
+  },
+  {
+   "name": "Off",
+   "direction": "output",
+   "summary": "Output capture data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "HRCAP module",
+   "default": "HRCAP1",
+   "values": "Select HRCAP module HRCAP1 (default) | HRCAP2 | HRCAP3 | HRCAP4",
+   "group": ""
+  },
+  {
+   "name": "HRCAP mode",
+   "default": "Normal",
+   "values": "Select HRCAP mode Normal (default) | High resolution",
+   "group": ""
+  },
+  {
+   "name": "HRCAP clock",
+   "default": "SYSCLKOUT",
+   "values": "Select HRCAP clock SYSCLKOUT (default) | PLL clock",
+   "group": ""
+  },
+  {
+   "name": "Enable rising edge interrupt",
+   "default": "on",
+   "values": "Enable interrupt when rising edge is detected on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable falling edge interrupt",
+   "default": "on",
+   "values": "Enable interrupt when falling edge is detected on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable counter overflow interrupt",
+   "default": "off",
+   "values": "Enable interrupt when counter overflow is detected off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "cycles",
+   "values": "Select output data type HRCAPCLK cycles (default) | Microseconds | uint32 | fixdt(0,16,16)",
+   "group": ""
+  },
+  {
+   "name": "Enable counter overflow output",
+   "default": "off",
+   "values": "Select to capture HCCOUNTER overflows off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "HRCAP output",
+   "default": "only",
+   "values": "High resolution HRCAP output Period only (default) | ON time only | Off time only | On and Off time | All above(Period, On time, Off time )",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Frequency at which block reads data from HRCAP 0.1 (default)",
+   "group": ""
+  }
+ ]
+}

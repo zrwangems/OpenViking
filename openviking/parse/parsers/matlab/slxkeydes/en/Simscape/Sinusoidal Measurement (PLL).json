@@ -1,0 +1,77 @@
+{
+ "key": "Sinusoidal Measurement (PLL)",
+ "title": "Sinusoidal Measurement (PLL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Sinusoidal_Measurement_PLL.md"
+ ],
+ "text": "Estimate sinusoidal characteristics using a phase-locked loop, 1 input, 3 outputs, {Sample time (-1 for inherited)} sets Block sample time; {Phase detector integral gain} sets the pD integral gain, {Loop filter proportional gain} sets the lF proportional gain, {Loop filter integral gain} sets the lF integral gain, {Initial frequency (Hz)} sets the initial frequency, {Initial phase angle (rad)} sets the initial phase and {Initial magnitude}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar or vector"
+  },
+  {
+   "name": "freq",
+   "direction": "output",
+   "summary": "Frequency scalar or vector"
+  },
+  {
+   "name": "angle",
+   "direction": "output",
+   "summary": "Phase angle scalar or vector"
+  },
+  {
+   "name": "mag",
+   "direction": "output",
+   "summary": "Magnitude scalar or vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase detector integral gain",
+   "default": "1000",
+   "values": "PD integral gain 1000 (default) | positive scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Loop filter proportional gain",
+   "default": "400",
+   "values": "LF proportional gain 400 (default) | positive scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Loop filter integral gain",
+   "default": "20000",
+   "values": "LF integral gain 20000 (default) | positive scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "Hz",
+   "values": "Initial frequency 60 Hz (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Initial phase angle (rad)",
+   "default": "rad",
+   "values": "Initial phase 0 rad (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Initial magnitude",
+   "default": "1",
+   "values": "Initial magnitude 1 (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

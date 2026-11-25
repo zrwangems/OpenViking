@@ -1,0 +1,13 @@
+{
+ "key": "GTO",
+ "title": "GTO",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/GTO.md"
+ ],
+ "text": "门极关断晶闸管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

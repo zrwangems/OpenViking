@@ -1,0 +1,326 @@
+{
+ "key": "PMSM Field-Oriented Control",
+ "title": "PMSM Field-Oriented Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/PMSM Control/PMSM_Field_Oriented_Control.md"
+ ],
+ "text": "Permanent magnet synchronous machine field-oriented control, 5 inputs, 2 outputs, {Sampling mode} sets Wave-sampling method; {Winding Type} controls parameterization, {Control Mode} controls mode strategy, {Nominal dc-link voltage (V)} sets the rated DC voltage, {Maximum power (W)}, {Maximum torque (N*m)}, {Number of rotor pole pairs} sets the pole pairs, {Inverter dc-link voltage threshold (V)} sets the dC-link voltage threshold, {Fundamental sample time (s)} sets the block sample time 5e-6, {Control sample time (s)} controls sample time 1e-4, {Control Type} controls type strategy, {Controller proportional gain} sets the proportional gain of PI controller, {Controller integral gain} sets the integral gain of PI controller, {P controller proportional gain} sets the proportional gain of P controller, {Integral anti-windup gain} sets the anti-windup gain, {Current references} sets the current reference strategy Zero d-axis, {Mechanical speed vector, wMechanical (rpm)} sets the rotor speed lookup vector, {Torque reference vector, TqRef (N*m)} sets the torque reference lookup vector, {DC-link voltage vector, Vdc (V)} sets the dC-link voltage lookup vector, {D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)} sets the reference d-axis current values zeros, {Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)} sets the reference q-axis current values zeros, {Modulation factor}, {Permanent magnet flux linkage (Wb)} sets the pM Flux Linkage, {D-axis inductance (H)} sets the inductance of d-axis, {Q-axis inductance (H)} sets the inductance of q-axis, {Stator resistance (Ohm)} sets the resistance of stator, {D-axis current proportional gain} sets the d-axis proportional gain, {D-axis current integral gain} sets the d-axis integral gain, {D-axis current anti-windup gain} sets the d-axis anti-windup gain, {Q-axis current proportional gain} sets the q-axis proportional gain, {Q-axis current integral gain} sets the q-axis integral gain, {Q-axis current anti-windup gain} sets the q-axis anti-windup gain, {Axis prioritization}, {Enable zero cancellation} sets the feedforward zero cancellation, {Enable pre-control voltage} sets the precontrol voltage, {Machine parameters} sets the machine parameterization Constant, {D-axis inductance for feed-forward pre-control (H)} sets the feedforward d-axis inductance, {Q-axis inductance for feed-forward pre-control (H)} sets the feedforward q-axis inductance, {Permanent magnet flux linkage for feed-forward pre-control (H)} sets the feedforward flux linkage, {D-axis current vector, id (A)} sets the d-axis current breakpoint vector, {Q-axis current vector, iq (A)} sets the q-axis current breakpoint vector, {Ld matrix, Ld(id,iq) (H)} sets the d-axis inductance lookup data 0.0002 *, {Lq matrix, Lq(id,iq) (H)} sets the q-axis inductance lookup data 0.0002 *, {Permanent magnet flux linkage matrix, PM(id,iq) (Wb)} sets the flux linkage lookup data 0.04 * ones, {PWM method} sets the pulse width modulation method SVM: space vector and {Switching frequency (Hz)} sets the switching rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Reference",
+   "direction": "input",
+   "summary": "System reference scalar"
+  },
+  {
+   "name": "iabcSens",
+   "direction": "input",
+   "summary": "Measured phase currents vector"
+  },
+  {
+   "name": "wSens",
+   "direction": "input",
+   "summary": "Rotor speed scalar"
+  },
+  {
+   "name": "thSens",
+   "direction": "input",
+   "summary": "Rotor angle scalar"
+  },
+  {
+   "name": "vdcSens",
+   "direction": "input",
+   "summary": "DC-link voltage scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Gate pulses vector"
+  },
+  {
+   "name": "Visualization",
+   "direction": "output",
+   "summary": "Visualization signals bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Winding Type",
+   "default": "Wye-wound",
+   "values": "Control parameterization Wye-wound (default) | Delta-wound",
+   "group": ""
+  },
+  {
+   "name": "Control Mode",
+   "default": "control",
+   "values": "Control mode strategy Torque control (default) | Velocity control",
+   "group": ""
+  },
+  {
+   "name": "Nominal dc-link voltage (V)",
+   "default": "300",
+   "values": "Rated DC voltage 300 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum power (W)",
+   "default": "35000",
+   "values": "Maximum power 35000 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque (N*m)",
+   "default": "250",
+   "values": "Maximum torque 250 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Number of rotor pole pairs",
+   "default": "8",
+   "values": "Pole pairs 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Inverter dc-link voltage threshold (V)",
+   "default": "100",
+   "values": "DC-link voltage threshold 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Fundamental sample time (s)",
+   "default": "5e-6",
+   "values": "Block sample time 5e-6 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Control sample time (s)",
+   "default": "1e-4",
+   "values": "Control sample time 1e-4 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Control Type",
+   "default": "control",
+   "values": "Control type strategy PI control (default) | P control | P-PI control",
+   "group": ""
+  },
+  {
+   "name": "Controller proportional gain",
+   "default": "1",
+   "values": "Proportional gain of PI controller 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Controller integral gain",
+   "default": "1",
+   "values": "Integral gain of PI controller 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "P controller proportional gain",
+   "default": "1",
+   "values": "Proportional gain of P controller 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Integral anti-windup gain",
+   "default": "1",
+   "values": "Anti-windup gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Current references",
+   "default": "control",
+   "values": "Current reference strategy Zero d-axis control (default) | Lookup-table based | Automatically generated lookup-table",
+   "group": ""
+  },
+  {
+   "name": "Mechanical speed vector, wMechanical (rpm)",
+   "default": "3000]",
+   "values": "Rotor speed lookup vector [0, 3000] (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Torque reference vector, TqRef (N*m)",
+   "default": "100]",
+   "values": "Torque reference lookup vector [-100, 0, 100] (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "DC-link voltage vector, Vdc (V)",
+   "default": "350]",
+   "values": "DC-link voltage lookup vector [300, 350] (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)",
+   "default": "zeros(2,3,2)",
+   "values": "Reference d-axis current values zeros(2,3,2) (default) | real matrix",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)",
+   "default": "zeros(2,3,2)",
+   "values": "Reference q-axis current values zeros(2,3,2) (default) | real matrix",
+   "group": ""
+  },
+  {
+   "name": "Modulation factor",
+   "default": "1",
+   "values": "Modulation factor 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Permanent magnet flux linkage (Wb)",
+   "default": "0.04",
+   "values": "PM Flux Linkage 0.04 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "D-axis inductance (H)",
+   "default": "0.00024",
+   "values": "Inductance of d-axis 0.00024 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Q-axis inductance (H)",
+   "default": "0.00029",
+   "values": "Inductance of q-axis 0.00029 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator resistance (Ohm)",
+   "default": "0.01",
+   "values": "Resistance of stator 0.01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "D-axis current proportional gain",
+   "default": "1",
+   "values": "D-axis proportional gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current integral gain",
+   "default": "100",
+   "values": "D-axis integral gain 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current anti-windup gain",
+   "default": "1",
+   "values": "D-axis anti-windup gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current proportional gain",
+   "default": "1",
+   "values": "Q-axis proportional gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current integral gain",
+   "default": "100",
+   "values": "Q-axis integral gain 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current anti-windup gain",
+   "default": "1",
+   "values": "Q-axis anti-windup gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "q-axis",
+   "values": "Axis prioritization for voltage limiter q-axis (default) | d-axis | d-q equivalence",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "Feedforward zero cancellation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable pre-control voltage",
+   "default": "on",
+   "values": "Precontrol voltage on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Machine parameters",
+   "default": "parameters",
+   "values": "Machine parameterization Constant parameters (default) | Lookup table based parameters",
+   "group": ""
+  },
+  {
+   "name": "D-axis inductance for feed-forward pre-control (H)",
+   "default": "0.00024",
+   "values": "Feedforward d-axis inductance 0.00024 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Q-axis inductance for feed-forward pre-control (H)",
+   "default": "0.00029",
+   "values": "Feedforward q-axis inductance 0.00029 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Permanent magnet flux linkage for feed-forward pre-control (H)",
+   "default": "0.04",
+   "values": "Feedforward flux linkage 0.04 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "D-axis current vector, id (A)",
+   "default": "[-200,0,200]",
+   "values": "D-axis current breakpoint vector [-200,0,200] (default) | monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current vector, iq (A)",
+   "default": "[-200,0,200]",
+   "values": "Q-axis current breakpoint vector [-200,0,200] (default) | monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Ld matrix, Ld(id,iq) (H)",
+   "default": "3)",
+   "values": "D-axis inductance lookup data 0.0002 * ones(3, 3) (default) | positive matrix",
+   "group": ""
+  },
+  {
+   "name": "Lq matrix, Lq(id,iq) (H)",
+   "default": "3)",
+   "values": "Q-axis inductance lookup data 0.0002 * ones(3, 3) (default) | positive matrix",
+   "group": ""
+  },
+  {
+   "name": "Permanent magnet flux linkage matrix, PM(id,iq) (Wb)",
+   "default": "3)",
+   "values": "Flux linkage lookup data 0.04 * ones(3, 3) (default) | real matrix",
+   "group": ""
+  },
+  {
+   "name": "PWM method",
+   "default": "modulation",
+   "values": "Pulse width modulation method SVM: space vector modulation (default) | SPWM: sinusoidal PWM",
+   "group": ""
+  },
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "Wave-sampling method Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1000",
+   "values": "Switching rate 1000 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

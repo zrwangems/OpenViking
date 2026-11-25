@@ -1,0 +1,43 @@
+{
+ "key": "Generalized bell membership function",
+ "title": "Generalized Bell MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Generalized_Bell_MF.md"
+ ],
+ "text": "广义钟形隶属度函数，输入 1 路、输出 1 路；{a} 指定函数形状参数、{b} 指定函数形状参数、{c} 指定中心点，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入值 scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "隶属度值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "a",
+   "default": "5",
+   "values": "函数形状参数 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "b",
+   "default": "4",
+   "values": "函数形状参数 4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "c",
+   "default": "0",
+   "values": "中心点 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

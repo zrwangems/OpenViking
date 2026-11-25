@@ -1,0 +1,13 @@
+{
+ "key": "Elbow (TL)",
+ "title": "Elbow (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Elbow_TL.md"
+ ],
+ "text": "在热液体组件之间输送流体的封闭管道。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

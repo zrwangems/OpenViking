@@ -1,0 +1,90 @@
+{
+ "key": "Forward Substitution",
+ "title": "Forward Substitution",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/Forward_Substitution.md"
+ ],
+ "text": "Solve L X = B for X when L is lower triangular matrix, 2 inputs, 1 output, no direct feedthrough, {Rounding mode} sets Method of rounding operation; {Input L is unit-lower triangular} sets the diagonal elements of input matrix have a value, {Diagonal of complex input L is real} sets the diagonal elements of complex input are, {Saturate on integer overflow} sets the method of overflow action, {Product output}, {Accumulator}, {Output}, {Output Minimum} sets the minimum value the block can output, {Output Maximum} sets the maximum value block can output and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "Input lower triangular matrix M -by- M matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "B matrix M -by- N matrix | M -by-1 vector"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "Solution of system of equations M -by- N matrix | M -by-1 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input L is unit-lower triangular",
+   "default": "off",
+   "values": "Diagonal elements of input matrix have a value of 1 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Diagonal of complex input L is real",
+   "default": "off",
+   "values": "Diagonal elements of complex input are real off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as first input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as product output | Inherit: Same as first input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Output data type Inherit: Same as first input (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Minimum value the block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Maximum value block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

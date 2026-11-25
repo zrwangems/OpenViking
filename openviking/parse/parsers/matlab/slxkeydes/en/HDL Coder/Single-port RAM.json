@@ -1,0 +1,47 @@
+{
+ "key": "Single-port RAM",
+ "title": "Single Port RAM",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL RAMs/Single_Port_RAM.md"
+ ],
+ "text": "(To be removed) Single port RAM, 3 inputs, 1 output; {Address port width} sets the address bit width and {Output data during write} Controls output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "din",
+   "direction": "input",
+   "summary": "Write data input Scalar (default)"
+  },
+  {
+   "name": "addr",
+   "direction": "input",
+   "summary": "Write address Scalar (default)"
+  },
+  {
+   "name": "we",
+   "direction": "input",
+   "summary": "Write enable Scalar (default)"
+  },
+  {
+   "name": "dout",
+   "direction": "output",
+   "summary": "Output data Scalar (default)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Address port width",
+   "default": "8",
+   "values": "Address bit width 8 (default)",
+   "group": ""
+  },
+  {
+   "name": "Output data during write",
+   "default": "data",
+   "values": "Controls output data New data (default) | Old data",
+   "group": ""
+  }
+ ]
+}

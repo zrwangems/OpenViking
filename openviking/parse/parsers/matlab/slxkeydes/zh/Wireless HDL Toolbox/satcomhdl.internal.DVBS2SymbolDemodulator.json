@@ -1,0 +1,107 @@
+{
+ "key": "satcomhdl.internal.DVBS2SymbolDemodulator",
+ "title": "DVB-S2 Symbol Demodulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/DVB_S2_Symbol_Demodulator.md"
+ ],
+ "text": "根据 DVB-S2 标准将复星座符号解调为一组 LLR 值或数据位，输入 6 路、输出 4 路；按 {Code rate} 指定码率；{Modulation source} 指定调制类型来源 Input、{Modulation} 指定调制类型 QPSK、{Decision type} 指定解映射类型 Approximate log-likelihood、{Output type} 输出类型 Vector、{Unit average power} 指定单位平均功率、{Enable noise variance input port} 启用噪声方差端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "数据符号 real-valued scalar | complex-valued scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "输入数据是否有效的指示 scalar"
+  },
+  {
+   "name": "modIdx",
+   "direction": "input",
+   "summary": "调制指数 0 | 1 | 2 | 3 | 4"
+  },
+  {
+   "name": "codeRateIdx",
+   "direction": "input",
+   "summary": "码率索引 5 | 6 | 7 | 8 | 9 | 10"
+  },
+  {
+   "name": "nVar",
+   "direction": "input",
+   "summary": "噪声方差 real-valued positive scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "解调后的 LLR 值或数据位 scalar | eight-element real-valued column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "输出数据有效指示 0 | 1"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "指示模块已就绪 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "port",
+   "values": "调制类型来源 Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Modulation",
+   "default": "QPSK",
+   "values": "调制类型 QPSK (default) | 8-PSK | 16-APSK | 32-APSK | pi/2-BPSK",
+   "group": ""
+  },
+  {
+   "name": "Code rate",
+   "default": "3/4",
+   "values": "码率 3/4 (default) | 2/3 | 4/5 | 5/6 | 8/9 | 9/10",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "ratio",
+   "values": "解映射类型 Approximate log-likelihood ratio (default) | Hard",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Vector",
+   "values": "输出类型 Vector (default) | Scalar",
+   "group": ""
+  },
+  {
+   "name": "Unit average power",
+   "default": "off",
+   "values": "单位平均功率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable noise variance input port",
+   "default": "off",
+   "values": "启用噪声方差端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

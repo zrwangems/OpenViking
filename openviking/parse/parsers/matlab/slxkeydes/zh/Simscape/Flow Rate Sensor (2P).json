@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Sensor (2P)",
+ "title": "Flow Rate Sensor (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Sensors/Flow_Rate_Sensor_2P.md"
+ ],
+ "text": "测量两相流体网络中的质量流量、能量流量和体积流量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

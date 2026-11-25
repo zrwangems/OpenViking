@@ -1,0 +1,13 @@
+{
+ "key": "NARMA-L2 Controller",
+ "title": "NARMA-L2 Controller",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NARMA_L2_Controller.md"
+ ],
+ "text": "The neurocontroller described in this section is referred to by two different names: feedback linearization control and NARMA-L2 control.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

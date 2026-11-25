@@ -1,0 +1,124 @@
+{
+ "key": "phased.RangeResponse",
+ "title": "Range Response",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Range_Response.md"
+ ],
+ "text": "Range response, 3 inputs, 2 outputs, {Range processing window} sets Range FFT weighting window; {Measurement mode}, {Range processing method}, {Propagation speed (m/s)} sets the signal propagation speed physconst, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate, {FM sweep slope (Hz/s)} sets the fM sweep slope 1e9, {Dechirp input signal} enables dechirping of input signal, {Source of FFT length in range processing} sets the source of FFT length for range processing, {FFT length in range processing} sets the range processing FFT length, {Range sidelobe attenuation level} sets the sidelobe attenuation for range processing, {Set reference range at center} sets the reference range at center of range grid, {Reference range (m)} sets the reference range of range grid and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input data cube complex-valued K -by-1 column vector | complex-valued K -by- L matrix | complex-valued K -by- N -by- L array"
+  },
+  {
+   "name": "Coeff",
+   "direction": "input",
+   "summary": "Matched filter coefficients complex-valued column vector"
+  },
+  {
+   "name": "XRef",
+   "direction": "input",
+   "summary": "Reference signal complex-valued K -by-1 column vector"
+  },
+  {
+   "name": "Resp",
+   "direction": "output",
+   "summary": "Range response data cube complex-valued M -element column vector | complex-valued M -by- L matrix | complex-valued M -by- N by- L array"
+  },
+  {
+   "name": "Range",
+   "direction": "output",
+   "summary": "Range values along range dimension real-valued M -by-1 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement mode",
+   "default": "Monostatic",
+   "values": "Measurement mode Monostatic (default) | Bistatic",
+   "group": ""
+  },
+  {
+   "name": "Range processing method",
+   "default": "filter",
+   "values": "Range processing method Matched filter (default) | FFT",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "FM sweep slope (Hz/s)",
+   "default": "1e9",
+   "values": "FM sweep slope 1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Dechirp input signal",
+   "default": "on",
+   "values": "Enable dechirping of input signal on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Source of FFT length in range processing",
+   "default": "Auto",
+   "values": "Source of FFT length for range processing Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FFT length in range processing",
+   "default": "1024",
+   "values": "Range processing FFT length 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Range processing window",
+   "default": "None",
+   "values": "Range FFT weighting window None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor",
+   "group": ""
+  },
+  {
+   "name": "Range sidelobe attenuation level",
+   "default": "30",
+   "values": "Sidelobe attenuation for range processing 30 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Set reference range at center",
+   "default": "on",
+   "values": "Set reference range at center of range grid on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Reference range (m)",
+   "default": "0.0",
+   "values": "Reference range of range grid 0.0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Proportional Valve Actuator",
+ "title": "Proportional Valve Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Valve Actuators/Proportional_Valve_Actuator.md"
+ ],
+ "text": "适用于任意流体域的功率控制阀执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

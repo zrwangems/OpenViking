@@ -1,0 +1,55 @@
+{
+ "key": "Register Read",
+ "title": "Register Read",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Register_Read.md"
+ ],
+ "text": "从指定 IP 核上的寄存器区域读取数据，输入 1 路、输出 1 路；按 {Output data type} 指定IP 核使用的数据类型；{Device name} 指定 IP 核设备的路径和文件名、{Offset address} 指定从 IP 核基地址到寄存器的偏移量 hex2dec、{Output vector size} 指定来自 IP 核的数据向量大小、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "来自寄存器的数据消息 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "输出信号 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device name",
+   "default": "/dev/mwipcore",
+   "values": "IP 核设备的路径和文件名 /dev/mwipcore (default) | character array",
+   "group": ""
+  },
+  {
+   "name": "Offset address",
+   "default": "hex2dec(’0100’)",
+   "values": "从 IP 核基地址到寄存器的偏移量 hex2dec(’0100’) (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "uint32",
+   "values": "IP 核使用的数据类型 uint32 (default) | single | int8 | uint8 | int16 | int32 | uint32 | boolean | fixed-point",
+   "group": ""
+  },
+  {
+   "name": "Output vector size",
+   "default": "1",
+   "values": "来自 IP 核的数据向量大小 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "采样时间 0.1 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

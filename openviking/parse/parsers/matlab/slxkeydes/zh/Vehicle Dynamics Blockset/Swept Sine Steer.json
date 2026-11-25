@@ -1,0 +1,72 @@
+{
+ "key": "Swept Sine Steer",
+ "title": "Swept Sine",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Swept_Sine.md"
+ ],
+ "text": "生成用于执行扫频正弦机动的命令，输入 1 路、输出 2 路；{Maneuver start time, tStart [s]} 指定开始时间、{Longitudinal velocity setpoint, velRef} 指定目标速度、{Longitudinal velocity setpoint units, velRefUnit []} 指定单位 mph、{Steer amplitude, steerAmp [deg]} 指定方向盘转向幅度、{Final frequency, steerFinalFreq [Hz]} 指定达到最大转向幅度后的保持时间、{Swept time, tSweep [s]} 指定扫频过程的持续时间、{Initial steer direction} 指定初始转向方向，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "驾驶员参考数据 bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "驾驶员命令数据 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "2",
+   "values": "开始时间 2 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal velocity setpoint, velRef",
+   "default": "30",
+   "values": "目标速度 30 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "单位 mph (default)",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Steer amplitude, steerAmp [deg]",
+   "default": "90",
+   "values": "方向盘转向幅度 90 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Final frequency, steerFinalFreq [Hz]",
+   "default": "0.7",
+   "values": "达到最大转向幅度后的保持时间 0.7 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Swept time, tSweep [s]",
+   "default": "30",
+   "values": "扫频过程的持续时间 30 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Initial steer direction",
+   "default": "Right",
+   "values": "初始转向方向 Right (default) | Left",
+   "group": "Maneuver Parameters"
+  }
+ ]
+}

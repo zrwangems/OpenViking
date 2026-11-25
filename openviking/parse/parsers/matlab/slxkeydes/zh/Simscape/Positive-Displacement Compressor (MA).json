@@ -1,0 +1,13 @@
+{
+ "key": "Positive-Displacement Compressor (MA)",
+ "title": "Positive-Displacement Compressor (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Turbomachinery/Positive_Displacement_Compressor_MA.md"
+ ],
+ "text": "湿空气网络中的容积式压缩机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

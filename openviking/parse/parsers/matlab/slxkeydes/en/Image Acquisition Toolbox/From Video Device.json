@@ -1,0 +1,108 @@
+{
+ "key": "From Video Device",
+ "title": "From Video Device",
+ "toolbox": "Image Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Image Acquisition Toolbox/From_Video_Device.md"
+ ],
+ "text": "Capture live image data from image acquisition device, 3 outputs, {Data type} sets Video output data type; {Device} sets the image acquisition device, {Video format}, {Video source} sets the video input sources supported by device available video input, {Edit properties...} sets the video source properties, {Enable hardware triggering} sets the hardware-triggered acquisition, {ROI position} sets the region of interest in video image, {Output color space} sets the video output color, {Preview...} sets the preview of live video, {Block sample time} sets the block sampling rate, {Ports mode} sets the type of video output signal One multidimensional, {Read All Frames} sets the all available image frames captured and {Metadata Output Ports} sets the kinect ® for Windows ®. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Video output signal m -by- n -by-3 matrix"
+  },
+  {
+   "name": "R, G, B",
+   "direction": "output",
+   "summary": "RGB video output signal m -by- n matrix"
+  },
+  {
+   "name": "Y, Cb, Cr",
+   "direction": "output",
+   "summary": "YCbCr video output signal m -by- n matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "Image acquisition device available devices",
+   "group": ""
+  },
+  {
+   "name": "Video format",
+   "default": "",
+   "values": "Video formats supported by device available video formats",
+   "group": ""
+  },
+  {
+   "name": "Video source",
+   "default": "",
+   "values": "Video input sources supported by device available video input sources",
+   "group": ""
+  },
+  {
+   "name": "Edit properties...",
+   "default": "",
+   "values": "Video source properties button",
+   "group": ""
+  },
+  {
+   "name": "Enable hardware triggering",
+   "default": "off",
+   "values": "Hardware-triggered acquisition off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ROI position",
+   "default": "width]",
+   "values": "Region of interest in video image [0, 0, maximum height, maximum width] (default) | [row, column, height, width]",
+   "group": ""
+  },
+  {
+   "name": "Output color space",
+   "default": "rgb",
+   "values": "Video output color space rgb (default) | grayscale | YCbCr | bayer",
+   "group": ""
+  },
+  {
+   "name": "Preview...",
+   "default": "",
+   "values": "Preview of live video data button",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "1/30",
+   "values": "Block sampling rate 1/30 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Ports mode",
+   "default": "",
+   "values": "Type of video output signal One multidimensional signal | Separate color signals",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "Video output data type single (default) | double | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Read All Frames",
+   "default": "off",
+   "values": "All available image frames captured off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Metadata Output Ports",
+   "default": "",
+   "values": "Kinect ® for Windows ® output ports",
+   "group": ""
+  }
+ ]
+}

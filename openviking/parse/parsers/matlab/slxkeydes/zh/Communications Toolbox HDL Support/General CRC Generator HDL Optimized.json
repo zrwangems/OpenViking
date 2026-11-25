@@ -1,0 +1,91 @@
+{
+ "key": "General CRC Generator HDL Optimized",
+ "title": "General CRC Generator HDL Optimized",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Error Detection and Correction/CRC/General_CRC_Generator_HDL_Optimized.md"
+ ],
+ "text": "生成 CRC 码位并将其追加到输入数据，输入 4 路、输出 4 路；按 {Final XOR value} 指定校验和；{Polynomial} 指定生成多项式、{Initial state} 指定移位寄存器的初始条件、{Direct method} 指定校验和计算方法、{Reflect input} 指定输入字节顺序、{Reflect CRC checksum} 指定校验和字节顺序，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dataIn",
+   "direction": "input",
+   "summary": "输入数据 scalar | vector"
+  },
+  {
+   "name": "startIn",
+   "direction": "input",
+   "summary": "输入帧起始指示 Boolean scalar"
+  },
+  {
+   "name": "endIn",
+   "direction": "input",
+   "summary": "输入帧结束指示 Boolean scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入数据有效指示 Boolean scalar"
+  },
+  {
+   "name": "dataOut",
+   "direction": "output",
+   "summary": "输出数据 scalar | vector"
+  },
+  {
+   "name": "startOut",
+   "direction": "output",
+   "summary": "输出帧起始指示 scalar"
+  },
+  {
+   "name": "endOut",
+   "direction": "output",
+   "summary": "输出帧结束指示 scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据有效指示 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Polynomial",
+   "default": "1]",
+   "values": "生成多项式 [1 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1] (default) | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "移位寄存器的初始条件 0 (default) | binary scalar | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Direct method",
+   "default": "off",
+   "values": "校验和计算方法 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reflect input",
+   "default": "off",
+   "values": "输入字节顺序 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reflect CRC checksum",
+   "default": "off",
+   "values": "校验和字节顺序 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Final XOR value",
+   "default": "0",
+   "values": "校验和 0 (default) | binary scalar | binary vector",
+   "group": ""
+  }
+ ]
+}

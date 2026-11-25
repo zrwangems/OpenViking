@@ -1,0 +1,103 @@
+{
+ "key": "waveletscattering",
+ "title": "Wavelet Scattering",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Feature Extractors/Wavelet_Scattering.md"
+ ],
+ "text": "Simulink 中的小波散射网络建模，输入 1 路、输出 1 路、无直接馈通；按 {过采样因子} 指定过采样因子；{信号长度(采样)}、{重叠长度(采样)}、{指定采样率} 指定采样率、{采样率(Hz)} 指定采样率 16e3、{不变性尺度(采样)} 指定散射变换不变性尺度、{不变性尺度(秒)} 指定散射变换不变性尺度、{质量因子}、{减少散射路径的数量} 指定优化散射变换、{边界信号扩展} 指定信号扩展方法、{包括零阶系数}、{归一化}、{变换}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 向量 | 矩阵"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "输出信号 矩阵 | 三维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "信号长度(采样)",
+   "default": "1024",
+   "values": "信号长度（以采样为单位） 1024 (默认) | ≥ 16 的正整数",
+   "group": ""
+  },
+  {
+   "name": "重叠长度(采样)",
+   "default": "0",
+   "values": "重叠长度（以采样为单位） 0 (默认) | 正整数",
+   "group": ""
+  },
+  {
+   "name": "指定采样率",
+   "default": "off",
+   "values": "指定采样率 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "采样率(Hz)",
+   "default": "16e3",
+   "values": "采样率 16e3 (默认) | 正标量",
+   "group": ""
+  },
+  {
+   "name": "不变性尺度(采样)",
+   "default": "512",
+   "values": "散射变换不变性尺度（以采样为单位） 512 (默认) | 正整数",
+   "group": ""
+  },
+  {
+   "name": "不变性尺度(秒)",
+   "default": "0.032",
+   "values": "散射变换不变性尺度（以秒为单位） 0.032 (默认) | 正标量",
+   "group": ""
+  },
+  {
+   "name": "质量因子",
+   "default": "]",
+   "values": "散射滤波器组的质量因子 [ 8, 1 ] (默认) | 正整数 | 由单调递减的正整数组成的向量",
+   "group": ""
+  },
+  {
+   "name": "减少散射路径的数量",
+   "default": "off",
+   "values": "优化散射变换 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "过采样因子",
+   "default": "0",
+   "values": "过采样因子 0 (默认) | 非负整数 | Inf",
+   "group": ""
+  },
+  {
+   "name": "边界信号扩展",
+   "default": "周期性",
+   "values": "信号扩展方法 周期性 (默认) | 翻转",
+   "group": ""
+  },
+  {
+   "name": "包括零阶系数",
+   "default": "off",
+   "values": "包括零阶系数 off (默认) | on",
+   "group": "散射系数"
+  },
+  {
+   "name": "归一化",
+   "default": "无",
+   "values": "系数归一化 无 (默认) | 父级",
+   "group": "散射系数"
+  },
+  {
+   "name": "变换",
+   "default": "无",
+   "values": "系数变换 无 (默认) | 对数",
+   "group": "散射系数"
+  }
+ ]
+}

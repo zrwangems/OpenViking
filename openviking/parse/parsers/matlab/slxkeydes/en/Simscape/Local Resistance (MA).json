@@ -1,0 +1,13 @@
+{
+ "key": "Local Resistance (MA)",
+ "title": "Local Resistance (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/Local_Resistance_MA.md"
+ ],
+ "text": "Pipe resistance in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

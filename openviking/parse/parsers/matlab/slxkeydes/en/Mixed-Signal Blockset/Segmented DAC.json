@@ -1,0 +1,144 @@
+{
+ "key": "Segmented DAC",
+ "title": "Segmented DAC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Architectures/Segmented_DAC.md"
+ ],
+ "text": "Convert large digital input to analog signal using arrangement of smaller DACs, 2 inputs, 1 output, {Gain error unit} sets Unit of gain error; {Input polarity} defines DAC input data, {Use external start clock} sets the connect to external start conversion clock, {Conversion start frequency (Hz)} sets the frequency of internal start conversion clock, {Reference (V)} sets the dAC output reference magnitude, {Bias (V)} sets the difference between analog output for code zero and analog, {Settling time (s)} sets the time required for output, {Settling time tolerance (LSB)} sets the tolerance for calculating settling time, {Bit width} sets the number of physical input bits for DAC segment integer scalar greater than or equal, {Bits} sets the bit ranges of each, {Topology}, {Offset error} sets the shift quantization steps, {Offset error unit} sets the unit of offset, {Gain error} sets the error in slope of DAC transfer curve, {Move selected segment up}, {Move selected segment down}, {New Segment} adds new DAC, {Duplicate Selected} sets the duplicate selected segment and {Delete Selected} sets the delete selected segment. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "Digital input signal integer"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "External clock to start conversion scalar"
+  },
+  {
+   "name": "analog",
+   "direction": "output",
+   "summary": "Converted analog output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input polarity",
+   "default": "Unipolar",
+   "values": "Define DAC input data polarity Unipolar (default) | Bipolar",
+   "group": ""
+  },
+  {
+   "name": "Use external start clock",
+   "default": "on",
+   "values": "Connect to external start conversion clock on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Conversion start frequency (Hz)",
+   "default": "1e6",
+   "values": "Frequency of internal start conversion clock 1e6 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference (V)",
+   "default": "0.5",
+   "values": "DAC output reference magnitude 0.5 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias (V)",
+   "default": "0",
+   "values": "Difference between analog output for code zero and analog zero 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time (s)",
+   "default": "2e-7",
+   "values": "Time required for output to settle 2e-7 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time tolerance (LSB)",
+   "default": "0.5",
+   "values": "Tolerance for calculating settling time 0.5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Bit width",
+   "default": "",
+   "values": "Number of physical input bits for DAC segment integer scalar greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Bits",
+   "default": "",
+   "values": "Bit ranges of each segment vector",
+   "group": ""
+  },
+  {
+   "name": "Topology",
+   "default": "Weighted",
+   "values": "Topology of base DAC segment Binary Weighted (default)",
+   "group": ""
+  },
+  {
+   "name": "Offset error",
+   "default": "0",
+   "values": "Shift quantization steps 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Offset error unit",
+   "default": "LSB",
+   "values": "Unit of offset error LSB (default) | FS | %FS",
+   "group": ""
+  },
+  {
+   "name": "Gain error",
+   "default": "0",
+   "values": "Error in slope of DAC transfer curve 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Gain error unit",
+   "default": "LSB",
+   "values": "Unit of gain error LSB (default) | FS | %FS",
+   "group": ""
+  },
+  {
+   "name": "Move selected segment up",
+   "default": "",
+   "values": "Move selected segment up one row button",
+   "group": ""
+  },
+  {
+   "name": "Move selected segment down",
+   "default": "",
+   "values": "Move selected segment down one row button",
+   "group": ""
+  },
+  {
+   "name": "New Segment",
+   "default": "",
+   "values": "Add new DAC segment button",
+   "group": ""
+  },
+  {
+   "name": "Duplicate Selected",
+   "default": "",
+   "values": "Duplicate selected segment button",
+   "group": ""
+  },
+  {
+   "name": "Delete Selected",
+   "default": "",
+   "values": "Delete selected segment button",
+   "group": ""
+  }
+ ]
+}

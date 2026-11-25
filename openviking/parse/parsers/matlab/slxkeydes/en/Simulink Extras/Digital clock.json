@@ -1,0 +1,34 @@
+{
+ "key": "Digital clock",
+ "title": "Clock",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Flip Flops/Clock.md"
+ ],
+ "text": "Model an enabled D Latch flip-flop, 2 inputs, 2 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "Data input signal scalar | vector | matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Chip enable input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  },
+  {
+   "name": "!Q",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

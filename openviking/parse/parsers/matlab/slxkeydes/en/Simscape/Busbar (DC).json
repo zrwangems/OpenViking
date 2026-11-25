@@ -1,0 +1,13 @@
+{
+ "key": "Busbar (DC)",
+ "title": "Busbar (DC)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Busbar_DC.md"
+ ],
+ "text": "Load flow analysis DC busbar connector.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

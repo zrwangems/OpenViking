@@ -1,0 +1,340 @@
+{
+ "key": "AttitudeDynamics",
+ "title": "Attitude Dynamics",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Attitude_Dynamics.md"
+ ],
+ "text": "对一个或多个航天器的姿态动力学进行建模，输入 10 路、输出 7 路；按 {Attitude representation} 指定方向格式；{Input body moments} 启用外部力矩、{State vector coordinate frame} 指定位置和速度状态端口坐标系、{Start date/time (UTC Julian date)} 指定仿真的初始开始时间 juliandate、{Output current date/time (UTC Julian date)} 添加输出端口 t utc、{Action for out-of-range input} 指定超出范围时的模块行为、{Mass type} 指定航天器质量类型、{Mass} 指定刚体航天器的初始质量、{Empty mass} 指定航天器空质量、{Full mass} 指定航天器满质量、{Inertia tensor} 指定惯性张量矩阵、{Empty inertia tensor} 指定空载惯性张量矩阵、{Full inertia tensor} 指定满载惯性张量矩阵、{Include mass flow relative velocity} 用于启用质量流速度、{Limit mass flow when mass is empty or full} 用于限制质量流、{Output fuel tank status} 用于启用燃料箱状态、{Attitude reference coordinate frame} 指定姿态和角速率坐标系、{Initial body attitude} 指定航天器初始姿态、{Angle rotation order} 指定角度旋转顺序、{Initial body angular rates PQR} 指定初始体固连角速率、{Include gravity gradient torque} 用于启用重力梯度力矩、{Central body} 指定航天器环绕运行的天体、{Rotational rate} 指定旋转速率 4.06124975e-3、{Use Earth orientation parameters (EOPs)} 用于使用地球定向参数、{IERS EOP data file} 指定地球定向数据、{Input Moon libration angles} 指定月球天平动欧拉角速率、{Output quaternion (ICRF to Fixed-frame)} 用于添加输出变换四元数端口、{Central body spin axis source} 指定中心天体自旋源、{Spin axis right ascension (RA) at J2000} 指定中心天体自旋轴在 J2000 时的赤经、{Spin axis RA rate (deg/century)} 指定中心天体自旋轴的赤经变化率、{Spin axis declination (Dec) at J2000} 指定中心天体自旋轴在 J2000 时的赤纬、{Spin axis Dec rate (deg/century)} 指定中心天体自旋轴的赤纬变化率、{Initial rotation angle at J2000} 指定中心天体 x 轴旋转角、{Rotation rate (deg/day)} 指定中心天体 x 轴旋转速率、{Equatorial radius} 指定赤道半径、{Flattening} 指定行星扁率、{Gravitational parameter} 指定引力参数 4.305e13、{Units} 指定参数和端口单位 Metric、{Angle units} 指定角度单位 Degrees、{Time format} 指定开始日期和时间输出的时间格式 Julian，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "航天器位置 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "速度 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "M b",
+   "direction": "input",
+   "summary": "外部力矩 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "质量变化率 scalar | 1D array of size numSat"
+  },
+  {
+   "name": "m",
+   "direction": "input",
+   "summary": "航天器质量 scalar | 1D array of size numSat"
+  },
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "航天器惯性张量 3-by-3 array | 3-by-3-by- numSat array"
+  },
+  {
+   "name": "dI/dt",
+   "direction": "input",
+   "summary": "惯性张量矩阵变化率 3-by-3 array | 3-by-3-by- numSat array"
+  },
+  {
+   "name": "V re",
+   "direction": "input",
+   "summary": "相对速度 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "φθψ",
+   "direction": "input",
+   "summary": "月球天平动角 3-element vector"
+  },
+  {
+   "name": "αδW",
+   "direction": "input",
+   "summary": "赤经、赤纬和旋转角 3-element vector"
+  },
+  {
+   "name": "q body2icrf",
+   "direction": "output",
+   "summary": "航天器姿态四元数 4-element quaternion | numSat -by-4 array"
+  },
+  {
+   "name": "DCM",
+   "direction": "output",
+   "summary": "航天器姿态方向余弦矩阵 3-by-3 array | numSat -by-3-by-3 array"
+  },
+  {
+   "name": "R1,R2,R3",
+   "direction": "output",
+   "summary": "航天器姿态欧拉角 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "ω",
+   "direction": "output",
+   "summary": "航天器角速率 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "q icrf2ff",
+   "direction": "output",
+   "summary": "坐标系变换 4-element array"
+  },
+  {
+   "name": "t utc",
+   "direction": "output",
+   "summary": "当前时间步的时间 scalar | 6-element array"
+  },
+  {
+   "name": "Fuel Status",
+   "direction": "output",
+   "summary": "燃料状态 scalar | numSat -element array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input body moments",
+   "default": "on",
+   "values": "启用外部力矩的选项 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "State vector coordinate frame",
+   "default": "ICRF",
+   "values": "位置和速度状态端口坐标系 ICRF (default) | Fixed-frame",
+   "group": "Main"
+  },
+  {
+   "name": "Start date/time (UTC Julian date)",
+   "default": "0)",
+   "values": "仿真的初始开始时间 juliandate (2020, 1, 1, 12, 0, 0) (default) | valid scalar Julian date | valid Gregorian date",
+   "group": "Main"
+  },
+  {
+   "name": "Output current date/time (UTC Julian date)",
+   "default": "on",
+   "values": "添加输出端口 t utc 的选项 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "超出范围时的模块行为 Warning (default) | Error | None",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Fixed",
+   "values": "航天器质量类型 Fixed (default) | Simple Variable | Custom Variable",
+   "group": "Mass"
+  },
+  {
+   "name": "Mass",
+   "default": "4.0",
+   "values": "刚体航天器的初始质量 4.0 (default) | scalar | vector of size numSat",
+   "group": "Mass"
+  },
+  {
+   "name": "Empty mass",
+   "default": "3.5",
+   "values": "航天器空质量 3.5 (default) | scalar | vector of size numSat",
+   "group": "Mass"
+  },
+  {
+   "name": "Full mass",
+   "default": "4.0",
+   "values": "航天器满质量 4.0 (default) | scalar | vector of size numSat",
+   "group": "Mass"
+  },
+  {
+   "name": "Inertia tensor",
+   "default": "0.0040]",
+   "values": "惯性张量矩阵 [0.2273, 0, 0; 0 0.2273 0; 0 0.0040] (default) | 3-by-3 array | 3-by-3-by- numSat array",
+   "group": "Mass"
+  },
+  {
+   "name": "Empty inertia tensor",
+   "default": "0.0035]",
+   "values": "空载惯性张量矩阵 [0.1989, 0, 0; 0 0.1989 0; 0 0.0035] (default) | 3-by-3 array | 3-by-3-by- numSat array",
+   "group": "Mass"
+  },
+  {
+   "name": "Full inertia tensor",
+   "default": "0,.0040]",
+   "values": "满载惯性张量矩阵 [0.2273, 0, 0; 0, 0.2273, 0; 0, 0,.0040] (default) | 3-by-3 array | 3-by-3-by- numSat array",
+   "group": "Mass"
+  },
+  {
+   "name": "Include mass flow relative velocity",
+   "default": "off",
+   "values": "用于启用质量流速度的选项 off (default) | on",
+   "group": "Mass"
+  },
+  {
+   "name": "Limit mass flow when mass is empty or full",
+   "default": "on",
+   "values": "用于限制质量流的选项 on (default) | off",
+   "group": "Mass"
+  },
+  {
+   "name": "Output fuel tank status",
+   "default": "on",
+   "values": "用于启用燃料箱状态的选项 on (default) | off",
+   "group": "Mass"
+  },
+  {
+   "name": "Attitude reference coordinate frame",
+   "default": "ICRF",
+   "values": "姿态和角速率坐标系 ICRF (default) | Fixed-frame | NED | LVLH",
+   "group": "Attitude"
+  },
+  {
+   "name": "Attitude representation",
+   "default": "Quaternion",
+   "values": "方向格式 Quaternion (default) | DCM | Euler angles",
+   "group": "Attitude"
+  },
+  {
+   "name": "Initial body attitude",
+   "default": "0]",
+   "values": "航天器初始姿态 [1, 0, 0, 0] (default) | 4-element vector | numSat -by-4 array | 3-by-3 array | numSat -by-3-by-3 array | 3-element vector | numSat -by-3 array",
+   "group": "Attitude"
+  },
+  {
+   "name": "Angle rotation order",
+   "default": "ZYX",
+   "values": "角度旋转顺序 ZYX (default) | ZYX | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX",
+   "group": "Attitude"
+  },
+  {
+   "name": "Initial body angular rates PQR",
+   "default": "0]",
+   "values": "初始体固连角速率 [0, 0, 0] (default) | 3-element vector | numSat -by-3 array",
+   "group": "Attitude"
+  },
+  {
+   "name": "Include gravity gradient torque",
+   "default": "on",
+   "values": "用于启用重力梯度力矩的选项 on (default) | off",
+   "group": "Attitude"
+  },
+  {
+   "name": "Central body",
+   "default": "Earth",
+   "values": "航天器环绕运行的天体 Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Custom",
+   "group": "Central Body"
+  },
+  {
+   "name": "Rotational rate",
+   "default": "4.06124975e-3",
+   "values": "旋转速率 4.06124975e-3 (default) | scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Use Earth orientation parameters (EOPs)",
+   "default": "on",
+   "values": "用于使用地球定向参数的选项 on (default) | off",
+   "group": "Central Body"
+  },
+  {
+   "name": "IERS EOP data file",
+   "default": "aeroiersdata.mat",
+   "values": "地球定向数据 aeroiersdata.mat (default) | MAT-file",
+   "group": "Central Body"
+  },
+  {
+   "name": "Input Moon libration angles",
+   "default": "off",
+   "values": "月球天平动欧拉角速率 off (default) | on",
+   "group": "Central Body"
+  },
+  {
+   "name": "Output quaternion (ICRF to Fixed-frame)",
+   "default": "off",
+   "values": "用于添加输出变换四元数端口的选项 off (default) | on",
+   "group": "Central Body"
+  },
+  {
+   "name": "Central body spin axis source",
+   "default": "Port",
+   "values": "中心天体自旋源 Port (default) | Dialog",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis right ascension (RA) at J2000",
+   "default": "317.68143",
+   "values": "中心天体自旋轴在 J2000 时的赤经 317.68143 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis RA rate (deg/century)",
+   "default": "-0.1061",
+   "values": "中心天体自旋轴的赤经变化率 -0.1061 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis declination (Dec) at J2000",
+   "default": "52.88650",
+   "values": "中心天体自旋轴在 J2000 时的赤纬 52.88650 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis Dec rate (deg/century)",
+   "default": "-0.0609",
+   "values": "中心天体自旋轴的赤纬变化率 -0.0609 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Initial rotation angle at J2000",
+   "default": "176.630",
+   "values": "中心天体 x 轴旋转角 176.630 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Rotation rate (deg/day)",
+   "default": "350.89198226",
+   "values": "中心天体 x 轴旋转速率 350.89198226 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "3396200",
+   "values": "赤道半径 3396200 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Flattening",
+   "default": "0.00589",
+   "values": "行星扁率 0.00589 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Gravitational parameter",
+   "default": "4.305e13",
+   "values": "引力参数 4.305e13 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Units",
+   "default": "(m/s)",
+   "values": "参数和端口单位 Metric (m/s) (default) | Metric (km/s) | Metric (km/h) | English (ft/s) | English (kts)",
+   "group": "Units"
+  },
+  {
+   "name": "Angle units",
+   "default": "Degrees",
+   "values": "角度单位 Degrees (default) | Radians",
+   "group": "Units"
+  },
+  {
+   "name": "Time format",
+   "default": "date",
+   "values": "开始日期和时间输出的时间格式 Julian date (default) | Gregorian",
+   "group": "Units"
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "key": "Task Trigger",
+ "title": "Task Trigger",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor Task Execution/Task_Trigger.md"
+ ],
+ "text": "在您的应用程序中触发任务执行；输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出触发 scalar"
+  }
+ ],
+ "params": []
+}

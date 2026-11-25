@@ -1,0 +1,94 @@
+{
+ "key": "audio.simulink.WavetableSynthesizer",
+ "title": "Wavetable Synthesizer",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sources/Wavetable_Synthesizer.md"
+ ],
+ "text": "从单周期波形生成周期信号，输入 4 路、输出 1 路、无直接馈通；{Single-cycle waveform} 指定波表 sin、{Output wave frequency (Hz)} 指定生成信号的频率、{Output wave amplitude} 指定生成信号的幅度、{Output wave phase offset} 指定生成信号的归一化相位偏移、{Output wave DC offset} 添加到生成信号每个元素的值、{Samples per frame} 指定模块输出的每帧采样点数、{Sample rate (Hz)} 指定生成信号的采样率、{Output data type} 指定生成信号的数据类型、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WT",
+   "direction": "input",
+   "summary": "单周期波形 vector of real values"
+  },
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "输出波频率 (Hz) nonnegative scalar | vector of nonnegative values"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输出波幅度 nonnegative scalar"
+  },
+  {
+   "name": "DC",
+   "direction": "input",
+   "summary": "输出波直流偏移 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Single-cycle waveform",
+   "default": "sin(2*pi*(0:511)/512)",
+   "values": "波表 sin(2*pi*(0:511)/512) (default) | vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Output wave frequency (Hz)",
+   "default": "100",
+   "values": "生成信号的频率 100 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output wave amplitude",
+   "default": "1",
+   "values": "生成信号的幅度 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output wave phase offset",
+   "default": "0",
+   "values": "生成信号的归一化相位偏移 0 (default) | scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Output wave DC offset",
+   "default": "0",
+   "values": "添加到生成信号每个元素的值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "512",
+   "values": "模块输出的每帧采样点数 512 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "生成信号的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "生成信号的数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "指定要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

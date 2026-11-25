@@ -1,0 +1,78 @@
+{
+ "key": "Sort",
+ "title": "Sort",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Sort.md"
+ ],
+ "text": "按值对输入元素排序，输入 1 路、输出 2 路、无直接馈通；按 {Rounding mode} 指定舍入运算的方法；{Mode} 指定模块返回值、索引还是两者都返回 Value、{Sort order} 指定排序顺序 Ascending、{Sort algorithm} 指定排序方法 Quick、{Saturate on integer overflow} 指定溢出操作的方法、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Val",
+   "direction": "output",
+   "summary": "排序后的数据 vector | matrix"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "排序后数据的索引 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Index",
+   "values": "指定模块返回值、索引还是两者都返回 Value and Index (default) | Value | Index",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sort order",
+   "default": "Ascending",
+   "values": "排序顺序 Ascending (default) | Descending",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sort algorithm",
+   "default": "sort",
+   "values": "排序方法 Quick sort (default) | Insertion sort",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "乘积输出数据类型 Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "累加器数据类型 Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

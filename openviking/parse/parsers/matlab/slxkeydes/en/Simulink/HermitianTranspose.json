@@ -1,0 +1,24 @@
+{
+ "key": "HermitianTranspose",
+ "title": "Hermitian Transpose",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Hermitian_Transpose.md"
+ ],
+ "text": "Compute hermitian transpose of matrix, 1 input, 1 output, direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Matrix M -by- N matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Transposed matrix N -by- M matrix"
+  }
+ ],
+ "params": []
+}

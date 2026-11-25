@@ -1,0 +1,13 @@
+{
+ "key": "Diffusion Resistor",
+ "title": "Diffusion Resistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Diffusion_Resistor.md"
+ ],
+ "text": "Resistor model with velocity saturation and optional tolerance, operational limits, fault behavior, and noise.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

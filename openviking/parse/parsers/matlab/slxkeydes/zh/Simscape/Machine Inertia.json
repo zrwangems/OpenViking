@@ -1,0 +1,13 @@
+{
+ "key": "Machine Inertia",
+ "title": "Machine Inertia",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechanical/Machine_Inertia.md"
+ ],
+ "text": "使用电机惯性常数或锚定惯性参数化的电机惯性。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

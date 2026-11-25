@@ -1,0 +1,184 @@
+{
+ "key": "Slcontrol:smcstatefeedback:BlockName",
+ "title": "Linear Sliding Mode Controller (State Feedback)",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Sliding Mode/Linear_Sliding_Mode_Controller_State_Feedback.md"
+ ],
+ "text": "利用线性系统知识并使用状态反馈设计滑模控制，输入 3 路、输出 2 路；按 {Task Mode} 指定操作模式；{A} 指定状态矩阵、{B} 指定输入矩阵、{C} 输出矩阵、{Am} 指定参考模型状态矩阵、{Bm} 指定参考模型输入矩阵、{Output Switching Function} 输出切换函数、{Include derivative reference signal} 指定从外部指定参考信号的导数、{Sr} 用于参考跟踪的设计矩阵、{Tuning Method} 指定滑模面设计方法 Pole、{Pole Location} 指定极点配置方法的极点位置、{Weighted Matrix} 指定二次性能指标的加权矩阵 eye、{Export Hyperplane Matrix S} 指定将设计好的超平面矩阵发送到 MATLAB ® 工作区、{S} 指定用户定义超平面矩阵、{Reaching Law} 指定趋近律 Constant、{Reaching Rate (η)} 指定趋近速率、{Control Gain (K)} 控制增益、{Power Rate Exponent (α)} 指定幂次趋近律指数、{Select Boundary Layer} 指定边界层函数、{Phi} 指定边界层厚度、{Enable zero-crossing detection} 启用过零检测、{Time domain} 控制器时域、{Sample time} 指定采样时间、{Integrator method} 指定离散时间积分方法 Forward，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "系统状态 scalar | vector"
+  },
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "参考信号 scalar | vector"
+  },
+  {
+   "name": "r.dot",
+   "direction": "input",
+   "summary": "参考信号的导数 scalar | vector"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制作用 scalar | vector"
+  },
+  {
+   "name": "s(x)",
+   "direction": "output",
+   "summary": "切换函数值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A",
+   "default": "0]",
+   "values": "状态矩阵 [0 1; 0 0] (default) | square matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "B",
+   "default": "1]",
+   "values": "输入矩阵 [0; 1] (default) | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "C",
+   "default": "0]",
+   "values": "输出矩阵 [1 0] (default) | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Am",
+   "default": "0]",
+   "values": "参考模型状态矩阵 [0 1; 0 0] (default) | matrix",
+   "group": "Reference Model Parameters"
+  },
+  {
+   "name": "Bm",
+   "default": "1]",
+   "values": "参考模型输入矩阵 [0; 1] (default) | matrix",
+   "group": "Reference Model Parameters"
+  },
+  {
+   "name": "Task Mode",
+   "default": "Regulation",
+   "values": "操作模式 Regulation (default) | Reference Tracking | Model-Reference Tracking",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Output Switching Function",
+   "default": "off",
+   "values": "输出切换函数 off (default) | on",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Include derivative reference signal",
+   "default": "off",
+   "values": "从外部指定参考信号的导数 off (default) | on",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Sr",
+   "default": "0.1",
+   "values": "用于参考跟踪的设计矩阵 0.1 (default) | scalar | matrix",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Tuning Method",
+   "default": "Placement",
+   "values": "滑模面设计方法 Pole Placement (default) | Quadratic Minimization | User-Defined Matrix (S)",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Pole Location",
+   "default": "-1",
+   "values": "极点配置方法的极点位置 -1 (default) | column vector",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Weighted Matrix",
+   "default": "eye(2)",
+   "values": "二次性能指标的加权矩阵 eye(2) (default) | square matrix",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Export Hyperplane Matrix S",
+   "default": "",
+   "values": "将设计好的超平面矩阵发送到 MATLAB ® 工作区 button",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "S",
+   "default": "1]",
+   "values": "用户定义超平面矩阵 [1 1] (default) | matrix",
+   "group": "Sliding Surface Tab"
+  },
+  {
+   "name": "Reaching Law",
+   "default": "Rate",
+   "values": "趋近律 Constant Rate (default) | Exponential | Power Rate | Unit Vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Reaching Rate (η)",
+   "default": "0.01",
+   "values": "趋近速率 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Control Gain (K)",
+   "default": "0.01",
+   "values": "控制增益 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Power Rate Exponent (α)",
+   "default": "0.01",
+   "values": "幂次趋近律指数 0.01 (default) | positive scalar between 0 and 1 | column vector of positive values between 0 and 1",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Select Boundary Layer",
+   "default": "Sign",
+   "values": "边界层函数 Sign (default) | Relay | Hyperbolic Tangent | Saturation",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Phi",
+   "default": "0.01",
+   "values": "边界层厚度 0.01 (default) | positive scalar | column vector",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "启用过零检测 off (default) | on",
+   "group": "Reaching Law Tab"
+  },
+  {
+   "name": "Time domain",
+   "default": "Continuous-Time",
+   "values": "控制器时域 Continuous-Time (default) | Discrete-Time",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | finite positive scalar",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "离散时间积分方法 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Block Tab"
+  }
+ ]
+}

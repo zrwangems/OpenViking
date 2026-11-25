@@ -1,0 +1,13 @@
+{
+ "key": "PS Lookup Table (2D)",
+ "title": "PS Lookup Table (2D)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Lookup Tables/PS_Lookup_Table_2D.md"
+ ],
+ "text": "使用指定查找方法近似二维函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

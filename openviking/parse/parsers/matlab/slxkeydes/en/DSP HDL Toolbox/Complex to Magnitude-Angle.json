@@ -1,0 +1,76 @@
+{
+ "key": "Complex to Magnitude-Angle",
+ "title": "Complex to Magnitude-Angle",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Math Functions/Complex_to_Magnitude_Angle.md"
+ ],
+ "text": "Compute magnitude and phase angle of complex signal using CORDIC algorithm, 2 inputs, 3 outputs, {Output format} sets Output signal format Magnitude and; {Number of iterations source} sets the source of number of iterations, {Number of iterations} sets the number of CORDIC iterations positive, {Angle format} sets the output angle format, {Scale output} sets the scales output and {Scaling method} sets the implementation of CORDIC gain scaling. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Complex input signal scalar | vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "Magnitude",
+   "direction": "output",
+   "summary": "Magnitude of the input signal scalar | vector"
+  },
+  {
+   "name": "Angle",
+   "direction": "output",
+   "summary": "Angle of the input signal scalar | vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of iterations source",
+   "default": "Auto",
+   "values": "Source of number of iterations Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "",
+   "values": "Number of CORDIC iterations positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output format",
+   "default": "Angle",
+   "values": "Output signal format Magnitude and Angle (default) | Magnitude | Angle",
+   "group": ""
+  },
+  {
+   "name": "Angle format",
+   "default": "Normalized",
+   "values": "Output angle format Normalized (default) | Radians",
+   "group": ""
+  },
+  {
+   "name": "Scale output",
+   "default": "on",
+   "values": "Scales output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Scaling method",
+   "default": "Shift-Add",
+   "values": "Implementation of CORDIC gain scaling Shift-Add (default) | Multipliers",
+   "group": ""
+  }
+ ]
+}

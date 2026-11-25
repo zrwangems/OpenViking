@@ -381,18 +381,21 @@ end</pre>
   &quot;execution&quot;: {},
   &quot;blocks&quot;: [
     {&quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;&quot;, &quot;ports&quot;: {&quot;out&quot;: [&quot;BusVolt&quot;]},
-     &quot;params&quot;: {&quot;Port&quot;: &quot;1&quot;}},
+     &quot;source_block&quot;: &quot;&quot;, &quot;key&quot;: &quot;Inport&quot;,
+     &quot;description&quot;: &quot;为子系统或外部输入创建输入端口；输出 1 路；按 number 指定图标显示；1 指定端口在父模块上的位置…&quot;,
+     &quot;ports&quot;: {&quot;out&quot;: [&quot;BusVolt&quot;]}},
     {&quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
-     &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;,
-     &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]},
-     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;}},
+     &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;, &quot;key&quot;: &quot;Mapped Motor&quot;,
+     &quot;description&quot;: &quot;按 J 指定的转动惯量 5e-6 将输入扭矩换算成转速…&quot;,
+     &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]}},
     {&quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
-     &quot;source_block&quot;: &quot;&quot;, &quot;ports&quot;: {&quot;in&quot;: [&quot;GenTrq&quot;]},
-     &quot;params&quot;: {&quot;Port&quot;: &quot;1&quot;}},
+     &quot;source_block&quot;: &quot;&quot;, &quot;key&quot;: &quot;Outport&quot;,
+     &quot;description&quot;: &quot;为子系统或模型创建输出端口；输入 1 路…&quot;,
+     &quot;ports&quot;: {&quot;in&quot;: [&quot;GenTrq&quot;]}},
     {&quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
-     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]},
-     &quot;params&quot;: {}}
+     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;key&quot;: &quot;Terminator&quot;,
+     &quot;description&quot;: &quot;终止未连接的输出端口，输入 1 路、无输出。&quot;,
+     &quot;ports&quot;: {&quot;in&quot;: [1]}}
   ],
   &quot;edges&quot;: [
     {&quot;from&quot;: [&quot;BusVolt&quot;, &quot;BusVolt&quot;],
@@ -1146,11 +1149,11 @@ save_format=v7</pre>
   <h3>位置与处理</h3>
   <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>模型目录</code></td><td>—</td><td>按系统解包成 JSON</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口名、参数）、edges（一条连线一行：from 是「块名 + 端口名」，to 是扇出目标列表，signal 是信号名）、子系统类型和说明</li><li>流程图和参数表视图从 JSON 生成，不单独落文件</li><li>块类型和库来源只取模型里的 BlockType/SourceBlock，读不到就留空，不按规则拼值；端口名取 ModelReference 的 InputPortNames/OutputPortNames 和子系统内 Inport/Outport 的块名，没有名字的端口保留端口编号；不再对照随包块库，块库文档已迁到独立仓库 openviking-engineering-resources</li></ol>
+  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、说明 key、渲染好的描述、端口名）、edges（一条连线一行：from 是「块名 + 端口名」，to 是扇出目标列表，signal 是信号名）、子系统类型和说明</li><li>流程图和参数表视图从 JSON 生成，不单独落文件</li><li>块类型和库来源只取模型里的 BlockType/SourceBlock，读不到就留空，不按规则拼值；端口名取 ModelReference 的 InputPortNames/OutputPortNames 和子系统内 Inport/Outport 的块名，没有名字的端口保留端口编号；不再对照随包块库，块库文档已迁到独立仓库 openviking-engineering-resources</li></ol>
   <h3>处理代码</h3>
-  <p class="codebox"><code>openviking/parse/parsers/matlab/slx.py</code><br>parse_slx() · system_json_documents() · _system_json()</p>
+  <p class="codebox"><code>openviking/parse/parsers/matlab/slx.py</code><br>parse_slx() · system_json_documents() · _system_json()<br><code>openviking/parse/parsers/matlab/keydes.py</code><br>KeydesLibrary.describe()（key → 模板 → 描述）<br><code>openviking/parse/parsers/matlab/block_keys.py</code><br>block_key() · key_rule()<br>模板：<code>openviking/parse/parsers/matlab/slxkeydes/{en,zh}</code></p>
   <p class="note">分发位置：<code>parser.py:155</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
-  <p class="note">解包 simulink/systems/*.xml 建 System/Block/Edge；Stateflow 由 stateflow.py:66 解出后挂到对应系统 JSON 的 stateflow 字段。每个系统一个 JSON，子系统落到 <code>&lt;system&gt;/main.json</code>。blocks 只有 name/block_type/source_block/ports/params，children 只有 name/path/system_ref/type，不写 b20 这类内部 id。parse_slx() 只做确定性的 XML 读取：读不到的端口名、source_block、标签一律留空，不做任何推断。</p>
+  <p class="note">解包 simulink/systems/*.xml 建 System/Block/Edge；Stateflow 由 stateflow.py:66 解出后挂到对应系统 JSON 的 stateflow 字段。每个系统一个 JSON，子系统落到 <code>&lt;system&gt;/main.json</code>。blocks 只有 name/block_type/source_block/key/description/ports，children 只有 name/path/system_ref/type，不写 b20 这类内部 id。每个块的 key 由 block_keys.py 按 BlockType/SourceType/SourceBlock 算出，keydes.py 用该 key 取 slxkeydes 模板（en/zh 各 3,372 个），把实例参数值填进模板占位符得到 description；没有模板的块 description 留空。parse_slx() 只做确定性的 XML 读取：读不到的端口名、source_block、标签一律留空，不做任何推断。</p>
   <h3>产出</h3>
   <p><code>各系统 main.json</code></p>
   <h3>案例样子</h3>
@@ -1163,18 +1166,21 @@ save_format=v7</pre>
   &quot;execution&quot;: {},
   &quot;blocks&quot;: [
     {&quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;&quot;, &quot;ports&quot;: {&quot;out&quot;: [&quot;BusVolt&quot;]},
-     &quot;params&quot;: {&quot;Port&quot;: &quot;1&quot;}},
+     &quot;source_block&quot;: &quot;&quot;, &quot;key&quot;: &quot;Inport&quot;,
+     &quot;description&quot;: &quot;为子系统或外部输入创建输入端口；输出 1 路；按 number 指定图标显示；1 指定端口在父模块上的位置…&quot;,
+     &quot;ports&quot;: {&quot;out&quot;: [&quot;BusVolt&quot;]}},
     {&quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
-     &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;,
-     &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]},
-     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;}},
+     &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;, &quot;key&quot;: &quot;Mapped Motor&quot;,
+     &quot;description&quot;: &quot;按 J 指定的转动惯量 5e-6 将输入扭矩换算成转速…&quot;,
+     &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]}},
     {&quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
-     &quot;source_block&quot;: &quot;&quot;, &quot;ports&quot;: {&quot;in&quot;: [&quot;GenTrq&quot;]},
-     &quot;params&quot;: {&quot;Port&quot;: &quot;1&quot;}},
+     &quot;source_block&quot;: &quot;&quot;, &quot;key&quot;: &quot;Outport&quot;,
+     &quot;description&quot;: &quot;为子系统或模型创建输出端口；输入 1 路…&quot;,
+     &quot;ports&quot;: {&quot;in&quot;: [&quot;GenTrq&quot;]}},
     {&quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
-     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]},
-     &quot;params&quot;: {}}
+     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;key&quot;: &quot;Terminator&quot;,
+     &quot;description&quot;: &quot;终止未连接的输出端口，输入 1 路、无输出。&quot;,
+     &quot;ports&quot;: {&quot;in&quot;: [1]}}
   ],
   &quot;edges&quot;: [
     {&quot;from&quot;: [&quot;BusVolt&quot;, &quot;BusVolt&quot;],
@@ -1186,7 +1192,7 @@ save_format=v7</pre>
   &quot;children&quot;: []
 }</pre>
   <h3>AI 能读到什么</h3>
-  <p>完整的模型结构和参数；按系统树一层层往下读，每个 JSON 都是完整的一层。</p>
+  <p>完整的模型结构，每个块带一句描述（这个块做什么、实例参数是多少）；按系统树一层层往下读，每个 JSON 都是完整的一层。</p>
   <h3>边界</h3>
   <p class="bound">不仿真；Variant 实际选择、Stateflow 动态调度、外部库内部实现不声称已验证。</p>
 </div>

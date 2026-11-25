@@ -1,0 +1,37 @@
+{
+ "key": "Force Conversion",
+ "title": "Force Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Force_Conversion.md"
+ ],
+ "text": "从力单位转换为所需力单位，输入 1 路、输出 1 路；{Initial unit} 指定输入单位 lbf、{Final unit} 输出单位 N，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "力 scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "力 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "lbf",
+   "values": "输入单位 lbf (default) | N",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "N",
+   "values": "输出单位 N (default) | lbf",
+   "group": ""
+  }
+ ]
+}

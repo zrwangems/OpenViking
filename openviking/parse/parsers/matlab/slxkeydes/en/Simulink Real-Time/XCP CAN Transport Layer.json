@@ -1,0 +1,33 @@
+{
+ "key": "XCP CAN Transport Layer",
+ "title": "XCP CAN Transport Layer",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/CAN/XCP_CAN_Transport_Layer.md",
+  "Vehicle Network Toolbox/XCP Communication/CAN/XCP_CAN_Transport_Layer.md"
+ ],
+ "text": "Transport XCP messages via CAN; {Device} sets the cAN device device, {Bus speed} sets the speed of CAN and {Sample time} sets the simulation refresh rate. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN device device list option",
+   "group": ""
+  },
+  {
+   "name": "Bus speed",
+   "default": "",
+   "values": "Speed of CAN bus numeric",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Simulation refresh rate 0.01 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

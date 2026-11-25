@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Sensor (MA)",
+ "title": "Flow Rate Sensor (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sensors/Flow_Rate_Sensor_MA.md"
+ ],
+ "text": "Measure mass, energy, and volumetric flow rates in moist air networks。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

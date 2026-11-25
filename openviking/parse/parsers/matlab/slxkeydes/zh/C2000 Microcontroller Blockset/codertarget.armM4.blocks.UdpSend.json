@@ -1,0 +1,55 @@
+{
+ "key": "codertarget.armM4.blocks.UdpSend",
+ "title": "UDP Send",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F2838x/M4/UDP_Send.md"
+ ],
+ "text": "向 UDP 主机发送 UDP 数据包，输入 2 路；{Remote IP address (255.255.255.255 for broadcast)} 指定接收 UDP 主机的 IP 地址、{Remote IP Port} 指定接收 UDP 主机上的 IP 端口、{Local IP Port (-1 for automatic port assignment)} 指定发送 UDP 主机上的 IP 端口、{Enable variable length} 指定可变长度、{Wait until previous packet transmitted} 指定等待发送新数据包，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据端口 vector"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "可变长度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Remote IP address (255.255.255.255 for broadcast)",
+   "default": "192.168.1.10",
+   "values": "接收 UDP 主机的 IP 地址 192.168.1.10 (default) | 255.255.255.255",
+   "group": ""
+  },
+  {
+   "name": "Remote IP Port",
+   "default": "25000",
+   "values": "接收 UDP 主机上的 IP 端口 25000 (default) | positive integer in the range [1,65535]",
+   "group": ""
+  },
+  {
+   "name": "Local IP Port (-1 for automatic port assignment)",
+   "default": "-1",
+   "values": "发送 UDP 主机上的 IP 端口 -1 (default) |",
+   "group": ""
+  },
+  {
+   "name": "Enable variable length",
+   "default": "off",
+   "values": "可变长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Wait until previous packet transmitted",
+   "default": "off",
+   "values": "等待发送新数据包 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Power Spectral Density",
+ "title": "Power Spectral Density",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Sinks/Power_Spectral_Density.md"
+ ],
+ "text": "This block when hooked to the output of a system displays the frequency content of the buffer in the graph window.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

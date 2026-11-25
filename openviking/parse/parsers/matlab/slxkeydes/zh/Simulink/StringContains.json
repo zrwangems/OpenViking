@@ -1,0 +1,44 @@
+{
+ "key": "StringContains",
+ "title": "String Contains",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Contains.md",
+  "Simulink/String/String_Ends_With.md",
+  "Simulink/String/String_Starts_With.md"
+ ],
+ "text": "确定字符串是包含、以模式开头还是以模式结尾，输入 2 路、输出 1 路、直接馈通；按 {Function} 指定模式搜索函数 Contains；{Case sensitive} 指定区分大小写，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "str",
+   "direction": "input",
+   "summary": "要搜索的字符串 scalar"
+  },
+  {
+   "name": "sub",
+   "direction": "input",
+   "summary": "要搜索的字符串模式 scalar"
+  },
+  {
+   "name": "T/F",
+   "direction": "output",
+   "summary": "检测到字符串模式 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Case sensitive",
+   "default": "on",
+   "values": "区分大小写 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Function",
+   "default": "",
+   "values": "模式搜索函数 Contains | Starts with | Ends with",
+   "group": ""
+  }
+ ]
+}

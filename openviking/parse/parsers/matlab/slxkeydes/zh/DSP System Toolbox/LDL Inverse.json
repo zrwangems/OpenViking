@@ -1,0 +1,31 @@
+{
+ "key": "LDL Inverse",
+ "title": "LDL Inverse",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Inverses/LDL_Inverse.md"
+ ],
+ "text": "使用 LDL 分解计算 Hermitian 正定矩阵的逆，输入 1 路、输出 1 路、无直接馈通；按 {Non-positive definite input} 指定非正定输入。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入矩阵 square matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "矩阵逆 square matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Non-positive definite input",
+   "default": "Warning",
+   "values": "非正定输入 Warning (default) | Ignore | Error",
+   "group": ""
+  }
+ ]
+}

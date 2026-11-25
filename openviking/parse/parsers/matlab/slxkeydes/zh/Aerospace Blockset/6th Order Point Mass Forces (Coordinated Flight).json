@@ -1,0 +1,64 @@
+{
+ "key": "6th Order Point Mass Forces (Coordinated Flight)",
+ "title": "6th Order Point Mass Forces (Coordinated Flight)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/Point Mass/b_6th_Order_Point_Mass_Forces_Coordinated_Flight.md"
+ ],
+ "text": "计算协调飞行中六阶点质量所用的力，输入 7 路、输出 3 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Lift",
+   "direction": "input",
+   "summary": "升力 scalar | array"
+  },
+  {
+   "name": "Drag",
+   "direction": "input",
+   "summary": "阻力 scalar | array"
+  },
+  {
+   "name": "Weight",
+   "direction": "input",
+   "summary": "重力 scalar | array"
+  },
+  {
+   "name": "Thrust",
+   "direction": "input",
+   "summary": "推力 scalar | array"
+  },
+  {
+   "name": "ɣ",
+   "direction": "input",
+   "summary": "航迹角 scalar | array"
+  },
+  {
+   "name": "μ",
+   "direction": "input",
+   "summary": "滚转角 scalar | array"
+  },
+  {
+   "name": "ɑ",
+   "direction": "input",
+   "summary": "迎角 scalar | array"
+  },
+  {
+   "name": "F x",
+   "direction": "output",
+   "summary": "x 轴上的力 scalar | array"
+  },
+  {
+   "name": "F y",
+   "direction": "output",
+   "summary": "y 轴上的力 scalar | array"
+  },
+  {
+   "name": "F z",
+   "direction": "output",
+   "summary": "z 轴上的力 scalar | array"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,24 @@
+{
+ "key": "Extract Diagonal",
+ "title": "Extract Diagonal",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Extract_Diagonal.md"
+ ],
+ "text": "提取输入矩阵的主对角线，输入 1 路、输出 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 vector"
+  }
+ ],
+ "params": []
+}

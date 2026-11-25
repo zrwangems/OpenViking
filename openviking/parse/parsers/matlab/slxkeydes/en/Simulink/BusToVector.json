@@ -1,0 +1,25 @@
+{
+ "key": "BusToVector",
+ "title": "Bus to Vector",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Bus_to_Vector.md",
+  "HDL Coder/Signal Attributes/Bus_to_Vector.md"
+ ],
+ "text": "Convert virtual bus to vector, 1 input, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Bus to convert to vector scalar | vector | bus"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output vector vector"
+  }
+ ],
+ "params": []
+}

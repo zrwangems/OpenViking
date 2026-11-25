@@ -1,0 +1,196 @@
+{
+ "key": "Memory Copy",
+ "title": "Memory Copy",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Memory Operations/Memory_Copy.md",
+  "Motor Control Blockset/Signal Management/Memory_Copy.md"
+ ],
+ "text": "从内存段复制数据以及复制数据到内存段，输入 5 路、输出 1 路；按 {Termination value} 指定终止值；{Copy from} 指定复制操作的输入源 Input、{Specify address source} 指定输入数据的内存地址来源 Specify via、{Address} 指定源数据的内存地址 hex2dec、{Source code symbol} 指定源代码符号表中的符号、{Data type} 指定要复制的数据的数据类型、{Data length} 指定要复制的数据元素数、{Use offset when reading} 指定读取输入时使用偏移量、{Specify offset source} 指定输入偏移量的来源 Specify via、{Offset} 指定在将第一个值复制到目标之前要跳过的值数、{Stride} 指定读取输入的间距、{Copy to} 指定复制操作的输出目标类型 Output、{Use offset when writing} 指定写入输出时使用偏移量、{Sample time} 指定内存复制的速率、{Set memory value at initialization} 指定在初始化期间设置内存地址、{Specify initialization value source} 指定初始化值的来源 Specify constant、{Initialization value (constant)} 指定常量初始化值、{Initialization value (source code symbol)} 指定源代码符号表中的符号、{Apply initialization value as mask} 指定将初始化值用作掩码、{Bitwise operator} 按位运算的类型 bitwise、{Set memory value at termination} 指定在程序终止期间复制内存、{Set memory value only at initialization/termination} 指定仅在程序初始化和终止期间复制内存值、{Insert custom code before memory write} 指定在内存写入前插入自定义代码、{Insert custom code after memory write} 指定内存写入后自定义代码标志、{Custom code} 指定 /* Custom Code Before Write*/ or /* Custom Code After，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "src",
+   "direction": "input",
+   "summary": "复制操作的输入数据 scalar | vector"
+  },
+  {
+   "name": "&src",
+   "direction": "input",
+   "summary": "复制操作输入数据的地址 scalar | vector"
+  },
+  {
+   "name": "src ofs",
+   "direction": "input",
+   "summary": "复制操作期间读取数据的偏移 scalar | vector"
+  },
+  {
+   "name": "&dst",
+   "direction": "input",
+   "summary": "复制操作输出数据的地址 scalar | vector"
+  },
+  {
+   "name": "dst ofs",
+   "direction": "input",
+   "summary": "复制操作期间写入数据的偏移量 scalar | vector"
+  },
+  {
+   "name": "dst",
+   "direction": "output",
+   "summary": "复制操作的输出数据 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Copy from",
+   "default": "port",
+   "values": "复制操作的输入源 Input port (default) | Specified address | Specified source code symbol",
+   "group": "Source"
+  },
+  {
+   "name": "Specify address source",
+   "default": "dialog",
+   "values": "输入数据的内存地址来源 Specify via dialog (default) | Input port",
+   "group": "Source"
+  },
+  {
+   "name": "Address",
+   "default": "hex2dec(’00001000’)",
+   "values": "源数据的内存地址 hex2dec(’00001000’) (default) | memory address in decimal or hexadecimal form with a conversion to decimal",
+   "group": "Source"
+  },
+  {
+   "name": "Source code symbol",
+   "default": "myVariableSrc",
+   "values": "源代码符号表中的符号 myVariableSrc (default) | string | character vector",
+   "group": "Source"
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "要复制的数据的数据类型 uint8 (default) | double | single | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | Inherit from input port",
+   "group": "Source"
+  },
+  {
+   "name": "Data length",
+   "default": "1",
+   "values": "要复制的数据元素数 1 (default) | positive integer",
+   "group": "Source"
+  },
+  {
+   "name": "Use offset when reading",
+   "default": "off",
+   "values": "读取输入时使用偏移量 off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "Specify offset source",
+   "default": "dialog",
+   "values": "输入偏移量的来源 Specify via dialog (default) | Input port",
+   "group": "Source"
+  },
+  {
+   "name": "Offset",
+   "default": "0",
+   "values": "在将第一个值复制到目标之前要跳过的值数 0 (default) | positive integer",
+   "group": "Source"
+  },
+  {
+   "name": "Stride",
+   "default": "1",
+   "values": "读取输入的间距 1 (default) | positive integer",
+   "group": "Source"
+  },
+  {
+   "name": "Copy to",
+   "default": "port",
+   "values": "复制操作的输出目标类型 Output port (default) | Specified address | Specified destination code symbol",
+   "group": "Destination"
+  },
+  {
+   "name": "Use offset when writing",
+   "default": "off",
+   "values": "写入输出时使用偏移量 off (default) | on",
+   "group": "Destination"
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "内存复制的速率 inf (default) | scalar",
+   "group": "Destination"
+  },
+  {
+   "name": "Set memory value at initialization",
+   "default": "off",
+   "values": "在初始化期间设置内存地址 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Specify initialization value source",
+   "default": "value",
+   "values": "初始化值的来源 Specify constant value (default) | Specify source code symbol",
+   "group": "Options"
+  },
+  {
+   "name": "Initialization value (constant)",
+   "default": "1",
+   "values": "常量初始化值 1 (default) | scalar",
+   "group": "Options"
+  },
+  {
+   "name": "Initialization value (source code symbol)",
+   "default": "myInitValueVariable",
+   "values": "源代码符号表中的符号 myInitValueVariable (default) | string | character vector",
+   "group": "Options"
+  },
+  {
+   "name": "Apply initialization value as mask",
+   "default": "off",
+   "values": "将初始化值用作掩码 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Bitwise operator",
+   "default": "AND",
+   "values": "按位运算的类型 bitwise AND (default) | bitwise OR | bitwise exclusive OR | left shift | right shift",
+   "group": "Options"
+  },
+  {
+   "name": "Set memory value at termination",
+   "default": "off",
+   "values": "在程序终止期间复制内存 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Termination value",
+   "default": "1",
+   "values": "终止值 1 (default) | scalar | vector | matrix",
+   "group": "Options"
+  },
+  {
+   "name": "Set memory value only at initialization/termination",
+   "default": "off",
+   "values": "仅在程序初始化和终止期间复制内存值 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Insert custom code before memory write",
+   "default": "off",
+   "values": "在内存写入前插入自定义代码 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Insert custom code after memory write",
+   "default": "off",
+   "values": "内存写入后自定义代码标志 off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Custom code",
+   "default": "Write*/",
+   "values": "/* Custom Code Before Write*/ or /* Custom Code After Write*/ (default) | string | character vector",
+   "group": "Options"
+  }
+ ]
+}

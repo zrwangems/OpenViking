@@ -1,0 +1,49 @@
+{
+ "key": "Sample and Hold",
+ "title": "Sample and Hold",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Operations/Sample_and_Hold.md",
+  "DSP System Toolbox/Signal Operations/Sample_and_Hold.md"
+ ],
+ "text": "采样和保持输入信号，输入 2 路、输出 1 路、无直接馈通；按 {触发器类型} 指定触发器的类型；{初始条件} 指定第一个触发事件前的模块输出、{锁存(缓冲)输入}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "信号端口 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "触发端口 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "采样和保持值 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "触发器类型",
+   "default": "上升沿",
+   "values": "触发器的类型 上升沿 (默认) | 下降沿 | 任一沿",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "第一个触发事件前的模块输出 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "锁存(缓冲)输入",
+   "default": "off",
+   "values": "锁存缓冲输入 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "A-Law Compressor",
+ "title": "A-Law Compressor",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/A_Law_Compressor.md"
+ ],
+ "text": "Implement A-law compressor for source coding.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

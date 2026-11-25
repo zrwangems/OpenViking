@@ -1,0 +1,84 @@
+{
+ "key": "Square Jacobi SVD HDL Optimized",
+ "title": "Square Jacobi SVD HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Matrices and Linear Algebra/Matrix Factorizations/Square_Jacobi_SVD_HDL_Optimized.md"
+ ],
+ "text": "Fixed-point singular value decomposition, 4 inputs, 5 outputs, {Select outputs} sets Block outputs; {Dimension of matrix A} sets the dimension of square matrix, {Number of Jacobi iterations} sets the number of iterations of Jacobi algorithm and {Signal type} sets the complexity of input matrix. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Square matrix A real or complex square matrix"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Whether input is valid scalar"
+  },
+  {
+   "name": "readyIn",
+   "direction": "input",
+   "summary": "Whether downstream block is ready scalar"
+  },
+  {
+   "name": "restart",
+   "direction": "input",
+   "summary": "Whether to clear internal states scalar"
+  },
+  {
+   "name": "s",
+   "direction": "output",
+   "summary": "Singular values column vector"
+  },
+  {
+   "name": "U",
+   "direction": "output",
+   "summary": "Left singular vectors unitary n -by- n matrix"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "Right singular vectors unitary n -by- n matrix"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Whether output data is valid Boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Whether block is ready Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Dimension of matrix A",
+   "default": "n",
+   "values": "Dimension of square matrix A n (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of Jacobi iterations",
+   "default": "10",
+   "values": "Number of iterations of Jacobi algorithm 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Select outputs",
+   "default": "UsV",
+   "values": "Block outputs UsV (default) | Us | sV | s",
+   "group": ""
+  },
+  {
+   "name": "Signal type",
+   "default": "real",
+   "values": "Complexity of input matrix A real (default) | complex",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Ball Valve (MA)",
+ "title": "Ball Valve (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Valves & Orifices/Flow Control Valves/Ball_Valve_MA.md"
+ ],
+ "text": "湿空气网络中的球阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

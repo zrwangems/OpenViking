@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Sensor (G)",
+ "title": "Flow Rate Sensor (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Sensors/Flow_Rate_Sensor_G.md"
+ ],
+ "text": "Measure mass, energy, and volumetric flow rates in gas networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

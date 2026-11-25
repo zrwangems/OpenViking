@@ -1,0 +1,218 @@
+{
+ "key": "Induction Machine Field-Oriented Control",
+ "title": "Induction Machine Field-Oriented Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Induction Machine Control/Induction_Machine_Field_Oriented_Control.md"
+ ],
+ "text": "Per-unit discrete-time induction machine FOC, 5 inputs, 2 outputs, {Sampling mode} sets Wave-sampling method; {Rated voltage, rms line-to-line (V)} sets the voltage, {Rated electrical frequency (Hz)} sets the frequency, {Rotor resistance, referred to the stator side (pu)} sets the resistance, {Rotor leakage inductance, referred to the stator side (pu)} sets the inductance, {Magnetizing inductance (pu)} sets the inductance, {Time constant for dq currents filters (s)} sets the time constant 1e-4, {Inverter dc-link voltage threshold (V)} sets the voltage, {Fundamental sample time (s)} sets the time 5e-6, {Control sample time (s)} sets the time 5e-5, {Magnetizing current controller proportional gain} sets the gain, {Magnetizing current controller integral gain} sets the gain, {Magnetizing current controller integral anti-windup gain} sets the gain, {Speed controller proportional gain} sets the gain, {Speed controller integral gain} sets the gain, {Speed controller integral anti-windup gain} sets the gain, {Maximum d-axis current [pu]} sets the current, {Maximum q-axis current [pu]} sets the current, {Phase-a axis alignment} sets the dq0 reference frame, {D-axis current proportional gain} sets the d -axis proportional gain, {D-axis current integral gain} sets the d -axis integral gain, {D-axis current anti-windup gain} sets the d -axis anti-windup gain, {Q-axis current proportional gain} sets the q -axis proportional gain, {Q-axis current integral gain} sets the q -axis integral gain, {Q-axis current anti-windup gain} sets the q -axis anti-windup gain, {Axis prioritization}, {PWM method} sets the pulse width modulation method SVM: space vector and {Switching frequency (Hz)} sets the switching rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "imRef",
+   "direction": "input",
+   "summary": "Current scalar"
+  },
+  {
+   "name": "wrRef",
+   "direction": "input",
+   "summary": "Velocity scalar"
+  },
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "Current vector"
+  },
+  {
+   "name": "wr",
+   "direction": "input",
+   "summary": "Velocity scalar"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "Voltage scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Gate pulses vector | 0 or 1"
+  },
+  {
+   "name": "Visualization",
+   "direction": "output",
+   "summary": "Visualization signals vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rated voltage, rms line-to-line (V)",
+   "default": "550",
+   "values": "Voltage 550 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Rated electrical frequency (Hz)",
+   "default": "60",
+   "values": "Frequency 60 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Rotor resistance, referred to the stator side (pu)",
+   "default": "0.01",
+   "values": "Resistance 0.01 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Rotor leakage inductance, referred to the stator side (pu)",
+   "default": "0.06",
+   "values": "Inductance 0.06 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Magnetizing inductance (pu)",
+   "default": "2.7",
+   "values": "Inductance 2.7 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Time constant for dq currents filters (s)",
+   "default": "1e-4",
+   "values": "Time constant 1e-4 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Inverter dc-link voltage threshold (V)",
+   "default": "500",
+   "values": "Voltage 500 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Fundamental sample time (s)",
+   "default": "5e-6",
+   "values": "Time 5e-6 (default) | positive scalar less than the control sample time",
+   "group": "General"
+  },
+  {
+   "name": "Control sample time (s)",
+   "default": "5e-5",
+   "values": "Time 5e-5 (default) | positive scalar greater than the fundamental sample time",
+   "group": "General"
+  },
+  {
+   "name": "Magnetizing current controller proportional gain",
+   "default": "10",
+   "values": "Gain 10 (default)",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Magnetizing current controller integral gain",
+   "default": "1000",
+   "values": "Gain 1000 (default)",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Magnetizing current controller integral anti-windup gain",
+   "default": "1000",
+   "values": "Gain 1000 (default)",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Speed controller proportional gain",
+   "default": "10",
+   "values": "Gain 10 (default)",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Speed controller integral gain",
+   "default": "1000",
+   "values": "Gain 1000 (default)",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Speed controller integral anti-windup gain",
+   "default": "1000",
+   "values": "Gain 1000 (default)",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Maximum d-axis current [pu]",
+   "default": "2",
+   "values": "Current 2 (default)",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Maximum q-axis current [pu]",
+   "default": "2",
+   "values": "Current 2 (default)",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Phase-a axis alignment",
+   "default": "Q-axis",
+   "values": "dq0 reference frame alignment Q-axis (default) | D-axis",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "D-axis current proportional gain",
+   "default": "1",
+   "values": "D -axis proportional gain 1 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "D-axis current integral gain",
+   "default": "100",
+   "values": "D -axis integral gain 100 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "D-axis current anti-windup gain",
+   "default": "1",
+   "values": "D -axis anti-windup gain 1 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Q-axis current proportional gain",
+   "default": "1",
+   "values": "Q -axis proportional gain 1 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Q-axis current integral gain",
+   "default": "100",
+   "values": "Q -axis integral gain 100 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Q-axis current anti-windup gain",
+   "default": "1",
+   "values": "Q -axis anti-windup gain 1 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "Q-axis",
+   "values": "Axis prioritization for voltage limiter Q-axis (default) | D-axis | D-Q equivalence",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "PWM method",
+   "default": "modulation",
+   "values": "Pulse width modulation method SVM: space vector modulation (default) | SPWM: sinusoidal PWM",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "Wave-sampling method Natural (default) | Asymmetric | Symmetric",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1000",
+   "values": "Switching rate 1000 (default) | positive integer",
+   "group": "Outer Loop"
+  }
+ ]
+}

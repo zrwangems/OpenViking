@@ -1,0 +1,168 @@
+{
+ "key": "Subsystem Examples",
+ "title": "Subsystem Examples",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Subsystem_Examples.md"
+ ],
+ "text": "Group blocks to create model hierarchy, 2 inputs, 1 output, no direct feedthrough, {Function packaging} sets Code format Auto; {Read/Write permissions} sets the levels of access to contents of subsystem, {Name of error callback function} sets the name of function to be called if error occurs no, {Permit hierarchical resolution} sets the resolution for workspace variable names, {Treat as atomic unit} sets the option to execute subsystem as one unit, {Show subsystem reinitialize ports} sets the option to display reinitialize event ports, {Minimize algebraic loop occurrences} sets the option to eliminate artificial algebraic, {Schedule as} sets the type of scheduling, {Partition name} sets the name of partition, {Sample time} sets the time interval, {Treat as grouped when propagating variant conditions} sets the option to treat subsystem as unit when propagating variant, {Function name options} sets how to name generated function, {Function name} sets the name of function for subsystem code no, {File name options} sets how to name generated file, {File name (no extension)} sets the name of generated file, {Function interface} sets how to use arguments with generated function, {Function with separate data} controls code generation for subsystem, {Memory section for initialize/terminate functions} sets how to apply memory sections Inherit, {Memory section for execution functions} sets how to apply memory sections Inherit, {Memory section for constants} sets how to apply memory sections Inherit, {Memory section for internal data} sets how to apply memory sections Inherit, {Memory section for parameters} sets how to apply memory sections Inherit and {Subsystem file name} sets the filename of referenced subsystem no. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Signal input to subsystem scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "reinit",
+   "direction": "input",
+   "summary": "Control signal for subsystem reinitialize event scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Signal output from subsystem scalar | vector | matrix | array | bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Read/Write permissions",
+   "default": "ReadWrite",
+   "values": "Levels of access to contents of subsystem ReadWrite (default) | ReadOnly | NoReadOrWrite",
+   "group": "Main"
+  },
+  {
+   "name": "Name of error callback function",
+   "default": "",
+   "values": "Name of function to be called if error occurs no default",
+   "group": "Main"
+  },
+  {
+   "name": "Permit hierarchical resolution",
+   "default": "All",
+   "values": "Resolution for workspace variable names All (default) | ExplicitOnly | None",
+   "group": "Main"
+  },
+  {
+   "name": "Treat as atomic unit",
+   "default": "",
+   "values": "Option to execute subsystem as one unit off | on",
+   "group": "Main"
+  },
+  {
+   "name": "Show subsystem reinitialize ports",
+   "default": "off",
+   "values": "Option to display reinitialize event ports off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Minimize algebraic loop occurrences",
+   "default": "off",
+   "values": "Option to eliminate artificial algebraic loops off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Schedule as",
+   "default": "time",
+   "values": "Type of scheduling Sample time (default) | Periodic partition | Aperiodic partition",
+   "group": "Main"
+  },
+  {
+   "name": "Partition name",
+   "default": "",
+   "values": "Name of partition no default",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time interval -1 (default) | [Ts 0]",
+   "group": "Main"
+  },
+  {
+   "name": "Treat as grouped when propagating variant conditions",
+   "default": "on",
+   "values": "Option to treat subsystem as unit when propagating variant conditions on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Function packaging",
+   "default": "",
+   "values": "Code format Auto | Inline | Nonreusable function | Reusable function",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Function name options",
+   "default": "",
+   "values": "How to name generated function Auto | Use subsystem name | User specified",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Function name",
+   "default": "",
+   "values": "Name of function for subsystem code no default",
+   "group": "Code Generation"
+  },
+  {
+   "name": "File name options",
+   "default": "",
+   "values": "How to name generated file Auto | Use subsystem name | Use function name | User specified",
+   "group": "Code Generation"
+  },
+  {
+   "name": "File name (no extension)",
+   "default": "",
+   "values": "Name of generated file no default",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Function interface",
+   "default": "void_void",
+   "values": "How to use arguments with generated function void_void (default) | Allow arguments (Optimized) | Allow arguments (Match graphical interface)",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Function with separate data",
+   "default": "off",
+   "values": "Control code generation for subsystem off (default) | on",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Memory section for initialize/terminate functions",
+   "default": "model",
+   "values": "How to apply memory sections Inherit from model (default) | Default | model memory section",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Memory section for execution functions",
+   "default": "model",
+   "values": "How to apply memory sections Inherit from model (default) | Default | model memory section",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Memory section for constants",
+   "default": "model",
+   "values": "How to apply memory sections Inherit from model (default) | Default | model memory section",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Memory section for internal data",
+   "default": "model",
+   "values": "How to apply memory sections Inherit from model (default) | Default | model memory section",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Memory section for parameters",
+   "default": "model",
+   "values": "How to apply memory sections Inherit from model (default) | Default | model memory section",
+   "group": "Code Generation"
+  },
+  {
+   "name": "Subsystem file name",
+   "default": "",
+   "values": "Filename of referenced subsystem no default",
+   "group": "Subsystem Reference"
+  }
+ ]
+}

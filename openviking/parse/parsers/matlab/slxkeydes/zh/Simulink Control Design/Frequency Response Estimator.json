@@ -1,0 +1,174 @@
+{
+ "key": "Frequency Response Estimator",
+ "title": "Frequency Response Estimator",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Frequency Response Estimation/Frequency_Response_Estimator.md"
+ ],
+ "text": "在仿真期间或实时地估计被控对象频率响应，输入 5 路、输出 4 路；按 {Experiment mode} 指定实验模式；{Sample time (Ts)} 指定实验采样时间、{Output Signal Configuration} 指定提供控制信号加扰动或仅提供扰动 control action +、{Data Type} 指定浮点精度 double、{Excitation signal source} 指定激励信号源 Block、{Frequencies} 用于估计的频率、{Frequency units} 指定频率单位 rad/s、{Amplitudes} 指定注入扰动的幅值、{Number of frequencies in the excitation signal} 指定外部提供的频率数、{Number of settling periods} 指定等待瞬态稳定的周期数、{Number of estimation periods} 指定稳定后用于估计的周期数、{Number of periods of the lowest frequency used for estimation} 指定数据收集窗口的持续时间、{Number of periods} 指定 PRBS 信号中的周期数、{Signal order} 指定 PRBS 信号阶数、{Use Auto-Generated Value} 指定自动设置 PRBS 信号参数、{Estimation mode} 指定模块是执行估计还是仅收集响应数据、{Display Bode plot} 绘制估计频率响应、{Baseline plant model} 指定 Bode 图基线模型、{Refresh plot every N*Ts seconds where N is} 指定 Bode 图的更新频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "扰动前的被控对象输入 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 scalar"
+  },
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "启动和停止估计实验 scalar"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "用于估计实验的频率 vector"
+  },
+  {
+   "name": "amp",
+   "direction": "input",
+   "summary": "扰动幅值 scalar | vector"
+  },
+  {
+   "name": "u + Δu",
+   "direction": "output",
+   "summary": "受扰动的被控对象输入 scalar"
+  },
+  {
+   "name": "Δu",
+   "direction": "output",
+   "summary": "被控对象输入扰动 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "实验数据 bus"
+  },
+  {
+   "name": "frd",
+   "direction": "output",
+   "summary": "估计的频率响应 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "实验采样时间 0.1 (default) | positive scalar | –1",
+   "group": ""
+  },
+  {
+   "name": "Output Signal Configuration",
+   "default": "perturbation",
+   "values": "提供控制信号加扰动或仅提供扰动 control action + perturbation (default) | perturbation only",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "浮点精度 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Excitation signal source",
+   "default": "parameters",
+   "values": "激励信号源 Block parameters (default) | External ports",
+   "group": ""
+  },
+  {
+   "name": "Frequencies",
+   "default": "2]",
+   "values": "用于估计的频率 [0.5 1 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Frequency units",
+   "default": "rad/s",
+   "values": "频率单位 rad/s (default) | Hz",
+   "group": ""
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1",
+   "values": "注入扰动的幅值 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of frequencies in the excitation signal",
+   "default": "3",
+   "values": "外部提供的频率数 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Experiment mode",
+   "default": "Sinestream",
+   "values": "实验模式 Sinestream (default) | Superposition | PRBS (since R2023a)",
+   "group": ""
+  },
+  {
+   "name": "Number of settling periods",
+   "default": "2",
+   "values": "等待瞬态稳定的周期数 2 (default) | positive integer | vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Number of estimation periods",
+   "default": "4",
+   "values": "稳定后用于估计的周期数 4 (default) | integer ≥ 2 | vector of integers",
+   "group": ""
+  },
+  {
+   "name": "Number of periods of the lowest frequency used for estimation",
+   "default": "3",
+   "values": "数据收集窗口的持续时间 3 (default) | integer between 1 and 5",
+   "group": ""
+  },
+  {
+   "name": "Number of periods",
+   "default": "1",
+   "values": "PRBS 信号中的周期数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Signal order",
+   "default": "12",
+   "values": "PRBS 信号阶数 12 (default) | positive integer ≤ 24",
+   "group": ""
+  },
+  {
+   "name": "Use Auto-Generated Value",
+   "default": "off",
+   "values": "自动设置 PRBS 信号参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Estimation mode",
+   "default": "Online",
+   "values": "模块是执行估计还是仅收集响应数据 Online (default) | Offline",
+   "group": ""
+  },
+  {
+   "name": "Display Bode plot",
+   "default": "off",
+   "values": "绘制估计频率响应 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Baseline plant model",
+   "default": "[]",
+   "values": "Bode 图基线模型 [] (default) | LTI model",
+   "group": ""
+  },
+  {
+   "name": "Refresh plot every N*Ts seconds where N is",
+   "default": "100",
+   "values": "Bode 图的更新频率 100 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Ideal Force Sensor",
+ "title": "Ideal Force Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanical Sensors/Ideal_Force_Sensor.md"
+ ],
+ "text": "机械平移系统中的力传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

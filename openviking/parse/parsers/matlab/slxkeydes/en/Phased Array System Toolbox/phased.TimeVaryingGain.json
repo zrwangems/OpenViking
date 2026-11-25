@@ -1,0 +1,54 @@
+{
+ "key": "phased.TimeVaryingGain",
+ "title": "Time Varying Gain",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Time_Varying_Gain.md"
+ ],
+ "text": "Time varying gain (TVG) control, 2 inputs, 1 output; {Source of range losses} sets the source of range, {Range losses (dB)} sets the loss at each input sample range, {Reference range loss (dB)} sets the loss at reference range and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix | array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Range loss column vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Range-compensated signal vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of range losses",
+   "default": "Property",
+   "values": "Source of range loss Property (default) | Input Port",
+   "group": ""
+  },
+  {
+   "name": "Range losses (dB)",
+   "default": "0",
+   "values": "Loss at each input sample range 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Reference range loss (dB)",
+   "default": "0",
+   "values": "Loss at reference range 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

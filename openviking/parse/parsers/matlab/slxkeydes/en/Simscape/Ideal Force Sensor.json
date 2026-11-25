@@ -1,0 +1,13 @@
+{
+ "key": "Ideal Force Sensor",
+ "title": "Ideal Force Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanical Sensors/Ideal_Force_Sensor.md"
+ ],
+ "text": "Force sensor in mechanical translational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Infinite Flow Resistance (IL)",
+ "title": "Infinite Flow Resistance (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Infinite_Flow_Resistance_IL.md"
+ ],
+ "text": "用于设置两个节点之间初始压力差的等温液体元件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

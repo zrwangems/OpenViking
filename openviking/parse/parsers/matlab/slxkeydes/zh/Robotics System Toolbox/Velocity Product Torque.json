@@ -1,0 +1,42 @@
+{
+ "key": "Velocity Product Torque",
+ "title": "Velocity Product Torque",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Velocity_Product_Torque.md"
+ ],
+ "text": "用于抵消速度诱导力的关节力矩，输入 2 路、输出 1 路；{Rigid body tree} 指定机器人模型 twoJointRigidBodyTre、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "机器人配置 vector"
+  },
+  {
+   "name": "JointVel",
+   "direction": "input",
+   "summary": "关节速度 vector"
+  },
+  {
+   "name": "JointTorq",
+   "direction": "output",
+   "summary": "关节力矩 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "机器人模型 twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

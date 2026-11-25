@@ -1,0 +1,77 @@
+{
+ "key": "Slcontrol:ultralocalmodel:txtULM",
+ "title": "Ultra-Local Model",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Disturbance Observer/Ultra_Local_Model.md"
+ ],
+ "text": "将非线性被控对象估计为带有仿射项的单积分器或双积分器系统，该仿射项捕获未知动态和扰动，输入 2 路、输出 2 路；{Input gain (α)} 指定输入增益、{Model Order} 指定超局部模型阶数、{Estimator sample time} 指定估计器采样时间、{Integration window (steps)} 指定积分窗口、{Include current time inputs for F estimation} 指定包含用于估计的当前时间输入、{Output estimated yhat} 输出输出的一步估计、{Observer gain (L)} 指定观测器增益，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "被控对象输入 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 scalar"
+  },
+  {
+   "name": "Fhat",
+   "direction": "output",
+   "summary": "估计的扰动和未建模动态 scalar"
+  },
+  {
+   "name": "yhat",
+   "direction": "output",
+   "summary": "估计输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input gain (α)",
+   "default": "1",
+   "values": "输入增益 1 (default) | nonzero finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Model Order",
+   "default": "1",
+   "values": "超局部模型阶数 1 (default) | 2",
+   "group": ""
+  },
+  {
+   "name": "Estimator sample time",
+   "default": "0.01",
+   "values": "估计器采样时间 0.01 (default)",
+   "group": ""
+  },
+  {
+   "name": "Integration window (steps)",
+   "default": "3",
+   "values": "积分窗口 3 (default) | positive integer greater than 3",
+   "group": ""
+  },
+  {
+   "name": "Include current time inputs for F estimation",
+   "default": "off",
+   "values": "包含用于估计的当前时间输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output estimated yhat",
+   "default": "off",
+   "values": "输出输出的一步估计 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Observer gain (L)",
+   "default": "0",
+   "values": "观测器增益 0 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

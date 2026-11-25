@@ -1,0 +1,67 @@
+{
+ "key": "Low-Pass Filter (Discrete or Continuous)",
+ "title": "Low-Pass Filter (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Low_Pass_Filter_Discrete_or_Continuous.md"
+ ],
+ "text": "Discrete-time or continuous-time low-pass filter, 1 input, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Gain} sets the filter gain, {Time constant} sets the filter time constant, {Upper saturation limit} sets the state upper limit, {Lower saturation limit} sets the state lower limit, {Initialization} sets the initial state specification Inherited from block and {Initial state}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Filter input vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filter output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Gain",
+   "default": "1",
+   "values": "Filter gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Time constant",
+   "default": "1",
+   "values": "Filter time constant 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Upper saturation limit",
+   "default": "inf",
+   "values": "State upper limit inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Lower saturation limit",
+   "default": "-inf",
+   "values": "State lower limit -inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Initialization",
+   "default": "input",
+   "values": "Initial state specification Inherited from block input (default) | Specify as parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "Initial state 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

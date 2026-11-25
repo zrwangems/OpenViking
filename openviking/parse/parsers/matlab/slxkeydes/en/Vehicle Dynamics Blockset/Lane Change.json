@@ -1,0 +1,140 @@
+{
+ "key": "Lane Change",
+ "title": "Lane Change",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Lane_Change.md"
+ ],
+ "text": "Generate commands to conduct lane change maneuvers, 4 inputs, 3 outputs, {Lane change type, changeType} sets Type of lane change to conduct Double lane change; {Maneuver start time, tStart [s]} sets the start time, {Inertial longitudinal position of gate extrance, XGate [m]} sets the global longitudinal position of start of gate, {Longitudinal entrance velocity setpoint, velRef} sets the target velocity, {Longitudinal entrance velocity setpoint units, velRefUnit []} sets the units, {Distance after target speed to begin reference, xStart [m]} sets the longitudinal offset, {Vehicle width, vehWidth [m]} sets the nominal vehicle width, {Lateral offset, nomLatOffset [m]} sets the nominal lateral offset, {Lateral reference position breakpoints, latRefbp [m]} sets the longitudinal path breakpoints 1-by- n, {Lateral reference data, latRef [m]} sets the lateral path reference points 1-by-7, {Use reference data} sets the option to use reference data, {Stop simulation on course exit} sets the option to stop simulation on course exit, {Output info bus} sets the option to output info bus, {Instantiate 3D cones (Simulation 3D Scene Configuration required)} sets the option to instantiate 3D cones and {Show Maneuver Plot} sets the option to visualize. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "Vehicle longitudinal velocity scalar"
+  },
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Longitudinal position vehicle center of mass scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "Lateral position vehicle center of mass scalar"
+  },
+  {
+   "name": "psi",
+   "direction": "input",
+   "summary": "Vehicle yaw angle scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "Driver reference data bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "Driver command data bus"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Information data bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lane change type, changeType",
+   "default": "3888-1)",
+   "values": "Type of lane change to conduct Double lane change (ISO 3888-1) (default) | Obstacle avoidance (ISO 3888-2) | Obstacle avoidance truck-trailer (SAE J2179)",
+   "group": ""
+  },
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "3",
+   "values": "Start time 3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inertial longitudinal position of gate extrance, XGate [m]",
+   "default": "176",
+   "values": "Global longitudinal position of start of gate entry 176 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal entrance velocity setpoint, velRef",
+   "default": "35",
+   "values": "Target velocity 35 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal entrance velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "Units mph (default)",
+   "group": ""
+  },
+  {
+   "name": "Distance after target speed to begin reference, xStart [m]",
+   "default": "2",
+   "values": "Longitudinal offset 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle width, vehWidth [m]",
+   "default": "2",
+   "values": "Nominal vehicle width 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lateral offset, nomLatOffset [m]",
+   "default": "0",
+   "values": "Nominal lateral offset 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lateral reference position breakpoints, latRefbp [m]",
+   "default": "vector",
+   "values": "Longitudinal path breakpoints 1-by- n vector (default)",
+   "group": ""
+  },
+  {
+   "name": "Lateral reference data, latRef [m]",
+   "default": "vector",
+   "values": "Lateral path reference points 1-by-7 vector (default)",
+   "group": ""
+  },
+  {
+   "name": "Use reference data",
+   "default": "on",
+   "values": "Option to use reference data on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation on course exit",
+   "default": "off",
+   "values": "Option to stop simulation on course exit off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output info bus",
+   "default": "off",
+   "values": "Option to output info bus off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Instantiate 3D cones (Simulation 3D Scene Configuration required)",
+   "default": "off",
+   "values": "Option to instantiate 3D cones off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show Maneuver Plot",
+   "default": "",
+   "values": "Option to visualize maneuver button",
+   "group": ""
+  }
+ ]
+}

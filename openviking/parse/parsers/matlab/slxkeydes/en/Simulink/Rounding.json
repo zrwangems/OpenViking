@@ -1,0 +1,45 @@
+{
+ "key": "Rounding",
+ "title": "Rounding Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Rounding_Function.md",
+  "Simulink/Quick Insert/Math Operations/Ceil.md",
+  "Simulink/Quick Insert/Math Operations/Fix.md",
+  "Simulink/Quick Insert/Math Operations/Floor.md",
+  "Simulink/Quick Insert/Math Operations/Round.md",
+  "HDL Coder/HDL Floating Point Operations/Ceil.md",
+  "HDL Coder/HDL Floating Point Operations/Fix.md",
+  "HDL Coder/HDL Floating Point Operations/Floor.md",
+  "HDL Coder/HDL Floating Point Operations/Round.md"
+ ],
+ "text": "Apply rounding function to signal, 1 input, 1 output, direct feedthrough, {Function} sets Rounding function; {Sample time (-1 for inherited)} sets the interval between samples. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function",
+   "default": "floor",
+   "values": "Rounding function floor (default) | ceil | round | fix",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

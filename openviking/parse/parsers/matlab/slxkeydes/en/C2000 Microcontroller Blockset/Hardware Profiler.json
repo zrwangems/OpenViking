@@ -1,0 +1,49 @@
+{
+ "key": "Hardware Profiler",
+ "title": "Hardware Profiler",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/Hardware_Profiler.md"
+ ],
+ "text": "Profiles function-call subsystem using GPIO, ERAD, or Timer measurement modes, 2 outputs, {Measurement mode} sets Select hardware profiling technique Embedded Real-time Analysis & Diagnostic; {ERAD module}, {GPIO number} and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "f()",
+   "direction": "output",
+   "summary": "Function call port scalar"
+  },
+  {
+   "name": "cnt",
+   "direction": "output",
+   "summary": "Count port scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement mode",
+   "default": "(ERAD)",
+   "values": "Select hardware profiling technique Embedded Real-time Analysis & Diagnostic (ERAD) (default) | General Purpose Input Output (GPIO) | Timer",
+   "group": ""
+  },
+  {
+   "name": "ERAD module",
+   "default": "1",
+   "values": "Specify ERAD module 1 (default) | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "GPIO number",
+   "default": "0",
+   "values": "Specify GPIO number 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time at which block reads data from hardware profiler -1 (default)",
+   "group": ""
+  }
+ ]
+}

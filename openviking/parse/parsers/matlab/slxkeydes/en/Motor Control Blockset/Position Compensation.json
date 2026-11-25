@@ -1,0 +1,83 @@
+{
+ "key": "Position Compensation",
+ "title": "Position Compensation",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Signal Management/Position_Compensation.md"
+ ],
+ "text": "Compensate for position offset due to different types of delays, 3 inputs, 1 output, {Nature of offset} sets Type of offset Sample; {Offset value} sets the position offset value, {Number of sample delay} sets the number of block execution time samples, {Discrete step size (s)} sets the sample time after which block executes again, {Cut-off frequency (Hz)} sets the filter cutoff frequency, {Position unit} sets the unit of position, {Speed unit} sets the unit of angular velocity and {Maximum application speed (RPM)} sets the upper limit of angular velocity. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ in",
+   "direction": "input",
+   "summary": "Position input value scalar"
+  },
+  {
+   "name": "ϕ",
+   "direction": "input",
+   "summary": "Position offset scalar"
+  },
+  {
+   "name": "ω",
+   "direction": "input",
+   "summary": "Angular velocity scalar"
+  },
+  {
+   "name": "θ out",
+   "direction": "output",
+   "summary": "Position output value scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Nature of offset",
+   "default": "delay",
+   "values": "Type of offset Sample delay (default) | Constant delay | External delay | High-pass filter delay | Low-pass filter delay",
+   "group": ""
+  },
+  {
+   "name": "Offset value",
+   "default": "0.1",
+   "values": "Position offset value 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of sample delay",
+   "default": "1",
+   "values": "Number of block execution time samples 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Sample time after which block executes again 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Cut-off frequency (Hz)",
+   "default": "9.578",
+   "values": "Filter cutoff frequency 9.578 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Position unit",
+   "default": "Radians",
+   "values": "Unit of position input Radians (default) | Degrees | Per unit",
+   "group": ""
+  },
+  {
+   "name": "Speed unit",
+   "default": "RPM",
+   "values": "Unit of angular velocity input RPM (default) | Degrees/Sec | Radians/Sec | Per unit",
+   "group": ""
+  },
+  {
+   "name": "Maximum application speed (RPM)",
+   "default": "4000",
+   "values": "Upper limit of angular velocity 4000 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

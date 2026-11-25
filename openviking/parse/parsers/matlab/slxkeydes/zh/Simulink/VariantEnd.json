@@ -1,0 +1,42 @@
+{
+ "key": "VariantEnd",
+ "title": "Variant End",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Variant_End.md"
+ ],
+ "text": "定义有界区域的结束，输入 2 路、输出 1 路、无直接馈通；{Variant Start End Tag} 指定有界区域的唯一标识符、{Variant Paired Block} 用于突出显示配对的 Variant Start，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入分支 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "与第 N 个分支关联的输入端口 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variant Start End Tag",
+   "default": "A",
+   "values": "有界区域的唯一标识符 A (default) | valid MATLAB ® identifier",
+   "group": ""
+  },
+  {
+   "name": "Variant Paired Block",
+   "default": "off",
+   "values": "用于突出显示配对的 Variant Start 模块的选项 off (default) | on",
+   "group": ""
+  }
+ ]
+}

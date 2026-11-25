@@ -1,0 +1,31 @@
+{
+ "key": "VGGish",
+ "title": "VGGish",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/VGGish.md"
+ ],
+ "text": "VGGish 嵌入提取网络，输入 1 路、输出 1 路、无直接馈通；{Mini-batch size} 指定小批量的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "梅尔频谱图 96-by-64 matrix | 96-by-64-by-1-by- N array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "嵌入 N -by-128 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mini-batch size",
+   "default": "128",
+   "values": "小批量的大小 128 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

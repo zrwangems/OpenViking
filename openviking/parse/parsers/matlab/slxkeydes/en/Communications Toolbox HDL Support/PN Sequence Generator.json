@@ -1,0 +1,125 @@
+{
+ "key": "PN Sequence Generator",
+ "title": "PN Sequence Generator",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Sources/PN_Sequence_Generator.md",
+  "Communications Toolbox/Comm Sources/Sequence Generators/PN_Sequence_Generator.md"
+ ],
+ "text": "Generate pseudonoise sequence, 4 inputs, 1 output, {Output data type} sets Output data type; {Generator polynomial}, {Initial states} sets the initial shift register states, {Output mask source}, {Output mask vector (or scalar shift value)}, {Output variable-size signals} sets the option to output variable-length signals, {Sample time} sets the output sample time, {Samples per frame}, {Maximum output size source}, {Maximum output size}, {Reset on nonzero input}, {Enable bit-packed outputs}, {Number of packed bits} and {Interpret bit-packed values as signed}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Mask",
+   "direction": "input",
+   "summary": "Output mask binary vector"
+  },
+  {
+   "name": "oSiz",
+   "direction": "input",
+   "summary": "Output size integer"
+  },
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "Reference input column vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset sequence generator 0 | 1"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Pseudorandom noise sequence binary vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generator polynomial",
+   "default": "1’",
+   "values": "Generator polynomial ’z^6 + z + 1’ (default) | character vector | string scalar | binary row vector | integer vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states",
+   "default": "1]",
+   "values": "Initial shift register states [0 0 0 0 0 1] (default) | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Output mask source",
+   "default": "parameter",
+   "values": "Output mask source Dialog parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Output mask vector (or scalar shift value)",
+   "default": "0",
+   "values": "Output mask vector or scalar shift value 0 (default) | integer scalar | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "Option to output variable-length signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Output sample time 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size source",
+   "default": "parameter",
+   "values": "Maximum output size source Dialog parameter (default) | Inherit from reference port",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size",
+   "default": "1]",
+   "values": "Maximum output size [10 1] (default) | vector of the form [ n 1]",
+   "group": ""
+  },
+  {
+   "name": "Reset on nonzero input",
+   "default": "off",
+   "values": "Reset on nonzero input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable bit-packed outputs",
+   "default": "off",
+   "values": "Enable bit-packed outputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of packed bits",
+   "default": "8",
+   "values": "Number of packed bits 8 (default) | integer in the range [1, 32]",
+   "group": ""
+  },
+  {
+   "name": "Interpret bit-packed values as signed",
+   "default": "off",
+   "values": "Interpret bit-packed values as signed off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | boolean | Smallest unsigned integer",
+   "group": ""
+  }
+ ]
+}

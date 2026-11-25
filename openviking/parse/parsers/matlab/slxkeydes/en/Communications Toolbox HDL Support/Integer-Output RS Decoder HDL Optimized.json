@@ -1,0 +1,107 @@
+{
+ "key": "Integer-Output RS Decoder HDL Optimized",
+ "title": "Integer-Output RS Decoder HDL Optimized",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Error Detection and Correction/Block/Integer_Output_RS_Decoder_HDL_Optimized.md"
+ ],
+ "text": "Decode data using Reed-Solomon (RS) decoder, 4 inputs, 6 outputs; {Codeword length} sets the length of codeword, {Message length} sets the length of message, {Source of primitive polynomial} sets the primitive polynomial source, {Primitive polynomial}, {Source of B, the starting power for roots of the primitive polynomial} sets the source of starting power for roots of primitive, {B value} sets the starting exponent of roots and {Output number of corrected symbol errors} sets the number of corrected symbol errors. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dataIn",
+   "direction": "input",
+   "summary": "Input data scalar"
+  },
+  {
+   "name": "startIn",
+   "direction": "input",
+   "summary": "Start of input frame indicator scalar"
+  },
+  {
+   "name": "endIn",
+   "direction": "input",
+   "summary": "End of input frame indicator scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Valid input data indicator scalar"
+  },
+  {
+   "name": "dataOut",
+   "direction": "output",
+   "summary": "Decoded message data scalar"
+  },
+  {
+   "name": "startOut",
+   "direction": "output",
+   "summary": "Start of output frame indicator scalar"
+  },
+  {
+   "name": "endOut",
+   "direction": "output",
+   "summary": "End of output frame indicator scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Valid output data indicator scalar"
+  },
+  {
+   "name": "errOut",
+   "direction": "output",
+   "summary": "Indications of corruption of received data scalar"
+  },
+  {
+   "name": "numErrors",
+   "direction": "output",
+   "summary": "Number of corrected errors nonnegative scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length",
+   "default": "7",
+   "values": "Length of codeword 7 (default) | range from 7 to 65, 535",
+   "group": ""
+  },
+  {
+   "name": "Message length",
+   "default": "3",
+   "values": "Length of message 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source of primitive polynomial",
+   "default": "Auto",
+   "values": "Primitive polynomial source Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "]",
+   "values": "Primitive polynomial [ 1 0 1 1 ] (default) | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Source of B, the starting power for roots of the primitive polynomial",
+   "default": "Auto",
+   "values": "Source of starting power for roots of primitive polynomial Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "B value",
+   "default": "1",
+   "values": "Starting exponent of roots 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output number of corrected symbol errors",
+   "default": "off",
+   "values": "Number of corrected symbol errors off (default) | on",
+   "group": ""
+  }
+ ]
+}

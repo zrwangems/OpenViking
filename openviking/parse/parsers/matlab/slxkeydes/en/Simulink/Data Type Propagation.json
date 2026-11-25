@@ -1,0 +1,139 @@
+{
+ "key": "Data Type Propagation",
+ "title": "Data Type Propagation",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Data_Type_Propagation.md",
+  "HDL Coder/Signal Attributes/Data_Type_Propagation.md"
+ ],
+ "text": "Set data type and scaling of propagated signal based on information from reference signals, 3 inputs, no direct feedthrough, {2.1. Propagated scaling (Slope, e.g. 2^-9 or [Slope Bias], e.g. [1.25 3])} sets Slope or; {1. Propagated data type} sets the mode of specifying propagated data type Inherit via propagation, {1.1. Propagated data type (e.g. fixdt(1,16), fixdt(’single’))} sets the propagated data type fixdt, {1.1 If any reference input is double, output is} sets the output data type when a reference input, {1.2 If any reference input is single, output is} sets the output data type when a reference input, {1.3 Is-Signed} sets the signedness of propagated data type IsSigned1, {1.4.1 Number-of-bits: Base} sets the number of bits for the base of the propagated data type, {1.4.2 Number-of-bits: Multiplicative adjustment} sets the number of bits for multiplicative adjustment of propagated data, {1.4.3 Number-of-bits: Additive adjustment} sets the number of bits for additive adjustment of propagated data, {1.4.4 Number-of-bits: Allowable final values} sets the allowable number of bits in propagated data, {2. Propagated scaling} sets the propagated scaling mode Inherit via propagation, {2.1. Values used to determine best precision scaling} sets the values to constrain precision, {2.1.1. Slope: Base} sets the slope for base of the propagated data type, {2.1.2. Slope: Multiplicative adjustment} sets the slope of multiplicative adjustment of propagated data, {2.1.3. Slope: Additive adjustment} sets the slope of additive adjustment of propagated data, {2.2.1. Bias: Base} sets the base bias, {2.2.2. Bias: Multiplicative adjustment} sets the multiplicative bias for propagated data and {2.3.2. Bias: Additive adjustment} sets the additive bias for propagated data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ref1",
+   "direction": "input",
+   "summary": "First reference signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Ref2",
+   "direction": "input",
+   "summary": "Second reference signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Prop",
+   "direction": "input",
+   "summary": "Propagated data type and scaling data type and scaling"
+  }
+ ],
+ "params": [
+  {
+   "name": "1. Propagated data type",
+   "default": "rule",
+   "values": "Mode of specifying propagated data type Inherit via propagation rule (default) | Specify via dialog",
+   "group": "Propagated Type"
+  },
+  {
+   "name": "1.1. Propagated data type (e.g. fixdt(1,16), fixdt(’single’))",
+   "default": "fixdt(1,16)",
+   "values": "Propagated data type fixdt(1,16) (default) | data type string",
+   "group": "Propagated Type"
+  },
+  {
+   "name": "1.1 If any reference input is double, output is",
+   "default": "double",
+   "values": "Output data type when a reference input is double double (default) | single",
+   "group": "Propagated Type"
+  },
+  {
+   "name": "1.2 If any reference input is single, output is",
+   "default": "single",
+   "values": "Output data type when a reference input is single single (default) | double",
+   "group": "Propagated Type"
+  },
+  {
+   "name": "1.3 Is-Signed",
+   "default": "IsSigned2",
+   "values": "Signedness of propagated data type IsSigned1 or IsSigned2 (default) | IsSigned1 | IsSigned2 | TRUE | FALSE",
+   "group": "Propagated Type"
+  },
+  {
+   "name": "1.4.1 Number-of-bits: Base",
+   "default": "NumBits2])",
+   "values": "Number of bits for the base of the propagated data type max([NumBits1 NumBits2]) (default) | NumBits1 | NumBits2 | min([NumBits1 NumBits2]) | NumBits1+NumBits2",
+   "group": "Propagated Type"
+  },
+  {
+   "name": "1.4.2 Number-of-bits: Multiplicative adjustment",
+   "default": "1",
+   "values": "Number of bits for multiplicative adjustment of propagated data type 1 (default) | positive integer",
+   "group": "Propagated Type"
+  },
+  {
+   "name": "1.4.3 Number-of-bits: Additive adjustment",
+   "default": "0",
+   "values": "Number of bits for additive adjustment of propagated data type 0 (default) | positive integer",
+   "group": "Propagated Type"
+  },
+  {
+   "name": "1.4.4 Number-of-bits: Allowable final values",
+   "default": "’-1’",
+   "values": "Allowable number of bits in propagated data type ’-1’ (default) | scalar or vector of positive integers",
+   "group": "Propagated Type"
+  },
+  {
+   "name": "2. Propagated scaling",
+   "default": "rule",
+   "values": "Propagated scaling mode Inherit via propagation rule (default) | Specify via dialog | Obtain via best precision",
+   "group": "Propagated Scaling"
+  },
+  {
+   "name": "2.1. Propagated scaling (Slope, e.g. 2^-9 or [Slope Bias], e.g. [1.25 3])",
+   "default": "",
+   "values": "Slope or slope and bias 2^-10 | slope | slope and bias in square brackets",
+   "group": "Propagated Scaling"
+  },
+  {
+   "name": "2.1. Values used to determine best precision scaling",
+   "default": "-7]",
+   "values": "Values to constrain precision [5 -7] (default)",
+   "group": "Propagated Scaling"
+  },
+  {
+   "name": "2.1.1. Slope: Base",
+   "default": "Slope2])",
+   "values": "Slope for base of the propagated data type min([Slope1 Slope2]) (default) | Slope1 | Slope2 | min([Slope1 Slope2]) | max([Bias1 Bias2]) | Slope1*Slope2 | Slope1/Slope2 | PosRange1 | PosRange2 | max([PosRange1 PosRange2]) | min([PosRange1 PosRange2]) | PosRange1*PosRange2 | PosRange1/PosRange2",
+   "group": "Propagated Scaling"
+  },
+  {
+   "name": "2.1.2. Slope: Multiplicative adjustment",
+   "default": "1",
+   "values": "Slope of multiplicative adjustment of propagated data type 1 (default) | scalar",
+   "group": "Propagated Scaling"
+  },
+  {
+   "name": "2.1.3. Slope: Additive adjustment",
+   "default": "0",
+   "values": "Slope of additive adjustment of propagated data type 0 (default) | scalar",
+   "group": "Propagated Scaling"
+  },
+  {
+   "name": "2.2.1. Bias: Base",
+   "default": "Bias1",
+   "values": "Base bias for Prop Bias1 (default) | Bias2 | max([Bias1 Bias2]) | min([Bias1 Bias2]) | Bias1*Bias2 | Bias1/Bias2 | Bias1+Bias2 | Bias1-Bias2",
+   "group": "Propagated Scaling"
+  },
+  {
+   "name": "2.2.2. Bias: Multiplicative adjustment",
+   "default": "1",
+   "values": "Multiplicative bias for propagated data type 1 (default) | scalar",
+   "group": "Propagated Scaling"
+  },
+  {
+   "name": "2.3.2. Bias: Additive adjustment",
+   "default": "0",
+   "values": "Additive bias for propagated data type 0 (default) | scalar",
+   "group": "Propagated Scaling"
+  }
+ ]
+}

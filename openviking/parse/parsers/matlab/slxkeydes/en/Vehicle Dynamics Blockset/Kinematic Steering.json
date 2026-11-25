@@ -1,0 +1,160 @@
+{
+ "key": "Kinematic Steering",
+ "title": "Kinematic Steering",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Steering/Kinematic_Steering.md"
+ ],
+ "text": "Kinematic steering for Ackerman, rack-and-pinion, and parallel steering mechanisms, 2 inputs, 3 outputs, {Type} sets Select steering type; {Parametrized by} selects parameterization, {Location} selects location, {Normalization factor, NrmlFctr} adjusts the steering, {Track width, TrckWdth} sets the width, {Wheel base, WhlBase} sets the base, {Deadband, Db}, {Steering range, StrgRng} sets the steering wheel angle input, {Steering ratio, StrgRatio} sets the ratio, {Steering angle breakpoints, StrgAngBpts} sets the breakpoints, {Steering ratio table, StrgRatioTbl} sets the table, {Steering arm length, StrgArmLngth} sets the length, {Rack casing length, RckCsLngth} sets the length, {Tie rod length, TieRodLngth} sets the length, {Distance between axis and rack, D}, {Pinion radius, PnnRadius}, {Pinion radius table, PnnRadiusTbl} sets the table, {Input Percent Ackerman} sets the create PctAckIn input port, {Percent Ackerman, PctAck} sets the percent Ackerman constant and {Percent Ackerman table, PctAckTbl} sets the percent Ackerman table ones. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "AngIn",
+   "direction": "input",
+   "summary": "Steering angle scalar"
+  },
+  {
+   "name": "PctAckIn",
+   "direction": "input",
+   "summary": "Ackerman percentage scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "AngLft",
+   "direction": "output",
+   "summary": "Left wheel angle scalar"
+  },
+  {
+   "name": "AngRght",
+   "direction": "output",
+   "summary": "Right wheel angle scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "Ackerman",
+   "values": "Select steering type Ackerman (default) | Rack and pinion | Parallel",
+   "group": ""
+  },
+  {
+   "name": "Parametrized by",
+   "default": "Constant",
+   "values": "Select parameterization Constant (default) | Lookup table",
+   "group": ""
+  },
+  {
+   "name": "Location",
+   "default": "Front",
+   "values": "Select location Front (default) | Rear",
+   "group": ""
+  },
+  {
+   "name": "Normalization factor, NrmlFctr",
+   "default": "",
+   "values": "Adjust the steering angle scalar",
+   "group": ""
+  },
+  {
+   "name": "Track width, TrckWdth",
+   "default": "1",
+   "values": "Width 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wheel base, WhlBase",
+   "default": "1.524",
+   "values": "Base 1.524 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Deadband, Db",
+   "default": "0",
+   "values": "Deadband 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering range, StrgRng",
+   "default": "1.25*pi",
+   "values": "Steering wheel angle input range 1.25*pi (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering ratio, StrgRatio",
+   "default": "100",
+   "values": "Ratio 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering angle breakpoints, StrgAngBpts",
+   "default": "6.2832]",
+   "values": "Breakpoints [-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Steering ratio table, StrgRatioTbl",
+   "default": "13.5000]",
+   "values": "Table [13.5000 13.3750 13.2500 13.1250 13.0000 13.0000 13.0000 13.1250 13.2500 13.3750 13.5000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Steering arm length, StrgArmLngth",
+   "default": "0.1",
+   "values": "Length 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rack casing length, RckCsLngth",
+   "default": "0.5",
+   "values": "Length 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Tie rod length, TieRodLngth",
+   "default": "0.248",
+   "values": "Length 0.248 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance between axis and rack, D",
+   "default": "0.2",
+   "values": "Distance 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pinion radius, PnnRadius",
+   "default": "0.0057",
+   "values": "Radius 0.0057 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pinion radius table, PnnRadiusTbl",
+   "default": "0.0055]",
+   "values": "Table [0.0055 0.0055 0.0056 0.0057 0.0057 0.0057 0.0058 0.0057 0.0056 0.0055 0.0055] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Input Percent Ackerman",
+   "default": "off",
+   "values": "Create PctAckIn input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman, PctAck",
+   "default": "100",
+   "values": "Percent Ackerman constant 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman table, PctAckTbl",
+   "default": "ones(1,11)*100",
+   "values": "Percent Ackerman table ones(1,11)*100 (default) | vector",
+   "group": ""
+  }
+ ]
+}

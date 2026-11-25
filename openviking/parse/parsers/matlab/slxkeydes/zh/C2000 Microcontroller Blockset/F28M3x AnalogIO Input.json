@@ -1,0 +1,254 @@
+{
+ "key": "F28M3x AnalogIO Input",
+ "title": "AnalogIO Input",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28M35x/C28x/AnalogIO_Input.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/AnalogIO_Input.md"
+ ],
+ "text": "在捕获输入引脚上接收并记录跳变，或配置辅助脉冲宽度调制器，输入 4 路、输出 4 路；按 {eCAPx pin} 指定捕获单元引脚；{Operating mode} 指定 eCAP 或、{Counter phase offset value (0 ~ 4294967295)} 指定事件捕获的时基、{Enable counter Sync-In mode} 启用 TSCTR 计数器从 CTRPHS 寄存器加载、{Enable software-forced counter synchronizing input} 指定同步一个或多个 eCAP 时基、{Sync output selection} 指定将 eCAP 计数器与其他 eCAP 计数器同步、{Sample time} 指定模块读取输入引脚值的频率、{Event prescaler (integer from 0 to 31)} 以 2 的倍数对输入信号进行预分频、{Enable high resolution capture} 指定此项可启用高分辨率捕获或 HRCAP 模式、{Enable continuous calibration mode} 指定此项可启用连续校准模式、{Calibration period in seconds} 指定校准周期、{Select mode control} 指定捕获模式 Continuous、{Enable One-Shot rearming control via input port} 指定重新触发单次捕获序列、{Stop value after} 指定捕获停止前发生的捕获事件数 Capture、{Enable reset counter after capture event # time-stamp} 指定捕获事件后复位计数器、{Select capture event # polarity} 指定在上升沿或下降沿启动捕获事件 Rising、{Output type} 指定 eCAP 的输出类型 HRCLK/SYSCLK、{Time-Stamp counter data type} 指定计数器的数据类型、{Enable capture event status flag output} 输出捕获事件状态、{Capture flag data type} 输出端口 CF 的数据类型、{Enable overflow status flag output} 输出 FIFO 缓冲区各元素的状态、{Overflow flag data type} 输出端口 OF 的数据类型、{Waveform period units} 指定测量波形周期的单位、{Waveform period source} 指定获取波形周期值的来源 Specify via、{Waveform period} 指定 PWM 波形的周期、{Duty cycle units} 指定测量占空比的单位、{Duty cycle source} 指定获取 PWM 波形占空比的来源 Specify via、{Duty cycle} 指定 PWM 波形脉冲持续时间与 PWM 波形周期之比、{Output polarity select} 输出的有效电平 Active、{Post interrupt on capture event #} 指定将中断源设置为捕获事件、{Post interrupt on counter overflow} 指定在计数器溢出时触发中断、{Post interrupt on counter equal period match} 指定当计数器等于周期寄存器时发送中断、{Post interrupt on counter equal compare match} 指定当计数器等于比较寄存器时发送中断，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SI",
+   "direction": "input",
+   "summary": "来自软件的同步输入 scalar"
+  },
+  {
+   "name": "RA",
+   "direction": "input",
+   "summary": "单次捕获序列 scalar"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "APWM 周期 scalar"
+  },
+  {
+   "name": "W",
+   "direction": "input",
+   "summary": "APWM 宽度 scalar"
+  },
+  {
+   "name": "TS",
+   "direction": "output",
+   "summary": "输出捕获事件的时间戳 vector"
+  },
+  {
+   "name": "CF",
+   "direction": "output",
+   "summary": "捕获事件的状态 vector"
+  },
+  {
+   "name": "OF",
+   "direction": "output",
+   "summary": "溢出状态 scalar"
+  },
+  {
+   "name": "Scale factor",
+   "direction": "output",
+   "summary": "HRCLK 周期的缩放因子 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operating mode",
+   "default": "eCAP",
+   "values": "选择 eCAP 或 APWM 模式 eCAP (default) | APWM",
+   "group": "General"
+  },
+  {
+   "name": "eCAPx pin",
+   "default": "eCAP1",
+   "values": "选择捕获单元引脚 eCAP1 (default) | eCAP2 | eCAP3 | eCAP4 | eCAP5 | eCAP6 | eCAP7",
+   "group": "General"
+  },
+  {
+   "name": "Counter phase offset value (0 ~ 4294967295)",
+   "default": "0",
+   "values": "事件捕获的时基 0 (default) | integer in [0 4294967295]",
+   "group": "General"
+  },
+  {
+   "name": "Enable counter Sync-In mode",
+   "default": "off",
+   "values": "启用 TSCTR 计数器从 CTRPHS 寄存器加载 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Enable software-forced counter synchronizing input",
+   "default": "off",
+   "values": "同步一个或多个 eCAP 时基 off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Sync output selection",
+   "default": "Disabled",
+   "values": "将 eCAP 计数器与其他 eCAP 计数器同步 Disabled (default) | Pass through | CTR=PRD",
+   "group": "General"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "模块读取输入引脚值的频率 0.001 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Event prescaler (integer from 0 to 31)",
+   "default": "0",
+   "values": "以 2 的倍数对输入信号进行预分频 0 (default) | scalar integer in [0 31]",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable high resolution capture",
+   "default": "off",
+   "values": "选择此项可启用高分辨率捕获或 HRCAP 模式 off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable continuous calibration mode",
+   "default": "off",
+   "values": "选择此项可启用连续校准模式 off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Calibration period in seconds",
+   "default": "0.0016",
+   "values": "指定校准周期 0.0016 (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Select mode control",
+   "default": "Continuous",
+   "values": "捕获模式 Continuous (default) | One-Shot",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable One-Shot rearming control via input port",
+   "default": "off",
+   "values": "重新触发单次捕获序列 off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Stop value after",
+   "default": "1",
+   "values": "捕获停止前发生的捕获事件数 Capture Event 1 (default) | Capture Event 2 | Capture Event 3 | Capture Event 4",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable reset counter after capture event # time-stamp",
+   "default": "off",
+   "values": "捕获事件后复位计数器 off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Select capture event # polarity",
+   "default": "Edge",
+   "values": "在上升沿或下降沿启动捕获事件 Rising Edge (default) | Falling Edge",
+   "group": "eCAP"
+  },
+  {
+   "name": "Output type",
+   "default": "cycles",
+   "values": "选择 eCAP 的输出类型 HRCLK/SYSCLK cycles (default) | Microseconds",
+   "group": "eCAP"
+  },
+  {
+   "name": "Time-Stamp counter data type",
+   "default": "uint32",
+   "values": "计数器的数据类型 uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable capture event status flag output",
+   "default": "off",
+   "values": "输出捕获事件状态 off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Capture flag data type",
+   "default": "uint32",
+   "values": "输出端口 CF 的数据类型 uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable overflow status flag output",
+   "default": "off",
+   "values": "输出 FIFO 缓冲区各元素的状态 off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Overflow flag data type",
+   "default": "uint32",
+   "values": "输出端口 OF 的数据类型 uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean",
+   "group": "eCAP"
+  },
+  {
+   "name": "Waveform period units",
+   "default": "Seconds",
+   "values": "测量波形周期的单位 Seconds (default) | Clock cycles",
+   "group": "APWM"
+  },
+  {
+   "name": "Waveform period source",
+   "default": "dialog",
+   "values": "获取波形周期值的来源 Specify via dialog (default) | Input port",
+   "group": "APWM"
+  },
+  {
+   "name": "Waveform period",
+   "default": "0.001",
+   "values": "PWM 波形的周期 0.001 (default)",
+   "group": "APWM"
+  },
+  {
+   "name": "Duty cycle units",
+   "default": "Percentages",
+   "values": "测量占空比的单位 Percentages (default) | Clock cycles",
+   "group": "APWM"
+  },
+  {
+   "name": "Duty cycle source",
+   "default": "dialog",
+   "values": "获取 PWM 波形占空比的来源 Specify via dialog (default) | Input port",
+   "group": "APWM"
+  },
+  {
+   "name": "Duty cycle",
+   "default": "50",
+   "values": "PWM 波形脉冲持续时间与 PWM 波形周期之比 50 (default)",
+   "group": "APWM"
+  },
+  {
+   "name": "Output polarity select",
+   "default": "High",
+   "values": "设置输出的有效电平 Active High (default) | Active Low",
+   "group": "APWM"
+  },
+  {
+   "name": "Post interrupt on capture event #",
+   "default": "off",
+   "values": "将中断源设置为捕获事件 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Post interrupt on counter overflow",
+   "default": "off",
+   "values": "在计数器溢出时触发中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Post interrupt on counter equal period match",
+   "default": "off",
+   "values": "当计数器等于周期寄存器时发送中断 off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Post interrupt on counter equal compare match",
+   "default": "off",
+   "values": "当计数器等于比较寄存器时发送中断 off (default) | on",
+   "group": "Interrupt"
+  }
+ ]
+}

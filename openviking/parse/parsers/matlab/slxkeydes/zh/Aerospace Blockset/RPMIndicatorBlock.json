@@ -1,0 +1,32 @@
+{
+ "key": "RPMIndicatorBlock",
+ "title": "RPM Indicator",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Instruments/RPM_Indicator.md"
+ ],
+ "text": "以 RPM 百分比显示发动机每分钟转数 (RPM) 的测量值；按 {Scale Colors} 指定色带范围；{Connection} 指定连接到信号 signal name、{Label} 指定模块标签位置，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "连接到信号 signal name",
+   "group": ""
+  },
+  {
+   "name": "Scale Colors",
+   "default": "0",
+   "values": "色带范围 0 (default) | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "模块标签位置 Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

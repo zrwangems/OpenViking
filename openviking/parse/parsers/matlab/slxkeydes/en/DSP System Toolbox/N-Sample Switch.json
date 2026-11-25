@@ -1,0 +1,59 @@
+{
+ "key": "N-Sample Switch",
+ "title": "N-Sample Switch",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Switches and Counters/N_Sample_Switch.md"
+ ],
+ "text": "Switch between two inputs after specified number of sample periods, 3 inputs, 1 output, no direct feedthrough, {Trigger type} sets Trigger type Rising; {Switch count, N}, {Reset input} and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "First input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Input 2",
+   "direction": "input",
+   "summary": "Second input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset signal scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output of the switch scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Switch count, N",
+   "default": "8",
+   "values": "Switch count 8 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Reset input",
+   "default": "off",
+   "values": "Reset input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "Trigger type Rising edge (default) | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time 0.1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

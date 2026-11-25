@@ -1,0 +1,120 @@
+{
+ "key": "uav.sluav.internal.system.WaypointFollower",
+ "title": "Waypoint Follower",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Waypoint_Follower.md"
+ ],
+ "text": "Follow waypoints for UAV, 3 inputs, 6 outputs; {UAV type} sets the type of UAV, {StartFrom} sets the waypoint start behavior, {Transition radius source} sets the source of transition, {Transition radius (r)} sets the transition radius for waypoints, {Minimum lookahead distance (m)}, {Hover at last waypoint} sets the lookahead point location at last waypoint, {Show Yaw input variable} sets the accept yaw input for waypoints, {Show CrossTrackError output port} sets the output cross track error, {Show UAV Status output port} sets the output UAV waypoint status and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "Current UAV pose [x y z chi] vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "Set of waypoints n -by-3 matrix | n -by-4 matrix | n -by-5 matrix"
+  },
+  {
+   "name": "LookaheadDistance",
+   "direction": "input",
+   "summary": "Lookahead distance positive numeric scalar"
+  },
+  {
+   "name": "LookaheadPoint",
+   "direction": "output",
+   "summary": "Lookahead point on path [x y z] position vector"
+  },
+  {
+   "name": "DesiredCourse",
+   "direction": "output",
+   "summary": "Desired course numeric scalar"
+  },
+  {
+   "name": "DesiredYaw",
+   "direction": "output",
+   "summary": "Desired yaw numeric scalar"
+  },
+  {
+   "name": "LookaheadDistFlag",
+   "direction": "output",
+   "summary": "Lookahead distance flag 0 (default) | 1"
+  },
+  {
+   "name": "CrossTrackError",
+   "direction": "output",
+   "summary": "Cross track error from UAV position to path positive numeric scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of waypoint navigation 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "UAV type",
+   "default": "fixed-wing",
+   "values": "Type of UAV fixed-wing (default) | multirotor",
+   "group": ""
+  },
+  {
+   "name": "StartFrom",
+   "default": "first",
+   "values": "Waypoint start behavior first (default) | closest",
+   "group": ""
+  },
+  {
+   "name": "Transition radius source",
+   "default": "internal",
+   "values": "Source of transition radius internal (default) | external",
+   "group": ""
+  },
+  {
+   "name": "Transition radius (r)",
+   "default": "10",
+   "values": "Transition radius for waypoints 10 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum lookahead distance (m)",
+   "default": "0.1",
+   "values": "Minimum lookahead distance 0.1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Hover at last waypoint",
+   "default": "off",
+   "values": "Lookahead point location at last waypoint off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show Yaw input variable",
+   "default": "off",
+   "values": "Accept yaw input for waypoints off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show CrossTrackError output port",
+   "default": "off",
+   "values": "Output cross track error off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show UAV Status output port",
+   "default": "off",
+   "values": "Output UAV waypoint status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

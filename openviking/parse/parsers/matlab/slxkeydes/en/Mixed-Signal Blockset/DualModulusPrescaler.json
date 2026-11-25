@@ -1,0 +1,55 @@
+{
+ "key": "DualModulusPrescaler",
+ "title": "Dual Modulus Prescaler",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Dual_Modulus_Prescaler.md"
+ ],
+ "text": "Integer clock divider with two divider ratios, 1 input, 1 output; {Program counter value, P} sets the maximum value of program counter, {Prescaler divider value, N}, {Swallow counter value, S} sets the maximum value of swallow counter, {Enable increased buffer size} and {Buffer size} sets the number of samples of the input buffering available during. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk in",
+   "direction": "input",
+   "summary": "Input clock frequency scalar"
+  },
+  {
+   "name": "clk out",
+   "direction": "output",
+   "summary": "Output clock frequency scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Program counter value, P",
+   "default": "12",
+   "values": "Maximum value of program counter 12 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Prescaler divider value, N",
+   "default": "4",
+   "values": "Prescaler divider value 4 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Swallow counter value, S",
+   "default": "2",
+   "values": "Maximum value of swallow counter 2 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "1",
+   "values": "Number of samples of the input buffering available during simulation 1 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

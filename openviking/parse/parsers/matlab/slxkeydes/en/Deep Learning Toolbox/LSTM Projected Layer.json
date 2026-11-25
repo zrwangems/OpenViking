@@ -1,0 +1,205 @@
+{
+ "key": "LSTM Projected Layer",
+ "title": "LSTM Projected Layer",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Sequence Layers/LSTM_Projected_Layer.md"
+ ],
+ "text": "Long short-term memory (LSTM) projected layer for recurrent neural network (RNN), 1 input, 1 output, {Integer rounding mode} sets Rounding mode for fixed-point operations; {Layer} sets the corresponding layer object, {Data format} sets the format of input, {Stateful prediction} sets the whether to use stateful prediction, {Activation approximation method} sets the approximation method for computing activation function, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the data type of output, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Saturate on integer overflow} sets the method of overflow action, {Input weights} sets the data type of input weights, {Recurrent weights} sets the data type of recurrent weights, {Bias} sets the data type of bias, {Input projector weights} sets the data type of input projector weights, {Output projector weights} sets the data type of output projector weights, {Initial cell state} sets the data type of initial cell state, {Cell state} sets the data type of cell state, {Initial hidden state} sets the data type of initial hidden state, {Hidden state} sets the data type of hidden state, {Input weights matrix multiply output} sets the data type of input weights matrix multiply output, {Recurrent weights matrix multiply output} sets the data type of recurrent weights matrix multiply output, {Input projector weights matrix multiply output} sets the data type of input projector weights matrix multiply output, {Output projector weights matrix multiply output} sets the data type of output projector weights matrix multiply output, {Linear gate accumulator} sets the data type of linear gate accumulator, {Linear gate add output} sets the data type of linear gate sum, {Gate activation output} sets the data type of gate activation output, {State activation output} sets the data type of state activation output, {Cell state product output} sets the data type of cell state product, {Cell state accumulator} sets the data type of cell state accumulator and {Sample time} sets the option to specify sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data 2-dimensional array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output data 2-dimensional array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Layer",
+   "default": "layerObject",
+   "values": "Corresponding layer object layerObject (default) | lstmProjectedLayer object",
+   "group": "Main"
+  },
+  {
+   "name": "Data format",
+   "default": "CT",
+   "values": "Format of input data CT (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Stateful prediction",
+   "default": "on",
+   "values": "Whether to use stateful prediction on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Activation approximation method",
+   "default": "None",
+   "values": "Approximation method for computing activation function output None (default) | CORDIC | Lookup",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Data type of output Inherit: Inherit via internal rule (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Input weights",
+   "default": "propagation",
+   "values": "Data type of input weights Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Recurrent weights",
+   "default": "propagation",
+   "values": "Data type of recurrent weights Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Bias",
+   "default": "propagation",
+   "values": "Data type of bias Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Input projector weights",
+   "default": "propagation",
+   "values": "Data type of input projector weights Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output projector weights",
+   "default": "propagation",
+   "values": "Data type of output projector weights Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Initial cell state",
+   "default": "propagation",
+   "values": "Data type of initial cell state Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Cell state",
+   "default": "rule",
+   "values": "Data type of cell state Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via back propagation | Inherit: Same as first input | Inherit: Same as accumulator |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Initial hidden state",
+   "default": "propagation",
+   "values": "Data type of initial hidden state Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Hidden state",
+   "default": "rule",
+   "values": "Data type of hidden state Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Input weights matrix multiply output",
+   "default": "rule",
+   "values": "Data type of input weights matrix multiply output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Recurrent weights matrix multiply output",
+   "default": "rule",
+   "values": "Data type of recurrent weights matrix multiply output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Input projector weights matrix multiply output",
+   "default": "rule",
+   "values": "Data type of input projector weights matrix multiply output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output projector weights matrix multiply output",
+   "default": "rule",
+   "values": "Data type of output projector weights matrix multiply output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Linear gate accumulator",
+   "default": "rule",
+   "values": "Data type of linear gate accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Linear gate add output",
+   "default": "input",
+   "values": "Data type of linear gate sum Inherit: Same as first input (default) | Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via back propagation | Inherit: Inherit via internal rule | Inherit: Same as accumulator |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Gate activation output",
+   "default": "rule",
+   "values": "Data type of gate activation output Inherit: Inherit via internal rule (default) | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "State activation output",
+   "default": "rule’",
+   "values": "Data type of state activation output ’Inherit: Inherit via internal rule’ (default) | ’Inherit: Same as first input’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Cell state product output",
+   "default": "rule",
+   "values": "Data type of cell state product Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Cell state accumulator",
+   "default": "rule",
+   "values": "Data type of cell state accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Option to specify sample time -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

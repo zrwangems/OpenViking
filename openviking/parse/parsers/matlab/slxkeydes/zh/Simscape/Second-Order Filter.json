@@ -1,0 +1,73 @@
+{
+ "key": "Second-Order Filter",
+ "title": "Second-Order Filter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Second_Order_Filter.md"
+ ],
+ "text": "离散时间或连续时间低通、高通、带通或带阻二阶滤波器，输入 1 路、输出 1 路；按 {Filter type} 指定滤波器类型；{Natural frequency (Hz)} 指定自然频率、{Damping factor} 指定阻尼因子、{Sample time (-1 for inherited)} 指定模块采样时间、{Initial amplitude} 指定初始幅值、{Initial phase (rad)} 指定初始相位、{Initial frequency (Hz)}、{Initial bias} 指定初始偏置，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "滤波器输入 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "滤波后输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter type",
+   "default": "Low-pass",
+   "values": "滤波器类型 Low-pass (default) | High-pass | Band-pass | Band-stop",
+   "group": "Main"
+  },
+  {
+   "name": "Natural frequency (Hz)",
+   "default": "60",
+   "values": "自然频率 60 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Damping factor",
+   "default": "0.707",
+   "values": "阻尼因子 0.707 (default) | nonnegative scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Initial amplitude",
+   "default": "0",
+   "values": "初始幅值 0 (default) | nonnegative scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "初始相位 0 (default) | nonnegative scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "0",
+   "values": "Initial frequency 0 (default) | scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Initial bias",
+   "default": "0",
+   "values": "初始偏置 0 (default) | nonnegative scalar",
+   "group": "Initial Conditions"
+  }
+ ]
+}

@@ -1,0 +1,170 @@
+{
+ "key": "UAVPointMass",
+ "title": "Fixed-Wing UAV Point Mass",
+ "toolbox": "UAV Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Fixed_Wing_UAV_Point_Mass.md"
+ ],
+ "text": "Integrate fourth- or sixth-order point mass equations of motion in coordinated flight, 8 inputs, 11 outputs, {Units} sets Units Metric; {Reference frame orientation} sets the reference frames, {Degrees of freedom}, {Initial crossrange} sets the initial East, {Initial downrange} sets the initial North, {Initial altitude}, {Initial airspeed}, {Initial flight path angle}, {Initial heading angle} and {Mass} sets the point mass. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Lift",
+   "direction": "input",
+   "summary": "Lift scalar"
+  },
+  {
+   "name": "Drag",
+   "direction": "input",
+   "summary": "Drag scalar"
+  },
+  {
+   "name": "Weight",
+   "direction": "input",
+   "summary": "Weight scalar"
+  },
+  {
+   "name": "Thrust",
+   "direction": "input",
+   "summary": "Thrust scalar"
+  },
+  {
+   "name": "ɣ a",
+   "direction": "input",
+   "summary": "Flight path angle relative to the air mass scalar"
+  },
+  {
+   "name": "μ",
+   "direction": "input",
+   "summary": "Bank angle scalar"
+  },
+  {
+   "name": "ɑ",
+   "direction": "input",
+   "summary": "Angle of attack scalar"
+  },
+  {
+   "name": "V wind",
+   "direction": "input",
+   "summary": "Wind vector three-element vector"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "Airspeed scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Ground speed projection scalar"
+  },
+  {
+   "name": "V a",
+   "direction": "output",
+   "summary": "Velocity vector relative to air mass three-element vector"
+  },
+  {
+   "name": "V e",
+   "direction": "output",
+   "summary": "Velocity vector relative to Earth with [North East Down] orientation three-element vector"
+  },
+  {
+   "name": "V ENU",
+   "direction": "output",
+   "summary": "Velocity vector relative to Earth three-element vector"
+  },
+  {
+   "name": "X e",
+   "direction": "output",
+   "summary": "Position vector relative to Earth three-element vector"
+  },
+  {
+   "name": "X ENU",
+   "direction": "output",
+   "summary": "Position vector relative to Earth three-element vector"
+  },
+  {
+   "name": "γ a",
+   "direction": "output",
+   "summary": "Flight path angle relative to air mass scalar"
+  },
+  {
+   "name": "γ",
+   "direction": "output",
+   "summary": "Flight path angle relative to Earth scalar"
+  },
+  {
+   "name": "χ a",
+   "direction": "output",
+   "summary": "Heading angle relative to air mass scalar"
+  },
+  {
+   "name": "χ",
+   "direction": "output",
+   "summary": "Heading angle relative to Earth scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English (velocity in ft/s) | English (velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Reference frame orientation",
+   "default": "Down]",
+   "values": "Reference frames [North East Down] (default) | [East North Up]",
+   "group": ""
+  },
+  {
+   "name": "Degrees of freedom",
+   "default": "Flight)",
+   "values": "Degrees of freedom 6th Order (Coordinated Flight) (default) | 4th Order (Longitudinal)",
+   "group": ""
+  },
+  {
+   "name": "Initial crossrange",
+   "default": "0",
+   "values": "Initial East (Earth) crossrange location 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial downrange",
+   "default": "0",
+   "values": "Initial North (Earth) downrange 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial altitude",
+   "default": "0",
+   "values": "Initial altitude 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial airspeed",
+   "default": "50",
+   "values": "Initial airspeed 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial flight path angle",
+   "default": "0",
+   "values": "Initial flight path angle 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial heading angle",
+   "default": "0",
+   "values": "Initial heading angle 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mass",
+   "default": "10",
+   "values": "Point mass 10 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

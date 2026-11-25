@@ -1,0 +1,57 @@
+{
+ "key": "BusCreator",
+ "title": "Bus Creator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Bus_Creator.md",
+  "Simulink/Signal Routing/Bus_Creator.md",
+  "HDL Coder/Signal Routing/Bus_Creator.md"
+ ],
+ "text": "Group input signals, buses, or messages into bus, 1 input, 1 output, no direct feedthrough; {Number of inputs} sets the number of block inputs, {Inputs} sets the block inputs list, {Output data type} sets the data type of output bus Inherit, {Element names} sets the source of output bus element names and {Output as nonvirtual bus} sets the option to output nonvirtual bus. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input element to include in bus scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output virtual or nonvirtual bus scalar | bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inputs",
+   "default": "2",
+   "values": "Number of block inputs 2 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Inputs",
+   "default": "",
+   "values": "Block inputs list of element names",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "Data type of output bus Inherit: auto (default) | Bus:",
+   "group": ""
+  },
+  {
+   "name": "Element names",
+   "default": "inputs",
+   "values": "Source of output bus element names From inputs (default) | From output data type",
+   "group": ""
+  },
+  {
+   "name": "Output as nonvirtual bus",
+   "default": "off",
+   "values": "Option to output nonvirtual bus off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,269 @@
+{
+ "key": "Simulation 3D SmallSat Pack",
+ "title": "Simulation 3D SmallSat Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_SmallSat_Pack.md"
+ ],
+ "text": "为 SmallSat 创建平移和旋转输入矩阵，输入 2 路、输出 2 路；按 {Select input coordinate frame} 指定输入坐标系；{Antenna 1 translation} 启用 Antenna1_T 输入端口、{Antenna 1 rotation} 启用 Antenna1_R 输入端口、{Antenna 2 translation} 启用 Antenna2_T 输入端口、{Antenna 2 rotation} 启用 Antenna2_R 输入端口、{Antenna 3 translation} 启用 Antenna3_T 输入端口、{Antenna 3 rotation} 启用 Antenna3_R 输入端口、{Antenna 4 translation} 用于启用 Antenna4_T 输入端口、{Antenna 4 rotation} 用于启用 Antenna4_R 输入端口、{Sensor 1 translation} 用于启用 Sensor1_T 输入端口、{Sensor 1 rotation} 用于启用 Sensor1_R 输入端口、{Sensor 2 translation} 用于启用 Sensor2_T 输入端口、{Sensor 2 rotation} 用于启用 Sensor2_R 输入端口、{Sensor 3 translation} 用于启用 Sensor3_T 输入端口、{Sensor 3 rotation} 用于启用 Sensor3_R 输入端口、{Sensor 4 translation} 用于启用 Sensor4_T 输入端口、{Sensor 4 rotation} 用于启用 Sensor4_R 输入端口、{Solar array 1 translation} 启用 SolarArray1_T 输入端口、{Solar array 1 rotation} 启用 SolarArray1_R 输入端口、{Solar array 1.1 translation} 启用 SolarArray1_1_T 输入端口、{Solar array 1.1 rotation} 启用 SolarArray1_1_R 输入端口、{Solar array 1.1.1 translation} 用于启用 SolarArray1_1_1_T、{Solar array 1.1.1 rotation} 用于启用 SolarArray1_1_1_R、{Solar array 1.1.1.1 translation} 用于启用 SolarArray1_1_1_1_T、{Solar array 1.1.1.1 rotation} 用于启用 SolarArray1_1_1_1_R、{Solar array 1.1.1.1.1 translation} 用于启用 SolarArray1_1_1_1_1_T、{Solar array 1.1.1.1.1 rotation} 用于启用 SolarArray1_1_1_1_1_R、{Solar array 2 translation} 启用 SolarArray2_T 输入端口、{Solar array 2 rotation} 启用 SolarArray2_R 输入端口、{Solar array 2.2 translation} 启用 SolarArray2_2_T 输入端口、{Solar array 2.2 rotation} 启用 SolarArray2_2_R 输入端口、{Solar array 2.2.2 translation} 用于启用 SolarArray2_2_2_T、{Solar array 2.2.2 rotation} 用于启用 SolarArray2_2_2_R、{Solar array 2.2.2.2 translation} 用于启用 SolarArray2_2_2_2_T、{Solar array 2.2.2.2 rotation} 用于启用 SolarArray2_2_2_2_R、{Solar array 2.2.2.2.2 translation} 用于启用 SolarArray2_2_2_2_2_T、{Solar array 2.2.2.2.2 rotation} 用于启用 SolarArray2_2_2_2_2_R、{Thruster translation} 启用 Thruster_T 输入端口、{Thruster rotation} 启用 Thruster_R 输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "机体平移 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "机体旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "航天器平移 20-by-3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "航天器旋转 20-by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Antenna 1 translation",
+   "default": "off",
+   "values": "启用 Antenna1_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 1 rotation",
+   "default": "off",
+   "values": "启用 Antenna1_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 2 translation",
+   "default": "off",
+   "values": "启用 Antenna2_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 2 rotation",
+   "default": "off",
+   "values": "启用 Antenna2_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 3 translation",
+   "default": "off",
+   "values": "启用 Antenna3_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 3 rotation",
+   "default": "off",
+   "values": "启用 Antenna3_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 4 translation",
+   "default": "off",
+   "values": "用于启用 Antenna4_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 4 rotation",
+   "default": "off",
+   "values": "用于启用 Antenna4_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 1 translation",
+   "default": "off",
+   "values": "用于启用 Sensor1_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 1 rotation",
+   "default": "off",
+   "values": "用于启用 Sensor1_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 translation",
+   "default": "off",
+   "values": "用于启用 Sensor2_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 rotation",
+   "default": "off",
+   "values": "用于启用 Sensor2_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 3 translation",
+   "default": "off",
+   "values": "用于启用 Sensor3_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 3 rotation",
+   "default": "off",
+   "values": "用于启用 Sensor3_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 4 translation",
+   "default": "off",
+   "values": "用于启用 Sensor4_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 4 rotation",
+   "default": "off",
+   "values": "用于启用 Sensor4_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Solar array 1 translation",
+   "default": "off",
+   "values": "启用 SolarArray1_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1 rotation",
+   "default": "off",
+   "values": "启用 SolarArray1_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1 translation",
+   "default": "off",
+   "values": "启用 SolarArray1_1_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1 rotation",
+   "default": "off",
+   "values": "启用 SolarArray1_1_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1 translation",
+   "default": "off",
+   "values": "用于启用 SolarArray1_1_1_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1 rotation",
+   "default": "off",
+   "values": "用于启用 SolarArray1_1_1_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1.1 translation",
+   "default": "off",
+   "values": "用于启用 SolarArray1_1_1_1_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1.1 rotation",
+   "default": "off",
+   "values": "用于启用 SolarArray1_1_1_1_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1.1.1 translation",
+   "default": "off",
+   "values": "用于启用 SolarArray1_1_1_1_1_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1.1.1 rotation",
+   "default": "off",
+   "values": "用于启用 SolarArray1_1_1_1_1_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2 translation",
+   "default": "off",
+   "values": "启用 SolarArray2_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2 rotation",
+   "default": "off",
+   "values": "启用 SolarArray2_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2 translation",
+   "default": "off",
+   "values": "启用 SolarArray2_2_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2 rotation",
+   "default": "off",
+   "values": "启用 SolarArray2_2_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2 translation",
+   "default": "off",
+   "values": "用于启用 SolarArray2_2_2_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2 rotation",
+   "default": "off",
+   "values": "用于启用 SolarArray2_2_2_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2.2 translation",
+   "default": "off",
+   "values": "用于启用 SolarArray2_2_2_2_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2.2 rotation",
+   "default": "off",
+   "values": "用于启用 SolarArray2_2_2_2_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2.2.2 translation",
+   "default": "off",
+   "values": "用于启用 SolarArray2_2_2_2_2_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2.2.2 rotation",
+   "default": "off",
+   "values": "用于启用 SolarArray2_2_2_2_2_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Thruster translation",
+   "default": "off",
+   "values": "启用 Thruster_T 输入端口的选项 off (default) | on",
+   "group": "Thrusters"
+  },
+  {
+   "name": "Thruster rotation",
+   "default": "off",
+   "values": "启用 Thruster_R 输入端口的选项 off (default) | on",
+   "group": "Thrusters"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "输入坐标系 NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

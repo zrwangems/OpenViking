@@ -1,0 +1,486 @@
+{
+ "key": "Motorcycle Body Longitudinal In-Plane",
+ "title": "Motorcycle Body Longitudinal In-Plane",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Vehicle Dynamics/Motorcycle_Body_Longitudinal_In_Plane.md",
+  "Vehicle Dynamics Blockset/Vehicle Body/Motorcycle_Body_Longitudinal_In_Plane.md"
+ ],
+ "text": "Longitudinal in-plane motorcycle vehicle motion, 15 inputs, 7 outputs; {Suspension type} sets the type of suspension, {External forces} sets the fExt input port, {External moments} sets the mExt input port, {External front wheel moment} sets the mWhlF input port, {External rear wheel moment} sets the mWhlR input port, {Grade angle} sets the grade input port, {Wind velocity} sets the windXYZ input port, {Ambient temperature} sets the temp input port, {Center of mass location, FrmCmPxz} sets the frame location, {Mass, FrmMass} sets the frame mass, {Mass moment of inertia, FrmIyy} sets the frame inertia, {Length, FrmLen} sets the frame length, {Center of mass location, RdrCmPxz} sets the rider location, {Mass, RdrMass} sets the rider mass, {Mass moment of inertia, RdrIyy} sets the rider inertia, {Position, FrkUpCmPxz} sets the upper fork location, {Mass, FrkUpMass} sets the upper fork mass, {Mass moment of inertia, FrkUpIyy} sets the upper fork inertia, {Offset, FrkOfs} sets the upper fork offset, {Position, FrkLwCmPxz} sets the lower fork location, {Mass, FrkLwMass} sets the lower fork mass, {Mass moment of inertia, FrkLwIyy} sets the lower fork inertia, {Position, ArmRrCmPxz} sets the rear arm location, {Mass, ArmRrMass} sets the rear arm mass, {Mass moment of inertia, ArmRrIyy} sets the rear arm inertia, {Length, ArmRrLen} sets the rear arm length, {Mass, WhlFrMass} sets the front wheel mass, {Radius, WhlFrR} sets the front wheel radius, {Mass, WhlRrMass} sets the rear wheel mass, {Radius, WhlRrR} sets the rear wheel radius, {Stiffness, SuspFrK} sets the front suspension stiffness 25e3, {Damping, SuspFrC} sets the front suspension damping, {Equilibrium length, FrkLwL0} sets the front suspension equilibrium length, {Stiffness, SuspRrK} sets the rear arm suspension stiffness, {Damping, SuspRrC} sets the rear arm suspension damping, {Equilibrium angle, ShkRrAng0} sets the rear suspension equilibrium angle, {Longitudinal drag area, Af} sets the area, {Longitudinal drag coefficient, Cd} sets the drag .2, {Longitudinal lift coefficient, Cl} sets the lift .1, {Longitudinal drag pitch moment, Cpm} sets the pitch drag .1, {Pitch moment length, Lcpm} sets the pitch drag, {Gravitational acceleration, g} sets the gravity, {Absolute air pressure, Pabs} sets the pressure, {Air temperature, Tair} sets the ambient air temperature, {Rear contact patch longitudinal coordinate, CpRrX0} sets the longitudinal coordinate, {Rear contact patch vertical coordinate, CpRrZ0} sets the vertical coordinate, {Pitch angle of rear arm, ArmRrAng0} sets the rear arm angle, {Pitch angle of main frame, FrmAng0} sets the angle length, {Fork length, FrkFrL0}, {Longitudinal velocity of rear contact patch}, {Vertical velocity of rear contact patch, CpRrVz0}, {Pitch rate of rear arm, ArmRrAngV0}, {Pitch rate of main frame, FrmAngV0}, {Lower fork deformation velocity, FrkLwV0} sets the deformation velocity, {Longitudinal offset, longOff}, {Lateral offset, latOff}, {Vertical offset, vertOff}, {Roll offset, pitchOff}, {Pitch offset, pitchOff} and {Yaw offset, pitchOff}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FCpF",
+   "direction": "input",
+   "summary": "Longitudinal and vertical forces at front wheel contact patch vector"
+  },
+  {
+   "name": "FCpR",
+   "direction": "input",
+   "summary": "Longitudinal and vertical forces at rear wheel contact patch vector"
+  },
+  {
+   "name": "MDrvArmR",
+   "direction": "input",
+   "summary": "Drive chain moment at rear arm scalar"
+  },
+  {
+   "name": "MDrvFrm",
+   "direction": "input",
+   "summary": "Drive chain moment at frame scalar"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "External longitudinal and vertical forces at frame vector"
+  },
+  {
+   "name": "MExt",
+   "direction": "input",
+   "summary": "External moment about frame scalar"
+  },
+  {
+   "name": "MBrkF",
+   "direction": "input",
+   "summary": "Brake moment at front wheel scalar"
+  },
+  {
+   "name": "MBrkR",
+   "direction": "input",
+   "summary": "Brake moment at rear wheel scalar"
+  },
+  {
+   "name": "MWhlF",
+   "direction": "input",
+   "summary": "External moment at front wheel scalar"
+  },
+  {
+   "name": "MWhlR",
+   "direction": "input",
+   "summary": "External moment at rear wheel scalar"
+  },
+  {
+   "name": "FSuspF",
+   "direction": "input",
+   "summary": "External suspension force at upper fork scalar"
+  },
+  {
+   "name": "MSuspR",
+   "direction": "input",
+   "summary": "External suspension moment at rear arm scalar"
+  },
+  {
+   "name": "Grade",
+   "direction": "input",
+   "summary": "Road grade angle scalar"
+  },
+  {
+   "name": "WindXYZ",
+   "direction": "input",
+   "summary": "Wind speed array"
+  },
+  {
+   "name": "Temp",
+   "direction": "input",
+   "summary": "Ambient air temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "VCpF",
+   "direction": "output",
+   "summary": "Longitudinal, lateral, and vertical velocity at front wheel contact patch vector"
+  },
+  {
+   "name": "PCpF",
+   "direction": "output",
+   "summary": "Longitudinal, lateral, and vertical position at front wheel contact patch vector"
+  },
+  {
+   "name": "VCpR",
+   "direction": "output",
+   "summary": "Longitudinal, lateral, and vertical velocity at rear wheel contact patch vector"
+  },
+  {
+   "name": "PCpR",
+   "direction": "output",
+   "summary": "Longitudinal, lateral, and vertical position at rear wheel contact patch vector"
+  },
+  {
+   "name": "ThetaFrm",
+   "direction": "output",
+   "summary": "Main frame pitch angle scalar"
+  },
+  {
+   "name": "ThetaArmR",
+   "direction": "output",
+   "summary": "Rear arm pitch angle scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Suspension type",
+   "default": "Simple",
+   "values": "Type of suspension Simple (default) | User-defined",
+   "group": "Options"
+  },
+  {
+   "name": "External forces",
+   "default": "off",
+   "values": "FExt input port off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "External moments",
+   "default": "off",
+   "values": "MExt input port off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "External front wheel moment",
+   "default": "off",
+   "values": "MWhlF input port off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "External rear wheel moment",
+   "default": "off",
+   "values": "MWhlR input port off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Grade angle",
+   "default": "on",
+   "values": "Grade input port on (default) | off",
+   "group": "Options"
+  },
+  {
+   "name": "Wind velocity",
+   "default": "on",
+   "values": "WindXYZ input port on (default) | off",
+   "group": "Options"
+  },
+  {
+   "name": "Ambient temperature",
+   "default": "off",
+   "values": "Temp input port off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Center of mass location, FrmCmPxz",
+   "default": "-0.02]",
+   "values": "Frame location [0.255, -0.02] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, FrmMass",
+   "default": "223",
+   "values": "Frame mass 223 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, FrmIyy",
+   "default": "26.2",
+   "values": "Frame inertia 26.2 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Length, FrmLen",
+   "default": "0.730",
+   "values": "Frame length 0.730 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Center of mass location, RdrCmPxz",
+   "default": "-0.61]",
+   "values": "Rider location [0.275, -0.61] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, RdrMass",
+   "default": "78",
+   "values": "Rider mass 78 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, RdrIyy",
+   "default": "26.2",
+   "values": "Rider inertia 26.2 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Position, FrkUpCmPxz",
+   "default": "-0.098]",
+   "values": "Upper fork location [0.023, -0.098] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, FrkUpMass",
+   "default": "8.8",
+   "values": "Upper fork mass 8.8 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, FrkUpIyy",
+   "default": "0.14",
+   "values": "Upper fork inertia 0.14 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Offset, FrkOfs",
+   "default": "0.034",
+   "values": "Upper fork offset 0.034 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Position, FrkLwCmPxz",
+   "default": "-0.189]",
+   "values": "Lower fork location [-0.029, -0.189] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, FrkLwMass",
+   "default": "7.0",
+   "values": "Lower fork mass 7.0 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, FrkLwIyy",
+   "default": "0.18",
+   "values": "Lower fork inertia 0.18 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Position, ArmRrCmPxz",
+   "default": "-0.052]",
+   "values": "Rear arm location [0.275, -0.052] (default) | vector",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, ArmRrMass",
+   "default": "10",
+   "values": "Rear arm mass 10 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass moment of inertia, ArmRrIyy",
+   "default": "0.8",
+   "values": "Rear arm inertia 0.8 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Length, ArmRrLen",
+   "default": "0.535",
+   "values": "Rear arm length 0.535 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, WhlFrMass",
+   "default": "12",
+   "values": "Front wheel mass 12 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Radius, WhlFrR",
+   "default": "0.3",
+   "values": "Front wheel radius 0.3 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Mass, WhlRrMass",
+   "default": "16.2",
+   "values": "Rear wheel mass 16.2 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Radius, WhlRrR",
+   "default": "0.33",
+   "values": "Rear wheel radius 0.33 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Stiffness, SuspFrK",
+   "default": "25e3",
+   "values": "Front suspension stiffness 25e3 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Damping, SuspFrC",
+   "default": "1250",
+   "values": "Front suspension damping 1250 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Equilibrium length, FrkLwL0",
+   "default": "0.473",
+   "values": "Front suspension equilibrium length 0.473 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Stiffness, SuspRrK",
+   "default": "1500",
+   "values": "Rear arm suspension stiffness 1500 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Damping, SuspRrC",
+   "default": "150",
+   "values": "Rear arm suspension damping 150 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Equilibrium angle, ShkRrAng0",
+   "default": "0",
+   "values": "Rear suspension equilibrium angle 0 (default) | scalar",
+   "group": "Layout"
+  },
+  {
+   "name": "Longitudinal drag area, Af",
+   "default": "2",
+   "values": "Area 2 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal drag coefficient, Cd",
+   "default": ".2",
+   "values": "Drag .2 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal lift coefficient, Cl",
+   "default": ".1",
+   "values": "Lift .1 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal drag pitch moment, Cpm",
+   "default": ".1",
+   "values": "Pitch drag .1 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Pitch moment length, Lcpm",
+   "default": "2",
+   "values": "Pitch drag 2 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.80665",
+   "values": "Gravity 9.80665 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Absolute air pressure, Pabs",
+   "default": "101325",
+   "values": "Pressure 101325 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Air temperature, Tair",
+   "default": "273",
+   "values": "Ambient air temperature 273 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Rear contact patch longitudinal coordinate, CpRrX0",
+   "default": "0",
+   "values": "Longitudinal coordinate 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Rear contact patch vertical coordinate, CpRrZ0",
+   "default": "0",
+   "values": "Vertical coordinate 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Pitch angle of rear arm, ArmRrAng0",
+   "default": "0.0590379",
+   "values": "Rear arm angle 0.0590379 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Pitch angle of main frame, FrmAng0",
+   "default": "0.377024",
+   "values": "Angle length 0.377024 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Fork length, FrkFrL0",
+   "default": "0.4262193",
+   "values": "Fork length 0.4262193 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Longitudinal velocity of rear contact patch",
+   "default": "0",
+   "values": "Longitudinal velocity 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Vertical velocity of rear contact patch, CpRrVz0",
+   "default": "0",
+   "values": "Vertical velocity 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Pitch rate of rear arm, ArmRrAngV0",
+   "default": "0",
+   "values": "Pitch rate 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Pitch rate of main frame, FrmAngV0",
+   "default": "0",
+   "values": "Pitch rate 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Lower fork deformation velocity, FrkLwV0",
+   "default": "0",
+   "values": "Deformation velocity 0 (default) | scalar",
+   "group": "Initial conditions"
+  },
+  {
+   "name": "Longitudinal offset, longOff",
+   "default": "0",
+   "values": "Longitudinal offset 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Lateral offset, latOff",
+   "default": "0",
+   "values": "Lateral offset 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Vertical offset, vertOff",
+   "default": "0",
+   "values": "Vertical offset 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Roll offset, pitchOff",
+   "default": "0",
+   "values": "Roll offset 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Pitch offset, pitchOff",
+   "default": "0",
+   "values": "Pitch offset 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  },
+  {
+   "name": "Yaw offset, pitchOff",
+   "default": "0",
+   "values": "Yaw offset 0 (default) | scalar",
+   "group": "Coordinate Offsets"
+  }
+ ]
+}

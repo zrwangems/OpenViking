@@ -1,0 +1,37 @@
+{
+ "key": "Array of Electrical Nodes",
+ "title": "Array of Electrical Nodes",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Array_of_Electrical_Nodes.md"
+ ],
+ "text": "（即将删除）将电气节点数组串联成单个电气节点数组端口；按 {输入连接数} 指定要串联的电气节点数组的数量；{节点 k 中的元素数}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "inConnk",
+   "direction": "",
+   "summary": "要串联的电气节点 k 数组 电气节点数组"
+  },
+  {
+   "name": "outConn",
+   "direction": "",
+   "summary": "串联的电气节点数组 电气节点数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入连接数",
+   "default": "one",
+   "values": "要串联的电气节点数组的数量 one (默认) | two | three | four |...",
+   "group": ""
+  },
+  {
+   "name": "节点 k 中的元素数",
+   "default": "1",
+   "values": "连接节点 k 中的元素数 1 (默认)",
+   "group": ""
+  }
+ ]
+}

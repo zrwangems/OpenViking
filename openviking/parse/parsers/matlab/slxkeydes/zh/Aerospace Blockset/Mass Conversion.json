@@ -1,0 +1,37 @@
+{
+ "key": "Mass Conversion",
+ "title": "Mass Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Mass_Conversion.md"
+ ],
+ "text": "从质量单位转换为所需质量单位，输入 1 路、输出 1 路；按 {Initial unit} 指定输入单位；{Final unit} 输出单位 kg，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "质量 scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "质量 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "lbm",
+   "values": "输入单位 lbm (default) | kg | slug",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "kg",
+   "values": "输出单位 kg (default) | lbm | slug",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Specific Dissipation Heat Exchanger (G-TL)",
+ "title": "Specific Dissipation Heat Exchanger (G-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid - Gas/Specific_Dissipation_Heat_Exchanger_G_TL.md"
+ ],
+ "text": "Heat exchanger parameterized by specific dissipation data for systems with gas and thermal liquid flows.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

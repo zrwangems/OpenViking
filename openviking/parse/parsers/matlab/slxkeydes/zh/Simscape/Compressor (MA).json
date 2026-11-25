@@ -1,0 +1,13 @@
+{
+ "key": "Compressor (MA)",
+ "title": "Compressor (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Turbomachinery/Compressor_MA.md"
+ ],
+ "text": "湿空气网络中的压缩机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

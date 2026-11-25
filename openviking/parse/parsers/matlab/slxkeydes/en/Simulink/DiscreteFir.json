@@ -1,0 +1,170 @@
+{
+ "key": "DiscreteFir",
+ "title": "Discrete FIR Filter",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Discrete_FIR_Filter.md",
+  "DSP System Toolbox/Filtering/Filter Implementations/Discrete_FIR_Filter.md",
+  "HDL Coder/Discrete/Discrete_FIR_Filter.md",
+  "HDL Coder/HDL Floating Point Operations/Discrete_FIR_Filter.md",
+  "DSP System Toolbox HDL Support/Filtering/Discrete_FIR_Filter.md"
+ ],
+ "text": "Model FIR filters, 4 inputs, 1 output, no direct feedthrough, {External reset} sets External state reset; {Coefficient source} sets the source of coefficients, {Filter structure}, {Coefficients} sets the filter coefficients, {Input processing} sets the sample- or frame-based processing Elements, {Initial states} sets the initial conditions of filter states, {Show enable port} sets the create enable port, {Sample time (-1 for inherited)} sets the interval between samples, {View Filter Response}, {Tap sum}, {Coefficients minimum} sets the minimum value of coefficients, {Coefficients maximum} sets the maximum value of coefficients, {Product output}, {Accumulator}, {State}, {Output}, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Integer rounding mode} sets the rounding mode for fixed-point operations and {Saturate on integer overflow} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Filter coefficients scalar | vector"
+  },
+  {
+   "name": "External reset",
+   "direction": "input",
+   "summary": "External reset signal scalar"
+  },
+  {
+   "name": "⎍",
+   "direction": "input",
+   "summary": "Enable signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Filtered output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "Source of coefficients Dialog parameters (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Filter structure",
+   "default": "form",
+   "values": "Filter structure Direct form (default) | Direct form symmetric | Direct form antisymmetric | Direct form transposed | Lattice MA",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients",
+   "default": "0.5]",
+   "values": "Filter coefficients [0.5 0.5] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": "Main"
+  },
+  {
+   "name": "Initial states",
+   "default": "0",
+   "values": "Initial conditions of filter states 0 (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Show enable port",
+   "default": "off",
+   "values": "Create enable port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "External reset",
+   "default": "None",
+   "values": "External state reset None (default) | Rising | Falling | Either | Level | Level hold",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View filter response button",
+   "group": "Main"
+  },
+  {
+   "name": "Tap sum",
+   "default": "input",
+   "values": "Tap sum data type Inherit: Same as input (default) | Inherit: Inherit via internal rule | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients minimum",
+   "default": "[]",
+   "values": "Minimum value of coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients maximum",
+   "default": "[]",
+   "values": "Maximum value of coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "State",
+   "default": "accumulator",
+   "values": "State data type Inherit: Same as accumulator (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

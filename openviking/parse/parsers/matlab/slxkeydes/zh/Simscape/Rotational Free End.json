@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Free End",
+ "title": "Rotational Free End",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Rotational_Free_End.md"
+ ],
+ "text": "Rotational port terminator with zero torque。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

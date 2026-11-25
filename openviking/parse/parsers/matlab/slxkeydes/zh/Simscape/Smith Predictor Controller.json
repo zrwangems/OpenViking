@@ -1,0 +1,89 @@
+{
+ "key": "Smith Predictor Controller",
+ "title": "Smith Predictor Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Smith_Predictor_Controller.md"
+ ],
+ "text": "离散时间 Smith 死区时间补偿器，输入 3 路、输出 1 路；{Proportional gain} 指定 K p、{Integral gain} 指定 K i、{Integrator initial condition} 指定积分器初始值、{Control action upper limit} 指定 u max、{Control action lower limit} 指定 u min、{Model discrete transfer function numerator} 指定传递函数分子、{Model discrete transfer function denominator} 指定传递函数分母、{System dead time (samples)} 指定死区时间采样数、{Sample time (-1 for inherited)} 指定采样间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "被控对象参考 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "积分器复位 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制器输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "1",
+   "values": "K i 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integrator initial condition",
+   "default": "0",
+   "values": "积分器初始值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "5",
+   "values": "u max 5 (default) | scalar greater than the value of the Control action lower limit parameter",
+   "group": ""
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "0",
+   "values": "u min 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Model discrete transfer function numerator",
+   "default": "1",
+   "values": "传递函数分子 1 (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Model discrete transfer function denominator",
+   "default": "0.5]",
+   "values": "传递函数分母 [1 0.5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "System dead time (samples)",
+   "default": "2",
+   "values": "死区时间采样数 2 (default) | 0 or a positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "采样间隔 -1 (default) | default value or a positive number",
+   "group": ""
+  }
+ ]
+}

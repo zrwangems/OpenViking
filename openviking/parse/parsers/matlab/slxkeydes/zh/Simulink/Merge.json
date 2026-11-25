@@ -1,0 +1,55 @@
+{
+ "key": "Merge",
+ "title": "Merge",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Merge.md",
+  "HDL Coder/Ports & Subsystems/Merge.md"
+ ],
+ "text": "将多个信号合并为一个信号，输入 2 路、输出 1 路；按 {初始输出} 指定初始输出值 [；{输入数目} 指定要合并的输入信号的数量、{允许端口宽度不等} 允许输入具有不同维度、{输入端口偏移量} 指定输入信号的偏移量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_n",
+   "direction": "input",
+   "summary": "第 n 个输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入数目",
+   "default": "2",
+   "values": "要合并的输入信号的数量 2 (默认) | integer",
+   "group": ""
+  },
+  {
+   "name": "初始输出",
+   "default": "]",
+   "values": "初始输出值 [ ] (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "允许端口宽度不等",
+   "default": "off",
+   "values": "允许输入具有不同维度 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "输入端口偏移量",
+   "default": "]",
+   "values": "输入信号的偏移量 [ ] (默认) | 向量",
+   "group": ""
+  }
+ ]
+}

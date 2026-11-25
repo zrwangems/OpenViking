@@ -1,0 +1,54 @@
+{
+ "key": "EntityGate",
+ "title": "Entity Gate",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Gate.md"
+ ],
+ "text": "Gate entities, 2 inputs, 1 output, {Operating mode} sets Select the mode of operation Enable; {Matching attribute} sets the name of the attribute that matches the value from the control port, {Initial value from the control port} sets the initial value from the control port to match the matching attribute and {Open gate at simulation start} sets the opening the gate at the start. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "control",
+   "direction": "input",
+   "summary": "Incoming control entity scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Exiting entity scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operating mode",
+   "default": "gate",
+   "values": "Select the mode of operation Enable gate (default) | Release gate | Selection gate",
+   "group": ""
+  },
+  {
+   "name": "Matching attribute",
+   "default": "Attribute1",
+   "values": "Specify name of the attribute that matches the value from the control port Attribute1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Initial value from the control port",
+   "default": "NaN",
+   "values": "Specify initial value from the control port to match the matching attribute NaN (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open gate at simulation start",
+   "default": "off",
+   "values": "Opening the gate at the start off (default) | on",
+   "group": ""
+  }
+ ]
+}

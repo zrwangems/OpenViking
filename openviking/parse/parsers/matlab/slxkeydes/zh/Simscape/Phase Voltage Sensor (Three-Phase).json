@@ -1,0 +1,13 @@
+{
+ "key": "Phase Voltage Sensor (Three-Phase)",
+ "title": "Phase Voltage Sensor (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Phase_Voltage_Sensor_Three_Phase.md"
+ ],
+ "text": "理想三相相电压测量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

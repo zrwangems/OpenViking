@@ -1,0 +1,312 @@
+{
+ "key": "Vehicle air suspension",
+ "title": "Solid Axle Suspension - Air Spring",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Suspension/Solid_Axle_Suspension_Air_Spring.md",
+  "Vehicle Dynamics Blockset/Suspension/Independent_Suspension_Air_Spring.md"
+ ],
+ "text": "空气弹簧整体桥悬架，输入 10 路、输出 6 路；按 {Roll steer vs suspension height slope, RollStrgSlp} 指定转向角悬架斜率；{Model type} 指定空气悬架模型类型、{Number of axles, NumAxl} 指定车轴数、{Number of wheels by axle, NumWhlsByAxl} 指定每个车轴的车轮数、{Steered axle enable by axle, StrgEnByAxl} 用于启用车轴转向的布尔向量、{Axle and wheels lumped principal moment of inertia about longitudinal axis, AxlIxx} 指定绕纵轴的主惯性矩、{Axle and wheels lumped mass, AxlM} 指定车轴和车轮的集中质量、{Track hardpoint coordinates relative to axle center, TrackCoords} 指定轮距硬点坐标、{Suspension hardpoint coordinates relative to axle center, SuspCoords} 指定悬架硬点坐标、{Wheel and axle interface compliance constant, KzWhlAxl} 指定车轮与车轴接口柔度常数、{Wheel and axle interface compliance preload, F0zWhlAxl} 指定车轮与车轴接口柔度预载荷、{Wheel and axle interface damping constant, CzWhlAxl [Ns/m]} 指定车轮与车轴接口阻尼常数、{Air suspension spring preload, F0z} 指定空气悬架弹簧预载荷、{Air suspension shock damping constant, Cz} 指定空气悬架减震器阻尼常数、{Air spring effective area, EffctArea} 指定空气弹簧有效面积、{Air spring volume in design position, VolDgnPos} 指定设计位置处的空气弹簧体积、{Air spring isentropic exponent, IstpExp} 指定空气弹簧等熵指数、{Air spring outer diameter, OuterDiam} 指定空气弹簧外径、{Air spring piston diameter, PistDiam} 指定空气弹簧活塞直径、{Air suspension maximum height, Hmax} 指定空气悬架最大高度、{Toe angle at steering center, Toe} 指定前束角、{Toe angle vs steering angle slope, ToeStrgSlp} 指定前束角转向斜率、{Caster angle at steering center, Caster} 指定转向中心处的后倾角、{Caster angle vs suspension height slope, CasterHslp} 指定后倾角相对于悬架高度的斜率、{Caster angle vs steering angle slope, CasterStrgSlp} 指定后倾角相对于转向角的斜率、{Camber angle at steering center, Camber} 指定转向中心处的外倾角、{Camber angle vs suspension height slope, CamberHslp} 指定外倾角相对于悬架高度的斜率、{Camber angle vs steering angle slope, CamberStrgSlp} 指定外倾角相对于转向角的斜率、{Suspension height vs steering angle slope, StrgHgtSlp} 指定悬架高度相对于转向角的斜率、{Axle breakpoints, f_susp_axl_bp} 指定断点、{Vertical axis suspension height breakpoints, f_susp_dz_bp} 指定断点 1 -by、{Vertical axis air suspension pressure breakpoints, f_susp_press_bp} 指定垂直轴空气悬架压力断点、{Vertical air axis suspension force and moment responses, f_susp_fmz} 输出数组 zeros、{Air suspension shock damping constant, c_airSusp} 指定空气悬架减震器阻尼常数 6e6、{Suspension geometry responses, f_susp_geom} 指定悬架几何响应 zeros、{Steering angle breakpoints, f_susp_strgdelta_bp} 指定转向角度断点 1 -by，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WhlPz",
+   "direction": "input",
+   "summary": "车轮 z 轴位移 array"
+  },
+  {
+   "name": "WhlRe",
+   "direction": "input",
+   "summary": "车轮有效半径 array"
+  },
+  {
+   "name": "WhlVz",
+   "direction": "input",
+   "summary": "车轮 z 轴速度 array"
+  },
+  {
+   "name": "WhlFx",
+   "direction": "input",
+   "summary": "车辆上的车轮纵向力 array"
+  },
+  {
+   "name": "WhlFy",
+   "direction": "input",
+   "summary": "车辆上的车轮侧向力 array"
+  },
+  {
+   "name": "WhlM",
+   "direction": "input",
+   "summary": "车轮上的悬架力矩 array"
+  },
+  {
+   "name": "VehP",
+   "direction": "input",
+   "summary": "车辆位移 array"
+  },
+  {
+   "name": "VehV",
+   "direction": "input",
+   "summary": "车辆速度 array"
+  },
+  {
+   "name": "StrgAng",
+   "direction": "input",
+   "summary": "转向角，可选 array"
+  },
+  {
+   "name": "Pressure",
+   "direction": "input",
+   "summary": "空气弹簧中的压力 array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "VehF",
+   "direction": "output",
+   "summary": "车辆上的悬架力 array"
+  },
+  {
+   "name": "VehM",
+   "direction": "output",
+   "summary": "车辆上的悬架力矩 array"
+  },
+  {
+   "name": "WhlF",
+   "direction": "output",
+   "summary": "车轮上的悬架力 array"
+  },
+  {
+   "name": "WhlV",
+   "direction": "output",
+   "summary": "车轮速度 array"
+  },
+  {
+   "name": "WhlAng",
+   "direction": "output",
+   "summary": "车轮外倾角、主销后倾角、前束角 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model type",
+   "default": "Physical",
+   "values": "空气悬架模型类型 Physical (default) | Mapped",
+   "group": ""
+  },
+  {
+   "name": "Number of axles, NumAxl",
+   "default": "2",
+   "values": "车轴数 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels by axle, NumWhlsByAxl",
+   "default": "2]",
+   "values": "每个车轴的车轮数 [2 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Steered axle enable by axle, StrgEnByAxl",
+   "default": "0]",
+   "values": "用于启用车轴转向的布尔向量 [1 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Axle and wheels lumped principal moment of inertia about longitudinal axis, AxlIxx",
+   "default": "200",
+   "values": "绕纵轴的主惯性矩 200 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Axle and wheels lumped mass, AxlM",
+   "default": "300",
+   "values": "车轴和车轮的集中质量 300 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Track hardpoint coordinates relative to axle center, TrackCoords",
+   "default": "0]",
+   "values": "轮距硬点坐标 [0 0 0 0;-1 1 -1 1;0 0 0 0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Suspension hardpoint coordinates relative to axle center, SuspCoords",
+   "default": "0]",
+   "values": "悬架硬点坐标 [0 0 0 0;-1 1 -1 1;0 0 0 0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Wheel and axle interface compliance constant, KzWhlAxl",
+   "default": "6437000",
+   "values": "车轮与车轴接口柔度常数 6437000 (default)",
+   "group": ""
+  },
+  {
+   "name": "Wheel and axle interface compliance preload, F0zWhlAxl",
+   "default": "9810",
+   "values": "车轮与车轴接口柔度预载荷 9810 (default)",
+   "group": ""
+  },
+  {
+   "name": "Wheel and axle interface damping constant, CzWhlAxl [Ns/m]",
+   "default": "10000",
+   "values": "车轮与车轴接口阻尼常数 10000 (default)",
+   "group": ""
+  },
+  {
+   "name": "Air suspension spring preload, F0z",
+   "default": "9810",
+   "values": "空气悬架弹簧预载荷 9810 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air suspension shock damping constant, Cz",
+   "default": "10000",
+   "values": "空气悬架减震器阻尼常数 10000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring effective area, EffctArea",
+   "default": "0.21993",
+   "values": "空气弹簧有效面积 0.21993 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring volume in design position, VolDgnPos",
+   "default": "0.08",
+   "values": "设计位置处的空气弹簧体积 0.08 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring isentropic exponent, IstpExp",
+   "default": "1.4",
+   "values": "空气弹簧等熵指数 1.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring outer diameter, OuterDiam",
+   "default": "0.6199",
+   "values": "空气弹簧外径 0.6199 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring piston diameter, PistDiam",
+   "default": "0.236",
+   "values": "空气弹簧活塞直径 0.236 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air suspension maximum height, Hmax",
+   "default": "0.5",
+   "values": "空气悬架最大高度 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Toe angle at steering center, Toe",
+   "default": "0.0349",
+   "values": "前束角 0.0349 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Roll steer vs suspension height slope, RollStrgSlp",
+   "default": "-0.2269",
+   "values": "转向角悬架斜率 -0.2269 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Toe angle vs steering angle slope, ToeStrgSlp",
+   "default": "0.01",
+   "values": "前束角转向斜率 0.01 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Caster angle at steering center, Caster",
+   "default": "0.0698",
+   "values": "转向中心处的后倾角 0.0698 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Caster angle vs suspension height slope, CasterHslp",
+   "default": "-0.2269",
+   "values": "后倾角相对于悬架高度的斜率 -0.2269 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Caster angle vs steering angle slope, CasterStrgSlp",
+   "default": "0.01",
+   "values": "后倾角相对于转向角的斜率 0.01 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Camber angle at steering center, Camber",
+   "default": "0.0698",
+   "values": "转向中心处的外倾角 0.0698 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Camber angle vs suspension height slope, CamberHslp",
+   "default": "-0.2269",
+   "values": "外倾角相对于悬架高度的斜率 -0.2269 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Camber angle vs steering angle slope, CamberStrgSlp",
+   "default": "0.01",
+   "values": "外倾角相对于转向角的斜率 0.01 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Suspension height vs steering angle slope, StrgHgtSlp",
+   "default": "0.1432",
+   "values": "悬架高度相对于转向角的斜率 0.1432 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Axle breakpoints, f_susp_axl_bp",
+   "default": "2]",
+   "values": "断点 [1 2] (default) | 1 -by- P array",
+   "group": ""
+  },
+  {
+   "name": "Vertical axis suspension height breakpoints, f_susp_dz_bp",
+   "default": "",
+   "values": "断点 1 -by- M array",
+   "group": ""
+  },
+  {
+   "name": "Vertical axis air suspension pressure breakpoints, f_susp_press_bp",
+   "default": "7]",
+   "values": "垂直轴空气悬架压力断点 [0.50 7] (default) | 1 -by- M array",
+   "group": ""
+  },
+  {
+   "name": "Vertical air axis suspension force and moment responses, f_susp_fmz",
+   "default": "zeros(31,31,61,2,4)",
+   "values": "输出数组 zeros(31,31,61,2,4) (default) | M -by- N -by- O -by- P -by- 4 array",
+   "group": ""
+  },
+  {
+   "name": "Air suspension shock damping constant, c_airSusp",
+   "default": "6e6",
+   "values": "空气悬架减震器阻尼常数 6e6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Suspension geometry responses, f_susp_geom",
+   "default": "zeros(31,61,2,3)",
+   "values": "悬架几何响应 zeros(31,61,2,3) (default) | M -by- O -by- P -by- 3 array",
+   "group": ""
+  },
+  {
+   "name": "Steering angle breakpoints, f_susp_strgdelta_bp",
+   "default": "",
+   "values": "转向角度断点 1 -by- O array",
+   "group": ""
+  }
+ ]
+}

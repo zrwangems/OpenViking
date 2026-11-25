@@ -1,0 +1,60 @@
+{
+ "key": "DBPSK Demodulator Baseband",
+ "title": "DBPSK Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/DBPSK_Demodulator_Baseband.md"
+ ],
+ "text": "Demodulate DBPSK-modulated data, 2 inputs, 1 output, {Output data type} sets Output data type Inherit via; {Phase rotation (rad)} sets the additional phase shift, {Decision type} sets the decision method for demodulation Hard, {Noise variance source} sets the source of noise and {Noise variance} sets the variance of noise. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "DBPSK-modulated baseband signal scalar | column vector"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "Noise variance positive scalar | vector of positive values"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase rotation (rad)",
+   "default": "0",
+   "values": "Additional phase shift 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "Decision method for demodulation Hard decision (default) | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Property",
+   "values": "Source of noise variance Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "Variance of noise 1 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "internal",
+   "values": "Output data type Inherit via internal (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": "Main"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Sinusoidal Voltage Source",
+ "title": "Sinusoidal Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/Sinusoidal_Voltage_Source.md"
+ ],
+ "text": "Damped sinusoidal voltage source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

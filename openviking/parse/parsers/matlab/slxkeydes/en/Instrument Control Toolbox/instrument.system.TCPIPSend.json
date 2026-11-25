@@ -1,0 +1,62 @@
+{
+ "key": "instrument.system.TCPIPSend",
+ "title": "TCP/IP Send",
+ "toolbox": "Instrument Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Instrument Control Toolbox/TCP_IP_Send.md"
+ ],
+ "text": "Send data over TCP/IP network to specified remote machine, 1 input; {Remote address} sets the remote host name or address remote host name or IP, {Port} sets the remote host port, {Verify address and port connectivity} sets the remote machine connection verification, {Byte order} sets the sequential order, {Enable blocking mode} sets the simulation waits while sending data, {Timeout} sets the allowed time to complete operations and {Transfer Delay} sets the enables delayed acknowledgment. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Data values to send vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Remote address",
+   "default": "",
+   "values": "Remote host name or address remote host name or IP address",
+   "group": ""
+  },
+  {
+   "name": "Port",
+   "default": "80",
+   "values": "Remote host port 80 (default) | remote host port",
+   "group": ""
+  },
+  {
+   "name": "Verify address and port connectivity",
+   "default": "",
+   "values": "Remote machine connection verification button",
+   "group": ""
+  },
+  {
+   "name": "Byte order",
+   "default": "big-endian",
+   "values": "Sequential order of bytes big-endian (default) | little-endian",
+   "group": ""
+  },
+  {
+   "name": "Enable blocking mode",
+   "default": "on",
+   "values": "Simulation waits while sending data on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "10",
+   "values": "Allowed time to complete operations 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Transfer Delay",
+   "default": "on",
+   "values": "Enables delayed acknowledgment on (default) | off",
+   "group": ""
+  }
+ ]
+}

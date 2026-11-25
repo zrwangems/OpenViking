@@ -1,0 +1,43 @@
+{
+ "key": "Sphere Decoder",
+ "title": "Sphere Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/MIMO/Sphere_Decoder.md"
+ ],
+ "text": "使用正交空时分组码对输入消息进行编码，输入 1 路、输出 1 路；{Number of transmit antennas} 指定发射天线数量、{Rate} 指定符号率 3/4、{Saturate on integer overflow} 指定对整数溢出进行饱和，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数据 column vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出数据 matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of transmit antennas",
+   "default": "2",
+   "values": "发射天线数量 2 (default) | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Rate",
+   "default": "3/4",
+   "values": "符号率 3/4 (default) | 1/2",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和的选项 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,134 @@
+{
+ "key": "dsp.simulink.FarrowRateConverter",
+ "title": "Farrow Rate Converter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Farrow_Rate_Converter.md",
+  "DSP System Toolbox/Filtering/Multirate Filters/Farrow_Rate_Converter.md"
+ ],
+ "text": "Polynomial sample-rate converter with arbitrary conversion factor, 1 input, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode; {Sample rate of input signal (Hz)} sets the sample rate of input signal, {Sample rate of output signal (Hz)} sets the sample rate of output signal, {Tolerance for output sample rate} sets the maximum tolerance for output sample rate, {Filter Specification method} sets the method for specifying filter coefficients Polynomial, {Coefficients} sets the filter polynomial coefficients {Polynomial order} sets the order of Lagrange-interpolation-filter, {Allow arbitrary frame length for fixed-size input signals}, {View Filter Response}, {View Info}, {Simulate using} sets the type of simulation to run Interpreted, {Saturate on integer overflow} sets the method of overflow action, {Fractional Delay} sets the data type of fractional delay fixdt, {Multiplicand} sets the data type of multiplicand fixdt, {Output} sets the data type of output, {Output Minimum} sets the minimum value that the block can output, {Output Maximum} sets the maximum value that the block can output and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Rate converted signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "48e3",
+   "values": "Sample rate of input signal in Hz 48e3 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate of output signal (Hz)",
+   "default": "96e3",
+   "values": "Sample rate of output signal in Hz 96e3 (default) | positive scalar in Hz",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Tolerance for output sample rate",
+   "default": "0",
+   "values": "Maximum tolerance for output sample rate 0 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter Specification method",
+   "default": "order",
+   "values": "Method for specifying filter coefficients Polynomial order (default) | Coefficients",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "0]",
+   "values": "Filter polynomial coefficients [-1 1; 1 0] (default) | real-valued square matrix",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Polynomial order",
+   "default": "3",
+   "values": "Order of Lagrange-interpolation-filter polynomial 3 (default) | positive integer less than or equal to 4",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "on",
+   "values": "Allow arbitrary frame length for fixed-size input signals on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View filter response button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Info",
+   "default": "",
+   "values": "View info button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Fractional Delay",
+   "default": "fixdt(0,8)",
+   "values": "Data type of fractional delay fixdt(0,8) (default) | fixdt(0,16)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Multiplicand",
+   "default": "fixdt(1,16,13)",
+   "values": "Data type of multiplicand fixdt(1,16,13) (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Data type of output Inherit: Same word length as input (default) | Inherit: Same as accumulator | fixdt(1,16) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Minimum value that the block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Maximum value that the block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

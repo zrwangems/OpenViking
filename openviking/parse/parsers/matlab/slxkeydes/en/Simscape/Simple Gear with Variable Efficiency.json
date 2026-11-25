@@ -1,0 +1,13 @@
+{
+ "key": "Simple Gear with Variable Efficiency",
+ "title": "Simple Gear with Variable Efficiency",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Simple_Gear_with_Variable_Efficiency.md"
+ ],
+ "text": "Gear set with parallel-axis rotation and variable meshing efficiency.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

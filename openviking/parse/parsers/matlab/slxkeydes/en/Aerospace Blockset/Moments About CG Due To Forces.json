@@ -1,0 +1,34 @@
+{
+ "key": "Moments About CG Due To Forces",
+ "title": "Moments about CG due to Forces",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Mass Properties/Moments_about_CG_due_to_Forces.md"
+ ],
+ "text": "Compute moments about center of gravity due to forces applied at a point, not center of gravity, 3 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "Applied forces 3-element vector"
+  },
+  {
+   "name": "CG",
+   "direction": "input",
+   "summary": "Center of gravity 3-element vector"
+  },
+  {
+   "name": "CP",
+   "direction": "input",
+   "summary": "Application point of forces 3-element vector"
+  },
+  {
+   "name": "M",
+   "direction": "output",
+   "summary": "Moments at the center of gravity 3-element vector"
+  }
+ ],
+ "params": []
+}

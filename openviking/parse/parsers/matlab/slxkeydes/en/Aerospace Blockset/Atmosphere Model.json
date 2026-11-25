@@ -1,0 +1,84 @@
+{
+ "key": "Atmosphere Model",
+ "title": "COESA Atmosphere Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Atmosphere/COESA_Atmosphere_Model.md",
+  "Aerospace Blockset/Environment/Atmosphere/Non_Standard_Day_210C.md",
+  "Aerospace Blockset/Environment/Atmosphere/Non_Standard_Day_310.md"
+ ],
+ "text": "Implement 1976 COESA lower atmosphere, 1 input, 4 outputs, {Frequency of occurrence} sets Model type; {Units} sets the input and output units Metric, {Specification} sets the atmosphere model type 1976 COESA-extended U.S. Standard, {Atmospheric model type} sets the model type, {Extreme parameter} sets the model type High, {Altitude of extreme value} sets the geometric altitude 5 km and {Action for out-of-range input} sets the out-of-range block behavior. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Geopotential height scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Temperature scalar | array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Speed of sound scalar | array"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "Air pressure scalar | array"
+  },
+  {
+   "name": "Port_4",
+   "direction": "output",
+   "summary": "Air density scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Specification",
+   "default": "Atmosphere",
+   "values": "Atmosphere model type 1976 COESA-extended U.S. Standard Atmosphere (default) | MIL-HDBK-310 | MIL-STD-210C",
+   "group": ""
+  },
+  {
+   "name": "Atmospheric model type",
+   "default": "Profile",
+   "values": "Model type Profile (default) | Envelope",
+   "group": ""
+  },
+  {
+   "name": "Extreme parameter",
+   "default": "temperature",
+   "values": "Model type High temperature (default) | Low temperature | High density | Low density | High pressure | Low pressure",
+   "group": ""
+  },
+  {
+   "name": "Frequency of occurrence",
+   "default": "1%",
+   "values": "Model type 1% (default) | Extreme values | 5% | 10% | 20%",
+   "group": ""
+  },
+  {
+   "name": "Altitude of extreme value",
+   "default": "ft)",
+   "values": "Geometric altitude 5 km (16404 ft) (default) | 10 km (32808 ft) | 20 km (65617 ft) | 30 km (98425 ft) | 40 km (131234 ft)",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

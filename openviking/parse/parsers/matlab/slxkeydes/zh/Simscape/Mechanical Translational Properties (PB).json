@@ -1,0 +1,13 @@
+{
+ "key": "Mechanical Translational Properties (PB)",
+ "title": "Mechanical Translational Properties (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Utilities/Mechanical_Translational_Properties_PB.md"
+ ],
+ "text": "指定回路的重力加速度和轨道倾角。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Centrifugal Pump (TL)",
+ "title": "Centrifugal Pump (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pumps & Motors/Centrifugal_Pump_TL.md"
+ ],
+ "text": "热液体网络中的离心泵。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

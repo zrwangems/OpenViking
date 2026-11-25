@@ -1,0 +1,135 @@
+{
+ "key": "PMSM Current Controller with Pre-Control",
+ "title": "PMSM Current Controller with Pre-Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/PMSM Control/PMSM_Current_Controller_with_Pre_Control.md"
+ ],
+ "text": "Discrete-time permanent magnet synchronous machine current controller with pre-control, 5 inputs, 1 output, {Axis prioritization} sets Axis prioritization for voltage limiter; {D-axis current proportional gain} sets the d-axis proportional gain, {D-axis current integral gain} sets the d-axis integral gain, {D-axis current anti-windup gain} sets the d-axis anti-windup gain, {Q-axis current proportional gain} sets the q-axis proportional gain, {Q-axis current integral gain} sets the q-axis integral gain, {Q-axis current anti-windup gain} sets the q-axis anti-windup gain, {Sample time (-1 for inherited)} sets the block sample time, {Enable zero cancellation} sets the feedforward zero-cancellation, {Enable pre-control voltage} sets the pre-control voltage, {D-axis current vector, id (A)} sets the d-axis current breakpoint vector, {Q-axis current vector, iq (A)} sets the q-axis current breakpoint vector, {Ld matrix, Ld(id,iq) (H)} sets the d-axis inductance lookup data 0.0002 *, {Lq matrix, Lq(id,iq) (H)} sets the q-axis inductance lookup data 0.0002 * and {Permanent magnet flux linkage matrix, PM(id,iq) (Wb)} sets the flux linkage lookup data 0.04 * ones. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "idqRef",
+   "direction": "input",
+   "summary": "Reference currents vector"
+  },
+  {
+   "name": "idq",
+   "direction": "input",
+   "summary": "Measured currents vector"
+  },
+  {
+   "name": "wElectrical",
+   "direction": "input",
+   "summary": "Measured electrical velocity vector"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "Maximum phase voltage scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset scalar"
+  },
+  {
+   "name": "vdqRef",
+   "direction": "output",
+   "summary": "Reference voltages vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "D-axis current proportional gain",
+   "default": "1",
+   "values": "D-axis proportional gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current integral gain",
+   "default": "100",
+   "values": "D-axis integral gain 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current anti-windup gain",
+   "default": "1",
+   "values": "D-axis anti-windup gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current proportional gain",
+   "default": "1",
+   "values": "Q-axis proportional gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current integral gain",
+   "default": "100",
+   "values": "Q-axis integral gain 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current anti-windup gain",
+   "default": "1",
+   "values": "Q-axis anti-windup gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | -1 or positive number",
+   "group": ""
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "q-axis",
+   "values": "Axis prioritization for voltage limiter q-axis (default) | d-axis | d-q equivalence",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "Feedforward zero-cancellation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable pre-control voltage",
+   "default": "on",
+   "values": "Pre-control voltage on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "D-axis current vector, id (A)",
+   "default": "A",
+   "values": "D-axis current breakpoint vector [-200,0,200] A (default) | monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current vector, iq (A)",
+   "default": "A",
+   "values": "Q-axis current breakpoint vector [-200,0,200] A (default) | monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Ld matrix, Ld(id,iq) (H)",
+   "default": "H",
+   "values": "D-axis inductance lookup data 0.0002 * ones(3, 3) H (default) | positive matrix",
+   "group": ""
+  },
+  {
+   "name": "Lq matrix, Lq(id,iq) (H)",
+   "default": "H",
+   "values": "Q-axis inductance lookup data 0.0002 * ones(3, 3) H (default) | positive matrix",
+   "group": ""
+  },
+  {
+   "name": "Permanent magnet flux linkage matrix, PM(id,iq) (Wb)",
+   "default": "Wb",
+   "values": "Flux linkage lookup data 0.04 * ones(3, 3) Wb (default) | real matrix",
+   "group": ""
+  }
+ ]
+}

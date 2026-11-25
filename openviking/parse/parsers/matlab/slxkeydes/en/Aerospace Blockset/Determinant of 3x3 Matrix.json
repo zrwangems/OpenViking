@@ -1,0 +1,24 @@
+{
+ "key": "Determinant of 3x3 Matrix",
+ "title": "Determinant of 3x3 Matrix",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Determinant_of_3x3_Matrix.md"
+ ],
+ "text": "Compute determinant of matrix, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input matrix 3-by-3 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Determinant scalar"
+  }
+ ],
+ "params": []
+}

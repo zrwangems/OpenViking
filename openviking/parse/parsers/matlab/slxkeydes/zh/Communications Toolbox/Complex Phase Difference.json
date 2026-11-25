@@ -1,0 +1,29 @@
+{
+ "key": "Complex Phase Difference",
+ "title": "Complex Phase Difference",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Complex_Phase_Difference.md"
+ ],
+ "text": "两个复信号之间的相位差，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "第一个输入信号 scalar | column vector | matrix"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "第二个输入信号 scalar | column vector | matrix"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "相移差 scalar | column vector | matrix"
+  }
+ ],
+ "params": []
+}

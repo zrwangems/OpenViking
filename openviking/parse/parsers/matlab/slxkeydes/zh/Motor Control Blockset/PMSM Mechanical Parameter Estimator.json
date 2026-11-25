@@ -1,0 +1,96 @@
+{
+ "key": "PMSM Mechanical Parameter Estimator",
+ "title": "Mechanical Parameter Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/PMSM Parameter Estimation/Mechanical_Parameter_Estimator.md"
+ ],
+ "text": "估计永磁同步电机 (PMSM) 的反电动势常量、转子惯量和粘性阻尼，输入 9 路、输出 6 路；{电流 PI 控制器增益的减速因子 [1,20]} 指定估计反电动势时电流 PI 控制器的减速因子，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "三相电流响应 矢量"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC 母线电压 标量"
+  },
+  {
+   "name": "Theta",
+   "direction": "input",
+   "summary": "转子位置 标量"
+  },
+  {
+   "name": "Speed",
+   "direction": "input",
+   "summary": "转子转速 标量"
+  },
+  {
+   "name": "Rs",
+   "direction": "input",
+   "summary": "估计定子电阻 标量"
+  },
+  {
+   "name": "Ld",
+   "direction": "input",
+   "summary": "估计的 d 轴定子电感 标量"
+  },
+  {
+   "name": "StartFOC",
+   "direction": "input",
+   "summary": "开始闭环 FOC 逻辑值"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "用于机械参数估计的控制信号 逻辑值"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "总线信号输入 总线"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a 、 b 和 c 轴定子参考电压分量 矢量"
+  },
+  {
+   "name": "Ke",
+   "direction": "output",
+   "summary": "估计的反电动势常量 标量"
+  },
+  {
+   "name": "J",
+   "direction": "output",
+   "summary": "估计的转子惯量 标量"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "估计的粘性阻尼 标量"
+  },
+  {
+   "name": "InverterEn",
+   "direction": "output",
+   "summary": "逆变器控制信号 逻辑值"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "调试信号 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "电流 PI 控制器增益的减速因子 [1,20]",
+   "default": "5",
+   "values": "估计反电动势时电流 PI 控制器的减速因子 5 (默认) | scalar",
+   "group": ""
+  }
+ ]
+}

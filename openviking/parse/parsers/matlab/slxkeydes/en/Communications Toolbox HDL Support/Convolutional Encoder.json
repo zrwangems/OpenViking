@@ -1,0 +1,114 @@
+{
+ "key": "Convolutional Encoder",
+ "title": "Convolutional Encoder",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Error Detection and Correction/Convolutional/Convolutional_Encoder.md",
+  "Communications Toolbox/Error Detection and Correction/Convolutional/Convolutional_Encoder.md",
+  "Wireless HDL Toolbox/Error Detection and Correction/Convolutional_Encoder.md"
+ ],
+ "text": "Encode binary data using convolutional encoding scheme, 3 inputs, 2 outputs, {Operation mode} sets Termination method of encoded frame; {Trellis structure}, {numInputSymbols} sets the number, {numOutputSymbols} sets the number, {numStates} sets the number, {nextStates}, {outputs}, {Delay reset action to next time step} sets the option, {Specify initial state via input port} sets the option, {Output final state} sets the option, {Puncture code} sets the option and {Puncture vector} sets the puncture pattern 1; 0; 1.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input message binary column vector"
+  },
+  {
+   "name": "ISt",
+   "direction": "input",
+   "summary": "Initial state of encoder registers nonnegative integer"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset state of encoder registers scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Convolutionally encoded codeword binary column vector"
+  },
+  {
+   "name": "FSt",
+   "direction": "output",
+   "summary": "Final state of encoder registers nonnegative integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trellis structure",
+   "default": "133])",
+   "values": "Trellis description of convolutional code poly2trellis(7, [171 133]) (default)",
+   "group": ""
+  },
+  {
+   "name": "numInputSymbols",
+   "default": "",
+   "values": "Number of symbols input to encoder 2 K",
+   "group": ""
+  },
+  {
+   "name": "numOutputSymbols",
+   "default": "",
+   "values": "Number of symbols output from encoder 2 N",
+   "group": ""
+  },
+  {
+   "name": "numStates",
+   "default": "",
+   "values": "Number of states in encoder power of 2",
+   "group": ""
+  },
+  {
+   "name": "nextStates",
+   "default": "",
+   "values": "Next states matrix of integers",
+   "group": ""
+  },
+  {
+   "name": "outputs",
+   "default": "",
+   "values": "Outputs matrix of octal numbers",
+   "group": ""
+  },
+  {
+   "name": "Operation mode",
+   "default": "Continuous",
+   "values": "Termination method of encoded frame Continuous (default) | Truncated (reset every frame) | Terminate trellis by appending bits | Reset on nonzero input via port",
+   "group": ""
+  },
+  {
+   "name": "Delay reset action to next time step",
+   "default": "off",
+   "values": "Option to delay reset action until next time step off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Specify initial state via input port",
+   "default": "off",
+   "values": "Option to specify initial state via input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output final state",
+   "default": "off",
+   "values": "Option to output final register state off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Puncture code",
+   "default": "off",
+   "values": "Option to enable the code puncturing off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "1]",
+   "values": "Puncture pattern [1; 1; 0; 1; 0; 1] (default) | vector",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+ "key": "Simulation 3D Actor",
+ "title": "Simulation 3D Actor",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Actors/Simulation_3D_Actor.md"
+ ],
+ "text": "在 3D 环境中创建角色，输入 1 路、输出 1 路；按 {Operation} 指定模块的操作模式 Create at；{Actor Name} 指定角色名称 Sim3dActor1、{Parent Name} 指定角色的父级 Scene、{Path to source file} 指定角色来源文件 string、{Initialization script} 用于初始化角色的代码 MATLAB script、{Sample time} 指定采样时间、{Translation} 指定相对平移、{Rotation} 指定相对旋转、{Scale} 指定相对缩放、{Input ports} 指定用户选择的输入端口列表 text area、{Output ports} 指定用户选择的输出端口列表 text area，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Instance",
+   "direction": "input",
+   "summary": "角色的实例编号 real integer"
+  },
+  {
+   "name": "Valid",
+   "direction": "output",
+   "summary": "指定角色的有效性 false (default) | true"
+  }
+ ],
+ "params": [
+  {
+   "name": "Actor Name",
+   "default": "Sim3dActor1",
+   "values": "角色名称 Sim3dActor1 (default) | string",
+   "group": "Main"
+  },
+  {
+   "name": "Parent Name",
+   "default": "Origin",
+   "values": "角色的父级 Scene Origin (default) | string",
+   "group": "Main"
+  },
+  {
+   "name": "Operation",
+   "default": "setup",
+   "values": "模块的操作模式 Create at setup (default) | Create at step | Reference by name | Reference by instance number",
+   "group": "Main"
+  },
+  {
+   "name": "Path to source file",
+   "default": "",
+   "values": "角色来源文件 string",
+   "group": "Main"
+  },
+  {
+   "name": "Initialization script",
+   "default": "",
+   "values": "用于初始化角色的代码 MATLAB script",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Translation",
+   "default": "[0,0,0]",
+   "values": "相对平移 [0,0,0] (default) | real 1-by-3 vector",
+   "group": "Transform"
+  },
+  {
+   "name": "Rotation",
+   "default": "[0,0,0]",
+   "values": "相对旋转 [0,0,0] (default) | real 1-by-3 vector",
+   "group": "Transform"
+  },
+  {
+   "name": "Scale",
+   "default": "[1,1,1]",
+   "values": "相对缩放 [1,1,1] (default) | real 1-by-3 vector",
+   "group": "Transform"
+  },
+  {
+   "name": "Input ports",
+   "default": "",
+   "values": "用户选择的输入端口列表 text area",
+   "group": "Inputs"
+  },
+  {
+   "name": "Output ports",
+   "default": "",
+   "values": "用户选择的输出端口列表 text area",
+   "group": "Outputs"
+  }
+ ]
+}

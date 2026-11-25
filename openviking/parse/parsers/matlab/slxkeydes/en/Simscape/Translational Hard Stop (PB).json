@@ -1,0 +1,13 @@
+{
+ "key": "Translational Hard Stop (PB)",
+ "title": "Translational Hard Stop (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Hard_Stop_PB.md"
+ ],
+ "text": "Hard stop in position-based mechanical translational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

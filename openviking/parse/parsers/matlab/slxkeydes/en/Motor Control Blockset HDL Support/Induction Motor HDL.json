@@ -1,0 +1,66 @@
+{
+ "key": "Induction Motor HDL",
+ "title": "Induction Motor HDL",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Electrical Systems/Motors/Induction_Motor_HDL.md"
+ ],
+ "text": "Three-phase induction motor, 4 inputs, 5 outputs; {Sample time (s)} sets the sample time after which block executes again. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Block configuration signal vector"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "input",
+   "summary": "Stator terminal voltages 1 -by- 3 array"
+  },
+  {
+   "name": "LdTrq/Spd",
+   "direction": "input",
+   "summary": "Load torque on motor or speed of motor shaft scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Reset bus signal scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "PhaseCurr",
+   "direction": "output",
+   "summary": "Current for phase a, b, and c 1 -by- 3 array"
+  },
+  {
+   "name": "Torque",
+   "direction": "output",
+   "summary": "Motor torque scalar"
+  },
+  {
+   "name": "Speed",
+   "direction": "output",
+   "summary": "Motor speed scalar"
+  },
+  {
+   "name": "MtrElecAngle",
+   "direction": "output",
+   "summary": "Motor electrical angle scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (s)",
+   "default": "1e-6",
+   "values": "Sample time after which block executes again 1e-6 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

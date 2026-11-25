@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Actuator (TL)",
+ "title": "Double-Acting Actuator (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Actuators/Double_Acting_Actuator_TL.md"
+ ],
+ "text": "Double-acting linear actuator in a thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

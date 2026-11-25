@@ -1,0 +1,65 @@
+{
+ "key": "Video From Workspace",
+ "title": "Video From Workspace",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sources/Video_From_Workspace.md"
+ ],
+ "text": "Import video from MATLAB workspace, 4 outputs, {Signal} sets Video to read; {Sample time} sets the sample period of the output video, {Form output after final value by} sets the form of block output after final video frame Setting, {Image signal} sets the output mode of video signal One multidimensional and {Output port labels} sets the output port names R. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "Output image or video M -by- N -by- T array | M -by- N -by- C -by- T array"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Red color component of input video 3-D array"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Green color component of input video 3-D array"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Blue color component of input video 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal",
+   "default": "rand(32,32,3,5)",
+   "values": "Video to read rand(32,32,3,5) (default) | M -by- N -by- T array | M -by- N -by- C -by- T array | MATLAB workspace variable",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Sample period of the output video 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Form output after final value by",
+   "default": "zero",
+   "values": "Form of block output after final video frame Setting to zero (default) | Holding final value | Cyclic repetition",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Output mode of video signal One multidimensional signal (default) | Separate color signals",
+   "group": ""
+  },
+  {
+   "name": "Output port labels",
+   "default": "R|G|B",
+   "values": "Output port names R|G|B (default) | text labels separated by vertical bars",
+   "group": ""
+  }
+ ]
+}

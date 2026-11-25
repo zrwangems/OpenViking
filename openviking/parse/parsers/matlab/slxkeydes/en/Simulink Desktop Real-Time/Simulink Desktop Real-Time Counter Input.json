@@ -1,0 +1,97 @@
+{
+ "key": "Simulink Desktop Real-Time Counter Input",
+ "title": "Counter Input",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Counter_Input.md"
+ ],
+ "text": "Read from one or multiple counter-input channels, 2 outputs, {Reset after read} sets Counter-reset policy; {Install new board} sets the register a board < no board, {Delete current board} sets the delete the current board, {Board setup} sets the up the board, {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {Input channels} selects counter-input channels, {Clock input source} sets the clock input that increments counter input pin rising, {Gate input functionality} sets the action of counter-gate input pin and {Output data type} sets the data type of block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Counter Data",
+   "direction": "output",
+   "summary": "Counter data read from input channels vector"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "Missed tick count (optional) double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "Register a board < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "Delete the current board (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "Set up the board (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Input channels",
+   "default": "1",
+   "values": "Select counter-input channels 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Reset after read",
+   "default": "never",
+   "values": "Counter-reset policy never (default) | always | level | rising edge | falling edge | either edge",
+   "group": ""
+  },
+  {
+   "name": "Clock input source",
+   "default": "edge",
+   "values": "Clock input that increments counter input pin rising edge (default) | input pin falling edge | internal clock",
+   "group": ""
+  },
+  {
+   "name": "Gate input functionality",
+   "default": "none",
+   "values": "Action of counter-gate input pin none (default) | enable when high | enable when low | start on rising edge | start on falling edge | reset on rising edge | reset on falling edge | latch on rising edge | latch on falling edge | latch & reset on rising edge | latch & reset on falling edge | enable when high, latch & reset on edge | enable when low, latch & reset on edge",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of block output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  }
+ ]
+}

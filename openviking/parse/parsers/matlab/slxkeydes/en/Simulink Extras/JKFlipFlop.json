@@ -1,0 +1,46 @@
+{
+ "key": "JKFlipFlop",
+ "title": "J-K Flip-Flop",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Flip Flops/J_K_Flip_Flop.md"
+ ],
+ "text": "Model a negative-edge-triggered J-K flip-flop, 3 inputs, 2 outputs; {Initial condition (state of Q)} sets the initial value of output Q. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "J",
+   "direction": "input",
+   "summary": "Input signal J scalar"
+  },
+  {
+   "name": "CLK",
+   "direction": "input",
+   "summary": "Clock signal scalar"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "Input signal K scalar"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "Output signal Q scalar"
+  },
+  {
+   "name": "!Q",
+   "direction": "output",
+   "summary": "Output signal !Q scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition (state of Q)",
+   "default": "0",
+   "values": "Initial value of output Q 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

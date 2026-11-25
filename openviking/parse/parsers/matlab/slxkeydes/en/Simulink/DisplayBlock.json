@@ -1,0 +1,80 @@
+{
+ "key": "DisplayBlock",
+ "title": "Display",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Display.md"
+ ],
+ "text": "Display signal value during simulation, {Label} sets Block label position; {Connection} sets the signal to connect and display signal connection, {Format}, {Format String} sets the custom string to format data, {Alignment} sets the text alignment, {Layout} sets how to arrange elements of non-scalar data Preserve, {Show grid for non-scalar signals} sets the whether to show grid, {Opacity} sets the block background opacity, {Foreground Color} sets the block foreground color, {Background Color} sets the block background color and {Grid Color} sets the block grid color. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Signal to connect and display signal connection options",
+   "group": "Connection"
+  },
+  {
+   "name": "Format",
+   "default": "short",
+   "values": "Format for displaying signal values short (default) | long | shortE | longE |...",
+   "group": "Main"
+  },
+  {
+   "name": "Format String",
+   "default": "’%d’",
+   "values": "Custom string to format data ’%d’ (default) | string",
+   "group": "Main"
+  },
+  {
+   "name": "Alignment",
+   "default": "Center",
+   "values": "Text alignment in block Center (default) | Left | Right",
+   "group": "Main"
+  },
+  {
+   "name": "Label",
+   "default": "Hide",
+   "values": "Block label position Hide (default) | Bottom | Top",
+   "group": "Main"
+  },
+  {
+   "name": "Layout",
+   "default": "dimensions",
+   "values": "How to arrange elements of non-scalar data Preserve dimensions (default) | Fill available space",
+   "group": "Main"
+  },
+  {
+   "name": "Show grid for non-scalar signals",
+   "default": "on",
+   "values": "Whether to show grid on (default) | off",
+   "group": "Format"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "Block background opacity 1 (default) | scalar",
+   "group": "Format"
+  },
+  {
+   "name": "Foreground Color",
+   "default": "",
+   "values": "Block foreground color [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Background Color",
+   "default": "",
+   "values": "Block background color [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Grid Color",
+   "default": "",
+   "values": "Block grid color [r g b] vector",
+   "group": "Format"
+  }
+ ]
+}

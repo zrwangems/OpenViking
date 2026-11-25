@@ -1,0 +1,53 @@
+{
+ "key": "Pixels To Frame",
+ "title": "Pixels To Frame",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/I_O Interfaces/Pixels_To_Frame.md"
+ ],
+ "text": "将像素流转换为基于帧的视频，输入 2 路、输出 2 路；按 {Video format} 指定视频帧中有效区域的尺寸；{Number of components} 用于表示每个像素的值的数量、{Number of pixels} 指定每个时间步流式传输的像素数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "frame",
+   "direction": "output",
+   "summary": "完整图像帧 array"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "指示输出帧何时就绪 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of components",
+   "default": "1",
+   "values": "用于表示每个像素的值的数量 1 (default) | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Number of pixels",
+   "default": "1",
+   "values": "每个时间步流式传输的像素数 1 (default) | 2 | 4 | 8",
+   "group": ""
+  },
+  {
+   "name": "Video format",
+   "default": "1080p",
+   "values": "视频帧中有效区域的尺寸 1080p (default) | 240p | 480p | 480pH | 576p | 720p | 768p | 1024p | 1200p | 2KCinema | 4KUHDTV | 8KUHDTV | Custom",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "key": "ChargePump",
+ "title": "Charge Pump",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Charge_Pump.md"
+ ],
+ "text": "输出与两个输入端口之间占空比差值成正比的电流，输入 2 路、输出 1 路；{Output current (A)} 指定设计输出电流 1e-3、{Input threshold (V)} 指定输入端口处的逻辑切换阈值、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数、{Enable current impairments} 指定向仿真添加电流损伤、{Current imbalance (A)} 指定满量程正电流与负电流之间的差值 1e-7、{Leakage current (A)} 指定无任何输入时的输出电流 1e-8、{Enable timing impairments} 指定向仿真添加时序损伤、{Output step size calculation} 确定如何计算输出步长、{Maximum frequency of interest (Hz)} 输出端感兴趣的最大频率 10e9、{Rise/fall time (s)} 指定 up 输入端口的 20%-80% 上升/下降时间、{Up propagation delay} 指定 up 输入端口的总传播延迟 6e-9、{Rise/fall time} 指定 down 输入端口的 20%-80% 上升/下降时间、{Down propagation delay} 指定 down 输入端口的总传播延迟 4e-9，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "up",
+   "direction": "input",
+   "summary": "输入端口 scalar"
+  },
+  {
+   "name": "down",
+   "direction": "input",
+   "summary": "输入端口 scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "输出端口 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output current (A)",
+   "default": "1e-3",
+   "values": "设计输出电流 1e-3 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input threshold (V)",
+   "default": "0.5",
+   "values": "输入端口处的逻辑切换阈值 0.5 (default) | real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "仿真期间可用的输入缓冲样本数 10 (default) | positive integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable current impairments",
+   "default": "on",
+   "values": "向仿真添加电流损伤 on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Current imbalance (A)",
+   "default": "1e-7",
+   "values": "满量程正电流与负电流之间的差值 1e-7 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Leakage current (A)",
+   "default": "1e-8",
+   "values": "无任何输入时的输出电流 1e-8 (default) | nonnegative real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable timing impairments",
+   "default": "on",
+   "values": "向仿真添加时序损伤 on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Output step size calculation",
+   "default": "Default",
+   "values": "确定如何计算输出步长 Default (default) | Advanced",
+   "group": "Impairments"
+  },
+  {
+   "name": "Maximum frequency of interest (Hz)",
+   "default": "10e9",
+   "values": "输出端感兴趣的最大频率 10e9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Rise/fall time (s)",
+   "default": "5e-9",
+   "values": "up 输入端口的 20%-80% 上升/下降时间 5e-9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Up propagation delay",
+   "default": "6e-9",
+   "values": "up 输入端口的总传播延迟 6e-9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Rise/fall time",
+   "default": "2e-9",
+   "values": "down 输入端口的 20%-80% 上升/下降时间 2e-9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Down propagation delay",
+   "default": "4e-9",
+   "values": "down 输入端口的总传播延迟 4e-9 (default) | positive real scalar",
+   "group": "Impairments"
+  }
+ ]
+}

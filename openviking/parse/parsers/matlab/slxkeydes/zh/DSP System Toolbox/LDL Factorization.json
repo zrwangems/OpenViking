@@ -1,0 +1,85 @@
+{
+ "key": "LDL Factorization",
+ "title": "LDL Factorization",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Factorizations/LDL_Factorization.md"
+ ],
+ "text": "将方形 Hermitian 正定矩阵分解为下三角、上三角和对角分量，输入 1 路、输出 1 路、无直接馈通；按 {Non-positive definite input} 指定非正定输入操作；{Rounding mode} 指定舍入运算的方法、{Saturate on integer overflow} 指定溢出操作的方法、{Intermediate product} 指定中间乘积数据类型、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Output} 输出数据类型、{Output Minimum} 指定模块可输出的最小值、{Output Maximum} 指定模块可输出的最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Non-positive definite input",
+   "default": "Warning",
+   "values": "非正定输入操作 Warning (default) | Ignore | Error",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Intermediate product",
+   "default": "input",
+   "values": "中间乘积数据类型 Inherit: Same as input (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出数据类型 Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "模块可输出的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "模块可输出的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

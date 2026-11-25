@@ -1,0 +1,13 @@
+{
+ "key": "PS Fix",
+ "title": "PS Fix",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Fix.md"
+ ],
+ "text": "Round input physical signal toward zero.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

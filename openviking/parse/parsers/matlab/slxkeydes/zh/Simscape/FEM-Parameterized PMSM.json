@@ -1,0 +1,13 @@
+{
+ "key": "FEM-Parameterized PMSM",
+ "title": "FEM-Parameterized PMSM",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/FEM_Parameterized_PMSM.md"
+ ],
+ "text": "以磁链定义的永磁同步电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

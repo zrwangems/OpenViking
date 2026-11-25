@@ -1,0 +1,13 @@
+{
+ "key": "HARDLIMS",
+ "title": "hardlims",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/hardlims.md"
+ ],
+ "text": "Symmetric hard-limit transfer function.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

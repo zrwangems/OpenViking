@@ -1,0 +1,13 @@
+{
+ "key": "PS Floor",
+ "title": "PS Floor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Floor.md"
+ ],
+ "text": "输出小于或等于输入物理信号的最大整数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

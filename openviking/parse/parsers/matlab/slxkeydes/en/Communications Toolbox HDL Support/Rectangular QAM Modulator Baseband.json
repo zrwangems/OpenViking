@@ -1,0 +1,92 @@
+{
+ "key": "Rectangular QAM Modulator Baseband",
+ "title": "Rectangular QAM Modulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/AM/Rectangular_QAM_Modulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/Rectangular_QAM_Modulator_Baseband.md"
+ ],
+ "text": "Modulate using rectangular quadrature amplitude modulation, 1 input, 1 output, {Output data type} sets Output data type; {M-ary number} sets the modulation order, {Input type}, {Constellation ordering} sets the mapping order, {Constellation mapping} sets the user-defined constellation mapping, {Normalization method} sets the scaling method for constellation Min. distance between, {Minimum distance} sets the distance between two nearest constellation, {Average power, referenced to 1 ohm (watts)}, {Peak power, referenced to 1 ohm (watts)} sets the maximum power, {Phase offset (rad)} sets the rotation of signal constellation and {View constellation} sets the option to plot reference constellation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input data scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output data scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "16",
+   "values": "Modulation order 16 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "Input type Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Gray",
+   "values": "Mapping order of symbols Gray (default) | Binary | User-defined",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "[0:15]",
+   "values": "User-defined constellation mapping [0:15] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Normalization method",
+   "default": "symbols",
+   "values": "Scaling method for constellation Min. distance between symbols (default) | Average Power | Peak Power",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum distance",
+   "default": "2",
+   "values": "Distance between two nearest constellation points 2 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Average power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "Average power 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Peak power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "Maximum power 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "Rotation of signal constellation 0 (default) | numeric scalar",
+   "group": "Main"
+  },
+  {
+   "name": "View constellation",
+   "default": "",
+   "values": "Option to plot reference constellation button",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit: Inherit via back propagation |",
+   "group": "Data Types"
+  }
+ ]
+}

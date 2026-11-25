@@ -1,0 +1,116 @@
+{
+ "key": "General Passive Network",
+ "title": "General Passive Network",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Black Box Elements/General_Passive_Network.md"
+ ],
+ "text": "对由 rfdata 对象描述的二端口无源网络建模；按 {Interpolation method} 指定对网络参数进行插值的方法；{Data source} 指定描述无源器件行为的数据源 Data、{Data file} 指定包含无源器件数据的文件名、{RFDATA object} 指定包含无源器件数据的 RF 数据对象 read、{Source of frequency data} 指定频率数据源 Extracted from data、{Frequency data} 指定频率数据范围、{Reference impedance (ohms)} 指定参考阻抗、{Plot type} 指定数据绘图类型 X-Y、{Y parameter1} 指定要绘制的参数类型、{Y parameter2} 指定要绘制的参数类型、{Y format1} 指定绘图格式 Magnitude、{Y format2} 指定绘图格式 Magnitude、{X parameter} 指定频率图 Freq、{X format} 指定频率图格式、{Y scale} 指定 Y 轴刻度、{X scale} 指定 X 轴刻度、{Plot} 绘制指定数据，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Data source",
+   "default": "file",
+   "values": "描述无源器件行为的数据源 Data file (default) | RFDATA object",
+   "group": "Main"
+  },
+  {
+   "name": "Data file",
+   "default": "passive.s2p",
+   "values": "包含无源器件数据的文件名 passive.s2p (default) | string | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "RFDATA object",
+   "default": "’passive.s2p’)",
+   "values": "包含无源器件数据的 RF 数据对象 read(rfdata.data, ’passive.s2p’) (default) | rfdata.data object",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "对网络参数进行插值的方法。 Linear (default) | Spline | Cubic",
+   "group": "Main"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "source",
+   "values": "频率数据源 Extracted from data source (default) | User-specified",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data",
+   "default": "[0.3e6:1e:6e9]",
+   "values": "频率数据范围 [0.3e6:1e:6e9] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "参考阻抗 50 (default) | nonnegative scalar",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "数据绘图类型 X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "要绘制的参数类型 S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "绘图格式 Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "频率图 Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "频率图格式 Hz (default) | Auto | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "绘制指定数据 button",
+   "group": "Visualization"
+  }
+ ]
+}

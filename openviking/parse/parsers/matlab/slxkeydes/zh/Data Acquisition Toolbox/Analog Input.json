@@ -1,0 +1,67 @@
+{
+ "key": "Analog Input",
+ "title": "Analog Input",
+ "toolbox": "Data Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Data Acquisition Toolbox/Analog_Input.md"
+ ],
+ "text": "从数据采集设备的多个模拟通道采集数据；输出 2 路；按 {Acquisition Mode} 指定同步设置 Asynchronous；{Device} 指定要从中采集数据的设备、{Channels} 指定设备通道选择和配置 options depend、{Number of ports} 输出数据端口数、{Input sample rate} 指定设备采样率 numeric value、{Block size} 指定每个时间步的扫描数 integer value、{Output relative timestamps} 添加时间戳输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "采集的模拟输入 double"
+  },
+  {
+   "name": "Relative timestamp",
+   "direction": "output",
+   "summary": "扫描的相对时间戳"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "要从中采集数据的设备",
+   "group": ""
+  },
+  {
+   "name": "Acquisition Mode",
+   "default": "",
+   "values": "同步设置 Asynchronous | Synchronous",
+   "group": ""
+  },
+  {
+   "name": "Channels",
+   "default": "",
+   "values": "设备通道选择和配置 options depend on device",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "",
+   "values": "输出数据端口数 1 for all channels | 1 per channel",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate",
+   "default": "",
+   "values": "设备采样率 numeric value",
+   "group": ""
+  },
+  {
+   "name": "Block size",
+   "default": "",
+   "values": "每个时间步的扫描数 integer value",
+   "group": ""
+  },
+  {
+   "name": "Output relative timestamps",
+   "default": "",
+   "values": "添加时间戳输出端口",
+   "group": ""
+  }
+ ]
+}

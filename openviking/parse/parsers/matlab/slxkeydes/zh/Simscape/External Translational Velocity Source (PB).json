@@ -1,0 +1,13 @@
+{
+ "key": "External Translational Velocity Source (PB)",
+ "title": "External Translational Velocity Source (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/External_Translational_Velocity_Source_PB.md"
+ ],
+ "text": "理想机械能源，生成与输入信号成比例的速度。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

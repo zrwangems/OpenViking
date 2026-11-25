@@ -1,0 +1,67 @@
+{
+ "key": "Binary-Input RS Encoder",
+ "title": "Binary-Input RS Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Block/Binary_Input_RS_Encoder.md"
+ ],
+ "text": "从二进制向量数据创建 Reed-Solomon 码，输入 1 路、输出 1 路；按 {Output data type} 指定模块的输出类型 Same as；{Codeword length N (symbols)} 指定码字长度、{Message length K (symbols)} 指定消息字长度、{Shortened message length S (symbols)} 指定缩短的消息字长度、{Generator polynomial} 指定生成多项式 rsgenpoly、{Primitive polynomial} 指定本原多项式、{Puncture vector} 指定删余向量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "消息 binary column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Reed-Solomon 码字 binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length N (symbols)",
+   "default": "7",
+   "values": "码字长度 7 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Message length K (symbols)",
+   "default": "3",
+   "values": "消息字长度 3 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Shortened message length S (symbols)",
+   "default": "3",
+   "values": "缩短的消息字长度 3 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Generator polynomial",
+   "default": "’double’)",
+   "values": "生成多项式 rsgenpoly(7, 3, [], [], ’double’) (default) | polynomial character vector | binary row vector | binary Galois row vector",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "1’",
+   "values": "本原多项式 ’X^3 + X + 1’ (default) | polynomial character vector | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "zeros(2,1)]",
+   "values": "删余向量 [ones(2,1); zeros(2,1)] (default) | binary column vector",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "input",
+   "values": "模块的输出类型 Same as input (default) | boolean | double",
+   "group": ""
+  }
+ ]
+}

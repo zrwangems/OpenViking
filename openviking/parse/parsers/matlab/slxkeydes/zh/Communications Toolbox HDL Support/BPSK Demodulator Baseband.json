@@ -1,0 +1,67 @@
+{
+ "key": "BPSK Demodulator Baseband",
+ "title": "BPSK Demodulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/PM/BPSK_Demodulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/BPSK_Demodulator_Baseband.md"
+ ],
+ "text": "解调 BPSK 调制数据，输入 2 路、输出 1 路；按 {Noise variance} 指定噪声方差；{Decision type} 指定判决类型 Hard、{Noise variance source} 指定噪声方差源、{Phase offset (rad)} 指定第 0 个点的相位、{Output data type} 输出数据类型 Inherit via internal、{Derotate factor} 指定去旋转因子 Same word length，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "BPSK 调制的基带信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "噪声方差 positive scalar | vector of positive values"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "解调信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "判决类型 Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Dialog",
+   "values": "噪声方差源 Dialog (default) | Port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "噪声方差 1 (default) | positive scalar | vector of positive values",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "第 0 个点的相位 0 (default) | real-valued scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit via internal rule (default) | Smallest unsigned integer | double | single |...",
+   "group": "Data Types"
+  },
+  {
+   "name": "Derotate factor",
+   "default": "input",
+   "values": "去旋转因子 Same word length as input (default) | Specify word length",
+   "group": "Data Types"
+  }
+ ]
+}

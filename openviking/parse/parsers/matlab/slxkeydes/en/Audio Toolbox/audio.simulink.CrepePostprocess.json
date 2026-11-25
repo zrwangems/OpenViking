@@ -1,0 +1,31 @@
+{
+ "key": "audio.simulink.CrepePostprocess",
+ "title": "CREPE Postprocess",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/CREPE_Postprocess.md"
+ ],
+ "text": "Postprocess output of CREPE pitch estimation network, 1 input, 1 output, no direct feedthrough; {Confidence threshold} sets the pitch confidence threshold. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "CREPE network activations matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Estimated fundamental frequency column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Confidence threshold",
+   "default": "0.5",
+   "values": "Pitch confidence threshold 0.5 (default) | scalar in the range [0, 1)",
+   "group": ""
+  }
+ ]
+}

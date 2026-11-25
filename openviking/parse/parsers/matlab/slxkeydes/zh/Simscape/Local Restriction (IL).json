@@ -1,0 +1,13 @@
+{
+ "key": "Local Restriction (IL)",
+ "title": "Local Restriction (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Local_Restriction_IL.md"
+ ],
+ "text": "等温液体网络中流通面积处的局部阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

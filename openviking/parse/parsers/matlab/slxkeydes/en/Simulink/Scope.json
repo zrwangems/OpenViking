@@ -1,0 +1,339 @@
+{
+ "key": "Scope",
+ "title": "Scope",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Scope.md",
+  "Simulink/Sinks/Scope.md",
+  "Simulink/Sinks/Floating_Scope.md",
+  "DSP System Toolbox HDL Support/Sinks/Time_Scope.md",
+  "DSP System Toolbox/Sinks/Time_Scope.md",
+  "HDL Coder/Commonly Used Blocks/Scope.md",
+  "HDL Coder/Sinks/Scope.md",
+  "HDL Coder/Sinks/Floating_Scope.md"
+ ],
+ "text": "Display signals generated during simulation, 1 input, no direct feedthrough, {Style} sets Line style; {Open at simulation start} sets when scope opens, {Display the full path} displays block path on scope title bar, {Number of input ports}, {Display grid} sets the dimensions of display grid, {Input processing} sets the sample- or frame-based processing Elements, {Maximize axes} sets the maximize size of plots, {Sample time} sets the simulation interval between scope updates, {Time span} sets the length of x -axis to display, {Overrun action} displays data beyond visible x, {Time units} sets the x -axis units, {Time display offset} sets the x -axis offset, {T-axis and ticks labels} displays of x -axis, {Time offset view} shows time offset on status bar, {Show time-axis label} displays or hide x -axis labels, {Scale Y-axis limits} sets the y -axis scaling, {Y-axis limits do not shrink} allows y -axis range limits to increase, {Number of updates}, {Scale Y-axis limits at stop} scales y -axis limits when simulation stops, {Y-axis data range (%)} sets the percent of y -axis to use for plotting, {Y-axis align} sets the alignment along y, {Scale X-axis limits} scales x -axis range limits, {X-axis data range (%)} sets the percent of x -axis to use for plotting, {X-axis align} sets the alignment along x, {Limit data points to last} limits buffered data points or frames, {Max points} sets the maximum number of data points to save, {Decimation} sets the reduce amount of scope data to display, {Decimation value}, {Log data to workspace} sets the save data to MATLAB workspace, {Variable name} sets the name of saved data, {Save format} sets the mATLAB variable format, {Plot type} sets the type of plot, {Axes background} sets the background color for individual displays, {Axes and grid} sets the axes, grid, and label color for individual displays, {Scope background} sets the background color for scope, {Preserve colors for copy} sets the preserve colors when copying scope, {Active Display}, {Line}, {Width} sets the line width, {Marker} sets the data point marker style, {Color} sets the line color, {Line visible} sets the line visibility, {Y-axis label}, {Y-axis limits}, {Title} displays name, {Show legend} displays signal legend, {Show grid} shows internal grid lines, {Plot as magnitude-phase} sets the split display into magnitude and phase, {Display Grid} displays layout 1-by-1, {Dock}, {Undock} and {Dock New Scopes on Open} adds new scopes to the container on open. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Signal or signals to visualize scalar | vector | matrix | array | bus | nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Open at simulation start",
+   "default": "",
+   "values": "Specify when scope opens off (default for Scope) | on (default for Time Scope)",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Display the full path",
+   "default": "off",
+   "values": "Display block path on scope title bar off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Number of input ports",
+   "default": "1",
+   "values": "Number of input ports on scope 1 (default) | positive integer in the range [1 96]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Display grid",
+   "default": "1]",
+   "values": "Dimensions of display grid [1, 1] (default) | two-element numeric vector",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "",
+   "values": "Sample- or frame-based processing Elements as channels (sample based) (default for Scope) | Columns as channels (frame based) (default for Time Scope)",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Maximize axes",
+   "default": "",
+   "values": "Maximize size of plots Off (default for Scope) | Auto (default for Time Scope) | On",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "inherited)",
+   "values": "Simulation interval between scope updates -1 (for inherited) (default) | positive real number",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Time span",
+   "default": "Auto",
+   "values": "Length of x -axis to display Auto (default) | One frame period |",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Overrun action",
+   "default": "Wrap",
+   "values": "Display data beyond visible x -axis Wrap (default) | Scroll",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Time units",
+   "default": "",
+   "values": "x -axis units None (default for Scope) | Metric (based on Time Span) (default for Time Scope) | Seconds",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Time display offset",
+   "default": "0",
+   "values": "x -axis offset 0 (default) | scalar | vector",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "T-axis and ticks labels",
+   "default": "",
+   "values": "Display of x -axis (time) and tick labels Bottom displays only (default for Scope) | All (default for Time Scope) | None",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Time offset view",
+   "default": "on",
+   "values": "Show time offset on status bar on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Show time-axis label",
+   "default": "",
+   "values": "Display or hide x -axis labels off (default for Scope) | on (default for Time Scope)",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Scale Y-axis limits",
+   "default": "Manual",
+   "values": "y -axis scaling mode Manual (default) | Auto | After N Updates",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-axis limits do not shrink",
+   "default": "on",
+   "values": "Allow y -axis range limits to increase on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Number of updates",
+   "default": "10",
+   "values": "Number of updates before scaling 10 (default) | integer",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Scale Y-axis limits at stop",
+   "default": "on",
+   "values": "Scale y -axis limits when simulation stops on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-axis data range (%)",
+   "default": "80",
+   "values": "Percent of y -axis to use for plotting 80 (default) | integer between [1,100]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-axis align",
+   "default": "Center",
+   "values": "Alignment along y -axis Center (default) | Top | Bottom",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Scale X-axis limits",
+   "default": "off",
+   "values": "Scale x -axis range limits off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "X-axis data range (%)",
+   "default": "100",
+   "values": "Percent of x -axis to use for plotting 100 (default) | integer in the range [1,100]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "X-axis align",
+   "default": "Center",
+   "values": "Alignment along x -axis Center (default) | Left | Right",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Limit data points to last",
+   "default": "off",
+   "values": "Limit buffered data points or frames off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Max points",
+   "default": "",
+   "values": "Maximum number of data points to save 5000 | positive integer",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Decimation",
+   "default": "off",
+   "values": "Reduce amount of scope data to display and save off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Decimation value",
+   "default": "2",
+   "values": "Decimation value 2 (default) | positive integer",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Log data to workspace",
+   "default": "off",
+   "values": "Save data to MATLAB workspace off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Variable name",
+   "default": "ScopeData",
+   "values": "Name of saved data variable ScopeData (default) | character vector | string scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Save format",
+   "default": "Dataset",
+   "values": "MATLAB variable format Dataset (default) | Structure With Time | Structure | Array",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Plot type",
+   "default": "",
+   "values": "Type of plot Auto (default for Scope) | Line (default for Time Scope) | Stairs | Stem",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Axes background",
+   "default": "black",
+   "values": "Background color for individual displays black (default) | color",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Axes and grid",
+   "default": "gray",
+   "values": "Axes, grid, and label color for individual displays gray (default) | color",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Scope background",
+   "default": "black",
+   "values": "Background color for scope window black (default) | color",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Preserve colors for copy",
+   "default": "off",
+   "values": "Preserve colors when copying scope off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Active Display",
+   "default": "1",
+   "values": "Active display 1 (default) | positive integer",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Line",
+   "default": "1",
+   "values": "Line to change Channel 1 (default) | channel name",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Style",
+   "default": "-",
+   "values": "Line style - (default) |: | -. | -- | None",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Width",
+   "default": "1.5",
+   "values": "Line width 1.5 (default) | 0.5 | 1 | 2 | 3 | 4 | 6 |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Marker",
+   "default": "none",
+   "values": "Data point marker style none (default) | o | + | x |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Color",
+   "default": "yellow",
+   "values": "Line color yellow (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Line visible",
+   "default": "on",
+   "values": "Line visibility on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-axis label",
+   "default": "",
+   "values": "Y-axis label none (default for Scope) | Amplitude (default for Time Scope) | character vector | string scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-axis limits",
+   "default": "]",
+   "values": "Y-axis limits [ -10 10 ] (default) | two-element numeric vector",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Title",
+   "default": "%<SignalLabel>",
+   "values": "Display name %<SignalLabel> (default) | character vector | string scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Show legend",
+   "default": "off",
+   "values": "Display signal legend off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Show grid",
+   "default": "on",
+   "values": "Show internal grid lines on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Plot as magnitude-phase",
+   "default": "off",
+   "values": "Split display into magnitude and phase plots off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Display Grid",
+   "default": "display",
+   "values": "Display layout 1-by-1 display (default) | an arrangement of m -by- n axes",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Dock",
+   "default": "Scope",
+   "values": "Dock the scope into scope container Dock Scope (default) | Dock All Scopes",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Undock",
+   "default": "Undock",
+   "values": "Undock the scope from the scope container Undock (default) | Undock All",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Dock New Scopes on Open",
+   "default": "off",
+   "values": "Add new scopes to the container on open off (default) | on",
+   "group": "Scope Tab"
+  }
+ ]
+}

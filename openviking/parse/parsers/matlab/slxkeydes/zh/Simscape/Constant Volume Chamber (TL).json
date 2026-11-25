@@ -1,0 +1,13 @@
+{
+ "key": "Constant Volume Chamber (TL)",
+ "title": "Constant Volume Chamber (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Constant_Volume_Chamber_TL.md"
+ ],
+ "text": "具有固定热液体体积和可变端口数量的腔室。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

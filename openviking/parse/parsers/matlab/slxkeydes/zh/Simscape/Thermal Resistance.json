@@ -1,0 +1,13 @@
+{
+ "key": "Thermal Resistance",
+ "title": "Thermal Resistance",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Thermal_Resistance.md"
+ ],
+ "text": "热系统中的恒定热阻。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

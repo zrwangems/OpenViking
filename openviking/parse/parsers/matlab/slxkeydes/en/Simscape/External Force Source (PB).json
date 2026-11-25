@@ -1,0 +1,13 @@
+{
+ "key": "External Force Source (PB)",
+ "title": "External Force Source (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/External_Force_Source_PB.md"
+ ],
+ "text": "Ideal source of mechanical energy that generates force proportional to the input signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

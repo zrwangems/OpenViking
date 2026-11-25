@@ -1,0 +1,102 @@
+{
+ "key": "Cumulative Product",
+ "title": "Cumulative Product",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Math Operations/Cumulative_Product.md"
+ ],
+ "text": "Cumulative product of channel, column, or row elements, 2 inputs, 1 output, no direct feedthrough, {Reset port} sets Reset type; {Multiply input along} sets the dimension to multiply input along Channels, {Input processing}, {Rounding mode}, {Saturate on integer overflow}, {Intermediate product}, {Product output}, {Accumulator}, {Output}, {Output Minimum} sets the minimum, {Output Maximum} sets the maximum and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset port scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Cumulative product vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Multiply input along",
+   "default": "product)",
+   "values": "Dimension to multiply input along Channels (running product) (default) | Columns | Rows",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Input processing Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset type None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Intermediate product",
+   "default": "input",
+   "values": "Intermediate product Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "Accumulator Inherit: Same as input (default) | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Output Inherit: Same as input (default) | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Minimum [] (default)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Maximum [] (default)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

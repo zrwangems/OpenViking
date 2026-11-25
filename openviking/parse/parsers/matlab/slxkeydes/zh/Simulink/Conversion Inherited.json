@@ -1,0 +1,48 @@
+{
+ "key": "Conversion Inherited",
+ "title": "Data Type Conversion Inherited",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Data_Type_Conversion_Inherited.md"
+ ],
+ "text": "使用继承的数据类型和定标将一种数据类型转换为另一种，输入 2 路、输出 1 路；按 {整数舍入模式} 指定定点运算的舍入模式；{输入和输出具有相等的} 指定转换定点数据类型的约束、{发生溢出时饱和处理为最大值或最小值} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "参考信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "要转换的输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入和输出具有相等的",
+   "default": "真实值",
+   "values": "转换定点数据类型的约束 真实值 (默认) | 存储的整数",
+   "group": ""
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": ""
+  },
+  {
+   "name": "发生溢出时饱和处理为最大值或最小值",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

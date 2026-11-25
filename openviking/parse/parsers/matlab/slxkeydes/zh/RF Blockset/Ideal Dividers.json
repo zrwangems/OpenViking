@@ -1,0 +1,38 @@
+{
+ "key": "Ideal Dividers",
+ "title": "Divider",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/Divider.md"
+ ],
+ "text": "使用 S 参数对理想的频率无关分路器或合路器进行建模；按 {Reference impedances (Ohm)} 指定分路器的参考阻抗；{Select component} 指定分路器类型 T power、{Number of divider outports} 指定 Wilkinson 功率分路器的输出端口数、{Ground and hide negative terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Select component",
+   "default": "divider",
+   "values": "分路器类型 T power divider (default) | Resistive power divider | Wilkinson power divider | Tee H-plane (S33=0) | Tee E-plane",
+   "group": ""
+  },
+  {
+   "name": "Number of divider outports",
+   "default": "2",
+   "values": "Wilkinson 功率分路器的输出端口数 2 (default) | nonnegative integer in the range ( 1, 65 ]",
+   "group": ""
+  },
+  {
+   "name": "Reference impedances (Ohm)",
+   "default": "50",
+   "values": "分路器的参考阻抗 50 (default) | positive scalar | three-tuple vector",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

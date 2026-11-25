@@ -1,0 +1,13 @@
+{
+ "key": "Proximity Sensor",
+ "title": "Proximity Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Proximity_Sensor.md"
+ ],
+ "text": "简单距离传感器的理想行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,128 @@
+{
+ "key": "Joint Space Motion Model",
+ "title": "Joint Space Motion Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Joint_Space_Motion_Model.md"
+ ],
+ "text": "根据关节空间输入对刚体树运动进行建模，输入 4 路、输出 3 路；按 {Initial joint configuration} 指定初始关节位置；{Rigid body tree} 指定机器人模型 twoJointRigidBodyTre、{Motion Type} 指定运动模型计算的运动类型 Computed Torque、{Specification format} 用于控制机器人的输入 Damping Ratio / Natural、{Damping ratio} 指定系统的阻尼比、{Natural frequency} 指定系统的固有频率、{Settling time} 指定系统的稳定时间、{Overshoot} 指定系统超调量、{Proportional gain} 指定 PD Control 的比例增益、{Derivative gain} 用于 PD 控制的微分增益、{Show external force input} 显示 FExt 端口、{Initial joint velocities} 指定初始关节速度、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "qRef",
+   "direction": "input",
+   "summary": "关节位置 n -element vector"
+  },
+  {
+   "name": "qRefDot",
+   "direction": "input",
+   "summary": "关节速度 n -element vector"
+  },
+  {
+   "name": "qRefDDot",
+   "direction": "input",
+   "summary": "关节加速度 n -element vector"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "作用在系统上的外力 6-by- m matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "关节位置 n -element vector"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "关节速度 n -element vector"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "关节加速度 n -element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "机器人模型 twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "Motion Type",
+   "default": "Control",
+   "values": "运动模型计算的运动类型 Computed Torque Control (default) | Independent Joint Motion | PD Control | Open Loop Dynamics",
+   "group": ""
+  },
+  {
+   "name": "Specification format",
+   "default": "Frequency",
+   "values": "用于控制机器人的输入 Damping Ratio / Natural Frequency (default) | Step Response",
+   "group": ""
+  },
+  {
+   "name": "Damping ratio",
+   "default": "1",
+   "values": "系统的阻尼比 1 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Natural frequency",
+   "default": "10",
+   "values": "系统的固有频率 10 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time",
+   "default": "0.59",
+   "values": "系统的稳定时间 0.59 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Overshoot",
+   "default": "0.0",
+   "values": "系统超调量 0.0 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain",
+   "default": "100",
+   "values": "PD Control 的比例增益 100 (default) | n -by- n matrix | scalar",
+   "group": ""
+  },
+  {
+   "name": "Derivative gain",
+   "default": "10",
+   "values": "用于 PD 控制的微分增益 10 (default) | n -by- n matrix | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show external force input",
+   "default": "off",
+   "values": "显示 FExt 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial joint configuration",
+   "default": "0",
+   "values": "初始关节位置 0 (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial joint velocities",
+   "default": "0",
+   "values": "初始关节速度 0 (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

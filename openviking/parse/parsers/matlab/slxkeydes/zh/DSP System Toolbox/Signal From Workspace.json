@@ -1,0 +1,50 @@
+{
+ "key": "Signal From Workspace",
+ "title": "Signal From Workspace",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Signal_From_Workspace.md"
+ ],
+ "text": "从 MATLAB 工作区导入信号；输出 1 路、无直接馈通；按 {Signal} 指定要导入的信号；{Sample time} 输出采样周期、{Samples per frame}、{Form output after final data value by} 指定导入信号的最后一个信号值之后要输出的值 Setting、{Warn when frame size does not evenly divide input length} 指定当输入长度不是帧大小的整数倍时发出警告，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "从工作区导入的信号 scalar | vector | matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal",
+   "default": "1:10",
+   "values": "要导入的信号 1:10 (default) | MATLAB workspace variable | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出采样周期 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Form output after final data value by",
+   "default": "zero",
+   "values": "导入信号的最后一个信号值之后要输出的值 Setting to zero (default) | Holding final value | Cyclic repetition",
+   "group": ""
+  },
+  {
+   "name": "Warn when frame size does not evenly divide input length",
+   "default": "off",
+   "values": "当输入长度不是帧大小的整数倍时发出警告 off (default) | on",
+   "group": ""
+  }
+ ]
+}

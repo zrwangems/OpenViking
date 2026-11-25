@@ -1,0 +1,144 @@
+{
+ "key": "Hall Speed and Position",
+ "title": "Hall Speed and Position",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensor Decoders/Hall_Speed_and_Position.md"
+ ],
+ "text": "Compute speed and estimate position of rotor by using Hall sensors, 6 inputs, 3 outputs, {Block output} sets Select output ports Speed and; {Counter size} sets the size of external counter register, {Counter clock frequency (Hz)} sets the clock frequency of external, {Discrete step size (s)} sets the sample time after which block executes again, {Number of pole pairs}, {Minimum detectable speed (RPM)} sets the minimum speed that block can detect, {Speed measurement interval} sets the interval over which block measures speed Every, {Speed unit} sets the unit of rotor angular speed output, {Speed datatype} sets the data type of rotor angular speed output, {Expected hall sequence in positive direction} sets the sequence indicating positive, {Sequence} sets the custom sequence indicating positive direction, {Order of extrapolation of position} Indicates precision in position computation 1st, {Position unit} sets the unit of angular position and {Position datatype} sets the data type of angular position output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "HallVal",
+   "direction": "input",
+   "summary": "Current Hall sensor output state scalar"
+  },
+  {
+   "name": "Cnt",
+   "direction": "input",
+   "summary": "External counter value scalar"
+  },
+  {
+   "name": "SpdCnt",
+   "direction": "input",
+   "summary": "Count at Hall state change scalar"
+  },
+  {
+   "name": "Dir",
+   "direction": "input",
+   "summary": "Rotor spin direction during current Hall state scalar"
+  },
+  {
+   "name": "SpdVal",
+   "direction": "input",
+   "summary": "Validity of current and previous Hall states and speed calculation scalar"
+  },
+  {
+   "name": "HallChng",
+   "direction": "input",
+   "summary": "Value of Hall state change flag scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "Electrical position of rotor scalar"
+  },
+  {
+   "name": "⍵ m",
+   "direction": "output",
+   "summary": "Mechanical speed of rotor scalar"
+  },
+  {
+   "name": "HallChngRst",
+   "direction": "output",
+   "summary": "Resets Hall state change flag to zero scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Block output",
+   "default": "position",
+   "values": "Select output ports Speed and position (default) | Speed | Position",
+   "group": "General"
+  },
+  {
+   "name": "Counter size",
+   "default": "bits",
+   "values": "Size of external counter register 32 bits (default) | 8 bits | 16 bits",
+   "group": "General"
+  },
+  {
+   "name": "Counter clock frequency (Hz)",
+   "default": "90e6",
+   "values": "Clock frequency of external counter 90e6 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Sample time after which block executes again 50e-6 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "8",
+   "values": "Number of pole pairs available in motor 8 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Minimum detectable speed (RPM)",
+   "default": "20",
+   "values": "Minimum speed that block can detect 20 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Speed measurement interval",
+   "default": "Degrees",
+   "values": "Interval over which block measures speed Every 180 Degrees (default) | Every 60 Degrees",
+   "group": "General"
+  },
+  {
+   "name": "Speed unit",
+   "default": "Radians/sec",
+   "values": "Unit of rotor angular speed output Radians/sec (default) | Degrees/sec | RPM | Per unit",
+   "group": "General"
+  },
+  {
+   "name": "Speed datatype",
+   "default": "single",
+   "values": "Data type of rotor angular speed output single (default) | double | fixed point",
+   "group": "General"
+  },
+  {
+   "name": "Expected hall sequence in positive direction",
+   "default": "ABC",
+   "values": "Sequence indicating positive direction ABC (default) | CBA | Custom sequence",
+   "group": "Position"
+  },
+  {
+   "name": "Sequence",
+   "default": "[5,4,6,2,3,1]",
+   "values": "Custom sequence indicating positive direction [5,4,6,2,3,1] (default) | scalar",
+   "group": "Position"
+  },
+  {
+   "name": "Order of extrapolation of position",
+   "default": "Order",
+   "values": "Indicates precision in position computation 1st Order (default) | 2nd Order",
+   "group": "Position"
+  },
+  {
+   "name": "Position unit",
+   "default": "Radians",
+   "values": "Unit of angular position output Radians (default) | Degrees | Per unit",
+   "group": "Position"
+  },
+  {
+   "name": "Position datatype",
+   "default": "single",
+   "values": "Data type of angular position output single (default) | double | fixed point",
+   "group": "Position"
+  }
+ ]
+}

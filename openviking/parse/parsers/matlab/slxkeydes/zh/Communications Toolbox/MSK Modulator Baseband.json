@@ -1,0 +1,109 @@
+{
+ "key": "MSK Modulator Baseband",
+ "title": "MSK Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/CPM/MSK_Modulator_Baseband.md"
+ ],
+ "text": "使用 CPM 方法调制信号，输入 1 路、输出 1 路；按 {Frequency pulse shape} 指定脉冲成形类型；{M-ary number} 指定调制阶数、{Input type} 指定整数或位组输入指示符、{Symbol set ordering} 指定符号映射 Binary、{Modulation index} 指定调制指数 h i、{Main lobe pulse duration (symbol intervals)} 指定主瓣持续时间、{Rolloff} 指定频谱升余弦脉冲形状的滚降因子、{BT product} 指定高斯脉冲形状的带宽与符号时间乘积、{Pulse length (symbol intervals)} 指定频率脉冲形状的长度、{Symbol prehistory} 指定仿真开始前使用的数据符号、{Phase offset (rad)} 指定初始相位偏移、{Samples per symbol} 指定符号采样率、{Rate options} 指定模块处理速率 Enforce single-rate、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "4",
+   "values": "调制阶数 4 (default) | power of two scalar",
+   "group": ""
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "整数或位组输入指示符 Integer (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Symbol set ordering",
+   "default": "Binary",
+   "values": "符号映射 Binary (default) | Gray",
+   "group": ""
+  },
+  {
+   "name": "Modulation index",
+   "default": "0.5",
+   "values": "调制指数 { h i } 0.5 (default) | nonnegative scalar | column vector",
+   "group": ""
+  },
+  {
+   "name": "Frequency pulse shape",
+   "default": "Rectangular",
+   "values": "脉冲成形类型 Rectangular (default) | Raised Cosine | Spectral Raised Cosine | Gaussian | Tamed FM",
+   "group": ""
+  },
+  {
+   "name": "Main lobe pulse duration (symbol intervals)",
+   "default": "1",
+   "values": "主瓣持续时间 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Rolloff",
+   "default": "0.2",
+   "values": "频谱升余弦脉冲形状的滚降因子 0.2 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "BT product",
+   "default": "0.3",
+   "values": "高斯脉冲形状的带宽与符号时间乘积 0.3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Pulse length (symbol intervals)",
+   "default": "1",
+   "values": "频率脉冲形状的长度 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Symbol prehistory",
+   "default": "1",
+   "values": "仿真开始前使用的数据符号 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "初始相位偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "8",
+   "values": "符号采样率 8 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "模块处理速率 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single",
+   "group": ""
+  }
+ ]
+}

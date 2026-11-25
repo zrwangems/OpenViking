@@ -1,0 +1,42 @@
+{
+ "key": "Velocity Product Torque",
+ "title": "Velocity Product Torque",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Velocity_Product_Torque.md"
+ ],
+ "text": "Joint torques that cancel velocity-induced forces, 2 inputs, 1 output; {Rigid body tree} sets the robot model and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Robot configuration vector"
+  },
+  {
+   "name": "JointVel",
+   "direction": "input",
+   "summary": "Joint velocities vector"
+  },
+  {
+   "name": "JointTorq",
+   "direction": "output",
+   "summary": "Joint torques vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "Robot model twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

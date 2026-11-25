@@ -1,0 +1,50 @@
+{
+ "key": "Three-Winding Transformer",
+ "title": "Three-Winding Transformer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Three_Winding_Transformer.md"
+ ],
+ "text": "计算 RF 信号之和；{Inductance L1} 指定第一个电感的电感值 1e-6、{Inductance L2} 指定第二个电感的电感值 1e-6、{Inductance L3} 指定第三个电感的电感值 1e-6、{Coefficient of coupling K12} 指定第一个和第二个电感的耦合系数、{Coefficient of coupling K13} 指定第一个和第三个电感的耦合系数、{Coefficient of coupling K23} 指定第二个和第三个电感的耦合系数，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Inductance L1",
+   "default": "H",
+   "values": "第一个电感的电感值 1e-6 H (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Inductance L2",
+   "default": "H",
+   "values": "第二个电感的电感值 1e-6 H (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Inductance L3",
+   "default": "H",
+   "values": "第三个电感的电感值 1e-6 H (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of coupling K12",
+   "default": "0.9",
+   "values": "第一个和第二个电感的耦合系数 0.9 (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of coupling K13",
+   "default": "0.9",
+   "values": "第一个和第三个电感的耦合系数 0.9 (default) | nonnegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of coupling K23",
+   "default": "0.9",
+   "values": "第二个和第三个电感的耦合系数 0.9 (default) | nonnegative scalar integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "key": "fixed.system.ModByConstant",
+ "title": "Modulo by Constant",
+ "toolbox": "Fixed-Point Designer",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer/Modulo_by_Constant.md"
+ ],
+ "text": "Perform modulo operation with a constant denominator, 1 input, 1 output, {Denominator for Modulo Problem} sets Divisor.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Dividend real-valued scalar | vector | matrix | multidimensional array"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Result of modulus operation scalar | vector | matrix | multidimensional array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Denominator for Modulo Problem",
+   "default": "10",
+   "values": "Divisor 10 (default) | real-valued scalar | vector | matrix | multidimensional array",
+   "group": ""
+  }
+ ]
+}

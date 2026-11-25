@@ -1,0 +1,32 @@
+{
+ "key": "Simulation 3D Probabilistic Radar Configuration",
+ "title": "Simulation 3D Probabilistic Radar Configuration",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Probabilistic_Radar_Configuration.md"
+ ],
+ "text": "Configure probabilistic radar signatures in 3D simulation environment, {Radar cross sections (dBsm)} sets Radar cross sections; {Radar targets} sets the identifiers corresponding to radar targets and {Default radar cross section (dBsm)}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Radar targets",
+   "default": "[]",
+   "values": "Identifiers corresponding to radar targets [] (default) | positive integer | L -length vector of unique positive integers",
+   "group": ""
+  },
+  {
+   "name": "Radar cross sections (dBsm)",
+   "default": "{}",
+   "values": "Radar cross sections {} (default) | real-valued Q -by- P matrix | L -length cell array of real-valued Q 1 -by- P 1, …, Q L -by- P L matrices",
+   "group": ""
+  },
+  {
+   "name": "Default radar cross section (dBsm)",
+   "default": "-20",
+   "values": "Default radar cross section -20 (default) | real scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Resolver",
+ "title": "Resolver",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Resolver.md"
+ ],
+ "text": "Rotary transformer that measures angle of rotation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

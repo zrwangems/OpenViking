@@ -1,0 +1,13 @@
+{
+ "key": "SI Combustion Cylinder",
+ "title": "SI Combustion Cylinder",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Engine Subcomponents/SI_Combustion_Cylinder.md"
+ ],
+ "text": "火花点火式四冲程内燃机气缸。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

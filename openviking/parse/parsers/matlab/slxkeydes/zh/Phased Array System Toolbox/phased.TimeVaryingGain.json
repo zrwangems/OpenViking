@@ -1,0 +1,54 @@
+{
+ "key": "phased.TimeVaryingGain",
+ "title": "Time Varying Gain",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Time_Varying_Gain.md"
+ ],
+ "text": "时变增益 (TVG) 控制，输入 2 路、输出 1 路；{Source of range losses} 指定距离损耗来源、{Range losses (dB)} 指定每个输入样本距离处的损耗、{Reference range loss (dB)} 指定参考距离处的损耗、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix | array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "距离损耗 column vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "距离补偿信号 vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of range losses",
+   "default": "Property",
+   "values": "距离损耗来源 Property (default) | Input Port",
+   "group": ""
+  },
+  {
+   "name": "Range losses (dB)",
+   "default": "0",
+   "values": "每个输入样本距离处的损耗 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Reference range loss (dB)",
+   "default": "0",
+   "values": "参考距离处的损耗 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,69 @@
+{
+ "key": "LTE Symbol Modulator",
+ "title": "LTE Symbol Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/LTE_Symbol_Modulator.md"
+ ],
+ "text": "将数据位调制为复数 LTE 数据符号，输入 4 路、输出 2 路；按 {Modulation} 指定调制类型；{Modulation source} 指定调制类型来源、{Output data type} 输出数据类型选择、{Word length} 输出字长，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据比特 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效输入数据 scalar"
+  },
+  {
+   "name": "modSel",
+   "direction": "input",
+   "summary": "调制选择 integer"
+  },
+  {
+   "name": "load",
+   "direction": "input",
+   "summary": "调制控制 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "调制后的复数据符号 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "输出数据有效指示 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "Property",
+   "values": "调制类型来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Modulation",
+   "default": "BPSK",
+   "values": "调制类型 BPSK (default) | QPSK | 16-QAM | 64-QAM | 256-QAM",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "Custom",
+   "values": "输出数据类型选择 Custom (default) | double | single",
+   "group": "Data Types"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "输出字长 16 (default) | integer in the range [3, 32]",
+   "group": "Data Types"
+  }
+ ]
+}

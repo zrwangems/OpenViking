@@ -1,0 +1,150 @@
+{
+ "key": "codertarget.tic2000.blocks.CMPSSBlock",
+ "title": "CMPSS",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F280013x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F280015x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28002x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28003x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28004x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F2807x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F2837xD/CMPSS.md",
+  "C2000 Microcontroller Blockset/F2837xS/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28p55x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F28p65x/CMPSS.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/CMPSS.md"
+ ],
+ "text": "Compare two input voltages on comparator pins, 5 inputs, 2 outputs, {Comparator module} sets Indicates which module to use; {Second input} sets the source of second input, {DAC source select} sets the source of internal DAC, {Specify DAC/RAMP parameter(s) via} sets the configure source DAC/RAMP value source, {DAC value (DACH)}, {DAC initial value}, {RAMP reference value}, {RAMP decrement value}, {RAMP delay value}, {RAMP initial reference value}, {RAMP initial decrement value} sets the rAMP decrement value, {RAMP initial delay value} sets the rAMP delay value, {Enable latch output} sets the comparator latch output, {Enable latch clear} sets the clear comparator latch value and {Sample time} sets the frequency at which data is read. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DAC",
+   "direction": "input",
+   "summary": "DAC module scalar"
+  },
+  {
+   "name": "REF",
+   "direction": "input",
+   "summary": "Ramp reference value scalar"
+  },
+  {
+   "name": "DEC",
+   "direction": "input",
+   "summary": "RAMP decrement value scalar"
+  },
+  {
+   "name": "DLY",
+   "direction": "input",
+   "summary": "RAMP delay value scalar"
+  },
+  {
+   "name": "LCLR",
+   "direction": "input",
+   "summary": "Latch clear scalar"
+  },
+  {
+   "name": "STS",
+   "direction": "output",
+   "summary": "Comparator status output scalar"
+  },
+  {
+   "name": "LTH",
+   "direction": "output",
+   "summary": "Comparator latch scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Comparator module",
+   "default": "CMPSS1_COMPH",
+   "values": "Indicates which module to use CMPSS1_COMPH (default) | CMPSSx_COMPL | CMPSSx_COMPH | where x ranges from 1 to 8",
+   "group": ""
+  },
+  {
+   "name": "Second input",
+   "default": "pin",
+   "values": "Source of second input pin External pin (default) | Internal DAC",
+   "group": ""
+  },
+  {
+   "name": "DAC source select",
+   "default": "module",
+   "values": "Source of internal DAC DAC module (default) | RAMP module",
+   "group": ""
+  },
+  {
+   "name": "Specify DAC/RAMP parameter(s) via",
+   "default": "Dialog",
+   "values": "Configure source DAC/RAMP value source Dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "DAC value (DACH)",
+   "default": "0",
+   "values": "Specify DAC value 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "DAC initial value",
+   "default": "0",
+   "values": "Specify DAC initial value 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP reference value",
+   "default": "0",
+   "values": "Specify RAMP reference value 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP decrement value",
+   "default": "0",
+   "values": "Specify RAMP decrement value 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP delay value",
+   "default": "0",
+   "values": "Specify RAMP delay value 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP initial reference value",
+   "default": "0",
+   "values": "Specify RAMP initial reference value 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP initial decrement value",
+   "default": "0",
+   "values": "Specify RAMP decrement value 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "RAMP initial delay value",
+   "default": "0",
+   "values": "Specify RAMP delay value 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable latch output",
+   "default": "off",
+   "values": "Comparator latch output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable latch clear",
+   "default": "off",
+   "values": "Clear comparator latch value off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Frequency at which data is read from comparator 0.1 (default)",
+   "group": ""
+  }
+ ]
+}

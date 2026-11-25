@@ -1,0 +1,40 @@
+{
+ "key": "Bias",
+ "title": "Bias",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Bias.md",
+  "Simulink/Quick Insert/Math Operations/Add_Constant.md",
+  "HDL Coder/HDL Floating Point Operations/Bias.md",
+  "HDL Coder/Math Operations/Bias.md"
+ ],
+ "text": "Add bias to input, 1 input, 1 output, direct feedthrough, {Bias} sets Offset to add to the input signal; {Saturate on integer overflow} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Bias",
+   "default": "0.0",
+   "values": "Offset to add to the input signal 0.0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": ""
+  }
+ ]
+}

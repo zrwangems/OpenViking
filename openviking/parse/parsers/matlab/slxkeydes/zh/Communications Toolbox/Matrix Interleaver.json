@@ -1,0 +1,13 @@
+{
+ "key": "Matrix Interleaver",
+ "title": "Matrix Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Matrix_Interleaver.md"
+ ],
+ "text": "通过按行填充矩阵并按列清空矩阵来置换输入符号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

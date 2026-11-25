@@ -1,0 +1,13 @@
+{
+ "key": "PS Step",
+ "title": "PS Step",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Sources/PS_Step.md"
+ ],
+ "text": "Generate physical signal shaped as step function.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

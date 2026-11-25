@@ -1,0 +1,85 @@
+{
+ "key": "DVB-S2 BCH Decoder",
+ "title": "DVB-S2 BCH Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/DVB_S2_BCH_Decoder.md"
+ ],
+ "text": "Decode and recover message from BCH codeword according to DVB-S2 standard, 4 inputs, 4 outputs, {Code rate} sets Code rate; {FEC frame type source}, {FEC frame type}, {Code rate source} sets the source for code and {Output number of corrected errors} sets the number of corrected errors. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Codeword data bits scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "frameType",
+   "direction": "input",
+   "summary": "Frame type scalar"
+  },
+  {
+   "name": "codeRateIdx",
+   "direction": "input",
+   "summary": "Code rate index integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Decoded message bits scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "numCorrErr",
+   "direction": "output",
+   "summary": "Number of corrected errors scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Block ready indicator scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "FEC frame type source",
+   "default": "Property",
+   "values": "FEC frame type source Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "FEC frame type",
+   "default": "Normal",
+   "values": "FEC frame type Normal (default) | Short",
+   "group": ""
+  },
+  {
+   "name": "Code rate source",
+   "default": "Property",
+   "values": "Source for code rate Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Code rate",
+   "default": "1/4",
+   "values": "Code rate 1/4 (default) | 1/3 | 2/5 | 1/2 | 3/5 | 2/3 | 3/4 | 4/5 | 5/6 | 8/9 | 9/10",
+   "group": ""
+  },
+  {
+   "name": "Output number of corrected errors",
+   "default": "off",
+   "values": "Number of corrected errors off (default) | on",
+   "group": ""
+  }
+ ]
+}

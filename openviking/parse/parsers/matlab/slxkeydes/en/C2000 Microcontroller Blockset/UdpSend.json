@@ -1,0 +1,56 @@
+{
+ "key": "UdpSend",
+ "title": "UDP Send",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28M35x/M3/UDP_Send.md",
+  "C2000 Microcontroller Blockset/F28M36x/M3/UDP_Send.md"
+ ],
+ "text": "Send UDP packets to UDP host, 2 inputs; {Remote IP address (255.255.255.255 for broadcast)} sets the iP address of receiving UDP host, {Remote IP Port} sets the iP port on receiving UDP host, {Local IP Port (-1 for automatic port assignment)} sets the iP port on sending UDP host, {Enable variable length} sets the variable length and {Wait until previous packet transmitted} sets the wait to sent new packets. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data port vector"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Variable length scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Remote IP address (255.255.255.255 for broadcast)",
+   "default": "192.168.1.10",
+   "values": "IP address of receiving UDP host 192.168.1.10 (default) | 255.255.255.255",
+   "group": ""
+  },
+  {
+   "name": "Remote IP Port",
+   "default": "25000",
+   "values": "IP port on receiving UDP host 25000 (default) | positive integer in the range [1,65535]",
+   "group": ""
+  },
+  {
+   "name": "Local IP Port (-1 for automatic port assignment)",
+   "default": "-1",
+   "values": "IP port on sending UDP host -1 (default) |",
+   "group": ""
+  },
+  {
+   "name": "Enable variable length",
+   "default": "off",
+   "values": "Variable length off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Wait until previous packet transmitted",
+   "default": "off",
+   "values": "Wait to sent new packets off (default) | on",
+   "group": ""
+  }
+ ]
+}

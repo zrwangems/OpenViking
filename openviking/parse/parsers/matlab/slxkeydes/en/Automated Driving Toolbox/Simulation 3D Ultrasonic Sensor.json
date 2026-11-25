@@ -1,0 +1,120 @@
+{
+ "key": "Simulation 3D Ultrasonic Sensor",
+ "title": "Simulation 3D Ultrasonic Sensor",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Ultrasonic_Sensor.md",
+  "UAV Toolbox/Simulation 3D/Simulation_3D_Ultrasonic_Sensor.md",
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Ultrasonic_Sensor.md",
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Ultrasonic_Sensor.md"
+ ],
+ "text": "Ultrasonic sensor model in 3D simulation environment, 6 outputs, {Mounting location} sets Sensor mounting location; {Sensor identifier} sets the unique sensor identifier, {Parent name} sets the name of parent vehicle, {Specify offset} sets the offset from mounting location, {Relative translation [X, Y, Z] (m)} sets the translation offset relative to mounting location, {Relative rotation [Roll, Pitch, Yaw] (deg)} sets the rotational offset relative to mounting location, {Sample time}, {Detection ranges (m)} sets the detection range vector of ultrasonic, {Horizontal field of view (deg)} sets the horizontal field of view of ultrasonic, {Vertical field of view (deg)} sets the vertical field of view of ultrasonic, {Use bus output} sets the output signals together as bus and {Output location (m) and orientation (rad)} sets the output location and orientation of sensor. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "Object detections scalar"
+  },
+  {
+   "name": "Has object",
+   "direction": "output",
+   "summary": "Detectable object present in sensor field-of-view scalar"
+  },
+  {
+   "name": "Has range",
+   "direction": "output",
+   "summary": "Range measurement possible for object present in sensor field-of-view scalar"
+  },
+  {
+   "name": "Range",
+   "direction": "output",
+   "summary": "Distance measurement to closest object scalar"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Sensor location real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Sensor orientation real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "Name of parent vehicle Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "Specify offset from mounting location off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Detection ranges (m)",
+   "default": "5.5]",
+   "values": "Detection range vector of ultrasonic sensor (m) [0.03 0.15 5.5] (default) | 1-by-3 nonnegative real-valued vector of form [minDetOnlyRange minDistRange maxDistRange]",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Horizontal field of view (deg)",
+   "default": "70",
+   "values": "Horizontal field of view of ultrasonic sensor 70 (default) | positive real scalar",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Vertical field of view (deg)",
+   "default": "35",
+   "values": "Vertical field of view of ultrasonic sensor 35 (default) | positive real scalar",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Use bus output",
+   "default": "on",
+   "values": "Output signals together as bus on (default) | off",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "Output location and orientation of sensor off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

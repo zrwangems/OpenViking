@@ -1,0 +1,13 @@
+{
+ "key": "PNP Bipolar Transistor",
+ "title": "PNP Bipolar Transistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/PNP_Bipolar_Transistor.md"
+ ],
+ "text": "PNP bipolar transistor using enhanced Ebers-Moll equations.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

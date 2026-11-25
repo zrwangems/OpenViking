@@ -1,0 +1,13 @@
+{
+ "key": "Local Restriction (MA)",
+ "title": "Local Restriction (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Local_Restriction_MA.md"
+ ],
+ "text": "Restriction in flow area in moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

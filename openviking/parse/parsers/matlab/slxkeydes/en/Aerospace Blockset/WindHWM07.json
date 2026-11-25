@@ -1,0 +1,58 @@
+{
+ "key": "WindHWM07",
+ "title": "Horizontal Wind Model 07",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Wind/Horizontal_Wind_Model_07.md"
+ ],
+ "text": "Implement Horizontal Wind Model 07, 4 inputs, 1 output, {Model} sets Horizontal wind model type; {Units} sets the input and output units Metric and {Action for out-of-range input} sets the out-of-range block behavior. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ l h",
+   "direction": "input",
+   "summary": "Geodetic latitude, longitude, and geopotential altitude three-element vector | altitude is a value between 0 and 500 km"
+  },
+  {
+   "name": "day",
+   "direction": "input",
+   "summary": "Day scalar | value between 1 and 366"
+  },
+  {
+   "name": "sec",
+   "direction": "input",
+   "summary": "Elapsed seconds scalar"
+  },
+  {
+   "name": "Ap",
+   "direction": "input",
+   "summary": "Ap index scalar | range from 0 to 400"
+  },
+  {
+   "name": "V wind",
+   "direction": "output",
+   "summary": "Wind velocity vector 1-by-2 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Model",
+   "default": "Quiet",
+   "values": "Horizontal wind model type Quiet (default) | Total | Disturbance",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Error",
+   "values": "Out-of-range block behavior Error (default) | Warning | None",
+   "group": ""
+  }
+ ]
+}

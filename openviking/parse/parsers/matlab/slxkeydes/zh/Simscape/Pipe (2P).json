@@ -1,0 +1,13 @@
+{
+ "key": "Pipe (2P)",
+ "title": "Pipe (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Pipe_2P.md"
+ ],
+ "text": "用于两相流体系统中流体流动的刚性导管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

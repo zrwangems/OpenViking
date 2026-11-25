@@ -1,0 +1,13 @@
+{
+ "key": "Edge Cooling",
+ "title": "Edge Cooling",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Thermal/Edge_Cooling.md"
+ ],
+ "text": "带边缘冷却的冷却板。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

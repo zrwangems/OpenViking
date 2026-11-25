@@ -1,0 +1,13 @@
+{
+ "key": "Variable Gap Capacitor",
+ "title": "Variable Gap Capacitor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Variable_Gap_Capacitor.md"
+ ],
+ "text": "具有平行板和可变间隙的电容器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

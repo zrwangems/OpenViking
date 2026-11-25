@@ -1,0 +1,13 @@
+{
+ "key": "Frequency-Dependent Overhead Line (Three-Phase)",
+ "title": "Frequency-Dependent Overhead Line (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Lines/Frequency_Dependent_Overhead_Line_Three_Phase.md"
+ ],
+ "text": "Three-phase overhead line which includes effects that vary as a function of frequency.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

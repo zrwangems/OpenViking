@@ -1,0 +1,239 @@
+{
+ "key": "EOM3DOF",
+ "title": "Simple Variable Mass 3dof (Wind Axes)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/3DOF/Simple_Variable_Mass_3dof_Wind_Axes.md",
+  "Aerospace Blockset/Equations of Motion/3DOF/Simple_Variable_Mass_3dof_Body_Axes.md",
+  "Aerospace Blockset/Equations of Motion/3DOF/b_3dof_Wind_Axes.md",
+  "Aerospace Blockset/Equations of Motion/3DOF/Custom_Variable_Mass_3dof_Wind_Axes.md",
+  "Aerospace Blockset/Equations of Motion/3DOF/b_3dof_Body_Axes.md",
+  "Aerospace Blockset/Equations of Motion/3DOF/Custom_Variable_Mass_3dof_Body_Axes.md"
+ ],
+ "text": "实现相对于风轴的简单变质量三自由度运动方程，输入 6 路、输出 9 路；按 {Mass type} 指定质量类型 Simple；{Units}、{Axes}、{Initial airspeed}、{Initial flight path angle}、{Initial body rotation rate}、{Initial incidence}、{Initial position (x,z)}、{Initial mass}、{Empty mass}、{Full mass}、{Empty inertia body axes}、{Full inertia body axes}、{Gravity Source}、{Acceleration due to gravity}、{Include mass flow relative velocity}、{Limit mass flow when mass is empty or full}、{Include inertial acceleration}、{Velocity: e.g., ’V’}、{Position: e.g., ’Xe’, ’Ze’}、{Body rotation rate: e.g., ’q’}、{Flight path angle: e.g., ’gamma’}、{Incidence angle e.g., ’alpha’}、{Mass: e.g., ’mass’} 同样影响行为。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F x",
+   "direction": "input",
+   "summary": "沿风 x 轴施加的力 scalar"
+  },
+  {
+   "name": "F z",
+   "direction": "input",
+   "summary": "沿风 z 轴施加的力 scalar"
+  },
+  {
+   "name": "M",
+   "direction": "input",
+   "summary": "施加的俯仰力矩 scalar"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "质量变化率 scalar"
+  },
+  {
+   "name": "g",
+   "direction": "input",
+   "summary": "重力 scalar"
+  },
+  {
+   "name": "V re",
+   "direction": "input",
+   "summary": "相对速度 two-element vector"
+  },
+  {
+   "name": "γ",
+   "direction": "output",
+   "summary": "航迹角 scalar"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "俯仰角速率 scalar"
+  },
+  {
+   "name": "dq/dt",
+   "direction": "output",
+   "summary": "俯仰角加速度 scalar"
+  },
+  {
+   "name": "X e Z e",
+   "direction": "output",
+   "summary": "机体位置 two-element vector"
+  },
+  {
+   "name": "V w",
+   "direction": "output",
+   "summary": "风固定坐标系中的速度 two-element vector"
+  },
+  {
+   "name": "A xb A zb",
+   "direction": "output",
+   "summary": "机体加速度 two-element vector"
+  },
+  {
+   "name": "α",
+   "direction": "output",
+   "summary": "迎角 scalar"
+  },
+  {
+   "name": "Fuel",
+   "direction": "output",
+   "summary": "燃料箱状态 scalar"
+  },
+  {
+   "name": "A xe A ze",
+   "direction": "output",
+   "summary": "机体加速度 two-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": "Main"
+  },
+  {
+   "name": "Axes",
+   "default": "Wind",
+   "values": "机体轴或风轴 Wind (default) | Body",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Variable",
+   "values": "质量类型 Simple Variable (default) | Fixed | Custom Variable",
+   "group": "Main"
+  },
+  {
+   "name": "Initial airspeed",
+   "default": "100",
+   "values": "初始速度 100 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial flight path angle",
+   "default": "0",
+   "values": "初始航迹角 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial body rotation rate",
+   "default": "0",
+   "values": "初始俯仰旋转速率 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial incidence",
+   "default": "0",
+   "values": "初始角度 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial position (x,z)",
+   "default": "0]",
+   "values": "初始位置 [0 0] (default) | two-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial mass",
+   "default": "1.0",
+   "values": "初始质量 1.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty mass",
+   "default": "0.5",
+   "values": "燃料箱为空时的机体质量 0.5 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Full mass",
+   "default": "3.0",
+   "values": "燃料箱已满时的机体质量 3.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty inertia body axes",
+   "default": "0.5",
+   "values": "燃料箱为空时的机体惯性 0.5 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Full inertia body axes",
+   "default": "3.0",
+   "values": "燃料箱已满时的机体惯性 3.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Gravity Source",
+   "default": "Internal",
+   "values": "重力来源 Internal (default) | External",
+   "group": "Main"
+  },
+  {
+   "name": "Acceleration due to gravity",
+   "default": "9.81",
+   "values": "重力来源 9.81 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Include mass flow relative velocity",
+   "default": "off",
+   "values": "质量流相对速度端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Limit mass flow when mass is empty or full",
+   "default": "on",
+   "values": "限制质量流 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Include inertial acceleration",
+   "default": "off",
+   "values": "包括惯性加速度端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Velocity: e.g., ’V’",
+   "default": "’’",
+   "values": "速度状态名称 ’’ (default) | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Position: e.g., {’Xe’, ’Ze’}",
+   "default": "’’",
+   "values": "位置状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Body rotation rate: e.g., ’q’",
+   "default": "’’",
+   "values": "机体旋转状态名称 ’’ (default) | scalar",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Flight path angle: e.g., ’gamma’",
+   "default": "’’",
+   "values": "航迹角状态名称 ’’ (default)",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Incidence angle e.g., ’alpha’",
+   "default": "’’",
+   "values": "入射角状态名称 ’’ (default) | scalar",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Mass: e.g., ’mass’",
+   "default": "’’",
+   "values": "质量状态名称 ’’ (default) | scalar",
+   "group": "State Attributes"
+  }
+ ]
+}

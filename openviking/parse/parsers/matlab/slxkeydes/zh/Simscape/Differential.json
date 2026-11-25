@@ -1,0 +1,13 @@
+{
+ "key": "Differential",
+ "title": "Differential",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Differential.md"
+ ],
+ "text": "允许从动轴以不同转速旋转的齿轮机构。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Rope Drum",
+ "title": "Rope Drum",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Rope_Drum.md"
+ ],
+ "text": "绳索紧密缠绕在圆柱卷筒上的动力传输系统。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

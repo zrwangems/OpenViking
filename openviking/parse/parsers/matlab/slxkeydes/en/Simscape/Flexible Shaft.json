@@ -1,0 +1,13 @@
+{
+ "key": "Flexible Shaft",
+ "title": "Flexible Shaft",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Flexible_Shaft.md"
+ ],
+ "text": "Shaft with torsional and bending compliance.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

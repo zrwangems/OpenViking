@@ -1,0 +1,40 @@
+{
+ "key": "Mux",
+ "title": "Mux",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Mux.md",
+  "Simulink/Signal Routing/Mux.md",
+  "HDL Coder/Commonly Used Blocks/Mux.md",
+  "HDL Coder/Signal Routing/Mux.md"
+ ],
+ "text": "Combine input signals of same data type and complexity into virtual vector, 1 input, 1 output, direct feedthrough, {Display option} sets Block icon appearance; {Number of inputs} sets the number of input signals. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal to include in mux signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output mux signal vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inputs",
+   "default": "2",
+   "values": "Number of input signals 2 (default) | scalar | vector | cell array | comma-separated list of signal names",
+   "group": ""
+  },
+  {
+   "name": "Display option",
+   "default": "bar",
+   "values": "Block icon appearance bar (default) | signals | none",
+   "group": ""
+  }
+ ]
+}

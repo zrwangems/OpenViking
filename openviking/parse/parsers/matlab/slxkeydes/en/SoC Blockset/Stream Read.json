@@ -1,0 +1,71 @@
+{
+ "key": "Stream Read",
+ "title": "Stream Read",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Stream_Read.md"
+ ],
+ "text": "Stream data from shared memory to processor algorithms, 1 input, 3 outputs, {Output data type} sets Data type of IP core; {Device name} sets the name of IP core, {Samples per frame} sets the size of data vector read from IP core, {Number of buffers} sets the number of data buffers, {Enable event-based execution} enables event-driven task execution and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Data frame from shared memory vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Valid frame data scalar"
+  },
+  {
+   "name": "done",
+   "direction": "output",
+   "summary": "Notification message of completed read scalar"
+  },
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "Data message from memory scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device name",
+   "default": "ip:s2mm0",
+   "values": "Name of IP core device ip:s2mm0 (default) | colon-separated list of IP core name and channel",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "uint32",
+   "values": "Data type of IP core uint32 (default) | uint16 | uint64 | fixdt(0,128,0)",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1024",
+   "values": "Size of data vector read from IP core 1024 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Number of buffers",
+   "default": "16",
+   "values": "Number of data buffers 16 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable event-based execution",
+   "default": "on",
+   "values": "Enable event-driven task execution on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time in seconds -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

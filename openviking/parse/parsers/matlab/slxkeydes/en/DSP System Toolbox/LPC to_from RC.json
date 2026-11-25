@@ -1,0 +1,69 @@
+{
+ "key": "LPC to/from RC",
+ "title": "LPC to/from RC",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Linear Prediction/LPC_to_from_RC.md"
+ ],
+ "text": "Convert linear prediction coefficients to reflection coefficients or reflection coefficients to linear prediction coefficients, 2 inputs, 4 outputs, no direct feedthrough, {If first input value is not 1} sets Action to take if first input value is not; {Type of conversion}, {Output normalized prediction error power} and {Output LPC filter stability}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "RC coefficients vector | matrix"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "LPC coefficients vector | matrix"
+  },
+  {
+   "name": "K",
+   "direction": "output",
+   "summary": "RC coefficients vector | matrix"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "LPC coefficients vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Normalized prediction error power vector"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "Filter stability output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of conversion",
+   "default": "LPC",
+   "values": "Type of conversion RC to LPC (default) | LPC to RC",
+   "group": ""
+  },
+  {
+   "name": "Output normalized prediction error power",
+   "default": "on",
+   "values": "Output normalized prediction error power on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output LPC filter stability",
+   "default": "off",
+   "values": "Output LPC filter stability off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "If first input value is not 1",
+   "default": "1",
+   "values": "Action to take if first input value is not 1 Replace it with 1 (default) | Normalize | Normalize and warn | Error",
+   "group": ""
+  }
+ ]
+}

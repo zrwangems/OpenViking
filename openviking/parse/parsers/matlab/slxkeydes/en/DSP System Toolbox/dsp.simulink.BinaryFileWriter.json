@@ -1,0 +1,38 @@
+{
+ "key": "dsp.simulink.BinaryFileWriter",
+ "title": "Binary File Writer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/Binary_File_Writer.md"
+ ],
+ "text": "Write data to binary files, 1 input, no direct feedthrough; {File name} sets the name of the file, {File header} sets the size of the header struct and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Data to write column vector | row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "’Untitled.bin’",
+   "values": "Name of the file ’Untitled.bin’ (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "File header",
+   "default": "struct([])",
+   "values": "Size of the header struct([]) (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

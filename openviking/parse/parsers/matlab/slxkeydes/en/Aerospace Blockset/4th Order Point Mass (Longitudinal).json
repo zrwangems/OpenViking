@@ -1,0 +1,81 @@
+{
+ "key": "4th Order Point Mass (Longitudinal)",
+ "title": "4th Order Point Mass (Longitudinal)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/Point Mass/b_4th_Order_Point_Mass_Longitudinal.md"
+ ],
+ "text": "Calculate fourth-order point mass, 2 inputs, 4 outputs, {Initial mass} sets Point mass; {Units}, {Initial flight path angle}, {Initial airspeed}, {Initial downrange [East]} and {Initial altitude [Up]} sets the initial altitude of point masses. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F x (N)",
+   "direction": "input",
+   "summary": "Force in x -axis scalar | array"
+  },
+  {
+   "name": "F z (N)",
+   "direction": "input",
+   "summary": "Force in z -axis scalar | array"
+  },
+  {
+   "name": "ɣ",
+   "direction": "output",
+   "summary": "Flight path angle scalar | array"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "Airspeed scalar | array"
+  },
+  {
+   "name": "X East",
+   "direction": "output",
+   "summary": "Downrange or amount traveled east scalar | array"
+  },
+  {
+   "name": "X Up",
+   "direction": "output",
+   "summary": "Altitude or amount traveled up scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Initial flight path angle",
+   "default": "0",
+   "values": "Initial flight path angle 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial airspeed",
+   "default": "100",
+   "values": "Initial airspeed 100 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial downrange [East]",
+   "default": "0",
+   "values": "Initial downrange 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial altitude [Up]",
+   "default": "0",
+   "values": "Initial altitude of point masses 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial mass",
+   "default": "1.0",
+   "values": "Point mass 1.0 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

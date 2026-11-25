@@ -1,0 +1,74 @@
+{
+ "key": "WaveformGenerator",
+ "title": "Waveform Generator",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Waveform_Generator.md"
+ ],
+ "text": "使用信号符号输出波形；输出 1 路；按 {输出数据类型} 指定输出数据类型；{输出信号}、{波形定义} 指定波形信号符号 常量、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "生成的输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出信号",
+   "default": "1",
+   "values": "输出信号的波形 1 (默认) | 整数",
+   "group": "常设"
+  },
+  {
+   "name": "波形定义",
+   "default": "",
+   "values": "波形信号符号 常量 | gaussian(mean,variance,seed) | pulse(amplitude,trigger_time,duration) | sawtooth(amplitude,frequence,phase_offset) | sin(amplitude,frequence,phase_offset) | square(amplitude,frequence,phase_offset) | step(step_time,initial_value,final_value)",
+   "group": "常设"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "double",
+   "values": "指定输出数据类型 double (默认) | 继承: 通过反向传播继承 | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <数据类型表达式> |...",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "指定定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "信号属性"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "采样时间间隔 0.1 (默认) | 标量",
+   "group": "信号属性"
+  }
+ ]
+}

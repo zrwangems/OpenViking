@@ -1,0 +1,13 @@
+{
+ "key": "Varistor",
+ "title": "Varistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Varistor.md"
+ ],
+ "text": "Voltage-dependent resistor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

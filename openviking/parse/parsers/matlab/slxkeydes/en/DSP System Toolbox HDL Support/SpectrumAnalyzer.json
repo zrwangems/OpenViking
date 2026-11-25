@@ -1,0 +1,639 @@
+{
+ "key": "SpectrumAnalyzer",
+ "title": "Spectrum Analyzer",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Sinks/Spectrum_Analyzer.md",
+  "Audio Toolbox/Sinks/Spectrum_Analyzer.md",
+  "DSP System Toolbox/Sinks/Spectrum_Analyzer.md",
+  "RF Blockset/Circuit Envelope/Utilities/Spectrum_Analyzer.md",
+  "Simscape/Utilities/Spectrum_Analyzer.md"
+ ],
+ "text": "Display frequency spectrum, 4 inputs, no direct feedthrough, {Style} sets Line style; {Spectrum} sets the type of spectrum, {Spectrogram} sets the type of spectrogram, {Sample Rate (Hz)} sets the sample rate the scope uses, {Offset (Hz)} sets the offset to apply to frequency axis, {Num Inputs} sets the number of input ports, {Open at Simulation Start} sets the automatically open scope when simulation, {Display Precision} sets the precision of data in scope display, {Y-Label} sets the y -axis label, {Y-Limits} sets the y -axis limits, {Title} displays title character vector, {Show Grid} shows internal grid lines, {Color Map} sets the spectrogram colormap, {Color Limits} sets the color limits of spectrogram, {Plot Type}, {Font Size} sets the font size of labels, {Background} sets the window background, {Axes}, {Labels} sets the color of labels, {Line} sets the channel for line property settings channel, {Visible} sets the channel visibility, {Width} sets the line width, {Marker} sets the data point markers, {Color} sets the line color, {Legend} shows or hide signal, {Colorbar} shows or hide color, {Layout} sets the stack axes vertically or horizontally vertical, {Copy to Clipboard} sets the send display, {Preserve Colors} sets the preserve colors when copying to clipboard, {Print}, {Input Domain} sets the domain of the input, {Frequency (Hz)} sets the frequency vector, {Input Unit} sets the units of frequency, {Estimation Method} sets the spectrum estimation method, {Resolution Method} sets the frequency resolution method, {Filter Sharpness} sets the sharpness of lowpass filter, {RBW (Hz)} sets the resolution bandwidth in Hz, {Window Length}, {FFT Length} sets the length of FFT, {Averaging Method} sets the smoothing method, {VBW (Hz)} sets the video bandwidth, {Forgetting Factor} sets the forgetting factor of weighted average, {Spectral Averages} sets the number of spectral averages, {Frequency Span} sets the frequency span mode, {Span (Hz)} sets the frequency span to compute spectrum in Hz, {Center Frequency (Hz)} sets the center of frequency span in Hz, {Start Frequency (Hz)} sets the start frequency, {Stop Frequency (Hz)} sets the stop frequency, {Window}, {Attenuation (dB)} sets the sidelobe attenuation in dB, {Overlap (%)} sets the percentage of overlap, {Channel}, {Data Cursors} enables cursor measurements, {Snap to data} sets the snap cursors to data, {Lock cursor spacing}, {Peak Finder} enables peak finder, {Num Peaks} sets the maximum number of peaks to show, {Min Height} sets the level above which scope detects, {Min Distance} sets the minimum number of samples between adjacent, {Threshold} sets the minimum difference between height of peak and its neighboring, {Label Peaks}, {Distortion} enables distortion measurements, {Distortion Type} sets the type of measurement, {Num Harmonics} sets the number of harmonics to measure, {Label Harmonics}, {Label Frequencies}, {Phase Noise} enables phase noise, {Frequency Offsets (Hz)} sets the frequency offsets in Hz, {Plot Target Phase Noise} sets the option to plot target phase noise profile, {Target Phase Noise (dBc/Hz)} sets the target phase noise profile in dBc/Hz, {Label Phase Noise} sets the option to label measured phase noise, {Two-Sided Spectrum} enables two-sided spectrum view, {Normal Trace} sets the normal trace view, {Max-Hold Trace} sets the maximum hold trace view, {Min-Hold Trace} sets the minimum hold trace view, {Frequency Scale} scales of frequency, {Reference load (Ω)} sets the reference load in Ω, {Spectrum Unit} sets the units, {Full Scale} sets the full scale for dBFS units, {Time Resolution (s)} sets the time resolution in seconds, {Time Span (s)} sets the time span in seconds, {Upper Mask} enables upper spectral, {Lower Mask} enables lower spectral, {Upper Limits} limits for upper spectral, {Lower Limits} limits for lower spectral, {Reference Level (dBr)} sets the reference level for mask power values, {Frequency Offset (Hz)} sets the frequency offset in Hz, {Channel Measurements} enables channel measurements, {Type}, {Occupied BW (%)} sets the percentage of power to compute occupied, {Num Pairs} sets the number of adjacent channel pairs, {Offsets (Hz)} sets the aCPR offsets in Hz, {Adjacent BW (Hz)} sets the adjacent channel bandwidth in Hz, {Filter Shape}, {Roll-off Factor}, {BT Product}, {Channel Names} sets the input channel names, {Maximize Axes} sets the maximize size of plots, {Axes Scaling} sets the y-axis scaling mode and {Number of Updates} sets the number of updates before scaling. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Signals to visualize scalar | vector | matrix | array"
+  },
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "Frequencies in Hz column vector"
+  },
+  {
+   "name": "RBW",
+   "direction": "input",
+   "summary": "RBW Value positive scalar"
+  },
+  {
+   "name": "VBW",
+   "direction": "input",
+   "summary": "VBW Value positive scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Spectrum",
+   "default": "Power",
+   "values": "Type of spectrum to display Power (default) | Power Density | RMS",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Spectrogram",
+   "default": "Power",
+   "values": "Type of spectrogram to display Power (default) | Power Density | RMS",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Sample Rate (Hz)",
+   "default": "Inherited",
+   "values": "Sample rate the scope uses in Hz Inherited (default) | positive scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Offset (Hz)",
+   "default": "0",
+   "values": "Offset to apply to frequency axis 0 (default) | scalar | vector",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Num Inputs",
+   "default": "1",
+   "values": "Number of input ports 1 (default) | integer between 1 and 96",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Open at Simulation Start",
+   "default": "on",
+   "values": "Automatically open scope when simulation starts on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Display Precision",
+   "default": "4",
+   "values": "Precision of data in scope display 4 (default) | positive integer ≤ 15",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-Label",
+   "default": "",
+   "values": "y -axis label character vector | string scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-Limits",
+   "default": "",
+   "values": "y -axis limits [ −80 20 ] | [ ymin ymax ]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Title",
+   "default": "",
+   "values": "Display title character vector | string",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Show Grid",
+   "default": "on",
+   "values": "Show internal grid lines on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Color Map",
+   "default": "jet",
+   "values": "Spectrogram colormap jet (default) | hot | bone | cool | copper | gray | parula | three-column matrix",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Color Limits",
+   "default": "]",
+   "values": "Color limits of spectrogram [ -80 20 ] (default) | [ colorMin colorMax ]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Plot Type",
+   "default": "Line",
+   "values": "Plot type Line (default) | Stem",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Font Size",
+   "default": "8.5",
+   "values": "Font size of labels 8.5 (default) | positive scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Background",
+   "default": "black",
+   "values": "Window background black (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Axes",
+   "default": "black",
+   "values": "Axes background color black (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Labels",
+   "default": "gray",
+   "values": "Color of labels gray (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Line",
+   "default": "",
+   "values": "Channel for line property settings channel names",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Visible",
+   "default": "on",
+   "values": "Channel visibility on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Style",
+   "default": "-",
+   "values": "Line style - (default) |: | -. | -- | None",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Width",
+   "default": "1.5",
+   "values": "Line width 1.5 (default) | 0.5 | 1 | 2 |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Marker",
+   "default": "None",
+   "values": "Data point markers None (default) | + | x |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Color",
+   "default": "yellow",
+   "values": "Line color yellow (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Legend",
+   "default": "",
+   "values": "Show or hide signal legend button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Colorbar",
+   "default": "",
+   "values": "Show or hide color bar button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Layout",
+   "default": "layout",
+   "values": "Stack axes vertically or horizontally vertical layout (default) | horizontal layout",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Copy to Clipboard",
+   "default": "",
+   "values": "Send display to clipboard button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Preserve Colors",
+   "default": "off",
+   "values": "Preserve colors when copying to clipboard off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Print",
+   "default": "",
+   "values": "Print display button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Input Domain",
+   "default": "Time",
+   "values": "Domain of the input signal Time (default) | Frequency",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "Auto",
+   "values": "Frequency vector Auto (default) | Input port | monotonically increasing vector",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Input Unit",
+   "default": "dBm",
+   "values": "Units of frequency input dBm (default) | dBuV (since R2023b) | dBV | dBW | Vrms | Watts | None",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Estimation Method",
+   "default": "Bank",
+   "values": "Spectrum estimation method Filter Bank (default) | Welch",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Resolution Method",
+   "default": "RBW",
+   "values": "Frequency resolution method RBW (default) | Number of frequency bands | Window length",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Filter Sharpness",
+   "default": "0.5",
+   "values": "Sharpness of lowpass filter 0.5 (default) | nonnegative scalar in the range [0,1]",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "RBW (Hz)",
+   "default": "Auto",
+   "values": "Resolution bandwidth in Hz Auto (default) | Input port | positive scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Window Length",
+   "default": "1024",
+   "values": "Window length 1024 (default) | integer greater than 2",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "FFT Length",
+   "default": "Auto",
+   "values": "Length of FFT Auto (default) | 1024 | positive integer",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Averaging Method",
+   "default": "VBW",
+   "values": "Smoothing method VBW (default) | Exponential | Running",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "VBW (Hz)",
+   "default": "Auto",
+   "values": "Video bandwidth Auto (default) | Input port | positive scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Forgetting Factor",
+   "default": "0.9",
+   "values": "Forgetting factor of weighted average method 0.9 (default) | scalar in the range [0,1]",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Spectral Averages",
+   "default": "1",
+   "values": "Number of spectral averages 1 (default) | positive integer",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Frequency Span",
+   "default": "Full",
+   "values": "Frequency span mode Full (default) | Span and Center Frequency | Start and Stop Frequencies",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Span (Hz)",
+   "default": "10e3",
+   "values": "Frequency span to compute spectrum in Hz 10e3 (default) | real positive scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Center Frequency (Hz)",
+   "default": "0",
+   "values": "Center of frequency span in Hz 0 (default) | real scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Start Frequency (Hz)",
+   "default": "-5e3",
+   "values": "Start frequency in Hz -5e3 (default) | scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Stop Frequency (Hz)",
+   "default": "5e3",
+   "values": "Stop frequency in Hz 5e3 (default) | scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Window",
+   "default": "Hann",
+   "values": "Windowing method Hann (default) | Blackman-Harris | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular | custom window function name",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Attenuation (dB)",
+   "default": "60",
+   "values": "Sidelobe attenuation in dB 60 (default) | scalar greater than or equal to 45",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Overlap (%)",
+   "default": "0",
+   "values": "Percentage of overlap 0 (default) | scalar in the range [0 100)",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Channel",
+   "default": "1",
+   "values": "Channel for which to obtain measurements 1 (default) | positive integer",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Data Cursors",
+   "default": "",
+   "values": "Enable cursor measurements button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Snap to data",
+   "default": "off",
+   "values": "Snap cursors to data off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Lock cursor spacing",
+   "default": "off",
+   "values": "Lock cursor spacing off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Peak Finder",
+   "default": "",
+   "values": "Enable peak finder measurements button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Num Peaks",
+   "default": "3",
+   "values": "Maximum number of peaks to show 3 (default) | positive integer less than 100",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Min Height",
+   "default": "-Inf",
+   "values": "Level above which scope detects peaks -Inf (default) | real scalar value",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Min Distance",
+   "default": "1",
+   "values": "Minimum number of samples between adjacent peaks 1 (default) | positive integer",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Threshold",
+   "default": "0",
+   "values": "Minimum difference between height of peak and its neighboring samples 0 (default) | nonnegative scalar",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Peaks",
+   "default": "",
+   "values": "Label peaks button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Distortion",
+   "default": "",
+   "values": "Enable distortion measurements button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Distortion Type",
+   "default": "Harmonic",
+   "values": "Type of measurement to display Harmonic (default) | Intermodulation",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Num Harmonics",
+   "default": "6",
+   "values": "Number of harmonics to measure 6 (default) | positive integer",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Harmonics",
+   "default": "off",
+   "values": "Label harmonics off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Frequencies",
+   "default": "off",
+   "values": "Label frequencies off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Phase Noise",
+   "default": "",
+   "values": "Enable phase noise measurements button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Frequency Offsets (Hz)",
+   "default": "]",
+   "values": "Frequency offsets in Hz [ 10 100 1000 ] (default) | vector with monotonically increasing values",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Plot Target Phase Noise",
+   "default": "off",
+   "values": "Option to plot target phase noise profile off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Target Phase Noise (dBc/Hz)",
+   "default": "]",
+   "values": "Target phase noise profile in dBc/Hz [ -300 -300 -300 ] (default) | vector",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Phase Noise",
+   "default": "off",
+   "values": "Option to label measured phase noise on plot off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Two-Sided Spectrum",
+   "default": "on",
+   "values": "Enable two-sided spectrum view on (default) | off",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Normal Trace",
+   "default": "on",
+   "values": "Normal trace view on (default) | off",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Max-Hold Trace",
+   "default": "off",
+   "values": "Maximum hold trace view off (default) | on",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Min-Hold Trace",
+   "default": "off",
+   "values": "Minimum hold trace view off (default) | on",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Frequency Scale",
+   "default": "Linear",
+   "values": "Scale of frequency axis Linear (default) | Log",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Reference load (Ω)",
+   "default": "1",
+   "values": "Reference load in Ω 1 (default) | positive real scalar",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Spectrum Unit",
+   "default": "dBm",
+   "values": "Units of the spectrum dBm (default) | dBFS | dBV | dBuV (since R2023b) | dBW | Vrms | Watts | dBm/Hz | dBW/Hz | dBFS/Hz | Watts/Hz | Auto",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Full Scale",
+   "default": "Auto",
+   "values": "Full scale for dBFS units Auto (default) | positive real scalar",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Time Resolution (s)",
+   "default": "Auto",
+   "values": "Time resolution in seconds Auto (default) | positive scalar",
+   "group": "Spectrogram Tab"
+  },
+  {
+   "name": "Time Span (s)",
+   "default": "Auto",
+   "values": "Time span in seconds Auto (default) | positive scalar",
+   "group": "Spectrogram Tab"
+  },
+  {
+   "name": "Upper Mask",
+   "default": "",
+   "values": "Enable upper spectral mask button",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Lower Mask",
+   "default": "",
+   "values": "Enable lower spectral mask button",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Upper Limits",
+   "default": "Inf",
+   "values": "Limit for upper spectral mask Inf (default) | scalar | two-column matrix",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Lower Limits",
+   "default": "-Inf",
+   "values": "Limit for lower spectral mask -Inf (default) | scalar | two-column matrix",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Reference Level (dBr)",
+   "default": "0",
+   "values": "Reference level for mask power values 0 (default) | real scalar | Spectrum peak",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Frequency Offset (Hz)",
+   "default": "0",
+   "values": "Frequency offset in Hz 0 (default) | finite numeric scalar",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Channel Measurements",
+   "default": "",
+   "values": "Enable channel measurements button",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Type",
+   "default": "BW",
+   "values": "Type of measurement data to display Occupied BW (default) | ACPR",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Occupied BW (%)",
+   "default": "99",
+   "values": "Percentage of power to compute occupied bandwidth 99 (default) | positive scalar",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Num Pairs",
+   "default": "2",
+   "values": "Number of adjacent channel pairs 2 (default) | positive integer in range [ 1, 12 ]",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Offsets (Hz)",
+   "default": "3500]",
+   "values": "ACPR offsets in Hz [2000 3500] (default) | vector",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Adjacent BW (Hz)",
+   "default": "1000",
+   "values": "Adjacent channel bandwidth in Hz 1000 (default) | positive scalar",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Filter Shape",
+   "default": "None",
+   "values": "Filter shape None (default) | RRC | Gaussian",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Roll-off Factor",
+   "default": "0.5",
+   "values": "Roll-off factor 0.5 (default) | real scalar in range [ 0, 1 ]",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "BT Product",
+   "default": "0.5",
+   "values": "BT product 0.5 (default) | real scalar in range [ 0, 1 ]",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Channel Names",
+   "default": "[]",
+   "values": "Input channel names [] (default) | character vector | string | array of strings or character vectors.",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Maximize Axes",
+   "default": "Auto",
+   "values": "Maximize size of plots Auto (default) | Off | On",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Axes Scaling",
+   "default": "OnceAtStop",
+   "values": "Y-axis scaling mode OnceAtStop (default) | Manual | Auto | Updates",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Number of Updates",
+   "default": "100",
+   "values": "Number of updates before scaling 100 (default) | integer",
+   "group": "Property Inspector Only"
+  }
+ ]
+}

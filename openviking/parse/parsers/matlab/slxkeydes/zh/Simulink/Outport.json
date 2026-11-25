@@ -1,0 +1,149 @@
+{
+ "key": "Outport",
+ "title": "Outport",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Quick Insert/Ports & Subsystems/Outport.md",
+  "Simulink/Commonly Used Blocks/Out1.md",
+  "Simulink/Ports & Subsystems/Out1.md",
+  "Simulink/Sinks/Out1.md",
+  "Simulink/Quick Insert/Ports & Subsystems/Output.md",
+  "Simulink/Ports & Subsystems/Out_Bus_Element.md",
+  "Simulink/Signal Routing/Bus_Element_Out.md",
+  "Simulink/Sinks/Out_Bus_Element.md",
+  "Simulink/Ports & Subsystems/Function_Element.md",
+  "RF Blockset/Circuit Envelope/Utilities/Outport.md",
+  "HDL Coder/Commonly Used Blocks/Out1.md",
+  "HDL Coder/Ports & Subsystems/Out1.md",
+  "HDL Coder/Sinks/Out1.md",
+  "HDL Coder/Ports & Subsystems/Out_Bus_Element.md",
+  "HDL Coder/Signal Routing/Bus_Element_Out.md",
+  "HDL Coder/Sinks/Out_Bus_Element.md"
+ ],
+ "text": "为子系统或外部输出创建输出端口，输入 1 路；按 {图标显示} 指定图标显示；{端口号} 指定端口在父模块上的位置、{信号名称}、{指定未连接源时的输出} 指定未连接的输出值、{常量值} 指定模块未连接时的输出值、{将向量参数解释为一维向量} 指定将向量视为一维、{确保输出端口为虚拟端口}、{禁用时的输出}、{初始输出}、{最小}、{最大}、{数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{在父模型中以非虚拟总线输出}、{单位(例如，m、m/s^2、N*m)} 指定模块的输入信号的物理单位、{端口维度(-1 表示继承)} 指定端口维度、{可变大小信号}、{信号类型}、{采样时间(-1 表示继承)} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输出端口信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "端口号",
+   "default": "1",
+   "values": "端口在父模块上的位置 1 (默认) | 实整数",
+   "group": "常设"
+  },
+  {
+   "name": "信号名称",
+   "default": "’",
+   "values": "信号名称 ’ ’ (默认) | 字符向量",
+   "group": "常设"
+  },
+  {
+   "name": "图标显示",
+   "default": "端口号",
+   "values": "图标显示 端口号 (默认) | 信号名称 | 端口号和信号名称",
+   "group": "常设"
+  },
+  {
+   "name": "指定未连接源时的输出",
+   "default": "off",
+   "values": "指定未连接的输出值 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "常量值",
+   "default": "0",
+   "values": "模块未连接时的输出值 0 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "将向量参数解释为一维向量",
+   "default": "on",
+   "values": "将向量视为一维 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "确保输出端口为虚拟端口",
+   "default": "off",
+   "values": "确保输出端口为虚拟 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "禁用时的输出",
+   "default": "保持",
+   "values": "禁用时的输出 保持 (默认) | 重置",
+   "group": "常设"
+  },
+  {
+   "name": "初始输出",
+   "default": "[]",
+   "values": "条件执行子系统的初始输出 [] (默认) | 标量 | 结构体",
+   "group": "常设"
+  },
+  {
+   "name": "最小",
+   "default": "[]",
+   "values": "最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "最大",
+   "default": "[]",
+   "values": "最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "数据类型",
+   "default": "auto",
+   "values": "输出数据类型 Inherit: auto (默认) | double | single | half | int8 | uint8 | int16 | uint16 |...",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "在父模型中以非虚拟总线输出",
+   "default": "off",
+   "values": "在父模型中以非虚拟总线输出 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "单位(例如，m、m/s^2、N*m)",
+   "default": "inherit",
+   "values": "模块的输入信号的物理单位 inherit (默认) | <Enter unit>",
+   "group": "信号属性"
+  },
+  {
+   "name": "端口维度(-1 表示继承)",
+   "default": "-1",
+   "values": "端口维度 -1 (默认) | 整数 | [整数, 整数]",
+   "group": "信号属性"
+  },
+  {
+   "name": "可变大小信号",
+   "default": "继承",
+   "values": "允许可变大小信号 继承 (默认) | 否 | 是",
+   "group": "信号属性"
+  },
+  {
+   "name": "信号类型",
+   "default": "自动",
+   "values": "输出信号类型 自动 (默认) | 实数 | 复",
+   "group": "信号属性"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "指定采样时间的选项 -1 (默认) | 标量",
+   "group": "执行"
+  }
+ ]
+}

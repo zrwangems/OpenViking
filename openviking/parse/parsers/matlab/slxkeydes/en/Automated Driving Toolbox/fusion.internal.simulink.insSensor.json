@@ -1,0 +1,151 @@
+{
+ "key": "fusion.internal.simulink.insSensor",
+ "title": "INS",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/INS.md",
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/INS.md",
+  "Navigation Toolbox/Multisensor Positioning/Sensor Models/INS.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Sensor Models/INS.md"
+ ],
+ "text": "Simulate INS sensor, 6 inputs, 5 outputs, {Position error factor} sets Position error factor (m) [0 0; {Mounting location (m)} sets the location of sensor on platform, {Roll (X-axis) accuracy (deg)} sets the accuracy of roll measurement, {Pitch (Y-axis) accuracy (deg)} sets the accuracy of pitch measurement, {Yaw (Z-axis) accuracy (deg)} sets the accuracy of yaw measurement, {Position accuracy (m)} sets the accuracy of position measurement, {Velocity accuracy (m/s)} sets the accuracy of velocity measurement, {Use acceleration and angular velocity}, {Acceleration accuracy (m/s 2 )} sets the accuracy of acceleration measurement, {Angular velocity accuracy (deg/s)} sets the accuracy of angular velocity measurement, {Enable HasGNSSFix port} enables HasGNSSFix input port, {Seed} sets the initial seed for randomization and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Position",
+   "direction": "input",
+   "summary": "Position of INS sensor N -by-3 real-valued matrix"
+  },
+  {
+   "name": "Velocity",
+   "direction": "input",
+   "summary": "Velocity of INS sensor N -by-3 real-valued matrix of scalar"
+  },
+  {
+   "name": "Orientation",
+   "direction": "input",
+   "summary": "Orientation of INS sensor 3-by-3-by- N real-valued array | N -by-4 real-valued matrix | N -by-3 matrix of Euler angles"
+  },
+  {
+   "name": "Acceleration",
+   "direction": "input",
+   "summary": "Acceleration of INS sensor N -by-3 real-valued matrix"
+  },
+  {
+   "name": "AngularVelocity",
+   "direction": "input",
+   "summary": "Angular velocity of INS sensor N -by-3 real-valued matrix"
+  },
+  {
+   "name": "HasGNSSFix",
+   "direction": "input",
+   "summary": "Enable GNSS fix N -by-1 logical vector"
+  },
+  {
+   "name": "Position",
+   "direction": "output",
+   "summary": "Position of INS sensor N -by-3 real-valued matrix"
+  },
+  {
+   "name": "Velocity",
+   "direction": "output",
+   "summary": "Velocity of INS sensor N -by-3 real-valued matrix"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "Orientation of INS sensor 3-by-3-by- N real-valued array | N -by-4 real-valued matrix"
+  },
+  {
+   "name": "Acceleration",
+   "direction": "output",
+   "summary": "Acceleration of INS sensor N -by-3 real-valued matrix"
+  },
+  {
+   "name": "AngularVelocity",
+   "direction": "output",
+   "summary": "Angular velocity of INS sensor N -by-3 real-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mounting location (m)",
+   "default": "0]",
+   "values": "Location of sensor on platform (m) [0 0 0] (default) | three-element real-valued vector of form [ x y z ]",
+   "group": ""
+  },
+  {
+   "name": "Roll (X-axis) accuracy (deg)",
+   "default": "0.2",
+   "values": "Accuracy of roll measurement (deg) 0.2 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Pitch (Y-axis) accuracy (deg)",
+   "default": "0.2",
+   "values": "Accuracy of pitch measurement (deg) 0.2 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Yaw (Z-axis) accuracy (deg)",
+   "default": "1",
+   "values": "Accuracy of yaw measurement (deg) 1 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Position accuracy (m)",
+   "default": "1",
+   "values": "Accuracy of position measurement (m) 1 (default) | nonnegative real scalar | 1-by-3 vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Velocity accuracy (m/s)",
+   "default": "0.05",
+   "values": "Accuracy of velocity measurement (m/s) 0.05 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Use acceleration and angular velocity",
+   "default": "off",
+   "values": "Use acceleration and angular velocity off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Acceleration accuracy (m/s 2 )",
+   "default": "0",
+   "values": "Accuracy of acceleration measurement (m/s 2 ) 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Angular velocity accuracy (deg/s)",
+   "default": "0",
+   "values": "Accuracy of angular velocity measurement (deg/s) 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable HasGNSSFix port",
+   "default": "off",
+   "values": "Enable HasGNSSFix input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Position error factor",
+   "default": "0]",
+   "values": "Position error factor (m) [0 0 0] (default) | nonnegative scalar | 1-by-3 real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "67",
+   "values": "Initial seed for randomization 67 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Generation",
+   "values": "Type of simulation to run Code Generation (default) | Interpreted Execution",
+   "group": ""
+  }
+ ]
+}

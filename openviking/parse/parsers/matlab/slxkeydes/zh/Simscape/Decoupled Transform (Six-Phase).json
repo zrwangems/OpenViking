@@ -1,0 +1,41 @@
+{
+ "key": "Decoupled Transform (Six-Phase)",
+ "title": "Decoupled Transform (Six-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Decoupled_Transform_Six_Phase.md"
+ ],
+ "text": "实现 abc 和 xyz 到 dqz 1 z 2 o 1 o 2 变换，输入 3 路、输出 1 路；{Phase-a axis alignment} 指定 dqz 1 z 2 o 1 o 2 参考坐标系对齐，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "input",
+   "summary": "a 相、b 相和 c 相分量 vector"
+  },
+  {
+   "name": "xyz",
+   "direction": "input",
+   "summary": "x 相、y 相和 z 相分量 vector"
+  },
+  {
+   "name": "θ elec",
+   "direction": "input",
+   "summary": "旋转角度 scalar"
+  },
+  {
+   "name": "dqz1z2o1o2",
+   "direction": "output",
+   "summary": "直轴、交轴、z 1、z 2、o 1 和 o 2 分量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase-a axis alignment",
+   "default": "Q-axis",
+   "values": "dqz 1 z 2 o 1 o 2 参考坐标系对齐 Q-axis (default) | D-axis",
+   "group": ""
+  }
+ ]
+}

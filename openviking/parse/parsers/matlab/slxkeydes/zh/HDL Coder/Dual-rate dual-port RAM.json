@@ -1,0 +1,61 @@
+{
+ "key": "Dual-rate dual-port RAM",
+ "title": "Dual Rate Dual Port RAM",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL RAMs/Dual_Rate_Dual_Port_RAM.md"
+ ],
+ "text": "支持两种速率的双端口 RAM，输入 6 路、输出 2 路；{Address port width} 指定地址位宽，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "din_A",
+   "direction": "input",
+   "summary": "端口 A 写数据输入 Scalar (default)"
+  },
+  {
+   "name": "addr_A",
+   "direction": "input",
+   "summary": "端口 A 写地址 Scalar (default)"
+  },
+  {
+   "name": "we_A",
+   "direction": "input",
+   "summary": "端口 A 写使能 Scalar (default)"
+  },
+  {
+   "name": "din_B",
+   "direction": "input",
+   "summary": "端口 B 写数据 Scalar (default)"
+  },
+  {
+   "name": "addr_B",
+   "direction": "input",
+   "summary": "端口 B 写地址 Scalar (default)"
+  },
+  {
+   "name": "we_B",
+   "direction": "input",
+   "summary": "端口 B 写使能 Scalar (default)"
+  },
+  {
+   "name": "dout_A",
+   "direction": "output",
+   "summary": "端口 A 输出数据 Scalar (default)"
+  },
+  {
+   "name": "dout_B",
+   "direction": "output",
+   "summary": "端口 B 输出数据 Scalar (default)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Address port width",
+   "default": "8",
+   "values": "地址位宽 8 (default)",
+   "group": ""
+  }
+ ]
+}

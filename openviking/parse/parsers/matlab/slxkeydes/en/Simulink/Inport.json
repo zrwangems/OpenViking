@@ -1,0 +1,143 @@
+{
+ "key": "Inport",
+ "title": "Inport",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Quick Insert/Ports & Subsystems/Inport.md",
+  "Simulink/Ports & Subsystems/In_Bus_Element.md",
+  "Simulink/Signal Routing/Bus_Element_In.md",
+  "Simulink/Sources/In_Bus_Element.md",
+  "Simulink/Commonly Used Blocks/In1.md",
+  "Simulink/Ports & Subsystems/In1.md",
+  "Simulink/Sources/In1.md",
+  "Simulink/Quick Insert/Ports & Subsystems/Input.md",
+  "Simulink/Ports & Subsystems/Function_Element_Call.md",
+  "RF Blockset/Circuit Envelope/Utilities/Inport.md",
+  "HDL Coder/Ports & Subsystems/In_Bus_Element.md",
+  "HDL Coder/Signal Routing/Bus_Element_In.md",
+  "HDL Coder/Sources/In_Bus_Element.md",
+  "HDL Coder/Commonly Used Blocks/In1.md",
+  "HDL Coder/Ports & Subsystems/In1.md",
+  "HDL Coder/Sources/In1.md"
+ ],
+ "text": "Create input port for subsystem or external input, 1 output, no direct feedthrough, {Port dimensions (-1 for inherited)} sets Port dimensions; {Port number} sets the position of port on parent block, {Icon display}, {Latch input by delaying outside signal} sets the option to latch signal by delay, {Latch input for feedback signals of function-call subsystem outputs} sets the latch signal from changing, {Connect Inputs} sets the option to open Root Inport Mapper tool, {Output function call} sets the option to produce function-call event, {Minimum}, {Maximum}, {Data type} sets the output data type Inherit, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding data, {Output as nonvirtual bus} sets the option to specify virtuality of bus output, {Unit (e.g., m, m/s^2, N*m)} sets the physical unit of the input signal to the block, {Variable-size signal} sets the option to allow or disallow variable-size signals, {Signal type} sets the output signal type, {Sample time (-1 for inherited)} sets the option to specify sample time, {Interpolate data} sets the option to linearly interpolate output data and {Events} sets the option to trigger model partition based on flow of data into port cell array of event trigger. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Input signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port number",
+   "default": "1",
+   "values": "Position of port on parent block 1 (default) | real integer",
+   "group": "Main"
+  },
+  {
+   "name": "Icon display",
+   "default": "number",
+   "values": "Icon display Port number (default) | Signal name | Port number and signal name",
+   "group": "Main"
+  },
+  {
+   "name": "Latch input by delaying outside signal",
+   "default": "off",
+   "values": "Option to latch signal by delay off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Latch input for feedback signals of function-call subsystem outputs",
+   "default": "off",
+   "values": "Latch signal from changing off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Connect Inputs",
+   "default": "",
+   "values": "Option to open Root Inport Mapper tool button",
+   "group": "Main"
+  },
+  {
+   "name": "Output function call",
+   "default": "off",
+   "values": "Option to produce function-call event off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "Minimum output value [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "Maximum output value [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "auto",
+   "values": "Output data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 |...",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output as nonvirtual bus",
+   "default": "off",
+   "values": "Option to specify virtuality of bus output off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Unit (e.g., m, m/s^2, N*m)",
+   "default": "inherit",
+   "values": "Physical unit of the input signal to the block inherit (default) | <Enter unit>",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Port dimensions (-1 for inherited)",
+   "default": "-1",
+   "values": "Port dimensions -1 (default) | integer | [integer integer]",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Variable-size signal",
+   "default": "Inherit",
+   "values": "Option to allow or disallow variable-size signals Inherit (default) | No | Yes",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signal type",
+   "default": "auto",
+   "values": "Output signal type auto (default) | real | complex",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Option to specify sample time -1 (default) | scalar",
+   "group": "Execution"
+  },
+  {
+   "name": "Interpolate data",
+   "default": "on",
+   "values": "Option to linearly interpolate output data on (default) | off",
+   "group": "Execution"
+  },
+  {
+   "name": "Events",
+   "default": "",
+   "values": "Option to trigger model partition based on flow of data into port cell array of event trigger objects",
+   "group": "Execution"
+  }
+ ]
+}

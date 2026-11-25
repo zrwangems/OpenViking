@@ -1,0 +1,13 @@
+{
+ "key": "Leadscrew",
+ "title": "Leadscrew",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Rotational- Translational/Leadscrew.md"
+ ],
+ "text": "Leadscrew 齿轮组，由旋转螺纹丝杠和平移螺母组成，具有可调螺纹和摩擦损耗。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,87 @@
+{
+ "key": "phased.FreeSpace",
+ "title": "Free Space",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Free_Space.md"
+ ],
+ "text": "自由空间环境，输入 5 路、输出 1 路；{Propagation speed (m/s)} 指定信号传播速度 physconst、{Signal carrier frequency (Hz)} 指定信号载频 3e8、{Perform two-way propagation} 指定执行双向传播、{Inherit sample rate} 指定从上游模块继承采样率、{Sample rate (Hz)} 指定信号采样率 1e6、{Maximum one-way propagation distance (m)} 指定最大单向传播距离 10e3、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "窄带信号 M -element complex-valued column vector, M -by- N complex-valued matrix."
+  },
+  {
+   "name": "Pos1",
+   "direction": "input",
+   "summary": "信号起点 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Pos2",
+   "direction": "input",
+   "summary": "信号终点 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Vel1",
+   "direction": "input",
+   "summary": "信号原点速度 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Vel2",
+   "direction": "input",
+   "summary": "信号终点速度 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "传播的窄带信号 M -element complex-valued column vector, M -by- N complex-valued matrix."
+  }
+ ],
+ "params": [
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Signal carrier frequency (Hz)",
+   "default": "3e8",
+   "values": "信号载频 3e8 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Perform two-way propagation",
+   "default": "off",
+   "values": "执行双向传播 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "从上游模块继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "信号采样率 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum one-way propagation distance (m)",
+   "default": "10e3",
+   "values": "最大单向传播距离 10e3 (default)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

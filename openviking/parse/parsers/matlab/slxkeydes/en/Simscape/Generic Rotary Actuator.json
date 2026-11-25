@@ -1,0 +1,13 @@
+{
+ "key": "Generic Rotary Actuator",
+ "title": "Generic Rotary Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Generic_Rotary_Actuator.md"
+ ],
+ "text": "Generic rotary actuator driven from DC voltage source or PWM driver.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

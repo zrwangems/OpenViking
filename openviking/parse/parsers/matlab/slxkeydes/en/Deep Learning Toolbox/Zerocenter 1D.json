@@ -1,0 +1,103 @@
+{
+ "key": "Zerocenter 1D",
+ "title": "Zerocenter 1D",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Input Layer Normalizations/Zerocenter_1D.md"
+ ],
+ "text": "1-D input layer with zerocenter normalization, 1 input, 1 output, {Layer} sets Corresponding layer object; {Data format} sets the format of input, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the data type of output, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Output integer rounding mode} sets the rounding mode for fixed-point output cast operation, {Output saturate on integer overflow} sets the method of overflow action for output cast, {Mean} sets the data type of mean, {Accumulator} sets the data type of accumulator, {Internal integer rounding mode} sets the rounding mode for internal fixed-point operations, {Internal saturate on integer overflow} sets the method of overflow action for internal block and {Sample time} sets the option to specify sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data 2-dimensional array | 1-dimensional array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Normalized output data 2-dimensional array | 1-dimensional array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Layer",
+   "default": "layerObject",
+   "values": "Corresponding layer object layerObject (default) | featureInputLayer object | sequenceInputLayer object",
+   "group": "Main"
+  },
+  {
+   "name": "Data format",
+   "default": "CT",
+   "values": "Format of input data CT (default) | C",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Data type of output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via back propagation | Inherit: Same as first input | Inherit: Same as accumulator |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point output cast operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action for output cast operation off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mean",
+   "default": "propagation",
+   "values": "Data type of mean Inherit: Inherit via back propagation (default) | Inherit: Inherit from ’Constant value’ |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Data type of accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for internal fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action for internal block operations off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Option to specify sample time -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "key": "Preamble Detector",
+ "title": "Preamble Detector",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Synchronization/Preamble_Detector.md"
+ ],
+ "text": "Detect preamble in data packet, 1 input, 2 outputs; {Input}, {Preamble}, {Detection threshold}, {Output detection metric} sets the option to output detection metric, {Detections} and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input data [ ] | scalar | column vector"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "Index of last preamble symbol [ ] | scalar | column vector"
+  },
+  {
+   "name": "DtMt",
+   "direction": "output",
+   "summary": "Detection metric scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "Symbol",
+   "values": "Input type Symbol (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Preamble",
+   "default": "1i]",
+   "values": "Preamble sequence [1 + 1i; 1 - 1i] (default) | column vector",
+   "group": ""
+  },
+  {
+   "name": "Detection threshold",
+   "default": "3",
+   "values": "Detection threshold 3 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output detection metric",
+   "default": "off",
+   "values": "Option to output detection metric off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Detections",
+   "default": "All",
+   "values": "Detections returned All (default) | First",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

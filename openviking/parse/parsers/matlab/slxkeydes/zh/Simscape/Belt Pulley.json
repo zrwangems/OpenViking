@@ -1,0 +1,13 @@
+{
+ "key": "Belt Pulley",
+ "title": "Belt Pulley",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Belt_Pulley.md"
+ ],
+ "text": "带有缠绕在带轮圆周上的摩擦带的动力传输元件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

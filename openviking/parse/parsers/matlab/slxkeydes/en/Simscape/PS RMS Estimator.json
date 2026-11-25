@@ -1,0 +1,13 @@
+{
+ "key": "PS RMS Estimator",
+ "title": "PS RMS Estimator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Periodic Operators/PS_RMS_Estimator.md"
+ ],
+ "text": "Measure RMS value of periodic signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

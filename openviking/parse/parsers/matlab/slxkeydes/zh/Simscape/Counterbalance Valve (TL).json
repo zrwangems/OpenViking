@@ -1,0 +1,13 @@
+{
+ "key": "Counterbalance Valve (TL)",
+ "title": "Counterbalance Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Pressure Control Valves/Counterbalance_Valve_TL.md"
+ ],
+ "text": "热液体网络中的平衡阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

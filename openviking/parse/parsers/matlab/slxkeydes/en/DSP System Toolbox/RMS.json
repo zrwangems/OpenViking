@@ -1,0 +1,60 @@
+{
+ "key": "RMS",
+ "title": "RMS",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/RMS.md"
+ ],
+ "text": "Root mean square value of input or sequence of inputs, 2 inputs, 1 output, no direct feedthrough, {Reset port} sets Reset event; {Running RMS} sets the option to select running RMS, {Find the RMS value over} sets the dimension over which the block computes the RMS value Each, {Dimension} sets the custom dimension and {Input processing} sets the method to process the input in running mode Columns. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Data input vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset port scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "RMS value along the specified dimension scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Running RMS",
+   "default": "off",
+   "values": "Option to select running RMS off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Find the RMS value over",
+   "default": "column",
+   "values": "Dimension over which the block computes the RMS value Each column (default) | Entire input | Each row | Specified dimension",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Custom dimension 1 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process the input in running mode Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  }
+ ]
+}

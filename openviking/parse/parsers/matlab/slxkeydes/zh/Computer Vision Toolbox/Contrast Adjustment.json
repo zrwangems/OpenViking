@@ -1,0 +1,67 @@
+{
+ "key": "Contrast Adjustment",
+ "title": "Contrast Adjustment",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Contrast_Adjustment.md"
+ ],
+ "text": "使用线性缩放调整图像对比度，输入 1 路、输出 1 路；按 {Adjust pixel values from} 指定输入像素值范围定义 Full input data range [min；{Range [low high]} 指定输入像素值范围、{Percentage of pixels to saturate [low high]} 指定要饱和的最大像素百分比、{Specify number of histogram bins (used to calculate the range when outliers are eliminated)} 指定自定义直方图 bin 数、{Number of histogram bins} 指定直方图 bin 数、{Adjust pixel values to} 输出像素值范围定义 Full data type、{Lock data type settings against change by the fixed-point tools} 指定数据类型覆盖，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Adjust pixel values from",
+   "default": "max]",
+   "values": "输入像素值范围定义 Full input data range [min max] (default) | User-defined range | Range determined by saturating outlier pixels",
+   "group": "Main"
+  },
+  {
+   "name": "Range [low high]",
+   "default": "255]",
+   "values": "输入像素值范围 [0 255] (default) | two-element vector of nonnegative numbers",
+   "group": "Main"
+  },
+  {
+   "name": "Percentage of pixels to saturate [low high]",
+   "default": "1]",
+   "values": "要饱和的最大像素百分比 [1 1] (default) | two-element vector of nonnegative numbers",
+   "group": "Main"
+  },
+  {
+   "name": "Specify number of histogram bins (used to calculate the range when outliers are eliminated)",
+   "default": "on",
+   "values": "自定义直方图 bin 数 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Number of histogram bins",
+   "default": "256",
+   "values": "直方图 bin 数 256 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Adjust pixel values to",
+   "default": "range",
+   "values": "输出像素值范围定义 Full data type range (default) | User-defined range",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "数据类型覆盖 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

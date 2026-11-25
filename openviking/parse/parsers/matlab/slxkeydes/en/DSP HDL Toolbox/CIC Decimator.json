@@ -1,0 +1,105 @@
+{
+ "key": "CIC Decimator",
+ "title": "CIC Decimator",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/CIC_Decimator.md"
+ ],
+ "text": "Decimate signal using CIC filter, 4 inputs, 2 outputs, {Output data type} sets Data type of output Full; {Decimation factor source} sets the source of decimation, {Decimation factor (R)}, {Decimation factor (Rmax)} sets the upper bound of variable decimation factor, {Differential delay (M)}, {Number of sections (N)} sets the number of integrator and comb sections, {Gain correction} sets the output gain compensation, {Output word length} sets the word length of output, {Enable reset input port} sets the reset signal and {Use HDL global reset} sets the option to connect data path registers to generated HDL global reset. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Variable decimation rate scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clears internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "CIC-decimated output data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Decimation factor source",
+   "default": "Property",
+   "values": "Source of decimation factor Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Decimation factor (R)",
+   "default": "2",
+   "values": "Decimation factor 2 (default) | integer from 1 to 2048",
+   "group": "Main"
+  },
+  {
+   "name": "Decimation factor (Rmax)",
+   "default": "2",
+   "values": "Upper bound of variable decimation factor 2 (default) | integer from 1 to 2048",
+   "group": "Main"
+  },
+  {
+   "name": "Differential delay (M)",
+   "default": "1",
+   "values": "Differential delay 1 (default) | 2",
+   "group": "Main"
+  },
+  {
+   "name": "Number of sections (N)",
+   "default": "2",
+   "values": "Number of integrator and comb sections 2 (default) | 1 | 3 | 4 | 5 | 6",
+   "group": "Main"
+  },
+  {
+   "name": "Gain correction",
+   "default": "off",
+   "values": "Output gain compensation off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "precision",
+   "values": "Data type of output Full precision (default) | Same word length as input | Minimum section word lengths",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output word length",
+   "default": "16",
+   "values": "Word length of output 16 (default) | integer from 2 to 104",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Reset signal off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Use HDL global reset",
+   "default": "off",
+   "values": "Option to connect data path registers to generated HDL global reset signal off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

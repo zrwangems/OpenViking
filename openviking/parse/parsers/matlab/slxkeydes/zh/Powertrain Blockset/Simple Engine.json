@@ -1,0 +1,66 @@
+{
+ "key": "Simple Engine",
+ "title": "Simple Engine",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engines/Simple_Engine.md",
+  "Vehicle Dynamics Blockset/Powertrain/Propulsion/Simple_Engine.md"
+ ],
+ "text": "使用查找表的简化发动机模型，输入 2 路、输出 2 路；{Engine maximum torque, f_tqmax} 指定断点、{Breakpoints for engine speed input, f_tqmax_n_bpt} 指定断点、{Fuel lower heating value, Lhv} 指定热值 4.6E+7、{Fuel specific gravity, Sg} 指定比重、{Average brake specific fuel consumption, BsfcAvg} 指定平均制动比油耗，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TrqCmd",
+   "direction": "input",
+   "summary": "指令转矩 scalar"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "input",
+   "summary": "发动机转速 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "EngTrq",
+   "direction": "output",
+   "summary": "发动机制动转矩 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Engine maximum torque, f_tqmax",
+   "default": "175]",
+   "values": "断点 [75.679776480773256 75.679776480773256 97.173658538143172 116.84042599160529 152.21029882684542 175 174.99889520597083 174.99996520122858 175 175 175 175 175 175 175 175] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for engine speed input, f_tqmax_n_bpt",
+   "default": "5000]",
+   "values": "断点 [0 750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857 2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Fuel lower heating value, Lhv",
+   "default": "4.6E+7",
+   "values": "热值 4.6E+7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fuel specific gravity, Sg",
+   "default": "0.745",
+   "values": "比重 0.745 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Average brake specific fuel consumption, BsfcAvg",
+   "default": "350",
+   "values": "平均制动比油耗 350 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "key": "LLA2Flat",
+ "title": "LLA to Flat Earth",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/LLA_to_Flat_Earth.md"
+ ],
+ "text": "根据大地纬度、经度和高度估计平面地球位置，输入 5 路、输出 1 路；{Units} 指定单位 Metric、{Planet model} 指定行星模型 Earth、{Flattening} 指定行星扁率 1/298.257223563、{Equatorial radius of planet} 指定行星赤道半径、{Input reference position and orientation} 指定将参考位置和方向作为端口输入、{Reference geodetic latitude and longitude (deg)} 指定初始大地纬度和经度、{Direction of local tangent plane x-axis (degrees clockwise from north)} 指定角度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μl",
+   "direction": "input",
+   "summary": "大地纬度和经度 2-by-1 vector"
+  },
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "高度 scalar"
+  },
+  {
+   "name": "h ref",
+   "direction": "input",
+   "summary": "参考高度 scalar"
+  },
+  {
+   "name": "μ ref l ref",
+   "direction": "input",
+   "summary": "参考位置 2-by-1 vector"
+  },
+  {
+   "name": "ψ ref",
+   "direction": "input",
+   "summary": "平面地球 x 轴的方向 scalar"
+  },
+  {
+   "name": "X e",
+   "direction": "output",
+   "summary": "位置 3-by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Planet model",
+   "default": "(WGS84)",
+   "values": "行星模型 Earth (WGS84) (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "行星扁率 1/298.257223563 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius of planet",
+   "default": "6378137",
+   "values": "行星赤道半径 6378137 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input reference position and orientation",
+   "default": "off",
+   "values": "将参考位置和方向作为端口输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reference geodetic latitude and longitude (deg)",
+   "default": "10]",
+   "values": "初始大地纬度和经度 [0 10] (default) | 2-by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Direction of local tangent plane x-axis (degrees clockwise from north)",
+   "default": "0",
+   "values": "角度 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

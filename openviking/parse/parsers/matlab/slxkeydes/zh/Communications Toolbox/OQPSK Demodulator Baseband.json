@@ -1,0 +1,85 @@
+{
+ "key": "OQPSK Demodulator Baseband",
+ "title": "OQPSK Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/OQPSK_Demodulator_Baseband.md"
+ ],
+ "text": "使用 OQPSK 方法进行解调，输入 1 路、输出 1 路；按 {Output data type} 指定输出数据类型；{Output type} 输出类型 Integer、{Phase offset (rad)} 指定信号星座第零点的相位、{Symbol mapping} 指定信号星座位映射、{Pulse shape} 指定滤波脉冲形状 Half、{Rolloff factor} 指定升余弦滤波器滚降因子、{Filter span (in symbols)} 指定滤波器长度、{Filter numerator} 指定 FIR 滤波器分子、{Samples per symbol} 指定每个符号的采样数、{Rate options} 指定处理速率选项 Enforce single-rate，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入基带波形 scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出数据 integer column vector | bit column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "输出类型 Integer (default) | Bit",
+   "group": "Modulation"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "信号星座第零点的相位 0 (default) | scalar",
+   "group": "Modulation"
+  },
+  {
+   "name": "Symbol mapping",
+   "default": "Gray",
+   "values": "信号星座位映射 Gray (default) | Binary | custom 4-element numeric vector of integers with values from 0 to 3",
+   "group": "Modulation"
+  },
+  {
+   "name": "Pulse shape",
+   "default": "sine",
+   "values": "滤波脉冲形状 Half sine (default) | Normal raised cosine | Root raised cosine | Custom",
+   "group": "Filtering"
+  },
+  {
+   "name": "Rolloff factor",
+   "default": "0.2",
+   "values": "升余弦滤波器滚降因子 0.2 (default) | scalar",
+   "group": "Filtering"
+  },
+  {
+   "name": "Filter span (in symbols)",
+   "default": "10",
+   "values": "滤波器长度 10 (default) | scalar",
+   "group": "Filtering"
+  },
+  {
+   "name": "Filter numerator",
+   "default": "0.7071]",
+   "values": "FIR 滤波器分子 [0.7071 0.7071] (default) | row vector",
+   "group": "Filtering"
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "4",
+   "values": "每个符号的采样数 4 (default) | positive even integer",
+   "group": "Filtering"
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "处理速率选项 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": "Other Parameters"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | uint8",
+   "group": "Other Parameters"
+  }
+ ]
+}

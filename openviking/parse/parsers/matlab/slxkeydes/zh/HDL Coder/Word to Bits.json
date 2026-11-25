@@ -1,0 +1,37 @@
+{
+ "key": "Word to Bits",
+ "title": "Word to Bits",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Word_to_Bits.md"
+ ],
+ "text": "将实数转换为位向量，输入 1 路、输出 1 路；{Maximum Word Length} 指定 Maximum output word length、{Output bit order} 输出位顺序 LSB，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 binary-valued scalar | binary-valued vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum Word Length",
+   "default": "64",
+   "values": "Maximum output word length 64 (default) | integer in the range [1, 65535]",
+   "group": ""
+  },
+  {
+   "name": "Output bit order",
+   "default": "first",
+   "values": "输出位顺序 LSB first (default) | MSB first",
+   "group": ""
+  }
+ ]
+}

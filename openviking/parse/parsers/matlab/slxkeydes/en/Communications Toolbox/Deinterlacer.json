@@ -1,0 +1,29 @@
+{
+ "key": "Deinterlacer",
+ "title": "Deinterlacer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Deinterlacer.md"
+ ],
+ "text": "Distribute elements of input vector alternately between two output vectors, 1 input, 2 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal column vector"
+  },
+  {
+   "name": "O",
+   "direction": "output",
+   "summary": "Odd-numbered elements vector"
+  },
+  {
+   "name": "E",
+   "direction": "output",
+   "summary": "Even-numbered elements vector"
+  }
+ ],
+ "params": []
+}

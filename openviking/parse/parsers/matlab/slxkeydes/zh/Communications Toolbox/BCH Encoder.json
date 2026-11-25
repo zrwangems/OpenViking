@@ -1,0 +1,67 @@
+{
+ "key": "BCH Encoder",
+ "title": "BCH Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Block/BCH_Encoder.md"
+ ],
+ "text": "从二进制向量数据创建 BCH 码，输入 1 路、输出 1 路；按 {Primitive polynomial} 指定本原多项式 ’X^4 + X +；{Codeword length, N} 指定码字长度、{Message length, K} 指定消息长度、{Shortened message length, S} 指定缩短的消息长度、{Generator polynomial} 指定生成多项式、{Disable generator polynomial checking} 用于禁用生成多项式检查、{Puncture vector} 指定删余向量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "要编码的消息 binary column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "编码消息 binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length, N",
+   "default": "15",
+   "values": "码字长度 15 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Message length, K",
+   "default": "5",
+   "values": "消息长度 5 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Shortened message length, S",
+   "default": "5",
+   "values": "缩短的消息长度 5 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Generator polynomial",
+   "default": "1’",
+   "values": "生成多项式 ’X^10 + X^8 + X^5 + X^4 + X^2 + X + 1’ (default) | polynomial character vector | binary row vector | binary Galois row vector",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "1’",
+   "values": "本原多项式 ’X^4 + X + 1’ (default) | polynomial character vector | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Disable generator polynomial checking",
+   "default": "on",
+   "values": "用于禁用生成多项式检查的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "zeros(2,1)]",
+   "values": "删余向量 [ones(8,1); zeros(2,1)] (default) | binary column vector",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "key": "Centrifugal Effect Model",
+ "title": "Centrifugal Effect Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/Centrifugal_Effect_Model.md"
+ ],
+ "text": "实现行星重力的离心效应的数学表示，输入 2 路、输出 1 路；按 {Planet model} 指定行星模型；{Planetary rotational rate (rad/sec)} 指定行星旋转速率 7.2921150e-05、{Input planetary rotation rate} 指定行星旋转速率端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X ecef",
+   "direction": "input",
+   "summary": "以行星为中心的行星固连坐标 m-by-3 matrix"
+  },
+  {
+   "name": "ω",
+   "direction": "input",
+   "summary": "行星旋转速率 scalar"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "重力值 m-by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Planet model",
+   "default": "Earth",
+   "values": "行星模型 Earth (default) | Venus | Mercury | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Custom",
+   "group": ""
+  },
+  {
+   "name": "Planetary rotational rate (rad/sec)",
+   "default": "7.2921150e-05",
+   "values": "行星旋转速率 7.2921150e-05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input planetary rotation rate",
+   "default": "off",
+   "values": "行星旋转速率端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

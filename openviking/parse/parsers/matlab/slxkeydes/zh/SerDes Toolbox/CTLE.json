@@ -1,0 +1,91 @@
+{
+ "key": "CTLE",
+ "title": "CTLE",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/CTLE.md"
+ ],
+ "text": "对连续时间线性均衡器 (CTLE) 进行建模，输入 1 路、输出 1 路；按 {DC gain (dB)} 指定零频率处的增益；{Mode} 指定 CTLE 工作模式、{Slice select} 指定要使用的 3D GPZ 矩阵的角点、{Configuration select} 指定在固定模式下要应用的传递函数成员、{Specification} 指定 CTLE 响应的输入规格、{Peaking gain (dB)} 指定 AC 增益与 DC 增益之间的差值、{AC gain (dB)} 指定峰值频率处的增益、{Peaking frequency (Hz)} 指定 CTLE 传递函数达到峰值时的近似频率 5e9、{Gain pole zero matrix} 指定增益极点零点 matrix、{Visualize Response} 绘制 CTLE 响应、{Launch CTLE Fitter App} 指定启动 CTLE Fitter，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "输入基带信号 scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "估计的信道输出 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Adapt",
+   "values": "CTLE 工作模式 Adapt (default) | Off | Fixed",
+   "group": ""
+  },
+  {
+   "name": "Slice select",
+   "default": "0",
+   "values": "选择要使用的 3D GPZ 矩阵的角点 0 (default) | nonegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Configuration select",
+   "default": "0",
+   "values": "选择在固定模式下要应用的传递函数成员 0 (default) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8",
+   "group": ""
+  },
+  {
+   "name": "Specification",
+   "default": "Gain’",
+   "values": "CTLE 响应的输入规格 ’DC Gain and Peaking Gain’ (default) | ’DC Gain and AC Gain’ | ’AC Gain and Peaking Gain’ | ’GPZ Matrix’",
+   "group": ""
+  },
+  {
+   "name": "DC gain (dB)",
+   "default": "[0:-1:-8]",
+   "values": "零频率处的增益 [0:-1:-8] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Peaking gain (dB)",
+   "default": "[0:8]",
+   "values": "AC 增益与 DC 增益之间的差值 [0:8] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "AC gain (dB)",
+   "default": "0",
+   "values": "峰值频率处的增益 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Peaking frequency (Hz)",
+   "default": "5e9",
+   "values": "CTLE 传递函数达到峰值时的近似频率 5e9 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Gain pole zero matrix",
+   "default": "",
+   "values": "增益极点零点 matrix",
+   "group": ""
+  },
+  {
+   "name": "Visualize Response",
+   "default": "",
+   "values": "绘制 CTLE 响应 button",
+   "group": ""
+  },
+  {
+   "name": "Launch CTLE Fitter App",
+   "default": "",
+   "values": "启动 CTLE Fitter 应用 button",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Orifice (G)",
+ "title": "Orifice (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Orifice_G.md"
+ ],
+ "text": "Flow restriction in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

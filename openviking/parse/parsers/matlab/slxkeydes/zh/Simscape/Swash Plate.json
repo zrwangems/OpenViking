@@ -1,0 +1,13 @@
+{
+ "key": "Swash Plate",
+ "title": "Swash Plate",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pumps & Motors/Auxiliary Components/Swash_Plate.md"
+ ],
+ "text": "单活塞等温轴向柱塞泵中的斜盘。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

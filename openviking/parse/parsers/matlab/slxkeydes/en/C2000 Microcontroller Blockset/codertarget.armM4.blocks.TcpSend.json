@@ -1,0 +1,72 @@
+{
+ "key": "codertarget.armM4.blocks.TcpSend",
+ "title": "TCP Send",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F2838x/M4/TCP_Send.md"
+ ],
+ "text": "Send data over TCP/IP network to remote host, 2 inputs, 1 output; {Connection mode} sets the block as server, {Server IP Address} sets the remote IP address of server to which to send data is sent, {Server IP Port} sets the remote IP port on server to which data, {Local IP Port} sets the iP port on sending host from which to send, {Enable variable length} enables to receive variable data length, {Wait until previous packet transmitted} sets the wait until data received in previous time step and {Output transmit status} sets the option to display the transmit status during data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data vector"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Receive data length scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Data transmitted at given time step scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Connection mode",
+   "default": "Server",
+   "values": "Set the block as server or client Server (default) | Client",
+   "group": ""
+  },
+  {
+   "name": "Server IP Address",
+   "default": "192.168.1.10",
+   "values": "Remote IP address of server to which to send data is sent 192.168.1.10 (default) | any valid IP address",
+   "group": ""
+  },
+  {
+   "name": "Server IP Port",
+   "default": "25002",
+   "values": "Remote IP port on server to which data is sent 25002 (default) | positive integer in the range [1,65535]",
+   "group": ""
+  },
+  {
+   "name": "Local IP Port",
+   "default": "25000",
+   "values": "IP port on sending host from which to send data 25000 (default) | positive integer in the range [1,65535]",
+   "group": ""
+  },
+  {
+   "name": "Enable variable length",
+   "default": "off",
+   "values": "Enable to receive variable data length off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Wait until previous packet transmitted",
+   "default": "off",
+   "values": "Wait until data received in previous time step is sent off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output transmit status",
+   "default": "off",
+   "values": "Option to display the transmit status during data transmission off (default) | on",
+   "group": ""
+  }
+ ]
+}

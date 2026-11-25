@@ -1,0 +1,66 @@
+{
+ "key": "Video Test Source",
+ "title": "Video Test Source",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/Video_Test_Source.md"
+ ],
+ "text": "Generate continuous video stream data, 1 input, 2 outputs, {Color space} sets Color space; {Frame size} sets the frame dimensions, {Video source} selects video source type, {Input file name} selects input video, {Reorder output frame} sets the output frame reordering and {Frame sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "Input control bus bus"
+  },
+  {
+   "name": "wrData",
+   "direction": "output",
+   "summary": "Output video stream data vector"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "Output control bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frame size",
+   "default": "160x120p",
+   "values": "Frame dimensions 160x120p (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Video source",
+   "default": "file",
+   "values": "Select video source type Video file (default) | Color bar | Ramp",
+   "group": ""
+  },
+  {
+   "name": "Input file name",
+   "default": "handshake_left.avi",
+   "values": "Select input video file handshake_left.avi (default) | any supported video file format",
+   "group": ""
+  },
+  {
+   "name": "Color space",
+   "default": "YCbCr422",
+   "values": "Color space YCbCr422 (default) | RGB | YOnly",
+   "group": ""
+  },
+  {
+   "name": "Reorder output frame",
+   "default": "off",
+   "values": "Output frame reordering off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Frame sample time",
+   "default": "1/60",
+   "values": "Frame sample time 1/60 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

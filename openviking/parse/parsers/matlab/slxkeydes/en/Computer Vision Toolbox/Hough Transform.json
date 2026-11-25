@@ -1,0 +1,65 @@
+{
+ "key": "Hough Transform",
+ "title": "Hough Transform",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/Hough_Transform.md"
+ ],
+ "text": "Find lines in images, 1 input, 3 outputs, {Output data type} sets Output data type; {Theta resolution (radians)} sets the theta resolution, {Rho resolution (pixels)}, {Output theta and rho values} enables Theta and Rho output ports and {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "Binary image matrix"
+  },
+  {
+   "name": "Hough",
+   "direction": "output",
+   "summary": "Parameter space matrix matrix"
+  },
+  {
+   "name": "Theta",
+   "direction": "output",
+   "summary": "Theta values vector"
+  },
+  {
+   "name": "Rho",
+   "direction": "output",
+   "summary": "Rho values vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Theta resolution (radians)",
+   "default": "pi/180",
+   "values": "Theta resolution pi/180 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Rho resolution (pixels)",
+   "default": "1",
+   "values": "Rho resolution 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output theta and rho values",
+   "default": "off",
+   "values": "Enable Theta and Rho output ports off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single | Specify via Fixed-point tab",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

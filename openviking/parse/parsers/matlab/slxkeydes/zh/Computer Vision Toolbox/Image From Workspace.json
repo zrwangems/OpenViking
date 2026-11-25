@@ -1,0 +1,95 @@
+{
+ "key": "Image From Workspace",
+ "title": "Image From Workspace",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sources/Image_From_Workspace.md"
+ ],
+ "text": "从 MATLAB 工作区导入图像；输出 4 路；按 {Value} 指定要导入的图像；{Sample time} 指定模块执行的采样时间、{Image signal} 指定模块返回的信号 One multidimensional、{Output port labels} 输出端口标签 R、{Output data type} 输出图像的数据类型 Inherit、{Signed} 指定有符号定点数据类型、{Word length} 指定定点数据类型中的位数、{Set fraction length in output to} 指定定点缩放因子、{Fractional length} 指定小数位数、{User-defined data type} 指定用户定义定点数据类型 sfix，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "输出图像 matrix | 3-D array"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "图像的红色分量 matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "图像的绿色分量 matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "图像的蓝色分量 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Value",
+   "default": "rand(100,100,3)",
+   "values": "要导入的图像 rand(100,100,3) (default) | vector | matrix | 3-D array | MATLAB workspace variable | MATLAB function",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "模块执行的采样时间 inf (default) | positive scalar | Vector",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "模块返回的信号 One multidimensional signal (default) | Separate color signals",
+   "group": ""
+  },
+  {
+   "name": "Output port labels",
+   "default": "R|G|B",
+   "values": "输出端口标签 R|G|B (default) | port names",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Value",
+   "values": "输出图像的数据类型 Inherit from Value (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean | Fixed-point | User-defined | Inherit via back propagation |...",
+   "group": ""
+  },
+  {
+   "name": "Signed",
+   "default": "on",
+   "values": "有符号定点数据类型 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "定点数据类型中的位数 16 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Set fraction length in output to",
+   "default": "User-defined",
+   "values": "定点缩放因子 User-defined (default) | Best precision",
+   "group": ""
+  },
+  {
+   "name": "Fractional length",
+   "default": "15",
+   "values": "小数位数 15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "User-defined data type",
+   "default": "sfix(16)",
+   "values": "用户定义定点数据类型 sfix(16) (default) | user-defined fixed-point data type",
+   "group": ""
+  }
+ ]
+}

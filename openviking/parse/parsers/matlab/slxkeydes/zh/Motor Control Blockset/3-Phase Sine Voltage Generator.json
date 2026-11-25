@@ -1,0 +1,52 @@
+{
+ "key": "3-Phase Sine Voltage Generator",
+ "title": "3-Phase Sine Voltage Generator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Math Transforms/b_3_Phase_Sine_Voltage_Generator.md"
+ ],
+ "text": "生成平衡的三相正弦信号，输入 2 路、输出 3 路；按 {Theta 单位} 指定θ e 的单位；{查找表的数据点数} 查找表的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "参考电压振幅 标量"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "参考电压位置 标量"
+  },
+  {
+   "name": "V a",
+   "direction": "output",
+   "summary": "平衡三相电压的 a 轴分量 标量"
+  },
+  {
+   "name": "V b",
+   "direction": "output",
+   "summary": "平衡三相电压的 b 轴分量 标量"
+  },
+  {
+   "name": "V c",
+   "direction": "output",
+   "summary": "平衡三相电压的 c 轴分量 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "Theta 单位",
+   "default": "标幺",
+   "values": "θ e 的单位 标幺 (默认) | 弧度 | 度",
+   "group": ""
+  },
+  {
+   "name": "查找表的数据点数",
+   "default": "1024",
+   "values": "查找表的大小 1024 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

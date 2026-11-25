@@ -1,0 +1,101 @@
+{
+ "key": "codertarget.armM4.blocks.CANFDRead",
+ "title": "MCAN Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F280015x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28p55x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/M4/MCAN_Receive.md"
+ ],
+ "text": "从 CAN 总线读取数据；输出 9 路；按 {Buffer number (0-63)} 指定缓冲区编号；{MCAN module} 指定 CAN 模块、{Read source} 指定 CAN 接收消息源、{Output Type} 指定消息输出类型、{Output Status} 启用输出状态、{Sample Time} 指定读取消息的时间间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "CAN 消息 vector | scalar"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "消息数据 vector | scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "接收消息的状态 scalar"
+  },
+  {
+   "name": "CAN identifier(ID)",
+   "direction": "output",
+   "summary": "CAN 消息标识符 scalar"
+  },
+  {
+   "name": "Length(LEN)",
+   "direction": "output",
+   "summary": "CAN 消息长度 scalar"
+  },
+  {
+   "name": "Remote transmission request(RTR)",
+   "direction": "output",
+   "summary": "远程帧状态 scalar"
+  },
+  {
+   "name": "Bit rate switch(BRS)",
+   "direction": "output",
+   "summary": "比特率切换状态 scalar"
+  },
+  {
+   "name": "Extended identifier(XTD)",
+   "direction": "output",
+   "summary": "扩展或标准标识符 scalar"
+  },
+  {
+   "name": "Frame data format(FDF)",
+   "direction": "output",
+   "summary": "CAN 帧数据格式 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "MCAN module",
+   "default": "A",
+   "values": "CAN 模块 A (default) | B",
+   "group": ""
+  },
+  {
+   "name": "Read source",
+   "default": "Buffers",
+   "values": "CAN 接收消息源 Buffers (default) | FIFO 0 | FIFO 1",
+   "group": ""
+  },
+  {
+   "name": "Buffer number (0-63)",
+   "default": "0",
+   "values": "缓冲区编号 0 (default) | 1 | 2...",
+   "group": ""
+  },
+  {
+   "name": "Output Type",
+   "default": "Packed",
+   "values": "消息输出类型 Packed (default) | Unpacked",
+   "group": ""
+  },
+  {
+   "name": "Output Status",
+   "default": "off",
+   "values": "启用输出状态 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "0.1",
+   "values": "读取消息的时间间隔 0.1 (default) | -1 | nonnegative real value",
+   "group": ""
+  }
+ ]
+}

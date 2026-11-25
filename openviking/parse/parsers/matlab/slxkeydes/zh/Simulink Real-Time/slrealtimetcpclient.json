@@ -1,0 +1,61 @@
+{
+ "key": "slrealtimetcpclient",
+ "title": "TCP Client",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/TCP_Client.md"
+ ],
+ "text": "配置 TCP 客户端，输入 1 路、输出 1 路；{Use host-target connection} 指定在开发计算机和目标计算机之间使用以太网连接、{Remote server IP address} 指定服务器设备的 IP 地址 x.x.x.x、{Remote server port} 指定服务器设备的端口号 1–65535、{Use Nagle’s algorithm} 启用 Nagle 算法以合并数据包、{Client IP address} 指定正在配置的客户端设备的 IP 地址、{Client local port} 指定正在配置的客户端设备的 IP 端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "将模块连接至远程以太网设备 整数"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "设备返回未连接或已连接的状态 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use host-target connection",
+   "default": "’off’",
+   "values": "在开发计算机和目标计算机之间使用以太网连接 ’off’ (默认) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Remote server IP address",
+   "default": "",
+   "values": "服务器设备的 IP 地址 x.x.x.x",
+   "group": ""
+  },
+  {
+   "name": "Remote server port",
+   "default": "",
+   "values": "服务器设备的端口号 1–65535",
+   "group": ""
+  },
+  {
+   "name": "Use Nagle’s algorithm",
+   "default": "on",
+   "values": "启用 Nagle 算法以合并数据包 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "Client IP address",
+   "default": "无值",
+   "values": "正在配置的客户端设备的 IP 地址 无值 (默认) | x.x.x.x",
+   "group": "高级参数"
+  },
+  {
+   "name": "Client local port",
+   "default": "无值",
+   "values": "正在配置的客户端设备的 IP 端口 无值 (默认) | 0–65535",
+   "group": "高级参数"
+  }
+ ]
+}

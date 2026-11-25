@@ -1,0 +1,81 @@
+{
+ "key": "C28x SCI Transmit",
+ "title": "SCI Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2803x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2805x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2806x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C280x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C281x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2833x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2834x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F280013x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F280015x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28002x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28003x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28004x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2807x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xD/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xS/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p55x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p65x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/SCI_Transmit.md"
+ ],
+ "text": "通过串行通信接口 (SCI) 将目标数据传输到主机，输入 1 路、输出 1 路；按 {附加包头} 指定表示数据开始；{SCI 模块} 指定 SCI 通信模块、{附加包终止符} 表示数据结尾、{帧大小} 指定要接收的数据长度、{等到传输以前的数据} 指定等待上一时间步接收到的数据发送完毕、{输出状态} 指定数据传输期间显示传输状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "写入串行总线的数据 标量 | 向量"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "在给定时间步传输的数据 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "SCI 模块",
+   "default": "A",
+   "values": "SCI 通信模块 A (默认) | B | C | D",
+   "group": ""
+  },
+  {
+   "name": "附加包头",
+   "default": "’S’",
+   "values": "表示数据开始 ’S’ (默认) | 字符串 | char | 0 到 255 之间的数字",
+   "group": ""
+  },
+  {
+   "name": "附加包终止符",
+   "default": "’E’",
+   "values": "表示数据结尾 ’E’ (默认) | 字符串 | char | 0 到 255 之间的数字",
+   "group": ""
+  },
+  {
+   "name": "帧大小",
+   "default": "600",
+   "values": "指定要接收的数据长度 600 (默认) | 任何正整数",
+   "group": ""
+  },
+  {
+   "name": "等到传输以前的数据",
+   "default": "on",
+   "values": "等待上一时间步接收到的数据发送完毕。 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "输出状态",
+   "default": "off",
+   "values": "数据传输期间显示传输状态的选项 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

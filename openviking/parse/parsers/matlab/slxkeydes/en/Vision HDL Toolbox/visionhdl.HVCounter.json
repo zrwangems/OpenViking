@@ -1,0 +1,47 @@
+{
+ "key": "visionhdl.HVCounter",
+ "title": "HV Counter",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/HV_Counter.md"
+ ],
+ "text": "Count active dimensions of pixel stream, 1 input, 3 outputs; {Active pixels per line} sets the maximum pixels per line and {Active video lines} sets the maximum lines per frame. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "hCount",
+   "direction": "output",
+   "summary": "Pixel location in line positive integer"
+  },
+  {
+   "name": "vCount",
+   "direction": "output",
+   "summary": "Line location in frame positive integer"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Active pixels per line",
+   "default": "320",
+   "values": "Maximum pixels per line 320 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Active video lines",
+   "default": "240",
+   "values": "Maximum lines per frame 240 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

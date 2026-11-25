@@ -1,0 +1,50 @@
+{
+ "key": "dB Conversion",
+ "title": "dB Conversion",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/dB_Conversion.md",
+  "DSP System Toolbox/Math Functions/Math Operations/dB_Conversion.md"
+ ],
+ "text": "Convert magnitude data to decibels (dB or dBm), 1 input, 1 output, no direct feedthrough, {Load resistance (ohms)} sets Scale factor; {Convert to} sets the signal to convert, {Input signal} sets the type of signal and {Add eps to input to protect against \"log(0) = -inf\"}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Convert to",
+   "default": "dB",
+   "values": "Signal to convert dB (default) | dBm",
+   "group": ""
+  },
+  {
+   "name": "Input signal",
+   "default": "Amplitude",
+   "values": "Type of signal Amplitude (default) | Power",
+   "group": ""
+  },
+  {
+   "name": "Load resistance (ohms)",
+   "default": "1",
+   "values": "Scale factor 1 (default) | positive scalar | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Add eps to input to protect against \"log(0) = -inf\"",
+   "default": "off",
+   "values": "Add eps off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Infinite Flow Resistance (G)",
+ "title": "Infinite Flow Resistance (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Infinite_Flow_Resistance_G.md"
+ ],
+ "text": "气体网络中的完全绝热断口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

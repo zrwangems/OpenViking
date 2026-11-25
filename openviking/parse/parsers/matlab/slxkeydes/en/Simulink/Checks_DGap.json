@@ -1,0 +1,66 @@
+{
+ "key": "Checks_DGap",
+ "title": "Check Dynamic Gap",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model Verification/Check_Dynamic_Gap.md",
+  "HDL Coder/Model Verification/Check_Dynamic_Gap.md"
+ ],
+ "text": "Check that gap of possibly varying width occurs in range of signal’s amplitudes, 3 inputs, 1 output, no direct feedthrough; {Enable assertion} enables or disable check, {Simulation callback when assertion fails (optional)} sets the expression to evaluate when assertion, {Stop simulation when assertion fails} sets the whether to stop simulation when check, {Output assertion signal} sets the create output signal and {Select icon type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "max",
+   "direction": "input",
+   "summary": "Upper bound of dynamic gap scalar | vector | matrix"
+  },
+  {
+   "name": "min",
+   "direction": "input",
+   "summary": "Lower bound of dynamic gap scalar | vector | matrix"
+  },
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal checked against gap scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Assertion output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "Enable or disable check on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "\"\"",
+   "values": "Expression to evaluate when assertion fails \"\" (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "on",
+   "values": "Whether to stop simulation when check fails on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "Create output signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Select icon type",
+   "default": "graphic",
+   "values": "Select icon type graphic (default) | text",
+   "group": ""
+  }
+ ]
+}

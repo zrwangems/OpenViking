@@ -1,0 +1,19 @@
+{
+ "key": "Design Verifier Implies",
+ "title": "Implies",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Verification Utilities/Implies.md"
+ ],
+ "text": "指定生成特定响应的条件，输入 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Values",
+   "direction": "input",
+   "summary": "输入信号 标量 | 元胞数组"
+  }
+ ],
+ "params": []
+}

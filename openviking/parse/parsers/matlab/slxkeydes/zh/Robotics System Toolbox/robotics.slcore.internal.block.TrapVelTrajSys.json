@@ -1,0 +1,126 @@
+{
+ "key": "robotics.slcore.internal.block.TrapVelTrajSys",
+ "title": "Trapezoidal Velocity Profile Trajectory",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Utilities/Trapezoidal_Velocity_Profile_Trajectory.md"
+ ],
+ "text": "使用梯形速度剖面生成经过多个航点的轨迹，输入 6 路、输出 3 路；按 {Acceleration} 指定速度剖面的加速度；{Waypoint source} 指定路点来源 Internal、{Waypoints} 指定沿轨迹的路点位置 n -by、{Number of parameters} 指定速度剖面参数数量、{Parameter 1} 指定速度剖面参数 Peak Velocity、{Parameter 2} 指定速度剖面参数 Peak Velocity、{Parameter source} 指定路点来源 Internal、{Peak velocity} 指定速度剖面的峰值速度、{End time} 指定轨迹段的持续时间、{Acceleration time} 指定速度剖面加速阶段的持续时间、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "沿轨迹的时间点 scalar | vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "沿轨迹的路点位置 n -by- p matrix"
+  },
+  {
+   "name": "PeakVel",
+   "direction": "input",
+   "summary": "速度剖面的峰值速度 [1;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix"
+  },
+  {
+   "name": "Accel",
+   "direction": "input",
+   "summary": "速度剖面的加速度 [2;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix"
+  },
+  {
+   "name": "EndTime",
+   "direction": "input",
+   "summary": "轨迹段的持续时间 [1;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix"
+  },
+  {
+   "name": "AccelTime",
+   "direction": "input",
+   "summary": "速度剖面加速阶段的持续时间 [1;1] (default) | scalar | n -element vector | n -by-( p – 1) matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "轨迹的位置 scalar | vector | matrix"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "轨迹的速度 scalar | vector | matrix"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "轨迹的加速度 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Waypoint source",
+   "default": "Internal",
+   "values": "路点来源 Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Waypoints",
+   "default": "",
+   "values": "沿轨迹的路点位置 n -by- p matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of parameters",
+   "default": "0",
+   "values": "速度剖面参数数量 0 (default) | 1 | 2",
+   "group": ""
+  },
+  {
+   "name": "Parameter 1",
+   "default": "",
+   "values": "速度剖面参数 Peak Velocity | Acceleration | End Time | Acceleration Time",
+   "group": ""
+  },
+  {
+   "name": "Parameter 2",
+   "default": "",
+   "values": "速度剖面参数 Peak Velocity | Acceleration | End Time | Acceleration Time",
+   "group": ""
+  },
+  {
+   "name": "Parameter source",
+   "default": "Internal",
+   "values": "路点来源 Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Peak velocity",
+   "default": "[1;2]",
+   "values": "速度剖面的峰值速度 [1;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix",
+   "group": ""
+  },
+  {
+   "name": "Acceleration",
+   "default": "[2;2]",
+   "values": "速度剖面的加速度 [2;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix",
+   "group": ""
+  },
+  {
+   "name": "End time",
+   "default": "[1;2]",
+   "values": "轨迹段的持续时间 [1;2] (default) | scalar | n -element vector | n -by-( p – 1) matrix",
+   "group": ""
+  },
+  {
+   "name": "Acceleration time",
+   "default": "[1;1]",
+   "values": "速度剖面加速阶段的持续时间 [1;1] (default) | scalar | n -element vector | n -by-( p – 1) matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

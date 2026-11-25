@@ -1,0 +1,52 @@
+{
+ "key": "ROS2 Write Point Cloud",
+ "title": "Write Point Cloud",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Write_Point_Cloud.md"
+ ],
+ "text": "将点云数据写入 ROS 或 ROS 2 消息，输入 4 路、输出 1 路；按 {Select color field} 指定点云图像的颜色字段；{Write to Intensity field} 指定写入强度值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "XYZ",
+   "direction": "input",
+   "summary": "XYZ 坐标 matrix | array"
+  },
+  {
+   "name": "RGB",
+   "direction": "input",
+   "summary": "每个点的 RGB 值 matrix | array"
+  },
+  {
+   "name": "Alpha",
+   "direction": "input",
+   "summary": "输入图像的 Alpha 通道 N -by-1 vector | h -by- w matrix"
+  },
+  {
+   "name": "Intensity",
+   "direction": "input",
+   "summary": "每个点的强度值 matrix | array"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "ROS 或 ROS 2 点云消息 nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select color field",
+   "default": "none",
+   "values": "点云图像的颜色字段 none (default) | rgb | rgba",
+   "group": ""
+  },
+  {
+   "name": "Write to Intensity field",
+   "default": "off",
+   "values": "写入强度值 off (default) | on",
+   "group": ""
+  }
+ ]
+}

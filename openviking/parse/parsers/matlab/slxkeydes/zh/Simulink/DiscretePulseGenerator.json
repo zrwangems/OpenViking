@@ -1,0 +1,112 @@
+{
+ "key": "DiscretePulseGenerator",
+ "title": "Continuous Pulse Generator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Quick Insert/Sources/Continuous_Pulse_Generator.md",
+  "Simulink/Quick Insert/Sources/Discrete_Pulse_Generator.md",
+  "Simulink/Sources/Pulse_Generator.md"
+ ],
+ "text": "Constant 模块生成实数或复数常量值信号；输出 1 路、无直接馈通；按 {Sample time} 指定采样间隔；{Constant value} 指定常量输出值 scalar、{Interpret vector parameters as 1-D} 指定将向量视为一维、{Output minimum} 用于范围检查的最小输出值、{Output maximum} 用于范围检查的最大输出值、{Output data type} 输出数据类型、{Lock output data type setting against changes by the fixed-point tools} 防止定点工具覆盖 Output data type、{Mode} 指定要指定的数据类别、{Data type override} 指定此信号的数据类型覆盖模式 Inherit、{Signedness} 指定有符号或无符号、{Scaling} 指定定点数据的定标方法 Best、{Word length} 指定存放量化整数的字的位数、{Fraction length} 指定定点数据类型的小数长度、{Slope} 指定定点数据类型的斜率、{Bias} 指定定点数据类型的偏置，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "常量值 scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Constant value",
+   "default": "",
+   "values": "常量输出值 scalar | vector | matrix | N-D array",
+   "group": "Main"
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "将向量视为一维 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "采样间隔 inf (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "用于范围检查的最小输出值 [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "用于范围检查的最大输出值 [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "value’",
+   "values": "输出数据类型 Inherit: Inherit from ’Constant value’ (default) | Inherit: Inherit via back propagation | double | single | half | int8 | int16 |...",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖 Output data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "要指定的数据类别 Inherit (default) | Built in | Fixed point | Enumerated | Bus object | Value type | Expression",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "指定此信号的数据类型覆盖模式 Inherit | Off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "指定有符号或无符号 Signed (default) | Unsigned",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "定点数据的定标方法 Best precision (default) | Binary point | Slope and bias",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "存放量化整数的字的位数 16 (default) | integer from 0 to 32",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "指定定点数据类型的小数长度 0 (default) | scalar integer",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "指定定点数据类型的斜率 2^0 (default) | positive, real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "指定定点数据类型的偏置 0 (default) | real-valued scalar",
+   "group": "Signal Attributes"
+  }
+ ]
+}

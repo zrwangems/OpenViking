@@ -1,0 +1,20 @@
+{
+ "key": "Variable Inductor",
+ "title": "Variable Inductor",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Variable_Inductor.md",
+  "Simscape/Electrical/Passive/Variable_Inductor.md"
+ ],
+ "text": "Model variable inductor, 1 input.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "Simulink control signal scalar"
+  }
+ ],
+ "params": []
+}

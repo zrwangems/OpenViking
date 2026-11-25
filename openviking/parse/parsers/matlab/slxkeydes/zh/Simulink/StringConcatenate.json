@@ -1,0 +1,48 @@
+{
+ "key": "StringConcatenate",
+ "title": "String Concatenate",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Concatenate.md"
+ ],
+ "text": "串联各个输入字符串以形成一个输出字符串，输入 2 路、输出 1 路；按 {输出数据类型} 指定输出数据类型；{输入数目} 指定输入字符串的个数 标量、{模式} 指定数据类别 stringtype，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入字符串 标量"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个输入字符串 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "串联的字符串 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入数目",
+   "default": "",
+   "values": "输入字符串的个数 标量",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "string",
+   "values": "输出数据类型 string (默认) | <数据类型表达式> | 标量",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "stringtype(128)",
+   "values": "数据类别 stringtype(128) (默认) | scalar",
+   "group": ""
+  }
+ ]
+}

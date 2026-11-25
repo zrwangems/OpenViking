@@ -1,0 +1,132 @@
+{
+ "key": "audio.simulink.DynamicRangeExpander",
+ "title": "Expander",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Dynamic Range Control/Expander.md"
+ ],
+ "text": "动态范围扩展器，输入 7 路、输出 2 路、无直接馈通；{Ratio} 指定扩展比、{Threshold (dB)} 指定操作阈值 –10、{Knee width (dB)} 指定压缩特性中的过渡区域、{View static characteristic} 打开动态范围扩展器的静态特性图、{Attack time (s)} 指定应用增益逐渐上升的时间、{Release time (s)} 指定应用增益逐渐下降所需的时间、{Hold time (s)} 指定应用增益保持稳定的时间、{Inherit sample rate from input} 指定输入采样率的来源、{Input sample rate (Hz)} 指定输入的采样率、{Output gain (dB)} 指定应用于每个输入采样的增益、{Sidechain} 启用侧链输入、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入信号 matrix | 1-D vector"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "比值 scalar"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Threshold (dB) scalar"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "Knee width (dB) scalar"
+  },
+  {
+   "name": "AT",
+   "direction": "input",
+   "summary": "Attack time (s) scalar"
+  },
+  {
+   "name": "RT",
+   "direction": "input",
+   "summary": "Release time (s) scalar"
+  },
+  {
+   "name": "HT",
+   "direction": "input",
+   "summary": "Hold time (s) scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "应用于每个输入样本的增益 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Ratio",
+   "default": "5",
+   "values": "扩展比 5 (default) | scalar in the range 1 to 50 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Threshold (dB)",
+   "default": "–10",
+   "values": "操作阈值 –10 (default) | scalar in the range –140 to 0 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Knee width (dB)",
+   "default": "0",
+   "values": "压缩特性中的过渡区域 0 (default) | scalar in the range 0 to 20",
+   "group": ""
+  },
+  {
+   "name": "View static characteristic",
+   "default": "",
+   "values": "打开动态范围扩展器的静态特性图 button",
+   "group": ""
+  },
+  {
+   "name": "Attack time (s)",
+   "default": "0.05",
+   "values": "应用增益逐渐上升的时间 0.05 (default) | scalar in the range 0 to 4 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Release time (s)",
+   "default": "0.2",
+   "values": "应用增益逐渐下降所需的时间 0.2 (default) | scalar in the range 0 to 4 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Hold time (s)",
+   "default": "0.05",
+   "values": "应用增益保持稳定的时间 0.05 (default) | scalar in the range 0 to 4 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "指定输入采样率的来源 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output gain (dB)",
+   "default": "off",
+   "values": "应用于每个输入采样的增益 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sidechain",
+   "default": "off",
+   "values": "启用侧链输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "指定要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

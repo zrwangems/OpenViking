@@ -1,0 +1,98 @@
+{
+ "key": "Park to Clarke Angle Transform",
+ "title": "Park to Clarke Angle Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Park_to_Clarke_Angle_Transform.md",
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/Inverse_Park_Transform.md",
+  "Motor Control Blockset/Controls/Math Transforms/Inverse_Park_Transform.md"
+ ],
+ "text": "Implement dq0 to αβ0 transform, 6 inputs, 3 outputs, {Theta units} sets Unit of electrical position input; {Alpha-axis alignment} sets the dq0 reference frame, {Use block for embedded implementation (requires Motor Control Blockset™)} sets the option to use block for embedded, {Number of inputs} sets the number of block, {Theta input} sets the type of position input Sine and Cosine electrical and {Number of data points for lookup table} sets the size of lookup table array. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dq0",
+   "direction": "input",
+   "summary": "d - q axis and zero components vector"
+  },
+  {
+   "name": "d",
+   "direction": "input",
+   "summary": "Direct-axis component scalar"
+  },
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "Quadrature-axis component scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "Rotational angle scalar | in radians"
+  },
+  {
+   "name": "sinθ e",
+   "direction": "input",
+   "summary": "Sine value of rotational angle scalar"
+  },
+  {
+   "name": "cosθ e",
+   "direction": "input",
+   "summary": "Cosine value of rotational angle scalar"
+  },
+  {
+   "name": "αβ0",
+   "direction": "output",
+   "summary": "α - β axis and zero components vector"
+  },
+  {
+   "name": "α",
+   "direction": "output",
+   "summary": "Alpha-axis component scalar"
+  },
+  {
+   "name": "β",
+   "direction": "output",
+   "summary": "Beta-axis component scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Alpha-axis alignment",
+   "default": "Q-axis",
+   "values": "dq0 reference frame alignment Q-axis (default) | D-axis",
+   "group": ""
+  },
+  {
+   "name": "Use block for embedded implementation (requires Motor Control Blockset™)",
+   "default": "off",
+   "values": "Option to use block for embedded implementation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of inputs",
+   "default": "inputs",
+   "values": "Number of block inputs Two inputs (default) | Three inputs",
+   "group": ""
+  },
+  {
+   "name": "Theta input",
+   "default": "position",
+   "values": "Type of position input Sine and Cosine electrical position (default) | Electrical position",
+   "group": ""
+  },
+  {
+   "name": "Theta units",
+   "default": "Per-unit",
+   "values": "Unit of electrical position input Per-unit (default) | Radians | Degrees",
+   "group": ""
+  },
+  {
+   "name": "Number of data points for lookup table",
+   "default": "1024",
+   "values": "Size of lookup table array 1024 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,140 @@
+{
+ "key": "HDL Counter",
+ "title": "HDL Counter",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Sources/HDL_Counter.md"
+ ],
+ "text": "自由运行或计数受限的硬件计数器，输入 5 路、输出 2 路；按 {Counter type} 指定计数器行为 Free；{Initial value} 指定复位后的计数值、{Step value} 指定计数的步长值、{Count to value} 指定阈值计数值、{Count from}、{Count from value} 指定计数的初始值、{Local reset port} 用于复位计数器的局部端口、{Load ports} 用于加载值的端口、{Count enable port} 用于使能计数的端口、{Count direction port} 用于计数方向的端口、{Count hit output port} 用于计数限值的端口、{Counter output data is} 输出数据类型的符号性、{Word length} 指定计数器字长、{Fraction length} 指定计数器小数长度、{Sample time} 指定计数器采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "rst",
+   "direction": "input",
+   "summary": "局部复位端口 scalar"
+  },
+  {
+   "name": "load",
+   "direction": "input",
+   "summary": "加载端口 scalar"
+  },
+  {
+   "name": "load_val",
+   "direction": "input",
+   "summary": "加载端口值 scalar"
+  },
+  {
+   "name": "enb",
+   "direction": "input",
+   "summary": "计数使能端口 scalar"
+  },
+  {
+   "name": "dir",
+   "direction": "input",
+   "summary": "计数方向端口 scalar"
+  },
+  {
+   "name": "count",
+   "direction": "output",
+   "summary": "计数值 scalar"
+  },
+  {
+   "name": "count_hit",
+   "direction": "output",
+   "summary": "计数器限值指示 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Counter type",
+   "default": "running",
+   "values": "计数器行为 Free running (default) | Count limited | Modulo",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "复位后的计数值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Step value",
+   "default": "1",
+   "values": "计数的步长值 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Count to value",
+   "default": "25",
+   "values": "阈值计数值 25 (default)",
+   "group": ""
+  },
+  {
+   "name": "Count from",
+   "default": "value",
+   "values": "Count from value 的条件 Initial value (default) | Specify",
+   "group": ""
+  },
+  {
+   "name": "Count from value",
+   "default": "0",
+   "values": "计数的初始值 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Local reset port",
+   "default": "off",
+   "values": "用于复位计数器的局部端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Load ports",
+   "default": "off",
+   "values": "用于加载值的端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Count enable port",
+   "default": "off",
+   "values": "用于使能计数的端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Count direction port",
+   "default": "off",
+   "values": "用于计数方向的端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Count hit output port",
+   "default": "off",
+   "values": "用于计数限值的端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Counter output data is",
+   "default": "Unsigned",
+   "values": "输出数据类型的符号性 Unsigned (default) | Signed",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "8",
+   "values": "计数器字长 8 (default)",
+   "group": ""
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "计数器小数长度 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "计数器采样时间 1 (default)",
+   "group": ""
+  }
+ ]
+}

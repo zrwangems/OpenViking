@@ -1,0 +1,13 @@
+{
+ "key": "Current-Controlled Current Source",
+ "title": "Current-Controlled Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Sources/Current_Controlled_Current_Source.md"
+ ],
+ "text": "Ideal current source driven by input signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,62 @@
+{
+ "key": "Random Integer Generator",
+ "title": "Random Integer Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Random Data Sources/Random_Integer_Generator.md"
+ ],
+ "text": "Generate integers randomly distributed in specified range, 1 output, {Set size} sets size; {Source of initial seed}, {Initial seed}, {Sample time}, {Samples per frame}, {Output data type} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Random integer output scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Set size",
+   "default": "8",
+   "values": "Set size 8 (default) | positive integer | row vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Source of initial seed",
+   "default": "Auto",
+   "values": "Source of initial seed Auto (default) | Parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "Initial seed value 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Sample time 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single | uint8 | uint16 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

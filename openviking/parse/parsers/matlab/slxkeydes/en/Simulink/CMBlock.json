@@ -1,0 +1,33 @@
+{
+ "key": "CMBlock",
+ "title": "Model Info",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model-Wide Utilities/Model_Info.md",
+  "HDL Coder/Model-Wide Utilities/Model_Info.md"
+ ],
+ "text": "Display model properties and text in model, {Horizontal text alignment} sets Horizontal text alignment on block mask; {Enter text and tokens to display on Model Info block} sets the content and format of the text to display Model and {Show block frame} sets the frame for block mask. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Enter text and tokens to display on Model Info block",
+   "default": "Info",
+   "values": "Content and format of the text to display Model Info (default) | text",
+   "group": ""
+  },
+  {
+   "name": "Horizontal text alignment",
+   "default": "Center",
+   "values": "Horizontal text alignment on block mask Center (default) | Left | Right",
+   "group": ""
+  },
+  {
+   "name": "Show block frame",
+   "default": "on",
+   "values": "Frame for block mask on (default) | off",
+   "group": ""
+  }
+ ]
+}

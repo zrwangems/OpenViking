@@ -1,0 +1,168 @@
+{
+ "key": "fusion.simulink.trackGOSPAMetric",
+ "title": "Generalized Optimal Subpattern Assignment Metric",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Track Metrics/Generalized_Optimal_Subpattern_Assignment_Metric.md"
+ ],
+ "text": "计算广义最优子模式分配度量，输入 3 路、输出 6 路；按 {Distance type} 指定距离类型；{Cutoff distance} 指定航迹与真值之间截断距离的阈值、{Order} 指定 GOSPA 指标的阶数、{Alpha}、{Custom distance function} 指定自定义距离函数 function handle、{Motion model} 指定期望的平台运动模型、{Switching penalty} 指定分配切换惩罚、{Simulate using} 指定要运行的仿真类型 Interpreted、{Assignments} 启用分配输入、{GOSPA metric without switching error} 启用不含切换误差输出的 GOSPA 指标、{Switching error} 启用切换误差分量输出、{Localization error} 启用定位误差分量输出、{Missed target error} 启用漏检目标误差分量输出、{False track error} 启用虚假航迹误差分量输出、{Track bus} 指定航迹总线选择、{Truth bus} 指定真值总线选择、{Track extractor function} 指定航迹提取函数 function handle、{Truth extractor function} 指定真值提取函数 function handle，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tracks",
+   "direction": "input",
+   "summary": "航迹列表 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Truths",
+   "direction": "input",
+   "summary": "真值列表 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Assignments",
+   "direction": "input",
+   "summary": "已知分配 K -by-2 matrix of nonnegative integers"
+  },
+  {
+   "name": "GOSPA Metric",
+   "direction": "output",
+   "summary": "包含切换误差分量的 GOSPA 度量 nonnegative real scalar"
+  },
+  {
+   "name": "GOSPA Metric Without Switching",
+   "direction": "output",
+   "summary": "不包含切换误差分量的 GOSPA 度量 nonnegative real scalar"
+  },
+  {
+   "name": "Switching Error",
+   "direction": "output",
+   "summary": "切换误差分量 nonnegative real scalar"
+  },
+  {
+   "name": "Localization Error",
+   "direction": "output",
+   "summary": "定位误差分量 nonnegative real scalar"
+  },
+  {
+   "name": "Missed Target Error",
+   "direction": "output",
+   "summary": "漏检目标误差分量 nonnegative real scalar"
+  },
+  {
+   "name": "False Track Error",
+   "direction": "output",
+   "summary": "虚假航迹误差分量 nonnegative real scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Cutoff distance",
+   "default": "30",
+   "values": "航迹与真值之间截断距离的阈值 30 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Order",
+   "default": "2",
+   "values": "GOSPA 指标的阶数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Alpha",
+   "default": "2",
+   "values": "GOSPA 指标的 Alpha 参数 2 (default) | positive scalar in range [0, 2]",
+   "group": ""
+  },
+  {
+   "name": "Distance type",
+   "default": "posnees",
+   "values": "距离类型 posnees (default) | velnees | posabserr | velabserr | custom",
+   "group": ""
+  },
+  {
+   "name": "Custom distance function",
+   "default": "",
+   "values": "自定义距离函数 function handle",
+   "group": ""
+  },
+  {
+   "name": "Motion model",
+   "default": "constvel",
+   "values": "期望的平台运动模型 constvel (default) | constacc | constturn | singer",
+   "group": ""
+  },
+  {
+   "name": "Switching penalty",
+   "default": "0",
+   "values": "分配切换惩罚 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Assignments",
+   "default": "off",
+   "values": "启用分配输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "GOSPA metric without switching error",
+   "default": "off",
+   "values": "启用不含切换误差输出的 GOSPA 指标 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Switching error",
+   "default": "off",
+   "values": "启用切换误差分量输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Localization error",
+   "default": "off",
+   "values": "启用定位误差分量输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Missed target error",
+   "default": "off",
+   "values": "启用漏检目标误差分量输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "False track error",
+   "default": "off",
+   "values": "启用虚假航迹误差分量输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track bus",
+   "default": "objectTrack",
+   "values": "航迹总线选择 objectTrack (default) | custom",
+   "group": ""
+  },
+  {
+   "name": "Truth bus",
+   "default": "Platform",
+   "values": "真值总线选择 Platform (default) | Actor | custom",
+   "group": ""
+  },
+  {
+   "name": "Track extractor function",
+   "default": "",
+   "values": "航迹提取函数 function handle",
+   "group": ""
+  },
+  {
+   "name": "Truth extractor function",
+   "default": "",
+   "values": "真值提取函数 function handle",
+   "group": ""
+  }
+ ]
+}

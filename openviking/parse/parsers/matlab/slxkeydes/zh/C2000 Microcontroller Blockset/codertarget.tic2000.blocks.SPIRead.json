@@ -1,0 +1,105 @@
+{
+ "key": "codertarget.tic2000.blocks.SPIRead",
+ "title": "SPI Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2803x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2805x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2806x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C280x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C281x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2833x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/C2834x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F280013x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F280015x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28002x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28004x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F2807x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xD/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xS/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28p55x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/SPI_Receive.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/SPI_Receive.md"
+ ],
+ "text": "通过目标设备上的串行外设接口 (SPI) 接收数据；输出 2 路；按 {采样时间} 指定SPI 采样时间选择；{SPI 模块}、{时钟极性}、{时钟相位}、{输出数据长度}、{启用阻塞模式} 启用 SPI 阻塞模式、{数据位} 指定 SPI 传输中的位数、{片选调用方法} 指定 SPI 外围设备的方法 由、{片选引脚极性} 指定 SPI 外设选择引脚极性、{片选引脚} 指定 SPI 外设选择引脚，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rx",
+   "direction": "output",
+   "summary": "SPI 接收数据 向量"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "SPI 接收状态 0 | 1 | 2"
+  }
+ ],
+ "params": [
+  {
+   "name": "SPI 模块",
+   "default": "SPI_A",
+   "values": "用于读取数据的 SPI 模块 SPI_A (默认) | SPI_B | SPI_C | SPI_D",
+   "group": "主要"
+  },
+  {
+   "name": "时钟极性",
+   "default": "Rising_edge",
+   "values": "SPI 时钟极性 Rising_edge (默认) | Falling_edge",
+   "group": "主要"
+  },
+  {
+   "name": "时钟相位",
+   "default": "No_delay",
+   "values": "SPI 时钟相位 No_delay (默认) | Delay_half_cycle",
+   "group": "主要"
+  },
+  {
+   "name": "输出数据长度",
+   "default": "1",
+   "values": "SPI 输出数据长度 1 (默认) | 正整数",
+   "group": "主要"
+  },
+  {
+   "name": "启用阻塞模式",
+   "default": "off",
+   "values": "启用 SPI 阻塞模式 off (默认) | on",
+   "group": "主要"
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "SPI 采样时间选择 0.1 (默认) | –1 | 标量",
+   "group": "主要"
+  },
+  {
+   "name": "数据位",
+   "default": "8",
+   "values": "SPI 传输中的位数 8 (默认) | [1 16] 范围内的整数",
+   "group": "高级"
+  },
+  {
+   "name": "片选调用方法",
+   "default": "外设提供",
+   "values": "选择 SPI 外围设备的方法 由 SPI 外设提供 (默认) | 显式 GPIO 调用",
+   "group": "高级"
+  },
+  {
+   "name": "片选引脚极性",
+   "default": "低电平有效",
+   "values": "SPI 外设选择引脚极性 低电平有效 (默认) | 高电平有效",
+   "group": "高级"
+  },
+  {
+   "name": "片选引脚",
+   "default": "0",
+   "values": "SPI 外设选择引脚 0 (默认) | 正整数标量",
+   "group": "高级"
+  }
+ ]
+}

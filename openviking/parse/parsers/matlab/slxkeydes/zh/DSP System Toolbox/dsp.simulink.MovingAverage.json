@@ -1,0 +1,78 @@
+{
+ "key": "dsp.simulink.MovingAverage",
+ "title": "Moving Average",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Moving_Average.md"
+ ],
+ "text": "Moving Average 模块随时间的推移独立计算输入信号沿每个通道的移动平均值，输入 2 路、输出 1 路；{方法}、{指定窗长度}、{窗长度} 指定滑动窗的长度、{重叠长度}、{允许任意帧长度的固定大小输入信号}、{从输入端口指定遗忘因子} 用于指定遗忘因子的标志、{遗忘因子} 指定指数加权因子、{仿真方式} 指定要运行的仿真的类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "数据输入 向量 | 矩阵"
+  },
+  {
+   "name": "lambda",
+   "direction": "input",
+   "summary": "遗忘因子 范围 [0,1] 内的非负实数标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "移动平均值输出 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "方法",
+   "default": "滑动窗",
+   "values": "平均值计算方法 滑动窗 (默认) | 指数加权",
+   "group": ""
+  },
+  {
+   "name": "指定窗长度",
+   "default": "on",
+   "values": "用于指定窗长度的标志 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "窗长度",
+   "default": "4",
+   "values": "滑动窗的长度 4 (默认) | 正标量整数",
+   "group": ""
+  },
+  {
+   "name": "重叠长度",
+   "default": "3",
+   "values": "窗之间的重叠长度 3 (默认) | 非负整数",
+   "group": ""
+  },
+  {
+   "name": "允许任意帧长度的固定大小输入信号",
+   "default": "off",
+   "values": "允许任意帧长度的固定大小输入信号 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "从输入端口指定遗忘因子",
+   "default": "off",
+   "values": "用于指定遗忘因子的标志 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "遗忘因子",
+   "default": "0.9",
+   "values": "指数加权因子 0.9 (默认) | 范围 [0,1] 内的非负实数标量",
+   "group": ""
+  },
+  {
+   "name": "仿真方式",
+   "default": "解释执行",
+   "values": "要运行的仿真的类型 解释执行 (默认) | 代码生成",
+   "group": ""
+  }
+ ]
+}

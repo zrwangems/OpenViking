@@ -1,0 +1,13 @@
+{
+ "key": "Rectangular Joint",
+ "title": "Rectangular Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Rectangular_Joint.md"
+ ],
+ "text": "Joint with two prismatic primitives.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

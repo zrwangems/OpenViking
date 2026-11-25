@@ -1,0 +1,146 @@
+{
+ "key": "Task Manager",
+ "title": "Task Manager",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/Task_Manager.md",
+  "SoC Blockset/Processor Task Execution/Task_Manager.md",
+  "C2000 Microcontroller Blockset/Scheduling/CLA_Task_Manager.md"
+ ],
+ "text": "在 Simulink 模型中创建和管理任务执行，输入 2 路、输出 1 路；按 {Core} 指定执行任务的处理器核；{Enable task simulation} 启用任务持续时间仿真、{List of tasks} 指定任务列表 Task1、{Add} 添加任务、{Delete} 指定删除现有任务、{Use Schedule Editor ordering} 使用 Schedule Editor、{Name} 指定任务名称 Task1、{Type} 指定任务的触发类型、{Period} 指定定时器周期、{Priority} 指定任务在调度器中的优先级、{Drop tasks that overrun} 指定丢弃超限运行的任务、{Play recorded task execution sequence} 启用从文件回放、{Specify task duration via} 指定任务执行时间的来源、{Percent} 指定分布的可能性、{Mean} 指定仿真中的平均任务持续时间 1e-06、{SD} 指定仿真中任务持续时间的标准差、{Min} 指定任务持续时间的下限 1e-06、{Max} 指定任务持续时间的上限 1e-06、{File name} 指定包含诊断调度数据的文件 filepath，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Task1",
+   "direction": "output",
+   "summary": "来自 Task1 的函数调用 scalar"
+  },
+  {
+   "name": "Task1 Event",
+   "direction": "input",
+   "summary": "消息事件通知 scalar"
+  },
+  {
+   "name": "Task1 Dur",
+   "direction": "input",
+   "summary": "任务持续时间 positive scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable task simulation",
+   "default": "on",
+   "values": "启用任务持续时间仿真 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "List of tasks",
+   "default": "Task1",
+   "values": "任务列表 Task1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Add",
+   "default": "",
+   "values": "添加任务 button",
+   "group": ""
+  },
+  {
+   "name": "Delete",
+   "default": "",
+   "values": "删除现有任务 button",
+   "group": ""
+  },
+  {
+   "name": "Use Schedule Editor ordering",
+   "default": "off",
+   "values": "使用 Schedule Editor 工具指定任务优先级 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "Task1",
+   "values": "任务名称 Task1 (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Type",
+   "default": "Timer-driven",
+   "values": "任务的触发类型 Timer-driven (default) | Event-driven",
+   "group": "Main"
+  },
+  {
+   "name": "Period",
+   "default": "0.1",
+   "values": "定时器周期 0.1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Core",
+   "default": "0",
+   "values": "执行任务的处理器核 0 (default) | non-negative integer | -1",
+   "group": "Main"
+  },
+  {
+   "name": "Priority",
+   "default": "10",
+   "values": "任务在调度器中的优先级 10 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Drop tasks that overrun",
+   "default": "off",
+   "values": "丢弃超限运行的任务 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Play recorded task execution sequence",
+   "default": "off",
+   "values": "启用从文件回放 off (default) | on",
+   "group": "Simulation"
+  },
+  {
+   "name": "Specify task duration via",
+   "default": "Dialog",
+   "values": "任务执行时间的来源 Dialog (default) | Input port | Record task execution statistics",
+   "group": "Simulation"
+  },
+  {
+   "name": "Percent",
+   "default": "100",
+   "values": "分布的可能性 100 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Mean",
+   "default": "1e-06",
+   "values": "仿真中的平均任务持续时间 1e-06 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "SD",
+   "default": "0",
+   "values": "仿真中任务持续时间的标准差 0 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Min",
+   "default": "1e-06",
+   "values": "任务持续时间的下限 1e-06 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Max",
+   "default": "1e-06",
+   "values": "任务持续时间的上限 1e-06 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "File name",
+   "default": "",
+   "values": "包含诊断调度数据的文件 filepath",
+   "group": "Simulation"
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "key": "Integer-Output RS Decoder",
+ "title": "Integer-Output RS Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Block/Integer_Output_RS_Decoder.md"
+ ],
+ "text": "Decode Reed-Solomon code to recover integer vector data, 2 inputs, 2 outputs, {Primitive polynomial} sets Primitive polynomial ’X^3 + X +; {Codeword length N}, {Message length K} sets the message word length, {Shortened message length S} sets the shortened message word length, {Generator polynomial}, {Puncture vector}, {Enable erasures input port} and {Output number of corrected symbol errors} enables port to output number of corrected symbol. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Reed-Solomon codeword integer column vector"
+  },
+  {
+   "name": "Era",
+   "direction": "input",
+   "summary": "Erasure vector binary column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Decoded message integer column vector"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "Decoding errors integer vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length N",
+   "default": "7",
+   "values": "Codeword length 7 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Message length K",
+   "default": "3",
+   "values": "Message word length 3 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Shortened message length S",
+   "default": "3",
+   "values": "Shortened message word length 3 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Generator polynomial",
+   "default": "’double’)",
+   "values": "Generator polynomial rsgenpoly(7, 3, [], [], ’double’) (default) | polynomial character vector | binary row vector | binary Galois row vector",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "1’",
+   "values": "Primitive polynomial ’X^3 + X + 1’ (default) | polynomial character vector | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "zeros(2,1)]",
+   "values": "Puncture vector [ones(2,1); zeros(2,1)] (default) | binary column vector",
+   "group": ""
+  },
+  {
+   "name": "Enable erasures input port",
+   "default": "off",
+   "values": "Enable erasures input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output number of corrected symbol errors",
+   "default": "off",
+   "values": "Enable port to output number of corrected symbol errors off (default) | on",
+   "group": ""
+  }
+ ]
+}

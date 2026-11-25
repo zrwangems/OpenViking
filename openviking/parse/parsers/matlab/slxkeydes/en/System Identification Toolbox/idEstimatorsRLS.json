@@ -1,0 +1,184 @@
+{
+ "key": "idEstimatorsRLS",
+ "title": "Recursive Least Squares Estimator",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Estimators/Recursive_Least_Squares_Estimator.md"
+ ],
+ "text": "Estimate model coefficients using recursive least squares (RLS) algorithm, 8 inputs, 3 outputs, {External reset} sets trigger for external reset; {Initial Estimate} sets the source of initial parameter estimates, {Number of Parameters} sets the number of parameters to estimate, {Parameter Covariance Matrix} sets the initial parameter covariance 1e4, {Initial Parameter Values} sets the initial values of the parameters to estimate, {Initial Regressors} sets the initial values of the regressors buffer, {Initial Outputs} sets the initial values of the measured outputs, {Input Processing} sets the sample-based or frame-based processing, {Sample Time} sets the block sample time, {History} sets the infinite or finite data, {Window Length} sets the window size for finite sliding-window, {Estimation Method} sets the recursive estimation algorithm Forgetting, {Forgetting Factor} sets the discount old data using forgetting factor, {Process Noise Covariance} sets the process noise covariance for Kalman filter estimation, {Adaptation Gain} sets the adaptation gain specification for gradient estimation, {Normalization Bias} sets the bias for adaptation gain scaling for normalized gradient estimation method, {Output estimation error} adds Error outport to block, {Output parameter covariance matrix} adds covariance outport to block and {Add enable port} adds Enable inport to block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Regressors",
+   "direction": "input",
+   "summary": "Regressors signal vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "input",
+   "summary": "Measured output scalar | vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Enable estimation updates true (default) | false"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Reset trigger scalar"
+  },
+  {
+   "name": "InitialParameters",
+   "direction": "input",
+   "summary": "Initial parameter estimates vector"
+  },
+  {
+   "name": "InitialCovariance",
+   "direction": "input",
+   "summary": "Initial covariance of parameters positive scalar (default) | vector of positive scalars | symmetric positive-definite matrix"
+  },
+  {
+   "name": "InitialRegressors",
+   "direction": "input",
+   "summary": "Initial values of the regressors matrix"
+  },
+  {
+   "name": "InitialOutputs",
+   "direction": "input",
+   "summary": "Initial value of the measured output buffer vector"
+  },
+  {
+   "name": "Parameters",
+   "direction": "output",
+   "summary": "Estimated parameters vector"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "Estimation error scalar | vector"
+  },
+  {
+   "name": "Covariance",
+   "direction": "output",
+   "summary": "Parameter estimation error covariance P matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial Estimate",
+   "default": "None",
+   "values": "Source of initial parameter estimates None (default) | Internal | External",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of Parameters",
+   "default": "2",
+   "values": "Number of parameters to estimate 2 (default) | positive integer",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Parameter Covariance Matrix",
+   "default": "1e4",
+   "values": "Initial parameter covariance 1e4 (default) | scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial Parameter Values",
+   "default": "1]",
+   "values": "Initial values of the parameters to estimate [1 1] (default) | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial Regressors",
+   "default": "0",
+   "values": "Initial values of the regressors buffer 0 (default) | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial Outputs",
+   "default": "0",
+   "values": "Initial values of the measured outputs buffer 0 (default) | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Input Processing",
+   "default": "Sample-based",
+   "values": "Choose sample-based or frame-based processing Sample-based (default) | Frame-based",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "History",
+   "default": "Infinite",
+   "values": "Choose infinite or finite data history Infinite (default) | Finite",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Window Length",
+   "default": "200",
+   "values": "Window size for finite sliding-window estimation 200 (default) | positive integer",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Estimation Method",
+   "default": "Factor",
+   "values": "Recursive estimation algorithm Forgetting Factor (default) | Kalman Filter | Normalized Gradient | Gradient",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Forgetting Factor",
+   "default": "1",
+   "values": "Discount old data using forgetting factor 1 (default) | positive scalar in (0 1] range",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Process Noise Covariance",
+   "default": "1",
+   "values": "Process noise covariance for Kalman filter estimation method 1 (default) | nonnegative scalar | vector of nonnegative scalars | symmetric positive semidefinite matrix",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Adaptation Gain",
+   "default": "1",
+   "values": "Adaptation gain specification for gradient estimation methods 1 (default) | positive scalar",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Normalization Bias",
+   "default": "eps",
+   "values": "Bias for adaptation gain scaling for normalized gradient estimation method eps (default) | nonnegative scalar",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Output estimation error",
+   "default": "off",
+   "values": "Add Error outport to block off (default) | on",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Output parameter covariance matrix",
+   "default": "off",
+   "values": "Add covariance outport to block off (default) | on",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Add enable port",
+   "default": "off",
+   "values": "Add Enable inport to block off (default) | on",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "External reset",
+   "default": "None",
+   "values": "Specify trigger for external reset None (default) | Rising | Falling | Either | Level | Level hold",
+   "group": "Algorithm and Block Options"
+  }
+ ]
+}

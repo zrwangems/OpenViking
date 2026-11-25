@@ -1,0 +1,123 @@
+{
+ "key": "SM Current Reference Generator",
+ "title": "SM Current Reference Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_Current_Reference_Generator.md"
+ ],
+ "text": "Synchronous machine current reference generator, 3 inputs, 3 outputs; {Nominal dc-link voltage (V)} sets the rated DC voltage, {Maximum power (W)} sets the maximum power, {Maximum torque (N*m)} sets the maximum torque, {Maximum field current (A)} sets the maximum field current, {Sample time (-1 for inherited)} sets the block sample time, {Current references} sets the current reference strategy Zero d-axis, {Torque constant (N*m/A)}, {Mechanical speed vector, wMechanical (rpm)} sets the rotor speed lookup vector, {Torque reference vector, TqRef (N*m)} sets the torque reference lookup vector, {DC-link voltage vector, Vdc (V)} sets the dC-link voltage lookup vector, {D-axis current reference matrix, id(wMechanical,TqRef,Vdc), (A)} sets the reference d-axis current values zeros, {Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc), (A)} sets the reference q-axis current values zeros and {Field current reference matrix, iq(wMechanical,TqRef,Vdc), (A)} sets the reference field current values zeros. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TqRef",
+   "direction": "input",
+   "summary": "Reference torque, N*m scalar"
+  },
+  {
+   "name": "wMechanical",
+   "direction": "input",
+   "summary": "Rotor mechanical speed, rad/s scalar"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC-link voltage, V scalar"
+  },
+  {
+   "name": "idqfRef",
+   "direction": "output",
+   "summary": "Reference currents, A vector"
+  },
+  {
+   "name": "TqRefSat",
+   "direction": "output",
+   "summary": "Reference torque, N*m scalar"
+  },
+  {
+   "name": "TqLim",
+   "direction": "output",
+   "summary": "Torque limit, N*m scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Nominal dc-link voltage (V)",
+   "default": "V",
+   "values": "Rated DC voltage 300 V (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum power (W)",
+   "default": "W",
+   "values": "Maximum power 30000 W (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque (N*m)",
+   "default": "N*m",
+   "values": "Maximum torque 250 N*m (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum field current (A)",
+   "default": "A",
+   "values": "Maximum field current 25 A (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | -1 or positive number",
+   "group": ""
+  },
+  {
+   "name": "Current references",
+   "default": "control",
+   "values": "Current reference strategy Zero d-axis control (default) | Lookup-table based",
+   "group": ""
+  },
+  {
+   "name": "Torque constant (N*m/A)",
+   "default": "0.0375",
+   "values": "Torque constant 0.0375 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Mechanical speed vector, wMechanical (rpm)",
+   "default": "3000]",
+   "values": "Rotor speed lookup vector [0, 3000] (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Torque reference vector, TqRef (N*m)",
+   "default": "100]",
+   "values": "Torque reference lookup vector [-100, 0, 100] (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "DC-link voltage vector, Vdc (V)",
+   "default": "350]",
+   "values": "DC-link voltage lookup vector [300, 350] (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "D-axis current reference matrix, id(wMechanical,TqRef,Vdc), (A)",
+   "default": "zeros(2,3,2)",
+   "values": "Reference d-axis current values zeros(2,3,2) (default) | real matrix",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc), (A)",
+   "default": "zeros(2,3,2)",
+   "values": "Reference q-axis current values zeros(2,3,2) (default) | real matrix",
+   "group": ""
+  },
+  {
+   "name": "Field current reference matrix, iq(wMechanical,TqRef,Vdc), (A)",
+   "default": "zeros(2,3,2)",
+   "values": "Reference field current values zeros(2,3,2) (default) | real matrix",
+   "group": ""
+  }
+ ]
+}

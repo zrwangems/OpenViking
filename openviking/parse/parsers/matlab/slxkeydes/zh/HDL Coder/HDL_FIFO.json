@@ -1,0 +1,109 @@
+{
+ "key": "HDL_FIFO",
+ "title": "HDL FIFO",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL RAMs/HDL_FIFO.md"
+ ],
+ "text": "将输入样本序列存储在先进先出 (FIFO) 寄存器中，输入 4 路、输出 4 路；按 {Push onto full register} 指定溢出条件；{Register size} 指定条目数、{Mode} 指定操作模式、{The ratio of output sample time to input sample time} 指定采样率比、{Pop empty register} 指定下溢条件、{Show empty register indicator port (Empty)} 指定可选的 Empty 端口、{Show full register indicator port (Full)} 指定可选的 Full 端口、{Show number of register entries port (Num)} 指定可选的 Num 端口、{Local reset port} 指定可选的复位端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "数据输入信号 scalar"
+  },
+  {
+   "name": "Push",
+   "direction": "input",
+   "summary": "写控制信号 scalar"
+  },
+  {
+   "name": "Pop",
+   "direction": "input",
+   "summary": "读控制信号 scalar"
+  },
+  {
+   "name": "rst",
+   "direction": "input",
+   "summary": "复位控制信号 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "数据输出信号 scalar"
+  },
+  {
+   "name": "Empty",
+   "direction": "output",
+   "summary": "数据输出信号 scalar"
+  },
+  {
+   "name": "Full",
+   "direction": "output",
+   "summary": "数据输出信号 scalar"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "条目数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Register size",
+   "default": "10",
+   "values": "条目数 10 (default)",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "’Classic’",
+   "values": "操作模式 ’Classic’ (default) | ’FWFT’",
+   "group": ""
+  },
+  {
+   "name": "The ratio of output sample time to input sample time",
+   "default": "1",
+   "values": "采样率比 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Push onto full register",
+   "default": "’Warning’",
+   "values": "溢出条件 ’Warning’ (default) | ’Ignore’ | ’Error’",
+   "group": ""
+  },
+  {
+   "name": "Pop empty register",
+   "default": "’Warning’",
+   "values": "下溢条件 ’Warning’ (default) | ’Ignore’ | ’Error’",
+   "group": ""
+  },
+  {
+   "name": "Show empty register indicator port (Empty)",
+   "default": "on",
+   "values": "可选的 Empty 端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show full register indicator port (Full)",
+   "default": "on",
+   "values": "可选的 Full 端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show number of register entries port (Num)",
+   "default": "on",
+   "values": "可选的 Num 端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Local reset port",
+   "default": "off",
+   "values": "可选的复位端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

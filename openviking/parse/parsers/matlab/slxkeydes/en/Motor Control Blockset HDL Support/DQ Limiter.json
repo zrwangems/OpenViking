@@ -1,0 +1,75 @@
+{
+ "key": "DQ Limiter",
+ "title": "DQ Limiter",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Control Reference/DQ_Limiter.md",
+  "Motor Control Blockset/Controls/Control Reference/DQ_Limiter.md"
+ ],
+ "text": "Saturate voltages (or current) in the dq reference frame, 4 inputs, 3 outputs, {Saturation method selected} sets Saturation method used by block D-Q; {Saturation method}, {Saturation limit} and {Saturation limit value} sets the phase voltage. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "d ref",
+   "direction": "input",
+   "summary": "Reference d -axis voltage (or current) scalar"
+  },
+  {
+   "name": "q ref",
+   "direction": "input",
+   "summary": "Reference q -axis voltage (or current) scalar"
+  },
+  {
+   "name": "satMethod",
+   "direction": "input",
+   "summary": "Saturation technique scalar"
+  },
+  {
+   "name": "satLim",
+   "direction": "input",
+   "summary": "Saturation limit scalar"
+  },
+  {
+   "name": "d sat",
+   "direction": "output",
+   "summary": "Saturated d -axis voltage (or current) scalar"
+  },
+  {
+   "name": "q sat",
+   "direction": "output",
+   "summary": "Saturated q -axis voltage (or current) scalar"
+  },
+  {
+   "name": "mag ref",
+   "direction": "output",
+   "summary": "Unsaturated peak value of block inputs scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Saturation method",
+   "default": "dialog",
+   "values": "Saturation method selection technique Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Saturation method selected",
+   "default": "equivalence",
+   "values": "Saturation method used by block D-Q equivalence (default) | Prioritize D axis | Prioritize Q axis",
+   "group": ""
+  },
+  {
+   "name": "Saturation limit",
+   "default": "dialog",
+   "values": "Saturation limit selection technique Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Saturation limit value",
+   "default": "1",
+   "values": "Phase voltage (or current) peak limit 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

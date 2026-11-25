@@ -1,0 +1,39 @@
+{
+ "key": "CORDIC Sigmoid HDL Optimized",
+ "title": "CORDIC Sigmoid HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Math Operations/CORDIC_Sigmoid_HDL_Optimized.md"
+ ],
+ "text": "Compute CORDIC-based sigmoid activation and generate optimized HDL code, 2 inputs, 3 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input data real-valued scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Whether input is valid Boolean scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Sigmoid activation of u scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Whether output data is valid Boolean"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Whether block is ready Boolean"
+  }
+ ],
+ "params": []
+}

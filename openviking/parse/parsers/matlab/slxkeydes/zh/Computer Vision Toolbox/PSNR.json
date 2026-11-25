@@ -1,0 +1,29 @@
+{
+ "key": "PSNR",
+ "title": "PSNR",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/PSNR.md"
+ ],
+ "text": "计算图像之间的峰值信噪比 (PSNR)，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I1",
+   "direction": "input",
+   "summary": "输入图像 scalar | vector | matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "输入图像 scalar | vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "输出 scalar"
+  }
+ ],
+ "params": []
+}

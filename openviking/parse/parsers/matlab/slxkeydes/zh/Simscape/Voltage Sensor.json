@@ -1,0 +1,14 @@
+{
+ "key": "Voltage Sensor",
+ "title": "Voltage Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Voltage_Sensor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Sensors/Voltage_Sensor.md"
+ ],
+ "text": "电气系统中的电压传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

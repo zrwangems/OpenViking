@@ -1,0 +1,13 @@
+{
+ "key": "Tank (G-TL)",
+ "title": "Tank (G-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Tanks & Accumulators/Tank_G_TL.md"
+ ],
+ "text": "Pressurized tank with variable gas and thermal liquid volumes.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,75 @@
+{
+ "key": "dsp.simulink.ColoredNoise",
+ "title": "Colored Noise",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Colored_Noise.md",
+  "Audio Toolbox/Sources/Colored_Noise.md"
+ ],
+ "text": "Generate colored noise signal, 1 output, {Noise color} sets Color of the generated noise; {Power of inverse frequency} sets the inverse power spectral density component, {Guarantee the output is bounded (+/-1)} sets the output bounds to +1 and −1, {Number of output channels}, {Output data type}, {Number of samples per output channel} sets the samples per frame of output, {Output sample time (s)} sets the sample time of the output, {Initial seed} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Colored noise signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Noise color",
+   "default": "pink",
+   "values": "Color of the generated noise pink (default) | white | brown | blue | purple | custom",
+   "group": ""
+  },
+  {
+   "name": "Power of inverse frequency",
+   "default": "1",
+   "values": "Inverse power spectral density component 1 (default) | scalar in the range [-2 2]",
+   "group": ""
+  },
+  {
+   "name": "Guarantee the output is bounded (+/-1)",
+   "default": "off",
+   "values": "Set output bounds to +1 and −1 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of output channels",
+   "default": "1",
+   "values": "Number of output channels 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Number of samples per output channel",
+   "default": "1024",
+   "values": "Samples per frame of output 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output sample time (s)",
+   "default": "1",
+   "values": "Sample time of the output 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "67",
+   "values": "Initial seed of random number generator 67 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

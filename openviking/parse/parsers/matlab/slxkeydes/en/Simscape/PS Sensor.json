@@ -1,0 +1,13 @@
+{
+ "key": "PS Sensor",
+ "title": "PS Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/PS_Sensor.md"
+ ],
+ "text": "Generic linear transducer with electrical output.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,78 @@
+{
+ "key": "2-D Histogram",
+ "title": "2-D Histogram",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Histogram.md"
+ ],
+ "text": "从输入生成直方图，输入 2 路、输出 1 路；按 {Trigger type} 指定运行直方图的重置条件；{Lower limit of histogram} 指定最低值 bin 的下限、{Upper limit of histogram} 指定最高值 bin 的上限、{Number of bins} 指定直方图中的 bin 数、{Find the histogram over} 指定计算直方图所沿的维度 Entire、{Normalized} 指定归一化直方图输出、{Running histogram} 指定连续输入的频率分布、{Lock data type settings against change by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入图像 vector | matrix | 3-D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置值 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "直方图输出 vector | matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lower limit of histogram",
+   "default": "0",
+   "values": "最低值 bin 的下限 0 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Upper limit of histogram",
+   "default": "1",
+   "values": "最高值 bin 的上限 1 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bins",
+   "default": "256",
+   "values": "直方图中的 bin 数 256 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Find the histogram over",
+   "default": "input",
+   "values": "计算直方图所沿的维度 Entire input (default) | Each column",
+   "group": ""
+  },
+  {
+   "name": "Normalized",
+   "default": "off",
+   "values": "归一化直方图输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Running histogram",
+   "default": "off",
+   "values": "连续输入的频率分布 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "None",
+   "values": "运行直方图的重置条件 None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": ""
+  }
+ ]
+}

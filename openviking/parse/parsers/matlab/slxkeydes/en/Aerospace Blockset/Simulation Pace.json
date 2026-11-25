@@ -1,0 +1,44 @@
+{
+ "key": "Simulation Pace",
+ "title": "Simulation Pace",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Animation Support Utilities/Simulation_Pace.md"
+ ],
+ "text": "Set simulation rate for animation viewing, 1 output, {Sample time} sets Sample time; {Simulation pace} sets the ratio of simulation time to clock time, {Sleep mode} controls simulation pace and {Output pace error} displays pace error. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Pace error scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulation pace",
+   "default": "1",
+   "values": "Ratio of simulation time to clock time 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sleep mode",
+   "default": "Auto",
+   "values": "Control simulation pace Auto (default) | MATLAB Thread | Off | Busy-Wait",
+   "group": ""
+  },
+  {
+   "name": "Output pace error",
+   "default": "off",
+   "values": "Display pace error off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "Sample time 1/30 (default) | -1 | scalar | vector",
+   "group": ""
+  }
+ ]
+}

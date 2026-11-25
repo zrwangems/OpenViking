@@ -1,0 +1,117 @@
+{
+ "key": "Constant Radius",
+ "title": "Constant Radius",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Constant_Radius.md"
+ ],
+ "text": "Generate commands for tracking constant radius path, 4 inputs, 2 outputs; {Maneuver start time, tStart [s]} sets the start time, {Longitudinal velocity setpoint, velRef} sets the target velocity, {Longitudinal velocity setpoint units, velRefUnit []} sets the units, {R}, {Initial longitudinal position, X_o [m]} sets the initial longitudinal start point, {Initial lateral position, Y_o [m]} sets the initial lateral start point, {Initial yaw angle, psi_o [rad]} sets the starting heading angle, {Distance between inside and outside cone boundaries, radialConeDist [m]} sets the radial distance between cones, {Lateral acceleration absolute threshold, ayMax [g]} sets the maximum allowable lateral acceleration before simulation, {Maneuver direction, steerDir} sets the maneuver direction, {Stop simulation at lateral acceleration threshold} sets the option to stop simulation at lateral acceleration and {Instantiate 3D cones (Simulation 3D Scene Configuration required)} sets the option to instantiate 3D cones. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Longitudinal position vehicle center of mass scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "Lateral position vehicle center of mass scalar"
+  },
+  {
+   "name": "psi",
+   "direction": "input",
+   "summary": "Vehicle yaw angle scalar"
+  },
+  {
+   "name": "ay",
+   "direction": "input",
+   "summary": "Vehicle lateral acceleration scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "Driver reference data bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "Driver command data bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "2",
+   "values": "Start time 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity setpoint, velRef",
+   "default": "35",
+   "values": "Target velocity 35 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "Units mph (default)",
+   "group": ""
+  },
+  {
+   "name": "R",
+   "default": "100",
+   "values": "Radius to be tracked 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial longitudinal position, X_o [m]",
+   "default": "0",
+   "values": "Initial longitudinal start point 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial lateral position, Y_o [m]",
+   "default": "0",
+   "values": "Initial lateral start point 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw angle, psi_o [rad]",
+   "default": "0",
+   "values": "Starting heading angle 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance between inside and outside cone boundaries, radialConeDist [m]",
+   "default": "6",
+   "values": "Radial distance between cones 6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lateral acceleration absolute threshold, ayMax [g]",
+   "default": "0.5",
+   "values": "Maximum allowable lateral acceleration before simulation is stopped 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Maneuver direction, steerDir",
+   "default": "Right",
+   "values": "Maneuver direction Right (default) | Left",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation at lateral acceleration threshold",
+   "default": "off",
+   "values": "Option to stop simulation at lateral acceleration threshold off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Instantiate 3D cones (Simulation 3D Scene Configuration required)",
+   "default": "off",
+   "values": "Option to instantiate 3D cones off (default) | on",
+   "group": ""
+  }
+ ]
+}

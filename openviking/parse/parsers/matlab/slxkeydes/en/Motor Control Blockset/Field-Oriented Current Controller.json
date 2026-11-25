@@ -1,0 +1,90 @@
+{
+ "key": "Field-Oriented Current Controller",
+ "title": "Field-Oriented Current Controller",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/Field_Oriented_Current_Controller.md"
+ ],
+ "text": "Implement current control for three-phase motors using field-oriented control (FOC) technique, 7 inputs, 2 outputs, {Input electrical position unit} sets Unit of electrical position input; {Number of data points for sine-cosine lookup table} sets the size of lookup table array, {Alpha (phase-a) axis alignment} sets the dq reference frame, {Saturation method} and {PWM method} sets the modulation technique SVM: space vector. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I dqRef",
+   "direction": "input",
+   "summary": "Reference d - and q -axis currents vector"
+  },
+  {
+   "name": "I abMeas",
+   "direction": "input",
+   "summary": "Measured phase a and b currents vector"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "Motor electrical position scalar"
+  },
+  {
+   "name": "V SatLim",
+   "direction": "input",
+   "summary": "Saturation limit of d-q voltages scalar"
+  },
+  {
+   "name": "K p,K i *T s",
+   "direction": "input",
+   "summary": "d - and q -axis PI controller gains vector"
+  },
+  {
+   "name": "PI Config",
+   "direction": "input",
+   "summary": "Initial values and limits of the PI controller output vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Reset block scalar"
+  },
+  {
+   "name": "V abc",
+   "direction": "output",
+   "summary": "Motor phase voltages vector"
+  },
+  {
+   "name": "Debug",
+   "direction": "output",
+   "summary": "Signals for debugging vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input electrical position unit",
+   "default": "Radians",
+   "values": "Unit of electrical position input Radians (default) | Degrees | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Number of data points for sine-cosine lookup table",
+   "default": "1024",
+   "values": "Size of lookup table array 1024 (default) | scalar in the range [125, 4095]",
+   "group": ""
+  },
+  {
+   "name": "Alpha (phase-a) axis alignment",
+   "default": "D-axis",
+   "values": "dq reference frame alignment D-axis (default) | Q-axis",
+   "group": ""
+  },
+  {
+   "name": "Saturation method",
+   "default": "equivalence",
+   "values": "Saturation method used by block D-Q equivalence (default) | Prioritize D axis | Prioritize Q axis",
+   "group": ""
+  },
+  {
+   "name": "PWM method",
+   "default": "modulation",
+   "values": "Modulation technique SVM: space vector modulation (default) | SPWM: sinusoidal PWM",
+   "group": ""
+  }
+ ]
+}

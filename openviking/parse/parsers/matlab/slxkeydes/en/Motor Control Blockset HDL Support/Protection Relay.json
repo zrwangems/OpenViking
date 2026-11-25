@@ -1,0 +1,85 @@
+{
+ "key": "Protection Relay",
+ "title": "Protection Relay",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Protection and Diagnostics/Protection_Relay.md",
+  "Motor Control Blockset/Protection and Diagnostics/Protection_Relay.md"
+ ],
+ "text": "Implement protection relay with definite minimum time (DMT) trip characteristics, 8 inputs, 1 output, {Select Protection} sets Type of protection relay; {Maximum count input type} sets the input method for maximum count Specify via, {Maximum count} sets the counter limit and {Samples for debounce filter} sets the number of debounce samples. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I max",
+   "direction": "input",
+   "summary": "Upper limit for current scalar"
+  },
+  {
+   "name": "I fb",
+   "direction": "input",
+   "summary": "Actual current in feedback loop scalar"
+  },
+  {
+   "name": "⍵ m max",
+   "direction": "input",
+   "summary": "Rotor speed limit for overspeed protection scalar"
+  },
+  {
+   "name": "⍵ m fb",
+   "direction": "input",
+   "summary": "Actual rotor speed scalar"
+  },
+  {
+   "name": "V max",
+   "direction": "input",
+   "summary": "Upper voltage limit for overvoltage protection scalar"
+  },
+  {
+   "name": "V min",
+   "direction": "input",
+   "summary": "Lower voltage limit for undervoltage protection scalar"
+  },
+  {
+   "name": "V fb",
+   "direction": "input",
+   "summary": "Actual voltage across feedback loop scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset pulse scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Latched fault signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select Protection",
+   "default": "Overcurrent",
+   "values": "Type of protection relay Overcurrent (default) | Overspeed | Overvoltage | Undervoltage",
+   "group": ""
+  },
+  {
+   "name": "Maximum count input type",
+   "default": "dialog",
+   "values": "Input method for maximum count Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Maximum count",
+   "default": "100",
+   "values": "Counter limit 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples for debounce filter",
+   "default": "3",
+   "values": "Number of debounce samples 3 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

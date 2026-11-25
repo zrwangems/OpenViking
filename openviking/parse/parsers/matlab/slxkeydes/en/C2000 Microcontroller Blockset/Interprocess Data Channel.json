@@ -1,0 +1,71 @@
+{
+ "key": "Interprocess Data Channel",
+ "title": "Interprocess Data Channel",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Test Bench Blocks/Interprocess_Data_Channel.md",
+  "SoC Blockset/Processor Interconnect/Interprocess_Data_Channel.md"
+ ],
+ "text": "Model interprocessor data channel between two processors, 1 input, 4 outputs; {Circular FIFO depth} sets the number of storage buffers, {Propagation delay}, {Show event port} sets the option to enable task event ports, {Show number of used circular FIFO} sets the option to enable circular FIFO count ports and {Show when circular FIFO is overwritten} enables port that shows circular FIFO. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "datain",
+   "direction": "input",
+   "summary": "Input data message scalar"
+  },
+  {
+   "name": "dataout",
+   "direction": "output",
+   "summary": "Output data message scalar"
+  },
+  {
+   "name": "overwritten",
+   "direction": "output",
+   "summary": "Output overwrite notification signal scalar"
+  },
+  {
+   "name": "used",
+   "direction": "output",
+   "summary": "Output number of buffers in use scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "Task event signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Circular FIFO depth",
+   "default": "1",
+   "values": "Number of storage buffers 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Propagation delay",
+   "default": "1e-6",
+   "values": "Propagation delay of data through the channel 1e-6 (default) | non-negative number",
+   "group": ""
+  },
+  {
+   "name": "Show event port",
+   "default": "off",
+   "values": "Option to enable task event ports off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show number of used circular FIFO",
+   "default": "off",
+   "values": "Option to enable circular FIFO count ports off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show when circular FIFO is overwritten",
+   "default": "off",
+   "values": "Enable port that shows circular FIFO overwrites off (default) | on",
+   "group": ""
+  }
+ ]
+}

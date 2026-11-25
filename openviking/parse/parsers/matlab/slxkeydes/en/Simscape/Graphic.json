@@ -1,0 +1,13 @@
+{
+ "key": "Graphic",
+ "title": "Graphic",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Graphic.md"
+ ],
+ "text": "Marker with graphic properties.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

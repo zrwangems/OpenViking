@@ -1,0 +1,95 @@
+{
+ "key": "EntityResourcePool",
+ "title": "Resource Pool",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Resource_Pool.md"
+ ],
+ "text": "Pool entity resources, 1 input, 3 outputs; {Resource name} sets the name for the resources in the pool, {Resource granularity} selects granularity of resource use Discrete, {Reusable upon release} sets the if the resource is reusable upon release, {Resource amount source} selects resource amount, {Resource amount} sets the amount of resource, {Initial resource amount} sets the initial amount of resource, {Resource visibility} selects the availability of the resources, {Amount in use, u} sets the number of resources that are in use, {Average utilization, util} sets the outputs the average resource utilization and {Amount available, avail} sets the outputs the amount of resources available. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Change resource amount scalar | vector | matrix"
+  },
+  {
+   "name": "Port_u",
+   "direction": "output",
+   "summary": "Outputs the number of resources that are in use scalar"
+  },
+  {
+   "name": "Port_util",
+   "direction": "output",
+   "summary": "Outputs the average time the pool is utilized scalar"
+  },
+  {
+   "name": "Port_avail",
+   "direction": "output",
+   "summary": "Outputs the number of resources that are available scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resource name",
+   "default": "Resource1",
+   "values": "Name for the resources in the pool Resource1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Resource granularity",
+   "default": "unit",
+   "values": "Select granularity of resource use Discrete unit (default) | Fractional amount",
+   "group": ""
+  },
+  {
+   "name": "Reusable upon release",
+   "default": "off",
+   "values": "Specify if the resource is reusable upon release off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Resource amount source",
+   "default": "Dialog",
+   "values": "Select resource amount source Dialog (default) | Change amount through control port",
+   "group": ""
+  },
+  {
+   "name": "Resource amount",
+   "default": "10",
+   "values": "Set the amount of resource 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial resource amount",
+   "default": "10",
+   "values": "Enter initial amount of resource 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Resource visibility",
+   "default": "Global",
+   "values": "Select the availability of the resources Global (default) | Scoped",
+   "group": ""
+  },
+  {
+   "name": "Amount in use, u",
+   "default": "off",
+   "values": "Number of resources that are in use off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average utilization, util",
+   "default": "off",
+   "values": "Outputs the average resource utilization off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Amount available, avail",
+   "default": "off",
+   "values": "Outputs the amount of resources available off (default) | on",
+   "group": ""
+  }
+ ]
+}

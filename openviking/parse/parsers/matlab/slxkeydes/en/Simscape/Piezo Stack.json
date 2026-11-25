@@ -1,0 +1,13 @@
+{
+ "key": "Piezo Stack",
+ "title": "Piezo Stack",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Piezo_Stack.md"
+ ],
+ "text": "Electrical and force characteristics of piezoelectric stacked actuator.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

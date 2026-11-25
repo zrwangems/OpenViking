@@ -1,0 +1,71 @@
+{
+ "key": "AMT Controller",
+ "title": "AMT Controller",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Transmission Controllers/AMT_Controller.md"
+ ],
+ "text": "带有离合器打开、关闭和同步时序的自动手动变速器控制器；输出 3 路；{Initial gear, G_o} 指定已啮合挡位、{Clutch actuation time, tc} 指定时间 .1、{Synchronizer time, ts} 指定时间 .01、{Sample period, dt} 指定时间、{Start simulation with clutch locked} 以初始锁定离合器、{Start simulation with synchronizer locked} 以初始锁定同步器，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "GearReq",
+   "direction": "",
+   "summary": "要啮合的挡位编号 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "GearEffct",
+   "direction": "output",
+   "summary": "用于换挡的有效挡位 scalar"
+  },
+  {
+   "name": "Cltch",
+   "direction": "output",
+   "summary": "离合器压力命令 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial gear, G_o",
+   "default": "0",
+   "values": "已啮合挡位 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch actuation time, tc",
+   "default": ".1",
+   "values": "时间 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Synchronizer time, ts",
+   "default": ".01",
+   "values": "时间 .01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample period, dt",
+   "default": "-1",
+   "values": "时间 -1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with clutch locked",
+   "default": "off",
+   "values": "选择以初始锁定离合器 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with synchronizer locked",
+   "default": "off",
+   "values": "选择以初始锁定同步器 off (default) | on",
+   "group": ""
+  }
+ ]
+}

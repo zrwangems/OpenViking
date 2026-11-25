@@ -1,0 +1,33 @@
+{
+ "key": "CMBlock",
+ "title": "Model Info",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model-Wide Utilities/Model_Info.md",
+  "HDL Coder/Model-Wide Utilities/Model_Info.md"
+ ],
+ "text": "显示模型属性和模型中的文本；按 {水平文本对齐} 指定模块封装上的水平文本对齐；{输入要在 Model Info 模块上显示的文本和标记} 指定要显示的文本的内容和格式 Model、{显示模块边框} 指定模块封装的边框，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "输入要在 Model Info 模块上显示的文本和标记",
+   "default": "Info",
+   "values": "要显示的文本的内容和格式 Model Info (默认) | 文本",
+   "group": ""
+  },
+  {
+   "name": "水平文本对齐",
+   "default": "居中",
+   "values": "模块封装上的水平文本对齐 居中 (默认) | 左侧 | 右侧",
+   "group": ""
+  },
+  {
+   "name": "显示模块边框",
+   "default": "on",
+   "values": "模块封装的边框 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

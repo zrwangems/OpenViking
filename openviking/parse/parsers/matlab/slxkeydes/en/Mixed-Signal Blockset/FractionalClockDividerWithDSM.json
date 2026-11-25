@@ -1,0 +1,48 @@
+{
+ "key": "FractionalClockDividerWithDSM",
+ "title": "Fractional Clock Divider with DSM",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Fractional_Clock_Divider_with_DSM.md"
+ ],
+ "text": "Delta Sigma Modulator based fractional clock divider, 2 inputs, 1 output, {Delta Sigma Modulator order} sets Order of the Delta Sigma Modulator 3rd; {Enable increased buffer size} and {Buffer size} sets the number of samples of the input buffering available during. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk in",
+   "direction": "input",
+   "summary": "Input clock frequency scalar"
+  },
+  {
+   "name": "div-by",
+   "direction": "input",
+   "summary": "Ratio of output to input clock frequency fractional scalar"
+  },
+  {
+   "name": "clk out",
+   "direction": "output",
+   "summary": "Output clock frequency scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delta Sigma Modulator order",
+   "default": "order",
+   "values": "Order of the Delta Sigma Modulator 3rd order (default) | 1st order | 2nd order | 4th order",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "1",
+   "values": "Number of samples of the input buffering available during simulation 1 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

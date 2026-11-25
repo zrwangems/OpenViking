@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Inerter",
+ "title": "Rotational Inerter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Rotational_Inerter.md"
+ ],
+ "text": "机械旋转系统中的双端口惯性。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

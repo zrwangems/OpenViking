@@ -1,0 +1,97 @@
+{
+ "key": "DFEClkFwd",
+ "title": "DFEClkFwd",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/DFEClkFwd.md"
+ ],
+ "text": "接收机 AMI 模型中的带时钟转发的 DFE，输入 1 路、输出 1 路；按 {Mode} 指定DFE 工作模式；{Initial tap weights (V)} 指定初始 DFE 抽头权重、{Adaptive gain} 控制 DFE 抽头权重更新速率 9.6e-5、{Adaptive step size (V)} 指定 DFE 自适应步进分辨率 1e-06、{Minimum DFE tap value (V)} 指定自适应抽头的最小值、{Maximum DFE tap value (V)} 指定自适应抽头的最大值、{2x tap weights} 指定将 DFE 抽头权重乘以二、{Phase offset (symbol time)} 指定手动时钟相位偏移、{Reference offset (ppm)} 指定参考时钟偏移损伤、{Early/late count threshold} 指定触发相位更新的早/晚 CDR 计数阈值、{Step (symbol time)} 指定时钟相位分辨率、{Sensitivity (V)} 指定采样锁存器亚稳态电压，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "输入基带信号 scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "估计的信道输出 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Fixed",
+   "values": "DFE 工作模式 Fixed (default) | Off | Adapt",
+   "group": "DFE"
+  },
+  {
+   "name": "Initial tap weights (V)",
+   "default": "0]",
+   "values": "初始 DFE 抽头权重 [0 0 0 0] (default) | row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "Adaptive gain",
+   "default": "9.6e-5",
+   "values": "控制 DFE 抽头权重更新速率 9.6e-5 (default) | positive real scalar",
+   "group": "DFE"
+  },
+  {
+   "name": "Adaptive step size (V)",
+   "default": "1e-06",
+   "values": "DFE 自适应步进分辨率 1e-06 (default) | nonnegative real scalar | nonnegative real-valued row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "Minimum DFE tap value (V)",
+   "default": "-1",
+   "values": "自适应抽头的最小值 -1 (default) | real scalar | real-valued row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "Maximum DFE tap value (V)",
+   "default": "1",
+   "values": "自适应抽头的最大值 1 (default) | nonnegative real scalar | nonnegative real-valued row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "2x tap weights",
+   "default": "on",
+   "values": "将 DFE 抽头权重乘以二 on (default) | off",
+   "group": "DFE"
+  },
+  {
+   "name": "Phase offset (symbol time)",
+   "default": "0",
+   "values": "手动时钟相位偏移 0 (default) | real scalar in the range [−0.5, 0.5]",
+   "group": "CDR"
+  },
+  {
+   "name": "Reference offset (ppm)",
+   "default": "0",
+   "values": "参考时钟偏移损伤 0 (default) | real scalar in the range [−300, 300]",
+   "group": "CDR"
+  },
+  {
+   "name": "Early/late count threshold",
+   "default": "5",
+   "values": "触发相位更新的早/晚 CDR 计数阈值 5 (default) | positive real integer ≥5",
+   "group": "CDR"
+  },
+  {
+   "name": "Step (symbol time)",
+   "default": "0.005",
+   "values": "时钟相位分辨率 0.005 (default) | real scalar",
+   "group": "CDR"
+  },
+  {
+   "name": "Sensitivity (V)",
+   "default": "0",
+   "values": "采样锁存器亚稳态电压 0 (default) | real scalar",
+   "group": "CDR"
+  }
+ ]
+}

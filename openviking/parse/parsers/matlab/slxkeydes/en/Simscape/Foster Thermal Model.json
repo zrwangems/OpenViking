@@ -1,0 +1,13 @@
+{
+ "key": "Foster Thermal Model",
+ "title": "Foster Thermal Model",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Thermal/Foster_Thermal_Model.md"
+ ],
+ "text": "Heat transfer through a semiconductor module.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,43 @@
+{
+ "key": "ROS Set Parameter",
+ "title": "Set Parameter",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Set_Parameter.md"
+ ],
+ "text": "Set values on ROS parameter server, 2 inputs, {Data type} sets Data type of your parameter double; {Source} and {Name} sets the parameter name string. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Value",
+   "direction": "input",
+   "summary": "Parameter value scalar | logical | uint8 array"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Length of string parameter integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source",
+   "default": "",
+   "values": "Source for specifying the parameter name Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Parameter name string",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "",
+   "values": "Data type of your parameter double | int32 | boolean | uint8[] (string)",
+   "group": ""
+  }
+ ]
+}

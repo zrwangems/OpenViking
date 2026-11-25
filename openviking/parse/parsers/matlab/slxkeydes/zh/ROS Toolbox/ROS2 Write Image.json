@@ -1,0 +1,36 @@
+{
+ "key": "ROS2 Write Image",
+ "title": "Write Image",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Write_Image.md"
+ ],
+ "text": "将图像数据写入 ROS 或 ROS 2 消息，输入 2 路、输出 1 路；按 {Image Encoding} 指定图像编码。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像信号 M -by- N -by-3 matrix | M -by- N matrix"
+  },
+  {
+   "name": "AlphaChannel",
+   "direction": "input",
+   "summary": "输入图像的 Alpha 通道 M -by- N matrix"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "ROS 或 ROS 2 图像消息 nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Image Encoding",
+   "default": "rgb8",
+   "values": "图像编码 rgb8 (default) | rgba8 |...",
+   "group": ""
+  }
+ ]
+}

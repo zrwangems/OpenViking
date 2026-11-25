@@ -1,0 +1,121 @@
+{
+ "key": "ADC Type 3-5",
+ "title": "ADC",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/ADC.md",
+  "C2000 Microcontroller Blockset/C2803x/ADC.md",
+  "C2000 Microcontroller Blockset/C2805x/ADC.md",
+  "C2000 Microcontroller Blockset/C2806x/ADC.md",
+  "C2000 Microcontroller Blockset/F280013x/ADC.md",
+  "C2000 Microcontroller Blockset/F280015x/ADC.md",
+  "C2000 Microcontroller Blockset/F28002x/ADC.md",
+  "C2000 Microcontroller Blockset/F28003x/ADC.md",
+  "C2000 Microcontroller Blockset/F28004x/ADC.md",
+  "C2000 Microcontroller Blockset/F2807x/ADC.md",
+  "C2000 Microcontroller Blockset/F2837xD/ADC.md",
+  "C2000 Microcontroller Blockset/F2837xS/ADC.md",
+  "C2000 Microcontroller Blockset/F28p55x/ADC.md",
+  "C2000 Microcontroller Blockset/F28p65x/ADC.md",
+  "C2000 Microcontroller Blockset/F29H85x/ADC.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/ADC.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/ADC.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/ADC.md"
+ ],
+ "text": "配置 ADC 以对模拟引脚进行采样并输出数字数据；输出 1 路；按 {SOCx 采集窗口} 指定收购期长度；{ADC 模块} 指定要使用的模块、{ADC 分辨率} 指定 12 位或 16 位分辨率 12-bit、{ADC 模式}、{采样模式} 指定采样类型 Single、{SOC 触发器编号} 指定转换开始编号、{SOCx 触发器源} 指定触发转化开始的来源、{ADCINT 将触发 SOCx} 使用 ADC 中断触发 SoC、{采样时间} 指定模块读取数据的时间间隔、{数据类型}、{在 EOC 触发时发出中断} 指定 ADC 触发时发出中断、{中断选择}、{ADC# 连续模式} 指定生成 ADC 中断、{转换通道} 指定此 ADC 转换适用的 ADC，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "ADC 数据 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "ADC 模块",
+   "default": "A",
+   "values": "选择要使用的模块 A (默认) | B | A and B",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "ADC 分辨率",
+   "default": "input)",
+   "values": "选择 12 位或 16 位分辨率 12-bit (Single-ended input) (默认) | 16-bit (Differential inputs)",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "ADC 模式",
+   "default": "input",
+   "values": "选择 ADC 模式 Single-ended input (默认) | Differential inputs",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "采样模式",
+   "default": "Single",
+   "values": "选择采样类型 Single (默认) | Simultaneous",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "SOC 触发器编号",
+   "default": "SOC0",
+   "values": "转换开始编号 SOC0 (默认) | SOC1 | SOC2 | …",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "SOCx 采集窗口",
+   "default": "7",
+   "values": "收购期长度 7 (默认) | 8 |...",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "SOCx 触发器源",
+   "default": "Software",
+   "values": "触发转化开始的来源 Software (默认) | EVA | External pin",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "ADCINT 将触发 SOCx",
+   "default": "ADCINT",
+   "values": "使用 ADC 中断触发 SoC No ADCINT (默认) | ADCINT1 | ADCINT2",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "模块读取数据的时间间隔 0.1 (默认)",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "数据类型",
+   "default": "uint16",
+   "values": "选择输出数据类型 uint16 (默认) | double | single | int8 | uint8 | int16 | int32 | uint32",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "在 EOC 触发时发出中断",
+   "default": "Off",
+   "values": "ADC 触发时发出中断 Off (默认) | on",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "中断选择",
+   "default": "ADCINT1",
+   "values": "ADC 中断选择 ADCINT1 (默认) | ADCINT2",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "ADC# 连续模式",
+   "default": "ADCINT1",
+   "values": "生成 ADC 中断 ADCINT1 (默认) | ADCINT2",
+   "group": "SOC 触发器"
+  },
+  {
+   "name": "转换通道",
+   "default": "ADCINA0",
+   "values": "选择此 ADC 转换适用的 ADC 通道 ADCINA0 (默认) | ADCINA1 | ADCINA2 | …",
+   "group": "输入通道"
+  }
+ ]
+}

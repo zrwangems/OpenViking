@@ -1,0 +1,177 @@
+{
+ "key": "CustomCallbackButton",
+ "title": "Callback Button",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Callback_Button.md",
+  "Simulink/Dashboard/Customizable Blocks/Callback_Button.md"
+ ],
+ "text": "Execute MATLAB code using button, {Text} sets Button label text ’Callback; {Button Type} sets the button response, {Lock Aspect Ratio} sets the option to maintain block aspect ratio, {ClickFcn} sets the mATLAB code that executes in response to click MATLAB, {PressFcn} sets the mATLAB code that executes in response to press MATLAB, {Press Delay (ms)} sets the time to hold button for press, {Repeat Interval (ms)} sets the time interval to repeat PressFcn code, {Select State} sets the selection of state, {Color} sets the label font color, {Horizontal Alignment} sets the horizontal alignment of label and icon pair with block, {Vertical Alignment} sets the vertical alignment of label and icon pair with block, {Icon and Label X Offset} sets the horizontal offset of icon and label pair, {Icon and Label Y Offset} sets the vertical offset of icon and label pair, {Icon Placement} sets the placement of icon relative, {Icon Width} sets the icon width scalar, {Icon Height} sets the icon height scalar, {Image X Offset} sets the horizontal offset of left edge of image from left edge of block, {Image Y Offset} sets the vertical offset of top edge of image from top edge of block, {Image Width} sets the image width scalar, {Image Height} sets the image height scalar, {Use Background Color} sets the option to specify solid background color, {Opacity} sets the button background opacity, {Corner Radius} sets the corner radius of area with button background color, {X Offset} sets the horizontal offset of left edge of foreground image from left edge of block, {Y Offset} sets the vertical offset of top edge of foreground image from top edge of block, {Width} sets the foreground image width scalar and {Height} sets the foreground image height scalar. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Button Type",
+   "default": "Momentary",
+   "values": "Button response to click Momentary (default) | Latch",
+   "group": "Parameters"
+  },
+  {
+   "name": "Text",
+   "default": "Button’",
+   "values": "Button label text ’Callback Button’ (default) | string | character array",
+   "group": "Parameters"
+  },
+  {
+   "name": "Lock Aspect Ratio",
+   "default": "on",
+   "values": "Option to maintain block aspect ratio on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "ClickFcn",
+   "default": "",
+   "values": "MATLAB code that executes in response to click MATLAB code",
+   "group": "Parameters"
+  },
+  {
+   "name": "PressFcn",
+   "default": "",
+   "values": "MATLAB code that executes in response to press MATLAB code",
+   "group": "Parameters"
+  },
+  {
+   "name": "Press Delay (ms)",
+   "default": "500",
+   "values": "Time to hold button for press 500 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Repeat Interval (ms)",
+   "default": "0",
+   "values": "Time interval to repeat PressFcn code 0 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Select State",
+   "default": "Default",
+   "values": "Selection of state to configure Default (default) | Pressed | Latched | Latched and Pressed",
+   "group": "Design"
+  },
+  {
+   "name": "Color",
+   "default": "",
+   "values": "Label font color [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Horizontal Alignment",
+   "default": "Left",
+   "values": "Horizontal alignment of label and icon pair with block Left (default) | Center | Right",
+   "group": "Design"
+  },
+  {
+   "name": "Vertical Alignment",
+   "default": "Center",
+   "values": "Vertical alignment of label and icon pair with block Center (default) | Bottom | Top",
+   "group": "Design"
+  },
+  {
+   "name": "Icon and Label X Offset",
+   "default": "0",
+   "values": "Horizontal offset of icon and label pair from block 0 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Icon and Label Y Offset",
+   "default": "0",
+   "values": "Vertical offset of icon and label pair from block 0 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Icon Placement",
+   "default": "Left",
+   "values": "Placement of icon relative to label Left (default) | Top | Right | Bottom",
+   "group": "Design"
+  },
+  {
+   "name": "Icon Width",
+   "default": "",
+   "values": "Icon width scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Icon Height",
+   "default": "",
+   "values": "Icon height scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Image X Offset",
+   "default": "",
+   "values": "Horizontal offset of left edge of image from left edge of block scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Image Y Offset",
+   "default": "",
+   "values": "Vertical offset of top edge of image from top edge of block scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Image Width",
+   "default": "",
+   "values": "Image width scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Image Height",
+   "default": "",
+   "values": "Image height scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Use Background Color",
+   "default": "on",
+   "values": "Option to specify solid background color for button on (default) | off",
+   "group": "Design"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "Button background opacity 1 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Corner Radius",
+   "default": "",
+   "values": "Corner radius of area with button background color scalar",
+   "group": "Design"
+  },
+  {
+   "name": "X Offset",
+   "default": "",
+   "values": "Horizontal offset of left edge of foreground image from left edge of block scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Y Offset",
+   "default": "",
+   "values": "Vertical offset of top edge of foreground image from top edge of block scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Width",
+   "default": "",
+   "values": "Foreground image width scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Height",
+   "default": "",
+   "values": "Foreground image height scalar",
+   "group": "Design"
+  }
+ ]
+}

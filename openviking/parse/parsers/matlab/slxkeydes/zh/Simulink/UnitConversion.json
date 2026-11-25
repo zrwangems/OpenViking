@@ -1,0 +1,31 @@
+{
+ "key": "UnitConversion",
+ "title": "Unit Conversion",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Unit_Conversion.md"
+ ],
+ "text": "Unit Conversion 模块将输入信号的单位转换为输出信号的单位，输入 1 路、输出 1 路；{输出数据类型}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出数据类型",
+   "default": "从内部规则继承",
+   "values": "输出数据类型 继承: 从内部规则继承 (默认) | 继承: 通过反向传播继承",
+   "group": ""
+  }
+ ]
+}

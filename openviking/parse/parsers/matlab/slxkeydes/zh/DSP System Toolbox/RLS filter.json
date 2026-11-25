@@ -1,0 +1,103 @@
+{
+ "key": "RLS filter",
+ "title": "RLS Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Adaptive Filters/RLS_Filter.md"
+ ],
+ "text": "使用 RLS 自适应滤波器算法，针对给定输入和期望信号计算滤波输出、滤波器误差和滤波器权重，输入 5 路、输出 3 路；按 {Initial input variance estimate} 指定初始输入协方差估计；{Filter length} 指定 FIR 滤波器系数向量的长度、{Specify forgetting factor via} 指定遗忘因子、{Forgetting factor (0 to 1)} 指定 RLS 遗忘因子、{Initial value of filter weights} 指定 FIR 滤波器权重的初始值、{Adapt port} 启用 Adapt 端口、{Reset port} 启用 Reset 端口、{Output filter weights} 输出滤波器权重，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector"
+  },
+  {
+   "name": "Desired",
+   "direction": "input",
+   "summary": "期望信号 scalar | column vector"
+  },
+  {
+   "name": "Lambda",
+   "direction": "input",
+   "summary": "遗忘因子 scalar in the range [0,1]"
+  },
+  {
+   "name": "Adapt",
+   "direction": "input",
+   "summary": "用于更新滤波器权重的选项 scalar | column vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "重置信号 scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "滤波后的信号 scalar | column vector"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "输出与期望信号之间的差值 scalar | column vector"
+  },
+  {
+   "name": "Wts",
+   "direction": "output",
+   "summary": "自适应滤波器权重 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter length",
+   "default": "32",
+   "values": "FIR 滤波器系数向量的长度 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify forgetting factor via",
+   "default": "Dialog",
+   "values": "指定遗忘因子 Dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor (0 to 1)",
+   "default": "1.0",
+   "values": "RLS 遗忘因子 1.0 (default) | scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Initial value of filter weights",
+   "default": "0",
+   "values": "FIR 滤波器权重的初始值 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial input variance estimate",
+   "default": "0.1",
+   "values": "初始输入协方差估计 0.1 (default) | scalar | square matrix",
+   "group": ""
+  },
+  {
+   "name": "Adapt port",
+   "default": "off",
+   "values": "启用 Adapt 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "启用 Reset 端口 None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Output filter weights",
+   "default": "on",
+   "values": "输出滤波器权重 on (default) | off",
+   "group": ""
+  }
+ ]
+}

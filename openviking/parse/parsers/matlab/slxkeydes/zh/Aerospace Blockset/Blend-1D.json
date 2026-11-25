@@ -1,0 +1,72 @@
+{
+ "key": "Blend-1D",
+ "title": "1D Controller Blend: u=(1-L).K1.y+L.K2.y",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/b_1D_Controller_Blend_u_1_L_K1_y_L_K2_y.md"
+ ],
+ "text": "通过对状态空间控制器的输出进行线性插值来实现一维向量，输入 2 路、输出 1 路；{A-matrix(v)} 指定状态空间实现的 A 矩阵、{B-matrix(v)} 指定状态空间实现的 B 矩阵、{C-matrix(v)} 指定状态空间实现的 C 矩阵、{D-matrix(v)} 指定状态空间实现的 D 矩阵、{Scheduling variable breakpoints} 指定调度变量的断点、{Initial state, x_initial} 指定初始状态、{Poles of A(v)-H(v)*C(v) = [w1... wn])} 指定观测器极点，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "飞行器测量值 vector"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "调度变量 vector"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "作动器需求 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A-matrix(v)",
+   "default": "A1",
+   "values": "状态空间实现的 A 矩阵 A1 (default) | array",
+   "group": ""
+  },
+  {
+   "name": "B-matrix(v)",
+   "default": "B1",
+   "values": "状态空间实现的 B 矩阵 B1 (default) | array",
+   "group": ""
+  },
+  {
+   "name": "C-matrix(v)",
+   "default": "C1",
+   "values": "状态空间实现的 C 矩阵 C1 (default) | array",
+   "group": ""
+  },
+  {
+   "name": "D-matrix(v)",
+   "default": "D1",
+   "values": "状态空间实现的 D 矩阵 D1 (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Scheduling variable breakpoints",
+   "default": "2]",
+   "values": "调度变量的断点 [1 1.5 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "初始状态 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Poles of A(v)-H(v)*C(v) = [w1... wn])",
+   "default": "-2]",
+   "values": "观测器极点 [-5 -2] (default) | vector",
+   "group": ""
+  }
+ ]
+}

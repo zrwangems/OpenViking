@@ -1,0 +1,51 @@
+{
+ "key": "slrealtimebitpacking",
+ "title": "Bit Unpacking",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Utilities/Bit_Unpacking.md",
+  "Simulink Real-Time/Utilities/Bit_Packing.md"
+ ],
+ "text": "Bit Unpacking 模块提取数据帧；按 {Input port (packed) data types} 指定紧凑数据类型；{Bit Patterns} 指定位模式、{Input port (packed) dimension} 指定压缩数据维度、{Output port (unpacked) data types (cell array)} 指定未封装的数据类型、{Output port (unpacked) dimension (cell array)} 指定未打包数据维度、{Sign extend} 启用符号扩展，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Bit Patterns",
+   "default": "{[0:31]}",
+   "values": "选择位模式 {[0:31]} (默认)",
+   "group": ""
+  },
+  {
+   "name": "Input port (packed) data types",
+   "default": "uint32",
+   "values": "紧凑数据类型 uint32 (默认) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Input port (packed) dimension",
+   "default": "[1]",
+   "values": "压缩数据维度 [1] (默认)",
+   "group": ""
+  },
+  {
+   "name": "Output port (unpacked) data types (cell array)",
+   "default": "{’uint32’}",
+   "values": "未封装的数据类型 {’uint32’} (默认)",
+   "group": ""
+  },
+  {
+   "name": "Output port (unpacked) dimension (cell array)",
+   "default": "{[1]}",
+   "values": "未打包数据维度 {[1]} (默认)",
+   "group": ""
+  },
+  {
+   "name": "Sign extend",
+   "default": "on",
+   "values": "启用符号扩展 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

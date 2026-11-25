@@ -1,0 +1,312 @@
+{
+ "key": "fusion.simulink.trackingScenarioReader",
+ "title": "Tracking Scenario Reader",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Tracking Scenario and Sensor Models/Tracking_Scenario_Reader.md"
+ ],
+ "text": "Read tracking scenario and generate simulation data, 1 input, 8 outputs, {Random number generation} sets Method to generate random number seed; {Source of scenario} sets the source of tracking scenario, {Workspace variable name}, {Session file}, {Source of platform pose}, {Sample time (s)} sets the sample time of simulation, {Coordinate system to report platform poses}, {Include profiles information with platforms}, {Detections} enables detections output port, {Point clouds} enables port clouds output port, {Emissions} enables emission output port, {Enable occlusion in emission propagation}, {Coverage} enables coverage configurations output port, {Sensor} enables sensor configurations output port, {Emitter} enables emitter configurations output port, {Initial seed}, {Source of platform bus name} sets the source of name for platform poses bus, {Specify platform bus name} sets the platform bus, {Source of maximum number of platforms}, {Maximum number of platforms}, {Source of detection bus name} sets the source of name for detection bus, {Specify detection bus name} sets the detection bus, {Source of maximum number of detections} sets the source of maximum number of platforms, {Maximum number of detections}, {Source of point cloud bus name} sets the source of name for point cloud bus, {Specify point cloud bus name} sets the point cloud bus, {Maximum number of lidar sensors}, {Source of maximum number of lidar sensors}, {Source of emission bus name} sets the source of name for emission bus, {Specify emission bus name} sets the emission bus, {Source of maximum number of emissions}, {Maximum number of emissions}, {Source of coverage configuration bus name} sets the source of name for coverage configuration, {Specify coverage configuration bus name} sets the coverage configuration bus, {Source of sensor configuration bus name} sets the source of name for sensor configuration, {Specify sensor configuration bus name}, {Source of emitter configuration bus name} sets the source of name for emitter configuration, {Specify emitter configuration bus name}, {Source of maximum number of sensors}, {Maximum number of sensors}, {Source of maximum number of emitters} and {Maximum number of emitters}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Platform Poses",
+   "direction": "input",
+   "summary": "Platform pose information Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Platforms",
+   "direction": "output",
+   "summary": "Information of platforms in the scenario Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Simulation Time",
+   "direction": "output",
+   "summary": "Current simulation time nonnegative scalar"
+  },
+  {
+   "name": "Coverage Configurations",
+   "direction": "output",
+   "summary": "Coverage configurations in the scenario Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "Detection list Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Sensor Configuratons",
+   "direction": "output",
+   "summary": "Sensor configurations in the scenario Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Emissions",
+   "direction": "output",
+   "summary": "Radar and sonar emissions in the scenario Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Emitter Configurations",
+   "direction": "output",
+   "summary": "Emitter configurations in the scenario Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Point Clouds",
+   "direction": "output",
+   "summary": "Point clouds Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of scenario",
+   "default": "trackingScenario",
+   "values": "Source of tracking scenario trackingScenario (default) | Tracking Scenario Designer session file",
+   "group": "Scenario"
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "",
+   "values": "Workspace variable name trackingScenario variable name",
+   "group": "Scenario"
+  },
+  {
+   "name": "Session file",
+   "default": "",
+   "values": "Session file Tracking Scenario Designer session file name",
+   "group": "Scenario"
+  },
+  {
+   "name": "Source of platform pose",
+   "default": "Scenario",
+   "values": "Source of platform pose Scenario (default) | Input port",
+   "group": "Scenario"
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "0.1",
+   "values": "Sample time of simulation 0.1 (default) | positive real scalar",
+   "group": "Scenario"
+  },
+  {
+   "name": "Coordinate system to report platform poses",
+   "default": "Cartesian",
+   "values": "Coordinate system to report platform poses Cartesian (default) | Geodetic",
+   "group": "Scenario"
+  },
+  {
+   "name": "Include profiles information with platforms",
+   "default": "off",
+   "values": "Include profiles information with platforms off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Detections",
+   "default": "off",
+   "values": "Enable detections output port off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Point clouds",
+   "default": "off",
+   "values": "Enable port clouds output port off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Emissions",
+   "default": "off",
+   "values": "Enable emission output port off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Enable occlusion in emission propagation",
+   "default": "on",
+   "values": "Enable occlusion in emission propagation on (default) | off",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Coverage",
+   "default": "off",
+   "values": "Enable coverage configurations output port off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Sensor",
+   "default": "off",
+   "values": "Enable sensor configurations output port off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Emitter",
+   "default": "off",
+   "values": "Enable emitter configurations output port off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Random number generation",
+   "default": "Repeatable",
+   "values": "Method to generate random number seed Repeatable (default) | Not repeatable | Specify seed",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "Initial seed for randomization 0 (default) | nonnegative integer",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Source of platform bus name",
+   "default": "Auto",
+   "values": "Source of name for platform poses bus Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify platform bus name",
+   "default": "BusPlatforms",
+   "values": "Specify platform bus name BusPlatforms (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of platforms",
+   "default": "Auto",
+   "values": "Source of maximum number of platforms Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of platforms",
+   "default": "50",
+   "values": "Maximum number of platforms 50 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of detection bus name",
+   "default": "Auto",
+   "values": "Source of name for detection bus Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify detection bus name",
+   "default": "BusDetection",
+   "values": "Specify detection bus name BusDetection (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of detections",
+   "default": "Auto",
+   "values": "Source of maximum number of platforms Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of detections",
+   "default": "50",
+   "values": "Maximum number of detections 50 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of point cloud bus name",
+   "default": "Auto",
+   "values": "Source of name for point cloud bus Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify point cloud bus name",
+   "default": "BusPointCloud",
+   "values": "Specify point cloud bus name BusPointCloud (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of lidar sensors",
+   "default": "10",
+   "values": "Maximum number of lidar sensors 10 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of lidar sensors",
+   "default": "Auto",
+   "values": "Source of maximum number of lidar sensors Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of emission bus name",
+   "default": "Auto",
+   "values": "Source of name for emission bus Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify emission bus name",
+   "default": "BusEmission",
+   "values": "Specify emission bus name BusEmission (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of emissions",
+   "default": "Auto",
+   "values": "Source of maximum number of emissions Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of emissions",
+   "default": "50",
+   "values": "Maximum number of emissions 50 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of coverage configuration bus name",
+   "default": "Auto",
+   "values": "Source of name for coverage configuration bus Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify coverage configuration bus name",
+   "default": "BusCovConf",
+   "values": "Specify coverage configuration bus name BusCovConf (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of sensor configuration bus name",
+   "default": "Auto",
+   "values": "Source of name for sensor configuration bus Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify sensor configuration bus name",
+   "default": "BusSensorConf",
+   "values": "Specify sensor configuration bus name BusSensorConf (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of emitter configuration bus name",
+   "default": "Auto",
+   "values": "Source of name for emitter configuration bus Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify emitter configuration bus name",
+   "default": "BusEmitterConf",
+   "values": "Specify emitter configuration bus name BusEmitterConf (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of sensors",
+   "default": "Auto",
+   "values": "Source of maximum number of sensors Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "10",
+   "values": "Maximum number of sensors 10 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of emitters",
+   "default": "Auto",
+   "values": "Source of maximum number of emitters Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of emitters",
+   "default": "10",
+   "values": "Maximum number of emitters 10 (default) | positive integer",
+   "group": "Bus Settings"
+  }
+ ]
+}

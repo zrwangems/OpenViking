@@ -1,0 +1,201 @@
+{
+ "key": "IncrementalClassificationNaiveBayes Predict",
+ "title": "IncrementalClassificationNaiveBayes Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Classification/NaiveBayes/IncrementalClassificationNaiveBayes_Predict.md"
+ ],
+ "text": "Classify observations using incremental naive Bayes classification model, 2 inputs, 4 outputs, direct feedthrough, {Estimated cost data type} sets Data type of cost output Inherit:; {Select initial machine learning model} sets the initial incremental naive Bayes classification model, {Add output port for predicted class scores}, {Add output port for expected classification cost} adds optional output port for expected classification, {Add output port for status of trained machine learning model} adds second output port for model status, {Sample time (–1 for inherited)} sets the option to specify sample, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Label data type} sets the data type of label output, {Label data type Minimum} sets the minimum value of label output for range checking, {Label data type Maximum} sets the maximum value of label output for range checking, {Score data type} sets the data type of score output Inherit, {Score data type Minimum} sets the minimum value of score output for range checking, {Score data type Maximum} sets the maximum value of score output for range checking, {Raw score data type} sets the untransformed score data type Inherit, {Raw score data type Minimum} sets the minimum untransformed score for range checking, {Raw score data type Maximum} sets the maximum untransformed score for range checking, {Estimated cost data type Minimum} sets the minimum value of cost output for range checking, {Estimated cost data type Maximum} sets the maximum value of cost output for range checking, {Likelihood data type} sets the data type of likelihood output Inherit, {Likelihood data type Minimum} sets the minimum value of likelihood output for range checking, {Likelihood data type Maximum} sets the maximum value of likelihood output for range checking, {Posterior data type} sets the data type of posterior probability output, {Posterior data type Minimum} sets the minimum value of posterior probability output for range checking and {Posterior data type Maximum} sets the maximum value of posterior probability output for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mdl",
+   "direction": "input",
+   "summary": "Incremental learning model bus signal"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Chunk of predictor data numeric matrix"
+  },
+  {
+   "name": "label",
+   "direction": "output",
+   "summary": "Chunk of predicted class labels column vector"
+  },
+  {
+   "name": "score",
+   "direction": "output",
+   "summary": "Predicted class scores or posterior probabilities matrix"
+  },
+  {
+   "name": "cost",
+   "direction": "output",
+   "summary": "Expected misclassification costs matrix"
+  },
+  {
+   "name": "CanPredict",
+   "direction": "output",
+   "summary": "Model status 0 ( false ) | 1 ( true )"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "nbMdl",
+   "values": "Initial incremental naive Bayes classification model nbMdl (default) | incrementalClassificationNaiveBayes model object",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for predicted class scores",
+   "default": "off",
+   "values": "Add output port for predicted class scores off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for expected classification cost",
+   "default": "off",
+   "values": "Add optional output port for expected classification cost off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for status of trained machine learning model",
+   "default": "off",
+   "values": "Add second output port for model status off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type",
+   "default": "",
+   "values": "Data type of label output Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of label output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of label output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type",
+   "default": "auto",
+   "values": "Data type of score output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of score output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of score output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Raw score data type",
+   "default": "auto",
+   "values": "Untransformed score data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Raw score data type Minimum",
+   "default": "[]",
+   "values": "Minimum untransformed score for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Raw score data type Maximum",
+   "default": "[]",
+   "values": "Maximum untransformed score for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Estimated cost data type",
+   "default": "auto",
+   "values": "Data type of cost output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Estimated cost data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of cost output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Estimated cost data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of cost output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Likelihood data type",
+   "default": "auto",
+   "values": "Data type of likelihood output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Likelihood data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of likelihood output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Likelihood data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of likelihood output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Posterior data type",
+   "default": "auto",
+   "values": "Data type of posterior probability output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Posterior data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of posterior probability output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Posterior data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of posterior probability output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

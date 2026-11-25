@@ -1,0 +1,13 @@
+{
+ "key": "PNP Bipolar Transistor",
+ "title": "PNP Bipolar Transistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/PNP_Bipolar_Transistor.md"
+ ],
+ "text": "使用增强型 Ebers-Moll 方程的 PNP 双极晶体管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

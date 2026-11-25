@@ -1,0 +1,86 @@
+{
+ "key": "Heat Exchanger",
+ "title": "Heat Exchanger",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Fundamental Flow/Heat_Exchanger.md"
+ ],
+ "text": "中冷器或废气再循环 (EGR) 冷却器，输入 4 路、输出 3 路；按 {Image type} 指定图标颜色；{Effectiveness model} 用于热效能的模型类型、{Cooling medium temperature input} 指定 type Constant、{Heat exchanger effectiveness, ep_cnst} 指定效能、{Cooling medium temperature, T_cool_cnst} 指定温度、{Specific heat at constant pressure, cp} 指定比热，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "入口质量流量、热流量、温度、质量分数 two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "出口体积的压力、温度、焓、质量分数 two-way connector port"
+  },
+  {
+   "name": "Effct",
+   "direction": "input",
+   "summary": "热交换器效能 scalar"
+  },
+  {
+   "name": "CoolTemp",
+   "direction": "input",
+   "summary": "冷却介质温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "热交换器数据 bus"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "入口流的压力、温度、焓、质量分数 two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "出口体积的质量流量、热流量、温度、质量分数 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Effectiveness model",
+   "default": "Constant",
+   "values": "用于热效能的模型类型 Constant (default) | External input",
+   "group": ""
+  },
+  {
+   "name": "Cooling medium temperature input",
+   "default": "Constant",
+   "values": "Specify type Constant (default) | External input",
+   "group": ""
+  },
+  {
+   "name": "Image type",
+   "default": "Intercooler",
+   "values": "图标颜色 Intercooler (default) | EGR cooler hot to cold | EGR cooler cold to hot",
+   "group": ""
+  },
+  {
+   "name": "Heat exchanger effectiveness, ep_cnst",
+   "default": "0.7",
+   "values": "效能 0.7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Cooling medium temperature, T_cool_cnst",
+   "default": "300",
+   "values": "温度 300 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specific heat at constant pressure, cp",
+   "default": "1005",
+   "values": "比热 1005 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

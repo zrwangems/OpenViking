@@ -1,0 +1,104 @@
+{
+ "key": "desSelector",
+ "title": "Entity Selector",
+ "toolbox": "SimEvents",
+ "kind": "source_type",
+ "source_docs": [
+  "SimEvents/Entity_Selector.md"
+ ],
+ "text": "Select entities, 2 inputs, 5 outputs; {Number of matching streams} determines how many input entity streams the block, {Key entity attribute Name} sets the name of reference attribute, {Matching entity attribute name(s)} sets the name of selected attribute names, {Number of entities source} sets the source to determine the number of entities to be matched, {Number of entities to select}, {Key attribute for number of entities} sets the key attribute name that determines the number of entities to be matched, {Number of entities departed, d} sets the outputs the number of entities that have departed, {Number of entities in block, n} sets the outputs the number of entities present in the block, which have yet and {Number of entities extracted, ex} sets the outputs the number of entities extracted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Key",
+   "direction": "input",
+   "summary": "Incoming reference entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Incoming entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Exiting reference entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Exiting matched entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "Number of entities that have departed the block scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "Number of entities that have not yet departed the block scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "Number of entities extracted scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of matching streams",
+   "default": "1",
+   "values": "Determine how many input entity streams the block accepts 1 (default) | numerical",
+   "group": ""
+  },
+  {
+   "name": "Key entity attribute Name",
+   "default": "{’ID’}",
+   "values": "Specify name of reference attribute {’ID’} (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Matching entity attribute name(s)",
+   "default": "{’Type’}",
+   "values": "Specify name of selected attribute names {’Type’} (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of entities source",
+   "default": "Dialog",
+   "values": "Source to determine the number of entities to be matched Dialog (default) | Attribute",
+   "group": ""
+  },
+  {
+   "name": "Number of entities to select",
+   "default": "1",
+   "values": "Number of entities to select from each of the incoming entity streams 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Key attribute for number of entities",
+   "default": "Name",
+   "values": "Key attribute name that determines the number of entities to be matched Name (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "Outputs the number of entities that have departed the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "Outputs the number of entities present in the block, which have yet to depart off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "Outputs the number of entities extracted from the block off (default) | on",
+   "group": ""
+  }
+ ]
+}

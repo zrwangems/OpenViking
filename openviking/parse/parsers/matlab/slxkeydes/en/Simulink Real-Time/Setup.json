@@ -1,0 +1,50 @@
+{
+ "key": "Setup",
+ "title": "Setup",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Setup.md"
+ ],
+ "text": "Set up baseboard serial communications, {Parity} sets Select serial port parity; {Serial port} sets the port that is being accessed Legacy Serial, {Baud rate} selects serial port baud rate, {Number of data bits} selects serial port data bits, {Number of stop bits} selects serial port stop bits and {Enable auto RTX/CTS} selects serial port RTX/CTS mode. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "Port that is being accessed Legacy Serial Port 1 (default) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  },
+  {
+   "name": "Baud rate",
+   "default": "115200",
+   "values": "Select serial port baud rate 115200 (default) | 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1200 | 600 | 300 | 110",
+   "group": ""
+  },
+  {
+   "name": "Number of data bits",
+   "default": "8",
+   "values": "Select serial port data bits 8 (default) | 7 | 6 | 5",
+   "group": ""
+  },
+  {
+   "name": "Number of stop bits",
+   "default": "1",
+   "values": "Select serial port stop bits 1 (default) | 2",
+   "group": ""
+  },
+  {
+   "name": "Parity",
+   "default": "None",
+   "values": "Select serial port parity None (default) | Even | Odd | Mark | Space",
+   "group": ""
+  },
+  {
+   "name": "Enable auto RTX/CTS",
+   "default": "off",
+   "values": "Select serial port RTX/CTS mode off (default) | on",
+   "group": ""
+  }
+ ]
+}

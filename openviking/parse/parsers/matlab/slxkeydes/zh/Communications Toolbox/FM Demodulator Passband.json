@@ -1,0 +1,43 @@
+{
+ "key": "FM Demodulator Passband",
+ "title": "FM Demodulator Passband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Passband Modulation/FM_Demodulator_Passband.md"
+ ],
+ "text": "使用相位调制进行调制，输入 1 路、输出 1 路；{Carrier frequency (Hz)} 指定载波频率，以 Hz 为单位、{Initial phase (rad)} 指定初始相位偏移，以弧度为单位、{Phase deviation (rad)} 指定载波频率的相位偏差，单位为弧度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Carrier frequency (Hz)",
+   "default": "300",
+   "values": "载波频率，以 Hz 为单位 300 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "初始相位偏移，以弧度为单位 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase deviation (rad)",
+   "default": "pi/2",
+   "values": "载波频率的相位偏差，单位为弧度 pi/2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

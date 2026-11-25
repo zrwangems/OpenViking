@@ -1,0 +1,86 @@
+{
+ "key": "EntityStore",
+ "title": "Entity Store",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Store.md"
+ ],
+ "text": "Entity Store 模块用作存储无序实体的容器或存储箱，输入 1 路、输出 6 路；{Capacity} 指定存储区的容量、{Number of entities departed, d} 输出已离开该模块的实体数、{Number of entities in block, n} 输出模块中存在的、尚未离开的实体数量、{Average wait, w} 输出平均等待时间、{Average store size, l} 输出平均存储大小、{Number of entities extracted, ex} 指定从该模块中提取的实体数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "尚未离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "实体在该模块中的平均等待时间 scalar"
+  },
+  {
+   "name": "Port_l",
+   "direction": "output",
+   "summary": "平均存储大小 scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "已提取的实体数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Capacity",
+   "default": "25",
+   "values": "指定存储区的容量 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "输出模块中存在的、尚未离开的实体数量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average wait, w",
+   "default": "off",
+   "values": "输出平均等待时间 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average store size, l",
+   "default": "off",
+   "values": "输出平均存储大小 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "从该模块中提取的实体数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

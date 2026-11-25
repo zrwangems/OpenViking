@@ -1,0 +1,153 @@
+{
+ "key": "phased.internal.SimulinkPlatform",
+ "title": "Motion Platform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Motion_Platform.md"
+ ],
+ "text": "Motion platform, 3 inputs, 3 outputs, {Model of object motion} sets Object motion model; {Initial position (m)} sets the initial position of platform, {Initial velocity (m/s)} sets the initial velocity of platform, {Source of velocity}, {Velocity (m/s)} sets the current velocity of platform, {Source of acceleration}, {Acceleration (m/s^2)} sets the acceleration of platform, {Custom trajectory waypoints}, {Mechanical scanning mode}, {Initial scan angle (deg)} sets the initial scan angle of platform, {Azimuth scan angle span (deg)} sets the azimuth span, {Azimuth scan rate (deg/s)}, {Initial orientation axes}, {Enable orientation axes output} sets the output orientation axes, {Source of elapsed simulation time}, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "Reference time input scalar"
+  },
+  {
+   "name": "Vel",
+   "direction": "input",
+   "summary": "Platform velocity input real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Acl",
+   "direction": "input",
+   "summary": "Platform acceleration input real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Pos",
+   "direction": "output",
+   "summary": "Platform position output real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Vel",
+   "direction": "output",
+   "summary": "Platform velocity output real-valued 3-by- N matrix"
+  },
+  {
+   "name": "LAxes",
+   "direction": "output",
+   "summary": "Platform orientation output real-valued 3-by-3-by- N matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model of object motion",
+   "default": "Velocity",
+   "values": "Object motion model Velocity (default) | Acceleration | Custom",
+   "group": ""
+  },
+  {
+   "name": "Initial position (m)",
+   "default": "[0;0;0]",
+   "values": "Initial position of platform [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity (m/s)",
+   "default": "[0;0;0]",
+   "values": "Initial velocity of platform [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Source of velocity",
+   "default": "Property",
+   "values": "Source of velocity data Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Velocity (m/s)",
+   "default": "[0;0;0]",
+   "values": "Current velocity of platform [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Source of acceleration",
+   "default": "Property",
+   "values": "Source of acceleration data Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Acceleration (m/s^2)",
+   "default": "[0;0;0]",
+   "values": "Acceleration of platform [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Custom trajectory waypoints",
+   "default": "]",
+   "values": "Custom trajectory waypoints [ 0, 0, 0, 0, 0, 0, 0; 1, 0, 0, 0, 0, 0, 0 ] (default)",
+   "group": ""
+  },
+  {
+   "name": "Mechanical scanning mode",
+   "default": "None",
+   "values": "Mechanical scanning mode None (default) | Circular | Sector",
+   "group": ""
+  },
+  {
+   "name": "Initial scan angle (deg)",
+   "default": "0",
+   "values": "Initial scan angle of platform 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Azimuth scan angle span (deg)",
+   "default": "[-60,60]",
+   "values": "Azimuth span [-60,60] (default)",
+   "group": ""
+  },
+  {
+   "name": "Azimuth scan rate (deg/s)",
+   "default": "10",
+   "values": "Azimuth scan rate 10 (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial orientation axes",
+   "default": "eye(3)",
+   "values": "Initial orientation axes of platform eye(3) (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable orientation axes output",
+   "default": "off",
+   "values": "Output orientation axes off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of elapsed simulation time",
+   "default": "Auto",
+   "values": "Source of elapsed simulation time Auto (default) | Derive from reference input port",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

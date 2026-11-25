@@ -1,0 +1,13 @@
+{
+ "key": "Ball Valve (G)",
+ "title": "Ball Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Flow Control Valves/Ball_Valve_G.md"
+ ],
+ "text": "Ball valve in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

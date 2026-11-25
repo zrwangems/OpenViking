@@ -1,0 +1,26 @@
+{
+ "key": "Timed Linearization",
+ "title": "Timed-Based Linearization",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model-Wide Utilities/Timed_Based_Linearization.md"
+ ],
+ "text": "在特定时间于基础工作区中生成线性模型；按 {Sample time (of linearized model)} 指定采样时间；{Linearization time} 指定生成线性模型的时间，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Linearization time",
+   "default": "1",
+   "values": "生成线性模型的时间 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (of linearized model)",
+   "default": "0",
+   "values": "采样时间 0 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

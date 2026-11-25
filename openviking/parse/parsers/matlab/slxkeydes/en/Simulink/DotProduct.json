@@ -1,0 +1,73 @@
+{
+ "key": "DotProduct",
+ "title": "Dot Product",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Dot_Product.md",
+  "HDL Coder/Math Operations/Dot_Product.md"
+ ],
+ "text": "Generate dot product of two vectors, 2 inputs, 1 output, direct feedthrough, {Integer rounding mode} sets Rounding mode for fixed-point operations; {Require all inputs to have the same data type}, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the output data type, {Lock output data type setting against changes by the fixed-point tools} prevents fixed-point tools from overriding data and {Saturate on integer overflow} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First operand input signal scalar | vector"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Second operand input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Dot product output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Require all inputs to have the same data type",
+   "default": "on",
+   "values": "Require all inputs to have the same data type on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Specify the output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | Inherit: Same as first input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": ""
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": ""
+  }
+ ]
+}

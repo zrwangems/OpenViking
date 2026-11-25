@@ -1,0 +1,66 @@
+{
+ "key": "Induction Motor HDL",
+ "title": "Induction Motor HDL",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Electrical Systems/Motors/Induction_Motor_HDL.md"
+ ],
+ "text": "三相感应电机，输入 4 路、输出 5 路；{采样时间(秒)} 指定采样时间，在此采样时间过后模块将再次执行 1e-6，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "模块配置信号 矢量"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "input",
+   "summary": "定子端电压 1 × 3 数组"
+  },
+  {
+   "name": "LdTrq/Spd",
+   "direction": "input",
+   "summary": "电机上的负载转矩或电机轴的转速 标量"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "重置总线信号 标量"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 总线"
+  },
+  {
+   "name": "PhaseCurr",
+   "direction": "output",
+   "summary": "相位 a 、 b 和 c 的电流 1 × 3 数组"
+  },
+  {
+   "name": "Torque",
+   "direction": "output",
+   "summary": "电机转矩 scalar"
+  },
+  {
+   "name": "Speed",
+   "direction": "output",
+   "summary": "电机转速 scalar"
+  },
+  {
+   "name": "MtrElecAngle",
+   "direction": "output",
+   "summary": "电机电角 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "采样时间(秒)",
+   "default": "1e-6",
+   "values": "采样时间，在此采样时间过后模块将再次执行 1e-6 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

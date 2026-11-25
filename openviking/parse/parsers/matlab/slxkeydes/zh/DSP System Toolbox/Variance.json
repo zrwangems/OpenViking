@@ -1,0 +1,102 @@
+{
+ "key": "Variance",
+ "title": "Variance",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Variance.md"
+ ],
+ "text": "输入或输入序列的方差，输入 2 路、输出 1 路、无直接馈通；按 {Reset port} 指定重置事件；{Running variance} 用于选择运行方差、{Find the variance value over} 指定计算方差所沿的维度 Each、{Dimension} 指定自定义维度、{Input processing} 指定在运行模式下处理输入的方法 Columns、{Rounding mode} 指定舍入运算的方法、{Saturate on integer overflow} 指定溢出操作的方法、{Input-squared product output} 指定输入平方项的数据类型 Same、{Input-sum-squared product} 指定输入和平方项的数据类型 Same as input-squared、{Accumulator} 指定累加器数据类型 Same as input-squared、{Output} 输出数据类型 Same as input-squared、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "复位端口 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "沿指定维度的方差 scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Running variance",
+   "default": "off",
+   "values": "用于选择运行方差的选项 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Find the variance value over",
+   "default": "column",
+   "values": "计算方差所沿的维度 Each column (default) | Entire input | Each row | Specified dimension",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "自定义维度 1 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "在运行模式下处理输入的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "重置事件 None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Input-squared product output",
+   "default": "input",
+   "values": "输入平方项的数据类型 Same as input (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Input-sum-squared product",
+   "default": "product",
+   "values": "输入和平方项的数据类型 Same as input-squared product (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "product",
+   "values": "累加器数据类型 Same as input-squared product (default) | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "product",
+   "values": "输出数据类型 Same as input-squared product (default) | Same as accumulator | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

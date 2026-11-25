@@ -1,0 +1,124 @@
+{
+ "key": "Record",
+ "title": "Record",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/Record.md",
+  "Simulink/Sinks/XY_Graph.md",
+  "HDL Coder/Sinks/XY_Graph.md"
+ ],
+ "text": "View and log data to the workspace, a file, or both, 1 input, no direct feedthrough, {Row Group Policy Value} sets Height or; {Number of input ports}, {Decimation}, {Limit data points to last} sets the number of samples, {Select port} sets the port for which to specify input processing, {Input processing}, {Record to workspace} sets the workspace logging, {Workspace variable name} sets the name for workspace variable that contains logged block data, {Record to file} sets the log to file, {File name} sets the name of file with logged data, {File type} sets the type of file for logged, {File location} sets the path to file with logged data working, {Time}, {Signal Attributes} sets the signal attributes to export to Excel file Data, {Compression Type} sets the compression options Fastest, {Generate Sidecar} sets the option to generate JSON sidecar and {Row Group Policy} sets the options for grouping rows in Parquet file Row Group. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Signal to record scalar | vector | matrix | array | bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "1",
+   "values": "Number of input ports 1 (default) | integer in the range [ 1,100 ]",
+   "group": "Main"
+  },
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "Decimation factor 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Limit data points to last",
+   "default": "inf",
+   "values": "Number of samples to log inf (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Select port",
+   "default": "1",
+   "values": "Port for which to specify input processing mode 1 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Input processing",
+   "default": "(sample-based)",
+   "values": "Input processing mode for selected port Elements as channels (sample-based) (default) | Columns as channels (frame-based)",
+   "group": "Main"
+  },
+  {
+   "name": "Record to workspace",
+   "default": "off",
+   "values": "Workspace logging option off (default) | on",
+   "group": "Record"
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "recordout",
+   "values": "Name for workspace variable that contains logged block data recordout (default) | character vector | string",
+   "group": "Record"
+  },
+  {
+   "name": "Record to file",
+   "default": "off",
+   "values": "Log to file option off (default) | on",
+   "group": "Record"
+  },
+  {
+   "name": "File name",
+   "default": "recording.mldatx",
+   "values": "Name of file with logged data recording.mldatx (default) | character vector | string",
+   "group": "Record"
+  },
+  {
+   "name": "File type",
+   "default": "*.mldatx",
+   "values": "Type of file for logged data *.mldatx (default) | *.mat | *.xslx | *.parquet",
+   "group": "Record"
+  },
+  {
+   "name": "File location",
+   "default": "directory",
+   "values": "Path to file with logged data working directory (default) | character vector | string",
+   "group": "Record"
+  },
+  {
+   "name": "Time",
+   "default": "Columns",
+   "values": "Options for exporting time data to Excel or Parquet file Shared Time Columns (default) | Individual Time Columns",
+   "group": "Record"
+  },
+  {
+   "name": "Signal Attributes",
+   "default": "",
+   "values": "Signal attributes to export to Excel file Data Type | Units | Port Index | Block Path | Interpolation",
+   "group": "Record"
+  },
+  {
+   "name": "Compression Type",
+   "default": "(snappy)",
+   "values": "Compression options Fastest (snappy) (default) | Balanced for Size and Speed (gzip) | Compact (brotli) | None (uncompressed)",
+   "group": "Record"
+  },
+  {
+   "name": "Generate Sidecar",
+   "default": "on",
+   "values": "Option to generate JSON sidecar on (default) | off",
+   "group": "Record"
+  },
+  {
+   "name": "Row Group Policy",
+   "default": "Height",
+   "values": "Options for grouping rows in Parquet file Row Group Height (default) | Row Group Size (MB)",
+   "group": "Record"
+  },
+  {
+   "name": "Row Group Policy Value",
+   "default": "",
+   "values": "Height or size of row group auto (default when Row Group Policy is Row Group Height ) | 512 (default when Row Group Policy is Row Group Size (MB) | number of rows | size of row group",
+   "group": "Record"
+  }
+ ]
+}

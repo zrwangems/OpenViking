@@ -1,0 +1,117 @@
+{
+ "key": "Variable Integer Delay",
+ "title": "Variable Integer Delay",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Variable_Integer_Delay.md"
+ ],
+ "text": "按固定或可变采样周期延迟输入信号，输入 5 路、输出 1 路；按 {外部重置} 指定外部状态重置；{延迟长度}、{初始条件}、{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{使用环形缓冲区保存状态} 指定存储状态的环形缓冲区、{防止直接馈通}、{在生成代码中去除延迟长度检查} 指定删除延迟长度超出范围检查、{延迟长度的诊断}、{显示使能端口} 指定创建使能端口、{采样时间(-1 表示继承)} 指定采样时间命中点之间的离散间隔、{状态名称} 指定模块状态的唯一名称、{状态名称必须解析为 Simulink 信号对象} 指定要求将状态名称解析为信号对象，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "数据输入信号 标量 | 向量"
+  },
+  {
+   "name": "d",
+   "direction": "input",
+   "summary": "延迟长度 标量"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "外部使能信号 标量"
+  },
+  {
+   "name": "External reset",
+   "direction": "input",
+   "summary": "外部重置信号 标量"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "初始条件 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "延迟长度",
+   "default": "对话框",
+   "values": "延迟长度 对话框 (默认) | 输入端口",
+   "group": "常设"
+  },
+  {
+   "name": "初始条件",
+   "default": "对话框",
+   "values": "初始条件 对话框 (默认) | 输入端口",
+   "group": "常设"
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "指定基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": "常设"
+  },
+  {
+   "name": "使用环形缓冲区保存状态",
+   "default": "off",
+   "values": "存储状态的环形缓冲区 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "防止直接馈通",
+   "default": "off",
+   "values": "防止直接馈通 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "在生成代码中去除延迟长度检查",
+   "default": "off",
+   "values": "删除延迟长度超出范围检查 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "延迟长度的诊断",
+   "default": "无",
+   "values": "延迟长度的诊断检查 无 (默认) | 警告 | 错误",
+   "group": "常设"
+  },
+  {
+   "name": "显示使能端口",
+   "default": "off",
+   "values": "创建使能端口 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "外部重置",
+   "default": "无",
+   "values": "外部状态重置 无 (默认) | 上升沿 | 下降沿 | 任一沿 | 电平 | 电平保持",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样时间命中点之间的离散间隔 -1 (默认) | scalar",
+   "group": "常设"
+  },
+  {
+   "name": "状态名称",
+   "default": "’’",
+   "values": "模块状态的唯一名称 ’’ (默认) | 字母数字字符串",
+   "group": "状态属性"
+  },
+  {
+   "name": "状态名称必须解析为 Simulink 信号对象",
+   "default": "off",
+   "values": "要求将状态名称解析为信号对象 off (默认) | on",
+   "group": "状态属性"
+  }
+ ]
+}

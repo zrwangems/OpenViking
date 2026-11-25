@@ -1,0 +1,114 @@
+{
+ "key": "ChargePump",
+ "title": "Charge Pump",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Charge_Pump.md"
+ ],
+ "text": "Output a current proportional to the difference in duty cycle between two input ports, 2 inputs, 1 output; {Output current (A)} sets the design output current 1e-3, {Input threshold (V)} sets the logic switching threshold at input ports, {Enable increased buffer size}, {Buffer size} sets the number of samples of the input buffering available during, {Enable current impairments} adds current impairments to simulation, {Current imbalance (A)} sets the difference between full scale positive and negative current, {Leakage current (A)} sets the output current without any, {Enable timing impairments} adds timing impairments to simulation, {Output step size calculation} determines how output step size is calculated, {Maximum frequency of interest (Hz)} sets the maximum frequency of interest at output, {Rise/fall time (s)} sets the 20%-80% rise/fall time for up input port, {Up propagation delay} sets the total propagation delay for up input port, {Rise/fall time} sets the 20%-80% rise/fall time for down input port and {Down propagation delay} sets the total propagation delay for down input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "up",
+   "direction": "input",
+   "summary": "Input port scalar"
+  },
+  {
+   "name": "down",
+   "direction": "input",
+   "summary": "Input port scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "Output port scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output current (A)",
+   "default": "1e-3",
+   "values": "Design output current 1e-3 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input threshold (V)",
+   "default": "0.5",
+   "values": "Logic switching threshold at input ports 0.5 (default) | real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "Number of samples of the input buffering available during simulation 10 (default) | positive integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable current impairments",
+   "default": "on",
+   "values": "Add current impairments to simulation on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Current imbalance (A)",
+   "default": "1e-7",
+   "values": "Difference between full scale positive and negative current 1e-7 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Leakage current (A)",
+   "default": "1e-8",
+   "values": "Output current without any input 1e-8 (default) | nonnegative real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable timing impairments",
+   "default": "on",
+   "values": "Add timing impairments to simulation on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Output step size calculation",
+   "default": "Default",
+   "values": "Determine how output step size is calculated Default (default) | Advanced",
+   "group": "Impairments"
+  },
+  {
+   "name": "Maximum frequency of interest (Hz)",
+   "default": "10e9",
+   "values": "Maximum frequency of interest at output 10e9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Rise/fall time (s)",
+   "default": "5e-9",
+   "values": "20%-80% rise/fall time for up input port 5e-9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Up propagation delay",
+   "default": "6e-9",
+   "values": "Total propagation delay for up input port 6e-9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Rise/fall time",
+   "default": "2e-9",
+   "values": "20%-80% rise/fall time for down input port 2e-9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Down propagation delay",
+   "default": "4e-9",
+   "values": "Total propagation delay for down input port 4e-9 (default) | positive real scalar",
+   "group": "Impairments"
+  }
+ ]
+}

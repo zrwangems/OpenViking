@@ -1,0 +1,53 @@
+{
+ "key": "SM Governor with Droop",
+ "title": "SM Governor with Droop",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_Governor_with_Droop.md"
+ ],
+ "text": "Synchronous machine governor with droop, 3 inputs, 1 output; {Percentage droop, (%)} sets the droop, {Time constant of governor, (s)} sets the first-order lag time constant and {Initial throttle position, (pu)} sets the initial throttle output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "P_ref",
+   "direction": "input",
+   "summary": "Desired per-unit generator load scalar"
+  },
+  {
+   "name": "speed_ref",
+   "direction": "input",
+   "summary": "Desired per-unit generator speed scalar"
+  },
+  {
+   "name": "speed",
+   "direction": "input",
+   "summary": "Actual per-unit generator speed scalar"
+  },
+  {
+   "name": "throttle",
+   "direction": "output",
+   "summary": "Throttle position scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Percentage droop, (%)",
+   "default": "%",
+   "values": "Droop 5 % (default)",
+   "group": ""
+  },
+  {
+   "name": "Time constant of governor, (s)",
+   "default": "0.2",
+   "values": "First-order lag time constant 0.2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial throttle position, (pu)",
+   "default": "0.5",
+   "values": "Initial throttle output 0.5 (default)",
+   "group": ""
+  }
+ ]
+}

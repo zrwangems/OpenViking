@@ -1,0 +1,66 @@
+{
+ "key": "opcUARead",
+ "title": "OPC UA Read",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/OPC Unified Architecture/OPC_UA_Read.md"
+ ],
+ "text": "Read data from OPC UA server, 3 outputs; {Server} defines OPC UA server for block drop-down, {Nodes} sets the list of OPC UA server, {Show quality port} adds quality output to block, {Show timestamp port} adds timestamp output to block, {Show timestamp port as} sets the timestamp basis Seconds and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Value",
+   "direction": "output",
+   "summary": "Current data values of selected nodes scalar | bus"
+  },
+  {
+   "name": "Timestamp",
+   "direction": "output",
+   "summary": "Timestamp of selected nodes data seconds (default) | date number"
+  },
+  {
+   "name": "Quality",
+   "direction": "output",
+   "summary": "Quality of read data from selected nodes boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Server",
+   "default": "",
+   "values": "Define OPC UA server for block drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Nodes",
+   "default": "",
+   "values": "List of OPC UA server nodes table",
+   "group": ""
+  },
+  {
+   "name": "Show quality port",
+   "default": "on",
+   "values": "Add quality output to block on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show timestamp port",
+   "default": "on",
+   "values": "Add timestamp output to block on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show timestamp port as",
+   "default": "start",
+   "values": "Set timestamp basis Seconds since start (default) | Serial date number",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time for read operation -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

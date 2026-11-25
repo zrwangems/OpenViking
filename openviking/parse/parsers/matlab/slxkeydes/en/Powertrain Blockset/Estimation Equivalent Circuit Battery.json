@@ -1,0 +1,101 @@
+{
+ "key": "Estimation Equivalent Circuit Battery",
+ "title": "Estimation Equivalent Circuit Battery",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/Network Battery/Estimation_Equivalent_Circuit_Battery.md"
+ ],
+ "text": "Resistor-capacitor (RC) circuit battery that determines combined voltage using lookup tables, 3 outputs; {Number of series RC pairs}, {Open circuit voltage Em table data, Em} sets the voltage table, {Series resistance table data, R0} sets the resistance, {State of charge breakpoints, SOC_BP} sets the sOC breakpoints, {Battery capacity, BattCap} sets the capacity, {Initial battery capacity, BattCapInit} sets the capacity, {Initial capacitor voltage, InitialCapVoltage}, {Network resistance table data, R n} sets the lookup table, {Network capacitance table data, C n} sets the lookup table, {Upper Integrator Voltage Limit, Vu} sets the maximum and {Lower Integrator Voltage Limit, Vl} sets the minimum. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BattCurr",
+   "direction": "unknown",
+   "summary": "Battery network current scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "BattVolt",
+   "direction": "output",
+   "summary": "Battery output voltage scalar"
+  },
+  {
+   "name": "BattSoc",
+   "direction": "output",
+   "summary": "Battery SOC scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of series RC pairs",
+   "default": "1",
+   "values": "RC pairs 1 (default) | 2 | 3 | 4 | 5",
+   "group": ""
+  },
+  {
+   "name": "Open circuit voltage Em table data, Em",
+   "default": "3.8]",
+   "values": "Voltage table [3.8 3.8 3.8 3.8 3.8 3.8] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Series resistance table data, R0",
+   "default": "0.01]",
+   "values": "Resistance [0.01 0.01 0.01 0.01 0.01 0.01] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "State of charge breakpoints, SOC_BP",
+   "default": "1]",
+   "values": "SOC breakpoints [0.2.4.6.8 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Battery capacity, BattCap",
+   "default": "27.6250",
+   "values": "Capacity 27.6250 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial battery capacity, BattCapInit",
+   "default": "27.6250",
+   "values": "Capacity 27.6250 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial capacitor voltage, InitialCapVoltage",
+   "default": "0",
+   "values": "Voltage 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Network resistance table data, R n",
+   "default": "0.005]",
+   "values": "Lookup table [0.005 0.005 0.005 0.005 0.005 0.005] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Network capacitance table data, C n",
+   "default": "10000]",
+   "values": "Lookup table [10000 10000 10000 10000 10000 10000] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Upper Integrator Voltage Limit, Vu",
+   "default": "Inf",
+   "values": "Maximum Inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lower Integrator Voltage Limit, Vl",
+   "default": "Inf",
+   "values": "Minimum Inf (default) | scalar",
+   "group": ""
+  }
+ ]
+}

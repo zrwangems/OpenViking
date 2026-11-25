@@ -1,0 +1,186 @@
+{
+ "key": "Biquad Filter",
+ "title": "Biquad Filter",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/Biquad_Filter.md",
+  "DSP System Toolbox HDL Support/Filtering/Biquad_Filter.md",
+  "DSP System Toolbox/Filtering/Filter Implementations/Biquad_Filter.md"
+ ],
+ "text": "对双二次 IIR (SOS) 滤波器进行建模，输入 4 路、输出 1 路、无直接馈通；按 {Scale values} 指定缩放值；{Coefficient source} 指定操作模式、{Filter} 指定滤波器对象的名称、{Filter structure} 指定滤波器结构、{SOS Matrix (Mx6)} 指定 SOS 矩阵、{Initial conditions} 指定初始条件、{Initial conditions on zeros side} 指定零点侧的初始条件、{Initial conditions on poles side} 指定极点侧的初始条件、{Scale values mode} 指定缩放值的模式 Specify via input、{Action when the a0 values of the SOS matrix are not one} 指定 SOS 矩阵的 a0 值不为 1 时的操作、{Optimize unity scale values} 指定优化单位缩放值、{Input processing} 指定输入处理 Columns as channels、{View Filter Response} 指定查看滤波器响应、{Rounding mode} 指定舍入模式 Floor、{Saturate on integer overflow} 指定溢出操作的方法、{Section input} 指定节输入数据类型 Same、{Section output} 指定节输出数据类型 Same as section、{Multiplicand} 指定被乘数数据类型 Same、{Coefficients} 指定系数数据类型 Same word length、{Product output} 指定乘积输出数据类型 Same、{Accumulator} 指定累加器数据类型 Same as product、{States} 指定状态数据类型 Same、{Output} 输出数据类型 Same、{Lock data type settings against changes by the fixed-point tools} 指定锁定数据类型设置，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "分子系数 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "分母系数 matrix"
+  },
+  {
+   "name": "g",
+   "direction": "input",
+   "summary": "缩放值 row vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "滤波后输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "操作模式 Dialog parameters (default) | Input port(s) | Filter object",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter",
+   "default": "BQF",
+   "values": "滤波器对象的名称 BQF (default) | dsp.BiquadFilter System object name",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter structure",
+   "default": "transposed",
+   "values": "滤波器结构 Direct form II transposed (default) | Direct form I | Direct form I transposed | Direct form II",
+   "group": "Main Tab"
+  },
+  {
+   "name": "SOS Matrix (Mx6)",
+   "default": "0.2]",
+   "values": "SOS 矩阵 [1 0.3 0.4 1 0.1 0.2] (default) | M -by-6 matrix",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Scale values",
+   "default": "1",
+   "values": "缩放值 1 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "初始条件 0 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial conditions on zeros side",
+   "default": "0",
+   "values": "零点侧的初始条件 0 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial conditions on poles side",
+   "default": "0",
+   "values": "极点侧的初始条件 0 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Scale values mode",
+   "default": "(g)",
+   "values": "指定缩放值的模式 Specify via input port (g) (default) | Assume all are unity and optimize",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Action when the a0 values of the SOS matrix are not one",
+   "default": "Warning",
+   "values": "SOS 矩阵的 a0 值不为 1 时的操作 Warning (default) | None | Error",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Optimize unity scale values",
+   "default": "on",
+   "values": "优化单位缩放值 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "输入处理 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Section input",
+   "default": "input",
+   "values": "节输入数据类型 Same as input (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Section output",
+   "default": "input",
+   "values": "节输出数据类型 Same as section input (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Multiplicand",
+   "default": "output",
+   "values": "被乘数数据类型 Same as output (default) | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "系数数据类型 Same word length as input (default) | Specify word length | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "乘积输出数据类型 Same as input (default) | Inherit via internal rule | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "累加器数据类型 Same as product output (default) | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "States",
+   "default": "accumulator",
+   "values": "状态数据类型 Same as accumulator (default) | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "输出数据类型 Same as accumulator (default) | Same as input | Binary point scaling",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "锁定数据类型设置 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

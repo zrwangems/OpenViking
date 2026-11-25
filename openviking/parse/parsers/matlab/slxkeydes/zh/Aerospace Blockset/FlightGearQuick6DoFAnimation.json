@@ -1,0 +1,38 @@
+{
+ "key": "FlightGearQuick6DoFAnimation",
+ "title": "FlightGear Preconfigured 6DoF Animation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/FlightGear_Preconfigured_6DoF_Animation.md"
+ ],
+ "text": "将模型连接到 FlightGear 飞行模拟器，输入 1 路；{Destination IP address} 指定目标 IP 地址 127.0.0.1、{Destination port} 指定目标端口 scalar、{Sample time} 指定采样时间 1/30，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "l,μ,h,ϕ,θ,ψ",
+   "direction": "input",
+   "summary": "经度、纬度、高度、横滚、俯仰和偏航 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Destination IP address",
+   "default": "127.0.0.1",
+   "values": "目标 IP 地址 127.0.0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Destination port",
+   "default": "",
+   "values": "目标端口 scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "采样时间 1/30 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

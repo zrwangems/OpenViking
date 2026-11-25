@@ -1,0 +1,49 @@
+{
+ "key": "slrealtimetcpserver",
+ "title": "TCP Server",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/TCP_Server.md"
+ ],
+ "text": "Configure TCP server, 1 input, 1 output; {Use host-target connection} uses Ethernet connection between the development computer and target, {Server IP address} sets the iP address of the server device that is being configured, {Server port} sets the iP port of the server device that is being configured and {Use Nagle’s algorithm} enables Nagle. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Connect block to remote Ethernet device integer"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Device returns a status of not connected or connected 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use host-target connection",
+   "default": "’off’",
+   "values": "Use Ethernet connection between the development computer and target computers ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Server IP address",
+   "default": "",
+   "values": "IP address of the server device that is being configured x.x.x.x",
+   "group": ""
+  },
+  {
+   "name": "Server port",
+   "default": "",
+   "values": "IP port of the server device that is being configured 1–65535",
+   "group": ""
+  },
+  {
+   "name": "Use Nagle’s algorithm",
+   "default": "on",
+   "values": "Enable Nagle’s algorithm to combine packets on (default) | off",
+   "group": ""
+  }
+ ]
+}

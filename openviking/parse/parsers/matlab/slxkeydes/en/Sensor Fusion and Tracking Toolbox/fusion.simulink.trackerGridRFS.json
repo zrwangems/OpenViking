@@ -1,0 +1,296 @@
+{
+ "key": "fusion.simulink.trackerGridRFS",
+ "title": "Grid-Based Multi Object Tracker",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Multi-Object Tracking Algorithms/Grid_Based_Multi_Object_Tracker.md"
+ ],
+ "text": "Grid-based multi-object tracker using random finite set approach, 4 inputs, 3 outputs, {Motion model for tracking} sets Motion model for tracking; {Tracker identifier} sets the unique tracker identifier, {Maximum number of tracks}, {Maximum number of sensors}, {Sensor configurations} sets the configurations of tracking sensors struct, {Update sensor configurations with time}, {Track state parameters} sets the parameters of track state reference frame, {Update track state parameters with time}, {Enable GPU computation}, {X-dimension of grid}, {Y-dimension of grid}, {Resolution of grid}, {Grid origin} sets the origin of grid, {Simulate using} sets the type of simulation to run Interpreted, {Minimum and maximum velocity of objects (m/s)} sets the minimum and maximum velocities of objects, {Enable additive process noise}, {Process noise covariance matrix}, {Number of persistent particles}, {Number of new-born particles per step}, {Probability of birth in a cell per step}, {Death rate of targets per unit time}, {Confidence in free space prediction}, {Random number generation} sets the method of random number seed generation, {Initial Seed} sets the initial seed for randomization, {Clustering method for new object extraction}, {Threshold for DBSCAN clustering}, {Minimum number of cells per cluster for DBSCAN}, {Name of ’Custom’ clustering function} sets the name of custom clustering function function, {Function to initialize tracks from grid cell sets}, {Function to update existing tracks}, {Threshold for assigning dynamic grid cells to tracks}, {Confirmation threshold [M N]} sets the threshold for track confirmation, {Deletion threshold [P Q]} sets the threshold for track deletion, {Enable dynamic grid map visualization}, {Plot velocity} enables velocity plotting, {Fast update} enables updating from previous map, {Invert colors} enables inverted colors, {Prediction time source} sets the source of prediction time, {Enable tentative tracks output} enables output port for tentative tracks, {Enable all tracks output} enables output port for all tracks and {Source of output bus name} sets the source of output track bus name. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Sensor Data",
+   "direction": "input",
+   "summary": "Sensor data Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "Track update time real scalar"
+  },
+  {
+   "name": "Sensor Configurations",
+   "direction": "input",
+   "summary": "Configurations of tracking sensors Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "Track state parameters Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "Confirmed tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "Tentative tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "Confirmed and Tentative tracks Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tracker identifier",
+   "default": "0",
+   "values": "Unique tracker identifier 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of tracks",
+   "default": "100",
+   "values": "Maximum number of tracks 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "20",
+   "values": "Maximum number of sensors 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sensor configurations",
+   "default": "100])",
+   "values": "Configurations of tracking sensors struct(’SensorIndex’,1,’IsValidTime’,true,’SensorLimits’,[-180 180; 0 100]) (default) | structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update sensor configurations with time",
+   "default": "off",
+   "values": "Update sensor configurations with time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "Parameters of track state reference frame structure",
+   "group": ""
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "Update track state parameters with time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable GPU computation",
+   "default": "off",
+   "values": "Enable GPU computation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "X-dimension of grid",
+   "default": "100",
+   "values": "X-dimension of grid 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Y-dimension of grid",
+   "default": "100",
+   "values": "Y-dimension of grid 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Resolution of grid",
+   "default": "1",
+   "values": "Resolution of grid 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Grid origin",
+   "default": "-50]",
+   "values": "Origin of grid [-50 -50] (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Type of simulation to run Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Motion model for tracking",
+   "default": "constant-velocity",
+   "values": "Motion model for tracking constant-velocity (default) | constant-acceleration | constant-turnrate",
+   "group": ""
+  },
+  {
+   "name": "Minimum and maximum velocity of objects (m/s)",
+   "default": "10]",
+   "values": "Minimum and maximum velocities of objects (m/s) [-10 10; -10 10] (default) | 2-by-2 matrix of scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable additive process noise",
+   "default": "false",
+   "values": "Enable additive process noise false (default) | true",
+   "group": ""
+  },
+  {
+   "name": "Process noise covariance matrix",
+   "default": "eye(2)",
+   "values": "Process noise covariance matrix eye(2) (default) | N -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of persistent particles",
+   "default": "1e5",
+   "values": "Number of persistent particles 1e5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of new-born particles per step",
+   "default": "1e4",
+   "values": "Number of new-born particles per step 1e4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Probability of birth in a cell per step",
+   "default": "0.01",
+   "values": "Probability of birth in a cell per step 0.01 (default) | scalar in range [0, 1)",
+   "group": ""
+  },
+  {
+   "name": "Death rate of targets per unit time",
+   "default": "1e-3",
+   "values": "Death rate of targets per unit time 1e-3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Confidence in free space prediction",
+   "default": "0.8",
+   "values": "Confidence in free space prediction 0.8 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Random number generation",
+   "default": "Repeatable",
+   "values": "Method of random number seed generation Repeatable (default) | Not repeatable | Specify seed",
+   "group": ""
+  },
+  {
+   "name": "Initial Seed",
+   "default": "0",
+   "values": "Initial seed for randomization 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Clustering method for new object extraction",
+   "default": "DBSCAN",
+   "values": "Clustering method for new object extraction DBSCAN (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Threshold for DBSCAN clustering",
+   "default": "5",
+   "values": "Threshold for DBSCAN clustering 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum number of cells per cluster for DBSCAN",
+   "default": "2",
+   "values": "Minimum number of cells per cluster for DBSCAN 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Name of ’Custom’ clustering function",
+   "default": "",
+   "values": "Name of custom clustering function function name",
+   "group": ""
+  },
+  {
+   "name": "Function to initialize tracks from grid cell sets",
+   "default": "trackerGridRFS.defaultTrackInitialization",
+   "values": "Function to initialize tracks from grid cell sets trackerGridRFS.defaultTrackInitialization (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Function to update existing tracks",
+   "default": "trackerGridRFS.defaultTrackUpdate",
+   "values": "Function to update existing tracks trackerGridRFS.defaultTrackUpdate (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Threshold for assigning dynamic grid cells to tracks",
+   "default": "30",
+   "values": "Threshold for assigning dynamic grid cells to tracks 30 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [M N]",
+   "default": "3]",
+   "values": "Threshold for track confirmation [2 3] (default) | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [P Q]",
+   "default": "5]",
+   "values": "Threshold for track deletion [5 5] (default) | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Enable dynamic grid map visualization",
+   "default": "on",
+   "values": "Enable dynamic grid map visualization on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Plot velocity",
+   "default": "off",
+   "values": "Enable velocity plotting off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Fast update",
+   "default": "on",
+   "values": "Enable updating from previous map on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Invert colors",
+   "default": "off",
+   "values": "Enable inverted colors off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Prediction time source",
+   "default": "port",
+   "values": "Source of prediction time Input port (default) | Auto",
+   "group": ""
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "Enable output port for tentative tracks off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "Enable output port for all tracks off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "Source of output track bus name Auto (default) | Property",
+   "group": ""
+  }
+ ]
+}

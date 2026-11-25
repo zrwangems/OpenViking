@@ -1,0 +1,42 @@
+{
+ "key": "Hysteresis Current Controller (Three-Phase)",
+ "title": "Hysteresis Current Controller (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Machine Control/Hysteresis_Current_Controller_Three_Phase.md"
+ ],
+ "text": "三相滞后电流控制，输入 2 路、输出 1 路；{电流滞后带(A)} 指定滞后带、{采样时间(-1 表示继承)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "iabc*",
+   "direction": "input",
+   "summary": "电流 向量"
+  },
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "电流 向量"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "控制器输出 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "电流滞后带(A)",
+   "default": "1",
+   "values": "滞后带 1 (默认) | 正数",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 正标量",
+   "group": ""
+  }
+ ]
+}

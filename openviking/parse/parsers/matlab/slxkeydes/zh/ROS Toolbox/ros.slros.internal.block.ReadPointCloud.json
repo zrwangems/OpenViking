@@ -1,0 +1,76 @@
+{
+ "key": "ros.slros.internal.block.ReadPointCloud",
+ "title": "Read Point Cloud",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Read_Point_Cloud.md"
+ ],
+ "text": "从 ROS PointCloud2 消息中提取点云，输入 1 路、输出 4 路；{Maximum point cloud size} 指定点云图像的最大大小、{Preserve point cloud structure} 指定点云数据输出形状保留、{Show RGB output port} 指定 RGB 端口切换、{Show Intensity output port} 指定 Intensity 端口切换、{Show ErrorCode output port} 指定 ErrorCode 端口切换、{Output variable-size signals} 指定可变大小信号输出切换，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS `sensor_msgs/PointCloud2` 消息 nonvirtual bus"
+  },
+  {
+   "name": "XYZ",
+   "direction": "output",
+   "summary": "XYZ 坐标 matrix | array"
+  },
+  {
+   "name": "RGB",
+   "direction": "output",
+   "summary": "每个点的 RGB 值 matrix | array"
+  },
+  {
+   "name": "Intensity",
+   "direction": "output",
+   "summary": "每个点的强度值 array | matrix"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "图像转换的错误代码 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum point cloud size",
+   "default": "640]",
+   "values": "点云图像的最大大小 [480 640] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Preserve point cloud structure",
+   "default": "off",
+   "values": "点云数据输出形状保留 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show RGB output port",
+   "default": "off",
+   "values": "RGB 端口切换 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show Intensity output port",
+   "default": "off",
+   "values": "Intensity 端口切换 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "on",
+   "values": "ErrorCode 端口切换 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "可变大小信号输出切换 off (default) | on",
+   "group": ""
+  }
+ ]
+}

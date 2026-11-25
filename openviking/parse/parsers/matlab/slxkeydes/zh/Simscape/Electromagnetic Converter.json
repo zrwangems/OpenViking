@@ -1,0 +1,13 @@
+{
+ "key": "Electromagnetic Converter",
+ "title": "Electromagnetic Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Elements/Electromagnetic_Converter.md"
+ ],
+ "text": "被动生成磁场的永磁体。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

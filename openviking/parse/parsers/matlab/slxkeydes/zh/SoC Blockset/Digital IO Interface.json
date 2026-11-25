@@ -1,0 +1,76 @@
+{
+ "key": "Digital IO Interface",
+ "title": "Digital IO Interface",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Peripherals/Digital_IO_Interface.md"
+ ],
+ "text": "仿真处理器上的数字输入和输出引脚，输入 2 路、输出 3 路；按 {Condition} 指定触发事件的条件 Rising；{IO direction} 指定将模块配置为数字输入或数字输出、{Low input voltage} 指定低输入电压阈值、{High input voltage} 指定高输入电压阈值、{Enable event} 启用事件生成、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "SoC 消息数据 scalar"
+  },
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入数字信号 scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "输出数字信号 scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "任务事件信号 scalar"
+  },
+  {
+   "name": "message",
+   "direction": "output",
+   "summary": "SoC 消息数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "IO direction",
+   "default": "Input",
+   "values": "将模块配置为数字输入或数字输出 Input (default) | Output",
+   "group": ""
+  },
+  {
+   "name": "Low input voltage",
+   "default": "0.2",
+   "values": "低输入电压阈值 0.2 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "High input voltage",
+   "default": "2.5",
+   "values": "高输入电压阈值 2.5 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable event",
+   "default": "on",
+   "values": "启用事件生成的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Condition",
+   "default": "edge",
+   "values": "触发事件的条件 Rising edge (default) | Falling edge | Both",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

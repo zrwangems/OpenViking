@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Source (G)",
+ "title": "Flow Rate Source (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Sources/Flow_Rate_Source_G.md"
+ ],
+ "text": "Generate constant or time-varying mass flow rate or volumetric flow rate in gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

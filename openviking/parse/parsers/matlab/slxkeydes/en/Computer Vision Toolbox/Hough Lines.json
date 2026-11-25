@@ -1,0 +1,47 @@
+{
+ "key": "Hough Lines",
+ "title": "Hough Lines",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/Hough_Lines.md"
+ ],
+ "text": "Find Cartesian coordinates of lines described by rho and theta pairs, 3 inputs, 1 output; {Sine value computation method} and {Theta resolution (radians)} sets the theta resolution. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Theta",
+   "direction": "input",
+   "summary": "Theta value scalar | vector"
+  },
+  {
+   "name": "Rho",
+   "direction": "input",
+   "summary": "Rho value scalar | vector"
+  },
+  {
+   "name": "Ref I",
+   "direction": "input",
+   "summary": "Reference image matrix"
+  },
+  {
+   "name": "Pts",
+   "direction": "output",
+   "summary": "Intersection points matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sine value computation method",
+   "default": "lookup",
+   "values": "Sine value computation method Table lookup (default) | Trigonometric function",
+   "group": ""
+  },
+  {
+   "name": "Theta resolution (radians)",
+   "default": "pi/180",
+   "values": "Theta resolution pi/180 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "key": "Interrupt Channel",
+ "title": "Interrupt Channel",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Interrupt_Channel.md"
+ ],
+ "text": "从硬件向处理器发送中断，输入 1 路、输出 1 路；{Interrupts} 指定中断名称、触发类型和优先级 table、{Interrupt processing time} 指定中断访问的处理时间 100e-6，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "interruptN",
+   "direction": "input",
+   "summary": "来自硬件的中断请求 True | False"
+  },
+  {
+   "name": "interruptN",
+   "direction": "output",
+   "summary": "发往处理器的中断请求信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interrupts",
+   "default": "",
+   "values": "中断名称、触发类型和优先级 table",
+   "group": ""
+  },
+  {
+   "name": "Interrupt processing time",
+   "default": "100e-6",
+   "values": "中断访问的处理时间 100e-6 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

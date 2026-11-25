@@ -1,0 +1,13 @@
+{
+ "key": "Reservoir (IL)",
+ "title": "Reservoir (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Reservoir_IL.md"
+ ],
+ "text": "Isothermal liquid reservoir at constant or time-varying pressure.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

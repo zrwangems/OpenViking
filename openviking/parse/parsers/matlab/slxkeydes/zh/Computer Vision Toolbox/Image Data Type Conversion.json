@@ -1,0 +1,49 @@
+{
+ "key": "Image Data Type Conversion",
+ "title": "Image Data Type Conversion",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Image_Data_Type_Conversion.md"
+ ],
+ "text": "将输入图像转换并缩放为指定的输出数据类型，输入 1 路、输出 1 路；按 {Output data type} 指定输出数据类型；{Signed} 指定有符号输出、{Word length} 指定字长、{Fraction length} 指定小数长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | boolean | Fixed-point | Inherit via back propagation",
+   "group": ""
+  },
+  {
+   "name": "Signed",
+   "default": "on",
+   "values": "有符号输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "字长 16 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "小数长度 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

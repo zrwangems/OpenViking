@@ -1,0 +1,86 @@
+{
+ "key": "Heat Exchanger",
+ "title": "Heat Exchanger",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Fundamental Flow/Heat_Exchanger.md"
+ ],
+ "text": "Intercooler or exhaust gas recirculation (EGR) cooler, 4 inputs, 3 outputs, {Image type} sets Icon color; {Effectiveness model} sets the model type for heat, {Cooling medium temperature input} sets the type Constant, {Heat exchanger effectiveness, ep_cnst} sets the effectiveness, {Cooling medium temperature, T_cool_cnst} sets the temperature and {Specific heat at constant pressure, cp}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Inlet mass flow rate, heat flow rate, temperature, mass fractions two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Outlet volume pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "Effct",
+   "direction": "input",
+   "summary": "Heat exchanger effectiveness scalar"
+  },
+  {
+   "name": "CoolTemp",
+   "direction": "input",
+   "summary": "Cooling medium temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Heat exchanger data bus"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "Inlet flow pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Outlet volume mass flow rate, heat flow rate, temperature, mass fractions two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Effectiveness model",
+   "default": "Constant",
+   "values": "Model type for heat effectiveness Constant (default) | External input",
+   "group": ""
+  },
+  {
+   "name": "Cooling medium temperature input",
+   "default": "Constant",
+   "values": "Specify type Constant (default) | External input",
+   "group": ""
+  },
+  {
+   "name": "Image type",
+   "default": "Intercooler",
+   "values": "Icon color Intercooler (default) | EGR cooler hot to cold | EGR cooler cold to hot",
+   "group": ""
+  },
+  {
+   "name": "Heat exchanger effectiveness, ep_cnst",
+   "default": "0.7",
+   "values": "Effectiveness 0.7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Cooling medium temperature, T_cool_cnst",
+   "default": "300",
+   "values": "Temperature 300 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specific heat at constant pressure, cp",
+   "default": "1005",
+   "values": "Specific heat 1005 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

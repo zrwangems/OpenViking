@@ -1,0 +1,170 @@
+{
+ "key": "fusion.simulink.trackOSPAMetric",
+ "title": "Optimal Subpattern Assignment Metric",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Track Metrics/Optimal_Subpattern_Assignment_Metric.md"
+ ],
+ "text": "计算最优子模式分配指标，输入 3 路、输出 4 路；按 {Distance type} 指定距离类型；{Metric} 指定指标选项 OPSA、{Cutoff distance} 指定航迹与真值之间截断距离的阈值、{Order} 指定 OSPA 度量的阶数、{Custom distance function} 指定自定义距离函数 function handle、{Motion model} 指定期望的平台运动模型、{Labeling error} 指定错误分配的惩罚、{Window length} 指定 OSPA、{Window sum order (q)} 指定航迹和真值历史的加权和阶数、{Window weights} 指定窗口权重、{Window weight exponent (r)} 指定自动权重计算的指数、{Custom window weights} 指定时间窗口中的自定义权重 N -element of vector of nonnegative、{Simulate using} 指定要运行的仿真类型 Interpreted、{Assignments} 启用分配输入、{Localization error} 启用定位误差分量输出、{Cardinality error} 启用基数误差分量输出、{Track bus} 指定航迹总线选择、{Truth bus} 指定真值总线选择、{Track extractor function} 指定航迹提取函数 function handle、{Truth extractor function} 指定真值提取函数 function handle，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tracks",
+   "direction": "input",
+   "summary": "航迹列表 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Truths",
+   "direction": "input",
+   "summary": "真值列表 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Assignments",
+   "direction": "input",
+   "summary": "已知分配 K -by-2 matrix of nonnegative integers"
+  },
+  {
+   "name": "OSPA Metric",
+   "direction": "output",
+   "summary": "OSPA 指标 nonnegative real scalar"
+  },
+  {
+   "name": "Localization Error",
+   "direction": "output",
+   "summary": "定位误差分量 nonnegative real scalar"
+  },
+  {
+   "name": "Cardinality Error",
+   "direction": "output",
+   "summary": "基数误差分量 nonnegative real scalar"
+  },
+  {
+   "name": "Labeling Error",
+   "direction": "output",
+   "summary": "标签误差分量 nonnegative real scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Metric",
+   "default": "OPSA",
+   "values": "指标选项 OPSA (default) | OSPA(2)",
+   "group": ""
+  },
+  {
+   "name": "Cutoff distance",
+   "default": "30",
+   "values": "航迹与真值之间截断距离的阈值 30 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Order",
+   "default": "2",
+   "values": "OSPA 度量的阶数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Distance type",
+   "default": "posnees",
+   "values": "距离类型 posnees (default) | velnees | posabserr | velabserr | custom",
+   "group": ""
+  },
+  {
+   "name": "Custom distance function",
+   "default": "",
+   "values": "自定义距离函数 function handle",
+   "group": ""
+  },
+  {
+   "name": "Motion model",
+   "default": "constvel",
+   "values": "期望的平台运动模型 constvel (default) | constacc | constturn | singer",
+   "group": ""
+  },
+  {
+   "name": "Labeling error",
+   "default": "0",
+   "values": "错误分配的惩罚 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "100",
+   "values": "OSPA (2) 度量的滑动窗口长度 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Window sum order (q)",
+   "default": "2",
+   "values": "航迹和真值历史的加权和阶数 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Window weights",
+   "default": "auto",
+   "values": "窗口权重选项 auto (default) | custom",
+   "group": ""
+  },
+  {
+   "name": "Window weight exponent (r)",
+   "default": "1",
+   "values": "自动权重计算的指数 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Custom window weights",
+   "default": "",
+   "values": "时间窗口中的自定义权重 N -element of vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Assignments",
+   "default": "off",
+   "values": "启用分配输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Localization error",
+   "default": "off",
+   "values": "启用定位误差分量输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cardinality error",
+   "default": "off",
+   "values": "启用基数误差分量输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track bus",
+   "default": "objectTrack",
+   "values": "航迹总线选择 objectTrack (default) | custom",
+   "group": ""
+  },
+  {
+   "name": "Truth bus",
+   "default": "Platform",
+   "values": "真值总线选择 Platform (default) | Actor | custom",
+   "group": ""
+  },
+  {
+   "name": "Track extractor function",
+   "default": "",
+   "values": "航迹提取函数 function handle",
+   "group": ""
+  },
+  {
+   "name": "Truth extractor function",
+   "default": "",
+   "values": "真值提取函数 function handle",
+   "group": ""
+  }
+ ]
+}

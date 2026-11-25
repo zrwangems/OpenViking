@@ -1,0 +1,42 @@
+{
+ "key": "StringFind",
+ "title": "String Find",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Find.md"
+ ],
+ "text": "返回模式字符串第一次出现的索引，输入 2 路、输出 1 路；按 {模式} 指定数据类型的类别；{输出数据类型}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "str",
+   "direction": "input",
+   "summary": "在其中查找模式的字符串 标量"
+  },
+  {
+   "name": "sub",
+   "direction": "input",
+   "summary": "模式 标量"
+  },
+  {
+   "name": "idx",
+   "direction": "output",
+   "summary": "找到的模式的位置索引 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出数据类型",
+   "default": "从内部规则继承",
+   "values": "输出数据类型 继承: 从内部规则继承 (默认) | 继承: 通过反向传播继承 | int8 | int16 | int32 |",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "Inherit",
+   "values": "数据类型的类别 Inherit (默认) | Built in | Expression",
+   "group": ""
+  }
+ ]
+}

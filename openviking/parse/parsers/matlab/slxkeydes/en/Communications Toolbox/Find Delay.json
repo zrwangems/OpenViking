@@ -1,0 +1,59 @@
+{
+ "key": "Find Delay",
+ "title": "Find Delay",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Find_Delay.md"
+ ],
+ "text": "Find delay between two signals, 2 inputs, 2 outputs; {Correlation window length (samples)} sets the number of samples, {Include \"change signal\" output port} adds chg port to block, {Disable recurring updates} selects to set stop criteria for delay and {Number of constant delay outputs to disable updates} sets the disable updates after this number of unchanging delay value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "sRef",
+   "direction": "input",
+   "summary": "Reference signal vector | matrix"
+  },
+  {
+   "name": "sDel",
+   "direction": "input",
+   "summary": "Delayed signal vector | matrix"
+  },
+  {
+   "name": "delay",
+   "direction": "output",
+   "summary": "Delay output scalar | vector"
+  },
+  {
+   "name": "chg",
+   "direction": "output",
+   "summary": "Delay flag 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Correlation window length (samples)",
+   "default": "200",
+   "values": "Number of samples 200 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Include \"change signal\" output port",
+   "default": "off",
+   "values": "Add chg port to block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Disable recurring updates",
+   "default": "off",
+   "values": "Select to set stop criteria for delay computation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of constant delay outputs to disable updates",
+   "default": "3",
+   "values": "Disable updates after this number of unchanging delay value computations 3 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,109 @@
+{
+ "key": "audio.simulink.DesignAuditoryFilterBank",
+ "title": "Design Auditory Filter Bank",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/Design_Auditory_Filter_Bank.md"
+ ],
+ "text": "设计频域听觉滤波器组；输出 2 路、无直接馈通；按 {Frequency scale} 指定滤波器组的频率刻度；{Mel style} 指定 Mel 样式、{FFT length} 指定 DFT 点数、{Design one-sided filter bank} 指定设计单边或双边滤波器组、{Auto-determine number of bands} 指定自动确定带通滤波器数量、{Number of bands} 指定带通滤波器数量、{Auto-determine frequency range} 指定自动确定频率范围、{Frequency range (Hz)} 用于设计听觉滤波器组的频率范围、{Filter bank design domain} 指定设计滤波器组的域、{Filter bank normalization} 指定滤波器组的归一化方法、{Output data type} 输出数据类型、{Sample rate (Hz)} 指定采样率 44.1e3、{Visualize filter bank} 打开绘图以可视化滤波器组、{Output center frequencies} 指定中心频率的附加输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "fb",
+   "direction": "output",
+   "summary": "滤波器组 column vector | matrix"
+  },
+  {
+   "name": "fvec",
+   "direction": "output",
+   "summary": "中心频率 row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency scale",
+   "default": "mel",
+   "values": "滤波器组的频率刻度 mel (default) | bark | erb",
+   "group": ""
+  },
+  {
+   "name": "Mel style",
+   "default": "oshaughnessy",
+   "values": "Mel 样式 oshaughnessy (default) | slaney",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "DFT 点数 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Design one-sided filter bank",
+   "default": "on",
+   "values": "设计单边或双边滤波器组 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine number of bands",
+   "default": "on",
+   "values": "自动确定带通滤波器数量 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Number of bands",
+   "default": "32",
+   "values": "带通滤波器数量 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine frequency range",
+   "default": "on",
+   "values": "自动确定频率范围 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Frequency range (Hz)",
+   "default": "[0,22050]",
+   "values": "用于设计听觉滤波器组的频率范围 [0,22050] (default) | two-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Filter bank design domain",
+   "default": "linear",
+   "values": "设计滤波器组的域 linear (default) | warped",
+   "group": ""
+  },
+  {
+   "name": "Filter bank normalization",
+   "default": "bandwidth",
+   "values": "滤波器组的归一化方法 bandwidth (default) | area | none",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44.1e3",
+   "values": "采样率 44.1e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Visualize filter bank",
+   "default": "",
+   "values": "打开绘图以可视化滤波器组 button",
+   "group": ""
+  },
+  {
+   "name": "Output center frequencies",
+   "default": "off",
+   "values": "指定中心频率的附加输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

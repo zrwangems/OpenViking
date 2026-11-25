@@ -1,0 +1,253 @@
+{
+ "key": "fusion.simulink.trackFuser",
+ "title": "Track-To-Track Fuser",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Multi-Object Tracking Algorithms/Track_To_Track_Fuser.md"
+ ],
+ "text": "航迹到航迹融合，输入 4 路、输出 4 路；按 {Assignment algorithm name} 指定分配算法；{Fuser Index} 指定航迹融合器的唯一索引、{Name of ’Custom’ assignment function} 指定 Custom 分配函数名称 function、{Threshold for assigning source to central tracks} 指定将源航迹分配给中心航迹的阈值、{Maximum number of central tracks} 指定中心航迹的最大数量、{Maximum number of source configurations} 指定源配置的最大数量、{Source configurations} 指定源系统的配置 struct、{Update source configurations with time} 指定随时间更新源配置、{Track state parameters} 指定航迹状态参考系的参数 structure、{Update track state parameters with time} 指定随时间更新航迹状态参数、{Simulate using} 指定要运行的仿真类型 Interpreted、{Confirmation threshold [M N]} 指定中心航迹确认阈值、{Deletion threshold [P Q]} 指定中心航迹删除阈值、{Central track state size} 指定中心航迹状态大小、{Central track object attributes} 指定中心航迹对象属性、{State transition function} 指定状态转移函数、{State transition Jacobian function} 指定状态转移雅可比函数 function name、{Process noise matrix} 指定过程噪声矩阵 eye、{Enable additive process noise} 启用加性过程噪声、{State fusion function} 指定状态融合函数、{Name of ’Custom’ fusion function} 指定自定义分配函数的名称 function name、{State fusion parameters source} 指定状态融合参数来源、{Cross covariance factor} 指定交叉协方差因子、{Optimize covariance based on} 指定交集算法准则、{State fusion custom algorithm parameters} 指定状态融合自定义算法参数 MATLAB、{Fuse only confirmed source tracks} 指定仅融合已确认的源航迹、{Fuse coasted source tracks} 指定仅融合已确认的源航迹、{Prediction time source} 指定预测时间来源、{Enable tentative tracks output} 启用暂定航迹输出端口、{Enable all tracks output} 启用所有航迹输出端口、{Enable information output} 启用分析信息的输出端口、{Source of output bus name} 输出航迹总线名称的来源、{Source of output info bus name} 输出信息总线名称的来源，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tracks",
+   "direction": "input",
+   "summary": "航迹列表 Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "航迹更新时间 real scalar"
+  },
+  {
+   "name": "Source Configurations",
+   "direction": "input",
+   "summary": "源配置列表 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "航迹状态参数 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "已确认航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "已确认和暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "用于分析航迹更新的附加信息 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Fuser Index",
+   "default": "1",
+   "values": "航迹融合器的唯一索引 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Assignment algorithm name",
+   "default": "MatchPairs",
+   "values": "分配算法 MatchPairs (default) | Munkres | Jonker-Volgenant | Auction | Custom",
+   "group": ""
+  },
+  {
+   "name": "Name of ’Custom’ assignment function",
+   "default": "",
+   "values": "Custom 分配函数名称 function name",
+   "group": ""
+  },
+  {
+   "name": "Threshold for assigning source to central tracks",
+   "default": "Inf]*30.0",
+   "values": "将源航迹分配给中心航迹的阈值 [1 Inf]*30.0 (default) | positive scalar | 1-by-2 vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of central tracks",
+   "default": "100",
+   "values": "中心航迹的最大数量 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of source configurations",
+   "default": "20",
+   "values": "源配置的最大数量 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source configurations",
+   "default": "struct(’SourceIndex’,1)",
+   "values": "源系统的配置 struct(’SourceIndex’,1) (default) | array of source configuration structures",
+   "group": ""
+  },
+  {
+   "name": "Update source configurations with time",
+   "default": "off",
+   "values": "随时间更新源配置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "航迹状态参考系的参数 structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "随时间更新航迹状态参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [M N]",
+   "default": "3]",
+   "values": "中心航迹确认阈值 [2 3] (default) | positive integer | real-valued 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [P Q]",
+   "default": "5]",
+   "values": "中心航迹删除阈值 [5 5] (default) | positive integer | real-valued 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Central track state size",
+   "default": "6",
+   "values": "中心航迹状态大小 6 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Central track object attributes",
+   "default": "struct",
+   "values": "中心航迹对象属性 struct (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "State transition function",
+   "default": "constvel",
+   "values": "状态转移函数 constvel (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "State transition Jacobian function",
+   "default": "",
+   "values": "状态转移雅可比函数 function name",
+   "group": ""
+  },
+  {
+   "name": "Process noise matrix",
+   "default": "eye(3)",
+   "values": "过程噪声矩阵 eye(3) (default) | positive real scalar | positive definite matrix",
+   "group": ""
+  },
+  {
+   "name": "Enable additive process noise",
+   "default": "off",
+   "values": "启用加性过程噪声 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "State fusion function",
+   "default": "Cross",
+   "values": "状态融合函数 Cross (default) | Intersection | Custom",
+   "group": ""
+  },
+  {
+   "name": "Name of ’Custom’ fusion function",
+   "default": "",
+   "values": "自定义分配函数的名称 function name",
+   "group": ""
+  },
+  {
+   "name": "State fusion parameters source",
+   "default": "Auto",
+   "values": "状态融合参数来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Cross covariance factor",
+   "default": "0.4",
+   "values": "交叉协方差因子 0.4 (default) | scalar in range (0,1)",
+   "group": ""
+  },
+  {
+   "name": "Optimize covariance based on",
+   "default": "det",
+   "values": "交集算法准则 det (default) | trace",
+   "group": ""
+  },
+  {
+   "name": "State fusion custom algorithm parameters",
+   "default": "",
+   "values": "状态融合自定义算法参数 MATLAB variable",
+   "group": ""
+  },
+  {
+   "name": "Fuse only confirmed source tracks",
+   "default": "on",
+   "values": "仅融合已确认的源航迹 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Fuse coasted source tracks",
+   "default": "off",
+   "values": "仅融合已确认的源航迹 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Prediction time source",
+   "default": "Auto",
+   "values": "预测时间来源 Auto (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "启用暂定航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "启用所有航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable information output",
+   "default": "off",
+   "values": "启用分析信息的输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出航迹总线名称的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Source of output info bus name",
+   "default": "Auto",
+   "values": "输出信息总线名称的来源 Auto (default) | Property",
+   "group": ""
+  }
+ ]
+}

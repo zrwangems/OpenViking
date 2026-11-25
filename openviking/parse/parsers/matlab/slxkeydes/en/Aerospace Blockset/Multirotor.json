@@ -1,0 +1,206 @@
+{
+ "key": "Multirotor",
+ "title": "Multirotor",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Propulsion/Multirotor.md"
+ ],
+ "text": "Compute aerodynamic forces and moments, 9 inputs, 4 outputs, {Thrust coefficient (CT)} sets Thrust coefficient; {Units} sets the input and output units Metric, {Modeling} sets the rotor thrust calculation method Without flap, {Include pitch angle inputs} enables pitch angle inputs, {Configuration} sets the vehicle configuration Quadcopter, {Arm length (m)} sets the vehicle arm length, {Height (m)} sets the vertical offset from vehicle center, {CT and CQ Source} sets the dropdown to select the source of thrust and torque coefficient, {Torque coefficient (CQ)} sets the torque coefficient 7.8263e-4, {Number of blades}, {Output computed CT and CQ} sets the output computed thrust coefficient and torque, {Radius (m)} sets the rotor radius, {Chord (m)} sets the blade chord, {Hinge offset (m)}, {Lift curve slope (per rad)}, {Mean drag coefficient}, {Lock number}, {Twist distribution} sets the rotor blade twist, {Blade root angle (rad)} sets the blade root pitch angle, {Blade twist angle (rad)} and {Blade tip angle (rad)} sets the blade tip pitch angle. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ω (rad/sec)",
+   "direction": "input",
+   "summary": "Rotor speed N -element vector"
+  },
+  {
+   "name": "ρ",
+   "direction": "input",
+   "summary": "Air density positive scalar"
+  },
+  {
+   "name": "V b",
+   "direction": "input",
+   "summary": "Body velocity of rotor 3-by-1 vector | 1-by-3 vector"
+  },
+  {
+   "name": "ω b",
+   "direction": "input",
+   "summary": "Angular velocity 3-by-1 vector | 1-by-3 vector"
+  },
+  {
+   "name": "θ 0",
+   "direction": "input",
+   "summary": "Collective blade pitch angle N-by-1 vector | 1-by-N vector"
+  },
+  {
+   "name": "θ c",
+   "direction": "input",
+   "summary": "Lateral cyclic pitch angle N-by-1 vector | 1-by-N vector"
+  },
+  {
+   "name": "θ s",
+   "direction": "input",
+   "summary": "Longitudinal cyclic pitch angle N-by-1 vector | 1-by-N vector"
+  },
+  {
+   "name": "C T",
+   "direction": "input",
+   "summary": "Input thrust coefficient nonzero positive scalar | N-by-1 vector"
+  },
+  {
+   "name": "C Q",
+   "direction": "input",
+   "summary": "Input torque coefficient nonzero positive scalar | N-by-1 vector"
+  },
+  {
+   "name": "F xyz (N)",
+   "direction": "output",
+   "summary": "Total force three-element vector"
+  },
+  {
+   "name": "M xyz (Nm)",
+   "direction": "output",
+   "summary": "Net moment three-element vector"
+  },
+  {
+   "name": "C T",
+   "direction": "output",
+   "summary": "Computed thrust coefficient positive vector"
+  },
+  {
+   "name": "C Q",
+   "direction": "output",
+   "summary": "Computed torque coefficient positive vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling",
+   "default": "effects",
+   "values": "Rotor thrust calculation method Without flap effects (default) | With flap effects",
+   "group": "Main"
+  },
+  {
+   "name": "Include pitch angle inputs",
+   "default": "off",
+   "values": "Enable pitch angle inputs off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Configuration",
+   "default": "X",
+   "values": "Vehicle configuration Quadcopter X (default) | Quadcopter +",
+   "group": "Vehicle"
+  },
+  {
+   "name": "Arm length (m)",
+   "default": "0.0624",
+   "values": "Vehicle arm length 0.0624 (default) | nonzero positive scalar",
+   "group": "Vehicle"
+  },
+  {
+   "name": "Height (m)",
+   "default": "-0.0159",
+   "values": "Vertical offset from vehicle center of gravity -0.0159 (default) | nonzero scalar",
+   "group": "Vehicle"
+  },
+  {
+   "name": "CT and CQ Source",
+   "default": "’Dialog’",
+   "values": "Dropdown to select the source of thrust and torque coefficient values ’Dialog’ (default) | ’Compute using BEMT’ | ’Ports’",
+   "group": "Rotor"
+  },
+  {
+   "name": "Thrust coefficient (CT)",
+   "default": "0.0107",
+   "values": "Thrust coefficient 0.0107 (default) | nonzero positive scalar | nonzero positive N-by-1 vector",
+   "group": "Rotor"
+  },
+  {
+   "name": "Torque coefficient (CQ)",
+   "default": "7.8263e-4",
+   "values": "Torque coefficient 7.8263e-4 (default) | nonzero positive scalar | nonzero positive N-by-1 vector",
+   "group": "Rotor"
+  },
+  {
+   "name": "Number of blades",
+   "default": "2",
+   "values": "Number of blades per rotor 2 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Output computed CT and CQ",
+   "default": "off",
+   "values": "Output computed thrust coefficient and torque coefficient off (default) | on",
+   "group": "Rotor"
+  },
+  {
+   "name": "Radius (m)",
+   "default": "0.0330",
+   "values": "Rotor radius 0.0330 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Chord (m)",
+   "default": "0.0080",
+   "values": "Blade chord 0.0080 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Hinge offset (m)",
+   "default": "0",
+   "values": "Hinge offset 0 (default) | positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Lift curve slope (per rad)",
+   "default": "5.5",
+   "values": "Lift curve slope 5.5 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Mean drag coefficient",
+   "default": "0",
+   "values": "Mean drag coefficient 0 (default) | positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Lock number",
+   "default": "0.6051",
+   "values": "Lock number 0.6051 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Twist distribution",
+   "default": "Linear",
+   "values": "Rotor blade twist distribution Linear (default) | Ideal",
+   "group": "Rotor"
+  },
+  {
+   "name": "Blade root angle (rad)",
+   "default": "0.2548",
+   "values": "Blade root pitch angle 0.2548 (default) | real scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Blade twist angle (rad)",
+   "default": "-0.1361",
+   "values": "Blade twist angle -0.1361 (default) | real scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Blade tip angle (rad)",
+   "default": "0.1018",
+   "values": "Blade tip pitch angle 0.1018 (default) | real scalar",
+   "group": "Rotor"
+  }
+ ]
+}

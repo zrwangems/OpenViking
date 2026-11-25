@@ -1,0 +1,37 @@
+{
+ "key": "Temperature Conversion",
+ "title": "Temperature Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Temperature_Conversion.md"
+ ],
+ "text": "Convert from temperature units to desired temperature units, 1 input, 1 output, {Initial unit} sets Input units; {Final unit} sets the output units. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Temperature scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Temperature scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "R",
+   "values": "Input units R (default) | F | C | K",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "K",
+   "values": "Output units K (default) | F | C | R",
+   "group": ""
+  }
+ ]
+}

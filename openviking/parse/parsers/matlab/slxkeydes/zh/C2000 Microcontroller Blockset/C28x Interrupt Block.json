@@ -1,0 +1,55 @@
+{
+ "key": "C28x Interrupt Block",
+ "title": "C28x Hardware Interrupt",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/C28x_Hardware_Interrupt.md"
+ ],
+ "text": "C28x 处理器上处理硬件中断的中断服务程序，输入 1 路、输出 1 路；{CPU 中断编号} 指定 CPU 中断向量、{PIE 中断编号} 指定一个 PIE 中断向量、{Simulink 任务优先级} 指定提供与异步中断相关任务的相对重要性、{抢占标志：preemptable-1、non-preemptable-0} 为中断指定一个抢占标志向量、{启用仿真输入} 启用仿真端口以阻止，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SimIRQ",
+   "direction": "input",
+   "summary": "仿真中断输入端口 标量"
+  },
+  {
+   "name": "IRQ",
+   "direction": "output",
+   "summary": "生成中断请求 Scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CPU 中断编号",
+   "default": "1]",
+   "values": "指定 CPU 中断向量 [1 1] (默认) | [1, 8] 范围内的整数",
+   "group": ""
+  },
+  {
+   "name": "PIE 中断编号",
+   "default": "2]",
+   "values": "指定一个 PIE 中断向量 [1 2] (默认)",
+   "group": ""
+  },
+  {
+   "name": "Simulink 任务优先级",
+   "default": "26]",
+   "values": "提供与异步中断相关任务的相对重要性 [30 26] (默认)",
+   "group": ""
+  },
+  {
+   "name": "抢占标志：preemptable-1、non-preemptable-0",
+   "default": "0",
+   "values": "为中断指定一个抢占标志向量 0 0 (默认)",
+   "group": ""
+  },
+  {
+   "name": "启用仿真输入",
+   "default": "off",
+   "values": "启用仿真端口以阻止 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

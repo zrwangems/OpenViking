@@ -1,0 +1,52 @@
+{
+ "key": "Inverse Dynamics",
+ "title": "Inverse Dynamics",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Inverse_Dynamics.md"
+ ],
+ "text": "Required joint torques for given motion, 4 inputs, 1 output; {Rigid body tree} sets the robot model and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Robot configuration vector"
+  },
+  {
+   "name": "JointVel",
+   "direction": "input",
+   "summary": "Joint velocities vector"
+  },
+  {
+   "name": "JointAccel",
+   "direction": "input",
+   "summary": "Joint accelerations vector"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "External force matrix 6-by- n matrix"
+  },
+  {
+   "name": "JointTorq",
+   "direction": "output",
+   "summary": "Joint torques vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "Robot model twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

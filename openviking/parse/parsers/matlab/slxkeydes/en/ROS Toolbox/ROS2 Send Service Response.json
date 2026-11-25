@@ -1,0 +1,38 @@
+{
+ "key": "ROS2 Send Service Response",
+ "title": "Send Service Response",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Send_Service_Response.md"
+ ],
+ "text": "Send service response to ROS 2 service client, 1 input; {Name} sets the service name Read-only, {Type} sets the service type Read-only and {Paired Receive Request Block} sets the path to paired Receive Service Request block block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Resp",
+   "direction": "input",
+   "summary": "Service response message to send to client non-virtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Service name Read-only: character vector",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "Service type Read-only: character vector",
+   "group": ""
+  },
+  {
+   "name": "Paired Receive Request Block",
+   "default": "",
+   "values": "Path to paired Receive Service Request block block path",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "key": "Array of Electrical Nodes",
+ "title": "Array of Electrical Nodes",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Array_of_Electrical_Nodes.md"
+ ],
+ "text": "(To be removed) Concatenate arrays of electrical nodes into single array of electrical nodes port, {Number of Input Connections} sets Number of array of electrical nodes to concatenate; {Number of Elements in Node k} sets the number of elements in connection node k. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "inConnk",
+   "direction": "unknown",
+   "summary": "Array of electrical nodes k to concatenate electrical array-of-nodes"
+  },
+  {
+   "name": "outConn",
+   "direction": "unknown",
+   "summary": "Concatenated array of electrical nodes electrical array-of-nodes"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of Input Connections",
+   "default": "one",
+   "values": "Number of array of electrical nodes to concatenate one (default) | two | three | four |...",
+   "group": ""
+  },
+  {
+   "name": "Number of Elements in Node k",
+   "default": "1",
+   "values": "Number of elements in connection node k 1 (default)",
+   "group": ""
+  }
+ ]
+}

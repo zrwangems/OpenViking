@@ -1,0 +1,108 @@
+{
+ "key": "ROS2 Call Service",
+ "title": "Call Service",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Call_Service.md"
+ ],
+ "text": "在 ROS 2 网络中调用服务，输入 1 路、输出 2 路；按 {Source} 指定服务名称的来源 Select from ROS network；{Name} 指定服务名称 character vector、{Type} 指定服务类型 character vector、{Connection timeout} 指定服务服务器连接超时、{Show ErrorCode output port} 启用错误代码输出端口、{History} 指定在队列中存储请求的模式 Keep、{Depth} 指定请求队列的大小、{Reliability} 指定请求的传递保证、{Durability} 指定请求的持久性、{Deadline} 指定发送服务请求与接收响应之间允许的最长时间、{Lifespan} 指定服务请求被视为有效的时间长度、{Liveliness} 指定模块提供的并且期望服务服务器提供的活跃性报告级别、{Lease Duration} 指定连接的服务服务器必须在此之前声明活跃性的最大时间量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Req",
+   "direction": "input",
+   "summary": "请求消息 nonvirtual bus"
+  },
+  {
+   "name": "Resp",
+   "direction": "output",
+   "summary": "响应消息 nonvirtual bus"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "服务调用的错误条件 integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source",
+   "default": "",
+   "values": "指定服务名称的来源 Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "服务名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "服务类型 character vector",
+   "group": ""
+  },
+  {
+   "name": "Connection timeout",
+   "default": "5",
+   "values": "服务服务器连接超时 5 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "on",
+   "values": "启用错误代码输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "History",
+   "default": "last",
+   "values": "在队列中存储请求的模式 Keep last (default) | Keep all",
+   "group": ""
+  },
+  {
+   "name": "Depth",
+   "default": "1",
+   "values": "请求队列的大小 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reliability",
+   "default": "Reliable",
+   "values": "请求的传递保证 Reliable (default) | Best effort",
+   "group": ""
+  },
+  {
+   "name": "Durability",
+   "default": "Volatile",
+   "values": "请求的持久性 Volatile (default) | Transient local",
+   "group": ""
+  },
+  {
+   "name": "Deadline",
+   "default": "Inf",
+   "values": "发送服务请求与接收响应之间允许的最长时间 Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lifespan",
+   "default": "Inf",
+   "values": "服务请求被视为有效的时间长度 Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Liveliness",
+   "default": "automatic",
+   "values": "模块提供的并且期望服务服务器提供的活跃性报告级别 automatic (default)",
+   "group": ""
+  },
+  {
+   "name": "Lease Duration",
+   "default": "Inf",
+   "values": "连接的服务服务器必须在此之前声明活跃性的最大时间量 Inf (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

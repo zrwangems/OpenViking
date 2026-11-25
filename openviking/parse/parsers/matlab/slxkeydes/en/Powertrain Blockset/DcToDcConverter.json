@@ -1,0 +1,117 @@
+{
+ "key": "DcToDcConverter",
+ "title": "Bidirectional DC-DC",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/DC-DC/Bidirectional_DC_DC.md"
+ ],
+ "text": "DC-to-DC converter that supports bidirectional boost and buck, 3 outputs, {Parameterize losses by} sets Loss calculation Single efficiency; {Converter response time constant, Tc} sets the constant, {Converter response initial voltage, Vinit} sets the voltage, {Converter power limit, Plimit} sets the power, {Overall DC to DC converter efficiency, eff} sets the constant, {Vector of voltages (v) for tabulated loss, v_loss_bp} sets the breakpoints, {Vector of currents (i) for tabulated loss, i_loss_bp} sets the breakpoints, {Corresponding losses, losses_table} sets the 2-D lookup table N -by, {Vector of voltages (v) for tabulated efficiency, v_eff_bp} sets the breakpoints, {Vector of currents (i) for tabulated efficiency, i_eff_bp} sets the breakpoints, {Corresponding efficiency, efficiency_table} sets the 2-D lookup table N -by and {Calibrate Maps} sets the calibrate tables with measured data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VoltCmd",
+   "direction": "unknown",
+   "summary": "Commanded voltage scalar"
+  },
+  {
+   "name": "SrcVolt",
+   "direction": "unknown",
+   "summary": "Input voltage scalar"
+  },
+  {
+   "name": "LdCurr",
+   "direction": "unknown",
+   "summary": "Load current scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "LdVolt",
+   "direction": "output",
+   "summary": "Load voltage scalar"
+  },
+  {
+   "name": "SrcCurr",
+   "direction": "output",
+   "summary": "Source current scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Converter response time constant, Tc",
+   "default": "1/1000",
+   "values": "Constant 1/1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Converter response initial voltage, Vinit",
+   "default": "0",
+   "values": "Voltage 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Converter power limit, Plimit",
+   "default": "100000",
+   "values": "Power 100000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Parameterize losses by",
+   "default": "measurement",
+   "values": "Loss calculation Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data",
+   "group": ""
+  },
+  {
+   "name": "Overall DC to DC converter efficiency, eff",
+   "default": "98",
+   "values": "Constant 98 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vector of voltages (v) for tabulated loss, v_loss_bp",
+   "default": "1000]",
+   "values": "Breakpoints [0 200 400 600 800 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of currents (i) for tabulated loss, i_loss_bp",
+   "default": "100]",
+   "values": "Breakpoints [0 25 50 75 100] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding losses, losses_table",
+   "default": "",
+   "values": "2-D lookup table N -by- M matrix",
+   "group": ""
+  },
+  {
+   "name": "Vector of voltages (v) for tabulated efficiency, v_eff_bp",
+   "default": "1000]",
+   "values": "Breakpoints [200 400 600 800 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of currents (i) for tabulated efficiency, i_eff_bp",
+   "default": "100]",
+   "values": "Breakpoints [25 50 75 100] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding efficiency, efficiency_table",
+   "default": "",
+   "values": "2-D lookup table N -by- M matrix",
+   "group": ""
+  },
+  {
+   "name": "Calibrate Maps",
+   "default": "",
+   "values": "Calibrate tables with measured data selection",
+   "group": ""
+  }
+ ]
+}

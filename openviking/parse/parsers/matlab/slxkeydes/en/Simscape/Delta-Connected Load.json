@@ -1,0 +1,13 @@
+{
+ "key": "Delta-Connected Load",
+ "title": "Delta-Connected Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/RLC Assemblies/Delta_Connected_Load.md"
+ ],
+ "text": "Three-phase load wired in delta configuration.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

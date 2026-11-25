@@ -1,0 +1,89 @@
+{
+ "key": "Binary Cyclic Decoder",
+ "title": "Binary Cyclic Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Block/Binary_Cyclic_Decoder.md"
+ ],
+ "text": "Decode BCH code to recover binary vector data, 2 inputs, 2 outputs, {Primitive polynomial} sets Primitive polynomial ’X^4 + X +; {Codeword length, N}, {Message length, K}, {Shortened message length, S}, {Generator polynomial}, {Disable generator polynomial checking} sets the option to disable generator polynomial, {Puncture vector}, {Enable erasures input port} sets the option to enable erasures input port and {Output number of corrected errors} sets the option to enable port to output number of corrected. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Encoded message binary column vector"
+  },
+  {
+   "name": "Era",
+   "direction": "input",
+   "summary": "Erasure vector binary column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Decoded message binary column vector"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "Decoding errors integer vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length, N",
+   "default": "15",
+   "values": "Codeword length 15 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Message length, K",
+   "default": "5",
+   "values": "Message length 5 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Shortened message length, S",
+   "default": "5",
+   "values": "Shortened message length 5 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Generator polynomial",
+   "default": "1’",
+   "values": "Generator polynomial ’X^10 + X^8 + X^5 + X^4 + X^2 + X + 1’ (default) | polynomial character vector | binary row vector | binary Galois row vector",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "1’",
+   "values": "Primitive polynomial ’X^4 + X + 1’ (default) | polynomial character vector | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Disable generator polynomial checking",
+   "default": "on",
+   "values": "Option to disable generator polynomial checking on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "zeros(2,1)]",
+   "values": "Puncture vector [ones(8,1); zeros(2,1)] (default) | column vector",
+   "group": ""
+  },
+  {
+   "name": "Enable erasures input port",
+   "default": "off",
+   "values": "Option to enable erasures input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output number of corrected errors",
+   "default": "off",
+   "values": "Option to enable port to output number of corrected errors off (default) | on",
+   "group": ""
+  }
+ ]
+}

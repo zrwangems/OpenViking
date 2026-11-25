@@ -1,0 +1,108 @@
+{
+ "key": "Image Pad",
+ "title": "Image Pad",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Utilities/Image_Pad.md"
+ ],
+ "text": "Pad image by adding rows, columns, or both, 2 inputs, 1 output, {Method} sets Padding method; {Pad value source} sets the source of constant pad value Specify via, {Pad value}, {Specify} sets the padding size specification format, {Add columns to} sets the column padding location, {Output column mode} sets the output column sizing, {Number of output columns} sets the number of columns in output image, {Number of added columns} sets the number of columns added to input image, {Add rows to} sets the row padding location, {Output row mode} sets the output row sizing, {Number of output rows} sets the number of rows in output image, {Number of added rows} sets the number of rows added to input image and {Action when truncation occurs} sets the action when input signal is truncated. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix | array"
+  },
+  {
+   "name": "PVal",
+   "direction": "input",
+   "summary": "Pad value scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Constant",
+   "values": "Padding method Constant (default) | Replicate | Symmetric | Circular",
+   "group": ""
+  },
+  {
+   "name": "Pad value source",
+   "default": "dialog",
+   "values": "Source of constant pad value Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pad value",
+   "default": "0",
+   "values": "Pad value 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify",
+   "default": "size",
+   "values": "Padding size specification format Pad size (default) | Output size",
+   "group": ""
+  },
+  {
+   "name": "Add columns to",
+   "default": "Left",
+   "values": "Column padding location Left (default) | Right | Both left and right | No padding",
+   "group": ""
+  },
+  {
+   "name": "Output column mode",
+   "default": "User-specified",
+   "values": "Output column sizing method User-specified (default) | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Number of output columns",
+   "default": "10",
+   "values": "Number of columns in output image 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of added columns",
+   "default": "2",
+   "values": "Number of columns added to input image 2 (default) | positive integer | two-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Add rows to",
+   "default": "Top",
+   "values": "Row padding location Top (default) | Bottom | Both top and bottom | No padding",
+   "group": ""
+  },
+  {
+   "name": "Output row mode",
+   "default": "User-specified",
+   "values": "Output row sizing method User-specified (default) | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Number of output rows",
+   "default": "12",
+   "values": "Number of rows in output image 12 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of added rows",
+   "default": "3]",
+   "values": "Number of rows added to input image [2 3] (default) | positive integer | two-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Action when truncation occurs",
+   "default": "None",
+   "values": "Action when input signal is truncated None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "key": "General Multiplexed Interleaver",
+ "title": "General Multiplexed Interleaver",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Interleaving/General_Multiplexed_Interleaver.md",
+  "Communications Toolbox/Interleaving/Convolutional/General_Multiplexed_Interleaver.md"
+ ],
+ "text": "使用具有指定延迟的一组移位寄存器对输入符号进行置换。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

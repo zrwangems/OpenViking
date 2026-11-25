@@ -1,0 +1,44 @@
+{
+ "key": "Attenuator",
+ "title": "Attenuator",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Attenuator.md"
+ ],
+ "text": "对 RF 电路中的衰减器建模；{Attenuation (dB)} 指定插入损耗或衰减电平、{Input impedance (Ohm)} 指定输入阻抗、{Output impedance (Ohm)} 输出阻抗、{Simulate noise} 指定模拟热噪声、{Ground and hide negative terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Attenuation (dB)",
+   "default": "3",
+   "values": "插入损耗或衰减电平 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "输入阻抗 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "输出阻抗 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "模拟热噪声 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

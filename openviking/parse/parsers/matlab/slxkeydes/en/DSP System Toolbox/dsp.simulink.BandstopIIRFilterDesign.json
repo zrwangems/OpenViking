@@ -1,0 +1,170 @@
+{
+ "key": "dsp.simulink.BandstopIIRFilterDesign",
+ "title": "Bandstop IIR Filter Design",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Sources/Bandstop_IIR_Filter_Design.md",
+  "DSP System Toolbox/Filtering/Filter Designs/Bandstop_IIR_Filter_Design.md"
+ ],
+ "text": "Design bandstop IIR filter with tunable filter specifications, 5 inputs, 3 outputs, no direct feedthrough, {Design method} sets Filter design method; {Smooth tuned filter parameters}, {Smoothing factor}, {Specify filter order from input port} sets the flag to specify filter order from input, {Filter order (must be even)}, {Filter maximum order (must be even)} sets the maximum order of filter, {Design has scale values} sets the if filter has scale values for each, {Specify first 3-dB cutoff frequency from input port} sets the flag to specify first 3-dB cutoff frequency from input, {First 3-dB cutoff frequency}, {Specify second 3-dB cutoff frequency from input port} sets the flag to specify second 3-dB cutoff frequency from input, {Second 3-dB cutoff frequency}, {Specify the passband ripple from input port} sets the flag to specify passband ripple from input, {Passband ripple (dB)} sets the passband ripple in dB, {Specify the stopband attenuation from input port} sets the flag to specify stopband attenuation from input, {Stopband attenuation (dB)} sets the stopband attenuation in dB, {Sample time}, {Filter cascade sections form} sets the form of filter cascade sections Fourth-order, {Output data type} sets the data type of filter and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "Filter order even positive integer"
+  },
+  {
+   "name": "Fc1",
+   "direction": "input",
+   "summary": "First 3-dB cutoff frequency nonnegative scalar ≤ Fc2"
+  },
+  {
+   "name": "Fc2",
+   "direction": "input",
+   "summary": "Second 3-dB cutoff frequency Fc1 ≤ positive scalar ≤ 1"
+  },
+  {
+   "name": "Ap",
+   "direction": "input",
+   "summary": "Passband ripple in dB nonnegative scalar"
+  },
+  {
+   "name": "Ast",
+   "direction": "input",
+   "summary": "Stopband attenuation in dB nonnegative scalar"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "Numerator coefficients P -by-3 matrix | P -by-5 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "output",
+   "summary": "Denominator coefficients P -by-5 matrix"
+  },
+  {
+   "name": "g",
+   "direction": "output",
+   "summary": "Scale values for each second-order section vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Smooth tuned filter parameters",
+   "default": "off",
+   "values": "Smooth tuned filter parameters off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor",
+   "default": "0.6",
+   "values": "Smoothing factor 0.6 (default) | nonnegative scalar less than 1",
+   "group": ""
+  },
+  {
+   "name": "Design method",
+   "default": "Butterworth",
+   "values": "Filter design method Butterworth (default) | Chebyshev Type I | Chebyshev Type II",
+   "group": ""
+  },
+  {
+   "name": "Specify filter order from input port",
+   "default": "off",
+   "values": "Flag to specify filter order from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter order (must be even)",
+   "default": "6",
+   "values": "Filter order 6 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter maximum order (must be even)",
+   "default": "10",
+   "values": "Maximum order of filter 10 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Design has scale values",
+   "default": "off",
+   "values": "Specify if filter has scale values for each section off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Specify first 3-dB cutoff frequency from input port",
+   "default": "off",
+   "values": "Flag to specify first 3-dB cutoff frequency from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "First 3-dB cutoff frequency",
+   "default": "0.25",
+   "values": "First 3-dB cutoff frequency 0.25 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify second 3-dB cutoff frequency from input port",
+   "default": "off",
+   "values": "Flag to specify second 3-dB cutoff frequency from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Second 3-dB cutoff frequency",
+   "default": "0.75",
+   "values": "Second 3-dB cutoff frequency 0.75 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify the passband ripple from input port",
+   "default": "off",
+   "values": "Flag to specify passband ripple from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Passband ripple (dB)",
+   "default": "1",
+   "values": "Passband ripple in dB 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify the stopband attenuation from input port",
+   "default": "off",
+   "values": "Flag to specify stopband attenuation from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "60",
+   "values": "Stopband attenuation in dB 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time in seconds -1 (default) | positive scalar | Inf",
+   "group": ""
+  },
+  {
+   "name": "Filter cascade sections form",
+   "default": "sections",
+   "values": "Form of filter cascade sections Fourth-order sections (default) | Second-order sections",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of filter coefficients double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

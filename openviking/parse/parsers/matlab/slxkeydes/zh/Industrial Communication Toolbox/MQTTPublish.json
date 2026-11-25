@@ -1,0 +1,44 @@
+{
+ "key": "MQTTPublish",
+ "title": "MQTT Client Publish",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/MQTT/MQTT_Client_Publish.md"
+ ],
+ "text": "将消息发布到 MQTT 主题，输入 1 路；{Client} 指定 MQTT 客户端、{Topics to publish} 指定 MQTT 主题列表 table、{Publish only on input data change} 确定何时发布消息、{Block sample time} 指定读取操作的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Topic_ x",
+   "direction": "input",
+   "summary": "要发布到 MQTT 主题的消息 double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Client",
+   "default": "",
+   "values": "选择 MQTT 客户端 drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Topics to publish",
+   "default": "",
+   "values": "MQTT 主题列表 table",
+   "group": ""
+  },
+  {
+   "name": "Publish only on input data change",
+   "default": "on",
+   "values": "确定何时发布消息 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "-1",
+   "values": "读取操作的采样时间 -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

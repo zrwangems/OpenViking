@@ -1,0 +1,111 @@
+{
+ "key": "Edge Detector",
+ "title": "Edge Detector",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Analysis & Enhancement/Edge_Detector.md",
+  "DSP System Toolbox/Signal Management/Switches and Counters/Edge_Detector.md"
+ ],
+ "text": "Find edges of objects in grayscale pixel stream, 3 inputs, 4 outputs, {Method} sets Edge detection algorithm; {Output the binary image} enables edge output port, {Output the gradient components} enables gradient output ports, {Source of threshold value} sets the source for gradient threshold that indicates an edge, {Threshold value} sets the gradient threshold value that indicates, {Line buffer size} sets the size of the line memory buffer, {Padding method} sets the method for padding, {Rounding mode} sets the rounding method for internal fixed-point calculations, {Saturate on integer overflow} sets the overflow action for internal fixed-point and {Gradient Data Type} sets the data type for gradient output ports Inherit via internal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "Th",
+   "direction": "input",
+   "summary": "Threshold value scalar"
+  },
+  {
+   "name": "Edge",
+   "direction": "output",
+   "summary": "Boolean pixel value, indicating whether pixel is an edge scalar | vector"
+  },
+  {
+   "name": "Gv,Gh",
+   "direction": "output",
+   "summary": "Vertical and horizontal gradient scalar | vector"
+  },
+  {
+   "name": "G45,G135",
+   "direction": "output",
+   "summary": "Orthogonal gradient scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Sobel",
+   "values": "Edge detection algorithm Sobel (default) | Prewitt | Roberts",
+   "group": "Main"
+  },
+  {
+   "name": "Output the binary image",
+   "default": "on",
+   "values": "Enable edge output port on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Output the gradient components",
+   "default": "off",
+   "values": "Enable gradient output ports off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Source of threshold value",
+   "default": "Property",
+   "values": "Source for gradient threshold that indicates an edge Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Threshold value",
+   "default": "20",
+   "values": "Gradient threshold value that indicates an edge 20 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "Size of the line memory buffer 2048 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Padding method",
+   "default": "Symmetric",
+   "values": "Method for padding Symmetric (default) | None",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow action for internal fixed-point calculations off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Gradient Data Type",
+   "default": "rule",
+   "values": "Data type for gradient output ports Inherit via internal rule (default) | data type expression",
+   "group": "Data Types"
+  }
+ ]
+}

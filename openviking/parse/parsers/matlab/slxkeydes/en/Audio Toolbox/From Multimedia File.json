@@ -1,0 +1,139 @@
+{
+ "key": "From Multimedia File",
+ "title": "From Multimedia File",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sources/From_Multimedia_File.md",
+  "Computer Vision Toolbox/Sources/From_Multimedia_File.md",
+  "DSP System Toolbox/Sources/From_Multimedia_File.md"
+ ],
+ "text": "Stream from multimedia file, 10 outputs, no direct feedthrough, {Multimedia outputs} sets Type of media Audio; {File name} sets the name of multimedia, {Inherit sample time from file}, {Desired sample time} sets the block sample time, {Number of times to play file} sets the number of times to play multimedia file, {Read range} sets the range of audio samples, {Output end-of-file indicator} sets the end-of-file indicator, {Samples per audio channel}, {Output color format} sets the color format, {Image signal} sets the output port configuration for RGB video One multidimensional, {Audio output data type} and {Video output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "Color image or video frame array"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "Grayscale image or video frame matrix"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Red color component of image or video frame matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Green color component of image or video frame matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Blue color component of image or video frame matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Luma component of image or video frame matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "output",
+   "summary": "Blue-difference chrominance component of image or video frame matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "output",
+   "summary": "Red-difference chrominance component of image or video frame matrix"
+  },
+  {
+   "name": "Audio",
+   "direction": "output",
+   "summary": "Audio signal vector | matrix"
+  },
+  {
+   "name": "EOF",
+   "direction": "output",
+   "summary": "End-of-file indicator scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "speech_dft.mp3",
+   "values": "Name of multimedia file speech_dft.mp3 (default) | character vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Inherit sample time from file",
+   "default": "on",
+   "values": "Inherit sample time from file on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Desired sample time",
+   "default": "1/30",
+   "values": "Block sample time 1/30 (default) | real positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of times to play file",
+   "default": "inf",
+   "values": "Number of times to play multimedia file inf (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Read range",
+   "default": "Inf]",
+   "values": "Range of audio samples [1 Inf] (default) | two-element vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output end-of-file indicator",
+   "default": "off",
+   "values": "End-of-file indicator off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Multimedia outputs",
+   "default": "only",
+   "values": "Type of media Audio only (default) | Video and audio | Video only",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Samples per audio channel",
+   "default": "1024",
+   "values": "Samples per audio channel 1024 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output color format",
+   "default": "RGB",
+   "values": "Color format of video RGB (default) | Intensity | YCbCr 4:2:2",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Output port configuration for RGB video One multidimensional signal (default) | Separate color signals | Simulink image signal",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Audio output data type",
+   "default": "double",
+   "values": "Audio output data type double (default) | single | int16 | uint8",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Video output data type",
+   "default": "single",
+   "values": "Video output data type single (default) | double | int8 | uint8 | int16 | uint16 | int32 | uint32 | Inherit from file",
+   "group": "Data Types Tab"
+  }
+ ]
+}

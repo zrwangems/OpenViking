@@ -1,0 +1,46 @@
+{
+ "key": "Sine Wave Generator (Three-Phase)",
+ "title": "Sine Wave Generator (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Sine_Wave_Generator_Three_Phase.md"
+ ],
+ "text": "Discrete-time or continuous-time three-phase sine wave generator, 3 inputs, 2 outputs, {Sample time (-1 for inherited)} sets Block sample time.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mag",
+   "direction": "input",
+   "summary": "Magnitude of generated three-phase sine wave scalar"
+  },
+  {
+   "name": "ang",
+   "direction": "input",
+   "summary": "Phase shift of the generated three-phase sine wave, deg scalar"
+  },
+  {
+   "name": "freq",
+   "direction": "input",
+   "summary": "Frequency of generated three-phase sine wave, Hz scalar"
+  },
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "Three-phase sine wave vector"
+  },
+  {
+   "name": "wt",
+   "direction": "output",
+   "summary": "Angle of sine wave of all three phases, rad vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

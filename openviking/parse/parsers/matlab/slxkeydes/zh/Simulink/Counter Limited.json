@@ -1,0 +1,33 @@
+{
+ "key": "Counter Limited",
+ "title": "Counter Limited",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Counter_Limited.md",
+  "HDL Coder/Sources/Counter_Limited.md"
+ ],
+ "text": "进行累加计数，并在达到指定的上限后绕回到 0；输出 1 路；按 {采样时间} 指定采样之间的时间间隔；{上限}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "计数值 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "上限",
+   "default": "7",
+   "values": "上限 7 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

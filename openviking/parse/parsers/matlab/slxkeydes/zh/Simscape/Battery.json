@@ -1,0 +1,14 @@
+{
+ "key": "Battery",
+ "title": "Battery",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Cells/Battery.md",
+  "Simscape/Electrical/Sources/Battery.md"
+ ],
+ "text": "行为级电池模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

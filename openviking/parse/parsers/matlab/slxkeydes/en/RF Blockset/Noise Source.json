@@ -1,0 +1,56 @@
+{
+ "key": "Noise Source",
+ "title": "Noise",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Sources/Noise.md"
+ ],
+ "text": "Model noise using current or voltage noise source in RF systems, {Impulse response duration} sets Impul; {Source type} sets the noise type Ideal, {Noise distribution}, {Noise power spectral density} sets the single-sided noise power spectral, {Frequencies}, {Automatically estimate impulse response duration} sets the estimate impulse response duration and {Ground and hide negative terminals} sets the ground RF circuit terminals. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source type",
+   "default": "voltage",
+   "values": "Noise type Ideal voltage (default) | Ideal current",
+   "group": ""
+  },
+  {
+   "name": "Noise distribution",
+   "default": "White",
+   "values": "Noise distribution type White (default) | Piece-wise linear | Colored",
+   "group": ""
+  },
+  {
+   "name": "Noise power spectral density",
+   "default": "0",
+   "values": "Single-sided noise power spectral distribution 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Frequencies",
+   "default": "Hz",
+   "values": "Frequencies for piece-wise linear noise distribution 0 Hz (default) | vector of non-negative frequencies | Hz | kHz | MHz | GHz",
+   "group": ""
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "on",
+   "values": "Estimate impulse response duration on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "Impulse response duration to simulate colored noise 1e-10 s (default) | scalar | s | ms | us | ns",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

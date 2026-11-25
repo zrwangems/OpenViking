@@ -1,0 +1,49 @@
+{
+ "key": "fusion.internal.simulink.ecompass",
+ "title": "ecompass",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Multisensor Positioning/Navigation Filters/ecompass.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Navigation Filters/ecompass.md"
+ ],
+ "text": "Compute orientation from accelerometer and magnetometer readings, 2 inputs, 1 output; {Reference frame} sets the navigation reference frame, {Orientation format} sets the format used to describe orientation and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Accel",
+   "direction": "input",
+   "summary": "Accelerometer readings N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Mag",
+   "direction": "input",
+   "summary": "Magnetometer readings N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "Orientation that rotates quantities from global coordinate system to sensor body coordinate system N -by-4 matrix of quaternions (default) | 3-by-3-by- N array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference frame",
+   "default": "NED",
+   "values": "Navigation reference frame NED (default) | ENU",
+   "group": ""
+  },
+  {
+   "name": "Orientation format",
+   "default": "quaternion",
+   "values": "Format used to describe orientation quaternion (default) | Rotation matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

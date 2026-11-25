@@ -1,0 +1,63 @@
+{
+ "key": "NR CRC Decoder",
+ "title": "NR CRC Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/NR_CRC_Decoder.md"
+ ],
+ "text": "使用 CRC 检测输入数据中的错误，输入 3 路、输出 3 路；按 {CRC type} 指定CRC 类型；{Full checksum mismatch} 启用完整校验和、{Enable CRC mask input port} 启用 CRC 校验和掩码输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "CRC 编码数据 binary scalar | binary vector | unsigned integer scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "CRCMask",
+   "direction": "input",
+   "summary": "CRC 校验和掩码 nonnegative integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "CRC 解码数据 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "err",
+   "direction": "output",
+   "summary": "接收数据损坏指示 binary or integer scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CRC type",
+   "default": "CRC16",
+   "values": "CRC 类型 CRC16 (default) | CRC6 | CRC11 | CRC24A | CRC24B | CRC24C",
+   "group": ""
+  },
+  {
+   "name": "Full checksum mismatch",
+   "default": "off",
+   "values": "启用完整校验和 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable CRC mask input port",
+   "default": "off",
+   "values": "启用 CRC 校验和掩码输入端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

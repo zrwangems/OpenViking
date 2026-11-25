@@ -1,0 +1,13 @@
+{
+ "key": "Constant Volume Chamber (2P)",
+ "title": "Constant Volume Chamber (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Constant_Volume_Chamber_2P.md"
+ ],
+ "text": "Chamber with fixed volume of two-phase fluid and variable number of ports.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

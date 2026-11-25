@@ -1,0 +1,24 @@
+{
+ "key": "CelsiusToFahrenheit",
+ "title": "Celsius to Fahrenheit",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Transformations/Celsius_to_Fahrenheit.md"
+ ],
+ "text": "Convert degrees Celsius to degrees Fahrenheit, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Celsius degree input scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Fahrenheit degree output scalar"
+  }
+ ],
+ "params": []
+}

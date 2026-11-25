@@ -1,0 +1,48 @@
+{
+ "key": "VariablePulseGenerator",
+ "title": "Variable Pulse Generator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Variable_Pulse_Generator.md"
+ ],
+ "text": "生成理想的时变脉冲信号，输入 2 路、输出 1 路；{允许零脉冲宽度} 允许输出信号的幅值为零、{以固定时间间隔运行} 指定连续或离散时间行为、{采样率} 指定脉冲分辨率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "占空比 标量"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "周期 标量"
+  },
+  {
+   "name": "Port 1",
+   "direction": "output",
+   "summary": "调制脉冲信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "允许零脉冲宽度",
+   "default": "off",
+   "values": "允许输出信号的幅值为零 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "以固定时间间隔运行",
+   "default": "连续",
+   "values": "选择连续或离散时间行为 连续 (默认) | 离散",
+   "group": ""
+  },
+  {
+   "name": "采样率",
+   "default": "0.1",
+   "values": "设置脉冲分辨率 0.1 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

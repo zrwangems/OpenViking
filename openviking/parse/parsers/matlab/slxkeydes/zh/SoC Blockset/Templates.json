@@ -1,0 +1,13 @@
+{
+ "key": "Templates",
+ "title": "Templates",
+ "toolbox": "SoC Blockset",
+ "kind": "source_block",
+ "source_docs": [
+  "SoC Blockset/Templates.md"
+ ],
+ "text": "模板。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

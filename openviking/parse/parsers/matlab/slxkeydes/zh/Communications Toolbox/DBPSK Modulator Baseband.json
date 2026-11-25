@@ -1,0 +1,37 @@
+{
+ "key": "DBPSK Modulator Baseband",
+ "title": "DBPSK Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/DBPSK_Modulator_Baseband.md"
+ ],
+ "text": "使用差分二进制相移键控方法进行调制，输入 1 路、输出 1 路；{Phase rotation (rad)} 指定附加相移、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "DBPSK 调制的基带信号 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase rotation (rad)",
+   "default": "0",
+   "values": "附加相移 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single",
+   "group": "Main"
+  }
+ ]
+}

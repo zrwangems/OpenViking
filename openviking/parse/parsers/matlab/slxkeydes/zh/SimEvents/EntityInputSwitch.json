@@ -1,0 +1,65 @@
+{
+ "key": "EntityInputSwitch",
+ "title": "Entity Input Switch",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Input_Switch.md"
+ ],
+ "text": "切换输入实体，输入 3 路、输出 1 路；按 {Switching criterion} 指定输入端口切换准则 Round；{Number of input ports} 指定输入端口数、{Active port selection} 指定活动输入端口、{Initial port selection} 指定实体进入时的初始输入端口、{Seed} 用于确定输入端口的随机数生成器种子，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "control",
+   "direction": "input",
+   "summary": "输入控制实体 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "2",
+   "values": "指定输入端口数 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Active port selection",
+   "default": "All",
+   "values": "指定活动输入端口 All (default) | Switch",
+   "group": ""
+  },
+  {
+   "name": "Switching criterion",
+   "default": "robin",
+   "values": "指定输入端口切换准则 Round robin (default) | From control port | Equiprobable",
+   "group": ""
+  },
+  {
+   "name": "Initial port selection",
+   "default": "1",
+   "values": "指定实体进入时的初始输入端口 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "23453",
+   "values": "指定用于确定输入端口的随机数生成器种子 23453 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

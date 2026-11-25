@@ -1,0 +1,180 @@
+{
+ "key": "PreLookup",
+ "title": "Prelookup",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/Prelookup.md",
+  "Simulink/Quick Insert/Lookup Tables/Index_Search.md",
+  "HDL Coder/Lookup Tables/Prelookup.md"
+ ],
+ "text": "Compute index and fraction for Interpolation Using Prelookup block, 2 inputs, 3 outputs, direct feedthrough, {Name} sets Name of a; {Specification} sets how to enter breakpoint data Explicit, {Source} sets the source of breakpoint, {Value} sets the breakpoint data values, {First point}, {Spacing}, {Number of points} sets the number of evenly spaced points, {Output selection} sets the signals the block outputs Index, {Index search method} sets the method for searching breakpoint data Binary, {Begin index search using previous index result} sets the start search using the index found at the previous time, {Extrapolation method} sets the method for handling out-of-range input values, {Use last breakpoint for input at or above upper limit} sets the method of handling inputs at or above upper, {Assume input is within range} sets the option to check for out-of-range input, {Diagnostic for out-of-range input} sets the block action when input is out of range, {Sample time (-1 for inherited)} sets the interval between samples, {Breakpoint}, {Index}, {Fraction}, {Output}, {Breakpoint Minimum} sets the minimum value breakpoint data can have, {Breakpoint Maximum} sets the maximum value breakpoint data can have, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data and {Integer rounding mode} sets the rounding mode for fixed-point operations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal, u scalar | vector | matrix"
+  },
+  {
+   "name": "bp",
+   "direction": "input",
+   "summary": "Breakpoint data 1-D vector of real-valued signals"
+  },
+  {
+   "name": "k",
+   "direction": "output",
+   "summary": "Index of the interval containing the input, u scalar | vector | matrix"
+  },
+  {
+   "name": "f",
+   "direction": "output",
+   "summary": "Fraction representing the normalized position of the input, u, within the interval, k scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Bus containing index, k, and fraction, f bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specification",
+   "default": "values",
+   "values": "Choose how to enter breakpoint data Explicit values (default) | Even spacing | Breakpoint object",
+   "group": "Main"
+  },
+  {
+   "name": "Source",
+   "default": "Dialog",
+   "values": "Specify source of breakpoint data Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Value",
+   "default": "[10:10:110]",
+   "values": "Breakpoint data values [10:10:110] (default) | vector of strictly monotonically increasing values containing two or more elements",
+   "group": "Main"
+  },
+  {
+   "name": "First point",
+   "default": "10",
+   "values": "First point in evenly spaced breakpoint data 10 (default) | real-valued scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Spacing",
+   "default": "10",
+   "values": "Spacing between evenly spaced breakpoints 10 (default) | real-valued, positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Number of points",
+   "default": "11",
+   "values": "Number of evenly spaced points 11 (default) | real-valued, positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Name of a Simulink.Breakpoint object no default | Simulink.Breakpoint object",
+   "group": "Main"
+  },
+  {
+   "name": "Output selection",
+   "default": "fraction",
+   "values": "Specify the signals the block outputs Index and fraction (default) | Index and fraction as bus | Index only",
+   "group": "Main"
+  },
+  {
+   "name": "Index search method",
+   "default": "search",
+   "values": "Method for searching breakpoint data Binary search (default) | Linear search | Evenly spaced points",
+   "group": "Main"
+  },
+  {
+   "name": "Begin index search using previous index result",
+   "default": "off",
+   "values": "Start search using the index found at the previous time step off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Extrapolation method",
+   "default": "Clip",
+   "values": "Method for handling out-of-range input values Clip (default) | Linear",
+   "group": "Main"
+  },
+  {
+   "name": "Use last breakpoint for input at or above upper limit",
+   "default": "off",
+   "values": "Method of handling inputs at or above upper limit off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Assume input is within range",
+   "default": "off",
+   "values": "Option to check for out-of-range input values off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Diagnostic for out-of-range input",
+   "default": "None",
+   "values": "Block action when input is out of range None (default) | Warning | Error",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Breakpoint",
+   "default": "input",
+   "values": "Breakpoint data type Inherit: Same as input (default) | Inherit: Inherit from ’Breakpoint data’ | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Index",
+   "default": "uint32",
+   "values": "Index data type uint32 (default) | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Fraction",
+   "default": "rule",
+   "values": "Fraction data type Inherit: Inherit via internal rule (default) | double | single | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "auto",
+   "values": "Output data type Inherit: auto (default) | bus:",
+   "group": "Data Types"
+  },
+  {
+   "name": "Breakpoint Minimum",
+   "default": "[]",
+   "values": "Minimum value breakpoint data can have [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Breakpoint Maximum",
+   "default": "[]",
+   "values": "Maximum value breakpoint data can have [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  }
+ ]
+}

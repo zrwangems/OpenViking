@@ -1,0 +1,32 @@
+{
+ "key": "Triggered Linearization",
+ "title": "Trigger-Based Linearization",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model-Wide Utilities/Trigger_Based_Linearization.md"
+ ],
+ "text": "触发时在基础工作区中生成线性模型，输入 1 路、无直接馈通；按 {Sample time (of linearized model)} 指定采样时间；{Trigger type} 指定触发线性模型生成的信号类型 rising，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger type",
+   "default": "",
+   "values": "触发线性模型生成的信号类型 rising | falling | either | function-call",
+   "group": ""
+  },
+  {
+   "name": "Sample time (of linearized model)",
+   "default": "0",
+   "values": "采样时间 0 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

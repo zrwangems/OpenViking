@@ -1,0 +1,103 @@
+{
+ "key": "robotics.slcore.internal.block.PolyTrajSys",
+ "title": "Polynomial Trajectory",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Utilities/Polynomial_Trajectory.md"
+ ],
+ "text": "通过路点生成多项式轨迹，输入 5 路、输出 3 路；按 {Method} 指定轨迹生成方法 Cubic；{Waypoint source} 指定路点来源 Internal、{Waypoints} 指定沿轨迹的路点位置 n -by、{Time points} 指定轨迹路点的时间点 p -element vector、{Parameter source} 指定路点来源 Internal、{Velocity boundary conditions} 指定路点的速度边界条件 zeroes、{Acceleration boundary conditions} 指定轨迹的加速度边界条件 n -by、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "沿轨迹的时间点 scalar | vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "沿轨迹的路点位置 n -by- p matrix"
+  },
+  {
+   "name": "TimePoints",
+   "direction": "input",
+   "summary": "轨迹路点的时间点 p -element vector"
+  },
+  {
+   "name": "VelBC",
+   "direction": "input",
+   "summary": "路点的速度边界条件 n -by- p matrix"
+  },
+  {
+   "name": "AccelBC",
+   "direction": "input",
+   "summary": "轨迹的加速度边界条件 n -by- p matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "轨迹的位置 scalar | vector | matrix"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "轨迹的速度 scalar | vector | matrix"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "轨迹的加速度 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Waypoint source",
+   "default": "Internal",
+   "values": "路点来源 Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Waypoints",
+   "default": "",
+   "values": "沿轨迹的路点位置 n -by- p matrix",
+   "group": ""
+  },
+  {
+   "name": "Time points",
+   "default": "",
+   "values": "轨迹路点的时间点 p -element vector",
+   "group": ""
+  },
+  {
+   "name": "Method",
+   "default": "Polynomial",
+   "values": "轨迹生成方法 Cubic Polynomial (default) | Quintic Polynomial | B-Spline",
+   "group": ""
+  },
+  {
+   "name": "Parameter source",
+   "default": "Internal",
+   "values": "路点来源 Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Velocity boundary conditions",
+   "default": "zeroes(2,5)",
+   "values": "路点的速度边界条件 zeroes(2,5) (default) | n -by- p matrix",
+   "group": ""
+  },
+  {
+   "name": "Acceleration boundary conditions",
+   "default": "",
+   "values": "轨迹的加速度边界条件 n -by- p matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

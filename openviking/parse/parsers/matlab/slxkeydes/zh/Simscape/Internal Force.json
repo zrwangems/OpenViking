@@ -1,0 +1,13 @@
+{
+ "key": "Internal Force",
+ "title": "Internal Force",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Internal_Force.md"
+ ],
+ "text": "对两个几何体之间的平面接触进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

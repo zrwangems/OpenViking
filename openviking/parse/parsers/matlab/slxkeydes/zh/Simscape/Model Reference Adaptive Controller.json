@@ -1,0 +1,131 @@
+{
+ "key": "Model Reference Adaptive Controller",
+ "title": "Model Reference Adaptive Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Model_Reference_Adaptive_Controller.md"
+ ],
+ "text": "基于离散时间 PID 的模型参考自适应控制，输入 3 路、输出 1 路；{Proportional gain} 控制器比例增益 K p、{Integral gain} 控制器积分增益，K i、{Derivative gain} 控制器微分增益，K d、{Anti-windup gain} 控制器抗积分饱和增益、{Use filtered derivative} 指定滤波器、{Filter coefficient} 指定参考信号滤波器系数、{Control action upper limit} 控制信号上限，u pid_max、{Control action lower limit} 控制信号下限，u pid_min、{Sample time (-1 for inherited)} 指定模块采样时间、{Model parameterization} 指定离散或连续模型、{Discrete-time numerator} 指定离散时间传递函数分子、{Discrete-time denominator} 指定离散时间传递函数分母、{Discretization sample time} 指定离散化采样时间、{Continuous-time numerator} 指定连续时间传递函数分子、{Continuous-time denominator} 指定连续时间传递函数分母、{Learning rate} 指定γ，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "被控对象参考，r scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出，y scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "积分器复位 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制器调整后输出，u scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "控制器比例增益 K p 1 (default) | positive scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Integral gain",
+   "default": "1",
+   "values": "控制器积分增益，K i 1 (default) | positive scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Derivative gain",
+   "default": "0",
+   "values": "控制器微分增益，K d 0 (default)",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "控制器抗积分饱和增益 1 (default) | positive scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Use filtered derivative",
+   "default": "on",
+   "values": "滤波器选项 on (default) | off",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Filter coefficient",
+   "default": "100",
+   "values": "参考信号滤波器系数 100 (default)",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "5",
+   "values": "控制信号上限，u pid_max 5 (default)",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "-5",
+   "values": "控制信号下限，u pid_min -5 (default)",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Model parameterization",
+   "default": "Discrete-time",
+   "values": "离散或连续模型选项 Discrete-time (default) | Continuous-time",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Discrete-time numerator",
+   "default": "-0.0099]",
+   "values": "离散时间传递函数分子 [0.01 -0.0099] (default)",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Discrete-time denominator",
+   "default": "0.9802]",
+   "values": "离散时间传递函数分母 [1 -1.9801 0.9802] (default) | vector",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.01",
+   "values": "离散化采样时间 0.01 (default) | -1 or positive number",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Continuous-time numerator",
+   "default": "1]",
+   "values": "连续时间传递函数分子 [1 1] (default) | vector",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Continuous-time denominator",
+   "default": "1]",
+   "values": "连续时间传递函数分母 [1 2 1] (default) | vector",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Learning rate",
+   "default": "0.5",
+   "values": "γ 0.5 (default)",
+   "group": "Adjustment Mechanism"
+  }
+ ]
+}

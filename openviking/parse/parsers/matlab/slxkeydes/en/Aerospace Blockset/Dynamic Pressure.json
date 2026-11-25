@@ -1,0 +1,29 @@
+{
+ "key": "Dynamic Pressure",
+ "title": "Dynamic Pressure",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Dynamic_Pressure.md"
+ ],
+ "text": "Compute dynamic pressure using velocity and air density, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Velocity three-element vector"
+  },
+  {
+   "name": "ρ",
+   "direction": "input",
+   "summary": "Air density scalar"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Dynamic pressure scalar"
+  }
+ ],
+ "params": []
+}

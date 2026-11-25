@@ -1,0 +1,14 @@
+{
+ "key": "Rotational Damper",
+ "title": "Rotational Damper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Rotational_Damper.md",
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Rotational_Damper.md"
+ ],
+ "text": "Linear rotational damper.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

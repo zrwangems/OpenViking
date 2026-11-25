@@ -1,0 +1,13 @@
+{
+ "key": "Worm Gear",
+ "title": "Worm Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Worm_Gear.md"
+ ],
+ "text": "具有可调传动比和摩擦损耗的蜗轮蜗杆。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

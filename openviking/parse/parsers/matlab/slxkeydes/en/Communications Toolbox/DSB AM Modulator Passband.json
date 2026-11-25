@@ -1,0 +1,43 @@
+{
+ "key": "DSB AM Modulator Passband",
+ "title": "DSB AM Modulator Passband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Passband Modulation/DSB_AM_Modulator_Passband.md"
+ ],
+ "text": "Modulate using double-sideband amplitude modulation, 1 input, 1 output; {Input signal offset}, {Carrier frequency (Hz)} sets the carrier frequency in Hz and {Initial phase (rad)} sets the initial phase offset in radians. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input signal offset",
+   "default": "1",
+   "values": "Input signal offset factor 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier frequency (Hz)",
+   "default": "300",
+   "values": "Carrier frequency in Hz 300 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "Initial phase offset in radians 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

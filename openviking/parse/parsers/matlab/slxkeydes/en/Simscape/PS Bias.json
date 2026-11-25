@@ -1,0 +1,13 @@
+{
+ "key": "PS Bias",
+ "title": "PS Bias",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Bias.md"
+ ],
+ "text": "Add constant bias to input physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,55 @@
+{
+ "key": "Second-Order Low-Pass Filter (Discrete or Continuous)",
+ "title": "Second-Order Low-Pass Filter (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Second_Order_Low_Pass_Filter_Discrete_or_Continuous.md"
+ ],
+ "text": "离散时间或连续时间二阶低通滤波器，输入 1 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Coefficient of s, A1} 指定 A1 系数、{Coefficient of s^2, A2} 指定 A2 系数、{Initialization} 指定初始状态指定 Inherited from block、{Initial state} 指定初始状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "滤波器输入 scalar or vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "滤波后输出 scalar or vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient of s, A1",
+   "default": "0.1",
+   "values": "A1 系数 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of s^2, A2",
+   "default": "0.2",
+   "values": "A2 系数 0.2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initialization",
+   "default": "input",
+   "values": "初始状态指定 Inherited from block input (default) | Specify as parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "初始状态 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

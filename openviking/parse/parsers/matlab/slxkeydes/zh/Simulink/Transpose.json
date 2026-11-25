@@ -1,0 +1,24 @@
+{
+ "key": "Transpose",
+ "title": "Transpose",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Transpose.md"
+ ],
+ "text": "计算矩阵的转置，输入 1 路、输出 1 路、直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "矩阵 M -by- N matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "转置矩阵 N -by- M matrix"
+  }
+ ],
+ "params": []
+}

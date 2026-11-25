@@ -1,0 +1,13 @@
+{
+ "key": "Torque Noise Source",
+ "title": "Torque Noise Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Torque_Noise_Source.md"
+ ],
+ "text": "Model zero-mean normally (Gaussian) distributed torque.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

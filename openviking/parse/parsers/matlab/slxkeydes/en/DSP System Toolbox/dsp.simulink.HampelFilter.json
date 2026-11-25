@@ -1,0 +1,65 @@
+{
+ "key": "dsp.simulink.HampelFilter",
+ "title": "Hampel Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Hampel_Filter.md"
+ ],
+ "text": "Filter outliers using Hampel identifier, 2 inputs, 2 outputs, no direct feedthrough; {Window length} sets the length of sliding window, {Specify threshold from input port} sets the flag to specify threshold, {Threshold for outlier detection (standard deviations)}, {Output outlier status} sets the flag to output the outlier status and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Threshold real scalar greater than or equal to 0"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filtered output vector | matrix"
+  },
+  {
+   "name": "outlier",
+   "direction": "output",
+   "summary": "Output the outlier status vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length",
+   "default": "11",
+   "values": "Length of sliding window 11 (default) | positive odd scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Specify threshold from input port",
+   "default": "off",
+   "values": "Flag to specify threshold off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Threshold for outlier detection (standard deviations)",
+   "default": "3",
+   "values": "Threshold 3 (default) | real scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Output outlier status",
+   "default": "off",
+   "values": "Flag to output the outlier status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

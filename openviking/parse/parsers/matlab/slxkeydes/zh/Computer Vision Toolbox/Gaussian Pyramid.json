@@ -1,0 +1,55 @@
+{
+ "key": "Gaussian Pyramid",
+ "title": "Gaussian Pyramid",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/Gaussian_Pyramid.md"
+ ],
+ "text": "执行高斯金字塔分解，输入 1 路、输出 1 路；{Operation} 指定操作 Reduce、{Pyramid level} 指定图像缩放因子、{Coefficient source} 指定低通滤波器系数来源 Default separable filter、{Coefficients for separable filter} 指定可分离滤波器系数、{Hidden coefficients} 指定隐藏的可分离滤波器系数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 scalar | vector | matrix | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "Reduce",
+   "values": "选择操作 Reduce (default) | Expand",
+   "group": ""
+  },
+  {
+   "name": "Pyramid level",
+   "default": "1",
+   "values": "图像缩放因子 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Coefficient source",
+   "default": "1/4-a/2]",
+   "values": "低通滤波器系数来源 Default separable filter [1/4-a/2 1/4 a 1/4 1/4-a/2] (default) | Specify via dialog",
+   "group": ""
+  },
+  {
+   "name": "Coefficients for separable filter",
+   "default": "0.0625]",
+   "values": "可分离滤波器系数 [0.0625 0.25 0.375 0.25 0.0625] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Hidden coefficients",
+   "default": "1/4-0.375/2]",
+   "values": "隐藏的可分离滤波器系数 [1/4-0.375/2 1/4 0.375 1/4 1/4-0.375/2] (default) | vector",
+   "group": ""
+  }
+ ]
+}

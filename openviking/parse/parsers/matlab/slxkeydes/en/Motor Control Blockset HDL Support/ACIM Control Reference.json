@@ -1,0 +1,96 @@
+{
+ "key": "ACIM Control Reference",
+ "title": "ACIM Control Reference",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Control Reference/ACIM_Control_Reference.md",
+  "Motor Control Blockset/Controls/Control Reference/ACIM_Control_Reference.md"
+ ],
+ "text": "Compute reference currents for field-oriented control of induction motor, 2 inputs, 2 outputs; {Number of pole pairs}, {Rotor leakage inductance (H)} sets the leakage inductance of rotor winding, {Magnetizing Inductance (H)} sets the magnetizing inductance of induction motor, {Rated Flux (Wb)} sets the rated flux, {Rated Speed (rpm)} sets the rated speed of motor, {Synchronous Speed (rpm)} sets the synchronous speed of motor, {Max current (A)} sets the maximum phase current limit for motor, {Input units} sets the unit of input values Per-Unit, {Base Current (A)} sets the base current for per-unit system and {Base torque (Nm)} sets the base torque for per-unit system. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T ref",
+   "direction": "input",
+   "summary": "Reference torque value scalar"
+  },
+  {
+   "name": "⍵ m",
+   "direction": "input",
+   "summary": "Mechanical speed scalar"
+  },
+  {
+   "name": "I sd ref",
+   "direction": "output",
+   "summary": "Reference d -axis stator current scalar"
+  },
+  {
+   "name": "I sq ref",
+   "direction": "output",
+   "summary": "Reference q -axis stator current scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of pole pairs",
+   "default": "2",
+   "values": "Number of pole pairs available in motor 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rotor leakage inductance (H)",
+   "default": "6.81e-3",
+   "values": "Leakage inductance of rotor winding 6.81e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Magnetizing Inductance (H)",
+   "default": "30e-3",
+   "values": "Magnetizing inductance of induction motor 30e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rated Flux (Wb)",
+   "default": "38.2e-3",
+   "values": "Rated flux of motor 38.2e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rated Speed (rpm)",
+   "default": "1150",
+   "values": "Rated speed of motor 1150 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Synchronous Speed (rpm)",
+   "default": "1500",
+   "values": "Synchronous speed of motor 1500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Max current (A)",
+   "default": "3",
+   "values": "Maximum phase current limit for motor (amperes) 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input units",
+   "default": "(PU)",
+   "values": "Unit of input values Per-Unit (PU) (default) | SI Units",
+   "group": ""
+  },
+  {
+   "name": "Base Current (A)",
+   "default": "5.3611",
+   "values": "Base current for per-unit system 5.3611 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Base torque (Nm)",
+   "default": "0.50072",
+   "values": "Base torque for per-unit system 0.50072 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

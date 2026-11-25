@@ -1,0 +1,13 @@
+{
+ "key": "E-NTU Heat Transfer",
+ "title": "E-NTU Heat Transfer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Fundamental Components/E_NTU_Heat_Transfer.md"
+ ],
+ "text": "Detailed heat transfer model between two general fluids.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

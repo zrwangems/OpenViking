@@ -1,0 +1,37 @@
+{
+ "key": "Least Squares Polynomial Fit",
+ "title": "Least Squares Polynomial Fit",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Polynomial Functions/Least_Squares_Polynomial_Fit.md"
+ ],
+ "text": "计算在最小二乘意义上最能拟合输入数据的多项式系数，输入 1 路、输出 1 路、无直接馈通；{Control points (X)}、{Polynomial order (N)}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入数据 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "多项式系数 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control points (X)",
+   "default": "(0:31)/31",
+   "values": "Control points (0:31)/31 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Polynomial order (N)",
+   "default": "3",
+   "values": "Polynomial order 3 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

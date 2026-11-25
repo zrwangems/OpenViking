@@ -1,0 +1,139 @@
+{
+ "key": "From Multimedia File",
+ "title": "From Multimedia File",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sources/From_Multimedia_File.md",
+  "Computer Vision Toolbox/Sources/From_Multimedia_File.md",
+  "DSP System Toolbox/Sources/From_Multimedia_File.md"
+ ],
+ "text": "从多媒体文件流式传输；输出 10 路、无直接馈通；按 {Output color format} 指定视频颜色格式；{File name} 指定多媒体文件名称、{Inherit sample time from file} 指定从文件继承采样时间、{Desired sample time} 指定模块采样时间、{Number of times to play file} 指定播放多媒体文件的次数、{Read range} 指定音频样本范围、{Output end-of-file indicator} 指定文件末尾指示符、{Multimedia outputs} 指定媒体类型 Audio、{Samples per audio channel} 指定每个音频通道的样本数、{Image signal} 指定 RGB 视频的输出端口配置 One multidimensional、{Audio output data type} 指定音频输出数据类型、{Video output data type} 指定视频输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "彩色图像或视频帧 array"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "灰度图像或视频帧 matrix"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "图像或视频帧的红色分量 matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "图像或视频帧的绿色分量 matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "图像或视频帧的蓝色分量 matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "图像或视频帧的亮度分量 matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "output",
+   "summary": "图像或视频帧的蓝色差色度分量 matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "output",
+   "summary": "图像或视频帧的红色差色度分量 matrix"
+  },
+  {
+   "name": "Audio",
+   "direction": "output",
+   "summary": "音频信号 vector | matrix"
+  },
+  {
+   "name": "EOF",
+   "direction": "output",
+   "summary": "文件末尾指示符 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "speech_dft.mp3",
+   "values": "多媒体文件名称 speech_dft.mp3 (default) | character vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Inherit sample time from file",
+   "default": "on",
+   "values": "从文件继承采样时间 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Desired sample time",
+   "default": "1/30",
+   "values": "模块采样时间 1/30 (default) | real positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of times to play file",
+   "default": "inf",
+   "values": "播放多媒体文件的次数 inf (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Read range",
+   "default": "Inf]",
+   "values": "音频样本范围 [1 Inf] (default) | two-element vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output end-of-file indicator",
+   "default": "off",
+   "values": "文件末尾指示符 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Multimedia outputs",
+   "default": "only",
+   "values": "媒体类型 Audio only (default) | Video and audio | Video only",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Samples per audio channel",
+   "default": "1024",
+   "values": "每个音频通道的样本数 1024 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output color format",
+   "default": "RGB",
+   "values": "视频颜色格式 RGB (default) | Intensity | YCbCr 4:2:2",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "RGB 视频的输出端口配置 One multidimensional signal (default) | Separate color signals | Simulink image signal",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Audio output data type",
+   "default": "double",
+   "values": "音频输出数据类型 double (default) | single | int16 | uint8",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Video output data type",
+   "default": "single",
+   "values": "视频输出数据类型 single (default) | double | int8 | uint8 | int16 | uint16 | int32 | uint32 | Inherit from file",
+   "group": "Data Types Tab"
+  }
+ ]
+}

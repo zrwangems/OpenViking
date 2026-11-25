@@ -1,0 +1,24 @@
+{
+ "key": "Invert 3x3 Matrix",
+ "title": "Invert 3x3 Matrix",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Invert_3x3_Matrix.md"
+ ],
+ "text": "计算 3×3 矩阵的逆，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入矩阵 3-by-3 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "矩阵逆 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

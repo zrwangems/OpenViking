@@ -1,0 +1,14 @@
+{
+ "key": "Pipe (IL)",
+ "title": "Pipe (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pipes & Fittings/Pipe_IL.md",
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Pipe_IL.md"
+ ],
+ "text": "Pipe segment in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,78 @@
+{
+ "key": "codertarget.armM4.blocks.CANFDWrite",
+ "title": "MCAN Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F280015x/MCAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F28003x/MCAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p55x/MCAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p65x/MCAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/MCAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F2838x/M4/MCAN_Transmit.md"
+ ],
+ "text": "将串行数据发送到 CAN 总线，输入 1 路、输出 1 路；按 {Length (bytes)} 指定消息长度；{Data format} 指定数据输出类型 Raw、{Frame format} 指定帧格式类型、{Identifier Type} 指定消息标识符类型 Standard、{Identifier} 指定消息标识符、{Remote Frame} 启用远程消息、{Enable bit rate switching} 启用比特率切换消息、{Output Status} 启用输出状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TX",
+   "direction": "input",
+   "summary": "输入数据端口 vector | scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "CAN 消息传输状态 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data format",
+   "default": "data",
+   "values": "数据输出类型 Raw data (default) | CAN Msg",
+   "group": ""
+  },
+  {
+   "name": "Frame format",
+   "default": "CAN-FD",
+   "values": "帧格式类型 CAN-FD (default) | Classic CAN",
+   "group": ""
+  },
+  {
+   "name": "Identifier Type",
+   "default": "identifier)",
+   "values": "消息标识符类型 Standard (11-bit identifier) (default) | Extended (29-bit identifier)",
+   "group": ""
+  },
+  {
+   "name": "Identifier",
+   "default": "100",
+   "values": "消息标识符 100 (default) | numeric identifier of length 11 or 29 bits",
+   "group": ""
+  },
+  {
+   "name": "Length (bytes)",
+   "default": "64",
+   "values": "消息长度 64 (default) | positive integer less than or equal to 64(CAN-FD) | positive integer less than or equal to 8(Classic CAN)",
+   "group": ""
+  },
+  {
+   "name": "Remote Frame",
+   "default": "off",
+   "values": "启用远程消息 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable bit rate switching",
+   "default": "off",
+   "values": "启用比特率切换消息 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Status",
+   "default": "off",
+   "values": "启用输出状态 off (default) | on",
+   "group": ""
+  }
+ ]
+}

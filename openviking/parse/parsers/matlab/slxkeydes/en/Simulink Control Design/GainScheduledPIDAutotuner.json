@@ -1,0 +1,337 @@
+{
+ "key": "GainScheduledPIDAutotuner",
+ "title": "Gain-Scheduled PID Autotuner",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/Gain_Scheduled_PID_Autotuner.md"
+ ],
+ "text": "Automatically tune PID gains at multiple operating points, 9 inputs, 5 outputs, {Controller type} sets PID controller actions; {Form} sets the pID controller form, {Sample time (-1 for inherited)} sets the sample time of PID controller, {Data Type} sets the floating point precision, {Tune at different sample time} enables tuning at different sample time from PID controller, {Tuning sample time (sec)} sets the sample time of tuning algorithm, {Integrator method} sets the discrete integration formula for integrator term Forward, {Filter method} sets the discrete integration formula for derivative filter term Forward, {Target bandwidth (rad/sec)} sets the target crossover frequency of tuned, {Target phase margin (degrees)} sets the target minimum phase margin of open-loop, {Experiment Mode} sets the perturbation signal type, {Plant Type} sets the stability of plant, {Plant Sign} sets the sign of plant, {Signal Amplitudes} sets the amplitude of perturbations, {Breakpoints} sets the gain scheduling breakpoints, {Use external signal} sets the breakpoints from input port, {Number of breakpoints}, {Gain index tolerance}, {Use y as scheduling variable} sets the schedule breakpoints using plant output, {Method of storing gains}, {P Gain initial conditions} sets the proportional gain initial value, {P Gain Parameter Name} sets the proportional gain data, {I Gain initial conditions} sets the integral gain initial value, {I Gain Parameter Name} sets the integral gain data, {D Gain initial conditions} sets the derivative gain initial value, {D Gain Parameter Name} sets the derivative gain data, {N Gain initial conditions} sets the filter gain initial value, {N Gain Parameter Name} sets the filter gain data, {Save breakpoints in gain array} sets the save breakpoints along with PID gains, {Method to trigger gain update} sets the update trigger method Detect change in PID, {Number of samples to delay update}, {P gain lookup method} sets the proportional gain lookup method Interpolation-Use End, {I gain lookup method} sets the integral gain lookup method Interpolation-Use End, {D gain lookup method} sets the derivative gain lookup method Interpolation-Use End, {N gain lookup method} sets the derivative filter gain lookup method Interpolation-Use End, {Saturate to max or min when overflows occur} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Output Signal Configuration} sets the provide control signal plus perturbation or perturbation only control action +, {Display Bode plot} plots estimated frequency response, {Baseline plant model} sets the baseline model for Bode plot and {Display gain surface plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Signal from controller scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "Start and stop the autotuning experiment scalar"
+  },
+  {
+   "name": "bandwidth",
+   "direction": "input",
+   "summary": "Target bandwidth for tuning scalar"
+  },
+  {
+   "name": "target PM",
+   "direction": "input",
+   "summary": "Target phase margin for tuning scalar"
+  },
+  {
+   "name": "signal Amp",
+   "direction": "input",
+   "summary": "Amplitudes of injected perturbation signals scalar | vector"
+  },
+  {
+   "name": "scheduling Variable",
+   "direction": "input",
+   "summary": "Scheduling variable scalar"
+  },
+  {
+   "name": "Breakpoints",
+   "direction": "input",
+   "summary": "Breakpoint data vector"
+  },
+  {
+   "name": "Update Trigger",
+   "direction": "input",
+   "summary": "Trigger control signal scalar"
+  },
+  {
+   "name": "u+Δu",
+   "direction": "output",
+   "summary": "Signal for plant input scalar"
+  },
+  {
+   "name": "Δu",
+   "direction": "output",
+   "summary": "Plant input perturbation scalar"
+  },
+  {
+   "name": "pid gains",
+   "direction": "output",
+   "summary": "Tuned PID coefficients bus"
+  },
+  {
+   "name": "estimated PM",
+   "direction": "output",
+   "summary": "Estimated phase margin with tuned controller scalar"
+  },
+  {
+   "name": "frd",
+   "direction": "output",
+   "summary": "Estimated frequency response vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Controller type",
+   "default": "PIDN",
+   "values": "PID controller actions PIDN (default) | P | I | PI | PD | PDN | PID |...",
+   "group": "Controller Settings"
+  },
+  {
+   "name": "Form",
+   "default": "Parallel",
+   "values": "PID controller form Parallel (default) | Ideal",
+   "group": "Controller Settings"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "0.1",
+   "values": "Sample time of PID controller 0.1 (default) | positive scalar | –1",
+   "group": "Controller Settings"
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Floating point precision double (default) | single",
+   "group": "Controller Settings"
+  },
+  {
+   "name": "Tune at different sample time",
+   "default": "off",
+   "values": "Enable tuning at different sample time from PID controller and experiment off (default) | on",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Tuning sample time (sec)",
+   "default": "0.2",
+   "values": "Sample time of tuning algorithm 0.2 (default) | positive scalar",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "Discrete integration formula for integrator term Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Filter method",
+   "default": "Euler",
+   "values": "Discrete integration formula for derivative filter term Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Target bandwidth (rad/sec)",
+   "default": "1",
+   "values": "Target crossover frequency of tuned response 1 (default) | positive scalar",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Target phase margin (degrees)",
+   "default": "60",
+   "values": "Target minimum phase margin of open-loop response 60 (default) | scalar in range 0–90",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Experiment Mode",
+   "default": "Superposition",
+   "values": "Perturbation signal type Superposition (default) | Sinestream | PRBS",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Plant Type",
+   "default": "Stable",
+   "values": "Stability of plant Stable (default) | Integrating",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Plant Sign",
+   "default": "Positive",
+   "values": "Sign of plant Positive (default) | Negative",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Signal Amplitudes",
+   "default": "1",
+   "values": "Amplitude of perturbations 1 (default) | scalar | vector of length 5",
+   "group": "Autotuner Tab"
+  },
+  {
+   "name": "Breakpoints",
+   "default": "3]",
+   "values": "Gain scheduling breakpoints [1 2 3] (default) | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Use external signal",
+   "default": "off",
+   "values": "Specify breakpoints from input port off (default) | on",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Number of breakpoints",
+   "default": "3",
+   "values": "Number of breakpoints 3 (default) | positive scalar",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Gain index tolerance",
+   "default": "1e-3",
+   "values": "Gain index tolerance 1e-3 (default) | nonegative scalar",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Use y as scheduling variable",
+   "default": "on",
+   "values": "Schedule breakpoints using plant output on (default) | off",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Method of storing gains",
+   "default": "block",
+   "values": "Method of storing gains Internal to block (default) | Data store memory",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "P Gain initial conditions",
+   "default": "0",
+   "values": "Proportional gain initial value 0 (default) | scalar | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "P Gain Parameter Name",
+   "default": "PGain",
+   "values": "Proportional gain data name PGain (default) | string",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "I Gain initial conditions",
+   "default": "0",
+   "values": "Integral gain initial value 0 (default) | scalar | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "I Gain Parameter Name",
+   "default": "IGain",
+   "values": "Integral gain data name IGain (default) | string",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "D Gain initial conditions",
+   "default": "0",
+   "values": "Derivative gain initial value 0 (default) | scalar | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "D Gain Parameter Name",
+   "default": "DGain",
+   "values": "Derivative gain data name DGain (default) | string",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "N Gain initial conditions",
+   "default": "100",
+   "values": "Filter gain initial value 100 (default) | scalar | vector",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "N Gain Parameter Name",
+   "default": "NGain",
+   "values": "Filter gain data name NGain (default) | string",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Save breakpoints in gain array",
+   "default": "off",
+   "values": "Save breakpoints along with PID gains off (default) | on",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Method to trigger gain update",
+   "default": "gains",
+   "values": "Update trigger method Detect change in PID gains (default) | External trigger",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Number of samples to delay update",
+   "default": "1",
+   "values": "Number of samples to delay update 1 (default) | nonnegative scalar",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "P gain lookup method",
+   "default": "Values",
+   "values": "Proportional gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "I gain lookup method",
+   "default": "Values",
+   "values": "Integral gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "D gain lookup method",
+   "default": "Values",
+   "values": "Derivative gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "N gain lookup method",
+   "default": "Values",
+   "values": "Derivative filter gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Gain Scheduling Tab"
+  },
+  {
+   "name": "Output Signal Configuration",
+   "default": "perturbation",
+   "values": "Provide control signal plus perturbation or perturbation only control action + perturbation (default) | perturbation only",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Display Bode plot",
+   "default": "off",
+   "values": "Plot estimated frequency response off (default) | on",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Baseline plant model",
+   "default": "[]",
+   "values": "Baseline model for Bode plot [] (default) | LTI model",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Display gain surface plot",
+   "default": "off",
+   "values": "Display gain surface plot off (default) | on",
+   "group": "Visualization Tab"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Custom Tire Force and Torque",
+ "title": "Custom Tire Force and Torque",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Custom_Tire_Force_and_Torque.md"
+ ],
+ "text": "计算轮胎与地面之间的相互作用和空间关系。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

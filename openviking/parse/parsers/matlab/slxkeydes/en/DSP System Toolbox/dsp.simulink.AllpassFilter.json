@@ -1,0 +1,78 @@
+{
+ "key": "dsp.simulink.AllpassFilter",
+ "title": "Allpass Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Allpass_Filter.md"
+ ],
+ "text": "Single-section or multiple-section allpass filter, 2 inputs, 1 output, {Internal allpass structure} sets Filter structure Minimum; {Specify coefficients from input port} sets the flag to specify allpass polynomial, {Allpass polynomial coefficients} sets the coefficients in minimum multiplier form, {Wave Digital Filter allpass coefficients} sets the coefficients in wave digital filter form, {Indicate if last section is first order} sets the is last section first order, {Lattice allpass coefficients} sets the coefficients in lattice form, {View Filter Response} sets the visualize filter response and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input data column vector | row vector | matrix"
+  },
+  {
+   "name": "coeffs",
+   "direction": "input",
+   "summary": "Allpass filter coefficients column vector | row vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output of the allpass filter column vector | row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Internal allpass structure",
+   "default": "multiplier",
+   "values": "Filter structure Minimum multiplier (default) | Wave Digital Filter | Lattice",
+   "group": ""
+  },
+  {
+   "name": "Specify coefficients from input port",
+   "default": "off",
+   "values": "Flag to specify allpass polynomial coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Allpass polynomial coefficients",
+   "default": "]",
+   "values": "Coefficients in minimum multiplier form [ -2^(-1/2), 1/2 ] (default) | N -by-1 matrix | N -by-2 matrix | N -by-4 matrix",
+   "group": ""
+  },
+  {
+   "name": "Wave Digital Filter allpass coefficients",
+   "default": "]",
+   "values": "Coefficients in wave digital filter form [ 1/2, -2^(1/2)/3 ] (default) | N -by-1 matrix | N -by-2 matrix",
+   "group": ""
+  },
+  {
+   "name": "Indicate if last section is first order",
+   "default": "off",
+   "values": "Is last section first order off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lattice allpass coefficients",
+   "default": "1/2]",
+   "values": "Coefficients in lattice form [-2^(1/2)/3, 1/2] (default) | N -by-1 column vector | 1-by- N row vector",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "Visualize filter response button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

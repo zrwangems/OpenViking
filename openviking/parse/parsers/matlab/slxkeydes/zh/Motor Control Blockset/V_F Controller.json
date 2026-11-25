@@ -1,0 +1,73 @@
+{
+ "key": "V/F Controller",
+ "title": "VbyF Controller",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/VbyF_Controller.md"
+ ],
+ "text": "为三相电机实现 V/F（开环或标量）控制，输入 7 路、输出 1 路；按 {Input speed unit} 指定速度输入的单位；{Per unit speed (RPM)} 指定电机基准转速、{Discrete step size (s) (-1 for inherit)} 指定模块再次执行所经过的采样时间 50e-6，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ω m ref",
+   "direction": "input",
+   "summary": "参考转速 scalar"
+  },
+  {
+   "name": "ω m rated",
+   "direction": "input",
+   "summary": "电机额定转速 scalar"
+  },
+  {
+   "name": "N pp",
+   "direction": "input",
+   "summary": "电机极对数 scalar"
+  },
+  {
+   "name": "V rated",
+   "direction": "input",
+   "summary": "电机的额定相电压幅值 scalar"
+  },
+  {
+   "name": "V min",
+   "direction": "input",
+   "summary": "最小输出电压 scalar"
+  },
+  {
+   "name": "N Ramp",
+   "direction": "input",
+   "summary": "初始斜坡升速步数 scalar"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "启用模块输出 scalar"
+  },
+  {
+   "name": "V abc",
+   "direction": "output",
+   "summary": "电机相电压 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input speed unit",
+   "default": "Radians/Sec",
+   "values": "速度输入的单位 Radians/Sec (default) | RPM | Degrees/Sec | Per unit based on dialog",
+   "group": ""
+  },
+  {
+   "name": "Per unit speed (RPM)",
+   "default": "1200",
+   "values": "电机基准转速 (RPM) 1200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s) (-1 for inherit)",
+   "default": "50e-6",
+   "values": "模块再次执行所经过的采样时间 50e-6 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

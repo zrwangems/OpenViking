@@ -1,0 +1,13 @@
+{
+ "key": "DC-DC Converter",
+ "title": "DC-DC Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/DC_DC_Converter.md"
+ ],
+ "text": "Behavioral model of power converter.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,152 @@
+{
+ "key": "PIDGainScheduler",
+ "title": "PID Gain Scheduler",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/PID_Gain_Scheduler.md"
+ ],
+ "text": "Lookup table based gain scheduling with PID array, 3 inputs, 4 outputs, {Controller type} sets PID controller type P; {Breakpoints saved in gain array} sets the read breakpoints saved in gain array, {Breakpoints} sets the gain scheduling breakpoints, {Use external signal} sets the breakpoints from input port, {Method of obtaining gains}, {P Gain Parameter Name} sets the proportional gain data, {I Gain Parameter Name} sets the integral gain data, {D Gain Parameter Name} sets the derivative gain data, {N Gain Parameter Name} sets the filter gain data, {Data type} sets the floating point precision, {P gain lookup method} sets the proportional gain lookup method Interpolation-Use End, {I gain lookup method} sets the integral gain lookup method Interpolation-Use End, {D gain lookup method} sets the derivative gain lookup method Interpolation-Use End, {N gain lookup method} sets the derivative filter gain lookup method Interpolation-Use End, {Saturate to max or min when overflows occur} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data and {Integer rounding mode} sets the rounding mode for fixed-point operations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "scheduling Variable",
+   "direction": "input",
+   "summary": "Scheduling variable scalar"
+  },
+  {
+   "name": "Breakpoints",
+   "direction": "input",
+   "summary": "Breakpoint data vector"
+  },
+  {
+   "name": "PID Gains",
+   "direction": "input",
+   "summary": "PID gain array bus"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Proportional gain vector"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "Integral gain vector"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "Derivative gain vector"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "Derivative filter gain vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Controller type",
+   "default": "P",
+   "values": "PID controller type P (default) | I | PI | PD | PDN | PID | PIDN",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints saved in gain array",
+   "default": "off",
+   "values": "Read breakpoints saved in gain array off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints",
+   "default": "3]",
+   "values": "Gain scheduling breakpoints [1 2 3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Use external signal",
+   "default": "off",
+   "values": "Specify breakpoints from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Method of obtaining gains",
+   "default": "memory",
+   "values": "Method of obtaining gains Data store memory (default) | Goto/from | Input to block",
+   "group": ""
+  },
+  {
+   "name": "P Gain Parameter Name",
+   "default": "PGain",
+   "values": "Proportional gain data name PGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "I Gain Parameter Name",
+   "default": "IGain",
+   "values": "Integral gain data name IGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "D Gain Parameter Name",
+   "default": "DGain",
+   "values": "Derivative gain data name DGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "N Gain Parameter Name",
+   "default": "NGain",
+   "values": "Filter gain data name NGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "Double",
+   "values": "Floating point precision Double (default) | Single",
+   "group": ""
+  },
+  {
+   "name": "P gain lookup method",
+   "default": "Values",
+   "values": "Proportional gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": ""
+  },
+  {
+   "name": "I gain lookup method",
+   "default": "Values",
+   "values": "Integral gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": ""
+  },
+  {
+   "name": "D gain lookup method",
+   "default": "Values",
+   "values": "Derivative gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": ""
+  },
+  {
+   "name": "N gain lookup method",
+   "default": "Values",
+   "values": "Derivative filter gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use Input Above",
+   "group": ""
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  }
+ ]
+}

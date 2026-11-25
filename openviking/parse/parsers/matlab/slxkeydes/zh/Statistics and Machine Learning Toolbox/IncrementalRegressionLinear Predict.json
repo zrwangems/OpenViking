@@ -1,0 +1,113 @@
+{
+ "key": "IncrementalRegressionLinear Predict",
+ "title": "IncrementalRegressionLinear Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Regression/Linear/IncrementalRegressionLinear_Predict.md"
+ ],
+ "text": "使用增量线性回归模型预测响应，输入 2 路、输出 2 路、直接馈通；按 {Inner product data type} 指定内积数据类型；{Select initial machine learning model} 指定初始增量线性回归模型、{Add output port for status of trained machine learning model} 添加用于模型状态的第二个输出端口、{Predictor data observation dimension} 指定预测变量数据的观测维度、{Sample time (–1 for inherited)} 用于指定采样时间、{Integer rounding mode} 指定定点运算的舍入模式、{Saturate on integer overflow} 指定溢出操作的方法、{Lock output data type setting against changes by the fixed-point tools} 防止定点工具覆盖数据类型、{Output data type} 指定 yfit 输出的数据类型 Inherit、{Output data type Minimum} 用于范围检查的 yfit 输出最小值、{Output data type Maximum} 用于范围检查的 yfit 输出最大值、{Inner product data type Minimum} 用于范围检查的内积项最小值、{Inner product data type Maximum} 用于范围检查的内积项最大值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mdl",
+   "direction": "input",
+   "summary": "增量学习模型 bus signal"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "预测变量数据块 numeric matrix"
+  },
+  {
+   "name": "yfit",
+   "direction": "output",
+   "summary": "一块预测响应 floating-point vector"
+  },
+  {
+   "name": "CanPredict",
+   "direction": "output",
+   "summary": "模型状态 logical"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "linearMdl",
+   "values": "初始增量线性回归模型 linearMdl (default) | incrementalRegressionLinear model object",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for status of trained machine learning model",
+   "default": "off",
+   "values": "添加用于模型状态的第二个输出端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Predictor data observation dimension",
+   "default": "rows",
+   "values": "预测变量数据的观测维度 rows (default) | columns",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "用于指定采样时间的选项 –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "yfit 输出的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的 yfit 输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的 yfit 输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type",
+   "default": "double",
+   "values": "内积数据类型 double (default) | Inherit: Inherit via internal rule | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的内积项最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的内积项最大值 [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "key": "ros.slros2.internal.block.ApplyTransform",
+ "title": "Apply Transform",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Apply_Transform.md"
+ ],
+ "text": "Transform input ROS or ROS 2 message to target frame, 2 inputs, 1 output, {Entity message type} sets Type of input entity message.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TFMsg",
+   "direction": "input",
+   "summary": "ROS or ROS 2 geometry_msgs/TransformStamped message non-virtual bus"
+  },
+  {
+   "name": "Entity",
+   "direction": "input",
+   "summary": "ROS or ROS 2 entity message non-virtual bus"
+  },
+  {
+   "name": "TFEntity",
+   "direction": "output",
+   "summary": "Transformed ROS or ROS 2 entity message non-virtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Entity message type",
+   "default": "geometry_msgs/QuaternionStamped",
+   "values": "Type of input entity message geometry_msgs/QuaternionStamped (default) | geometry_msgs/Vector3Stamped | geometry_msgs/PointStamped | geometry_msgs/PoseStamped",
+   "group": ""
+  }
+ ]
+}

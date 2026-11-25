@@ -1,0 +1,62 @@
+{
+ "key": "instrument.system.TCPIPSend",
+ "title": "TCP/IP Send",
+ "toolbox": "Instrument Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Instrument Control Toolbox/TCP_IP_Send.md"
+ ],
+ "text": "通过 TCP/IP 网络将数据发送到指定的远程计算机，输入 1 路；{Remote address} 指定远程主机名或地址 remote host name or IP、{Port} 指定远程主机端口、{Verify address and port connectivity} 指定远程机器连接验证、{Byte order} 指定字节顺序 big-endian、{Enable blocking mode} 指定发送数据时仿真等待、{Timeout} 指定完成操作所允许的时间、{Transfer Delay} 启用延迟确认，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "要发送的数据值 vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Remote address",
+   "default": "",
+   "values": "远程主机名或地址 remote host name or IP address",
+   "group": ""
+  },
+  {
+   "name": "Port",
+   "default": "80",
+   "values": "远程主机端口 80 (default) | remote host port",
+   "group": ""
+  },
+  {
+   "name": "Verify address and port connectivity",
+   "default": "",
+   "values": "远程机器连接验证 button",
+   "group": ""
+  },
+  {
+   "name": "Byte order",
+   "default": "big-endian",
+   "values": "字节顺序 big-endian (default) | little-endian",
+   "group": ""
+  },
+  {
+   "name": "Enable blocking mode",
+   "default": "on",
+   "values": "发送数据时仿真等待 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "10",
+   "values": "完成操作所允许的时间 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Transfer Delay",
+   "default": "on",
+   "values": "启用延迟确认 on (default) | off",
+   "group": ""
+  }
+ ]
+}

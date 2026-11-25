@@ -1,0 +1,75 @@
+{
+ "key": "DiscreteStateSpace",
+ "title": "Discrete State-Space",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Discrete_State_Space.md",
+  "Simulink/Quick Insert/Discrete/Discrete_State_Space.md",
+  "HDL Coder/RCP and HIL/Discrete_State_Space.md"
+ ],
+ "text": "实现离散状态空间系统，输入 1 路、输出 1 路；按 {A} 指定矩阵系数 A；{B}、{C}、{D}、{初始条件} 指定初始状态向量、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{状态名称} 指定模块状态的唯一名称、{状态名称必须解析为 Simulink 信号对象} 指定要求将状态名称解析为信号对象，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出向量 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "A",
+   "default": "1",
+   "values": "矩阵系数 A 1 (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "矩阵系数 B 1 (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "C",
+   "default": "1",
+   "values": "矩阵系数 C 1 (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "D",
+   "default": "1",
+   "values": "矩阵系数 D 1 (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "初始状态向量 0 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "状态名称",
+   "default": "’’",
+   "values": "模块状态的唯一名称 ’’ (默认) | 字母数字字符串",
+   "group": "状态属性"
+  },
+  {
+   "name": "状态名称必须解析为 Simulink 信号对象",
+   "default": "off",
+   "values": "要求将状态名称解析为信号对象 off (默认) | on",
+   "group": "状态属性"
+  }
+ ]
+}

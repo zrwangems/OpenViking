@@ -1,0 +1,79 @@
+{
+ "key": "codertarget.tic2000.blocks.RegisterRWBlock",
+ "title": "Register ReadWrite",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Memory Operations/Register_ReadWrite.md"
+ ],
+ "text": "Read from or write to various bit fields of TI C2000 Registers, 1 input, 1 output, {Device family} sets Select TI C2000 device family; {Register group} selects required register groups, {Register name} selects register name, {Register field} selects register filed, {Access register using} selects register access, {Operation} selects read or write, {Insert code before/after} sets the insert code before or after, {Bit to process} sets the custom bits and {Register bit fields} selects bit field. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "All",
+   "direction": "output",
+   "summary": "Bit fields selected scalar"
+  },
+  {
+   "name": "All",
+   "direction": "input",
+   "summary": "Number bit field selected scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device family",
+   "default": "None",
+   "values": "Select TI C2000 device family None (default) | F2804x | F280x | F281x | F2833x | F2844x | F280013x | F280015x | F28002x | F28003x | F28004x | F2802x | F2803x | F2805x | F2806x | F2807x | F2837xS | F2837xD_CPU1 | F2837xD_CPU2 | F2838x_CPU1 | F2838x_CPU2 | F2838x_CORTEXM4 | F28M35x | F28M35x | F28M35x | F28p65x_CPU1 | F28p65x_CPU2",
+   "group": ""
+  },
+  {
+   "name": "Register group",
+   "default": "Unspecified",
+   "values": "Select required register groups Unspecified (default)",
+   "group": ""
+  },
+  {
+   "name": "Register name",
+   "default": "Unspecified",
+   "values": "Select register name Unspecified (default)",
+   "group": ""
+  },
+  {
+   "name": "Register field",
+   "default": "Unspecified",
+   "values": "Select register filed Unspecified (default)",
+   "group": ""
+  },
+  {
+   "name": "Access register using",
+   "default": "bits",
+   "values": "Select register access Specified bits (default) | Custom bits",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "Read",
+   "values": "Select read or write operation Read (default) | Write",
+   "group": ""
+  },
+  {
+   "name": "Insert code before/after",
+   "default": "None",
+   "values": "Insert code before or after None (default) | EALLOW/EDIS",
+   "group": ""
+  },
+  {
+   "name": "Bit to process",
+   "default": "{[15,0]}|",
+   "values": "Specify custom bits {[15,0]}| (default)",
+   "group": ""
+  },
+  {
+   "name": "Register bit fields",
+   "default": "All",
+   "values": "Select bit field to access All (default)",
+   "group": ""
+  }
+ ]
+}

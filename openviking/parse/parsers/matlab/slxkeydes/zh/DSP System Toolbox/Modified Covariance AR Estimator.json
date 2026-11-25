@@ -1,0 +1,36 @@
+{
+ "key": "Modified Covariance AR Estimator",
+ "title": "Modified Covariance AR Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Parametric Estimation/Modified_Covariance_AR_Estimator.md"
+ ],
+ "text": "使用修正协方差方法计算自回归 (AR) 模型参数的估计，输入 1 路、输出 2 路；{Estimation order} 指定 AR 模型阶数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入 column vector | unoriented vector"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "AR 模型多项式系数的归一化估计 column vector"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "模型增益 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Estimation order",
+   "default": "4",
+   "values": "AR 模型阶数 4 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

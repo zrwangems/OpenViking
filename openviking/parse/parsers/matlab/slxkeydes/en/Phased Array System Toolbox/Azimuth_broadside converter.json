@@ -1,0 +1,46 @@
+{
+ "key": "Azimuth/broadside converter",
+ "title": "Azimuth Broadside Converter",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Azimuth_Broadside_Converter.md"
+ ],
+ "text": "Convert azimuth angle to broadside angle or broadside angle to azimuth angle, 3 inputs, 2 outputs; {Conversion mode} sets the angle conversion type broadside. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "az",
+   "direction": "input",
+   "summary": "Azimuth angle scalar | vector of real-values"
+  },
+  {
+   "name": "bsd",
+   "direction": "input",
+   "summary": "Broadside angle scalar | vector of real-values"
+  },
+  {
+   "name": "el",
+   "direction": "input",
+   "summary": "Elevation angle scalar | vector of real-values"
+  },
+  {
+   "name": "az",
+   "direction": "output",
+   "summary": "Azimuth angle scalar | vector of real-values"
+  },
+  {
+   "name": "bsd",
+   "direction": "output",
+   "summary": "Broadside angle scalar | vector of real-values"
+  }
+ ],
+ "params": [
+  {
+   "name": "Conversion mode",
+   "default": "azimuth",
+   "values": "Angle conversion type broadside -> azimuth (default) | azimuth -> broadside",
+   "group": ""
+  }
+ ]
+}

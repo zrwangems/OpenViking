@@ -1,0 +1,88 @@
+{
+ "key": "RS Encoder",
+ "title": "RS Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/RS_Encoder.md"
+ ],
+ "text": "Encode message to RS codeword, 2 inputs, 3 outputs; {Codeword length (N)} sets the length, {Message length (K)} sets the length, {Source of primitive polynomial} sets the primitive, {Primitive polynomial}, {Source of B, the starting power for roots of the primitive polynomial}, {B value} sets the starting, {Enable puncturing} sets the puncture and {Puncture pattern vector} sets the puncture vector 1.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input message data scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Encoded codeword data scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Block ready indicator scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length (N)",
+   "default": "7",
+   "values": "Length of codeword 7 (default) | integer in the range from 7 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Message length (K)",
+   "default": "3",
+   "values": "Length of message 3 (default) | integer in the range from 3 to ( Codeword length (N) – 2 )",
+   "group": ""
+  },
+  {
+   "name": "Source of primitive polynomial",
+   "default": "Auto",
+   "values": "Primitive polynomial source Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "1]",
+   "values": "Primitive polynomial [1 0 1 1] (default) | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Source of B, the starting power for roots of the primitive polynomial",
+   "default": "Auto",
+   "values": "Source of starting power for roots of primitive polynomial Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "B value",
+   "default": "1",
+   "values": "Starting power for roots of primitive polynomial 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable puncturing",
+   "default": "off",
+   "values": "Puncture pattern source off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Puncture pattern vector",
+   "default": "0]",
+   "values": "Puncture vector [1; 1; 0; 0] (default) | binary column vector",
+   "group": ""
+  }
+ ]
+}

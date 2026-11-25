@@ -1,0 +1,101 @@
+{
+ "key": "BasebandPLL",
+ "title": "Baseband PLL",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Architectures/Baseband_PLL.md"
+ ],
+ "text": "PLL 的相位域模型，输入 1 路、输出 3 路；按 {Loop filter type} 指定确定如何定义环路滤波器 Transfer；{VCO input sensitivity (Hz/V)} 指定 VCO 输出频率变化的度量 100e6、{Charge pump current (A)} 指定电荷泵输出电流 5e3、{Min clock divider value} 指定时钟分频器可对输入频率进行分频的最小值、{Loop bandwidth (Hz)} 指定开环传递函数幅度变为 1 时的频率 50e3、{Phase margin (degrees)} 指定从 180° 中减去在环路带宽处开环传递函数的相位、{Numerator} 指定环路滤波器传递函数的分子、{Denominator} 指定环路滤波器传递函数的分母、{Open loop analysis} 绘制开环预仿真分析、{Close loop analysis} 绘制闭环预仿真分析、{Plot loop dynamic} 绘制 PLL 系统的环路动态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "来自基带 VCO 的输入信号 scalar"
+  },
+  {
+   "name": "Filt",
+   "direction": "output",
+   "summary": "环路滤波器的输出 scalar"
+  },
+  {
+   "name": "PD",
+   "direction": "output",
+   "summary": "鉴相器的输出 scalar"
+  },
+  {
+   "name": "VCO",
+   "direction": "output",
+   "summary": "VCO 的输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Loop filter type",
+   "default": "function",
+   "values": "确定如何定义环路滤波器 Transfer function (default) | 2nd order passive | 3rd order passive | 4th order passive",
+   "group": ""
+  },
+  {
+   "name": "VCO input sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "VCO 输出频率变化的度量 100e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Charge pump current (A)",
+   "default": "5e3",
+   "values": "电荷泵输出电流 5e3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Min clock divider value",
+   "default": "100",
+   "values": "时钟分频器可对输入频率进行分频的最小值 100 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Loop bandwidth (Hz)",
+   "default": "50e3",
+   "values": "开环传递函数幅度变为 1 时的频率 50e3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase margin (degrees)",
+   "default": "45",
+   "values": "从 180° 中减去在环路带宽处开环传递函数的相位 45 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Numerator",
+   "default": "5e-05]",
+   "values": "环路滤波器传递函数的分子 [1.9212e-10, 5e-05] (default) | real scalar | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Denominator",
+   "default": "0]",
+   "values": "环路滤波器传递函数的分母 [2.0157e-15, 3.0576e-09, 0] (default) | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Open loop analysis",
+   "default": "on",
+   "values": "绘制开环预仿真分析 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Close loop analysis",
+   "default": "on",
+   "values": "绘制闭环预仿真分析 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Plot loop dynamic",
+   "default": "",
+   "values": "绘制 PLL 系统的环路动态 button",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "key": "MessageViewer",
+ "title": "Sequence Viewer",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Messages & Events/Sequence_Viewer.md",
+  "SimEvents/Sequence_Viewer.md",
+  "Simulink Test/Sequence_Viewer.md",
+  "Stateflow/Sequence_Viewer.md"
+ ],
+ "text": "在仿真期间显示模块之间的消息、事件、状态、转移和函数；{Time Precision for Variable Step} 指定时间增量精度的位数、{History} 指定要显示的先前事件的最大数量，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Time Precision for Variable Step",
+   "default": "3",
+   "values": "时间增量精度的位数 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "History",
+   "default": "5000",
+   "values": "要显示的先前事件的最大数量 5000 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

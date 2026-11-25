@@ -1,0 +1,54 @@
+{
+ "key": "Label",
+ "title": "Label",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Morphological Operations/Label.md"
+ ],
+ "text": "标记二值图像中的连通分量，输入 1 路、输出 2 路；按 {Output data type} 指定输出数据类型；{Connectivity} 指定像素连通性类型、{Output} 指定模块输出 Label matrix and number、{If label exceeds data type size, mark remaining regions using} 输出标签的溢出模式 maximum value of the output data，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "输入二值图像 vector | matrix"
+  },
+  {
+   "name": "Label",
+   "direction": "output",
+   "summary": "已标记对象 vector | matrix"
+  },
+  {
+   "name": "Count",
+   "direction": "output",
+   "summary": "已标记对象的数量 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Connectivity",
+   "default": "8",
+   "values": "像素连通性类型 8 (default) | 4",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "labels",
+   "values": "模块输出 Label matrix and number of labels (default) | Label matrix | Number of labels",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Automatic",
+   "values": "输出数据类型 Automatic (default) | uint8 | uint16 | uint32",
+   "group": ""
+  },
+  {
+   "name": "If label exceeds data type size, mark remaining regions using",
+   "default": "type",
+   "values": "输出标签的溢出模式 maximum value of the output data type (default) | zero",
+   "group": ""
+  }
+ ]
+}

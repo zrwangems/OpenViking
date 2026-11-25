@@ -1,0 +1,49 @@
+{
+ "key": "\"Product of two sigmoids\" membership function",
+ "title": "Prod. Sigmoidal MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Prod_Sigmoidal_MF.md"
+ ],
+ "text": "两个 S 形隶属度函数的乘积，输入 1 路、输出 1 路；{Left curve a1} 指定左曲线过渡区域形状参数、{Left curve c1} 指定左侧曲线的过渡区域中心、{Right curve a2} 指定右侧曲线的过渡区域形状参数、{Right curve c2} 指定右侧曲线的过渡区域中心，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入值 scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "隶属度值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Left curve a1",
+   "default": "2",
+   "values": "左曲线过渡区域形状参数 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left curve c1",
+   "default": "-5",
+   "values": "左侧曲线的过渡区域中心 -5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right curve a2",
+   "default": "-5",
+   "values": "右侧曲线的过渡区域形状参数 -5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right curve c2",
+   "default": "5",
+   "values": "右侧曲线的过渡区域中心 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

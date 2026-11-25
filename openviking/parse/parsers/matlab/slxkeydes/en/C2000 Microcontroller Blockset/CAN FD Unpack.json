@@ -1,0 +1,141 @@
+{
+ "key": "CAN FD Unpack",
+ "title": "CAN FD Unpack",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/CAN_FD_Unpack.md",
+  "Vehicle Network Toolbox/CAN FD Communication/CAN_FD_Unpack.md",
+  "Simulink Real-Time/CAN/CAN-FD MSG blocks/CAN_FD_Unpack.md"
+ ],
+ "text": "Unpack individual signals from CAN FD messages, 1 input, 1 output, {Data to output as} sets Select your; {Database file} sets the aRXML or CAN database file character, {Message list}, {Name} sets the message name CAN, {Identifier type}, {Identifier} sets the message identifier, {Length (bytes)} sets the cAN message length, {Add signal} adds CAN signal, {Delete signal} sets the remove CAN signal, {Signals}, {Output identifier} adds CAN ID output port, {Output timestamp} adds Timestamp output port, {Output error} adds Error output port, {Output remote} adds Remote output port, {Output length} adds Length output port, {Output status} adds Status output port, {Output Bit Rate Switch (BRS)} adds BRS output port, {Output Error Status Indicator (ESI)} adds ESI output port and {Output Data Length Code (DLC)} adds DLC output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "CAN FD message input CAN_FD_MESSAGE_BUS"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "CAN message output single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data to output as",
+   "default": "data",
+   "values": "Select your data signal raw data (default) | manually specify signals | CANdb specified signals | ARXML specified signals",
+   "group": ""
+  },
+  {
+   "name": "Database file",
+   "default": "",
+   "values": "ARXML or CAN database file character vector",
+   "group": ""
+  },
+  {
+   "name": "Message list",
+   "default": "",
+   "values": "Message list array of character vectors",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "Msg",
+   "values": "Message name CAN Msg (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Identifier type",
+   "default": "identifier)",
+   "values": "Identifier type Standard (11-bit identifier) (default) | Extended (29-bit identifier)",
+   "group": ""
+  },
+  {
+   "name": "Identifier",
+   "default": "0",
+   "values": "Message identifier 0 (default) | 0.. 536870911",
+   "group": ""
+  },
+  {
+   "name": "Length (bytes)",
+   "default": "8",
+   "values": "CAN message length 8 (default) | 0.. 8",
+   "group": ""
+  },
+  {
+   "name": "Add signal",
+   "default": "",
+   "values": "Add CAN signal",
+   "group": ""
+  },
+  {
+   "name": "Delete signal",
+   "default": "",
+   "values": "Remove CAN signal",
+   "group": ""
+  },
+  {
+   "name": "Signals",
+   "default": "",
+   "values": "Signals table table",
+   "group": ""
+  },
+  {
+   "name": "Output identifier",
+   "default": "off",
+   "values": "Add CAN ID output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output timestamp",
+   "default": "off",
+   "values": "Add Timestamp output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output error",
+   "default": "off",
+   "values": "Add Error output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output remote",
+   "default": "off",
+   "values": "Add Remote output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output length",
+   "default": "off",
+   "values": "Add Length output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output status",
+   "default": "off",
+   "values": "Add Status output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Bit Rate Switch (BRS)",
+   "default": "off",
+   "values": "Add BRS output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Error Status Indicator (ESI)",
+   "default": "off",
+   "values": "Add ESI output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Data Length Code (DLC)",
+   "default": "off",
+   "values": "Add DLC output port off (default) | on",
+   "group": ""
+  }
+ ]
+}

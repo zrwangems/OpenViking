@@ -1,0 +1,13 @@
+{
+ "key": "X(2Y) scope.",
+ "title": "X(2Y) Graph",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Control Systems/X_2Y_Graph.md"
+ ],
+ "text": "此模块可用于探索极限环。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

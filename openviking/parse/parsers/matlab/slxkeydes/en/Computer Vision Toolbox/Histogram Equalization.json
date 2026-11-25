@@ -1,0 +1,54 @@
+{
+ "key": "Histogram Equalization",
+ "title": "Histogram Equalization",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Histogram_Equalization.md"
+ ],
+ "text": "Enhance contrast of images using histogram equalization, 2 inputs, 1 output; {Target histogram} sets the type of desired, {Number of bins}, {Histogram source} sets the source of target histogram Specify via and {Histogram} sets the bin counts of target histogram ones. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix"
+  },
+  {
+   "name": "Hist",
+   "direction": "input",
+   "summary": "Target histogram vector of integers"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Target histogram",
+   "default": "Uniform",
+   "values": "Type of desired histogram Uniform (default) | User-defined",
+   "group": ""
+  },
+  {
+   "name": "Number of bins",
+   "default": "64",
+   "values": "Number of bins of target histogram 64 (default) | integer greater than one",
+   "group": ""
+  },
+  {
+   "name": "Histogram source",
+   "default": "dialog",
+   "values": "Source of target histogram Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Histogram",
+   "default": "ones(1,64)",
+   "values": "Bin counts of target histogram ones(1,64) (default) | vector of integers",
+   "group": ""
+  }
+ ]
+}

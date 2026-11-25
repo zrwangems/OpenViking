@@ -1,0 +1,92 @@
+{
+ "key": "Rectangular QAM Modulator Baseband",
+ "title": "Rectangular QAM Modulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/AM/Rectangular_QAM_Modulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/Rectangular_QAM_Modulator_Baseband.md"
+ ],
+ "text": "使用矩形正交幅度调制进行调制，输入 1 路、输出 1 路；按 {Output data type} 指定输出数据类型；{M-ary number} 指定调制阶数、{Input type} 指定输入类型 Integer、{Constellation ordering} 指定符号的映射顺序、{Constellation mapping} 指定用户定义的星座映射、{Normalization method} 指定星座的缩放方法 Min. distance between、{Minimum distance} 指定两个最近星座点之间的距离、{Average power, referenced to 1 ohm (watts)} 指定平均功率、{Peak power, referenced to 1 ohm (watts)} 指定最大功率、{Phase offset (rad)} 指定信号星座的旋转、{View constellation} 绘制参考星座的选项，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数据 scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出数据 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "16",
+   "values": "调制阶数 16 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "输入类型 Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Gray",
+   "values": "符号的映射顺序 Gray (default) | Binary | User-defined",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "[0:15]",
+   "values": "用户定义的星座映射 [0:15] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Normalization method",
+   "default": "symbols",
+   "values": "星座的缩放方法 Min. distance between symbols (default) | Average Power | Peak Power",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum distance",
+   "default": "2",
+   "values": "两个最近星座点之间的距离 2 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Average power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "平均功率 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Peak power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "最大功率 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "信号星座的旋转 0 (default) | numeric scalar",
+   "group": "Main"
+  },
+  {
+   "name": "View constellation",
+   "default": "",
+   "values": "绘制参考星座的选项 button",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit: Inherit via back propagation |",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+ "key": "Ideal Airspeed Correction",
+ "title": "Ideal Airspeed Correction",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Ideal_Airspeed_Correction.md"
+ ],
+ "text": "Calculate equivalent airspeed (EAS), calibrated airspeed (CAS), or true airspeed (TAS) from each other, 5 inputs, 3 outputs, {Units} sets Units Metric; {Airspeed input}, {Airspeed output}, {Method}, {Subsonic airspeeds only} uses with subsonic airspeed and {Action for out-of-range input} sets the out-of-range block behavior. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TAS",
+   "direction": "input",
+   "summary": "True input airspeed scalar"
+  },
+  {
+   "name": "EAS",
+   "direction": "input",
+   "summary": "Equivalent input airspeed scalar"
+  },
+  {
+   "name": "CAS",
+   "direction": "input",
+   "summary": "Calibrated input airspeed scalar"
+  },
+  {
+   "name": "a",
+   "direction": "input",
+   "summary": "Speed of sound scalar"
+  },
+  {
+   "name": "P 0",
+   "direction": "input",
+   "summary": "Static pressure scalar"
+  },
+  {
+   "name": "EAS",
+   "direction": "output",
+   "summary": "Equivalent output airspeed scalar"
+  },
+  {
+   "name": "CAS",
+   "direction": "output",
+   "summary": "Calibrated output airspeed scalar"
+  },
+  {
+   "name": "TAS",
+   "direction": "output",
+   "summary": "True output airspeed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Airspeed input",
+   "default": "TAS",
+   "values": "Airspeed input type TAS (default) | EAS | CAS",
+   "group": ""
+  },
+  {
+   "name": "Airspeed output",
+   "default": "EAS",
+   "values": "Airspeed output type EAS (default) | CAS | TAS",
+   "group": ""
+  },
+  {
+   "name": "Method",
+   "default": "Lookup",
+   "values": "Method for computing conversion factor Table Lookup (default) | Equation",
+   "group": ""
+  },
+  {
+   "name": "Subsonic airspeeds only",
+   "default": "off",
+   "values": "Use with subsonic airspeed off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

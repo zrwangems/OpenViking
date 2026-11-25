@@ -1,0 +1,59 @@
+{
+ "key": "Policy",
+ "title": "Policy",
+ "toolbox": "Reinforcement Learning",
+ "kind": "source_type",
+ "source_docs": [
+  "Reinforcement Learning/Policy.md"
+ ],
+ "text": "强化学习策略，输入 3 路、输出 1 路；{Policy block data MAT file} 指定 Policy 模块数据 MAT、{Policy parameter inputs} 添加策略参数输入端口并创建总线对象和参数结构体、{Policy parameter bus name} 指定策略参数总线对象的名称、{Generate IC blocks} 指定生成包含策略参数初始条件的模块，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "observation",
+   "direction": "input",
+   "summary": "环境观测值 scalar | vector | nonvirtual bus"
+  },
+  {
+   "name": "update parameters",
+   "direction": "input",
+   "summary": "启用策略参数更新 scalar"
+  },
+  {
+   "name": "parameters",
+   "direction": "input",
+   "summary": "输入 bus"
+  },
+  {
+   "name": "action",
+   "direction": "output",
+   "summary": "策略动作 scalar | vector | nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Policy block data MAT file",
+   "default": "blockAgentData.mat",
+   "values": "Policy 模块数据 MAT 文件 blockAgentData.mat (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Policy parameter inputs",
+   "default": "off",
+   "values": "添加策略参数输入端口并创建总线对象和参数结构体 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Policy parameter bus name",
+   "default": "policy_param_bus",
+   "values": "策略参数总线对象的名称 policy_param_bus (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Generate IC blocks",
+   "default": "",
+   "values": "生成包含策略参数初始条件的模块 button",
+   "group": ""
+  }
+ ]
+}

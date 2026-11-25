@@ -1,0 +1,117 @@
+{
+ "key": "phased.CFARDetector2D",
+ "title": "2-D CFAR Detector",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/b_2_D_CFAR_Detector.md"
+ ],
+ "text": "Two-dimensional constant false alarm rate (CFAR) detector, 3 inputs, 3 outputs, {Size in cells of the guard region band} sets Widths of guard band; {CFAR algorithm} sets the noise power estimation, {Rank of order statistic}, {Size in cells of the training region band} sets the widths of training band, {Threshold factor method} sets the method to determine threshold factor, {Custom threshold factor}, {Probability of false alarm}, {OutputFormat} sets the format of detection results, {Output threshold detection} enables detection threshold output, {Output estimated noise power} enables detection threshold output, {Source of the number of detections} and {Maximum number of detections} sets the maximum number of detection indices. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input image real M -by- N matrix | real M -by- N -by- P array"
+  },
+  {
+   "name": "idx",
+   "direction": "input",
+   "summary": "Location of test cells 2 -by- L matrix of positive integers"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "Detection threshold factor positive scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Detection results logical matrix (default) | real-valued matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "output",
+   "summary": "Computed detection threshold real-valued matrix"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "Estimated noise power real-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "CFAR algorithm",
+   "default": "CA",
+   "values": "Noise power estimation algorithm CA (default) | GOCA | SOCA | OS",
+   "group": ""
+  },
+  {
+   "name": "Rank of order statistic",
+   "default": "1",
+   "values": "Rank of order statistic 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Size in cells of the guard region band",
+   "default": "[1,1]",
+   "values": "Widths of guard band [1,1] (default) | nonnegative integer scalar | 2-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Size in cells of the training region band",
+   "default": "[1,1]",
+   "values": "Widths of training band [1,1] (default) | nonnegative integer scalar | 2-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Threshold factor method",
+   "default": "Auto",
+   "values": "Method to determine threshold factor Auto (default) | Input port | Custom",
+   "group": ""
+  },
+  {
+   "name": "Custom threshold factor",
+   "default": "1",
+   "values": "Custom threshold factor 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Probability of false alarm",
+   "default": "0.1",
+   "values": "Probability of false alarm 0.1 (default) | real scalar between 0 and 1",
+   "group": ""
+  },
+  {
+   "name": "OutputFormat",
+   "default": "result",
+   "values": "Format of detection results CUT result (default) | Detection index",
+   "group": ""
+  },
+  {
+   "name": "Output threshold detection",
+   "default": "off",
+   "values": "Enable detection threshold output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output estimated noise power",
+   "default": "off",
+   "values": "Enable detection threshold output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of the number of detections",
+   "default": "Auto",
+   "values": "Source of the number of detections to report Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of detections",
+   "default": "1",
+   "values": "Maximum number of detection indices to report 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

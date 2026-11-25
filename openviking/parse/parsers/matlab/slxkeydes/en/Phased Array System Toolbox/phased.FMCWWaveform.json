@@ -1,0 +1,74 @@
+{
+ "key": "phased.FMCWWaveform",
+ "title": "FMCW Waveform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Waveforms/FMCW_Waveform.md"
+ ],
+ "text": "Frequency-modulated continuous (FMCW) waveform source, 1 output, {Sweep direction} sets FM sweep direction; {Sample rate (Hz)} sets the sample rate of the output, {Sweep time (s)} sets the duration of each linear FM, {Sweep bandwidth (Hz)} sets the fM sweep bandwidth 1e5, {Sweep interval} sets the location of FM sweep, {Output signal format}, {Number of samples in output}, {Number of sweeps in output} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "FMCW Waveform complex-valued column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sample rate of the output waveform 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sweep time (s)",
+   "default": "1e-4",
+   "values": "Duration of each linear FM sweep 1e-4 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sweep bandwidth (Hz)",
+   "default": "1e5",
+   "values": "FM sweep bandwidth 1e5 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sweep direction",
+   "default": "Up",
+   "values": "FM sweep direction Up (default) | Down | Triangle",
+   "group": ""
+  },
+  {
+   "name": "Sweep interval",
+   "default": "Positive",
+   "values": "Location of FM sweep interval Positive (default) | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Output signal format",
+   "default": "Sweeps",
+   "values": "Output signal format Sweeps (default) | Samples",
+   "group": ""
+  },
+  {
+   "name": "Number of samples in output",
+   "default": "100",
+   "values": "Number of samples in output 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of sweeps in output",
+   "default": "1",
+   "values": "Number of sweeps in output 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

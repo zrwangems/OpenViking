@@ -1,0 +1,70 @@
+{
+ "key": "Real Reciprocal HDL Optimized",
+ "title": "Real Reciprocal HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Math Operations/Real_Reciprocal_HDL_Optimized.md"
+ ],
+ "text": "使用 CORDIC 算法计算倒数，并生成优化的 HDL 代码，输入 2 路、输出 3 路；按 {Output datatype} 指定输出数据类型；{Show divide by zero port} 是否显示 divideByZero 端口、{Automatically select CORDIC maximum shift value based on input word length} 指定基于输入字长自动选择 CORDIC 最大移位值、{CORDIC maximum shift value} 指定双曲向量模式 CORDIC 的最大移位值 wl、{Number of iterations per pipeline register} 指定每个流水线级要执行的 CORDIC 迭代次数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "要求倒数的值 scalar | vector | matrix"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入是否有效 Boolean scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "倒数 real scalar"
+  },
+  {
+   "name": "divideByZero",
+   "direction": "output",
+   "summary": "输出处的值是否为除以零的结果 Boolean scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据是否有效 Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output datatype",
+   "default": "fixdt(1,18,10)",
+   "values": "输出数据类型 fixdt(1,18,10) (default) | single | double | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Show divide by zero port",
+   "default": "off",
+   "values": "是否显示 divideByZero 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Automatically select CORDIC maximum shift value based on input word length",
+   "default": "on",
+   "values": "基于输入字长自动选择 CORDIC 最大移位值 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "CORDIC maximum shift value",
+   "default": "1",
+   "values": "双曲向量模式 CORDIC 的最大移位值 wl - 1 (default) | 10 | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations per pipeline register",
+   "default": "1",
+   "values": "每个流水线级要执行的 CORDIC 迭代次数 1 (default) | positive integer-valued scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "key": "Resistor",
+ "title": "Resistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Resistor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Resistor.md",
+  "RF Blockset/Circuit Envelope/Elements/R.md"
+ ],
+ "text": "Resistor including optional tolerance, operational limits, fault behavior, and noise.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

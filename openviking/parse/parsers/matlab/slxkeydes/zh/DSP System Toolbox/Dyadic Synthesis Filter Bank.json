@@ -1,0 +1,74 @@
+{
+ "key": "Dyadic Synthesis Filter Bank",
+ "title": "Dyadic Synthesis Filter Bank",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Dyadic_Synthesis_Filter_Bank.md",
+  "DSP System Toolbox/Transforms/IDWT.md"
+ ],
+ "text": "从具有较小带宽和较慢采样率的子带重构信号，或计算逆离散小波变换 (IDWT)，输入 1 路、输出 1 路、无直接馈通；按 {Filter} 指定滤波器组中使用的滤波器类型；{Filter order [synthesis / analysis]} 指定合成滤波器级的小波阶数、{Wavelet order} 指定小波阶数、{Lowpass FIR filter coefficients}、{Highpass FIR filter coefficients}、{Number of levels} 指定滤波器组级数、{Tree structure} 指定滤波器组的结构、{Input} 指定输入 Multiple，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "数据输入 column vector | matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "重构信号 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter",
+   "default": "User-defined",
+   "values": "滤波器组中使用的滤波器类型 User-defined (default) | Haar | Daubechies | Symlets | Coiflets | Biorthogonal | Reverse Biorthogonal | Discrete Meyer",
+   "group": ""
+  },
+  {
+   "name": "Filter order [synthesis / analysis]",
+   "default": "1]",
+   "values": "合成滤波器级的小波阶数 [1 / 1] (default) | [1 / 3] | [1 / 5] | [2 / 2] | [2 / 4] | [2 / 6] | [2 / 8] | [3 / 1] | [3 / 3] | [3 / 5] | [3 / 7] | [3 / 9] | [4 / 4] | [5 / 5] | [6 / 8]",
+   "group": ""
+  },
+  {
+   "name": "Wavelet order",
+   "default": "2",
+   "values": "小波阶数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Lowpass FIR filter coefficients",
+   "default": "0.0352]",
+   "values": "Lowpass FIR filter coefficients [0.3327 0.8069 0.4599 -0.1350 -0.0854 0.0352] (default)",
+   "group": ""
+  },
+  {
+   "name": "Highpass FIR filter coefficients",
+   "default": "-0.3327]",
+   "values": "Highpass FIR filter coefficients [0.0352 0.0854 -0.1350 -0.4599 0.8069 -0.3327] (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of levels",
+   "default": "2",
+   "values": "滤波器组级数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Tree structure",
+   "default": "Asymmetric",
+   "values": "滤波器组的结构 Asymmetric (default) | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Input",
+   "default": "ports",
+   "values": "输入 Multiple ports (default) | Single port",
+   "group": ""
+  }
+ ]
+}

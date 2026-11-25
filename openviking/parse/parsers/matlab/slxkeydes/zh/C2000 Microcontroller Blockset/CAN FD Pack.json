@@ -1,0 +1,116 @@
+{
+ "key": "CAN FD Pack",
+ "title": "CAN FD Pack",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/CAN_FD_Pack.md",
+  "Vehicle Network Toolbox/CAN FD Communication/CAN_FD_Pack.md",
+  "Simulink Real-Time/CAN/CAN-FD MSG blocks/CAN_FD_Pack.md"
+ ],
+ "text": "将各个信号打包为 CAN FD 总线的消息，输入 2 路、输出 1 路；按 {Data input as} 指定数据信号 raw；{Database file} 指定 ARXML 或 CAN 数据库文件 character、{Message list} 指定 CAN 消息列表 array of character、{Name} 指定 CAN FD 消息名称、{Protocol mode} 指定 CAN FD 消息协议、{Identifier type} 指定 CAN 标识符类型 Standard、{Identifier} 指定消息标识符、{Specify CAN identifier from input port} 指定 CAN 消息 ID 值、{Length (bytes)} 指定 CAN FD 消息长度、{Remote frame} 指定 CAN 消息作为远程帧、{Bit Rate Switch (BRS)} 启用位速率切换、{Add signal} 添加 CAN FD 信号、{Delete signal} 指定删除 CAN FD 信号、{Signals}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "CAN FD 消息信号输入 single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean"
+  },
+  {
+   "name": "CAN Msg ID",
+   "direction": "input",
+   "summary": "CAN 消息标识符 single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "CAN FD 消息输出 CAN_FD_MESSAGE_BUS"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data input as",
+   "default": "data",
+   "values": "选择数据信号 raw data (default) | manually specified signals | CANdb specified signals | ARXML specified signals",
+   "group": ""
+  },
+  {
+   "name": "Database file",
+   "default": "",
+   "values": "ARXML 或 CAN 数据库文件 character vector",
+   "group": ""
+  },
+  {
+   "name": "Message list",
+   "default": "",
+   "values": "CAN 消息列表 array of character vectors",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "Msg",
+   "values": "CAN FD 消息名称 CAN Msg (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Protocol mode",
+   "default": "FD",
+   "values": "CAN FD 消息协议 CAN FD (default) | CAN",
+   "group": ""
+  },
+  {
+   "name": "Identifier type",
+   "default": "identifier)",
+   "values": "CAN 标识符类型 Standard (11-bit identifier) (default) | Extended (29-bit identifier)",
+   "group": ""
+  },
+  {
+   "name": "Identifier",
+   "default": "0",
+   "values": "消息标识符 0 (default) | 0.. 536870911",
+   "group": ""
+  },
+  {
+   "name": "Specify CAN identifier from input port",
+   "default": "off",
+   "values": "CAN 消息 ID 值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Length (bytes)",
+   "default": "8",
+   "values": "CAN FD 消息长度 8 (default) | 0 to 64",
+   "group": ""
+  },
+  {
+   "name": "Remote frame",
+   "default": "off",
+   "values": "CAN 消息作为远程帧 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Bit Rate Switch (BRS)",
+   "default": "off",
+   "values": "启用位速率切换 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Add signal",
+   "default": "",
+   "values": "添加 CAN FD 信号",
+   "group": ""
+  },
+  {
+   "name": "Delete signal",
+   "default": "",
+   "values": "删除 CAN FD 信号",
+   "group": ""
+  },
+  {
+   "name": "Signals",
+   "default": "",
+   "values": "Signals 表 table",
+   "group": ""
+  }
+ ]
+}

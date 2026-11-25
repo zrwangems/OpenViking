@@ -1,0 +1,212 @@
+{
+ "key": "Checks_LinearStepResponse",
+ "title": "Linear Step Response Plot",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Linear Analysis Plots/Linear_Step_Response_Plot.md",
+  "Simulink Control Design/Model Verification/Check_Linear_Step_Response_Characteristics.md"
+ ],
+ "text": "从非线性 Simulink 模型计算得到的线性系统阶跃响应，输入 1 路、输出 1 路；按 {Linear system sample time} 指定线性系统的采样时间；{Show Plot} 打开图、{Show plot on block open} 打开模块时打开图、{Response Optimization} 打开 Response Optimizer、{Linearization inputs/outputs} 指定要线性化的模型部分 linear analysis、{Enable regular expression} 启用使用正则表达式进行信号搜索、{Show filtered results as a flat list} 使用平铺列表显示筛选后的总线信号层次结构、{Linearize on} 指定何时计算线性模型 Simulation、{Snapshot times} 指定计算线性模型的仿真时间、{Trigger type} 指定要检测的外部触发类型 Rising、{Enable zero-crossing detection} 启用过零检测、{Use exact delays} 指定在线性模型中使用精确延迟、{Sample time rate conversion method} 指定速率转换方法 Zero-Order、{Prewarp frequency} 指定 Tustin 速率转换的预扭曲频率、{Use full block names} 指定在状态、输入和输出名称中使用完整模块路径、{Use bus signal names} 指定在线性系统中使用总线信号名称、{Include step response bound in assertion} 指定检查阶跃响应是否违反特性边界、{Final value} 输出信号对阶跃输入的响应的最终值 finite real、{Rise time} 指定上升时间上限 finite positive、{% Rise} 用于计算上升时间的最终值百分比 positive scalar less、{Settling time} 调节时间上限 finite scalar greater than rise、{% Settling} 用于计算调节范围的最终值百分比 positive scalar less、{% Overshoot} 指定超调量上限 scalar between、{% Undershoot} 指定下冲量上限 scalar between、{Save data to workspace} 指定保存线性系统以供进一步分析、{Variable name} 用于保存线性系统的数据结构名称、{Save operating points for each linearization} 指定保存线性化工作点、{Enable assertion} 启用边界检查、{Simulation callback when assertion fails} 指定违反边界时要计算的表达式、{Stop simulation when assertion fails} 指定违反边界时停止仿真、{Output assertion signal} 添加断言输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "外部触发信号 scalar"
+  },
+  {
+   "name": "z –1",
+   "direction": "output",
+   "summary": "断言信号 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show Plot",
+   "default": "",
+   "values": "打开图 button",
+   "group": ""
+  },
+  {
+   "name": "Show plot on block open",
+   "default": "off",
+   "values": "打开模块时打开图 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Response Optimization",
+   "default": "",
+   "values": "打开 Response Optimizer button",
+   "group": ""
+  },
+  {
+   "name": "Linearization inputs/outputs",
+   "default": "",
+   "values": "指定要线性化的模型部分 linear analysis points",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Enable regular expression",
+   "default": "on",
+   "values": "启用使用正则表达式进行信号搜索 on (default) | off",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Show filtered results as a flat list",
+   "default": "off",
+   "values": "使用平铺列表显示筛选后的总线信号层次结构 off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Linearize on",
+   "default": "snapshots",
+   "values": "何时计算线性模型 Simulation snapshots (default) | External trigger",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Snapshot times",
+   "default": "0",
+   "values": "计算线性模型的仿真时间 0 (default) | positive real value | vector of positive real values",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "要检测的外部触发类型 Rising edge (default) | Falling edge",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "启用过零检测 on (default) | off",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Use exact delays",
+   "default": "off",
+   "values": "在线性模型中使用精确延迟 off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Linear system sample time",
+   "default": "’auto’",
+   "values": "线性系统的采样时间 ’auto’ (default) | positive finite value | 0",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Sample time rate conversion method",
+   "default": "Hold",
+   "values": "速率转换方法 Zero-Order Hold (default) | Tustin (bilinear) | Tustin with Prewarping |...",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Prewarp frequency",
+   "default": "’10’",
+   "values": "Tustin 速率转换的预扭曲频率 ’10’ (default) | positive scalar",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Use full block names",
+   "default": "off",
+   "values": "在状态、输入和输出名称中使用完整模块路径 off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Use bus signal names",
+   "default": "off",
+   "values": "在线性系统中使用总线信号名称 off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Include step response bound in assertion",
+   "default": "",
+   "values": "检查阶跃响应是否违反特性边界 on | off",
+   "group": "Bounds"
+  },
+  {
+   "name": "Final value",
+   "default": "",
+   "values": "输出信号对阶跃输入的响应的最终值 finite real scalar",
+   "group": "Bounds"
+  },
+  {
+   "name": "Rise time",
+   "default": "",
+   "values": "上升时间上限 finite positive scalar",
+   "group": "Bounds"
+  },
+  {
+   "name": "% Rise",
+   "default": "",
+   "values": "用于计算上升时间的最终值百分比 positive scalar less than (100 - % Settling)",
+   "group": "Bounds"
+  },
+  {
+   "name": "Settling time",
+   "default": "",
+   "values": "调节时间上限 finite scalar greater than rise time",
+   "group": "Bounds"
+  },
+  {
+   "name": "% Settling",
+   "default": "",
+   "values": "用于计算调节范围的最终值百分比 positive scalar less than (100 - % Rise)",
+   "group": "Bounds"
+  },
+  {
+   "name": "% Overshoot",
+   "default": "",
+   "values": "超调量上限 scalar between 0 and 100",
+   "group": "Bounds"
+  },
+  {
+   "name": "% Undershoot",
+   "default": "",
+   "values": "下冲量上限 scalar between 0 and 100",
+   "group": "Bounds"
+  },
+  {
+   "name": "Save data to workspace",
+   "default": "off",
+   "values": "保存线性系统以供进一步分析 off (default) | on",
+   "group": "Logging"
+  },
+  {
+   "name": "Variable name",
+   "default": "sys",
+   "values": "用于保存线性系统的数据结构名称 sys (default) | character vector",
+   "group": "Logging"
+  },
+  {
+   "name": "Save operating points for each linearization",
+   "default": "off",
+   "values": "保存线性化工作点 off (default) | on",
+   "group": "Logging"
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "启用边界检查 on (default) | off",
+   "group": "Assertion"
+  },
+  {
+   "name": "Simulation callback when assertion fails",
+   "default": "’’",
+   "values": "违反边界时要计算的表达式 ’’ (default) | MATLAB expression",
+   "group": "Assertion"
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "违反边界时停止仿真 off (default) | on",
+   "group": "Assertion"
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "添加断言输出端口 off (default) | on",
+   "group": "Assertion"
+  }
+ ]
+}

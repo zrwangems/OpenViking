@@ -1,0 +1,134 @@
+{
+ "key": "Cell Delta SOC Estimator (Kalman Filter)",
+ "title": "Cell Delta SOC Estimator (Kalman Filter)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/Cell_Delta_SOC_Estimator_Kalman_Filter.md"
+ ],
+ "text": "State of charge estimator with cell delta Kalman filter, 6 inputs, 1 output, {Filter type} sets Kalman; {Specify Current input as cell current(s)} sets the option, {Alpha}, {Beta}, {Kappa}, {Covariance of the process noise, Q}, {Covariance of the measurement noise, R}, {Initial state error covariance, P0}, {Sample time (-1 for inherited)} sets the block sample, {Vector of state-of-charge values, SOC (-)} sets the sOC breakpoints, {Vector of temperatures, T} sets the temperature, {Terminal resistance, R0(SOC,T), (ohm)} sets the r0 lookup table with temperature breakpoint, {No-load voltage, V0(SOC,T), (V)} sets the v 0 lookup table 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; {Algorithm data type} sets the option to choose data type for block algorithm. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Current",
+   "direction": "input",
+   "summary": "Battery current, ampere scalar | vector"
+  },
+  {
+   "name": "CellVoltage",
+   "direction": "input",
+   "summary": "Cell voltage, volt scalar | vector"
+  },
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "Cell temperature, K scalar | vector"
+  },
+  {
+   "name": "dInvCellAH",
+   "direction": "input",
+   "summary": "Inverse delta cell capacity, A*Hr scalar | vector"
+  },
+  {
+   "name": "PackSOC",
+   "direction": "input",
+   "summary": "Average SOC of battery pack, unitless scalar"
+  },
+  {
+   "name": "Vdyn",
+   "direction": "input",
+   "summary": "Average dynamic overpotential voltage of battery pack, volt scalar"
+  },
+  {
+   "name": "CellSOC",
+   "direction": "output",
+   "summary": "SOC of battery cell scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Current input as cell current(s)",
+   "default": "off",
+   "values": "Option to specify current input port as vector off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Filter type",
+   "default": "filter",
+   "values": "Kalman filter type Extended Kalman filter (default) | Extended Kalman-Bucy filter | Unscented Kalman filter | Unscented Kalman-Bucy filter",
+   "group": "Main"
+  },
+  {
+   "name": "Alpha",
+   "default": "1",
+   "values": "Alpha coefficient 1 (default) | scalar in the range (0,1]",
+   "group": "Main"
+  },
+  {
+   "name": "Beta",
+   "default": "2",
+   "values": "Beta coefficient 2 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Kappa",
+   "default": "0",
+   "values": "Kappa coefficient 0 (default) | scalar in the range [0, 3]",
+   "group": "Main"
+  },
+  {
+   "name": "Covariance of the process noise, Q",
+   "default": "0.0001",
+   "values": "Covariance of the process noise 0.0001 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Covariance of the measurement noise, R",
+   "default": "0.7",
+   "values": "Covariance of the measurement noise 0.7 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial state error covariance, P0",
+   "default": "1e-3",
+   "values": "Initial state error covariance 1e-3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "Block sample time 1 (default) | 0 | -1 | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Vector of state-of-charge values, SOC (-)",
+   "default": "1]",
+   "values": "SOC breakpoints [0,.1,.25,.5,.75,.9, 1] (default) | vector of scalars in the range [0, 1]",
+   "group": "System Model"
+  },
+  {
+   "name": "Vector of temperatures, T",
+   "default": "313]",
+   "values": "Temperature breakpoints [278, 293, 313] (default) | vector of positive scalars",
+   "group": "System Model"
+  },
+  {
+   "name": "Terminal resistance, R0(SOC,T), (ohm)",
+   "default": "[.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089]",
+   "values": "R0 lookup table with temperature breakpoint [.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089] (default) | matrix of positive entries",
+   "group": "System Model"
+  },
+  {
+   "name": "No-load voltage, V0(SOC,T), (V)",
+   "default": "4.19]",
+   "values": "V 0 lookup table [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07, 4.08, 4.08; 4.19, 4.19, 4.19] (default) | matrix of nonnegative entries",
+   "group": "System Model"
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": "Signal Attributes"
+  }
+ ]
+}

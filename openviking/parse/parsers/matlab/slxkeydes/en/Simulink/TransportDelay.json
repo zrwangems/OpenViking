@@ -1,0 +1,62 @@
+{
+ "key": "TransportDelay",
+ "title": "Transport Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Transport_Delay.md",
+  "Simulink Extras/Linearization/Switched_transport_delay_for_linearization.md"
+ ],
+ "text": "Delay input by given amount of time, 1 input, 1 output, direct feedthrough, {Time delay} sets Time delay; {Initial output}, {Initial buffer size} sets the initial memory allocation, {Use fixed buffer size} uses fixed-size buffer, {Direct feedthrough of input during linearization} enables direct feedthrough and {Pade order (for linearization)} sets the order of Pade approximation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Delayed signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time delay",
+   "default": "1",
+   "values": "Time delay 1 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Initial output value 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Initial buffer size",
+   "default": "1024",
+   "values": "Initial memory allocation 1024 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Use fixed buffer size",
+   "default": "off",
+   "values": "Use fixed-size buffer off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Direct feedthrough of input during linearization",
+   "default": "off",
+   "values": "Enable direct feedthrough off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pade order (for linearization)",
+   "default": "0",
+   "values": "Order of Pade approximation 0 (default) | scalar | vector | matrix",
+   "group": ""
+  }
+ ]
+}

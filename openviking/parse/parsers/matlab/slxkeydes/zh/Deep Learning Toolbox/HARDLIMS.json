@@ -1,0 +1,13 @@
+{
+ "key": "HARDLIMS",
+ "title": "hardlims",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/hardlims.md"
+ ],
+ "text": "对称硬限幅传递函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

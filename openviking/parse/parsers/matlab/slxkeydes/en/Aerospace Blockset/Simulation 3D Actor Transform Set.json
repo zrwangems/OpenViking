@@ -1,0 +1,68 @@
+{
+ "key": "Simulation 3D Actor Transform Set",
+ "title": "Simulation 3D Actor Transform Set",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Actor_Transform_Set.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Actor_Transform_Set.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Actor_Transform_Set.md"
+ ],
+ "text": "Set actor translation, rotation, scale, 3 inputs; {Tag for actor in 3D scene, ActorTag} sets the name SimulinkActor1, {Number of parts per actor to set, NumberOfParts} sets the name, {Initial array values to translate actor per part, Translation} sets the actor initial position, {Initial array values to rotate actor per part, Rotation} sets the actor initial rotation, {Initial array values to scale actor per part, Scale} sets the actor initial scale and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Actor translation array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Actor rotation array"
+  },
+  {
+   "name": "Scale",
+   "direction": "input",
+   "summary": "Actor scale array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tag for actor in 3D scene, ActorTag",
+   "default": "SimulinkActor1",
+   "values": "Name SimulinkActor1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of parts per actor to set, NumberOfParts",
+   "default": "1",
+   "values": "Name 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to translate actor per part, Translation",
+   "default": "0]",
+   "values": "Actor initial position [0 0 0] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to rotate actor per part, Rotation",
+   "default": "0]",
+   "values": "Actor initial rotation [0 0 0] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to scale actor per part, Scale",
+   "default": "1]",
+   "values": "Actor initial scale [1 1 1] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

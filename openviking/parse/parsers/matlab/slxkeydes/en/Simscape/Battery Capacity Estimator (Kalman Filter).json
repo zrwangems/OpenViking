@@ -1,0 +1,95 @@
+{
+ "key": "Battery Capacity Estimator (Kalman Filter)",
+ "title": "Battery Capacity Estimator (Kalman Filter)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/Battery_Capacity_Estimator_Kalman_Filter.md"
+ ],
+ "text": "Battery capacity estimator with Kalman filter, 3 inputs, 1 output, {Filter type} sets Kalman; {Specify Current input as cell current(s)} sets the option to specify current input port, {Alpha}, {Beta}, {Kappa}, {Covariance of the process noise, Q} sets the covariance of process, {Covariance of the measurement noise, R} sets the covariance of measurement, {Initial state error covariance, P0} sets the initial state error, {Sample time (-1 for inherited)} sets the block sample time and {Algorithm data type} sets the option to choose data type for block algorithm. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Current",
+   "direction": "input",
+   "summary": "Battery current, ampere scalar | vector"
+  },
+  {
+   "name": "CellSOC",
+   "direction": "input",
+   "summary": "Cell state of charge, unitless scalar | vector"
+  },
+  {
+   "name": "InitialCellAH",
+   "direction": "input",
+   "summary": "Initial cell capacity, A*Hr scalar | vector"
+  },
+  {
+   "name": "CellAH",
+   "direction": "output",
+   "summary": "Estimated cell capacity scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Current input as cell current(s)",
+   "default": "off",
+   "values": "Option to specify current input port as vector off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter type",
+   "default": "filter",
+   "values": "Kalman filter type Extended Kalman filter (default) | Extended Kalman-Bucy filter | Unscented Kalman filter | Unscented Kalman-Bucy filter",
+   "group": ""
+  },
+  {
+   "name": "Alpha",
+   "default": "1",
+   "values": "Alpha coefficient 1 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Beta",
+   "default": "2",
+   "values": "Beta coefficient 2 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Kappa",
+   "default": "0",
+   "values": "Kappa coefficient 0 (default) | scalar in the range [0, 3]",
+   "group": ""
+  },
+  {
+   "name": "Covariance of the process noise, Q",
+   "default": "3e-4",
+   "values": "Covariance of process noise 3e-4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Covariance of the measurement noise, R",
+   "default": "5e-7",
+   "values": "Covariance of measurement noise 5e-7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state error covariance, P0",
+   "default": "1e-8",
+   "values": "Initial state error covariance 1e-8 (default) | scalar | matrix",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "Block sample time 1 (default) | 0 | -1 | integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

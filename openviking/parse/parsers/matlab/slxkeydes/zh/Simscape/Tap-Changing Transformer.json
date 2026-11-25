@@ -1,0 +1,13 @@
+{
+ "key": "Tap-Changing Transformer",
+ "title": "Tap-Changing Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Tap_Changing_Transformer.md"
+ ],
+ "text": "单相分接头切换变压器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

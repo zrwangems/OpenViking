@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Mechanical Converter (G)",
+ "title": "Rotational Mechanical Converter (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Rotational_Mechanical_Converter_G.md"
+ ],
+ "text": "Interface between gas and mechanical rotational networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

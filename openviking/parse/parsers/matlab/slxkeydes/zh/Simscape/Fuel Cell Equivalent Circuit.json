@@ -1,0 +1,13 @@
+{
+ "key": "Fuel Cell Equivalent Circuit",
+ "title": "Fuel Cell Equivalent Circuit",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Cells/Fuel_Cell_Equivalent_Circuit.md"
+ ],
+ "text": "使用电路元件和动态膜水含量的聚合物电解质膜燃料电池。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

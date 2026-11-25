@@ -1,0 +1,13 @@
+{
+ "key": "Variable Brick Solid",
+ "title": "Variable Brick Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Variable Mass/Variable_Brick_Solid.md"
+ ],
+ "text": "Solid brick with variable mass and size.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

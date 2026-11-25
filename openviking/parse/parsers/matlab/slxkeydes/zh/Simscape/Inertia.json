@@ -1,0 +1,14 @@
+{
+ "key": "Inertia",
+ "title": "Inertia",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Inertia.md",
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Inertia.md"
+ ],
+ "text": "具有固定惯性属性的质量元件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

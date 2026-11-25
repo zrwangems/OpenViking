@@ -1,0 +1,52 @@
+{
+ "key": "d-q Voltage Limiter",
+ "title": "d-q Voltage Limiter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Protection/d_q_Voltage_Limiter.md"
+ ],
+ "text": "Limit voltage in the rotor direct-quadrature reference frame, 3 inputs, 2 outputs, {Axis prioritization} sets Prioritize the d - or q axis; {Sample time (-1 for inherited)} sets the sampling interval. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vdRefUnsat",
+   "direction": "input",
+   "summary": "v d unsat scalar"
+  },
+  {
+   "name": "VqRefUnsat",
+   "direction": "input",
+   "summary": "v q unsat scalar"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "V ph_max scalar"
+  },
+  {
+   "name": "vdRef",
+   "direction": "output",
+   "summary": "v d sat scalar"
+  },
+  {
+   "name": "vqRef",
+   "direction": "output",
+   "summary": "v d sat scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Axis prioritization",
+   "default": "Q-axis",
+   "values": "Prioritize the d - or q axis Q-axis (default) | D-axis | D-Q equivalence",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sampling interval -1 (default) | default value or a positive number",
+   "group": ""
+  }
+ ]
+}

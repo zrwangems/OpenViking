@@ -1,0 +1,37 @@
+{
+ "key": "Angular Acceleration Conversion",
+ "title": "Angular Acceleration Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Angular_Acceleration_Conversion.md"
+ ],
+ "text": "Convert from angular acceleration units to desired angular acceleration units, 1 input, 1 output, {Final unit} sets Output unit; {Initial unit} sets the input units deg/s. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Angular input acceleration scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Angular output acceleration scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "2",
+   "values": "Input units deg/s 2 (default) | rad/s 2 | rpm/s",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "s",
+   "values": "Output units rad/s s (default) | deg/s s | rpm/s",
+   "group": ""
+  }
+ ]
+}

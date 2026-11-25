@@ -1,0 +1,43 @@
+{
+ "key": "SOH Estimator (Capacity-Based)",
+ "title": "SOH Estimator (Capacity-Based)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/SOH_Estimator_Capacity_Based.md"
+ ],
+ "text": "基于容量衰减的健康状态估计器，输入 1 路、输出 1 路；按 {Algorithm data type} 指定用于选择模块算法数据类型的选项 Inherit:；{Cell capacity when battery is new, AH_new, (A*Hr)} 指定电池全新时的单体容量、{Cell capacity at end of life, AH_eol, (A*Hr)} 指定寿命终止时的单体容量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "AH",
+   "direction": "input",
+   "summary": "单体容量，A*Hr scalar | vector"
+  },
+  {
+   "name": "SOH",
+   "direction": "output",
+   "summary": "电池的健康状态 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Cell capacity when battery is new, AH_new, (A*Hr)",
+   "default": "27",
+   "values": "电池全新时的单体容量 27 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Cell capacity at end of life, AH_eol, (A*Hr)",
+   "default": "21.6",
+   "values": "寿命终止时的单体容量 21.6 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

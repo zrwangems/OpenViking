@@ -1,0 +1,13 @@
+{
+ "key": "Differential Encoder",
+ "title": "Differential Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Differential_Encoder.md"
+ ],
+ "text": "Encode binary signal using differential coding.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

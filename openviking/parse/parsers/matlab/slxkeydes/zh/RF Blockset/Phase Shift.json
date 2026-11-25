@@ -1,0 +1,20 @@
+{
+ "key": "Phase Shift",
+ "title": "Phase Shift",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Phase_Shift.md"
+ ],
+ "text": "在 RF 系统中对相移进行建模；{Phase shift} 指定相移角度，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Phase shift",
+   "default": "deg",
+   "values": "相移角度 90 deg (default) | non-negative scalar integer",
+   "group": ""
+  }
+ ]
+}

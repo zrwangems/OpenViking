@@ -1,0 +1,43 @@
+{
+ "key": "Serial-In Parallel-Out Shift Register",
+ "title": "Serial-In Parallel-Out Shift Register",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Serial_In_Parallel_Out_Shift_Register.md"
+ ],
+ "text": "离散时间串入并出移位寄存器，输入 1 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Number of samples} 指定输入采样数、{Initial condition} 指定输入采样的初始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "串行输入 scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "并行输出 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of samples",
+   "default": "4",
+   "values": "输入采样数 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "输入采样的初始值 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

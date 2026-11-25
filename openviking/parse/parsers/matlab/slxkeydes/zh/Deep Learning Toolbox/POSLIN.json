@@ -1,0 +1,13 @@
+{
+ "key": "POSLIN",
+ "title": "poslin",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/poslin.md"
+ ],
+ "text": "正线性传递函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

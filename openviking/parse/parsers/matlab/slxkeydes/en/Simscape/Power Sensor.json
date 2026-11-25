@@ -1,0 +1,13 @@
+{
+ "key": "Power Sensor",
+ "title": "Power Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Power_Sensor.md"
+ ],
+ "text": "Ideal instantaneous or cycle-average power measurement.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

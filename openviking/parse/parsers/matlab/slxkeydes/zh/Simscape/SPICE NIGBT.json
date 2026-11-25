@@ -1,0 +1,13 @@
+{
+ "key": "SPICE NIGBT",
+ "title": "SPICE NIGBT",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Semiconductors/SPICE_NIGBT.md"
+ ],
+ "text": "兼容 SPICE 的 N 沟道绝缘栅双极型晶体管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

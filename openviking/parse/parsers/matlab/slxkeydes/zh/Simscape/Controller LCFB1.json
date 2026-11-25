@@ -1,0 +1,95 @@
+{
+ "key": "Controller LCFB1",
+ "title": "Controller LCFB1",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Turbine-Governors/Controller_LCFB1.md"
+ ],
+ "text": "用于汽轮机-调速器模型的负载控制器，输入 3 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Speed reference (pu)} 指定转速参考、{Initial power reference, P_ref0 (pu)} 指定初始功率参考、{Controller deadband (pu)} 控制器死区、{Maximum error, e_max (pu)} 指定最大误差、{Frequency bias gain, f_b (pu)} 指定频率偏置增益、{Proportional gain, K_p (pu)} 指定 PI 控制的比例增益、{Integral gain, K_i (pu/s)} 指定 PI 控制的积分增益、{Power transducer time constant, T_pelec (s)} 指定功率传感器的时间常数、{Maximum output, I_rmax (pu)} 输出上限，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "speed_pu",
+   "direction": "input",
+   "summary": "转速负载 scalar"
+  },
+  {
+   "name": "Pmwset",
+   "direction": "input",
+   "summary": "功率设定点 scalar"
+  },
+  {
+   "name": "Pelec",
+   "direction": "input",
+   "summary": "电功率输入 scalar"
+  },
+  {
+   "name": "Pref",
+   "direction": "output",
+   "summary": "偏置 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Speed reference (pu)",
+   "default": "1",
+   "values": "转速参考 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial power reference, P_ref0 (pu)",
+   "default": "0.45",
+   "values": "初始功率参考 0.45 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller deadband (pu)",
+   "default": "0",
+   "values": "控制器死区 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum error, e_max (pu)",
+   "default": "0.1",
+   "values": "最大误差 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency bias gain, f_b (pu)",
+   "default": "0",
+   "values": "频率偏置增益 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain, K_p (pu)",
+   "default": "0",
+   "values": "PI 控制的比例增益 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain, K_i (pu/s)",
+   "default": "0.1",
+   "values": "PI 控制的积分增益 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Power transducer time constant, T_pelec (s)",
+   "default": "3.5",
+   "values": "功率传感器的时间常数 3.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum output, I_rmax (pu)",
+   "default": "0.035",
+   "values": "输出上限 0.035 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

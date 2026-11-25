@@ -1,0 +1,236 @@
+{
+ "key": "Limited Slip Differential",
+ "title": "Limited-Slip Differential",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Final Drive Unit/Limited_Slip_Differential.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Final Drive Unit/Limited_Slip_Differential.md"
+ ],
+ "text": "Limited differential as a planetary bevel gear, 4 outputs, {Interpolation method} sets Method Flat; {Efficiency factors} sets the configuration, {Input ambient temperature} sets the create input port, {Crown wheel (ring gear) located} sets the crown wheel connection To the left, {Carrier to drive shaft ratio, NC/ND} sets the ratio, {Carrier inertia, Jd} sets the inertia .1, {Carrier damping, bd} sets the damping 1e-3, {Axle 1 inertia, Jw1} sets the inertia .1, {Axle 1 damping, bw1} sets the damping 1e-3, {Axle 2 inertia, Jw2} sets the inertia .1, {Axle 2 damping, bw2} sets the damping 1e-3, {Axle 1 initial velocity, omegaw1o} sets the angular velocity, {Axle 2 initial velocity, omegaw2o} sets the angular velocity, {Constant efficiency factor, eta} sets the efficiency, {Efficiency lookup table, eta_tbl} sets the lookup table M -by- N -by, {Efficiency torque breakpoints, Trq_bpts} sets the torque breakpoints, {Efficiency speed breakpoints, omega_bpts} sets the speed breakpoints, {Efficiency temperature breakpoints, Temp_bpts} sets the temperature breakpoints, {Ambient temperature, Tamb}, {Coupling type} sets the torque coupling Pre-loaded, {Number of disks, Ndisks} sets the torque coupling, {Effective radius, Reff} sets the radius .20, {Nominal preload force, Fc} sets the force, {Friction coefficient vector, muc} sets the friction, {Slip speed vector, dw} sets the angular velocity, {Torque - slip speed vector, Tdw} sets the torque, {Slip speed vector, dwT} sets the angular velocity, {Torque - input torque vector, TTin} sets the torque, {Input torque vector, Tin} sets the torque and {Coupling time constant, tauC} sets the constant .01. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DriveshftTrq",
+   "direction": "unknown",
+   "summary": "Torque scalar"
+  },
+  {
+   "name": "Axl1Trq",
+   "direction": "unknown",
+   "summary": "Torque scalar"
+  },
+  {
+   "name": "Axl2Trq",
+   "direction": "unknown",
+   "summary": "Torque scalar"
+  },
+  {
+   "name": "Temp",
+   "direction": "unknown",
+   "summary": "Temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "DriveshftSpd",
+   "direction": "output",
+   "summary": "Angular speed scalar"
+  },
+  {
+   "name": "Axl1Spd",
+   "direction": "output",
+   "summary": "Angular speed scalar"
+  },
+  {
+   "name": "Axl2Spd",
+   "direction": "output",
+   "summary": "Angular speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Efficiency factors",
+   "default": "Constant",
+   "values": "Specify configuration Constant (default) | Driveshaft torque, speed and temperature",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "",
+   "values": "Method Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline",
+   "group": ""
+  },
+  {
+   "name": "Input ambient temperature",
+   "default": "off",
+   "values": "Create input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Crown wheel (ring gear) located",
+   "default": "center-line",
+   "values": "Specify crown wheel connection To the left of center-line (default) | To the right of center-line",
+   "group": ""
+  },
+  {
+   "name": "Carrier to drive shaft ratio, NC/ND",
+   "default": "4",
+   "values": "Ratio 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier inertia, Jd",
+   "default": ".1",
+   "values": "Inertia .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier damping, bd",
+   "default": "1e-3",
+   "values": "Damping 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 inertia, Jw1",
+   "default": ".1",
+   "values": "Inertia .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 damping, bw1",
+   "default": "1e-3",
+   "values": "Damping 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 inertia, Jw2",
+   "default": ".1",
+   "values": "Inertia .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 damping, bw2",
+   "default": "1e-3",
+   "values": "Damping 1e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 1 initial velocity, omegaw1o",
+   "default": "0",
+   "values": "Angular velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Axle 2 initial velocity, omegaw2o",
+   "default": "0",
+   "values": "Angular velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant efficiency factor, eta",
+   "default": "1",
+   "values": "Efficiency 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Efficiency lookup table, eta_tbl",
+   "default": "",
+   "values": "Lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency torque breakpoints, Trq_bpts",
+   "default": "250]",
+   "values": "Torque breakpoints [25, 50, 75, 100, 150, 200, 250] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency speed breakpoints, omega_bpts",
+   "default": "524]",
+   "values": "Speed breakpoints [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency temperature breakpoints, Temp_bpts",
+   "default": "358]",
+   "values": "Temperature breakpoints [290 358] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Ambient temperature, Tamb",
+   "default": "297.15",
+   "values": "Ambient temperature 297.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Coupling type",
+   "default": "clutch",
+   "values": "Torque coupling Pre-loaded ideal clutch (default) | Slip speed dependent torque data | Input torque dependent torque data",
+   "group": ""
+  },
+  {
+   "name": "Number of disks, Ndisks",
+   "default": "4",
+   "values": "Torque coupling 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Effective radius, Reff",
+   "default": ".20",
+   "values": "Radius .20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal preload force, Fc",
+   "default": "500",
+   "values": "Force 500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Friction coefficient vector, muc",
+   "default": "0.10125]",
+   "values": "Friction [.16 0.13 0.115 0.11 0.105 0.1025 0.10125] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Slip speed vector, dw",
+   "default": "100]",
+   "values": "Angular velocity [0 10 20 40 60 80 100] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Torque - slip speed vector, Tdw",
+   "default": "100]",
+   "values": "Torque [-100, -90, -50, -5, 0, 5, 50, 90, 100] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Slip speed vector, dwT",
+   "default": "200]",
+   "values": "Angular velocity [-200, -175, -100, - 50, 0, 50, 100, 175, 200] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Torque - input torque vector, TTin",
+   "default": "200]",
+   "values": "Torque [-200 -175 -100 - 50 0 50 100 175 200] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Input torque vector, Tin",
+   "default": "200]",
+   "values": "Torque [-200 -175 -100 - 50 0 50 100 175 200] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Coupling time constant, tauC",
+   "default": ".01",
+   "values": "Constant .01 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

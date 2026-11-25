@@ -1,0 +1,50 @@
+{
+ "key": "Simulation 3D Actor Transform Get",
+ "title": "Simulation 3D Actor Transform Get",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Actor_Transform_Get.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Actor_Transform_Get.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Actor_Transform_Get.md"
+ ],
+ "text": "获取 actor 的平移、旋转和缩放；输出 3 路；{Tag for actor in 3D scene, ActorTag} 指定名称 SimulinkActor1、{Number of parts per actor to get, NumberOfParts} 指定名称、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "角色平移 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "角色旋转 array"
+  },
+  {
+   "name": "Scale",
+   "direction": "output",
+   "summary": "角色缩放 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tag for actor in 3D scene, ActorTag",
+   "default": "SimulinkActor1",
+   "values": "名称 SimulinkActor1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of parts per actor to get, NumberOfParts",
+   "default": "1",
+   "values": "名称 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

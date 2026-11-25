@@ -1,0 +1,73 @@
+{
+ "key": "DownSample",
+ "title": "Downsample",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Operations/Downsample.md",
+  "DSP System Toolbox/Signal Operations/Downsample.md"
+ ],
+ "text": "通过删除样本以较低速率对输入进行重采样，输入 2 路、输出 1 路、无直接馈通；按 {Initial conditions} 指定初始值；{Downsample factor source} 指定下采样因子来源、{Downsample factor, M} 指定降采样因子、{Sample offset (0 to M−1)} 指定采样偏移、{Input processing} 指定处理输入的方法 Columns、{Rate options} 指定强制单速率或允许多速率处理 Enforce single-rate、{Allow arbitrary frame length for fixed-size input signals} 允许固定大小输入信号的任意帧长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "数据输入 column vector | matrix | N -D array"
+  },
+  {
+   "name": "M",
+   "direction": "input",
+   "summary": "下采样因子 positive integer"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "下采样输出 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Downsample factor source",
+   "default": "parameter",
+   "values": "下采样因子来源 Dialog parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Downsample factor, M",
+   "default": "2",
+   "values": "降采样因子 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample offset (0 to M−1)",
+   "default": "0",
+   "values": "采样偏移 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "处理输入的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "强制单速率或允许多速率处理 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "on",
+   "values": "允许固定大小输入信号的任意帧长度 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "初始值 0 (default) | real scalar | array",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "key": "Design Verifier Test Condition",
+ "title": "Test Condition",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Objectives and Constraints/Test_Condition.md"
+ ],
+ "text": "Constrain signal values in test cases, 1 input, 1 output, {Values} sets Test condition scalar; {Enable} sets the whether block is enabled, {Type} sets the whether the block behaves as a Test Condition or Proof Assumption block Test, {Display values} displays the contents of values parameter and {Pass through style (show Outport)} sets the whether block displays an output port in the Simulink. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal specified as a scalar or cell array scalar | cell array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal returned as a scalar or a cell array scalar | cell array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable",
+   "default": "on",
+   "values": "Whether block is enabled on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "Condition",
+   "values": "Whether the block behaves as a Test Condition or Proof Assumption block Test Condition (default) | Assumption",
+   "group": ""
+  },
+  {
+   "name": "Values",
+   "default": "",
+   "values": "Test condition scalar | cell array",
+   "group": ""
+  },
+  {
+   "name": "Display values",
+   "default": "on",
+   "values": "Display the contents of values parameter on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Pass through style (show Outport)",
+   "default": "on",
+   "values": "Whether block displays an output port in the Simulink Editor on (default) | off",
+   "group": ""
+  }
+ ]
+}

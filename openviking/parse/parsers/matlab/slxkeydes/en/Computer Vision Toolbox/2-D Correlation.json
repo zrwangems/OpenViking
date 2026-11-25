@@ -1,0 +1,48 @@
+{
+ "key": "2-D Correlation",
+ "title": "2-D Correlation",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Correlation.md"
+ ],
+ "text": "Compute 2-D correlation of two input matrices, 2 inputs, 1 output, {Output size} sets Size of cross-correlation output; {Normalized output} sets the normalize cross-correlation output and {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I1",
+   "direction": "input",
+   "summary": "First input matrix matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "Second input matrix matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Calculated cross-correlation scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output size",
+   "default": "Full",
+   "values": "Size of cross-correlation output Full (default) | Same as input port I1 | Valid",
+   "group": "Main"
+  },
+  {
+   "name": "Normalized output",
+   "default": "off",
+   "values": "Normalize cross-correlation output off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

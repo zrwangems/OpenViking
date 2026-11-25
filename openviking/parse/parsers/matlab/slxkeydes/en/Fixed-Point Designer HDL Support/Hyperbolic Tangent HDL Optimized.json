@@ -1,0 +1,39 @@
+{
+ "key": "Hyperbolic Tangent HDL Optimized",
+ "title": "Hyperbolic Tangent HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Math Operations/Hyperbolic_Tangent_HDL_Optimized.md"
+ ],
+ "text": "Computes CORDIC-based hyperbolic tangent and generates optimized HDL code, 2 inputs, 3 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Angle in radians real finite scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Whether input is valid Boolean scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Hyperbolic tangent of x scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Whether output data is valid Boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Whether block is ready Boolean scalar"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Schmitt Trigger",
+ "title": "Schmitt Trigger",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Logic/Schmitt_Trigger.md"
+ ],
+ "text": "Behavioral model of Schmitt trigger.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

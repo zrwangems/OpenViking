@@ -1,0 +1,84 @@
+{
+ "key": "Simulation 3D UAV Vehicle",
+ "title": "Simulation 3D UAV Vehicle",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Simulation 3D/Simulation_3D_UAV_Vehicle.md"
+ ],
+ "text": "在 3D 可视化中放置 UAV 载具，输入 3 路；按 {Type} 指定车辆类型；{Path to custom mesh} 指定自定义 UAV 网格资产的参考路径、{Color} 指定车辆颜色 Black、{Name} 指定车辆名称 SimulinkVehicle1、{Use geospatial coordinates for inputs and initial values} 指定对端口输入和初始值使用地理空间坐标、{Initial Translation (m)} 指定初始车辆位置、{Initial Georeference Origin (LLA)} 指定初始地理参考原点、{Initial Rotation (rad)} 指定飞行器旋转的初始角度、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "UAV 的平移位置 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "UAV 的旋转 vector | matrix"
+  },
+  {
+   "name": "GeoOrigin",
+   "direction": "input",
+   "summary": "Unreal Engine 世界原点的地理空间坐标 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "Quadcopter",
+   "values": "车辆类型 Quadcopter (default) | Fixed wing | Custom",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Path to custom mesh",
+   "default": "/MathWorksUAVContent/UAVs/HexaRotorUAV/HexaRotor.HexaRotor",
+   "values": "自定义 UAV 网格资产的参考路径 /MathWorksUAVContent/UAVs/HexaRotorUAV/HexaRotor.HexaRotor (default) | valid asset reference path",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Color",
+   "default": "Black",
+   "values": "车辆颜色 Black (default) | Orange | Yellow | Green | Blue | Red | White | Silver",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "车辆名称 SimulinkVehicle1 (default) | vehicle name",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Use geospatial coordinates for inputs and initial values",
+   "default": "off",
+   "values": "对端口输入和初始值使用地理空间坐标 off (default) | on",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Initial Translation (m)",
+   "default": "0]",
+   "values": "初始车辆位置 [0 0 0] (default) | vector",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial Georeference Origin (LLA)",
+   "default": "0]",
+   "values": "初始地理参考原点 [0 0 0] (default) | vector",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial Rotation (rad)",
+   "default": "0]",
+   "values": "飞行器旋转的初始角度 [0 0 0] (default) | vector | matrix",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": "Sample Time"
+  }
+ ]
+}

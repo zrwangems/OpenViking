@@ -1,0 +1,37 @@
+{
+ "key": "StringLength",
+ "title": "String Length",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Length.md"
+ ],
+ "text": "输出输入字符串中的字符数，输入 1 路、输出 1 路；按 {模式} 指定数据类型的类别；{输出数据类型}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入字符串 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "字符数 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出数据类型",
+   "default": "从内部规则继承",
+   "values": "输出数据类型 继承: 从内部规则继承 (默认) | 继承: 通过反向传播继承 | int8 | uint8 | int16 | uint16 | int32 | uint32 |",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "Inherit",
+   "values": "数据类型的类别 Inherit (默认) | Built in | Expression",
+   "group": ""
+  }
+ ]
+}

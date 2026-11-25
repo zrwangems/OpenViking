@@ -1,0 +1,170 @@
+{
+ "key": "DiscreteFir",
+ "title": "Discrete FIR Filter",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Discrete_FIR_Filter.md",
+  "DSP System Toolbox/Filtering/Filter Implementations/Discrete_FIR_Filter.md",
+  "HDL Coder/Discrete/Discrete_FIR_Filter.md",
+  "HDL Coder/HDL Floating Point Operations/Discrete_FIR_Filter.md",
+  "DSP System Toolbox HDL Support/Filtering/Discrete_FIR_Filter.md"
+ ],
+ "text": "构建 FIR 滤波器模型，输入 4 路、输出 1 路；按 {滤波器结构} 指定滤波器结构；{系数来源} 指定系数的信源、{系数}、{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{初始状态} 指定滤波器状态的初始条件、{显示使能端口} 指定创建使能端口、{外部重置} 指定外部状态重置、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{查看滤波器响应}、{抽头总和} 指定抽头加和数据类型、{系数最小值} 指定系数的最小值、{系数最大值} 指定系数的最大值、{乘积输出}、{累加器}、{状态}、{输出}、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "滤波器系数 标量 | 向量"
+  },
+  {
+   "name": "External reset",
+   "direction": "input",
+   "summary": "外部重置信号 标量"
+  },
+  {
+   "name": "⎍",
+   "direction": "input",
+   "summary": "启用信号 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "滤波后的输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "系数来源",
+   "default": "对话框参数",
+   "values": "系数的信源 对话框参数 (默认) | 输入端口",
+   "group": "常设"
+  },
+  {
+   "name": "滤波器结构",
+   "default": "直接型",
+   "values": "滤波器结构 直接型 (默认) | 直接型对称 | 直接型反对称 | 直接型转置 | 格型 MA",
+   "group": "常设"
+  },
+  {
+   "name": "系数",
+   "default": "0.5]",
+   "values": "滤波器系数 [0.5 0.5] (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": "常设"
+  },
+  {
+   "name": "初始状态",
+   "default": "0",
+   "values": "滤波器状态的初始条件 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "显示使能端口",
+   "default": "off",
+   "values": "创建使能端口 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "外部重置",
+   "default": "无",
+   "values": "外部状态重置 无 (默认) | 上升沿 | 下降沿 | 任一沿 | 电平 | 电平保持",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "查看滤波器响应",
+   "default": "",
+   "values": "查看滤波器响应 按钮",
+   "group": "常设"
+  },
+  {
+   "name": "抽头总和",
+   "default": "input",
+   "values": "抽头加和数据类型 Inherit: Same as input (默认) | Inherit: Inherit via internal rule | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "系数最小值",
+   "default": "[]",
+   "values": "系数的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "系数最大值",
+   "default": "[]",
+   "values": "系数的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "乘积输出",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (默认) | 继承: 与输入相同 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "累加器",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (默认) | 继承: 与输入相同 | 继承: 与乘积输出相同 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "状态",
+   "default": "accumulator",
+   "values": "状态数据类型 Inherit: Same as accumulator (默认) | 继承: 与输入相同 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出",
+   "default": "accumulator",
+   "values": "输出数据类型 Inherit: Same as accumulator (默认) | 继承: 与输入相同 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "数据类型"
+  }
+ ]
+}

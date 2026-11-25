@@ -1,0 +1,50 @@
+{
+ "key": "UAV Scenario Configuration",
+ "title": "UAV Scenario Configuration",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Configuration.md"
+ ],
+ "text": "Configure and simulate UAV scenarios; {MATLAB or model workspace variable name}, {Sample time}, {Sensor motion bus name}, {Platform motion bus name}, {Scenario motion bus name} and {Scenario motion signal name}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "MATLAB or model workspace variable name",
+   "default": "’singleUAVScenario’",
+   "values": "MATLAB or model workspace variable name ’singleUAVScenario’ (default) | string",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time 0.1 (default) | positive double",
+   "group": "Main"
+  },
+  {
+   "name": "Sensor motion bus name",
+   "default": "’SensorMotionBus’",
+   "values": "Sensor motion bus name ’SensorMotionBus’ (default) | string",
+   "group": "Scenario Bus and Signal Names"
+  },
+  {
+   "name": "Platform motion bus name",
+   "default": "’PlatformMotionBus’",
+   "values": "Platform motion bus name ’PlatformMotionBus’ (default) | string",
+   "group": "Scenario Bus and Signal Names"
+  },
+  {
+   "name": "Scenario motion bus name",
+   "default": "’SensorMotionBus’",
+   "values": "Scenario motion bus name ’SensorMotionBus’ (default) | string",
+   "group": "Scenario Bus and Signal Names"
+  },
+  {
+   "name": "Scenario motion signal name",
+   "default": "’ScenarioMotions’",
+   "values": "Scenario motion signal name ’ScenarioMotions’ (default) | string",
+   "group": "Scenario Bus and Signal Names"
+  }
+ ]
+}

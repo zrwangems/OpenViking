@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Sensor (TL)",
+ "title": "Flow Rate Sensor (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Sensors/Flow_Rate_Sensor_TL.md"
+ ],
+ "text": "测量热液网络中的质量流量、能量流量和体积流量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

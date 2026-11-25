@@ -1,0 +1,42 @@
+{
+ "key": "Hysteresis Current Controller (Three-Phase)",
+ "title": "Hysteresis Current Controller (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Machine Control/Hysteresis_Current_Controller_Three_Phase.md"
+ ],
+ "text": "Three-phase hysteresis current control, 2 inputs, 1 output; {Current hysteresis band (A)} sets the hysteresis band and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "iabc*",
+   "direction": "input",
+   "summary": "Current vector"
+  },
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "Current vector"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "Controller output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Current hysteresis band (A)",
+   "default": "1",
+   "values": "Hysteresis band 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

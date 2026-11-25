@@ -1,0 +1,13 @@
+{
+ "key": "Torque Noise Source",
+ "title": "Torque Noise Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Torque_Noise_Source.md"
+ ],
+ "text": "对零均值正态（高斯）分布转矩进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

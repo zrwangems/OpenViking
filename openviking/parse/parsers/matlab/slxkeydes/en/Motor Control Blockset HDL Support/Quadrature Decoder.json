@@ -1,0 +1,89 @@
+{
+ "key": "Quadrature Decoder",
+ "title": "Quadrature Decoder",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Sensor Decoders/Quadrature_Decoder.md",
+  "Motor Control Blockset/Sensor Decoders/Quadrature_Decoder.md"
+ ],
+ "text": "Compute position of quadrature encoder, 4 inputs, 1 output, {Position unit} sets Unit of angular position output; {Use input port for computed parameters (run-time motor swap)} enables CountsPerRev and 1/CountsPerRev input, {Data type for 1/CountsPerRev input} sets the data type of 1/CountsPerRev, {Encoder slits} sets the number of slits per phase, {Encoder counts per slit} sets the number of counts generated for every slit, {Counter size} sets the size of quadrature encoder counter, {External index count} enables Idx input port and {Position data type} sets the data type of angular position output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Cnt",
+   "direction": "input",
+   "summary": "Quadrature encoder counter value scalar"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "Quadrature encoder counter value at last index pulse scalar"
+  },
+  {
+   "name": "CountsPerRev",
+   "direction": "input",
+   "summary": "Number of counts generated for every revolution scalar"
+  },
+  {
+   "name": "1/CountsPerRev",
+   "direction": "input",
+   "summary": "Inverse of the number of counts generated for every revolution scalar"
+  },
+  {
+   "name": "θ m",
+   "direction": "output",
+   "summary": "Angular position of quadrature encoder scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use input port for computed parameters (run-time motor swap)",
+   "default": "off",
+   "values": "Enable CountsPerRev and 1/CountsPerRev input ports off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Data type for 1/CountsPerRev input",
+   "default": "single",
+   "values": "Data type of 1/CountsPerRev input single (default) | double | fixed point",
+   "group": ""
+  },
+  {
+   "name": "Encoder slits",
+   "default": "1000",
+   "values": "Number of slits per phase 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Encoder counts per slit",
+   "default": "4",
+   "values": "Number of counts generated for every slit 4 (default) | 1 | 2",
+   "group": ""
+  },
+  {
+   "name": "Counter size",
+   "default": "bits",
+   "values": "Size of quadrature encoder counter 16 bits (default) | 8 bits | 32 bits",
+   "group": ""
+  },
+  {
+   "name": "External index count",
+   "default": "on",
+   "values": "Enable Idx input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Position unit",
+   "default": "Radians",
+   "values": "Unit of angular position output Radians (default) | Degrees | Per unit",
+   "group": ""
+  },
+  {
+   "name": "Position data type",
+   "default": "single",
+   "values": "Data type of angular position output single (default) | double | fixed point",
+   "group": ""
+  }
+ ]
+}

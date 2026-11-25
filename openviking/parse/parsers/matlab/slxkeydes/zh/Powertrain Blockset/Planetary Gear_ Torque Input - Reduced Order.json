@@ -1,0 +1,143 @@
+{
+ "key": "Planetary Gear: Torque Input - Reduced Order",
+ "title": "Planetary Gear",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Planetary_Gear.md"
+ ],
+ "text": "带太阳轮、齿圈和行星架的理想行星齿轮，输入 4 路、输出 6 路；{Port Configuration} 指定配置 Simulink、{Sun to planet ratio, Nsp} 指定比值 30/23、{Sun to ring ratio, Nsr} 指定比值 30/78、{Sun inertia, Js} 指定惯性 .003、{Planet inertia, Jp} 指定惯性 .001、{Ring inertia, Jr} 指定惯性 .01、{Carrier inertia, Jc} 指定惯性 .002、{Sun viscous damping, bs} 指定阻尼 .001、{Ring viscous damping, br} 指定阻尼 .001、{Planet viscous damping, bp} 指定阻尼 .001、{Carrier viscous damping, bc} 指定阻尼 .001、{Initial sun velocity, ws_o} 指定角速度、{Initial carrier velocity, wc_o} 指定角速度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SunTrq",
+   "direction": "input",
+   "summary": "太阳轮施加的转矩 scalar"
+  },
+  {
+   "name": "CarrTrq",
+   "direction": "input",
+   "summary": "行星架齿轮施加的转矩 scalar"
+  },
+  {
+   "name": "RingTrq",
+   "direction": "input",
+   "summary": "齿圈施加的转矩 scalar"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "行星架齿轮角速度和转矩 two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "SunSpd",
+   "direction": "output",
+   "summary": "太阳轮角速度 scalar"
+  },
+  {
+   "name": "CarrSpd",
+   "direction": "output",
+   "summary": "行星架齿轮角速度 scalar"
+  },
+  {
+   "name": "RingSpd",
+   "direction": "output",
+   "summary": "齿圈角速度 scalar"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "太阳轮角速度和转矩 two-way connector port"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "齿圈角速度和转矩 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "指定配置 Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Sun to planet ratio, Nsp",
+   "default": "30/23",
+   "values": "比值 30/23 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sun to ring ratio, Nsr",
+   "default": "30/78",
+   "values": "比值 30/78 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sun inertia, Js",
+   "default": ".003",
+   "values": "惯性 .003 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Planet inertia, Jp",
+   "default": ".001",
+   "values": "惯性 .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Ring inertia, Jr",
+   "default": ".01",
+   "values": "惯性 .01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier inertia, Jc",
+   "default": ".002",
+   "values": "惯性 .002 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sun viscous damping, bs",
+   "default": ".001",
+   "values": "阻尼 .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Ring viscous damping, br",
+   "default": ".001",
+   "values": "阻尼 .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Planet viscous damping, bp",
+   "default": ".001",
+   "values": "阻尼 .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Carrier viscous damping, bc",
+   "default": ".001",
+   "values": "阻尼 .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial sun velocity, ws_o",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial carrier velocity, wc_o",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  }
+ ]
+}

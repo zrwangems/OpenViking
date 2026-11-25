@@ -1,0 +1,15 @@
+{
+ "key": "Inductor",
+ "title": "Inductor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Inductor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Inductor.md",
+  "RF Blockset/Circuit Envelope/Elements/L.md"
+ ],
+ "text": "Inductor including optional tolerance, operational limits and fault behavior.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PMLSM",
+ "title": "PMLSM",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/PMLSM.md"
+ ],
+ "text": "Permanent magnet linear synchronous motor with sinusoidal flux distribution.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

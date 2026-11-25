@@ -1,0 +1,116 @@
+{
+ "key": "Bridge Cycloconverter Voltage Controller (Three-Phase)",
+ "title": "Bridge Cycloconverter Voltage Controller (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Converter Control/Bridge_Cycloconverter_Voltage_Controller_Three_Phase.md"
+ ],
+ "text": "三相桥式周波变换器的 RMS 电压 PI 控制，输入 5 路、输出 2 路；{Rated voltage (phase-to-phase RMS)} 指定额定 RMS 电压、{Loop filter proportional gain} 指定 LF 比例增益、{Loop filter integral gain} 指定 LF 积分增益、{Filters time constant (s)} 指定时间常数 1e-2、{Controller proportional gain} 指定比例增益、{Controller integral gain} 指定积分增益、{Controller anti-windup gain} 指定抗积分饱和增益、{Thyristor pulse width (rad)} 指定脉冲宽度 5*pi/6、{Bank selector current threshold (A)} 指定电流阈值、{Pulse ordering} 指定脉冲排序规则 Sequential device、{Sample time (-1 for inherited)} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VRef",
+   "direction": "input",
+   "summary": "参考电压 scalar"
+  },
+  {
+   "name": "fRef",
+   "direction": "input",
+   "summary": "参考频率 scalar"
+  },
+  {
+   "name": "vabc",
+   "direction": "input",
+   "summary": "相电压 vector"
+  },
+  {
+   "name": "Vcyc",
+   "direction": "input",
+   "summary": "周波变换器电压 vector"
+  },
+  {
+   "name": "Icyc",
+   "direction": "input",
+   "summary": "周波变换器电流 vector"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "脉冲 vector"
+  },
+  {
+   "name": "Visualization",
+   "direction": "output",
+   "summary": "可视化总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rated voltage (phase-to-phase RMS)",
+   "default": "6000",
+   "values": "额定 RMS 电压 6000 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Loop filter proportional gain",
+   "default": "2",
+   "values": "LF 比例增益 2 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Loop filter integral gain",
+   "default": "20",
+   "values": "LF 积分增益 20 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Filters time constant (s)",
+   "default": "1e-2",
+   "values": "时间常数 1e-2 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Controller proportional gain",
+   "default": "1",
+   "values": "比例增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Controller integral gain",
+   "default": "12",
+   "values": "积分增益 12 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Controller anti-windup gain",
+   "default": "10",
+   "values": "抗积分饱和增益 10 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Thyristor pulse width (rad)",
+   "default": "5*pi/6",
+   "values": "脉冲宽度 5*pi/6 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Bank selector current threshold (A)",
+   "default": "5",
+   "values": "电流阈值 5 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Pulse ordering",
+   "default": "order",
+   "values": "脉冲排序规则 Sequential device order (default) | Natural order of commutation",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

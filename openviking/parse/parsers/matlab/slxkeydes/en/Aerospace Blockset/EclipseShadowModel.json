@@ -1,0 +1,146 @@
+{
+ "key": "EclipseShadowModel",
+ "title": "Eclipse Shadow Model (Cylindrical)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Eclipse_Shadow_Model_Cylindrical.md",
+  "Aerospace Blockset/Environment/Celestial Phenomena/Eclipse_Shadow_Model_Dual_Cone.md"
+ ],
+ "text": "Calculate fraction of solar disk visible at inertial positions, 5 inputs, 3 outputs, {Ephemeris model} sets Ephemeris model; {Units} sets the position port units Metric, {Shadow model}, {Output index of shadow region}, {Time source}, {Start date/time (JD)} sets the initial start date and time for simulation, {Central body} sets the occulting celestial body for eclipse calculations, {Equatorial radius} sets the custom central body radius, {Include Moon} sets the option to include Moon, {Include Earth} sets the option to include Earth, {Limit ephemerides date range} sets the open to enable start and end of range of ephemeris, {Start date (JD)} sets the start date of ephemerides date range, {End date (JD)} sets the end date of ephemerides date range, {Action for out-of-range input} sets the out-of-range block behavior and {Enable zero-crossing detection}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X icrf",
+   "direction": "input",
+   "summary": "Position of spacecraft 3-element vector | M -by-3 array"
+  },
+  {
+   "name": "T JD",
+   "direction": "input",
+   "summary": "Julian date scalar"
+  },
+  {
+   "name": "T0 JD",
+   "direction": "input",
+   "summary": "Julian date epoch scalar"
+  },
+  {
+   "name": "ΔT JD",
+   "direction": "input",
+   "summary": "Elapsed Julian time with respect to T0 JD scalar"
+  },
+  {
+   "name": "R ss bary, cb",
+   "direction": "input",
+   "summary": "Custom central body position 3-by-1 array"
+  },
+  {
+   "name": "Fraction",
+   "direction": "output",
+   "summary": "Fraction of visible Sun scalar | M -element vector"
+  },
+  {
+   "name": "Region",
+   "direction": "output",
+   "summary": "Region scalar | M -element vector | integer"
+  },
+  {
+   "name": "Secondary Region",
+   "direction": "output",
+   "summary": "Secondary region scalar | M -element vector | integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(m)",
+   "values": "Position port units Metric (m) (default) | Metric (km) | English (ft) | English (M)",
+   "group": ""
+  },
+  {
+   "name": "Shadow model",
+   "default": "cone",
+   "values": "Shadow model Dual cone (default) | Cylindrical",
+   "group": ""
+  },
+  {
+   "name": "Output index of shadow region",
+   "default": "on",
+   "values": "Output index of shadow region on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Time source",
+   "default": "Dialog",
+   "values": "Time source method Dialog (default) | Port (Julian date) | Port (T0 and elapsed Julian time)",
+   "group": ""
+  },
+  {
+   "name": "Start date/time (JD)",
+   "default": "1)",
+   "values": "Initial start date and time for simulation juliandate(2020, 1, 1) (default) | valid scalar Julian date",
+   "group": ""
+  },
+  {
+   "name": "Central body",
+   "default": "Earth",
+   "values": "Occulting celestial body for eclipse calculations Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Custom",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "3396200",
+   "values": "Custom central body radius 3396200 (default) | double scalar",
+   "group": ""
+  },
+  {
+   "name": "Include Moon",
+   "default": "on",
+   "values": "Option to include Moon on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Include Earth",
+   "default": "on",
+   "values": "Option to include Earth on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ephemeris model",
+   "default": "DE405",
+   "values": "Ephemeris model DE405 (default) | DE421 | DE423 | DE430 | DE432t",
+   "group": ""
+  },
+  {
+   "name": "Limit ephemerides date range",
+   "default": "on",
+   "values": "Open to enable start and end of range of ephemeris data on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Start date (JD)",
+   "default": "1)",
+   "values": "Start date of ephemerides date range juliandate(2020, 1, 1) (default) | Julian date",
+   "group": ""
+  },
+  {
+   "name": "End date (JD)",
+   "default": "1)",
+   "values": "End date of ephemerides date range juliandate(2050, 1, 1) (default) | Julian date",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Error",
+   "values": "Out-of-range block behavior Error (default) | Warning | None",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "Enable zero-crossing detection off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "key": "Interlacer",
+ "title": "Interlacer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Interlacer.md"
+ ],
+ "text": "Alternately select elements from two input vectors to generate output vector, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "O",
+   "direction": "input",
+   "summary": "Odd-numbered elements vector"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "Even-numbered elements vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal column vector"
+  }
+ ],
+ "params": []
+}

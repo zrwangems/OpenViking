@@ -1,0 +1,37 @@
+{
+ "key": "Acceleration Conversion",
+ "title": "Acceleration Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Acceleration_Conversion.md"
+ ],
+ "text": "将加速度单位转换为所需加速度单位，输入 1 路、输出 1 路；按 {Final unit} 指定输出单位；{Initial unit} 指定输入单位 ft/s，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "加速度 scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "加速度 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "s",
+   "values": "输入单位 ft/s s (default) | m/s 2 | km/s 2 | in/s 2 | km/h-s | mph/s | G’s",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "ft/s^2’",
+   "values": "输出单位 ft/s^2’ (default) | m/s^2 | km/s^2 | in/s^2 | km/h-s | mph/s | G’s",
+   "group": ""
+  }
+ ]
+}

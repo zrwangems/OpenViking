@@ -1,0 +1,13 @@
+{
+ "key": "Distance Constraint",
+ "title": "Distance Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Constraints/Distance_Constraint.md"
+ ],
+ "text": "Kinematic constraint between frame origin and curved path.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

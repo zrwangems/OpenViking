@@ -1,0 +1,358 @@
+{
+ "key": "PID 2dof",
+ "title": "PID Controller (2DOF)",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Continuous/PID_Controller_2DOF.md",
+  "Simulink/Discrete/Discrete_PID_Controller_2DOF.md",
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_2DOF_PID.md",
+  "Control System Toolbox/Linear Parameter Varying/Varying_2DOF_PID.md"
+ ],
+ "text": "连续时间或离散时间二自由度 PID 控制器，输入 18 路、输出 2 路；按 {比例(P)} 指定比例增益；{控制器}、{形式} 控制器结构、{时域} 指定连续时间或离散时间控制器、{PID 控制器位于条件执行子系统内} 启用离散积分器时间端口、{采样时间(-1 表示继承)} 指定采样之间的离散间隔、{积分器方法} 指定离散时间控制器中积分的计算方法、{滤波器方法} 指定离散时间控制器中导数的计算方法、{源}、{积分(I)} 指定积分增益、{积分 (I*Ts)} 指定积分增益乘以采样时间、{使用 I*Ts} 使用积分增益乘以采样时间、{导数(D)} 指定导数增益、{使用来自外部的导数} 指定在模块输入端口上的导数、{使用滤波导数} 指定将滤波器应用于导数项、{滤波器系数(N)} 指定导数滤波器系数、{设定点权重(b)} 指定比例设定点权重、{设定点权重(c)} 指定导数设定点权重、{选择调节方法} 指定用来自动调整控制器系数的工具 基于传递函数、{启用过零检测} 指定在重置时以及在进入或退出饱和状态时检测过零点、{积分器}、{滤波器}、{微分器} 指定未滤波的导数的初始条件、{初始条件设置} 指定应用初始条件的位置、{外部重置} 用于重置积分器和滤波器值的触发器、{线性化时忽略重置} 指定强制线性化以忽略重置、{启用跟踪模式} 指定激活信号跟踪、{跟踪系数(Kt)} 指定信号跟踪反馈环的增益、{限制输出} 指定将模块输出限制为指定的饱和值、{上限}、{下限}、{线性化时忽略饱和界限} 指定强制线性化以忽略输出限制、{抗积分饱和方法}、{反算系数(Kb)} 指定抗积分饱和反馈环的增益系数、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{状态名称(例如，’position’)} 指定连续时间滤波器和积分器状态的名称、{状态名称} 指定离散时间滤波器和积分器状态的名称、{状态名称必须解析为 Simulink 信号对象} 指定要求将状态名称解析为信号对象，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "参考信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1( y )",
+   "direction": "input",
+   "summary": "测得的系统输出 标量 | 向量"
+  },
+  {
+   "name": "ydot",
+   "direction": "input",
+   "summary": "外部源的导数 标量 | 向量"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "比例增益 标量 | 向量"
+  },
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "积分增益 标量 | 向量"
+  },
+  {
+   "name": "I*T s",
+   "direction": "input",
+   "summary": "积分增益乘以采样时间 标量 | 向量"
+  },
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "导数增益 标量 | 向量"
+  },
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "滤波器系数 标量 | 向量"
+  },
+  {
+   "name": "b",
+   "direction": "input",
+   "summary": "比例设定点权重 标量 | 向量"
+  },
+  {
+   "name": "c",
+   "direction": "input",
+   "summary": "导数设定点权重 标量 | 向量"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部重置触发器 标量"
+  },
+  {
+   "name": "I 0",
+   "direction": "input",
+   "summary": "积分器初始条件 标量 | 向量"
+  },
+  {
+   "name": "D 0",
+   "direction": "input",
+   "summary": "滤波器初始条件 标量 | 向量"
+  },
+  {
+   "name": "up",
+   "direction": "input",
+   "summary": "输出饱和上限 标量 | 向量"
+  },
+  {
+   "name": "lo",
+   "direction": "input",
+   "summary": "输出饱和下限 标量 | 向量"
+  },
+  {
+   "name": "TR",
+   "direction": "input",
+   "summary": "跟踪信号 标量 | 向量"
+  },
+  {
+   "name": "T DTI",
+   "direction": "input",
+   "summary": "离散积分器时间 标量"
+  },
+  {
+   "name": "extAW",
+   "direction": "input",
+   "summary": "外部抗积分饱和算法 标量 | 向量"
+  },
+  {
+   "name": "Port_1( u )",
+   "direction": "output",
+   "summary": "控制器输出 标量 | 向量"
+  },
+  {
+   "name": "preInt",
+   "direction": "output",
+   "summary": "积分器之前的信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "控制器",
+   "default": "PID",
+   "values": "控制器类型 PID (默认) | PI | PD",
+   "group": ""
+  },
+  {
+   "name": "形式",
+   "default": "并行",
+   "values": "控制器结构 并行 (默认) | 理想",
+   "group": ""
+  },
+  {
+   "name": "时域",
+   "default": "连续时间",
+   "values": "指定连续时间或离散时间控制器 连续时间 (默认) | 离散时间",
+   "group": ""
+  },
+  {
+   "name": "PID 控制器位于条件执行子系统内",
+   "default": "off",
+   "values": "启用离散积分器时间端口 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的离散间隔 -1 (默认) | 正标量",
+   "group": ""
+  },
+  {
+   "name": "积分器方法",
+   "default": "前向欧拉",
+   "values": "离散时间控制器中积分的计算方法 前向欧拉 (默认) | 后向欧拉 | 梯形",
+   "group": ""
+  },
+  {
+   "name": "滤波器方法",
+   "default": "前向欧拉",
+   "values": "离散时间控制器中导数的计算方法 前向欧拉 (默认) | 后向欧拉 | 梯形",
+   "group": ""
+  },
+  {
+   "name": "源",
+   "default": "内部",
+   "values": "控制器增益和滤波器系数的信源 内部 (默认) | 外部",
+   "group": "常设"
+  },
+  {
+   "name": "比例(P)",
+   "default": "1",
+   "values": "比例增益 1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "积分(I)",
+   "default": "1",
+   "values": "积分增益 1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "积分 (I*Ts)",
+   "default": "1",
+   "values": "积分增益乘以采样时间 1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "使用 I*Ts",
+   "default": "off",
+   "values": "使用积分增益乘以采样时间 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "导数(D)",
+   "default": "0",
+   "values": "导数增益 0 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "使用来自外部的导数",
+   "default": "off",
+   "values": "指定在模块输入端口上的导数 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "使用滤波导数",
+   "default": "on",
+   "values": "将滤波器应用于导数项 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "滤波器系数(N)",
+   "default": "100",
+   "values": "导数滤波器系数 100 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "设定点权重(b)",
+   "default": "1",
+   "values": "比例设定点权重 1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "设定点权重(c)",
+   "default": "1",
+   "values": "导数设定点权重 1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "选择调节方法",
+   "default": "调节器)",
+   "values": "用来自动调整控制器系数的工具 基于传递函数(PID 调节器) (默认) | 基于频率响应",
+   "group": "常设"
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "在重置时以及在进入或退出饱和状态时检测过零点 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "积分器",
+   "default": "0",
+   "values": "积分器初始条件 0 (默认) | 标量 | 向量",
+   "group": "初始化"
+  },
+  {
+   "name": "滤波器",
+   "default": "0",
+   "values": "滤波器初始条件 0 (默认) | 标量 | 向量",
+   "group": "初始化"
+  },
+  {
+   "name": "微分器",
+   "default": "0",
+   "values": "未滤波的导数的初始条件 0 (默认) | 标量 | 向量",
+   "group": "初始化"
+  },
+  {
+   "name": "初始条件设置",
+   "default": "自动",
+   "values": "应用初始条件的位置 自动 (默认) | 输出",
+   "group": "初始化"
+  },
+  {
+   "name": "外部重置",
+   "default": "无",
+   "values": "用于重置积分器和滤波器值的触发器 无 (默认) | 上升沿 | 下降沿 | 任一沿 | 电平",
+   "group": "初始化"
+  },
+  {
+   "name": "线性化时忽略重置",
+   "default": "off",
+   "values": "强制线性化以忽略重置 off (默认) | on",
+   "group": "初始化"
+  },
+  {
+   "name": "启用跟踪模式",
+   "default": "off",
+   "values": "激活信号跟踪 off (默认) | on",
+   "group": "初始化"
+  },
+  {
+   "name": "跟踪系数(Kt)",
+   "default": "1",
+   "values": "信号跟踪反馈环的增益 1 (默认) | 标量",
+   "group": "初始化"
+  },
+  {
+   "name": "限制输出",
+   "default": "off",
+   "values": "将模块输出限制为指定的饱和值 off (默认) | on",
+   "group": "饱和"
+  },
+  {
+   "name": "上限",
+   "default": "Inf",
+   "values": "模块输出的饱和上限 Inf (默认) | 标量",
+   "group": "饱和"
+  },
+  {
+   "name": "下限",
+   "default": "-Inf",
+   "values": "模块输出的饱和下限 -Inf (默认) | 标量",
+   "group": "饱和"
+  },
+  {
+   "name": "线性化时忽略饱和界限",
+   "default": "off",
+   "values": "强制线性化以忽略输出限制 off (默认) | on",
+   "group": "饱和"
+  },
+  {
+   "name": "抗积分饱和方法",
+   "default": "无",
+   "values": "积分器抗积分饱和方法 无 (默认) | 反算 | 钳位 | 外部",
+   "group": "饱和"
+  },
+  {
+   "name": "反算系数(Kb)",
+   "default": "1",
+   "values": "抗积分饱和反馈环的增益系数 1 (默认) | 标量",
+   "group": "饱和"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "状态名称(例如，’position’)",
+   "default": "’’",
+   "values": "连续时间滤波器和积分器状态的名称 ’’ (默认) | 字符向量",
+   "group": "状态属性"
+  },
+  {
+   "name": "状态名称",
+   "default": "空字符串",
+   "values": "离散时间滤波器和积分器状态的名称 空字符串 (默认) | 字符串 | 字符向量",
+   "group": "状态属性"
+  },
+  {
+   "name": "状态名称必须解析为 Simulink 信号对象",
+   "default": "off",
+   "values": "要求将状态名称解析为信号对象 off (默认) | on",
+   "group": "状态属性"
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "key": "6-Phase VSD Transform",
+ "title": "6-Phase VSD Transform",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/b_6_Phase_VSD_Transform.md",
+  "Motor Control Blockset/Controls/Math Transforms/b_6_Phase_VSD_Transform.md"
+ ],
+ "text": "对六相输入计算基于矢量空间分解 (VSD) 的变换，输入 2 路、输出 1 路；{Power invariant} 启用功率不变变换、{Motor type} 指定六相 PMSM 的类型 Asymmetric，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "a 1 b 1 c 1",
+   "direction": "input",
+   "summary": "第一组三相输入 scalar"
+  },
+  {
+   "name": "a 2 b 2 c 2",
+   "direction": "input",
+   "summary": "第二组三相输入 scalar"
+  },
+  {
+   "name": "αβxyz + z -",
+   "direction": "output",
+   "summary": "三个不同子空间中的六轴分量 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power invariant",
+   "default": "off",
+   "values": "启用功率不变变换的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Motor type",
+   "default": "offset)",
+   "values": "六相 PMSM 的类型 Asymmetric (30 degree offset) (default) | Symmetric (60 degree offset)",
+   "group": ""
+  }
+ ]
+}

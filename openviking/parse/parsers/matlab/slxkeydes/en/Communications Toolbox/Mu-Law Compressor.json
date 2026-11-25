@@ -1,0 +1,13 @@
+{
+ "key": "Mu-Law Compressor",
+ "title": "Mu-Law Compressor",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Mu_Law_Compressor.md"
+ ],
+ "text": "Implement µ-law compressor for source coding.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

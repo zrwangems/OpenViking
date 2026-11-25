@@ -1,0 +1,13 @@
+{
+ "key": "Controlled Heat Flow Rate Source",
+ "title": "Controlled Heat Flow Rate Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Sources/Controlled_Heat_Flow_Rate_Source.md"
+ ],
+ "text": "Variable source of thermal energy, characterized by heat flow.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

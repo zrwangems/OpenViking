@@ -16,6 +16,7 @@ recursive-include openviking *.yaml
 recursive-include openviking/server/account_stores/sql *.sql
 recursive-include openviking/scheduling/expiry *.lua
 recursive-include openviking/parse/parsers/code/ast *.json
+recursive-include openviking/parse/parsers/matlab/slxkeydes *.json
 recursive-include openviking_gateway *.json
 
 # sdist should be source-only: never ship runtime binaries from working tree

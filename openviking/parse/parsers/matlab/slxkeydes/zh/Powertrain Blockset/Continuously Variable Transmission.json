@@ -1,0 +1,204 @@
+{
+ "key": "Continuously Variable Transmission",
+ "title": "Continuously Variable Transmission",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Transmission Systems/Continuously_Variable_Transmission.md"
+ ],
+ "text": "具有独立半径控制的推带式无级变速器；输出 3 路；{Control mode} 指定外部或内部 Ideal integrated、{Maximum variator primary pulley radius, rp_max} 指定半径 .08、{Maximum variator secondary pulley radius, rs_max} 指定半径 .07、{Minimum variator primary pulley radius, rp_min} 指定半径 .03、{Minimum variator secondary pulley radius, rs_min} 指定半径 .03、{Gap distance between variator pulleys, rgap} 指定冠状齿轮连接 .025、{Variator wedge angle, thetawedge} 指定冠状齿轮连接、{Primary pulley inertia, J_pri} 指定惯性、{Secondary pulley inertia, J_sec} 指定惯性、{Primary pulley damping coefficient, b_pri} 指定阻尼、{Secondary pulley damping coefficient, b_sec} 指定阻尼、{Belt damping coefficient, b_b} 指定阻尼、{Static friction coefficient, mu_static} 指定摩擦、{Kinetic friction coefficient, mu_kin} 指定摩擦、{Belt mass, m_b} 指定质量、{Pulley clamp force, F_ax} 指定带轮夹紧力、{Forward inertia, J_fwd} 指定惯性、{Reverse inertia, J_rev} 指定惯性、{Forward efficiency, eta_fwd} 指定效率、{Reverse efficiency, eta_rev} 指定效率、{Reverse gear ratio, N_rev} 指定比值、{Shift time constant, tau_s} 指定常量 .01、{Output gear ratio, N_o} 指定比值、{Output gear efficiency, eta_o} 指定效率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Dir",
+   "direction": "",
+   "summary": "方向请求 scalar"
+  },
+  {
+   "name": "PllyRatioReq",
+   "direction": "",
+   "summary": "带轮传动比请求 scalar"
+  },
+  {
+   "name": "PriDisp",
+   "direction": "",
+   "summary": "主带轮位移 scalar"
+  },
+  {
+   "name": "SecDisp",
+   "direction": "",
+   "summary": "从带轮位移 scalar"
+  },
+  {
+   "name": "EngTrq",
+   "direction": "",
+   "summary": "输入驱动轴扭矩 scalar"
+  },
+  {
+   "name": "DiffTrq",
+   "direction": "",
+   "summary": "输出驱动轴扭矩 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "output",
+   "summary": "输入驱动轴速度 scalar"
+  },
+  {
+   "name": "DiffSpd",
+   "direction": "output",
+   "summary": "输出驱动轴速度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control mode",
+   "default": "controller",
+   "values": "外部或内部 Ideal integrated controller (default) | External control",
+   "group": ""
+  },
+  {
+   "name": "Maximum variator primary pulley radius, rp_max",
+   "default": ".08",
+   "values": "半径 .08 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum variator secondary pulley radius, rs_max",
+   "default": ".07",
+   "values": "半径 .07 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum variator primary pulley radius, rp_min",
+   "default": ".03",
+   "values": "半径 .03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum variator secondary pulley radius, rs_min",
+   "default": ".03",
+   "values": "半径 .03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gap distance between variator pulleys, rgap",
+   "default": ".025",
+   "values": "指定冠状齿轮连接 .025 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Variator wedge angle, thetawedge",
+   "default": "11",
+   "values": "指定冠状齿轮连接 11 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Primary pulley inertia, J_pri",
+   "default": "0.1",
+   "values": "惯性 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Secondary pulley inertia, J_sec",
+   "default": "0.1",
+   "values": "惯性 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Primary pulley damping coefficient, b_pri",
+   "default": "0.001",
+   "values": "阻尼 0.001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Secondary pulley damping coefficient, b_sec",
+   "default": "0.001",
+   "values": "阻尼 0.001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Belt damping coefficient, b_b",
+   "default": "0.0025",
+   "values": "阻尼 0.0025 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static friction coefficient, mu_static",
+   "default": "0.3",
+   "values": "摩擦 0.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Kinetic friction coefficient, mu_kin",
+   "default": "0.2",
+   "values": "摩擦 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Belt mass, m_b",
+   "default": "3",
+   "values": "质量 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pulley clamp force, F_ax",
+   "default": "5000",
+   "values": "带轮夹紧力 5000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Forward inertia, J_fwd",
+   "default": "0.1",
+   "values": "惯性 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reverse inertia, J_rev",
+   "default": "0.1",
+   "values": "惯性 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Forward efficiency, eta_fwd",
+   "default": "0.95",
+   "values": "效率 0.95 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reverse efficiency, eta_rev",
+   "default": "0.95",
+   "values": "效率 0.95 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reverse gear ratio, N_rev",
+   "default": "2",
+   "values": "比值 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Shift time constant, tau_s",
+   "default": ".01",
+   "values": "常量 .01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output gear ratio, N_o",
+   "default": "2",
+   "values": "比值 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output gear efficiency, eta_o",
+   "default": "0.98",
+   "values": "效率 0.98 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

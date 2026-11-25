@@ -1,0 +1,13 @@
+{
+ "key": "Vehicle Body",
+ "title": "Vehicle Body",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Vehicle_Body.md"
+ ],
+ "text": "Vehicle body with two axles in longitudinal motion。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

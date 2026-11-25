@@ -1,0 +1,89 @@
+{
+ "key": "Deep Learning Object Detector",
+ "title": "Deep Learning Object Detector",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Deep_Learning_Object_Detector.md"
+ ],
+ "text": "使用经过训练的深度学习目标检测器检测目标，输入 1 路、输出 3 路；{检测器}、{文件路径} 指定包含检测器对象的 MAT、{MATLAB 函数}、{感兴趣区域}、{检测阈值}、{最强区域的数量} 指定最强区域提议的最大数量、{最大区域大小}、{最小区域大小}、{最大检测次数}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "图像数据 数组"
+  },
+  {
+   "name": "Bboxes",
+   "direction": "output",
+   "summary": "检测到的目标的位置 矩阵"
+  },
+  {
+   "name": "Labels",
+   "direction": "output",
+   "summary": "边界框的标签 向量"
+  },
+  {
+   "name": "Scores",
+   "direction": "output",
+   "summary": "检测分数 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "检测器",
+   "default": "文件的检测器",
+   "values": "经过训练的检测器对象的源 来自 MAT 文件的检测器 (默认) | 来自 MATLAB 函数的检测器",
+   "group": ""
+  },
+  {
+   "name": "文件路径",
+   "default": "untitled.mat",
+   "values": "包含检测器对象的 MAT 文件 untitled.mat (默认) | MAT 文件名",
+   "group": ""
+  },
+  {
+   "name": "MATLAB 函数",
+   "default": "untitled",
+   "values": "MATLAB 函数名称 untitled (默认) | MATLAB 函数名称",
+   "group": ""
+  },
+  {
+   "name": "感兴趣区域",
+   "default": "",
+   "values": "搜索感兴趣区域 [ x y width height ] 形式的向量",
+   "group": ""
+  },
+  {
+   "name": "检测阈值",
+   "default": "",
+   "values": "检测阈值 [0, 1] 范围内的标量",
+   "group": ""
+  },
+  {
+   "name": "最强区域的数量",
+   "default": "2000",
+   "values": "最强区域提议的最大数量 2000 (默认) | 正整数",
+   "group": ""
+  },
+  {
+   "name": "最大区域大小",
+   "default": "",
+   "values": "最大区域大小 [ height width ] 形式的向量",
+   "group": ""
+  },
+  {
+   "name": "最小区域大小",
+   "default": "",
+   "values": "最小区域大小 [ height width ] 形式的向量",
+   "group": ""
+  },
+  {
+   "name": "最大检测次数",
+   "default": "500",
+   "values": "最大检测次数 500 (默认) | 正整数",
+   "group": ""
+  }
+ ]
+}

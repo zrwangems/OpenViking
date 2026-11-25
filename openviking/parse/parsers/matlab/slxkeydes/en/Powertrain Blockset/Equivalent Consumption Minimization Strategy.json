@@ -1,0 +1,317 @@
+{
+ "key": "Equivalent Consumption Minimization Strategy",
+ "title": "Equivalent Consumption Minimization Strategy",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Supervisory Controllers/Equivalent_Consumption_Minimization_Strategy.md"
+ ],
+ "text": "Energy management controller for P0–P4 hybrid electric vehicles, 7 inputs, 3 outputs, {Motor location} sets Location of motor; {ECMS method}, {Differential gear ratio, N_diff}, {Differential efficiency factor, eta_diff}, {Loaded wheel radius, Re}, {Transmission efficiency factors}, {Transmission gear number vector, G_trans} sets the transmission gear number, {Transmission gear ratio vector, N_trans} sets the transmission gear ratio, {Transmission efficiency vector, eta_trans} sets the transmission efficiency, {Transmission efficiency torque breakpoints, Trq_trans_bpts} sets the transmission efficiency torque breakpoints, {Transmission efficiency speed breakpoints, omega_trans_bpts} sets the transmission efficiency speed breakpoints, {Transmission efficiency temperature breakpoints, Temp_trans_bpts} sets the transmission efficiency temperature breakpoints, {Transmission efficiency vector, eta_trans_tbl} sets the transmission efficiency vector array, {Speed breakpoints, f_tbrake_n_bpt} sets the speed breakpoints, {Commanded torque breakpoints, f_tbrake_t_bpt} sets the commanded torque breakpoints, {Brake torque map, f_tbrake} sets the brake torque map array, {Minimum engine torque command table, f_tbrake_min} sets the minimum engine torque command, {Fuel flow map, f_fuel} sets the fuel flow map array, {Minimum engine torque command, HEVEngTrq_min}, {Fuel lower heating value, LHV}, {Engine idle speed, N_idle}, {Battery state-of-charge breakpoints, SOC_bpt} sets the battery state-of-charge breakpoints, {Battery charge limit table, ChrgLmt} sets the battery charge limit table, {Battery discharge limit table, DischrgLmt} sets the battery discharge limit table, {Maximum battery current, BattCurrMax}, {DC/DC converter efficiency, eta_dcdc}, {Maximum battery charge power, BattChrgPwrMax}, {Maximum battery discharge power, BattDischrgPwrMax}, {Motor maximum torque table, f_tmtr_max} sets the motor maximum torque, {Motor speed breakpoints, f_mtr_w_bpt} sets the motor speed breakpoints vector, {Motor torque breakpoints, f_mtr_t_bpt} sets the motor torque breakpoints vector, {Motor efficiency map, f_mtr_eta} sets the motor efficiency map array, {Number of motor torque calculation points, Ngrid}, {P0 belt ratio, N_P0}, {ECMS weighting factor, ECMS_s}, {Penalty factor power, a}, {Adaptive ECMS proportional gain, ECMS_Kp}, {Adaptive ECMS integral gain, ECMS_Ki}, {Constraint penalty factor, PenaltyFctr}, {Target battery state-of-charge, SOCTrgt}, {Minimum battery state-of-charge, SOCmin} and {Maximum battery state-of-charge, SOCmax}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WhlTrqCmd",
+   "direction": "input",
+   "summary": "Wheel torque command scalar"
+  },
+  {
+   "name": "BattSoc",
+   "direction": "input",
+   "summary": "Battery state of charge scalar"
+  },
+  {
+   "name": "BattVolt",
+   "direction": "input",
+   "summary": "Battery voltage scalar"
+  },
+  {
+   "name": "Gear",
+   "direction": "input",
+   "summary": "Transmission gear scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "input",
+   "summary": "Motor speed scalar"
+  },
+  {
+   "name": "VehSpd",
+   "direction": "input",
+   "summary": "Vehicle speed scalar"
+  },
+  {
+   "name": "TransTemp",
+   "direction": "input",
+   "summary": "Transmission temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Block data bus"
+  },
+  {
+   "name": "EngTrqCmd",
+   "direction": "output",
+   "summary": "Engine torque command scalar"
+  },
+  {
+   "name": "MtrTrqCmd",
+   "direction": "output",
+   "summary": "Motor torque command scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Motor location",
+   "default": "P0",
+   "values": "Location of motor P0 (default) | P1 | P2 | P3 | P4",
+   "group": ""
+  },
+  {
+   "name": "ECMS method",
+   "default": "Non-adaptive",
+   "values": "ECMS method Non-adaptive (default) | Adaptive",
+   "group": ""
+  },
+  {
+   "name": "Differential gear ratio, N_diff",
+   "default": "3.32",
+   "values": "Differential gear ratio 3.32 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Differential efficiency factor, eta_diff",
+   "default": "0.98",
+   "values": "Differential efficiency factor 0.98 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Loaded wheel radius, Re",
+   "default": "0.327",
+   "values": "Loaded wheel radius 0.327 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency factors",
+   "default": "temperature",
+   "values": "Transmission efficiency factors Gear, input torque, input speed, and temperature (default) | Gear only",
+   "group": ""
+  },
+  {
+   "name": "Transmission gear number vector, G_trans",
+   "default": "6]",
+   "values": "Transmission gear number vector [0 1 2 3 4 5 6] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission gear ratio vector, N_trans",
+   "default": "0.772]",
+   "values": "Transmission gear ratio vector [1 4.212 2.637 1.8 1.386 1 0.772] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency vector, eta_trans",
+   "default": "1]",
+   "values": "Transmission efficiency vector [1 1 1 1 1 1 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency torque breakpoints, Trq_trans_bpts",
+   "default": "250]",
+   "values": "Transmission efficiency torque breakpoints [25 50 75 100 150 200 250] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency speed breakpoints, omega_trans_bpts",
+   "default": "5003.83141080919]",
+   "values": "Transmission efficiency speed breakpoints [500.383141080919 749.619781962827 1002.676141478941 1250.957852702297 1499.239563925654 1747.521275149011 1995.802986372368 2501.915705404595 2998.479127851308 4001.155269330249 5003.83141080919] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency temperature breakpoints, Temp_trans_bpts",
+   "default": "358]",
+   "values": "Transmission efficiency temperature breakpoints [313 358] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Transmission efficiency vector, eta_trans_tbl",
+   "default": "",
+   "values": "Transmission efficiency vector array",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints, f_tbrake_n_bpt",
+   "default": "5000]",
+   "values": "Speed breakpoints [0 750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857 2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Commanded torque breakpoints, f_tbrake_t_bpt",
+   "default": "175]",
+   "values": "Commanded torque breakpoints [0 15 26.4285714285714 37.8571428571429 49.2857142857143 60.7142857142857 72.1428571428571 83.5714285714286 95 106.428571428571 117.857142857143 129.285714285714 140.714285714286 152.142857142857 163.571428571429 175] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Brake torque map, f_tbrake",
+   "default": "",
+   "values": "Brake torque map array",
+   "group": ""
+  },
+  {
+   "name": "Minimum engine torque command table, f_tbrake_min",
+   "default": "",
+   "values": "Minimum engine torque command table vector",
+   "group": ""
+  },
+  {
+   "name": "Fuel flow map, f_fuel",
+   "default": "",
+   "values": "Fuel flow map array",
+   "group": ""
+  },
+  {
+   "name": "Minimum engine torque command, HEVEngTrq_min",
+   "default": "16.18610438796213",
+   "values": "Minimum engine torque command 16.18610438796213 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fuel lower heating value, LHV",
+   "default": "46000000",
+   "values": "Fuel lower heating value 46000000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Engine idle speed, N_idle",
+   "default": "750",
+   "values": "Engine idle speed 750 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Battery state-of-charge breakpoints, SOC_bpt",
+   "default": "1]",
+   "values": "Battery state-of-charge breakpoints [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Battery charge limit table, ChrgLmt",
+   "default": "0]",
+   "values": "Battery charge limit table [1 1 1 1 1 1 1 0.9 0.7 0.5 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Battery discharge limit table, DischrgLmt",
+   "default": "1]",
+   "values": "Battery discharge limit table [0 0.5 0.7 0.9 1 1 1 1 1 1 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum battery current, BattCurrMax",
+   "default": "150",
+   "values": "Maximum battery current 150 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "DC/DC converter efficiency, eta_dcdc",
+   "default": "1",
+   "values": "DC/DC converter efficiency 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum battery charge power, BattChrgPwrMax",
+   "default": "-30000",
+   "values": "Maximum battery charge power -30000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum battery discharge power, BattDischrgPwrMax",
+   "default": "46000",
+   "values": "Maximum battery discharge power 46000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Motor maximum torque table, f_tmtr_max",
+   "default": "",
+   "values": "Motor maximum torque table vector",
+   "group": ""
+  },
+  {
+   "name": "Motor speed breakpoints, f_mtr_w_bpt",
+   "default": "",
+   "values": "Motor speed breakpoints vector",
+   "group": ""
+  },
+  {
+   "name": "Motor torque breakpoints, f_mtr_t_bpt",
+   "default": "",
+   "values": "Motor torque breakpoints vector",
+   "group": ""
+  },
+  {
+   "name": "Motor efficiency map, f_mtr_eta",
+   "default": "",
+   "values": "Motor efficiency map array",
+   "group": ""
+  },
+  {
+   "name": "Number of motor torque calculation points, Ngrid",
+   "default": "200",
+   "values": "Number of motor torque calculation points 200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "P0 belt ratio, N_P0",
+   "default": "3",
+   "values": "P0 belt ratio 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "ECMS weighting factor, ECMS_s",
+   "default": "3.385",
+   "values": "ECMS weighting factor 3.385 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Penalty factor power, a",
+   "default": "3",
+   "values": "Penalty factor power 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Adaptive ECMS proportional gain, ECMS_Kp",
+   "default": "0",
+   "values": "Adaptive ECMS proportional gain 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Adaptive ECMS integral gain, ECMS_Ki",
+   "default": "0",
+   "values": "Adaptive ECMS integral gain 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Constraint penalty factor, PenaltyFctr",
+   "default": "10000000",
+   "values": "Constraint penalty factor 10000000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Target battery state-of-charge, SOCTrgt",
+   "default": "60",
+   "values": "Target battery state-of-charge 60 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum battery state-of-charge, SOCmin",
+   "default": "40",
+   "values": "Minimum battery state-of-charge 40 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum battery state-of-charge, SOCmax",
+   "default": "80",
+   "values": "Maximum battery state-of-charge 80 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

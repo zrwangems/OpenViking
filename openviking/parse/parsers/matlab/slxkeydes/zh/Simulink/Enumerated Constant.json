@@ -1,0 +1,45 @@
+{
+ "key": "Enumerated Constant",
+ "title": "Enumerated Constant",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Enumerated_Constant.md",
+  "HDL Coder/Sources/Enumerated_Constant.md"
+ ],
+ "text": "生成枚举常量值；输出 1 路；按 {采样时间} 指定采样时间；{输出数据类型}、{模式} 指定要指定的数据的类别、{值}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "枚举常量 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出数据类型",
+   "default": "SlDemoSign",
+   "values": "输出数据类型 Enum: SlDemoSign (默认) | Enum:<ClassName>",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "枚举",
+   "values": "要指定的数据的类别 枚举 (默认)",
+   "group": ""
+  },
+  {
+   "name": "值",
+   "default": "SlDemoSign.Positive",
+   "values": "枚举值 SlDemoSign.Positive (默认) | Enum:<ClassName.Value>",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "inf",
+   "values": "采样时间 inf (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

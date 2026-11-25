@@ -1,0 +1,31 @@
+{
+ "key": "ToImage",
+ "title": "To Simulink Image",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Utilities/To_Simulink_Image.md"
+ ],
+ "text": "将数值矩阵打包为 Simulink 图像，输入 1 路、输出 1 路、直接馈通；{Output data type} 输出信号值的数据类型 Inherit，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 Simulink.ImageType"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "输出信号值的数据类型 Inherit: auto (default) | Simulink.ImageType(480,640,3)",
+   "group": ""
+  }
+ ]
+}

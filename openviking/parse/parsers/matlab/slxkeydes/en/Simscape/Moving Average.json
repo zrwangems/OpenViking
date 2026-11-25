@@ -1,0 +1,49 @@
+{
+ "key": "Moving Average",
+ "title": "Moving Average",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Moving_Average.md"
+ ],
+ "text": "Moving average-value computation, 1 input, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Fundamental frequency (Hz)} sets the signal fundamental frequency, {Initial value} sets the initial input signal value and {Buffer size} sets the size of buffer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Moving average input scalar | vector"
+  },
+  {
+   "name": "Mean",
+   "direction": "output",
+   "summary": "Moving average output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Fundamental frequency (Hz)",
+   "default": "60",
+   "values": "Signal fundamental frequency 60 (default) | positive scalar | vector with positive values",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "Initial input signal value 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "8192",
+   "values": "Size of buffer 8192 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

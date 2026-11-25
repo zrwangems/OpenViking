@@ -1,0 +1,108 @@
+{
+ "key": "DACDCMeasurement",
+ "title": "DAC DC Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Measurements & Testbenches/DAC_DC_Measurement.md"
+ ],
+ "text": "Measure DC performance metrics of DAC output, 3 inputs; {Input polarity} sets the polarity of input signal, {Reference (V)} sets the reference voltage, {Bias (V)} sets the bias voltage added to output, {Settling time (s)} sets the time required for output, {Hold off time (s)} sets the delay before measurement, {Number of bits}, {Start conversion frequency (Hz)} sets the frequency of internal start conversion clock, {Recommended simulation stop time (s)} sets the minimum time simulation must run for meaningful, {Endpoint} sets the measure DNL, INL using endpoint method, {Best fit} sets the measure DNL, INL using best fit method, {Output result to base workspace} sets the store detailed test results to base, {Workspace variable name} sets the name of the variable that stores detailed test results and {Plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "Digital input signal from DAC scalar"
+  },
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "Converted analog signal from DAC scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "External clock to start conversion scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input polarity",
+   "default": "Bipolar",
+   "values": "Polarity of input signal to DAC Bipolar (default) | Unipolar",
+   "group": ""
+  },
+  {
+   "name": "Reference (V)",
+   "default": "2",
+   "values": "Reference voltage 2 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias (V)",
+   "default": "0",
+   "values": "Bias voltage added to output 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time (s)",
+   "default": "3e-7",
+   "values": "Time required for output to settle 3e-7 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "1e-3",
+   "values": "Delay before measurement analysis 1e-3 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bits",
+   "default": "10",
+   "values": "Number of bits in input word 10 (default) | positive real integer",
+   "group": ""
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "1e6",
+   "values": "Frequency of internal start conversion clock 1e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Recommended simulation stop time (s)",
+   "default": "0.02148",
+   "values": "Minimum time simulation must run for meaningful result 0.02148 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Endpoint",
+   "default": "on",
+   "values": "Measure DNL, INL using endpoint method on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Best fit",
+   "default": "on",
+   "values": "Measure DNL, INL using best fit method on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output result to base workspace",
+   "default": "off",
+   "values": "Store detailed test results to base workspace off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "dac_dc_out",
+   "values": "Name of the variable that stores detailed test results dac_dc_out (default) | character string",
+   "group": ""
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Plot measurement results button",
+   "group": ""
+  }
+ ]
+}

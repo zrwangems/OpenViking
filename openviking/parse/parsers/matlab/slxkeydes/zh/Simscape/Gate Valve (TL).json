@@ -1,0 +1,13 @@
+{
+ "key": "Gate Valve (TL)",
+ "title": "Gate Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Flow Control Valves/Gate_Valve_TL.md"
+ ],
+ "text": "热液体系统中的闸阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

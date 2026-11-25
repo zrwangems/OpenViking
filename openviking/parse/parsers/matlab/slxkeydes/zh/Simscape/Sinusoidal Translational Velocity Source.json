@@ -1,0 +1,13 @@
+{
+ "key": "Sinusoidal Translational Velocity Source",
+ "title": "Sinusoidal Translational Velocity Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Sinusoidal_Translational_Velocity_Source.md"
+ ],
+ "text": "产生正弦平移速度。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

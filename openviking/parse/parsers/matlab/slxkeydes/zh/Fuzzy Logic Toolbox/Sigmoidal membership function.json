@@ -1,0 +1,37 @@
+{
+ "key": "Sigmoidal membership function",
+ "title": "Sigmoidal MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Sigmoidal_MF.md"
+ ],
+ "text": "Sigmoidal 隶属度函数，输入 1 路、输出 1 路；{a} 指定过渡区域形状参数、{c} 指定过渡区域中心，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入值 scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "隶属度值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "a",
+   "default": "1",
+   "values": "过渡区域形状参数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "c",
+   "default": "0",
+   "values": "过渡区域中心 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

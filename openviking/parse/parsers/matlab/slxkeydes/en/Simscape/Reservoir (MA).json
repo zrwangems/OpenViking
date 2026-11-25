@@ -1,0 +1,13 @@
+{
+ "key": "Reservoir (MA)",
+ "title": "Reservoir (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Reservoir_MA.md"
+ ],
+ "text": "Boundary conditions for moist air network at constant pressure, temperature, moisture, and trace gas levels.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,49 @@
+{
+ "key": "Moving Average",
+ "title": "Moving Average",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Moving_Average.md"
+ ],
+ "text": "移动平均值计算，输入 1 路、输出 1 路；按 {Fundamental frequency (Hz)} 指定信号基频；{Initial value} 指定输入信号初始值、{Buffer size} 指定缓冲区大小、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "移动平均输入 scalar | vector"
+  },
+  {
+   "name": "Mean",
+   "direction": "output",
+   "summary": "移动平均输出 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Fundamental frequency (Hz)",
+   "default": "60",
+   "values": "信号基频 60 (default) | positive scalar | vector with positive values",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "输入信号初始值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "8192",
+   "values": "缓冲区大小 8192 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

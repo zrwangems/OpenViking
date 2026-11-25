@@ -1,0 +1,43 @@
+{
+ "key": "CREPE Preprocess",
+ "title": "CREPE Preprocess",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/CREPE_Preprocess.md"
+ ],
+ "text": "Preprocess audio for CREPE deep pitch estimation, 1 input, 1 output, no direct feedthrough; {Sample rate of input signal (Hz)} sets the sample rate of input signal, {Overlap percentage (%)} sets the overlap percentage between consecutive and {Number of output frames} sets the number of generated frames. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Audio input vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Preprocessed audio frames 4-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "16e3",
+   "values": "Sample rate of input signal in Hz 16e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "85",
+   "values": "Overlap percentage between consecutive frames 85 (default) | [0, 100)",
+   "group": ""
+  },
+  {
+   "name": "Number of output frames",
+   "default": "1",
+   "values": "Number of generated frames 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

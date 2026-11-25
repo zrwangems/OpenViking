@@ -1,0 +1,13 @@
+{
+ "key": "Cross Correlator",
+ "title": "Cross Correlator",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Sinks/Cross_Correlator.md"
+ ],
+ "text": "This block when hooked to the outputs of a system displays the cross correlation of the buffer in the graph window.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

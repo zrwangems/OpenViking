@@ -1,0 +1,13 @@
+{
+ "key": "Comparator",
+ "title": "Comparator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Comparator.md"
+ ],
+ "text": "比较器集成电路的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,102 @@
+{
+ "key": "Cumulative Product",
+ "title": "Cumulative Product",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Math Operations/Cumulative_Product.md"
+ ],
+ "text": "通道、列或行元素的累积乘积，输入 2 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Multiply input along} 指定 Dimension to multiply input along Channels、{Input processing} 指定输入处理 Columns as channels、{Reset port} 指定 Reset type、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Intermediate product}、{Product output}、{Accumulator}、{Output} 输出、{Output Minimum} 指定 Minimum、{Output Maximum} 指定 Maximum、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "复位端口 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "累积乘积 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Multiply input along",
+   "default": "product)",
+   "values": "Dimension to multiply input along Channels (running product) (default) | Columns | Rows",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "输入处理 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset type None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Intermediate product",
+   "default": "input",
+   "values": "Intermediate product Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "Accumulator Inherit: Same as input (default) | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出 Inherit: Same as input (default) | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Minimum [] (default)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Maximum [] (default)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

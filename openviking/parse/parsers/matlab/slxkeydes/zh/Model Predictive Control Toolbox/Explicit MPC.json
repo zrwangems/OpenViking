@@ -1,0 +1,131 @@
+{
+ "key": "Explicit MPC",
+ "title": "Explicit MPC Controller",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Explicit_MPC_Controller.md"
+ ],
+ "text": "显式模型预测控制器，输入 6 路、输出 4 路；按 {Block data type} 指定操纵变量的数据类型；{Explicit MPC Controller} 指定 Explicit 控制器对象 explicitMPC object、{Initial Controller State} 指定初始状态 mpcstate object name、{Measured disturbance} 添加可测扰动输入端口、{External manipulated variable} 添加外部操纵变量输入端口、{Status of piecewise affine function evaluation} 添加评估状态输出端口、{Region number of evaluated piecewise affine function} 添加区域编号输出端口、{Estimated controller states} 添加估计状态输出端口、{Use custom state estimation instead of using the built-in Kalman filter} 使用自定义状态估计输入端口、{Inherit sample time} 指定从父子系统继承模块采样时间、{Use external signal to enable controller evaluation} 添加 switch-off 输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mo",
+   "direction": "input",
+   "summary": "测量输出 vector"
+  },
+  {
+   "name": "x[k|k]",
+   "direction": "input",
+   "summary": "自定义状态估计 vector"
+  },
+  {
+   "name": "ref",
+   "direction": "input",
+   "summary": "模型引用输出 vector"
+  },
+  {
+   "name": "md",
+   "direction": "input",
+   "summary": "可测扰动 vector"
+  },
+  {
+   "name": "ext.mv",
+   "direction": "input",
+   "summary": "上一控制区间内用于被控对象的控制信号 vector"
+  },
+  {
+   "name": "switch",
+   "direction": "input",
+   "summary": "禁用评估 scalar"
+  },
+  {
+   "name": "mv",
+   "direction": "output",
+   "summary": "最优操纵变量控制作用 column vector"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "分段仿射函数评估状态 1 | 0 | -1"
+  },
+  {
+   "name": "region",
+   "direction": "output",
+   "summary": "已评估分段仿射函数的区域编号 nonnegative integer"
+  },
+  {
+   "name": "est.state",
+   "direction": "output",
+   "summary": "估计的控制器状态 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Explicit MPC Controller",
+   "default": "",
+   "values": "Explicit 控制器对象 explicitMPC object name",
+   "group": ""
+  },
+  {
+   "name": "Initial Controller State",
+   "default": "",
+   "values": "初始状态 mpcstate object name",
+   "group": ""
+  },
+  {
+   "name": "Measured disturbance",
+   "default": "on",
+   "values": "添加可测扰动输入端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "External manipulated variable",
+   "default": "off",
+   "values": "添加外部操纵变量输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Status of piecewise affine function evaluation",
+   "default": "off",
+   "values": "添加评估状态输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Region number of evaluated piecewise affine function",
+   "default": "off",
+   "values": "添加区域编号输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Estimated controller states",
+   "default": "off",
+   "values": "添加估计状态输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use custom state estimation instead of using the built-in Kalman filter",
+   "default": "off",
+   "values": "使用自定义状态估计输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Block data type",
+   "default": "double",
+   "values": "指定操纵变量的数据类型 double (default) | single | data type expression",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time",
+   "default": "off",
+   "values": "从父子系统继承模块采样时间 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use external signal to enable controller evaluation",
+   "default": "off",
+   "values": "添加 switch-off 输入端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

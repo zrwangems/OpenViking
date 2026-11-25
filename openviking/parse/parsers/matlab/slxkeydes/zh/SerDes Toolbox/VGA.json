@@ -1,0 +1,38 @@
+{
+ "key": "VGA",
+ "title": "VGA",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/VGA.md",
+  "RF Blockset/Circuit Envelope/Elements/VGA.md"
+ ],
+ "text": "对可变增益放大器建模，输入 1 路、输出 1 路；{Mode} 指定 VGA 工作模式、{Gain} 用于缩放输入波形的乘性增益，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "估计的信道输出 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "On",
+   "values": "VGA 工作模式 On (default) | Off",
+   "group": ""
+  },
+  {
+   "name": "Gain",
+   "default": "1",
+   "values": "用于缩放输入波形的乘性增益 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "key": "Discrete Zero-Pole with Initial States",
+ "title": "Discrete Zero-Pole (with initial states)",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Discrete/Discrete_Zero_Pole_with_initial_states.md"
+ ],
+ "text": "指定传递函数的初始状态；按 {Gain} 指定Gain value；{Zeros} 指定 Matrix of zeros、{Poles} 指定 Vector of poles、{Sample time (-1 for inherited)} 指定 Interval between samples、{State name} 指定 Unique name for block、{State name must resolve to Simulink signal object} 指定 Require state name resolve to a signal，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Zeros",
+   "default": "[1]",
+   "values": "Matrix of zeros [1] (default) | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Poles",
+   "default": "0.5]",
+   "values": "Vector of poles [0 0.5] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Gain",
+   "default": "1",
+   "values": "Gain value 1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "",
+   "values": "Interval between samples -1 | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "State name",
+   "default": "''''''''",
+   "values": "Unique name for block state '''''''' (default) | alphanumeric string",
+   "group": "State Attributes"
+  },
+  {
+   "name": "State name must resolve to Simulink signal object",
+   "default": "off",
+   "values": "Require state name resolve to a signal object off (default) | on",
+   "group": "State Attributes"
+  }
+ ]
+}

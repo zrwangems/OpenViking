@@ -1,0 +1,77 @@
+{
+ "key": "fusion.internal.simulink.complementaryFilter",
+ "title": "Complementary Filter",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Multisensor Positioning/Navigation Filters/Complementary_Filter.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Navigation Filters/Complementary_Filter.md"
+ ],
+ "text": "Estimate orientation using complementary filter, 3 inputs, 2 outputs; {Reference frame} sets the navigation reference frame, {Orientation format} sets the orientation output format, {Accelerometer gain}, {Enable Magnetometer input} sets the accept magnetometer readings input, {Magnetometer gain} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Accel",
+   "direction": "input",
+   "summary": "Accelerometer readings in sensor body coordinate system (m/s 2 ) matrix"
+  },
+  {
+   "name": "Gyro",
+   "direction": "input",
+   "summary": "Gyroscope readings in sensor body coordinate system (rad/s) matrix"
+  },
+  {
+   "name": "Mag",
+   "direction": "input",
+   "summary": "Magnetometer readings in sensor body coordinate system (µT) matrix"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "Orientation of sensor body frame relative to navigation frame matrix | array"
+  },
+  {
+   "name": "Angular Velocity",
+   "direction": "output",
+   "summary": "Angular velocity in sensor body coordinate system (rad/s) matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference frame",
+   "default": "NED",
+   "values": "Navigation reference frame NED (default) | ENU",
+   "group": ""
+  },
+  {
+   "name": "Orientation format",
+   "default": "quaternion",
+   "values": "Orientation output format quaternion (default) | Rotation matrix",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer gain",
+   "default": "0.01",
+   "values": "Accelerometer gain 0.01 (default) | real scalar in range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Enable Magnetometer input",
+   "default": "on",
+   "values": "Accept magnetometer readings input on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Magnetometer gain",
+   "default": "0.01",
+   "values": "Magnetometer gain 0.01 (default) | real scalar in range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Type of simulation to run Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

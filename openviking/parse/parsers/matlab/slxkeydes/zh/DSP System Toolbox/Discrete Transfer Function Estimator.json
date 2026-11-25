@@ -1,0 +1,114 @@
+{
+ "key": "Discrete Transfer Function Estimator",
+ "title": "Discrete Transfer Function Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Discrete_Transfer_Function_Estimator.md"
+ ],
+ "text": "计算系统的频域传递函数估计，输入 2 路、输出 1 路；按 {Window function} 指定窗函数；{Window length source} 指定窗长度来源 Same as input frame、{Window length} 指定窗口长度、{Window overlap (%)} 指定窗口之间的重叠百分比、{Averaging method} 指定平均方法 Running、{Specify forgetting factor from input port} 指定从输入端口指定遗忘因子、{Forgetting factor} 指定遗忘因子、{Number of spectral averages} 指定频谱平均次数、{FFT length source} 指定 FFT 长度值的来源、{FFT length} 指定 FFT 长度、{Sidelobe attenuation of window (dB)} 指定窗的旁瓣衰减、{Frequency range} 指定传递函数估计的频率范围、{Output magnitude squared coherence estimate} 指定幅值平方相干估计、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "系统输入信号 vector | matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "系统输出信号 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "传递函数估计 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length source",
+   "default": "length",
+   "values": "窗长度来源 Same as input frame length (default) | Specify on dialog",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "1024",
+   "values": "窗口长度 1024 (default) | positive integer ≥ 2",
+   "group": ""
+  },
+  {
+   "name": "Window overlap (%)",
+   "default": "0",
+   "values": "窗口之间的重叠百分比 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Averaging method",
+   "default": "Running",
+   "values": "平均方法 Running (default) | Exponential",
+   "group": ""
+  },
+  {
+   "name": "Specify forgetting factor from input port",
+   "default": "off",
+   "values": "从输入端口指定遗忘因子 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.9",
+   "values": "遗忘因子 0.9 (default) | positive scalar ≤ 1",
+   "group": ""
+  },
+  {
+   "name": "Number of spectral averages",
+   "default": "1",
+   "values": "频谱平均次数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "FFT length source",
+   "default": "Auto",
+   "values": "FFT 长度值的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "128",
+   "values": "FFT 长度 128 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "窗函数 Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation of window (dB)",
+   "default": "60",
+   "values": "窗的旁瓣衰减 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency range",
+   "default": "Centered",
+   "values": "传递函数估计的频率范围 Centered (default) | One-sided | Two-sided",
+   "group": ""
+  },
+  {
+   "name": "Output magnitude squared coherence estimate",
+   "default": "off",
+   "values": "幅值平方相干估计 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

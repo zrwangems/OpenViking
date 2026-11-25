@@ -1,0 +1,31 @@
+{
+ "key": "Simulink Desktop Real-Time Task Execution Time",
+ "title": "Execution Time",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Target Profiling/Execution_Time.md"
+ ],
+ "text": "在 Run in Kernel 模式下输出总执行时间；输出 2 路；{Measure task execution times} 显示各任务的执行时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Total Exec Time",
+   "direction": "output",
+   "summary": "上一个基本速率节拍的总执行时间 double"
+  },
+  {
+   "name": "Task Exec Time",
+   "direction": "output",
+   "summary": "各采样速率的任务执行时间（可选） vector of double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measure task execution times",
+   "default": "‘off’",
+   "values": "显示各任务的执行时间 ‘off’ (default) | ‘on’",
+   "group": ""
+  }
+ ]
+}

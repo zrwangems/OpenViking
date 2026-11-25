@@ -1,0 +1,13 @@
+{
+ "key": "Fixed-Displacement Pump (2P)",
+ "title": "Fixed-Displacement Pump (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Fluid Machines/Fixed_Displacement_Pump_2P.md"
+ ],
+ "text": "机械-液压功率转换装置。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

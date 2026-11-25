@@ -1,0 +1,13 @@
+{
+ "key": "Double-Sided Synchronizer",
+ "title": "Double-Sided Synchronizer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Double_Sided_Synchronizer.md"
+ ],
+ "text": "机械式双面同步器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

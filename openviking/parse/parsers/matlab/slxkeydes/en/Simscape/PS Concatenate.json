@@ -1,0 +1,13 @@
+{
+ "key": "PS Concatenate",
+ "title": "PS Concatenate",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Concatenate.md"
+ ],
+ "text": "Concatenate two vector or matrix physical signals.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

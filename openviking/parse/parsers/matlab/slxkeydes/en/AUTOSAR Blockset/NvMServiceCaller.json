@@ -1,0 +1,38 @@
+{
+ "key": "NvMServiceCaller",
+ "title": "NvMServiceCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/NVRAM Manager (NvM)/NvMServiceCaller.md"
+ ],
+ "text": "Call AUTOSAR NVRAM Manager (NvM) service interface NvMService, {Operation} sets operation defined in NvM service interface NvMService; {Client port name} sets the name of client port AUTOSAR component uses to call NvM service interface, {Argument specification} sets the data type and dimensions for operation read or write access and {Sample time} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Client port name",
+   "default": "NvMService",
+   "values": "Name of client port AUTOSAR component uses to call NvM service interface NvMService NvMService (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "GetDataIndex",
+   "values": "Specify operation defined in NvM service interface NvMService GetDataIndex (default) | GetErrorStatus | EraseNvBlock | InvalidateNvBlock | ReadBlock | RestoreBlockDefaults | SetDataIndex | SetRamBlockStatus | WriteBlock",
+   "group": ""
+  },
+  {
+   "name": "Argument specification",
+   "default": "uint8(1)",
+   "values": "Specify data type and dimensions for operation read or write access uint8(1) (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

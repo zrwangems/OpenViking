@@ -1,0 +1,13 @@
+{
+ "key": "Brick Solid",
+ "title": "Brick Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Brick_Solid.md"
+ ],
+ "text": "具有几何形状、惯性和颜色的长方体实体单元。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

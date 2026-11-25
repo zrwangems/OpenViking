@@ -1,0 +1,639 @@
+{
+ "key": "SpectrumAnalyzer",
+ "title": "Spectrum Analyzer",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Sinks/Spectrum_Analyzer.md",
+  "Audio Toolbox/Sinks/Spectrum_Analyzer.md",
+  "DSP System Toolbox/Sinks/Spectrum_Analyzer.md",
+  "RF Blockset/Circuit Envelope/Utilities/Spectrum_Analyzer.md",
+  "Simscape/Utilities/Spectrum_Analyzer.md"
+ ],
+ "text": "Spectrum Analyzer 模块（此处称为示波器）显示频域信号以及时域信号的频谱，输入 4 路、无直接馈通；按 {Style} 指定线型；{Spectrum} 指定要显示的频谱类型、{Spectrogram} 指定要显示的频谱图类型、{Sample Rate (Hz)} 指定示波器使用的采样率 (Hz){Offset (Hz)} 指定要应用于频率轴的偏移、{Num Inputs} 指定输入端口数、{Open at Simulation Start} 指定仿真开始时自动打开示波器、{Display Precision} 指定示波器显示中数据的精度、{Y-Label} 指定 y 轴标签 character vector、{Y-Limits} 指定 y 轴范围、{Title} 显示标题 character vector、{Show Grid} 显示内部网格线、{Color Map} 指定频谱图颜色图、{Color Limits} 指定频谱图的颜色范围、{Plot Type} 指定绘图类型 Line、{Font Size} 指定标签字体大小、{Background} 指定窗口背景 black、{Axes} 指定坐标区背景颜色、{Labels} 指定标签颜色 gray、{Line} 用于线条属性设置的通道 channel names、{Visible} 指定通道可见性、{Width} 指定线宽、{Marker} 指定数据点标记、{Color} 指定线颜色 yellow、{Legend} 显示或隐藏信号图例、{Colorbar} 显示或隐藏颜色栏、{Layout} 指定垂直或水平堆叠坐标区 vertical、{Copy to Clipboard} 指定将显示发送到剪贴板、{Preserve Colors} 指定复制到剪贴板时保留颜色、{Print} 指定打印显示、{Input Domain} 指定输入信号的域、{Frequency (Hz)} 指定频率向量、{Input Unit} 指定频率输入的单位、{Estimation Method} 指定频谱估计方法 Filter、{Resolution Method} 指定频率分辨率方法、{Filter Sharpness} 指定低通滤波器的锐度、{RBW (Hz)} 以 Hz 为单位的分辨率带宽、{Window Length} 指定窗口长度、{FFT Length} 指定 FFT 长度、{Averaging Method} 指定平滑方法 VBW、{VBW (Hz)} 指定视频带宽、{Forgetting Factor} 指定加权平均法的遗忘因子、{Spectral Averages} 指定频谱平均次数、{Frequency Span} 指定频率跨度模式、{Span (Hz)} 用于计算频谱的频率跨度（Hz） 10e3、{Center Frequency (Hz)} 指定频率跨度中心（Hz）、{Start Frequency (Hz)} 指定起始频率（Hz） -5e3、{Stop Frequency (Hz)} 指定停止频率（Hz） 5e3、{Window} 指定加窗方法 Hann、{Attenuation (dB)} 指定旁瓣衰减（dB）、{Overlap (%)} 指定重叠百分比、{Channel} 指定要获取测量的通道、{Data Cursors} 启用游标测量、{Snap to data} 指定将游标吸附到数据、{Lock cursor spacing} 指定锁定游标间距、{Peak Finder} 启用峰值查找器测量、{Num Peaks} 指定要显示的最大峰值数、{Min Height} 指定示波器检测峰值所高于的电平、{Min Distance} 指定相邻峰值之间的最小采样数、{Threshold} 指定峰值高度与其相邻样本之间的最小差、{Label Peaks} 指定标记峰值、{Distortion} 启用失真测量、{Distortion Type} 指定要显示的测量类型、{Label Harmonics} 指定标记谐波、{Label Frequencies} 指定标记频率、{Phase Noise} 启用相位噪声测量、{Frequency Offsets (Hz)} 指定频率偏移（Hz）{Plot Target Phase Noise} 绘制目标相位噪声分布、{Target Phase Noise (dBc/Hz)} 指定目标相位噪声分布，单位为 dBc/Hz、{Label Phase Noise} 指定在图上标注测得相位噪声、{Two-Sided Spectrum} 启用双边频谱视图、{Normal Trace} 指定普通轨迹视图、{Max-Hold Trace} 指定最大保持轨迹视图、{Min-Hold Trace} 指定最小保持轨迹视图、{Frequency Scale} 指定频率轴刻度、{Reference load (Ω)} 指定参考负载，单位为 Ω、{Spectrum Unit} 指定频谱的单位、{Full Scale} 指定 dBFS 单位的满量程、{Channel} 绘制频谱图所针对的通道、{Time Resolution (s)} 指定时间分辨率，单位为秒、{Time Span (s)} 指定时间跨度，单位为秒、{Upper Mask} 启用上限频谱模板、{Lower Mask} 启用下限频谱模板、{Upper Limits} 指定上限频谱模板的限值、{Lower Limits} 指定下限频谱模板的限值、{Reference Level (dBr)} 指定掩模功率值的参考电平、{Channel} 指定具有峰值频谱的输入通道、{Frequency Offset (Hz)} 指定频率偏移，单位为 Hz、{Channel} 用于计算占用带宽和邻道功率比的通道、{Channel Measurements} 启用通道测量、{Type} 指定要显示的测量数据类型 Occupied、{Occupied BW (%)} 用于计算占用带宽的功率百分比 99（频率跨度，单位为 Hz 2000）{Center Frequency (Hz)} 指定跨度的中心频率，单位为 Hz、{Start Frequency (Hz)} 指定起始频率（Hz）、{Stop Frequency (Hz)} 指定停止频率（Hz）、{Num Pairs} 指定相邻通道对的数量、{Offsets (Hz)} 指定 ACPR 偏移，单位为 Hz、{Adjacent BW (Hz)} 指定相邻通道带宽，单位为 Hz、{Filter Shape} 指定滤波器形状、{Roll-off Factor} 指定滚降因子、{BT Product} 指定 BT 乘积、{Channel Names} 指定输入通道名称、{Maximize Axes} 指定最大化绘图大小、{Axes Scaling} 指定 Y 轴缩放模式、{Number of Updates} 指定缩放前的更新次数 也按实例取值；{Num Harmonics} 指定要测量的谐波数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "要可视化的信号 scalar | vector | matrix | array"
+  },
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "频率 (Hz) column vector"
+  },
+  {
+   "name": "RBW",
+   "direction": "input",
+   "summary": "RBW 值 positive scalar"
+  },
+  {
+   "name": "VBW",
+   "direction": "input",
+   "summary": "VBW 值 positive scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Spectrum",
+   "default": "Power",
+   "values": "要显示的频谱类型 Power (default) | Power Density | RMS",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Spectrogram",
+   "default": "Power",
+   "values": "要显示的频谱图类型 Power (default) | Power Density | RMS",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Sample Rate (Hz)",
+   "default": "Inherited",
+   "values": "示波器使用的采样率 (Hz) Inherited (default) | positive scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Offset (Hz)",
+   "default": "0",
+   "values": "要应用于频率轴的偏移 0 (default) | scalar | vector",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Num Inputs",
+   "default": "1",
+   "values": "输入端口数 1 (default) | integer between 1 and 96",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Open at Simulation Start",
+   "default": "on",
+   "values": "仿真开始时自动打开示波器 on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Display Precision",
+   "default": "4",
+   "values": "示波器显示中数据的精度 4 (default) | positive integer ≤ 15",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-Label",
+   "default": "",
+   "values": "y 轴标签 character vector | string scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-Limits",
+   "default": "",
+   "values": "y 轴范围 [ −80 20 ] | [ ymin ymax ]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Title",
+   "default": "",
+   "values": "显示标题 character vector | string",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Show Grid",
+   "default": "on",
+   "values": "显示内部网格线 on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Color Map",
+   "default": "jet",
+   "values": "频谱图颜色图 jet (default) | hot | bone | cool | copper | gray | parula | three-column matrix",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Color Limits",
+   "default": "]",
+   "values": "频谱图的颜色范围 [ -80 20 ] (default) | [ colorMin colorMax ]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Plot Type",
+   "default": "Line",
+   "values": "绘图类型 Line (default) | Stem",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Font Size",
+   "default": "8.5",
+   "values": "标签字体大小 8.5 (default) | positive scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Background",
+   "default": "black",
+   "values": "窗口背景 black (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Axes",
+   "default": "black",
+   "values": "坐标区背景颜色 black (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Labels",
+   "default": "gray",
+   "values": "标签颜色 gray (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Line",
+   "default": "",
+   "values": "用于线条属性设置的通道 channel names",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Visible",
+   "default": "on",
+   "values": "通道可见性 on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Style",
+   "default": "-",
+   "values": "线型 - (default) |: | -. | -- | None",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Width",
+   "default": "1.5",
+   "values": "线宽 1.5 (default) | 0.5 | 1 | 2 |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Marker",
+   "default": "None",
+   "values": "数据点标记 None (default) | + | x |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Color",
+   "default": "yellow",
+   "values": "线颜色 yellow (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Legend",
+   "default": "",
+   "values": "显示或隐藏信号图例 button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Colorbar",
+   "default": "",
+   "values": "显示或隐藏颜色栏 button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Layout",
+   "default": "layout",
+   "values": "垂直或水平堆叠坐标区 vertical layout (default) | horizontal layout",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Copy to Clipboard",
+   "default": "",
+   "values": "将显示发送到剪贴板 button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Preserve Colors",
+   "default": "off",
+   "values": "复制到剪贴板时保留颜色 off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Print",
+   "default": "",
+   "values": "打印显示 button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Input Domain",
+   "default": "Time",
+   "values": "输入信号的域 Time (default) | Frequency",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "Auto",
+   "values": "频率向量 Auto (default) | Input port | monotonically increasing vector",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Input Unit",
+   "default": "dBm",
+   "values": "频率输入的单位 dBm (default) | dBuV (since R2023b) | dBV | dBW | Vrms | Watts | None",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Estimation Method",
+   "default": "Bank",
+   "values": "频谱估计方法 Filter Bank (default) | Welch",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Resolution Method",
+   "default": "RBW",
+   "values": "频率分辨率方法 RBW (default) | Number of frequency bands | Window length",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Filter Sharpness",
+   "default": "0.5",
+   "values": "低通滤波器的锐度 0.5 (default) | nonnegative scalar in the range [0,1]",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "RBW (Hz)",
+   "default": "Auto",
+   "values": "以 Hz 为单位的分辨率带宽 Auto (default) | Input port | positive scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Window Length",
+   "default": "1024",
+   "values": "窗口长度 1024 (default) | integer greater than 2",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "FFT Length",
+   "default": "Auto",
+   "values": "FFT 长度 Auto (default) | 1024 | positive integer",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Averaging Method",
+   "default": "VBW",
+   "values": "平滑方法 VBW (default) | Exponential | Running",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "VBW (Hz)",
+   "default": "Auto",
+   "values": "视频带宽 Auto (default) | Input port | positive scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Forgetting Factor",
+   "default": "0.9",
+   "values": "加权平均法的遗忘因子 0.9 (default) | scalar in the range [0,1]",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Spectral Averages",
+   "default": "1",
+   "values": "频谱平均次数 1 (default) | positive integer",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Frequency Span",
+   "default": "Full",
+   "values": "频率跨度模式 Full (default) | Span and Center Frequency | Start and Stop Frequencies",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Span (Hz)",
+   "default": "10e3",
+   "values": "用于计算频谱的频率跨度（Hz） 10e3 (default) | real positive scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Center Frequency (Hz)",
+   "default": "0",
+   "values": "频率跨度中心（Hz） 0 (default) | real scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Start Frequency (Hz)",
+   "default": "-5e3",
+   "values": "起始频率（Hz） -5e3 (default) | scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Stop Frequency (Hz)",
+   "default": "5e3",
+   "values": "停止频率（Hz） 5e3 (default) | scalar",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Window",
+   "default": "Hann",
+   "values": "加窗方法 Hann (default) | Blackman-Harris | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular | custom window function name",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Attenuation (dB)",
+   "default": "60",
+   "values": "旁瓣衰减（dB） 60 (default) | scalar greater than or equal to 45",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Overlap (%)",
+   "default": "0",
+   "values": "重叠百分比 0 (default) | scalar in the range [0 100)",
+   "group": "Estimation Tab"
+  },
+  {
+   "name": "Channel",
+   "default": "1",
+   "values": "要获取测量的通道 1 (default) | positive integer",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Data Cursors",
+   "default": "",
+   "values": "启用游标测量 button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Snap to data",
+   "default": "off",
+   "values": "将游标吸附到数据 off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Lock cursor spacing",
+   "default": "off",
+   "values": "锁定游标间距 off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Peak Finder",
+   "default": "",
+   "values": "启用峰值查找器测量 button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Num Peaks",
+   "default": "3",
+   "values": "要显示的最大峰值数 3 (default) | positive integer less than 100",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Min Height",
+   "default": "-Inf",
+   "values": "示波器检测峰值所高于的电平 -Inf (default) | real scalar value",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Min Distance",
+   "default": "1",
+   "values": "相邻峰值之间的最小采样数 1 (default) | positive integer",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Threshold",
+   "default": "0",
+   "values": "峰值高度与其相邻样本之间的最小差 0 (default) | nonnegative scalar",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Peaks",
+   "default": "",
+   "values": "标记峰值 button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Distortion",
+   "default": "",
+   "values": "启用失真测量 button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Distortion Type",
+   "default": "Harmonic",
+   "values": "要显示的测量类型 Harmonic (default) | Intermodulation",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Num Harmonics",
+   "default": "6",
+   "values": "要测量的谐波数 6 (default) | positive integer",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Harmonics",
+   "default": "off",
+   "values": "标记谐波 off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Frequencies",
+   "default": "off",
+   "values": "标记频率 off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Phase Noise",
+   "default": "",
+   "values": "启用相位噪声测量 button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Frequency Offsets (Hz)",
+   "default": "]",
+   "values": "频率偏移（Hz） [ 10 100 1000 ] (default) | vector with monotonically increasing values",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Plot Target Phase Noise",
+   "default": "off",
+   "values": "绘制目标相位噪声分布的选项 off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Target Phase Noise (dBc/Hz)",
+   "default": "]",
+   "values": "目标相位噪声分布，单位为 dBc/Hz [ -300 -300 -300 ] (default) | vector",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Phase Noise",
+   "default": "off",
+   "values": "在图上标注测得相位噪声的选项 off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Two-Sided Spectrum",
+   "default": "on",
+   "values": "启用双边频谱视图 on (default) | off",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Normal Trace",
+   "default": "on",
+   "values": "普通轨迹视图 on (default) | off",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Max-Hold Trace",
+   "default": "off",
+   "values": "最大保持轨迹视图 off (default) | on",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Min-Hold Trace",
+   "default": "off",
+   "values": "最小保持轨迹视图 off (default) | on",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Frequency Scale",
+   "default": "Linear",
+   "values": "频率轴刻度 Linear (default) | Log",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Reference load (Ω)",
+   "default": "1",
+   "values": "参考负载，单位为 Ω 1 (default) | positive real scalar",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Spectrum Unit",
+   "default": "dBm",
+   "values": "频谱的单位 dBm (default) | dBFS | dBV | dBuV (since R2023b) | dBW | Vrms | Watts | dBm/Hz | dBW/Hz | dBFS/Hz | Watts/Hz | Auto",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Full Scale",
+   "default": "Auto",
+   "values": "dBFS 单位的满量程 Auto (default) | positive real scalar",
+   "group": "Spectrum Tab"
+  },
+  {
+   "name": "Time Resolution (s)",
+   "default": "Auto",
+   "values": "时间分辨率，单位为秒 Auto (default) | positive scalar",
+   "group": "Spectrogram Tab"
+  },
+  {
+   "name": "Time Span (s)",
+   "default": "Auto",
+   "values": "时间跨度，单位为秒 Auto (default) | positive scalar",
+   "group": "Spectrogram Tab"
+  },
+  {
+   "name": "Upper Mask",
+   "default": "",
+   "values": "启用上限频谱模板 button",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Lower Mask",
+   "default": "",
+   "values": "启用下限频谱模板 button",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Upper Limits",
+   "default": "Inf",
+   "values": "上限频谱模板的限值 Inf (default) | scalar | two-column matrix",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Lower Limits",
+   "default": "-Inf",
+   "values": "下限频谱模板的限值 -Inf (default) | scalar | two-column matrix",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Reference Level (dBr)",
+   "default": "0",
+   "values": "掩模功率值的参考电平 0 (default) | real scalar | Spectrum peak",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Frequency Offset (Hz)",
+   "default": "0",
+   "values": "频率偏移，单位为 Hz 0 (default) | finite numeric scalar",
+   "group": "Spectral Mask Tab"
+  },
+  {
+   "name": "Channel Measurements",
+   "default": "",
+   "values": "启用通道测量 button",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Type",
+   "default": "BW",
+   "values": "要显示的测量数据类型 Occupied BW (default) | ACPR",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Occupied BW (%)",
+   "default": "99",
+   "values": "用于计算占用带宽的功率百分比 99 (default) | positive scalar",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Num Pairs",
+   "default": "2",
+   "values": "相邻通道对的数量 2 (default) | positive integer in range [ 1, 12 ]",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Offsets (Hz)",
+   "default": "3500]",
+   "values": "ACPR 偏移，单位为 Hz [2000 3500] (default) | vector",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Adjacent BW (Hz)",
+   "default": "1000",
+   "values": "相邻通道带宽，单位为 Hz 1000 (default) | positive scalar",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Filter Shape",
+   "default": "None",
+   "values": "滤波器形状 None (default) | RRC | Gaussian",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Roll-off Factor",
+   "default": "0.5",
+   "values": "滚降因子 0.5 (default) | real scalar in range [ 0, 1 ]",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "BT Product",
+   "default": "0.5",
+   "values": "BT 乘积 0.5 (default) | real scalar in range [ 0, 1 ]",
+   "group": "Channel Measurements Tab"
+  },
+  {
+   "name": "Channel Names",
+   "default": "[]",
+   "values": "输入通道名称 [] (default) | character vector | string | array of strings or character vectors.",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Maximize Axes",
+   "default": "Auto",
+   "values": "最大化绘图大小 Auto (default) | Off | On",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Axes Scaling",
+   "default": "OnceAtStop",
+   "values": "Y 轴缩放模式 OnceAtStop (default) | Manual | Auto | Updates",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Number of Updates",
+   "default": "100",
+   "values": "缩放前的更新次数 100 (default) | integer",
+   "group": "Property Inspector Only"
+  }
+ ]
+}

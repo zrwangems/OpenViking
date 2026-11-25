@@ -1,0 +1,161 @@
+{
+ "key": "Simulation 3D Camera",
+ "title": "Simulation 3D Camera",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Camera.md",
+  "Robotics System Toolbox/Simulation 3D/Simulation_3D_Camera.md",
+  "UAV Toolbox/Simulation 3D/Simulation_3D_Camera.md",
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Camera.md"
+ ],
+ "text": "3D 仿真环境中带镜头的相机传感器模型，输入 2 路、输出 5 路；按 {Mounting location} 指定传感器安装位置；{Sensor identifier} 指定唯一传感器标识符、{Parent name} 指定父车辆名称 Scene、{Specify offset} 指定相对于安装位置的偏移、{Relative translation [X, Y, Z] (m)} 指定相对于安装位置的平移偏移量、{Relative rotation [Roll, Pitch, Yaw] (deg)} 指定相对于安装位置的旋转偏移量、{Sample time} 指定采样时间、{Focal length (pixels)} 指定相机的焦距、{Optical center (pixels)} 指定相机光心、{Image size (pixels)} 指定相机生成的图像大小、{Radial distortion coefficients} 指定径向畸变系数、{Tangential distortion coefficients} 指定切向畸变系数、{Axis skew} 指定相机轴的斜切角、{Visualize field of view} 用于可视化相机视野、{Field of view range (m)} 指定可视化范围、{Output depth} 输出深度图、{Output semantic segmentation} 输出标签 ID 的语义分割图、{Output location (m) and orientation (rad)} 输出传感器的位置和方向，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rel Translation",
+   "direction": "input",
+   "summary": "传感器相对于安装点的相对平移 (m) [0 0 0] (default) | real-valued 1-by-3 vector of form [ X Y Z ]"
+  },
+  {
+   "name": "Rel Rotation",
+   "direction": "input",
+   "summary": "传感器相对于安装点的相对旋转 (deg) [0 0 0] (default) | real-valued 1-by-3 vector of form [ Roll Pitch Yaw ]"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "3D 输出相机图像 m -by- n -by-3 array of RGB triplet values"
+  },
+  {
+   "name": "Depth",
+   "direction": "output",
+   "summary": "对象深度，范围为 0 m 到 1000 m m -by- n array of object depths"
+  },
+  {
+   "name": "Labels",
+   "direction": "output",
+   "summary": "标签标识符 m -by- n array of label identifiers"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "传感器位置 real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "传感器方向 real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "唯一传感器标识符 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "父车辆名称 Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "传感器安装位置 Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "指定相对于安装位置的偏移 off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "相对于安装位置的平移偏移量 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "相对于安装位置的旋转偏移量 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Focal length (pixels)",
+   "default": "1109]",
+   "values": "相机的焦距 [1109, 1109] (default) | 1-by-2 positive integer vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Optical center (pixels)",
+   "default": "360]",
+   "values": "相机光心 [640, 360] (default) | 1-by-2 positive integer vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Image size (pixels)",
+   "default": "1280]",
+   "values": "相机生成的图像大小 [720, 1280] (default) | 1-by-2 positive integer vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Radial distortion coefficients",
+   "default": "0]",
+   "values": "径向畸变系数 [0, 0] (default) | real-valued 2-element vector | real-valued 3-element vector | real-valued 6-element vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Tangential distortion coefficients",
+   "default": "0]",
+   "values": "切向畸变系数 [0, 0] (default) | real-valued 2-element vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Axis skew",
+   "default": "0",
+   "values": "相机轴的斜切角 0 (default) | nonnegative real-valued scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Visualize field of view",
+   "default": "off",
+   "values": "用于可视化相机视野的选项 off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Field of view range (m)",
+   "default": "61",
+   "values": "可视化范围 61 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output depth",
+   "default": "off",
+   "values": "输出深度图 off (default) | on",
+   "group": "Ground Truth"
+  },
+  {
+   "name": "Output semantic segmentation",
+   "default": "off",
+   "values": "输出标签 ID 的语义分割图 off (default) | on",
+   "group": "Ground Truth"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "输出传感器的位置和方向 off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

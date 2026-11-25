@@ -1,0 +1,95 @@
+{
+ "key": "IIR Filter",
+ "title": "IIR Filter",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Signal Management/IIR_Filter.md",
+  "Motor Control Blockset/Signal Management/IIR_Filter.md"
+ ],
+ "text": "Implement infinite impulse response (IIR) filter, 4 inputs, 1 output, {Theoretical cutoff frequency (Hz)} sets Theoretical cutoff frequency of IIR filter 32.1525; {Filter type} sets the iIR filter type, {Filter coefficient}, {Filter coefficient value} sets the filter coefficient of IIR filter, {Initial state} sets how to provide initial state value Specify via, {Initial state value} sets the initial value of state, {External reset} sets the whether to provide external reset signal, {Display cutoff frequency} displays the cutoff frequency parameters and {Discrete step size (s)} sets the sample time after which block executes again. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Sampled input signal scalar"
+  },
+  {
+   "name": "a",
+   "direction": "input",
+   "summary": "Filter coefficient scalar"
+  },
+  {
+   "name": "x 0",
+   "direction": "input",
+   "summary": "Initial state signal scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset signal scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filtered output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter type",
+   "default": "Low-pass",
+   "values": "IIR filter type Low-pass (default) | High-pass",
+   "group": ""
+  },
+  {
+   "name": "Filter coefficient",
+   "default": "dialog",
+   "values": "Filter coefficient input method Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Filter coefficient value",
+   "default": "0.01",
+   "values": "Filter coefficient of IIR filter 0.01 (default) | scalar in the range (0,1]",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "dialog",
+   "values": "Specify how to provide initial state value Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Initial state value",
+   "default": "0",
+   "values": "Initial value of state 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External reset",
+   "default": "none",
+   "values": "Specify whether to provide external reset signal none (default) | active high resets to initial condition",
+   "group": ""
+  },
+  {
+   "name": "Display cutoff frequency",
+   "default": "off",
+   "values": "Display the cutoff frequency parameters off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Sample time after which block executes again 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Theoretical cutoff frequency (Hz)",
+   "default": "",
+   "values": "Theoretical cutoff frequency of IIR filter 32.1525 | scalar",
+   "group": ""
+  }
+ ]
+}

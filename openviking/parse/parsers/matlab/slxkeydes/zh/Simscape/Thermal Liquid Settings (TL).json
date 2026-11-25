@@ -1,0 +1,13 @@
+{
+ "key": "Thermal Liquid Settings (TL)",
+ "title": "Thermal Liquid Settings (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Utilities/Thermal_Liquid_Settings_TL.md"
+ ],
+ "text": "热液体的物理属性。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

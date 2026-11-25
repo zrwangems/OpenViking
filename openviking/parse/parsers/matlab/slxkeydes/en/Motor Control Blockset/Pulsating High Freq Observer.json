@@ -1,0 +1,217 @@
+{
+ "key": "Pulsating High Freq Observer",
+ "title": "Pulsating High Freq Observer",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensorless Estimators/Pulsating_High_Freq_Observer.md"
+ ],
+ "text": "Estimate initial rotor electrical position of interior PMSM using pulsating high frequency (PHF) injection, 4 inputs, 4 outputs, {Datatype} sets Input and output data type; {Discrete step size (s)} sets the sample time after which block executes again, {Input units} sets the unit of block, {Compute PHF parameters automatically using motor parameters} sets the automatically compute PHF parameters, {Compute DP parameters automatically using motor parameters} sets the automatically compute DP parameters, {Stator resistance (ohm)} sets the motor resistance, {Stator d-axis inductance (H)} sets the motor inductance, {Stator q-axis inductance (H)} sets the motor inductance, {Base voltage (V)} sets the rated voltage, {Base current (A)} sets the rated current, {Compute PHF parameters}, {Compute DP parameters}, {PHF peak voltage (PU)} sets the peak voltage of PHF, {PHF frequency (Hz)} sets the pHF voltage frequency, {LP filter cutoff frequency (Hz)} sets the cutoff frequency for lowpass filter of PHF, {Select tuning parameters} selects control parameters for manual tuning Controller, {Proportional gain}, {Integral gain}, {Expected settling time (s)} sets the expected settling time of estimated, {Expected damping ratio}, {Compute Control Parameters} sets the compute disabled control, {Open loop duration (s)} sets the duration of open-loop PHF injection during stage 1 part, {Closed loop duration (s)} sets the duration of closed-loop PHF injection during stage 1 part, {Idle time (s)} sets the duration between algorithm steps, {Error threshold (rad)} sets the minimum error threshold for θ, {Pulse voltage (PU)} sets the amplitude of injected pulses and {Pulse duration (s)} sets the duration of injected pulses. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I ab hf",
+   "direction": "input",
+   "summary": "PHF current response vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Input to trigger block operation scalar"
+  },
+  {
+   "name": "θ in",
+   "direction": "input",
+   "summary": "Initial rotor position scalar"
+  },
+  {
+   "name": "IPE En",
+   "direction": "input",
+   "summary": "Enable stage 1 initial position estimation (IPE) operation scalar"
+  },
+  {
+   "name": "V αβ hf",
+   "direction": "output",
+   "summary": "PHF output scalar"
+  },
+  {
+   "name": "θ est",
+   "direction": "output",
+   "summary": "Estimated rotor position scalar"
+  },
+  {
+   "name": "Pos En",
+   "direction": "output",
+   "summary": "Status of θ est port scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Sample time after which block executes again 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input units",
+   "default": "Per-unit",
+   "values": "Unit of block inputs Per-unit (default) | SI",
+   "group": ""
+  },
+  {
+   "name": "Datatype",
+   "default": "single",
+   "values": "Input and output data type single (default) | double | fixed point",
+   "group": ""
+  },
+  {
+   "name": "Compute PHF parameters automatically using motor parameters",
+   "default": "off",
+   "values": "Automatically compute PHF parameters off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Compute DP parameters automatically using motor parameters",
+   "default": "off",
+   "values": "Automatically compute DP parameters off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Stator resistance (ohm)",
+   "default": "0.1458",
+   "values": "Motor resistance 0.1458 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Stator d-axis inductance (H)",
+   "default": "0.00013016",
+   "values": "Motor inductance 0.00013016 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Stator q-axis inductance (H)",
+   "default": "0.00014098",
+   "values": "Motor inductance 0.00014098 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Base voltage (V)",
+   "default": "13.8564",
+   "values": "Rated voltage 13.8564 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Base current (A)",
+   "default": "21.4286",
+   "values": "Rated current 21.4286 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Compute PHF parameters",
+   "default": "",
+   "values": "Compute PHF parameters manually button",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Compute DP parameters",
+   "default": "",
+   "values": "Compute DP parameters manually button",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "PHF peak voltage (PU)",
+   "default": "0.2",
+   "values": "Peak voltage of PHF 0.2 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "PHF frequency (Hz)",
+   "default": "2000",
+   "values": "PHF voltage frequency 2000 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "LP filter cutoff frequency (Hz)",
+   "default": "131.9037",
+   "values": "Cutoff frequency for lowpass filter of PHF 131.9037 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Select tuning parameters",
+   "default": "gains",
+   "values": "Select control parameters for manual tuning Controller gains (default) | Time response variables",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Proportional gain",
+   "default": "1954.6647",
+   "values": "Proportional gain for PI controller of PHF 1954.6647 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Integral gain",
+   "default": "7392.5303",
+   "values": "Integral gain for PI controller of PHF 7392.5303 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Expected settling time (s)",
+   "default": "0.66794",
+   "values": "Expected settling time of estimated position 0.66794 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Expected damping ratio",
+   "default": "0.99",
+   "values": "Expected damping ratio of block output θ est 0.99 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Compute Control Parameters",
+   "default": "",
+   "values": "Compute disabled control parameters button",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Open loop duration (s)",
+   "default": "0.0066794",
+   "values": "Duration of open-loop PHF injection during stage 1 part A 0.0066794 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Closed loop duration (s)",
+   "default": "0.66794",
+   "values": "Duration of closed-loop PHF injection during stage 1 part B 0.66794 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Idle time (s)",
+   "default": "0.0066794",
+   "values": "Duration between algorithm steps 0.0066794 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Error threshold (rad)",
+   "default": "4e-4",
+   "values": "Minimum error threshold for θ err 4e-4 (default) | scalar",
+   "group": "PHF Parameters"
+  },
+  {
+   "name": "Pulse voltage (PU)",
+   "default": "0.5",
+   "values": "Amplitude of injected pulses 0.5 (default) | scalar",
+   "group": "DP Parameters"
+  },
+  {
+   "name": "Pulse duration (s)",
+   "default": "0.00066955",
+   "values": "Duration of injected pulses 0.00066955 (default) | scalar",
+   "group": "DP Parameters"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PS Fix",
+ "title": "PS Fix",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Fix.md"
+ ],
+ "text": "将输入物理信号向零方向舍入。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

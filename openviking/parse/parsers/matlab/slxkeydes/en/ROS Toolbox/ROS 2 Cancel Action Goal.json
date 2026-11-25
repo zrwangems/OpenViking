@@ -1,0 +1,41 @@
+{
+ "key": "ROS 2 Cancel Action Goal",
+ "title": "Cancel Action Goal",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Cancel_Action_Goal.md"
+ ],
+ "text": "Cancel active action goal in ROS 2 network, 2 inputs, 2 outputs; {Show ErrorCode output port} enables error code output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "UUID",
+   "direction": "input",
+   "summary": "Unique ID dedicated to any goal message non-virtual bus"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Boolean value to send cancel request for an active action goal true or 1 | false or 0"
+  },
+  {
+   "name": "Response",
+   "direction": "output",
+   "summary": "Response message for cancel goal request non-virtual bus"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "Error conditions while canceling action goal integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show ErrorCode output port",
+   "default": "off",
+   "values": "Enable error code output port off (default) | on",
+   "group": ""
+  }
+ ]
+}

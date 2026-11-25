@@ -1,0 +1,13 @@
+{
+ "key": "NPN Bipolar Transistor",
+ "title": "NPN Bipolar Transistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/NPN_Bipolar_Transistor.md"
+ ],
+ "text": "使用增强 Ebers-Moll 方程的 NPN 双极晶体管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

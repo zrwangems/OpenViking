@@ -1,0 +1,13 @@
+{
+ "key": "Infinite Flow Resistance (G)",
+ "title": "Infinite Flow Resistance (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Infinite_Flow_Resistance_G.md"
+ ],
+ "text": "Perfectly insulated break in gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

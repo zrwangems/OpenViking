@@ -1,0 +1,55 @@
+{
+ "key": "ros.slroscpp.internal.block.GetTransform",
+ "title": "Get Transform",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Get_Transform.md"
+ ],
+ "text": "从 ROS 网络获取源帧和目标帧之间的变换；输出 2 路；按 {Frame source} 指定用于指定帧的来源 Select from ROS network；{Target} 指定目标坐标帧 string、{Source} 指定源坐标帧 string、{Output format} 输出变换值的格式、{Sample time} 输出之间的间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsAvail",
+   "direction": "output",
+   "summary": "变换可用性指示符 0 | 1"
+  },
+  {
+   "name": "Value",
+   "direction": "output",
+   "summary": "源帧和目标帧之间的齐次变换值 geometry_msgs/TransformStamped non-virtual bus (default) | double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frame source",
+   "default": "",
+   "values": "用于指定帧的来源 Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Target",
+   "default": "",
+   "values": "目标坐标帧 string",
+   "group": ""
+  },
+  {
+   "name": "Source",
+   "default": "",
+   "values": "源坐标帧 string",
+   "group": ""
+  },
+  {
+   "name": "Output format",
+   "default": "bus",
+   "values": "输出变换值的格式 bus (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "输出之间的间隔 –1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

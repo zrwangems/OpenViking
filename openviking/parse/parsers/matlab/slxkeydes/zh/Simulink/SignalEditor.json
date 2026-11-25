@@ -1,0 +1,110 @@
+{
+ "key": "SignalEditor",
+ "title": "Signal Editor",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Signal_Editor.md"
+ ],
+ "text": "显示、创建、编辑和切换可互换场景；按 {采样时间} 指定采样时间间隔；{要创建和编辑场景，请打开信号编辑器用户界面} 打开信号编辑器工具的选项 按钮、{文件名} 指定数据集文件、{激活场景}、{使用来自以下源的属性} 指定信号属性源、{活动信号} 指定要配置的信号 Signal、{将信号属性应用于所有场景} 用于将指定的信号属性应用于活动信号、{将信号属性应用于所有信号}、{输出总线信号} 指定将信号配置为总线、{选择总线对象} 指定总线对象 Bus、{模式}、{单位}、{数据插值} 指定数据线性插值、{启用过零检测} 指定检测过零点、{最终数据值之后的输出} 指定数据可用的最后一个时间点后的模块输出，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Signal1",
+   "direction": "",
+   "summary": "场景中的信号 标量 | 向量 | 矩阵 | 数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "要创建和编辑场景，请打开信号编辑器用户界面",
+   "default": "",
+   "values": "打开信号编辑器工具的选项 按钮",
+   "group": ""
+  },
+  {
+   "name": "文件名",
+   "default": "untitled.mat",
+   "values": "数据集文件 untitled.mat (默认) | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "激活场景",
+   "default": "Scenario",
+   "values": "激活场景 Scenario (默认) | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "使用来自以下源的属性",
+   "default": "对话框参数",
+   "values": "信号属性源 对话框参数 (默认) | MAT 文件中的信号数据",
+   "group": ""
+  },
+  {
+   "name": "活动信号",
+   "default": "1",
+   "values": "要配置的信号 Signal 1 (默认) | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "将信号属性应用于所有场景",
+   "default": "on",
+   "values": "用于将指定的信号属性应用于活动信号的选项 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "将信号属性应用于所有信号",
+   "default": "off",
+   "values": "用于将信号属性应用于所有信号的选项 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "输出总线信号",
+   "default": "off",
+   "values": "将信号配置为总线 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "选择总线对象",
+   "default": "BusObject",
+   "values": "总线对象 Bus: BusObject (默认) | 总线对象名称",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "总线对象",
+   "values": "总线对象模式 总线对象 (默认) | 总线对象数据类型",
+   "group": ""
+  },
+  {
+   "name": "单位",
+   "default": "inherit",
+   "values": "物理单位 inherit (默认) | 支持的物理单位",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0",
+   "values": "采样时间间隔 0 (默认) | -1 | 采样时间（秒）",
+   "group": ""
+  },
+  {
+   "name": "数据插值",
+   "default": "on",
+   "values": "数据线性插值 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "off",
+   "values": "检测过零点 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "最终数据值之后的输出",
+   "default": "设置为零",
+   "values": "数据可用的最后一个时间点后的模块输出 设置为零 (默认) | 外插 | 保持最终值",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "key": "Toeplitz",
+ "title": "Toeplitz",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Toeplitz.md"
+ ],
+ "text": "生成具有 Toeplitz 对称性的矩阵，输入 3 路、输出 1 路、无直接馈通；{Symmetric} 指定对称 Toeplitz 矩阵输出、{Saturate on integer overflow} 指定对整数溢出进行饱和，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入 vector"
+  },
+  {
+   "name": "Toep Col",
+   "direction": "input",
+   "summary": "非对称 Toeplitz 矩阵的第一列 vector"
+  },
+  {
+   "name": "Toep Row",
+   "direction": "input",
+   "summary": "非对称 Toeplitz 矩阵的第一行 vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Toeplitz 矩阵 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Symmetric",
+   "default": "on",
+   "values": "对称 Toeplitz 矩阵输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "on",
+   "values": "对整数溢出进行饱和 on (default) | off",
+   "group": ""
+  }
+ ]
+}

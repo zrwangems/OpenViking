@@ -1,0 +1,13 @@
+{
+ "key": "Random Deinterleaver",
+ "title": "Random Deinterleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Random_Deinterleaver.md"
+ ],
+ "text": "Restore ordering of input symbols using random permutation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "M-PSK TCM Encoder",
+ "title": "M-PSK TCM Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/TCM/M_PSK_TCM_Encoder.md"
+ ],
+ "text": "Convolutionally encode binary data and modulate using PSK method.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

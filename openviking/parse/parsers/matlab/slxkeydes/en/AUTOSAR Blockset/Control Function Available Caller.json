@@ -1,0 +1,32 @@
+{
+ "key": "Control Function Available Caller",
+ "title": "Control Function Available Caller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Function Inhibition Manager (FiM)/Control_Function_Available_Caller.md"
+ ],
+ "text": "Call AUTOSAR Function Inhibition Manager (FiM) service interface ControlFunctionAvailable; {Client port name} sets the name of client port AUTOSAR component uses to call FiM service interface, {Operation} sets the operation defined in FiM service interface ControlFunctionAvailable and {Sample time} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Client port name",
+   "default": "ControlFunctionAvailable",
+   "values": "Name of client port AUTOSAR component uses to call FiM service interface ControlFunctionAvailable ControlFunctionAvailable (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "SetFunctionAvailable",
+   "values": "Specify operation defined in FiM service interface ControlFunctionAvailable SetFunctionAvailable (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

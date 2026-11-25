@@ -1,0 +1,13 @@
+{
+ "key": "Pin Slot Joint",
+ "title": "Pin Slot Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Pin_Slot_Joint.md"
+ ],
+ "text": "具有正交移动副和转动副基元的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,25 @@
+{
+ "key": "BusToVector",
+ "title": "Bus to Vector",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Bus_to_Vector.md",
+  "HDL Coder/Signal Attributes/Bus_to_Vector.md"
+ ],
+ "text": "将虚拟总线转换为向量，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要转换为向量的总线 标量 | 向量 | 总线"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出向量 向量"
+  }
+ ],
+ "params": []
+}

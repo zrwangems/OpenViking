@@ -1,0 +1,87 @@
+{
+ "key": "Rs Estimator",
+ "title": "Rs Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/PMSM Parameter Estimation/Rs_Estimator.md",
+  "Motor Control Blockset/Parameter Estimation/ACIM Parameter Estimation/Rs_Estimator.md"
+ ],
+ "text": "Estimate stator resistance ( R s ) of permanent magnet synchronous motor (PMSM), 4 inputs, 3 outputs; {Maximum current limit (A)} sets the maximum allowed current during testing, {Step size during injected voltage ramp up (per-unit)}, {Maximum voltage ramp up time limit (s)} sets the maximum voltage ramp up duration, {Number of voltage and current samples per voltage injection instance} sets the number of voltage and current samples considered for Rs, {Dwell time between voltage injections (s)} sets the wait duration between voltage injections and {Threshold to determine imbalance in phase resistances (0,1)} sets the threshold to determine phase resistance. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "Three-phase current response vector"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC link voltage scalar"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "Control signal for R s estimation logical"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Bus signal input bus"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a, b, and c -axis stator reference voltage components vector"
+  },
+  {
+   "name": "Rs",
+   "direction": "output",
+   "summary": "Estimated stator resistance scalar"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "Debug signals bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum current limit (A)",
+   "default": "15",
+   "values": "Maximum allowed current during testing 15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Step size during injected voltage ramp up (per-unit)",
+   "default": "0.0001",
+   "values": "Step size during injected voltage ramp up 0.0001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum voltage ramp up time limit (s)",
+   "default": "0.25",
+   "values": "Maximum voltage ramp up duration 0.25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of voltage and current samples per voltage injection instance",
+   "default": "1000",
+   "values": "Number of voltage and current samples considered for Rs estimation 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Dwell time between voltage injections (s)",
+   "default": "0.25",
+   "values": "Wait duration between voltage injections 0.25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold to determine imbalance in phase resistances (0,1)",
+   "default": "0.2",
+   "values": "Threshold to determine phase resistance imbalance 0.2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

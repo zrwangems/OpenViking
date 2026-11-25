@@ -1,0 +1,13 @@
+{
+ "key": "Ideal Semiconductor Switch",
+ "title": "Ideal Semiconductor Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Ideal_Semiconductor_Switch.md"
+ ],
+ "text": "Ideal Semiconductor Switch.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

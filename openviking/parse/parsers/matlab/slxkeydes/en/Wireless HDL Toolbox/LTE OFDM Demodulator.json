@@ -1,0 +1,115 @@
+{
+ "key": "LTE OFDM Demodulator",
+ "title": "LTE OFDM Demodulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/LTE_OFDM_Demodulator.md"
+ ],
+ "text": "Demodulate time-domain OFDM samples and return LTE resource grid, 5 inputs, 3 outputs, {Rounding Method} sets Rounding mode for internal fixed-point calculations; {NDLRB source} sets the source of NDLRB, {NDLRB} sets the number of downlink resource blocks, {Cyclic prefix source} sets the source of cyclic prefix, {Cyclic prefix type} sets the type of cyclic, {CP fraction} sets the percent of cyclic prefix to remove, {Remove DC subcarrier} sets the exclude or include DC subcarrier, {Enable reset input port} sets the reset signal, {Input data sample rate} sets the input sample rate Use maximum input data sample and {Divide butterfly outputs by two} sets the divide FFT butterfly outputs by two. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data Boolean scalar"
+  },
+  {
+   "name": "NDLRB",
+   "direction": "input",
+   "summary": "Number of downlink resource blocks 6 | 15 | 25 | 50 | 75 | 100"
+  },
+  {
+   "name": "cyclicPrefixType",
+   "direction": "input",
+   "summary": "Type of CP scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clear internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Output data scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "NDLRB source",
+   "default": "Property",
+   "values": "Source of NDLRB Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "NDLRB",
+   "default": "6",
+   "values": "Number of downlink resource blocks 6 (default) | 15 | 25 | 50 | 75 | 100",
+   "group": "Main"
+  },
+  {
+   "name": "Cyclic prefix source",
+   "default": "Property",
+   "values": "Source of cyclic prefix type Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Cyclic prefix type",
+   "default": "Normal",
+   "values": "Type of cyclic prefix Normal (default) | Extended",
+   "group": "Main"
+  },
+  {
+   "name": "CP fraction",
+   "default": "0.55",
+   "values": "Percent of cyclic prefix to remove 0.55 (default) | value from 0 to 1",
+   "group": "Main"
+  },
+  {
+   "name": "Remove DC subcarrier",
+   "default": "off",
+   "values": "Exclude or include DC subcarrier off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Reset signal off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Input data sample rate",
+   "default": "rate",
+   "values": "Input sample rate Use maximum input data sample rate (default) | Match input data sample rate to NDLRB",
+   "group": "Main"
+  },
+  {
+   "name": "Divide butterfly outputs by two",
+   "default": "off",
+   "values": "Divide FFT butterfly outputs by two off (default) | on",
+   "group": "FFT Parameters"
+  },
+  {
+   "name": "Rounding Method",
+   "default": "Floor",
+   "values": "Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "FFT Parameters"
+  }
+ ]
+}

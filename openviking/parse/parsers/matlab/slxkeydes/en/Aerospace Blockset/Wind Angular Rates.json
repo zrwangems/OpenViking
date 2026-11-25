@@ -1,0 +1,34 @@
+{
+ "key": "Wind Angular Rates",
+ "title": "Wind Angular Rates",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Wind_Angular_Rates.md"
+ ],
+ "text": "Calculate wind angular rates from body angular rates, angle of attack, sideslip angle, rate of change of angle of attack, and rate of change of sideslip, 3 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ɑ β",
+   "direction": "input",
+   "summary": "Angles of attack and sideslip 2-by-1 vector"
+  },
+  {
+   "name": "dɑ/dt dβ/dt",
+   "direction": "input",
+   "summary": "Rates of change 2-by-1 vector"
+  },
+  {
+   "name": "ω",
+   "direction": "input",
+   "summary": "Body angular rates three-element vector"
+  },
+  {
+   "name": "ω w",
+   "direction": "output",
+   "summary": "Wind angular rates three-element vector"
+  }
+ ],
+ "params": []
+}

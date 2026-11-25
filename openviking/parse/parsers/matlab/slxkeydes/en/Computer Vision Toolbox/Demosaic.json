@@ -1,0 +1,64 @@
+{
+ "key": "Demosaic",
+ "title": "Demosaic",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Demosaic.md"
+ ],
+ "text": "Demosaic Bayer format images, 1 input, 4 outputs, {Sensor alignment} sets R,G,B pixel alignment; {Interpolation algorithm}, {Output image signal} sets the dimensions of output image One multidimensional and {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Image to demosaic matrix"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Red color channel of processed image matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Green color channel of processed image matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Blue color channel of processed image matrix"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "Multidimensional processed image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation algorithm",
+   "default": "Bilinear",
+   "values": "Interpolation algorithm Bilinear (default) | Gradient-corrected linear",
+   "group": "Main"
+  },
+  {
+   "name": "Sensor alignment",
+   "default": "RGGB",
+   "values": "R,G,B pixel alignment RGGB (default) | GRBG | GBRG | BGGR",
+   "group": "Main"
+  },
+  {
+   "name": "Output image signal",
+   "default": "signal",
+   "values": "Dimensions of output image One multidimensional signal (default) | Separate color signals",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

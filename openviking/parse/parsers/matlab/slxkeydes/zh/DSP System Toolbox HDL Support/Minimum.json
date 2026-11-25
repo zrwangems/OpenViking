@@ -1,0 +1,102 @@
+{
+ "key": "Minimum",
+ "title": "Minimum",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Statistics/Minimum.md",
+  "DSP System Toolbox/Statistics/Minimum.md"
+ ],
+ "text": "输入或输入序列的最小值，输入 2 路、输出 2 路、无直接馈通；按 {Reset port} 指定重置事件；{Mode} 指定模块运行的模式 Value、{Index base} 指定最小值索引的基数、{Find the minimum value over} 指定模块计算最小值所沿的维度 Each、{Dimension} 指定自定义维度、{Input processing} 指定在运行模式下处理输入的方法 Columns、{Rounding mode} 指定舍入运算的方法、{Saturate on integer overflow} 指定溢出操作的方法、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "复位端口 scalar"
+  },
+  {
+   "name": "Val",
+   "direction": "output",
+   "summary": "沿指定维度的最小值 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "沿指定维度的最小值的索引 scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Index",
+   "values": "模块运行的模式 Value and Index (default) | Value | Index | Running",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Index base",
+   "default": "One",
+   "values": "最小值索引的基数 One (default) | Zero",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Find the minimum value over",
+   "default": "column",
+   "values": "模块计算最小值所沿的维度 Each column (default) | Each row | Entire input | Specified dimension",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "自定义维度 1 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "在运行模式下处理输入的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "重置事件 None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "乘积输出数据类型 Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "累加器数据类型 Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+ "key": "Forward Dynamics",
+ "title": "Forward Dynamics",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Forward_Dynamics.md"
+ ],
+ "text": "Joint accelerations given joint torques and states, 4 inputs, 1 output; {Rigid body tree} sets the robot model and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Robot configuration vector"
+  },
+  {
+   "name": "JointVel",
+   "direction": "input",
+   "summary": "Joint velocities vector"
+  },
+  {
+   "name": "JointTorq",
+   "direction": "input",
+   "summary": "Joint torques vector"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "External force matrix 6-by- n matrix"
+  },
+  {
+   "name": "JointAccel",
+   "direction": "output",
+   "summary": "Joint accelerations vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "Robot model twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

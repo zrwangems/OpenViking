@@ -1,0 +1,13 @@
+{
+ "key": "Point",
+ "title": "Point",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Point.md"
+ ],
+ "text": "Point geometry for contact modeling.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

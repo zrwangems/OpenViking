@@ -1,0 +1,91 @@
+{
+ "key": "Simulation 3D Actor",
+ "title": "Simulation 3D Actor",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Actors/Simulation_3D_Actor.md"
+ ],
+ "text": "Create actors in 3D environment, 1 input, 1 output, {Operation} sets Operating mode of block Create at; {Actor Name} sets the name of actor, {Parent Name} sets the parent of actor, {Path to source file} sets the file from which actors are, {Initialization script} sets the code to initialize actor, {Sample time}, {Translation} sets the relative translation, {Rotation} sets the relative rotation, {Scale} sets the relative scale, {Input ports} sets the list of user-selected input ports text and {Output ports} sets the list of user-selected output ports text. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Instance",
+   "direction": "input",
+   "summary": "Instance number of actor real integer"
+  },
+  {
+   "name": "Valid",
+   "direction": "output",
+   "summary": "Validity of specified actor false (default) | true"
+  }
+ ],
+ "params": [
+  {
+   "name": "Actor Name",
+   "default": "Sim3dActor1",
+   "values": "Name of actor Sim3dActor1 (default) | string",
+   "group": "Main"
+  },
+  {
+   "name": "Parent Name",
+   "default": "Origin",
+   "values": "Parent of actor Scene Origin (default) | string",
+   "group": "Main"
+  },
+  {
+   "name": "Operation",
+   "default": "setup",
+   "values": "Operating mode of block Create at setup (default) | Create at step | Reference by name | Reference by instance number",
+   "group": "Main"
+  },
+  {
+   "name": "Path to source file",
+   "default": "",
+   "values": "File from which actors are sourced string",
+   "group": "Main"
+  },
+  {
+   "name": "Initialization script",
+   "default": "",
+   "values": "Code to initialize actor MATLAB script",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Translation",
+   "default": "[0,0,0]",
+   "values": "Relative translation [0,0,0] (default) | real 1-by-3 vector",
+   "group": "Transform"
+  },
+  {
+   "name": "Rotation",
+   "default": "[0,0,0]",
+   "values": "Relative rotation [0,0,0] (default) | real 1-by-3 vector",
+   "group": "Transform"
+  },
+  {
+   "name": "Scale",
+   "default": "[1,1,1]",
+   "values": "Relative scale [1,1,1] (default) | real 1-by-3 vector",
+   "group": "Transform"
+  },
+  {
+   "name": "Input ports",
+   "default": "",
+   "values": "List of user-selected input ports text area",
+   "group": "Inputs"
+  },
+  {
+   "name": "Output ports",
+   "default": "",
+   "values": "List of user-selected output ports text area",
+   "group": "Outputs"
+  }
+ ]
+}

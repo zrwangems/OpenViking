@@ -1,0 +1,13 @@
+{
+ "key": "Flow Resistance (G)",
+ "title": "Flow Resistance (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Flow_Resistance_G.md"
+ ],
+ "text": "气体支路中的通用阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

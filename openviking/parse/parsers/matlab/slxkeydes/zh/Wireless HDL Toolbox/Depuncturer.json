@@ -1,0 +1,78 @@
+{
+ "key": "Depuncturer",
+ "title": "Depuncturer",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/Depuncturer.md"
+ ],
+ "text": "为解码做准备的逆删余方案，输入 5 路、输出 4 路；{Operation mode} 指定帧结束行为、{Puncture vector source} 指定删余向量来源 Input、{Puncture vector} 指定插入中性值的位置，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入样本 scalar"
+  },
+  {
+   "name": "puncVector",
+   "direction": "input",
+   "summary": "删余向量 column vector of binary values"
+  },
+  {
+   "name": "syncPunc",
+   "direction": "input",
+   "summary": "删余同步信号 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "输入样本的有效性 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "输出样本 2-by-1 column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "输出数据样本的有效性 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "erasure",
+   "direction": "output",
+   "summary": "中性符号位置 2-by-1 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation mode",
+   "default": "Continuous",
+   "values": "帧结束行为 Continuous (default) | Frame",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector source",
+   "default": "port",
+   "values": "删余向量来源 Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "[1;1;0;1;1;0]",
+   "values": "插入中性值的位置 [1;1;0;1;1;0] (default) | column vector of binary values",
+   "group": ""
+  }
+ ]
+}

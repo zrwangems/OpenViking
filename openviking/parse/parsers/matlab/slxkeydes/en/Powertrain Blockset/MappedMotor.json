@@ -1,0 +1,272 @@
+{
+ "key": "MappedMotor",
+ "title": "Mapped Motor",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Electric Motors and Inverters/Mapped_Motor.md",
+  "Vehicle Dynamics Blockset/Powertrain/Propulsion/Mapped_Motor.md"
+ ],
+ "text": "Mapped motor and drive electronics operating in torque-control mode, 4 inputs, 4 outputs, {Parameterized by} sets Parameterization method for torque; {Port configuration}, {Import Torque Limits Calibration} sets the method to directly import torque limits calibration tables, {Calibrate Maps} sets the method to calibrate loss table with measured data, {Import Loss Calibration} sets the method to directly import loss calibration table, {Import Efficiency Calibration} sets the method to directly import efficiency calibration table, {Speed breakpoints for maximum torque, w_t} sets the rotational speeds, {Maximum torque values, T_t} sets the torque, {Maximum torque, torque_max} sets the torque, {Maximum power, power_max} sets the power, {Torque control time constant, Tc} sets the time constant, {Maximum torque as a function of speed and voltage, Tmax_w_V} sets the torque, {Speed breakpoints for maximum torque, w_Tmax_bp} sets the rotational speeds, {Voltage breakpoints for maximum torque, V_Tmax_bp} sets the voltage, {Minimum torque as a function of speed and voltage, Tmin_w_V} sets the torque, {Speed breakpoints for minimum torque, w_Tmin_bp} sets the rotational speeds, {Voltage breakpoints for minimum torque, V_Tmin_bp} sets the voltage, {Parameterize losses by} sets the parameterization method for electrical losses Single efficiency, {Motor and drive overall efficiency, eff} sets the combined efficiency η 0 of the motor and motor drive, measured at the efficiency setpoint, {Speed at which efficiency is measured, w_eff} sets the speed, {Torque at which efficiency is measured, T_eff}, {Iron losses, Piron} sets the power, {Fixed losses independent of torque and speed, Pbase} sets the power, {Speed breakpoints for losses, w_eff_bp} sets the breakpoints, {Torque breakpoints for losses, T_eff_bp} sets the breakpoints, {Temperature breakpoints for losses, Temp_eff_bp} sets the breakpoints, {Voltage breakpoints for losses, V_eff_bp} sets the breakpoints, {Loss table, losses_table} sets the 2-D lookup table M -by, {Loss table, losses_table_3d} sets the 3-D lookup table M -by- N -by, {Loss table, losses_table_4d} sets the 4-D lookup table N -by- M -by- K -by- L, {Efficiency table, efficiency_table} sets the 2-D lookup table M -by, {Efficiency table, efficiency_table_3d} sets the 3-D lookup table M -by- N -by, {Efficiency table, efficiency_table_4d} sets the 4-D lookup table N -by- M -by- K -by- L, {Rotor inertia, J} sets the inertia 5e-6, {Rotor damping, b} sets the damping 1e-5 and {Initial rotor speed, omega_o} sets the speed. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BattVolt",
+   "direction": "input",
+   "summary": "Battery voltage scalar"
+  },
+  {
+   "name": "TrqCmd",
+   "direction": "input",
+   "summary": "Commanded motor torque scalar"
+  },
+  {
+   "name": "LdTrq",
+   "direction": "input",
+   "summary": "Motor load torque scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "input",
+   "summary": "Motor output shaft speed scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "BattCurr",
+   "direction": "output",
+   "summary": "Battery current scalar"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "output",
+   "summary": "Motor torque scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "output",
+   "summary": "Motor shaft speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port configuration",
+   "default": "Torque",
+   "values": "Port configuration Torque (default) | Speed",
+   "group": ""
+  },
+  {
+   "name": "Import Torque Limits Calibration",
+   "default": "",
+   "values": "Method to directly import torque limits calibration tables selection",
+   "group": ""
+  },
+  {
+   "name": "Calibrate Maps",
+   "default": "",
+   "values": "Method to calibrate loss table with measured data selection",
+   "group": ""
+  },
+  {
+   "name": "Import Loss Calibration",
+   "default": "",
+   "values": "Method to directly import loss calibration table selection",
+   "group": ""
+  },
+  {
+   "name": "Import Efficiency Calibration",
+   "default": "",
+   "values": "Method to directly import efficiency calibration table selection",
+   "group": ""
+  },
+  {
+   "name": "Parameterized by",
+   "default": "envelope",
+   "values": "Parameterization method for torque envelope Tabulated torque-speed envelope (default) | Maximum torque and power | Tabulated torque-speed-voltage envelope",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints for maximum torque, w_t",
+   "default": "800]",
+   "values": "Rotational speeds [0 375 750 800] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque values, T_t",
+   "default": "0]",
+   "values": "Torque [0.09 0.08 0.07 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque, torque_max",
+   "default": "0.1",
+   "values": "Torque 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum power, power_max",
+   "default": "30",
+   "values": "Power 30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque control time constant, Tc",
+   "default": "0.02",
+   "values": "Time constant 0.02 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque as a function of speed and voltage, Tmax_w_V",
+   "default": "0]",
+   "values": "Torque [0.09 0.09 0.09;0.08 0.08 0.08;0.07 0.07 0.07;0 0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints for maximum torque, w_Tmax_bp",
+   "default": "]",
+   "values": "Rotational speeds [ 0 375 750 800 ] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Voltage breakpoints for maximum torque, V_Tmax_bp",
+   "default": "]",
+   "values": "Voltage [ 500 750 900 ] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Minimum torque as a function of speed and voltage, Tmin_w_V",
+   "default": "0]",
+   "values": "Torque [-0.09 -0.09 -0.09;-0.08 -0.08 -0.08;-0.07 -0.07 -0.07;0 0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints for minimum torque, w_Tmin_bp",
+   "default": "]",
+   "values": "Rotational speeds [ 0 375 750 800 ] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Voltage breakpoints for minimum torque, V_Tmin_bp",
+   "default": "]",
+   "values": "Voltage [ 500 750 900 ] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Parameterize losses by",
+   "default": "measurement",
+   "values": "Parameterization method for electrical losses Single efficiency measurement (default) | Tabulated loss data | Tabulated loss data with temperature | Tabulated loss data with temperature and voltage | Tabulated efficiency data | Tabulated efficiency data with temperature | Tabulated efficiency data with temperature and voltage",
+   "group": ""
+  },
+  {
+   "name": "Motor and drive overall efficiency, eff",
+   "default": "100",
+   "values": "Combined efficiency η 0 of the motor and motor drive, measured at the efficiency setpoint, in percent 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed at which efficiency is measured, w_eff",
+   "default": "375",
+   "values": "Speed 375 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque at which efficiency is measured, T_eff",
+   "default": "0.08",
+   "values": "Torque 0.08 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Iron losses, Piron",
+   "default": "0",
+   "values": "Power 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fixed losses independent of torque and speed, Pbase",
+   "default": "0",
+   "values": "Power 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed breakpoints for losses, w_eff_bp",
+   "default": "800]",
+   "values": "Breakpoints [-800 -400 0 400 800] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Torque breakpoints for losses, T_eff_bp",
+   "default": "0.09]",
+   "values": "Breakpoints [0 0.03 0.06 0.09] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Temperature breakpoints for losses, Temp_eff_bp",
+   "default": "373.15]",
+   "values": "Breakpoints [233.15 293.15 373.15] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Voltage breakpoints for losses, V_eff_bp",
+   "default": "900]",
+   "values": "Breakpoints [500 700 900] (default) | 1 -by- K vector",
+   "group": ""
+  },
+  {
+   "name": "Loss table, losses_table",
+   "default": "",
+   "values": "2-D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Loss table, losses_table_3d",
+   "default": "",
+   "values": "3-D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Loss table, losses_table_4d",
+   "default": "",
+   "values": "4-D lookup table N -by- M -by- K -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table, efficiency_table",
+   "default": "",
+   "values": "2-D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table, efficiency_table_3d",
+   "default": "",
+   "values": "3-D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table, efficiency_table_4d",
+   "default": "",
+   "values": "4-D lookup table N -by- M -by- K -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Rotor inertia, J",
+   "default": "5e-6",
+   "values": "Inertia 5e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rotor damping, b",
+   "default": "1e-5",
+   "values": "Damping 1e-5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial rotor speed, omega_o",
+   "default": "0",
+   "values": "Speed 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

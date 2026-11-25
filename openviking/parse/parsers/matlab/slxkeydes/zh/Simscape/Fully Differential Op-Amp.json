@@ -1,0 +1,13 @@
+{
+ "key": "Fully Differential Op-Amp",
+ "title": "Fully Differential Op-Amp",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Fully_Differential_Op_Amp.md"
+ ],
+ "text": "具有全差分输出的运算放大器，即不参考接地。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

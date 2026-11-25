@@ -1,0 +1,67 @@
+{
+ "key": "UDP Read",
+ "title": "UDP Read",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Host I_O/UDP_Read.md",
+  "SoC Blockset/Processor I_O/UDP_Read.md"
+ ],
+ "text": "Receive UDP packets from remote host, 1 input, 2 outputs, {Data type} sets Data type of received data; {Local port} sets the iP port number of local host, {Maximum data length (elements)} sets the maximum length of output UDP packet, {Receive buffer size (bytes)} sets the number of data bytes in received data, {Enable event-based execution} enables or disable event-based task and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "UDP packet numeric vector"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Output UDP packet numeric vector"
+  },
+  {
+   "name": "length",
+   "direction": "output",
+   "summary": "Length of received UDP packet nonnegative scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Local port",
+   "default": "25000",
+   "values": "IP port number of local host 25000 (default) | integer from 1 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Data type of received data uint8 (default) | single | double | int8 | int16 | int32 | uint16 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Maximum data length (elements)",
+   "default": "1",
+   "values": "Maximum length of output UDP packet 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Receive buffer size (bytes)",
+   "default": "65535",
+   "values": "Number of data bytes in received data 65535 (default) | integer from 1 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Enable event-based execution",
+   "default": "off",
+   "values": "Enable or disable event-based task execution off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

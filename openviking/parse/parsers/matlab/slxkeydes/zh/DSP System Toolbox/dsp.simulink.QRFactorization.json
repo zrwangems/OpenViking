@@ -1,0 +1,47 @@
+{
+ "key": "dsp.simulink.QRFactorization",
+ "title": "QR Factorization",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Factorizations/QR_Factorization.md"
+ ],
+ "text": "将任意矩阵分解为酉分量和上三角分量，输入 1 路、输出 3 路、无直接馈通；{Output size} 输出大小 Economy、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入 vector | matrix"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "QR 分解的正交归一组件 Q vector | matrix"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "QR 分解的上三角分量 R vector | matrix"
+  },
+  {
+   "name": "E",
+   "direction": "output",
+   "summary": "列置换向量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output size",
+   "default": "Economy",
+   "values": "输出大小 Economy (default) | Full",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,216 @@
+{
+ "key": "Drive Cycle Source",
+ "title": "Drive Cycle Source",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Vehicle Scenario Builder/Drive_Cycle_Source.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Drive_Cycle_Source.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Wide_Open_Throttle.md"
+ ],
+ "text": "Standard or specified longitudinal drive cycle, 1 input, 4 outputs, {Drive cycle source} sets Select the drive cycle source; {From workspace} sets the workspace variable, {Drive cycle source file} sets the file name .mat,.xls,.xlsx or.txt, {Repeat cyclically} sets the repeat drive cycle, {Output acceleration} sets the output the acceleration, {Output gear shift data} sets the output the gear, {Start time, t_wot1} sets the drive cycle start time, {Initial reference speed, xdot_woto} sets the speed, {Nominal reference speed, xdot_wot1} sets the speed, {Time to start deceleration, t_wot2} sets the time, {Final reference speed, xdot_wot2} sets the speed, {WOT simulation time, t_wotend} sets the time duration of simulation, {Source velocity units} sets the velocity units, {Output velocity units} sets the velocity units, {Output acceleration units} sets the acceleration units, {Output sample period (0 for continuous), dt} sets the period between samples, {Enable fault tracking}, {Speed tolerance, velBnd} sets the drive cycle speed tolerance, {Speed tolerance units, velBndUnit} sets the units, {Velocity feedback units, inUnit} sets the velocity feedback, {Time tolerance, timeBnd}, {Enable Failure Tracking}, {Stop simulation when trace fails}, {Maximum number of faults, maxFaultCnt} sets the maximum number of faults allowed, {Maximum single fault time, maxFaultTime} sets the maximum allowed duration of single fault, {Maximum total fault time, maxTotFaultTime}, {Display simulation trace} displays velocity trace, {Simulation trace update rate, dtTrace} sets the trace update period and {Simulation trace display window, traceWindow} sets the trace window update rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VelFdbk",
+   "direction": "input",
+   "summary": "Vehicle longitudinal speed scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "RefSpd",
+   "direction": "output",
+   "summary": "Vehicle reference speed scalar"
+  },
+  {
+   "name": "RefAcc",
+   "direction": "output",
+   "summary": "Vehicle reference acceleration scalar"
+  },
+  {
+   "name": "Gear",
+   "direction": "output",
+   "summary": "Vehicle gear scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Drive cycle source",
+   "default": "FTP75",
+   "values": "Select the drive cycle source FTP75 (default) | Wide Open Throttle (WOT) | Workspace variable |.mat,.xls,.xlsx or.txt file",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "From workspace",
+   "default": "",
+   "values": "Workspace variable",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Drive cycle source file",
+   "default": "",
+   "values": "File name .mat,.xls,.xlsx or.txt",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Repeat cyclically",
+   "default": "off",
+   "values": "Repeat drive cycle off (default) | on",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output acceleration",
+   "default": "off",
+   "values": "Output the acceleration off (default)",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output gear shift data",
+   "default": "off",
+   "values": "Output the gear off (default) | on",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Start time, t_wot1",
+   "default": "5",
+   "values": "Drive cycle start time 5 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Initial reference speed, xdot_woto",
+   "default": "0",
+   "values": "Speed 0 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Nominal reference speed, xdot_wot1",
+   "default": "30",
+   "values": "Speed 30 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Time to start deceleration, t_wot2",
+   "default": "20",
+   "values": "Time 20 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Final reference speed, xdot_wot2",
+   "default": "0",
+   "values": "Speed 0 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "WOT simulation time, t_wotend",
+   "default": "30",
+   "values": "Time duration of simulation 30 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Source velocity units",
+   "default": "m/s",
+   "values": "Specify velocity units m/s (default)",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output velocity units",
+   "default": "m/s",
+   "values": "Specify velocity units m/s (default)",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output acceleration units",
+   "default": "m/s^2",
+   "values": "Specify acceleration units m/s^2 (default)",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Output sample period (0 for continuous), dt",
+   "default": "0",
+   "values": "Period between samples 0 (default) | scalar",
+   "group": "Cycle Setup"
+  },
+  {
+   "name": "Enable fault tracking",
+   "default": "off",
+   "values": "Enable fault tracking off (default) | on",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Speed tolerance, velBnd",
+   "default": "2.0",
+   "values": "Drive cycle speed tolerance 2.0 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Speed tolerance units, velBndUnit",
+   "default": "mph",
+   "values": "Set units mph (default)",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Velocity feedback units, inUnit",
+   "default": "m/s",
+   "values": "Set velocity feedback units m/s (default)",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Time tolerance, timeBnd",
+   "default": "1.0",
+   "values": "Time tolerance 1.0 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Enable Failure Tracking",
+   "default": "off",
+   "values": "Enable failure tracking off (default) | on",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Stop simulation when trace fails",
+   "default": "off",
+   "values": "Stop simulation when trace fails off (default) | on",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Maximum number of faults, maxFaultCnt",
+   "default": "10",
+   "values": "Maximum number of faults allowed 10 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Maximum single fault time, maxFaultTime",
+   "default": "2.0",
+   "values": "Maximum allowed duration of single fault 2.0 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Maximum total fault time, maxTotFaultTime",
+   "default": "15.0",
+   "values": "Maximum total fault time 15.0 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Display simulation trace",
+   "default": "off",
+   "values": "Display velocity trace off (default) | on",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Simulation trace update rate, dtTrace",
+   "default": "1",
+   "values": "Trace update period 1 (default) | scalar",
+   "group": "Fault Tracking"
+  },
+  {
+   "name": "Simulation trace display window, traceWindow",
+   "default": "10",
+   "values": "Trace window update rate 10 (default) | scalar",
+   "group": "Fault Tracking"
+  }
+ ]
+}

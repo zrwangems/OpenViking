@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Heat Exchanger (2P-2P)",
+ "title": "System-Level Heat Exchanger (2P-2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Two-Phase Fluid/System_Level_Heat_Exchanger_2P_2P.md"
+ ],
+ "text": "Heat exchanger based on performance data between two two-phase fluid networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

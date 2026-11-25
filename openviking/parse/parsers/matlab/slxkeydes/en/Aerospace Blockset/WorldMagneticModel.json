@@ -1,0 +1,132 @@
+{
+ "key": "WorldMagneticModel",
+ "title": "World Magnetic Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/World_Magnetic_Model.md"
+ ],
+ "text": "Calculate Earth’s magnetic field at specific location and time using World Magnetic Model, 4 inputs, 5 outputs, {Month} sets Input month; {WMM coefficients} sets the world Magnetic Model coefficient file, {Custom.COF file} sets the custom World Magnetic Model coefficient, {Units} sets the input and output units Metric, {Input decimal year}, {Day} sets the input day, {Year} sets the input year, {Action for out-of-range input} sets the out-of-range action, {Output horizontal intensity}, {Output declination}, {Output inclination} and {Output total intensity}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "Ellipsoidal height scalar"
+  },
+  {
+   "name": "μ (deg)",
+   "direction": "input",
+   "summary": "Latitude scalar"
+  },
+  {
+   "name": "l (deg)",
+   "direction": "input",
+   "summary": "Longitude scalar"
+  },
+  {
+   "name": "Decimal Year",
+   "direction": "input",
+   "summary": "Desired year scalar"
+  },
+  {
+   "name": "Magnetic Field (nT)",
+   "direction": "output",
+   "summary": "Magnetic field vector"
+  },
+  {
+   "name": "Horizontal Intensity (nT)",
+   "direction": "output",
+   "summary": "Horizontal intensity scalar"
+  },
+  {
+   "name": "Declination (deg)",
+   "direction": "output",
+   "summary": "Declination scalar"
+  },
+  {
+   "name": "Inclination (deg)",
+   "direction": "output",
+   "summary": "Inclination scalar"
+  },
+  {
+   "name": "Total Intensity (nT)",
+   "direction": "output",
+   "summary": "Total intensity scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "WMM coefficients",
+   "default": "(2025-2030)",
+   "values": "World Magnetic Model coefficient file WMM2025 (2025-2030) (default) | WMM2020 (2020-2025) | WMM2015 V2 (2015-2020) | WMM2000 (2000-2005) | WMM2005 (2005-2010) | WMM2010 (2010-2015) | WMM2015 V1 (2015-2020) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Custom.COF file",
+   "default": "’WMM2025COF’",
+   "values": "Custom World Magnetic Model coefficient file ’WMM2025COF’ (default) | any coefficient file name",
+   "group": ""
+  },
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Input decimal year",
+   "default": "on",
+   "values": "Input decimal year on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "Input month January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Day",
+   "default": "1",
+   "values": "Input day 1 (default) | 1 to 31",
+   "group": ""
+  },
+  {
+   "name": "Year",
+   "default": "2025",
+   "values": "Input year 2025 (default) | any year",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Error",
+   "values": "Out-of-range action Error (default) | Warning | None",
+   "group": ""
+  },
+  {
+   "name": "Output horizontal intensity",
+   "default": "on",
+   "values": "Output horizontal intensity on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output declination",
+   "default": "on",
+   "values": "Output declination on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output inclination",
+   "default": "on",
+   "values": "Output inclination on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output total intensity",
+   "default": "on",
+   "values": "Output total intensity on (default) | off",
+   "group": ""
+  }
+ ]
+}

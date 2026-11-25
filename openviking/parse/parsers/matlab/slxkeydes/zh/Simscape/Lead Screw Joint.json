@@ -1,0 +1,13 @@
+{
+ "key": "Lead Screw Joint",
+ "title": "Lead Screw Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Lead_Screw_Joint.md"
+ ],
+ "text": "具有耦合旋转和平移自由度的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,33 @@
+{
+ "key": "XCP CAN Transport Layer",
+ "title": "XCP CAN Transport Layer",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/CAN/XCP_CAN_Transport_Layer.md",
+  "Vehicle Network Toolbox/XCP Communication/CAN/XCP_CAN_Transport_Layer.md"
+ ],
+ "text": "通过 CAN 传输 XCP 报文；{设备}、{总线速度} 指定 CAN 总线的速度 数值、{采样时间} 指定仿真刷新率，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "设备",
+   "default": "",
+   "values": "CAN 设备 设备列表选项",
+   "group": ""
+  },
+  {
+   "name": "总线速度",
+   "default": "",
+   "values": "CAN 总线的速度 数值",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.01",
+   "values": "仿真刷新率 0.01 (默认) | 数值",
+   "group": ""
+  }
+ ]
+}

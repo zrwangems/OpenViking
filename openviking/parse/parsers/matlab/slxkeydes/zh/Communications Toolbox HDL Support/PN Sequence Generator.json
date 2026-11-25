@@ -1,0 +1,125 @@
+{
+ "key": "PN Sequence Generator",
+ "title": "PN Sequence Generator",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Sources/PN_Sequence_Generator.md",
+  "Communications Toolbox/Comm Sources/Sequence Generators/PN_Sequence_Generator.md"
+ ],
+ "text": "生成伪噪声序列，输入 4 路、输出 1 路；按 {Sample time} 指定输出采样时间；{Generator polynomial} 指定生成多项式、{Initial states} 指定初始移位寄存器状态、{Output mask source} 输出掩码源、{Output mask vector (or scalar shift value)} 输出掩码向量或标量移位值、{Output variable-size signals} 输出可变长度信号、{Samples per frame}、{Maximum output size source} 指定最大输出大小来源、{Maximum output size} 指定最大输出大小、{Reset on nonzero input} 指定非零输入时重置、{Enable bit-packed outputs} 启用位打包输出、{Number of packed bits} 指定打包位数、{Interpret bit-packed values as signed} 指定将位打包值解释为有符号、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Mask",
+   "direction": "input",
+   "summary": "输出掩码 binary vector"
+  },
+  {
+   "name": "oSiz",
+   "direction": "input",
+   "summary": "输出大小 integer"
+  },
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "参考输入 column vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置序列生成器 0 | 1"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "伪随机噪声序列 binary vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generator polynomial",
+   "default": "1’",
+   "values": "生成多项式 ’z^6 + z + 1’ (default) | character vector | string scalar | binary row vector | integer vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states",
+   "default": "1]",
+   "values": "初始移位寄存器状态 [0 0 0 0 0 1] (default) | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Output mask source",
+   "default": "parameter",
+   "values": "输出掩码源 Dialog parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Output mask vector (or scalar shift value)",
+   "default": "0",
+   "values": "输出掩码向量或标量移位值 0 (default) | integer scalar | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "输出可变长度信号的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出采样时间 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size source",
+   "default": "parameter",
+   "values": "最大输出大小来源 Dialog parameter (default) | Inherit from reference port",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size",
+   "default": "1]",
+   "values": "最大输出大小 [10 1] (default) | vector of the form [ n 1]",
+   "group": ""
+  },
+  {
+   "name": "Reset on nonzero input",
+   "default": "off",
+   "values": "非零输入时重置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable bit-packed outputs",
+   "default": "off",
+   "values": "启用位打包输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of packed bits",
+   "default": "8",
+   "values": "打包位数 8 (default) | integer in the range [1, 32]",
+   "group": ""
+  },
+  {
+   "name": "Interpret bit-packed values as signed",
+   "default": "off",
+   "values": "将位打包值解释为有符号 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | boolean | Smallest unsigned integer",
+   "group": ""
+  }
+ ]
+}

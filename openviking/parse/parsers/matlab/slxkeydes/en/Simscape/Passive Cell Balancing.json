@@ -1,0 +1,71 @@
+{
+ "key": "Passive Cell Balancing",
+ "title": "Passive Cell Balancing",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Cell Balancing/Passive_Cell_Balancing.md"
+ ],
+ "text": "Passive battery cell balancing algorithm, 2 inputs, 2 outputs, {Sample time (-1 for inherited)} sets Block sample time; {Threshold for balancing} sets the balancing threshold, {Hysteresis band for switching balancing off} sets the hysteresis band for switching off passive, {ON delay time (s)} sets the time delay before balancing activation, {OFF delay time (s)} sets the time delay after balancing completion and {Command Data Type} sets the data type of Command. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Cell voltages or cell SOC values vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Whether to enable cell balancing scalar"
+  },
+  {
+   "name": "Command",
+   "direction": "output",
+   "summary": "Balancing command vector"
+  },
+  {
+   "name": "BalancingActive",
+   "direction": "output",
+   "summary": "Whether the balancing procedure is active scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Threshold for balancing",
+   "default": "0.2",
+   "values": "Balancing threshold 0.2 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Hysteresis band for switching balancing off",
+   "default": "0",
+   "values": "Hysteresis band for switching off passive balancing 0 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "ON delay time (s)",
+   "default": "1",
+   "values": "Time delay before balancing activation 1 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "OFF delay time (s)",
+   "default": "1",
+   "values": "Time delay after balancing completion 1 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Command Data Type",
+   "default": "double",
+   "values": "Data type of Command output double (default) | single | boolean |",
+   "group": "Signal Attributes"
+  }
+ ]
+}

@@ -1,0 +1,268 @@
+{
+ "key": "LineOfSightAccess",
+ "title": "Line of Sight Access",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Line_of_Sight_Access.md"
+ ],
+ "text": "确定一个或多个源位置与一个或多个目标位置之间是否存在视线（LOS）访问，输入 11 路、输出 6 路；按 {Ephemeris model} 指定星历模型；{Units} 指定参数和端口单位 Metric、{Time source}、{Start date/time (JD)} 指定仿真的初始开始日期和时间 juliandate、{Access calculation type} 控制访问类型的方法、{Output access status for each occulting body} 为每个掩星体输出访问状态、{Limit ephemerides date range} 用于启用星历数据范围起始和结束、{Start date (JD)} 指定星历日期范围的起始日期 juliandate、{End date (JD)} 指定星历日期范围的结束日期 juliandate、{Action for out-of-range input} 指定超出范围时的模块行为、{Enable zero-crossing detection} 启用过零检测、{Central body} 用于源位置的天体中心天体、{Include Moon} 指定包含 Moon、{Include Earth} 指定包含 Earth、{Position coordinate frame} 指定位置坐标系、{Minimum elevation angle (deg)} 指定最小仰角、{Input Moon libration angles} 指定月球天平动、{Use Earth orientation parameters (EOPs)} 用于使用地球定向参数、{IERS EOP data file} 指定地球定向数据、{Equatorial radius} 指定自定义赤道半径 3.3962e6、{Use field of view (FOV)} 用于指定视场、{FOV half angle (deg)} 指定视场半角、{Attitude representation} 指定姿态表示 Quaternion、{FOV orientation source} 指定视场方向来源方法、{FOV orientation} 指定视场方向 4-element vector、{Attitude reference coordinate frame} 指定姿态参考坐标系 ICRF、{Angle rotation order} 指定角度旋转顺序、{Use same central body as Source} 用于使用与为源天体指定的相同中心天体，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T JD",
+   "direction": "input",
+   "summary": "儒略日 scalar"
+  },
+  {
+   "name": "T0 JD",
+   "direction": "input",
+   "summary": "儒略日历元 scalar"
+  },
+  {
+   "name": "ΔT JD",
+   "direction": "input",
+   "summary": "相对于 T0 JD 的经过儒略时间 scalar"
+  },
+  {
+   "name": "Src position",
+   "direction": "input",
+   "summary": "源位置 3-element vector | 4-element vector | M -by-3 array | M -by-4 array"
+  },
+  {
+   "name": "Src attitude",
+   "direction": "input",
+   "summary": "源姿态 3-element vector | M -by-3 array"
+  },
+  {
+   "name": "Src FOV orientation",
+   "direction": "input",
+   "summary": "源视场朝向 4-element vector | 3-element vector"
+  },
+  {
+   "name": "Tgt position",
+   "direction": "input",
+   "summary": "目标位置 3-element vector | M -by-3 array"
+  },
+  {
+   "name": "Tgt attitude",
+   "direction": "input",
+   "summary": "目标姿态 3-element vector | M -by-3 array"
+  },
+  {
+   "name": "Tgt FOV orientation",
+   "direction": "input",
+   "summary": "目标视场朝向 4-element vector | 3-element vector"
+  },
+  {
+   "name": "R ss bary, cb",
+   "direction": "input",
+   "summary": "自定义中心天体位置 3-by-1 array"
+  },
+  {
+   "name": "φθψ",
+   "direction": "input",
+   "summary": "月球天平动角 3-element vector"
+  },
+  {
+   "name": "Access",
+   "direction": "output",
+   "summary": "总组合视线访问状态 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access source CB",
+   "direction": "output",
+   "summary": "源中心天体的视线访问状态 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access Earth/Moon",
+   "direction": "output",
+   "summary": "地球或月球的视线访问状态 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access target CB",
+   "direction": "output",
+   "summary": "目标中心天体的视线访问状态 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access Src FOV",
+   "direction": "output",
+   "summary": "源视场的从源到目标视线访问状态 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access Tgt FOV",
+   "direction": "output",
+   "summary": "目标视场的从源到目标视线访问状态 0 (false) | 1 (true)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(m)",
+   "values": "参数和端口单位 Metric (m) (default) | Metric (km) | English (ft) | English (M)",
+   "group": "Main"
+  },
+  {
+   "name": "Time source",
+   "default": "Dialog",
+   "values": "Time source method Dialog (default) | Port (Julian date) | Port (T0 and elapsed Julian time)",
+   "group": "Main"
+  },
+  {
+   "name": "Start date/time (JD)",
+   "default": "1)",
+   "values": "仿真的初始开始日期和时间 juliandate(2020, 1, 1) (default) | valid scalar Julian date",
+   "group": "Main"
+  },
+  {
+   "name": "Access calculation type",
+   "default": "Cumulative",
+   "values": "控制访问类型的方法 Cumulative (default) | Element-wise",
+   "group": "Main"
+  },
+  {
+   "name": "Output access status for each occulting body",
+   "default": "off",
+   "values": "为每个掩星体输出访问状态 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Ephemeris model",
+   "default": "DE405",
+   "values": "星历模型 DE405 (default) | DE421 | DE423 | DE430 | DE432t",
+   "group": "Main"
+  },
+  {
+   "name": "Limit ephemerides date range",
+   "default": "on",
+   "values": "用于启用星历数据范围起始和结束的选项 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Start date (JD)",
+   "default": "1)",
+   "values": "星历日期范围的起始日期 juliandate(2020, 1, 1) (default) | Julian date",
+   "group": "Main"
+  },
+  {
+   "name": "End date (JD)",
+   "default": "1)",
+   "values": "星历日期范围的结束日期 juliandate(2035, 1, 1) (default) | Julian date",
+   "group": "Main"
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "超出范围时的模块行为 Warning (default) | Error | None",
+   "group": "Main"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "启用过零检测 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Central body",
+   "default": "Earth",
+   "values": "用于源位置的天体中心天体 Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Sun | Custom",
+   "group": "Source"
+  },
+  {
+   "name": "Include Moon",
+   "default": "off",
+   "values": "包含 Moon 的选项 off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "Include Earth",
+   "default": "off",
+   "values": "包含 Earth 的选项 off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "Position coordinate frame",
+   "default": "ICRF",
+   "values": "位置坐标系 ICRF (default) | Fixed-frame | Latitude, Longitude, Altitude",
+   "group": "Source"
+  },
+  {
+   "name": "Minimum elevation angle (deg)",
+   "default": "0",
+   "values": "最小仰角 0 (default) | double scalar | vector",
+   "group": "Source"
+  },
+  {
+   "name": "Input Moon libration angles",
+   "default": "off",
+   "values": "月球天平动 off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "Use Earth orientation parameters (EOPs)",
+   "default": "on",
+   "values": "用于使用地球定向参数的选项 on (default) | off",
+   "group": "Source"
+  },
+  {
+   "name": "IERS EOP data file",
+   "default": "aeroiersdata.mat",
+   "values": "地球定向数据 aeroiersdata.mat (default) | MAT file",
+   "group": "Source"
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "3.3962e6",
+   "values": "自定义赤道半径 3.3962e6 (default) | double scalar",
+   "group": "Source"
+  },
+  {
+   "name": "Use field of view (FOV)",
+   "default": "off",
+   "values": "用于指定视场的选项 off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "FOV half angle (deg)",
+   "default": "22.5",
+   "values": "视场半角 22.5 (default) | double scalar",
+   "group": "Source"
+  },
+  {
+   "name": "Attitude representation",
+   "default": "Quaternion",
+   "values": "姿态表示 Quaternion (default) | Euler angles",
+   "group": "Source"
+  },
+  {
+   "name": "FOV orientation source",
+   "default": "Dialog",
+   "values": "视场方向来源方法 Dialog (default) | Port",
+   "group": "Source"
+  },
+  {
+   "name": "FOV orientation",
+   "default": "",
+   "values": "视场方向 4-element vector | 3-element vector",
+   "group": "Source"
+  },
+  {
+   "name": "Attitude reference coordinate frame",
+   "default": "",
+   "values": "姿态参考坐标系 ICRF | Fixed-frame | NED",
+   "group": "Source"
+  },
+  {
+   "name": "Angle rotation order",
+   "default": "ZYX",
+   "values": "角度旋转顺序 ZYX (default) | ZYX | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX",
+   "group": "Source"
+  },
+  {
+   "name": "Use same central body as Source",
+   "default": "on",
+   "values": "用于使用与为源天体指定的相同中心天体的选项 on (default) | off",
+   "group": "Target"
+  }
+ ]
+}

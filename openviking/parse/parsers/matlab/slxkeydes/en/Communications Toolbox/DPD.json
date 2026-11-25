@@ -1,0 +1,54 @@
+{
+ "key": "DPD",
+ "title": "DPD",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments Correction/DPD.md"
+ ],
+ "text": "Digital predistorter, 2 inputs, 1 output; {Polynomial type}, {Coefficient source} sets the source of memory-polynomial coefficients, {Coefficients} sets the memory-polynomial coefficients complex 0 0 0 0 0; {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input baseband signal column vector"
+  },
+  {
+   "name": "Coef",
+   "direction": "input",
+   "summary": "Memory-polynomial coefficients matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Predistorted baseband signal column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Polynomial type",
+   "default": "polynomial",
+   "values": "Polynomial type Memory polynomial (default) | Cross-term memory polynomial",
+   "group": ""
+  },
+  {
+   "name": "Coefficient source",
+   "default": "Property",
+   "values": "Source of memory-polynomial coefficients Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Coefficients",
+   "default": "0])",
+   "values": "Memory-polynomial coefficients complex([1 0 0 0 0; 0 0 0 0 0; 0 0 0 0 0]) (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

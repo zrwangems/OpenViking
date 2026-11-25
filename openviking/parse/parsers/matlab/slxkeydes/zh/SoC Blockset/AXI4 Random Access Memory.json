@@ -1,0 +1,123 @@
+{
+ "key": "AXI4 Random Access Memory",
+ "title": "AXI4 Random Access Memory",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/AXI4_Random_Access_Memory.md"
+ ],
+ "text": "通过外部存储器对随机访问进行建模，输入 3 路、输出 3 路；按 {Initial value} 指定初始内存值；{Memory simulation} 指定仿真时序精度 Burst、{Memory selection} 指定在内存区域之间选择 PS、{Region size (bytes)} 指定缓冲区大小，以字节为单位、{Initialize memory content} 为仿真初始化内存、{Log memory content} 指定记录内存内容、{Log variable name} 指定内存记录的变量名称 string、{Dimensions} 指定输入数据信号的维度 scalar、{Data type} 指定写入器数据的数据类型、{Sample time} 指定采样时间间隔、{Enable sample packing (last signal dimension as channel)} 指定在信号的最后一维打包数据、{Output data signal matches input} 指定读取器和写入器使用相同的值、{View performance plots} 显示性能指标，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "写入器数据总线信号 scalar | vector | matrix"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "读取器输入控制信号 bus"
+  },
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "写入器输入控制信号 bus"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "输出数据信号至数据消费方 scalar | vector | matrix"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "从内存通道到数据消费方的读取器控制信号 bus"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "从内存通道到数据生产方的写入器控制信号 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Memory simulation",
+   "default": "accurate",
+   "values": "设置仿真时序精度 Burst accurate (default) | Protocol accurate",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "在内存区域之间选择 PS memory (default) | PL memory",
+   "group": "Main"
+  },
+  {
+   "name": "Region size (bytes)",
+   "default": "4096",
+   "values": "缓冲区大小，以字节为单位 4096 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initialize memory content",
+   "default": "off",
+   "values": "为仿真初始化内存 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "初始内存值 0 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Log memory content",
+   "default": "off",
+   "values": "记录内存内容 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Log variable name",
+   "default": "",
+   "values": "内存记录的变量名称 string | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Dimensions",
+   "default": "",
+   "values": "输入数据信号的维度 scalar | array",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "uint32",
+   "values": "写入器数据的数据类型 uint32 (default) | double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint64 | boolean | fixed point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "采样时间间隔 1 (default) | positive scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "off",
+   "values": "在信号的最后一维打包数据 off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data signal matches input",
+   "default": "on",
+   "values": "读取器和写入器使用相同的值 on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "View performance plots",
+   "default": "",
+   "values": "显示性能指标 button",
+   "group": "Performance"
+  }
+ ]
+}

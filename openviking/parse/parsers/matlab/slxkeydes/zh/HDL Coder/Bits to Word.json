@@ -1,0 +1,37 @@
+{
+ "key": "Bits to Word",
+ "title": "Bits to Word",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Bits_to_Word.md"
+ ],
+ "text": "将位向量转换为整数，输入 1 路、输出 1 路；{Input bit order} 指定输入位顺序 LSB、{After bit packing, treat resulting integer values as} 指定位打包后有符号整数值的标志，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 binary-valued scalar | binary-valued vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input bit order",
+   "default": "first",
+   "values": "输入位顺序 LSB first (default) | MSB first",
+   "group": ""
+  },
+  {
+   "name": "After bit packing, treat resulting integer values as",
+   "default": "Unsigned",
+   "values": "位打包后有符号整数值的标志 Unsigned (default) | Signed",
+   "group": ""
+  }
+ ]
+}

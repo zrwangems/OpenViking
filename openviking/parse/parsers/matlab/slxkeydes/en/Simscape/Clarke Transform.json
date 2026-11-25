@@ -1,0 +1,65 @@
+{
+ "key": "Clarke Transform",
+ "title": "Clarke Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Clarke_Transform.md",
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/Clarke_Transform.md",
+  "Motor Control Blockset/Controls/Math Transforms/Clarke_Transform.md"
+ ],
+ "text": "Implement abc to αβ0 transform, 3 inputs, 3 outputs; {Power Invariant} enables power invariance, {Use block for embedded implementation (requires Motor Control Blockset™)} sets the option to use block for embedded and {Number of inputs} sets the number of block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "input",
+   "summary": "a -, b -, and c -phase components vector"
+  },
+  {
+   "name": "a",
+   "direction": "input",
+   "summary": "a -phase component scalar"
+  },
+  {
+   "name": "b",
+   "direction": "input",
+   "summary": "b -phase component scalar"
+  },
+  {
+   "name": "αβ0",
+   "direction": "output",
+   "summary": "α - β axis and zero components vector"
+  },
+  {
+   "name": "α",
+   "direction": "output",
+   "summary": "Alpha-axis component scalar"
+  },
+  {
+   "name": "β",
+   "direction": "output",
+   "summary": "Beta-axis component scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power Invariant",
+   "default": "off",
+   "values": "Enable power invariance off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use block for embedded implementation (requires Motor Control Blockset™)",
+   "default": "off",
+   "values": "Option to use block for embedded implementation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of inputs",
+   "default": "inputs",
+   "values": "Number of block inputs Two inputs (default) | Three inputs",
+   "group": ""
+  }
+ ]
+}

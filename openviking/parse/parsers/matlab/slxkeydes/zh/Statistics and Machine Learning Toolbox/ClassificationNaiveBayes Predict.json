@@ -1,0 +1,179 @@
+{
+ "key": "ClassificationNaiveBayes Predict",
+ "title": "ClassificationNaiveBayes Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Classification/ClassificationNaiveBayes_Predict.md"
+ ],
+ "text": "使用朴素贝叶斯模型对观测值进行分类，输入 1 路、输出 3 路、直接馈通；按 {Integer rounding mode} 指定定点运算的舍入模式；{Select trained machine learning model} 指定朴素贝叶斯分类模型、{Add output port for predicted class scores} 为预测类分数添加可选输出端口、{Add output port for expected classification cost} 为预期分类成本添加可选输出端口、{Saturate on integer overflow} 指定溢出操作的方法、{Lock output data type setting against changes by the fixed-point tools} 防止定点工具覆盖数据类型、{Label data type} 指定 label 输出的数据类型、{Label data type Minimum} 用于范围检查的标签输出最小值、{Label data type Maximum} 用于范围检查的标签输出最大值、{Score data type} 指定分数输出的数据类型 Inherit、{Score data type Minimum} 用于范围检查的分数输出最小值、{Score data type Maximum} 用于范围检查的分数输出最大值、{Raw score data type} 指定未变换的分数数据类型 Inherit、{Raw score data type Minimum} 用于范围检查的未变换分数最小值、{Raw score data type Maximum} 用于范围检查的未变换分数最大值、{Estimated cost data type} 指定代价输出的数据类型 Inherit、{Estimated cost data type Minimum} 用于范围检查的代价输出最小值、{Estimated cost data type Maximum} 用于范围检查的代价输出最大值、{Likelihood data type} 指定似然输出的数据类型 Inherit、{Likelihood data type Minimum} 用于范围检查的似然输出最小值、{Likelihood data type Maximum} 用于范围检查的似然输出最大值、{Posterior data type} 指定后验概率输出的数据类型 Inherit、{Posterior data type Minimum} 用于范围检查的后验概率输出最小值、{Posterior data type Maximum} 用于范围检查的后验概率输出最大值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "预测变量数据 row vector | column vector"
+  },
+  {
+   "name": "label",
+   "direction": "output",
+   "summary": "预测类标签 scalar"
+  },
+  {
+   "name": "score",
+   "direction": "output",
+   "summary": "预测类分数或后验概率 row vector"
+  },
+  {
+   "name": "cost",
+   "direction": "output",
+   "summary": "预期分类成本 row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select trained machine learning model",
+   "default": "nbMdl",
+   "values": "朴素贝叶斯分类模型 nbMdl (default) | ClassificationNaiveBayes object",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for predicted class scores",
+   "default": "off",
+   "values": "为预测类分数添加可选输出端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for expected classification cost",
+   "default": "off",
+   "values": "为预期分类成本添加可选输出端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type",
+   "default": "",
+   "values": "label 输出的数据类型 Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的标签输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的标签输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type",
+   "default": "auto",
+   "values": "分数输出的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的分数输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的分数输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Raw score data type",
+   "default": "auto",
+   "values": "未变换的分数数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Raw score data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的未变换分数最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Raw score data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的未变换分数最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Estimated cost data type",
+   "default": "auto",
+   "values": "代价输出的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Estimated cost data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的代价输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Estimated cost data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的代价输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Likelihood data type",
+   "default": "auto",
+   "values": "似然输出的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Likelihood data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的似然输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Likelihood data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的似然输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Posterior data type",
+   "default": "auto",
+   "values": "后验概率输出的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Posterior data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的后验概率输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Posterior data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的后验概率输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

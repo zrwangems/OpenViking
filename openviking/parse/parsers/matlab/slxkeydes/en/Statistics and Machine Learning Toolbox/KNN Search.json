@@ -1,0 +1,132 @@
+{
+ "key": "KNN Search",
+ "title": "KNN Search",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Cluster Analysis/KNN_Search.md"
+ ],
+ "text": "Find k -nearest neighbors using searcher object, 1 input, 2 outputs, direct feedthrough, {Distance metric} sets Distance metric; {Select nearest neighbor searcher} sets the nearest neighbor search, {Add output port for nearest neighbor distances} adds second output port for nearest neighbor, {Number of nearest neighbors}, {Include ties} sets the flag to include all nearest neighbors, {Covariance matrix}, {Scale}, {P} sets the exponent for Minkowski distance metric, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Index data type} sets the data type of index output Inherit, {Index data type Minimum} sets the minimum of index output, {Index data type Maximum} sets the maximum of index output, {Distance data type} sets the data type of distance output Inherit, {Distance data type Minimum} sets the minimum of distance output and {Distance data type Maximum} sets the maximum of distance output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Query point row vector"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "Indices of nearest neighbors numeric row vector | 1-by-1 cell array"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "Distances of nearest neighbors numeric row vector | 1-by-1 cell array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select nearest neighbor searcher",
+   "default": "searcher",
+   "values": "Nearest neighbor search method searcher (default) | ExhaustiveSearcher object | KDTreeSearcher object",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for nearest neighbor distances",
+   "default": "off",
+   "values": "Add second output port for nearest neighbor distances off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Number of nearest neighbors",
+   "default": "1",
+   "values": "Number of nearest neighbors 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Include ties",
+   "default": "off",
+   "values": "Flag to include all nearest neighbors off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Distance metric",
+   "default": "euclidean",
+   "values": "Distance metric euclidean (default) | chebychev | cityblock | minkowski | correlation | cosine | hamming | jaccard | mahalanobis | seuclidean | spearman",
+   "group": "Main"
+  },
+  {
+   "name": "Covariance matrix",
+   "default": "searcher",
+   "values": "Covariance matrix for Mahalanobis distance metric Computed using data in searcher (default) | Customized",
+   "group": "Main"
+  },
+  {
+   "name": "Scale",
+   "default": "searcher",
+   "values": "Scale parameter value for standardized Euclidean distance metric Standard deviation of data in searcher (default) | Customized",
+   "group": "Main"
+  },
+  {
+   "name": "P",
+   "default": "2",
+   "values": "Exponent for Minkowski distance metric 2 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Index data type",
+   "default": "auto",
+   "values": "Data type of index output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Index data type Minimum",
+   "default": "[]",
+   "values": "Minimum of index output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Index data type Maximum",
+   "default": "[]",
+   "values": "Maximum of index output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Distance data type",
+   "default": "auto",
+   "values": "Data type of distance output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Distance data type Minimum",
+   "default": "[]",
+   "values": "Minimum of distance output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Distance data type Maximum",
+   "default": "[]",
+   "values": "Maximum of distance output [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

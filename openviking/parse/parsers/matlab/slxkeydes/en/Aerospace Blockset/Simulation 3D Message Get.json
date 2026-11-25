@@ -1,0 +1,46 @@
+{
+ "key": "Simulation 3D Message Get",
+ "title": "Simulation 3D Message Get",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Message_Get.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Message_Get.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Message_Get.md"
+ ],
+ "text": "Retrieve data from Unreal Engine visualization environment, 1 output, {Sample time} sets Sample time; {Signal name, SigName} sets the message signal name, {Data type, DataType} sets the message data type and {Message size, MsgSize} sets the message dimension. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ReadMsg",
+   "direction": "output",
+   "summary": "Data retrieved from scene scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal name, SigName",
+   "default": "mySignal",
+   "values": "Message signal name mySignal (default)",
+   "group": ""
+  },
+  {
+   "name": "Data type, DataType",
+   "default": "",
+   "values": "Message data type double * | single | int8 * | uint8 * | int16 * | uint16 * | int32 | uint32 * | boolean",
+   "group": ""
+  },
+  {
+   "name": "Message size, MsgSize",
+   "default": "1]",
+   "values": "Message dimension [1 1] (default) | scalar | array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.02",
+   "values": "Sample time 0.02 (default) | -1 | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "key": "Discrete RMS Value Block",
+ "title": "DRMS",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/RMS Blocks/DRMS.md"
+ ],
+ "text": "计算信号的离散时间累积均方根 (DRMS) 值，输入 1 路、输出 1 路；{Sampling interval} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "DRMS 值 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sampling interval",
+   "default": "1",
+   "values": "采样时间 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

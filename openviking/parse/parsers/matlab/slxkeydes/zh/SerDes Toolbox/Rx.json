@@ -1,0 +1,24 @@
+{
+ "key": "Rx",
+ "title": "Rx",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Utilities/Rx.md"
+ ],
+ "text": "具有默认设置的接收机模块，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "修改后的输出数据 scalar | vector"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,60 @@
+{
+ "key": "Video Capture Interface",
+ "title": "Video Capture Interface",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Peripherals/Video_Capture_Interface.md"
+ ],
+ "text": "Simulate capture of images from video stream on hardware, 1 input, 2 outputs, {Input} sets Source of simulated video data From; {Value} sets the image to be imported uint8, {Object name} sets the timeseries object name, {Sample time} and {Show event port} sets the option to enable task event ports. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Image data 3 M N -length vector"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "Task event signal scalar"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "SoC message data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "dialog",
+   "values": "Source of simulated video data From dialog (default) | From input port | From timeseries object",
+   "group": ""
+  },
+  {
+   "name": "Value",
+   "default": "uint8(floor(rand(1,3*160*120)*255))",
+   "values": "Image to be imported uint8(floor(rand(1,3*160*120)*255)) (default) | 3 M N -element vector",
+   "group": ""
+  },
+  {
+   "name": "Object name",
+   "default": "[]",
+   "values": "Timeseries object name [] (default) | MATLAB workspace variable",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time in seconds -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show event port",
+   "default": "off",
+   "values": "Option to enable task event ports off (default) | on",
+   "group": ""
+  }
+ ]
+}

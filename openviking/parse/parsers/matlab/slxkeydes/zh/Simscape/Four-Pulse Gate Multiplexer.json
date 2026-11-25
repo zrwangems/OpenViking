@@ -1,0 +1,13 @@
+{
+ "key": "Four-Pulse Gate Multiplexer",
+ "title": "Four-Pulse Gate Multiplexer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Four_Pulse_Gate_Multiplexer.md"
+ ],
+ "text": "将门极输入信号多路复用到四象限。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

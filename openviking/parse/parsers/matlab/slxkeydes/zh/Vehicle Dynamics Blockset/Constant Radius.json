@@ -1,0 +1,117 @@
+{
+ "key": "Constant Radius",
+ "title": "Constant Radius",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Constant_Radius.md"
+ ],
+ "text": "生成用于跟踪恒定半径路径的命令，输入 4 路、输出 2 路；{Maneuver start time, tStart [s]} 指定开始时间、{Longitudinal velocity setpoint, velRef} 指定目标速度、{Longitudinal velocity setpoint units, velRefUnit []} 指定单位 mph、{R} 指定要跟踪的半径、{Initial longitudinal position, X_o [m]} 指定初始纵向起点、{Initial lateral position, Y_o [m]} 指定初始横向起点、{Initial yaw angle, psi_o [rad]} 指定起始航向角、{Distance between inside and outside cone boundaries, radialConeDist [m]} 指定锥桶之间的径向距离、{Lateral acceleration absolute threshold, ayMax [g]} 指定仿真停止前允许的最大横向加速度、{Maneuver direction, steerDir} 指定机动方向 Right、{Stop simulation at lateral acceleration threshold} 用于在横向加速度阈值处停止仿真、{Instantiate 3D cones (Simulation 3D Scene Configuration required)} 用于实例化 3D 锥桶，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "车辆质心纵向位置 scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "车辆质心横向位置 scalar"
+  },
+  {
+   "name": "psi",
+   "direction": "input",
+   "summary": "车辆横摆角 scalar"
+  },
+  {
+   "name": "ay",
+   "direction": "input",
+   "summary": "车辆横向加速度 scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "驾驶员参考数据 bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "驾驶员命令数据 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "2",
+   "values": "开始时间 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity setpoint, velRef",
+   "default": "35",
+   "values": "目标速度 35 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "单位 mph (default)",
+   "group": ""
+  },
+  {
+   "name": "R",
+   "default": "100",
+   "values": "要跟踪的半径 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial longitudinal position, X_o [m]",
+   "default": "0",
+   "values": "初始纵向起点 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial lateral position, Y_o [m]",
+   "default": "0",
+   "values": "初始横向起点 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw angle, psi_o [rad]",
+   "default": "0",
+   "values": "起始航向角 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance between inside and outside cone boundaries, radialConeDist [m]",
+   "default": "6",
+   "values": "锥桶之间的径向距离 6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lateral acceleration absolute threshold, ayMax [g]",
+   "default": "0.5",
+   "values": "仿真停止前允许的最大横向加速度 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Maneuver direction, steerDir",
+   "default": "Right",
+   "values": "机动方向 Right (default) | Left",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation at lateral acceleration threshold",
+   "default": "off",
+   "values": "用于在横向加速度阈值处停止仿真的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Instantiate 3D cones (Simulation 3D Scene Configuration required)",
+   "default": "off",
+   "values": "用于实例化 3D 锥桶的选项 off (default) | on",
+   "group": ""
+  }
+ ]
+}

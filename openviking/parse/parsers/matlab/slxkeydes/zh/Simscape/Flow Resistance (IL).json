@@ -1,0 +1,13 @@
+{
+ "key": "Flow Resistance (IL)",
+ "title": "Flow Resistance (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Flow_Resistance_IL.md"
+ ],
+ "text": "等温液体支路中的通用阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,47 @@
+{
+ "key": "LTE CRC Encoder",
+ "title": "LTE CRC Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/LTE_CRC_Encoder.md"
+ ],
+ "text": "Generate checksum and append to input sample stream, 2 inputs, 2 outputs, {CRC Type} sets Encode polynomial; {CRC Mask} sets the mask applied to checksum. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input sample binary scalar | unsigned integer scalar | binary vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Output sample binary scalar | integer scalar | binary vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "CRC Type",
+   "default": "CRC16",
+   "values": "Encode polynomial CRC16 (default) | CRC8 | CRC24A | CRC24B",
+   "group": ""
+  },
+  {
+   "name": "CRC Mask",
+   "default": "0",
+   "values": "Mask applied to checksum 0 (default) | integer from 0 to 2 CRCLength – 1",
+   "group": ""
+  }
+ ]
+}

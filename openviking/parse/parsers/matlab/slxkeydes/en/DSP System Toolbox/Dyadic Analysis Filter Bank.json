@@ -1,0 +1,74 @@
+{
+ "key": "Dyadic Analysis Filter Bank",
+ "title": "Dyadic Analysis Filter Bank",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Dyadic_Analysis_Filter_Bank.md",
+  "DSP System Toolbox/Transforms/DWT.md"
+ ],
+ "text": "Decompose signals into subbands with smaller bandwidths and slower sample rates or compute discrete wavelet transform (DWT), 1 input, 1 output, no direct feedthrough, {Filter} sets Type of filter used in subband decomposition; {Filter order [synthesis / analysis]} sets the analysis and synthesis filter orders for biorthogonal filters, {Wavelet order} sets the order for orthogonal wavelets, {Lowpass FIR filter coefficients}, {Highpass FIR filter coefficients}, {Number of levels} sets the number of filter bank levels used, {Tree structure} sets the structure of filter and {Output} sets the single port or multiple ports Multiple. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "Data input column vector | matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Dyadic subband decomposition output column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter",
+   "default": "User-defined",
+   "values": "Type of filter used in subband decomposition User-defined (default) | Haar | Daubechies | Symlets | Coiflets | Biorthogonal | Reverse Biorthogonal | Discrete Meyer",
+   "group": ""
+  },
+  {
+   "name": "Filter order [synthesis / analysis]",
+   "default": "1]",
+   "values": "Analysis and synthesis filter orders for biorthogonal filters [1 / 1] (default) | [1 / 3] | [1 / 5] | [2 / 2] | [2 / 4] | [2 / 6] | [2 / 8] | [3 / 1] | [3 / 3] | [3 / 5] | [3 / 7] | [3 / 9] | [4 / 4] | [5 / 5] | [6 / 8]",
+   "group": ""
+  },
+  {
+   "name": "Wavelet order",
+   "default": "2",
+   "values": "Order for orthogonal wavelets 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Lowpass FIR filter coefficients",
+   "default": "0.3327]",
+   "values": "Lowpass FIR filter coefficients [0.0352 -0.0854 -0.1350 0.4599 0.8069 0.3327] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Highpass FIR filter coefficients",
+   "default": "0.0352]",
+   "values": "Highpass FIR filter coefficients [-0.3327 0.8069 -0.4599 -0.1350 0.0854 0.0352] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Number of levels",
+   "default": "2",
+   "values": "Number of filter bank levels used in analysis (decomposition) 2 (default) | integer greater than or equal to 1",
+   "group": ""
+  },
+  {
+   "name": "Tree structure",
+   "default": "Asymmetric",
+   "values": "Structure of filter bank Asymmetric (default) | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "ports",
+   "values": "Single port or multiple ports Multiple ports (default) | Single port",
+   "group": ""
+  }
+ ]
+}

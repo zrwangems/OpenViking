@@ -1,0 +1,130 @@
+{
+ "key": "dsp.simulink.VariableBandwidthFIRFilter",
+ "title": "Variable Bandwidth FIR Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Variable_Bandwidth_FIR_Filter.md"
+ ],
+ "text": "设计可调带宽 FIR 滤波器，输入 4 路、输出 1 路；按 {Window function} 指定窗函数；{FIR filter order} 指定 FIR 滤波器阶数、{Filter type} 指定滤波器类型、{Specify cutoff frequency from input port} 指定从输入端口指定截止频率、{Filter cutoff frequency} 指定滤波器截止频率、{Specify center frequency from input port} 指定从输入端口指定中心频率、{Filter center frequency} 指定滤波器中心频率、{Specify bandwidth from input port} 指定从输入端口指定带宽、{Filter bandwidth} 指定滤波器带宽、{Chebyshev window sidelobe attenuation (dB)} 指定 Chebyshev 窗旁瓣衰减、{Kaiser window parameter} 指定 Kaiser 窗参数、{Sample rate mode} 用于指定输入采样率的模式 Use normalized、{Input sample rate (Hz)} 指定输入采样率、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Fcut",
+   "direction": "input",
+   "summary": "滤波器截止频率 positive scalar"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "滤波器中心频率 positive scalar"
+  },
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "滤波器带宽 positive scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "滤波后输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "FIR filter order",
+   "default": "30",
+   "values": "FIR 滤波器阶数 30 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "滤波器类型 Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": ""
+  },
+  {
+   "name": "Specify cutoff frequency from input port",
+   "default": "off",
+   "values": "从输入端口指定截止频率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter cutoff frequency",
+   "default": "512",
+   "values": "滤波器截止频率 512 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "off",
+   "values": "从输入端口指定中心频率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter center frequency",
+   "default": "44100/4",
+   "values": "滤波器中心频率 44100/4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify bandwidth from input port",
+   "default": "off",
+   "values": "从输入端口指定带宽 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter bandwidth",
+   "default": "7680",
+   "values": "滤波器带宽 7680 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "窗函数 Hann (default) | Hamming | Chebyshev | Kaiser",
+   "group": ""
+  },
+  {
+   "name": "Chebyshev window sidelobe attenuation (dB)",
+   "default": "60",
+   "values": "Chebyshev 窗旁瓣衰减 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Kaiser window parameter",
+   "default": "0.5",
+   "values": "Kaiser 窗参数 0.5 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "用于指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

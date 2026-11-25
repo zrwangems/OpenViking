@@ -1,0 +1,82 @@
+{
+ "key": "phased.internal.RangeAngle",
+ "title": "Range Angle Calculator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Range_Angle_Calculator.md"
+ ],
+ "text": "距离和角度计算，输入 3 路、输出 2 路；按 {Output(s)} 指定Output(s)；{Propagation model} 指定传播模型 Free、{Reference position source} 指定参考位置源、{Reference position} 指定参考位置、{Reference axes source} 指定参考轴源 Property、{Reference axes} 指定参考轴 eye、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pos",
+   "direction": "input",
+   "summary": "Source point position real-valued 3-by-1 vector | real-valued 3-by- N matrix"
+  },
+  {
+   "name": "RefPos",
+   "direction": "input",
+   "summary": "参考点位置 [0;0;0] (default) | real-valued 3-by-1 vector | real-valued 3-by- N matrix"
+  },
+  {
+   "name": "RefAxes",
+   "direction": "input",
+   "summary": "局部坐标系轴 [1 0 0;0 1 0;0 0 1] (default) | real-valued 3-by-3 vector | real-valued 3-by-3-by- N array"
+  },
+  {
+   "name": "Ang",
+   "direction": "output",
+   "summary": "方位角和仰角 real-valued 2-by- N matrix | real-valued 2-by-2 N matrix"
+  },
+  {
+   "name": "Range",
+   "direction": "output",
+   "summary": "传播距离 real-valued 1-by- N vector | real-valued 1-by-2 N vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Propagation model",
+   "default": "space",
+   "values": "传播模型 Free space (default) | Two-ray",
+   "group": ""
+  },
+  {
+   "name": "Reference position source",
+   "default": "Property",
+   "values": "参考位置源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Reference position",
+   "default": "[0;0;0]",
+   "values": "参考位置 [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Reference axes source",
+   "default": "Property",
+   "values": "参考轴源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Reference axes",
+   "default": "",
+   "values": "参考轴 eye(3)",
+   "group": ""
+  },
+  {
+   "name": "Output(s)",
+   "default": "Angle",
+   "values": "Output(s) Angle (default) | Range | Range and Angle",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

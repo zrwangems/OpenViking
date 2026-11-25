@@ -1,0 +1,13 @@
+{
+ "key": "N-Channel MOSFET",
+ "title": "N-Channel MOSFET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/N_Channel_MOSFET.md"
+ ],
+ "text": "使用 Shichman-Hodges 方程或基于表面电势模型的 N 沟道金属氧化物半导体场效应晶体管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

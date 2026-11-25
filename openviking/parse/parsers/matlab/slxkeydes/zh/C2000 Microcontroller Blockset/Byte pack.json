@@ -1,0 +1,39 @@
+{
+ "key": "Byte pack",
+ "title": "Byte Pack",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/Byte_Pack.md",
+  "Motor Control Blockset/Signal Management/Byte_Pack.md",
+  "Embedded Coder/Embedded Targets/Host Communication/Byte_Pack.md"
+ ],
+ "text": "将输入信号转换为 uint8 向量，输入 1 路、输出 1 路；{Input port data types (cell array)} 指定模块输入信号的数据类型、{Byte alignment} 用于数据类型对齐的字节边界，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要转换的信号 signal of type double (default) | array of signal data"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "转换后的信号数据 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input port data types (cell array)",
+   "default": "{’double’}",
+   "values": "模块输入信号的数据类型 {’double’} (default) | cell array of Simulink ® data types",
+   "group": ""
+  },
+  {
+   "name": "Byte alignment",
+   "default": "1",
+   "values": "用于数据类型对齐的字节边界 1 (default) | 2 | 4 | 8",
+   "group": ""
+  }
+ ]
+}

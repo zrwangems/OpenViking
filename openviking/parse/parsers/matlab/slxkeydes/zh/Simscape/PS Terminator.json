@@ -1,0 +1,13 @@
+{
+ "key": "PS Terminator",
+ "title": "PS Terminator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Sinks/PS_Terminator.md"
+ ],
+ "text": "用于未连接物理信号输出的终端。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

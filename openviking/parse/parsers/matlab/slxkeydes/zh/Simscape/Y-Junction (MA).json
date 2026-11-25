@@ -1,0 +1,13 @@
+{
+ "key": "Y-Junction (MA)",
+ "title": "Y-Junction (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/Y_Junction_MA.md"
+ ],
+ "text": "湿空气网络中的 Y 型接头。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Fundamental Friction Clutch",
+ "title": "Fundamental Friction Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Fundamental Components/Fundamental_Friction_Clutch.md"
+ ],
+ "text": "以动摩擦转矩和静摩擦极限转矩为输入的摩擦离合器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Power Sensor (Three-Phase)",
+ "title": "Power Sensor (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Power_Sensor_Three_Phase.md"
+ ],
+ "text": "三相理想有功和无功功率传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

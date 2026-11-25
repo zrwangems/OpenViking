@@ -1,0 +1,103 @@
+{
+ "key": "Simulink Desktop Real-Time Servo Output",
+ "title": "Servo Output",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Servo_Output.md"
+ ],
+ "text": "Write to standard servo output channels, 1 input, 1 output, {Block input signal} sets Units of the block input signal; {Install new board} sets the register a board < no board, {Delete current board} sets the delete the current board, {Board setup} sets the up the board, {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {Output channels} sets the channel vector that selects other output, {Minimum pulse duration} sets the duration of the control, {Maximum pulse duration} sets the duration of the control, {Initial value} sets the value that the channel generates before execution starts and {Final value} sets the value that the channel generates after execution ends. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Servo Data",
+   "direction": "input",
+   "summary": "Servo data to write to output channels double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "Missed tick count (optional) double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "Register a board < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "Delete the current board (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "Set up the board (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Output channels",
+   "default": "1",
+   "values": "Channel vector that selects other output channels 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Block input signal",
+   "default": "Degrees",
+   "values": "Units of the block input signal Degrees (default) | Radians | Normalized bipolar | Normalized unipolar",
+   "group": ""
+  },
+  {
+   "name": "Minimum pulse duration",
+   "default": "500e-6",
+   "values": "Duration of the control pulse 500e-6 (default)",
+   "group": ""
+  },
+  {
+   "name": "Maximum pulse duration",
+   "default": "2500e-6",
+   "values": "Duration of the control pulse 2500e-6 (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "",
+   "values": "Specify the value that the channel generates before execution starts vector",
+   "group": ""
+  },
+  {
+   "name": "Final value",
+   "default": "",
+   "values": "Specify the value that the channel generates after execution ends vector",
+   "group": ""
+  }
+ ]
+}

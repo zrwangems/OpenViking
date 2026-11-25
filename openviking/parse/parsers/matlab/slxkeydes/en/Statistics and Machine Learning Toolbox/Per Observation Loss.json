@@ -1,0 +1,154 @@
+{
+ "key": "Per Observation Loss",
+ "title": "Per Observation Loss",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Drift Detection/Per_Observation_Loss.md"
+ ],
+ "text": "Per observation regression or classification error of incremental model, 3 inputs, 2 outputs, direct feedthrough, {Loss data type} sets Data type of loss output; {Select initial machine learning model} sets the initial incremental learning, {Loss function}, {Predictor data observation dimension} sets the observation dimension of predictor data, {Sample time (–1 for inherited)} sets the option to specify sample, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Loss data type Minimum} sets the minimum value of loss output for range checking, {Loss data type Maximum} sets the maximum value of loss output for range checking, {Predict response data type} sets the data type of predict response Inherit, {Predict response data type Minimum} sets the minimum value of predict response for range checking, {Predict response data type Maximum} sets the maximum value of predict response for range checking, {Additional predict data type}, {Additional predict data type Minimum} sets the minimum value of additional predict for range checking, {Additional predict data type Maximum} sets the maximum value of additional predict for range checking, {Linear sum data type} sets the data type of linear sum, {Linear sum data type Minimum} sets the minimum value of linear sum for range checking and {Linear sum data type Maximum} sets the maximum value of linear sum for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mdl",
+   "direction": "input",
+   "summary": "Incremental learning model bus signal"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Chunk of predictor data numeric matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Chunk of responses (labels) numeric vector | logical vector | enumerated vector"
+  },
+  {
+   "name": "IsWarm",
+   "direction": "output",
+   "summary": "Flag indicating whether model tracks performance metrics logical"
+  },
+  {
+   "name": "loss",
+   "direction": "output",
+   "summary": "Per observation error numeric matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "initMdl",
+   "values": "Initial incremental learning model initMdl (default)",
+   "group": ""
+  },
+  {
+   "name": "Loss function",
+   "default": "classiferror",
+   "values": "Loss function to compute the per observation loss classiferror (default) | binodeviance | exponential | hinge | logit | quadratic | squarederror | epsiloninsensitive",
+   "group": ""
+  },
+  {
+   "name": "Predictor data observation dimension",
+   "default": "rows",
+   "values": "Observation dimension of predictor data rows (default) | columns",
+   "group": ""
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Loss data type",
+   "default": "double",
+   "values": "Data type of loss output double (default) | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Loss data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of loss output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Loss data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of loss output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Predict response data type",
+   "default": "auto",
+   "values": "Data type of predict response Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Predict response data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of predict response for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Predict response data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of predict response for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional predict data type",
+   "default": "rule",
+   "values": "Additional predict data type Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional predict data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of additional predict for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional predict data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of additional predict for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Linear sum data type",
+   "default": "rule",
+   "values": "Data type of linear sum Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Linear sum data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of linear sum for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Linear sum data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of linear sum for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

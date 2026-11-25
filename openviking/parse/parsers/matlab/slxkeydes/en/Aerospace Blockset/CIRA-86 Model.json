@@ -1,0 +1,70 @@
+{
+ "key": "CIRA-86 Model",
+ "title": "CIRA-86 Atmosphere Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Atmosphere/CIRA_86_Atmosphere_Model.md"
+ ],
+ "text": "Implement mathematical representation of 1986 CIRA atmosphere, 2 inputs, 3 outputs, {Units} sets Units Metric; {Coordinate type}, {Mean value type}, {Month} and {Action for out-of-range input} sets the out-of-range block behavior. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Latitude array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Geopotential heights or pressures array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Mean temperature array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Pressures or geopotential heights array"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "Mean zonal winds array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Coordinate type",
+   "default": "Pressure",
+   "values": "Coordinate type representation Pressure (default) | GPHeight",
+   "group": ""
+  },
+  {
+   "name": "Mean value type",
+   "default": "Monthly",
+   "values": "Mean value types Monthly (default) | Annual",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "Month of mean value January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

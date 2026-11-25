@@ -1,0 +1,129 @@
+{
+ "key": "visionhdl.ImageResizer",
+ "title": "Image Resizer",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Geometric Transforms/Image_Resizer.md"
+ ],
+ "text": "更改像素流中图像的维度，输入 4 路、输出 2 路；按 {Rounding mode} 指定内部定点计算的舍入方法；{Input height and width} 指定输入流中有效帧的维度、{Input size source} 指定输入有效帧大小的来源、{Maximum input height and width} 指定可容纳最大预期输入大小的有效帧大小、{Output height and width} 输出流中有效帧的维度、{Output size source} 指定输入有效帧大小的来源、{Maximum output height and width} 指定可容纳最大预期输出大小的有效帧大小、{Insert horizontal blanking} 指定在有效行之间添加无效周期、{Minimum output horizontal blanking} 指定在输出行之间插入的非活动周期数、{Interpolation method} 指定像素值的插值方法、{Perform antialiasing on downscale} 指定在调整大小前应用抗混叠滤波器、{Saturate on integer overflow} 指定内部定点计算的溢出操作、{Coefficients} 指定插值滤波器系数数据类型 fixdt、{Output} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "inputSize",
+   "direction": "input",
+   "summary": "输入流中有效帧的维度 [ ActiveVideoLines, ActivePixelsPerLine ]"
+  },
+  {
+   "name": "outputSize",
+   "direction": "input",
+   "summary": "输出流中有效帧的维度 [ ActiveVideoLines, ActivePixelsPerLine ]"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "输出像素流 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input height and width",
+   "default": "[1080,1920]",
+   "values": "输入流中有效帧的维度 [1080,1920] (default) | [ ActiveVideoLines, ActivePixelsPerLine ]",
+   "group": "Main"
+  },
+  {
+   "name": "Input size source",
+   "default": "Property",
+   "values": "输入有效帧大小的来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum input height and width",
+   "default": "[1080,1920]",
+   "values": "可容纳最大预期输入大小的有效帧大小 [1080,1920] (default) | [ ActiveVideoLines, ActivePixelsPerLine ]",
+   "group": "Main"
+  },
+  {
+   "name": "Output height and width",
+   "default": "[720,1280]",
+   "values": "输出流中有效帧的维度 [720,1280] (default) | [ ActiveVideoLines, ActivePixelsPerLine ]",
+   "group": "Main"
+  },
+  {
+   "name": "Output size source",
+   "default": "Property",
+   "values": "输入有效帧大小的来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum output height and width",
+   "default": "1280]",
+   "values": "可容纳最大预期输出大小的有效帧大小 [720, 1280] (default) | [ ActiveVideoLines, ActivePixelsPerLine ]",
+   "group": "Main"
+  },
+  {
+   "name": "Insert horizontal blanking",
+   "default": "off",
+   "values": "在有效行之间添加无效周期 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum output horizontal blanking",
+   "default": "370",
+   "values": "在输出行之间插入的非活动周期数 370 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "像素值的插值方法 Bilinear (default) | Nearest Neighbor",
+   "group": "Main"
+  },
+  {
+   "name": "Perform antialiasing on downscale",
+   "default": "on",
+   "values": "在调整大小前应用抗混叠滤波器 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "内部定点计算的舍入方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "内部定点计算的溢出操作 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(0,16)",
+   "values": "插值滤波器系数数据类型 fixdt(0,16) (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出数据类型 Inherit: Same as first input (default) | fixdt(0,16,0) |",
+   "group": "Data Types"
+  }
+ ]
+}

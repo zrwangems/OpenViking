@@ -1,0 +1,13 @@
+{
+ "key": "Ejector (G)",
+ "title": "Ejector (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Turbomachinery/Ejector_G.md"
+ ],
+ "text": "气体网络中的喷射器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

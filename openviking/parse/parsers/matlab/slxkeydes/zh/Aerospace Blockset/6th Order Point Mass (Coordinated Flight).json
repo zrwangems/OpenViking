@@ -1,0 +1,108 @@
+{
+ "key": "6th Order Point Mass (Coordinated Flight)",
+ "title": "6th Order Point Mass (Coordinated Flight)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/Point Mass/b_6th_Order_Point_Mass_Coordinated_Flight.md"
+ ],
+ "text": "计算协调飞行中的六阶点质量，输入 3 路、输出 6 路；按 {Initial mass} 指定点质量；{Units} 指定单位 Metric、{Initial flight path angle} 指定初始航迹角、{Initial heading angle} 指定初始航向角、{Initial airspeed} 指定初始空速、{Initial downrange [East]} 指定初始下射程、{Initial crossrange [North]} 指定初始横向距离、{Initial altitude [Up]} 指定初始高度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F x (N)",
+   "direction": "input",
+   "summary": "x 轴上的力 scalar | array"
+  },
+  {
+   "name": "F y (N)",
+   "direction": "input",
+   "summary": "y 轴上的力 scalar | array"
+  },
+  {
+   "name": "F z (N)",
+   "direction": "input",
+   "summary": "z 轴上的力 scalar | array"
+  },
+  {
+   "name": "ɣ",
+   "direction": "output",
+   "summary": "航迹角 scalar | array"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "航向角 scalar | array"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "空速 scalar | array"
+  },
+  {
+   "name": "X East",
+   "direction": "output",
+   "summary": "下射程或向东行进距离 scalar | array"
+  },
+  {
+   "name": "X North",
+   "direction": "output",
+   "summary": "横向距离或向北行进的距离 scalar | array"
+  },
+  {
+   "name": "X Up",
+   "direction": "output",
+   "summary": "高度或向上行进的距离 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Initial flight path angle",
+   "default": "0",
+   "values": "初始航迹角 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial heading angle",
+   "default": "0",
+   "values": "初始航向角 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial airspeed",
+   "default": "100",
+   "values": "初始空速 100 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial downrange [East]",
+   "default": "0",
+   "values": "初始下射程 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial crossrange [North]",
+   "default": "0",
+   "values": "初始横向距离 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial altitude [Up]",
+   "default": "0",
+   "values": "初始高度 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial mass",
+   "default": "1.0",
+   "values": "点质量 1.0 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

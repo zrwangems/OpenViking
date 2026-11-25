@@ -1,0 +1,87 @@
+{
+ "key": "Battery Capacity Estimator (Least Squares, Variable Weights)",
+ "title": "Battery Capacity Estimator (Least Squares, Variable Weights)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/Battery_Capacity_Estimator_Least_Squares_Variable_Weights.md"
+ ],
+ "text": "Battery capacity estimator using least-squares algorithms and variable weights, 5 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Specify Current input as cell current(s)} sets the option to specify current input port, {Least square algorithm} sets the least-square algorithm Ordinary least, {SOC change detection threshold} sets the threshold to detect change in SOC, {Forgetting factor, gamma}, {Scaling factor k in VarianceX=k^2*VarianceY} and {Algorithm data type} sets the option to choose data type for block algorithm. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Current",
+   "direction": "input",
+   "summary": "Battery current, A scalar | vector"
+  },
+  {
+   "name": "CellSOC",
+   "direction": "input",
+   "summary": "Cell state of charge, unitless scalar | vector"
+  },
+  {
+   "name": "VarianceSOC",
+   "direction": "input",
+   "summary": "Variance of SOC, unitless positive scalar | vector of positive values"
+  },
+  {
+   "name": "VarianceCurrent",
+   "direction": "input",
+   "summary": "Variance of current measurement, unitless positive scalar | vector of positive values"
+  },
+  {
+   "name": "InitialCellAH",
+   "direction": "input",
+   "summary": "Initial cell capacity, A*Hr scalar | vector"
+  },
+  {
+   "name": "CellAH",
+   "direction": "output",
+   "summary": "Estimated cell capacity, A*Hr scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Current input as cell current(s)",
+   "default": "off",
+   "values": "Option to specify current input port as vector off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Least square algorithm",
+   "default": "squares",
+   "values": "Least-square algorithm Ordinary least squares (default) | Recursive total least squares | Approximate total least squares",
+   "group": ""
+  },
+  {
+   "name": "SOC change detection threshold",
+   "default": "0.03",
+   "values": "Threshold to detect change in SOC 0.03 (default) | scalar in the range (0,1)",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor, gamma",
+   "default": "0.9",
+   "values": "Forgetting factor 0.9 (default) | scalar in the range (0,1]",
+   "group": ""
+  },
+  {
+   "name": "Scaling factor k in VarianceX=k^2*VarianceY",
+   "default": "10",
+   "values": "Scaling factor k 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "Block sample time 1 (default) | 0 | -1 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

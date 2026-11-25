@@ -1,0 +1,344 @@
+{
+ "key": "fusion.simulink.fusionRadarSensor",
+ "title": "Fusion Radar Sensor",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Tracking Scenario and Sensor Models/Fusion_Radar_Sensor.md"
+ ],
+ "text": "Generate radar sensor detections and tracks, 3 inputs, 4 outputs, {Width of target cuboids (m)} sets Width of target cuboids; {Unique identifier of sensor} sets the unique sensor identifier, {Update rate (Hz)} sets the sensor update rate, {Translation [ X, Y, Z ] relative to platform origin (m)} sets the mounting location of radar on platform, {Rotation [Yaw,Pitch,Roll] relative to platform’s frame (deg)} sets the mounting angles of radar, {Enable elevation angle measurements} enables radar to measure target elevation, {Enable range rate measurements} enables radar to measure target range rates, {Add noise to measurements} enables addition of noise to radar sensor, {Enable false reports} enables creating false alarm radar, {Enable occlusion} enables line-of-sight occlusion, {Maximum number of target reports} sets the maximum number of detections or tracks, {Target reporting format} sets the format of generated target reports Clustered, {Coordinate system}, {Source of target truth time}, {Enable INS}, {Source of output target report bus name}, {Specify an output target report bus name} sets the name of target report output bus, {Enable radar configuration output}, {Source of output config bus name}, {Specify an output config bus name} sets the name of sensor configuration output bus, {Azimuth resolution (deg)} sets the azimuth resolution of radar, {Elevation resolution (deg)} sets the elevation resolution of radar, {Range resolution (m)} sets the range resolution of radar, {Range rate resolution (m/s)} sets the range rate resolution of radar, {Azimuth bias fraction}, {Elevation bias fraction}, {Range bias fraction}, {Range rate bias fraction}, {Total angular field of view [AZ, EL] (deg)} sets the angular field of view of radar, {Range limits [MIN, MAX] (m)} sets the minimum and maximum range of radar, {Range rate limits [MIN, MAX] (m/s)} sets the minimum and maximum range rate of radar, {Detection probability} sets the probability of detecting a target, {False alarm rate} sets the false alarm report, {Reference target range (m)} sets the reference target range 1000e3, {Reference target RCS (dBsm)} sets the reference target radar cross-section, {Center frequency (Hz)} sets the center frequency of radar, {Filter initialization function name} sets the kalman filter initialization function, {M and N for the M-out-of-N confirmation} sets the threshold for track confirmation, {P and R for the P-out-of-R deletion} sets the threshold for track deletion, {Random number generation} sets the method to specify random number generator seed, {Initial seed} sets the random number generator seed, {Target profiles definition} sets the method to specify target profiles From Scenario Reader, {MATLAB expression for target profiles}, {Unique target identifiers} sets the scenario-defined target identifier, {Target classification identifiers} sets the user-defined classification identifier, {Length of target cuboids (m)}, {Height of target cuboids (m)}, {Rotational center of target cuboids (m)} sets the rotational center of target cuboids and {Target signatures}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Platforms",
+   "direction": "input",
+   "summary": "Target platform poses Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "INS",
+   "direction": "input",
+   "summary": "Radar reference platform pose from INS Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "Current simulation time nonnegative scalar"
+  },
+  {
+   "name": "Clustered Detections",
+   "direction": "output",
+   "summary": "Clustered object detections Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tracks",
+   "direction": "output",
+   "summary": "Object tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "Unclustered object detections Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Configuration",
+   "direction": "output",
+   "summary": "Current sensor configuration Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unique identifier of sensor",
+   "default": "0",
+   "values": "Unique sensor identifier 0 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Update rate (Hz)",
+   "default": "10",
+   "values": "Sensor update rate 10 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Translation [ X, Y, Z ] relative to platform origin (m)",
+   "default": "[0,0,0]",
+   "values": "Mounting location of radar on platform [0,0,0] (default) | 1-by-3 real-valued vector of form [x,y,z]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Rotation [Yaw,Pitch,Roll] relative to platform’s frame (deg)",
+   "default": "0]",
+   "values": "Mounting angles of radar [0 0 0] (default) | 1-by-3 real-valued vector of form [ z yaw y pitch x roll ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable elevation angle measurements",
+   "default": "off",
+   "values": "Enable radar to measure target elevation angles off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable range rate measurements",
+   "default": "off",
+   "values": "Enable radar to measure target range rates off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Add noise to measurements",
+   "default": "on",
+   "values": "Enable addition of noise to radar sensor measurements on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable false reports",
+   "default": "on",
+   "values": "Enable creating false alarm radar detections on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable occlusion",
+   "default": "on",
+   "values": "Enable line-of-sight occlusion on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum number of target reports",
+   "default": "100",
+   "values": "Maximum number of detections or tracks 100 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Target reporting format",
+   "default": "detections",
+   "values": "Format of generated target reports Clustered detections (default) | Tracks | Detections",
+   "group": "Parameters"
+  },
+  {
+   "name": "Coordinate system",
+   "default": "Body",
+   "values": "Coordinate system of reported detections Body (default) | Sensor rectangular | Sensor spherical | Scenario",
+   "group": "Parameters"
+  },
+  {
+   "name": "Source of target truth time",
+   "default": "Auto",
+   "values": "Source of target truth time Auto (default) | Input port",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable INS",
+   "default": "off",
+   "values": "Enable INS input port off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Source of output target report bus name",
+   "default": "Auto",
+   "values": "Source of output target report bus name Auto (default) | Property",
+   "group": "Parameters"
+  },
+  {
+   "name": "Specify an output target report bus name",
+   "default": "BusFusionRadarSensor",
+   "values": "Name of target report output bus BusFusionRadarSensor (default) | valid bus name",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable radar configuration output",
+   "default": "off",
+   "values": "Enable radar configuration output off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Source of output config bus name",
+   "default": "Auto",
+   "values": "Source of output config bus name Auto (default) | Property",
+   "group": "Parameters"
+  },
+  {
+   "name": "Specify an output config bus name",
+   "default": "BusFusionRadarSensorConfig",
+   "values": "Name of sensor configuration output bus BusFusionRadarSensorConfig (default) | valid bus name",
+   "group": "Parameters"
+  },
+  {
+   "name": "Azimuth resolution (deg)",
+   "default": "1",
+   "values": "Azimuth resolution of radar 1 (default) | positive scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation resolution (deg)",
+   "default": "5",
+   "values": "Elevation resolution of radar 5 (default) | positive scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range resolution (m)",
+   "default": "100",
+   "values": "Range resolution of radar 100 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate resolution (m/s)",
+   "default": "10",
+   "values": "Range rate resolution of radar 10 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Azimuth bias fraction",
+   "default": "0.1",
+   "values": "Azimuth bias fraction of radar 0.1 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation bias fraction",
+   "default": "0.1",
+   "values": "Elevation bias fraction of radar 0.1 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range bias fraction",
+   "default": "0.05",
+   "values": "Range bias fraction 0.05 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate bias fraction",
+   "default": "0.05",
+   "values": "Range rate bias fraction 0.05 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Total angular field of view [AZ, EL] (deg)",
+   "default": "5]",
+   "values": "Angular field of view of radar [1 5] (default) | 1-by-2 positive real-valued vector of form [azfov,elfov]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range limits [MIN, MAX] (m)",
+   "default": "100e3]",
+   "values": "Minimum and maximum range of radar [0 100e3] (default) | 1-by-2 nonnegative real-valued vector of form [min max]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate limits [MIN, MAX] (m/s)",
+   "default": "200]",
+   "values": "Minimum and maximum range rate of radar (m/s) [-200, 200] (default) | 1-by-2 real-valued vector of form [min max]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Detection probability",
+   "default": "0.9",
+   "values": "Probability of detecting a target 0.9 (default) | scalar in range (0, 1]",
+   "group": "Measurements"
+  },
+  {
+   "name": "False alarm rate",
+   "default": "1e-06",
+   "values": "False alarm report rate 1e-06 (default) | positive real scalar in range [10 –7, 10 –3 ]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Reference target range (m)",
+   "default": "1000e3",
+   "values": "Reference target range 1000e3 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Reference target RCS (dBsm)",
+   "default": "0",
+   "values": "Reference target radar cross-section 0 (default) | real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Center frequency (Hz)",
+   "default": "300e6",
+   "values": "Center frequency of radar band 300e6 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Filter initialization function name",
+   "default": "initcvekf",
+   "values": "Kalman filter initialization function initcvekf (default) | function name",
+   "group": "Measurements"
+  },
+  {
+   "name": "M and N for the M-out-of-N confirmation",
+   "default": "3]",
+   "values": "Threshold for track confirmation [2 3] (default) | 1-by-2 vector of positive integers",
+   "group": "Measurements"
+  },
+  {
+   "name": "P and R for the P-out-of-R deletion",
+   "default": "5]",
+   "values": "Threshold for track deletion [5 5] (default) | 1-by-2 vector of positive integers",
+   "group": "Measurements"
+  },
+  {
+   "name": "Random number generation",
+   "default": "Repeatable",
+   "values": "Method to specify random number generator seed Repeatable (default) | Specify seed | Not repeatable",
+   "group": "Measurements"
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "Random number generator seed 0 (default) | nonnegative integer less than 2 32",
+   "group": "Measurements"
+  },
+  {
+   "name": "Target profiles definition",
+   "default": "block",
+   "values": "Method to specify target profiles From Scenario Reader block (default) | MATLAB expression | Parameters",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "MATLAB expression for target profiles",
+   "default": "",
+   "values": "MATLAB expression for target profiles MATLAB structure | MATLAB structure array | valid MATLAB expression",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Unique target identifiers",
+   "default": "[]",
+   "values": "Scenario-defined target identifier [] (default) | positive integer | length- L vector of unique positive integers",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Target classification identifiers",
+   "default": "0",
+   "values": "User-defined classification identifier 0 (default) | integer | length- L vector of integers",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Length of target cuboids (m)",
+   "default": "0",
+   "values": "Length of target cuboids 0 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Width of target cuboids (m)",
+   "default": "0",
+   "values": "Width of target cuboids 0 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Height of target cuboids (m)",
+   "default": "0",
+   "values": "Height of target cuboids 0 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Rotational center of target cuboids (m)",
+   "default": "0]}",
+   "values": "Rotational center of target cuboids {[0, 0, 0]} (default) | length- L cell array of real-valued 1-by-3 vectors",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Target signatures",
+   "default": "{rcsSignature}",
+   "values": "Target signatures {rcsSignature} (default) | length- L cell array",
+   "group": "Target Profiles"
+  }
+ ]
+}

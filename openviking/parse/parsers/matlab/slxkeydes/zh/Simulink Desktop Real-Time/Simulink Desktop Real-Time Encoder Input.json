@@ -1,0 +1,97 @@
+{
+ "key": "Simulink Desktop Real-Time Encoder Input",
+ "title": "Encoder Input",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Encoder_Input.md"
+ ],
+ "text": "从一个或多个增量式编码器输入通道读取；输出 2 路；按 {Reset input function} 指定复位引脚的模式；{Install new board} 指定注册板卡 < no board、{Delete current board} 指定删除当前板卡、{Board setup} 指定板卡、{Sample time} 指定模块的采样时间、{Maximum missed ticks} 指定模型可以落后内核的定时器节拍数、{Show “Missed Ticks” port} 指定将错过的节拍数发送到 Missed Ticks 端口、{Yield CPU when waiting} 指定内核等待硬件时让出 CPU、{Input channels} 指定编码器输入通道、{Quadrature mode} 指定要光学检测运动的幅度和方向，请选择编码器条纹边沿、{Input filter clock frequency} 指定低通滤波器的截止频率、{Output data type} 指定模块输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Encoder Data",
+   "direction": "output",
+   "summary": "从输入通道读取的编码器数据 vector"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "错过的节拍计数（可选） double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "注册板卡 < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "删除当前板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "设置板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "模块的采样时间 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "模型可以落后内核的定时器节拍数 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "将错过的节拍数发送到 Missed Ticks 端口 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "内核等待硬件时让出 CPU ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Input channels",
+   "default": "1",
+   "values": "选择编码器输入通道 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Quadrature mode",
+   "default": "quadruple",
+   "values": "要光学检测运动的幅度和方向，请选择编码器条纹边沿 quadruple (default) | double | single | two-pulse",
+   "group": ""
+  },
+  {
+   "name": "Reset input function",
+   "default": "reset",
+   "values": "选择复位引脚的模式 reset (default) | gate | rising edge index | falling edge index",
+   "group": ""
+  },
+  {
+   "name": "Input filter clock frequency",
+   "default": "Inf",
+   "values": "低通滤波器的截止频率 (Hz) Inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "模块输出的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  }
+ ]
+}

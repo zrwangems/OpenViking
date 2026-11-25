@@ -1,0 +1,131 @@
+{
+ "key": "Binary Weighted DAC",
+ "title": "Binary Weighted DAC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Architectures/Binary_Weighted_DAC.md"
+ ],
+ "text": "N-bit DAC based on R-2R weighted resistor architecture, 2 inputs, 2 outputs, {Rising slew rate} sets Switch rising slew rate for DAC; {Number of bits}, {Input polarity} sets the polarity of input signal, {Use external start clock} sets the connect to external start conversion clock, {Conversion start frequency (Hz)} sets the frequency of internal start conversion clock, {Reference (V)} sets the reference voltage, {Bias (V)} sets the bias voltage added to output, {Show ready port} enables ready port on block, {Enable linearity impairments} enables offset and gain errors in DAC, {Offset error} sets the shifts quantization steps by specific value, {Gain error} sets the error in slope of DAC transfer curve, {Enable timing impairments}, {Specify switch timing using} sets how DAC calculates switch timing Settling, {Settling time (s)} sets the time required for output, {Settling time tolerance (LSB)} sets the tolerance for calculating settling time and {Falling slew rate} sets the switch falling slew rate for DAC. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "Digital input signal to DAC integer"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "External clock to start conversion scalar"
+  },
+  {
+   "name": "analog",
+   "direction": "output",
+   "summary": "Converted analog output signal scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates whether digital-to-analog conversion is complete scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits",
+   "default": "5",
+   "values": "Number of bits in input word 5 (default) | positive real integer",
+   "group": "General"
+  },
+  {
+   "name": "Input polarity",
+   "default": "Bipolar",
+   "values": "Polarity of input signal to DAC Bipolar (default) | Unipolar",
+   "group": "General"
+  },
+  {
+   "name": "Use external start clock",
+   "default": "on",
+   "values": "Connect to external start conversion clock on (default) | off",
+   "group": "General"
+  },
+  {
+   "name": "Conversion start frequency (Hz)",
+   "default": "1e6",
+   "values": "Frequency of internal start conversion clock 1e6 (default) | positive real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Reference (V)",
+   "default": "2",
+   "values": "Reference voltage 2 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Bias (V)",
+   "default": "0",
+   "values": "Bias voltage added to output 0 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Show ready port",
+   "default": "off",
+   "values": "Enable ready port on block off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Enable linearity impairments",
+   "default": "on",
+   "values": "Enable offset and gain errors in DAC simulation on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "Shifts quantization steps by specific value 0 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "Error in slope of DAC transfer curve 0 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable timing impairments",
+   "default": "on",
+   "values": "Enable timing impairments in DAC simulation on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Specify switch timing using",
+   "default": "time",
+   "values": "Specify how DAC calculates switch timing Settling time (default) | Slew rate",
+   "group": "Impairments"
+  },
+  {
+   "name": "Settling time (s)",
+   "default": "2e-7",
+   "values": "Time required for output to settle 2e-7 (default) | nonnegative real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Settling time tolerance (LSB)",
+   "default": "0.5",
+   "values": "Tolerance for calculating settling time 0.5 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Rising slew rate",
+   "default": "5015625",
+   "values": "Switch rising slew rate for DAC 5015625 (default) | positive real scalar | positive real vector",
+   "group": "Impairments"
+  },
+  {
+   "name": "Falling slew rate",
+   "default": "-5015625",
+   "values": "Switch falling slew rate for DAC -5015625 (default) | negative real scalar | negative real vector",
+   "group": "Impairments"
+  }
+ ]
+}

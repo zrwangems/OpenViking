@@ -1,0 +1,193 @@
+{
+ "key": "Compute Parameter",
+ "title": "Compute Parameter",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Signal Management/Compute_Parameter.md"
+ ],
+ "text": "Extend functionality of blocks by enabling additional inputs; {Relative path of compatible block that needs functional extension} sets the relative path of compatible, {Get a list of supported block paths in the model} sets the obtain list of compatible block paths and {Supported block paths} sets the list of compatible block paths display. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "N pp",
+   "direction": "input",
+   "summary": "Number of pole pairs available in motor scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Stator winding resistance scalar"
+  },
+  {
+   "name": "R s",
+   "direction": "input",
+   "summary": "Stator winding resistance scalar"
+  },
+  {
+   "name": "L d",
+   "direction": "input",
+   "summary": "Stator winding inductance along d -axis scalar"
+  },
+  {
+   "name": "L q",
+   "direction": "input",
+   "summary": "Stator winding inductance along q -axis scalar"
+  },
+  {
+   "name": "L ls",
+   "direction": "input",
+   "summary": "Stator leakage inductance of induction motor scalar"
+  },
+  {
+   "name": "L lr",
+   "direction": "input",
+   "summary": "Rotor leakage inductance of induction motor scalar"
+  },
+  {
+   "name": "L m",
+   "direction": "input",
+   "summary": "Magnetizing inductance of induction motor scalar"
+  },
+  {
+   "name": "f cutoff",
+   "direction": "input",
+   "summary": "Cutoff frequency of internal highpass filter scalar"
+  },
+  {
+   "name": "NumSlits",
+   "direction": "input",
+   "summary": "Number of slits per phase scalar"
+  },
+  {
+   "name": "CountsPerSlit",
+   "direction": "input",
+   "summary": "Number of counts generated for every slit scalar"
+  },
+  {
+   "name": "ω 1 (RPM)",
+   "direction": "input",
+   "summary": "Speed (after motor starts) at which I-F control stops scalar"
+  },
+  {
+   "name": "ω 2 (RPM)",
+   "direction": "input",
+   "summary": "Speed required to re-enter I-F control scalar"
+  },
+  {
+   "name": "ω max",
+   "direction": "input",
+   "summary": "Maximum supported mechanical speed scalar"
+  },
+  {
+   "name": "Imax (A)",
+   "direction": "input",
+   "summary": "Maximum motor current during I-F control scalar"
+  },
+  {
+   "name": "Max(Δω/Δt) (RPM/s)",
+   "direction": "input",
+   "summary": "Maximum rate of speed change during I-F control scalar"
+  },
+  {
+   "name": "I DecayRate (A/s)",
+   "direction": "input",
+   "summary": "Maximum rate of current decay during I-F control scalar"
+  },
+  {
+   "name": "ζ",
+   "direction": "input",
+   "summary": "Speed oscillation damping coefficient value scalar"
+  },
+  {
+   "name": "T Idle (s)",
+   "direction": "input",
+   "summary": "Time of constant speed and current scalar"
+  },
+  {
+   "name": "K EEMF",
+   "direction": "input",
+   "summary": "Extended EMF observer gain scalar"
+  },
+  {
+   "name": "f EEMF cutoff",
+   "direction": "input",
+   "summary": "Cutoff frequency of EEMF filter scalar"
+  },
+  {
+   "name": "f Spd cutoff",
+   "direction": "input",
+   "summary": "Cutoff frequency of speed filter scalar"
+  },
+  {
+   "name": "f cutoff",
+   "direction": "input",
+   "summary": "Cutoff frequency of lowpass filter scalar"
+  },
+  {
+   "name": "K Spd p",
+   "direction": "input",
+   "summary": "Proportional gain of the speed observer scalar"
+  },
+  {
+   "name": "K Spd i",
+   "direction": "input",
+   "summary": "Integral gain of the speed observer scalar"
+  },
+  {
+   "name": "K p",
+   "direction": "input",
+   "summary": "Proportional controller gain scalar"
+  },
+  {
+   "name": "K i",
+   "direction": "input",
+   "summary": "Integral gain of the controller scalar"
+  },
+  {
+   "name": "UseInternalK p K i",
+   "direction": "input",
+   "summary": "Use internal gains of the controller 0 | 1"
+  },
+  {
+   "name": "f max",
+   "direction": "input",
+   "summary": "Maximum applicable input frequency scalar"
+  },
+  {
+   "name": "ParameterBus",
+   "direction": "output",
+   "summary": "Computed parameters for compatible blocks bus"
+  },
+  {
+   "name": "CountsPerRev",
+   "direction": "output",
+   "summary": "Number of counts per revolution scalar"
+  },
+  {
+   "name": "1/CountsPerRev",
+   "direction": "output",
+   "summary": "Inverse of number of counts per revolution scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Relative path of compatible block that needs functional extension",
+   "default": "blank",
+   "values": "Relative path of compatible block blank (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Get a list of supported block paths in the model",
+   "default": "",
+   "values": "Obtain list of compatible block paths button",
+   "group": ""
+  },
+  {
+   "name": "Supported block paths",
+   "default": "",
+   "values": "List of compatible block paths display cell",
+   "group": ""
+  }
+ ]
+}

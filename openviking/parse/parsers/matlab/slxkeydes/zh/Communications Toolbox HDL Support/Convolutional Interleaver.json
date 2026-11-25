@@ -1,0 +1,14 @@
+{
+ "key": "Convolutional Interleaver",
+ "title": "Convolutional Interleaver",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Interleaving/Convolutional_Interleaver.md",
+  "Communications Toolbox/Interleaving/Convolutional/Convolutional_Interleaver.md"
+ ],
+ "text": "使用一组移位寄存器对输入符号进行置换。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

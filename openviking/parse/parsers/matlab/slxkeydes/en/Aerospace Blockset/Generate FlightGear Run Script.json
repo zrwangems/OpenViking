@@ -1,0 +1,122 @@
+{
+ "key": "Generate FlightGear Run Script",
+ "title": "Generate Run Script",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/Generate_Run_Script.md"
+ ],
+ "text": "Generate FlightGear run script on current platform, {Select FlightGear data flow} sets FlightGear data flow; {Select target architecture} sets the target platform to run, {FlightGear geometry model name} sets the folder containing FlightGear, {Airport ID} sets the iD of supported, {Runway ID} sets the iD of supported, {Initial altitude (ft)*} sets the initial aircraft altitude, {Initial heading (deg)*} sets the initial aircraft heading, {Offset distance (miles)*}, {Offset azimuth (deg)*} sets the aircraft offset azimuth, {Install FlightGear scenery during simulation (requires Internet connection)}, {Disable FlightGear shader options}, {Destination/Origin IP address} sets the network IP address of machine running MATLAB, {Destination port}, {Origin port}, {Network IP address}, {Output file name} sets the output file runfg.bat, {FlightGear base directory} and {Generate Script}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Select target architecture",
+   "default": "Default",
+   "values": "Target platform to run script Default (default) | Win64 | Linux | Mac",
+   "group": ""
+  },
+  {
+   "name": "Select FlightGear data flow",
+   "default": "Send",
+   "values": "FlightGear data flow Send (default) | Receive | Send-Receive",
+   "group": ""
+  },
+  {
+   "name": "FlightGear geometry model name",
+   "default": "HL20",
+   "values": "Folder containing FlightGear geometry HL20 (default)",
+   "group": ""
+  },
+  {
+   "name": "Airport ID",
+   "default": "KSFO",
+   "values": "ID of supported airport KSFO (default)",
+   "group": ""
+  },
+  {
+   "name": "Runway ID",
+   "default": "10L",
+   "values": "ID of supported runway 10L (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial altitude (ft)*",
+   "default": "",
+   "values": "Initial aircraft altitude 7224 | numeric",
+   "group": ""
+  },
+  {
+   "name": "Initial heading (deg)*",
+   "default": "",
+   "values": "Initial aircraft heading 113 | numeric",
+   "group": ""
+  },
+  {
+   "name": "Offset distance (miles)*",
+   "default": "",
+   "values": "Offset distance 4.72 | numeric",
+   "group": ""
+  },
+  {
+   "name": "Offset azimuth (deg)*",
+   "default": "",
+   "values": "Aircraft offset azimuth 0 | numeric",
+   "group": ""
+  },
+  {
+   "name": "Install FlightGear scenery during simulation (requires Internet connection)",
+   "default": "off",
+   "values": "Install FlightGear scenery off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Disable FlightGear shader options",
+   "default": "off",
+   "values": "Disable FlightGear shader off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Destination/Origin IP address",
+   "default": "",
+   "values": "Network IP address of machine running MATLAB 127.0.0.1",
+   "group": ""
+  },
+  {
+   "name": "Destination port",
+   "default": "",
+   "values": "Destination port of FlightGear machine 5502",
+   "group": ""
+  },
+  {
+   "name": "Origin port",
+   "default": "",
+   "values": "Origin port of FlightGear machine 5505",
+   "group": ""
+  },
+  {
+   "name": "Network IP address",
+   "default": "",
+   "values": "Network IP address of FlightGear machine 127.0.0.1",
+   "group": ""
+  },
+  {
+   "name": "Output file name",
+   "default": "",
+   "values": "Output file runfg.bat",
+   "group": ""
+  },
+  {
+   "name": "FlightGear base directory",
+   "default": "",
+   "values": "FlightGear base directory C:\\Program Files\\FlightGear",
+   "group": ""
+  },
+  {
+   "name": "Generate Script",
+   "default": "",
+   "values": "Generate Script button button",
+   "group": ""
+  }
+ ]
+}

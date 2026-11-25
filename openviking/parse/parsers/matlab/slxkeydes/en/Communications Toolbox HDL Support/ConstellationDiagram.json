@@ -1,0 +1,141 @@
+{
+ "key": "ConstellationDiagram",
+ "title": "Constellation Diagram",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "block_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Sinks/Constellation_Diagram.md",
+  "Communications Toolbox/Comm Sinks/Constellation_Diagram.md"
+ ],
+ "text": "Display and analyze input signals in IQ-plane, 1 input, no direct feedthrough, {Reference constellation} sets Reference constellation; {Settings} sets the constellation diagram settings, {Number of input ports}, {Samples per symbol} sets the number of samples used to represent each, {Offset} sets the number of samples to skip before plotting, {Symbols to display} sets the maximum number of symbols to display Input frame, {AxesLimits} sets the x and y -axis limits, {Reference Constellation} sets the reference constellation configuration, {Show reference constellations} sets the option to display reference constellations, {Input} selects input port, {Custom value} sets the input reference constellation, {Constellation normalization} sets the normalization method Average, {Average reference power} sets the average power of reference constellation, {Reference phase offset (rad)} sets the phase offset of reference constellation, {Legend} sets the option to display, {Trajectory} sets the option to display signal, {Channel} sets the active input channel name of first channel in first, {Measurement Interval} sets the duration of EVM and MER measurement Current, {EVM Normalization} sets the normalization method Average constellation and {EVM/MER} sets the option to display signal quality measurements pane. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In_1,..., In_N",
+   "direction": "input",
+   "summary": "Signals (as separate ports) column vectors | matrices"
+  }
+ ],
+ "params": [
+  {
+   "name": "Settings",
+   "default": "",
+   "values": "Constellation diagram settings button",
+   "group": "Plot"
+  },
+  {
+   "name": "Number of input ports",
+   "default": "1",
+   "values": "Number of input ports on scope block 1 (default) | integer in the range [1, 20]",
+   "group": "Plot"
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "1",
+   "values": "Number of samples used to represent each symbol 1 (default) | positive integer",
+   "group": "Plot"
+  },
+  {
+   "name": "Offset",
+   "default": "0",
+   "values": "Number of samples to skip before plotting points 0 (default) | nonnegative integer",
+   "group": "Plot"
+  },
+  {
+   "name": "Symbols to display",
+   "default": "length",
+   "values": "Maximum number of symbols to display Input frame length (default) | positive integer",
+   "group": "Plot"
+  },
+  {
+   "name": "AxesLimits",
+   "default": "1.375]",
+   "values": "x and y -axis limits [-1.375 1.375] (default) | two-element row vector",
+   "group": "Plot"
+  },
+  {
+   "name": "Reference Constellation",
+   "default": "",
+   "values": "Reference constellation configuration button",
+   "group": "Plot"
+  },
+  {
+   "name": "Show reference constellations",
+   "default": "on",
+   "values": "Option to display reference constellations on (default) | off",
+   "group": "Plot"
+  },
+  {
+   "name": "Input",
+   "default": "1",
+   "values": "Select input port 1 (default) | positive integer",
+   "group": "Plot"
+  },
+  {
+   "name": "Reference constellation",
+   "default": "Custom",
+   "values": "Reference constellation Custom (default) | BPSK | 8-PSK | 16-QAM | 64-QAM | 256-QAM",
+   "group": "Plot"
+  },
+  {
+   "name": "Custom value",
+   "default": "0.7070-0.7071i]",
+   "values": "Input reference constellation [0.7071+0.7071i -0.7071+0.7071i -0.7071-0.7071i 0.7070-0.7071i] (default) | vector",
+   "group": "Plot"
+  },
+  {
+   "name": "Constellation normalization",
+   "default": "power",
+   "values": "Normalization method Average power (default) | Minimum distance | Peak power",
+   "group": "Plot"
+  },
+  {
+   "name": "Average reference power",
+   "default": "1",
+   "values": "Average power of reference constellation 1 (default) | positive scalar",
+   "group": "Plot"
+  },
+  {
+   "name": "Reference phase offset (rad)",
+   "default": "",
+   "values": "Phase offset of reference constellation scalar",
+   "group": "Plot"
+  },
+  {
+   "name": "Legend",
+   "default": "",
+   "values": "Option to display legend button",
+   "group": "Plot"
+  },
+  {
+   "name": "Trajectory",
+   "default": "",
+   "values": "Option to display signal trajectory button",
+   "group": "Plot"
+  },
+  {
+   "name": "Channel",
+   "default": "port",
+   "values": "Active input channel name of first channel in first port (default) | list of channels",
+   "group": "Measurements"
+  },
+  {
+   "name": "Measurement Interval",
+   "default": "display",
+   "values": "Duration of EVM and MER measurement Current display (default) | All displays | positive integer",
+   "group": "Measurements"
+  },
+  {
+   "name": "EVM Normalization",
+   "default": "power",
+   "values": "Normalization method Average constellation power (default) | Peak constellation power",
+   "group": "Measurements"
+  },
+  {
+   "name": "EVM/MER",
+   "default": "",
+   "values": "Option to display signal quality measurements pane button",
+   "group": "Measurements"
+  }
+ ]
+}

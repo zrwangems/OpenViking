@@ -1,0 +1,117 @@
+{
+ "key": "DcToDcConverter",
+ "title": "Bidirectional DC-DC",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/DC-DC/Bidirectional_DC_DC.md"
+ ],
+ "text": "支持双向升压和降压的 DC-to-DC 变换器；输出 3 路；按 {Parameterize losses by} 指定损耗计算 Single efficiency；{Converter response time constant, Tc} 指定常量 1/1000、{Converter response initial voltage, Vinit} 指定电压、{Converter power limit, Plimit} 指定功率、{Overall DC to DC converter efficiency, eff} 指定常量、{Vector of voltages (v) for tabulated loss, v_loss_bp} 指定断点、{Vector of currents (i) for tabulated loss, i_loss_bp} 指定断点、{Corresponding losses, losses_table} 指定二维查找表 N -by、{Vector of voltages (v) for tabulated efficiency, v_eff_bp} 指定断点、{Vector of currents (i) for tabulated efficiency, i_eff_bp} 指定断点、{Corresponding efficiency, efficiency_table} 指定二维查找表 N -by、{Calibrate Maps} 使用测量数据校准表 selection，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VoltCmd",
+   "direction": "",
+   "summary": "指令电压 scalar"
+  },
+  {
+   "name": "SrcVolt",
+   "direction": "",
+   "summary": "输入电压 scalar"
+  },
+  {
+   "name": "LdCurr",
+   "direction": "",
+   "summary": "负载电流 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "LdVolt",
+   "direction": "output",
+   "summary": "负载电压 scalar"
+  },
+  {
+   "name": "SrcCurr",
+   "direction": "output",
+   "summary": "源电流 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Converter response time constant, Tc",
+   "default": "1/1000",
+   "values": "常量 1/1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Converter response initial voltage, Vinit",
+   "default": "0",
+   "values": "电压 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Converter power limit, Plimit",
+   "default": "100000",
+   "values": "功率 100000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Parameterize losses by",
+   "default": "measurement",
+   "values": "损耗计算 Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data",
+   "group": ""
+  },
+  {
+   "name": "Overall DC to DC converter efficiency, eff",
+   "default": "98",
+   "values": "常量 98 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vector of voltages (v) for tabulated loss, v_loss_bp",
+   "default": "1000]",
+   "values": "断点 [0 200 400 600 800 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of currents (i) for tabulated loss, i_loss_bp",
+   "default": "100]",
+   "values": "断点 [0 25 50 75 100] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding losses, losses_table",
+   "default": "",
+   "values": "二维查找表 N -by- M matrix",
+   "group": ""
+  },
+  {
+   "name": "Vector of voltages (v) for tabulated efficiency, v_eff_bp",
+   "default": "1000]",
+   "values": "断点 [200 400 600 800 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of currents (i) for tabulated efficiency, i_eff_bp",
+   "default": "100]",
+   "values": "断点 [25 50 75 100] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding efficiency, efficiency_table",
+   "default": "",
+   "values": "二维查找表 N -by- M matrix",
+   "group": ""
+  },
+  {
+   "name": "Calibrate Maps",
+   "default": "",
+   "values": "使用测量数据校准表 selection",
+   "group": ""
+  }
+ ]
+}

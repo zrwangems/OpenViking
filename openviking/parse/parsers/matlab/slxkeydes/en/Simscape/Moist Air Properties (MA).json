@@ -1,0 +1,13 @@
+{
+ "key": "Moist Air Properties (MA)",
+ "title": "Moist Air Properties (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Utilities/Moist_Air_Properties_MA.md"
+ ],
+ "text": "Global moist air properties for attached circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,105 @@
+{
+ "key": "C2803x LIN Receive",
+ "title": "LIN Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/LIN_Receive.md"
+ ],
+ "text": "为 F2803x 和 F2806x 处理器捕获正常或高分辨率模式下的脉冲宽度；输出 6 路；按 {HRCAP module} 指定HRCAP 模块；{HRCAP mode} 指定 HRCAP 模式、{HRCAP clock} 指定 HRCAP 时钟、{Enable rising edge interrupt} 指定检测到上升沿时使能中断、{Enable falling edge interrupt} 指定检测到下降沿时使能中断、{Enable counter overflow interrupt} 指定检测到计数器溢出时使能中断、{Output type} 输出数据类型 HRCAPCLK、{Enable counter overflow output} 以捕获 HCCOUNTER 溢出、{HRCAP output} 指定高分辨率 HRCAP 输出、{Sample time} 指定模块从 HRCAP 读取数据的频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Rise[0,1]",
+   "direction": "output",
+   "summary": "输出捕获值 vector"
+  },
+  {
+   "name": "Fall[0,1]",
+   "direction": "output",
+   "summary": "输出捕获值 vector"
+  },
+  {
+   "name": "CounterOverflow",
+   "direction": "output",
+   "summary": "溢出状态 scalar"
+  },
+  {
+   "name": "Period",
+   "direction": "output",
+   "summary": "输出捕获数据 scalar"
+  },
+  {
+   "name": "On",
+   "direction": "output",
+   "summary": "输出捕获数据 scalar"
+  },
+  {
+   "name": "Off",
+   "direction": "output",
+   "summary": "输出捕获数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "HRCAP module",
+   "default": "HRCAP1",
+   "values": "选择 HRCAP 模块 HRCAP1 (default) | HRCAP2 | HRCAP3 | HRCAP4",
+   "group": ""
+  },
+  {
+   "name": "HRCAP mode",
+   "default": "Normal",
+   "values": "选择 HRCAP 模式 Normal (default) | High resolution",
+   "group": ""
+  },
+  {
+   "name": "HRCAP clock",
+   "default": "SYSCLKOUT",
+   "values": "选择 HRCAP 时钟 SYSCLKOUT (default) | PLL clock",
+   "group": ""
+  },
+  {
+   "name": "Enable rising edge interrupt",
+   "default": "on",
+   "values": "检测到上升沿时使能中断 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable falling edge interrupt",
+   "default": "on",
+   "values": "检测到下降沿时使能中断 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable counter overflow interrupt",
+   "default": "off",
+   "values": "检测到计数器溢出时使能中断 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "cycles",
+   "values": "选择输出数据类型 HRCAPCLK cycles (default) | Microseconds | uint32 | fixdt(0,16,16)",
+   "group": ""
+  },
+  {
+   "name": "Enable counter overflow output",
+   "default": "off",
+   "values": "选择以捕获 HCCOUNTER 溢出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "HRCAP output",
+   "default": "only",
+   "values": "高分辨率 HRCAP 输出 Period only (default) | ON time only | Off time only | On and Off time | All above(Period, On time, Off time )",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "模块从 HRCAP 读取数据的频率 0.1 (default)",
+   "group": ""
+  }
+ ]
+}

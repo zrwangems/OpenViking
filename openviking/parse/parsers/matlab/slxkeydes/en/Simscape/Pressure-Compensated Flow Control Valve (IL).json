@@ -1,0 +1,13 @@
+{
+ "key": "Pressure-Compensated Flow Control Valve (IL)",
+ "title": "Pressure-Compensated Flow Control Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Flow Control Valves/Pressure_Compensated_Flow_Control_Valve_IL.md"
+ ],
+ "text": "Flow control with pressure regulation in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,49 @@
+{
+ "key": "Idmodel Block",
+ "title": "Idmodel",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Models/Idmodel.md"
+ ],
+ "text": "在 Simulink 软件中仿真辨识的线性模型，输入 1 路、输出 1 路；按 {Initial conditions} 指定初始条件；{Identified model} 指定要仿真的线性模型 idss、{Add noise} 指定向仿真输出添加噪声、{Noise seed(s)} 指定在多次仿真中向输出添加相同噪声，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "仿真输入数据 scalar | vector"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "仿真输出 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Identified model",
+   "default": "idss(-1,1,1,0,’Ts’,1)",
+   "values": "要仿真的线性模型 idss(-1,1,1,0,’Ts’,1) (default) | idss object | idgrey object | idpoly object | idtf object | idproc object",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "初始条件 0 (default) | numeric vector | initialCondition object",
+   "group": ""
+  },
+  {
+   "name": "Add noise",
+   "default": "on",
+   "values": "向仿真输出添加噪声 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Noise seed(s)",
+   "default": "[]",
+   "values": "在多次仿真中向输出添加相同噪声 [] (default) | nonnegative integer | vector",
+   "group": ""
+  }
+ ]
+}

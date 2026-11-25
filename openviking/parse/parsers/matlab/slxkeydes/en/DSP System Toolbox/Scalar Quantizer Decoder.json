@@ -1,0 +1,54 @@
+{
+ "key": "Scalar Quantizer Decoder",
+ "title": "Scalar Quantizer Decoder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/Scalar_Quantizer_Decoder.md"
+ ],
+ "text": "Convert each index value into quantized output value, 2 inputs, 1 output, no direct feedthrough, {Codebook values} sets Codebook values; {Action for out of range index value}, {Source of codebook} and {Codebook and output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Index values vector"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Codebook values vector | matrix"
+  },
+  {
+   "name": "Q(U)",
+   "direction": "output",
+   "summary": "Quantized output values vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Action for out of range index value",
+   "default": "Clip",
+   "values": "Action for out of range index value Clip (default) | Clip and warn | Error",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Source of codebook",
+   "default": "dialog",
+   "values": "Source of codebook Specify via dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Codebook values",
+   "default": "[1:10]",
+   "values": "Codebook values [1:10] (default) | vector | matrix",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Codebook and output data type",
+   "default": "double",
+   "values": "Codebook and output data type double (default) | Same as input | single | Inherit via back propagation | numeric type",
+   "group": "Data Types Tab"
+  }
+ ]
+}

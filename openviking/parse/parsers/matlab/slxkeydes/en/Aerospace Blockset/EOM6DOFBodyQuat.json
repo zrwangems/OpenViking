@@ -1,0 +1,201 @@
+{
+ "key": "EOM6DOFBodyQuat",
+ "title": "Simple Variable Mass 6DOF (Quaternion)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/6DOF/Simple_Variable_Mass_6DOF_Quaternion.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/b_6DOF_Quaternion.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/Custom_Variable_Mass_6DOF_Quaternion.md"
+ ],
+ "text": "Implement quaternion representation of six-degrees-of-freedom equations of motion of simple variable mass with respect to body axes, 4 inputs, 10 outputs, {Mass type} sets Mass type Simple; {Units} sets the input and output units Metric, {Initial position in inertial axes [Xe,Ye,Ze]} sets the position in inertial axes, {Initial velocity in body axes [U,v,w]} sets the velocity in body axes, {Initial Euler orientation [roll, pitch, yaw]} sets the initial Euler orientation, {Initial body rotation rates [p,q,r]} sets the initial body rotation, {Initial mass}, {Empty mass}, {Full mass}, {Inertia}, {Empty inertia}, {Full inertia}, {Include mass flow relative velocity} sets the mass flow relative velocity port, {Output mass properties for acceleration computation} sets the include mass properties for acceleration, {Velocity: e.g., ’U’,’v’,’w’} sets the velocity state name, {Position: e.g., ’Xe’,’Ye’,’Ze’} sets the position state name, {Body rotation rates: e.g., ’p’,’q’,’r’} sets the body rotation state names, {Quaternion: e.g., ’qr’,’qi’,’qj’,’qk’} sets the quaternion vector state name and {Mass: e.g., ’mass’} sets the mass state name. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F xyz",
+   "direction": "input",
+   "summary": "Applied forces three-element vector"
+  },
+  {
+   "name": "M xyz (N-m)",
+   "direction": "input",
+   "summary": "Applied moments three-element vector"
+  },
+  {
+   "name": "dm/dt (kg/s)",
+   "direction": "input",
+   "summary": "Rate of change of mass scalar"
+  },
+  {
+   "name": "V re",
+   "direction": "input",
+   "summary": "Relative velocity three-element vector"
+  },
+  {
+   "name": "V e",
+   "direction": "output",
+   "summary": "Velocity in flat Earth reference frame three-element vector"
+  },
+  {
+   "name": "X e",
+   "direction": "output",
+   "summary": "Position in flat Earth reference frame three-element vector"
+  },
+  {
+   "name": "φ θ ψ (rad)",
+   "direction": "output",
+   "summary": "Euler rotation angles three-element vector"
+  },
+  {
+   "name": "DCM be",
+   "direction": "output",
+   "summary": "Coordinate transformation 3-by-3 matrix"
+  },
+  {
+   "name": "V b",
+   "direction": "output",
+   "summary": "Velocity in body-fixed frame three-element vector"
+  },
+  {
+   "name": "ω b (rad/s)",
+   "direction": "output",
+   "summary": "Angular rates in body-fixed axes three-element vector"
+  },
+  {
+   "name": "m",
+   "direction": "output",
+   "summary": "Mass scalar"
+  },
+  {
+   "name": "Fuel",
+   "direction": "output",
+   "summary": "Fuel tank status scalar"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "Inertia tensor matrix 3-by-3 matrix"
+  },
+  {
+   "name": "dI/dt coeff",
+   "direction": "output",
+   "summary": "Rate of change of inertia tensor matrix coefficient 3-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Variable",
+   "values": "Mass type Simple Variable (default) | Fixed | Custom Variable",
+   "group": "Main"
+  },
+  {
+   "name": "Initial position in inertial axes [Xe,Ye,Ze]",
+   "default": "0]",
+   "values": "Position in inertial axes [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial velocity in body axes [U,v,w]",
+   "default": "0]",
+   "values": "Velocity in body axes [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial Euler orientation [roll, pitch, yaw]",
+   "default": "0]",
+   "values": "Initial Euler orientation [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial body rotation rates [p,q,r]",
+   "default": "0]",
+   "values": "Initial body rotation [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial mass",
+   "default": "1.0",
+   "values": "Initial mass 1.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty mass",
+   "default": "0.5",
+   "values": "Empty mass 0.5 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Full mass",
+   "default": "2.0",
+   "values": "Full mass of body 2.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Inertia",
+   "default": "eye(3)",
+   "values": "Inertia eye(3) (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty inertia",
+   "default": "eye(3)",
+   "values": "Empty inertia matrix eye(3) (default) | 3-by-3 matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Full inertia",
+   "default": "2*eye(3)",
+   "values": "Full inertia of body 2*eye(3) (default) | 3-by-3 matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Include mass flow relative velocity",
+   "default": "off",
+   "values": "Mass flow relative velocity port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output mass properties for acceleration computation",
+   "default": "off",
+   "values": "Include mass properties for acceleration port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Velocity: e.g., {’U’,’v’,’w’}",
+   "default": "’’",
+   "values": "Velocity state name ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Position: e.g., {’Xe’,’Ye’,’Ze’}",
+   "default": "’’",
+   "values": "Position state name ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Body rotation rates: e.g., {’p’,’q’,’r’}",
+   "default": "’’",
+   "values": "Body rotation state names ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Quaternion: e.g., {’qr’,’qi’,’qj’,’qk’}",
+   "default": "’’",
+   "values": "Quaternion vector state name ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Mass: e.g., ’mass’",
+   "default": "’’",
+   "values": "Mass state name ’’ (default) | character vector",
+   "group": "State Attributes"
+  }
+ ]
+}

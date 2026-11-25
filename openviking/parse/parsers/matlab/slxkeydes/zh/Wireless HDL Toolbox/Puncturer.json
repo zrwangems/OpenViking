@@ -1,0 +1,79 @@
+{
+ "key": "Puncturer",
+ "title": "Puncturer",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/Puncturer.md"
+ ],
+ "text": "根据打孔向量对数据进行打孔，输入 5 路、输出 3 路；{Operation mode} 指定操作模式 Continuous、{Encoder rate} 指定编码器速率、{Puncture vector source} 指定删余向量来源 Input、{Puncture vector} 指定待打孔数据的位置，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据样本 scalar | column vector of size from 2 to 7"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据样本 scalar"
+  },
+  {
+   "name": "puncVector",
+   "direction": "input",
+   "summary": "删余向量 column vector of binary values"
+  },
+  {
+   "name": "syncPunc",
+   "direction": "input",
+   "summary": "删余同步信号 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "打孔输出数据 n-by-1 column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "输出数据样本的有效性 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation mode",
+   "default": "Continuous",
+   "values": "操作模式 Continuous (default) | Frame",
+   "group": ""
+  },
+  {
+   "name": "Encoder rate",
+   "default": "1/2",
+   "values": "编码器速率 1/2 (default) | range from 1/2 to 1/7",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector source",
+   "default": "port",
+   "values": "删余向量来源 Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "[1;1;1;0;0;1]",
+   "values": "待打孔数据的位置 [1;1;1;0;0;1] (default) | column vector of binary values",
+   "group": ""
+  }
+ ]
+}

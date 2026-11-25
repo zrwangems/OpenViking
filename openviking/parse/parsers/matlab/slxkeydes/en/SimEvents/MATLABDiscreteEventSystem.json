@@ -1,0 +1,32 @@
+{
+ "key": "MATLABDiscreteEventSystem",
+ "title": "MATLAB Discrete-Event System",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/MATLAB_Discrete_Event_System.md"
+ ],
+ "text": "MATLAB discrete-event system; {System object name} sets the full name of the System object™ character, {New} sets the create a SimEvents System object from a template SimEvents System and {Simulate using} sets the simulation mode. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "System object name",
+   "default": "",
+   "values": "Specify the full name of the System object™ character vector",
+   "group": ""
+  },
+  {
+   "name": "New",
+   "default": "",
+   "values": "Create a SimEvents System object from a template SimEvents System object",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Specify the simulation mode Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

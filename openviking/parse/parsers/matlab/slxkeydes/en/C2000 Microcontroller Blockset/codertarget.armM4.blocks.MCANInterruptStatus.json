@@ -1,0 +1,169 @@
+{
+ "key": "codertarget.armM4.blocks.MCANInterruptStatus",
+ "title": "MCAN Interrupt Status",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F280015x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F28003x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F28p55x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F28p65x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/MCAN_Interrupt_Status.md",
+  "C2000 Microcontroller Blockset/F2838x/M4/MCAN_Interrupt_Status.md"
+ ],
+ "text": "Output specific bits of MCAN interrupt register or entire register, 30 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "MCAN_IR",
+   "direction": "output",
+   "summary": "Status of MCAN interrupt register uint32"
+  },
+  {
+   "name": "TEFN",
+   "direction": "output",
+   "summary": "Status of TX event FIFO new entry boolean"
+  },
+  {
+   "name": "TEFW",
+   "direction": "output",
+   "summary": "Status of TX event FIFO watermark reached boolean"
+  },
+  {
+   "name": "TEFF",
+   "direction": "output",
+   "summary": "Status of TX event FIFO full boolean"
+  },
+  {
+   "name": "TEFL",
+   "direction": "output",
+   "summary": "Status of TX event FIFO element lost boolean"
+  },
+  {
+   "name": "TC",
+   "direction": "output",
+   "summary": "Status of transmission completed boolean"
+  },
+  {
+   "name": "TCF",
+   "direction": "output",
+   "summary": "Status of transmission cancellation finished boolean"
+  },
+  {
+   "name": "TFE",
+   "direction": "output",
+   "summary": "Status of transmission FIFO empty boolean"
+  },
+  {
+   "name": "HPM",
+   "direction": "output",
+   "summary": "Status of high priority message boolean"
+  },
+  {
+   "name": "RF0N",
+   "direction": "output",
+   "summary": "Status of RX FIFO 0 new message boolean"
+  },
+  {
+   "name": "RF0W",
+   "direction": "output",
+   "summary": "Status of RX FIFO 0 watermark reached boolean"
+  },
+  {
+   "name": "RF0FL",
+   "direction": "output",
+   "summary": "Status of RX FIFO 0 full boolean"
+  },
+  {
+   "name": "RF0ML",
+   "direction": "output",
+   "summary": "Status of RX FIFO 0 message lost boolean"
+  },
+  {
+   "name": "DRX",
+   "direction": "output",
+   "summary": "Status of dedicated RX buffer message boolean"
+  },
+  {
+   "name": "RF1N",
+   "direction": "output",
+   "summary": "Status of RX FIFO 1 new message boolean"
+  },
+  {
+   "name": "RF1W",
+   "direction": "output",
+   "summary": "Status of RX FIFO 1 watermark reached boolean"
+  },
+  {
+   "name": "RF1FL",
+   "direction": "output",
+   "summary": "Status of RX FIFO 1 full boolean"
+  },
+  {
+   "name": "RF1ML",
+   "direction": "output",
+   "summary": "Status of RX FIFO 1 message lost boolean"
+  },
+  {
+   "name": "TSW",
+   "direction": "output",
+   "summary": "Status of timestamp wraparound boolean"
+  },
+  {
+   "name": "TOO",
+   "direction": "output",
+   "summary": "Status of timeout occurred boolean"
+  },
+  {
+   "name": "ELO",
+   "direction": "output",
+   "summary": "Status of error logging overflow boolean"
+  },
+  {
+   "name": "EW",
+   "direction": "output",
+   "summary": "Status of error warning boolean"
+  },
+  {
+   "name": "WD",
+   "direction": "output",
+   "summary": "Status of watchdog event boolean"
+  },
+  {
+   "name": "PED",
+   "direction": "output",
+   "summary": "Status of protocol error in data phase boolean"
+  },
+  {
+   "name": "MRAF",
+   "direction": "output",
+   "summary": "Status of message RAM access failure boolean"
+  },
+  {
+   "name": "BEU",
+   "direction": "output",
+   "summary": "Status of bit error uncorrected boolean"
+  },
+  {
+   "name": "EP",
+   "direction": "output",
+   "summary": "Status of error passive boolean"
+  },
+  {
+   "name": "BO",
+   "direction": "output",
+   "summary": "Status of bus off boolean"
+  },
+  {
+   "name": "PEA",
+   "direction": "output",
+   "summary": "Status of arbitration protocol error boolean"
+  },
+  {
+   "name": "ARA",
+   "direction": "output",
+   "summary": "Status of access to reserved address boolean"
+  }
+ ],
+ "params": []
+}

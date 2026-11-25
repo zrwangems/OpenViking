@@ -1,0 +1,87 @@
+{
+ "key": "LLA2Flat",
+ "title": "LLA to Flat Earth",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/LLA_to_Flat_Earth.md"
+ ],
+ "text": "Estimate flat Earth position from geodetic latitude, longitude, and altitude, 5 inputs, 1 output; {Units}, {Planet model}, {Flattening}, {Equatorial radius of planet} sets the radius of planet at equator, {Input reference position and orientation}, {Reference geodetic latitude and longitude (deg)} sets the initial geodetic latitude and longitude and {Direction of local tangent plane x-axis (degrees clockwise from north)} sets the angle. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μl",
+   "direction": "input",
+   "summary": "Geodetic latitude and longitude 2-by-1 vector"
+  },
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "Altitude scalar"
+  },
+  {
+   "name": "h ref",
+   "direction": "input",
+   "summary": "Reference height scalar"
+  },
+  {
+   "name": "μ ref l ref",
+   "direction": "input",
+   "summary": "Reference location 2-by-1 vector"
+  },
+  {
+   "name": "ψ ref",
+   "direction": "input",
+   "summary": "Direction of flat Earth x -axis scalar"
+  },
+  {
+   "name": "X e",
+   "direction": "output",
+   "summary": "Position 3-by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Planet model",
+   "default": "(WGS84)",
+   "values": "Planet model Earth (WGS84) (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "Flattening of planet 1/298.257223563 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius of planet",
+   "default": "6378137",
+   "values": "Radius of planet at equator 6378137 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input reference position and orientation",
+   "default": "off",
+   "values": "Input reference position and orientation as ports off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reference geodetic latitude and longitude (deg)",
+   "default": "10]",
+   "values": "Initial geodetic latitude and longitude [0 10] (default) | 2-by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Direction of local tangent plane x-axis (degrees clockwise from north)",
+   "default": "0",
+   "values": "Angle 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

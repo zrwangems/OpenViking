@@ -1,0 +1,13 @@
+{
+ "key": "PS Constant",
+ "title": "PS Constant",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Sources/PS_Constant.md"
+ ],
+ "text": "Generate constant physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

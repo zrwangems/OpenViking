@@ -1,0 +1,266 @@
+{
+ "key": "Model Reference Adaptive Control",
+ "title": "Model Reference Adaptive Control",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Adaptive Control/Model_Reference_Adaptive_Control.md"
+ ],
+ "text": "Compute control actions to make controlled system track reference model, 3 inputs, 4 outputs, {Feature type} sets Disturbance model feature type; {A} sets the nominal model state matrix, {B} sets the nominal model control effective, {Am} sets the reference model state, {Bm} sets the reference model control effective, {Ahat} sets the estimator plant model state matrix, {Adapt Ahat} sets the option to adapt estimator plant model state, {Learning rate (gamma_a)} sets the learning rate for adapting estimator plant model state, {Use learning modification} sets the option to enable learning modification for updating the estimator model state, {Bhat} sets the estimator plant model control effective, {Adapt Bhat} sets the option to adapt estimator plant model control effective, {Learning rate (gamma_b)} sets the learning rate for adapting estimator plant model control effective, {Specify estimator feedback gain} sets the option to enable specification of estimator feedback, {Estimator feedback gain}, {Output estimated parameters} sets the option to output estimator state and control effective, {Feedback gains}, {Adapt feedback gains} sets the option to adapt feedback gains, {Learning rate (gamma_x)} sets the learning rate for adapting feedback gains, {Feedforward gains}, {Adapt feedforward gains} sets the option to adapt feedforward gains, {Learning rate (gamma_r)} sets the learning rate for adapting feedforward, {Enable disturbance adaptation} sets the option to enable adaptation to system disturbances, {Learning rate (gamma_w)} sets the learning rate for adapting disturbance model, {Channel learning rate (Q)} sets the channel learning rate used for the Lyapunov, {Number of RBF centers} sets the number of radial basis function centers for disturbance, {Centers min} sets the lower limit for radial basis function, {Centers max} sets the upper limit for radial basis function, {Bandwidth} sets the radial basis function standard deviation, {Number of neurons in hidden layer}, {Hidden layer learning rate (gamma_v)} sets the learning rate for updating neural network, {Output disturbance/uncertancy estimate} sets the option to output disturbance and uncertainty, {Modification Methods} sets the modification method for updating, {Sigma} sets the momentum weight for parameter updates, {Use discrete-time integration in adaptation}, {Sample time} and {Integration method} sets the discrete integration method. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Reference signal scalar signal | vector signal"
+  },
+  {
+   "name": "state",
+   "direction": "input",
+   "summary": "Controlled system state vector signal"
+  },
+  {
+   "name": "phi",
+   "direction": "input",
+   "summary": "Disturbance model features vector signal | matrix signal"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Control input scalar signal | matrix signal"
+  },
+  {
+   "name": "u_ad",
+   "direction": "output",
+   "summary": "Disturbance and uncertainty estimate scalar signal | matrix signal"
+  },
+  {
+   "name": "Ahat",
+   "direction": "output",
+   "summary": "Estimator state matrix matrix signal"
+  },
+  {
+   "name": "Bhat",
+   "direction": "output",
+   "summary": "Estimator control effective matrix vector signal | matrix signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "A",
+   "default": "0",
+   "values": "Nominal model state matrix 0 (default) | square matrix",
+   "group": "System"
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "Nominal model control effective matrix 1 (default) | vector | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Am",
+   "default": "-1",
+   "values": "Reference model state matrix -1 (default) | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Bm",
+   "default": "1",
+   "values": "Reference model control effective matrix 1 (default) | vector | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Ahat",
+   "default": "0",
+   "values": "Estimator plant model state matrix 0 (default) | square matrix",
+   "group": "System"
+  },
+  {
+   "name": "Adapt Ahat",
+   "default": "on",
+   "values": "Option to adapt estimator plant model state matrix on (default) | off",
+   "group": "System"
+  },
+  {
+   "name": "Learning rate (gamma_a)",
+   "default": "1",
+   "values": "Learning rate for adapting estimator plant model state matrix 1 (default) | finite positive scalar",
+   "group": "System"
+  },
+  {
+   "name": "Use learning modification",
+   "default": "on",
+   "values": "Option to enable learning modification for updating the estimator model state matrix on (default) | off",
+   "group": "System"
+  },
+  {
+   "name": "Bhat",
+   "default": "1",
+   "values": "Estimator plant model control effective matrix 1 (default) | vector | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Adapt Bhat",
+   "default": "on",
+   "values": "Option to adapt estimator plant model control effective matrix on (default) | off",
+   "group": "System"
+  },
+  {
+   "name": "Learning rate (gamma_b)",
+   "default": "1",
+   "values": "Learning rate for adapting estimator plant model control effective matrix 1 (default) | finite positive scalar",
+   "group": "System"
+  },
+  {
+   "name": "Specify estimator feedback gain",
+   "default": "off",
+   "values": "Option to enable specification of estimator feedback gain off (default) | on",
+   "group": "System"
+  },
+  {
+   "name": "Estimator feedback gain",
+   "default": "-1",
+   "values": "Estimator feedback gain -1 (default) | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Output estimated parameters",
+   "default": "off",
+   "values": "Option to output estimator state and control effective matrices off (default) | on",
+   "group": "System"
+  },
+  {
+   "name": "Feedback gains",
+   "default": "0",
+   "values": "Feedback gains for model matching 0 (default) | finite scalar | matrix of finite values",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Adapt feedback gains",
+   "default": "on",
+   "values": "Option to adapt feedback gains on (default) | off",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Learning rate (gamma_x)",
+   "default": "1",
+   "values": "Learning rate for adapting feedback gains 1 (default) | finite positive scalar",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Feedforward gains",
+   "default": "0",
+   "values": "Feedforward gains for model matching 0 (default) | finite scalar | matrix of finite values",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Adapt feedforward gains",
+   "default": "on",
+   "values": "Option to adapt feedforward gains on (default) | off",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Learning rate (gamma_r)",
+   "default": "1",
+   "values": "Learning rate for adapting feedforward gains 1 (default) | finite positive scalar",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Enable disturbance adaptation",
+   "default": "on",
+   "values": "Option to enable adaptation to system disturbances and uncertainties on (default) | off",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Learning rate (gamma_w)",
+   "default": "1",
+   "values": "Learning rate for adapting disturbance model parameters 1 (default) | finite positive scalar",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Channel learning rate (Q)",
+   "default": "1",
+   "values": "Channel learning rate used for the Lyapunov solution 1 (default) | finite positive scalar | vector of length N containing positive finite values | symmetric positive definite matrix of size N -by- N",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Feature type",
+   "default": "State",
+   "values": "Disturbance model feature type State (default) | Radial Basis Function | Single Hidden Layer Network | Use External Source for Feature",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Number of RBF centers",
+   "default": "20",
+   "values": "Number of radial basis function centers for disturbance model 20 (default) | positive integer",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Centers min",
+   "default": "-1",
+   "values": "Lower limit for radial basis function centers -1 (default) | finite scalar | vector",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Centers max",
+   "default": "1",
+   "values": "Upper limit for radial basis function centers 1 (default) | finite scalar | vector",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Bandwidth",
+   "default": "5",
+   "values": "Radial basis function standard deviation 5 (default) | positive scalar | vector",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Number of neurons in hidden layer",
+   "default": "10",
+   "values": "Number of neurons 10 (default) | positive integer",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Hidden layer learning rate (gamma_v)",
+   "default": "0.1",
+   "values": "Learning rate for updating neural network weights 0.1 (default) | positive scalar",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Output disturbance/uncertancy estimate",
+   "default": "on",
+   "values": "Option to output disturbance and uncertainty estimate on (default) | off",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Modification Methods",
+   "default": "None",
+   "values": "Modification method for updating parameters None (default) | e-Modification | Sigma Modification",
+   "group": "Learning Modification"
+  },
+  {
+   "name": "Sigma",
+   "default": "0.1",
+   "values": "Momentum weight for parameter updates 0.1 (default) | scalar",
+   "group": "Learning Modification"
+  },
+  {
+   "name": "Use discrete-time integration in adaptation",
+   "default": "off",
+   "values": "Use discrete-time integration in adaptation off (default) | on",
+   "group": "Learning Modification"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.05",
+   "values": "Sample time 0.05 (default) | finite positive scalar",
+   "group": "Learning Modification"
+  },
+  {
+   "name": "Integration method",
+   "default": "Euler",
+   "values": "Discrete integration method Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Learning Modification"
+  }
+ ]
+}

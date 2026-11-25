@@ -1,0 +1,13 @@
+{
+ "key": "Adaptive Lookup Table (2D)",
+ "title": "Adaptive Lookup Table (2D Stair-Fit)",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/Adaptive Lookup Tables/Adaptive_Lookup_Table_2D_Stair_Fit.md"
+ ],
+ "text": "Two-dimensional adaptive table lookup.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

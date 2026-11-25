@@ -1,0 +1,27 @@
+{
+ "key": "DocBlock",
+ "title": "DocBlock",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model-Wide Utilities/DocBlock.md",
+  "HDL Coder/Model-Wide Utilities/DocBlock.md"
+ ],
+ "text": "创建用以说明模型的文本并随模型保存文本；按 {文档类型} 指定文档的类型；{代码生成模板符号} 指定生成的代码的模板符号，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "代码生成模板符号",
+   "default": "",
+   "values": "生成的代码的模板符号 ’’ | Abstract | Description | History | Modified History | Notes",
+   "group": ""
+  },
+  {
+   "name": "文档类型",
+   "default": "Text",
+   "values": "文档的类型 Text (默认) | RTF | HTML",
+   "group": ""
+  }
+ ]
+}

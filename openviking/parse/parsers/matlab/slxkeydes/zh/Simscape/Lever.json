@@ -1,0 +1,13 @@
+{
+ "key": "Lever",
+ "title": "Lever",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanisms/Lever.md"
+ ],
+ "text": "通用机械杠杆。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

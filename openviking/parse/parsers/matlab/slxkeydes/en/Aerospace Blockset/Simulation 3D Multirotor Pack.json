@@ -1,0 +1,261 @@
+{
+ "key": "Simulation 3D Multirotor Pack",
+ "title": "Simulation 3D Multirotor Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Multirotor_Pack.md"
+ ],
+ "text": "Generate translation and rotation information for multirotor rotorcraft, 22 inputs, 2 outputs, {Select input coordinate frame} sets Input coordinate frame; {Rotor 1 translation} sets the option to enable Rotor1_T input port, {Rotor 2 translation} sets the option to enable Rotor2_T input port, {Rotor 3 translation} sets the option to enable Rotor3_T input port, {Rotor 4 translation} sets the option to enable Rotor4_T input port, {Rotor 5 translation} sets the option to enable Rotor5_T input port, {Rotor 6 translation} sets the option to enable Rotor6_T input port, {Rotor 7 translation} sets the option to enable Rotor7_T input port, {Rotor 8 translation} sets the option to enable Rotor8_T input port, {Rotor 1 rotation} sets the option to enable Rotor1_R input port, {Rotor 2 rotation} sets the option to enable Rotor2_R input port, {Rotor 3 rotation} sets the option to enable Rotor3_R input port, {Rotor 4 rotation} sets the option to enable Rotor4_R input port, {Rotor 5 rotation} sets the option to enable Rotor5_R input port, {Rotor 6 rotation} sets the option to enable Rotor6_R input port, {Rotor 7 rotation} sets the option to enable Rotor7_R input port, {Rotor 8 rotation} sets the option to enable Rotor8_R input port, {Sensor 1 translation} sets the option to enable Sensor1_T input port, {Sensor 2 translation} sets the option to enable Sensor2_T input port, {Sensor 1 rotation} sets the option to enable Sensor1_R input port and {Sensor 2 rotation} sets the option to enable Sensor2_R input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "Body translation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor1_T",
+   "direction": "input",
+   "summary": "Rotor 1 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor2_T",
+   "direction": "input",
+   "summary": "Rotor 2 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor3_T",
+   "direction": "input",
+   "summary": "Rotor 3 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor4_T",
+   "direction": "input",
+   "summary": "Rotor 4 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor5_T",
+   "direction": "input",
+   "summary": "Rotor 5 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor6_T",
+   "direction": "input",
+   "summary": "Rotor 6 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor7_T",
+   "direction": "input",
+   "summary": "Rotor 7 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor8_T",
+   "direction": "input",
+   "summary": "Rotor 8 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor1_T",
+   "direction": "input",
+   "summary": "Sensor 1 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor2_T",
+   "direction": "input",
+   "summary": "Sensor 2 translation 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "Body rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor1_R",
+   "direction": "input",
+   "summary": "Rotor 1 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor2_R",
+   "direction": "input",
+   "summary": "Rotor 2 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor3_R",
+   "direction": "input",
+   "summary": "Rotor 3 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor4_R",
+   "direction": "input",
+   "summary": "Rotor 4 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor5_R",
+   "direction": "input",
+   "summary": "Rotor 5 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor6_R",
+   "direction": "input",
+   "summary": "Rotor 6 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor7_R",
+   "direction": "input",
+   "summary": "Rotor 7 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor8_R",
+   "direction": "input",
+   "summary": "Rotor 8 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor1_R",
+   "direction": "input",
+   "summary": "Sensor 1 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor2_R",
+   "direction": "input",
+   "summary": "Sensor 2 rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Multirotor translation 11 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Rotorcraft rotation 11 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rotor 1 translation",
+   "default": "off",
+   "values": "Option to enable Rotor1_T input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 2 translation",
+   "default": "off",
+   "values": "Option to enable Rotor2_T input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 3 translation",
+   "default": "off",
+   "values": "Option to enable Rotor3_T input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 4 translation",
+   "default": "off",
+   "values": "Option to enable Rotor4_T input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 5 translation",
+   "default": "off",
+   "values": "Option to enable Rotor5_T input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 6 translation",
+   "default": "off",
+   "values": "Option to enable Rotor6_T input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 7 translation",
+   "default": "off",
+   "values": "Option to enable Rotor7_T input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 8 translation",
+   "default": "off",
+   "values": "Option to enable Rotor8_T input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 1 rotation",
+   "default": "off",
+   "values": "Option to enable Rotor1_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 2 rotation",
+   "default": "off",
+   "values": "Option to enable Rotor2_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 3 rotation",
+   "default": "off",
+   "values": "Option to enable Rotor3_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 4 rotation",
+   "default": "off",
+   "values": "Option to enable Rotor4_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 5 rotation",
+   "default": "off",
+   "values": "Option to enable Rotor5_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 6 rotation",
+   "default": "off",
+   "values": "Option to enable Rotor6_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 7 rotation",
+   "default": "off",
+   "values": "Option to enable Rotor7_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 8 rotation",
+   "default": "off",
+   "values": "Option to enable Rotor8_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Sensor 1 translation",
+   "default": "off",
+   "values": "Option to enable Sensor1_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 translation",
+   "default": "off",
+   "values": "Option to enable Sensor2_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 1 rotation",
+   "default": "off",
+   "values": "Option to enable Sensor1_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 rotation",
+   "default": "off",
+   "values": "Option to enable Sensor2_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "Input coordinate frame NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

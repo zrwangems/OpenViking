@@ -1,0 +1,80 @@
+{
+ "key": "Audio Device Writer",
+ "title": "Audio Device Writer",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sinks/Audio_Device_Writer.md",
+  "DSP System Toolbox/Sinks/Audio_Device_Writer.md"
+ ],
+ "text": "Audio Device Writer 模块将音频采样写入音频输出设备，输入 1 路、输出 1 路、无直接馈通；按 {Device output channels} 指定非默认通道映射；{Driver} 用于访问音频设备的驱动程序、{Device} 用于播放音频采样的设备 default audio、{Info} 指定查看有关音频输出配置的信息、{Inherit sample rate from input} 指定输入采样率的来源、{Sample rate (Hz)} 指定设备用于播放音频数据的采样率、{Device bit depth} 指定设备用于执行数模转换的数据类型 16-bit、{Use default channel mapping} 指定切换通道映射源、{Output number of samples underrun} 用于输出欠载样本数的输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "样本欠载数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Driver",
+   "default": "DirectSound",
+   "values": "用于访问音频设备的驱动程序 DirectSound (default) | ASIO | WASAPI",
+   "group": ""
+  },
+  {
+   "name": "Device",
+   "default": "device",
+   "values": "用于播放音频采样的设备 default audio device (default)",
+   "group": ""
+  },
+  {
+   "name": "Info",
+   "default": "",
+   "values": "查看有关音频输出配置的信息 button",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "指定输入采样率的来源 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "设备用于播放音频数据的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Device bit depth",
+   "default": "integer",
+   "values": "设备用于执行数模转换的数据类型 16-bit integer (default) | 8-bit integer | 24-bit integer | 32-bit float",
+   "group": ""
+  },
+  {
+   "name": "Use default channel mapping",
+   "default": "on",
+   "values": "切换通道映射源 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Device output channels",
+   "default": "[1:MaximumOutputChannels]",
+   "values": "指定非默认通道映射 [1:MaximumOutputChannels] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output number of samples underrun",
+   "default": "off",
+   "values": "指定用于输出欠载样本数的输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

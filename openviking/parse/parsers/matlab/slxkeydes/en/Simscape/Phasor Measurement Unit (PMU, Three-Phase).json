@@ -1,0 +1,53 @@
+{
+ "key": "Phasor Measurement Unit (PMU, Three-Phase)",
+ "title": "Phasor Measurement Unit (PMU, Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Phasor_Measurement_Unit_PMU_Three_Phase.md"
+ ],
+ "text": "Frequency, phase, and amplitude measurement of a three-phase system, 1 input, 3 outputs; {Rated frequency (Hz)}, {Sampling points per cycle} and {Reporting rate factor}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "input",
+   "summary": "Three-phase signal vector"
+  },
+  {
+   "name": "freq",
+   "direction": "output",
+   "summary": "Frequency of positive sequence component scalar"
+  },
+  {
+   "name": "angle",
+   "direction": "output",
+   "summary": "Phase angle of positive sequence component scalar"
+  },
+  {
+   "name": "mag",
+   "direction": "output",
+   "summary": "Magnitude of positive sequence component scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rated frequency (Hz)",
+   "default": "60",
+   "values": "Rated frequency 60 (default) | 50",
+   "group": ""
+  },
+  {
+   "name": "Sampling points per cycle",
+   "default": "64",
+   "values": "Sampling points per cycle 64 (default) | 24 | 48",
+   "group": ""
+  },
+  {
+   "name": "Reporting rate factor",
+   "default": "1",
+   "values": "Reporting rate factor 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

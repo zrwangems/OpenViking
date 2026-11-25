@@ -1,0 +1,60 @@
+{
+ "key": "Delay Line",
+ "title": "Delay Line",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Buffers/Delay_Line.md"
+ ],
+ "text": "重新缓冲输入序列，输入 2 路、输出 1 路、无直接馈通；按 {Initial conditions} 指定初始条件；{Delay line size} 指定延迟线大小、{Allow directfeedthrough} 允许直接馈通、{Show En_Out port for selectively enabling output} 显示 En_Out 端口以选择性启用输出、{Hold previous value when the output is disabled} 输出禁用时保持上一值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "En_Out",
+   "direction": "input",
+   "summary": "线性化模块输出 true | false"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "重新缓冲后的输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delay line size",
+   "default": "64",
+   "values": "延迟线大小 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "初始条件 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Allow directfeedthrough",
+   "default": "off",
+   "values": "允许直接馈通 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show En_Out port for selectively enabling output",
+   "default": "off",
+   "values": "显示 En_Out 端口以选择性启用输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Hold previous value when the output is disabled",
+   "default": "off",
+   "values": "输出禁用时保持上一值 off (default) | on",
+   "group": ""
+  }
+ ]
+}

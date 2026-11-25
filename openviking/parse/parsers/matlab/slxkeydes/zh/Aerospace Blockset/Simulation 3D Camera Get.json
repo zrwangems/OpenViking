@@ -1,0 +1,82 @@
+{
+ "key": "Simulation 3D Camera Get",
+ "title": "Simulation 3D Camera Get",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Camera_Get.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Camera_Get.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Camera_Get.md"
+ ],
+ "text": "注意** 使用 Simulation 3D Camera Get 模块仿真模型需要 Simulink® 3D Animation™；输出 1 路；按 {Mounting location} 指定传感器安装位置；{Sensor identifier} 用于标识唯一传感器的编号、{Parent name} 指定父级名称 Scene、{Specify offset} 指定相对于安装位置的偏移、{Relative translation [X, Y, Z]} 指定相对于安装位置的平移偏移、{Relative rotation [Roll, Pitch, Yaw]} 指定相对于安装位置的旋转偏移、{Sample time} 指定采样时间、{Horizontal resolution} 指定像素 uint32、{Vertical resolution} 指定像素 uint32、{Horizontal field of view} 指定视场 single，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "3D 输出相机图像 m -by- n -by-3 array of RGB triplet values"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "0",
+   "values": "用于标识唯一传感器的编号 0 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "父级名称 Scene Origin (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "传感器安装位置 Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center",
+   "group": ""
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "指定相对于安装位置的偏移 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Relative translation [X, Y, Z]",
+   "default": "[0,0,0]",
+   "values": "相对于安装位置的平移偏移 [0,0,0] (default) | real-valued 1-by-3 vector",
+   "group": ""
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw]",
+   "default": "[0,0,0]",
+   "values": "相对于安装位置的旋转偏移 [0,0,0] (default) | real-valued 1-by-3 vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Horizontal resolution",
+   "default": "uint32(1280)",
+   "values": "像素 uint32(1280) (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vertical resolution",
+   "default": "uint32(720)",
+   "values": "像素 uint32(720) (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Horizontal field of view",
+   "default": "single(60)",
+   "values": "视场 single(60) (default) | scalar",
+   "group": ""
+  }
+ ]
+}

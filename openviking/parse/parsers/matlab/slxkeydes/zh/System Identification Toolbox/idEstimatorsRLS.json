@@ -1,0 +1,184 @@
+{
+ "key": "idEstimatorsRLS",
+ "title": "Recursive Least Squares Estimator",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Estimators/Recursive_Least_Squares_Estimator.md"
+ ],
+ "text": "使用递归最小二乘 (RLS) 算法估计模型系数，输入 8 路、输出 3 路；按 {Parameter Covariance Matrix} 指定初始参数协方差；{Initial Estimate} 指定初始参数估计的来源、{Number of Parameters} 指定要估计的参数数量、{Initial Parameter Values} 指定要估计的参数的初始值、{Initial Regressors} 指定回归量缓冲区的初始值、{Initial Outputs} 指定测量输出缓冲区的初始值、{Input Processing} 指定基于样本或基于帧的处理、{Sample Time} 指定模块采样时间、{History} 指定无限或有限数据历史、{Window Length} 指定有限滑动窗口估计的窗口大小、{Estimation Method} 指定递归估计算法 Forgetting、{Forgetting Factor} 使用遗忘因子对旧数据进行折减、{Process Noise Covariance} 指定 Kalman 滤波器估计方法的过程噪声协方差、{Adaptation Gain} 指定梯度估计方法的自适应增益指定、{Normalization Bias} 指定归一化梯度估计方法中自适应增益缩放的偏置、{Output estimation error} 为模块添加 Error 输出端口、{Output parameter covariance matrix} 为模块添加协方差输出端口、{Add enable port} 为模块添加 Enable 输入端口、{External reset} 指定外部复位的触发方式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Regressors",
+   "direction": "input",
+   "summary": "回归量信号 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "input",
+   "summary": "测量输出 scalar | vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "启用估计更新 true (default) | false"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "重置触发 scalar"
+  },
+  {
+   "name": "InitialParameters",
+   "direction": "input",
+   "summary": "初始参数估计 vector"
+  },
+  {
+   "name": "InitialCovariance",
+   "direction": "input",
+   "summary": "参数的初始协方差 positive scalar (default) | vector of positive scalars | symmetric positive-definite matrix"
+  },
+  {
+   "name": "InitialRegressors",
+   "direction": "input",
+   "summary": "回归量的初始值 matrix"
+  },
+  {
+   "name": "InitialOutputs",
+   "direction": "input",
+   "summary": "实测输出缓冲区的初始值 vector"
+  },
+  {
+   "name": "Parameters",
+   "direction": "output",
+   "summary": "估计参数 vector"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "估计误差 scalar | vector"
+  },
+  {
+   "name": "Covariance",
+   "direction": "output",
+   "summary": "参数估计误差协方差 P matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial Estimate",
+   "default": "None",
+   "values": "初始参数估计的来源 None (default) | Internal | External",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of Parameters",
+   "default": "2",
+   "values": "要估计的参数数量 2 (default) | positive integer",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Parameter Covariance Matrix",
+   "default": "1e4",
+   "values": "初始参数协方差 1e4 (default) | scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial Parameter Values",
+   "default": "1]",
+   "values": "要估计的参数的初始值 [1 1] (default) | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial Regressors",
+   "default": "0",
+   "values": "回归量缓冲区的初始值 0 (default) | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial Outputs",
+   "default": "0",
+   "values": "测量输出缓冲区的初始值 0 (default) | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Input Processing",
+   "default": "Sample-based",
+   "values": "选择基于样本或基于帧的处理 Sample-based (default) | Frame-based",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "History",
+   "default": "Infinite",
+   "values": "选择无限或有限数据历史 Infinite (default) | Finite",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Window Length",
+   "default": "200",
+   "values": "有限滑动窗口估计的窗口大小 200 (default) | positive integer",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Estimation Method",
+   "default": "Factor",
+   "values": "递归估计算法 Forgetting Factor (default) | Kalman Filter | Normalized Gradient | Gradient",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Forgetting Factor",
+   "default": "1",
+   "values": "使用遗忘因子对旧数据进行折减 1 (default) | positive scalar in (0 1] range",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Process Noise Covariance",
+   "default": "1",
+   "values": "Kalman 滤波器估计方法的过程噪声协方差 1 (default) | nonnegative scalar | vector of nonnegative scalars | symmetric positive semidefinite matrix",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Adaptation Gain",
+   "default": "1",
+   "values": "梯度估计方法的自适应增益指定 1 (default) | positive scalar",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Normalization Bias",
+   "default": "eps",
+   "values": "归一化梯度估计方法中自适应增益缩放的偏置 eps (default) | nonnegative scalar",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Output estimation error",
+   "default": "off",
+   "values": "为模块添加 Error 输出端口 off (default) | on",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Output parameter covariance matrix",
+   "default": "off",
+   "values": "为模块添加协方差输出端口 off (default) | on",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "Add enable port",
+   "default": "off",
+   "values": "为模块添加 Enable 输入端口 off (default) | on",
+   "group": "Algorithm and Block Options"
+  },
+  {
+   "name": "External reset",
+   "default": "None",
+   "values": "指定外部复位的触发方式 None (default) | Rising | Falling | Either | Level | Level hold",
+   "group": "Algorithm and Block Options"
+  }
+ ]
+}

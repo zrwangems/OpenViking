@@ -1,0 +1,83 @@
+{
+ "key": "ethercatasyncsoedownload",
+ "title": "EtherCAT Async SSC/SoE Download",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Async_SSC_SoE_Download.md"
+ ],
+ "text": "Transmit data asynchronously to subordinate device represented by service data object, 2 inputs, 2 outputs, {Data Type} sets Data type of the IDN; {IDN} sets the identification Number character vector, {Drive Number} sets the index number, {Dimension}, {Network Device Index} sets the etherCAT network identifier, {SubDevice Name} sets the name of device that contains the IDN character, {Sample time} and {Timeout} sets the time to wait for response from subordinate device. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Data to write to subordinate device numeric"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Enables block to download data int32"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of data transfer 0 | 1 | 2 | 3"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "Report an EtherCAT network error 0 | integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "IDN",
+   "default": "",
+   "values": "Identification Number character vector",
+   "group": ""
+  },
+  {
+   "name": "Drive Number",
+   "default": "",
+   "values": "Index number of the drive integer",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Data type of the IDN double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Dimension of data for this IDN 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT network identifier 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "SubDevice Name",
+   "default": "",
+   "values": "Name of device that contains the IDN character vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "",
+   "values": "Time to wait for response from subordinate device numeric",
+   "group": ""
+  }
+ ]
+}

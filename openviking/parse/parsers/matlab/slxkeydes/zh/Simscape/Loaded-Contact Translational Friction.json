@@ -1,0 +1,13 @@
+{
+ "key": "Loaded-Contact Translational Friction",
+ "title": "Loaded-Contact Translational Friction",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Translational/Loaded_Contact_Translational_Friction.md"
+ ],
+ "text": "两个滑动表面之间的负载接触摩擦。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

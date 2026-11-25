@@ -1,0 +1,141 @@
+{
+ "key": "Varying State Space",
+ "title": "Discrete Varying State Space",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_State_Space.md",
+  "Control System Toolbox/Linear Parameter Varying/Varying_State_Space.md"
+ ],
+ "text": "具有可变矩阵值的离散时间状态空间模型，输入 10 路、输出 3 路；按 {Initial conditions} 指定系统初始条件；{Initial condition source} 使用外部信号设置初始条件、{Sample time (-1 for inherited)} 指定模块采样时间、{Output states} 指定提供状态输出、{Output state derivatives} 指定提供状态更新、{Enable feedthrough} 为馈通矩阵添加输入端口、{Enable state offsets x0} 为状态偏移量添加输入端口、{Enable state derivative offsets dx0} 为状态导数偏移量添加输入端口、{Enable input offsets u0} 为输入偏移量添加输入端口、{Enable output offsets y0} 为输出偏移量添加输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u k",
+   "direction": "input",
+   "summary": "系统输入 scalar | vector"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "状态矩阵 matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "输入矩阵 matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "输出矩阵 matrix"
+  },
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "前馈矩阵 matrix"
+  },
+  {
+   "name": "dx0",
+   "direction": "input",
+   "summary": "状态导数偏移量 matrix"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "状态偏移量 matrix"
+  },
+  {
+   "name": "u0",
+   "direction": "input",
+   "summary": "输入偏移量 matrix"
+  },
+  {
+   "name": "y0",
+   "direction": "input",
+   "summary": "输出偏移量 matrix"
+  },
+  {
+   "name": "IC",
+   "direction": "input",
+   "summary": "初始条件 vector"
+  },
+  {
+   "name": "y k",
+   "direction": "output",
+   "summary": "系统输出 scalar | vector"
+  },
+  {
+   "name": "x k",
+   "direction": "output",
+   "summary": "当前状态向量 vector"
+  },
+  {
+   "name": "x k+1",
+   "direction": "output",
+   "summary": "下一状态向量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition source",
+   "default": "internal",
+   "values": "使用外部信号设置初始条件的选项 internal (default) | external",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "系统初始条件 0 (default) | scalar | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "–1",
+   "values": "模块采样时间 –1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output states",
+   "default": "on",
+   "values": "提供状态输出 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output state derivatives",
+   "default": "on",
+   "values": "提供状态更新 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Enable feedthrough",
+   "default": "on",
+   "values": "为馈通矩阵添加输入端口 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Enable state offsets x0",
+   "default": "off",
+   "values": "为状态偏移量添加输入端口 off (default) | on",
+   "group": "Offsets Tab"
+  },
+  {
+   "name": "Enable state derivative offsets dx0",
+   "default": "off",
+   "values": "为状态导数偏移量添加输入端口 off (default) | on",
+   "group": "Offsets Tab"
+  },
+  {
+   "name": "Enable input offsets u0",
+   "default": "off",
+   "values": "为输入偏移量添加输入端口 off (default) | on",
+   "group": "Offsets Tab"
+  },
+  {
+   "name": "Enable output offsets y0",
+   "default": "off",
+   "values": "为输出偏移量添加输入端口 off (default) | on",
+   "group": "Offsets Tab"
+  }
+ ]
+}

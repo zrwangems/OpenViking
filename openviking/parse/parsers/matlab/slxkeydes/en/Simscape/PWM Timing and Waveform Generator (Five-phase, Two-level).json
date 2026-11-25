@@ -1,0 +1,58 @@
+{
+ "key": "PWM Timing and Waveform Generator (Five-phase, Two-level)",
+ "title": "PWM Timing and Waveform Generator (Five-phase, Two-level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Timing_and_Waveform_Generator_Five_phase_Two_level.md"
+ ],
+ "text": "Generate five-phase, two-level gating time information, 2 inputs, 3 outputs, {Sampling mode} sets Wave-sampling method; {Continuous PWM} sets the continuous pulse width modulation method SPWM: sinusoidal and {Switching frequency (Hz)} sets the switching rate 1e3. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabcde",
+   "direction": "input",
+   "summary": "Five-phase sinusoidal reference signal vector"
+  },
+  {
+   "name": "vdc",
+   "direction": "input",
+   "summary": "DC-link voltage signal scalar"
+  },
+  {
+   "name": "TgabcdeON",
+   "direction": "output",
+   "summary": "Switch-on gating time vector"
+  },
+  {
+   "name": "TgabcdeOFF",
+   "direction": "output",
+   "summary": "Switch-off gating time vector"
+  },
+  {
+   "name": "ModWave",
+   "direction": "output",
+   "summary": "Modulation waves vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Continuous PWM",
+   "default": "PWM",
+   "values": "Continuous pulse width modulation method SPWM: sinusoidal PWM (default) | SVM: space vector modulation",
+   "group": ""
+  },
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "Wave-sampling method Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1e3",
+   "values": "Switching rate 1e3 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

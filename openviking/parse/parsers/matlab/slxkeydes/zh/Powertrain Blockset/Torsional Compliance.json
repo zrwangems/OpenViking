@@ -1,0 +1,93 @@
+{
+ "key": "Torsional Compliance",
+ "title": "Torsional Compliance",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Torsional_Compliance.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Torsional_Compliance.md"
+ ],
+ "text": "并联弹簧-阻尼器，输入 3 路、输出 4 路；{Port Configuration} 指定配置 Simulink、{Output Info bus} 指定 off、{Torsional stiffness, k} 指定惯性 1e4、{Torsional damping, b} 指定阻尼 1e2、{Initial deflection, theta_o} 指定角度、{Initial velocity difference, domega_o} 指定角度、{Damping cut-off frequency, omega_c} 指定频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RSpd",
+   "direction": "input",
+   "summary": "传动轴 R 角速度 scalar"
+  },
+  {
+   "name": "CSpd",
+   "direction": "input",
+   "summary": "传动轴 C 角速度 scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "角速度和扭矩 two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "RTrq",
+   "direction": "output",
+   "summary": "传动轴 R 转矩 scalar"
+  },
+  {
+   "name": "CTrq",
+   "direction": "output",
+   "summary": "传动轴 C 转矩 scalar"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "角速度和扭矩 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "指定配置 Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Output Info bus",
+   "default": "off",
+   "values": "选择 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Torsional stiffness, k",
+   "default": "1e4",
+   "values": "惯性 1e4 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Torsional damping, b",
+   "default": "1e2",
+   "values": "阻尼 1e2 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial deflection, theta_o",
+   "default": "0",
+   "values": "角度 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity difference, domega_o",
+   "default": "0",
+   "values": "角度 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Damping cut-off frequency, omega_c",
+   "default": "3000",
+   "values": "频率 3000 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

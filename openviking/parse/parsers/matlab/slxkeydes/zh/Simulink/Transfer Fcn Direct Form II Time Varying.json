@@ -1,0 +1,53 @@
+{
+ "key": "Transfer Fcn Direct Form II Time Varying",
+ "title": "Transfer Fcn Direct Form II Time Varying",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Discrete/Transfer_Fcn_Direct_Form_II_Time_Varying.md"
+ ],
+ "text": "实现传递函数的时变直接 II 型实现，输入 3 路、输出 1 路、无直接馈通；按 {Integer rounding mode} 指定定点运算的舍入模式；{Initial condition} 指定初始条件、{Saturate to max or min when overflows occur} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "分子系数 scalar | vector"
+  },
+  {
+   "name": "Den No Lead",
+   "direction": "input",
+   "summary": "分母系数 scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "0.0",
+   "values": "初始条件 0.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": ""
+  }
+ ]
+}

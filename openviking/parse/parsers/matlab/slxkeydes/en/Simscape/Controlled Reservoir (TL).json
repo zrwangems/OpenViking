@@ -1,0 +1,13 @@
+{
+ "key": "Controlled Reservoir (TL)",
+ "title": "Controlled Reservoir (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Controlled_Reservoir_TL.md"
+ ],
+ "text": "Thermal liquid reservoir at time-varying temperature.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

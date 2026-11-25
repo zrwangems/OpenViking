@@ -1,0 +1,13 @@
+{
+ "key": "PS Sine Wave",
+ "title": "PS Sine Wave",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Sources/PS_Sine_Wave.md"
+ ],
+ "text": "生成正弦波物理信号，使用仿真时间作为时间源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

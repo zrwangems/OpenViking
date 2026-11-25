@@ -1,0 +1,24 @@
+{
+ "key": "Quaternion Normalize",
+ "title": "Quaternion Normalize",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Normalize.md"
+ ],
+ "text": "Normalize quaternion, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "Quaternion quaternion | vector of quaternions"
+  },
+  {
+   "name": "normal(q)",
+   "direction": "output",
+   "summary": "Normalized quaternion normalized quaternion | vector of normalized quaternions"
+  }
+ ],
+ "params": []
+}

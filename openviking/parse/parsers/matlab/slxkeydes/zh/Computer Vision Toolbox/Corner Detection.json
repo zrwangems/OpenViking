@@ -1,0 +1,101 @@
+{
+ "key": "Corner Detection",
+ "title": "Corner Detection",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Corner_Detection.md"
+ ],
+ "text": "计算角点度量矩阵并在图像中查找角点，输入 1 路、输出 3 路；按 {Output} 指定模块输出 Corner；{Method} 指定角点检测方法 Harris corner、{Sensitivity factor (0<k<0.25)} 指定敏感度因子、{Coefficients for separable smoothing filter} 指定滤波器系数 fspecial、{Intensity comparison threshold} 指定强度阈值、{Maximum angle to be considered a corner (in degrees)} 指定最大角点角度、{Maximum number of corners} 指定最大角点数量、{Minimum metric value that indicates a corner} 指定最小角点度量值、{Neighborhood size} 指定邻域大小、{Output variable size signal} 指定可变大小信号、{Lock data type settings against change by the fixed-point tools} 指定数据类型覆盖，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix of intensity values"
+  },
+  {
+   "name": "Loc",
+   "direction": "output",
+   "summary": "角点位置 M -by-2 matrix"
+  },
+  {
+   "name": "Count",
+   "direction": "output",
+   "summary": "检测到的角点数量 scalar"
+  },
+  {
+   "name": "Metric",
+   "direction": "output",
+   "summary": "角点度量值 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Stephens)",
+   "values": "角点检测方法 Harris corner detection (Harris & Stephens) (default) | Minimum eigenvalue (Shi & Tomasi) | Local intensity comparison (Rosten & Drummond)",
+   "group": "Main"
+  },
+  {
+   "name": "Sensitivity factor (0<k<0.25)",
+   "default": "0.04",
+   "values": "敏感度因子 0.04 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients for separable smoothing filter",
+   "default": "1.5)",
+   "values": "滤波器系数 fspecial(’gaussian’, [1 5], 1.5) (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Intensity comparison threshold",
+   "default": "0.1",
+   "values": "强度阈值 0.1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum angle to be considered a corner (in degrees)",
+   "default": "157.5",
+   "values": "最大角点角度 157.5 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output",
+   "default": "location",
+   "values": "模块输出 Corner location (default) | Corner location and metric matrix | Metric matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum number of corners",
+   "default": "200",
+   "values": "最大角点数量 200 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum metric value that indicates a corner",
+   "default": "0.0005",
+   "values": "最小角点度量值 0.0005 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Neighborhood size",
+   "default": "11]",
+   "values": "邻域大小 [11 11] (default) | 2-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output variable size signal",
+   "default": "on",
+   "values": "可变大小信号 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "数据类型覆盖 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

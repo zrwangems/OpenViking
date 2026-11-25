@@ -1,0 +1,67 @@
+{
+ "key": "Lead-Lag (Discrete or Continuous)",
+ "title": "Lead-Lag (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Lead_Lag_Discrete_or_Continuous.md"
+ ],
+ "text": "Discrete-time or continuous-time lead-lag compensator, 1 input, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Lead time constant, T1}, {Lag time constant, T2}, {Upper saturation limit} sets the state upper limit, {Lower saturation limit} sets the state lower limit, {Initialization} sets the initial state specification Inherited from block and {Initial state}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Compensator input vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Compensator output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lead time constant, T1",
+   "default": "0.2",
+   "values": "Lead time constant 0.2 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Lag time constant, T2",
+   "default": "0.1",
+   "values": "Lag time constant 0.1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Upper saturation limit",
+   "default": "inf",
+   "values": "State upper limit inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Lower saturation limit",
+   "default": "-inf",
+   "values": "State lower limit -inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Initialization",
+   "default": "input",
+   "values": "Initial state specification Inherited from block input (default) | Specify as parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "Initial state 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

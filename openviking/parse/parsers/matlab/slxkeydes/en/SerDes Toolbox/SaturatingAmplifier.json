@@ -1,0 +1,67 @@
+{
+ "key": "SaturatingAmplifier",
+ "title": "SaturatingAmplifier",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/SaturatingAmplifier.md"
+ ],
+ "text": "Models a saturation amplifier, 1 input, 1 output, {VinVout} sets Input and corresponding output voltage responses N ×2 matrix; {Mode} sets the amplifier operating mode, {Specification} sets the input specification for limiting amplifier, {Limit} sets the clipping voltage for the limiting, {LinearGain} sets the amplifier gain in the linear region, {Slice select} selects which corner of 3D GPZ matrix and {Visualize Response} plots input vs output voltage response. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "Input baseband signal scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "Clipped output voltage scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "On",
+   "values": "Amplifier operating mode On (default) | Off",
+   "group": ""
+  },
+  {
+   "name": "Specification",
+   "default": "Gain’",
+   "values": "Input specification for limiting amplifier output ’Limit and Linear Gain’ (default) | ’VinVout’",
+   "group": ""
+  },
+  {
+   "name": "Limit",
+   "default": "1.2",
+   "values": "Clipping voltage for the limiting amplifier 1.2 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "LinearGain",
+   "default": "1",
+   "values": "Amplifier gain in the linear region 1 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "VinVout",
+   "default": "",
+   "values": "Input and corresponding output voltage responses N ×2 matrix | N ×2× M matrix",
+   "group": ""
+  },
+  {
+   "name": "Slice select",
+   "default": "0",
+   "values": "Select which corner of 3D GPZ matrix to use 0 (default) | nonegative scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Visualize Response",
+   "default": "",
+   "values": "Plot input vs output voltage response button",
+   "group": ""
+  }
+ ]
+}

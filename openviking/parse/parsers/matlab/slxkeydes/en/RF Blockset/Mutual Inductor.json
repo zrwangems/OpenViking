@@ -1,0 +1,34 @@
+{
+ "key": "Mutual Inductor",
+ "title": "Mutual Inductor",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Mutual_Inductor.md",
+  "Simscape/Electrical/Passive/Transformers/Mutual_Inductor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Mutual_Inductor.md"
+ ],
+ "text": "Model two coupled inductors for circuit envelope analysis; {Inductance L1} sets the inductance of first inductor, {Inductance L2} sets the inductance of second inductor and {Coefficient of coupling}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Inductance L1",
+   "default": "H",
+   "values": "Inductance of first inductor 1e-6 H (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inductance L2",
+   "default": "H",
+   "values": "Inductance of second inductor 1e-6 H (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of coupling",
+   "default": "0.9",
+   "values": "Coefficient of coupling for mutual inductance 0.9 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Photodiode",
+ "title": "Photodiode",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Photodiode.md"
+ ],
+ "text": "带入射光通量输入端口的光电二极管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

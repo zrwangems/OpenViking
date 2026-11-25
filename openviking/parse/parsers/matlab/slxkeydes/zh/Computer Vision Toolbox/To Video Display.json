@@ -1,0 +1,74 @@
+{
+ "key": "To Video Display",
+ "title": "To Video Display",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/To_Video_Display.md"
+ ],
+ "text": "显示图像或视频帧，输入 7 路；按 {Window size} 指定显示窗口大小；{Open at Start of Simulation} 指定仿真开始时打开窗口、{Input Color Format} 指定输入颜色格式、{Image signal} 指定配置输入端口 One multidimensional，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像 matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "图像的红色分量 matrix | array"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "图像的绿色分量 matrix | array"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "图像的蓝色分量 matrix | array"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "图像的亮度分量 matrix | array"
+  },
+  {
+   "name": "Cb",
+   "direction": "input",
+   "summary": "图像的蓝色差色度分量 matrix | array"
+  },
+  {
+   "name": "Cr",
+   "direction": "input",
+   "summary": "图像的红色差色度分量 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window size",
+   "default": "Normal",
+   "values": "显示窗口大小 Normal (default) | Full-screen (Esc to exit) | True size (1:1)",
+   "group": "View"
+  },
+  {
+   "name": "Open at Start of Simulation",
+   "default": "on",
+   "values": "仿真开始时打开窗口 on (default) | off",
+   "group": "View"
+  },
+  {
+   "name": "Input Color Format",
+   "default": "RGB",
+   "values": "输入颜色格式 RGB (default) | YCbCr 4:2:2",
+   "group": "Settings"
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "配置输入端口 One multidimensional signal (default) | Separate color signals",
+   "group": "Settings"
+  }
+ ]
+}

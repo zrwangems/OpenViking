@@ -1,0 +1,32 @@
+{
+ "key": "ClimbIndicatorBlock",
+ "title": "Climb Rate Indicator",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Instruments/Climb_Rate_Indicator.md"
+ ],
+ "text": "Display measurements for aircraft climb rate, {Label} sets Block label location; {Connection} sets the connect to signal and {Maximum}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Connect to signal signal name",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "4000",
+   "values": "Maximum tick mark value 4000 (default) | finite | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "Block label location Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

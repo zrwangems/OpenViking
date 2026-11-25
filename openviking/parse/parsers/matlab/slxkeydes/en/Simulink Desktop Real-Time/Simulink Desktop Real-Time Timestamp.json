@@ -1,0 +1,24 @@
+{
+ "key": "Simulink Desktop Real-Time Timestamp",
+ "title": "Timestamp",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Target Profiling/Timestamp.md"
+ ],
+ "text": "Output signal timestamp in Run in Kernel mode, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Signals",
+   "direction": "input",
+   "summary": "Signals for which to capture timestamps vector"
+  },
+  {
+   "name": "Timestamps",
+   "direction": "output",
+   "summary": "Timestamps of signals vector of double"
+  }
+ ],
+ "params": []
+}

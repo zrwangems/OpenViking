@@ -1,0 +1,13 @@
+{
+ "key": "Translational Mechanical Converter (2P)",
+ "title": "Translational Mechanical Converter (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Translational_Mechanical_Converter_2P.md"
+ ],
+ "text": "流体流动的完全绝热止挡。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

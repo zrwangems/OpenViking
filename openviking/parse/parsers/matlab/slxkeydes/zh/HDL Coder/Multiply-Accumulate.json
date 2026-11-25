@@ -1,0 +1,124 @@
+{
+ "key": "Multiply-Accumulate",
+ "title": "Multiply-Accumulate",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL Operations/Multiply_Accumulate.md"
+ ],
+ "text": "对输入执行乘加运算，输入 6 路、输出 5 路；按 {Operation Mode} 指定输入的累加模式；{Bias} 指定要加到输入点积上的偏移量、{Number of Samples} 指定有效累加输出信号的样本数、{Output data type} 指定模块输出的数据类型、{Integer rounding mode} 指定定点运算的舍入模式、{Valid output port} 控制 validOut 输出端口的生成、{End input and output ports} 控制 endIn 输入端口和 endOut、{Start output port} 控制 startOut 输出端口的生成、{Count output port} 控制 countOut 输出端口的生成，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "a",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix | array | bus"
+  },
+  {
+   "name": "b",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "c",
+   "direction": "input",
+   "summary": "偏置信号 scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "startIn",
+   "direction": "input",
+   "summary": "累加开始控制信号 scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "有效输入控制信号 scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "endIn",
+   "direction": "input",
+   "summary": "累加结束控制信号 scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "dataOut",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "startOut",
+   "direction": "output",
+   "summary": "累加开始输出控制信号 scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "有效输出控制信号 scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "endOut",
+   "direction": "output",
+   "summary": "累加结束输出控制信号 scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "countOut",
+   "direction": "output",
+   "summary": "计数输出控制信号 scalar | vector | matrix | array | bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation Mode",
+   "default": "’Vector’",
+   "values": "输入的累加模式 ’Vector’ (default) | ’Streaming - using Start and End Ports’ | ’Streaming - using Number of Samples’",
+   "group": ""
+  },
+  {
+   "name": "Bias",
+   "default": "{’0.0’}",
+   "values": "要加到输入点积上的偏移量 {’0.0’} (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of Samples",
+   "default": "{’2’}",
+   "values": "有效累加输出信号的样本数 {’2’} (default)",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "propagation",
+   "values": "模块输出的数据类型 Inherit: Inherit via back propagation (default)",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Valid output port",
+   "default": "off",
+   "values": "控制 validOut 输出端口的生成 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "End input and output ports",
+   "default": "off",
+   "values": "控制 endIn 输入端口和 endOut 输出端口的生成 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Start output port",
+   "default": "off",
+   "values": "控制 startOut 输出端口的生成 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Count output port",
+   "default": "off",
+   "values": "控制 countOut 输出端口的生成 off (default) | on",
+   "group": ""
+  }
+ ]
+}

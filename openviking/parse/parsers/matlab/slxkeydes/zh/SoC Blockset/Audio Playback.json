@@ -1,0 +1,31 @@
+{
+ "key": "Audio Playback",
+ "title": "Audio Playback",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Audio_Playback.md"
+ ],
+ "text": "从算法向输出音频设备播放音频采样，输入 1 路、输出 1 路；{Number of channels} 指定通道数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "音频数据帧 M -element vector | M -by- C matrix"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "来自音频捕获接口的数据消息 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of channels",
+   "default": "2",
+   "values": "通道数 2 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

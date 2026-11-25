@@ -1,0 +1,13 @@
+{
+ "key": "Controlled Reservoir (2P)",
+ "title": "Controlled Reservoir (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Controlled_Reservoir_2P.md"
+ ],
+ "text": "压力和温度可变的两相流体储液器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

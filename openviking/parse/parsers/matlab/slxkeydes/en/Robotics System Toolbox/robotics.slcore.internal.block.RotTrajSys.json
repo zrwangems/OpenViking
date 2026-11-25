@@ -1,0 +1,120 @@
+{
+ "key": "robotics.slcore.internal.block.RotTrajSys",
+ "title": "Rotation Trajectory",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Utilities/Rotation_Trajectory.md"
+ ],
+ "text": "Generate trajectory between two orientations, 6 inputs, 3 outputs, {Final rotation} sets Final orientation [0 0 1; {Rotation format} sets the format for orientations, {Waypoint source} sets the source for waypoints, {Initial rotation} sets the initial orientation, {Time interval} sets the start and end times for trajectory, {Use custom time scaling} enables custom time scaling, {Parameter source} sets the source for waypoints, {Time scaling time}, {Time scaling values} sets the time scaling vector and first two derivatives and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "Time point along trajectory scalar | vector"
+  },
+  {
+   "name": "R0",
+   "direction": "input",
+   "summary": "Initial orientation four-element quaternion vector | 3-by-3 rotation matrix"
+  },
+  {
+   "name": "RF",
+   "direction": "input",
+   "summary": "Final orientation four-element vector | 3-by-3 rotation matrix"
+  },
+  {
+   "name": "TimeInterval",
+   "direction": "input",
+   "summary": "Start and end times for trajectory two-element vector"
+  },
+  {
+   "name": "TSTime",
+   "direction": "input",
+   "summary": "Time scaling time points scalar | p -element vector"
+  },
+  {
+   "name": "TimeScaling",
+   "direction": "input",
+   "summary": "Time scaling vector and first two derivatives three-element vector | 3-by- p matrix"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Orientation vectors 4-by- m quaternion array | 3-by-3-by- m rotation matrix array"
+  },
+  {
+   "name": "omega",
+   "direction": "output",
+   "summary": "Orientation angular velocity 3-by- m matrix"
+  },
+  {
+   "name": "alpha",
+   "direction": "output",
+   "summary": "Orientation angular acceleration 3-by- m matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rotation format",
+   "default": "Quaternion",
+   "values": "Format for orientations Quaternion (default) | Rotation Matrix",
+   "group": ""
+  },
+  {
+   "name": "Waypoint source",
+   "default": "Internal",
+   "values": "Source for waypoints Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Initial rotation",
+   "default": "0]’",
+   "values": "Initial orientation [1 0 0 0]’ (default) | four-element quaternion vector | 3-by-3 rotation matrix",
+   "group": ""
+  },
+  {
+   "name": "Final rotation",
+   "default": "0]’",
+   "values": "Final orientation [0 0 1 0]’ (default) | four-element vector | 3-by-3 rotation matrix",
+   "group": ""
+  },
+  {
+   "name": "Time interval",
+   "default": "10]",
+   "values": "Start and end times for trajectory [0 10] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Use custom time scaling",
+   "default": "off",
+   "values": "Enable custom time scaling off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Parameter source",
+   "default": "Internal",
+   "values": "Source for waypoints Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Time scaling time",
+   "default": "2:0.1:3",
+   "values": "Time scaling time points 2:0.1:3 (default) | scalar | p -element vector",
+   "group": ""
+  },
+  {
+   "name": "Time scaling values",
+   "default": "zeros(1,11)]",
+   "values": "Time scaling vector and first two derivatives [0:0.1:1; ones(1,11); zeros(1,11)] (default) | three-element vector | 3-by- m matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "key": "MATLABDiscreteEventSystem",
+ "title": "MATLAB Discrete-Event System",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/MATLAB_Discrete_Event_System.md"
+ ],
+ "text": "MATLAB 离散事件系统；{System object name} 指定 System object™ 的完整名称 character、{New} 指定从模板创建 SimEvents System object SimEvents System、{Simulate using} 指定仿真模式 Code，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "System object name",
+   "default": "",
+   "values": "指定 System object™ 的完整名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "New",
+   "default": "",
+   "values": "从模板创建 SimEvents System object SimEvents System object",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "指定仿真模式 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

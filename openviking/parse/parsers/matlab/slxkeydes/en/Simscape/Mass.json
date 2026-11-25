@@ -1,0 +1,13 @@
+{
+ "key": "Mass",
+ "title": "Mass",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Mass.md"
+ ],
+ "text": "Ideal mechanical translational mass.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

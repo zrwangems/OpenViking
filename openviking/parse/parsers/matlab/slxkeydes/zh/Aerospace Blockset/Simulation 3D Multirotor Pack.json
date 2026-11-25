@@ -1,0 +1,261 @@
+{
+ "key": "Simulation 3D Multirotor Pack",
+ "title": "Simulation 3D Multirotor Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Multirotor_Pack.md"
+ ],
+ "text": "为多旋翼飞行器生成平移和旋转信息，输入 22 路、输出 2 路；按 {Select input coordinate frame} 指定输入坐标系；{Rotor 1 translation} 用于启用 Rotor1_T 输入端口、{Rotor 2 translation} 用于启用 Rotor2_T 输入端口、{Rotor 3 translation} 用于启用 Rotor3_T 输入端口、{Rotor 4 translation} 用于启用 Rotor4_T 输入端口、{Rotor 5 translation} 用于启用 Rotor5_T 输入端口、{Rotor 6 translation} 用于启用 Rotor6_T 输入端口、{Rotor 7 translation} 用于启用 Rotor7_T 输入端口、{Rotor 8 translation} 用于启用 Rotor8_T 输入端口、{Rotor 1 rotation} 用于启用 Rotor1_R 输入端口、{Rotor 2 rotation} 用于启用 Rotor2_R 输入端口、{Rotor 3 rotation} 用于启用 Rotor3_R 输入端口、{Rotor 4 rotation} 用于启用 Rotor4_R 输入端口、{Rotor 5 rotation} 用于启用 Rotor5_R 输入端口、{Rotor 6 rotation} 用于启用 Rotor6_R 输入端口、{Rotor 7 rotation} 用于启用 Rotor7_R 输入端口、{Rotor 8 rotation} 用于启用 Rotor8_R 输入端口、{Sensor 1 translation} 用于启用 Sensor1_T 输入端口、{Sensor 2 translation} 用于启用 Sensor2_T 输入端口、{Sensor 1 rotation} 用于启用 Sensor1_R 输入端口、{Sensor 2 rotation} 用于启用 Sensor2_R 输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "机体平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor1_T",
+   "direction": "input",
+   "summary": "旋翼 1 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor2_T",
+   "direction": "input",
+   "summary": "旋翼 2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor3_T",
+   "direction": "input",
+   "summary": "Rotor 3 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor4_T",
+   "direction": "input",
+   "summary": "Rotor 4 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor5_T",
+   "direction": "input",
+   "summary": "Rotor 5 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor6_T",
+   "direction": "input",
+   "summary": "Rotor 6 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor7_T",
+   "direction": "input",
+   "summary": "Rotor 7 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor8_T",
+   "direction": "input",
+   "summary": "Rotor 8 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor1_T",
+   "direction": "input",
+   "summary": "Sensor 1 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor2_T",
+   "direction": "input",
+   "summary": "Sensor 2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "机体旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor1_R",
+   "direction": "input",
+   "summary": "Rotor 1 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor2_R",
+   "direction": "input",
+   "summary": "Rotor 2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor3_R",
+   "direction": "input",
+   "summary": "Rotor 3 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor4_R",
+   "direction": "input",
+   "summary": "Rotor 4 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor5_R",
+   "direction": "input",
+   "summary": "Rotor 5 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor6_R",
+   "direction": "input",
+   "summary": "Rotor 6 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor7_R",
+   "direction": "input",
+   "summary": "Rotor 7 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rotor8_R",
+   "direction": "input",
+   "summary": "Rotor 8 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor1_R",
+   "direction": "input",
+   "summary": "Sensor 1 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Sensor2_R",
+   "direction": "input",
+   "summary": "Sensor 2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "多旋翼平移 11 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "旋翼飞行器旋转 11 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rotor 1 translation",
+   "default": "off",
+   "values": "用于启用 Rotor1_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 2 translation",
+   "default": "off",
+   "values": "用于启用 Rotor2_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 3 translation",
+   "default": "off",
+   "values": "用于启用 Rotor3_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 4 translation",
+   "default": "off",
+   "values": "用于启用 Rotor4_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 5 translation",
+   "default": "off",
+   "values": "用于启用 Rotor5_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 6 translation",
+   "default": "off",
+   "values": "用于启用 Rotor6_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 7 translation",
+   "default": "off",
+   "values": "用于启用 Rotor7_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 8 translation",
+   "default": "off",
+   "values": "用于启用 Rotor8_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 1 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor1_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 2 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor2_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 3 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor3_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 4 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor4_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 5 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor5_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 6 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor6_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 7 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor7_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rotor 8 rotation",
+   "default": "off",
+   "values": "用于启用 Rotor8_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Sensor 1 translation",
+   "default": "off",
+   "values": "用于启用 Sensor1_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 translation",
+   "default": "off",
+   "values": "用于启用 Sensor2_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 1 rotation",
+   "default": "off",
+   "values": "用于启用 Sensor1_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 rotation",
+   "default": "off",
+   "values": "用于启用 Sensor2_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "输入坐标系 NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

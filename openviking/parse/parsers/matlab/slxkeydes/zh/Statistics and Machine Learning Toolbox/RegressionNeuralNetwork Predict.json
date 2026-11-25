@@ -1,0 +1,103 @@
+{
+ "key": "RegressionNeuralNetwork Predict",
+ "title": "RegressionNeuralNetwork Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Regression/RegressionNeuralNetwork_Predict.md"
+ ],
+ "text": "使用神经网络回归模型预测响应，输入 1 路、输出 1 路、直接馈通；按 {Select trained machine learning model} 指定神经网络回归模型；{Integer rounding mode} 指定定点运算的舍入模式、{Saturate on integer overflow} 指定溢出操作的方法、{Lock output data type setting against changes by the fixed-point tools} 防止定点工具覆盖数据类型、{Output data type} 指定 yfit 输出的数据类型 Inherit、{Output data type Minimum} 用于范围检查的 yfit 输出最小值、{Output data type Maximum} 用于范围检查的 yfit 输出最大值、{Output layer data type} 指定最终全连接层的数据类型、{Output layer data type Minimum} 指定最终全连接层的最小值、{Output layer data type Maximum} 指定最终全连接层的最大值、{Layer 1 data type} 指定第一个全连接层的数据类型、{Layer 1 data type Minimum} 指定第一个全连接层的最小值、{Layer 1 data type Maximum} 指定第一个全连接层的最大值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "预测变量数据 row vector | column vector"
+  },
+  {
+   "name": "yfit",
+   "direction": "output",
+   "summary": "预测响应 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select trained machine learning model",
+   "default": "nnetMdl",
+   "values": "神经网络回归模型 nnetMdl (default) | RegressionNeuralNetwork | CompactRegressionNeuralNetwork",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "yfit 输出的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的 yfit 输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的 yfit 输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output layer data type",
+   "default": "rule",
+   "values": "最终全连接层的数据类型 Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output layer data type Minimum",
+   "default": "[]",
+   "values": "最终全连接层的最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output layer data type Maximum",
+   "default": "[]",
+   "values": "最终全连接层的最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Layer 1 data type",
+   "default": "rule",
+   "values": "第一个全连接层的数据类型 Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Layer 1 data type Minimum",
+   "default": "[]",
+   "values": "第一个全连接层的最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Layer 1 data type Maximum",
+   "default": "[]",
+   "values": "第一个全连接层的最大值 [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

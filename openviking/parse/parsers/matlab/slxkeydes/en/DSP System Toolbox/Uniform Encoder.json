@@ -1,0 +1,43 @@
+{
+ "key": "Uniform Encoder",
+ "title": "Uniform Encoder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/Uniform_Encoder.md"
+ ],
+ "text": "Quantize and encode floating-point input into integer output, 1 input, 1 output, no direct feedthrough; {Peak} sets the largest input amplitude to encode, {Bits} sets the number of bits and {Output type} sets the data type of block output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Encoder output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Peak",
+   "default": "1",
+   "values": "Largest input amplitude to encode 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Bits",
+   "default": "8",
+   "values": "Number of bits 8 (default) | integer in the range [ 2, 32 ]",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "integer",
+   "values": "Data type of block output Unsigned integer (default) | Signed integer",
+   "group": ""
+  }
+ ]
+}

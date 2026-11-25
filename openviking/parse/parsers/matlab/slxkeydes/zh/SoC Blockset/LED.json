@@ -1,0 +1,44 @@
+{
+ "key": "LED",
+ "title": "LED",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic I_O/LED.md"
+ ],
+ "text": "连接与硬件板上 LED 相连的信号，输入 1 路；按 {Hardware board} 指定查看所选硬件；{View LEDs location} 指定查看 LED、{IO logic} 指定 IO 逻辑指示器、{Number of LEDs} 指定 LED 端口数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LED x",
+   "direction": "input",
+   "summary": "输入信号 Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hardware board",
+   "default": "None",
+   "values": "查看所选硬件 None (default) | Supported Xilinx ® or Intel ® boards | Custom boards",
+   "group": ""
+  },
+  {
+   "name": "View LEDs location",
+   "default": "",
+   "values": "查看 LED button",
+   "group": ""
+  },
+  {
+   "name": "IO logic",
+   "default": "None",
+   "values": "IO 逻辑指示器 None (default) | Active High | Active Low",
+   "group": ""
+  },
+  {
+   "name": "Number of LEDs",
+   "default": "1",
+   "values": "LED 端口数量 1 (default) | list of integers in the range [1, n ]",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,729 @@
+{
+ "key": "OrbitPropagator",
+ "title": "Orbit Propagator Numerical (high precision)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Orbit_Propagator_Numerical_high_precision.md",
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Orbit_Propagator_Kepler_unperturbed.md"
+ ],
+ "text": "Propagate orbit of one or more spacecraft using Kepler universal variable formulation, 15 inputs, 4 outputs, {Ephemeris model} sets Ephemeris model; {Propagation method} sets the orbit propagation method Kepler, {Input external accelerations} sets the input additional accelerations, {External acceleration coordinate frame} sets the frame for additional, {State vector output coordinate frame} sets the port coordinate frame, {Start date/time (UTC Julian date)} sets the initial start time for simulation, {Output current date/time (UTC Julian date)} adds output port t utc, {Mass source}, {Mass} sets the spacecraft mass used by atmospheric drag, {Action for out-of-range input} sets the out-of-range block behavior, {Initial state format} sets the input method for initial states of orbit Orbital, {Orbit Type} sets the orbit classification, {Semi-major axis} sets the half of major axis of ellipse, {Eccentricity} sets the deviation of orbit, {Inclination (deg)} sets the tilt angle of orbital plane, {RAAN (deg)} sets the angular distance in equatorial plane, {Argument of periapsis (deg)} sets the angle from spacecraft ascending node, {True anomaly} sets the angle between periapsis and initial position, {Argument of latitude (deg)} sets the angle between ascending node and initial position, {Longitude of periapsis (deg)} sets the angle between ICRF x -axis and eccentricity, {True longitude (deg)} sets the angle between ICRF x -axis and initial position, {ICRF position} sets the cartesian position vector of spacecraft, {ICRF velocity} sets the cartesian velocity vector, {Fixed-frame position} sets the position vector, {Fixed-frame velocity} sets the velocity vector, {Central body} sets the celestial body around which spacecraft orbits, {Gravitational potential model} controls gravity model for central body Spherical harmonics when Central body set to Earth, Moon, Mars, or Custom, Oblate ellipsoid when Central body set to Mercury, Venus, Jupiter, Saturn, Uranus, {Spherical harmonic model}, {Spherical harmonic coefficient file} sets the harmonic coefficient MAT file, {Degree}, {Use Earth orientation parameters (EOPs)}, {IERS EOP data file} sets the earth orientation data, {Input Moon libration angles} sets the moon libration angle rate, {Output quaternion (ICRF to Fixed-frame)} adds output transformation quaternion port, {Central body spin axis source} sets the central body spin, {Spin axis right ascension (RA) at J2000 (deg)} sets the right ascension of central body spin axis, {Spin axis RA rate (deg/century)} sets the right ascension rate of central body spin, {Spin axis declination (Dec) at J2000 (deg)} sets the declination of central body spin axis, {Spin axis Dec rate (deg/century)} sets the declination rate of central body spin axis, {Initial rotation angle at J2000 (deg)} sets the rotation angle of central body x -axis, {Rotation rate (deg/day)} sets the rotation rate of central body x -axis, {Equatorial radius}, {Flattening}, {Gravitational parameter}, {Second degree zonal harmonic (J2)} sets the most significant or largest spherical harmonic term, {Include atmospheric drag} sets the option to include atmospheric drag, {Atmospheric density source} sets the source of atmospheric density, {Atmospheric model}, {Flux source} sets the source of space weather, {Space weather data file} sets the mAT file of space weather data, {F10.7 extrapolation method} sets the extrapolation method for f107Average and f107Daily None, {F10.7 extrapolation value} sets the extrapolation value to assign to f107Average and to calculate, {Magnetic index extrapolation method} sets the extrapolation method for magnetic index information None, {Magnetic index extrapolation value} sets the extrapolation value used to calculate magnetic index, {Flags source} sets the variation flag source, {Flags} sets the variation flags ones, {Include anomalous oxygen in density calculation} sets the option to include anomalous oxygen in density, {Drag coefficient source} sets the source of drag, {Drag coefficient} sets the spacecraft coefficient of drag, {Drag area source} sets the source of drag, {Drag area} sets the area to compute acceleration due to atmospheric, {Limit ephemerides date range} sets the option to enable start and end of range of ephemeris, {Start date (JD)} sets the start date of ephemerides date range, {End date (JD)} sets the end date of ephemerides date range, {Include third body gravity} sets the acceleration due to third body gravity, {Sun} sets the include gravitational acceleration due, {Sun gravity model} sets the third body gravity model for Sun, {Mercury} sets the include gravitational acceleration due, {Mercury gravity model}, {Venus} sets the include gravitational acceleration due, {Venus gravity model}, {Earth} sets the include gravitational acceleration due, {Earth gravity model}, {Moon} sets the include gravitational acceleration due, {Moon gravity model}, {Mars} sets the include gravitational acceleration due, {Mars gravity model}, {Jupiter} sets the include gravitational acceleration due, {Jupiter gravity model}, {Saturn} sets the include gravitational acceleration due, {Saturn gravity model}, {Uranus} sets the include gravitational acceleration due, {Uranus gravity model}, {Neptune} sets the include gravitational acceleration due, {Neptune gravity model}, {Pluto} sets the include gravitational acceleration due, {Pluto gravity model}, {Custom} sets the include gravitational acceleration due to custom, {Custom gravity model}, {Gravitational parameter (m^3/s^2)} sets the custom gravitational acceleration, {Include solar radiation pressure (SRP)} sets the acceleration due to solar radiation, {Eclipse fraction source} sets the source of eclipse, {Shadow model}, {Include Earth} sets the option to include Earth, {Include Moon} sets the option to include Moon, {Reflectivity coefficient source} sets the source for spacecraft coefficient, {Reflectivity coefficient} sets the spacecraft coefficient of reflectivity, {SRP area source} sets the source for spacecraft solar radiation pressure area, {SRP area} sets the cross section area of the spacecraft seen, {Solar flux pressure (W*s/m^3)} sets the spacecraft solar flux pressure, {Units} sets the parameter and port units Metric, {Angle units} and {Time format}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A icrf",
+   "direction": "input",
+   "summary": "Applied acceleration 3-element vector | m -3 array"
+  },
+  {
+   "name": "φθψ",
+   "direction": "input",
+   "summary": "Moon libration angles 3-element vector"
+  },
+  {
+   "name": "αδW",
+   "direction": "input",
+   "summary": "Right ascension, declination, and rotation angle 3-element vector"
+  },
+  {
+   "name": "m",
+   "direction": "input",
+   "summary": "Spacecraft mass used by atmospheric drag calculation scalar | vector of size numSat"
+  },
+  {
+   "name": "ρ",
+   "direction": "input",
+   "summary": "Atmospheric density scalar"
+  },
+  {
+   "name": "F107a",
+   "direction": "input",
+   "summary": "81-day average Ottawa F10.7 cm solar flux scalar"
+  },
+  {
+   "name": "F107",
+   "direction": "input",
+   "summary": "Daily Ottawa F10.7 cm solar flux scalar"
+  },
+  {
+   "name": "aph",
+   "direction": "input",
+   "summary": "Daily magnetic index information N -by-7 array"
+  },
+  {
+   "name": "Flags",
+   "direction": "input",
+   "summary": "Variation flags array of 23"
+  },
+  {
+   "name": "C d",
+   "direction": "input",
+   "summary": "Atmospheric drag coefficient scalar | vector of size numSat"
+  },
+  {
+   "name": "A d",
+   "direction": "input",
+   "summary": "Atmospheric drag area scalar | vector of size numSat"
+  },
+  {
+   "name": "R cb, 3",
+   "direction": "input",
+   "summary": "Position of one or more custom bodies 3-element vector | numCustom3rdBodies x3-element vector"
+  },
+  {
+   "name": "Fraction",
+   "direction": "input",
+   "summary": "Fraction of solar disk between 0 (full eclipse) and 1 (full sunlight) | scalar | numSat"
+  },
+  {
+   "name": "R C",
+   "direction": "input",
+   "summary": "Reflectivity coefficient scalar or numSat of values in the range 1 ≤ R C ≤ 2"
+  },
+  {
+   "name": "A srp",
+   "direction": "input",
+   "summary": "Cross section area of the spacecraft scalar | numSat"
+  },
+  {
+   "name": "X icrf",
+   "direction": "output",
+   "summary": "Position of spacecraft 3-element vector | numSat -by-3"
+  },
+  {
+   "name": "V icrf",
+   "direction": "output",
+   "summary": "Velocity 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "q icrf2ff",
+   "direction": "output",
+   "summary": "Transformation 4-element quaternion (scalar first)"
+  },
+  {
+   "name": "t utc",
+   "direction": "output",
+   "summary": "Time at current time step scalar | 6-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Propagation method",
+   "default": "",
+   "values": "Orbit propagation method Kepler (unperturbed) | Numerical (high precision)",
+   "group": "Main"
+  },
+  {
+   "name": "Input external accelerations",
+   "default": "off",
+   "values": "Input additional accelerations off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "External acceleration coordinate frame",
+   "default": "ICRF",
+   "values": "Frame for additional accelerations ICRF (default) | Fixed-frame",
+   "group": "Main"
+  },
+  {
+   "name": "State vector output coordinate frame",
+   "default": "ICRF",
+   "values": "Port coordinate frame ICRF (default) | Fixed-frame",
+   "group": "Main"
+  },
+  {
+   "name": "Start date/time (UTC Julian date)",
+   "default": "0)",
+   "values": "Initial start time for simulation juliandate (2020, 1, 1, 12, 0, 0) (default) | valid scalar Julian date | valid Gregorian date including year, month, day, hours, minutes, seconds as 6-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output current date/time (UTC Julian date)",
+   "default": "on",
+   "values": "Add output port t utc on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Mass source",
+   "default": "Dialog",
+   "values": "Mass source Dialog (default) | Port",
+   "group": "Main"
+  },
+  {
+   "name": "Mass",
+   "default": "4.0",
+   "values": "Spacecraft mass used by atmospheric drag calculation 4.0 (default) | scalar | vector of size numSat",
+   "group": "Main"
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "Out-of-range block behavior Warning (default) | Error | None",
+   "group": "Main"
+  },
+  {
+   "name": "Initial state format",
+   "default": "elements",
+   "values": "Input method for initial states of orbit Orbital elements (default) | ICRF state vector | Fixed-frame state vector",
+   "group": "Orbit"
+  },
+  {
+   "name": "Orbit Type",
+   "default": "Keplerian",
+   "values": "Orbit classification Keplerian (default) | Elliptical equatorial | Circular | Circular equatorial",
+   "group": "Orbit"
+  },
+  {
+   "name": "Semi-major axis",
+   "default": "6786000",
+   "values": "Half of major axis of ellipse 6786000 (default) | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Eccentricity",
+   "default": "0.01",
+   "values": "Deviation of orbit 0.01 (default) | scalar | value between 0 and 1, or greater than 1 for Keplerian orbit type | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Inclination (deg)",
+   "default": "50",
+   "values": "Tilt angle of orbital plane 50 (default) | scalar | 1D array of size numSat | degrees between 0 and 180 | radians between 0 and pi",
+   "group": "Orbit"
+  },
+  {
+   "name": "RAAN (deg)",
+   "default": "95",
+   "values": "Angular distance in equatorial plane 95 (default) | scalar value between 0 and 360 | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Argument of periapsis (deg)",
+   "default": "93",
+   "values": "Angle from spacecraft ascending node to periapsis 93 (default) | degrees between 0 and 360 | radians between 0 and 2*pi | 1D array of size m, number of spacecraft",
+   "group": "Orbit"
+  },
+  {
+   "name": "True anomaly",
+   "default": "203",
+   "values": "Angle between periapsis and initial position of spacecraft 203 (default) | scalar | degrees between 0 and 360 | radians between 0 and 2*pi | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Argument of latitude (deg)",
+   "default": "200",
+   "values": "Angle between ascending node and initial position of spacecraft 200 (default) | scalar | degrees between 0 and 360 | radians between 0 and 2*pi | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Longitude of periapsis (deg)",
+   "default": "100",
+   "values": "Angle between ICRF x -axis and eccentricity vector 100 (default) | scalar | degrees between 0 and 360 | radians between 0 and 2*pi | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "True longitude (deg)",
+   "default": "150",
+   "values": "Angle between ICRF x -axis and initial position of spacecraft 150 (default) | scalar | degrees between 0 and 360 | radians between 0 and 2*pi | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "ICRF position",
+   "default": "-4676600.0]",
+   "values": "Cartesian position vector of spacecraft [3649700.0 3308200.0 -4676600.0] (default) | 3-element vector | | numSat -by-3 array",
+   "group": "Orbit"
+  },
+  {
+   "name": "ICRF velocity",
+   "default": "2573.4]",
+   "values": "Cartesian velocity vector of spacecraft [-2750.8 6666.4 2573.4] (default) | 3-element vector for single spacecraft or 2-D array of size m -by-3 array of multiple spacecraft",
+   "group": "Orbit"
+  },
+  {
+   "name": "Fixed-frame position",
+   "default": "-4669861.6]",
+   "values": "Position vector of spacecraft [-4142689.0 -2676864.7 -4669861.6] (default) | 3-element vector for single spacecraft or 2-D array of size m -by-3 array of multiple spacecraft",
+   "group": "Orbit"
+  },
+  {
+   "name": "Fixed-frame velocity",
+   "default": "2568.1]",
+   "values": "Velocity vector of spacecraft [1452.7 -6720.7 2568.1] (default) | 3-element vector for single spacecraft or 2-D array of size m -by-3 array of multiple spacecraft",
+   "group": "Orbit"
+  },
+  {
+   "name": "Central body",
+   "default": "Earth",
+   "values": "Celestial body around which spacecraft orbits Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Sun | Custom",
+   "group": "Central Body"
+  },
+  {
+   "name": "Gravitational potential model",
+   "default": "Neptune",
+   "values": "Control gravity model for central body Spherical harmonics when Central body set to Earth, Moon, Mars, or Custom, Oblate ellipsoid when Central body set to Mercury, Venus, Jupiter, Saturn, Uranus, or Neptune (default) | None | Point-mass | Oblate ellipsoid (J2)",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spherical harmonic model",
+   "default": "Mars,",
+   "values": "Spherical harmonic model EGM2008 for Central body set to Earth, LP-100K for Central body set to Moon, GMM2B for Central body set to Mars, (default) | EGM96 | EIGEN-GL04C | LP-165P",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spherical harmonic coefficient file",
+   "default": "aerogmm2b.mat",
+   "values": "Harmonic coefficient MAT file aerogmm2b.mat (default) | harmonic coefficient MAT file",
+   "group": "Central Body"
+  },
+  {
+   "name": "Degree",
+   "default": "120",
+   "values": "Degree of harmonic model 120 (default) | scalar | maximum of 2159",
+   "group": "Central Body"
+  },
+  {
+   "name": "Use Earth orientation parameters (EOPs)",
+   "default": "on",
+   "values": "Use Earth orientation parameters on (default) | off",
+   "group": "Central Body"
+  },
+  {
+   "name": "IERS EOP data file",
+   "default": "aeroiersdata.mat",
+   "values": "Earth orientation data aeroiersdata.mat (default) | MAT file",
+   "group": "Central Body"
+  },
+  {
+   "name": "Input Moon libration angles",
+   "default": "off",
+   "values": "Moon libration angle rate off (default) | on",
+   "group": "Central Body"
+  },
+  {
+   "name": "Output quaternion (ICRF to Fixed-frame)",
+   "default": "off",
+   "values": "Add output transformation quaternion port off (default) | on",
+   "group": "Central Body"
+  },
+  {
+   "name": "Central body spin axis source",
+   "default": "Port",
+   "values": "Central body spin source Port (default) | Dialog",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis right ascension (RA) at J2000 (deg)",
+   "default": "317.68143",
+   "values": "Right ascension of central body spin axis at J2000 317.68143 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis RA rate (deg/century)",
+   "default": "-0.1061",
+   "values": "Right ascension rate of central body spin axis -0.1061 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis declination (Dec) at J2000 (deg)",
+   "default": "52.88650",
+   "values": "Declination of central body spin axis at J2000 52.88650 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis Dec rate (deg/century)",
+   "default": "-0.0609",
+   "values": "Declination rate of central body spin axis -0.0609 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Initial rotation angle at J2000 (deg)",
+   "default": "176.630",
+   "values": "Rotation angle of central body x -axis 176.630 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Rotation rate (deg/day)",
+   "default": "350.89198226",
+   "values": "Rotation rate of central body x -axis 350.89198226 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "3396200",
+   "values": "Equatorial radius 3396200 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Flattening",
+   "default": "0.00589",
+   "values": "Flattening of planet 0.00589 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Gravitational parameter",
+   "default": "4.305e13",
+   "values": "Gravitational parameter 4.305e13 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Second degree zonal harmonic (J2)",
+   "default": "1.0826269e-03",
+   "values": "Most significant or largest spherical harmonic term 1.0826269e-03 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Include atmospheric drag",
+   "default": "off",
+   "values": "Option to include atmospheric drag off (default) | on",
+   "group": "Drag"
+  },
+  {
+   "name": "Atmospheric density source",
+   "default": "Dialog",
+   "values": "Source of atmospheric density value Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Atmospheric model",
+   "default": "NRLMSISE-00",
+   "values": "Atmospheric model NRLMSISE-00 (default)",
+   "group": "Drag"
+  },
+  {
+   "name": "Flux source",
+   "default": "Dialog",
+   "values": "Source of space weather data Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Space weather data file",
+   "default": "aeroSpaceWeatherData.mat",
+   "values": "MAT file of space weather data aeroSpaceWeatherData.mat (default) | MAT file name",
+   "group": "Drag"
+  },
+  {
+   "name": "F10.7 extrapolation method",
+   "default": "clip",
+   "values": "Extrapolation method for f107Average and f107Daily None - clip (default) | Constant | Least squares fit",
+   "group": "Drag"
+  },
+  {
+   "name": "F10.7 extrapolation value",
+   "default": "150.0",
+   "values": "Extrapolation value to assign to f107Average and to calculate f107Daily 150.0 (default) | scalar",
+   "group": "Drag"
+  },
+  {
+   "name": "Magnetic index extrapolation method",
+   "default": "clip",
+   "values": "Extrapolation method for magnetic index information None - clip (default) | Constant | IGRF",
+   "group": "Drag"
+  },
+  {
+   "name": "Magnetic index extrapolation value",
+   "default": "4.0",
+   "values": "Extrapolation value used to calculate magnetic index elements 4.0 (default) | scalar",
+   "group": "Drag"
+  },
+  {
+   "name": "Flags source",
+   "default": "Dialog",
+   "values": "Variation flag source Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Flags",
+   "default": "ones(1,23)",
+   "values": "Variation flags ones(1,23) (default)",
+   "group": "Drag"
+  },
+  {
+   "name": "Include anomalous oxygen in density calculation",
+   "default": "off",
+   "values": "Option to include anomalous oxygen in density calculation off (default) | on",
+   "group": "Drag"
+  },
+  {
+   "name": "Drag coefficient source",
+   "default": "Dialog",
+   "values": "Source of drag coefficient Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Drag coefficient",
+   "default": "2.179",
+   "values": "Spacecraft coefficient of drag 2.179 (default) | scalar | vector of size numSat",
+   "group": "Drag"
+  },
+  {
+   "name": "Drag area source",
+   "default": "Dialog",
+   "values": "Source of drag area Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Drag area",
+   "default": "1.0",
+   "values": "Area to compute acceleration due to atmospheric drag 1.0 (default) | scalar | vector of size numSat",
+   "group": "Drag"
+  },
+  {
+   "name": "Ephemeris model",
+   "default": "DE405",
+   "values": "Ephemeris model DE405 (default) | DE421 | DE423 | DE430 | DE432t",
+   "group": "Third Body"
+  },
+  {
+   "name": "Limit ephemerides date range",
+   "default": "off",
+   "values": "Option to enable start and end of range of ephemeris data off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Start date (JD)",
+   "default": "1)",
+   "values": "Start date of ephemerides date range juliandate(2020, 1, 1) (default) | Julian date",
+   "group": "Third Body"
+  },
+  {
+   "name": "End date (JD)",
+   "default": "1)",
+   "values": "End date of ephemerides date range juliandate(2050, 1, 1) (default) | Julian date",
+   "group": "Third Body"
+  },
+  {
+   "name": "Include third body gravity",
+   "default": "off",
+   "values": "Acceleration due to third body gravity off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Sun",
+   "default": "on",
+   "values": "Include gravitational acceleration due to Sun on (default) | off",
+   "group": "Third Body"
+  },
+  {
+   "name": "Sun gravity model",
+   "default": "Point-mass",
+   "values": "Third body gravity model for Sun Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Mercury",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Mercury off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Mercury gravity model",
+   "default": "Point-mass",
+   "values": "Mercury gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Venus",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Venus off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Venus gravity model",
+   "default": "Point-mass",
+   "values": "Venus gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Earth",
+   "default": "on",
+   "values": "Include gravitational acceleration due to Earth on (default) | off",
+   "group": "Third Body"
+  },
+  {
+   "name": "Earth gravity model",
+   "default": "Point-mass",
+   "values": "Earth gravity model Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics",
+   "group": "Third Body"
+  },
+  {
+   "name": "Moon",
+   "default": "on",
+   "values": "Include gravitational acceleration due to Moon on (default) | off",
+   "group": "Third Body"
+  },
+  {
+   "name": "Moon gravity model",
+   "default": "Point-mass",
+   "values": "Moon gravity model Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics",
+   "group": "Third Body"
+  },
+  {
+   "name": "Mars",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Mars off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Mars gravity model",
+   "default": "Point-mass",
+   "values": "Mars gravity model Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics",
+   "group": "Third Body"
+  },
+  {
+   "name": "Jupiter",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Jupiter off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Jupiter gravity model",
+   "default": "Point-mass",
+   "values": "Jupiter gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Saturn",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Saturn off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Saturn gravity model",
+   "default": "Point-mass",
+   "values": "Saturn gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Uranus",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Uranus off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Uranus gravity model",
+   "default": "Point-mass",
+   "values": "Uranus gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Neptune",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Neptune off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Neptune gravity model",
+   "default": "Point-mass",
+   "values": "Neptune gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Pluto",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Pluto off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Pluto gravity model",
+   "default": "Point-mass",
+   "values": "Pluto gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Custom",
+   "default": "off",
+   "values": "Include gravitational acceleration due to custom planet off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Custom gravity model",
+   "default": "Point-mass",
+   "values": "Custom gravity model Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics",
+   "group": "Third Body"
+  },
+  {
+   "name": "Gravitational parameter (m^3/s^2)",
+   "default": "42.828314258067e12",
+   "values": "Custom gravitational acceleration 42.828314258067e12 (default) | scalar | vector of length numCustom3rdBodies",
+   "group": "Third Body"
+  },
+  {
+   "name": "Include solar radiation pressure (SRP)",
+   "default": "off",
+   "values": "Acceleration due to solar radiation pressure off (default) | on",
+   "group": "SRP"
+  },
+  {
+   "name": "Eclipse fraction source",
+   "default": "Dialog",
+   "values": "Source of eclipse fraction Dialog (default) | Port",
+   "group": "SRP"
+  },
+  {
+   "name": "Shadow model",
+   "default": "cone",
+   "values": "Shadow model Dual cone (default) | Cylindrical",
+   "group": "SRP"
+  },
+  {
+   "name": "Include Earth",
+   "default": "on",
+   "values": "Option to include Earth on (default) | off",
+   "group": "SRP"
+  },
+  {
+   "name": "Include Moon",
+   "default": "on",
+   "values": "Option to include Moon on (default) | off",
+   "group": "SRP"
+  },
+  {
+   "name": "Reflectivity coefficient source",
+   "default": "’Dialog’",
+   "values": "Source for spacecraft coefficient of reflectivity ’Dialog’ (default) | ’Port’",
+   "group": "SRP"
+  },
+  {
+   "name": "Reflectivity coefficient",
+   "default": "1.8",
+   "values": "Spacecraft coefficient of reflectivity 1.8 (default) | scalar | 2D array of size numSat | between [1,2]",
+   "group": "SRP"
+  },
+  {
+   "name": "SRP area source",
+   "default": "Dialog",
+   "values": "Source for spacecraft solar radiation pressure area Dialog (default) | Port",
+   "group": "SRP"
+  },
+  {
+   "name": "SRP area",
+   "default": "1.0",
+   "values": "Cross section area of the spacecraft seen by the Sun 1.0 (default) | scalar | 2D array of size numSat",
+   "group": "SRP"
+  },
+  {
+   "name": "Solar flux pressure (W*s/m^3)",
+   "default": "4.5344321e-6",
+   "values": "Spacecraft solar flux pressure 4.5344321e-6 (default) | scalar",
+   "group": "SRP"
+  },
+  {
+   "name": "Units",
+   "default": "(m/s)",
+   "values": "Parameter and port units Metric (m/s) (default) | Metric (km/s) | Metric (km/h) | English (ft/s) | English (kts)",
+   "group": "Units"
+  },
+  {
+   "name": "Angle units",
+   "default": "Degrees",
+   "values": "Angle units Degrees (default) | Radians",
+   "group": "Units"
+  },
+  {
+   "name": "Time format",
+   "default": "date",
+   "values": "Time format for start date and time output Julian date (default) | Gregorian",
+   "group": "Units"
+  }
+ ]
+}

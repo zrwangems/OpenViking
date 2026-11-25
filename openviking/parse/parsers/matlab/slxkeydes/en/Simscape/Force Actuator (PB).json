@@ -1,0 +1,13 @@
+{
+ "key": "Force Actuator (PB)",
+ "title": "Force Actuator (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/Force_Actuator_PB.md"
+ ],
+ "text": "Ideal force actuator, with length, that generates force proportional to the input signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

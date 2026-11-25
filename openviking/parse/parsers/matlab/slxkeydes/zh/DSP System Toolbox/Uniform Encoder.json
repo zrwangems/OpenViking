@@ -1,0 +1,43 @@
+{
+ "key": "Uniform Encoder",
+ "title": "Uniform Encoder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/Uniform_Encoder.md"
+ ],
+ "text": "将浮点输入量化并编码为整数输出，输入 1 路、输出 1 路、无直接馈通；{Peak} 指定要编码的最大输入幅度、{Bits} 指定位数、{Output type} 指定模块输出的数据类型 Unsigned，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "编码器输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Peak",
+   "default": "1",
+   "values": "要编码的最大输入幅度 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Bits",
+   "default": "8",
+   "values": "位数 8 (default) | integer in the range [ 2, 32 ]",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "integer",
+   "values": "模块输出的数据类型 Unsigned integer (default) | Signed integer",
+   "group": ""
+  }
+ ]
+}

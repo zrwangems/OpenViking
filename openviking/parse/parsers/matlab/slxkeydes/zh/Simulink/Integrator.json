@@ -1,0 +1,137 @@
+{
+ "key": "Integrator",
+ "title": "Integrator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Integrator.md",
+  "Simulink/Continuous/Integrator.md",
+  "Simulink/Continuous/Integrator_Limited.md"
+ ],
+ "text": "对信号求积分，输入 3 路、输出 3 路；按 {饱和上限} 指定积分的上限；{外部重置} 指定将状态重置为其初始条件、{初始条件来源} 使用外部信号设置初始条件、{初始条件} 指定初始状态、{限制输出} 指定将模块输出值限制在指定范围内、{饱和下限} 指定积分的下限、{绕回状态} 启用状态绕回、{绕回状态上限值} 指定绕回状态的上限值、{绕回状态下限值} 指定绕回状态的下限值、{显示饱和端口} 启用饱和输出端口、{显示状态端口} 启用状态输出端口、{绝对容差}、{线性化时忽略限制和重置} 指定线性化期间使用模块默认重置和限制行为、{启用过零检测}、{状态名称(例如，’position’)} 为每个状态指定唯一名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要积分的信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "External Reset",
+   "direction": "input",
+   "summary": "将状态重置为初始条件的信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "x 0",
+   "direction": "input",
+   "summary": "初始条件 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "对信号求积分 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "输出饱和信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "模块状态 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "外部重置",
+   "default": "无",
+   "values": "将状态重置为其初始条件 无 (默认) | 上升沿 | 下降沿 | 任一沿 | 电平 | 电平保持",
+   "group": ""
+  },
+  {
+   "name": "初始条件来源",
+   "default": "内部",
+   "values": "使用外部信号设置初始条件的选项 内部 (默认) | 外部",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "初始状态 0 (默认) | 实数标量或数组",
+   "group": ""
+  },
+  {
+   "name": "限制输出",
+   "default": "",
+   "values": "将模块输出值限制在指定范围内 off （ Integrator 的默认值） | on （ Integrator Limited 的默认值）",
+   "group": ""
+  },
+  {
+   "name": "饱和上限",
+   "default": "inf",
+   "values": "指定积分的上限 inf (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "饱和下限",
+   "default": "-inf",
+   "values": "指定积分的下限 -inf (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "绕回状态",
+   "default": "off",
+   "values": "启用状态绕回 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "绕回状态上限值",
+   "default": "pi",
+   "values": "指定绕回状态的上限值 pi (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "绕回状态下限值",
+   "default": "-pi",
+   "values": "指定绕回状态的下限值 -pi (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "显示饱和端口",
+   "default": "off",
+   "values": "启用饱和输出端口 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "显示状态端口",
+   "default": "off",
+   "values": "启用状态输出端口 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "绝对容差",
+   "default": "auto",
+   "values": "模块状态的绝对容差 auto (默认) | 实数标量或向量",
+   "group": ""
+  },
+  {
+   "name": "线性化时忽略限制和重置",
+   "default": "off",
+   "values": "线性化期间使用模块默认重置和限制行为的选项 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "启用过零检测 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "状态名称(例如，’position’)",
+   "default": "’",
+   "values": "为每个状态指定唯一名称 ’ ’ (默认) | 字符向量 | 字符串",
+   "group": ""
+  }
+ ]
+}

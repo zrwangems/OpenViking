@@ -1,0 +1,26 @@
+{
+ "key": "Triggered Operating Condition/Linearization Snapshot",
+ "title": "Trigger-Based Operating Point Snapshot",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Utilities/Trigger_Based_Operating_Point_Snapshot.md"
+ ],
+ "text": "在发生触发事件时生成工作点，输入 1 路；按 {触发器类型} 指定控制信号的类型。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "触发控制信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "触发器类型",
+   "default": "rising",
+   "values": "控制信号的类型 rising (默认) | falling | either | function-call",
+   "group": ""
+  }
+ ]
+}

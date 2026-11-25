@@ -1,0 +1,13 @@
+{
+ "key": "Telescoping Joint",
+ "title": "Telescoping Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Telescoping_Joint.md"
+ ],
+ "text": "Joint with one spherical and one prismatic joint primitive.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

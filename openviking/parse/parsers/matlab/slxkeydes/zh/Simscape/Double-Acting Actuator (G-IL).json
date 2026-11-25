@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Actuator (G-IL)",
+ "title": "Double-Acting Actuator (G-IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Double_Acting_Actuator_G_IL.md"
+ ],
+ "text": "具有等温液体腔和气体腔的线性执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

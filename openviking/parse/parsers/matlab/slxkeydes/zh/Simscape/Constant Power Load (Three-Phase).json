@@ -1,0 +1,13 @@
+{
+ "key": "Constant Power Load (Three-Phase)",
+ "title": "Constant Power Load (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Constant_Power_Load_Three_Phase.md"
+ ],
+ "text": "三相恒功率负载。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

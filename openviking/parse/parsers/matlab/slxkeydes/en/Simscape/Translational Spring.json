@@ -1,0 +1,13 @@
+{
+ "key": "Translational Spring",
+ "title": "Translational Spring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Translational_Spring.md"
+ ],
+ "text": "Ideal spring in mechanical translational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,101 @@
+{
+ "key": "Turbo Encoder",
+ "title": "Turbo Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Convolutional/Turbo_Encoder.md"
+ ],
+ "text": "Encode binary data using parallel concatenated encoding scheme, 3 inputs, 1 output, {Source of output indices} sets Source of output indices Auto; {Trellis structure} sets the trellis description of constituent convolutional code, {numInputSymbols} sets the number of symbols input to encoder, {numOutputSymbols} sets the number of symbols output from encoder, {numStates} sets the number of states in encoder power, {nextStates} sets the next states matrix, {outputs} sets the outputs matrix, {Source of interleaver indices}, {Interleaver indices}, {Output indices} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input message binary column vector"
+  },
+  {
+   "name": "IntrInd",
+   "direction": "input",
+   "summary": "Interleaver indices column vector of integers"
+  },
+  {
+   "name": "OutInd",
+   "direction": "input",
+   "summary": "Output indices column vector of integers"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Parallel concatenated codeword binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trellis structure",
+   "default": "15],13)",
+   "values": "Trellis description of constituent convolutional code poly2trellis(4,[13 15],13) (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "numInputSymbols",
+   "default": "",
+   "values": "Number of symbols input to encoder 2 K",
+   "group": ""
+  },
+  {
+   "name": "numOutputSymbols",
+   "default": "",
+   "values": "Number of symbols output from encoder 2 N",
+   "group": ""
+  },
+  {
+   "name": "numStates",
+   "default": "",
+   "values": "Number of states in encoder power of 2",
+   "group": ""
+  },
+  {
+   "name": "nextStates",
+   "default": "",
+   "values": "Next states matrix of integers",
+   "group": ""
+  },
+  {
+   "name": "outputs",
+   "default": "",
+   "values": "Outputs matrix of octal numbers",
+   "group": ""
+  },
+  {
+   "name": "Source of interleaver indices",
+   "default": "Property",
+   "values": "Source of interleaver indices Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Interleaver indices",
+   "default": "(64:-1:1).’",
+   "values": "Interleaver indices (64:-1:1).’ (default) | column vector of integers",
+   "group": ""
+  },
+  {
+   "name": "Source of output indices",
+   "default": "",
+   "values": "Source of output indices Auto | Property | Input port",
+   "group": ""
+  },
+  {
+   "name": "Output indices",
+   "default": "getTurboIOIndices(64,2,3)",
+   "values": "Output indices getTurboIOIndices(64,2,3) (default) | column vector of integers",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

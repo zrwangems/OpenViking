@@ -1,0 +1,295 @@
+{
+ "key": "radarDetectionGenerator",
+ "title": "Radar Detection Generator",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Radar_Detection_Generator.md"
+ ],
+ "text": "Create detection objects from radar measurements, 1 input, 1 output, {Width of actors cuboids (m)} sets Width of cuboid; {Unique identifier of sensor} sets the unique sensor identifier, {Required interval between sensor updates (s)} sets the required time interval, {Sensor’s (x,y) position (m)} sets the location of the radar sensor center, {Sensor’s height (m)} sets the radar sensor height above the ground plane, {Yaw angle of sensor mounted on ego vehicle (deg)}, {Pitch angle of sensor mounted on ego vehicle (deg)}, {Roll angle of sensor mounted on ego vehicle (deg)}, {Source of output bus name}, {Specify an output bus name} sets the name of output bus, {Maximum number of reported detections}, {Coordinate system used to report detections} sets the coordinate system of reported detections Ego, {Simulate using} sets the type of simulation to run Interpreted, {Azimuthal resolution of radar (deg)} sets the azimuth resolution of radar, {Elevation resolution of radar (deg)}, {Range resolution of radar (m)}, {Range rate resolution of radar (m/s)} sets the range rate resolution of the radar, {Fractional azimuthal bias component of radar} sets the azimuth bias fraction, {Fractional elevation bias component of radar} sets the elevation bias fraction, {Fractional range bias component of radar} sets the range bias fraction, {Fractional range rate bias component of radar} sets the range rate bias fraction of the radar, {Total angular field of view for radar (deg)} sets the field of view of radar sensor, {Maximum detection range (m)}, {Minimum and maximum range rates that can be reported} sets the minimum and maximum detection range rates, {Detection probability} sets the probability of detecting a target, {Rate at which false alarms are reported} sets the false alarm rate 1e-6, {Range where detection probability is achieved (m):} sets the reference range for given probability, {Radar cross section at which detection probability is achieved (dBsm)} sets the reference radar cross-section for given probability, {Enable elevation angle measurements} enables radar to measure elevation, {Enable range rate measurements} enables radar to measure range rate, {Add noise to measurements} enables adding noise to radar sensor, {Enable false detections} enables creating false alarm radar, {Enable occlusion} enables line-of-sight occlusion, {Select method to specify initial seed} sets the method to specify random number generator seed, {Initial seed} sets the random number generator seed, {Select method to specify actor profiles} sets the method to specify actor profiles From Scenario Reader, {MATLAB expression for actor profiles}, {Unique identifier for actors} sets the scenario-defined actor identifier, {User-defined integer to classify actors} sets the user-defined classification identifier, {Length of actors cuboids (m)} sets the length of cuboid, {Height of actors cuboids (m)} sets the height of cuboid, {Rotational center of actors from bottom center (m)} sets the rotational center of the actor, {Radar cross section pattern (dBsm)} sets the radar cross-section, {Azimuth angles defining RCSPattern (deg)} sets the azimuth angles of radar cross-section pattern and {Elevation angles defining RCSPattern (deg)} sets the elevation angles of radar cross-section pattern. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Actors",
+   "direction": "input",
+   "summary": "Scenario actor poses Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "Detections Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unique identifier of sensor",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Required interval between sensor updates (s)",
+   "default": "0.1",
+   "values": "Required time interval 0.1 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sensor’s (x,y) position (m)",
+   "default": "0]",
+   "values": "Location of the radar sensor center [3.4 0] (default) | real-valued 1-by-2 vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sensor’s height (m)",
+   "default": "0.2",
+   "values": "Radar sensor height above the ground plane 0.2 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Yaw angle of sensor mounted on ego vehicle (deg)",
+   "default": "0",
+   "values": "Yaw angle of sensor 0 (default) | real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Pitch angle of sensor mounted on ego vehicle (deg)",
+   "default": "0",
+   "values": "Pitch angle of sensor 0 (default) | real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Roll angle of sensor mounted on ego vehicle (deg)",
+   "default": "0",
+   "values": "Roll angle of sensor 0 (default) | real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "Source of output bus name Auto (default) | Property",
+   "group": "Parameters"
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "",
+   "values": "Name of output bus no default",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum number of reported detections",
+   "default": "50",
+   "values": "Maximum number of reported detections 50 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Coordinate system used to report detections",
+   "default": "Cartesian",
+   "values": "Coordinate system of reported detections Ego Cartesian (default) | Sensor Cartesian | Sensor Spherical",
+   "group": "Parameters"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Parameters"
+  },
+  {
+   "name": "Azimuthal resolution of radar (deg)",
+   "default": "4.0",
+   "values": "Azimuth resolution of radar 4.0 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation resolution of radar (deg)",
+   "default": "10.0",
+   "values": "Elevation resolution of radar 10.0 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range resolution of radar (m)",
+   "default": "2.5",
+   "values": "Range resolution of radar 2.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate resolution of radar (m/s)",
+   "default": "0.5",
+   "values": "Range rate resolution of the radar 0.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Fractional azimuthal bias component of radar",
+   "default": "0.1",
+   "values": "Azimuth bias fraction 0.1 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Fractional elevation bias component of radar",
+   "default": "0.1",
+   "values": "Elevation bias fraction 0.1 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Fractional range bias component of radar",
+   "default": "0.05",
+   "values": "Range bias fraction 0.05 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Fractional range rate bias component of radar",
+   "default": "0.05",
+   "values": "Range rate bias fraction of the radar 0.05 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Total angular field of view for radar (deg)",
+   "default": "5]",
+   "values": "Field of view of radar sensor [20 5] (default) | real-valued 1-by-2 vector of positive values",
+   "group": "Measurements"
+  },
+  {
+   "name": "Maximum detection range (m)",
+   "default": "150",
+   "values": "Maximum detection range 150 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Minimum and maximum range rates that can be reported",
+   "default": "100]",
+   "values": "Minimum and maximum detection range rates [-100 100] (default) | real-valued 1-by-2 vector",
+   "group": "Measurements"
+  },
+  {
+   "name": "Detection probability",
+   "default": "0.9",
+   "values": "Probability of detecting a target 0.9 (default) | positive real scalar less than or equal to 1",
+   "group": "Measurements"
+  },
+  {
+   "name": "Rate at which false alarms are reported",
+   "default": "1e-6",
+   "values": "False alarm rate 1e-6 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range where detection probability is achieved (m):",
+   "default": "100",
+   "values": "Reference range for given probability of detection 100 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Radar cross section at which detection probability is achieved (dBsm)",
+   "default": "0.0",
+   "values": "Reference radar cross-section for given probability of detection 0.0 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Enable elevation angle measurements",
+   "default": "off",
+   "values": "Enable radar to measure elevation off (default) | on",
+   "group": "Measurements"
+  },
+  {
+   "name": "Enable range rate measurements",
+   "default": "on",
+   "values": "Enable radar to measure range rate on (default) | off | on",
+   "group": "Measurements"
+  },
+  {
+   "name": "Add noise to measurements",
+   "default": "on",
+   "values": "Enable adding noise to radar sensor measurements on (default) | off",
+   "group": "Measurements"
+  },
+  {
+   "name": "Enable false detections",
+   "default": "on",
+   "values": "Enable creating false alarm radar detections on (default) | off",
+   "group": "Measurements"
+  },
+  {
+   "name": "Enable occlusion",
+   "default": "on",
+   "values": "Enable line-of-sight occlusion on (default) | off",
+   "group": "Measurements"
+  },
+  {
+   "name": "Select method to specify initial seed",
+   "default": "Repeatable",
+   "values": "Method to specify random number generator seed Repeatable (default) | Specify seed | Not repeatable",
+   "group": "Measurements"
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "Random number generator seed 0 (default) | nonnegative integer less than 2 32",
+   "group": "Measurements"
+  },
+  {
+   "name": "Select method to specify actor profiles",
+   "default": "block",
+   "values": "Method to specify actor profiles From Scenario Reader block (default) | Parameters | MATLAB expression",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "MATLAB expression for actor profiles",
+   "default": "struct(’ClassID’,0,’Length’,4.7,’Width’,1.8,’Height’,1.4,’OriginOffset’,[-1.35,0,0])",
+   "values": "MATLAB expression for actor profiles struct(’ClassID’,0,’Length’,4.7,’Width’,1.8,’Height’,1.4,’OriginOffset’,[-1.35,0,0]) (default) | MATLAB structure | MATLAB structure array | valid MATLAB expression",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Unique identifier for actors",
+   "default": "[]",
+   "values": "Scenario-defined actor identifier [] (default) | positive integer | length- L vector of unique positive integers",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "User-defined integer to classify actors",
+   "default": "0",
+   "values": "User-defined classification identifier 0 (default) | integer | length- L vector of integers",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Length of actors cuboids (m)",
+   "default": "4.7",
+   "values": "Length of cuboid 4.7 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Width of actors cuboids (m)",
+   "default": "4.7",
+   "values": "Width of cuboid 4.7 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Height of actors cuboids (m)",
+   "default": "4.7",
+   "values": "Height of cuboid 4.7 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Rotational center of actors from bottom center (m)",
+   "default": "}",
+   "values": "Rotational center of the actor { [ -1.35, 0, 0 ] } (default) | length- L cell array of real-valued 1-by-3 vectors",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Radar cross section pattern (dBsm)",
+   "default": "{[10,10;10,10]}",
+   "values": "Radar cross-section {[10,10;10,10]} (default) | real-valued Q -by- P matrix | length- L cell array of real-valued Q -by- P matrices",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Azimuth angles defining RCSPattern (deg)",
+   "default": "180]}",
+   "values": "Azimuth angles of radar cross-section pattern {[-180 180]} (default) | length- L cell array of real-valued P -length vectors",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Elevation angles defining RCSPattern (deg)",
+   "default": "90]}",
+   "values": "Elevation angles of radar cross-section pattern {[-90 90]} (default) | length- L cell array of real-valued Q -length vectors",
+   "group": "Actor Profiles"
+  }
+ ]
+}

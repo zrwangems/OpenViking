@@ -1,0 +1,13 @@
+{
+ "key": "Length Actuator (PB)",
+ "title": "Length Actuator (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/Length_Actuator_PB.md"
+ ],
+ "text": "保持长度与输入信号成比例的理想执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

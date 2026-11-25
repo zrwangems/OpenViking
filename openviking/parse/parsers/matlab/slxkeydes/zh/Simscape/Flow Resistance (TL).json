@@ -1,0 +1,13 @@
+{
+ "key": "Flow Resistance (TL)",
+ "title": "Flow Resistance (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Flow_Resistance_TL.md"
+ ],
+ "text": "热液体支路中的通用阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

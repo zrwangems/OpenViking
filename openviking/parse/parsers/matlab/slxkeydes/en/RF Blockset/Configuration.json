@@ -1,0 +1,153 @@
+{
+ "key": "Configuration",
+ "title": "Configuration",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Utilities/Configuration.md",
+  "SerDes Toolbox/Utilities/Configuration.md"
+ ],
+ "text": "Define system simulation settings, {Temperature} sets Global noise temperature 290.0 K; {Automatically select fundamental tones and harmonic order}, {Fundamental tones}, {Harmonic order}, {Total simulation frequencies: Computed at simulation time} sets the displays number for simulation frequencies, {Step size} sets the time step for fixed step solver configuration, {Envelope bandwidth} sets the maximum simulated envelope bandwidth, {Simulate noise} sets the globally enable or disable noise modeling, {Use default random number generator} sets the default pseudorandom noise stream for RF Blockset, {Noise seed} sets the seed of the independent pseudo random number, {Samples per frame} sets the number of samples in each channel of input signal to Inport, {Normalize Carrier Power} sets the normalize power of carrier signal, {Enable input interpolation filter} sets the automatic interpolation of lower rate baseband signal to higher rate RF, {Transient analysis} sets the fixed-step solver of RF Blockset, {Approximate transient as small signal} sets the small subset of frequencies for transient small signal, {Use all steady-state simulation frequencies for small signal analysis}, {Small signal frequencies} sets the frequencies for small signal transient simulation, {Populate Frequencies} sets the tool to choose small signal transient frequencies, {Relative tolerance} sets the relative newton tolerance for system variables, {Absolute tolerance} sets the absolute newton tolerance for system variables, {Maximum iterations} sets the number iterations required for convergence, {Error estimation} sets the check for error of convergence in system variables 2-norm over all and {Restore Default Settings} sets the restore newton solver to default values. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Automatically select fundamental tones and harmonic order",
+   "default": "on",
+   "values": "Automatically select fundamental tones and harmonic order on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Fundamental tones",
+   "default": "",
+   "values": "Fundamental tones of set of simulation frequency vector of positive integers in Hz",
+   "group": ""
+  },
+  {
+   "name": "Harmonic order",
+   "default": "",
+   "values": "Harmonic order for each fundamental tone vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Total simulation frequencies: Computed at simulation time",
+   "default": "",
+   "values": "Displays number for simulation frequencies button",
+   "group": ""
+  },
+  {
+   "name": "Step size",
+   "default": "1e-6",
+   "values": "Time step for fixed step solver configuration 1e-6 (default) | scalar in seconds",
+   "group": ""
+  },
+  {
+   "name": "Envelope bandwidth",
+   "default": "MHz",
+   "values": "Maximum simulated envelope bandwidth 1 MHz (default) | scalar in Hz",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "Globally enable or disable noise modeling on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Use default random number generator",
+   "default": "on",
+   "values": "Default pseudorandom noise stream for RF Blockset sources on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Noise seed",
+   "default": "0",
+   "values": "Seed of the independent pseudo random number stream 0 (default) | scalar positive integer",
+   "group": ""
+  },
+  {
+   "name": "Temperature",
+   "default": "",
+   "values": "Global noise temperature 290.0 K | scalar integer in kelvin",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "",
+   "values": "Number of samples in each channel of input signal to Inport block 1 | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Normalize Carrier Power",
+   "default": "on",
+   "values": "Normalize power of carrier signal on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable input interpolation filter",
+   "default": "on",
+   "values": "Automatic interpolation of lower rate baseband signal to higher rate RF signal on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Transient analysis",
+   "default": "Auto",
+   "values": "Fixed-step solver of RF Blockset environment Auto (default) | NDF2 | Trapezoidal Rule | Backward Euler",
+   "group": ""
+  },
+  {
+   "name": "Approximate transient as small signal",
+   "default": "off",
+   "values": "Choose small subset of frequencies for transient small signal analysis off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use all steady-state simulation frequencies for small signal analysis",
+   "default": "on",
+   "values": "Choose all steady-state simulation frequencies on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Small signal frequencies",
+   "default": "",
+   "values": "Frequencies for small signal transient simulation scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Populate Frequencies",
+   "default": "",
+   "values": "Tool to choose small signal transient frequencies button",
+   "group": ""
+  },
+  {
+   "name": "Relative tolerance",
+   "default": "1e-3",
+   "values": "Relative newton tolerance for system variables 1e-3 (default) | real positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "1e-6",
+   "values": "Absolute newton tolerance for system variables 1e-6 (default) | real positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum iterations",
+   "default": "10",
+   "values": "Number iterations required for convergence 10 (default) | real positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Error estimation",
+   "default": "variables",
+   "values": "Check for error of convergence in system variables 2-norm over all variables (default) | Each variable separately",
+   "group": ""
+  },
+  {
+   "name": "Restore Default Settings",
+   "default": "",
+   "values": "Restore newton solver to default values button",
+   "group": ""
+  }
+ ]
+}

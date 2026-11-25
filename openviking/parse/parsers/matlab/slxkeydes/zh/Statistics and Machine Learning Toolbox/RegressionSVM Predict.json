@@ -1,0 +1,85 @@
+{
+ "key": "RegressionSVM Predict",
+ "title": "RegressionSVM Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Regression/RegressionSVM_Predict.md"
+ ],
+ "text": "使用支持向量机 (SVM) 回归模型预测响应，输入 1 路、输出 1 路；按 {核数据类型} 指定核计算数据类型；{选择经过训练的机器学习模型} 指定 SVM 回归模型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{输出数据类型} 指定 yfit 输出的数据类型 Inherit、{输出数据类型最小值} 指定范围检查的 yfit 输出最小值、{输出数据类型最大值} 指定范围检查的 yfit 输出最大值、{核数据类型最小值} 指定范围检查的最小核计算值、{核数据类型最大值} 指定范围检查的最大核计算值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "预测变量数据 行向量 | 列向量"
+  },
+  {
+   "name": "yfit",
+   "direction": "output",
+   "summary": "预测响应 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "选择经过训练的机器学习模型",
+   "default": "svmMdl",
+   "values": "SVM 回归模型 svmMdl (默认) | RegressionSVM 对象 | CompactRegressionSVM 对象",
+   "group": "主要"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "auto",
+   "values": "yfit 输出的数据类型 Inherit: auto (默认) | 双精度 | 单精度 | 半精度 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | 布尔型 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出数据类型最小值",
+   "default": "[]",
+   "values": "范围检查的 yfit 输出最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出数据类型最大值",
+   "default": "[]",
+   "values": "范围检查的 yfit 输出最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "核数据类型",
+   "default": "双精度",
+   "values": "核计算数据类型 双精度 (默认) | 单精度 | 半精度 | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | uint32 | 布尔型 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "核数据类型最小值",
+   "default": "[]",
+   "values": "范围检查的最小核计算值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "核数据类型最大值",
+   "default": "[]",
+   "values": "范围检查的最大核计算值 [] (默认) | 标量",
+   "group": "数据类型"
+  }
+ ]
+}

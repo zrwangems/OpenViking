@@ -1,0 +1,13 @@
+{
+ "key": "Stepper Motor Driver",
+ "title": "Stepper Motor Driver",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Reluctance & Stepper/Stepper_Motor_Driver.md"
+ ],
+ "text": "Driver for stepper motor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

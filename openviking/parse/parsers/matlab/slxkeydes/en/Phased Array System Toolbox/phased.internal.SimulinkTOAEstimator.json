@@ -1,0 +1,142 @@
+{
+ "key": "phased.internal.SimulinkTOAEstimator",
+ "title": "TOA Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/TOA_Estimator.md"
+ ],
+ "text": "Estimate time of arrival, time-difference of arrival, and position, 5 inputs, 6 outputs; {Signal propagation speed (m/s)} sets the signal propagation speed physconst, {TOA/TDOA measurement} sets the measurement type, {TOA spectrum analysis method} sets the spectrum analysis method, {Enable known delay offset input} enables input of delay offsets, {Output variance of TOA/TDOA estimates} enables output variance of TOA/TDOA, {Output FFT-based TOA response} enables output of FFT-based TOA response, {Enable forward-backward averaging}, {Spatial smoothing}, {Output estimated target position} enables output of estimated target position, {Source of noise power}, {Noise power (W)} sets the gaussian white noise power and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Channel estimation matrices N -by- M complex-valued matrix | N -by- M -by- L complex-valued array | 1-by- L cell array"
+  },
+  {
+   "name": "FreqSpacing",
+   "direction": "input",
+   "summary": "Frequency spacings of channel estimates 900000"
+  },
+  {
+   "name": "DelayOffset",
+   "direction": "input",
+   "summary": "Known delay offset scalar | real-valued 1-by- L vector"
+  },
+  {
+   "name": "NPow",
+   "direction": "input",
+   "summary": "Gaussian white noise power scalar | positive real-valued 1-by- L vector"
+  },
+  {
+   "name": "AnchorPos",
+   "direction": "input",
+   "summary": "Anchor positions Q -by- L real-valued matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "TOA and TDOA estimation results 1-by- L real-valued vector | 1-by-( L -1) real-valued vector"
+  },
+  {
+   "name": "Var",
+   "direction": "output",
+   "summary": "Measurement variance 1-by- L vector | 1-by-( L -1) vector"
+  },
+  {
+   "name": "TgtPosEst",
+   "direction": "output",
+   "summary": "Target position estimate real-valued Q -by-1 vector"
+  },
+  {
+   "name": "TgtPosCov",
+   "direction": "output",
+   "summary": "Target position covariance estimates Q -by- Q real positive semi-definite symmetric matrix"
+  },
+  {
+   "name": "TOAResp",
+   "direction": "output",
+   "summary": "FFT-based TOA response P -by- M -by- L matrix | 1-by- L cell array"
+  },
+  {
+   "name": "TOAGrid",
+   "direction": "output",
+   "summary": "TOA grid P -by- L matrix | 1-by- L cell array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "TOA/TDOA measurement",
+   "default": "TOA",
+   "values": "Measurement type TOA (default) | TDOA",
+   "group": ""
+  },
+  {
+   "name": "TOA spectrum analysis method",
+   "default": "FFT",
+   "values": "Spectrum analysis method FFT (default) | MUSIC",
+   "group": ""
+  },
+  {
+   "name": "Enable known delay offset input",
+   "default": "0",
+   "values": "Enable input of delay offsets 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Output variance of TOA/TDOA estimates",
+   "default": "0",
+   "values": "Enable output variance of TOA/TDOA estimates 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Output FFT-based TOA response",
+   "default": "0",
+   "values": "Enable output of FFT-based TOA response 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Enable forward-backward averaging",
+   "default": "0",
+   "values": "Enable forward-backward averaging 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Spatial smoothing",
+   "default": "0",
+   "values": "Spatial smoothing parameter 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Output estimated target position",
+   "default": "0",
+   "values": "Enable output of estimated target position 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Source of noise power",
+   "default": "Property",
+   "values": "Source of noise power Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise power (W)",
+   "default": "scalar",
+   "values": "Gaussian white noise power positive scalar (default) | 1-by- L real-valued vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

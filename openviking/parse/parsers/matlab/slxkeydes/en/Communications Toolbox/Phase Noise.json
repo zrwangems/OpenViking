@@ -1,0 +1,61 @@
+{
+ "key": "Phase Noise",
+ "title": "Phase Noise",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/Phase_Noise.md"
+ ],
+ "text": "Apply receiver phase noise to complex baseband signal, 1 input, 1 output; {Phase noise level (dBc/Hz)} sets the phase noise level, {Frequency offset (Hz)} sets the frequency offset, {Sample rate (Hz)} sets the sample rate 1e6, {Initial seed}, {View Filter Response} displays magnitude response of filter and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-100]",
+   "values": "Phase noise level [-80 -100] (default) | vector of negative scalars",
+   "group": ""
+  },
+  {
+   "name": "Frequency offset (Hz)",
+   "default": "20000]",
+   "values": "Frequency offset [2000 20000] (default) | vector of positive increasing values",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sample rate 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "2137",
+   "values": "Initial seed of noise generator 2137 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "Display magnitude response of filter button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

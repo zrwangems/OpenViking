@@ -1,0 +1,29 @@
+{
+ "key": "LU Solver",
+ "title": "LU Solver",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/LU_Solver.md"
+ ],
+ "text": "Solve AX = B when A is a square matrix, 2 inputs, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Input A matrix M -by- M matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "B matrix M -by- N matrix | M -by-1 vector"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "Solution to system of equations M -by- N matrix | M -by-1 matrix"
+  }
+ ],
+ "params": []
+}

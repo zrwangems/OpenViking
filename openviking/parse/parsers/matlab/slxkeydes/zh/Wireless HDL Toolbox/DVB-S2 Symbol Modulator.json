@@ -1,0 +1,86 @@
+{
+ "key": "DVB-S2 Symbol Modulator",
+ "title": "DVB-S2 Symbol Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/DVB_S2_Symbol_Modulator.md"
+ ],
+ "text": "根据 DVB-S2 标准将数据位调制为复星座符号，输入 5 路、输出 2 路；按 {Code rate} 指定码率；{Modulation source} 指定调制类型来源、{Modulation} 指定调制类型 QPSK、{Unit average power} 指定频谱增长降低、{Output data type} 输出数据类型、{Word length} 指定字长，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "数据比特 Boolean scalar | real scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "输入数据是否有效的指示 0 | 1"
+  },
+  {
+   "name": "modIdx",
+   "direction": "input",
+   "summary": "调制指数 0 | 1 | 2 | 3 | 4"
+  },
+  {
+   "name": "codeRateIdx",
+   "direction": "input",
+   "summary": "码率索引 5 | 6 | 7 | 8 | 9 | 10"
+  },
+  {
+   "name": "load",
+   "direction": "input",
+   "summary": "调制和码率控制 0 | 1"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "调制后的星座数据符号 complex scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "输出数据有效指示 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "Property",
+   "values": "调制类型来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Modulation",
+   "default": "QPSK",
+   "values": "调制类型 QPSK (default) | 8-PSK | 16-APSK | 32-APSK | pi/2-BPSK",
+   "group": "Main"
+  },
+  {
+   "name": "Code rate",
+   "default": "3/4",
+   "values": "码率 3/4 (default) | 2/3 | 4/5 | 5/6 | 8/9 | 9/10",
+   "group": "Main"
+  },
+  {
+   "name": "Unit average power",
+   "default": "off",
+   "values": "频谱增长降低 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "Custom",
+   "values": "输出数据类型 Custom (default) | double | single",
+   "group": "Data Types"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "字长 16 (default) | integer in the range [3, 32]",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Translational Electromechanical Converter",
+ "title": "Translational Electromechanical Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Translational_Electromechanical_Converter.md"
+ ],
+ "text": "Piecewise linear diode in electrical systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

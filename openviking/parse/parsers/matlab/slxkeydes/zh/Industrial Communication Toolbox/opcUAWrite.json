@@ -1,0 +1,38 @@
+{
+ "key": "opcUAWrite",
+ "title": "OPC UA Write",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/OPC Unified Architecture/OPC_UA_Write.md"
+ ],
+ "text": "将数据写入 OPC UA 服务器，输入 1 路；{Server} 为模块定义 OPC UA 服务器 drop-down、{Nodes} 指定 OPC UA 服务器节点列表 table、{Sample time} 指定写操作的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Value",
+   "direction": "input",
+   "summary": "节点值向量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Server",
+   "default": "",
+   "values": "为模块定义 OPC UA 服务器 drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Nodes",
+   "default": "",
+   "values": "OPC UA 服务器节点列表 table",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "写操作的采样时间 -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

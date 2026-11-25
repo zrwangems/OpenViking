@@ -1,0 +1,13 @@
+{
+ "key": "SPDT Relay",
+ "title": "SPDT Relay",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/Relays/SPDT_Relay.md"
+ ],
+ "text": "具有延迟和故障的单刀双掷继电器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

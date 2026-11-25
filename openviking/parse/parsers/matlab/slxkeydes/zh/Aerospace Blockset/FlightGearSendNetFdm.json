@@ -1,0 +1,38 @@
+{
+ "key": "FlightGearSendNetFdm",
+ "title": "Send net_fdm Packet to FlightGear",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/Send_net_fdm_Packet_to_FlightGear.md"
+ ],
+ "text": "将 net_fdm 数据包发送到 FlightGear 会话的目标 IP 地址和端口，输入 1 路；{Destination IP address} 指定远程计算机的目标 IP 地址 127.0.0.1、{Destination port} 指定远程计算机的目标端口、{Sample time} 指定采样时间 1/30，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "net_fdm",
+   "direction": "input",
+   "summary": "FlightGear net_fdm 数据包 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Destination IP address",
+   "default": "127.0.0.1",
+   "values": "远程计算机的目标 IP 地址 127.0.0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Destination port",
+   "default": "5502",
+   "values": "远程计算机的目标端口 5502 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "采样时间 1/30 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

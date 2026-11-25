@@ -1,0 +1,53 @@
+{
+ "key": "ComposeString",
+ "title": "Compose String",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/Compose_String.md"
+ ],
+ "text": "Compose output string signal based on specified format and input signals, 3 inputs, 1 output, direct feedthrough, {Format} sets Format input data \"%d; {Output data type} and {Mode} sets the category of data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "d",
+   "direction": "input",
+   "summary": "Data for first part of string scalar"
+  },
+  {
+   "name": "f",
+   "direction": "input",
+   "summary": "Data for second part of string scalar"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "Data for N parts of string scalar (default)"
+  },
+  {
+   "name": "str",
+   "direction": "output",
+   "summary": "Output string scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Format",
+   "default": "%f\"",
+   "values": "Format input data \"%d %f\" (default) | format string | character vector",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "string",
+   "values": "Output data type string (default) |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "string",
+   "values": "Category of data string (default) | scalar",
+   "group": ""
+  }
+ ]
+}

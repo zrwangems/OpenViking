@@ -1,0 +1,103 @@
+{
+ "key": "Histogram",
+ "title": "Histogram",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Histogram.md",
+  "Vision HDL Toolbox/Statistics/Histogram.md"
+ ],
+ "text": "Histogram of input or sequence of inputs, 2 inputs, 1 output, no direct feedthrough, {Reset port} sets Reset event Non-zero; {Lower limit of histogram} sets the lower boundary of lowest-valued, {Upper limit of histogram} sets the upper boundary of highest-valued bin, {Number of bins} sets the number of histogram bins, {Find the histogram over} sets the compute histogram over each column or entire input Each, {Normalized} sets the normalize output, {Running histogram} sets the track frequency distribution over time, {Rounding mode} sets the method of rounding, {Saturate on integer overflow} sets the method of overflow action, {Product output}, {Accumulator} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Data input vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset port scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Histogram output vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lower limit of histogram",
+   "default": "",
+   "values": "Lower boundary of lowest-valued bin scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Upper limit of histogram",
+   "default": "",
+   "values": "Upper boundary of highest-valued bin scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of bins",
+   "default": "",
+   "values": "Number of histogram bins positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Find the histogram over",
+   "default": "column",
+   "values": "Compute histogram over each column or entire input Each column (default) | Entire input",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalized",
+   "default": "off",
+   "values": "Normalize output off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Running histogram",
+   "default": "off",
+   "values": "Track frequency distribution over time off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "sample",
+   "values": "Reset event Non-zero sample (default) | None | Rising edge | Falling edge | Either edge",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output data type Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "Accumulator data type Inherit: Same as input (default) | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

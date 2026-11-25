@@ -1,0 +1,24 @@
+{
+ "key": "Invert 3x3 Matrix",
+ "title": "Invert 3x3 Matrix",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Invert_3x3_Matrix.md"
+ ],
+ "text": "Compute inverse of 3-by-3 matrix, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input matrix 3-by-3 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Matrix inverse 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,70 @@
+{
+ "key": "ROS 2 Monitor Action Goal",
+ "title": "Monitor Action Goal",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Monitor_Action_Goal.md"
+ ],
+ "text": "Monitor action goal in ROS 2 network, 1 input, 4 outputs; {Name} sets the action name inherited from paired Send Action Goal block character, {Type} sets the action type inherited from paired Send Action Goal block character, {Paired Send Action Goal Block} sets the path to paired Send Action Goal block block, {Show Feedback output port} enables feedback output port and {Show ErrorCode output port} enables error code output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "UUID",
+   "direction": "input",
+   "summary": "Unique ID dedicated to any goal message non-virtual bus"
+  },
+  {
+   "name": "StatusCode",
+   "direction": "output",
+   "summary": "Execution status of action goal corresponding to UUID input scalar"
+  },
+  {
+   "name": "Result",
+   "direction": "output",
+   "summary": "Result message associated with a particular action goal non-virtual bus"
+  },
+  {
+   "name": "Feedback",
+   "direction": "output",
+   "summary": "Feedback message associated with a particular action goal non-virtual bus"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "Error conditions while monitoring action goal integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Action name inherited from paired Send Action Goal block character vector",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "Action type inherited from paired Send Action Goal block character vector",
+   "group": ""
+  },
+  {
+   "name": "Paired Send Action Goal Block",
+   "default": "",
+   "values": "Path to paired Send Action Goal block block path",
+   "group": ""
+  },
+  {
+   "name": "Show Feedback output port",
+   "default": "off",
+   "values": "Enable feedback output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "off",
+   "values": "Enable error code output port off (default) | on",
+   "group": ""
+  }
+ ]
+}

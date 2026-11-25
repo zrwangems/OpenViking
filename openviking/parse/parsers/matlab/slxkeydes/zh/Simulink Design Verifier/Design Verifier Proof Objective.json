@@ -1,0 +1,50 @@
+{
+ "key": "Design Verifier Proof Objective",
+ "title": "Proof Objective",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Objectives and Constraints/Proof_Objective.md"
+ ],
+ "text": "定义信号在证明模型属性时必须满足的目标，输入 1 路；按 {值} 指定证明目标 标量；{启用}、{显示值} 显示 values 参数的内容、{直通模式} 指定证明目标、{当属性违规时停止仿真} 是否停止仿真，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Values",
+   "direction": "input",
+   "summary": "输入信号 标量 | 元胞数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "启用",
+   "default": "on",
+   "values": "指定是否启用模块 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "值",
+   "default": "",
+   "values": "指定证明目标 标量 | 元胞数组",
+   "group": ""
+  },
+  {
+   "name": "显示值",
+   "default": "on",
+   "values": "显示 values 参数的内容 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "直通模式",
+   "default": "on",
+   "values": "指定证明目标 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "当属性违规时停止仿真",
+   "default": "on",
+   "values": "指定是否停止仿真 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

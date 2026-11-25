@@ -1,0 +1,79 @@
+{
+ "key": "Puncturer",
+ "title": "Puncturer",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/Puncturer.md"
+ ],
+ "text": "Punctures data according to puncture vector, 5 inputs, 3 outputs; {Operation mode} sets the mode of operation, {Encoder rate} sets the rate of encoder, {Puncture vector source} sets the source of puncture vector and {Puncture vector} sets the location of data to be punctured. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data sample scalar | column vector of size from 2 to 7"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data samples scalar"
+  },
+  {
+   "name": "puncVector",
+   "direction": "input",
+   "summary": "Puncture vector column vector of binary values"
+  },
+  {
+   "name": "syncPunc",
+   "direction": "input",
+   "summary": "Puncture synchronization signal scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Punctured output data n-by-1 column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Validity of output data samples scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation mode",
+   "default": "Continuous",
+   "values": "Mode of operation Continuous (default) | Frame",
+   "group": ""
+  },
+  {
+   "name": "Encoder rate",
+   "default": "1/2",
+   "values": "Rate of encoder 1/2 (default) | range from 1/2 to 1/7",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector source",
+   "default": "port",
+   "values": "Source of puncture vector Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "[1;1;1;0;0;1]",
+   "values": "Location of data to be punctured [1;1;1;0;0;1] (default) | column vector of binary values",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "key": "slrealtimeenablelogging",
+ "title": "Enable File Log",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Logging/Enable_File_Log.md"
+ ],
+ "text": "Enable or disable file logging of signals on target computer, 1 input.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "Enable or disable file logging boolean"
+  }
+ ],
+ "params": []
+}

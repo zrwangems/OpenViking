@@ -1,0 +1,42 @@
+{
+ "key": "Pseudoinverse",
+ "title": "Pseudoinverse",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Inverses/Pseudoinverse.md"
+ ],
+ "text": "Compute Moore-Penrose pseudoinverse of matrix, 1 input, 2 outputs, no direct feedthrough; {Show error status port (E)} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Input vector | matrix"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "Pseudoinverse output vector | matrix"
+  },
+  {
+   "name": "E",
+   "direction": "output",
+   "summary": "Error status 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show error status port (E)",
+   "default": "off",
+   "values": "Show error status port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Four-Quadrant Chopper",
+ "title": "Four-Quadrant Chopper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Four_Quadrant_Chopper.md"
+ ],
+ "text": "Controller-driven four quadrant DC-DC chopper.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

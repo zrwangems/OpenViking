@@ -1,0 +1,119 @@
+{
+ "key": "Optical Flow",
+ "title": "Optical Flow",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Optical_Flow.md"
+ ],
+ "text": "Estimate object velocities, 2 inputs, 2 outputs, {Stop iterative solution} sets Stop iterative solution When maximum number of iterations is; {Method} sets the optical flow calculation method, {Compute optical flow between} sets the compute optical flow Current frame and N-th frame, {N}, {Smoothness factor}, {Maximum number of iterations}, {Velocity output} sets the optical flow output, {Temporal gradient filter} sets the filter used for temporal gradient Difference filter, {Number of input frames to buffer}, {Standard deviation for image smoothing filter}, {Standard deviation for gradient smoothing filter}, {Discard normal flow estimates when constraint equation is ill-conditioned}, {Output image corresponding to motion vectors (accounts for block delay)} and {Threshold for noise reduction}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I/I1",
+   "direction": "input",
+   "summary": "Image or video frame scalar | vector | matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "Image scalar | vector | matrix"
+  },
+  {
+   "name": "|V|^2",
+   "direction": "output",
+   "summary": "Velocity magnitudes scalar | vector | matrix"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "Velocity components in complex form scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Horn-Schunck",
+   "values": "Optical flow calculation method Horn-Schunck (default) | Lucas-Kanade",
+   "group": ""
+  },
+  {
+   "name": "Compute optical flow between",
+   "default": "back",
+   "values": "Compute optical flow Current frame and N-th frame back (default) | Two images",
+   "group": ""
+  },
+  {
+   "name": "N",
+   "default": "1",
+   "values": "Number of frames 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Smoothness factor",
+   "default": "1",
+   "values": "Smoothness factor 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stop iterative solution",
+   "default": "reached",
+   "values": "Stop iterative solution When maximum number of iterations is reached (default) | When velocity difference falls below threshold | Whichever comes first",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of iterations",
+   "default": "10",
+   "values": "Maximum number of iterations 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Velocity output",
+   "default": "Magnitude-squared",
+   "values": "Optical flow output Magnitude-squared (default) | Horizontal and vertical components in complex form",
+   "group": ""
+  },
+  {
+   "name": "Temporal gradient filter",
+   "default": "1]",
+   "values": "Filter used for temporal gradient Difference filter [-1 1] (default) | Derivative of Gaussian",
+   "group": ""
+  },
+  {
+   "name": "Number of input frames to buffer",
+   "default": "3",
+   "values": "Number of input frames to buffer for smoothing 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation for image smoothing filter",
+   "default": "1.5",
+   "values": "Standard deviation for image smoothing filter 1.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Standard deviation for gradient smoothing filter",
+   "default": "1",
+   "values": "Standard deviation for gradient smoothing filter 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discard normal flow estimates when constraint equation is ill-conditioned",
+   "default": "off",
+   "values": "Discard normal flow estimates off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output image corresponding to motion vectors (accounts for block delay)",
+   "default": "off",
+   "values": "Output image corresponding to motion vectors off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Threshold for noise reduction",
+   "default": "0.0039",
+   "values": "Threshold for noise reduction 0.0039 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

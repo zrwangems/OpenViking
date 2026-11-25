@@ -1,0 +1,181 @@
+{
+ "key": "Linear Equalizer",
+ "title": "Linear Equalizer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Equalizers/Linear_Equalizer.md"
+ ],
+ "text": "Equalize modulated signals using linear filtering, 5 inputs, 3 outputs, {Adaptive algorithm} sets Adaptive algorithm; {Number of taps} sets the number of equalizer taps, {Signal constellation}, {Number of input samples per symbol}, {Step size}, {Forgetting factor}, {Initial inverse correlation matrix}, {Reference tap}, {Input signal delay (samples)}, {Source of adapt weights flag} sets the source of adapt tap weights request, {Adapt tap weights}, {Initial tap weights source} sets the source for initial tap weights, {Initial weights} sets the initial tap weights, {Tap weight update period (symbols)}, {Enable training control input}, {Update tap weights when not training}, {Enable reset input}, {Info} sets the linear equalizer information, {Output error signal} enables error signal output, {Output taps weights} enables tap weights output and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input signal column vector"
+  },
+  {
+   "name": "Desired",
+   "direction": "input",
+   "summary": "Training symbols column vector"
+  },
+  {
+   "name": "Train",
+   "direction": "input",
+   "summary": "Train equalizer flag 1 | 0"
+  },
+  {
+   "name": "Update",
+   "direction": "input",
+   "summary": "Update tap weights flag 1 | 0"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Reset equalizer flag 1 | 0"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Equalized symbols column vector"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "Error signal column vector"
+  },
+  {
+   "name": "w",
+   "direction": "output",
+   "summary": "Tap weights column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of taps",
+   "default": "5",
+   "values": "Number of equalizer taps 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Signal constellation",
+   "default": "pskmod(0:3,4,pi/4)",
+   "values": "Signal constellation pskmod(0:3,4,pi/4) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of input samples per symbol",
+   "default": "1",
+   "values": "Number of input samples per symbol 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Adaptive algorithm",
+   "default": "LMS",
+   "values": "Adaptive algorithm LMS (default) | RLS | CMA",
+   "group": ""
+  },
+  {
+   "name": "Step size",
+   "default": "0.01",
+   "values": "Step size 0.01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.99",
+   "values": "Forgetting factor 0.99 (default) | scalar in the range (0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Initial inverse correlation matrix",
+   "default": "0.1",
+   "values": "Initial inverse correlation matrix 0.1 (default) | scalar | matrix",
+   "group": ""
+  },
+  {
+   "name": "Reference tap",
+   "default": "3",
+   "values": "Reference tap 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Input signal delay (samples)",
+   "default": "0",
+   "values": "Input signal delay 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Source of adapt weights flag",
+   "default": "Property",
+   "values": "Source of adapt tap weights request Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Adapt tap weights",
+   "default": "on",
+   "values": "Adapt tap weights on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Initial tap weights source",
+   "default": "Auto",
+   "values": "Source for initial tap weights Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Initial weights",
+   "default": "[0;0;1;0;0]",
+   "values": "Initial tap weights 0 or [0;0;1;0;0] (default) | scalar | column vector",
+   "group": ""
+  },
+  {
+   "name": "Tap weight update period (symbols)",
+   "default": "1",
+   "values": "Tap weight update period 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable training control input",
+   "default": "off",
+   "values": "Enable training control input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Update tap weights when not training",
+   "default": "on",
+   "values": "Update tap weights when not training on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable reset input",
+   "default": "off",
+   "values": "Enable reset input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Info",
+   "default": "",
+   "values": "Linear equalizer information button",
+   "group": ""
+  },
+  {
+   "name": "Output error signal",
+   "default": "off",
+   "values": "Enable error signal output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output taps weights",
+   "default": "off",
+   "values": "Enable tap weights output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "key": "Short-Time FFT",
+ "title": "Short-Time FFT",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Short_Time_FFT.md"
+ ],
+ "text": "Nonparametric estimate of spectrum using short-time fast Fourier transform (STFT) method, 2 inputs, 1 output, no direct feedthrough; {Analysis window length} sets the length of analysis window, {Overlap between consecutive windows (in samples)} sets the overlap length and {FFT length}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x[n]",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "w[n]",
+   "direction": "input",
+   "summary": "Analysis window vector vector"
+  },
+  {
+   "name": "X[nL,k]",
+   "direction": "output",
+   "summary": "Short-time FFT output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Analysis window length",
+   "default": "512",
+   "values": "Length of analysis window 512 (default) | positive integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Overlap between consecutive windows (in samples)",
+   "default": "384",
+   "values": "Overlap length 384 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "FFT length 1024 (default) | positive integer greater than or equal to 2",
+   "group": ""
+  }
+ ]
+}

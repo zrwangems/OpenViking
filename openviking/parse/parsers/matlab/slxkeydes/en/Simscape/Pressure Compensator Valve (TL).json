@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Compensator Valve (TL)",
+ "title": "Pressure Compensator Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Pressure Control Valves/Pressure_Compensator_Valve_TL.md"
+ ],
+ "text": "Pressure compensator valve in thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

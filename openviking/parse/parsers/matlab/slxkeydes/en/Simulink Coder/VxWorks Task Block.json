@@ -1,0 +1,61 @@
+{
+ "key": "VxWorks Task Block",
+ "title": "Task Sync",
+ "toolbox": "Simulink Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Coder/Asynchronous/Interrupt Templates/Task_Sync.md"
+ ],
+ "text": "Run code of downstream function-call subsystem or Stateflow chart by spawning an example RTOS ( VxWorks ) task, 1 input, {Timer size} sets Number of bits to store clock tick; {Task name (10 characters or less)} sets the task function name, {Simulink task priority (0–255)} sets the rTOS task priority, {Stack size (bytes)} sets the maximum size for stack of the task, {Synchronize the data transfer of this task with the caller task} selects synchronization and {Timer resolution (seconds)} sets the resolution for timer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Call from interrupt block call"
+  },
+  {
+   "name": "Output",
+   "direction": "unknown",
+   "summary": "Call to function-call subsystem call"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task name (10 characters or less)",
+   "default": "Task0",
+   "values": "Task function name Task0 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Simulink task priority (0–255)",
+   "default": "50",
+   "values": "RTOS task priority 50 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Stack size (bytes)",
+   "default": "1024",
+   "values": "Maximum size for stack of the task 1024 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Synchronize the data transfer of this task with the caller task",
+   "default": "off",
+   "values": "Select synchronization off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Timer resolution (seconds)",
+   "default": "1/60",
+   "values": "Resolution for timer of the block 1/60 (default)",
+   "group": ""
+  },
+  {
+   "name": "Timer size",
+   "default": "32bits",
+   "values": "Number of bits to store clock tick 32bits (default) | 16bits | 8bits | auto",
+   "group": ""
+  }
+ ]
+}

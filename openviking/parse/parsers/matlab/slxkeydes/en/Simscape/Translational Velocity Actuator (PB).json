@@ -1,0 +1,13 @@
+{
+ "key": "Translational Velocity Actuator (PB)",
+ "title": "Translational Velocity Actuator (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/Translational_Velocity_Actuator_PB.md"
+ ],
+ "text": "Ideal velocity actuator, with length, that maintains velocity proportional to the input signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

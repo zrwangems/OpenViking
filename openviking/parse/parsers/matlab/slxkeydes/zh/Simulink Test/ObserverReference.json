@@ -1,0 +1,20 @@
+{
+ "key": "ObserverReference",
+ "title": "Observer",
+ "toolbox": "Simulink Test",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink Test/Observer.md"
+ ],
+ "text": "创建并包含 Observer 模型；{Observer 模型名称} 指定 Observer 模型的文件名，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Observer 模型名称",
+   "default": "’’",
+   "values": "Observer 模型的文件名 ’’ (默认) | 字符向量",
+   "group": ""
+  }
+ ]
+}

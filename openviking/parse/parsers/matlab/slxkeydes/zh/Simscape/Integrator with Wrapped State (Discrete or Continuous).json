@@ -1,0 +1,49 @@
+{
+ "key": "Integrator with Wrapped State (Discrete or Continuous)",
+ "title": "Integrator with Wrapped State (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Integrator_with_Wrapped_State_Discrete_or_Continuous.md"
+ ],
+ "text": "具有环绕状态的离散时间或连续时间积分器，输入 1 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Wrapped state upper limit} 指定状态上限 2*pi、{Wrapped state lower limit} 指定状态下限、{Initial condition} 指定状态初始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "积分器输入 vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "积分器输出 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Wrapped state upper limit",
+   "default": "2*pi",
+   "values": "状态上限 2*pi (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Wrapped state lower limit",
+   "default": "0",
+   "values": "状态下限 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "状态初始值 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

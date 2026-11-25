@@ -1,0 +1,37 @@
+{
+ "key": "audio.simulink.AudioDelta",
+ "title": "Audio Delta",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/Audio_Delta.md"
+ ],
+ "text": "Compute delta features, 1 input, 1 output, no direct feedthrough; {Delta window length} sets the window length over which to calculate and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Audio features scalar | vector | matrix | 3-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Delta of audio features scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delta window length",
+   "default": "9",
+   "values": "Window length over which to calculate delta 9 (default) | odd integer greater than 2",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "key": "DualModulusPrescaler",
+ "title": "Dual Modulus Prescaler",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Dual_Modulus_Prescaler.md"
+ ],
+ "text": "具有两个分频比的整数时钟分频器，输入 1 路、输出 1 路；{Program counter value, P} 指定程序计数器的最大值、{Prescaler divider value, N} 指定预分频器分频值、{Swallow counter value, S} 指定吞脉冲计数器的最大值、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk in",
+   "direction": "input",
+   "summary": "输入时钟频率 scalar"
+  },
+  {
+   "name": "clk out",
+   "direction": "output",
+   "summary": "输出时钟频率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Program counter value, P",
+   "default": "12",
+   "values": "程序计数器的最大值 12 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Prescaler divider value, N",
+   "default": "4",
+   "values": "预分频器分频值 4 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Swallow counter value, S",
+   "default": "2",
+   "values": "吞脉冲计数器的最大值 2 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "1",
+   "values": "仿真期间可用的输入缓冲样本数 1 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

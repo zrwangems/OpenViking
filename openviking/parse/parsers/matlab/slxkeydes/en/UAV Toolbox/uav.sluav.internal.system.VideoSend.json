@@ -1,0 +1,77 @@
+{
+ "key": "uav.sluav.internal.system.VideoSend",
+ "title": "Video Send",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Simulation 3D/Video_Send.md"
+ ],
+ "text": "Send video stream to remote hardware, 4 inputs, {Format} sets Input video stream signal format; {Image signal} sets the nature of the RGB image input signal One multidimensional, {Compression}, {Quality}, {Max frame time (ms)} sets the maximum time per frame, {Remote address} sets the remote IP address 127.0.0.1 and {Remote port} sets the remote IP port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "RGB or grayscale image signal to stream M -by- N -by- 3 matrix | M -by- N matrix"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Red channel signal of the RGB image to stream M -by- N matrix."
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Green channel signal of the RGB image to stream M -by- N matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Blue channel signal of the RGB image to stream M -by- N matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Format",
+   "default": "RGB",
+   "values": "Input video stream signal format RGB (default) | Grayscale | Grayscale (16-bit)",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Nature of the RGB image input signal One multidimensional signal (default) | Separate color signals",
+   "group": ""
+  },
+  {
+   "name": "Compression",
+   "default": "JPEG",
+   "values": "Compression format for the video stream JPEG (default) | VP8 | VP9",
+   "group": ""
+  },
+  {
+   "name": "Quality",
+   "default": "85",
+   "values": "Quality of the video stream 85 (default) | 0 - 100",
+   "group": ""
+  },
+  {
+   "name": "Max frame time (ms)",
+   "default": "30",
+   "values": "Maximum time per frame 30 (default) | non-negative integer",
+   "group": ""
+  },
+  {
+   "name": "Remote address",
+   "default": "127.0.0.1",
+   "values": "Remote IP address 127.0.0.1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Remote port",
+   "default": "5004",
+   "values": "Remote IP port 5004 (default) | 0-65535",
+   "group": ""
+  }
+ ]
+}

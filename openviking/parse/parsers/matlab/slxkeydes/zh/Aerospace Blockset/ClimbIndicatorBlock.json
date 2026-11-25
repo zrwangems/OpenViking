@@ -1,0 +1,32 @@
+{
+ "key": "ClimbIndicatorBlock",
+ "title": "Climb Rate Indicator",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Instruments/Climb_Rate_Indicator.md"
+ ],
+ "text": "显示飞机爬升率的测量值；按 {Label} 指定模块标签位置；{Connection} 指定连接到信号 signal name、{Maximum} 指定最大刻度标记值，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "连接到信号 signal name",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "4000",
+   "values": "最大刻度标记值 4000 (default) | finite | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "模块标签位置 Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

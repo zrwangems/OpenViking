@@ -1,0 +1,178 @@
+{
+ "key": "Rotational Brake",
+ "title": "Disc Brake",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Brakes/Disc_Brake.md",
+  "Vehicle Dynamics Blockset/Brakes/Drum_Brake.md",
+  "Vehicle Dynamics Blockset/Brakes/External_Torque_Brake.md",
+  "Vehicle Dynamics Blockset/Brakes/Mapped_Brake.md"
+ ],
+ "text": "具有盘式、鼓式、映射或外部转矩模式的旋转制动器，输入 5 路、输出 3 路；按 {Brake pad mean radius, Rm} 指定半径；{Brake type}、{Rotation type}、{Output Info bus} 输出 Info 总线、{Wheel inertia, Iyy} 指定车轮惯量 scalar、{Axle viscous damping coefficient, br} 指定车轴粘性阻尼系数 scalar、{Wheel initial angular velocity, omegao} 指定车轮初始角速度 scalar、{Static friction coefficient, mu_static} 指定静摩擦系数、{Kinetic friction coefficient, mu_kinetic} 指定动摩擦、{Disc brake actuator bore, disc_abore} 指定缸径距离、{Number of brake pads, num_pads} 指定制动片数量、{Drum brake actuator bore, drum_abore} 指定缸径距离、{Shoe pin to drum center distance, drum_a} 指定制动蹄销到制动鼓中心的距离、{Shoe pin center to force application point distance, drum_c} 指定制动蹄销中心到力作用点的距离、{Drum internal radius, drum_r} 指定制动鼓内半径、{Shoe pin to pad start angle, drum_theta1} 指定制动蹄销到制动片起始角度、{Shoe pin to pad end angle, drum_theta2} 指定制动蹄销到制动片终止角度、{Brake actuator pressure breakpoints, brake_p_bpt} 指定制动器执行器压力断点 vector、{Wheel speed breakpoints, brake_n_bpt} 指定车轮速度断点 vector、{Brake torque map, f_brake_t} 指定制动扭矩查找表 array，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BrkPrs",
+   "direction": "input",
+   "summary": "制动压力 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Omega",
+   "direction": "input",
+   "summary": "车轮角速度 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "BrkTrqMax",
+   "direction": "input",
+   "summary": "最大制动转矩 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "AxlTrq",
+   "direction": "input",
+   "summary": "车轴扭矩 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "WhlTrq",
+   "direction": "input",
+   "summary": "车轮转矩 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "模块数据 bus"
+  },
+  {
+   "name": "Omega",
+   "direction": "output",
+   "summary": "车轮角速度 scalar | N -by- 1 vector"
+  },
+  {
+   "name": "BrkTrqMax",
+   "direction": "output",
+   "summary": "最大制动转矩 scalar | N -by- 1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Brake type",
+   "default": "",
+   "values": "Brake type Disc | Drum | Mapped | External torque",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Rotation type",
+   "default": "inertia",
+   "values": "Rotation type Rotational inertia (default) | No inertia",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Output Info bus",
+   "default": "off",
+   "values": "输出 Info 总线的选项 off (default) | on",
+   "group": "Tire Options"
+  },
+  {
+   "name": "Wheel inertia, Iyy",
+   "default": "",
+   "values": "车轮惯量 scalar | N -by- 1 vector",
+   "group": "Wheel and Tire Parameters"
+  },
+  {
+   "name": "Axle viscous damping coefficient, br",
+   "default": "",
+   "values": "车轴粘性阻尼系数 scalar | N -by- 1 vector",
+   "group": "Wheel and Tire Parameters"
+  },
+  {
+   "name": "Wheel initial angular velocity, omegao",
+   "default": "",
+   "values": "车轮初始角速度 scalar | N -by- 1 vector",
+   "group": "Wheel and Tire Parameters"
+  },
+  {
+   "name": "Static friction coefficient, mu_static",
+   "default": "0.3",
+   "values": "静摩擦系数 0.3 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Kinetic friction coefficient, mu_kinetic",
+   "default": "0.2",
+   "values": "动摩擦 0.2 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Disc brake actuator bore, disc_abore",
+   "default": "0.05",
+   "values": "缸径距离 0.05 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake pad mean radius, Rm",
+   "default": "0.177",
+   "values": "半径 0.177 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Number of brake pads, num_pads",
+   "default": "2",
+   "values": "制动片数量 2 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum brake actuator bore, drum_abore",
+   "default": "0.0508",
+   "values": "缸径距离 0.0508 (default) | scalar | N -by- 1 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to drum center distance, drum_a",
+   "default": "0.123",
+   "values": "制动蹄销到制动鼓中心的距离 0.123 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin center to force application point distance, drum_c",
+   "default": "0.212",
+   "values": "制动蹄销中心到力作用点的距离 0.212 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum internal radius, drum_r",
+   "default": "0.15",
+   "values": "制动鼓内半径 0.15 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad start angle, drum_theta1",
+   "default": "0",
+   "values": "制动蹄销到制动片起始角度 0 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad end angle, drum_theta2",
+   "default": "126",
+   "values": "制动蹄销到制动片终止角度 126 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake actuator pressure breakpoints, brake_p_bpt",
+   "default": "",
+   "values": "制动器执行器压力断点 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Wheel speed breakpoints, brake_n_bpt",
+   "default": "",
+   "values": "车轮速度断点 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake torque map, f_brake_t",
+   "default": "",
+   "values": "制动扭矩查找表 array",
+   "group": "Brake"
+  }
+ ]
+}

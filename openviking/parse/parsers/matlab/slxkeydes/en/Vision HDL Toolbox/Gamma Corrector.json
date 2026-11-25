@@ -1,0 +1,59 @@
+{
+ "key": "Gamma Corrector",
+ "title": "Gamma Corrector",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Conversions/Gamma_Corrector.md"
+ ],
+ "text": "Apply or remove gamma correction of pixel stream, 2 inputs, 2 outputs; {Operation} sets the direction of pixel value, {Gamma} sets the target gamma value, {Linear segment} sets the include a linear segment in the gamma and {Break point} sets the point where gamma curve and linear segment. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Output pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "Gamma",
+   "values": "Direction of pixel value adjustment Gamma (default) | De-gamma",
+   "group": ""
+  },
+  {
+   "name": "Gamma",
+   "default": "2.2",
+   "values": "Target gamma value 2.2 (default) | scalar greater than or equal to 1",
+   "group": ""
+  },
+  {
+   "name": "Linear segment",
+   "default": "on",
+   "values": "Include a linear segment in the gamma curve on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Break point",
+   "default": "0.018",
+   "values": "Point where gamma curve and linear segment meet 0.018 (default) | scalar between 0 and 1",
+   "group": ""
+  }
+ ]
+}

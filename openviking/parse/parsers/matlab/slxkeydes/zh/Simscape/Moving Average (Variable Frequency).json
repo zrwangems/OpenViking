@@ -1,0 +1,60 @@
+{
+ "key": "Moving Average (Variable Frequency)",
+ "title": "Moving Average (Variable Frequency)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Moving_Average_Variable_Frequency.md"
+ ],
+ "text": "可变频率移动平均值计算，输入 2 路、输出 1 路；按 {Initial frequency (Hz)} 指定信号初始频率；{Minimum frequency (Hz)} 指定信号最小频率、{Initial value} 指定输入信号初始值、{Buffer size} 指定缓冲区大小、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "移动平均输入 scalar | vector"
+  },
+  {
+   "name": "f",
+   "direction": "input",
+   "summary": "频率，Hz scalar | vector"
+  },
+  {
+   "name": "Mean",
+   "direction": "output",
+   "summary": "移动平均输出 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "60",
+   "values": "信号初始频率 60 (default) | positive scalar | vector with positive values",
+   "group": ""
+  },
+  {
+   "name": "Minimum frequency (Hz)",
+   "default": "30",
+   "values": "信号最小频率 30 (default) | positive scalar | vector with positive values",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "输入信号初始值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "8192",
+   "values": "缓冲区大小 8192 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

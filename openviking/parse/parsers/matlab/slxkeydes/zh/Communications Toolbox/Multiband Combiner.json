@@ -1,0 +1,61 @@
+{
+ "key": "Multiband Combiner",
+ "title": "Multiband Combiner",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/Multiband_Combiner.md"
+ ],
+ "text": "频移并合并信号，输入 1 路、输出 1 路；按 {Frequency offsets (Hz)} 指定频率偏移 [0；{Input sample rate (Hz)} 指定输入信号采样率 1e6、{Rate options} 指定处理速率选项 Enforce single-rate、{Output sample rate options} 输出采样率、{Output sample rate (Hz)} 输出信号采样率 3e6、{Output delay (samples)} 输出延迟 Read-only，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 N samp -by- N chan matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 N out -by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "1e6",
+   "values": "输入信号采样率 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency offsets (Hz)",
+   "default": "1e6]",
+   "values": "频率偏移 [0 1e6] (default) | scalar | 1-by- N chan vector",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "处理速率选项 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate options",
+   "default": "Auto",
+   "values": "输出采样率选项 Auto (default) | Specify via property",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate (Hz)",
+   "default": "3e6",
+   "values": "输出信号采样率 3e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output delay (samples)",
+   "default": "36",
+   "values": "输出延迟 Read-only: 36 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

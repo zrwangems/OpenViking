@@ -1,0 +1,13 @@
+{
+ "key": "Counterbalance Valve (IL)",
+ "title": "Counterbalance Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Pressure Control Valves/Counterbalance_Valve_IL.md"
+ ],
+ "text": "High-pressure regulation valve in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

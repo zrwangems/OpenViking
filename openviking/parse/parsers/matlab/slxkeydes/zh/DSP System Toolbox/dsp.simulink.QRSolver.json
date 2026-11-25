@@ -1,0 +1,36 @@
+{
+ "key": "dsp.simulink.QRSolver",
+ "title": "QR Solver",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/QR_Solver.md"
+ ],
+ "text": "求 A X = B 的最小范数残差解，输入 2 路、输出 1 路、无直接馈通；{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "系统矩阵 vector | matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "系统方程的右侧矩阵 vector | matrix"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "最小范数残差解 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "key": "phased.RangeEstimator",
+ "title": "Range Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Range_Estimator.md"
+ ],
+ "text": "Range Estimator 模块估计从雷达响应数据中获得的目标检测的距离，输入 5 路、输出 2 路；{Maximum number of estimates} 指定要报告的最大估计数、{Enable cluster ID input} 启用聚类 ID 输入、{Output variance for parameter estimates} 启用输出方差端口、{Root-mean-square range resolution} 指定距离分辨率、{Source of noise power} 指定噪声功率值来源、{Noise power} 指定噪声功率值、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Resp",
+   "direction": "input",
+   "summary": "经过距离处理的响应数据立方体 complex-valued P -by-1 column vector | complex-valued M -by- P matrix | complex-valued M -by- N -by- P matrix"
+  },
+  {
+   "name": "Range",
+   "direction": "input",
+   "summary": "沿距离维的距离网格值 real-valued M -by-1 column vector"
+  },
+  {
+   "name": "DetIdx",
+   "direction": "input",
+   "summary": "检测索引 real-valued N d -by- Q matrix"
+  },
+  {
+   "name": "NoisePower",
+   "direction": "input",
+   "summary": "检测位置处的噪声功率 positive scalar | real-valued 1-by- Q row vector of positive values"
+  },
+  {
+   "name": "Clusters",
+   "direction": "input",
+   "summary": "聚类 ID real-valued 1-by- Q row vector of positive values"
+  },
+  {
+   "name": "Est",
+   "direction": "output",
+   "summary": "距离估计值 real-valued K -by-1 column vector"
+  },
+  {
+   "name": "Var",
+   "direction": "output",
+   "summary": "距离估计方差 positive, real-valued K -by-1 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum number of estimates",
+   "default": "1",
+   "values": "要报告的最大估计数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable cluster ID input",
+   "default": "off",
+   "values": "启用聚类 ID 输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output variance for parameter estimates",
+   "default": "off",
+   "values": "启用输出方差端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Root-mean-square range resolution",
+   "default": "2",
+   "values": "距离分辨率 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Source of noise power",
+   "default": "Property",
+   "values": "噪声功率值来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise power",
+   "default": "1.0",
+   "values": "噪声功率值 1.0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

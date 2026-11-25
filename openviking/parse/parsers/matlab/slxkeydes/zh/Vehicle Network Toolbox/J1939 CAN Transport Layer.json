@@ -1,0 +1,39 @@
+{
+ "key": "J1939 CAN Transport Layer",
+ "title": "J1939 CAN Transport Layer",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/J1939 Communication/J1939_CAN_Transport_Layer.md",
+  "Simulink Real-Time/J1939/J1939_CAN_Transport_Layer.md"
+ ],
+ "text": "通过 CAN 传输 J1939 报文；{配置名称}、{设备}、{总线速度} 指定 CAN 总线的速度、{采样时间} 指定仿真刷新率，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "配置名称",
+   "default": "",
+   "values": "J1939 网络配置名称 配置列表选项",
+   "group": ""
+  },
+  {
+   "name": "设备",
+   "default": "",
+   "values": "CAN 设备 设备列表选项",
+   "group": ""
+  },
+  {
+   "name": "总线速度",
+   "default": "250000",
+   "values": "CAN 总线的速度 250000 (默认) | 500000",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.01",
+   "values": "仿真刷新率 0.01 (默认) | 数值",
+   "group": ""
+  }
+ ]
+}

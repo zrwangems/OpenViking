@@ -1,0 +1,44 @@
+{
+ "key": "IP Core Register Read",
+ "title": "IP Core Register Read",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/IP_Core_Register_Read.md"
+ ],
+ "text": "Model register writes from software to hardware, 1 output, {Output data type} sets Data type of output data; {Register name} sets the name of register, {Output vector size} sets the vector size of output data and {Sample time} sets the simulation interval of sampling. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Data output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Register name",
+   "default": "RegA",
+   "values": "Name of register RegA (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "uint16",
+   "values": "Data type of output data uint16 (default) | single | int8 | uint8 | int16 | int32 | uint32 | boolean | fixed point data type",
+   "group": ""
+  },
+  {
+   "name": "Output vector size",
+   "default": "1",
+   "values": "Vector size of output data 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Simulation interval of sampling -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

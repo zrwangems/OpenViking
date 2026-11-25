@@ -1,0 +1,49 @@
+{
+ "key": "LinearSecondOrderActuator",
+ "title": "Linear Second-Order Actuator",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Actuators/Linear_Second_Order_Actuator.md"
+ ],
+ "text": "Implement second-order linear actuator, 1 input, 1 output; {Natural frequency}, {Damping ratio}, {Initial position} and {Initial velocity}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A demand",
+   "direction": "input",
+   "summary": "Demanded actuator position scalar | array"
+  },
+  {
+   "name": "A actual",
+   "direction": "output",
+   "summary": "Actual actuator position scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Natural frequency",
+   "default": "1",
+   "values": "Natural frequency 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Damping ratio",
+   "default": "0.3",
+   "values": "Damping ratio 0.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial position",
+   "default": "0",
+   "values": "Initial position 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity",
+   "default": "0",
+   "values": "Initial velocity 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

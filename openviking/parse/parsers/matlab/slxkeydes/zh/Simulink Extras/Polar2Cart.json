@@ -1,0 +1,34 @@
+{
+ "key": "Polar2Cart",
+ "title": "Polar to Cartesian",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Transformations/Polar_to_Cartesian.md"
+ ],
+ "text": "将极坐标转换为笛卡尔坐标，输入 2 路、输出 2 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "r 极坐标输入 scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "theta 极坐标输入 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "x 坐标输出 scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "y 笛卡尔坐标输出 scalar"
+  }
+ ],
+ "params": []
+}

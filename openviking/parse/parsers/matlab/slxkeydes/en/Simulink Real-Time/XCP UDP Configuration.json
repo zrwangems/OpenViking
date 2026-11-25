@@ -1,0 +1,81 @@
+{
+ "key": "XCP UDP Configuration",
+ "title": "XCP UDP Configuration",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/UDP/XCP_UDP_Configuration.md",
+  "Vehicle Network Toolbox/XCP Communication/UDP/XCP_UDP_Configuration.md"
+ ],
+ "text": "Configure XCP UDP server connection, {Error detection scheme} sets Select CTR error detection scheme One counter for all CTOs and; {Config name} sets the xCP UDP session name, {A2L File} selects an A2L file, {Enable seed/key security} selects that key required to establish, {File (*.DLL)} selects file for seed and key security file, {User-defined connect mode} allows special connect mode, {Output connection status} displays connection status, {Disable CTR error detection}, {Sample time}, {Local IP Address} sets the client IP address x.x.x.x and {Local Port} sets the client IP port 1–65535. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "’UDP_Config1’",
+   "values": "Specify XCP UDP session name ’UDP_Config1’ (default)",
+   "group": ""
+  },
+  {
+   "name": "A2L File",
+   "default": "",
+   "values": "Select an A2L file file name",
+   "group": ""
+  },
+  {
+   "name": "Enable seed/key security",
+   "default": "off",
+   "values": "Select that key required to establish connection off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "File (*.DLL)",
+   "default": "",
+   "values": "Select file for seed and key security file name",
+   "group": ""
+  },
+  {
+   "name": "User-defined connect mode",
+   "default": "off",
+   "values": "Allow special connect mode off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output connection status",
+   "default": "off",
+   "values": "Display connection status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Disable CTR error detection",
+   "default": "on",
+   "values": "Disable CTR error detection scheme on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Error detection scheme",
+   "default": "DTOs",
+   "values": "Select CTR error detection scheme One counter for all CTOs and DTOs (default) | Separate counters for (RES,ERR,EV,SERV) and (DAQ) | Separate counters for (RES,ERR), (EV,SERV) and (DAQ)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Local IP Address",
+   "default": "",
+   "values": "Client IP address x.x.x.x",
+   "group": ""
+  },
+  {
+   "name": "Local Port",
+   "default": "",
+   "values": "Client IP port 1–65535",
+   "group": ""
+  }
+ ]
+}

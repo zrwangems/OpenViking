@@ -1,0 +1,13 @@
+{
+ "key": "Flow Resistance (G)",
+ "title": "Flow Resistance (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Flow_Resistance_G.md"
+ ],
+ "text": "General resistance in a gas branch.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,161 @@
+{
+ "key": "phased.internal.SimulinkTransmitter",
+ "title": "Transmitter",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Transmitters and Receivers/Transmitter.md"
+ ],
+ "text": "Amplify and transmit signal, 1 input, 3 outputs, {Output IP3 (dBm)} sets Output IP3; {Peak power (W)}, {Gain method}, {Gain (dB)} sets the linear transmitter gain, {Lookup table}, {Loss factor (dB)} sets the transmit loss factor, {Enable transmitter status output}, {Preserve coherence among pulses}, {Enable pulse phase noise output}, {Simulate using} sets the block simulation method Interpreted, {Add noise to input signal}, {Input noise temperature (K)}, {Noise method}, {Noise figure (dB)}, {Noise factor}, {Reference temperature (K)}, {Sample rate (Hz)} sets the sample rate 1e6, {Inherit sample rate}, {Phased offset (degrees)} sets the phase offset, {Source of seed for random number generator} and {Seed for random number generator}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "Input waveform complex-valued matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Transmitted waveform complex-valued matrix"
+  },
+  {
+   "name": "TR",
+   "direction": "output",
+   "summary": "Transmitter on-off status 0 | 1"
+  },
+  {
+   "name": "Ph",
+   "direction": "output",
+   "summary": "Phase noise scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Peak power (W)",
+   "default": "5000",
+   "values": "Peak power 5000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Gain method",
+   "default": "Linear",
+   "values": "Gain method Linear (default) | Cubic polynomial | Lookup table",
+   "group": ""
+  },
+  {
+   "name": "Gain (dB)",
+   "default": "20",
+   "values": "Linear transmitter gain 20 (default) | real scalar | length- N vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Output IP3 (dBm)",
+   "default": "Inf",
+   "values": "Output IP3 Inf (default) | scalar | length- N vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Lookup table",
+   "default": "12]",
+   "values": "Lookup table [-25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12] (default) | M -by- N real-valued matrix | M -by- N real-valued matrix",
+   "group": ""
+  },
+  {
+   "name": "Loss factor (dB)",
+   "default": "0",
+   "values": "Transmit loss factor 0 (default) | nonnegative scalar | length- N vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Enable transmitter status output",
+   "default": "off",
+   "values": "Enable transmitter status output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Preserve coherence among pulses",
+   "default": "on",
+   "values": "Preserve coherence among pulses on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable pulse phase noise output",
+   "default": "off",
+   "values": "Enable pulse phase noise output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Add noise to input signal",
+   "default": "off",
+   "values": "Add noise to input signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input noise temperature (K)",
+   "default": "290",
+   "values": "Input noise temperature 290 (default) | positive scalar | length- N vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Noise method",
+   "default": "",
+   "values": "Noise method None | Noise figure | Noise factor | Noise temperature",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "3",
+   "values": "Noise figure 3 (default) | real scalar | length- N vector or real values",
+   "group": ""
+  },
+  {
+   "name": "Noise factor",
+   "default": "2",
+   "values": "Noise factor 2 (default) | positive scalar | length- N vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Reference temperature (K)",
+   "default": "290",
+   "values": "Reference temperature 290 (default) | positive scalar | length- N vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sample rate 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Phased offset (degrees)",
+   "default": "0",
+   "values": "Phase offset 0 (default) | scalar | length- N vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Source of seed for random number generator",
+   "default": "Auto",
+   "values": "Source of seed for random number generator Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Seed for random number generator",
+   "default": "0",
+   "values": "Seed for random number generator 0 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

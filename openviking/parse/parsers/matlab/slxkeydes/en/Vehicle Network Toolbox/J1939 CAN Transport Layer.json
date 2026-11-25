@@ -1,0 +1,39 @@
+{
+ "key": "J1939 CAN Transport Layer",
+ "title": "J1939 CAN Transport Layer",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/J1939 Communication/J1939_CAN_Transport_Layer.md",
+  "Simulink Real-Time/J1939/J1939_CAN_Transport_Layer.md"
+ ],
+ "text": "Transport J1939 messages via CAN; {Config name} sets the j1939 network configuration name configuration list, {Device} sets the cAN device device, {Bus speed} sets the speed of CAN bus and {Sample time} sets the simulation refresh rate. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "",
+   "values": "J1939 network configuration name configuration list option",
+   "group": ""
+  },
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN device device list option",
+   "group": ""
+  },
+  {
+   "name": "Bus speed",
+   "default": "250000",
+   "values": "Speed of CAN bus 250000 (default) | 500000",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Simulation refresh rate 0.01 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

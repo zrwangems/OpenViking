@@ -1,0 +1,129 @@
+{
+ "key": "To Multimedia File",
+ "title": "To Multimedia File",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sinks/To_Multimedia_File.md",
+  "DSP System Toolbox/Sinks/To_Multimedia_File.md",
+  "Computer Vision Toolbox/Sinks/To_Multimedia_File.md"
+ ],
+ "text": "Stream video frames and audio samples to multimedia file, 8 inputs, no direct feedthrough, {Audio data type} sets Audio data type 16-bit; {File name}, {File type}, {Write} sets the type of multimedia, {Audio Quality (0-100)} sets the quality of audio file, {Audio Bit Rate (kb/s)} sets the audio compressor, {Audio compressor}, {Video compressor}, {Compression Factor (>1)} sets the compression factor greater), {File color format}, {Image signal} and {Video Quality (0-100)} sets the quality of video. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Color image or video frame array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Red color component of image or video frame matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Green color component of image or video frame matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Blue color component of image or video frame matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "Luma component of image or video frame matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "input",
+   "summary": "Blue-difference chrominance component of image or video frame matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "input",
+   "summary": "Red-difference chrominance component of image or video frame matrix"
+  },
+  {
+   "name": "Audio",
+   "direction": "input",
+   "summary": "Audio signal vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "output.wav",
+   "values": "File name output.wav (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "File type",
+   "default": "WAV",
+   "values": "File type of multimedia file WAV (default) | AVI MJ2000 | WMA | WMV | MPEG4 | FLAC | MP3 | OGG | OPUS",
+   "group": ""
+  },
+  {
+   "name": "Write",
+   "default": "only",
+   "values": "Type of multimedia Audio only (default) | Video and audio | Video only",
+   "group": ""
+  },
+  {
+   "name": "Audio Quality (0-100)",
+   "default": "75",
+   "values": "Quality of audio file 75 (default) | integer in range [0 100]",
+   "group": ""
+  },
+  {
+   "name": "Audio Bit Rate (kb/s)",
+   "default": "128",
+   "values": "Audio compressor 128 (default) | 64 | 96 | 160 | 192 | 256 | 320",
+   "group": ""
+  },
+  {
+   "name": "Audio compressor",
+   "default": "(uncompressed)",
+   "values": "Audio compressor None (uncompressed) (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Audio data type",
+   "default": "integer",
+   "values": "Audio data type 16-bit integer (default) | Determine from input data type | 8-bit integer | 24-bit integer | 32-bit integer | 32-bit float | 64-bit float",
+   "group": ""
+  },
+  {
+   "name": "Video compressor",
+   "default": "(uncompressed)",
+   "values": "Video compressor None (uncompressed) (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Compression Factor (>1)",
+   "default": "10",
+   "values": "Compression factor greater than 1) 10 (default) | integer > 1",
+   "group": ""
+  },
+  {
+   "name": "File color format",
+   "default": "RGB",
+   "values": "File color format RGB (default) | YCbCr 4:2:2",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signals",
+   "values": "Image signal Separate color signals (default) | One multidimensional signal",
+   "group": ""
+  },
+  {
+   "name": "Video Quality (0-100)",
+   "default": "75",
+   "values": "Quality of video 75 (default) | integer in range [0 100]",
+   "group": ""
+  }
+ ]
+}

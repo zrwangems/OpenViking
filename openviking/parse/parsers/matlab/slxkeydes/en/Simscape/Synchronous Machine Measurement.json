@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Machine Measurement",
+ "title": "Synchronous Machine Measurement",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Synchronous_Machine_Measurement.md"
+ ],
+ "text": "Per-unit measurement from synchronous machine.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,79 @@
+{
+ "key": "weightingFilter",
+ "title": "Weighting Filter",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Weighting_Filter.md"
+ ],
+ "text": "加权频率响应滤波器，输入 1 路、输出 1 路、无直接馈通；按 {Weighting method} 指定频率加权类型；{Inherit sample rate from input} 指定输入采样率的来源、{Input sample rate (Hz)} 指定输入的采样率、{Simulate using} 指定要运行的仿真类型 Code、{Mask for attenuation limits} 指定创建用于滤波器响应可视化的封装 No、{Visualize filter response} 打开绘图以可视化幅值响应和符合性掩模、{Variable name} 指定导出滤波器的变量名、{Overwrite variable if it already exists} 指定如果变量已存在则覆盖、{Export filter to workspace} 指定将滤波器导出到工作区，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 matrix | 1-D vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Weighting method",
+   "default": "A-weighting",
+   "values": "频率加权类型 A-weighting (default) | C-weighting | K-weighting",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "指定输入采样率的来源 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "指定要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  },
+  {
+   "name": "Mask for attenuation limits",
+   "default": "mask",
+   "values": "创建用于滤波器响应可视化的封装 No mask (default) | Class 1 | Class 2",
+   "group": ""
+  },
+  {
+   "name": "Visualize filter response",
+   "default": "",
+   "values": "打开绘图以可视化幅值响应和符合性掩模 button",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "myFilt",
+   "values": "导出滤波器的变量名 myFilt (default) | valid variable name",
+   "group": ""
+  },
+  {
+   "name": "Overwrite variable if it already exists",
+   "default": "on",
+   "values": "如果变量已存在则覆盖 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Export filter to workspace",
+   "default": "",
+   "values": "将滤波器导出到工作区 button",
+   "group": ""
+  }
+ ]
+}

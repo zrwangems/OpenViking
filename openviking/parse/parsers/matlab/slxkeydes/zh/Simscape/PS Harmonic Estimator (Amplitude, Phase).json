@@ -1,0 +1,13 @@
+{
+ "key": "PS Harmonic Estimator (Amplitude, Phase)",
+ "title": "PS Harmonic Estimator (Amplitude, Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Periodic Operators/PS_Harmonic_Estimator_Amplitude_Phase.md"
+ ],
+ "text": "测量周期信号的谐波幅值和相位。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

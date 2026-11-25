@@ -1,0 +1,13 @@
+{
+ "key": "Pressure & Temperature Sensor (G)",
+ "title": "Pressure & Temperature Sensor (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Sensors/Pressure_Temperature_Sensor_G.md"
+ ],
+ "text": "测量气体网络中的压力和温度。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

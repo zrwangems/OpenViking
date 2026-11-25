@@ -1,0 +1,13 @@
+{
+ "key": "Absolute Reference (G)",
+ "title": "Absolute Reference (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Absolute_Reference_G.md"
+ ],
+ "text": "（不推荐）绝对温度为零且压力为零的参考点。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

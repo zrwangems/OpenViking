@@ -1,0 +1,13 @@
+{
+ "key": "Ball Valve (IL)",
+ "title": "Ball Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Flow Control Valves/Ball_Valve_IL.md"
+ ],
+ "text": "Ball valve in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

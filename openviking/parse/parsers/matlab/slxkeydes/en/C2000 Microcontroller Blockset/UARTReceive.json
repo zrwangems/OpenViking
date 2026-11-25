@@ -1,0 +1,70 @@
+{
+ "key": "UARTReceive",
+ "title": "UART Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F29H85x/UART_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/M4/UART_Receive.md",
+  "C2000 Microcontroller Blockset/F28M35x/M3/UART_Receive.md",
+  "C2000 Microcontroller Blockset/F28M36x/M3/UART_Receive.md"
+ ],
+ "text": "Receive data from the Universal Asynchronous Receiver Transmitter (UART) port, 2 outputs, {Data type} sets Type of data to be received; {UART module}, {Additional package header} sets the prefix header, {Additional package terminator} sets the suffix terminator E, {Data length} sets the size of data to be received, {Enable blocking mode} and {Sample time} sets the interval at which block reads data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "UART receive data vector | scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "UART receive status 0 | 1 | 2 | 3 | 4 | 8"
+  }
+ ],
+ "params": [
+  {
+   "name": "UART module",
+   "default": "A",
+   "values": "UART module A (default) | B",
+   "group": ""
+  },
+  {
+   "name": "Additional package header",
+   "default": "S",
+   "values": "Prefix header S (default)",
+   "group": ""
+  },
+  {
+   "name": "Additional package terminator",
+   "default": "E",
+   "values": "Suffix terminator E (default)",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Type of data to be received uint8 (default) | double | single | int8 | int8 | int16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Data length",
+   "default": "1",
+   "values": "Size of data to be received 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable blocking mode",
+   "default": "off",
+   "values": "Enable blocking mode for data transmission off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Interval at which block reads data 0.1 (default)",
+   "group": ""
+  }
+ ]
+}

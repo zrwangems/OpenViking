@@ -1,0 +1,13 @@
+{
+ "key": "Variable Reluctance",
+ "title": "Variable Reluctance",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Elements/Variable_Reluctance.md"
+ ],
+ "text": "Permanent magnet that passively generates magnetic field.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

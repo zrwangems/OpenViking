@@ -1,0 +1,40 @@
+{
+ "key": "Demux",
+ "title": "Demux",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Demux.md",
+  "Simulink/Signal Routing/Demux.md",
+  "HDL Coder/Commonly Used Blocks/Demux.md",
+  "HDL Coder/Signal Routing/Demux.md"
+ ],
+ "text": "提取并输出虚拟向量信号的元素，输入 1 路、输出 1 路；按 {输出数目} 指定输出数目；{显示选项} 显示的模块图标，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "接受要从中提取和输出信号的非总线向量信号 Simulink ® 软件支持的任何非总线数据类型的实数或复数值"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出从输入向量信号中提取的信号 Simulink 软件支持的任何数据类型的实数或复数值的非总线信号"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出数目",
+   "default": "2",
+   "values": "输出数目 2 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "显示选项",
+   "default": "bar",
+   "values": "显示的模块图标 bar (默认) | 无",
+   "group": ""
+  }
+ ]
+}

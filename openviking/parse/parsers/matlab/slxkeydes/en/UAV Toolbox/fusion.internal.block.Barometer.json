@@ -1,0 +1,61 @@
+{
+ "key": "fusion.internal.block.Barometer",
+ "title": "Barometer",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/Barometer.md"
+ ],
+ "text": "Barometer sensor model with noise, 1 input, 1 output; {Constant bias} sets the constant measurement bias, {Noise density} sets the white noise standard variance, {Bias instability} sets the correlated noise standard variance, {Decay factor} sets the correlated noise decay factor, {Seed} sets the random number initial seed and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "True pressure",
+   "direction": "input",
+   "summary": "True air pressure scalar | vector"
+  },
+  {
+   "name": "Measured pressure",
+   "direction": "output",
+   "summary": "Measured air pressure scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Constant bias",
+   "default": "0",
+   "values": "Constant measurement bias 0 (default) | finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Noise density",
+   "default": "1",
+   "values": "White noise standard variance 1 (default) | nonnegative finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias instability",
+   "default": "1",
+   "values": "Correlated noise standard variance 1 (default) | nonnegative finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Decay factor",
+   "default": "0.99",
+   "values": "Correlated noise decay factor 0.99 (default) | positive scalar in the range (0,1)",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "67",
+   "values": "Random number initial seed 67 (default) | nonnegative integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

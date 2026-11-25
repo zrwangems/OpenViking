@@ -1,0 +1,37 @@
+{
+ "key": "M-S-Function",
+ "title": "Level-2 MATLAB S-Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/Level_2_MATLAB_S_Function.md"
+ ],
+ "text": "在模型中使用 2 级 MATLAB S-Function，输入 1 路、输出 1 路；{S-Function 名称} 指定 S-Function 的名称、{参数}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "一个 2 级 MATLAB S-Function 模块的信号输入 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "2 级 MATLAB S-Function 模块的信号输出 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "S-Function 名称",
+   "default": "matlabfile",
+   "values": "指定 S-Function 的名称 matlabfile (默认) | S-Function 名称",
+   "group": ""
+  },
+  {
+   "name": "参数",
+   "default": "无默认值",
+   "values": "指定此模块的参数值 无默认值 (默认)",
+   "group": ""
+  }
+ ]
+}

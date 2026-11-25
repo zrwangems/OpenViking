@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Source (MA)",
+ "title": "Flow Rate Source (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sources/Flow_Rate_Source_MA.md"
+ ],
+ "text": "Generate constant or time-varying mass flow rate or volumetric flow rate in moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

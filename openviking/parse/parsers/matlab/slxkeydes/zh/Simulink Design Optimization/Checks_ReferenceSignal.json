@@ -1,0 +1,98 @@
+{
+ "key": "Checks_ReferenceSignal",
+ "title": "Check Against Reference",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/Model Verification/Check_Against_Reference.md",
+  "Simulink Design Optimization/Signal Constraints/Check_Against_Reference.md"
+ ],
+ "text": "检查模型信号在仿真期间是否跟踪参考信号，输入 1 路、输出 1 路；按 {Times} 指定时间向量；{Show Plot} 打开绘图窗口、{Show plot on block open} 指定双击模块以打开绘图、{Response Optimization} 打开 Response Optimizer、{Include reference signal tracking in assertion} 指定检查信号是否跟踪参考信号、{Amplitudes} 指定参考信号幅值 1-exp、{Absolute tolerance} 指定信号的绝对容差 eps^、{Relative tolerance} 指定信号的相对容差、{Enable assertion} 启用或禁用检查、{Simulation callback when assertion fails (optional)} 指定断言失败时要计算的表达式、{Stop simulation when assertion fails} 指定断言失败时停止仿真、{Output assertion signal} 指定创建输出信号，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1 (u)",
+   "direction": "input",
+   "summary": "要对照指定参考信号进行检查的信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1 (out)",
+   "direction": "output",
+   "summary": "Output assertion signal 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show Plot",
+   "default": "",
+   "values": "打开绘图窗口 button",
+   "group": ""
+  },
+  {
+   "name": "Show plot on block open",
+   "default": "off",
+   "values": "双击模块以打开绘图 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Response Optimization",
+   "default": "",
+   "values": "打开 Response Optimizer button",
+   "group": ""
+  },
+  {
+   "name": "Include reference signal tracking in assertion",
+   "default": "on",
+   "values": "检查信号是否跟踪参考信号 on (default) | off",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Times",
+   "default": "linspace(0,10)",
+   "values": "时间向量 linspace(0,10) (default) | vector of positive values | MATLAB expression",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1-exp(-linspace(0,10)/2)",
+   "values": "参考信号幅值 1-exp(-linspace(0,10)/2) (default) | vector | MATLAB expression",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "eps^(1/3)",
+   "values": "信号的绝对容差 eps^(1/3) (default) | positive real scalar",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Relative tolerance",
+   "default": "0.01",
+   "values": "信号的相对容差 0.01 (default) | positive real scalar",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "启用或禁用检查 on (default) | off",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "’’",
+   "values": "断言失败时要计算的表达式 ’’ (default) | MATLAB expression",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "断言失败时停止仿真 off (default) | on",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "创建输出信号 off (default) | on",
+   "group": "Assertion Tab"
+  }
+ ]
+}

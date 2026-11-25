@@ -1,0 +1,85 @@
+{
+ "key": "M-PSK Demodulator Baseband",
+ "title": "M-PSK Demodulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/PM/M_PSK_Demodulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/M_PSK_Demodulator_Baseband.md"
+ ],
+ "text": "Demodulate PSK-modulated data, 2 inputs, 1 output, {Constellation ordering} sets Symbol mapping; {M-ary number} sets the modulation order of the PSK constellation, {Output type} sets the output signal data, {Decision type} sets the demodulator output Hard, {Noise variance source} sets the source of noise variance, {Noise variance} sets the estimate of noise variance, {Constellation mapping} sets the user-defined symbol mapping, {Phase offset (rad)} sets the phase offset and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "Noise variance estimate positive scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "8",
+   "values": "Modulation order of the PSK constellation 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "Output signal data type Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "Demodulator output Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Dialog",
+   "values": "Source of noise variance estimate Dialog (default) | Port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "Estimate of noise variance 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Gray",
+   "values": "Symbol mapping Gray (default) | Binary | User-defined",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "[0:7]",
+   "values": "User-defined symbol mapping [0:7] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "pi/8",
+   "values": "Phase offset in radians pi/8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": "Data Types"
+  }
+ ]
+}

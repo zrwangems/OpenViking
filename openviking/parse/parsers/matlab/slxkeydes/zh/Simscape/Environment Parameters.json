@@ -1,0 +1,13 @@
+{
+ "key": "Environment Parameters",
+ "title": "Environment Parameters",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Utilities/Environment_Parameters.md"
+ ],
+ "text": "设置适用于所有已连接的 SPICE 兼容模块的参数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

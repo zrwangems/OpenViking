@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Condenser Evaporator (2P-G)",
+ "title": "System-Level Condenser Evaporator (2P-G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Two-Phase Fluid - Gas/System_Level_Condenser_Evaporator_2P_G.md"
+ ],
+ "text": "基于性能数据的、用于两相流体与气体网络之间的热交换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

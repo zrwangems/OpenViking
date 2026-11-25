@@ -1,0 +1,13 @@
+{
+ "key": "Simplified Generator",
+ "title": "Simplified Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Simplified_Generator.md"
+ ],
+ "text": "Behavioral model of an electromechanical generator.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

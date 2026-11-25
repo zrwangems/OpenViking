@@ -1,0 +1,37 @@
+{
+ "key": "Simulink Real-Time software interrupt",
+ "title": "Thread Trigger",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Async/Thread_Trigger.md"
+ ],
+ "text": "当选定的输入边发生转换时，调用下游函数调用子系统，输入 1 路、输出 1 路；按 {Trigger Edge} 指定触发沿类型 Rising；{ISR Task Priority} 为函数选择 ISR 任务优先级，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "触发输入已针对所选转换进行测试 布尔值"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "任务的函数调用输出 函数调用"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger Edge",
+   "default": "Edge",
+   "values": "选择触发沿类型 Rising Edge (默认) | Falling Edge | Both Edges",
+   "group": ""
+  },
+  {
+   "name": "ISR Task Priority",
+   "default": "（高优先级）",
+   "values": "为函数选择 ISR 任务优先级 245 （高优先级） (默认) | 235 （中等优先级） | 225 （低优先级）",
+   "group": ""
+  }
+ ]
+}

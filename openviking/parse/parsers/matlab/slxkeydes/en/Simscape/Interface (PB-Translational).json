@@ -1,0 +1,13 @@
+{
+ "key": "Interface (PB-Translational)",
+ "title": "Interface (PB-Translational)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Utilities/Interface_PB_Translational.md"
+ ],
+ "text": "Connect position-based and non-position-based mechanical translational ports.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,54 @@
+{
+ "key": "Frame To Samples",
+ "title": "Frame To Samples",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/I_O Interfaces/Frame_To_Samples.md"
+ ],
+ "text": "将基于帧的数据转换为样本流，输入 1 路、输出 2 路；{Idle cycles between samples} 指定在每个样本后插入的空闲周期数、{Idle cycles between frames} 指定在每个帧末尾插入的空闲周期数、{Output size} 表示每个样本的值的数量、{Compose output from interleaved input samples} 输出样本相对于输入顺序的顺序，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "frame",
+   "direction": "input",
+   "summary": "输入样本的帧 column vector"
+  },
+  {
+   "name": "sample",
+   "direction": "output",
+   "summary": "输出样本流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Idle cycles between samples",
+   "default": "0",
+   "values": "在每个样本后插入的空闲周期数 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Idle cycles between frames",
+   "default": "0",
+   "values": "在每个帧末尾插入的空闲周期数 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "1",
+   "values": "表示每个样本的值的数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Compose output from interleaved input samples",
+   "default": "off",
+   "values": "输出样本相对于输入顺序的顺序 off (default) | on",
+   "group": ""
+  }
+ ]
+}

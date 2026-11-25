@@ -1,0 +1,56 @@
+{
+ "key": "Switch single pole multiple throw (SPnT)",
+ "title": "SPnT",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/SPnT.md"
+ ],
+ "text": "单刀多掷开关，输入 1 路；{Insertion loss (dB)} 指定开关的插入损耗、{Isolation (dB)} 指定开关的隔离值、{Loading type} 指定开关类型 Absorptive、{Number of outputs} 指定开关的输出数目、{Port terminations (Ohm)} 指定端口端接、{Ground and hide reference terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ctl",
+   "direction": "input",
+   "summary": "Simulink 控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Insertion loss (dB)",
+   "default": "1",
+   "values": "开关的插入损耗 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Isolation (dB)",
+   "default": "70",
+   "values": "开关的隔离值 70 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Loading type",
+   "default": "Absorptive",
+   "values": "开关类型 Absorptive (default) | Reflective",
+   "group": ""
+  },
+  {
+   "name": "Number of outputs",
+   "default": "2",
+   "values": "开关的输出数目 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Port terminations (Ohm)",
+   "default": "50",
+   "values": "端口端接 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide reference terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

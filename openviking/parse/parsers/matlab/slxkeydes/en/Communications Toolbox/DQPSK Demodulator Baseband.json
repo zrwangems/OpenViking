@@ -1,0 +1,78 @@
+{
+ "key": "DQPSK Demodulator Baseband",
+ "title": "DQPSK Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/DQPSK_Demodulator_Baseband.md"
+ ],
+ "text": "Demodulate QPSK-modulated data, 2 inputs, 1 output, {Decision type} sets Demodulator output Hard; {Output type} sets the integer or bit pair output indicator, {Noise variance source} sets the source of noise variance, {Noise variance}, {Constellation ordering} sets the symbol mapping, {Phase offset (rad)} sets the phase offset of zeroth, {Output} and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input QPSK-modulated signal scalar | vector"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "Noise variance estimate positive scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "Integer or bit pair output indicator Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "Demodulator output Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Dialog",
+   "values": "Source of noise variance estimate Dialog (default) | Port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "Noise variance estimate 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Gray",
+   "values": "Symbol mapping Gray (default) | Binary",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "pi/4",
+   "values": "Phase offset of zeroth point pi/4 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output",
+   "default": "",
+   "values": "Output data type Same as input",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": "Data Types"
+  }
+ ]
+}

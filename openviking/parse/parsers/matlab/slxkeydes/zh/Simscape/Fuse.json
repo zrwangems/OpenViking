@@ -1,0 +1,13 @@
+{
+ "key": "Fuse",
+ "title": "Fuse",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/Fuse.md"
+ ],
+ "text": "用于防止过电流的保险丝。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,57 @@
+{
+ "key": "Collision Box",
+ "title": "Collision Box",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Collision Detection/Collision_Box.md"
+ ],
+ "text": "创建盒体碰撞几何体，输入 4 路、输出 2 路；{Enable Runtime Input Dimensions Error} 指定碰撞盒体尺寸的验证、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "盒体几何体沿 x 轴的长度 scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "盒体几何体沿 y 轴的长度 scalar"
+  },
+  {
+   "name": "Z",
+   "direction": "input",
+   "summary": "盒体几何体沿 z 轴的长度 scalar"
+  },
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "碰撞几何体的位姿 matrix"
+  },
+  {
+   "name": "CollGeom",
+   "direction": "output",
+   "summary": "碰撞几何体 bus"
+  },
+  {
+   "name": "ExitFlag",
+   "direction": "output",
+   "summary": "碰撞盒体尺寸的有效性 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable Runtime Input Dimensions Error",
+   "default": "on",
+   "values": "碰撞盒体尺寸的验证 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

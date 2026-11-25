@@ -1,0 +1,87 @@
+{
+ "key": "Rotational Inertia",
+ "title": "Rotational Inertia",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Rotational_Inertia.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Rotational_Inertia.md"
+ ],
+ "text": "Ideal mechanical rotational inertia, 4 inputs, 3 outputs; {Port Configuration} sets the configuration, {Output Info bus} sets the selection, {External inertia input} sets the input rotational inertia, {Rotational inertia, J} sets the inertia .01, {Torsional damping, b} sets the damping .001 and {Initial velocity, omega_o} sets the angular. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RTrq",
+   "direction": "input",
+   "summary": "Input torque scalar"
+  },
+  {
+   "name": "CTrq",
+   "direction": "input",
+   "summary": "Output torque scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Angular velocity and torque two-way connector port"
+  },
+  {
+   "name": "Inertia",
+   "direction": "input",
+   "summary": "Input scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "Spd",
+   "direction": "output",
+   "summary": "Driveshaft speed scalar"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "Angular velocity and torque two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "Specify configuration Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Output Info bus",
+   "default": "off",
+   "values": "Selection off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External inertia input",
+   "default": "off",
+   "values": "Input rotational inertia off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Rotational inertia, J",
+   "default": ".01",
+   "values": "Inertia .01 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Torsional damping, b",
+   "default": ".001",
+   "values": "Damping .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity, omega_o",
+   "default": "0",
+   "values": "Angular 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  }
+ ]
+}

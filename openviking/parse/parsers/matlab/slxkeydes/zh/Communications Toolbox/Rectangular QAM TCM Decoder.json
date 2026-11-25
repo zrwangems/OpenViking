@@ -1,0 +1,13 @@
+{
+ "key": "Rectangular QAM TCM Decoder",
+ "title": "Rectangular QAM TCM Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/TCM/Rectangular_QAM_TCM_Decoder.md"
+ ],
+ "text": "解码使用 QAM 方法调制的网格编码调制数据。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,62 @@
+{
+ "key": "visionhdl.PixelStreamAligner",
+ "title": "Pixel Stream Aligner",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Pixel_Stream_Aligner.md"
+ ],
+ "text": "Align two streams of pixel data, 4 inputs, 3 outputs; {Line buffer size} sets the size of the line memory buffer and {Maximum number of lines} sets the buffer depth that accommodates the timing offset between input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "refPixel",
+   "direction": "input",
+   "summary": "Reference pixel stream scalar | vector | matrix"
+  },
+  {
+   "name": "refCtrl",
+   "direction": "input",
+   "summary": "Reference pixel stream control signals pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Aligned pixel stream scalar | vector | matrix"
+  },
+  {
+   "name": "refPixel",
+   "direction": "output",
+   "summary": "Reference pixel stream scalar | vector | matrix"
+  },
+  {
+   "name": "refCtrl",
+   "direction": "output",
+   "summary": "Reference control signals pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "Size of the line memory buffer 2048 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of lines",
+   "default": "10",
+   "values": "Buffer depth that accommodates the timing offset between input streams 10 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

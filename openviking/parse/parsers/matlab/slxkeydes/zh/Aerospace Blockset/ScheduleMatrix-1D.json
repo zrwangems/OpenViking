@@ -1,0 +1,36 @@
+{
+ "key": "ScheduleMatrix-1D",
+ "title": "Interpolate Matrix(x)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/Interpolate_Matrix_x.md"
+ ],
+ "text": "返回给定输入的插值矩阵，输入 2 路、输出 1 路；{Matrix to interpolate} 指定矩阵 matrix，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x_k",
+   "direction": "input",
+   "summary": "插值索引 i scalar"
+  },
+  {
+   "name": "x_f",
+   "direction": "input",
+   "summary": "插值分数 scalar"
+  },
+  {
+   "name": "Matrix(x)",
+   "direction": "output",
+   "summary": "插值矩阵 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Matrix to interpolate",
+   "default": "matrix",
+   "values": "矩阵 matrix (default)",
+   "group": ""
+  }
+ ]
+}

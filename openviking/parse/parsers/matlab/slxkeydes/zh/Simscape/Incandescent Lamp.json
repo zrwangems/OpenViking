@@ -1,0 +1,13 @@
+{
+ "key": "Incandescent Lamp",
+ "title": "Incandescent Lamp",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Incandescent_Lamp.md"
+ ],
+ "text": "具有温度相关电阻的 Incandescent lamp。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

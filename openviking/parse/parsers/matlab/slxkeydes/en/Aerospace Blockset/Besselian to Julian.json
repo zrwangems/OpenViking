@@ -1,0 +1,34 @@
+{
+ "key": "Besselian to Julian",
+ "title": "Besselian Epoch to Julian Epoch",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Besselian_Epoch_to_Julian_Epoch.md"
+ ],
+ "text": "Transform position and velocity components from discontinued Standard Besselian Epoch (B1950) to Standard Julian Epoch (J2000), 2 inputs, 2 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r B1950",
+   "direction": "input",
+   "summary": "Position 3-by-1 vector"
+  },
+  {
+   "name": "v B1950",
+   "direction": "input",
+   "summary": "Velocity 3-by-1 vector"
+  },
+  {
+   "name": "r J2000",
+   "direction": "output",
+   "summary": "Position 3-by-1 vector"
+  },
+  {
+   "name": "v J2000",
+   "direction": "output",
+   "summary": "Velocity 3-by-1 vector"
+  }
+ ],
+ "params": []
+}

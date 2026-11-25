@@ -1,0 +1,13 @@
+{
+ "key": "FEM-Parameterized PMSM",
+ "title": "FEM-Parameterized PMSM",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/FEM_Parameterized_PMSM.md"
+ ],
+ "text": "Permanent magnet synchronous motor defined in terms of magnetic flux linkage.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

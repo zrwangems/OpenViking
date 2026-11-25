@@ -1,0 +1,129 @@
+{
+ "key": "visionhdl.ImageResizer",
+ "title": "Image Resizer",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Geometric Transforms/Image_Resizer.md"
+ ],
+ "text": "Change dimensions of image in pixel stream, 4 inputs, 2 outputs, {Rounding mode} sets Rounding method for internal fixed-point calculations; {Input height and width} sets the dimensions of active frame in input stream, {Input size source} sets the source of input active frame, {Maximum input height and width} sets the active frame size that accommodates the largest anticipated input size, {Output height and width} sets the dimensions of active frame in output stream, {Output size source} sets the source of input active frame, {Maximum output height and width} sets the active frame size that accommodates the largest anticipated output size, {Insert horizontal blanking} adds invalid cycles between active lines, {Minimum output horizontal blanking} sets the number of inactive cycles to insert between output, {Interpolation method} sets the method of interpolating pixel values, {Perform antialiasing on downscale} applies antialiasing filter before resizing, {Saturate on integer overflow} sets the overflow action for internal fixed-point, {Coefficients} sets the interpolation filter coefficients data type and {Output}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "inputSize",
+   "direction": "input",
+   "summary": "Dimensions of active frame in input stream [ ActiveVideoLines, ActivePixelsPerLine ]"
+  },
+  {
+   "name": "outputSize",
+   "direction": "input",
+   "summary": "Dimensions of active frame in output stream [ ActiveVideoLines, ActivePixelsPerLine ]"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Output pixel stream scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input height and width",
+   "default": "[1080,1920]",
+   "values": "Dimensions of active frame in input stream [1080,1920] (default) | [ ActiveVideoLines, ActivePixelsPerLine ]",
+   "group": "Main"
+  },
+  {
+   "name": "Input size source",
+   "default": "Property",
+   "values": "Source of input active frame size Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum input height and width",
+   "default": "[1080,1920]",
+   "values": "Active frame size that accommodates the largest anticipated input size [1080,1920] (default) | [ ActiveVideoLines, ActivePixelsPerLine ]",
+   "group": "Main"
+  },
+  {
+   "name": "Output height and width",
+   "default": "[720,1280]",
+   "values": "Dimensions of active frame in output stream [720,1280] (default) | [ ActiveVideoLines, ActivePixelsPerLine ]",
+   "group": "Main"
+  },
+  {
+   "name": "Output size source",
+   "default": "Property",
+   "values": "Source of input active frame size Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum output height and width",
+   "default": "1280]",
+   "values": "Active frame size that accommodates the largest anticipated output size [720, 1280] (default) | [ ActiveVideoLines, ActivePixelsPerLine ]",
+   "group": "Main"
+  },
+  {
+   "name": "Insert horizontal blanking",
+   "default": "off",
+   "values": "Add invalid cycles between active lines off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum output horizontal blanking",
+   "default": "370",
+   "values": "Number of inactive cycles to insert between output lines 370 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "Method of interpolating pixel values Bilinear (default) | Nearest Neighbor",
+   "group": "Main"
+  },
+  {
+   "name": "Perform antialiasing on downscale",
+   "default": "on",
+   "values": "Apply antialiasing filter before resizing on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow action for internal fixed-point calculations off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(0,16)",
+   "values": "Interpolation filter coefficients data type fixdt(0,16) (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Output data type Inherit: Same as first input (default) | fixdt(0,16,0) |",
+   "group": "Data Types"
+  }
+ ]
+}

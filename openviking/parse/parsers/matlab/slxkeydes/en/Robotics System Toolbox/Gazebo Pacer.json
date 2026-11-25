@@ -1,0 +1,32 @@
+{
+ "key": "Gazebo Pacer",
+ "title": "Gazebo Pacer",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Pacer.md"
+ ],
+ "text": "Settings for synchronized stepping between Gazebo and Simulink, 1 output; {Reset behavior} sets the reset simulation time or scene Reset Gazebo simulation and {Sample time} sets the sampling time of input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of synchronization 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reset behavior",
+   "default": "time",
+   "values": "Reset simulation time or scene Reset Gazebo simulation time (default) | Reset Gazebo simulation time and scene",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Sampling time of input 0.001 (default) | positive",
+   "group": ""
+  }
+ ]
+}

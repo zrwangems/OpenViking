@@ -1,0 +1,313 @@
+{
+ "key": "matlabshared.sensors.simulink.LIS3DHBlock",
+ "title": "LIS3DH",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Sensors/LIS3DH.md"
+ ],
+ "text": "Measure linear acceleration, voltage, and temperature from LIS3DH sensor, 14 outputs, {Detect} sets Select interrupt Inertial; {I2C Module} sets the specific module used for I2C communication, {I2C address}, {Acceleration (m/s 2 )} sets the output port for reading acceleration, {ADC3 input} selects output port for reading temperature, {Voltage (external input at ADC1)} selects output port for reading voltage, {Voltage (external input at ADC2)} selects output port for reading voltage, {Acceleration data ready status} sets the output port for obtaining acceleration, {Accelerometer resolution} sets the data register bit, {Accelerometer output data rate (Hz)} sets the rate at which accelerometer data is sampled, {Accelerometer range} sets the full scale for measuring linear acceleration, {Enable FIFO} enables number of samples to read, {Number of samples to read from FIFO (1-32)}, {Generate FIFO overrun interrupt on INT1 pin} sets the generate interrupt when FIFO buffer, {Enable high pass filter}, {HPF cutoff frequency (Hz)} sets the bandwidth of high pass filter, {Generate data ready interrupt on INT1 pin} sets the generate interrupt when data is ready, {Data type} sets the output data type for values from lis3dh sensor, {Sample time} sets the time interval to read data, {Enable click detection} sets the option for enabling click detection, {Type} selects type of click to be detected Single, {Threshold (m/s 2 )} sets the threshold for detecting single or double, {Time limit (s)} sets the time limit duration, {Time latency (s)} sets the time latency duration, {Time window (s)} sets the time window duration, {X axis}, {Y axis}, {Z axis}, {Generate click interrupt} sets the generate interrupt when click is detected, {Interrupt pin} sets the pin to generate click, {Click status} sets the output port for obtaining click detection, {Configurable detections} sets the number of configurable detections, {-X axis}, {-Y axis}, {-Z axis}, {Threshold (m/s 2} sets the acceleration threshold for detecting the selected configurable, {Duration (s)} sets the time limit duration and {Generate interrupt}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Acceleration",
+   "direction": "output",
+   "summary": "Acceleration along each axis as measured by accelerometer vector"
+  },
+  {
+   "name": "ADC1 Voltage",
+   "direction": "output",
+   "summary": "Voltage on external pin ADC1 vector"
+  },
+  {
+   "name": "ADC2 Voltage",
+   "direction": "output",
+   "summary": "Voltage on external pin ADC2 vector"
+  },
+  {
+   "name": "ADC3 Voltage",
+   "direction": "output",
+   "summary": "Voltage on external pin ADC3 vector"
+  },
+  {
+   "name": "Temperature",
+   "direction": "output",
+   "summary": "Temperature measured by LIS3DH sensor scalar"
+  },
+  {
+   "name": "Accelration Status",
+   "direction": "output",
+   "summary": "Status of acceleration measurement 2 | 0 | 1"
+  },
+  {
+   "name": "Samples pending",
+   "direction": "output",
+   "summary": "Number of pending samples scalar"
+  },
+  {
+   "name": "Click status [X,Y,Z]",
+   "direction": "output",
+   "summary": "Click detection status 0 | 1"
+  },
+  {
+   "name": "Inertial wake-up status [X,Y,Z]",
+   "direction": "output",
+   "summary": "Status of inertial wake-up interrupt 0 | 1"
+  },
+  {
+   "name": "Free-fall status",
+   "direction": "output",
+   "summary": "Status of free-fall 0 | 1"
+  },
+  {
+   "name": "6D position status [X, -X, Y, -Y, Z, -Z]",
+   "direction": "output",
+   "summary": "Status of 6D position 0 | 1"
+  },
+  {
+   "name": "6D movement status [X, -X, Y, -Y, Z, -Z]",
+   "direction": "output",
+   "summary": "Status of 6D movement 0 | 1"
+  },
+  {
+   "name": "4D position status [X, -X, Y, -Y]",
+   "direction": "output",
+   "summary": "Status of 4D position 0 | 1"
+  },
+  {
+   "name": "4D movement status [X, -X, Y, -Y]",
+   "direction": "output",
+   "summary": "Status of 4D movement 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "I2C Module",
+   "default": "I2C_A",
+   "values": "Specific module used for I2C communication I2C_A (default)",
+   "group": "Main"
+  },
+  {
+   "name": "I2C address",
+   "default": "0x18",
+   "values": "I2C addresses to communicate with sensor peripherals 0x18 (default) | 0x19",
+   "group": "Main"
+  },
+  {
+   "name": "Acceleration (m/s 2 )",
+   "default": "on",
+   "values": "Set output port for reading acceleration on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "ADC3 input",
+   "default": "None",
+   "values": "Select output port for reading temperature or voltage None (default) | Temperature | Voltage (external input)",
+   "group": "Main"
+  },
+  {
+   "name": "Voltage (external input at ADC1)",
+   "default": "off",
+   "values": "Select output port for reading voltage off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Voltage (external input at ADC2)",
+   "default": "off",
+   "values": "Select output port for reading voltage off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Acceleration data ready status",
+   "default": "on",
+   "values": "Set output port for obtaining acceleration status on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Accelerometer resolution",
+   "default": "12bit",
+   "values": "Data register bit resolution 12bit (default) | 10bit | 8bit",
+   "group": "Main"
+  },
+  {
+   "name": "Accelerometer output data rate (Hz)",
+   "default": "Hz",
+   "values": "Rate at which accelerometer data is sampled 400 Hz (default) | 1 Hz | 10 Hz | 25 Hz | 50 Hz | 100 Hz | 200 Hz | 1344 Hz",
+   "group": "Main"
+  },
+  {
+   "name": "Accelerometer range",
+   "default": "±2g",
+   "values": "Full scale for measuring linear acceleration ±2g (default) | ±4g | ±8g | ±16g",
+   "group": "Main"
+  },
+  {
+   "name": "Enable FIFO",
+   "default": "off",
+   "values": "Enable number of samples to read off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Number of samples to read from FIFO (1-32)",
+   "default": "2",
+   "values": "Number of samples to read 2 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Generate FIFO overrun interrupt on INT1 pin",
+   "default": "off",
+   "values": "Generate interrupt when FIFO buffer is full off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Enable high pass filter",
+   "default": "off",
+   "values": "Enable high pass filter for accelerometer data off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "HPF cutoff frequency (Hz)",
+   "default": "Hz",
+   "values": "Bandwidth of high pass filter 100 Hz (default) | 12 Hz | 25 Hz | 50 Hz",
+   "group": "Main"
+  },
+  {
+   "name": "Generate data ready interrupt on INT1 pin",
+   "default": "off",
+   "values": "Generate interrupt when data is ready off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "Output data type for values from lis3dh sensor single (default) | double | int16",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time interval to read data -1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Enable click detection",
+   "default": "off",
+   "values": "Option for enabling click detection off (default) | on",
+   "group": "Click detection"
+  },
+  {
+   "name": "Type",
+   "default": "click",
+   "values": "Select type of click to be detected Single click (default) | Double click",
+   "group": "Click detection"
+  },
+  {
+   "name": "Threshold (m/s 2 )",
+   "default": "1.5",
+   "values": "Threshold for detecting single or double click 1.5 (default)",
+   "group": "Click detection"
+  },
+  {
+   "name": "Time limit (s)",
+   "default": "0.3",
+   "values": "Time limit duration 0.3 (default) | positive integer",
+   "group": "Click detection"
+  },
+  {
+   "name": "Time latency (s)",
+   "default": "0.3",
+   "values": "Time latency duration 0.3 (default) | positive integer",
+   "group": "Click detection"
+  },
+  {
+   "name": "Time window (s)",
+   "default": "0.3",
+   "values": "Time window duration 0.3 (default) | positive integer",
+   "group": "Click detection"
+  },
+  {
+   "name": "X axis",
+   "default": "on",
+   "values": "Click detection in X axis on (default) | off",
+   "group": "Click detection"
+  },
+  {
+   "name": "Y axis",
+   "default": "on",
+   "values": "Click detection in Y axis on (default) | off",
+   "group": "Click detection"
+  },
+  {
+   "name": "Z axis",
+   "default": "off",
+   "values": "Click detection in Z axis off (default) | on",
+   "group": "Click detection"
+  },
+  {
+   "name": "Generate click interrupt",
+   "default": "off",
+   "values": "Generate interrupt when click is detected off (default) | on",
+   "group": "Click detection"
+  },
+  {
+   "name": "Interrupt pin",
+   "default": "INT1",
+   "values": "Pin to generate click interrupt INT1 (default) | INT2",
+   "group": "Click detection"
+  },
+  {
+   "name": "Click status",
+   "default": "off",
+   "values": "Set output port for obtaining click detection status off (default) | on",
+   "group": "Click detection"
+  },
+  {
+   "name": "Configurable detections",
+   "default": "0",
+   "values": "Set number of configurable detections 0 (default) | 1 | 2",
+   "group": "Configurable detections"
+  },
+  {
+   "name": "Detect",
+   "default": "wake-up",
+   "values": "Select interrupt Inertial wake-up (default) | Free-fall | 6D position | 6D movement | 4D position | 4D movement",
+   "group": "Configurable detections"
+  },
+  {
+   "name": "-X axis",
+   "default": "off",
+   "values": "Interrupt detection in -X axis off (default) | on",
+   "group": "Configurable detections"
+  },
+  {
+   "name": "-Y axis",
+   "default": "off",
+   "values": "Interrupt detection in -Y axis off (default) | on",
+   "group": "Configurable detections"
+  },
+  {
+   "name": "-Z axis",
+   "default": "off",
+   "values": "Interrupt detection in -Z axis off (default) | on",
+   "group": "Configurable detections"
+  },
+  {
+   "name": "Threshold (m/s 2",
+   "default": "1.5",
+   "values": "Acceleration threshold for detecting the selected configurable detection 1.5 (default)",
+   "group": "Configurable detections"
+  },
+  {
+   "name": "Duration (s)",
+   "default": "0.3",
+   "values": "Time limit duration 0.3 (default) | positive integer",
+   "group": "Configurable detections"
+  },
+  {
+   "name": "Generate interrupt",
+   "default": "off",
+   "values": "Generate interrupt off (default) | on",
+   "group": "Configurable detections"
+  }
+ ]
+}

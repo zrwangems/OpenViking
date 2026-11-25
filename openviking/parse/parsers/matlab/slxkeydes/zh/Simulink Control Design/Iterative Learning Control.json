@@ -1,0 +1,108 @@
+{
+ "key": "Iterative Learning Control",
+ "title": "Iterative Learning Control",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Adaptive Control/Iterative_Learning_Control.md"
+ ],
+ "text": "为重复性控制任务设计迭代学习控制器，输入 2 路、输出 1 路；{Sample time (Ts)} 指定 ILC 采样时间、{Iteration duration (Tspan)} 指定迭代持续时间、{Data Type} 指定数据类型 double、{ILC Algorithm} 指定 ILC 算法 Model、{P-gain (gamma_p)} 指定无模型 ILC 中的比例增益、{D-gain (gamma_d)} 指定无模型 ILC 中的微分增益、{State Space Model} 指定模型时域 Continuous、{A} 指定状态空间模型矩阵、{ILC methods} 指定基于模型的 ILC 方法 Gradient、{ILC Gain (gamma_gradient)} 指定基于梯度的 ILC 增益、{ILC Gain (gamma_inverse)} 指定基于逆模型的 ILC 增益、{Enable first-order low-pass filter} 启用一阶低通滤波器、{Filter time constant (tau)} 指定滤波器时间常数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "error",
+   "direction": "input",
+   "summary": "误差信号 scalar | vector"
+  },
+  {
+   "name": "control/reset",
+   "direction": "input",
+   "summary": "ILC 模式信号 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "更新后的控制信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.01",
+   "values": "ILC 采样时间 0.01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Iteration duration (Tspan)",
+   "default": "1",
+   "values": "迭代持续时间 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "数据类型 double (default) | single |",
+   "group": ""
+  },
+  {
+   "name": "ILC Algorithm",
+   "default": "ILC",
+   "values": "ILC 算法 Model free ILC (default) | Model based ILC",
+   "group": ""
+  },
+  {
+   "name": "P-gain (gamma_p)",
+   "default": "1",
+   "values": "无模型 ILC 中的比例增益 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "D-gain (gamma_d)",
+   "default": "0",
+   "values": "无模型 ILC 中的微分增益 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "State Space Model",
+   "default": "time",
+   "values": "模型时域 Continuous time (default) | Discrete time (Ts)",
+   "group": ""
+  },
+  {
+   "name": "A",
+   "default": "1",
+   "values": "状态空间模型矩阵 1 (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "ILC methods",
+   "default": "based",
+   "values": "基于模型的 ILC 方法 Gradient based (default) | Inverse-model based",
+   "group": ""
+  },
+  {
+   "name": "ILC Gain (gamma_gradient)",
+   "default": "1",
+   "values": "基于梯度的 ILC 增益 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "ILC Gain (gamma_inverse)",
+   "default": "1",
+   "values": "基于逆模型的 ILC 增益 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable first-order low-pass filter",
+   "default": "off",
+   "values": "启用一阶低通滤波器 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter time constant (tau)",
+   "default": "1",
+   "values": "滤波器时间常数 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

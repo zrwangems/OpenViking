@@ -1,0 +1,217 @@
+{
+ "key": "Simulation 3D Scene Configuration",
+ "title": "Simulation 3D Scene Configuration",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Scene_Configuration.md",
+  "Robotics System Toolbox/Simulation 3D/Simulation_3D_Scene_Configuration.md",
+  "UAV Toolbox/Simulation 3D/Simulation_3D_Scene_Configuration.md",
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Scene_Configuration.md",
+  "Simulink 3D Animation/Simulation 3D/Environment/Simulation_3D_Scene_Configuration.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Scene_Configuration.md"
+ ],
+ "text": "Scene configuration for 3D simulation environment, {Name} sets Name of; {Scene source} sets the source of scene, {Scene name} sets the name of prebuilt 3D scene, {Project name} sets the name of Unreal Engine executable file, {Select ASAM OpenDRIVE file} sets an ASAM OpenDRIVE ® file, {Scene} sets the name of scene from executable file, {Project} sets the name of Unreal Engine project file or RoadRunner file valid project file, {Scene view} sets the placement of virtual camera that displays scene Scene, {Translation} sets the viewpoint translation, {Rotation} sets the viewpoint rotation, {Viewer relative translation [X, Y, Z] (m)} sets the viewpoint translation relative to actor, {Viewer relative rotation [Roll, Pitch, Yaw] (deg)} sets the viewpoint rotation relative to actor, {Sample time}, {Display 3D simulation window} sets the unreal Engine visualization, {Override scene weather} sets the option to control the scene weather and sun, {Sun azimuth} sets the azimuth angle from south to horizontal projection of the sun, {Sun altitude} sets the altitude angle between sun and horizon, {Enable geospatial sun} sets the option to enable geospatial sun, {Latitude}, {Longitude}, {Date (YYYY-MM-DD)} sets the date 2023-01-01, {Time (HH:MM:SS)} sets the time 10:30:00, {Time zone}, {Daylight saving time} sets the option to enable daylight saving time, {Cloud speed} sets the unreal Editor Cloud Speed global actor target, {Cloud opacity} sets the unreal Editor Cloud Opacity global actor target, {Enable volumetric clouds} sets the option to enable volumetric clouds, {Cloud coverage} sets the unreal Editor Cloud Density global target, {Cloud layer altitude} sets the unreal Editor Layer Bottom Altitude global actor target, {Fog density} sets the unreal Editor Set Fog Density and Set Start Distance target, {Rain density} sets the unreal Editor local actor controlling rain density, wetness, rain puddles, {Enable raindrops on camera lens} sets the option to enable raindrops on camera lens and {Snow density} sets the unreal Editor global actor controlling snow. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Scene source",
+   "default": "Scenes",
+   "values": "Source of scene Default Scenes (default) | RoadRunner | Unreal Executable | Unreal Editor",
+   "group": "Scene"
+  },
+  {
+   "name": "Scene name",
+   "default": "",
+   "values": "Name of prebuilt 3D scene Empty Grass | Straight road | Curved road | US city block | Large parking lot | installed scene name",
+   "group": "Scene"
+  },
+  {
+   "name": "Project name",
+   "default": "VehicleSimulation.exe",
+   "values": "Name of Unreal Engine executable file VehicleSimulation.exe (default) | valid executable file name",
+   "group": "Scene"
+  },
+  {
+   "name": "Select ASAM OpenDRIVE file",
+   "default": "off",
+   "values": "Specify an ASAM OpenDRIVE ® file off (default) | on",
+   "group": "Scene"
+  },
+  {
+   "name": "Scene",
+   "default": "/Game/Maps/HwStrght",
+   "values": "Name of scene from executable file /Game/Maps/HwStrght (default) | path to valid scene name",
+   "group": "Scene"
+  },
+  {
+   "name": "Project",
+   "default": "",
+   "values": "Name of Unreal Engine project file or RoadRunner file valid project file name",
+   "group": "Scene"
+  },
+  {
+   "name": "Scene view",
+   "default": "Origin",
+   "values": "Placement of virtual camera that displays scene Scene Origin (default) | Custom | vehicle name | sim3d actor name | viewpoint name",
+   "group": "Scene"
+  },
+  {
+   "name": "Name",
+   "default": "custom",
+   "values": "Name of custom viewpoint custom (default) | character array | string scalar",
+   "group": "Scene"
+  },
+  {
+   "name": "Translation",
+   "default": "0]",
+   "values": "Viewpoint translation [0 0 0] (default) | real 1-by-3 vector",
+   "group": "Scene"
+  },
+  {
+   "name": "Rotation",
+   "default": "0]",
+   "values": "Viewpoint rotation [0 0 0] (default) | real 1-by-3 vector",
+   "group": "Scene"
+  },
+  {
+   "name": "Viewer relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Viewpoint translation relative to actor [0 0 0] (default) | real 1-by-3 vector",
+   "group": "Scene"
+  },
+  {
+   "name": "Viewer relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "Viewpoint rotation relative to actor [0 0 0] (default) | real 1-by-3 vector",
+   "group": "Scene"
+  },
+  {
+   "name": "Sample time",
+   "default": "1/60",
+   "values": "Sample time of visualization engine 1/60 (default) | real positive scalar",
+   "group": "Scene"
+  },
+  {
+   "name": "Display 3D simulation window",
+   "default": "on",
+   "values": "Unreal Engine visualization on (default) | off",
+   "group": "Scene"
+  },
+  {
+   "name": "Override scene weather",
+   "default": "off",
+   "values": "Option to control the scene weather and sun position off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Sun azimuth",
+   "default": "90",
+   "values": "Azimuth angle from south to horizontal projection of the sun ray 90 (default) | any value between 0 and 360",
+   "group": "Weather"
+  },
+  {
+   "name": "Sun altitude",
+   "default": "40",
+   "values": "Altitude angle between sun and horizon 40 (default) | any value between -90 and 90",
+   "group": "Weather"
+  },
+  {
+   "name": "Enable geospatial sun",
+   "default": "off",
+   "values": "Option to enable geospatial sun off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Latitude",
+   "default": "0",
+   "values": "Latitude of geolocation on earth 0 (default) | scalar",
+   "group": "Weather"
+  },
+  {
+   "name": "Longitude",
+   "default": "0",
+   "values": "Longitude of geolocation on earth 0 (default) | scalar",
+   "group": "Weather"
+  },
+  {
+   "name": "Date (YYYY-MM-DD)",
+   "default": "2023-01-01",
+   "values": "Date 2023-01-01 (default) | integer",
+   "group": "Weather"
+  },
+  {
+   "name": "Time (HH:MM:SS)",
+   "default": "10:30:00",
+   "values": "Time 10:30:00 (default) | integer",
+   "group": "Weather"
+  },
+  {
+   "name": "Time zone",
+   "default": "-5.0",
+   "values": "Time zone -5.0 (default) | any value between -12.0 and 12.0",
+   "group": "Weather"
+  },
+  {
+   "name": "Daylight saving time",
+   "default": "off",
+   "values": "Option to enable daylight saving time off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Cloud speed",
+   "default": "1",
+   "values": "Unreal Editor Cloud Speed global actor target value 1 (default) | any value between -100 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Cloud opacity",
+   "default": "10",
+   "values": "Unreal Editor Cloud Opacity global actor target value 10 (default) | any value between 0 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Enable volumetric clouds",
+   "default": "off",
+   "values": "Option to enable volumetric clouds off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Cloud coverage",
+   "default": "1.0",
+   "values": "Unreal Editor Cloud Density global target value 1.0 (default) | any value between 0 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Cloud layer altitude",
+   "default": "6",
+   "values": "Unreal Editor Layer Bottom Altitude global actor target value 6 (default) | any value between 5 and 20",
+   "group": "Weather"
+  },
+  {
+   "name": "Fog density",
+   "default": "0",
+   "values": "Unreal Editor Set Fog Density and Set Start Distance target values 0 (default) | any value between 0 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Rain density",
+   "default": "0",
+   "values": "Unreal Editor local actor controlling rain density, wetness, rain puddles, and ripples 0 (default) | any value between 0 and 100",
+   "group": "Weather"
+  },
+  {
+   "name": "Enable raindrops on camera lens",
+   "default": "off",
+   "values": "Option to enable raindrops on camera lens off (default) | on",
+   "group": "Weather"
+  },
+  {
+   "name": "Snow density",
+   "default": "0",
+   "values": "Unreal Editor global actor controlling snow density 0 (default) | any value between 0 and 100",
+   "group": "Weather"
+  }
+ ]
+}

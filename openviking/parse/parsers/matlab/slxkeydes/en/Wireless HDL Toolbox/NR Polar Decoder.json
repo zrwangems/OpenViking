@@ -1,0 +1,102 @@
+{
+ "key": "NR Polar Decoder",
+ "title": "NR Polar Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/NR_Polar_Decoder.md"
+ ],
+ "text": "Perform polar decoding according to 5G NR standard, 5 inputs, 4 outputs; {Link direction} sets the direction of 5G NR, {List length} sets the number of decoding paths, {Configuration source} sets the source for K, {Message length (K)} sets the length of information block in bits, {Rate-matched length (E)} sets the rate-matched output length in bits, {Full checksum mismatch} sets the return checksum from final decoding stage and {Enable target RNTI port} sets the optional port to specify target RNTI value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input sample scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "Length of information block in bits positive integer"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "Rate-matched output length in bits scalar positive integer"
+  },
+  {
+   "name": "RNTI",
+   "direction": "input",
+   "summary": "Target RNTI 16-bit unsigned integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Decoded data bit scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "err",
+   "direction": "output",
+   "summary": "CRC result scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Ready for new inputs scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Link direction",
+   "default": "Downlink",
+   "values": "Direction of 5G NR link Downlink (default) | Uplink",
+   "group": ""
+  },
+  {
+   "name": "List length",
+   "default": "2",
+   "values": "Number of decoding paths 2 (default) | 4 | 8",
+   "group": ""
+  },
+  {
+   "name": "Configuration source",
+   "default": "Property",
+   "values": "Source for K and E Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Message length (K)",
+   "default": "56",
+   "values": "Length of information block in bits 56 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Rate-matched length (E)",
+   "default": "864",
+   "values": "Rate-matched output length in bits 864 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Full checksum mismatch",
+   "default": "off",
+   "values": "Return checksum from final decoding stage off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable target RNTI port",
+   "default": "off",
+   "values": "Optional port to specify target RNTI value off (default) | on",
+   "group": ""
+  }
+ ]
+}

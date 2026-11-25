@@ -1,0 +1,65 @@
+{
+ "key": "Hough Transform",
+ "title": "Hough Transform",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/Hough_Transform.md"
+ ],
+ "text": "在图像中查找直线，输入 1 路、输出 3 路；按 {Output data type} 指定输出数据类型；{Theta resolution (radians)} 指定 Theta 分辨率、{Rho resolution (pixels)} 指定 Rho 分辨率、{Output theta and rho values} 启用 Theta 和 Rho 输出端口、{Lock data type settings against change by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "二值图像 matrix"
+  },
+  {
+   "name": "Hough",
+   "direction": "output",
+   "summary": "参数空间矩阵 matrix"
+  },
+  {
+   "name": "Theta",
+   "direction": "output",
+   "summary": "Theta 值 vector"
+  },
+  {
+   "name": "Rho",
+   "direction": "output",
+   "summary": "Rho 值 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Theta resolution (radians)",
+   "default": "pi/180",
+   "values": "Theta 分辨率 pi/180 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Rho resolution (pixels)",
+   "default": "1",
+   "values": "Rho 分辨率 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output theta and rho values",
+   "default": "off",
+   "values": "启用 Theta 和 Rho 输出端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | Specify via Fixed-point tab",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

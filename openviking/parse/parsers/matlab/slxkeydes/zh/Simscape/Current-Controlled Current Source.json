@@ -1,0 +1,13 @@
+{
+ "key": "Current-Controlled Current Source",
+ "title": "Current-Controlled Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Sources/Current_Controlled_Current_Source.md"
+ ],
+ "text": "由输入信号驱动的理想电流源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

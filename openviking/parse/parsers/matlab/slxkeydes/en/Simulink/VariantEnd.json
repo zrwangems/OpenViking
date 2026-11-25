@@ -1,0 +1,42 @@
+{
+ "key": "VariantEnd",
+ "title": "Variant End",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Variant_End.md"
+ ],
+ "text": "Define end of bounded region, 2 inputs, 1 output, no direct feedthrough; {Variant Start End Tag} sets the unique identifier of bounded and {Variant Paired Block} sets the option to highlight paired Variant Start. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input branch scalar | vector | matrix"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "Input port associated with N th branch scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variant Start End Tag",
+   "default": "A",
+   "values": "Unique identifier of bounded region A (default) | valid MATLAB ® identifier",
+   "group": ""
+  },
+  {
+   "name": "Variant Paired Block",
+   "default": "off",
+   "values": "Option to highlight paired Variant Start block off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "key": "IsTriangular",
+ "title": "IsTriangular",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/IsTriangular.md"
+ ],
+ "text": "检查矩阵是上三角还是下三角，输入 1 路、输出 1 路、直接馈通；{Mode} 指定矩阵是上三角还是下三角，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入矩阵 matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "上三角或下三角矩阵 real scalar boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Upper",
+   "values": "矩阵是上三角还是下三角 Upper (default) | Lower",
+   "group": ""
+  }
+ ]
+}

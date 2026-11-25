@@ -1,0 +1,26 @@
+{
+ "key": "slrealtimepervarwrite",
+ "title": "Persistent Variable Write",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Target Management/Persistent_Variable_Write.md"
+ ],
+ "text": "将持久变量的值写入目标计算机，输入 1 路；按 {Variable name} 指定持久变量名称。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "持久变量输入数据 变量数据"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variable name",
+   "default": "Variable1",
+   "values": "持久变量名称 Variable1 (默认) | 字符向量 | 字符串",
+   "group": ""
+  }
+ ]
+}

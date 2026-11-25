@@ -1,0 +1,115 @@
+{
+ "key": "Pad",
+ "title": "Pad",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Pad.md"
+ ],
+ "text": "填充或截断指定维度，输入 1 路、输出 1 路、无直接馈通；按 {Pad over} 指定填充或截断所沿的维度；{Dimensions to pad} 指定填充或截断所沿的维度、{Pad value source} 指定填充值的来源 Specify via、{Pad value} 指定填充值、{Output column mode} 指定列长度的模式 User-specified、{Column size} 输出的列长度、{Output row mode} 指定行长度的方式、{Row size} 输出的行长度、{Specify} 输出大小或填充大小 Output、{Output size mode} 输出长度的方式 User-specified、{Output size} 指定沿指定维度的输出长度、{Pad size at beginning} 指定要添加到输入信号开头的值数目、{Pad size at end} 指定要添加到输入信号末尾的值数目、{Pad signal at} 指定在何处填充或截断信号、{Action when truncation occurs} 指定发生截断时采取的操作，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "数据输入 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "填充或截断后的输出 scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pad over",
+   "default": "Columns",
+   "values": "填充或截断所沿的维度 Columns (default) | Rows | Columns and rows | None | Specified dimensions",
+   "group": ""
+  },
+  {
+   "name": "Dimensions to pad",
+   "default": "1",
+   "values": "指定填充或截断所沿的维度 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Pad value source",
+   "default": "dialog",
+   "values": "填充值的来源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pad value",
+   "default": "0",
+   "values": "填充值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output column mode",
+   "default": "",
+   "values": "指定列长度的模式 User-specified | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Column size",
+   "default": "",
+   "values": "输出的列长度 1 | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output row mode",
+   "default": "User-specified",
+   "values": "指定行长度的方式 User-specified (default) | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Row size",
+   "default": "",
+   "values": "输出的行长度 1 | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify",
+   "default": "size",
+   "values": "指定输出大小或填充大小 Output size (default) | Pad size",
+   "group": ""
+  },
+  {
+   "name": "Output size mode",
+   "default": "",
+   "values": "指定输出长度的方式 User-specified | Next power of two",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "",
+   "values": "沿指定维度的输出长度 1 | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Pad size at beginning",
+   "default": "",
+   "values": "指定要添加到输入信号开头的值数目 0 | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Pad size at end",
+   "default": "",
+   "values": "指定要添加到输入信号末尾的值数目 0 | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Pad signal at",
+   "default": "End",
+   "values": "指定在何处填充或截断信号 End (default) | Beginning | Beginning and end",
+   "group": ""
+  },
+  {
+   "name": "Action when truncation occurs",
+   "default": "",
+   "values": "发生截断时采取的操作 None | Warning | Error",
+   "group": ""
+  }
+ ]
+}

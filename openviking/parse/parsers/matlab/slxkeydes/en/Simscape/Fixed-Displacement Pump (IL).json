@@ -1,0 +1,13 @@
+{
+ "key": "Fixed-Displacement Pump (IL)",
+ "title": "Fixed-Displacement Pump (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pumps & Motors/Fixed_Displacement_Pump_IL.md"
+ ],
+ "text": "Fixed-displacement pump in isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

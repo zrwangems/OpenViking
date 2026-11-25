@@ -1,0 +1,13 @@
+{
+ "key": "Gate Driver",
+ "title": "Gate Driver",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Gate_Driver.md"
+ ],
+ "text": "Behavioral model of gate driver integrated circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

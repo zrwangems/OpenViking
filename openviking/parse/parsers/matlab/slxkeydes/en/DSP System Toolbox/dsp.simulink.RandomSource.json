@@ -1,0 +1,98 @@
+{
+ "key": "dsp.simulink.RandomSource",
+ "title": "Random Source",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Random_Source.md"
+ ],
+ "text": "Generate randomly distributed values, 1 output, no direct feedthrough, {Sample time} sets Output sample period; {Distribution} sets the uniform, {Minimum}, {Maximum}, {Mean}, {Variance}, {Repeatability} sets the option to repeat block output, {Initial seed}, {Inherit via output port} sets the inherit output port parameters from downstream, {Samples per frame} sets the samples per output frame, {Signal complexity} sets the complexity of output, {Output data type} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Signal of randomly distributed values scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Distribution",
+   "default": "Uniform",
+   "values": "Uniform or Gaussian Uniform (default) | Gaussian",
+   "group": ""
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "Minimum value of uniform distribution 0 (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "1",
+   "values": "Maximum value of uniform distribution 1 (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Mean",
+   "default": "0",
+   "values": "Mean value of Gaussian distribution 0 (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Variance",
+   "default": "1",
+   "values": "Variance of Gaussian distribution 1 (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Repeatability",
+   "default": "seed",
+   "values": "Option to repeat block output Specify seed (default) | Not repeatable",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "1",
+   "values": "Initial seed for random number generator 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit via output port",
+   "default": "off",
+   "values": "Inherit output port parameters from downstream block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Output sample period 1 (default) | −1 | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per output frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Signal complexity",
+   "default": "Real",
+   "values": "Complexity of output Real (default) | Complex",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

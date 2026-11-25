@@ -1,0 +1,143 @@
+{
+ "key": "Attitude Profile",
+ "title": "Attitude Profile (Geographic Pointing)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Attitude_Profile_Geographic_Pointing.md",
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Attitude_Profile_Nadir_Pointing.md",
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Attitude_Profile_Sun_Tracking.md"
+ ],
+ "text": "计算最短四元数旋转，输入 10 路、输出 2 路；按 {Celestial target} 指定天体；{Output rotation from current to updated attitude} 输出旋转、{Output attitude} 输出更新后的姿态、{Port coordinate frame} 指定位置、速度和姿态端口的坐标系、{Pointing mode} 指定主矢量对准指向模式 Point、{Allow pointing mode change during run} 允许在运行期间更改指向模式、{Primary alignment (body-frame)} 指定主对准向量、{Secondary alignment (body-frame)} 指定次对准向量、{Constraint coordinate frame, CCF} 指定约束坐标系、{Primary constraint (CCF)} 指定主约束、{Secondary constraint (CCF)} 指定次约束，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "速度状态向量位置 3-element vector"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "速度状态向量 3-element vector"
+  },
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "航天器姿态 4-element vector"
+  },
+  {
+   "name": "t utc",
+   "direction": "input",
+   "summary": "当前数据或时间 scalar"
+  },
+  {
+   "name": "μ l",
+   "direction": "input",
+   "summary": "大地纬度和经度 2-element vector"
+  },
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "高度 scalar"
+  },
+  {
+   "name": "A1 b",
+   "direction": "input",
+   "summary": "主对准向量 3-element vector"
+  },
+  {
+   "name": "A2 b",
+   "direction": "input",
+   "summary": "次对准向量 3-element vector"
+  },
+  {
+   "name": "C1 lvlh",
+   "direction": "input",
+   "summary": "主约束向量 3-element vector"
+  },
+  {
+   "name": "C2 lvlh",
+   "direction": "input",
+   "summary": "次约束 3-element vector"
+  },
+  {
+   "name": "q tgt b",
+   "direction": "output",
+   "summary": "四元数旋转 4-element vector (scalar first)"
+  },
+  {
+   "name": "q new",
+   "direction": "output",
+   "summary": "更新后的航天器姿态 4-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output rotation from current to updated attitude",
+   "default": "on",
+   "values": "输出旋转 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output attitude",
+   "default": "off",
+   "values": "输出更新后的姿态 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Port coordinate frame",
+   "default": "ICRF",
+   "values": "位置、速度和姿态端口的坐标系 ICRF (default) | Fixed-frame",
+   "group": ""
+  },
+  {
+   "name": "Pointing mode",
+   "default": "nadir",
+   "values": "主矢量对准指向模式 Point at nadir (default) | Point at celestial body | Point at LatLonAlt | Custom",
+   "group": ""
+  },
+  {
+   "name": "Allow pointing mode change during run",
+   "default": "off",
+   "values": "允许在运行期间更改指向模式 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Celestial target",
+   "default": "Sun",
+   "values": "天体 Sun (default) | Mercury | Venus | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system barycenter | Earth-Moon barycenter",
+   "group": ""
+  },
+  {
+   "name": "Primary alignment (body-frame)",
+   "default": "Dialog",
+   "values": "主对准向量 Dialog (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Secondary alignment (body-frame)",
+   "default": "Dialog",
+   "values": "次对准向量 Dialog (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Constraint coordinate frame, CCF",
+   "default": "ICRF",
+   "values": "约束坐标系 ICRF (default) | Fixed-frame | LVLH | NED | Body-fixed",
+   "group": ""
+  },
+  {
+   "name": "Primary constraint (CCF)",
+   "default": "Dialog",
+   "values": "主约束 Dialog (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Secondary constraint (CCF)",
+   "default": "Dialog",
+   "values": "次约束 Dialog (default) | Port",
+   "group": ""
+  }
+ ]
+}

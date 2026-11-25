@@ -1,0 +1,26 @@
+{
+ "key": "StateWriter",
+ "title": "State Writer",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/State_Writer.md"
+ ],
+ "text": "Write to a block state, 1 input, no direct feedthrough; {State owner block} sets the name of state owner block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "State value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "State owner block",
+   "default": "none",
+   "values": "Name of state owner block none (default)",
+   "group": ""
+  }
+ ]
+}

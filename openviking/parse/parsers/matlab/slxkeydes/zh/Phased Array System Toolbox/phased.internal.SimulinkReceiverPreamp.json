@@ -1,0 +1,101 @@
+{
+ "key": "phased.internal.SimulinkReceiverPreamp",
+ "title": "Receiver Preamp",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Transmitters and Receivers/Receiver_Preamp.md"
+ ],
+ "text": "接收机前置放大器，输入 3 路、输出 1 路；{Gain (dB)} 指定接收机增益、{Loss factor (dB)} 指定接收机损耗因子、{Noise specification method} 指定噪声指定方法 Noise、{Noise power (W)} 指定噪声功率、{Noise figure (dB)} 指定接收机噪声系数、{Reference temperature (K)} 指定接收机参考温度、{Inherit sample rate} 指定继承采样率、{Sample rate (Hz)} 指定信号采样率 1e6、{Enable enabling signal input} 添加用于指定使能信号的输入、{Enable phase noise input} 添加用于指定相位噪声的输入、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入信号 complex-valued matrix"
+  },
+  {
+   "name": "TR",
+   "direction": "input",
+   "summary": "启用使能信号 logical-valued scalar | scalar"
+  },
+  {
+   "name": "Ph",
+   "direction": "input",
+   "summary": "输入相位噪声 scalar"
+  },
+  {
+   "name": "Out 1",
+   "direction": "output",
+   "summary": "输出 complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Gain (dB)",
+   "default": "20",
+   "values": "接收机增益 20 (default)",
+   "group": ""
+  },
+  {
+   "name": "Loss factor (dB)",
+   "default": "0",
+   "values": "接收机损耗因子 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Noise specification method",
+   "default": "temperature",
+   "values": "噪声指定方法 Noise temperature (default) | Noise power",
+   "group": ""
+  },
+  {
+   "name": "Noise power (W)",
+   "default": "0",
+   "values": "噪声功率 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "接收机噪声系数 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Reference temperature (K)",
+   "default": "290",
+   "values": "接收机参考温度 290 (default)",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "信号采样率 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable enabling signal input",
+   "default": "off",
+   "values": "添加用于指定使能信号的输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable phase noise input",
+   "default": "off",
+   "values": "添加用于指定相位噪声的输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

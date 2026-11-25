@@ -1,0 +1,13 @@
+{
+ "key": "Two-Phase Fluid Predefined Properties (2P)",
+ "title": "Two-Phase Fluid Predefined Properties (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Utilities/Two_Phase_Fluid_Predefined_Properties_2P.md"
+ ],
+ "text": "用于两相网络的预定义工作流体。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

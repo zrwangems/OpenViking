@@ -1,0 +1,97 @@
+{
+ "key": "instrument.system.TCPIPReceive",
+ "title": "TCP/IP Receive",
+ "toolbox": "Instrument Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Instrument Control Toolbox/TCP_IP_Receive.md"
+ ],
+ "text": "通过 TCP/IP 网络从指定的远程机器接收数据；输出 2 路；按 {Terminator} 指定终止符；{Remote address} 指定远程主机名或地址 远程主机名或 IP 地址、{Port} 指定远程主机端口、{Verify address and port connectivity} 指定远程机器连接验证 按钮、{Data size} 指定读取值的数量、{Source Data type} 输出数据类型、{ASCII format string} 指定字符串数据的格式、{Custom Terminator} 指定自定义终止符 数值数组、{字节顺序} 指定字节的顺序、{Enable blocking mode} 指定模拟等待接收数据、{Timeout} 指定完成操作所需的时间、{Block sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "已接收数据 向量 | 矩阵 | 数组"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "有新数据 0 (默认) | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Remote address",
+   "default": "",
+   "values": "远程主机名或地址 远程主机名或 IP 地址",
+   "group": ""
+  },
+  {
+   "name": "Port",
+   "default": "80",
+   "values": "远程主机端口 80 (默认) | 远程主机端口",
+   "group": ""
+  },
+  {
+   "name": "Verify address and port connectivity",
+   "default": "",
+   "values": "远程机器连接验证 按钮",
+   "group": ""
+  },
+  {
+   "name": "Data size",
+   "default": "[1,1]",
+   "values": "读取值的数量 [1,1] (默认) | 数值数组",
+   "group": ""
+  },
+  {
+   "name": "Source Data type",
+   "default": "uint8",
+   "values": "输出数据类型 uint8 (默认) | single | double | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | ASCII",
+   "group": ""
+  },
+  {
+   "name": "ASCII format string",
+   "default": "%f",
+   "values": "字符串数据的格式 %f (默认) | 数字转换设定符",
+   "group": ""
+  },
+  {
+   "name": "Terminator",
+   "default": "LF",
+   "values": "终止符 LF (默认) | CR | CR/LF | LF/CR | Custom terminator",
+   "group": ""
+  },
+  {
+   "name": "Custom Terminator",
+   "default": "",
+   "values": "自定义终止符 数值数组 | 0 至 255 之间的整数",
+   "group": ""
+  },
+  {
+   "name": "字节顺序",
+   "default": "big-endian",
+   "values": "字节的顺序 big-endian (默认) | little-endian",
+   "group": ""
+  },
+  {
+   "name": "Enable blocking mode",
+   "default": "on",
+   "values": "模拟等待接收数据 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "10",
+   "values": "完成操作所需的时间 10 (默认) | 正标量",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "0.01",
+   "values": "采样时间 0.01 (默认) | 正数",
+   "group": ""
+  }
+ ]
+}

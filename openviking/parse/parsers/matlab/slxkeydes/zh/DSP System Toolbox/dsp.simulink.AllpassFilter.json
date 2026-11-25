@@ -1,0 +1,78 @@
+{
+ "key": "dsp.simulink.AllpassFilter",
+ "title": "Allpass Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Allpass_Filter.md"
+ ],
+ "text": "单节或多节全通滤波器，输入 2 路、输出 1 路；按 {Internal allpass structure} 指定滤波器结构 Minimum；{Specify coefficients from input port} 用于指定全通多项式系数的标志、{Allpass polynomial coefficients} 指定最小乘法器形式的系数、{Wave Digital Filter allpass coefficients} 指定波数字滤波器形式的系数、{Indicate if last section is first order} 指定最后一节是否为一阶、{Lattice allpass coefficients} 指定格型形式的系数、{View Filter Response} 指定可视化滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入数据 column vector | row vector | matrix"
+  },
+  {
+   "name": "coeffs",
+   "direction": "input",
+   "summary": "全通滤波器系数 column vector | row vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "全通滤波器的输出 column vector | row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Internal allpass structure",
+   "default": "multiplier",
+   "values": "滤波器结构 Minimum multiplier (default) | Wave Digital Filter | Lattice",
+   "group": ""
+  },
+  {
+   "name": "Specify coefficients from input port",
+   "default": "off",
+   "values": "用于指定全通多项式系数的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Allpass polynomial coefficients",
+   "default": "]",
+   "values": "最小乘法器形式的系数 [ -2^(-1/2), 1/2 ] (default) | N -by-1 matrix | N -by-2 matrix | N -by-4 matrix",
+   "group": ""
+  },
+  {
+   "name": "Wave Digital Filter allpass coefficients",
+   "default": "]",
+   "values": "波数字滤波器形式的系数 [ 1/2, -2^(1/2)/3 ] (default) | N -by-1 matrix | N -by-2 matrix",
+   "group": ""
+  },
+  {
+   "name": "Indicate if last section is first order",
+   "default": "off",
+   "values": "最后一节是否为一阶 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lattice allpass coefficients",
+   "default": "1/2]",
+   "values": "格型形式的系数 [-2^(1/2)/3, 1/2] (default) | N -by-1 column vector | 1-by- N row vector",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "可视化滤波器响应 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "On-Off Delay",
+ "title": "On-Off Delay",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/On_Off_Delay.md"
+ ],
+ "text": "Boolean-signal delay, 1 input, 1 output, {Sample time} sets Block sample time; {ON delay time (s)} sets the input ON delay time, {OFF delay time (s)} sets the input OFF delay time and {Initial state} sets the signal initial state. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal 0 | 1"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output signal 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "ON delay time (s)",
+   "default": "0.01",
+   "values": "Input ON delay time 0.01 (default) | 0 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "OFF delay time (s)",
+   "default": "0",
+   "values": "Input OFF delay time 0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "Signal initial state 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Block sample time 0.001 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

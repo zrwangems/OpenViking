@@ -1,0 +1,38 @@
+{
+ "key": "ComplexToRealImag",
+ "title": "Complex to Real-Imag",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Complex_to_Real_Imag.md",
+  "HDL Coder/Math Operations/Complex_to_Real_Imag.md"
+ ],
+ "text": "Output real and imaginary parts of complex input signal, 1 input, 1 output, direct feedthrough, {Output} sets Real and/or; {Sample time (-1 for inherited)} sets the interval between samples. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output",
+   "default": "imag",
+   "values": "Real and/or imaginary output specification Real and imag (default) | Real | Imag",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "key": "MIDI Controls",
+ "title": "MIDI Controls",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sources/MIDI_Controls.md"
+ ],
+ "text": "MIDI 控制界面上各控件输出的值；输出 1 路、无直接馈通；按 {MIDI control numbers} 指定与模块所响应的 MIDI 控制面板控制器关联的控件编号；{MIDI device} 指定模块监听的 MIDI 控制面板、{MIDI device name} 指定模块监听的 MIDI 控制面板的设备名称 character、{MIDI controls} 指定模块是响应 MIDI 控制面板上的所有控制器还是特定控制器 Respond to any、{Initial values} 指定与模块所响应的 MIDI、{Send initial values to device at start} 使用初始值指定的值同步 MIDI 控制面板、{Output Mode} 指定 MIDI 控制值的输出模式 Normalized，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "MIDI device",
+   "default": "Default",
+   "values": "模块监听的 MIDI 控制面板 Default (default) | Specify other",
+   "group": ""
+  },
+  {
+   "name": "MIDI device name",
+   "default": "",
+   "values": "模块监听的 MIDI 控制面板的设备名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "MIDI controls",
+   "default": "control",
+   "values": "指定模块是响应 MIDI 控制面板上的所有控制器还是特定控制器 Respond to any control (default) | Respond to specified controls",
+   "group": ""
+  },
+  {
+   "name": "MIDI control numbers",
+   "default": "0",
+   "values": "与模块所响应的 MIDI 控制面板控制器关联的控件编号 0 (default) | integer | array of integers",
+   "group": ""
+  },
+  {
+   "name": "Initial values",
+   "default": "0",
+   "values": "与模块所响应的 MIDI 控制面板控制器关联的控件编号 0 (default) | scalar | array",
+   "group": ""
+  },
+  {
+   "name": "Send initial values to device at start",
+   "default": "off",
+   "values": "使用初始值指定的值同步 MIDI 控制面板 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Mode",
+   "default": "(0-1)",
+   "values": "MIDI 控制值的输出模式 Normalized (0-1) (default) | RAW MIDI (0-127)",
+   "group": ""
+  }
+ ]
+}

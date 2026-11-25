@@ -1,0 +1,13 @@
+{
+ "key": "Valve Actuators",
+ "title": "Valve Actuators",
+ "toolbox": "Simscape",
+ "kind": "source_block",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Valve_Actuators.md"
+ ],
+ "text": "在等温液体系统中维持阀压力与先导压力平衡的执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

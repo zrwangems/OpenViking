@@ -1,0 +1,85 @@
+{
+ "key": "Serial F",
+ "title": "Legacy Serial F",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Legacy_Serial_F.md"
+ ],
+ "text": "通过主板底板串口使用 FIFO 发送和接收数据，输入 1 路、输出 1 路；按 {Parity} 指定用于校验数据传输的奇偶校验；{Serial port} 指定正在访问的端口 Legacy Serial Port、{Baud rate} 用于传输数据的波特率、{Stop bits} 指定端口的停止位数、{Enable auto RTS/CTS} 启用 RTS/CTS 握手、{Port to modify} 指定正在访问的端口、{Receive FIFO size} 指定 FIFO 大小（字节）、{Transmit data type} 指定发送器的数据类型 count+32 bit、{Sample Time} 指定采样时间 也按实例取值；{Data bits} 指定每个字符的位数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "XMT",
+   "direction": "input",
+   "summary": "要发送的数据向量 vector"
+  },
+  {
+   "name": "FIFO",
+   "direction": "output",
+   "summary": "通过串口接收的数据的 FIFO serialfifoptr"
+  }
+ ],
+ "params": [
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "正在访问的端口 Legacy Serial Port 1 (default) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  },
+  {
+   "name": "Baud rate",
+   "default": "115200",
+   "values": "用于传输数据的波特率 115200 (default) | 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1200 | 600 | 300 | 110",
+   "group": ""
+  },
+  {
+   "name": "Data bits",
+   "default": "8",
+   "values": "每个字符的位数 8 (default) | 7 | 6 | 5",
+   "group": ""
+  },
+  {
+   "name": "Stop bits",
+   "default": "1",
+   "values": "端口的停止位数 1 (default) | 2",
+   "group": ""
+  },
+  {
+   "name": "Parity",
+   "default": "None",
+   "values": "用于校验数据传输的奇偶校验 None (default) | Even | Odd | Mark | Space",
+   "group": ""
+  },
+  {
+   "name": "Enable auto RTS/CTS",
+   "default": "off",
+   "values": "启用 RTS/CTS 握手 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Port to modify",
+   "default": "1",
+   "values": "正在访问的端口 1 (default) | 2",
+   "group": ""
+  },
+  {
+   "name": "Receive FIFO size",
+   "default": "1024",
+   "values": "FIFO 大小（字节） 1024 (default)",
+   "group": ""
+  },
+  {
+   "name": "Transmit data type",
+   "default": "int",
+   "values": "发送器的数据类型 count+32 bit int (default) | count+32 bit uint | count+16 bit int | count+16 bit uint | 8 bit int null terminated | 8 bit uint null terminated",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

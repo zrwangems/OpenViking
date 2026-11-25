@@ -1,0 +1,13 @@
+{
+ "key": "Orifice (IL)",
+ "title": "Orifice (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Orifices/Orifice_IL.md"
+ ],
+ "text": "等温液体系统中的定面积或可变面积节流孔。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,92 @@
+{
+ "key": "PushButtonBlock",
+ "title": "Push Button",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Push_Button.md"
+ ],
+ "text": "使用按钮更改参数或变量值；按 {标签} 指定模块标签位置；{连接}、{按钮文本} 按钮的文本标签、{打开值} 指定当按下或锁存按钮时赋给所连接的参数的值、{按钮类型} 按钮对点击的响应、{不透明度}、{前景颜色}、{背景颜色} 指定模块的背景色、{图标}、{图标对齐方式} 指定图标相对于按钮文本的对齐方式、{自定义图标颜色} 是否使用图标的打开颜色和关闭颜色、{打开颜色} 按下或锁存模块时的图标颜色、{关闭颜色} 指定未按下或锁存模块时的图标颜色，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "连接",
+   "default": "",
+   "values": "要连接的模块参数值 参数值连接选项",
+   "group": "连接"
+  },
+  {
+   "name": "按钮文本",
+   "default": "Button",
+   "values": "按钮的文本标签 Button (默认) | 字符串 | 字符向量",
+   "group": "常设"
+  },
+  {
+   "name": "打开值",
+   "default": "1",
+   "values": "当按下或锁存按钮时赋给所连接的参数的值 1 (默认) | 标量",
+   "group": "常设"
+  },
+  {
+   "name": "按钮类型",
+   "default": "瞬时",
+   "values": "按钮对点击的响应 瞬时 (默认) | 锁存",
+   "group": "常设"
+  },
+  {
+   "name": "标签",
+   "default": "Hide",
+   "values": "模块标签位置 Hide (默认) | Bottom | Top",
+   "group": "常设"
+  },
+  {
+   "name": "不透明度",
+   "default": "1",
+   "values": "模块背景不透明度 1 (默认) | 标量",
+   "group": "格式"
+  },
+  {
+   "name": "前景颜色",
+   "default": "",
+   "values": "模块前景颜色 [r g b] 向量",
+   "group": "格式"
+  },
+  {
+   "name": "背景颜色",
+   "default": "",
+   "values": "模块的背景色。 [r g b] 向量",
+   "group": "格式"
+  },
+  {
+   "name": "图标",
+   "default": "",
+   "values": "按钮上显示的图标 SVG 文件 | PNG 文件 | JPEG 文件",
+   "group": "图标"
+  },
+  {
+   "name": "图标对齐方式",
+   "default": "左侧",
+   "values": "图标相对于按钮文本的对齐方式 左侧 (默认) | 右侧 | 顶端 | 底端 | 居中",
+   "group": "图标"
+  },
+  {
+   "name": "自定义图标颜色",
+   "default": "off",
+   "values": "是否使用图标的打开颜色和关闭颜色 off (默认) | on",
+   "group": "图标"
+  },
+  {
+   "name": "打开颜色",
+   "default": "",
+   "values": "按下或锁存模块时的图标颜色 [r g b] 向量",
+   "group": "图标"
+  },
+  {
+   "name": "关闭颜色",
+   "default": "",
+   "values": "未按下或锁存模块时的图标颜色 [r g b] 向量",
+   "group": "图标"
+  }
+ ]
+}

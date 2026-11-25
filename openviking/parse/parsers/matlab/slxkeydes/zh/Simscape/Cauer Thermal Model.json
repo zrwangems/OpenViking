@@ -1,0 +1,13 @@
+{
+ "key": "Cauer Thermal Model",
+ "title": "Cauer Thermal Model",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Thermal/Cauer_Thermal_Model.md"
+ ],
+ "text": "通过半导体模块多层结构的热传递。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "DPDT Switch",
+ "title": "DPDT Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/DPDT_Switch.md"
+ ],
+ "text": "双刀双掷开关。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

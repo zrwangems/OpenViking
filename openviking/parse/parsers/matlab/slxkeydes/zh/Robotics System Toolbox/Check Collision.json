@@ -1,0 +1,46 @@
+{
+ "key": "Check Collision",
+ "title": "Check Collision",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Collision Detection/Check_Collision.md"
+ ],
+ "text": "检查两个凸碰撞几何体是否发生碰撞，输入 2 路、输出 3 路；{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Geom1",
+   "direction": "input",
+   "summary": "要检查的第一个碰撞几何体 bus"
+  },
+  {
+   "name": "Geom2",
+   "direction": "input",
+   "summary": "要检查的第二个碰撞几何体 bus"
+  },
+  {
+   "name": "CollStatus",
+   "direction": "output",
+   "summary": "碰撞状态 scalar"
+  },
+  {
+   "name": "SepDist",
+   "direction": "output",
+   "summary": "碰撞几何体之间的最小距离 scalar"
+  },
+  {
+   "name": "WitnessPts",
+   "direction": "output",
+   "summary": "每个几何体上的见证点 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

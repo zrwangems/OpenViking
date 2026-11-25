@@ -1,0 +1,56 @@
+{
+ "key": "FromWorkspace",
+ "title": "From Workspace",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/From_Workspace.md"
+ ],
+ "text": "将信号数据从工作区加载到 Simulink 模型中；输出 1 路；按 {采样时间} 指定输出采样周期和可选时间偏移量；{数据}、{输出数据类型} 指定加载的工作区数据类型 Inherit、{数据插值} 指定插值方法、{启用过零检测} 指定过零检测、{最终数据值之后的输出} 确定最后一个数据点之后的模块输出的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "从工作区加载的数据 标量 | 向量 | 矩阵 | 数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "数据",
+   "default": "",
+   "values": "要从工作区加载的数据 timeseries 对象 | timetable 对象 | 结构体 | 二维数组 | MATLAB 表达式",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "auto",
+   "values": "加载的工作区数据类型 Inherit: auto (默认) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 |...",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0",
+   "values": "输出采样周期和可选时间偏移量 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "数据插值",
+   "default": "on",
+   "values": "插值方法 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "过零检测 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "最终数据值之后的输出",
+   "default": "外插",
+   "values": "确定最后一个数据点之后的模块输出的方法 外插 (默认) | 设置为零 | 保持最终值 | 循环重复",
+   "group": ""
+  }
+ ]
+}

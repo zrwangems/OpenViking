@@ -1,0 +1,13 @@
+{
+ "key": "3-Way Directional Valve (G)",
+ "title": "3-Way Directional Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Directional Control Valves/b_3_Way_Directional_Valve_G.md"
+ ],
+ "text": "Controlled valve with three ports in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,54 @@
+{
+ "key": "SOC Estimator (Coulomb Counting)",
+ "title": "SOC Estimator (Coulomb Counting)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/SOC_Estimator_Coulomb_Counting.md"
+ ],
+ "text": "State of charge estimator with Coulomb counting, 2 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Specify Current input as cell current(s)} sets the option to specify current input port, {Cell capacity, AH (A*Hr)} sets the battery capacity when fully charged and {Algorithm data type} sets the option to choose data type for block algorithm. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Current",
+   "direction": "input",
+   "summary": "Battery current, A scalar | vector"
+  },
+  {
+   "name": "InitialSOC",
+   "direction": "input",
+   "summary": "Initial state of charge, unitless scalar | vector"
+  },
+  {
+   "name": "SOC",
+   "direction": "output",
+   "summary": "Battery state of charge scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Current input as cell current(s)",
+   "default": "on",
+   "values": "Option to specify current input port as vector on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Cell capacity, AH (A*Hr)",
+   "default": "27",
+   "values": "Battery capacity when fully charged 27 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "Block sample time 1 (default) | 0 | -1 | integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,84 @@
+{
+ "key": "Square Jacobi SVD HDL Optimized",
+ "title": "Square Jacobi SVD HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Matrices and Linear Algebra/Matrix Factorizations/Square_Jacobi_SVD_HDL_Optimized.md"
+ ],
+ "text": "定点奇异值分解，输入 4 路、输出 5 路；按 {Select outputs} 指定模块输出；{Dimension of matrix A} 指定方阵 A 的维度、{Number of Jacobi iterations} 指定 Jacobi 算法的迭代次数、{Signal type} 指定输入矩阵 A 的复杂度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "方阵 A real or complex square matrix"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入是否有效 scalar"
+  },
+  {
+   "name": "readyIn",
+   "direction": "input",
+   "summary": "下游模块是否已就绪 scalar"
+  },
+  {
+   "name": "restart",
+   "direction": "input",
+   "summary": "是否清除内部状态 scalar"
+  },
+  {
+   "name": "s",
+   "direction": "output",
+   "summary": "奇异值 column vector"
+  },
+  {
+   "name": "U",
+   "direction": "output",
+   "summary": "左奇异向量 unitary n -by- n matrix"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "右奇异向量 unitary n -by- n matrix"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据是否有效 Boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "模块是否就绪 Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Dimension of matrix A",
+   "default": "n",
+   "values": "方阵 A 的维度 n (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of Jacobi iterations",
+   "default": "10",
+   "values": "Jacobi 算法的迭代次数 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Select outputs",
+   "default": "UsV",
+   "values": "模块输出 UsV (default) | Us | sV | s",
+   "group": ""
+  },
+  {
+   "name": "Signal type",
+   "default": "real",
+   "values": "输入矩阵 A 的复杂度 real (default) | complex",
+   "group": ""
+  }
+ ]
+}

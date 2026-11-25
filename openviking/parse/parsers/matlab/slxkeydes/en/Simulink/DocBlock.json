@@ -1,0 +1,27 @@
+{
+ "key": "DocBlock",
+ "title": "DocBlock",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model-Wide Utilities/DocBlock.md",
+  "HDL Coder/Model-Wide Utilities/DocBlock.md"
+ ],
+ "text": "Create text that documents model and save text with model, {Document type} sets Type of document; {Code generation template symbol} sets the template symbol for generated code. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Code generation template symbol",
+   "default": "",
+   "values": "Template symbol for generated code ’’ | Abstract | Description | History | Modified History | Notes",
+   "group": ""
+  },
+  {
+   "name": "Document type",
+   "default": "Text",
+   "values": "Type of document Text (default) | RTF | HTML",
+   "group": ""
+  }
+ ]
+}

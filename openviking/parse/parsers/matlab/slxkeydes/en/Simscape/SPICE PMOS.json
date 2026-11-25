@@ -1,0 +1,13 @@
+{
+ "key": "SPICE PMOS",
+ "title": "SPICE PMOS",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Semiconductors/SPICE_PMOS.md"
+ ],
+ "text": "SPICE-compatible P-Channel MOSFET.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

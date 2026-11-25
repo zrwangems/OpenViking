@@ -1,0 +1,266 @@
+{
+ "key": "fusion.simulink.imuSensor",
+ "title": "IMU",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Multisensor Positioning/Sensor Models/IMU.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Sensor Models/IMU.md"
+ ],
+ "text": "IMU simulation model, 5 inputs, 3 outputs, {Axis skew (%)} sets Sensor axes skew; {Reference frame} sets the navigation reference frame, {Specify temperature from input port}, {Temperature ( o C)} sets the operating temperature of IMU, {Specify magnetic field from input port}, {Magnetic field (NED)} sets the magnetic field vector expressed in NED navigation, {MagneticField (ENU)} sets the magnetic field vector expressed in ENU navigation, {Seed} sets the initial seed for randomization, {Simulate using} sets the type of simulation to run Interpreted, {Maximum readings (m/s 2 )} sets the maximum sensor reading, {Resolution ((m/s 2 )/LSB)} sets the resolution of sensor measurements, {Constant offset bias (m/s 2 )} sets the constant sensor offset bias, {Velocity random walk (m/s 2 /√Hz)}, {Bias Instability (m/s 2 )} sets the instability of the bias offset, {Bias instability filter numerator coefficients}, {Bias instability filter denominator coefficients}, {Acceleration random walk ((m/s 2 )(√Hz))}, {Noise Type} sets the type of random, {Bias from temperature ((m/s 2 )/℃)} sets the sensor bias from temperature, {Temperature scale factor (%/℃)} scales factor error from temperature, {Maximum readings (rad/s)} sets the maximum sensor reading, {Resolution ((rad/s)/LSB)} sets the resolution of sensor measurements, {Constant offset bias (rad/s)} sets the constant sensor offset bias, {Bias from acceleration ((rad/s)/(m/s 2 )} sets the sensor bias from linear acceleration, {Angle random walk ((rad/s)/(√Hz))}, {Bias Instability (rad/s)} sets the instability of the bias offset, {Rate random walk ((rad/s)(√Hz))} sets the integrated white noise of sensor, {Bias from temperature ((rad/s)/℃)} sets the sensor bias from temperature, {Maximum readings (μT)} sets the maximum sensor reading, {Resolution ((μT)/LSB)} sets the resolution of sensor measurements, {Constant offset bias (μT)} sets the constant sensor offset bias, {White noise PSD (μT/√Hz)} sets the power spectral density of sensor noise, {Bias Instability (μT)} sets the instability of the bias offset, {Random walk ((μT)*√Hz)} sets the integrated white noise of sensor and {Bias from temperature (μT/℃)} sets the sensor bias from temperature. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Linear Acceleration",
+   "direction": "input",
+   "summary": "Acceleration of IMU in local navigation coordinate system (m/s 2 ) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Angular Velocity",
+   "direction": "input",
+   "summary": "Angular velocity of IMU in local navigation coordinate system (rad/s) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Orientation",
+   "direction": "input",
+   "summary": "Orientation of IMU in local navigation coordinate system N -by-4 array of real scalar | 3-by-3-by- N -element rotation matrix"
+  },
+  {
+   "name": "Temperature",
+   "direction": "input",
+   "summary": "Temperature of IMU (℃) N -by-1 vector of real scalar"
+  },
+  {
+   "name": "Magnetic Field",
+   "direction": "input",
+   "summary": "Magnetic field vector in local navigation coordinate system (μT) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Accel",
+   "direction": "output",
+   "summary": "Accelerometer measurement of IMU in sensor body coordinate system (m/s 2 ) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Gyro",
+   "direction": "output",
+   "summary": "Gyroscope measurement of IMU in sensor body coordinate system (rad/s) N -by-3 matrix of real scalar"
+  },
+  {
+   "name": "Mag",
+   "direction": "output",
+   "summary": "Magnetometer measurement of IMU in sensor body coordinate system (μT) N -by-3 matrix of real scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference frame",
+   "default": "NED",
+   "values": "Navigation reference frame NED (default) | ENU",
+   "group": ""
+  },
+  {
+   "name": "Specify temperature from input port",
+   "default": "off",
+   "values": "Specify temperature from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Temperature ( o C)",
+   "default": "25",
+   "values": "Operating temperature of IMU ( o C) 25 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify magnetic field from input port",
+   "default": "off",
+   "values": "Specify magnetic field from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Magnetic field (NED)",
+   "default": "-16.0849]",
+   "values": "Magnetic field vector expressed in NED navigation frame (μT) [27.5550, -2.4169, -16.0849] (default) | 1-by-3 vector of scalar",
+   "group": ""
+  },
+  {
+   "name": "MagneticField (ENU)",
+   "default": "16.0849]",
+   "values": "Magnetic field vector expressed in ENU navigation frame (μT) [-2.4169, 27.5550, 16.0849] (default) | 1-by-3 vector of scalar",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "67",
+   "values": "Initial seed for randomization 67 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Type of simulation to run Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Maximum readings (m/s 2 )",
+   "default": "inf",
+   "values": "Maximum sensor reading (m/s 2 ) inf (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Resolution ((m/s 2 )/LSB)",
+   "default": "0",
+   "values": "Resolution of sensor measurements ((m/s 2 )/LSB) 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant offset bias (m/s 2 )",
+   "default": "0]",
+   "values": "Constant sensor offset bias (m/s 2 ) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Axis skew (%)",
+   "default": "100])",
+   "values": "Sensor axes skew (%) diag([100 100 100]) (default) | scalar | 3-element row vector | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Velocity random walk (m/s 2 /√Hz)",
+   "default": "0]",
+   "values": "Velocity random walk (m/s 2 /√Hz) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias Instability (m/s 2 )",
+   "default": "0]",
+   "values": "Instability of the bias offset (m/s 2 ) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias instability filter numerator coefficients",
+   "default": "fractalcoef.Numerator",
+   "values": "Bias instability filter numerator coefficients fractalcoef.Numerator (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias instability filter denominator coefficients",
+   "default": "fractalcoef.Denominator",
+   "values": "Bias instability filter denominator coefficients fractalcoef.Denominator (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Acceleration random walk ((m/s 2 )(√Hz))",
+   "default": "0]",
+   "values": "Acceleration random walk ((m/s 2 )(√Hz)) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Noise Type",
+   "default": "double-sided",
+   "values": "Type of random noise double-sided (default) | single-sided",
+   "group": ""
+  },
+  {
+   "name": "Bias from temperature ((m/s 2 )/℃)",
+   "default": "0]",
+   "values": "Sensor bias from temperature ((m/s 2 )/℃) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Temperature scale factor (%/℃)",
+   "default": "0]",
+   "values": "Scale factor error from temperature (%/℃) [0 0 0] (default) | real scalar in the range [0,100] | real 3-element row vector in the range [0,100]",
+   "group": ""
+  },
+  {
+   "name": "Maximum readings (rad/s)",
+   "default": "inf",
+   "values": "Maximum sensor reading (rad/s) inf (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Resolution ((rad/s)/LSB)",
+   "default": "0",
+   "values": "Resolution of sensor measurements ((rad/s)/LSB) 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant offset bias (rad/s)",
+   "default": "0]",
+   "values": "Constant sensor offset bias (rad/s) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias from acceleration ((rad/s)/(m/s 2 )",
+   "default": "0]",
+   "values": "Sensor bias from linear acceleration (rad/s)/(m/s 2 ) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Angle random walk ((rad/s)/(√Hz))",
+   "default": "0]",
+   "values": "Angle random walk ((rad/s)/(√Hz)) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias Instability (rad/s)",
+   "default": "0]",
+   "values": "Instability of the bias offset (rad/s) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Rate random walk ((rad/s)(√Hz))",
+   "default": "0]",
+   "values": "Integrated white noise of sensor ((rad/s)(√Hz)) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias from temperature ((rad/s)/℃)",
+   "default": "0]",
+   "values": "Sensor bias from temperature ((rad/s)/℃) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum readings (μT)",
+   "default": "inf",
+   "values": "Maximum sensor reading (μT) inf (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Resolution ((μT)/LSB)",
+   "default": "0",
+   "values": "Resolution of sensor measurements ((μT)/LSB) 0 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant offset bias (μT)",
+   "default": "0]",
+   "values": "Constant sensor offset bias (μT) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "White noise PSD (μT/√Hz)",
+   "default": "0]",
+   "values": "Power spectral density of sensor noise (μT/√Hz) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias Instability (μT)",
+   "default": "0]",
+   "values": "Instability of the bias offset (μT) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Random walk ((μT)*√Hz)",
+   "default": "0]",
+   "values": "Integrated white noise of sensor ((μT)*√Hz) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Bias from temperature (μT/℃)",
+   "default": "0]",
+   "values": "Sensor bias from temperature (μT/℃) [0 0 0] (default) | real scalar | real 3-element row vector",
+   "group": ""
+  }
+ ]
+}

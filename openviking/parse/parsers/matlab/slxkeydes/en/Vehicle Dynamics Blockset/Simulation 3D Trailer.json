@@ -1,0 +1,55 @@
+{
+ "key": "Simulation 3D Trailer",
+ "title": "Simulation 3D Trailer",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Trailer.md"
+ ],
+ "text": "Implement trailer in 3D environment, 2 inputs, {Type} sets Trailer type Two-axle; {Name}, {Initial array values to translate vehicle per part, Translation} sets the vehicle initial translation zeros, {Initial array values to rotate vehicle per part, Rotation} sets the vehicle initial rotation zeros and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Vehicle translation 5 -by- 3 array (default) | 7 -by- 3 array | 3 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Vehicle rotation 5 -by- 3 array (default) | 7 -by- 3 array | 3 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "trailer",
+   "values": "Trailer type Two-axle trailer (default) | Three-axle trailer | One-axle trailer",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "Name of vehicle SimulinkVehicle1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to translate vehicle per part, Translation",
+   "default": ")",
+   "values": "Vehicle initial translation zeros( 5, 3 ) (default) | zeros( 7, 3 ) | zeros( 3, 3 )",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to rotate vehicle per part, Rotation",
+   "default": ")",
+   "values": "Vehicle initial rotation zeros( 5, 3 ) (default) | zeros( 7, 3 ) | zeros( 3, 3 )",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

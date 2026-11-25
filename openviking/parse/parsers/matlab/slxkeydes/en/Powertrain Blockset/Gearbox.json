@@ -1,0 +1,158 @@
+{
+ "key": "Gearbox",
+ "title": "Gearbox",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Gearbox.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Gearbox.md"
+ ],
+ "text": "Ideal rotational gearbox, 4 inputs, 4 outputs, {Interpolation method} sets Method Flat; {Port Configuration} sets the configuration, {Efficiency factors} sets the configuration, {Output shaft rotates in same direction as input} sets the rotation, {Input ambient temperature} sets the create input port, {Input to output gear ratio, N} sets the ratio, {Input shaft inertia, J1} sets the inertia .01, {Output shaft inertia, J2} sets the inertia .01, {Input shaft damping, b1} sets the damping .001, {Output shaft damping, b2} sets the damping .001, {Input shaft initial velocity, w1_o} sets the initial velocity, {Constant efficiency factor, eta} sets the efficiency, {Efficiency lookup table, eta_tbl} sets the lookup table M -by- N -by, {Efficiency torque breakpoints, Trq_bpts} sets the torque breakpoints, {Efficiency speed breakpoints, omega_bpts} sets the speed breakpoints, {Efficiency temperature breakpoints, Temp_bpts} sets the temperature breakpoints and {Air temperature, Tair} sets the ambient air temperature. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BTrq",
+   "direction": "input",
+   "summary": "Base gear input torque scalar"
+  },
+  {
+   "name": "FTrq",
+   "direction": "input",
+   "summary": "Follower gear output torque scalar"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Base gear angular velocity and torque two-way connector port"
+  },
+  {
+   "name": "AirTemp",
+   "direction": "input",
+   "summary": "Ambient air temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "BSpd",
+   "direction": "output",
+   "summary": "Input gear angular velocity scalar"
+  },
+  {
+   "name": "FSpd",
+   "direction": "output",
+   "summary": "Output gear angular velocity scalar"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "Output gear angular velocity and torque two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "Specify configuration Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Efficiency factors",
+   "default": "Constant",
+   "values": "Specify configuration Constant (default) | Driveshaft torque, speed and temperature",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "",
+   "values": "Method Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline",
+   "group": ""
+  },
+  {
+   "name": "Output shaft rotates in same direction as input",
+   "default": "off",
+   "values": "Rotation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input ambient temperature",
+   "default": "off",
+   "values": "Create input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input to output gear ratio, N",
+   "default": "2",
+   "values": "Ratio 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft inertia, J1",
+   "default": ".01",
+   "values": "Inertia .01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output shaft inertia, J2",
+   "default": ".01",
+   "values": "Inertia .01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft damping, b1",
+   "default": ".001",
+   "values": "Damping .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output shaft damping, b2",
+   "default": ".001",
+   "values": "Damping .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft initial velocity, w1_o",
+   "default": "0",
+   "values": "Initial velocity 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Constant efficiency factor, eta",
+   "default": "1",
+   "values": "Efficiency 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Efficiency lookup table, eta_tbl",
+   "default": "",
+   "values": "Lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency torque breakpoints, Trq_bpts",
+   "default": "250]",
+   "values": "Torque breakpoints [25, 50, 75, 100, 150, 200, 250] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency speed breakpoints, omega_bpts",
+   "default": "524]",
+   "values": "Speed breakpoints [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency temperature breakpoints, Temp_bpts",
+   "default": "358]",
+   "values": "Temperature breakpoints [290 358] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Air temperature, Tair",
+   "default": "297.15",
+   "values": "Ambient air temperature 297.15 (default) | scalar greater than 0",
+   "group": ""
+  }
+ ]
+}

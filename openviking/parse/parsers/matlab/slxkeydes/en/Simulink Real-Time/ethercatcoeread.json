@@ -1,0 +1,73 @@
+{
+ "key": "ethercatcoeread",
+ "title": "EtherCAT Sync SDO Upload",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Sync_SDO_Upload.md"
+ ],
+ "text": "Read data synchronously from subordinate device represented by service data object, 2 outputs, {Data Type} sets Data type of CANopen register; {Index}, {Subindex}, {Dimension}, {Network Device Index} sets the etherCAT network identifier, {SubDevice Name} sets the name of device that contains CANopen register character, {Sample time} and {Timeout} sets the time to wait for response from subordinate device. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Data received from subordinate device numeric"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "Report an EtherCAT network error 0 | integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Index",
+   "default": "",
+   "values": "Index of CANopen register integer",
+   "group": ""
+  },
+  {
+   "name": "Subindex",
+   "default": "",
+   "values": "Subindex of CANopen register integer",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Data type of CANopen register double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Dimension of CANopen register 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT network identifier 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "SubDevice Name",
+   "default": "",
+   "values": "Name of device that contains CANopen register character vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "",
+   "values": "Time to wait for response from subordinate device numeric",
+   "group": ""
+  }
+ ]
+}

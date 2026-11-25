@@ -1,0 +1,148 @@
+{
+ "key": "dsp.simulink.BandpassFIRFilterDesign",
+ "title": "Bandpass FIR Filter Design",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Sources/Bandpass_FIR_Filter_Design.md",
+  "DSP System Toolbox/Filtering/Filter Designs/Bandpass_FIR_Filter_Design.md"
+ ],
+ "text": "设计具有可调滤波器规格的带通 FIR 滤波器，输入 5 路、输出 1 路、无直接馈通；按 {Window function} 指定窗函数；{Smooth tuned filter parameters} 指定平滑可调滤波器参数、{Smoothing factor} 指定平滑因子、{Specify filter order from input port} 用于从输入端口指定滤波器阶数的标志（滤波器阶数 100）{Filter maximum order (must be even)} 指定滤波器最大阶数、{Specify center frequency from input port} 用于从输入端口指定中心频率的标志、{Center frequency} 指定中心频率、{Specify bandwidth from input port} 用于从输入端口指定带宽的标志、{Bandwidth} 指定滤波器带宽、{Specify sidelobe attenuation from input port} 用于从输入端口指定旁瓣衰减的标志、{Sidelobe attenuation (dB)} 指定旁瓣衰减（dB）、{Specify kaiser window parameter from input port} 用于从输入端口指定 Kaiser 窗参数的标志、{Kaiser window parameter} 指定 Kaiser 窗参数、{Sample time (−1 for inherited)} 指定采样时间，单位为秒、{Output data type} 指定滤波器系数的数据类型、{Simulate using} 指定要运行的仿真类型 Interpreted execu 也按实例取值；{Filter order (must be even)} 指定滤波器阶数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "滤波器阶数 even positive integer"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "滤波器中心频率 positive scalar ≤ 1"
+  },
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "滤波器带宽 positive scalar ≤ 1"
+  },
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "旁瓣衰减（dB） positive scalar"
+  },
+  {
+   "name": "beta",
+   "direction": "input",
+   "summary": "Kaiser 窗参数 nonnegative scalar"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "分子系数 row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Smooth tuned filter parameters",
+   "default": "off",
+   "values": "平滑可调滤波器参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor",
+   "default": "0.6",
+   "values": "平滑因子 0.6 (default) | nonnegative scalar less than 1",
+   "group": ""
+  },
+  {
+   "name": "Specify filter order from input port",
+   "default": "off",
+   "values": "用于从输入端口指定滤波器阶数的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter order (must be even)",
+   "default": "100",
+   "values": "滤波器阶数 100 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter maximum order (must be even)",
+   "default": "100",
+   "values": "滤波器最大阶数 100 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "off",
+   "values": "用于从输入端口指定中心频率的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Center frequency",
+   "default": "0.5",
+   "values": "中心频率 0.5 (default) | positive scalar ≤ 1",
+   "group": ""
+  },
+  {
+   "name": "Specify bandwidth from input port",
+   "default": "off",
+   "values": "用于从输入端口指定带宽的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Bandwidth",
+   "default": "0.1",
+   "values": "滤波器带宽 0.1 (default) | positive scalar ≤ 1",
+   "group": ""
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "窗函数 Hann (default) | Hamming | Blackman | Blackman-Harris | Chebyshev | Kaiser",
+   "group": ""
+  },
+  {
+   "name": "Specify sidelobe attenuation from input port",
+   "default": "off",
+   "values": "用于从输入端口指定旁瓣衰减的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation (dB)",
+   "default": "60",
+   "values": "旁瓣衰减（dB） 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify kaiser window parameter from input port",
+   "default": "off",
+   "values": "用于从输入端口指定 Kaiser 窗参数的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Kaiser window parameter",
+   "default": "0.5",
+   "values": "Kaiser 窗参数 0.5 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (−1 for inherited)",
+   "default": "-1",
+   "values": "采样时间，单位为秒 -1 (default) | positive scalar | Inf",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "滤波器系数的数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

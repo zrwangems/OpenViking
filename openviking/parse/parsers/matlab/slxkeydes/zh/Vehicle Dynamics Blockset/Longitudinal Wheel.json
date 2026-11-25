@@ -1,0 +1,705 @@
+{
+ "key": "Longitudinal Wheel",
+ "title": "Longitudinal Wheel - Disc Brake",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Wheels and Tires/Longitudinal_Wheel_Disc_Brake.md",
+  "Vehicle Dynamics Blockset/Wheels and Tires/Longitudinal_Wheel_Drum_Brake.md",
+  "Vehicle Dynamics Blockset/Wheels and Tires/Longitudinal_Wheel_Mapped_Brake.md",
+  "Vehicle Dynamics Blockset/Wheels and Tires/Longitudinal_Wheel_No_Brake.md",
+  "Powertrain Blockset/Drivetrain/Wheels/Longitudinal_Wheel_Disc_Brake.md",
+  "Powertrain Blockset/Drivetrain/Wheels/Longitudinal_Wheel_Drum_Brake.md",
+  "Powertrain Blockset/Drivetrain/Wheels/Longitudinal_Wheel_Mapped_Brake.md",
+  "Powertrain Blockset/Drivetrain/Wheels/Longitudinal_Wheel_No_Brake.md"
+ ],
+ "text": "带盘式、鼓式或映射制动器的纵向车轮，输入 8 路、输出 5 路；按 {Rolling Resistance} 指定滚动阻力转矩；{Longitudinal Force} 指定类型 Magic Formula constant、{Brake Type} 指定类型 None、{Vertical Motion} 指定类型 None、{Longitudinal scaling factor, lam_x} 指定摩擦缩放因子、{Input friction scale factor} 指定 off、{Axle viscous damping coefficient, br} 指定阻尼、{Wheel inertia, Iyy} 指定惯性、{Wheel initial angular velocity, omegao} 指定 Wheel speed、{Relaxation length, Lrel}、{Loaded radius, Re}、{Unloaded radius, UNLOADED_RADIUS}、{Nominal longitudinal speed, LONGVL} 指定速度、{Nominal camber angle, gamma} 指定 Camber、{Nominal pressure, NOMPRES} 指定压力、{Pressure, press} 指定压力、{Pure longitudinal peak factor, Dx} 指定 Factor、{Pure longitudinal shape factor, Cx} 指定 Factor、{Pure longitudinal stiffness factor, Bx} 指定 Factor、{Pure longitudinal curvature factor, Ex} 指定 Factor、{Cfx shape factor, PCX1} 指定 Factor、{Longitudinal friction at nominal normal load, PDX1} 指定 Factor、{Frictional variation with load, PDX2} 指定 Factor、{Frictional variation with camber, PDX3} 指定 Factor、{Longitudinal curvature at nominal normal load, PEX1} 指定 Factor、{Variation of curvature factor with load, PEX2} 指定 Factor、{Variation of curvature factor with square of load, PEX3} 指定 Factor、{Longitudinal curvature factor with slip, PEX4} 指定 Factor、{Longitudinal slip stiffness at nominal normal load, PKX1} 指定 Factor、{Variation of slip stiffness with load, PKX2} 指定 Factor、{Slip stiffness exponent factor, PKX3} 指定 Factor、{Horizontal shift in slip ratio at nominal normal load, PHX1} 指定 Factor 2.1585E-4、{Variation of horizontal slip ratio with load, PHX2} 指定 Factor、{Vertical shift in load at nominal normal load, PVX1} 指定 Factor 1.5973E-5、{Variation of vertical shift with load, PVX2} 指定 Factor 1.043E-4、{Linear variation of longitudinal slip stiffness with tire pressure, PPX1} 指定 Factor、{Quadratic variation of longitudinal slip stiffness with tire pressure, PPX2} 指定 Factor、{Linear variation of peak longitudinal friction with tire pressure, PPX3} 指定 Factor、{Quadratic variation of peak longitudinal friction with tire pressure, PPX4} 指定 Factor、{Slip speed decay function scaling factor, lam_muV} 指定 Factor、{Brake slip stiffness scaling factor, lam_Kxkappa} 指定 Factor、{Longitudinal shape scaling factor, lam_Cx} 指定 Factor、{Longitudinal curvature scaling factor, lam_Ex} 指定 Factor、{Longitudinal horizontal shift scaling factor, lam_Hx} 指定 Factor、{Longitudinal vertical shift scaling factor, lam_Vx} 指定 Factor、{Slip ratio breakpoints, kappaFx} 指定断点 vector、{Normal force breakpoints, FzFx} 指定断点 vector、{Longitudinal force map, FxMap} 查找表 array、{Velocity independent force coefficient, aMy} 指定速度无关的力系数 84e-4、{Linear velocity force component, bMy} 指定线性速度力分量 6.2e-4、{Quadratic velocity force component, cMy} 指定二次速度力分量 1.6e-4、{Tire pressure exponent, alphaMy} 指定轮胎压力指数、{Normal force exponent, betaMy} 指定法向力指数、{Parasitic losses force, Fpl} 指定寄生力损失、{Rolling resistance constant, Cr} 指定滚动阻力常数 1e-3、{Thermal correction factor, Kt} 指定热修正因子、{Measured temperature, Tmeas} 指定测试期间温度、{Ambient temperature, Tamb} 指定应用环境中的温度、{Input ambient temperature} 指定输入环境温度、{Rolling resistance torque coefficient, QSY1} 指定扭矩系数、{Longitudinal force rolling resistance coefficient, QSY2} 指定力阻力系数、{Linear rotational speed rolling resistance coefficient, QSY3} 指定线性速度系数、{Quartic rotational speed rolling resistance coefficient, QSY4} 指定四次方速度系数 8.5e-05、{Camber squared rolling resistance torque, QSY5} 指定外倾阻力矩、{Load based camber squared rolling resistance torque, QSY6} 指定载荷阻力矩、{Normal load rolling resistance coefficient, QSY8} 指定法向阻力系数、{Pressure load rolling resistance coefficient, QSY8} 指定压力阻力系数、{Rolling resistance scaling factor, lam_My} 指定缩放因子、{Spin axis velocity breakpoints, VxMy} 指定自旋轴速度断点、{Normal force breakpoints, FzMy} 指定法向力断点、{Rolling resistance torque map, MyMap} 指定滚动阻力矩映射 array、{Static friction coefficient, mu_static} 指定静摩擦 .3、{Kinetic friction coefficient, mu_kinetic} 指定动摩擦 .2、{Disc brake actuator bore, disc_abore} 指定缸径距离 .05、{Brake pad mean radius, Rm} 指定半径 .177、{Number of brake pads, num_pads} 指定数量、{Drum brake actuator bore, disc_abore} 指定缸径距离、{Shoe pin to drum center distance, drum_a} 指定距离、{Shoe pin center to force application point distance, drum_c} 指定距离、{Drum internal radius, drum_r} 指定半径、{Shoe pin to pad start angle, drum_theta1} 指定角度、{Shoe pin to pad end angle, drum_theta2} 指定角度、{Brake actuator pressure breakpoints, brake_p_bpt} 指定断点 vector、{Wheel speed breakpoints, brake_n_bpt} 指定断点 vector、{Brake torque map, f_brake_t} 查找表 array、{Nominal normal force, FNOMIN} 指定力、{Nominal rated load scaling factor, lam_Fzo} 指定 Factor、{Wheel and unsprung mass, m} 指定质量、{Initial deflection, zo} 指定挠度、{Initial velocity, zdoto} 指定速度、{Gravitational acceleration, g} 指定重力、{Ground displacement, Gndz} 指定位移、{Vertical deflection breakpoints, zFz} 指定断点、{Pressure breakpoints, pFz} 指定断点、{Force due to deflection, Fzz} 指定力、{Vertical velocity breakpoints, zdotFz} 指定断点、{Force due to velocity, Fzzdot} 指定力、{Minimum normal force, FZMIN} 指定最小法向力、{Maximum normal force, FZMAX} 指定最大法向力、{Max allowable slip ratio (absolute), kappamax} 指定比值、{Velocity tolerance used to handle low velocity situations, VXLOW} 指定容差、{Minimum ambient temperature, TMIN} 指定最低环境温度、{Maximum ambient temperature, TMAX} 指定最高环境温度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BrkPrs",
+   "direction": "input",
+   "summary": "制动压力 scalar"
+  },
+  {
+   "name": "AxlTrq",
+   "direction": "input",
+   "summary": "车轴扭矩 scalar"
+  },
+  {
+   "name": "Vx",
+   "direction": "input",
+   "summary": "速度 scalar"
+  },
+  {
+   "name": "Fz",
+   "direction": "input",
+   "summary": "法向力 scalar"
+  },
+  {
+   "name": "Gnd",
+   "direction": "input",
+   "summary": "地面位移 scalar"
+  },
+  {
+   "name": "lam_mux",
+   "direction": "input",
+   "summary": "摩擦缩放因子 scalar"
+  },
+  {
+   "name": "TirePrs",
+   "direction": "input",
+   "summary": "轮胎压力 scalar"
+  },
+  {
+   "name": "Tamb",
+   "direction": "input",
+   "summary": "环境温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "Fx",
+   "direction": "output",
+   "summary": "车轴纵向力 scalar"
+  },
+  {
+   "name": "Omega",
+   "direction": "output",
+   "summary": "车轮角速度 scalar"
+  },
+  {
+   "name": "z",
+   "direction": "output",
+   "summary": "车轮垂向变形 scalar"
+  },
+  {
+   "name": "zdot",
+   "direction": "output",
+   "summary": "车轮垂向速度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Longitudinal Force",
+   "default": "value",
+   "values": "选择类型 Magic Formula constant value (default) | Magic Formula pure longitudinal slip | Mapped force",
+   "group": "Block Options"
+  },
+  {
+   "name": "Rolling Resistance",
+   "default": "None",
+   "values": "滚动阻力转矩 None (default) | Pressure and velocity | ISO 28580 | Magic Formula | Mapped torque",
+   "group": "Block Options"
+  },
+  {
+   "name": "Brake Type",
+   "default": "",
+   "values": "选择类型 None | Disc | Drum | Mapped",
+   "group": "Block Options"
+  },
+  {
+   "name": "Vertical Motion",
+   "default": "None",
+   "values": "选择类型 None (default) | Mapped stiffness and damping",
+   "group": "Block Options"
+  },
+  {
+   "name": "Longitudinal scaling factor, lam_x",
+   "default": "1",
+   "values": "摩擦缩放因子 1 (default)",
+   "group": "Block Options"
+  },
+  {
+   "name": "Input friction scale factor",
+   "default": "off",
+   "values": "选择 off (default) | on",
+   "group": "Block Options"
+  },
+  {
+   "name": "Axle viscous damping coefficient, br",
+   "default": "0.001",
+   "values": "阻尼 0.001 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Wheel inertia, Iyy",
+   "default": "0.8",
+   "values": "惯性 0.8 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Wheel initial angular velocity, omegao",
+   "default": "0",
+   "values": "Wheel speed 0 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Relaxation length, Lrel",
+   "default": "0.5",
+   "values": "Relaxation length 0.5 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Loaded radius, Re",
+   "default": "0.3",
+   "values": "Loaded radius 0.3 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Unloaded radius, UNLOADED_RADIUS",
+   "default": "0.4",
+   "values": "Unloaded radius 0.4 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Nominal longitudinal speed, LONGVL",
+   "default": "16",
+   "values": "速度 16 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Nominal camber angle, gamma",
+   "default": "0",
+   "values": "Camber 0 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Nominal pressure, NOMPRES",
+   "default": "220000",
+   "values": "压力 220000 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Pressure, press",
+   "default": "220000",
+   "values": "压力 220000 (default) | scalar",
+   "group": "Wheel Dynamics"
+  },
+  {
+   "name": "Pure longitudinal peak factor, Dx",
+   "default": "1",
+   "values": "Factor 1 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Pure longitudinal shape factor, Cx",
+   "default": "1.65",
+   "values": "Factor 1.65 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Pure longitudinal stiffness factor, Bx",
+   "default": "10",
+   "values": "Factor 10 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Pure longitudinal curvature factor, Ex",
+   "default": "0.01",
+   "values": "Factor 0.01 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Cfx shape factor, PCX1",
+   "default": "1.6",
+   "values": "Factor 1.6 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal friction at nominal normal load, PDX1",
+   "default": "1",
+   "values": "Factor 1 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Frictional variation with load, PDX2",
+   "default": "-0.08",
+   "values": "Factor -0.08 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Frictional variation with camber, PDX3",
+   "default": "0",
+   "values": "Factor 0 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal curvature at nominal normal load, PEX1",
+   "default": "0.112",
+   "values": "Factor 0.112 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of curvature factor with load, PEX2",
+   "default": "0.313",
+   "values": "Factor 0.313 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of curvature factor with square of load, PEX3",
+   "default": "0",
+   "values": "Factor 0 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal curvature factor with slip, PEX4",
+   "default": "0.0016",
+   "values": "Factor 0.0016 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal slip stiffness at nominal normal load, PKX1",
+   "default": "21.7",
+   "values": "Factor 21.7 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of slip stiffness with load, PKX2",
+   "default": "13.77",
+   "values": "Factor 13.77 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Slip stiffness exponent factor, PKX3",
+   "default": "-0.412",
+   "values": "Factor -0.412 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Horizontal shift in slip ratio at nominal normal load, PHX1",
+   "default": "2.1585E-4",
+   "values": "Factor 2.1585E-4 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of horizontal slip ratio with load, PHX2",
+   "default": "0.00115",
+   "values": "Factor 0.00115 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Vertical shift in load at nominal normal load, PVX1",
+   "default": "1.5973E-5",
+   "values": "Factor 1.5973E-5 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Variation of vertical shift with load, PVX2",
+   "default": "1.043E-4",
+   "values": "Factor 1.043E-4 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Linear variation of longitudinal slip stiffness with tire pressure, PPX1",
+   "default": "-0.3489",
+   "values": "Factor -0.3489 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Quadratic variation of longitudinal slip stiffness with tire pressure, PPX2",
+   "default": "0.382",
+   "values": "Factor 0.382 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Linear variation of peak longitudinal friction with tire pressure, PPX3",
+   "default": "-0.09634",
+   "values": "Factor -0.09634 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Quadratic variation of peak longitudinal friction with tire pressure, PPX4",
+   "default": "0.06447",
+   "values": "Factor 0.06447 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Slip speed decay function scaling factor, lam_muV",
+   "default": "1",
+   "values": "Factor 1 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Brake slip stiffness scaling factor, lam_Kxkappa",
+   "default": "1",
+   "values": "Factor 1 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal shape scaling factor, lam_Cx",
+   "default": "1",
+   "values": "Factor 1 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal curvature scaling factor, lam_Ex",
+   "default": "0",
+   "values": "Factor 0 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal horizontal shift scaling factor, lam_Hx",
+   "default": "1",
+   "values": "Factor 1 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal vertical shift scaling factor, lam_Vx",
+   "default": "1",
+   "values": "Factor 1 (default) | scalar",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Slip ratio breakpoints, kappaFx",
+   "default": "",
+   "values": "断点 vector",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Normal force breakpoints, FzFx",
+   "default": "",
+   "values": "断点 vector",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Longitudinal force map, FxMap",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Longitudinal"
+  },
+  {
+   "name": "Velocity independent force coefficient, aMy",
+   "default": "84e-4",
+   "values": "速度无关的力系数 84e-4 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Linear velocity force component, bMy",
+   "default": "6.2e-4",
+   "values": "线性速度力分量 6.2e-4 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Quadratic velocity force component, cMy",
+   "default": "1.6e-4",
+   "values": "二次速度力分量 1.6e-4 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Tire pressure exponent, alphaMy",
+   "default": "-0.003",
+   "values": "轮胎压力指数 -0.003 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Normal force exponent, betaMy",
+   "default": "0.97",
+   "values": "法向力指数 0.97 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Parasitic losses force, Fpl",
+   "default": "10",
+   "values": "寄生力损失 10 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Rolling resistance constant, Cr",
+   "default": "1e-3",
+   "values": "滚动阻力常数 1e-3 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Thermal correction factor, Kt",
+   "default": "0.008",
+   "values": "热修正因子 0.008 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Measured temperature, Tmeas",
+   "default": "298.15",
+   "values": "测试期间温度 298.15 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Ambient temperature, Tamb",
+   "default": "298.15",
+   "values": "应用环境中的温度 298.15 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Input ambient temperature",
+   "default": "off",
+   "values": "输入环境温度的选项 off (default) | on",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Rolling resistance torque coefficient, QSY1",
+   "default": "0.007",
+   "values": "扭矩系数 0.007 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Longitudinal force rolling resistance coefficient, QSY2",
+   "default": "0",
+   "values": "力阻力系数 0 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Linear rotational speed rolling resistance coefficient, QSY3",
+   "default": "0.0015",
+   "values": "线性速度系数 0.0015 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Quartic rotational speed rolling resistance coefficient, QSY4",
+   "default": "8.5e-05",
+   "values": "四次方速度系数 8.5e-05 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Camber squared rolling resistance torque, QSY5",
+   "default": "0",
+   "values": "外倾阻力矩 0 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Load based camber squared rolling resistance torque, QSY6",
+   "default": "0",
+   "values": "载荷阻力矩 0 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Normal load rolling resistance coefficient, QSY8",
+   "default": "0.9",
+   "values": "法向阻力系数 0.9 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Pressure load rolling resistance coefficient, QSY8",
+   "default": "-0.4",
+   "values": "压力阻力系数 -0.4 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Rolling resistance scaling factor, lam_My",
+   "default": "1",
+   "values": "缩放因子 1 (default) | scalar",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Spin axis velocity breakpoints, VxMy",
+   "default": "-20:1:20",
+   "values": "自旋轴速度断点 -20:1:20 (default) | vector",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Normal force breakpoints, FzMy",
+   "default": "0:200:1e4",
+   "values": "法向力断点 0:200:1e4 (default) | vector",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Rolling resistance torque map, MyMap",
+   "default": "",
+   "values": "滚动阻力矩映射 array",
+   "group": "Rolling Resistance"
+  },
+  {
+   "name": "Static friction coefficient, mu_static",
+   "default": ".3",
+   "values": "静摩擦 .3 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Kinetic friction coefficient, mu_kinetic",
+   "default": ".2",
+   "values": "动摩擦 .2 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Disc brake actuator bore, disc_abore",
+   "default": ".05",
+   "values": "缸径距离 .05 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake pad mean radius, Rm",
+   "default": ".177",
+   "values": "半径 .177 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Number of brake pads, num_pads",
+   "default": "2",
+   "values": "数量 2 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum brake actuator bore, disc_abore",
+   "default": "0.0508",
+   "values": "缸径距离 0.0508 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to drum center distance, drum_a",
+   "default": "0.123",
+   "values": "距离 0.123 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin center to force application point distance, drum_c",
+   "default": "0.212",
+   "values": "距离 0.212 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Drum internal radius, drum_r",
+   "default": "0.15",
+   "values": "半径 0.15 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad start angle, drum_theta1",
+   "default": "0",
+   "values": "角度 0 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Shoe pin to pad end angle, drum_theta2",
+   "default": "126",
+   "values": "角度 126 (default) | scalar",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake actuator pressure breakpoints, brake_p_bpt",
+   "default": "",
+   "values": "断点 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Wheel speed breakpoints, brake_n_bpt",
+   "default": "",
+   "values": "断点 vector",
+   "group": "Brake"
+  },
+  {
+   "name": "Brake torque map, f_brake_t",
+   "default": "",
+   "values": "查找表 array",
+   "group": "Brake"
+  },
+  {
+   "name": "Nominal normal force, FNOMIN",
+   "default": "2000",
+   "values": "力 2000 (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Nominal rated load scaling factor, lam_Fzo",
+   "default": "1",
+   "values": "Factor 1 (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Wheel and unsprung mass, m",
+   "default": "10",
+   "values": "质量 10 (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Initial deflection, zo",
+   "default": "0",
+   "values": "挠度 0 (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Initial velocity, zdoto",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.81",
+   "values": "重力 9.81 (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Ground displacement, Gndz",
+   "default": "0",
+   "values": "位移 0 (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical deflection breakpoints, zFz",
+   "default": "[0.01.1]",
+   "values": "断点 [0.01.1] (default) | vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Pressure breakpoints, pFz",
+   "default": "1000000]",
+   "values": "断点 [10000 1000000] (default) | vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Force due to deflection, Fzz",
+   "default": "1e5]",
+   "values": "力 [0 1e3 1e4; 0 1e4 1e5] (default) | vector",
+   "group": "Vertical"
+  },
+  {
+   "name": "Vertical velocity breakpoints, zdotFz",
+   "default": "20]",
+   "values": "断点 [-20 0 20] (default) | scalar",
+   "group": "Vertical"
+  },
+  {
+   "name": "Force due to velocity, Fzzdot",
+   "default": "-250]",
+   "values": "力 [500 0 -500;250 0 -250] (default) | array",
+   "group": "Vertical"
+  },
+  {
+   "name": "Minimum normal force, FZMIN",
+   "default": "0",
+   "values": "最小法向力 0 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Maximum normal force, FZMAX",
+   "default": "10000",
+   "values": "最大法向力 10000 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Max allowable slip ratio (absolute), kappamax",
+   "default": "1.5",
+   "values": "比值 1.5 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Velocity tolerance used to handle low velocity situations, VXLOW",
+   "default": "1",
+   "values": "容差 1 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Minimum ambient temperature, TMIN",
+   "default": "0",
+   "values": "最低环境温度 0 (default) | scalar",
+   "group": "Simulation Setup"
+  },
+  {
+   "name": "Maximum ambient temperature, TMAX",
+   "default": "400",
+   "values": "最高环境温度 400 (default) | scalar",
+   "group": "Simulation Setup"
+  }
+ ]
+}

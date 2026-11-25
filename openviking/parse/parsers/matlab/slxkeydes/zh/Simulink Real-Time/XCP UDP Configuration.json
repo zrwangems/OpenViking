@@ -1,0 +1,81 @@
+{
+ "key": "XCP UDP Configuration",
+ "title": "XCP UDP Configuration",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/UDP/XCP_UDP_Configuration.md",
+  "Vehicle Network Toolbox/XCP Communication/UDP/XCP_UDP_Configuration.md"
+ ],
+ "text": "配置 XCP UDP 服务器连接；按 {错误检测方案} 指定CTR 错误检测方案 One counter for all CTOs and；{配置名称} 指定 XCP UDP 会话名称、{A2L 文件}、{启用种子/密钥安全性} 指定建立连接所需的密钥、{文件(*.DLL)} 用于种子和密钥安全性的文件 文件名、{用户定义的连接模式} 允许特殊连接模式、{输出连接状态} 显示连接状态、{禁用 CTR 错误检测}、{采样时间}、{本地 IP 地址} 指定客户端 IP 地址 x.x.x.x、{本地端口} 指定客户端 IP 端口 1–65535，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "配置名称",
+   "default": "’UDP_Config1’",
+   "values": "指定 XCP UDP 会话名称 ’UDP_Config1’ (默认)",
+   "group": ""
+  },
+  {
+   "name": "A2L 文件",
+   "default": "",
+   "values": "选择 A2L 文件 文件名",
+   "group": ""
+  },
+  {
+   "name": "启用种子/密钥安全性",
+   "default": "off",
+   "values": "选择建立连接所需的密钥 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "文件(*.DLL)",
+   "default": "",
+   "values": "选择用于种子和密钥安全性的文件 文件名",
+   "group": ""
+  },
+  {
+   "name": "用户定义的连接模式",
+   "default": "off",
+   "values": "允许特殊连接模式 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "输出连接状态",
+   "default": "off",
+   "values": "显示连接状态 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "禁用 CTR 错误检测",
+   "default": "on",
+   "values": "禁用 CTR 错误检测方案 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "错误检测方案",
+   "default": "DTOs",
+   "values": "选择 CTR 错误检测方案 One counter for all CTOs and DTOs (默认) | Separate counters for (RES,ERR,EV,SERV) and (DAQ) | Separate counters for (RES,ERR), (EV,SERV) and (DAQ)",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "模块的采样时间 -1 (默认) | 数值",
+   "group": ""
+  },
+  {
+   "name": "本地 IP 地址",
+   "default": "",
+   "values": "客户端 IP 地址 x.x.x.x",
+   "group": ""
+  },
+  {
+   "name": "本地端口",
+   "default": "",
+   "values": "客户端 IP 端口 1–65535",
+   "group": ""
+  }
+ ]
+}

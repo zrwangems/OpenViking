@@ -1,0 +1,13 @@
+{
+ "key": "Thermodynamic Properties Sensor (TL)",
+ "title": "Thermodynamic Properties Sensor (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Sensors/Thermodynamic_Properties_Sensor_TL.md"
+ ],
+ "text": "测量热液体网络中的比内能、密度和定压比热容。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

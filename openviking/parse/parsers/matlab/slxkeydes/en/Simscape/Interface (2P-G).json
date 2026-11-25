@@ -1,0 +1,13 @@
+{
+ "key": "Interface (2P-G)",
+ "title": "Interface (2P-G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Fluid Network Interfaces/Interface_2P_G.md"
+ ],
+ "text": "Two-phase fluid and gas network interface.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

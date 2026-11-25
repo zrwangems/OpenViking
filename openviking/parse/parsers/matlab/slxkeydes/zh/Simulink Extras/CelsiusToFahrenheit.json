@@ -1,0 +1,24 @@
+{
+ "key": "CelsiusToFahrenheit",
+ "title": "Celsius to Fahrenheit",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Transformations/Celsius_to_Fahrenheit.md"
+ ],
+ "text": "将摄氏度转换为华氏度，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "摄氏度输入 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "华氏度输出 scalar"
+  }
+ ],
+ "params": []
+}

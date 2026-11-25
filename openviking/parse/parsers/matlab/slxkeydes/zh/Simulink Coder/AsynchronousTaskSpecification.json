@@ -1,0 +1,31 @@
+{
+ "key": "AsynchronousTaskSpecification",
+ "title": "Asynchronous Task Specification",
+ "toolbox": "Simulink Coder",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink Coder/Asynchronous/Asynchronous_Task_Specification.md"
+ ],
+ "text": "指定由异步中断触发的引用模型表示的异步任务的优先级，输入 1 路、输出 1 路；{任务优先级} 指定调用函数调用子系统的异步任务的优先级，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "中断输入信号 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "具有优先级的中断信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "任务优先级",
+   "default": "10",
+   "values": "调用函数调用子系统的异步任务的优先级 10 (默认)",
+   "group": ""
+  }
+ ]
+}

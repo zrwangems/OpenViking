@@ -1,0 +1,141 @@
+{
+ "key": "Ideal Fixed Gear Transmission",
+ "title": "Ideal Fixed Gear Transmission",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Transmission Systems/Ideal_Fixed_Gear_Transmission.md",
+  "Vehicle Dynamics Blockset/Powertrain/Transmission/Ideal_Fixed_Gear_Transmission.md"
+ ],
+ "text": "Ideal fixed gear transmission without clutch or synchronization, 3 outputs, {Gear property interpolation method} sets Interpolation; {Efficiency factors} sets the efficiency calculation, {Gear number vector, G} sets the number of transmission speeds, {Efficiency torque breakpoints, Trq_bpts} sets the breakpoints, {Efficiency speed breakpoints, omega_bpts} sets the breakpoints, {Efficiency temperature breakpoints, Temp_bpts} sets the breakpoints, {Gear ratio vector, N} sets the ratio of input speed to output speed, {Inertia vector, Jout} sets the gear rotational inertia, {Damping vector, bout} sets the gear viscous damping coefficient, {Efficiency vector, eta} sets the gear efficiency, {Efficiency lookup table, eta_tbl} sets the gear efficiency array, {Initial gear number, G_o} sets the gear, {Initial output velocity, omega_o} sets the output speed, {Initial neutral input velocity, omegainN_o} sets the neutral gear input speed and {Shift time constant, tau_s} sets the time .01. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Gear",
+   "direction": "unknown",
+   "summary": "Gear number to engage scalar"
+  },
+  {
+   "name": "EngTrq",
+   "direction": "unknown",
+   "summary": "Applied input torque scalar"
+  },
+  {
+   "name": "DiffTrq",
+   "direction": "unknown",
+   "summary": "Applied load torque scalar"
+  },
+  {
+   "name": "Temp",
+   "direction": "unknown",
+   "summary": "Oil temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "output",
+   "summary": "Angular speed scalar"
+  },
+  {
+   "name": "DiffSpd",
+   "direction": "output",
+   "summary": "Angular speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Efficiency factors",
+   "default": "only",
+   "values": "Specify efficiency calculation Gear only (default) | Gear, input torque, input speed, and temperature",
+   "group": ""
+  },
+  {
+   "name": "Gear property interpolation method",
+   "default": "Nearest",
+   "values": "Interpolation Nearest (default) | Linear | Flat | Cubic spline",
+   "group": ""
+  },
+  {
+   "name": "Gear number vector, G",
+   "default": "[-1,0,1,2,3,4,5]",
+   "values": "Specify number of transmission speeds [-1,0,1,2,3,4,5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency torque breakpoints, Trq_bpts",
+   "default": "[25,50,75,100,150,200,250]",
+   "values": "Breakpoints [25,50,75,100,150,200,250] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency speed breakpoints, omega_bpts",
+   "default": "524]",
+   "values": "Breakpoints [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency temperature breakpoints, Temp_bpts",
+   "default": "358]",
+   "values": "Breakpoints [313 358] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Gear ratio vector, N",
+   "default": "[-4.47,4.47,4.47,2.47,1.47,1,0.8]",
+   "values": "Ratio of input speed to output speed [-4.47,4.47,4.47,2.47,1.47,1,0.8] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Inertia vector, Jout",
+   "default": "0.01]",
+   "values": "Gear rotational inertia [0.128 0.01 0.128 0.1 0.062 0.028 0.01] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Damping vector, bout",
+   "default": "[.003.001.003.0025.002.001.001]",
+   "values": "Gear viscous damping coefficient [.003.001.003.0025.002.001.001] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency vector, eta",
+   "default": "[0.9,0.9,0.9,0.9,0.9,0.95,0.95]",
+   "values": "Gear efficiency [0.9,0.9,0.9,0.9,0.9,0.95,0.95] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency lookup table, eta_tbl",
+   "default": "",
+   "values": "Gear efficiency array",
+   "group": ""
+  },
+  {
+   "name": "Initial gear number, G_o",
+   "default": "0",
+   "values": "Gear 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial output velocity, omega_o",
+   "default": "0",
+   "values": "Output speed 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial neutral input velocity, omegainN_o",
+   "default": "0",
+   "values": "Neutral gear input speed 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Shift time constant, tau_s",
+   "default": ".01",
+   "values": "Time .01 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

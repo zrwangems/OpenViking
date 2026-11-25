@@ -1,0 +1,13 @@
+{
+ "key": "Partially Filled Pipe (TL)",
+ "title": "Partially Filled Pipe (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Partially_Filled_Pipe_TL.md"
+ ],
+ "text": "Closed conduit that transports fluid between thermal liquid components.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

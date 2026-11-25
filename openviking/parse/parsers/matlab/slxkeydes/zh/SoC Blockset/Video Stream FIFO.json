@@ -1,0 +1,57 @@
+{
+ "key": "Video Stream FIFO",
+ "title": "Video Stream FIFO",
+ "toolbox": "SoC Blockset",
+ "kind": "source_block",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/Video_Stream_FIFO.md"
+ ],
+ "text": "硬件逻辑与上游视频接口之间的背压控制，输入 3 路、输出 3 路；{Depth of FIFO} 指定 FIFO 深度、{Almost full threshold} 指定几乎满阈值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixelIn",
+   "direction": "input",
+   "summary": "输入像素数据 scalar"
+  },
+  {
+   "name": "ctrlIn",
+   "direction": "input",
+   "summary": "伴随输入像素数据的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "rdyFromDown",
+   "direction": "input",
+   "summary": "来自下游接口的就绪信号 Boolean scalar"
+  },
+  {
+   "name": "pixelOut",
+   "direction": "output",
+   "summary": "输出像素数据 scalar"
+  },
+  {
+   "name": "ctrlOut",
+   "direction": "output",
+   "summary": "伴随输出像素数据的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "rdyToUp",
+   "direction": "output",
+   "summary": "到上游接口的就绪信号 Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Depth of FIFO",
+   "default": "16",
+   "values": "FIFO 深度 16 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Almost full threshold",
+   "default": "8",
+   "values": "几乎满阈值 8 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

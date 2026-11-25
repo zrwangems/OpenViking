@@ -1,0 +1,13 @@
+{
+ "key": "Convective Heat Transfer",
+ "title": "Convective Heat Transfer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Convective_Heat_Transfer.md"
+ ],
+ "text": "通过对流进行的热传递 - **库：** Simscape / Foundation Library / Thermal / Thermal Elements Convective Heat Transfer 模块表示两个物体之间通过流体运动进行的对流换热。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

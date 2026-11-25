@@ -1,0 +1,13 @@
+{
+ "key": "Optocoupler",
+ "title": "Optocoupler",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Optocoupler.md"
+ ],
+ "text": "Behavioral model of optocoupler as LED, current sensor, and controlled current source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

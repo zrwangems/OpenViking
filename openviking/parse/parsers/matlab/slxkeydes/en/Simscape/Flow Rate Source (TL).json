@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Source (TL)",
+ "title": "Flow Rate Source (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Sources/Flow_Rate_Source_TL.md"
+ ],
+ "text": "Generate constant or time-varying mass flow rate or volumetric flow rate in thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,121 @@
+{
+ "key": "ultrasonicDetectionGenerator",
+ "title": "Ultrasonic Detection Generator",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Ultrasonic_Detection_Generator.md"
+ ],
+ "text": "Generate ultrasonic sensor detections from driving scenario or RoadRunner Scenario, 1 input, 1 output, {Width of actors’ cuboids (m)} sets Width of actor cuboids; {Unique identifier of sensor} sets the unique sensor identifier, {Translation [ X, Y, Z ] relative to ego origin (m)} sets the sensor location on ego vehicle, {Rotation [Yaw, Pitch, Roll] relative to ego’s frame (deg)} sets the mounting rotation angles of radar, {Field of view [horizontalFOV, verticalFOV] (deg)} sets the angular field of view of ultrasonic sensor, {Detection ranges [minDetOnlyRange, minDistRange, maxDistRange] (m)} sets the detection range vector of ultrasonic, {Update rate (Hz)} sets the sensor update rate, {Source of output bus name}, {Specify an output bus name} sets the name of output bus, {Target profiles definition} sets the method to specify target profiles, {MATLAB expression for target profiles}, {Unique identifier for actors} sets the scenario-defined actor identifier, {User-defined integer to classify actors} sets the user-defined classification identifier, {Length of actors’ cuboids (m)} sets the length of actor cuboids, {Height of actors’ cuboids (m)} sets the height of actor cuboids and {Rotational center of actors from bottom center (m)} sets the rotational center of actors. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Actors",
+   "direction": "input",
+   "summary": "Scenario actor poses Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "Object detections Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unique identifier of sensor",
+   "default": "0",
+   "values": "Unique sensor identifier 0 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Translation [ X, Y, Z ] relative to ego origin (m)",
+   "default": "0.2]",
+   "values": "Sensor location on ego vehicle (m) [3.4, 0, 0.2] (default) | 1-by-3 real-valued vector of form [ x y z ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Rotation [Yaw, Pitch, Roll] relative to ego’s frame (deg)",
+   "default": "0]",
+   "values": "Mounting rotation angles of radar [0 0 0] (default) | 1-by-3 real-valued vector of form [ z yaw y pitch x roll ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Field of view [horizontalFOV, verticalFOV] (deg)",
+   "default": "35]",
+   "values": "Angular field of view of ultrasonic sensor [70 35] (default) | 1-by-2 positive real-valued vector of form [horizontalFOV verticalFOV]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Detection ranges [minDetOnlyRange, minDistRange, maxDistRange] (m)",
+   "default": "5.5]",
+   "values": "Detection range vector of ultrasonic sensor (m) [0.03 0.15 5.5] (default) | 1-by-3 nonnegative real-valued vector of form [minDetOnlyRange minDistRange maxDistRange]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Update rate (Hz)",
+   "default": "10",
+   "values": "Sensor update rate 10 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "Source of output bus name Auto (default) | Property",
+   "group": "Parameters"
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "BusDrivingRadarDataGenerator",
+   "values": "Name of output bus BusDrivingRadarDataGenerator (default) | valid bus name",
+   "group": "Parameters"
+  },
+  {
+   "name": "Target profiles definition",
+   "default": "Parameters",
+   "values": "Method to specify target profiles Parameters (default) | MATLAB expression | From Scenario Reader block",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "MATLAB expression for target profiles",
+   "default": "",
+   "values": "MATLAB expression for target profiles MATLAB structure | MATLAB structure array | valid MATLAB expression",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Unique identifier for actors",
+   "default": "[]",
+   "values": "Scenario-defined actor identifier [] (default) | positive integer | length- L vector of unique positive integers",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "User-defined integer to classify actors",
+   "default": "0",
+   "values": "User-defined classification identifier 0 (default) | integer | length- L vector of integers",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Length of actors’ cuboids (m)",
+   "default": "4.7",
+   "values": "Length of actor cuboids 4.7 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Width of actors’ cuboids (m)",
+   "default": "1.8",
+   "values": "Width of actor cuboids 1.8 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Height of actors’ cuboids (m)",
+   "default": "1.4",
+   "values": "Height of actor cuboids 1.4 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Rotational center of actors from bottom center (m)",
+   "default": "0]}",
+   "values": "Rotational center of actors {[-1.35, 0, 0]} (default) | length- L cell array of real-valued 1-by-3 vectors",
+   "group": "Actor Profiles"
+  }
+ ]
+}

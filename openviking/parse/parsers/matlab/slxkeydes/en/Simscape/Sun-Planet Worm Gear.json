@@ -1,0 +1,13 @@
+{
+ "key": "Sun-Planet Worm Gear",
+ "title": "Sun-Planet Worm Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Planetary Subcomponents/Sun_Planet_Worm_Gear.md"
+ ],
+ "text": "Planetary gear set of carrier, worm planet, and sun wheels with adjustable gear ratio, worm thread type, and friction losses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

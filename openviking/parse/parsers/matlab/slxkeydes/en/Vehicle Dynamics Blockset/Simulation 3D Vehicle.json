@@ -1,0 +1,161 @@
+{
+ "key": "Simulation 3D Vehicle",
+ "title": "Simulation 3D Vehicle",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Vehicle.md"
+ ],
+ "text": "Implement vehicle in 3D environment, 4 inputs, {Type, PassVehMesh} sets Type Muscle; {Path to custom mesh, MeshPath}, {Color, VehColor} sets the color of vehicle, {Name, ActorName} sets the name of vehicle, {Sample time}, {Enable light controls} sets the option to control vehicle lights, {Headlight color [R,G,B], HeadlightColor} sets the headlight color, {High beam intensity, HighBeamIntensity}, {Low beam intensity, LowBeamIntensity}, {High beam cone half angle, HighBeamConeAngle}, {Low beam cone half angle, LowBeamConeAngle}, {Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation} sets the left headlight beam orientation, {Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation} sets the right headlight beam orientation, {Brake light intensity, BrakelightIntensity}, {Reverse light intensity, ReverselightIntensity}, {Turn signal light intensity, SignallightIntensity}, {Period, SignallightPeriod} sets the turn signal light period, {Pulse width, SignalPulseWidth}, {Initial array values to translate vehicle per part, Translation} sets the vehicle initial translation zeros, {Initial array values to rotate vehicle per part, Rotation} sets the vehicle initial rotation zeros and {Initial array values to scale vehicle per part, Scale} sets the vehicle initial scale ones. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Vehicle translation 5 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Vehicle rotation 5 -by- 3 array"
+  },
+  {
+   "name": "Scale",
+   "direction": "input",
+   "summary": "Vehicle scale 5 -by- 3"
+  },
+  {
+   "name": "Light controls",
+   "direction": "input",
+   "summary": "Vehicle light controls 1-by-6 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type, PassVehMesh",
+   "default": "car",
+   "values": "Type Muscle car (default) | Sedan | Sport utility vehicle | Small pickup truck | Hatchback | Box truck | Formula student vehicle",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Path to custom mesh, MeshPath",
+   "default": "/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar",
+   "values": "Path to custom mesh /MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar (default) | valid path",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Color, VehColor",
+   "default": "Red",
+   "values": "Color of vehicle Red (default) | Orange | Yellow | Green | Blue | Black | White | Silver | Dazzle camouflage",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Name, ActorName",
+   "default": "SimulinkVehicle1",
+   "values": "Name of vehicle SimulinkVehicle1 (default) | character vector",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Enable light controls",
+   "default": "off",
+   "values": "Option to control vehicle lights off (default) | on",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Headlight color [R,G,B], HeadlightColor",
+   "default": "[1,1,1]",
+   "values": "Headlight color [1,1,1] (default) | 1-by-3 vector of RGB triplet values",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam intensity, HighBeamIntensity",
+   "default": "100000",
+   "values": "High beam intensity 100000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam intensity, LowBeamIntensity",
+   "default": "60000",
+   "values": "Low beam intensity 60000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam cone half angle, HighBeamConeAngle",
+   "default": "1.22",
+   "values": "High beam cone half angle 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam cone half angle, LowBeamConeAngle",
+   "default": "1.22",
+   "values": "Low beam cone half angle 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "Left headlight beam orientation [0,0] (default) | 1-by-2 vector with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "Right headlight beam orientation [0,0] (default) | 1-by-2 vector with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Brake light intensity, BrakelightIntensity",
+   "default": "500",
+   "values": "Brake light intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Reverse light intensity, ReverselightIntensity",
+   "default": "500",
+   "values": "Reverse light intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Turn signal light intensity, SignallightIntensity",
+   "default": "500",
+   "values": "Turn signal light intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Period, SignallightPeriod",
+   "default": "1",
+   "values": "Turn signal light period 1 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Pulse width, SignalPulseWidth",
+   "default": "50",
+   "values": "Pulse width 50 (default) | positive scalar less than 100",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Initial array values to translate vehicle per part, Translation",
+   "default": ")",
+   "values": "Vehicle initial translation zeros( 5, 3 ) (default) | 5 -by- 3 array",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial array values to rotate vehicle per part, Rotation",
+   "default": ")",
+   "values": "Vehicle initial rotation zeros( 5, 3 ) (default) | 5 -by- 3 array",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial array values to scale vehicle per part, Scale",
+   "default": ")",
+   "values": "Vehicle initial scale ones( 5, 3 ) (default) | 5 -by- 3 array",
+   "group": "Initial Values"
+  }
+ ]
+}

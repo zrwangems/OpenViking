@@ -1,0 +1,167 @@
+{
+ "key": "Blob Analysis",
+ "title": "Blob Analysis",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/Blob_Analysis.md"
+ ],
+ "text": "Statistics for labeled regions, 1 input, 3 outputs, {Statistics output data type} sets Output data type; {Area} sets the number of pixels in labeled, {Centroid}, {BBox} sets the bounding box coordinates M, {Major axis length} sets the length of major axis of ellipses, {Minor axis length} sets the length of minor axis of ellipses, {Orientation}, {Eccentricity}, {Equivalent diameter squared}, {Extent}, {Perimeter}, {Connectivity} sets the number of labeled regions, {Output label matrix}, {Maximum number of blobs}, {Warn if maximum number of blobs is exceeded}, {Output actual number of blobs} sets the number of blobs, {Specify minimum blob area in pixels} sets the minimum blob area in pixels, {Specify maximum blob area in pixels} sets the maximum blob area in pixels intmax, {Exclude blobs touching image border}, {Output blob statistics as a variable size signal}, {Fill empty spaces in output} and {Fill values} sets the scalar used to fill empty spaces in output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "Binary image vector | matrix"
+  },
+  {
+   "name": "Area",
+   "direction": "output",
+   "summary": "Number of pixels in labeled regions vector"
+  },
+  {
+   "name": "Centroid",
+   "direction": "output",
+   "summary": "Centroid coordinates M -by-2 matrix"
+  },
+  {
+   "name": "BBox",
+   "direction": "output",
+   "summary": "Bounding box coordinates M -by-4 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Area",
+   "default": "",
+   "values": "Number of pixels in labeled regions vector",
+   "group": ""
+  },
+  {
+   "name": "Centroid",
+   "default": "",
+   "values": "Centroid coordinates M -by-2 matrix",
+   "group": ""
+  },
+  {
+   "name": "BBox",
+   "default": "",
+   "values": "Bounding box coordinates M -by-4 matrix",
+   "group": ""
+  },
+  {
+   "name": "Major axis length",
+   "default": "off",
+   "values": "Length of major axis of ellipses off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Minor axis length",
+   "default": "off",
+   "values": "Length of minor axis of ellipses off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Orientation",
+   "default": "off",
+   "values": "Orientation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Eccentricity",
+   "default": "off",
+   "values": "Eccentricity off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Equivalent diameter squared",
+   "default": "off",
+   "values": "Equivalent diameter squared off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Extent",
+   "default": "off",
+   "values": "Extent off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Perimeter",
+   "default": "off",
+   "values": "Perimeter length off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Statistics output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single | specify via Data Types tab",
+   "group": ""
+  },
+  {
+   "name": "Connectivity",
+   "default": "8",
+   "values": "Number of labeled regions 8 (default) | 4",
+   "group": ""
+  },
+  {
+   "name": "Output label matrix",
+   "default": "off",
+   "values": "Output label matrix off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of blobs",
+   "default": "",
+   "values": "Maximum number of blobs scalar",
+   "group": ""
+  },
+  {
+   "name": "Warn if maximum number of blobs is exceeded",
+   "default": "on",
+   "values": "Warn if maximum number of blobs is exceeded on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output actual number of blobs",
+   "default": "off",
+   "values": "Number of blobs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Specify minimum blob area in pixels",
+   "default": "0",
+   "values": "Minimum blob area in pixels 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify maximum blob area in pixels",
+   "default": "intmax(’uint32’)",
+   "values": "Maximum blob area in pixels intmax(’uint32’) (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Exclude blobs touching image border",
+   "default": "off",
+   "values": "Exclude blobs touching image border off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output blob statistics as a variable size signal",
+   "default": "off",
+   "values": "Output blob statistics as a variable size signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Fill empty spaces in output",
+   "default": "off",
+   "values": "Fill empty spaces in output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Fill values",
+   "default": "-1",
+   "values": "Scalar used to fill empty spaces in output -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

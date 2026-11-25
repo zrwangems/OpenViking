@@ -1,0 +1,13 @@
+{
+ "key": "MOSFET (Ideal, Switching)",
+ "title": "MOSFET (Ideal, Switching)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/MOSFET_Ideal_Switching.md"
+ ],
+ "text": "用于开关应用的理想 N 沟道 MOSFET。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

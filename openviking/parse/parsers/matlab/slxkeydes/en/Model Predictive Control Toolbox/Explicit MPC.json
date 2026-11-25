@@ -1,0 +1,131 @@
+{
+ "key": "Explicit MPC",
+ "title": "Explicit MPC Controller",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Explicit_MPC_Controller.md"
+ ],
+ "text": "Explicit model predictive controller, 6 inputs, 4 outputs, {Block data type} sets data type of manipulated variables; {Explicit MPC Controller} sets the explicit controller object explicitMPC object, {Initial Controller State} sets the initial state mpcstate, {Measured disturbance} adds measured disturbance input port, {External manipulated variable} adds external manipulated variable input, {Status of piecewise affine function evaluation} adds evaluation status output port, {Region number of evaluated piecewise affine function} adds region number output port, {Estimated controller states} adds estimated states output port, {Use custom state estimation instead of using the built-in Kalman filter} uses custom state estimate input port, {Inherit sample time} sets the inherit block sample time from parent and {Use external signal to enable controller evaluation} adds a switch-off input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mo",
+   "direction": "input",
+   "summary": "Measured outputs vector"
+  },
+  {
+   "name": "x[k|k]",
+   "direction": "input",
+   "summary": "Custom state estimate vector"
+  },
+  {
+   "name": "ref",
+   "direction": "input",
+   "summary": "Model reference output vector"
+  },
+  {
+   "name": "md",
+   "direction": "input",
+   "summary": "Measured disturbances vector"
+  },
+  {
+   "name": "ext.mv",
+   "direction": "input",
+   "summary": "Control signals used in plant at previous control interval vector"
+  },
+  {
+   "name": "switch",
+   "direction": "input",
+   "summary": "Disable evaluation scalar"
+  },
+  {
+   "name": "mv",
+   "direction": "output",
+   "summary": "Optimal manipulated variable control action column vector"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "Status of piecewise affine function evaluation 1 | 0 | -1"
+  },
+  {
+   "name": "region",
+   "direction": "output",
+   "summary": "Region number of evaluated piecewise affine function nonnegative integer"
+  },
+  {
+   "name": "est.state",
+   "direction": "output",
+   "summary": "Estimated controller states vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Explicit MPC Controller",
+   "default": "",
+   "values": "Explicit controller object explicitMPC object name",
+   "group": ""
+  },
+  {
+   "name": "Initial Controller State",
+   "default": "",
+   "values": "Initial state mpcstate object name",
+   "group": ""
+  },
+  {
+   "name": "Measured disturbance",
+   "default": "on",
+   "values": "Add measured disturbance input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "External manipulated variable",
+   "default": "off",
+   "values": "Add external manipulated variable input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Status of piecewise affine function evaluation",
+   "default": "off",
+   "values": "Add evaluation status output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Region number of evaluated piecewise affine function",
+   "default": "off",
+   "values": "Add region number output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Estimated controller states",
+   "default": "off",
+   "values": "Add estimated states output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use custom state estimation instead of using the built-in Kalman filter",
+   "default": "off",
+   "values": "Use custom state estimate input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Block data type",
+   "default": "double",
+   "values": "Specify data type of manipulated variables double (default) | single | data type expression",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time",
+   "default": "off",
+   "values": "Inherit block sample time from parent subsystem off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use external signal to enable controller evaluation",
+   "default": "off",
+   "values": "Add a switch-off input port off (default) | on",
+   "group": ""
+  }
+ ]
+}

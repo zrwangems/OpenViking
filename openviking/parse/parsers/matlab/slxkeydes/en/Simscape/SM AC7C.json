@@ -1,0 +1,328 @@
+{
+ "key": "SM AC7C",
+ "title": "SM AC7C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_AC7C.md"
+ ],
+ "text": "Discrete-time or continuous-time synchronous machine AC7C excitation system including an automatic voltage regulator and an exciter, 10 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Initial field voltage, Efd0 (pu)} sets the initial output voltage, {Resistive component of load compensation, R_C (pu)} sets the compensation resistance, {Reactance component of load compensation, X_C (pu)} sets the compensation reactance, {Regulator input filter time constant, T_R (s)} sets the regulator time constant, {Voltage regulator proportional gain, K_PR (pu)} sets the proportional gain of the voltage regulator, {Voltage regulator integral gain, K_IR (pu/s)} sets the integral gain of the voltage regulator, {Voltage regulator derivative gain, K_DR (pu.s)} sets the derivative gain of the voltage regulator, {Lag time constant for derivative channel of PID controller, T_DR (s)} sets the lag time constant for PID derivative, {Maximum regulator output, V_Rmax (pu)} sets the upper limit of the regulator output, {Minimum regulator output, V_Rmin (pu)} sets the lower limit of the regulator output, {Field current regulator proportional gain, K_PA (pu)} sets the proportional gain of the field current, {Field current regulator integral gain, K_IA (pu/s)} sets the integral gain of the field current, {Maximum field current regulator output, V_Amax (pu)}, {Minimum field current regulator output, V_Amin (pu)}, {Generator field voltage feedback gain, K_F1 (pu)}, {Exciter field current feedback gain, K_F2 (pu)}, {Rate feedback gain, K_F3 (pu)}, {Rate feedback time constant, T_F (s)}, {Alternate PSS input locations (V_S)} sets the pSS input location Voltage error, {Alternate OEL input locations (V_OEL)} sets the oEL input location, {Alternate UEL input locations (V_UEL)} sets the uEL input location, {Alternate SCL input locations (V_SCL)} sets the sCL input location, {Exciter field proportional constant, K_E (pu)} sets the exciter field gain, {Exciter field time constant, T_E (s)}, {Rectifier loading factor proportional to commutating reactance, K_C (pu)}, {Demagnetizing factor, function of exciter alternator reactances, K_D (pu)} sets the demagnetization factor, {Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)} sets the first saturation output voltage, {Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)} sets the first saturation lookup voltage, {Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)} sets the second saturation output voltage, {Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)} sets the second saturation lookup voltage, {Maximum exciter field current limit reference, V_FEmax (pu)} sets the exciter upper limit, {Minimum exciter voltage output, V_Emin (pu)} sets the exciter lower limit, {Potential circuit gain coefficient, K_P (pu)}, {Potential circuit phase angle (degrees)}, {Potential circuit (current) gain coefficient, K_I (pu)} sets the potential circuit current gain coefficient, {Reactance associated with potential source, X_L (pu)}, {Gain related to regulator and alternator field power supply, K_R (pu)}, {Gain related to negative exciter field current capability, K_L (pu)}, {Rectifier loading factor proportional to commutating reactance, K_C1 (pu)} sets the loading factor of rectifier proportional to commutating, {Maximum available exciter field voltage, V_Bmax (pu)} sets the maximum available field voltage of exciter, {Power source selector SW1} sets the power source selector Position A: power source derived from terminal and {Power source selector SW2} sets the power source selector Position A: use variable. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "Voltage reference scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "Input from stabilizer scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "Terminal voltage scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "Terminal current scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "Overexcitation limit signal scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "Underexcitation limit signal scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "Summation point stator current limit signal scalar"
+  },
+  {
+   "name": "V_OELscl",
+   "direction": "input",
+   "summary": "Take-over stator current limit for overexcitation limiter scalar"
+  },
+  {
+   "name": "V_UELscl",
+   "direction": "input",
+   "summary": "Take-over stator current limit for underexcitation limiter scalar"
+  },
+  {
+   "name": "Ifd_pu",
+   "direction": "input",
+   "summary": "Measured field current scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "Field voltage scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "Initial output voltage 1 (default) | real number",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "Compensation resistance 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "Compensation reactance 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0",
+   "values": "Regulator time constant 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Voltage regulator proportional gain, K_PR (pu)",
+   "default": "40",
+   "values": "Proportional gain of the voltage regulator 40 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator integral gain, K_IR (pu/s)",
+   "default": "5.6",
+   "values": "Integral gain of the voltage regulator 5.6 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator derivative gain, K_DR (pu.s)",
+   "default": "0",
+   "values": "Derivative gain of the voltage regulator 0 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Lag time constant for derivative channel of PID controller, T_DR (s)",
+   "default": "1",
+   "values": "Lag time constant for PID derivative channel 1 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum regulator output, V_Rmax (pu)",
+   "default": "3.2",
+   "values": "Upper limit of the regulator output 3.2 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum regulator output, V_Rmin (pu)",
+   "default": "-3.2",
+   "values": "Lower limit of the regulator output -3.2 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Field current regulator proportional gain, K_PA (pu)",
+   "default": "112",
+   "values": "Proportional gain of the field current regulator 112 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Field current regulator integral gain, K_IA (pu/s)",
+   "default": "0",
+   "values": "Integral gain of the field current regulator 0 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum field current regulator output, V_Amax (pu)",
+   "default": "65.2",
+   "values": "Maximum field current regulator output 65.2 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum field current regulator output, V_Amin (pu)",
+   "default": "-54",
+   "values": "Minimum field current regulator output -54 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Generator field voltage feedback gain, K_F1 (pu)",
+   "default": "0",
+   "values": "Generator field voltage feedback gain 0 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Exciter field current feedback gain, K_F2 (pu)",
+   "default": "0.08",
+   "values": "Exciter field current feedback gain 0.08 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Rate feedback gain, K_F3 (pu)",
+   "default": "0.01",
+   "values": "Rate feedback gain 0.01 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Rate feedback time constant, T_F (s)",
+   "default": "1",
+   "values": "Rate feedback time constant 1 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate PSS input locations (V_S)",
+   "default": "calculation",
+   "values": "PSS input location Voltage error calculation (default) | After take-over UEL",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "Unused",
+   "values": "OEL input location Unused (default) | Summation point at voltage error | Take-over at voltage error | Take-over at voltage regulator output | Take-over at output of inner loop regulator",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "Unused",
+   "values": "UEL input location Unused (default) | Summation point at voltage error | Take-over at voltage error | Take-over at voltage regulator output",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "Unused",
+   "values": "SCL input location Unused (default) | Summation point at voltage error | Take-over at voltage error | Take-over at voltage regulator output",
+   "group": "Control"
+  },
+  {
+   "name": "Exciter field proportional constant, K_E (pu)",
+   "default": "1",
+   "values": "Exciter field gain 1 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter field time constant, T_E (s)",
+   "default": "1.2",
+   "values": "Exciter field time constant 1.2 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C (pu)",
+   "default": "0.12",
+   "values": "Rectifier loading factor 0.12 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Demagnetizing factor, function of exciter alternator reactances, K_D (pu)",
+   "default": "3.3",
+   "values": "Demagnetization factor 3.3 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)",
+   "default": "13.6",
+   "values": "First saturation output voltage 13.6 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)",
+   "default": "3.74",
+   "values": "First saturation lookup voltage 3.74 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)",
+   "default": "10.2",
+   "values": "Second saturation output voltage 10.2 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)",
+   "default": "0.32",
+   "values": "Second saturation lookup voltage 0.32 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Maximum exciter field current limit reference, V_FEmax (pu)",
+   "default": "23.2",
+   "values": "Exciter upper limit 23.2 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Minimum exciter voltage output, V_Emin (pu)",
+   "default": "0",
+   "values": "Exciter lower limit 0 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit gain coefficient, K_P (pu)",
+   "default": "1",
+   "values": "Potential circuit gain coefficient 1 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit phase angle (degrees)",
+   "default": "0",
+   "values": "Potential circuit phase angle 0 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit (current) gain coefficient, K_I (pu)",
+   "default": "0",
+   "values": "Potential circuit current gain coefficient 0 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Reactance associated with potential source, X_L (pu)",
+   "default": "0",
+   "values": "Reactance associated with potential source 0 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Gain related to regulator and alternator field power supply, K_R (pu)",
+   "default": "0",
+   "values": "Gain related to regulator and alternator field power supply 0 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Gain related to negative exciter field current capability, K_L (pu)",
+   "default": "0",
+   "values": "Gain related to negative exciter field current capability 0 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C1 (pu)",
+   "default": "0",
+   "values": "Loading factor of rectifier proportional to commutating reactance 0 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Maximum available exciter field voltage, V_Bmax (pu)",
+   "default": "999",
+   "values": "Maximum available field voltage of exciter 999 (default) | real number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Power source selector SW1",
+   "default": "voltage",
+   "values": "Power source selector Position A: power source derived from terminal voltage (default) | Position B: power source independent of terminal conditions",
+   "group": "Exciter"
+  },
+  {
+   "name": "Power source selector SW2",
+   "default": "V_B",
+   "values": "Power source selector Position A: use variable V_B (default) | Position B: do not use variable V_B",
+   "group": "Exciter"
+  }
+ ]
+}

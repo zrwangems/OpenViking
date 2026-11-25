@@ -1,0 +1,14 @@
+{
+ "key": "Battery (Table-Based)",
+ "title": "Battery (Table-Based)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Cells/Battery_Table_Based.md",
+  "Simscape/Electrical/Sources/Battery_Table_Based.md"
+ ],
+ "text": "Tabulated battery model.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

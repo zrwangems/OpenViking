@@ -1,0 +1,54 @@
+{
+ "key": "PilotJoystick",
+ "title": "Pilot Joystick",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Animation Support Utilities/Pilot_Joystick.md",
+  "Aerospace Blockset/Animation/Animation Support Utilities/Pilot_Joystick_All.md"
+ ],
+ "text": "在 Windows 平台上提供操纵杆接口；输出 4 路；按 {Sample time} 指定采样时间；{Joystick ID} 指定操纵杆 ID、{Output configuration} 指定操纵杆输出配置，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "roll",
+   "direction": "output",
+   "summary": "滚转 range [-1, 1]"
+  },
+  {
+   "name": "pitch",
+   "direction": "output",
+   "summary": "俯仰 range [-1, 1]"
+  },
+  {
+   "name": "yaw",
+   "direction": "output",
+   "summary": "偏航 range [-1, 1]"
+  },
+  {
+   "name": "throttle",
+   "direction": "output",
+   "summary": "油门 range [ 0, 1]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Joystick ID",
+   "default": "Joystick1",
+   "values": "操纵杆 ID Joystick1 (default) | Joystick2 | Joystick3 | Joystick4 | Joystick5 | Joystick6 | Joystick7 | Joystick8 | Joystick9 | Joystick10 | Joystick11 | Joystick12 | Joystick13 | Joystick14 | Joystick15 | Joystick16 | None",
+   "group": ""
+  },
+  {
+   "name": "Output configuration",
+   "default": "FourAxis",
+   "values": "操纵杆输出配置 FourAxis (default) | AllOutputs",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "采样时间 1/30 (default) | -1 | scalar",
+   "group": ""
+  }
+ ]
+}

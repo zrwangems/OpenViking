@@ -1,0 +1,13 @@
+{
+ "key": "SimscapeComponentBlock",
+ "title": "Simscape Component",
+ "toolbox": "Simscape",
+ "kind": "block_type",
+ "source_docs": [
+  "Simscape/Utilities/Simscape_Component.md"
+ ],
+ "text": "Output block variables as signals during simulation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

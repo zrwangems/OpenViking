@@ -1,0 +1,44 @@
+{
+ "key": "Cart2Sph",
+ "title": "Cartesian to Spherical",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Transformations/Cartesian_to_Spherical.md"
+ ],
+ "text": "笛卡尔坐标转球坐标，输入 3 路、输出 3 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "x 笛卡尔坐标输入 标量"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "y 笛卡尔坐标输入 标量"
+  },
+  {
+   "name": "Port_3",
+   "direction": "input",
+   "summary": "z 笛卡尔坐标输入 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "r 球面坐标输出 标量"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "theta 球面坐标输出 标量"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "phi 球面坐标输出 标量"
+  }
+ ],
+ "params": []
+}

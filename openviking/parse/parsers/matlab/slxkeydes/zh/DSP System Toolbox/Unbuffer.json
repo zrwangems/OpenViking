@@ -1,0 +1,31 @@
+{
+ "key": "Unbuffer",
+ "title": "Unbuffer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Buffers/Unbuffer.md"
+ ],
+ "text": "将输入帧解缓冲为标量输出序列，输入 1 路、输出 1 路、无直接馈通；按 {Initial conditions} 指定初始条件。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "解缓冲信号 scalar | row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "初始条件 0 (default) | scalar | vector | matrix",
+   "group": ""
+  }
+ ]
+}

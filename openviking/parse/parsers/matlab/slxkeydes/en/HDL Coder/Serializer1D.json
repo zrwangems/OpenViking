@@ -1,0 +1,88 @@
+{
+ "key": "Serializer1D",
+ "title": "Serializer1D",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL Operations/Serializer1D.md"
+ ],
+ "text": "Convert vector signal to scalar or smaller vectors, 2 inputs, 3 outputs, {Input signal type} sets Input signal type of the block; {Ratio (Output Vector Size/Input Vector Size)} sets the ratio of input vector size to output vector, {Idle Cycles} sets the number of idle cycles, {StartIn}, {ValidIn}, {ValidOut}, {Input data port dimensions (-1 for inherited)} sets the size of the input data signal and {Input sample time (-1 for inherited)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "Parallel data input signal scalar | vector"
+  },
+  {
+   "name": "ValidIn",
+   "direction": "input",
+   "summary": "Valid input control signal scalar"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "Serialized data output signal scalar | vector"
+  },
+  {
+   "name": "StartOut",
+   "direction": "output",
+   "summary": "Start out control signal scalar"
+  },
+  {
+   "name": "ValidOut",
+   "direction": "output",
+   "summary": "Valid output control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Ratio (Output Vector Size/Input Vector Size)",
+   "default": "1",
+   "values": "Ratio of input vector size to output vector size 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Idle Cycles",
+   "default": "0",
+   "values": "Number of idle cycles 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "StartIn",
+   "default": "off",
+   "values": "Enable StartIn control port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ValidIn",
+   "default": "off",
+   "values": "Enable ValidIn control port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ValidOut",
+   "default": "off",
+   "values": "Enable ValidOut control port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input data port dimensions (-1 for inherited)",
+   "default": "-1",
+   "values": "Size of the input data signal -1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Input sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Input sample time -1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Input signal type",
+   "default": "auto",
+   "values": "Input signal type of the block auto (default) | real | complex",
+   "group": ""
+  }
+ ]
+}

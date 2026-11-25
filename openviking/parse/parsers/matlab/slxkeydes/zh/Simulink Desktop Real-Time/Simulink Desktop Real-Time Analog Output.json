@@ -1,0 +1,97 @@
+{
+ "key": "Simulink Desktop Real-Time Analog Output",
+ "title": "Analog Output",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Analog_Output.md"
+ ],
+ "text": "写入一个或多个模拟输出通道，输入 1 路、输出 1 路；按 {Block input signal} 指定发送到模块的值类型；{Install new board} 指定注册板卡 < no board、{Delete current board} 指定删除当前板卡、{Board setup} 指定板卡、{Sample time} 指定模块的采样时间、{Maximum missed ticks} 指定模型可以落后内核的定时器节拍数、{Show “Missed Ticks” port} 指定将错过的节拍数发送到 Missed Ticks 端口、{Yield CPU when waiting} 指定内核等待硬件时让出 CPU、{Output channels} 用于选择输出通道的通道向量、{Output range} 指定模拟输出的输出范围 board dependent、{Initial value} 输出通道的初始值 vector、{Final value} 输出通道的最终值 vector，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Analog Data",
+   "direction": "input",
+   "summary": "要写入输出通道的数模转换器数据 vector"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "错过的节拍计数（可选） double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "注册板卡 < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "删除当前板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "设置板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "模块的采样时间 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "模型可以落后内核的定时器节拍数 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "将错过的节拍数发送到 Missed Ticks 端口 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "内核等待硬件时让出 CPU ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Output channels",
+   "default": "1",
+   "values": "用于选择输出通道的通道向量 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Output range",
+   "default": "",
+   "values": "选择模拟输出的输出范围 board dependent",
+   "group": ""
+  },
+  {
+   "name": "Block input signal",
+   "default": "Volts",
+   "values": "发送到模块的值类型 Volts (default) | Normalized bipolar | Normalized unipolar | Raw",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "",
+   "values": "输出通道的初始值 vector",
+   "group": ""
+  },
+  {
+   "name": "Final value",
+   "default": "",
+   "values": "输出通道的最终值 vector",
+   "group": ""
+  }
+ ]
+}

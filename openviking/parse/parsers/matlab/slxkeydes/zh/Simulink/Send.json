@@ -1,0 +1,37 @@
+{
+ "key": "Send",
+ "title": "Send",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Messages & Events/Send.md",
+  "SimEvents/Message_Send.md"
+ ],
+ "text": "创建并发送消息，输入 2 路、输出 1 路；{显示使能端口}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_Enable",
+   "direction": "input",
+   "summary": "外部使能信号 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出消息 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "显示使能端口",
+   "default": "off",
+   "values": "显示使能端口 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

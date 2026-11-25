@@ -1,0 +1,97 @@
+{
+ "key": "Autocorrelation",
+ "title": "Autocorrelation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Autocorrelation.md"
+ ],
+ "text": "N 维数组的自相关，输入 1 路、输出 1 路、无直接馈通；按 {Scaling} 指定输出的缩放；{Compute all non-negative lags} 指定在所有非负滞后上计算自相关、{Maximum non-negative lag (less than input length)} 指定最大正滞后、{Computation domain} 指定模块计算自相关的域、{Rounding mode} 指定舍入运算的方法、{Saturate on integer overflow} 指定溢出操作的方法、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Output} 输出数据类型、{Output Minimum} 指定模块可以输出的最小值、{Output Maximum} 指定模块可以输出的最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "自相关输出 vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Compute all non-negative lags",
+   "default": "on",
+   "values": "在所有非负滞后上计算自相关 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Maximum non-negative lag (less than input length)",
+   "default": "1",
+   "values": "最大正滞后 1 (default) | integer greater than or equal to 0 and less than input length",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Scaling",
+   "default": "None",
+   "values": "输出的缩放 None (default) | Biased | Unbiased | Unity at zero-lag",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Computation domain",
+   "default": "Time",
+   "values": "模块计算自相关的域 Time (default) | Frequency",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "输出数据类型 Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "模块可以输出的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "模块可以输出的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

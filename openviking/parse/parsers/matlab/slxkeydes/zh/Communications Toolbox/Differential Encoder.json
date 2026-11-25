@@ -1,0 +1,13 @@
+{
+ "key": "Differential Encoder",
+ "title": "Differential Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Differential_Encoder.md"
+ ],
+ "text": "使用差分编码对二进制信号进行编码。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

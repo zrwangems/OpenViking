@@ -1,0 +1,13 @@
+{
+ "key": "Local Restriction (TL)",
+ "title": "Local Restriction (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Local_Restriction_TL.md"
+ ],
+ "text": "Restriction in flow area in thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

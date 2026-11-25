@@ -1,0 +1,108 @@
+{
+ "key": "From Video Device",
+ "title": "From Video Device",
+ "toolbox": "Image Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Image Acquisition Toolbox/From_Video_Device.md"
+ ],
+ "text": "从图像采集设备捕获实时图像数据；输出 3 路；按 {Output color space} 指定视频输出颜色空间；{Device} 指定图像采集设备 available devices、{Video format} 指定设备支持的视频格式 available video、{Video source} 指定设备支持的视频输入源 available video input、{Edit properties...} 指定视频源属性、{Enable hardware triggering} 指定硬件触发采集、{ROI position} 指定视频图像中的感兴趣区域、{Preview...} 指定实时视频数据预览、{Block sample time} 指定模块采样率、{Ports mode} 指定视频输出信号类型 One multidimensional、{Data type} 指定视频输出数据类型、{Read All Frames} 指定捕获所有可用的图像帧、{Metadata Output Ports} 指定 Kinect ® for Windows ®，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "视频输出信号 m -by- n -by-3 matrix"
+  },
+  {
+   "name": "R, G, B",
+   "direction": "output",
+   "summary": "RGB 视频输出信号 m -by- n matrix"
+  },
+  {
+   "name": "Y, Cb, Cr",
+   "direction": "output",
+   "summary": "YCbCr 视频输出信号 m -by- n matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "图像采集设备 available devices",
+   "group": ""
+  },
+  {
+   "name": "Video format",
+   "default": "",
+   "values": "设备支持的视频格式 available video formats",
+   "group": ""
+  },
+  {
+   "name": "Video source",
+   "default": "",
+   "values": "设备支持的视频输入源 available video input sources",
+   "group": ""
+  },
+  {
+   "name": "Edit properties...",
+   "default": "",
+   "values": "视频源属性 button",
+   "group": ""
+  },
+  {
+   "name": "Enable hardware triggering",
+   "default": "off",
+   "values": "硬件触发采集 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ROI position",
+   "default": "width]",
+   "values": "视频图像中的感兴趣区域 [0, 0, maximum height, maximum width] (default) | [row, column, height, width]",
+   "group": ""
+  },
+  {
+   "name": "Output color space",
+   "default": "rgb",
+   "values": "视频输出颜色空间 rgb (default) | grayscale | YCbCr | bayer",
+   "group": ""
+  },
+  {
+   "name": "Preview...",
+   "default": "",
+   "values": "实时视频数据预览 button",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "1/30",
+   "values": "模块采样率 1/30 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Ports mode",
+   "default": "",
+   "values": "视频输出信号类型 One multidimensional signal | Separate color signals",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "视频输出数据类型 single (default) | double | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Read All Frames",
+   "default": "off",
+   "values": "捕获所有可用的图像帧 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Metadata Output Ports",
+   "default": "",
+   "values": "Kinect ® for Windows ® 输出端口",
+   "group": ""
+  }
+ ]
+}

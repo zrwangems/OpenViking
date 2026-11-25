@@ -1,0 +1,85 @@
+{
+ "key": "SlewRate",
+ "title": "Slew Rate",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Slew_Rate.md"
+ ],
+ "text": "Model amplitude, rise and fall times, and propagation delay of logic gates, 1 input, 1 output; {Output step size calculation} Defines how to calculate output step size, {Maximum frequency of interest (Hz)} sets the maximum frequency of interest at output, {Output sample interval}, {Minimum 20%-80% rise/fall time} sets the minimum rise/fall time required at the output for meaningful simulation, {Rise/fall time (s)} sets the 20%-80% rise time, {Slew rate for 20%-80% edge of unit amplitude signal} sets the slew rate for the 20%-80% edge at the output, {Minimum propagation delay}, {Propagation delay (s)} sets the propagation delay of a rising, {Enable increased buffer size} and {Buffer size}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "events",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "wave",
+   "direction": "output",
+   "summary": "Output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output step size calculation",
+   "default": "Default",
+   "values": "Defines how to calculate output step size Default (default) | Advanced",
+   "group": ""
+  },
+  {
+   "name": "Maximum frequency of interest (Hz)",
+   "default": "11e9",
+   "values": "Maximum frequency of interest at output 11e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output sample interval",
+   "default": "23ps",
+   "values": "Output sample interval 23ps (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum 20%-80% rise/fall time",
+   "default": "23ps",
+   "values": "Minimum rise/fall time required at the output for meaningful simulation 23ps (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rise/fall time (s)",
+   "default": "30e-12",
+   "values": "20%-80% rise time at the output 30e-12 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Slew rate for 20%-80% edge of unit amplitude signal",
+   "default": "56GHz",
+   "values": "Slew rate for the 20%-80% edge at the output 56GHz (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum propagation delay",
+   "default": "48ps",
+   "values": "Minimum propagation delay for meaningful simulation 48ps (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Propagation delay (s)",
+   "default": "48e-12",
+   "values": "Propagation delay of a rising edge 48e-12 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "",
+   "values": "Enable increased buffer size button",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "Buffer size of the blocks 10 (default) | positive integer scaler",
+   "group": ""
+  }
+ ]
+}

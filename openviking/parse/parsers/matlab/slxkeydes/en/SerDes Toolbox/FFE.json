@@ -1,0 +1,55 @@
+{
+ "key": "FFE",
+ "title": "FFE",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/FFE.md"
+ ],
+ "text": "Models a feed-forward equalizer, 1 input, 1 output, {Tap Spacing} sets Fractional taps for sub-symbol equalization control; {Mode} sets the fFE operating mode, {Tap weights} sets the fFE tap weights, {Normalize} and {Visualize Response} plots FFE FIR filter. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "Input baseband signal scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "Estimated channel output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Fixed",
+   "values": "FFE operating mode Fixed (default) | Off",
+   "group": ""
+  },
+  {
+   "name": "Tap Spacing",
+   "default": "T-spaced",
+   "values": "Fractional taps for sub-symbol equalization control T-spaced (default) | T/2-spaced | T/4-spaced",
+   "group": ""
+  },
+  {
+   "name": "Tap weights",
+   "default": "[0,1,0,0,0]",
+   "values": "FFE tap weights [0,1,0,0,0] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Normalize",
+   "default": "on",
+   "values": "Normalize tap weights on (default) | fff",
+   "group": ""
+  },
+  {
+   "name": "Visualize Response",
+   "default": "",
+   "values": "Plot FFE FIR filter response button",
+   "group": ""
+  }
+ ]
+}

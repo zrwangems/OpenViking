@@ -1,0 +1,14 @@
+{
+ "key": "Universal Joint",
+ "title": "Universal Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Universal_Joint.md",
+  "Simscape/Multibody/Joints/Universal_Joint.md"
+ ],
+ "text": "Rotational coupling between two driveline shafts.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

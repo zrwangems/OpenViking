@@ -1,0 +1,128 @@
+{
+ "key": "Channelizer",
+ "title": "Channelizer",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/Channelizer.md"
+ ],
+ "text": "Polyphase filter bank and fast Fourier transform, 3 inputs, 4 outputs, {Rounding mode} sets Rounding method used for internal fixed-point calculations; {Filter coefficients} sets the polyphase filter coefficients, {Filter structure} sets the hDL filter architecture Direct form, {Number of frequency bands (FFT length)}, {Complex multiplication} sets the hDL implementation of complex multipliers Use 4 multipliers, {Output vector size} sets the size of output data Same as number of frequency, {Divide butterfly outputs by two} sets the fFT scaling, {Saturate on integer overflow} sets the overflow handling for internal fixed-point, {Coefficients} sets the data type of the filter coefficients, {Filter output} sets the data type of the output of the polyphase filter, {Enable reset input port} sets the optional reset signal, {Enable start output port} sets the optional control signal indicating start and {Enable end output port} sets the optional control signal indicating end. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar or column vector of real or complex values"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clears internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Frequency channel output data vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  },
+  {
+   "name": "start",
+   "direction": "output",
+   "summary": "Indicates first valid cycle of output frame scalar"
+  },
+  {
+   "name": "end",
+   "direction": "output",
+   "summary": "Indicates last valid cycle of output frame scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter coefficients",
+   "default": "]",
+   "values": "Polyphase filter coefficients [ -0.032, 0.121, 0.318, 0.482, 0.546, 0.482, 0.318, 0.121, -0.032 ] (default) | vector of real or complex numeric values",
+   "group": "Main"
+  },
+  {
+   "name": "Filter structure",
+   "default": "transposed",
+   "values": "HDL filter architecture Direct form transposed (default) | Direct form systolic",
+   "group": "Main"
+  },
+  {
+   "name": "Number of frequency bands (FFT length)",
+   "default": "8",
+   "values": "FFT length 8 (default) | integer power of two",
+   "group": "Main"
+  },
+  {
+   "name": "Complex multiplication",
+   "default": "adders",
+   "values": "HDL implementation of complex multipliers Use 4 multipliers and 2 adders (default) | Use 3 multipliers and 5 adders",
+   "group": "Main"
+  },
+  {
+   "name": "Output vector size",
+   "default": "bands",
+   "values": "Size of output data Same as number of frequency bands (default) | Same as input size",
+   "group": "Main"
+  },
+  {
+   "name": "Divide butterfly outputs by two",
+   "default": "on",
+   "values": "FFT scaling on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding method used for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow handling for internal fixed-point calculations off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Data type of the filter coefficients Inherit: Same word length as input (default) | data type expression",
+   "group": "Data Types"
+  },
+  {
+   "name": "Filter output",
+   "default": "input",
+   "values": "Data type of the output of the polyphase filter Inherit: Same word length as input (default) | Inherit: via internal rule | data type expression",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Optional reset signal off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Enable start output port",
+   "default": "off",
+   "values": "Optional control signal indicating start of data off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Enable end output port",
+   "default": "off",
+   "values": "Optional control signal indicating end of data off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

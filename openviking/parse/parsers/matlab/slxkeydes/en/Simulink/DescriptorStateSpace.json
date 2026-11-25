@@ -1,0 +1,85 @@
+{
+ "key": "DescriptorStateSpace",
+ "title": "Descriptor State-Space",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Descriptor_State_Space.md"
+ ],
+ "text": "Model linear implicit system, 1 input, 1 output, no direct feedthrough, {Initial condition} sets Initial state values; {E}, {A}, {B}, {C}, {D}, {Direct feedthrough} sets the whether output signal value depends on input signal, {Linearize to sparse model} sets the linearize states to sparse matrices, {Absolute tolerance} and {State Name (e.g., ’position’)} sets the option to assign unique names to states. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "E",
+   "default": "1",
+   "values": "Mass matrix E of implicit system 1 (default) | scalar | matrix",
+   "group": ""
+  },
+  {
+   "name": "A",
+   "default": "1",
+   "values": "A matrix of implicit system 1 (default) | scalar | matrix",
+   "group": ""
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "B matrix of implicit system 1 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "C",
+   "default": "1",
+   "values": "C matrix of implicit system 1 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "D",
+   "default": "1",
+   "values": "D matrix of implicit system 1 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial state values 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Direct feedthrough",
+   "default": "True",
+   "values": "Whether output signal value depends on input signal value True (default) | False | Auto",
+   "group": ""
+  },
+  {
+   "name": "Linearize to sparse model",
+   "default": "on",
+   "values": "Linearize states to sparse matrices on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "auto",
+   "values": "Absolute tolerance for computing block states auto (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "State Name (e.g., ’position’)",
+   "default": "’’",
+   "values": "Option to assign unique names to states ’’ (default) | character vector | cell array of character vectors | MATLAB ® variable |...",
+   "group": ""
+  }
+ ]
+}

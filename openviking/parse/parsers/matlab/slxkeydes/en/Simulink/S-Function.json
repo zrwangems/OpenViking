@@ -1,0 +1,46 @@
+{
+ "key": "S-Function",
+ "title": "S-Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/S_Function.md",
+  "Simulink/User-Defined Functions/S_Function_Builder.md",
+  "Simulink/Quick Insert/User-Defined Functions/C_C_Code_Block.md",
+  "Simulink Coder/S-Function Target/Generated_S_Function.md"
+ ],
+ "text": "Include S-function in model, 1 input, 1 output, direct feedthrough, {S-function parameters} sets Additional S-function parameters MATLAB expressions; {S-function name} sets the name and {S-function modules} sets the additional files for code generation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Signal input to an S-function block scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Signal output of an S-function block scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "S-function name",
+   "default": "system",
+   "values": "Name of the S-function system (default) | S-function name",
+   "group": ""
+  },
+  {
+   "name": "S-function parameters",
+   "default": "",
+   "values": "Additional S-function parameters MATLAB expressions | comma-separated variables",
+   "group": ""
+  },
+  {
+   "name": "S-function modules",
+   "default": "’’",
+   "values": "Additional files for code generation ’’ (default) | filenames",
+   "group": ""
+  }
+ ]
+}

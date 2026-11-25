@@ -1,0 +1,153 @@
+{
+ "key": "phased.internal.SimulinkPlatform",
+ "title": "Motion Platform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Motion_Platform.md"
+ ],
+ "text": "Motion Platform 模块对多个平台（例如飞机、地面车辆和/或接收与发射传感器阵列）的运动进行建模，确定其位置和速度，输入 3 路、输出 3 路；按 {Model of object motion} 指定对象运动模型；{Initial position (m)} 指定平台初始位置、{Initial velocity (m/s)} 指定平台初始速度、{Source of velocity} 指定速度数据来源、{Velocity (m/s)} 指定平台当前速度、{Source of acceleration} 指定加速度数据来源、{Acceleration (m/s^2)} 指定平台加速度、{Custom trajectory waypoints} 指定自定义轨迹航路点、{Mechanical scanning mode}、{Initial scan angle (deg)} 指定 Initial scan angle of platform、{Azimuth scan angle span (deg)} 指定 Azimuth span、{Azimuth scan rate (deg/s)}、{Initial orientation axes}、{Enable orientation axes output} 指定 Output orientation axes、{Source of elapsed simulation time}、{Inherit sample rate} 指定从上游模块继承采样率、{Sample rate (Hz)} 指定信号采样率 1e6、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "参考时间输入 scalar"
+  },
+  {
+   "name": "Vel",
+   "direction": "input",
+   "summary": "平台速度输入 real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Acl",
+   "direction": "input",
+   "summary": "平台加速度输入 real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Pos",
+   "direction": "output",
+   "summary": "平台位置输出 real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Vel",
+   "direction": "output",
+   "summary": "平台速度输出 real-valued 3-by- N matrix"
+  },
+  {
+   "name": "LAxes",
+   "direction": "output",
+   "summary": "平台姿态输出 real-valued 3-by-3-by- N matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model of object motion",
+   "default": "Velocity",
+   "values": "对象运动模型 Velocity (default) | Acceleration | Custom",
+   "group": ""
+  },
+  {
+   "name": "Initial position (m)",
+   "default": "[0;0;0]",
+   "values": "平台初始位置 [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity (m/s)",
+   "default": "[0;0;0]",
+   "values": "平台初始速度 [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Source of velocity",
+   "default": "Property",
+   "values": "速度数据来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Velocity (m/s)",
+   "default": "[0;0;0]",
+   "values": "平台当前速度 [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Source of acceleration",
+   "default": "Property",
+   "values": "加速度数据来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Acceleration (m/s^2)",
+   "default": "[0;0;0]",
+   "values": "平台加速度 [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Custom trajectory waypoints",
+   "default": "]",
+   "values": "自定义轨迹航路点 [ 0, 0, 0, 0, 0, 0, 0; 1, 0, 0, 0, 0, 0, 0 ] (default)",
+   "group": ""
+  },
+  {
+   "name": "Mechanical scanning mode",
+   "default": "None",
+   "values": "Mechanical scanning mode None (default) | Circular | Sector",
+   "group": ""
+  },
+  {
+   "name": "Initial scan angle (deg)",
+   "default": "0",
+   "values": "Initial scan angle of platform 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Azimuth scan angle span (deg)",
+   "default": "[-60,60]",
+   "values": "Azimuth span [-60,60] (default)",
+   "group": ""
+  },
+  {
+   "name": "Azimuth scan rate (deg/s)",
+   "default": "10",
+   "values": "Azimuth scan rate 10 (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial orientation axes",
+   "default": "eye(3)",
+   "values": "Initial orientation axes of platform eye(3) (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable orientation axes output",
+   "default": "off",
+   "values": "Output orientation axes off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of elapsed simulation time",
+   "default": "Auto",
+   "values": "Source of elapsed simulation time Auto (default) | Derive from reference input port",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "从上游模块继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "信号采样率 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+ "key": "RL Agent",
+ "title": "RL Agent",
+ "toolbox": "Reinforcement Learning",
+ "kind": "source_type",
+ "source_docs": [
+  "Reinforcement Learning/RL_Agent.md"
+ ],
+ "text": "强化学习智能体，输入 6 路、输出 2 路；{Agent object} 指定要训练的智能体、{Generate greedy policy block} 指定生成贪婪策略模块控制器、{External action inputs} 添加外部动作的输入端口、{Last action input} 添加应用于环境的最后一个动作的输入端口、{Cumulative reward output} 添加累积奖励输出端口、{Use strict observation data types} 指定对观测强制实施严格数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "observation",
+   "direction": "input",
+   "summary": "环境观测值 scalar | vector | nonvirtual bus"
+  },
+  {
+   "name": "reward",
+   "direction": "input",
+   "summary": "来自环境的奖励 scalar"
+  },
+  {
+   "name": "isdone",
+   "direction": "input",
+   "summary": "用于终止回合仿真的标志 logical"
+  },
+  {
+   "name": "external action",
+   "direction": "input",
+   "summary": "外部动作信号 scalar | vector"
+  },
+  {
+   "name": "last action",
+   "direction": "input",
+   "summary": "应用于环境的最后一个动作信号 scalar | vector"
+  },
+  {
+   "name": "use external action",
+   "direction": "input",
+   "summary": "使用外部动作信号 0 | 1"
+  },
+  {
+   "name": "action",
+   "direction": "output",
+   "summary": "智能体动作 scalar | vector | nonvirtual bus"
+  },
+  {
+   "name": "cumulative reward",
+   "direction": "output",
+   "summary": "累积未折扣奖励 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Agent object",
+   "default": "agentObj",
+   "values": "要训练的智能体 agentObj (default) | agent object",
+   "group": ""
+  },
+  {
+   "name": "Generate greedy policy block",
+   "default": "",
+   "values": "生成贪婪策略模块控制器 button",
+   "group": ""
+  },
+  {
+   "name": "External action inputs",
+   "default": "off",
+   "values": "添加外部动作的输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Last action input",
+   "default": "off",
+   "values": "添加应用于环境的最后一个动作的输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cumulative reward output",
+   "default": "off",
+   "values": "添加累积奖励输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use strict observation data types",
+   "default": "off",
+   "values": "对观测强制实施严格数据类型 off (default) | on",
+   "group": ""
+  }
+ ]
+}

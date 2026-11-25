@@ -1,0 +1,14 @@
+{
+ "key": "Piecewise Linear Current Source",
+ "title": "Piecewise Linear Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Piecewise_Linear_Current_Source.md",
+  "Simscape/Electrical/Additional Components/SPICE Sources/Piecewise_Linear_Current_Source.md"
+ ],
+ "text": "Time-dependent current source using lookup table.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

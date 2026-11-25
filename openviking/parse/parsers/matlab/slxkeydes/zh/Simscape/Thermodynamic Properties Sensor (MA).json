@@ -1,0 +1,13 @@
+{
+ "key": "Thermodynamic Properties Sensor (MA)",
+ "title": "Thermodynamic Properties Sensor (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sensors/Thermodynamic_Properties_Sensor_MA.md"
+ ],
+ "text": "测量空气混合物的比焓、密度、定压比热和比熵。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

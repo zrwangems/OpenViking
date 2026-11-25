@@ -1,0 +1,13 @@
+{
+ "key": "Inverse Square Law Force",
+ "title": "Inverse Square Law Force",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Inverse_Square_Law_Force.md"
+ ],
+ "text": "对两个几何体之间的平面接触进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

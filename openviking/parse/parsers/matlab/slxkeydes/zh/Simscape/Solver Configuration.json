@@ -1,0 +1,13 @@
+{
+ "key": "Solver Configuration",
+ "title": "Solver Configuration",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Utilities/Solver_Configuration.md"
+ ],
+ "text": "物理网络环境和求解器配置。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

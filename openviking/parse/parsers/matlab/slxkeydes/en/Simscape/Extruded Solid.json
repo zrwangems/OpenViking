@@ -1,0 +1,13 @@
+{
+ "key": "Extruded Solid",
+ "title": "Extruded Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Extruded_Solid.md"
+ ],
+ "text": "Solid extruded element with geometry, inertia, and color.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

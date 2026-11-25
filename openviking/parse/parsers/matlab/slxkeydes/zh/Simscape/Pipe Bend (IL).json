@@ -1,0 +1,13 @@
+{
+ "key": "Pipe Bend (IL)",
+ "title": "Pipe Bend (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pipes & Fittings/Pipe_Bend_IL.md"
+ ],
+ "text": "等温液体网络中的弯管段。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

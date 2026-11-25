@@ -1,0 +1,79 @@
+{
+ "key": "MagnitudeAngleToComplex",
+ "title": "Magnitude-Angle to Complex",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Magnitude_Angle_to_Complex.md",
+  "HDL Coder/Math Operations/Magnitude_Angle_to_Complex.md",
+  "HDL Coder/HDL Floating Point Operations/Magnitude_Angle_to_Complex.md"
+ ],
+ "text": "将幅值和/或相位角信号转换为复信号，输入 3 路、输出 1 路；按 {输入} 指定输入类型；{角度} 输出的相位角、{幅值}、{逼近方法} 指定 CORDIC 或无、{迭代次数}、{按增益因子的倒数缩放输出} 指定缩放复数输出的实部和虚部、{采样时间(-1 表示继承)} 指定采样之间的时间间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "|u|",
+   "direction": "input",
+   "summary": "幅值 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "∠u",
+   "direction": "input",
+   "summary": "相位角弧度 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "幅值或相位角弧度 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "复信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入",
+   "default": "幅值",
+   "values": "输入类型 幅值 (默认) | 角度 | 幅值和角度",
+   "group": ""
+  },
+  {
+   "name": "角度",
+   "default": "0",
+   "values": "输出的相位角 0 (默认) | 实数值标量、向量或矩阵",
+   "group": ""
+  },
+  {
+   "name": "幅值",
+   "default": "0",
+   "values": "输出的幅值 0 (默认) | 实数值标量、向量或矩阵",
+   "group": ""
+  },
+  {
+   "name": "逼近方法",
+   "default": "无",
+   "values": "CORDIC 或无 无 (默认) | CORDIC",
+   "group": ""
+  },
+  {
+   "name": "迭代次数",
+   "default": "11",
+   "values": "CORDIC 算法的迭代次数 11 (默认) | 正整数，小于或等于定点输入的字长",
+   "group": ""
+  },
+  {
+   "name": "按增益因子的倒数缩放输出",
+   "default": "on",
+   "values": "缩放复数输出的实部和虚部 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

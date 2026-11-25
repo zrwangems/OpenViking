@@ -1,0 +1,13 @@
+{
+ "key": "Absolute Reference (TL)",
+ "title": "Absolute Reference (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Absolute_Reference_TL.md"
+ ],
+ "text": "（不推荐）位于零绝对温度和零压力处的参考点。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

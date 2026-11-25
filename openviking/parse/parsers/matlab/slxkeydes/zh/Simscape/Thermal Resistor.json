@@ -1,0 +1,14 @@
+{
+ "key": "Thermal Resistor",
+ "title": "Thermal Resistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Thermal/Thermal_Resistor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Thermal_Resistor.md"
+ ],
+ "text": "通过材料层传导进行的热传递。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

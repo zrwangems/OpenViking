@@ -1,0 +1,79 @@
+{
+ "key": "satcomsimulink.internal.DVBSAPSKModulator",
+ "title": "DVBS-APSK Modulator Baseband",
+ "toolbox": "Satellite Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Satellite Communications Toolbox/Modulation/Digital Baseband Modulation/DVBS_APSK_Modulator_Baseband.md"
+ ],
+ "text": "DVB-S2/S2X/SH 标准专用的 APSK 调制，输入 1 路、输出 1 路；按 {DVB standard suffix} 指定标准后缀；{Frame length} 指定车架长度 Normal、{Modulation order} 指定调制阶数、{Code identifier} 指定代码标识符 2/3、{Constellation scaling} 指定星座缩放 Outer radius、{Input type} 指定输入类型 Integer、{Output data type} 输出数据类型、{View Constellation} 绘制参考星座、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "DVB-S2/S2X/SH 标准特定的 APSK 调制信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "DVB standard suffix",
+   "default": "S2",
+   "values": "标准后缀 S2 (default) | S2X | SH",
+   "group": ""
+  },
+  {
+   "name": "Frame length",
+   "default": "Normal",
+   "values": "车架长度 Normal (default) | Short",
+   "group": ""
+  },
+  {
+   "name": "Modulation order",
+   "default": "16",
+   "values": "调制阶数 16 (default) | 8 | 32 | 64 | 256",
+   "group": ""
+  },
+  {
+   "name": "Code identifier",
+   "default": "",
+   "values": "代码标识符 2/3 | character vector",
+   "group": ""
+  },
+  {
+   "name": "Constellation scaling",
+   "default": "1",
+   "values": "星座缩放 Outer radius as 1 (default) | Unit average power",
+   "group": ""
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "输入类型 Integer (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "View Constellation",
+   "default": "",
+   "values": "绘制参考星座 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Timer",
+ "title": "Timer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Timer.md"
+ ],
+ "text": "Behavioral model of a timer integrated circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

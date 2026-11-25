@@ -1,0 +1,13 @@
+{
+ "key": "Pilot-Operated Check Valve (TL)",
+ "title": "Pilot-Operated Check Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Directional Control Valves/Pilot_Operated_Check_Valve_TL.md"
+ ],
+ "text": "Check valve with control port to enable flow in reverse direction.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

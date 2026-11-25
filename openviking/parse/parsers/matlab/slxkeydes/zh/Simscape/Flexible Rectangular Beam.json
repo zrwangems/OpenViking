@@ -1,0 +1,13 @@
+{
+ "key": "Flexible Rectangular Beam",
+ "title": "Flexible Rectangular Beam",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Flexible Bodies/Beams/Flexible_Rectangular_Beam.md"
+ ],
+ "text": "具有弹性属性以用于变形的矩形梁。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

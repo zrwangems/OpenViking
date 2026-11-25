@@ -1,0 +1,13 @@
+{
+ "key": "Grid Surface",
+ "title": "Grid Surface",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Grid_Surface.md"
+ ],
+ "text": "用于接触建模的 Grid Surface。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

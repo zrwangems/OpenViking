@@ -1,0 +1,13 @@
+{
+ "key": "Sudden Area Change (TL)",
+ "title": "Sudden Area Change (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Sudden_Area_Change_TL.md"
+ ],
+ "text": "流通面积的突然扩大或收缩。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

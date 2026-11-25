@@ -1,0 +1,199 @@
+{
+ "key": "Flux Observer",
+ "title": "Flux Observer",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Sensorless Estimators/Flux_Observer.md",
+  "Motor Control Blockset/Sensorless Estimators/Flux_Observer.md"
+ ],
+ "text": "计算转子的电气位置、磁通量和电转矩，输入 6 路、输出 3 路；按 {位置单位} 指定电气位置输出的单位；{电机选择} 指定电机类型 PMSM、{支持 16 位定点数据类型}、{输入单位} 指定电压和电流输入的单位 SI、{基电压(V)} 指定对应于一个标幺的标称电压、{基电流(A)} 指定对应于一个标幺的标称电流、{模块输出}、{极对}、{定子电阻(欧姆)} 指定定子绕组电阻、{定子 d 轴电感(H)} 指定沿 d 轴的定子绕组电感 0.2e-3、{定子泄漏电感(H)} 指定定子绕组的泄漏电感、{转子泄漏电感(H)} 指定转子绕组的漏感、{磁化电感(H)} 指定感应电机的磁化电感、{截止频率(Hz)} 指定内部高通滤波器的截止频率、{离散步长(秒)} 指定连续模块执行之间的间隔 50e-6、{使用输入端口提供计算参数(运行时电机更换)} 启用输入端口以接受计算参数、{位置数据类型} 指定电气位置输出的数据类型、{通量单位} 指定磁通量输出的单位、{标幺通量(Wb)} 指定对应于一个标幺的通量、{通量数据类型} 指定磁通量输出的数据类型、{转矩单位} 指定电转矩输出的单位、{标幺转矩(Nm)} 指定对应于一个标幺的转矩、{转矩数据类型} 指定电转矩输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V α",
+   "direction": "input",
+   "summary": "α 轴电压 标量"
+  },
+  {
+   "name": "V β",
+   "direction": "input",
+   "summary": "β 轴电压 标量"
+  },
+  {
+   "name": "I α",
+   "direction": "input",
+   "summary": "α 轴电流 标量"
+  },
+  {
+   "name": "I β",
+   "direction": "input",
+   "summary": "β 轴电流 标量"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置模块 标量"
+  },
+  {
+   "name": "ParameterBus",
+   "direction": "input",
+   "summary": "磁通观测器的计算参数 总线"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "电机的电气位置 标量"
+  },
+  {
+   "name": "Ψ",
+   "direction": "output",
+   "summary": "电机的转子磁通 标量"
+  },
+  {
+   "name": "T e",
+   "direction": "output",
+   "summary": "电机的电转矩 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "电机选择",
+   "default": "PMSM",
+   "values": "电机类型 PMSM (默认) | ACIM",
+   "group": "参数"
+  },
+  {
+   "name": "支持 16 位定点数据类型",
+   "default": "off",
+   "values": "支持 16 位定点数据类型 off (默认) | on",
+   "group": "参数"
+  },
+  {
+   "name": "输入单位",
+   "default": "单位",
+   "values": "电压和电流输入的单位 SI 单位 (默认) | 标幺",
+   "group": "参数"
+  },
+  {
+   "name": "基电压(V)",
+   "default": "13.86",
+   "values": "对应于一个标幺的标称电压 13.86 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "基电流(A)",
+   "default": "19.3",
+   "values": "对应于一个标幺的标称电流 19.3 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "模块输出",
+   "default": "",
+   "values": "模块输出选项 位置 | 磁通 | 转矩",
+   "group": "参数"
+  },
+  {
+   "name": "极对",
+   "default": "4",
+   "values": "电机中可用的极对数 4 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "定子电阻(欧姆)",
+   "default": "0.36",
+   "values": "定子绕组电阻 0.36 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "定子 d 轴电感(H)",
+   "default": "0.2e-3",
+   "values": "沿 d 轴的定子绕组电感 0.2e-3 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "定子泄漏电感(H)",
+   "default": "0.0068",
+   "values": "定子绕组的泄漏电感 0.0068 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "转子泄漏电感(H)",
+   "default": "0.0068",
+   "values": "转子绕组的漏感 0.0068 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "磁化电感(H)",
+   "default": "0.0300",
+   "values": "感应电机的磁化电感 0.0300 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "截止频率(Hz)",
+   "default": "3.1863",
+   "values": "内部高通滤波器的截止频率 3.1863 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "离散步长(秒)",
+   "default": "50e-6",
+   "values": "连续模块执行之间的间隔 50e-6 (默认) | 标量",
+   "group": "参数"
+  },
+  {
+   "name": "使用输入端口提供计算参数(运行时电机更换)",
+   "default": "off",
+   "values": "启用输入端口以接受计算参数的选项 off (默认) | 打开",
+   "group": "参数"
+  },
+  {
+   "name": "位置单位",
+   "default": "弧度",
+   "values": "电气位置输出的单位 弧度 (默认) | 度 | 标幺",
+   "group": "数据类型"
+  },
+  {
+   "name": "位置数据类型",
+   "default": "单精度",
+   "values": "电气位置输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "数据类型"
+  },
+  {
+   "name": "通量单位",
+   "default": "韦伯",
+   "values": "磁通量输出的单位 韦伯 (默认) | 标幺",
+   "group": "数据类型"
+  },
+  {
+   "name": "标幺通量(Wb)",
+   "default": "0.1",
+   "values": "对应于一个标幺的通量 0.1 (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "通量数据类型",
+   "default": "单精度",
+   "values": "磁通量输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "数据类型"
+  },
+  {
+   "name": "转矩单位",
+   "default": "Nm",
+   "values": "电转矩输出的单位 Nm (默认) | 标幺",
+   "group": "数据类型"
+  },
+  {
+   "name": "标幺转矩(Nm)",
+   "default": "100",
+   "values": "对应于一个标幺的转矩 100 (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "转矩数据类型",
+   "default": "单精度",
+   "values": "电转矩输出的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": "数据类型"
+  }
+ ]
+}

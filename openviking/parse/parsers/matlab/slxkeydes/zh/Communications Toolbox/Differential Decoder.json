@@ -1,0 +1,13 @@
+{
+ "key": "Differential Decoder",
+ "title": "Differential Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Differential_Decoder.md"
+ ],
+ "text": "使用差分编码对二进制信号进行解码。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Transmission",
+ "title": "Transmission",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Transmission.md"
+ ],
+ "text": "用于系统级传动系建模的抽象传动。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

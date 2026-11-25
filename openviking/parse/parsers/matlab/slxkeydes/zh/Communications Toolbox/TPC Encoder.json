@@ -1,0 +1,79 @@
+{
+ "key": "TPC Encoder",
+ "title": "TPC Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Block/TPC_Encoder.md"
+ ],
+ "text": "Turbo 乘积码 (TPC) 编码器，输入 1 路、输出 1 路；{Extended codes} 指定 TPC 行参数的扩展码指示符、{Number of rows in code, Nr} 指定乘积码矩阵中的行数、{Number of rows in message, Kr} 指定消息矩阵中的行数、{Specify shortened message length} 为行指定缩短消息长度、{Number of rows in shortened message, Sr} 指定缩短消息矩阵中的行数、{Number of columns in code, Nc} 指定乘积码矩阵中的列数、{Number of columns in message, Kc} 指定消息矩阵中的列数、{Number of columns in shortened message, Sc} 指定缩短消息矩阵中的列数、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "要编码的消息 column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "TPC 编码后的消息 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Extended codes",
+   "default": "on",
+   "values": "TPC 行参数的扩展码指示符 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Number of rows in code, Nr",
+   "default": "16",
+   "values": "乘积码矩阵中的行数 16 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of rows in message, Kr",
+   "default": "11",
+   "values": "消息矩阵中的行数 11 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Specify shortened message length",
+   "default": "off",
+   "values": "为行指定缩短消息长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of rows in shortened message, Sr",
+   "default": "9",
+   "values": "缩短消息矩阵中的行数 9 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in code, Nc",
+   "default": "32",
+   "values": "乘积码矩阵中的列数 32 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in message, Kc",
+   "default": "26",
+   "values": "消息矩阵中的列数 26 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in shortened message, Sc",
+   "default": "22",
+   "values": "缩短消息矩阵中的列数 22 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

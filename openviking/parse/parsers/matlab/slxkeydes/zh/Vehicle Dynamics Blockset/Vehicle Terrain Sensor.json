@@ -1,0 +1,172 @@
+{
+ "key": "Vehicle Terrain Sensor",
+ "title": "Vehicle Terrain Sensor",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Vehicle_Terrain_Sensor.md"
+ ],
+ "text": "车辆和轮胎到对象的距离，输入 2 路、输出 3 路；{Tag for actor in 3D scene, ActorTag} 指定名称 SimulinVehicle1、{Distance to vehicle center} 指定 Constant、{Distance to tire center} 指定 Constant、{Distance from vehicle center to front, VehCntrLngthVal} 指定车辆中心、{Distance from tire center to ground, TireRadiiVal} 指定轮胎半径、{Vehicle body x-axis trace length, VehRayLngth} 指定追踪长度、{Left front wheel z-axis trace length, LfRayLngth} 指定追踪长度、{Right front wheel z-axis trace length, RfRayLngth} 指定追踪长度、{Left rear wheel z-axis trace length, LrRayLngth} 指定追踪长度、{Right rear wheel z-axis trace length, RrRayLngth} 指定追踪长度、{Vehicle body x-axis trace offset, VehRayOffset} 指定车辆射线追踪偏移、{Left front wheel z-axis trace offset, LfRayOffset} 指定左前轮射线追踪偏移、{Right front wheel z-axis trace offset, RfRayOffset} 指定右前轮射线追踪偏移、{Left rear wheel z-axis trace offset, LrRayOffset} 指定左后轮射线追踪偏移、{Right rear wheel z-axis trace offset, RrRayOffset} 指定右后轮射线追踪偏移、{Vehicle body} 启用车辆车身射线追踪、{Left front tire} 启用左前轮胎射线追踪、{Right front tire} 启用右前轮胎射线追踪、{Left rear tire} 启用左后轮胎射线追踪、{Right rear tire} 启用右后轮胎射线追踪、{Trace line visualization} 指定可视化射线追踪、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VehCntr",
+   "direction": "input",
+   "summary": "车辆从中心到前方的距离 scalar"
+  },
+  {
+   "name": "TireRadii",
+   "direction": "input",
+   "summary": "轮胎半径 array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "VehHitDist",
+   "direction": "output",
+   "summary": "车辆前方到对象的距离 scalar"
+  },
+  {
+   "name": "TireHitDist",
+   "direction": "output",
+   "summary": "轮胎到地形的距离 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tag for actor in 3D scene, ActorTag",
+   "default": "SimulinVehicle1",
+   "values": "名称 SimulinVehicle1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Distance to vehicle center",
+   "default": "Constant",
+   "values": "选择 Constant (default) | External input",
+   "group": ""
+  },
+  {
+   "name": "Distance to tire center",
+   "default": "Constant",
+   "values": "选择 Constant (default) | External input",
+   "group": ""
+  },
+  {
+   "name": "Distance from vehicle center to front, VehCntrLngthVal",
+   "default": "0",
+   "values": "车辆中心 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance from tire center to ground, TireRadiiVal",
+   "default": "0",
+   "values": "轮胎半径 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle body x-axis trace length, VehRayLngth",
+   "default": "5",
+   "values": "追踪长度 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left front wheel z-axis trace length, LfRayLngth",
+   "default": "5",
+   "values": "追踪长度 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right front wheel z-axis trace length, RfRayLngth",
+   "default": "5",
+   "values": "追踪长度 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left rear wheel z-axis trace length, LrRayLngth",
+   "default": "5",
+   "values": "追踪长度 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right rear wheel z-axis trace length, RrRayLngth",
+   "default": "5",
+   "values": "追踪长度 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle body x-axis trace offset, VehRayOffset",
+   "default": "0",
+   "values": "设置车辆射线追踪偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left front wheel z-axis trace offset, LfRayOffset",
+   "default": "0",
+   "values": "设置左前轮射线追踪偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right front wheel z-axis trace offset, RfRayOffset",
+   "default": "0",
+   "values": "设置右前轮射线追踪偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left rear wheel z-axis trace offset, LrRayOffset",
+   "default": "0",
+   "values": "设置左后轮射线追踪偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right rear wheel z-axis trace offset, RrRayOffset",
+   "default": "0",
+   "values": "设置右后轮射线追踪偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle body",
+   "default": "on",
+   "values": "启用车辆车身射线追踪 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Left front tire",
+   "default": "on",
+   "values": "启用左前轮胎射线追踪 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Right front tire",
+   "default": "on",
+   "values": "启用右前轮胎射线追踪 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Left rear tire",
+   "default": "on",
+   "values": "启用左后轮胎射线追踪 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Right rear tire",
+   "default": "on",
+   "values": "启用右后轮胎射线追踪 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Trace line visualization",
+   "default": "on",
+   "values": "可视化射线追踪 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

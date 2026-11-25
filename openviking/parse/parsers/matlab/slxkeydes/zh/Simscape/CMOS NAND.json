@@ -1,0 +1,13 @@
+{
+ "key": "CMOS NAND",
+ "title": "CMOS NAND",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Logic/CMOS_NAND.md"
+ ],
+ "text": "CMOS NAND 门的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

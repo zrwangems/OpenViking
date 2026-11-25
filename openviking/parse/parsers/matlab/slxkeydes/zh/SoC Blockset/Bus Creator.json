@@ -1,0 +1,107 @@
+{
+ "key": "Bus Creator",
+ "title": "SoC Bus Creator",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/SoC_Bus_Creator.md"
+ ],
+ "text": "将控制信号转换为总线，输入 15 路、输出 1 路；按 {Control type} 指定控制类型选择；{Control protocol} 指定协议接口选择 Data，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "有效控制信号 boolean scalar"
+  },
+  {
+   "name": "tlast",
+   "direction": "input",
+   "summary": "数据包结束指示 boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "input",
+   "summary": "就绪控制信号 boolean scalar"
+  },
+  {
+   "name": "hStart",
+   "direction": "input",
+   "summary": "帧的水平行中的第一个像素 boolean scalar"
+  },
+  {
+   "name": "hEnd",
+   "direction": "input",
+   "summary": "帧的水平行中的最后一个像素 boolean scalar"
+  },
+  {
+   "name": "vStart",
+   "direction": "input",
+   "summary": "帧的第一（顶部）行中的第一个像素 boolean scalar"
+  },
+  {
+   "name": "vEnd",
+   "direction": "input",
+   "summary": "帧的最后（底部）行中的最后一个像素 boolean scalar"
+  },
+  {
+   "name": "fsync",
+   "direction": "input",
+   "summary": "帧同步 boolean scalar"
+  },
+  {
+   "name": "rd_addr",
+   "direction": "input",
+   "summary": "读取器地址 scalar"
+  },
+  {
+   "name": "rd_len",
+   "direction": "input",
+   "summary": "读取器数据长度 scalar"
+  },
+  {
+   "name": "rd_avalid",
+   "direction": "input",
+   "summary": "读取器有效状态 boolean scalar"
+  },
+  {
+   "name": "rd_dready",
+   "direction": "input",
+   "summary": "读取器就绪状态 boolean scalar"
+  },
+  {
+   "name": "wr_addr",
+   "direction": "input",
+   "summary": "写入器地址 scalar"
+  },
+  {
+   "name": "wr_len",
+   "direction": "input",
+   "summary": "写入器数据长度 scalar"
+  },
+  {
+   "name": "wr_valid",
+   "direction": "input",
+   "summary": "写入器有效数据 boolean scalar"
+  },
+  {
+   "name": "ctrlBus",
+   "direction": "output",
+   "summary": "输出控制总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control protocol",
+   "default": "stream",
+   "values": "协议接口选择 Data stream (default) | Pixel stream | Random access read | Random access write",
+   "group": ""
+  },
+  {
+   "name": "Control type",
+   "default": "Valid",
+   "values": "控制类型选择 Valid (default) | Ready | Ready with frame sync",
+   "group": ""
+  }
+ ]
+}

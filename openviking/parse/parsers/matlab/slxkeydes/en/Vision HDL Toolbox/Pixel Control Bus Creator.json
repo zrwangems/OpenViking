@@ -1,0 +1,44 @@
+{
+ "key": "Pixel Control Bus Creator",
+ "title": "Pixel Control Bus Creator",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Pixel_Control_Bus_Creator.md"
+ ],
+ "text": "Create control signal bus for use with Vision HDL Toolbox blocks, 5 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "hStart",
+   "direction": "input",
+   "summary": "First pixel in a horizontal line of a frame scalar"
+  },
+  {
+   "name": "hEnd",
+   "direction": "input",
+   "summary": "Last pixel in a horizontal line of a frame scalar"
+  },
+  {
+   "name": "vStart",
+   "direction": "input",
+   "summary": "First pixel in the first (top) line of a frame scalar"
+  },
+  {
+   "name": "vEnd",
+   "direction": "input",
+   "summary": "Last pixel in the last (bottom) line of a frame scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Valid pixel indicator scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": []
+}

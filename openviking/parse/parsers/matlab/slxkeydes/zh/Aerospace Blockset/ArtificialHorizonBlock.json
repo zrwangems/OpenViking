@@ -1,0 +1,26 @@
+{
+ "key": "ArtificialHorizonBlock",
+ "title": "Artificial Horizon",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Instruments/Artificial_Horizon.md"
+ ],
+ "text": "表示飞机相对于地平线的姿态；按 {Label} 指定模块标签位置；{Connection} 指定连接到信号 signal name，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "连接到信号 signal name | 2-element signal",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "模块标签位置 Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

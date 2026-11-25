@@ -1,0 +1,44 @@
+{
+ "key": "modbusWrite",
+ "title": "Modbus Client Write",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/Modbus/Modbus_Client_Write.md"
+ ],
+ "text": "Write data to Modbus server, 1 input; {Client} selects Modbus client, {Server ID} sets the address of the server, {Registers} sets the list of Modbus and {Block sample time} sets the sample time for write operation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Reg_ x",
+   "direction": "input",
+   "summary": "Vector of register values double | array of doubles"
+  }
+ ],
+ "params": [
+  {
+   "name": "Client",
+   "default": "",
+   "values": "Select Modbus client drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Server ID",
+   "default": "1",
+   "values": "Address of the server 1 (default) | nonnegative integer in the range [0, 255]",
+   "group": ""
+  },
+  {
+   "name": "Registers",
+   "default": "",
+   "values": "List of Modbus registers table",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "-1",
+   "values": "Sample time for write operation -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

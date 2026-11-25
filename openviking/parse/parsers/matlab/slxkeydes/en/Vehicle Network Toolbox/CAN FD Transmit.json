@@ -1,0 +1,44 @@
+{
+ "key": "CAN FD Transmit",
+ "title": "CAN FD Transmit",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN FD Communication/CAN_FD_Transmit.md"
+ ],
+ "text": "Transmit CAN FD message to selected CAN FD device, 1 input; {Device} sets the cAN FD device and channel, {On data change} enables event-based transmission when data, {Periodic} enables periodic transmission and {Transmit Options: Message period (in seconds)} sets the period of message transmission rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "input",
+   "summary": "CAN FD messages to transmit CAN_FD_MESSAGE_BUS"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN FD device and channel list option",
+   "group": ""
+  },
+  {
+   "name": "On data change",
+   "default": "off",
+   "values": "Enable event-based transmission when data changes off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Periodic",
+   "default": "off",
+   "values": "Enable periodic transmission off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Transmit Options: Message period (in seconds)",
+   "default": "1.000",
+   "values": "Period of message transmission rate 1.000 (default) | positive numeric scalar",
+   "group": ""
+  }
+ ]
+}

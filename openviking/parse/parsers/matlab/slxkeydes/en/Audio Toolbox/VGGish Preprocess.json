@@ -1,0 +1,37 @@
+{
+ "key": "VGGish Preprocess",
+ "title": "VGGish Preprocess",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/VGGish_Preprocess.md"
+ ],
+ "text": "Preprocess audio for VGGish feature extraction, 1 input, 1 output, no direct feedthrough; {Sample rate of input signal (Hz)} sets the sample rate of input signal and {Overlap percentage (%)} sets the overlap percentage between consecutive mel. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Sound data column vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Mel spectrogram 96-by-64 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "16e3",
+   "values": "Sample rate of input signal in Hz 16e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "50",
+   "values": "Overlap percentage between consecutive mel spectrograms 50 (default) | [0 100)",
+   "group": ""
+  }
+ ]
+}

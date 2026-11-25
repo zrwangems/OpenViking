@@ -1,0 +1,34 @@
+{
+ "key": "DLatch",
+ "title": "D Latch",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Flip Flops/D_Latch.md"
+ ],
+ "text": "启用的 D 锁存器触发器建模，输入 2 路、输出 2 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "数据输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "芯片使能输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "!Q",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": []
+}

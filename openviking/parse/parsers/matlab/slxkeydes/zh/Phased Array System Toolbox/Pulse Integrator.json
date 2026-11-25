@@ -1,0 +1,43 @@
+{
+ "key": "Pulse Integrator",
+ "title": "Pulse Integrator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Pulse_Integrator.md"
+ ],
+ "text": "相干或非相干脉冲积累，输入 1 路、输出 1 路；{Integration method} 指定积累方法 Coherent、{Number of pulses to integrate} 指定要积累的脉冲数、{Integration overlap (in pulses)} 指定积累重叠，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "脉冲输入数据 matrix"
+  },
+  {
+   "name": "∑x",
+   "direction": "output",
+   "summary": "积累后的脉冲 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Integration method",
+   "default": "Coherent",
+   "values": "积累方法 Coherent (default) | Noncoherent",
+   "group": ""
+  },
+  {
+   "name": "Number of pulses to integrate",
+   "default": "10",
+   "values": "要积累的脉冲数 10 (default)",
+   "group": ""
+  },
+  {
+   "name": "Integration overlap (in pulses)",
+   "default": "0",
+   "values": "积累重叠 0 (default)",
+   "group": ""
+  }
+ ]
+}

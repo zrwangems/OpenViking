@@ -1,0 +1,76 @@
+{
+ "key": "MLSE Equalizer",
+ "title": "MLSE Equalizer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Equalizers/MLSE_Equalizer.md"
+ ],
+ "text": "对 OFDM 调制信号进行均衡，输入 3 路、输出 2 路；{Data format} 指定信号格式 3-D、{Algorithm} 指定均衡算法 Minimum mean squared、{Noise variance source} 指定噪声方差源 Input、{Noise variance} 指定噪声方差、{Output soft channel state information} 启用软信道状态信息输出、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入信号 3-D array | 2-D array"
+  },
+  {
+   "name": "hEst",
+   "direction": "input",
+   "summary": "信道估计 3-D array"
+  },
+  {
+   "name": "noiseVar",
+   "direction": "input",
+   "summary": "噪声方差 0 (default) | nonnegative scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "均衡后的符号 3-D array | 2-D array"
+  },
+  {
+   "name": "csi",
+   "direction": "output",
+   "summary": "软信道状态信息 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data format",
+   "default": "3-D",
+   "values": "信号格式 3-D (default) | 2-D",
+   "group": ""
+  },
+  {
+   "name": "Algorithm",
+   "default": "error",
+   "values": "均衡算法 Minimum mean squared error (default) | Zero-forcing",
+   "group": ""
+  },
+  {
+   "name": "Noise variance source",
+   "default": "port",
+   "values": "噪声方差源 Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Noise variance",
+   "default": "0",
+   "values": "噪声方差 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output soft channel state information",
+   "default": "off",
+   "values": "启用软信道状态信息输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

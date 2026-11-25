@@ -1,0 +1,14 @@
+{
+ "key": "Pipe (TL)",
+ "title": "Pipe (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Pipe_TL.md",
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Pipe_TL.md"
+ ],
+ "text": "Closed conduit that transports fluid between thermal liquid components.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

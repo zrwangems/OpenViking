@@ -1,0 +1,19 @@
+{
+ "key": "TestbenchTask",
+ "title": "Testbench Task",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor Testbench/Testbench_Task.md"
+ ],
+ "text": "An external timer-driven task load on your SoC processor application, 1 input.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Timer Task Function Call",
+   "direction": "input",
+   "summary": "Function-call input port from a timer-driven task scalar"
+  }
+ ],
+ "params": []
+}

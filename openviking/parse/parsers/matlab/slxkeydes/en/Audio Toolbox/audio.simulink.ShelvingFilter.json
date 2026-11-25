@@ -1,0 +1,124 @@
+{
+ "key": "audio.simulink.ShelvingFilter",
+ "title": "Shelving Filter",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Shelving_Filter.md"
+ ],
+ "text": "Second-order IIR shelving filter, 4 inputs, 1 output, no direct feedthrough; {Specify gain from input port} uses additional input port to specify gain, {Gain (dB)} sets the peak gain, {Specify slope from input port} uses additional input port to specify slope, {Slope} sets the filter slope, {Specify cutoff frequency from input port} uses additional input port to specify cutoff, {Cutoff frequency (Hz)} sets the filter cutoff frequency, {Type}, {Inherit sample rate from input} sets the source of input sample rate, {Input sample rate (Hz)} sets the sample rate of input, {Visualize filter response} sets the open plot to visualize filter response, {Variable name}, {Overwrite variable if it already exists}, {Export filter to workspace} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input signal column vector | matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Peak gain (dB) real scalar"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Slope positive scalar"
+  },
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "Cutoff frequency nonnegative scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify gain from input port",
+   "default": "off",
+   "values": "Use additional input port to specify gain off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Gain (dB)",
+   "default": "0",
+   "values": "Peak gain (dB) 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify slope from input port",
+   "default": "off",
+   "values": "Use additional input port to specify slope off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Slope",
+   "default": "1.5",
+   "values": "Filter slope 1.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify cutoff frequency from input port",
+   "default": "off",
+   "values": "Use additional input port to specify cutoff frequency off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cutoff frequency (Hz)",
+   "default": "200",
+   "values": "Filter cutoff frequency 200 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "lowpass",
+   "values": "Type of filter lowpass (default) | highpass",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "Specify source of input sample rate off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Visualize filter response",
+   "default": "",
+   "values": "Open plot to visualize filter response button",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "myFilt",
+   "values": "Variable name of exported filter myFilt (default) | valid variable name",
+   "group": ""
+  },
+  {
+   "name": "Overwrite variable if it already exists",
+   "default": "on",
+   "values": "Overwrite variable if it already exists on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Export filter to workspace",
+   "default": "",
+   "values": "Export filter to workspace button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

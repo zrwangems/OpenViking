@@ -1,0 +1,79 @@
+{
+ "key": "Receiver Thermal Noise",
+ "title": "Receiver Thermal Noise",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/Receiver_Thermal_Noise.md"
+ ],
+ "text": "Apply receiver thermal noise to complex signal, 1 input, 1 output, {Specification method} sets Thermal noise specification method Noise; {Noise temperature (K)}, {Noise figure (dB)} sets the receiver noise figure, {Noise factor} sets the receiver noise factor, {Add 290K antenna noise} sets the option to add 290 K antenna noise, {Reference load (ohm)}, {Random number source} sets the source for random number stream Global, {Initial seed} and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "Baseband signal scalar | column vector | matrix"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "Output signal scalar | column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specification method",
+   "default": "temperature",
+   "values": "Thermal noise specification method Noise temperature (default) | Noise figure | Noise factor",
+   "group": ""
+  },
+  {
+   "name": "Noise temperature (K)",
+   "default": "290",
+   "values": "Noise temperature 290 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "3.0103",
+   "values": "Receiver noise figure 3.0103 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Noise factor",
+   "default": "2",
+   "values": "Receiver noise factor 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Add 290K antenna noise",
+   "default": "off",
+   "values": "Option to add 290 K antenna noise off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reference load (ohm)",
+   "default": "1",
+   "values": "Reference load 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Random number source",
+   "default": "stream",
+   "values": "Source for random number stream Global stream (default) | mt19937ar with seed",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "67987",
+   "values": "Initial seed value 67987 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "key": "Real Cepstrum",
+ "title": "Real Cepstrum",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Real_Cepstrum.md"
+ ],
+ "text": "Compute real cepstrum of input, 1 input, 1 output, no direct feedthrough; {Inherit FFT length from input port dimensions} sets the match the FFT length to the dimensions of the input and {FFT length}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Real cepstrum output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit FFT length from input port dimensions",
+   "default": "on",
+   "values": "Match the FFT length to the dimensions of the input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "64",
+   "values": "Compute FFT length 64 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

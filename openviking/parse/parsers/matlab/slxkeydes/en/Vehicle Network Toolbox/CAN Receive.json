@@ -1,0 +1,61 @@
+{
+ "key": "CAN Receive",
+ "title": "CAN Receive",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN Communication/CAN_Receive.md"
+ ],
+ "text": "Receive CAN messages from specified CAN device, 2 outputs, {Standard IDs Filter} sets Limit or; {Device} sets the cAN device and channel, {Extended IDs Filter} limits or allow messages based on extended ID Allow, {Sample time} sets the block execution rate, {Number of messages received at each timestep} sets the receive one and {Output as bus} sets the output Simulink bus signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "output",
+   "summary": "Received CAN messages CAN_MESSAGE | bus"
+  },
+  {
+   "name": "f()",
+   "direction": "output",
+   "summary": "Function-call event output function-call event"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN device and channel list option",
+   "group": ""
+  },
+  {
+   "name": "Standard IDs Filter",
+   "default": "all",
+   "values": "Limit or allow messages based on standard ID Allow all (default) | Allow only | Block all",
+   "group": ""
+  },
+  {
+   "name": "Extended IDs Filter",
+   "default": "all",
+   "values": "Limit or allow messages based on extended ID Allow all (default) | Allow only | Block all",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Block execution rate 0.01 (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of messages received at each timestep",
+   "default": "all",
+   "values": "Receive one or all messages all (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Output as bus",
+   "default": "off",
+   "values": "Output Simulink bus signal off (default) | on",
+   "group": ""
+  }
+ ]
+}

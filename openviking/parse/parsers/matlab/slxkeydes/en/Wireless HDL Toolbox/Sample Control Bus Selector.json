@@ -1,0 +1,34 @@
+{
+ "key": "Sample Control Bus Selector",
+ "title": "Sample Control Bus Selector",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_block",
+ "source_docs": [
+  "Wireless HDL Toolbox/Utilities/Sample_Control_Bus_Selector.md"
+ ],
+ "text": "Select signals from the control signal bus used with Wireless HDL Toolbox blocks, 1 input, 3 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "start",
+   "direction": "output",
+   "summary": "Start of frame scalar"
+  },
+  {
+   "name": "end",
+   "direction": "output",
+   "summary": "End of frame scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Validity of samples scalar"
+  }
+ ],
+ "params": []
+}

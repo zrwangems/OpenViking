@@ -1,0 +1,145 @@
+{
+ "key": "Submatrix",
+ "title": "Submatrix",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Submatrix.md"
+ ],
+ "text": "Select subset of elements (submatrix) from matrix input, 1 input, 1 output, no direct feedthrough, {Row span} sets Range of; {Row} sets the first row, {Starting row} sets the first row, {Row index} sets the index of first row, {Starting row index} sets the index of first row, {Row offset} sets the offset of first row, {Starting row offset} sets the offset of first row, {Ending row} sets the last row, {Ending row index} sets the index of last row, {Ending row offset} sets the offset of last row, {Column span} sets the range of input, {Column} sets the first column, {Starting column} sets the first column, {Starting column index} sets the index of first column, {Column index} sets the index of first column, {Column offset} sets the offset of first column, {Starting column offset} sets the offset of first column, {Ending column} sets the last column, {Ending column index} sets the index of last column and {Ending column offset} sets the offset of last column. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Selected submatrix vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Row span",
+   "default": "rows",
+   "values": "Range of rows All rows (default) | One row | Range of rows",
+   "group": ""
+  },
+  {
+   "name": "Row",
+   "default": "First",
+   "values": "First row of output First (default) | Index | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Starting row",
+   "default": "First",
+   "values": "First row of output First (default) | Index | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Row index",
+   "default": "1",
+   "values": "Index of first row 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Starting row index",
+   "default": "1",
+   "values": "Index of first row 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Row offset",
+   "default": "1",
+   "values": "Offset of first row 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Starting row offset",
+   "default": "1",
+   "values": "Offset of first row 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending row",
+   "default": "Last",
+   "values": "Last row Last (default) | Index | Offset from last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Ending row index",
+   "default": "1",
+   "values": "Index of last row 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending row offset",
+   "default": "1",
+   "values": "Offset of last row 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Column span",
+   "default": "columns",
+   "values": "Range of input columns All columns (default) | One column | Range of columns",
+   "group": ""
+  },
+  {
+   "name": "Column",
+   "default": "First",
+   "values": "First column First (default) | Index | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Starting column",
+   "default": "First",
+   "values": "First column First (default) | Index | Offset from last | Last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Starting column index",
+   "default": "1",
+   "values": "Index of first column 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Column index",
+   "default": "1",
+   "values": "Index of first column 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Column offset",
+   "default": "1",
+   "values": "Offset of first column 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Starting column offset",
+   "default": "1",
+   "values": "Offset of first column 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending column",
+   "default": "Last",
+   "values": "Last column Last (default) | Index | Offset from last | Offset from middle | Middle",
+   "group": ""
+  },
+  {
+   "name": "Ending column index",
+   "default": "1",
+   "values": "Index of last column 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Ending column offset",
+   "default": "1",
+   "values": "Offset of last column 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

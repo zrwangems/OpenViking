@@ -1,0 +1,59 @@
+{
+ "key": "PMSM Field-Weakening Controller",
+ "title": "PMSM Field-Weakening Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/PMSM Control/PMSM_Field_Weakening_Controller.md"
+ ],
+ "text": "永磁同步电机弱磁控制器，输入 3 路、输出 1 路；{Modulation index threshold} 指定调制指数阈值、{Field-weakening controller integral gain} 指定积分增益、{Integral anti-windup gain} 指定抗积分饱和增益、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "idqRef",
+   "direction": "input",
+   "summary": "参考电流 vector"
+  },
+  {
+   "name": "vdq",
+   "direction": "input",
+   "summary": "电压 vector"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "最大相电压 scalar"
+  },
+  {
+   "name": "idqRefFW",
+   "direction": "output",
+   "summary": "弱磁参考电流 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation index threshold",
+   "default": "1",
+   "values": "调制指数阈值 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Field-weakening controller integral gain",
+   "default": "100",
+   "values": "积分增益 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Integral anti-windup gain",
+   "default": "10",
+   "values": "抗积分饱和增益 10 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | -1 or positive number",
+   "group": ""
+  }
+ ]
+}

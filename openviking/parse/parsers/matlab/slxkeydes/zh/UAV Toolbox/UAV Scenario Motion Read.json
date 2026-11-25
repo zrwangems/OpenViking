@@ -1,0 +1,48 @@
+{
+ "key": "UAV Scenario Motion Read",
+ "title": "UAV Scenario Motion Read",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Motion_Read.md"
+ ],
+ "text": "从 UAV 场景仿真读取平台和传感器运动；输出 3 路；按 {Coordinate frame of output motion} 指定输出运动的坐标系；{Platform or sensor name} 指定平台或传感器名称、{Generate wind velocity and angular velocity samples} 指定 Generate wind velocity and angular velocities，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Motion",
+   "direction": "output",
+   "summary": "UAV 运动数据 bus"
+  },
+  {
+   "name": "SampledWind",
+   "direction": "output",
+   "summary": "合成风平移速度和角速度 1-by-6 vector"
+  },
+  {
+   "name": "SampledWindByComponent",
+   "direction": "output",
+   "summary": "来自每个风模型对象的风平移速度和角速度 N -by-6 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Platform or sensor name",
+   "default": "’UAV’",
+   "values": "平台或传感器名称 ’UAV’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Coordinate frame of output motion",
+   "default": "’ENU’",
+   "values": "输出运动的坐标系 ’ENU’ (default) | ’NED’ | string",
+   "group": ""
+  },
+  {
+   "name": "Generate wind velocity and angular velocity samples",
+   "default": "off",
+   "values": "Generate wind velocity and angular velocities samples off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,238 @@
+{
+ "key": "6DOF EoM (Wind Axis)",
+ "title": "Simple Variable Mass 6DOF Wind (Quaternion)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/6DOF/Simple_Variable_Mass_6DOF_Wind_Quaternion.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/Simple_Variable_Mass_6DOF_Wind_Wind_Angles.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/b_6DOF_Wind_Quaternion.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/b_6DOF_Wind_Wind_Angles.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/Custom_Variable_Mass_6DOF_Wind_Quaternion.md",
+  "Aerospace Blockset/Equations of Motion/6DOF/Custom_Variable_Mass_6DOF_Wind_Wind_Angles.md"
+ ],
+ "text": "实现相对于风轴的简单变质量六自由度运动方程的四元数表示，输入 4 路、输出 12 路；按 {Mass type} 指定质量类型 Simple；{Units}、{Representation}、{Initial position in inertial axes [Xe,Ye,Ze]}、{Initial airspeed, angle of attack, and sideslip angle [V,alpha,beta]}、{Initial wind orientation [bank angle,flight path angle,heading angle]}、{Initial body rotation rates [p,q,r]}、{Initial mass}、{Empty mass}、{Full mass}、{Inertia in body axis}、{Empty inertia matrix in body axis}、{Full inertia matrix in body axis}、{Include mass flow relative velocity}、{Include inertial acceleration}、{Position: e.g., ’Xe’,’Ye’,’Ze’}、{Velocity: e.g., ’V’}、{Incidence angle e.g., ’alpha’}、{Sideslip angle e.g., ’beta’}、{Wind orientation e.g., ’mu’, ’gamma’, ’chi’}、{Quaternion vector: e.g., ’qr’,’qi’,’qj’,’qk’}、{Body rotation rates: e.g., ’p’,’q’,’r’}、{Mass: e.g., ’mass’} 同样影响行为。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F xyz (N)",
+   "direction": "input",
+   "summary": "施加的力 three-element vector"
+  },
+  {
+   "name": "M xyz (N-m)",
+   "direction": "input",
+   "summary": "施加的力矩 three-element vector"
+  },
+  {
+   "name": "dm/dt (kg/s)",
+   "direction": "input",
+   "summary": "质量变化率 scalar"
+  },
+  {
+   "name": "V re",
+   "direction": "input",
+   "summary": "相对速度 three-element vector"
+  },
+  {
+   "name": "V e",
+   "direction": "output",
+   "summary": "平面地球参考坐标系中的速度 three-element vector"
+  },
+  {
+   "name": "X e",
+   "direction": "output",
+   "summary": "平面地球参考坐标系中的位置 three-element vector"
+  },
+  {
+   "name": "μ γ x (rad)",
+   "direction": "output",
+   "summary": "风旋转角 three-element vector"
+  },
+  {
+   "name": "DCM we",
+   "direction": "output",
+   "summary": "坐标变换 3-by-3 matrix"
+  },
+  {
+   "name": "V w",
+   "direction": "output",
+   "summary": "风固定坐标系中的速度 three-element vector"
+  },
+  {
+   "name": "α β (rad)",
+   "direction": "output",
+   "summary": "迎角和侧滑角 two-element vector"
+  },
+  {
+   "name": "dα/dt dβ/dt",
+   "direction": "output",
+   "summary": "迎角变化率和侧滑角变化率 two-element vector"
+  },
+  {
+   "name": "ω b (rad/s)",
+   "direction": "output",
+   "summary": "体固连坐标轴中的角速率 three-element vector"
+  },
+  {
+   "name": "dω b /dt",
+   "direction": "output",
+   "summary": "体固连坐标系中的角加速度 three-element vector"
+  },
+  {
+   "name": "A bb",
+   "direction": "output",
+   "summary": "体轴系中的加速度 three-element vector"
+  },
+  {
+   "name": "Fuel",
+   "direction": "output",
+   "summary": "燃料箱状态 scalar"
+  },
+  {
+   "name": "A be",
+   "direction": "output",
+   "summary": "相对于惯性坐标系的加速度 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Variable",
+   "values": "质量类型 Simple Variable (default) | Fixed | Custom Variable",
+   "group": "Main"
+  },
+  {
+   "name": "Representation",
+   "default": "Quaternion",
+   "values": "运动方程表示 Quaternion (default) | Wind Angles",
+   "group": "Main"
+  },
+  {
+   "name": "Initial position in inertial axes [Xe,Ye,Ze]",
+   "default": "0]",
+   "values": "惯性坐标轴中的位置 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial airspeed, angle of attack, and sideslip angle [V,alpha,beta]",
+   "default": "0]",
+   "values": "初始空速、迎角和侧滑角 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial wind orientation [bank angle,flight path angle,heading angle]",
+   "default": "0]",
+   "values": "初始风朝向 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial body rotation rates [p,q,r]",
+   "default": "0]",
+   "values": "初始机体旋转 [0 0 0] (default) | three-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial mass",
+   "default": "1.0",
+   "values": "初始质量 1.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty mass",
+   "default": "0.5",
+   "values": "空载质量 0.5 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Full mass",
+   "default": "2.0",
+   "values": "机体的满载质量 2.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Inertia in body axis",
+   "default": "eye(3)",
+   "values": "机体惯性 eye(3) (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Empty inertia matrix in body axis",
+   "default": "eye(3)",
+   "values": "空载惯量的惯性张量矩阵 eye(3) (default) | 3-by-3 matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Full inertia matrix in body axis",
+   "default": "2*eye(3)",
+   "values": "满载惯量的惯性张量矩阵 2*eye(3) (default) | 3-by-3 matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Include mass flow relative velocity",
+   "default": "off",
+   "values": "质量流相对速度端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Include inertial acceleration",
+   "default": "off",
+   "values": "包括惯性加速度端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Position: e.g., {’Xe’,’Ye’,’Ze’}",
+   "default": "’’",
+   "values": "位置状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Velocity: e.g., ’V’",
+   "default": "’’",
+   "values": "速度状态名称 ’’ (default) | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Incidence angle e.g., ’alpha’",
+   "default": "’’",
+   "values": "入射角状态名称 ’’ (default) | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Sideslip angle e.g., ’beta’",
+   "default": "’’",
+   "values": "侧滑角状态名称 ’’ (default) | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Wind orientation e.g., {’mu’, ’gamma’, ’chi’}",
+   "default": "’’",
+   "values": "风朝向状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Quaternion vector: e.g., {’qr’,’qi’,’qj’,’qk’}",
+   "default": "’’",
+   "values": "四元数向量状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Body rotation rates: e.g., {’p’,’q’,’r’}",
+   "default": "’’",
+   "values": "机体旋转状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Mass: e.g., ’mass’",
+   "default": "’’",
+   "values": "质量状态名称 ’’ (default) | character vector",
+   "group": "State Attributes"
+  }
+ ]
+}

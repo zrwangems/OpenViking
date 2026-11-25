@@ -1,0 +1,38 @@
+{
+ "key": "MultiStateImageBlock",
+ "title": "MultiStateImage",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/MultiStateImage.md"
+ ],
+ "text": "显示反映输入值的图像；按 {Label} 指定模块标签位置；{Connection} 指定要连接并显示的信号 signal connection、{Scale Mode} 指定图像的缩放方式 Fill with fixed aspect、{States} 指定将值与要显示的图像匹配 scalar，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "要连接并显示的信号 signal connection options",
+   "group": ""
+  },
+  {
+   "name": "Scale Mode",
+   "default": "ratio",
+   "values": "指定图像的缩放方式 Fill with fixed aspect ratio (default) | Fixed | Fill",
+   "group": ""
+  },
+  {
+   "name": "States",
+   "default": "",
+   "values": "将值与要显示的图像匹配 scalar and image",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "模块标签位置 Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

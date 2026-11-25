@@ -1,0 +1,13 @@
+{
+ "key": "Absolute Reference (MA)",
+ "title": "Absolute Reference (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Absolute_Reference_MA.md"
+ ],
+ "text": "(Not recommended) Reference point at zero absolute temperature and pressure.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

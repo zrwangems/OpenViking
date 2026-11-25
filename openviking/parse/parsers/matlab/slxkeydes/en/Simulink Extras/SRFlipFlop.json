@@ -1,0 +1,41 @@
+{
+ "key": "SRFlipFlop",
+ "title": "S-R Flip-Flop",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Flip Flops/S_R_Flip_Flop.md"
+ ],
+ "text": "Model an S-R flip-flop, 2 inputs, 2 outputs; {Initial condition (state of Q)} sets the initial value of output Q. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Set input scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Reset input scalar"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "Output signal Q scalar"
+  },
+  {
+   "name": "!Q",
+   "direction": "output",
+   "summary": "Output signal !Q scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition (state of Q)",
+   "default": "0",
+   "values": "Initial value of output Q 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

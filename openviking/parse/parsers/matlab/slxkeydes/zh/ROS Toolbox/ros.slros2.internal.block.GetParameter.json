@@ -1,0 +1,55 @@
+{
+ "key": "ros.slros2.internal.block.GetParameter",
+ "title": "Get Parameter",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Get_Parameter.md"
+ ],
+ "text": "获取 ROS 2 参数值；输出 2 路；按 {Data type} 指定参数的数据类型；{Name} 指定参数名称 mynamespace.param、{Maximum length} 指定数组的最大长度、{Initial value} 指定默认参数值输出、{Sample time} 输出之间的间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Value",
+   "direction": "output",
+   "summary": "参数值 scalar | array"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "数组参数的长度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Name",
+   "default": "mynamespace.param",
+   "values": "参数名称 mynamespace.param (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "参数的数据类型 double (default) | int64 | boolean | uint8[] | double[] | int64[] | boolean[]",
+   "group": ""
+  },
+  {
+   "name": "Maximum length",
+   "default": "16",
+   "values": "数组的最大长度 16 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0.0",
+   "values": "默认参数值输出 0.0 (default) | numeric scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "输出之间的间隔 -1 (default) | numeric scalar",
+   "group": ""
+  }
+ ]
+}

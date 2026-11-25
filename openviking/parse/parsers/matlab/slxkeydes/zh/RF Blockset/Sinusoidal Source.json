@@ -1,0 +1,68 @@
+{
+ "key": "Sinusoidal Source",
+ "title": "Sinusoid",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Sources/Sinusoid.md"
+ ],
+ "text": "对直流偏移和正弦调制建模；按 {Sinusoidal amplitude in-phase} 指定同相幅度；{Source type} 指定波类型 Ideal、{Offset in-phase} 指定同相偏移、{Offset quadrature} 指定正交偏移、{Sinusoidal amplitude quadrature} 指定正交幅度、{Sinusoidal modulation frequency} 指定调制频率、{Time delay} 指定调制时间延迟、{Carrier frequencies} 指定载波频率、{Ground and hide negative terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source type",
+   "default": "voltage",
+   "values": "波类型 Ideal voltage (default) | Ideal current",
+   "group": ""
+  },
+  {
+   "name": "Offset in-phase",
+   "default": "V",
+   "values": "同相偏移 0 V (default) | 0 A | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA",
+   "group": ""
+  },
+  {
+   "name": "Offset quadrature",
+   "default": "V",
+   "values": "正交偏移 0 V (default) | 0 A | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA",
+   "group": ""
+  },
+  {
+   "name": "Sinusoidal amplitude in-phase",
+   "default": "0",
+   "values": "同相幅度 0 (default) | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA",
+   "group": ""
+  },
+  {
+   "name": "Sinusoidal amplitude quadrature",
+   "default": "0",
+   "values": "正交幅度 0 (default) | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA",
+   "group": ""
+  },
+  {
+   "name": "Sinusoidal modulation frequency",
+   "default": "0",
+   "values": "调制频率 0 (default) | vector of real or complex numbers | Hz | kHz | MHz | GHz",
+   "group": ""
+  },
+  {
+   "name": "Time delay",
+   "default": "0",
+   "values": "调制时间延迟 0 (default) | vector of real | s | ms | us | ns",
+   "group": ""
+  },
+  {
+   "name": "Carrier frequencies",
+   "default": "0",
+   "values": "载波频率 0 (default) | vector of real positive numbers | Hz | kHz | MHz | GHz",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

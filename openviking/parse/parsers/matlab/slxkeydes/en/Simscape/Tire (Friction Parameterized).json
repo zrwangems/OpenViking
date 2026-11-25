@@ -1,0 +1,13 @@
+{
+ "key": "Tire (Friction Parameterized)",
+ "title": "Tire (Friction Parameterized)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Tire_Friction_Parameterized.md"
+ ],
+ "text": "Tire with friction parameterized in terms of static and kinetic coefficients.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

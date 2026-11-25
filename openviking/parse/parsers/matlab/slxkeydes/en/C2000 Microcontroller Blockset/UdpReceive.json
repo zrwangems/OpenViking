@@ -1,0 +1,79 @@
+{
+ "key": "UdpReceive",
+ "title": "UDP Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28M35x/M3/UDP_Receive.md",
+  "C2000 Microcontroller Blockset/F28M36x/M3/UDP_Receive.md"
+ ],
+ "text": "Receive UDP packets from UDP host, 3 outputs, {Data type} sets Data type of elements in UDP packets; {Local IP Port} sets the iP port on the receiving UDP host, {Remote IP address (0.0.0.0 for accepting all)} sets the iP address from which the block receives UDP packets, {Data size (N)} sets the number of data elements in each UDP packet, {Enable variable length} sets the variable length, {Maximum data size (N)} sets the maximum length of data, {Wait until data received} sets the wait until requested data is available and {Sample time} sets how often this block reads packets from the sending UDP. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "UDP packets received from sending UDP host vector"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Determine if requested data is received at the given time step scalar"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "Variable length scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Local IP Port",
+   "default": "25000",
+   "values": "IP port on the receiving UDP host 25000 (default) | positive integer in the range [1,65535]",
+   "group": ""
+  },
+  {
+   "name": "Remote IP address (0.0.0.0 for accepting all)",
+   "default": "192.1.168.10",
+   "values": "IP address from which the block receives UDP packets 192.1.168.10 (default) | 0.0.0.0",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Data type of elements in UDP packets uint8 (default) | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Data size (N)",
+   "default": "1",
+   "values": "Number of data elements in each UDP packet 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable variable length",
+   "default": "off",
+   "values": "Variable length off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum data size (N)",
+   "default": "1",
+   "values": "Maximum length of data 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Wait until data received",
+   "default": "on",
+   "values": "Wait until requested data is available on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "How often this block reads packets from the sending UDP host 0.1 (default)",
+   "group": ""
+  }
+ ]
+}

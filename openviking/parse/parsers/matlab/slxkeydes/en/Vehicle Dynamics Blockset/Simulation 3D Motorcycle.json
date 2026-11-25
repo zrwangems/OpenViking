@@ -1,0 +1,138 @@
+{
+ "key": "Simulation 3D Motorcycle",
+ "title": "Simulation 3D Motorcycle",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Motorcycle.md"
+ ],
+ "text": "Implement motorcycle in 3D environment, 3 inputs, {Type} sets Type Sports; {Color}, {Name}, {Sample time}, {Enable light controls, VehLightsControl} controls vehicle lights, {Headlight color [R,G,B], HeadlightColor} sets the headlight color, {High beam intensity, HighBeamIntensity}, {Low beam intensity, LowBeamIntensity}, {High beam cone half angle, HighBeamConeAngle}, {Low beam cone half angle, LowBeamConeAngle}, {Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation} sets the left headlight beam orientation, {Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation} sets the right headlight beam orientation, {Brake light intensity, BrakelightIntensity}, {Turn signal light intensity, SignallightIntensity}, {Period, SignallightPeriod} sets the turn signal light period, {Pulse width, SignalPulseWidth}, {Initial array values to translate vehicle per part, Translation} sets the motorcycle initial translation zeros and {Initial array values to rotate vehicle per part, Rotation} sets the motorcycle initial rotation zeros. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Motorcycle translation 4 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Motorcycle rotation 4 -by- 3 array"
+  },
+  {
+   "name": "Light controls",
+   "direction": "input",
+   "summary": "Vehicle lights on or off 1-by-5 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "bike",
+   "values": "Type Sports bike (default) | Motor bike | Scooter",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Color",
+   "default": "Red",
+   "values": "Color of vehicle Red (default) | Orange | Yellow | Green | Blue | Black | White | Silver | Dazzle Camouflage",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "Name of motorcycle SimulinkVehicle1 (default) | character vector",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Enable light controls, VehLightsControl",
+   "default": "off",
+   "values": "Control vehicle lights off (default) | on",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Headlight color [R,G,B], HeadlightColor",
+   "default": "[1,1,1]",
+   "values": "Headlight color [1,1,1] (default) | 1-by-3 vector of RGB triplet values",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam intensity, HighBeamIntensity",
+   "default": "100000",
+   "values": "High beam intensity 100000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam intensity, LowBeamIntensity",
+   "default": "60000",
+   "values": "Low beam intensity 60000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam cone half angle, HighBeamConeAngle",
+   "default": "1.22",
+   "values": "High beam cone half angle 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam cone half angle, LowBeamConeAngle",
+   "default": "1.22",
+   "values": "Low beam cone half angle 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "Left headlight beam orientation [0,0] (default) | 1-by-2 vector greater with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "Right headlight beam orientation [0,0] (default) | 1-by-2 vector greater with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Brake light intensity, BrakelightIntensity",
+   "default": "500",
+   "values": "Intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Turn signal light intensity, SignallightIntensity",
+   "default": "500",
+   "values": "Intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Period, SignallightPeriod",
+   "default": "1",
+   "values": "Turn signal light period 1 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Pulse width, SignalPulseWidth",
+   "default": "50",
+   "values": "Pulse width 50 (default) | positive scalar less than 100",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Initial array values to translate vehicle per part, Translation",
+   "default": ")",
+   "values": "Motorcycle initial translation zeros( 4, 3 ) (default) | 4 -by- 3 array",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial array values to rotate vehicle per part, Rotation",
+   "default": ")",
+   "values": "Motorcycle initial rotation zeros( 4, 3 ) (default) | 4 -by- 3 array",
+   "group": "Initial Values"
+  }
+ ]
+}

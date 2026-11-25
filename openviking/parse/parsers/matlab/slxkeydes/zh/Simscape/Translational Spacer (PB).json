@@ -1,0 +1,13 @@
+{
+ "key": "Translational Spacer (PB)",
+ "title": "Translational Spacer (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Spacer_PB.md"
+ ],
+ "text": "仿真期间模块间的固定长度。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

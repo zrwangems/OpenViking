@@ -1,0 +1,65 @@
+{
+ "key": "SOH Estimator",
+ "title": "SOH Estimator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/SOH_Estimator.md"
+ ],
+ "text": "State of health estimator, 3 inputs, 1 output, {Algorithm data type} sets Option to choose data type for block algorithm Inherit:; {Vector of state-of-charge values, SOC (-)} sets the sOC breakpoints, {Vector of temperatures, T} sets the temperature breakpoints, {Terminal resistance when battery cell is new, R0new(SOC,T), (ohm)} and {Terminal resistance at end of life, R0eol(SOC,T), (ohm)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SOC",
+   "direction": "input",
+   "summary": "State of charge of battery, unitless scalar | vector"
+  },
+  {
+   "name": "Temperature",
+   "direction": "input",
+   "summary": "Cell temperature scalar | vector"
+  },
+  {
+   "name": "R0",
+   "direction": "input",
+   "summary": "Terminal resistance, ohm scalar | vector"
+  },
+  {
+   "name": "SOH",
+   "direction": "output",
+   "summary": "State of health of battery scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vector of state-of-charge values, SOC (-)",
+   "default": "1]",
+   "values": "SOC breakpoints [0,.1,.25,.5,.75,.9, 1] (default) | vector of nonnegative scalars between 0 and 1",
+   "group": ""
+  },
+  {
+   "name": "Vector of temperatures, T",
+   "default": "313]",
+   "values": "Temperature breakpoints [278, 293, 313] (default) | vector of positive scalars",
+   "group": ""
+  },
+  {
+   "name": "Terminal resistance when battery cell is new, R0new(SOC,T), (ohm)",
+   "default": "[.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089]",
+   "values": "Terminal resistance when battery cell is new [.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089] (default) | matrix of nonnegative scalars",
+   "group": ""
+  },
+  {
+   "name": "Terminal resistance at end of life, R0eol(SOC,T), (ohm)",
+   "default": "[.0234,.017,.018;.022,.017,.018;.0228,.0174,.0184;.0214,.0164,.0176;.0214,.0166,.0182;.0226,.017,.0178;.0232,.017,.0178]",
+   "values": "Terminal resistance at end of life [.0234,.017,.018;.022,.017,.018;.0228,.0174,.0184;.0214,.0164,.0176;.0214,.0166,.0182;.0226,.017,.0178;.0232,.017,.0178] (default) | matrix of nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "key": "Discrete Varying Delay",
+ "title": "Discrete Varying Delay",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_Delay.md"
+ ],
+ "text": "Discrete varying delay with support for fixed delay and zero delay (direct feedthrough), 2 inputs, 1 output, {Initial output} sets Initial output; {Nominal delay (number of samples)} sets the nominal value of delay, {Maximum delay} sets the maximum value of delay length input, {Fixed delays (indices)} sets the signal indices with fixed delays, {Sample time (-1 for inherited)} and {Prevent direct feedthrough with minimum delay of 1}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Data input signal scalar | vector"
+  },
+  {
+   "name": "d",
+   "direction": "input",
+   "summary": "Delay length scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Nominal delay (number of samples)",
+   "default": "1",
+   "values": "Nominal value of delay 1 (default) | nonnegative integer | vector of nonnegative integer values",
+   "group": ""
+  },
+  {
+   "name": "Maximum delay",
+   "default": "10",
+   "values": "Maximum value of delay length input 10 (default) | nonnegative integer | vector of nonnegative integer values",
+   "group": ""
+  },
+  {
+   "name": "Fixed delays (indices)",
+   "default": "[]",
+   "values": "Signal indices with fixed delays [] (default) | positive scalar | vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Initial output 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Prevent direct feedthrough with minimum delay of 1",
+   "default": "off",
+   "values": "Prevent direct feedthrough off (default) | on",
+   "group": ""
+  }
+ ]
+}

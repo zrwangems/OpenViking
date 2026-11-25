@@ -1,0 +1,13 @@
+{
+ "key": "Disc Brake",
+ "title": "Disc Brake",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Rotational/Disc_Brake.md"
+ ],
+ "text": "带加压缸和制动片的摩擦制动器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

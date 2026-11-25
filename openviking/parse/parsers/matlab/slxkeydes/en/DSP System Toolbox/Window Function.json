@@ -1,0 +1,180 @@
+{
+ "key": "Window Function",
+ "title": "Window Function",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Window_Function.md"
+ ],
+ "text": "Compute and apply window to input signal, 1 input, 2 outputs, no direct feedthrough, {Rounding mode} sets Rounding mode; {Operation} sets the modes of operation Apply window, {Window type} sets the type of window, {Sampling} sets the type of sampling, {Sample mode}, {Sample time}, {Window length} sets the length of window, {Stopband attenuation in dB}, {Beta} sets the kaiser window β parameter, {Number of sidelobes}, {Maximum sidelobe level relative to mainlobe (dB)}, {Window function name}, {Specify additional arguments to the hamming function} sets the additional arguments to the window, {Cell array of additional arguments} sets the additional arguments, {Window data type}, {Signed} sets the window output is signed, {Word length}, {User-defined data type (e.g. sfix(16), float(’single))} sets the user-defined data type sfix, {Set fraction length in output to} sets the scaling of fixed-point window data type Best, {Fraction length} sets the user-defined fraction length, {Overflow mode}, {Window}, {Product output}, {Output} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal vector | matrix | N -D array"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output vector | matrix | N -D array"
+  },
+  {
+   "name": "Win",
+   "direction": "output",
+   "summary": "Window output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "input",
+   "values": "Modes of operation Apply window to input (default) | Generate window | Generate and apply window",
+   "group": "Main"
+  },
+  {
+   "name": "Window type",
+   "default": "Hamming",
+   "values": "Type of window Hamming (default) | Bartlett | Blackman |...",
+   "group": "Main"
+  },
+  {
+   "name": "Sampling",
+   "default": "Symmetric",
+   "values": "Type of sampling Symmetric (default) | Periodic",
+   "group": "Main"
+  },
+  {
+   "name": "Sample mode",
+   "default": "Continuous",
+   "values": "Sample mode Continuous (default) | Discrete",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Sample time 1 (default) | real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Window length",
+   "default": "64",
+   "values": "Length of window 64 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Stopband attenuation in dB",
+   "default": "50",
+   "values": "Stopband attenuation in dB 50 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Beta",
+   "default": "10",
+   "values": "Kaiser window β parameter 10 (default) | real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Number of sidelobes",
+   "default": "4",
+   "values": "Number of sidelobes 4 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum sidelobe level relative to mainlobe (dB)",
+   "default": "-30",
+   "values": "Maximum sidelobe level relative to mainlobe -30 (default) | scalar less than or equal to zero",
+   "group": "Main"
+  },
+  {
+   "name": "Window function name",
+   "default": "hamming",
+   "values": "Window function name hamming (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Specify additional arguments to the hamming function",
+   "default": "off",
+   "values": "Specify additional arguments to the window function off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Cell array of additional arguments",
+   "default": "{’symmetric’}",
+   "values": "Additional arguments {’symmetric’} (default) | cell array",
+   "group": "Main"
+  },
+  {
+   "name": "Window data type",
+   "default": "double",
+   "values": "Window data type double (default) | single | Fixed-point | User-defined | Inherit via back propagation",
+   "group": "Data Types"
+  },
+  {
+   "name": "Signed",
+   "default": "on",
+   "values": "Window output is signed on (default) | off",
+   "group": "Data Types"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Word length 16 (default) | positive integer in the range [2 128]",
+   "group": "Data Types"
+  },
+  {
+   "name": "User-defined data type (e.g. sfix(16), float(’single))",
+   "default": "sfix(16)",
+   "values": "user-defined data type sfix(16) (default) | built-in data type | fixed-point data type",
+   "group": "Data Types"
+  },
+  {
+   "name": "Set fraction length in output to",
+   "default": "precision",
+   "values": "Scaling of fixed-point window data type Best precision (default) | User-defined",
+   "group": "Data Types"
+  },
+  {
+   "name": "Fraction length",
+   "default": "15",
+   "values": "User-defined fraction length 15 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Overflow mode",
+   "default": "Wrap",
+   "values": "Overflow mode Wrap (default) | Saturate",
+   "group": "Data Types"
+  },
+  {
+   "name": "Window",
+   "default": "input",
+   "values": "Window data type Same word length as input (default) | Specify word length | Binary point scaling | Slope and bias scaling",
+   "group": "Data Types"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit via internal rule (default) | Same as input | Binary point scaling | Slope and bias scaling",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "output",
+   "values": "Output data type Same as product output (default) | Same as input | Binary point scaling | Slope and bias scaling",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

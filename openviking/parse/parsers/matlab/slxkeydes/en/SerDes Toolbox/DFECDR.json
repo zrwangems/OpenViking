@@ -1,0 +1,145 @@
+{
+ "key": "DFECDR",
+ "title": "DFECDR",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/DFECDR.md"
+ ],
+ "text": "Decision feedback equalizer (DFE) with clock and data recovery (CDR), 1 input, 1 output, {Mode} sets DFE operating mode; {Initial tap weights (V)} sets the initial DFE tap weights, {Adaptive gain} Controls DFE tap weight update, {Adaptive step size (V)} sets the dFE adaptive step, {Minimum DFE tap value (V)} sets the minimum value of adapted taps, {Maximum DFE tap value (V)} sets the maximum value of adapted taps, {2x tap weights} sets the multiply DFE tap weights by a factor, {CDR Mode} determines CDR, {Phase Detector} sets the clock phase detector, {Phase Offset (symbol time)} sets the clock phase offset, {Reference offset (ppm)} sets the reference clock offset impairment, {Early/late count threshold} sets the early or late CDR count threshold to trigger phase, {Step (symbol time)} sets the clock phase resolution, {Frequency tracking gain} sets the internal gain for frequency tracking, {Frequency tracking update}, {Frequency step ramp} sets the number of symbol times required for initial internal frequency tracking gain to reach specified, {Sensitivity (V)} sets the sampling latch metastability voltage, {Tap weights}, {Phase Offset} and {Reference offset}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "Input baseband signal scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "Estimated channel output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Adapt",
+   "values": "DFE operating mode Adapt (default) | Off | Fixed",
+   "group": "DFE"
+  },
+  {
+   "name": "Initial tap weights (V)",
+   "default": "0]",
+   "values": "Initial DFE tap weights [0 0 0 0] (default) | row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "Adaptive gain",
+   "default": "9.6e-5",
+   "values": "Controls DFE tap weight update rate 9.6e-5 (default) | positive real scalar",
+   "group": "DFE"
+  },
+  {
+   "name": "Adaptive step size (V)",
+   "default": "1e-06",
+   "values": "DFE adaptive step resolution 1e-06 (default) | nonnegative real scalar | nonnegative real-valued row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "Minimum DFE tap value (V)",
+   "default": "-1",
+   "values": "Minimum value of adapted taps -1 (default) | real scalar | real-valued row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "Maximum DFE tap value (V)",
+   "default": "1",
+   "values": "Maximum value of adapted taps 1 (default) | nonnegative real scalar | nonnegative real-valued row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "2x tap weights",
+   "default": "off",
+   "values": "Multiply DFE tap weights by a factor of two off (default) | on",
+   "group": "DFE"
+  },
+  {
+   "name": "CDR Mode",
+   "default": "order",
+   "values": "Determine CDR order 1st order (default) | 2nd order",
+   "group": "CDR"
+  },
+  {
+   "name": "Phase Detector",
+   "default": "BangBang",
+   "values": "Clock phase detector option BangBang (default) | BaudRateTypeA",
+   "group": "CDR"
+  },
+  {
+   "name": "Phase Offset (symbol time)",
+   "default": "0",
+   "values": "Clock phase offset 0 (default) | real scalar in the range [-0.5,0.5]",
+   "group": "CDR"
+  },
+  {
+   "name": "Reference offset (ppm)",
+   "default": "0",
+   "values": "Reference clock offset impairment 0 (default) | real scalar in the range [0, 300]",
+   "group": "CDR"
+  },
+  {
+   "name": "Early/late count threshold",
+   "default": "16",
+   "values": "Early or late CDR count threshold to trigger phase update 16 (default) | real positive integer ≥5",
+   "group": "CDR"
+  },
+  {
+   "name": "Step (symbol time)",
+   "default": "0.0078",
+   "values": "Clock phase resolution 0.0078 (default) | real scalar",
+   "group": "CDR"
+  },
+  {
+   "name": "Frequency tracking gain",
+   "default": "0.00048828125",
+   "values": "Internal gain for frequency tracking 0.00048828125 (default) | nonnegative real scalar",
+   "group": "CDR"
+  },
+  {
+   "name": "Frequency tracking update",
+   "default": "16",
+   "values": "Frequency tracking update 16 (default) | nonnegative integer scalar",
+   "group": "CDR"
+  },
+  {
+   "name": "Frequency step ramp",
+   "default": "3000",
+   "values": "Number of symbol times required for initial internal frequency tracking gain to reach specified value 3000 (default) | nonnegative integer scalar",
+   "group": "CDR"
+  },
+  {
+   "name": "Sensitivity (V)",
+   "default": "0",
+   "values": "Sampling latch metastability voltage 0 (default) | real scalar",
+   "group": "CDR"
+  },
+  {
+   "name": "Tap weights",
+   "default": "on",
+   "values": "Include Tap weights parameter in IBIS-AMI model on (default) | off",
+   "group": "CDR"
+  },
+  {
+   "name": "Phase Offset",
+   "default": "on",
+   "values": "Include Phase Offset parameter in IBIS-AMI model on (default) | off",
+   "group": "CDR"
+  },
+  {
+   "name": "Reference offset",
+   "default": "on",
+   "values": "Include Reference offset parameter in IBIS-AMI model on (default) | off",
+   "group": "CDR"
+  }
+ ]
+}

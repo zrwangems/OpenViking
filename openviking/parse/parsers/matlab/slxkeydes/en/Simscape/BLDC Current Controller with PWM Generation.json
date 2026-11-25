@@ -1,0 +1,99 @@
+{
+ "key": "BLDC Current Controller with PWM Generation",
+ "title": "BLDC Current Controller with PWM Generation",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/BLDC Control/BLDC_Current_Controller_with_PWM_Generation.md"
+ ],
+ "text": "Discrete-time brushless DC Motor current PI controller with pulse width modulation generation, 5 inputs, 1 output, {Carrier counter} sets Carrier counter model; {Proportional gain} sets the controller proportional gain, K p, {Integral gain}, {Anti-windup gain}, {Sample time (-1 for inherited)} sets the block sample time, {Discretization sample time} sets the sample time for discretization, {Enable zero cancellation} sets the feedforward zero cancellation, {Timer period (s)} sets the pWM timer period and {Fundamental sample time (s)} sets the sample time for PWM generation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsRef",
+   "direction": "input",
+   "summary": "Reference current scalar"
+  },
+  {
+   "name": "Is",
+   "direction": "input",
+   "summary": "Measured current scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset scalar"
+  },
+  {
+   "name": "Hall",
+   "direction": "input",
+   "summary": "Hall sensor vector"
+  },
+  {
+   "name": "Direction",
+   "direction": "input",
+   "summary": "Motor direction scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Gate pulses vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "Controller proportional gain, K p 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Integral gain",
+   "default": "5",
+   "values": "Integral gain, K i 5 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "Anti-windup gain, K aw 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "Sample time for discretization 0.001 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "Feedforward zero cancellation off (default) | on",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Carrier counter",
+   "default": "Up",
+   "values": "Carrier counter model Up (default) | Down | Up-Down",
+   "group": "PWM Generator"
+  },
+  {
+   "name": "Timer period (s)",
+   "default": "0.001",
+   "values": "PWM timer period 0.001 (default) | positive scalar",
+   "group": "PWM Generator"
+  },
+  {
+   "name": "Fundamental sample time (s)",
+   "default": "0.0001",
+   "values": "Sample time for PWM generation 0.0001 (default) | positive scalar",
+   "group": "PWM Generator"
+  }
+ ]
+}

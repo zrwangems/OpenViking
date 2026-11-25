@@ -1,0 +1,32 @@
+{
+ "key": "ToggleSwitchBlock",
+ "title": "Toggle Switch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Toggle_Switch.md"
+ ],
+ "text": "将参数在两个值之间切换；按 {标签} 指定模块标签位置；{连接}、{状态} 指定将值和标签配对 标量和字符向量，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "连接",
+   "default": "",
+   "values": "要连接的模块参数值 参数值连接选项",
+   "group": ""
+  },
+  {
+   "name": "状态",
+   "default": "",
+   "values": "将值和标签配对 标量和字符向量",
+   "group": ""
+  },
+  {
+   "name": "标签",
+   "default": "Top",
+   "values": "模块标签位置 Top (默认) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

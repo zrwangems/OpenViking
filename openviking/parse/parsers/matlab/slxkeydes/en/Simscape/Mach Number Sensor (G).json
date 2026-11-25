@@ -1,0 +1,13 @@
+{
+ "key": "Mach Number Sensor (G)",
+ "title": "Mach Number Sensor (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Sensors/Mach_Number_Sensor_G.md"
+ ],
+ "text": "Measure Mach number of internal gas flow.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

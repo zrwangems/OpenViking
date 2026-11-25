@@ -1,0 +1,109 @@
+{
+ "key": "Ideal Rectangular Pulse Filter",
+ "title": "Ideal Rectangular Pulse Filter",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Filters/Ideal_Rectangular_Pulse_Filter.md"
+ ],
+ "text": "Shape input signal using ideal rectangular pulses, 1 input, 1 output, {Output} sets Output data type Inherit: Same as; {Pulse length (number of samples)}, {Pulse delay (number of samples)}, {Input processing}, {Rate options} sets the block processing rate Enforce single-rate, {Normalize output signal} sets the option to normalize output signal, {Normalization method}, {Linear amplitude gain} sets the linear gain, {Rounding mode}, {Saturate on integer overflow} sets the overflow mode for fixed-point operations, {Coefficients} sets the coefficient data type, {Product output}, {Accumulator} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pulse length (number of samples)",
+   "default": "8",
+   "values": "Pulse length 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Pulse delay (number of samples)",
+   "default": "0",
+   "values": "Pulse delay 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Input processing control Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Block processing rate Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Normalize output signal",
+   "default": "off",
+   "values": "Option to normalize output signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Normalization method",
+   "default": "samples",
+   "values": "Normalization method Sum of samples (default) | Energy per pulse",
+   "group": ""
+  },
+  {
+   "name": "Linear amplitude gain",
+   "default": "1",
+   "values": "Linear gain 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow mode for fixed-point operations off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Coefficient data type Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  }
+ ]
+}

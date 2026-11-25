@@ -1,0 +1,385 @@
+{
+ "key": "FractionalNPLLwithDeltaSigmaModulator",
+ "title": "Fractional N PLL with Delta Sigma Modulator",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Architectures/Fractional_N_PLL_with_Delta_Sigma_Modulator.md"
+ ],
+ "text": "基于 Delta Sigma 调制器的分数 N PLL 架构的频率合成器，输入 1 路、输出 1 路；按 {Loop filter type} 指定环路滤波器的阶数 3rd Order；{Edit System} 指定断开库模块链接并用适当的值替换内部变量、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size for loop filter} 指定环路滤波器缓冲区大小、{Buffer size for PFD, charge pump, VCO, prescaler} 指定 PFD、电荷泵、VCO 和预分频器的缓冲区大小、{Deadband compensation (s)} 指定在零相位偏移附近为有效输出添加的延迟 40e-12、{Enable impairments} 指定向仿真添加电路损伤、{Output step size calculation} 确定如何计算输出步长、{Maximum frequency of interest (Hz)} 输出端感兴趣的最大频率 10e9、{Rise/fall time (s)} 指定 PFD 的 up 输出端口的 20% – 80% 上升/下降时间、{Propagation Delay (s)} 指定 PFD 从输入端口到输出端口的延迟 50e-12、{Output current (A)} 指定设计输出电流 1e-3、{Input threshold (V)} 指定输入端口处的逻辑切换阈值、{Enable current impairments} 指定向仿真添加电流损伤、{Current imbalance (A)} 指定满量程正电流与负电流之间的差值 1e-7、{Leakage current (A)} 指定无任何输入时的输出电流 1e-8、{Enable timing impairments} 指定向仿真添加时序损伤、{Propagation delay (s)} 指定从电荷泵的 up 输入端口到输出端口的总传播延迟、{Rise/fall time} 指定 down 输入端口的 20% – 80% 上升/下降时间、{Specify using} 定义如何指定 VCO 输出频率 Voltage、{Voltage sensitivity (Hz/V)} 指定 VCO 输出频率变化的度量 100e6、{Free running frequency (Hz)} 指定无控制电压时的 VCO 输出频率 1.8e9、{Control voltage (V)} 控制电压值、{Output frequency (Hz)} 指定 VCO 输出频率值、{Output amplitude} 指定 VCO 输出电压的最大幅度、{Add phase noise} 添加作为频率函数的相位噪声、{Phase noise frequency offset (Hz)} 指定相位噪声相对于载波频率的频率偏移、{Phase noise level (dBc/Hz)} 指定在相对于载波的指定频率偏移处的相位噪声功率、{Estimate phase noise parameters} 指定自动估计相位噪声参数、{Period jitter (S)} 指定周期抖动的标准差 2.6794e-15、{Flicker corner frequency (Hz)} 指定闪烁噪声的转角频率、{Plot fit} 绘制指定的和预期的 VCO 输出相位噪声密度、{Fractional clock divider value} 指定时钟分频器对输入频率进行分频的值、{Delta Sigma Modulator order} 指定 Delta Sigma Modulator 的阶数 3rd、{Min clock divider value} 指定时钟分频器可对输入频率进行分频的最小值、{Filter component values} 确定滤波器元件的计算方式、{Loop bandwidth (Hz)} 指定开环传递函数幅度变为 1 时的频率 0.5e6、{Phase margin (degrees)} 指定从 180° 中减去在环路带宽处开环传递函数的相位、{C1 (F)} 指定电容 1 3e-11、{C2 (F)} 指定电容 2 3.3e-10、{C3 (F)} 指定电容 3 2.15e-12、{C4 (F)} 指定电容 4 1e-12、{R2 (ohms)} 指定电阻 2 2.33e+03、{R3 (ohms)} 指定电阻 3 2.98e+04、{R4 (ohms)} 指定电阻 4 12e3、{Operating temperature (℃)} 用于确定热噪声水平的温度、{Export Loop Filter Component Values} 指定导出环路滤波器组件值、{PFD up and PFD down (pfd_up and pfd_down)} 以探测 PFD 输出、{Charge pump output (cp_out)} 以探测电荷泵输出、{Loop filter output (lf_out)} 以探测环路滤波器输出、{Prescaler output (ps_out)} 以探测预分频器输出、{Open Loop Analysis} 绘制仿真前开环分析图、{Closed Loop Analysis} 绘制仿真前闭环分析图、{Plot Loop Dynamics} 绘制 PLL 系统的环路动态、{Estimate phase noise} 指定根据输入时钟估计相位噪声、{Reference frequency (Hz)} 指定输入时钟的参考频率 10e6、{Resolution bandwidth (Hz)} 指定可分辨的最小正频率 10e3、{Frequency offset vector (Hz)} 指定相对于基频计算相位噪声的频率点、{Target phase-noise levels (dBc/Hz)} 指定给定频率偏移向量对应的目标相位噪声曲线、{Plot estimated phase noise} 绘制估计的输入时钟相位噪声，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk in",
+   "direction": "input",
+   "summary": "输入时钟信号 scalar"
+  },
+  {
+   "name": "clk out",
+   "direction": "output",
+   "summary": "输出时钟信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Edit System",
+   "default": "",
+   "values": "断开库模块链接并用适当的值替换内部变量 button",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "",
+   "values": "启用增加的缓冲区大小 button",
+   "group": ""
+  },
+  {
+   "name": "Buffer size for loop filter",
+   "default": "1000",
+   "values": "环路滤波器缓冲区大小 1000 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer size for PFD, charge pump, VCO, prescaler",
+   "default": "10",
+   "values": "PFD、电荷泵、VCO 和预分频器的缓冲区大小 10 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Deadband compensation (s)",
+   "default": "40e-12",
+   "values": "在零相位偏移附近为有效输出添加的延迟 40e-12 (default) | positive real scalar",
+   "group": "PFD"
+  },
+  {
+   "name": "Enable impairments",
+   "default": "off",
+   "values": "向仿真添加电路损伤 off (default) | on",
+   "group": "PFD"
+  },
+  {
+   "name": "Output step size calculation",
+   "default": "Default",
+   "values": "确定如何计算输出步长 Default (default) | Advanced",
+   "group": "PFD"
+  },
+  {
+   "name": "Maximum frequency of interest (Hz)",
+   "default": "10e9",
+   "values": "输出端感兴趣的最大频率 10e9 (default) | positive real scalar",
+   "group": "PFD"
+  },
+  {
+   "name": "Rise/fall time (s)",
+   "default": "3e-11",
+   "values": "PFD 的 up 输出端口的 20% – 80% 上升/下降时间 3e-11 (default) | positive real scalar",
+   "group": "PFD"
+  },
+  {
+   "name": "Propagation Delay (s)",
+   "default": "50e-12",
+   "values": "PFD 从输入端口到输出端口的延迟 50e-12 (default) | positive real scalar",
+   "group": "PFD"
+  },
+  {
+   "name": "Output current (A)",
+   "default": "1e-3",
+   "values": "设计输出电流 1e-3 (default) | positive real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Input threshold (V)",
+   "default": "0.5",
+   "values": "输入端口处的逻辑切换阈值 0.5 (default) | real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Enable current impairments",
+   "default": "off",
+   "values": "向仿真添加电流损伤 off (default) | on",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Current imbalance (A)",
+   "default": "1e-7",
+   "values": "满量程正电流与负电流之间的差值 1e-7 (default) | positive real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Leakage current (A)",
+   "default": "1e-8",
+   "values": "无任何输入时的输出电流 1e-8 (default) | nonnegative real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Enable timing impairments",
+   "default": "off",
+   "values": "向仿真添加时序损伤 off (default) | on",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Propagation delay (s)",
+   "default": "6e-9",
+   "values": "从电荷泵的 up 输入端口到输出端口的总传播延迟 6e-9 (default) | positive real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Rise/fall time",
+   "default": "2e-9",
+   "values": "down 输入端口的 20% – 80% 上升/下降时间 2e-9 (default) | scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Specify using",
+   "default": "sensitivity",
+   "values": "定义如何指定 VCO 输出频率 Voltage sensitivity (default) | Output frequency vs. control voltage",
+   "group": "VCO"
+  },
+  {
+   "name": "Voltage sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "VCO 输出频率变化的度量 100e6 (default) | positive real scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Free running frequency (Hz)",
+   "default": "1.8e9",
+   "values": "无控制电压时的 VCO 输出频率 1.8e9 (default) | positive real scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "5]",
+   "values": "控制电压值 [-5 0 5] (default) | real valued vector",
+   "group": "VCO"
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "3e9]",
+   "values": "VCO 输出频率值 [2e9 2.5e9 3e9] (default) | real valued vector",
+   "group": "VCO"
+  },
+  {
+   "name": "Output amplitude",
+   "default": "1",
+   "values": "VCO 输出电压的最大幅度 1 (default) | positive real scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Add phase noise",
+   "default": "off",
+   "values": "添加作为频率函数的相位噪声 off (default) | on",
+   "group": "VCO"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "10e6]",
+   "values": "相位噪声相对于载波频率的频率偏移 [10e3 100e3 1e6 3e6 10e6] (default) | real valued vector",
+   "group": "VCO"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-154]",
+   "values": "在相对于载波的指定频率偏移处的相位噪声功率 [-77 -108 -134 -145 -154] (default) | real valued vector",
+   "group": "VCO"
+  },
+  {
+   "name": "Estimate phase noise parameters",
+   "default": "on",
+   "values": "自动估计相位噪声参数 on (default) | off",
+   "group": "VCO"
+  },
+  {
+   "name": "Period jitter (S)",
+   "default": "2.6794e-15",
+   "values": "周期抖动的标准差 2.6794e-15 (default) | positive real scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Flicker corner frequency (Hz)",
+   "default": "517103.8168",
+   "values": "闪烁噪声的转角频率 517103.8168 (default) | scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Plot fit",
+   "default": "",
+   "values": "绘制指定的和预期的 VCO 输出相位噪声密度 button",
+   "group": "VCO"
+  },
+  {
+   "name": "Fractional clock divider value",
+   "default": "70.20",
+   "values": "时钟分频器对输入频率进行分频的值 70.20 (default) | positive real scalar",
+   "group": "Prescaler"
+  },
+  {
+   "name": "Delta Sigma Modulator order",
+   "default": "order",
+   "values": "Delta Sigma Modulator 的阶数 3rd order (default) | 1st order | 2nd order | 4th order",
+   "group": "Prescaler"
+  },
+  {
+   "name": "Min clock divider value",
+   "default": "70",
+   "values": "时钟分频器可对输入频率进行分频的最小值 70 (default) | positive real scalar",
+   "group": "Prescaler"
+  },
+  {
+   "name": "Filter component values",
+   "default": "Automatic",
+   "values": "确定滤波器元件的计算方式 Automatic (default) | Manual",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Loop bandwidth (Hz)",
+   "default": "0.5e6",
+   "values": "开环传递函数幅度变为 1 时的频率 0.5e6 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Phase margin (degrees)",
+   "default": "45",
+   "values": "从 180° 中减去在环路带宽处开环传递函数的相位 45 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Loop filter type",
+   "default": "Passive",
+   "values": "环路滤波器的阶数 3rd Order Passive (default) | 2nd Order Passive | 4th Order Passive",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "C1 (F)",
+   "default": "3e-11",
+   "values": "电容 1 3e-11 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "C2 (F)",
+   "default": "3.3e-10",
+   "values": "电容 2 3.3e-10 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "C3 (F)",
+   "default": "2.15e-12",
+   "values": "电容 3 2.15e-12 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "C4 (F)",
+   "default": "1e-12",
+   "values": "电容 4 1e-12 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "R2 (ohms)",
+   "default": "2.33e+03",
+   "values": "电阻 2 2.33e+03 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "R3 (ohms)",
+   "default": "2.98e+04",
+   "values": "电阻 3 2.98e+04 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "R4 (ohms)",
+   "default": "12e3",
+   "values": "电阻 4 12e3 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Operating temperature (℃)",
+   "default": "30",
+   "values": "用于确定热噪声水平的温度 30 (default) | real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Export Loop Filter Component Values",
+   "default": "",
+   "values": "导出环路滤波器组件值 button",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "PFD up and PFD down (pfd_up and pfd_down)",
+   "default": "off",
+   "values": "选择以探测 PFD 输出 off (default) | on",
+   "group": "Probe"
+  },
+  {
+   "name": "Charge pump output (cp_out)",
+   "default": "off",
+   "values": "选择以探测电荷泵输出 off (default) | on",
+   "group": "Probe"
+  },
+  {
+   "name": "Loop filter output (lf_out)",
+   "default": "off",
+   "values": "选择以探测环路滤波器输出 off (default) | on",
+   "group": "Probe"
+  },
+  {
+   "name": "Prescaler output (ps_out)",
+   "default": "off",
+   "values": "选择以探测预分频器输出 off (default) | on",
+   "group": "Probe"
+  },
+  {
+   "name": "Open Loop Analysis",
+   "default": "on",
+   "values": "绘制仿真前开环分析图 on (default) | off",
+   "group": "Analysis"
+  },
+  {
+   "name": "Closed Loop Analysis",
+   "default": "off",
+   "values": "绘制仿真前闭环分析图 off (default) | on",
+   "group": "Analysis"
+  },
+  {
+   "name": "Plot Loop Dynamics",
+   "default": "",
+   "values": "绘制 PLL 系统的环路动态 button",
+   "group": "Analysis"
+  },
+  {
+   "name": "Estimate phase noise",
+   "default": "off",
+   "values": "根据输入时钟估计相位噪声 off (default) | on",
+   "group": "Analysis"
+  },
+  {
+   "name": "Reference frequency (Hz)",
+   "default": "10e6",
+   "values": "输入时钟的参考频率 10e6 (default) | positive real scalar",
+   "group": "Analysis"
+  },
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "10e3",
+   "values": "可分辨的最小正频率 10e3 (default) | positive real scalar",
+   "group": "Analysis"
+  },
+  {
+   "name": "Frequency offset vector (Hz)",
+   "default": "10e6]",
+   "values": "相对于基频计算相位噪声的频率点 [10e3 100e3 1e6 3e6 10e6] (default) | real valued vector",
+   "group": "Analysis"
+  },
+  {
+   "name": "Target phase-noise levels (dBc/Hz)",
+   "default": "-inf",
+   "values": "给定频率偏移向量对应的目标相位噪声曲线 -inf (default) | vector | scalar",
+   "group": "Analysis"
+  },
+  {
+   "name": "Plot estimated phase noise",
+   "default": "",
+   "values": "绘制估计的输入时钟相位噪声 button",
+   "group": "Analysis"
+  }
+ ]
+}

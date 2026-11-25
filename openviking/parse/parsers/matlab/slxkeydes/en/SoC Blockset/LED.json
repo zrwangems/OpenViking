@@ -1,0 +1,44 @@
+{
+ "key": "LED",
+ "title": "LED",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic I_O/LED.md"
+ ],
+ "text": "Connect signals attached to LEDs on hardware board, 1 input, {IO logic} sets IO logic indicator; {Hardware board} sets the view selected hardware, {View LEDs location} sets the view LEDs and {Number of LEDs} sets the number of LED ports. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LED x",
+   "direction": "input",
+   "summary": "Input signal Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hardware board",
+   "default": "None",
+   "values": "View selected hardware None (default) | Supported Xilinx ® or Intel ® boards | Custom boards",
+   "group": ""
+  },
+  {
+   "name": "View LEDs location",
+   "default": "",
+   "values": "View LEDs button",
+   "group": ""
+  },
+  {
+   "name": "IO logic",
+   "default": "None",
+   "values": "IO logic indicator None (default) | Active High | Active Low",
+   "group": ""
+  },
+  {
+   "name": "Number of LEDs",
+   "default": "1",
+   "values": "Number of LED ports 1 (default) | list of integers in the range [1, n ]",
+   "group": ""
+  }
+ ]
+}

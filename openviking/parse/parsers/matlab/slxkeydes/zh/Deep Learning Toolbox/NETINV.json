@@ -1,0 +1,13 @@
+{
+ "key": "NETINV",
+ "title": "netinv",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/netinv.md"
+ ],
+ "text": "，没有文字。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

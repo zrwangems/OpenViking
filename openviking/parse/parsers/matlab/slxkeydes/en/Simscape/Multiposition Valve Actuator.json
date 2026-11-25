@@ -1,0 +1,13 @@
+{
+ "key": "Multiposition Valve Actuator",
+ "title": "Multiposition Valve Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Valve Actuators/Multiposition_Valve_Actuator.md"
+ ],
+ "text": "Multiposition actuator in any fluid domain.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

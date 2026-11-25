@@ -1,0 +1,39 @@
+{
+ "key": "codertarget.tic2000.blocks.DACWrite",
+ "title": "DAC",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28003x/DAC.md",
+  "C2000 Microcontroller Blockset/F28004x/DAC.md",
+  "C2000 Microcontroller Blockset/F2807x/DAC.md",
+  "C2000 Microcontroller Blockset/F2837xD/DAC.md",
+  "C2000 Microcontroller Blockset/F2837xS/DAC.md",
+  "C2000 Microcontroller Blockset/F28p55x/DAC.md",
+  "C2000 Microcontroller Blockset/F28p65x/DAC.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/DAC.md"
+ ],
+ "text": "配置 DAC 在指定的 DAC 通道 A/B/C 上生成模拟输出（12 位），输入 1 路；按 {Saturate on input overflow (>4095)} 指定输入溢出时，可以选择限制输入值。 off；{DAC 通道}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 real | scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "DAC 通道",
+   "default": "12",
+   "values": "DAC 通道用于生成模拟输出 12 (默认)",
+   "group": ""
+  },
+  {
+   "name": "Saturate on input overflow (>4095)",
+   "default": "",
+   "values": "输入溢出时，可以选择限制输入值。 off | on",
+   "group": ""
+  }
+ ]
+}

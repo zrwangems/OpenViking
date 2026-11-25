@@ -1,0 +1,56 @@
+{
+ "key": "Interprocess Data Write",
+ "title": "Interprocess Data Write",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/Interprocess_Data_Write.md",
+  "SoC Blockset/Processor Interconnect/Interprocess_Data_Write.md"
+ ],
+ "text": "使用处理器间数据写入向另一个处理器发送消息，输入 1 路、输出 1 路；按 {Channels number} 指定通道号；{Enable simulation port} 为模块启用外设仿真端口、{Circular FIFO depth} 指定存储缓冲区数量、{Trigger interrupt on receiving core} 以触发中断、{Participating cores} 指定处理器的参与内核 The options vary based on the hardware board you，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "数据输入 vector"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "输出数据消息 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable simulation port",
+   "default": "on",
+   "values": "为模块启用外设仿真端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Channels number",
+   "default": "0",
+   "values": "选择通道号 0 (default) | 1 | 2 |...",
+   "group": ""
+  },
+  {
+   "name": "Circular FIFO depth",
+   "default": "1",
+   "values": "存储缓冲区数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Trigger interrupt on receiving core",
+   "default": "off",
+   "values": "选择以触发中断 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Participating cores",
+   "default": "",
+   "values": "选择处理器的参与内核 The options vary based on the hardware board you select",
+   "group": ""
+  }
+ ]
+}

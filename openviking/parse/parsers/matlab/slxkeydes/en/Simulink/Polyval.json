@@ -1,0 +1,31 @@
+{
+ "key": "Polyval",
+ "title": "Polynomial",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Polynomial.md"
+ ],
+ "text": "Perform evaluation of polynomial coefficients on input values, 1 input, 1 output, direct feedthrough; {Polynomial coefficients} sets the coefficients of polynomial to be evaluated. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal real scalar or vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Evaluated polynomial value real scalar or vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Polynomial coefficients",
+   "default": "]",
+   "values": "Coefficients of polynomial to be evaluated [ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001 ] (default) | real array",
+   "group": ""
+  }
+ ]
+}

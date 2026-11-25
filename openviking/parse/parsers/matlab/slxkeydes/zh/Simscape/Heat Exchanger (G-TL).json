@@ -1,0 +1,13 @@
+{
+ "key": "Heat Exchanger (G-TL)",
+ "title": "Heat Exchanger (G-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid - Gas/Heat_Exchanger_G_TL.md"
+ ],
+ "text": "用于气体和热液体流动系统的 Heat Exchanger。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

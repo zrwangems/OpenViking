@@ -1,0 +1,65 @@
+{
+ "key": "Six-Step Commutation",
+ "title": "Six Step Commutation",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/Six_Step_Commutation.md"
+ ],
+ "text": "Generate switching sequence for six-step commutation of brushless DC (BLDC) motor, 3 inputs, 1 output, {Position Unit} sets Unit of position input; {Input type} sets the block input type, {Hall Sequence number} sets the hall sequence, {Enable custom commutation} enables Commutation switching parameter and {Commutation switching}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Hall",
+   "direction": "input",
+   "summary": "Hall sensor sequence scalar"
+  },
+  {
+   "name": "Position",
+   "direction": "input",
+   "summary": "Rotor position scalar"
+  },
+  {
+   "name": "TorqueSign",
+   "direction": "input",
+   "summary": "Direction of rotation scalar"
+  },
+  {
+   "name": "Ctrl",
+   "direction": "output",
+   "summary": "Motor control switching sequence scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input type",
+   "default": "Hall",
+   "values": "Block input type Hall (default) | Position",
+   "group": ""
+  },
+  {
+   "name": "Position Unit",
+   "default": "Per-unit",
+   "values": "Unit of position input Per-unit (default) | Degrees | Radians",
+   "group": ""
+  },
+  {
+   "name": "Hall Sequence number",
+   "default": "[5,4,6,2,3,1]",
+   "values": "Hall sequence [5,4,6,2,3,1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable custom commutation",
+   "default": "off",
+   "values": "Enable Commutation switching parameter off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Commutation switching",
+   "default": "1]",
+   "values": "Commutation switching sequence [0 0 1 0 0 1;0 1 1 0 0 0;0 1 0 0 1 0;0 0 0 1 1 0;1 0 0 1 0 0;1 0 0 0 0 1] (default) | vector",
+   "group": ""
+  }
+ ]
+}

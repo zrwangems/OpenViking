@@ -1,0 +1,67 @@
+{
+ "key": "Zonal Harmonic Gravity Model",
+ "title": "Zonal Harmonic Gravity Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/Zonal_Harmonic_Gravity_Model.md"
+ ],
+ "text": "Calculate zonal harmonic representation of planetary gravity, 1 input, 1 output, {Planet model} sets Planetary model; {Units} sets the input units Metric, {Degree}, {Action for out-of-range input} sets the out-of-range input behavior, {Equatorial radius} sets the planetary equatorial radius, {Gravitational parameter} sets the planetary gravitational parameter and {J values} sets the zonal harmonic coefficients. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X ecef",
+   "direction": "input",
+   "summary": "Planet-centered planet-fixed coordinates m-by-3 matrix"
+  },
+  {
+   "name": "g ecef",
+   "direction": "output",
+   "summary": "Gravity values m-by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Degree",
+   "default": "4",
+   "values": "Degree of harmonic model 4 (default) | 2 | 3",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "Out-of-range input behavior Warning (default) | Error None",
+   "group": ""
+  },
+  {
+   "name": "Planet model",
+   "default": "Mercury",
+   "values": "Planetary model Mercury (default) | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Custom",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "6378136.3",
+   "values": "Planetary equatorial radius 6378136.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gravitational parameter",
+   "default": "398600441500000",
+   "values": "Planetary gravitational parameter 398600441500000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "J values",
+   "default": "-1.6204000e-06]",
+   "values": "Zonal harmonic coefficients [1.0826269e-03 -2.5323000e-06 -1.6204000e-06] (default) | 3-element array",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,142 @@
+{
+ "key": "phased.internal.SimulinkTOAEstimator",
+ "title": "TOA Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/TOA_Estimator.md"
+ ],
+ "text": "估计到达时间、到达时间差和位置，输入 5 路、输出 6 路；{Signal propagation speed (m/s)} 指定信号传播速度 physconst、{TOA/TDOA measurement} 指定测量类型 TOA、{TOA spectrum analysis method} 指定频谱分析方法、{Enable known delay offset input} 启用延迟偏移输入、{Output variance of TOA/TDOA estimates} 启用 TOA/TDOA 估计的方差输出、{Output FFT-based TOA response} 启用基于 FFT 的 TOA 响应输出、{Enable forward-backward averaging} 启用前向-后向平均、{Spatial smoothing} 指定空间平滑参数、{Output estimated target position} 启用估计的目标位置输出、{Source of noise power} 指定噪声功率源、{Noise power (W)} 指定高斯白噪声功率 positive、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "信道估计矩阵 N -by- M complex-valued matrix | N -by- M -by- L complex-valued array | 1-by- L cell array"
+  },
+  {
+   "name": "FreqSpacing",
+   "direction": "input",
+   "summary": "信道估计的频率间隔 900000"
+  },
+  {
+   "name": "DelayOffset",
+   "direction": "input",
+   "summary": "已知延迟偏移 scalar | real-valued 1-by- L vector"
+  },
+  {
+   "name": "NPow",
+   "direction": "input",
+   "summary": "高斯白噪声功率 scalar | positive real-valued 1-by- L vector"
+  },
+  {
+   "name": "AnchorPos",
+   "direction": "input",
+   "summary": "锚点位置 Q -by- L real-valued matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "TOA 和 TDOA 估计结果 1-by- L real-valued vector | 1-by-( L -1) real-valued vector"
+  },
+  {
+   "name": "Var",
+   "direction": "output",
+   "summary": "测量方差 1-by- L vector | 1-by-( L -1) vector"
+  },
+  {
+   "name": "TgtPosEst",
+   "direction": "output",
+   "summary": "目标位置估计 real-valued Q -by-1 vector"
+  },
+  {
+   "name": "TgtPosCov",
+   "direction": "output",
+   "summary": "目标位置协方差估计 Q -by- Q real positive semi-definite symmetric matrix"
+  },
+  {
+   "name": "TOAResp",
+   "direction": "output",
+   "summary": "基于 FFT 的 TOA 响应 P -by- M -by- L matrix | 1-by- L cell array"
+  },
+  {
+   "name": "TOAGrid",
+   "direction": "output",
+   "summary": "TOA 网格 P -by- L matrix | 1-by- L cell array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "TOA/TDOA measurement",
+   "default": "TOA",
+   "values": "测量类型 TOA (default) | TDOA",
+   "group": ""
+  },
+  {
+   "name": "TOA spectrum analysis method",
+   "default": "FFT",
+   "values": "频谱分析方法 FFT (default) | MUSIC",
+   "group": ""
+  },
+  {
+   "name": "Enable known delay offset input",
+   "default": "0",
+   "values": "启用延迟偏移输入 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Output variance of TOA/TDOA estimates",
+   "default": "0",
+   "values": "启用 TOA/TDOA 估计的方差输出 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Output FFT-based TOA response",
+   "default": "0",
+   "values": "启用基于 FFT 的 TOA 响应输出 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Enable forward-backward averaging",
+   "default": "0",
+   "values": "启用前向-后向平均 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Spatial smoothing",
+   "default": "0",
+   "values": "空间平滑参数 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Output estimated target position",
+   "default": "0",
+   "values": "启用估计的目标位置输出 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Source of noise power",
+   "default": "Property",
+   "values": "噪声功率源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise power (W)",
+   "default": "scalar",
+   "values": "高斯白噪声功率 positive scalar (default) | 1-by- L real-valued vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

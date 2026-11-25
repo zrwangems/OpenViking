@@ -1,0 +1,128 @@
+{
+ "key": "Channelizer",
+ "title": "Channelizer",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/Channelizer.md"
+ ],
+ "text": "多相滤波器组和快速傅里叶变换，输入 3 路、输出 4 路；按 {Rounding mode} 指定用于内部定点计算的舍入方法；{Filter coefficients} 指定多相滤波器系数、{Filter structure} 指定 HDL 滤波器架构 Direct form、{Number of frequency bands (FFT length)} 指定 FFT 长度、{Complex multiplication} 指定复数乘法器的 HDL 实现 Use 4 multipliers、{Output vector size} 输出数据的大小 Same as number of frequency、{Divide butterfly outputs by two} 指定 FFT 缩放、{Saturate on integer overflow} 指定内部定点计算的溢出处理、{Coefficients} 指定滤波器系数的数据类型、{Filter output} 指定多相滤波器输出的数据类型、{Enable reset input port} 指定可选复位信号、{Enable start output port} 指示数据开始的可选控制信号、{Enable end output port} 指示数据结束的可选控制信号，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 scalar or column vector of real or complex values"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "清除内部状态 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "频率通道输出数据 vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  },
+  {
+   "name": "start",
+   "direction": "output",
+   "summary": "指示输出帧的首个有效周期 scalar"
+  },
+  {
+   "name": "end",
+   "direction": "output",
+   "summary": "指示输出帧的最后一个有效周期 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter coefficients",
+   "default": "]",
+   "values": "多相滤波器系数 [ -0.032, 0.121, 0.318, 0.482, 0.546, 0.482, 0.318, 0.121, -0.032 ] (default) | vector of real or complex numeric values",
+   "group": "Main"
+  },
+  {
+   "name": "Filter structure",
+   "default": "transposed",
+   "values": "HDL 滤波器架构 Direct form transposed (default) | Direct form systolic",
+   "group": "Main"
+  },
+  {
+   "name": "Number of frequency bands (FFT length)",
+   "default": "8",
+   "values": "FFT 长度 8 (default) | integer power of two",
+   "group": "Main"
+  },
+  {
+   "name": "Complex multiplication",
+   "default": "adders",
+   "values": "复数乘法器的 HDL 实现 Use 4 multipliers and 2 adders (default) | Use 3 multipliers and 5 adders",
+   "group": "Main"
+  },
+  {
+   "name": "Output vector size",
+   "default": "bands",
+   "values": "输出数据的大小 Same as number of frequency bands (default) | Same as input size",
+   "group": "Main"
+  },
+  {
+   "name": "Divide butterfly outputs by two",
+   "default": "on",
+   "values": "FFT 缩放 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "用于内部定点计算的舍入方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "内部定点计算的溢出处理 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "滤波器系数的数据类型 Inherit: Same word length as input (default) | data type expression",
+   "group": "Data Types"
+  },
+  {
+   "name": "Filter output",
+   "default": "input",
+   "values": "多相滤波器输出的数据类型 Inherit: Same word length as input (default) | Inherit: via internal rule | data type expression",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "可选复位信号 off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Enable start output port",
+   "default": "off",
+   "values": "指示数据开始的可选控制信号 off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Enable end output port",
+   "default": "off",
+   "values": "指示数据结束的可选控制信号 off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

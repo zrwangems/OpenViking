@@ -1,0 +1,50 @@
+{
+ "key": "Compare To Constant",
+ "title": "Compare To Constant",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Compare_To_Constant.md",
+  "HDL Coder/Logic and Bit Operations/Compare_To_Constant.md"
+ ],
+ "text": "确定信号与指定常量的比较方式，输入 1 路、输出 1 路；按 {运算符} 指定逻辑运算符；{常量值} 指定要与之比较的常量 常量、{输出数据类型} 输出的数据类型、{启用过零检测}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 0 | 1 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "运算符",
+   "default": "<=",
+   "values": "逻辑运算符 <= (默认) | == | ~= | < | >= | >",
+   "group": ""
+  },
+  {
+   "name": "常量值",
+   "default": "",
+   "values": "要与之比较的常量 常量",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "boolean",
+   "values": "输出的数据类型 boolean (默认) | uint8",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "’on’",
+   "values": "选择此项以启用过零检测 ’on’ (默认) | ’off’",
+   "group": ""
+  }
+ ]
+}

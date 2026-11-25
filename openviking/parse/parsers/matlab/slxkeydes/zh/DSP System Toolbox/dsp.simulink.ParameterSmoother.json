@@ -1,0 +1,83 @@
+{
+ "key": "dsp.simulink.ParameterSmoother",
+ "title": "Parameter Smoother",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Parameter_Smoother.md"
+ ],
+ "text": "使用指数平滑对输入参数进行平滑，输入 3 路、输出 1 路、无直接馈通；{Number of parameters} 指定输入参数的数量、{Smoothing mode} 用于平滑的模式 Smoothing、{Specify smoothing factor from input port} 用于从输入端口指定平滑因子、{Smoothing factor (between 0 and 1)} 指定平滑因子、{Specify smoothing time from input port} 用于从输入端口指定平滑时间、{Smoothing time constant (seconds)} 指定平滑时间、{Sample time (−1 for inherited)} 指定输入参数的采样时间、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "要平滑的输入参数 scalar | vector | matrix"
+  },
+  {
+   "name": "alpha",
+   "direction": "input",
+   "summary": "平滑因子 scalar in the range [0, 1)"
+  },
+  {
+   "name": "tau",
+   "direction": "input",
+   "summary": "平滑时间 nonnegative scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "平滑后的参数 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of parameters",
+   "default": "1",
+   "values": "输入参数的数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Smoothing mode",
+   "default": "factor",
+   "values": "用于平滑的模式 Smoothing factor (default) | Smoothing time",
+   "group": ""
+  },
+  {
+   "name": "Specify smoothing factor from input port",
+   "default": "off",
+   "values": "用于从输入端口指定平滑因子的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor (between 0 and 1)",
+   "default": "0.6",
+   "values": "平滑因子 0.6 (default) | scalar in the range [0, 1)",
+   "group": ""
+  },
+  {
+   "name": "Specify smoothing time from input port",
+   "default": "off",
+   "values": "用于从输入端口指定平滑时间的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing time constant (seconds)",
+   "default": "10",
+   "values": "平滑时间（秒） 10 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (−1 for inherited)",
+   "default": "-1",
+   "values": "输入参数的采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

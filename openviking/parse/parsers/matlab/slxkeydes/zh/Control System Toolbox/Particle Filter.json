@@ -1,0 +1,212 @@
+{
+ "key": "Particle Filter",
+ "title": "Particle Filter",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/State Estimation/Particle_Filter.md",
+  "System Identification Toolbox/Estimators/Particle_Filter.md"
+ ],
+ "text": "使用粒子滤波器估计离散时间非线性系统的状态，输入 4 路、输出 4 路；按 {Distribution} 指定粒子的初始分布；{Function} 指定状态转移函数名称、{Number of Particles} 指定滤波器中使用的粒子数、{Mean} 指定粒子的初始均值、{Covariance} 指定粒子的初始协方差、{Circular Variables} 用于状态估计的圆周变量、{State Orientation} 指定输入系统状态的排列方向、{State bounds} 指定系统状态的初始边界、{Particles} 用于状态估计的自定义粒子分布、{Weights} 用于状态估计的自定义粒子权重值、{Add Enable Port} 指定仅在测量数据可用时启用估计状态校正、{Resampling method} 用于粒子重采样的方法、{Trigger method} 确定何时进行重采样的方法、{Minimum effective particle ratio} 指定有效粒子数占总粒子数的最小期望比例、{Sampling Interval} 指定重采样之间的固定间隔、{Randomness} 指定随机数是否可重复、{Seed} 指定可重复随机数的种子值、{Data type} 指定模块参数的数据类型、{Sample time} 指定模块采样时间、{State Estimation Method} 用于从粒子中提取状态估计的方法、{Output all particles} 输出所有粒子、{Output weights} 输出粒子权重、{Output state estimation error covariance} 输出状态估计误差协方差、{Use the current measurements to improve state estimates} 使用当前测量值进行状态估计、{Enable multirate operation} 启用为状态转移函数和测量似然函数指定不同采样时间、{Sample times} 指定状态转移函数和测量似然函数的采样时间 positive，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y1,y2,y3,y4,y5",
+   "direction": "input",
+   "summary": "测量的系统输出 vector"
+  },
+  {
+   "name": "StateTransitionFcnInputs",
+   "direction": "input",
+   "summary": "状态转移函数的可选输入参数 scalar | vector | matrix"
+  },
+  {
+   "name": "MeasurementLikelihoodFcn1Inputs,...,MeasurementLikelihoodFcn5Inputs",
+   "direction": "input",
+   "summary": "每个测量似然函数的可选输入参数 scalar | vector | matrix"
+  },
+  {
+   "name": "Enable1,Enable2,Enable3,Enable4,Enable5",
+   "direction": "input",
+   "summary": "在测量数据可用时启用估计状态修正 scalar"
+  },
+  {
+   "name": "xhat",
+   "direction": "output",
+   "summary": "估计状态 vector"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "状态估计误差协方差 matrix"
+  },
+  {
+   "name": "Particles",
+   "direction": "output",
+   "summary": "用于状态估计的粒子值 array"
+  },
+  {
+   "name": "Weights",
+   "direction": "output",
+   "summary": "用于状态估计的粒子权重 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function",
+   "default": "’vdpParticleFilterStateFcn’",
+   "values": "状态转移函数名称 ’vdpParticleFilterStateFcn’ (default) | function name",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Number of Particles",
+   "default": "1000",
+   "values": "滤波器中使用的粒子数 1000 (default) | positive scalar integer",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Distribution",
+   "default": "’Gaussian’",
+   "values": "粒子的初始分布 ’Gaussian’ (default) | ’Uniform’ | ’Custom’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Mean",
+   "default": "[0;0]",
+   "values": "粒子的初始均值 [0;0] (default) | vector",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Covariance",
+   "default": "1",
+   "values": "粒子的初始协方差 1 (default) | scalar | vector | matrix",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Circular Variables",
+   "default": "0",
+   "values": "用于状态估计的圆周变量 0 (default) | scalar | vector",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "State Orientation",
+   "default": "’column’",
+   "values": "输入系统状态的排列方向 ’column’ (default) | ’row’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "State bounds",
+   "default": "3]",
+   "values": "系统状态的初始边界 [-3 3;-3 3] (default) | array",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Particles",
+   "default": "[]",
+   "values": "用于状态估计的自定义粒子分布 [] (default) | array",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Weights",
+   "default": "[]",
+   "values": "用于状态估计的自定义粒子权重值 [] (default) | vector of positive values",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Add Enable Port",
+   "default": "off",
+   "values": "仅在测量数据可用时启用估计状态校正 off (default) | on",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Resampling method",
+   "default": "’Multinomial’",
+   "values": "用于粒子重采样的方法 ’Multinomial’ (default) | ’Systemic’ | ’Stratified’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Trigger method",
+   "default": "’Ratio’",
+   "values": "确定何时进行重采样的方法 ’Ratio’ (default) | ’Interval’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Minimum effective particle ratio",
+   "default": "0.5",
+   "values": "有效粒子数占总粒子数的最小期望比例 0.5 (default) | positive scalar",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Sampling Interval",
+   "default": "1",
+   "values": "重采样之间的固定间隔 1 (default) | positive scalar integer",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Randomness",
+   "default": "’Repeatable’",
+   "values": "随机数是否可重复 ’Repeatable’ (default) | ’Not repeatable’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Seed",
+   "default": "0",
+   "values": "可重复随机数的种子值 0 (default) | scalar",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "模块参数的数据类型 double (default) | single",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "模块采样时间 1 (default) | positive scalar",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "State Estimation Method",
+   "default": "’Mean’",
+   "values": "用于从粒子中提取状态估计的方法 ’Mean’ (default) | ’MaxWeight’ | ’None’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Output all particles",
+   "default": "’off’",
+   "values": "输出所有粒子 ’off’ (default) | ’on’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Output weights",
+   "default": "’off’",
+   "values": "输出粒子权重 ’off’ (default) | ’on’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Output state estimation error covariance",
+   "default": "’off’",
+   "values": "输出状态估计误差协方差 ’off’ (default) | ’on’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Use the current measurements to improve state estimates",
+   "default": "’on’",
+   "values": "使用当前测量值进行状态估计的选项 ’on’ (default) | ’off’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Enable multirate operation",
+   "default": "’off’",
+   "values": "启用为状态转移函数和测量似然函数指定不同采样时间 ’off’ (default) | ’on’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Sample times",
+   "default": "",
+   "values": "状态转移函数和测量似然函数的采样时间 positive scalar",
+   "group": "Block Outputs, Multirate Tab"
+  }
+ ]
+}

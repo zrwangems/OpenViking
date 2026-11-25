@@ -1,0 +1,13 @@
+{
+ "key": "Crankshaft",
+ "title": "Crankshaft",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Engine Subcomponents/Crankshaft.md"
+ ],
+ "text": "连接一个或多个活塞的内燃机曲轴。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

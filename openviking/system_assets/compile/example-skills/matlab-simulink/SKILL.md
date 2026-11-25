@@ -1,6 +1,6 @@
 ---
 name: matlab-simulink
-description: Compile parsed MATLAB/Simulink projects into faithful model documentation with complete logic diagrams, signal and execution contracts, and per-block parameters. Use with ov compile for SLX subsystems, Simscape conserving networks, Stateflow, SLDD/MAT data, and initialization scripts.
+description: Compile parsed MATLAB/Simulink projects into faithful model documentation with complete logic diagrams, signal and execution contracts, and per-block descriptions. Use with ov compile for SLX subsystems, Simscape conserving networks, Stateflow, SLDD/MAT data, and initialization scripts.
 ---
 
 # MATLAB/Simulink Model Documentation
@@ -54,10 +54,10 @@ Explain only what the evidence supports:
 - State the model's purpose only when source text, initialization code, or connected structure supports it. Distinguish structural interpretation from explicit documentation. If purpose cannot be established, say so in one sentence and continue; do not fill the gap with generic prose.
 - Link child subsystems and cite relevant Stateflow, SLDD, MAT, M/MLX, or block-library evidence when it contributes to the explanation.
 
-### 3. Block parameters
+### 3. Block descriptions
 
-Cover every block in the current subsystem, including Inport, Outport, conserving ports, control ports, and the current subsystem's owner parameters when applicable. A table is preferred for ordinary blocks; use subsections when long parameter values make a table unreadable.
+Cover every block in the current subsystem, including Inport, Outport, conserving ports, and control ports. A table is preferred for ordinary blocks; use subsections when long values make a table unreadable.
 
-For each block record its real name, block type, SID, and non-visual configured parameters. Keep values and expressions verbatim, including sample times, gains, coefficients, thresholds, table data references, initial conditions, port settings, and library `SourceBlock`. Omit layout and rendering metadata. Write `-` when there are no meaningful configurable parameters; never copy defaults from library documentation and present them as instance values.
+For each block record its real name, block type, and the `description` the export rendered for it, which states what the block does and the values of its parameters. The description is built from the block's key and its instance values, so read the values out of it rather than assuming them: keep expressions, sample times, coefficients, thresholds, table data references, and port settings verbatim, and do not restate a value the description gives as a library default. Write `-` when a block has an empty description (a block outside the documented library, or a subsystem already documented on its own page).
 
 Keep the page as concise as completeness allows. There is no fixed length limit: complex models may require long diagrams and parameter sections, but do not repeat the connection table after the Mermaid diagram, inline generic block-library manuals, or add summaries that repeat the three sections.

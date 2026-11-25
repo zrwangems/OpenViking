@@ -1,0 +1,188 @@
+{
+ "key": "ACIM Parameter Estimation Configurator",
+ "title": "Parameter Estimation Configurator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/ACIM Parameter Estimation/Parameter_Estimation_Configurator.md"
+ ],
+ "text": "生成用于交流感应电机 (ACIM) 参数估计的配置元素；输出 1 路；{Number of pole pairs} 指定电机极对数、{Rated frequency (Hz)} 指定电机额定频率、{Nominal motor current (A)} 指定电机标称电流、{Nominal voltage (V)} 指定电机标称电压、{Maximum inverter current (A)} 指定最大可测量电流、{Board resistance (ohm)} 指定逆变器桥电阻、{Current sense gain (A/ADC Count)} 指定每个 ADC 计数的电流、{Voltage sense gain (V/ADC Count)} 指定每个 ADC 计数的电压、{Measurement time (sec)} 用于测量电流并求平均的时间、{Open loop ramp time (sec)} 指定分配给频率斜坡上升的时间、{Estimation time (sec)} 指定运行 R s 估计算法的时间、{Vd reference voltage 1 (PU)} 用于 R s 估计的第一参考电压、{Vd reference voltage 2 (PU)} 用于 R s 估计的第二参考电压、{Frequency 1 as a ratio of rated frequency (PU)} 指定第一个注入低频与额定频率的比值、{Frequency 2 as a ratio of rated frequency (PU)} 指定第二个注入低频与额定频率的比值、{High Frequency for Lm (Hz)} 指定第三个注入信号的频率、{Voltage sweep start value voltage (PU)} 指定电压扫描开始时的初始电压、{Voltage sweep step value voltage (PU)} 指定电压扫描的步长、{High frequency injection voltage (PU)} 指定第三个注入信号的电压、{Current measurement delay (s)} 指定电流测量中的延迟 2 * 50e-6、{Closed loop duration (sec)} 指定电机闭环运行持续时间、{Closed loop speed (RPM)} 指定电机闭环速度、{Iq reference current for FOC (PU)} 指定估计 J 和 B 时用于 FOC 的参考电流、{Specify current controller gains} 指定 PI 电流控制器增益、{Proportional gain} 指定 PI 控制器的比例增益、{Integral gain} 指定 PI 控制器的积分增益、{Speed lower limit for inertia estimation (RPM)} 指定滑行过程中的速度下限、{Parameter estimation sample time (sec)} 指定参数估计的采样时间 50e-6，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of pole pairs",
+   "default": "2",
+   "values": "电机极对数 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rated frequency (Hz)",
+   "default": "50",
+   "values": "电机额定频率 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal motor current (A)",
+   "default": "2",
+   "values": "电机标称电流 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal voltage (V)",
+   "default": "24",
+   "values": "电机标称电压 24 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum inverter current (A)",
+   "default": "21",
+   "values": "最大可测量电流 21 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Board resistance (ohm)",
+   "default": "0.0043",
+   "values": "逆变器桥电阻 0.0043 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current sense gain (A/ADC Count)",
+   "default": "0.0105",
+   "values": "每个 ADC 计数的电流 0.0105 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Voltage sense gain (V/ADC Count)",
+   "default": "0.0098",
+   "values": "每个 ADC 计数的电压 0.0098 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Measurement time (sec)",
+   "default": "5",
+   "values": "用于测量电流并求平均的时间 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open loop ramp time (sec)",
+   "default": "3",
+   "values": "分配给频率斜坡上升的时间 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Estimation time (sec)",
+   "default": "2",
+   "values": "运行 R s 估计算法的时间 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vd reference voltage 1 (PU)",
+   "default": "0.1",
+   "values": "用于 R s 估计的第一参考电压 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vd reference voltage 2 (PU)",
+   "default": "0.2",
+   "values": "用于 R s 估计的第二参考电压 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency 1 as a ratio of rated frequency (PU)",
+   "default": "0.1",
+   "values": "第一个注入低频与额定频率的比值 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency 2 as a ratio of rated frequency (PU)",
+   "default": "0.2",
+   "values": "第二个注入低频与额定频率的比值 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "High Frequency for Lm (Hz)",
+   "default": "200",
+   "values": "第三个注入信号的频率 200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Voltage sweep start value voltage (PU)",
+   "default": "0.1",
+   "values": "电压扫描开始时的初始电压 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Voltage sweep step value voltage (PU)",
+   "default": "0.0125",
+   "values": "电压扫描的步长 0.0125 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "High frequency injection voltage (PU)",
+   "default": "0.1",
+   "values": "第三个注入信号的电压 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current measurement delay (s)",
+   "default": "50e-6",
+   "values": "电流测量中的延迟 2 * 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Closed loop duration (sec)",
+   "default": "5",
+   "values": "电机闭环运行持续时间 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Closed loop speed (RPM)",
+   "default": "950",
+   "values": "电机闭环速度 950 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Iq reference current for FOC (PU)",
+   "default": "0.2",
+   "values": "估计 J 和 B 时用于 FOC 的参考电流 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify current controller gains",
+   "default": "off",
+   "values": "指定 PI 电流控制器增益 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "PI 控制器的比例增益 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "1000",
+   "values": "PI 控制器的积分增益 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed lower limit for inertia estimation (RPM)",
+   "default": "100",
+   "values": "滑行过程中的速度下限 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Parameter estimation sample time (sec)",
+   "default": "50e-6",
+   "values": "参数估计的采样时间 50e-6 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Fractional part IQN x int32",
+ "title": "Fractional part IQN x int32",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/Fractional_part_IQN_x_int32.md"
+ ],
+ "text": "IQ 数与长整数相乘结果的小数部分。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

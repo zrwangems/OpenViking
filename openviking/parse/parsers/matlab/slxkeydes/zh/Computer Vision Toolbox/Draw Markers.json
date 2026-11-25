@@ -1,0 +1,142 @@
+{
+ "key": "Draw Markers",
+ "title": "Draw Markers",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Text & Graphics/Draw_Markers.md"
+ ],
+ "text": "在图像上绘制标记，输入 7 路、输出 4 路；按 {Marker shape} 指定标记形状；{Marker size} 指定标记大小、{Filled} 指定填充标记、{Border color source} 指定标记边框的颜色源 Specify via、{Border color} 指定标记的颜色值、{Fill color source} 指定填充标记的颜色源 Specify via、{Fill color} 指定填充标记的颜色值、{Opacity factor (between 0 and 1)} 指定不透明度因子、{Color value(s)} 指定用户指定的颜色值、{Draw Markers in} 指定标记区域 Entire、{Use antialiasing} 指定平滑算法、{Image signal} 指定 RGB 图像的端口配置 One multidimensional，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像 matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "图像的红色分量 matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "图像的绿色分量 matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "图像的蓝色分量 matrix"
+  },
+  {
+   "name": "Pts",
+   "direction": "input",
+   "summary": "标记坐标 vector | matrix"
+  },
+  {
+   "name": "Clr",
+   "direction": "input",
+   "summary": "标记颜色 scalar | vector | matrix"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "感兴趣区域 vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "输出图像的红色分量 matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "输出图像的绿色分量 matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "输出图像的蓝色分量 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Marker shape",
+   "default": "Circle",
+   "values": "标记形状 Circle (default) | X-mark | Plus | Star | Square",
+   "group": "Main"
+  },
+  {
+   "name": "Marker size",
+   "default": "3",
+   "values": "标记大小 3 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Filled",
+   "default": "off",
+   "values": "填充标记 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Border color source",
+   "default": "dialog",
+   "values": "标记边框的颜色源 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Border color",
+   "default": "Black",
+   "values": "标记的颜色值 Black (default) | White | User-specified value",
+   "group": "Main"
+  },
+  {
+   "name": "Fill color source",
+   "default": "dialog",
+   "values": "填充标记的颜色源 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Fill color",
+   "default": "Black",
+   "values": "填充标记的颜色值 Black (default) | White | User-specified value",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity factor (between 0 and 1)",
+   "default": "0.6",
+   "values": "不透明度因子 0.6 (default) | scalar in range [ 0, 1 ] | K -element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Color value(s)",
+   "default": "100]",
+   "values": "用户指定的颜色值 [200 255 100] (default) | scalar | P -element vector | K -by- P matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Draw Markers in",
+   "default": "image",
+   "values": "标记区域 Entire image (default) | Specify region of interest via port",
+   "group": "Main"
+  },
+  {
+   "name": "Use antialiasing",
+   "default": "off",
+   "values": "平滑算法 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "RGB 图像的端口配置 One multidimensional signal (default) | Separate color signals",
+   "group": "Main"
+  }
+ ]
+}

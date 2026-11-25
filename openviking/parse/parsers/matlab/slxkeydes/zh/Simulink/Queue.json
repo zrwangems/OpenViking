@@ -1,0 +1,131 @@
+{
+ "key": "Queue",
+ "title": "Queue",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Messages & Events/Queue.md",
+  "SimEvents/Entity_Queue.md",
+  "DSP System Toolbox/Signal Management/Buffers/Queue.md",
+  "SimEvents/Multicast_Receive_Queue.md"
+ ],
+ "text": "将消息和实体排入队列，输入 1 路、输出 6 路、无直接馈通；按 {Queue type} 指定队列类型；{Overwrite the oldest element if queue is full} 指定队列覆盖策略、{Capacity} 指定队列的容量、{Multicast tag} 指定在接受通过多播源广播的实体时使用的标签、{Priority source} 指定实体的哪个属性决定其优先级 character、{Sorting direction} 指定基于优先级的排序方向、{Entity arrival source} 指定实体的到达源 Input、{Event action} 指定实体在某些事件中的行为、{Number of entities departed, d} 输出已离开该模块的实体数、{Number of entities in block, n} 输出模块中存在但尚未离开的实体数、{Average wait, w} 输出平均等待时间、{Average queue length, l} 输出实体队列的平均长度、{Number of entities extracted, ex} 指定从该模块中提取的实体数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体或消息 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出实体或消息 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "尚未离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "实体在该模块中的平均等待时间 scalar"
+  },
+  {
+   "name": "Port_l",
+   "direction": "output",
+   "summary": "实体队列的平均长度 scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "已提取的实体数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Overwrite the oldest element if queue is full",
+   "default": "",
+   "values": "指定队列覆盖策略 on (default for Simulink ® ) | off (default for SimEvents ® )",
+   "group": ""
+  },
+  {
+   "name": "Capacity",
+   "default": "25",
+   "values": "指定队列的容量 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Queue type",
+   "default": "FIFO",
+   "values": "选择队列类型 FIFO (default) | LIFO | Priority",
+   "group": ""
+  },
+  {
+   "name": "Multicast tag",
+   "default": "A",
+   "values": "指定在接受通过多播源广播的实体时使用的标签 A (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Priority source",
+   "default": "",
+   "values": "指定实体的哪个属性决定其优先级 character vector | entitySys.priority",
+   "group": ""
+  },
+  {
+   "name": "Sorting direction",
+   "default": "Ascending",
+   "values": "选择基于优先级的排序方向 Ascending (default) | Descending",
+   "group": ""
+  },
+  {
+   "name": "Entity arrival source",
+   "default": "port",
+   "values": "选择实体的到达源 Input port (default) | Multicast",
+   "group": ""
+  },
+  {
+   "name": "Event action",
+   "default": "Entry",
+   "values": "指定实体在某些事件中的行为 Entry (default) | Exit | Blocked",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "输出模块中存在但尚未离开的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average wait, w",
+   "default": "off",
+   "values": "输出平均等待时间 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average queue length, l",
+   "default": "off",
+   "values": "输出实体队列的平均长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "从该模块中提取的实体数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "slrtOverloadOptions",
+ "title": "Overload Options",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Target Management/Overload_Options.md"
+ ],
+ "text": "Select CPU overload options, 1 input, 1 output; {Startup Duration} selects startup steps for ignoring CPU, {Source} sets the selects CPU overload input during startup Tunable, {Max Overloads} selects maximum CPU overloads and {Enable TET Output} enables output TET data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TID",
+   "direction": "input",
+   "summary": "Task ID int"
+  },
+  {
+   "name": "Count",
+   "direction": "output",
+   "summary": "Overload count int"
+  }
+ ],
+ "params": [
+  {
+   "name": "Startup Duration",
+   "default": "1",
+   "values": "Select startup steps for ignoring CPU overloads 1 (default) | int",
+   "group": ""
+  },
+  {
+   "name": "Source",
+   "default": "Parameter",
+   "values": "Selects CPU overload input during startup Tunable Parameter (default) | Input Port",
+   "group": ""
+  },
+  {
+   "name": "Max Overloads",
+   "default": "0",
+   "values": "Select maximum CPU overloads 0 (default) | int",
+   "group": ""
+  },
+  {
+   "name": "Enable TET Output",
+   "default": "off",
+   "values": "Enable output TET data off (default) | on",
+   "group": ""
+  }
+ ]
+}

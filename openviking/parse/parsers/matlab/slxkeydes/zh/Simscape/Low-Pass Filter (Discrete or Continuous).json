@@ -1,0 +1,67 @@
+{
+ "key": "Low-Pass Filter (Discrete or Continuous)",
+ "title": "Low-Pass Filter (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Low_Pass_Filter_Discrete_or_Continuous.md"
+ ],
+ "text": "离散时间或连续时间低通滤波器，输入 1 路、输出 1 路；按 {采样时间(-1 表示继承)} 指定模块采样时间；{增益}、{时间常数}、{饱和上限} 指定状态上限 inf、{饱和下限} 指定状态下限 -inf、{初始化} 指定初始状态设定、{初始状态}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "滤波器输入 向量"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "滤波器输出 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "增益",
+   "default": "1",
+   "values": "滤波器增益 1 (默认) | 正数",
+   "group": ""
+  },
+  {
+   "name": "时间常数",
+   "default": "1",
+   "values": "滤波器时间常数 1 (默认) | 正数",
+   "group": ""
+  },
+  {
+   "name": "饱和上限",
+   "default": "inf",
+   "values": "状态上限 inf (默认) | 实数",
+   "group": ""
+  },
+  {
+   "name": "饱和下限",
+   "default": "-inf",
+   "values": "状态下限 -inf (默认) | 实数",
+   "group": ""
+  },
+  {
+   "name": "初始化",
+   "default": "从模块输入继承",
+   "values": "初始状态设定 从模块输入继承 (默认) | 指定为参数",
+   "group": ""
+  },
+  {
+   "name": "初始状态",
+   "default": "0",
+   "values": "初始状态 0 (默认) | 实数",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 0 | 正标量",
+   "group": ""
+  }
+ ]
+}

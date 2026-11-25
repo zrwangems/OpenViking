@@ -1,0 +1,13 @@
+{
+ "key": "Rotating Channel (IL)",
+ "title": "Rotating Channel (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Auxiliary Components/Rotating_Channel_IL.md"
+ ],
+ "text": "Cushion in cylinder in isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,73 @@
+{
+ "key": "Coarse Frequency Compensator",
+ "title": "Coarse Frequency Compensator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments Correction/Coarse_Frequency_Compensator.md",
+  "Communications Toolbox/Synchronization/Coarse_Frequency_Compensator.md"
+ ],
+ "text": "Compensate for carrier frequency offset in PAM, PSK, or QAM, 1 input, 2 outputs, {Modulation type of input signal} sets Modulation type; {Estimation algorithm} sets the algorithm used to estimate frequency offset, {Frequency resolution (Hz)}, {Samples per symbol} sets the number of samples per symbol, {Maximum frequency offset (Hz)} sets the maximum measurable frequency, {Estimated frequency offset output port} sets the option to add estimated frequency offset output and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Compensated output signal complex column vector"
+  },
+  {
+   "name": "FreqEst",
+   "direction": "output",
+   "summary": "Estimate of frequency offset scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation type of input signal",
+   "default": "QAM",
+   "values": "Modulation type QAM (default) | 8PSK | BPSK | OQPSK | PAM | QPSK",
+   "group": ""
+  },
+  {
+   "name": "Estimation algorithm",
+   "default": "FFT-based",
+   "values": "Algorithm used to estimate frequency offset FFT-based (default) | Correlation-based",
+   "group": ""
+  },
+  {
+   "name": "Frequency resolution (Hz)",
+   "default": "100",
+   "values": "Frequency resolution 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "4",
+   "values": "Number of samples per symbol 4 (default) | even integer greater than or equal to 4",
+   "group": ""
+  },
+  {
+   "name": "Maximum frequency offset (Hz)",
+   "default": "5e3",
+   "values": "Maximum measurable frequency offset 5e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Estimated frequency offset output port",
+   "default": "on",
+   "values": "Option to add estimated frequency offset output port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

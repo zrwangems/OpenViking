@@ -1,0 +1,67 @@
+{
+ "key": "BPSK Demodulator Baseband",
+ "title": "BPSK Demodulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/PM/BPSK_Demodulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/BPSK_Demodulator_Baseband.md"
+ ],
+ "text": "Demodulate BPSK-modulated data, 2 inputs, 1 output, {Noise variance} sets Noise Variance; {Decision type}, {Noise variance source}, {Phase offset (rad)} sets the phase of zeroth point, {Output data type} and {Derotate factor}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "BPSK-modulated baseband signal scalar | vector | matrix"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "Noise Variance positive scalar | vector of positive values"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Demodulated signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "Decision type Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Dialog",
+   "values": "Noise variance source Dialog (default) | Port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "Noise Variance 1 (default) | positive scalar | vector of positive values",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "Phase of zeroth point 0 (default) | real-valued scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single |...",
+   "group": "Data Types"
+  },
+  {
+   "name": "Derotate factor",
+   "default": "input",
+   "values": "Derotate factor Same word length as input (default) | Specify word length",
+   "group": "Data Types"
+  }
+ ]
+}

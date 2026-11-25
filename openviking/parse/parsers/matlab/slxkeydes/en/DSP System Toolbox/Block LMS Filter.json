@@ -1,0 +1,109 @@
+{
+ "key": "Block LMS Filter",
+ "title": "Block LMS Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Adaptive Filters/Block_LMS_Filter.md"
+ ],
+ "text": "Compute output, error, and weights using LMS adaptive algorithm, 5 inputs, 3 outputs, no direct feedthrough, {Reset port} sets Enable Reset port; {Filter length} sets the length of FIR filter coefficients vector, {Block size} sets the number of samples acquired before weight, {Specify step size via} sets the source of adaptation step, {Step size (mu)} sets the adaptation step size, {Leakage factor (0 to 1)} sets the leakage factor used in leaky LMS algorithm, {Initial value of filter weights}, {Adapt port} and {Output filter weights}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector"
+  },
+  {
+   "name": "Desired",
+   "direction": "input",
+   "summary": "Desired signal scalar | column vector"
+  },
+  {
+   "name": "Step size",
+   "direction": "input",
+   "summary": "Adaptation step size nonnegative scalar"
+  },
+  {
+   "name": "Adapt",
+   "direction": "input",
+   "summary": "Option to update filter weights scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Reset signal scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Filtered signal scalar | column vector"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "Difference between output and desired signal scalar | column vector"
+  },
+  {
+   "name": "Wts",
+   "direction": "output",
+   "summary": "Adaptive filter weights scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter length",
+   "default": "32",
+   "values": "Length of FIR filter coefficients vector 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Block size",
+   "default": "32",
+   "values": "Number of samples acquired before weight adaptation 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify step size via",
+   "default": "Dialog",
+   "values": "Source of adaptation step size Dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Step size (mu)",
+   "default": "0.1",
+   "values": "Adaptation step size 0.1 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Leakage factor (0 to 1)",
+   "default": "1.0",
+   "values": "Leakage factor used in leaky LMS algorithm 1.0 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Initial value of filter weights",
+   "default": "0",
+   "values": "Initial value of filter weights 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Adapt port",
+   "default": "off",
+   "values": "Enable Adapt port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Enable Reset port None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Output filter weights",
+   "default": "on",
+   "values": "Output filter weights on (default) | off",
+   "group": ""
+  }
+ ]
+}

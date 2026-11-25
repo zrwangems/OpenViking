@@ -1,0 +1,13 @@
+{
+ "key": "Constant Current Load",
+ "title": "Constant Current Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Constant_Current_Load.md"
+ ],
+ "text": "用于直流或交流电源的恒流负载。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

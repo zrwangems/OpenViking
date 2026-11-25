@@ -1,0 +1,13 @@
+{
+ "key": "Rolling Resistance",
+ "title": "Rolling Resistance",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Tire Subcomponents/Rolling_Resistance.md"
+ ],
+ "text": "对滚动阻力进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,87 @@
+{
+ "key": "Boost Drive Shaft",
+ "title": "Boost Drive Shaft",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Boost/Boost_Drive_Shaft.md"
+ ],
+ "text": "Boost 驱动轴转速，输入 3 路、输出 3 路；按 {Configuration} 指定配置；{Additional torque input} 指定外部转矩输入 External torque、{Shaft inertia, J_shaft} 指定惯性 1.55e-5、{Initial shaft speed, w_0} 指定速度、{Min shaft speed, w_min} 指定速度、{Max shaft speed, w_max} 指定速度、{Turbine mechanical efficiency, eta_mech} 指定效率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Cmprs",
+   "direction": "input",
+   "summary": "压缩机转矩 two-way connector port"
+  },
+  {
+   "name": "Turb",
+   "direction": "input",
+   "summary": "涡轮转矩 two-way connector port"
+  },
+  {
+   "name": "ExtTrq",
+   "direction": "input",
+   "summary": "外部施加的转矩 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "Cmprs",
+   "direction": "output",
+   "summary": "压缩机转速 two-way connector port"
+  },
+  {
+   "name": "Turb",
+   "direction": "output",
+   "summary": "涡轮转速 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Configuration",
+   "default": "Turbocharger",
+   "values": "指定配置 Turbocharger (default) | Turbine only | Compressor only",
+   "group": ""
+  },
+  {
+   "name": "Additional torque input",
+   "default": "input",
+   "values": "指定外部转矩输入 External torque input (default) | No external torque",
+   "group": ""
+  },
+  {
+   "name": "Shaft inertia, J_shaft",
+   "default": "1.55e-5",
+   "values": "惯性 1.55e-5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial shaft speed, w_0",
+   "default": "1000",
+   "values": "速度 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Min shaft speed, w_min",
+   "default": "100",
+   "values": "速度 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Max shaft speed, w_max",
+   "default": "20000",
+   "values": "速度 20000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Turbine mechanical efficiency, eta_mech",
+   "default": "0.95",
+   "values": "效率 0.95 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

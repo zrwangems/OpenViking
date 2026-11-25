@@ -1,0 +1,101 @@
+{
+ "key": "Turbo Encoder",
+ "title": "Turbo Encoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Convolutional/Turbo_Encoder.md"
+ ],
+ "text": "使用并行级联编码方案对二进制数据进行编码，输入 3 路、输出 1 路；按 {Source of output indices} 指定输出索引的来源 Auto；{Trellis structure} 指定分量卷积码的网格描述 poly2trellis、{numInputSymbols} 指定输入到编码器的符号数 2 K、{numOutputSymbols} 指定从编码器输出的符号数 2 N、{numStates} 指定编码器中的状态数 power、{nextStates} 指定下一状态 matrix of integers、{outputs} 输出 matrix、{Source of interleaver indices} 指定交织器索引的来源、{Interleaver indices} 指定交织器索引、{Output indices} 输出索引 getTurboIOIndices、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入消息 binary column vector"
+  },
+  {
+   "name": "IntrInd",
+   "direction": "input",
+   "summary": "交织器索引 column vector of integers"
+  },
+  {
+   "name": "OutInd",
+   "direction": "input",
+   "summary": "输出索引 column vector of integers"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "并行级联码字 binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trellis structure",
+   "default": "15],13)",
+   "values": "分量卷积码的网格描述 poly2trellis(4,[13 15],13) (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "numInputSymbols",
+   "default": "",
+   "values": "输入到编码器的符号数 2 K",
+   "group": ""
+  },
+  {
+   "name": "numOutputSymbols",
+   "default": "",
+   "values": "从编码器输出的符号数 2 N",
+   "group": ""
+  },
+  {
+   "name": "numStates",
+   "default": "",
+   "values": "编码器中的状态数 power of 2",
+   "group": ""
+  },
+  {
+   "name": "nextStates",
+   "default": "",
+   "values": "下一状态 matrix of integers",
+   "group": ""
+  },
+  {
+   "name": "outputs",
+   "default": "",
+   "values": "输出 matrix of octal numbers",
+   "group": ""
+  },
+  {
+   "name": "Source of interleaver indices",
+   "default": "Property",
+   "values": "交织器索引的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Interleaver indices",
+   "default": "(64:-1:1).’",
+   "values": "交织器索引 (64:-1:1).’ (default) | column vector of integers",
+   "group": ""
+  },
+  {
+   "name": "Source of output indices",
+   "default": "",
+   "values": "输出索引的来源 Auto | Property | Input port",
+   "group": ""
+  },
+  {
+   "name": "Output indices",
+   "default": "getTurboIOIndices(64,2,3)",
+   "values": "输出索引 getTurboIOIndices(64,2,3) (default) | column vector of integers",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

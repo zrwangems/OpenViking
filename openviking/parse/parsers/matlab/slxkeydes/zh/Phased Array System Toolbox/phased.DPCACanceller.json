@@ -1,0 +1,260 @@
+{
+ "key": "phased.DPCACanceller",
+ "title": "DPCA Canceller",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Space-Time Adaptive Processing/DPCA_Canceller.md"
+ ],
+ "text": "用于均匀线性阵列的位移相位中心阵列 (DPCA) 脉冲对消器，输入 5 路、输出 2 路；按 {Polar pattern frequencies (Hz)} 指定极性图麦克风响应频率；{Signal propagation speed (m/s)} 指定信号传播速度 physconst、{Operating frequency (Hz)} 指定系统工作频率 3e8、{Specify PRF as} 指定 PRF 值的来源、{Pulse repetition frequency (Hz)} 指定脉冲重复频率、{Specify direction as} 指定目标方向的来源、{Receiving mainlobe direction (deg)} 指定阵列主瓣的指向方向、{Number of bits in phase shifters} 指定相移量化位数、{Specify targeting Doppler as} 指定目标 Doppler 的来源、{Targeting Doppler (Hz)} 指定 STAP 处理器的目标 Doppler、{Enable weights output} 输出波束成形器权重、{Output pre-Doppler result} 指定在 Doppler 滤波之前输出结果、{Simulate using} 指定模块仿真方法 Interpreted、{Specify sensor array as} 指定阵列的方法 Array、{Expression} 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ array System、{Element type} 指定阵列阵元类型 Isotropic、{Operating frequency range (Hz)} 指定天线或麦克风阵元的工作频率范围、{Operating frequency vector (Hz)} 指定自定义天线或麦克风阵元的工作频率范围、{Baffle the back of the element} 指定将 Isotropic Antenna 阵元或 Omni Microphone、{Exponent of cosine pattern} 指定方位角和俯仰角余弦方向图的指数、{Frequency responses (dB)} 指定天线和麦克风频率响应、{Input Pattern Coordinate System} 指定自定义天线方向图的坐标系、{Azimuth angles (deg)} 指定天线辐射方向图的方位角、{Elevation angles (deg)} 指定天线辐射方向图的俯仰角、{Phi Angles (deg)} 指定自定义天线辐射方向图的 Phi 角坐标 0:360、{Theta Angles (deg)} 指定自定义天线辐射方向图的 Theta 角坐标、{Magnitude pattern (dB)} 指定组合天线辐射方向图的幅值 zeros、{Phase pattern (deg)} 指定自定义天线辐射相位方向图 zeros、{MatchArrayNormal} 指定将天线阵元旋转到阵列法向、{Polar pattern angles (deg)} 指定极性图响应角度、{Polar pattern (dB)} 指定自定义麦克风极性响应 zeros、{Number of elements} 指定 U 方向上的阵元数、{Element spacing} 指定 ULA 阵元之间的距离、{Array axis} 指定 ULA 的线性轴方向、{Taper} 指定 ULA 阵列锥化，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入信号 M -by- N -by- P complex-valued matrix"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "距离单元索引 positive integer"
+  },
+  {
+   "name": "PRF",
+   "direction": "input",
+   "summary": "脉冲重复频率 positive scalar"
+  },
+  {
+   "name": "Ang",
+   "direction": "input",
+   "summary": "目标方向 2 -by- 1 real-valued vector"
+  },
+  {
+   "name": "Dop",
+   "direction": "input",
+   "summary": "目标多普勒频率 scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "波束成形输出 M -by-1 complex-valued vector"
+  },
+  {
+   "name": "W",
+   "direction": "output",
+   "summary": "处理权重 length N * P complex-valued vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency (Hz)",
+   "default": "3e8",
+   "values": "系统工作频率 3e8 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify PRF as",
+   "default": "Property",
+   "values": "PRF 值的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pulse repetition frequency (Hz)",
+   "default": "1",
+   "values": "脉冲重复频率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify direction as",
+   "default": "Property",
+   "values": "指定目标方向的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Receiving mainlobe direction (deg)",
+   "default": "[0;0]",
+   "values": "阵列主瓣的指向方向 [0;0] (default) | real-valued 2-by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Number of bits in phase shifters",
+   "default": "0",
+   "values": "相移量化位数 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Specify targeting Doppler as",
+   "default": "Property",
+   "values": "目标 Doppler 的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Targeting Doppler (Hz)",
+   "default": "0",
+   "values": "STAP 处理器的目标 Doppler 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable weights output",
+   "default": "off",
+   "values": "输出波束成形器权重的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output pre-Doppler result",
+   "default": "on",
+   "values": "在 Doppler 滤波之前输出结果 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Specify sensor array as",
+   "default": "subarrays)",
+   "values": "指定阵列的方法 Array (no subarrays) (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Expression",
+   "default": "",
+   "values": "用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ array System object",
+   "group": ""
+  },
+  {
+   "name": "Element type",
+   "default": "Antenna",
+   "values": "阵列阵元类型 Isotropic Antenna (default) | Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency range (Hz)",
+   "default": "[0,1e20]",
+   "values": "天线或麦克风阵元的工作频率范围 [0,1e20] (default) | real-valued 1-by-2 row vector",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency vector (Hz)",
+   "default": "[0,1e20]",
+   "values": "自定义天线或麦克风阵元的工作频率范围 [0,1e20] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Baffle the back of the element",
+   "default": "off",
+   "values": "将 Isotropic Antenna 阵元或 Omni Microphone 阵元的后向响应设置为零 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Exponent of cosine pattern",
+   "default": "1.5]",
+   "values": "方位角和俯仰角余弦方向图的指数 [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2 matrix of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Frequency responses (dB)",
+   "default": "[0,0]",
+   "values": "天线和麦克风频率响应 [0,0] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Input Pattern Coordinate System",
+   "default": "az-el",
+   "values": "自定义天线方向图的坐标系 az-el (default) | phi-theta",
+   "group": ""
+  },
+  {
+   "name": "Azimuth angles (deg)",
+   "default": "[-180:180]",
+   "values": "天线辐射方向图的方位角 [-180:180] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "[-90:90]",
+   "values": "天线辐射方向图的俯仰角 [-90:90] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Phi Angles (deg)",
+   "default": "",
+   "values": "自定义天线辐射方向图的 Phi 角坐标 0:360 | real-valued 1-by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Theta Angles (deg)",
+   "default": "",
+   "values": "自定义天线辐射方向图的 Theta 角坐标 0:180 | real-valued 1-by- Q row vector",
+   "group": ""
+  },
+  {
+   "name": "Magnitude pattern (dB)",
+   "default": "zeros(181,361)",
+   "values": "组合天线辐射方向图的幅值 zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Phase pattern (deg)",
+   "default": "zeros(181,361)",
+   "values": "自定义天线辐射相位方向图 zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": ""
+  },
+  {
+   "name": "MatchArrayNormal",
+   "default": "on",
+   "values": "将天线阵元旋转到阵列法向 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern frequencies (Hz)",
+   "default": "1e3",
+   "values": "极性图麦克风响应频率 1e3 (default) | real scalar | real-valued 1-by- L row vector",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern angles (deg)",
+   "default": "[-180:180]",
+   "values": "极性图响应角度 [-180:180] (default) | real-valued -by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern (dB)",
+   "default": "zeros(1,361)",
+   "values": "自定义麦克风极性响应 zeros(1,361) (default) | real-valued L -by- P matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of elements",
+   "default": "2",
+   "values": "U 方向上的阵元数 2 (default) | positive integer greater than or equal to two",
+   "group": "Array Parameters"
+  },
+  {
+   "name": "Element spacing",
+   "default": "0.5",
+   "values": "ULA 阵元之间的距离 0.5 (default) | positive scalar",
+   "group": "Array Parameters"
+  },
+  {
+   "name": "Array axis",
+   "default": "y",
+   "values": "ULA 的线性轴方向 y (default) | x | z",
+   "group": "Array Parameters"
+  },
+  {
+   "name": "Taper",
+   "default": "1",
+   "values": "ULA 阵列锥化 1 (default) | complex-valued vector",
+   "group": "Array Parameters"
+  }
+ ]
+}

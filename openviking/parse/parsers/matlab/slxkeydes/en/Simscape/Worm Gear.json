@@ -1,0 +1,13 @@
+{
+ "key": "Worm Gear",
+ "title": "Worm Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Worm_Gear.md"
+ ],
+ "text": "Worm gear with adjustable gear ratio and friction losses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

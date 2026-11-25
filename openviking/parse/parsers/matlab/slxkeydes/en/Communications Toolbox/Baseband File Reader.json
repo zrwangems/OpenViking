@@ -1,0 +1,61 @@
+{
+ "key": "Baseband File Reader",
+ "title": "Baseband File Reader",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Baseband_File_Reader.md"
+ ],
+ "text": "Read baseband signals from file, 2 outputs; {Baseband file name} sets the name of baseband file, {Inherit sample time from file} selects source of sample time, {Sample time (s)} sets the block sample time, {Samples per frame} sets the number of samples per output frame, {Repeatedly read the file} sets the continuously loop data from file and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Baseband signal scalar | vector | matrix"
+  },
+  {
+   "name": "EOF",
+   "direction": "output",
+   "summary": "End-of-file indicator logical scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Baseband file name",
+   "default": "example.bb",
+   "values": "Name of baseband file to read example.bb (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time from file",
+   "default": "on",
+   "values": "Select source of sample time on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "1",
+   "values": "Block sample time 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "100",
+   "values": "Number of samples per output frame 100 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Repeatedly read the file",
+   "default": "off",
+   "values": "Continuously loop data from file off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

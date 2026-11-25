@@ -1,0 +1,13 @@
+{
+ "key": "6-DOF Joint",
+ "title": "6-DOF Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/b_6_DOF_Joint.md"
+ ],
+ "text": "具有六个自由度且无运动学奇异性的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

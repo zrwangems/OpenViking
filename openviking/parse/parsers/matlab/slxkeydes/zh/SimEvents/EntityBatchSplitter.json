@@ -1,0 +1,75 @@
+{
+ "key": "EntityBatchSplitter",
+ "title": "Entity Batch Splitter",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Batch_Splitter.md"
+ ],
+ "text": "Entity Batch Splitter 模块将批实体拆分为各个单独实体，并通过输出端口输出每个实体，输入 1 路、输出 5 路；按 {Event actions} 指定事件动作；{Number of entities arrived, a} 输出已到达该模块的实体数、{Number of entities departed, d} 输出已离开该模块的实体数、{Number of entities remaining to depart, rem} 输出仍留在该模块中的实体数、{Pending entity in block, pe} 指定待处理实体，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "port_1",
+   "direction": "input",
+   "summary": "输入批实体 scalar | vector | matrix"
+  },
+  {
+   "name": "port_1",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  },
+  {
+   "name": "port_a",
+   "direction": "output",
+   "summary": "已到达实体数 scalar"
+  },
+  {
+   "name": "port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "port_rem",
+   "direction": "output",
+   "summary": "模块中剩余的实体数 scalar"
+  },
+  {
+   "name": "port_pe",
+   "direction": "output",
+   "summary": "模块中的待处理实体 off (default) | on"
+  }
+ ],
+ "params": [
+  {
+   "name": "Event actions",
+   "default": "Entry",
+   "values": "指定事件动作 Entry (default) | Unbatch | Exit | Blocked",
+   "group": ""
+  },
+  {
+   "name": "Number of entities arrived, a",
+   "default": "off",
+   "values": "输出已到达该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities remaining to depart, rem",
+   "default": "off",
+   "values": "输出仍留在该模块中的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pending entity in block, pe",
+   "default": "off",
+   "values": "待处理实体 off (default) | on",
+   "group": ""
+  }
+ ]
+}

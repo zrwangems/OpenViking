@@ -1,0 +1,62 @@
+{
+ "key": "DeadZone",
+ "title": "Dead Zone",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Dead_Zone.md",
+  "HDL Coder/Discontinuities/Dead_Zone.md"
+ ],
+ "text": "提供零值输出区域，输入 1 路、输出 1 路；按 {死区起点} 指定死区的下界；{死区终点} 指定死区的上限、{对整数溢出进行饱和处理} 指定溢出操作的方法、{线性化时视为增益} 指定增益值、{启用过零检测}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "死区起点",
+   "default": "’-0.5’",
+   "values": "指定死区的下界 ’-0.5’ (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "死区终点",
+   "default": "’0.5’",
+   "values": "指定死区的上限。 ’0.5’ (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "on",
+   "values": "溢出操作的方法 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "线性化时视为增益",
+   "default": "on",
+   "values": "指定增益值 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "启用过零检测 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

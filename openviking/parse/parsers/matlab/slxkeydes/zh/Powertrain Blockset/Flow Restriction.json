@@ -1,0 +1,116 @@
+{
+ "key": "Flow Restriction",
+ "title": "Flow Restriction",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Fundamental Flow/Flow_Restriction.md"
+ ],
+ "text": "通过孔口的等熵理想气体流动，输入 4 路、输出 3 路；按 {Orifice area model} 指定模型；{Image type} 指定图标颜色 Cold、{Ratio of specific heats, gamma} 指定比值、{Ideal gas constant, R} 指定常量、{Pressure ratio linearize limit, Plim} 指定 Limit、{Constant area value, Aorf_cnst} 指定面积 .1、{Discharge coefficient, Cd_cnst} 指定系数、{Discharge coefficient, Cd_ext} 指定系数、{Throttle diameter, Dthr} 指定 Diameter、{Discharge coefficient table, ThrCd} 指定系数、{Angle breakpoints, ThrAngBpts} 指定角度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "节流孔入口压力、温度、焓、质量分数 two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "节流孔出口压力、温度、焓、质量分数 two-way connector port"
+  },
+  {
+   "name": "Area",
+   "direction": "input",
+   "summary": "节流孔面积 scalar"
+  },
+  {
+   "name": "ThrPct",
+   "direction": "input",
+   "summary": "节气门体开启百分比 scalar"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "入口质量流量、热流量、温度 two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "出口质量流量、热流量、温度 two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Orifice area model",
+   "default": "Constant",
+   "values": "选择模型 Constant (default) | External input | Throttle body geometry",
+   "group": ""
+  },
+  {
+   "name": "Image type",
+   "default": "Cold",
+   "values": "图标颜色 Cold (default) | Hot",
+   "group": ""
+  },
+  {
+   "name": "Ratio of specific heats, gamma",
+   "default": "1.3998",
+   "values": "比值 1.3998 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ideal gas constant, R",
+   "default": "287.05",
+   "values": "常量 287.05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pressure ratio linearize limit, Plim",
+   "default": "0.95",
+   "values": "Limit 0.95 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant area value, Aorf_cnst",
+   "default": ".1",
+   "values": "面积 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discharge coefficient, Cd_cnst",
+   "default": "1",
+   "values": "系数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discharge coefficient, Cd_ext",
+   "default": "1",
+   "values": "系数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Throttle diameter, Dthr",
+   "default": "50",
+   "values": "Diameter 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discharge coefficient table, ThrCd",
+   "default": "0.735]",
+   "values": "系数 [0.001; 0.735] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Angle breakpoints, ThrAngBpts",
+   "default": "90]",
+   "values": "角度 [0; 90] (default) | vector",
+   "group": ""
+  }
+ ]
+}

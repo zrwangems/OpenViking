@@ -1,0 +1,13 @@
+{
+ "key": "Heat Exchanger (G)",
+ "title": "Heat Exchanger (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Gas/Heat_Exchanger_G.md"
+ ],
+ "text": "Heat exchanger for systems with gas and controlled flows.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

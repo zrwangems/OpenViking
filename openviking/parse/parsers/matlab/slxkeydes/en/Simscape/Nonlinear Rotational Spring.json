@@ -1,0 +1,13 @@
+{
+ "key": "Nonlinear Rotational Spring",
+ "title": "Nonlinear Rotational Spring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Nonlinear_Rotational_Spring.md"
+ ],
+ "text": "Linear rotational damper.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

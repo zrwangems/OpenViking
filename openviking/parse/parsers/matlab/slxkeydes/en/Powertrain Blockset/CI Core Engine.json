@@ -1,0 +1,448 @@
+{
+ "key": "CI Core Engine",
+ "title": "CI Core Engine",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Core Engine/CI_Core_Engine.md"
+ ],
+ "text": "Compression-ignition engine from intake to exhaust port, 7 inputs, 4 outputs; {Torque model} selects torque model, {Number of cylinders, NCyl} sets the engine cylinders, {Air standard temperature, Pstd} sets the temperature, {Crank revolutions per power stroke, Cps} sets the revolutions per stroke, {Total displaced volume, Vd} sets the volume, {Ideal gas constant air, Rair} sets the constant, {Air standard pressure, Pstd} sets the pressure, {Speed-density volumetric efficiency, f_nv} sets the lookup table array, {Speed-density intake manifold pressure breakpoints, f_nv_prs_bpt} sets the breakpoints vector, {Speed-density engine speed breakpoints, f_nv_n_bpt} sets the breakpoints vector, {Torque table, f_tq_nf} sets the lookup table array, {Torque table fuel mass per injection breakpoints, f_tq_nf_f_bpt} sets the breakpoints, {Torque table speed breakpoints, f_tq_nf_n_bpt} sets the breakpoints, {Fuel mass per injection breakpoints, f_tqs_f_bpt} sets the breakpoints vector, {Engine speed breakpoints, f_tqs_n_bpt} sets the breakpoints, {Optimal main start of injection timing, f_tqs_mainsoi} sets the optimal MAINSOI array, {Optimal intake manifold gas pressure, f_tqs_map} sets the optimal intake MAP array, {Optimal exhaust manifold gas pressure, f_tqs_emap} sets the optimal exhaust MAP array, {Optimal intake manifold gas temperature, f_tqs_mat} sets the optimal intake MAT array, {Optimal intake gas oxygen percent, f_tqs_o2pct} sets the optimal intake gas, {Optimal fuel rail pressure, f_tqs_fuelpress} sets the optimal fuel rail, {Optimal gross indicated mean effective pressure, f_tqs_imepg} sets the optimal mean effective, {Optimal friction mean effective pressure, f_tqs_fmep}, {Optimal pumping mean effective pressure, f_tqs_pmep}, {Friction multiplier as a function of temperature, f_tqs_fric_temp_mod} sets the friction multiplier array, {Friction multiplier temperature breakpoints, f_tqs_fric_temp_bpt} sets the breakpoints vector, {Main start of injection timing efficiency multiplier, f_tqs_mainsoi_eff} sets the mAINSOI efficiency multiplier array, {Main start of injection timing relative to optimal timing breakpoints, f_tqs_mainsoi_delta_bpt} sets the breakpoints vector, {Intake manifold gas pressure efficiency multiplier, f_tqs_map_eff} sets the intake pressure efficiency multiplier, {Intake manifold gas pressure ratio relative to optimal pressure ratio breakpoints, f_tqs_map_ratio_bpt} sets the breakpoints, {Intake manifold gas lambda breakpoints, f_tqs_lambda_bpt} sets the breakpoints, {Intake manifold gas temperature efficiency multiplier, f_tqs_mat_eff} sets the intake temperature efficiency multiplier, {Intake manifold gas temperature relative to optimal gas temperature breakpoints, f_tqs_mat_delta_bpt} sets the breakpoints, {Intake manifold gas oxygen efficiency multiplier, f_tqs_o2pct_eff} sets the intake oxygen efficiency, {Intake gas oxygen percent relative to optimal breakpoints, f_tqs_o2pct_delta_bpt} sets the breakpoints vector, {Fuel rail pressure efficiency multiplier, f_tqs_fuelpress_eff} sets the efficiency multiplier array, {Fuel rail pressure relative to optimal breakpoints, f_tqs_fuelpress_delta_bpt} sets the breakpoints vector, {Fuel mass injection type identifier, f_tqs_f_inj_type} sets the type identifier, {Indicated mean effective pressure post inject correction, f_tqs_imep_post_corr} sets the post inject correction array, {Indicated mean effective pressure post inject mass sum breakpoints, f_tqs_f_post_sum_bpt} sets the breakpoints, {Indicated mean effective pressure post inject start of inject timing centroid breakpoints, f_tqs_soi_post_cent_bpt} sets the breakpoints, {Maximum start of injection angle for burned fuel, f_tqs_f_burned_soi_limit} sets the maximum SOI angle for burned fuel, {Exhaust temperature table, f_t_exh} sets the lookup table array, {Fuel mass per injection breakpoints, f_t_exh_f_bpt} sets the breakpoints, {Speed breakpoints, f_t_exh_n_bpt} sets the breakpoints, {Optimal exhaust manifold gas temperature, f_tqs_exht}, {Main start of injection timing exhaust temperature efficiency multiplier, f_tqs_exht_mainsoi_eff} sets the main SOI timing efficiency multiplier, {Intake manifold gas pressure exhaust temperature efficiency multiplier, f_tqs_exht_map_eff} sets the intake manifold efficiency multiplier, {Intake manifold gas temperature exhaust temperature efficiency multiplier, f_tqs_exht_mat_eff} sets the intake manifold efficiency multiplier, {Intake manifold gas oxygen exhaust temperature efficiency multiplier, f_tqs_exht_o2pct_eff} sets the intake manifold efficiency multiplier, {Fuel rail pressure exhaust temperature efficiency multiplier, f_tqs_exht_fuelpress_eff}, {Post-injection cylinder wall heat loss transfer coefficient, f_tqs_exht_post_inj_wall_htc} sets the post-injection offset, {CO2 mass fraction table, f_CO2_frac} sets the carbon dioxide, {CO mass fraction table, f_CO_frac} sets the carbon monoxide, {HC mass fraction table, f_HC_frac} sets the hydrocarbon, {NOx mass fraction table, f_NOx_frac} sets the nitric oxide and nitrogen dioxide, {PM mass fraction table, f_PM_frac} sets the particulate matter, {Engine speed breakpoints, f_exhfrac_n_bpt} sets the breakpoints, {Engine torque breakpoints, f_exhfrac_trq_bpt} sets the breakpoints, {Exhaust gas specific heat at constant pressure, cp_exh} sets the specific heat, {Stoichiometric air-fuel ratio, afr_stoich} sets the air-fuel ratio, {Fuel lower heating value, fuel_lhv} sets the heating value 42e6 and {Fuel specific gravity, fuel_sg} sets the specific gravity. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FuelMass",
+   "direction": "input",
+   "summary": "Fuel injector pulse-width vector"
+  },
+  {
+   "name": "Soi",
+   "direction": "input",
+   "summary": "Start of fuel injection timing vector"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "input",
+   "summary": "Engine speed scalar"
+  },
+  {
+   "name": "FuelPrs",
+   "direction": "input",
+   "summary": "Fuel rail pressure scalar"
+  },
+  {
+   "name": "Ect",
+   "direction": "input",
+   "summary": "Engine cooling temperature scalar"
+  },
+  {
+   "name": "Intk",
+   "direction": "input",
+   "summary": "Intake port pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "Exh",
+   "direction": "input",
+   "summary": "Exhaust port pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "EngTrq",
+   "direction": "output",
+   "summary": "Engine brake torque scalar"
+  },
+  {
+   "name": "Intk",
+   "direction": "output",
+   "summary": "Intake port mass flow rate, heat flow rate, temperature, mass fraction two-way connector port"
+  },
+  {
+   "name": "Exh",
+   "direction": "output",
+   "summary": "Exhaust port mass flow rate, heat flow rate, temperature, mass fraction two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Torque model",
+   "default": "Structure",
+   "values": "Select torque model Torque Structure (default) | Simple Torque Lookup",
+   "group": "Block Options"
+  },
+  {
+   "name": "Number of cylinders, NCyl",
+   "default": "4",
+   "values": "Engine cylinders 4 (default) | scalar",
+   "group": "Air"
+  },
+  {
+   "name": "Air standard temperature, Pstd",
+   "default": "293.15",
+   "values": "Temperature 293.15 (default) | scalar",
+   "group": "Air"
+  },
+  {
+   "name": "Crank revolutions per power stroke, Cps",
+   "default": "2",
+   "values": "Revolutions per stroke 2 (default) | scalar",
+   "group": "Air"
+  },
+  {
+   "name": "Total displaced volume, Vd",
+   "default": "0.0015",
+   "values": "Volume 0.0015 (default) | scalar",
+   "group": "Air"
+  },
+  {
+   "name": "Ideal gas constant air, Rair",
+   "default": "287.05",
+   "values": "Constant 287.05 (default) | scalar",
+   "group": "Air"
+  },
+  {
+   "name": "Air standard pressure, Pstd",
+   "default": "101325",
+   "values": "Pressure 101325 (default) | scalar",
+   "group": "Air"
+  },
+  {
+   "name": "Speed-density volumetric efficiency, f_nv",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Air"
+  },
+  {
+   "name": "Speed-density intake manifold pressure breakpoints, f_nv_prs_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Air"
+  },
+  {
+   "name": "Speed-density engine speed breakpoints, f_nv_n_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Air"
+  },
+  {
+   "name": "Torque table, f_tq_nf",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Torque"
+  },
+  {
+   "name": "Torque table fuel mass per injection breakpoints, f_tq_nf_f_bpt",
+   "default": "50]",
+   "values": "Breakpoints [0 3.5714 7.1429 10.7143 14.2857 17.8571 21.4286 25 28.5714 32.1429 35.7143 39.2857 42.8571 46.4286 50] (default) | vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Torque table speed breakpoints, f_tq_nf_n_bpt",
+   "default": "6750]",
+   "values": "Breakpoints [1000 1410.7143 1821.4286 2232.1429 2642.8571 3053.5714 3464.2857 3875 4285.7143 4696.4286 5107.1429 5517.8571 5928.5714 6339.2857 6750] (default) | vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Fuel mass per injection breakpoints, f_tqs_f_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Engine speed breakpoints, f_tqs_n_bpt",
+   "default": "4000]",
+   "values": "Breakpoints [500 750 1000 1250 1500 1750 2000 2250 2500 2750 3000 3250 3500 3750 4000] (default) | vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Optimal main start of injection timing, f_tqs_mainsoi",
+   "default": "",
+   "values": "Optimal MAINSOI array",
+   "group": "Torque"
+  },
+  {
+   "name": "Optimal intake manifold gas pressure, f_tqs_map",
+   "default": "",
+   "values": "Optimal intake MAP array",
+   "group": "Torque"
+  },
+  {
+   "name": "Optimal exhaust manifold gas pressure, f_tqs_emap",
+   "default": "",
+   "values": "Optimal exhaust MAP array",
+   "group": "Torque"
+  },
+  {
+   "name": "Optimal intake manifold gas temperature, f_tqs_mat",
+   "default": "",
+   "values": "Optimal intake MAT array",
+   "group": "Torque"
+  },
+  {
+   "name": "Optimal intake gas oxygen percent, f_tqs_o2pct",
+   "default": "",
+   "values": "Optimal intake gas oxygen array",
+   "group": "Torque"
+  },
+  {
+   "name": "Optimal fuel rail pressure, f_tqs_fuelpress",
+   "default": "",
+   "values": "Optimal fuel rail pressure array",
+   "group": "Torque"
+  },
+  {
+   "name": "Optimal gross indicated mean effective pressure, f_tqs_imepg",
+   "default": "",
+   "values": "Optimal mean effective pressure array",
+   "group": "Torque"
+  },
+  {
+   "name": "Optimal friction mean effective pressure, f_tqs_fmep",
+   "default": "",
+   "values": "Optimal friction mean effective pressure array",
+   "group": "Torque"
+  },
+  {
+   "name": "Optimal pumping mean effective pressure, f_tqs_pmep",
+   "default": "",
+   "values": "Optimal pumping mean effective pressure array",
+   "group": "Torque"
+  },
+  {
+   "name": "Friction multiplier as a function of temperature, f_tqs_fric_temp_mod",
+   "default": "",
+   "values": "Friction multiplier array",
+   "group": "Torque"
+  },
+  {
+   "name": "Friction multiplier temperature breakpoints, f_tqs_fric_temp_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Main start of injection timing efficiency multiplier, f_tqs_mainsoi_eff",
+   "default": "",
+   "values": "MAINSOI efficiency multiplier array",
+   "group": "Torque"
+  },
+  {
+   "name": "Main start of injection timing relative to optimal timing breakpoints, f_tqs_mainsoi_delta_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Intake manifold gas pressure efficiency multiplier, f_tqs_map_eff",
+   "default": "",
+   "values": "Intake pressure efficiency multiplier array",
+   "group": "Torque"
+  },
+  {
+   "name": "Intake manifold gas pressure ratio relative to optimal pressure ratio breakpoints, f_tqs_map_ratio_bpt",
+   "default": "[0.8;0.85;0.9;0.95;1;1.05;1.1;1.15;1.2;1.25;1.3;1.35;1.4;1.45;1.5]",
+   "values": "Breakpoints [0.8;0.85;0.9;0.95;1;1.05;1.1;1.15;1.2;1.25;1.3;1.35;1.4;1.45;1.5] (default) | vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Intake manifold gas lambda breakpoints, f_tqs_lambda_bpt",
+   "default": "4]",
+   "values": "Breakpoints [1.5 1.678571428571429 1.857142857142857 2.035714285714286 2.214285714285714 2.392857142857143 2.571428571428571 2.75 2.928571428571429 3.107142857142857 3.285714285714286 3.464285714285714 3.642857142857143 3.821428571428572 4] (default) | vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Intake manifold gas temperature efficiency multiplier, f_tqs_mat_eff",
+   "default": "",
+   "values": "Intake temperature efficiency multiplier array",
+   "group": "Torque"
+  },
+  {
+   "name": "Intake manifold gas temperature relative to optimal gas temperature breakpoints, f_tqs_mat_delta_bpt",
+   "default": "[-55;-50;-45;-40;-35;-30;-25;-20;-15;-10;-5;0;5;10;15]",
+   "values": "Breakpoints [-55;-50;-45;-40;-35;-30;-25;-20;-15;-10;-5;0;5;10;15] (default) | vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Intake manifold gas oxygen efficiency multiplier, f_tqs_o2pct_eff",
+   "default": "",
+   "values": "Intake oxygen efficiency multiplier array",
+   "group": "Torque"
+  },
+  {
+   "name": "Intake gas oxygen percent relative to optimal breakpoints, f_tqs_o2pct_delta_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Fuel rail pressure efficiency multiplier, f_tqs_fuelpress_eff",
+   "default": "",
+   "values": "Efficiency multiplier array",
+   "group": "Torque"
+  },
+  {
+   "name": "Fuel rail pressure relative to optimal breakpoints, f_tqs_fuelpress_delta_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Fuel mass injection type identifier, f_tqs_f_inj_type",
+   "default": "0",
+   "values": "Type identifier 0 (default) | scalar",
+   "group": "Torque"
+  },
+  {
+   "name": "Indicated mean effective pressure post inject correction, f_tqs_imep_post_corr",
+   "default": "",
+   "values": "Post inject correction array",
+   "group": "Torque"
+  },
+  {
+   "name": "Indicated mean effective pressure post inject mass sum breakpoints, f_tqs_f_post_sum_bpt",
+   "default": "50]",
+   "values": "Breakpoints [0 3.571428571428572 7.142857142857143 10.71428571428571 14.28571428571429 17.85714285714286 21.42857142857143 25 28.57142857142857 32.14285714285715 35.71428571428572 39.28571428571428 42.85714285714285 46.42857142857143 50] (default) | vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Indicated mean effective pressure post inject start of inject timing centroid breakpoints, f_tqs_soi_post_cent_bpt",
+   "default": "300]",
+   "values": "Breakpoints [150 160.7142857142857 171.4285714285714 182.1428571428571 192.8571428571429 203.5714285714286 214.2857142857143 225 235.7142857142857 246.4285714285714 257.1428571428571 267.8571428571429 278.5714285714286 289.2857142857143 300] (default) | vector",
+   "group": "Torque"
+  },
+  {
+   "name": "Maximum start of injection angle for burned fuel, f_tqs_f_burned_soi_limit",
+   "default": "500",
+   "values": "Maximum SOI angle for burned fuel 500 (default) | scalar",
+   "group": "Torque"
+  },
+  {
+   "name": "Exhaust temperature table, f_t_exh",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Fuel mass per injection breakpoints, f_t_exh_f_bpt",
+   "default": "50]",
+   "values": "Breakpoints [0 3.5714 7.1429 10.7143 14.2857 17.8571 21.4286 25 28.5714 32.1429 35.7143 39.2857 42.8571 46.4286 50] (default) | vector",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Speed breakpoints, f_t_exh_n_bpt",
+   "default": "6750]",
+   "values": "Breakpoints [1000 1410.7143 1821.4286 2232.1429 2642.8571 3053.5714 3464.2857 3875 4285.7143 4696.4286 5107.1429 5517.8571 5928.5714 6339.2857 6750] (default) | vector",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Optimal exhaust manifold gas temperature, f_tqs_exht",
+   "default": "",
+   "values": "Optimal exhaust manifold gas temperature array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Main start of injection timing exhaust temperature efficiency multiplier, f_tqs_exht_mainsoi_eff",
+   "default": "",
+   "values": "Main SOI timing efficiency multiplier array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Intake manifold gas pressure exhaust temperature efficiency multiplier, f_tqs_exht_map_eff",
+   "default": "",
+   "values": "Intake manifold efficiency multiplier array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Intake manifold gas temperature exhaust temperature efficiency multiplier, f_tqs_exht_mat_eff",
+   "default": "",
+   "values": "Intake manifold efficiency multiplier array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Intake manifold gas oxygen exhaust temperature efficiency multiplier, f_tqs_exht_o2pct_eff",
+   "default": "",
+   "values": "Intake manifold efficiency multiplier array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Fuel rail pressure exhaust temperature efficiency multiplier, f_tqs_exht_fuelpress_eff",
+   "default": "",
+   "values": "Fuel rail pressure exhaust temperature efficiency multiplier array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Post-injection cylinder wall heat loss transfer coefficient, f_tqs_exht_post_inj_wall_htc",
+   "default": "0",
+   "values": "Post-injection offset 0 (default) | scalar",
+   "group": "Exhaust"
+  },
+  {
+   "name": "CO2 mass fraction table, f_CO2_frac",
+   "default": "",
+   "values": "Carbon dioxide (CO 2 ) emission lookup table array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "CO mass fraction table, f_CO_frac",
+   "default": "",
+   "values": "Carbon monoxide (CO) emission lookup table array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "HC mass fraction table, f_HC_frac",
+   "default": "",
+   "values": "Hydrocarbon (HC) emission lookup table array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "NOx mass fraction table, f_NOx_frac",
+   "default": "",
+   "values": "Nitric oxide and nitrogen dioxide (NOx) emission lookup table array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "PM mass fraction table, f_PM_frac",
+   "default": "",
+   "values": "Particulate matter (PM) emission lookup table array",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Engine speed breakpoints, f_exhfrac_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857 2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000] (default) | vector",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Engine torque breakpoints, f_exhfrac_trq_bpt",
+   "default": "175]",
+   "values": "Breakpoints [0 15 26.4285714285714 37.8571428571429 49.2857142857143 60.7142857142857 72.1428571428571 83.5714285714286 95 106.428571428571 117.857142857143 129.285714285714 140.714285714286 152.142857142857 163.571428571429 175] (default) | vector",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Exhaust gas specific heat at constant pressure, cp_exh",
+   "default": "1005",
+   "values": "Specific heat 1005 (default) | scalar",
+   "group": "Exhaust"
+  },
+  {
+   "name": "Stoichiometric air-fuel ratio, afr_stoich",
+   "default": "14.6",
+   "values": "Air-fuel ratio 14.6 (default) | scalar",
+   "group": "Fuel"
+  },
+  {
+   "name": "Fuel lower heating value, fuel_lhv",
+   "default": "42e6",
+   "values": "Heating value 42e6 (default) | scalar",
+   "group": "Fuel"
+  },
+  {
+   "name": "Fuel specific gravity, fuel_sg",
+   "default": "0.832",
+   "values": "Specific gravity 0.832 (default) | scalar",
+   "group": "Fuel"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "key": "slrealtimetcpreceive",
+ "title": "TCP Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/TCP_Receive.md"
+ ],
+ "text": "Receive data over TCP network from a remote device, 1 input, 2 outputs; {Receive using} sets the list of IP address and port pairs Read-only, {Receive width} sets the maximum expected length of data vector and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Allow data reception integer"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Data that is received from the remote client vector"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "Actual size of data vector double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Receive using",
+   "default": "",
+   "values": "List of IP address and port pairs Read-only: x.x.x.x:y",
+   "group": ""
+  },
+  {
+   "name": "Receive width",
+   "default": "",
+   "values": "Maximum expected length of data vector 1–65504",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

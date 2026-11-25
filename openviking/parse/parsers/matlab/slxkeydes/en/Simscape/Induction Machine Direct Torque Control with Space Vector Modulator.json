@@ -1,0 +1,133 @@
+{
+ "key": "Induction Machine Direct Torque Control with Space Vector Modulator",
+ "title": "Induction Machine Direct Torque Control with Space Vector Modulator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Induction Machine Control/Induction_Machine_Direct_Torque_Control_with_Space_Vector_Modul.md"
+ ],
+ "text": "Induction machine DTC structure with SVM, 6 inputs, 2 outputs, {Axis prioritization} sets Axis prioritization for voltage limiter; {Stator resistance (Ohm)} sets the resistance, {Number of pole pairs} sets the pole number, {Inverter dc-link voltage threshold (V)} sets the voltage, {Fundamental sample time (s)} sets the sVM sample time 5e-6, {Control sample time (s)} sets the pI sample time 5e-5, {Switching frequency (Hz)} sets the switching rate, {Flux controller proportional gain} sets the flux PI proportional gain, {Flux controller integral gain} sets the flux PI integral gain, {Flux controller anti-windup gain} sets the flux PI anti-windup gain, {Torque controller proportional gain} sets the torque PI proportional gain, {Torque controller integral gain} sets the torque PI integral gain and {Torque controller anti-windup gain} sets the torque PI anti-windup gain. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FluxRef",
+   "direction": "input",
+   "summary": "Flux scalar"
+  },
+  {
+   "name": "TqRef",
+   "direction": "input",
+   "summary": "Torque scalar"
+  },
+  {
+   "name": "vabc",
+   "direction": "input",
+   "summary": "Voltage vector"
+  },
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "Current vector"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC-link voltage signal scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Controller reset scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Gate pulses vector | 0 or 1"
+  },
+  {
+   "name": "ModWave",
+   "direction": "output",
+   "summary": "Modulation wave vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Stator resistance (Ohm)",
+   "default": "0.25",
+   "values": "Resistance 0.25 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "1",
+   "values": "Pole number 1 (default) | positive integer",
+   "group": "General"
+  },
+  {
+   "name": "Inverter dc-link voltage threshold (V)",
+   "default": "300",
+   "values": "Voltage 300 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Fundamental sample time (s)",
+   "default": "5e-6",
+   "values": "SVM sample time 5e-6 (default) | positive scalar less than the control sample time",
+   "group": "General"
+  },
+  {
+   "name": "Control sample time (s)",
+   "default": "5e-5",
+   "values": "PI sample time 5e-5 (default) | positive scalar greater than the fundamental sample time",
+   "group": "General"
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1000",
+   "values": "Switching rate 1000 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Flux controller proportional gain",
+   "default": "150",
+   "values": "Flux PI proportional gain 150 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Flux controller integral gain",
+   "default": "3000",
+   "values": "Flux PI integral gain 3000 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Flux controller anti-windup gain",
+   "default": "1",
+   "values": "Flux PI anti-windup gain 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Torque controller proportional gain",
+   "default": "1",
+   "values": "Torque PI proportional gain 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Torque controller integral gain",
+   "default": "50",
+   "values": "Torque PI integral gain 50 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Torque controller anti-windup gain",
+   "default": "1",
+   "values": "Torque PI anti-windup gain 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "Q-axis",
+   "values": "Axis prioritization for voltage limiter Q-axis (default) | D-axis | D-Q equivalence",
+   "group": "Control Parameters"
+  }
+ ]
+}

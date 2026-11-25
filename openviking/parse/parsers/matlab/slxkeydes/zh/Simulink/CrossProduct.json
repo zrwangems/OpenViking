@@ -1,0 +1,30 @@
+{
+ "key": "CrossProduct",
+ "title": "Cross Product",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Cross_Product.md",
+  "Aerospace Blockset/Utilities/Math Operations/b_3x3_Cross_Product.md"
+ ],
+ "text": "两个向量的叉积，输入 2 路、输出 1 路、直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入向量 3-element vector"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个输入向量 3-element vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入向量的叉积 3-element vector"
+  }
+ ],
+ "params": []
+}

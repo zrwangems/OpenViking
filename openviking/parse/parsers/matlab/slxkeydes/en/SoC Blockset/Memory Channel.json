@@ -1,0 +1,223 @@
+{
+ "key": "Memory Channel",
+ "title": "Memory Channel",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Memory_Channel.md"
+ ],
+ "text": "Stream data through a memory channel, 6 inputs, 8 outputs, {Sample time} sets Time interval of sampling; {Hardware board} sets the view or modify current hardware settings Read-only: name of selected hardware, {Show implementation info} sets the view channel information Read-only: text, {Enable memory simulation} controls memory simulation accuracy, {Channel type} sets the channel protocol, {Region size (bytes)} sets the size of memory allocated for region, in bytes Read-only, {Buffer size (bytes)} sets the size of buffer, in bytes, {Number of buffers}, {Burst length}, {Use hardware board settings} uses the Hardware Implementation settings from the configuration, {Reader/Writer use same values} sets the reader and writer use the same values, {FIFO depth (number of bursts)} sets the depth of FIFO for data, {Almost full depth} sets the depth of FIFO when backpressure, {Clock frequency (MHz)} sets the interconnect frequency of master datapath, {Data width (bits)} sets the data width of master datapath, {Dimensions}, {Data type}, {Enable sample packing (last signal dimension as channel)} sets the pack data on the last dimension, {Output data signal matches input} sets the reader and writer use the same values, {Inherit sample time offset} sets the make reader inherit sample time, {Use pixel clock sample times} uses the pixel clock sample time, {Frame size} sets the frame dimensions 480p SDTV and {Launch performance plots} displays performance metrics. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "Writer data bus signal scalar | vector | matrix"
+  },
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "Writer input control signal bus"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "Reader input control signal bus"
+  },
+  {
+   "name": "rdDone",
+   "direction": "input",
+   "summary": "Notification message of completed read scalar"
+  },
+  {
+   "name": "wrBurstDone",
+   "direction": "input",
+   "summary": "Writer control input from memory controller scalar"
+  },
+  {
+   "name": "rdBurstDone",
+   "direction": "input",
+   "summary": "Reader control input from memory controller scalar"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "Output data signal to data consumer scalar | vector | matrix"
+  },
+  {
+   "name": "rdEvent",
+   "direction": "output",
+   "summary": "Task read event signal scalar"
+  },
+  {
+   "name": "wrEvent",
+   "direction": "output",
+   "summary": "Task write event signal scalar"
+  },
+  {
+   "name": "wrDone",
+   "direction": "output",
+   "summary": "Notification of freed buffer in memory scalar"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "Reader control signal from memory channel to data consumer bus"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "Writer control signal from memory channel to data producer bus"
+  },
+  {
+   "name": "wrBurstReq",
+   "direction": "output",
+   "summary": "Write burst request scalar"
+  },
+  {
+   "name": "rdBurstReq",
+   "direction": "output",
+   "summary": "Read burst request scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hardware board",
+   "default": "",
+   "values": "View or modify current hardware settings Read-only: name of selected hardware board",
+   "group": ""
+  },
+  {
+   "name": "Show implementation info",
+   "default": "",
+   "values": "View channel information Read-only: text window",
+   "group": ""
+  },
+  {
+   "name": "Enable memory simulation",
+   "default": "on",
+   "values": "Control memory simulation accuracy on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Channel type",
+   "default": "FIFO",
+   "values": "Choose channel protocol AXI4-Stream FIFO (default) | AXI4-Stream to Software via DMA | Software to AXI4-Stream via DMA | AXI4-Stream Video FIFO | AXI4-Stream Video Frame Buffer | AXI4 Random Access",
+   "group": "Main"
+  },
+  {
+   "name": "Region size (bytes)",
+   "default": "",
+   "values": "Size of memory allocated for region, in bytes Read-only: calculated",
+   "group": "Main"
+  },
+  {
+   "name": "Buffer size (bytes)",
+   "default": "1024",
+   "values": "Size of buffer, in bytes 1024 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Number of buffers",
+   "default": "8",
+   "values": "Number of buffers in region 8 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Burst length",
+   "default": "1",
+   "values": "Burst length for memory transactions 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Use hardware board settings",
+   "default": "on",
+   "values": "Use the Hardware Implementation settings from the configuration parameters on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Reader/Writer use same values",
+   "default": "on",
+   "values": "Reader and writer use the same values on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO depth (number of bursts)",
+   "default": "12",
+   "values": "Depth of FIFO for data 12 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Almost full depth",
+   "default": "8",
+   "values": "Depth of FIFO when backpressure is asserted 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Clock frequency (MHz)",
+   "default": "100",
+   "values": "Interconnect frequency of master datapath 100 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Data width (bits)",
+   "default": "64",
+   "values": "Data width of master datapath 64 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Dimensions",
+   "default": "",
+   "values": "Dimensions of input data signal scalar | array",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "",
+   "values": "Data type of writer data double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean | fixed point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Time interval of sampling 1 (default) | positive scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "off",
+   "values": "Pack data on the last dimension of the signal off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data signal matches input",
+   "default": "on",
+   "values": "Reader and writer use the same values on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Inherit sample time offset",
+   "default": "on",
+   "values": "Make reader inherit sample time from writer on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Use pixel clock sample times",
+   "default": "on",
+   "values": "Use the pixel clock sample time on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Frame size",
+   "default": "(720x480p)",
+   "values": "Frame dimensions 480p SDTV (720x480p) (default) |...",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Launch performance plots",
+   "default": "",
+   "values": "Display performance metrics button",
+   "group": "Performance"
+  }
+ ]
+}

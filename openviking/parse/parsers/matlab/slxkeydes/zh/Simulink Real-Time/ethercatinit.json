@@ -1,0 +1,56 @@
+{
+ "key": "ethercatinit",
+ "title": "EtherCAT Init",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Init.md"
+ ],
+ "text": "使用 EtherCAT 网络信息 (ENI) 文件中的数据初始化 EtherCAT 主设备节点；输出 1 路；按 {Initialization End State} 指定创建主分支后的最终状态；{Config file (ENI)} 指定来自 EtherCAT 配置器的 ENI、{Network Device Index} 指定 EtherCAT 网络标识符 0-15、{Ethernet Port Number} 指定目标计算机的端口号 int、{DC Tuning} 指定分布式时钟初始化参数 Large、{Enable EtherCAT Log for Debugging} 指定调试和日志记录模块参数的访问权限，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "关于 EtherCAT 网络的状态信息 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config file (ENI)",
+   "default": "",
+   "values": "来自 EtherCAT 配置器的 ENI 文件 字符向量",
+   "group": ""
+  },
+  {
+   "name": "Network Device Index",
+   "default": "",
+   "values": "EtherCAT 网络标识符 0-15",
+   "group": ""
+  },
+  {
+   "name": "Ethernet Port Number",
+   "default": "",
+   "values": "目标计算机的端口号 int",
+   "group": ""
+  },
+  {
+   "name": "Initialization End State",
+   "default": "Op",
+   "values": "创建主分支后的最终状态 Op (默认) | PreOp | SafeOp",
+   "group": ""
+  },
+  {
+   "name": "DC Tuning",
+   "default": "model",
+   "values": "分布式时钟初始化参数 Large model (默认) | Medium model | Small model",
+   "group": ""
+  },
+  {
+   "name": "Enable EtherCAT Log for Debugging",
+   "default": "Off",
+   "values": "调试和日志记录模块参数的访问权限 Off (默认) | Warning | Info | Verbose | All",
+   "group": ""
+  }
+ ]
+}

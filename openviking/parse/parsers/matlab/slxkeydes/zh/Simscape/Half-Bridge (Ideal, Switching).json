@@ -1,0 +1,13 @@
+{
+ "key": "Half-Bridge (Ideal, Switching)",
+ "title": "Half-Bridge (Ideal, Switching)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Half_Bridge_Ideal_Switching.md"
+ ],
+ "text": "具有理想开关和热端口的半桥。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

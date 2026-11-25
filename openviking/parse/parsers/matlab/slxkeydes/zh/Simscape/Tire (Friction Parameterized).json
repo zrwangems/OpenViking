@@ -1,0 +1,13 @@
+{
+ "key": "Tire (Friction Parameterized)",
+ "title": "Tire (Friction Parameterized)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Tire_Friction_Parameterized.md"
+ ],
+ "text": "以静摩擦系数和动摩擦系数参数化摩擦的轮胎。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

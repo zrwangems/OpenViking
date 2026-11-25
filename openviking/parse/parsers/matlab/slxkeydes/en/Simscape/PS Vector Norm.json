@@ -1,0 +1,13 @@
+{
+ "key": "PS Vector Norm",
+ "title": "PS Vector Norm",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Vector_Norm.md"
+ ],
+ "text": "Compute Euclidean norm of vector or matrix physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,37 @@
+{
+ "key": "Angle Conversion",
+ "title": "Angle Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Angle_Conversion.md"
+ ],
+ "text": "Convert from angle units to desired angle units, 1 input, 1 output, {Initial unit} sets Input units; {Final unit} sets the output units. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Angle scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Angle scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "deg",
+   "values": "Input units deg (default) | rad | rev",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "rad",
+   "values": "Output units rad (default) | deg | rev",
+   "group": ""
+  }
+ ]
+}

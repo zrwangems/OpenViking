@@ -1,0 +1,13 @@
+{
+ "key": "Matrix Helical Scan Interleaver",
+ "title": "Matrix Helical Scan Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Matrix_Helical_Scan_Interleaver.md"
+ ],
+ "text": "通过沿对角线选择矩阵元素来置换输入符号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,43 @@
+{
+ "key": "BusAssignment",
+ "title": "Bus Assignment",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Bus_Assignment.md",
+  "HDL Coder/Signal Routing/Bus_Assignment.md"
+ ],
+ "text": "为指定的总线元素赋予新值，输入 2 路、输出 1 路；{总线中的元素} 指定输入总线的元素 只读: 元素名称列表、{要赋值的元素} 指定要被赋予新值的总线元素 元素名称列表，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Bus",
+   "direction": "input",
+   "summary": "具有要重新赋值的元素的输入总线 总线"
+  },
+  {
+   "name": ":=",
+   "direction": "input",
+   "summary": "要赋给总线元素的新值 标量 | 向量 | 矩阵 | 数组 | 总线"
+  },
+  {
+   "name": "Bus",
+   "direction": "output",
+   "summary": "输出总线 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "总线中的元素",
+   "default": "",
+   "values": "输入总线的元素 只读: 元素名称列表",
+   "group": ""
+  },
+  {
+   "name": "要赋值的元素",
+   "default": "",
+   "values": "要被赋予新值的总线元素 元素名称列表",
+   "group": ""
+  }
+ ]
+}

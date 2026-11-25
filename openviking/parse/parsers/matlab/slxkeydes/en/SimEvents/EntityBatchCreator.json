@@ -1,0 +1,99 @@
+{
+ "key": "EntityBatchCreator",
+ "title": "Entity Batch Creator",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Batch_Creator.md"
+ ],
+ "text": "Create batch of entities, 1 input, 5 outputs, {Event actions} sets the event action; {Number of entities in batch} sets the number of entities in one batch, {Entity type name} sets the name of the batched entity that is created after combining incoming entities, {Bus object} sets the whether to output the batched entity as a bus, {Input entity name} sets the names to be attached to the input entities, {Number of entities arrived, a} sets the outputs the number of entities that have arrived, {Number of entities departed, d} sets the outputs the number of entities departed, {Number of entities remaining for next batch, rem} sets the outputs the number of entities remaining for the next and {Pending entity in block, pe} sets the pending entities. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output batch entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_a",
+   "direction": "output",
+   "summary": "Number of entities arrived scalar"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "Number of entities that have departed the block scalar"
+  },
+  {
+   "name": "Port_rem",
+   "direction": "output",
+   "summary": "Number of entities remaining for the next batch scalar"
+  },
+  {
+   "name": "Port_pe",
+   "direction": "output",
+   "summary": "Pending entity in block off (default) | on"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of entities in batch",
+   "default": "4",
+   "values": "Number of entities in one batch 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Entity type name",
+   "default": "Batch",
+   "values": "Name of the batched entity that is created after combining incoming entities Batch (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Bus object",
+   "default": "off",
+   "values": "Specify whether to output the batched entity as a bus object off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input entity name",
+   "default": "batch",
+   "values": "Specify names to be attached to the input entities batch (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Event actions",
+   "default": "Entry",
+   "values": "Specify the event action Entry (default) | Batch generate | Exit | Blocked",
+   "group": ""
+  },
+  {
+   "name": "Number of entities arrived, a",
+   "default": "off",
+   "values": "Outputs the number of entities that have arrived at the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "Outputs the number of entities departed the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities remaining for next batch, rem",
+   "default": "off",
+   "values": "Outputs the number of entities remaining for the next batch off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pending entity in block, pe",
+   "default": "off",
+   "values": "Pending entities off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "key": "Backscatter Pedestrian",
+ "title": "Backscatter Pedestrian",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Backscatter_Pedestrian.md"
+ ],
+ "text": "来自行人的后向散射信号，输入 3 路、输出 4 路；{Height (m)} 指定行人高度、{Walking Speed (m/s)} 指定行人行走速度 1.4 times pedestrian、{Propagation speed (m/s)} 指定信号传播速度 physconst、{Operating Frequency (Hz)} 指定载波频率 300e6、{Initial Position (m)} 指定行人的初始位置、{Initial Heading (deg)} 指定行人的初始航向、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "入射雷达信号 complex-valued M -by-16 matrix"
+  },
+  {
+   "name": "Ang",
+   "direction": "input",
+   "summary": "入射信号方向 real-valued 2-by-16 matrix"
+  },
+  {
+   "name": "AngH",
+   "direction": "input",
+   "summary": "行人航向 scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "合并后的反射雷达信号 complex-valued M -by-1 column vector"
+  },
+  {
+   "name": "Pos",
+   "direction": "output",
+   "summary": "身体分段位置 real-valued 3-by-16 matrix"
+  },
+  {
+   "name": "Vel",
+   "direction": "output",
+   "summary": "身体分段速度 real-valued 3-by-16 matrix"
+  },
+  {
+   "name": "Ax",
+   "direction": "output",
+   "summary": "身体分段方位 real-valued 3-by-3-by-16 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Height (m)",
+   "default": "1.65",
+   "values": "行人高度 1.65 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Walking Speed (m/s)",
+   "default": "height",
+   "values": "行人行走速度 1.4 times pedestrian height (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating Frequency (Hz)",
+   "default": "300e6",
+   "values": "载波频率 300e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial Position (m)",
+   "default": "[0;0;0]",
+   "values": "行人的初始位置 [0;0;0] (default) | 3-by-1 real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Initial Heading (deg)",
+   "default": "0",
+   "values": "行人的初始航向 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

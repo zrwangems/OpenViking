@@ -1,0 +1,13 @@
+{
+ "key": "Flow Coefficient Parameterized Valve (TL)",
+ "title": "Flow Coefficient Parameterized Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Flow_Coefficient_Parameterized_Valve_TL.md"
+ ],
+ "text": "流通面积根据其 Cv 或 Kv 流量系数建模的阀门。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

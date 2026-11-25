@@ -1,0 +1,517 @@
+{
+ "key": "Vehicle Body 3DOF Lateral",
+ "title": "Vehicle Body 3DOF Dual Track",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Body/Vehicle_Body_3DOF_Dual_Track.md",
+  "Vehicle Dynamics Blockset/Vehicle Body/Vehicle_Body_3DOF_Single_Track.md",
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Bicycle_Model_Force_Input.md",
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Bicycle_Model_Velocity_Input.md",
+  "Vehicle Dynamics Blockset/Vehicle Body/Bicycle_Model_Force_Input.md",
+  "Vehicle Dynamics Blockset/Vehicle Body/Bicycle_Model_Velocity_Input.md"
+ ],
+ "text": "3DOF 刚性车体，用于计算纵向、横向和横摆运动，输入 18 路、输出 7 路；按 {Absolute pressure, Pabs} 指定压力；{Vehicle track} 指定机轮数量 Single、{Axle forces} 指定车轴力类型 External longitudinal、{Front wheel steering} 指定 WhlAngF 输入端口、{External wind} 指定 WindXYZ 输入端口、{External forces} 指定 FExt 输入端口、{External moments} 指定 MExt 输入端口、{Rear wheel steering} 指定 WhlAngR 输入端口、{External friction} 指定 Mu 输入端口、{Hitch forces} 指定 Fh 输入端口、{Hitch moments} 指定 Mh 输入端口、{Initial longitudinal position} 指定 X_o 输入端口、{Initial lateral position} 指定 Y_o 输入端口、{Initial longitudinal velocity} 指定 xdot_o 输入端口、{Initial lateral velocity} 指定 ydot_o 输入端口、{Initial yaw angle} 指定 psi_o 输入端口、{Initial yaw rate} 指定 r_o 输入端口、{Air temperature} 指定 AirTemp 输入端口、{Number of wheels on front axle, NF} 指定前轮数量、{Number of wheels on rear axle, NR} 指定后轮数量、{Vehicle mass, m} 指定车辆质量、{Longitudinal distance from center of mass to front axle, a} 指定前轴距离、{Longitudinal distance from center of mass to rear axle, b} 指定后轴距离、{Vertical distance from center of mass to axle plane, h} 指定高度、{Longitudinal distance from center of mass to hitch, dh} 指定从质心到牵引点的距离、{Vertical distance from hitch to axle plane, hh} 指定从牵引点到车轴平面的距离、{Initial inertial frame longitudinal position, X_o} 指定位置、{Initial longitudinal velocity, xdot_o} 指定速度、{Front tire corner stiffness, Cy_f} 指定刚度 12e3、{Rear tire corner stiffness, Cy_r} 指定刚度 11e3、{Initial inertial frame lateral displacement, Y_o} 指定位置、{Initial lateral velocity, ydot_o} 指定速度、{Mapped corner stiffness} 指定 off、{Include relaxation length dynamics} 启用松弛长度动态特性、{Lateral distance from geometric centerline to center of mass, d} 指定距离、{Lateral distance from geometric centerline to hitch, hl} 指定距离、{Track width} 指定宽度、{Front tire(s) relaxation length, sigma_f} 指定 Relaxation length .1、{Rear tire(s) relaxation length, sigma_r} 指定 Relaxation length .1、{Front axle slip angle breakpoints, alpha_f_brk} 指定断点、{Front axle corner data, Cy_f_data} 指定断点、{Rear axle slip angle breakpoints, alpha_r_brk} 指定断点、{Rear axle corner data, Cy_r_data} 指定数据、{Yaw polar inertia, Izz} 指定惯性、{Initial yaw angle, psi_o} 指定 Psi 旋转、{Initial yaw rate, r_o} 指定偏航角速率、{Longitudinal drag area, Af} 指定车辆有效横截面积、{Longitudinal drag coefficient, Cd} 指定空气阻力系数 .3、{Longitudinal lift coefficient, Cl} 指定空气升力系数 .1、{Longitudinal drag pitch moment, Cpm} 指定俯仰阻力 .1、{Relative wind angle vector, beta_w} 指定风向角、{Side force coefficient vector, Cs} 指定侧向力系数、{Yaw moment coefficient vector, Cym} 指定横摆力矩阻力、{Air temperature, Tair} 指定温度、{Gravitational acceleration, g} 指定重力、{Nominal friction scaling factor, mu} 指定摩擦比例因子、{Longitudinal velocity tolerance, xdot_tol} 指定容差 .01、{Nominal normal force, Fznom} 指定法向力、{Geometric longitudinal offset from axle plane, longOff} 指定纵向偏移、{Geometric lateral offset from center plane, latOff} 指定侧向偏移、{Geometric vertical offset from axle plane, vertOff} 指定垂直偏移、{Wrap Euler angles, wrapAng} 指定 off，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WhlAngF",
+   "direction": "input",
+   "summary": "前轮转向角 scalar | array"
+  },
+  {
+   "name": "WhlAngR",
+   "direction": "input",
+   "summary": "后轮转向角 scalar | array"
+  },
+  {
+   "name": "xdotin",
+   "direction": "input",
+   "summary": "纵向速度 scalar"
+  },
+  {
+   "name": "FwF",
+   "direction": "input",
+   "summary": "前轮上的总力 scalar | array"
+  },
+  {
+   "name": "FwR",
+   "direction": "input",
+   "summary": "后轮上的总力 scalar | array"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "车辆质心处的外力 array"
+  },
+  {
+   "name": "MExt",
+   "direction": "input",
+   "summary": "绕车辆质心的外力矩 array"
+  },
+  {
+   "name": "Fh",
+   "direction": "input",
+   "summary": "车体上的挂钩力 array"
+  },
+  {
+   "name": "Mh",
+   "direction": "input",
+   "summary": "绕车体的挂钩力矩 array"
+  },
+  {
+   "name": "WindXYZ",
+   "direction": "input",
+   "summary": "风速 array"
+  },
+  {
+   "name": "Mu",
+   "direction": "input",
+   "summary": "轮胎摩擦系数 scalar"
+  },
+  {
+   "name": "AirTemp",
+   "direction": "input",
+   "summary": "环境空气温度 scalar"
+  },
+  {
+   "name": "X_o",
+   "direction": "input",
+   "summary": "初始纵向位置 scalar"
+  },
+  {
+   "name": "Y_o",
+   "direction": "input",
+   "summary": "初始横向位置 scalar"
+  },
+  {
+   "name": "xdot_o",
+   "direction": "input",
+   "summary": "初始纵向位置 scalar"
+  },
+  {
+   "name": "ydot_o",
+   "direction": "input",
+   "summary": "初始横向位置 scalar"
+  },
+  {
+   "name": "psi_o",
+   "direction": "input",
+   "summary": "初始偏航角 scalar"
+  },
+  {
+   "name": "r_o",
+   "direction": "input",
+   "summary": "初始偏航角速度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "xdot",
+   "direction": "output",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "ydot",
+   "direction": "output",
+   "summary": "车辆横向速度 scalar"
+  },
+  {
+   "name": "psi",
+   "direction": "output",
+   "summary": "偏航 scalar"
+  },
+  {
+   "name": "r",
+   "direction": "output",
+   "summary": "偏航角速率 scalar"
+  },
+  {
+   "name": "FzF",
+   "direction": "output",
+   "summary": "前轮法向力 scalar | array"
+  },
+  {
+   "name": "FzR",
+   "direction": "output",
+   "summary": "后轮法向力 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vehicle track",
+   "default": "",
+   "values": "机轮数量 Single (bicycle) | Dual",
+   "group": ""
+  },
+  {
+   "name": "Axle forces",
+   "default": "",
+   "values": "车轴力类型 External longitudinal velocity | External longitudinal forces | External forces",
+   "group": ""
+  },
+  {
+   "name": "Front wheel steering",
+   "default": "on",
+   "values": "WhlAngF 输入端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "External wind",
+   "default": "off",
+   "values": "WindXYZ 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External forces",
+   "default": "off",
+   "values": "FExt 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External moments",
+   "default": "off",
+   "values": "MExt 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Rear wheel steering",
+   "default": "off",
+   "values": "WhlAngR 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External friction",
+   "default": "off",
+   "values": "Mu 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Hitch forces",
+   "default": "off",
+   "values": "Fh 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Hitch moments",
+   "default": "off",
+   "values": "Mh 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial longitudinal position",
+   "default": "off",
+   "values": "X_o 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial lateral position",
+   "default": "off",
+   "values": "Y_o 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial longitudinal velocity",
+   "default": "off",
+   "values": "xdot_o 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial lateral velocity",
+   "default": "off",
+   "values": "ydot_o 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw angle",
+   "default": "off",
+   "values": "psi_o 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw rate",
+   "default": "off",
+   "values": "r_o 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Air temperature",
+   "default": "off",
+   "values": "AirTemp 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels on front axle, NF",
+   "default": "2",
+   "values": "前轮数量 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels on rear axle, NR",
+   "default": "2",
+   "values": "后轮数量 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle mass, m",
+   "default": "2000",
+   "values": "车辆质量 2000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal distance from center of mass to front axle, a",
+   "default": "1.4",
+   "values": "前轴距离 1.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal distance from center of mass to rear axle, b",
+   "default": "1.6",
+   "values": "后轴距离 1.6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vertical distance from center of mass to axle plane, h",
+   "default": "0.35",
+   "values": "高度 0.35 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal distance from center of mass to hitch, dh",
+   "default": "1",
+   "values": "从质心到牵引点的距离 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vertical distance from hitch to axle plane, hh",
+   "default": "0.2",
+   "values": "从牵引点到车轴平面的距离 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial inertial frame longitudinal position, X_o",
+   "default": "0",
+   "values": "位置 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial longitudinal velocity, xdot_o",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Front tire corner stiffness, Cy_f",
+   "default": "12e3",
+   "values": "刚度 12e3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rear tire corner stiffness, Cy_r",
+   "default": "11e3",
+   "values": "刚度 11e3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial inertial frame lateral displacement, Y_o",
+   "default": "0",
+   "values": "位置 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial lateral velocity, ydot_o",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mapped corner stiffness",
+   "default": "off",
+   "values": "选择 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Include relaxation length dynamics",
+   "default": "on",
+   "values": "启用松弛长度动态特性 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Lateral distance from geometric centerline to center of mass, d",
+   "default": "0",
+   "values": "距离 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lateral distance from geometric centerline to hitch, hl",
+   "default": "0",
+   "values": "距离 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Track width",
+   "default": "[1.4,1.4]",
+   "values": "宽度 [1.4,1.4] (default) | 1 -by- 2 vector",
+   "group": ""
+  },
+  {
+   "name": "Front tire(s) relaxation length, sigma_f",
+   "default": ".1",
+   "values": "Relaxation length .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rear tire(s) relaxation length, sigma_r",
+   "default": ".1",
+   "values": "Relaxation length .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Front axle slip angle breakpoints, alpha_f_brk",
+   "default": "[-.1.1]",
+   "values": "断点 [-.1.1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Front axle corner data, Cy_f_data",
+   "default": "9e3]",
+   "values": "断点 [-9e3 9e3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rear axle slip angle breakpoints, alpha_r_brk",
+   "default": "[-.1.1]",
+   "values": "断点 [-.1.1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rear axle corner data, Cy_r_data",
+   "default": "9e3]",
+   "values": "数据 [-9e3 9e3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Yaw polar inertia, Izz",
+   "default": "4000",
+   "values": "惯性 4000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw angle, psi_o",
+   "default": "0",
+   "values": "Psi 旋转 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw rate, r_o",
+   "default": "0",
+   "values": "偏航角速率 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal drag area, Af",
+   "default": "2",
+   "values": "车辆有效横截面积 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal drag coefficient, Cd",
+   "default": ".3",
+   "values": "空气阻力系数 .3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal lift coefficient, Cl",
+   "default": ".1",
+   "values": "空气升力系数 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal drag pitch moment, Cpm",
+   "default": ".1",
+   "values": "俯仰阻力 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Relative wind angle vector, beta_w",
+   "default": "[0:0.01:0.3]",
+   "values": "风向角 [0:0.01:0.3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Side force coefficient vector, Cs",
+   "default": "0.01:0.01:0.3]",
+   "values": "侧向力系数 [0 0.01:0.01:0.3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Yaw moment coefficient vector, Cym",
+   "default": "1e-6:0.01:0.3]",
+   "values": "横摆力矩阻力 [0 1e-6:0.01:0.3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Absolute pressure, Pabs",
+   "default": "101325",
+   "values": "压力 101325 (default) | scalar | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air temperature, Tair",
+   "default": "273",
+   "values": "温度 273 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.81",
+   "values": "重力 9.81 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal friction scaling factor, mu",
+   "default": "1",
+   "values": "摩擦比例因子 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity tolerance, xdot_tol",
+   "default": ".01",
+   "values": "容差 .01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal normal force, Fznom",
+   "default": "5000",
+   "values": "法向力 5000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Geometric longitudinal offset from axle plane, longOff",
+   "default": "0",
+   "values": "纵向偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Geometric lateral offset from center plane, latOff",
+   "default": "0",
+   "values": "侧向偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Geometric vertical offset from axle plane, vertOff",
+   "default": "0",
+   "values": "垂直偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wrap Euler angles, wrapAng",
+   "default": "off",
+   "values": "选择 off (default) | on",
+   "group": ""
+  }
+ ]
+}

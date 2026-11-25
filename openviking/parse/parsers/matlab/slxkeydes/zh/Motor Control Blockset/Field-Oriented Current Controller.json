@@ -1,0 +1,90 @@
+{
+ "key": "Field-Oriented Current Controller",
+ "title": "Field-Oriented Current Controller",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/Field_Oriented_Current_Controller.md"
+ ],
+ "text": "使用磁场定向控制 (FOC) 技术实现三相电机的电流控制，输入 7 路、输出 2 路；按 {Input electrical position unit} 指定电位置输入的单位；{Number of data points for sine-cosine lookup table} 查找表数组大小、{Alpha (phase-a) axis alignment} 指定 dq 参考帧对齐、{Saturation method} 指定模块使用的饱和方法 D-Q、{PWM method} 指定调制技术 SVM: space vector，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I dqRef",
+   "direction": "input",
+   "summary": "参考 *d* 轴和 *q* 轴电流 vector"
+  },
+  {
+   "name": "I abMeas",
+   "direction": "input",
+   "summary": "测得的 *a* 相和 *b* 相电流 vector"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "电机电位置 scalar"
+  },
+  {
+   "name": "V SatLim",
+   "direction": "input",
+   "summary": "*d-q* 电压的饱和限值 scalar"
+  },
+  {
+   "name": "K p,K i *T s",
+   "direction": "input",
+   "summary": "*d* 轴和 *q* 轴 PI 控制器增益 vector"
+  },
+  {
+   "name": "PI Config",
+   "direction": "input",
+   "summary": "PI 控制器输出的初始值和限值 vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "复位模块 scalar"
+  },
+  {
+   "name": "V abc",
+   "direction": "output",
+   "summary": "电机相电压 vector"
+  },
+  {
+   "name": "Debug",
+   "direction": "output",
+   "summary": "用于调试的信号 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input electrical position unit",
+   "default": "Radians",
+   "values": "电位置输入的单位 Radians (default) | Degrees | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Number of data points for sine-cosine lookup table",
+   "default": "1024",
+   "values": "查找表数组大小 1024 (default) | scalar in the range [125, 4095]",
+   "group": ""
+  },
+  {
+   "name": "Alpha (phase-a) axis alignment",
+   "default": "D-axis",
+   "values": "dq 参考帧对齐 D-axis (default) | Q-axis",
+   "group": ""
+  },
+  {
+   "name": "Saturation method",
+   "default": "equivalence",
+   "values": "模块使用的饱和方法 D-Q equivalence (default) | Prioritize D axis | Prioritize Q axis",
+   "group": ""
+  },
+  {
+   "name": "PWM method",
+   "default": "modulation",
+   "values": "调制技术 SVM: space vector modulation (default) | SPWM: sinusoidal PWM",
+   "group": ""
+  }
+ ]
+}

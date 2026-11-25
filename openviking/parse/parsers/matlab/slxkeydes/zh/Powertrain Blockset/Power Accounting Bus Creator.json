@@ -1,0 +1,83 @@
+{
+ "key": "Power Accounting Bus Creator",
+ "title": "Power Accounting Bus Creator",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Utilities/Power Accounting/Power_Accounting_Bus_Creator.md"
+ ],
+ "text": "创建功率信息总线，输入 3 路、输出 1 路；{Associated block} 指定关联模块 Parent、{Library block name} 指定模块名称 Block name、{Transferred power} 指定模块之间传输的功率、{Not transferred power} 指定跨越模块边界的功率、{Stored power} 指定储能变化率、{Signal name} 指定信号名称 char、{Associated Port} 指定传递功率的端口名称、{Description} 指定信号描述 char，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PwrTrnsfrd",
+   "direction": "input",
+   "summary": "模块之间传输的功率 bus"
+  },
+  {
+   "name": "PwrNotTrnsfrd",
+   "direction": "input",
+   "summary": "跨越模块边界但未传输的功率 bus"
+  },
+  {
+   "name": "PwrStored",
+   "direction": "input",
+   "summary": "储能变化率 bus"
+  },
+  {
+   "name": "PwrInfo",
+   "direction": "output",
+   "summary": "功率信息总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Associated block",
+   "default": "Parent",
+   "values": "关联模块 Parent (default) | Parent reference block",
+   "group": ""
+  },
+  {
+   "name": "Library block name",
+   "default": "",
+   "values": "模块名称 Block name",
+   "group": ""
+  },
+  {
+   "name": "Transferred power",
+   "default": "on",
+   "values": "模块之间传输的功率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Not transferred power",
+   "default": "on",
+   "values": "跨越模块边界的功率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Stored power",
+   "default": "on",
+   "values": "储能变化率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Signal name",
+   "default": "",
+   "values": "信号名称 char",
+   "group": ""
+  },
+  {
+   "name": "Associated Port",
+   "default": "",
+   "values": "传递功率的端口名称 {’PortA’,’PortB’,’PortC’}",
+   "group": ""
+  },
+  {
+   "name": "Description",
+   "default": "",
+   "values": "信号描述 char",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "key": "ROS Get Parameter",
+ "title": "Get Parameter",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Get_Parameter.md"
+ ],
+ "text": "从 ROS 参数服务器获取值；输出 3 路；按 {Show ErrorCode output port} 指定显示错误代码输出 on；{Source} 用于指定参数名称的来源 Select from ROS、{Name} 指定参数名称 string、{Data type} 指定参数的数据类型 double、{Maximum length} 指定 uint8 数组的最大长度 scalar、{Initial value} 指定默认参数值输出 double、{Sample time} 输出之间的间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Value",
+   "direction": "output",
+   "summary": "参数值 scalar | logical | uint8 array"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "ROS 参数的状态 0 | 1 | 2 | 3"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "字符串参数的长度 integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source",
+   "default": "",
+   "values": "用于指定参数名称的来源 Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "参数名称 string",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "",
+   "values": "参数的数据类型 double | int32 | boolean | uint8[] (string)",
+   "group": ""
+  },
+  {
+   "name": "Maximum length",
+   "default": "",
+   "values": "uint8 数组的最大长度 scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "",
+   "values": "默认参数值输出 double | int32 | boolean | uint8",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "输出之间的间隔 inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "",
+   "values": "显示错误代码输出 on | off",
+   "group": ""
+  }
+ ]
+}

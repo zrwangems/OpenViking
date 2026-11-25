@@ -1,0 +1,56 @@
+{
+ "key": "PWM",
+ "title": "PWM",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discontinuities/PWM.md",
+  "HDL Coder/RCP and HIL/PWM.md"
+ ],
+ "text": "生成对应于输入占空比的理想脉冲宽度调制信号，输入 1 路、输出 1 路；按 {不允许零占空比} 指定避免代数环 off；{周期(秒)} 指定脉冲宽度、{初始延迟}、{以固定时间间隔运行} 为离散时间行为选择、{采样时间} 指定脉冲分辨率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "占空比 标量"
+  },
+  {
+   "name": "Port 1",
+   "direction": "output",
+   "summary": "输出脉冲 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "周期(秒)",
+   "default": "1",
+   "values": "脉冲宽度 1 (默认) | 实数标量",
+   "group": ""
+  },
+  {
+   "name": "初始延迟",
+   "default": "0",
+   "values": "初始延迟 0 (默认) | 实数标量",
+   "group": ""
+  },
+  {
+   "name": "不允许零占空比",
+   "default": "",
+   "values": "避免代数环 off | on",
+   "group": ""
+  },
+  {
+   "name": "以固定时间间隔运行",
+   "default": "on",
+   "values": "为离散时间行为选择 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "设置脉冲分辨率 0.1 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

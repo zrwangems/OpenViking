@@ -1,0 +1,13 @@
+{
+ "key": "Force Actuator (PB)",
+ "title": "Force Actuator (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/Force_Actuator_PB.md"
+ ],
+ "text": "带长度的理想力执行器，其产生的力与输入信号成正比。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

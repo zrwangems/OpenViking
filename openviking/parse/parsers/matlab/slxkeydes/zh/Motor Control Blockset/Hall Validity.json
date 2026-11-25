@@ -1,0 +1,78 @@
+{
+ "key": "Hall Validity",
+ "title": "Hall Validity",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensor Decoders/Hall_Validity.md"
+ ],
+ "text": "计算转子旋转方向和霍尔传感器序列有效性，输入 4 路、输出 5 路；按 {预期正向霍尔序列} 指定指示正方向的序列；{序列}、{计数器大小} 指定外部计数器寄存器的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "HallVal",
+   "direction": "input",
+   "summary": "当前霍尔传感器输出状态 标量"
+  },
+  {
+   "name": "PrevHallVal",
+   "direction": "input",
+   "summary": "先前的霍尔传感器输出状态 标量"
+  },
+  {
+   "name": "Cnt",
+   "direction": "input",
+   "summary": "外部计数器值 标量"
+  },
+  {
+   "name": "PrevDir",
+   "direction": "input",
+   "summary": "之前的霍尔状态期间的转子旋转方向 标量"
+  },
+  {
+   "name": "Invalid",
+   "direction": "output",
+   "summary": "霍尔状态有效性指示符 标量"
+  },
+  {
+   "name": "SpdCnt",
+   "direction": "output",
+   "summary": "霍尔状态更改时的计数 标量"
+  },
+  {
+   "name": "Dir",
+   "direction": "output",
+   "summary": "当前霍尔状态下的转子旋转方向 标量"
+  },
+  {
+   "name": "SpdVal",
+   "direction": "output",
+   "summary": "当前和先前霍尔状态与转速计算的有效性 标量"
+  },
+  {
+   "name": "HallChng",
+   "direction": "output",
+   "summary": "将标志设置为 1，指示霍尔状态发生变化 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "预期正向霍尔序列",
+   "default": "ABC",
+   "values": "指示正方向的序列 ABC (默认) | CBA | 自定义序列",
+   "group": ""
+  },
+  {
+   "name": "序列",
+   "default": "[5,4,6,2,3,1]",
+   "values": "指示正方向的自定义序列 [5,4,6,2,3,1] (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "计数器大小",
+   "default": "位",
+   "values": "外部计数器寄存器的大小 16 位 (默认) | 8 位 | 32 位",
+   "group": ""
+  }
+ ]
+}

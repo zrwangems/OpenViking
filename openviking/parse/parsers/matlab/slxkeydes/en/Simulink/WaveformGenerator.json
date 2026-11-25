@@ -1,0 +1,74 @@
+{
+ "key": "WaveformGenerator",
+ "title": "Waveform Generator",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Waveform_Generator.md"
+ ],
+ "text": "Output waveforms using signal notations, 1 output, no direct feedthrough, {Output data type} sets the output data type; {Output Signal} sets the waveform for output signal, {Waveform Definition} sets the waveform signal notations constant, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Lock output data type setting against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action and {Sample time} sets the time interval between samples. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Generated output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output Signal",
+   "default": "1",
+   "values": "Waveform for output signal 1 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Waveform Definition",
+   "default": "",
+   "values": "Waveform signal notations constant | gaussian(mean,variance,seed) | pulse(amplitude,trigger_time,duration) | sawtooth(amplitude,frequence,phase_offset) | sin(amplitude,frequence,phase_offset) | square(amplitude,frequence,phase_offset) | step(step_time,initial_value,final_value)",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Specify the output data type double (default) | Inherit: Inherit via back propagation | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | |...",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Time interval between samples 0.1 (default) | scalar",
+   "group": "Signal Attributes"
+  }
+ ]
+}

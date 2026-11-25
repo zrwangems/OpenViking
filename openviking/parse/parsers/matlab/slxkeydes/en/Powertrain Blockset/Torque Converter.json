@@ -1,0 +1,178 @@
+{
+ "key": "Torque Converter",
+ "title": "Torque Converter",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Torque Converters/Torque_Converter.md",
+  "Simscape/Driveline/Couplings & Drives/Torque_Converter.md"
+ ],
+ "text": "Three-part torque converter consisting of an impeller, turbine, and stator, 3 outputs, {Interpolation method} sets Select interpolation method; {Lock-up clutch configuration} selects lock-up clutch configuration, {Impeller shaft inertia, Ji} sets the inertia .1, {Impeller shaft viscous damping, bi} sets the viscous damping coefficient .001, {Turbine shaft inertia, Jt} sets the inertia .1, {Turbine shaft viscous damping, bt} sets the viscous damping coefficient .001, {Initial impeller shaft velocity, omegai_o} sets the angular velocity, {Initial turbine shaft velocity, omegat_o} sets the angular velocity, {Speed ratio vector, phi} sets the ratio, {Capacity factor parameterization} selects factor ratio type Input speed /, {Capacity vector, psi} sets the vector, {Torque ratio vector, zeta} sets the vector, {Fluid torque response time constant (set to 0 to disable), tauTC} sets the time constant .02, {Clutch force equivalent net radius, Reff} sets the effective radius .3, {Static friction coefficient, mus} sets the coefficient, {Kinetic friction coefficient, muk} sets the coefficient, {Start simulation with clutch initially locked} selects to initially lock clutch, {Lock-up speed ratio threshold, philu} sets the threshold .85, {Minimum lock-up engagement speed, omegal} sets the angular velocity, {Lock-up disengagement speed, omegau} sets the angular velocity, {Lock-up clutch force gain, K_c} sets the gain and {Lock-up clutch time constant, tauC} sets the time constant .0500. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ImpTrq",
+   "direction": "unknown",
+   "summary": "Applied impeller torque scalar"
+  },
+  {
+   "name": "TurbTrq",
+   "direction": "unknown",
+   "summary": "Applied turbine torque scalar"
+  },
+  {
+   "name": "Clutch Force",
+   "direction": "unknown",
+   "summary": "Applied clutch force scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "ImpSpd",
+   "direction": "output",
+   "summary": "Impeller speed scalar"
+  },
+  {
+   "name": "TurbSpd",
+   "direction": "output",
+   "summary": "Turbine speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lock-up clutch configuration",
+   "default": "Lock-up",
+   "values": "Select lock-up clutch configuration Lock-up (default) | No lock-up | External lock-up input",
+   "group": ""
+  },
+  {
+   "name": "Impeller shaft inertia, Ji",
+   "default": ".1",
+   "values": "Inertia .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Impeller shaft viscous damping, bi",
+   "default": ".001",
+   "values": "Viscous damping coefficient .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Turbine shaft inertia, Jt",
+   "default": ".1",
+   "values": "Inertia .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Turbine shaft viscous damping, bt",
+   "default": ".001",
+   "values": "Viscous damping coefficient .001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial impeller shaft velocity, omegai_o",
+   "default": "0",
+   "values": "Angular velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial turbine shaft velocity, omegat_o",
+   "default": "0",
+   "values": "Angular velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed ratio vector, phi",
+   "default": "0.97]",
+   "values": "Ratio [ 0 0.50 0.60 0.70 0.80 0.87 0.92 0.94 0.96 0.97] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Capacity factor parameterization",
+   "default": "torque)",
+   "values": "Select factor ratio type Input speed / sqrt(input torque) (default) | Absorbed torque / input speed^2",
+   "group": ""
+  },
+  {
+   "name": "Capacity vector, psi",
+   "default": "50.00]",
+   "values": "Vector [12.2938 12.8588 13.1452 13.6285 14.6163 16.2675 19.3503 22.1046 29.9986 50.00] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Torque ratio vector, zeta",
+   "default": "0.9983]",
+   "values": "Vector [2.2320 1.5462 1.4058 1.2746 1.1528 1.0732 1.0192 0.9983 0.9983 0.9983] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Fluid torque response time constant (set to 0 to disable), tauTC",
+   "default": ".02",
+   "values": "Time constant .02 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "Select interpolation method Linear (default) | Flat | Nearest",
+   "group": ""
+  },
+  {
+   "name": "Clutch force equivalent net radius, Reff",
+   "default": ".3",
+   "values": "Effective radius .3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static friction coefficient, mus",
+   "default": "1.2",
+   "values": "Coefficient 1.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Kinetic friction coefficient, muk",
+   "default": "1",
+   "values": "Coefficient 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with clutch initially locked",
+   "default": "off",
+   "values": "Select to initially lock clutch off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lock-up speed ratio threshold, philu",
+   "default": ".85",
+   "values": "Threshold .85 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum lock-up engagement speed, omegal",
+   "default": "900*pi/30",
+   "values": "Angular velocity 900*pi/30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lock-up disengagement speed, omegau",
+   "default": "800*pi/30",
+   "values": "Angular velocity 800*pi/30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lock-up clutch force gain, K_c",
+   "default": "5000",
+   "values": "Gain 5000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lock-up clutch time constant, tauC",
+   "default": ".0500",
+   "values": "Time constant .0500 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Machine Inertia",
+ "title": "Machine Inertia",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechanical/Machine_Inertia.md"
+ ],
+ "text": "Machine inertia parameterized using machine inertia constant or anchor inertia.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

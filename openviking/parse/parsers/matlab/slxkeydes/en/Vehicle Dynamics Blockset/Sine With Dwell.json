@@ -1,0 +1,72 @@
+{
+ "key": "Sine With Dwell",
+ "title": "Sine With Dwell",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Sine_With_Dwell.md"
+ ],
+ "text": "Generate single sinusoidal steering command, 1 input, 2 outputs; {Maneuver start time, tStart [s]} sets the start time, {Longitudinal velocity setpoint, velRef} sets the target velocity, {Longitudinal velocity setpoint units, velRefUnit []} sets the units, {Steer frequency, steerFreq [Hz]} sets the handwheel frequency, {Steer amplitude, steerAmp [deg]} sets the handwheel steer amplitude, {Countersteer dwell time, tDwellCntrSteer [s]} and {Initial steer direction}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "Vehicle longitudinal velocity scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "Driver reference data bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "Driver command data bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "2",
+   "values": "Start time 2 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal velocity setpoint, velRef",
+   "default": "50",
+   "values": "Target velocity 50 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "Units mph (default)",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Steer frequency, steerFreq [Hz]",
+   "default": "0.7",
+   "values": "Handwheel frequency 0.7 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Steer amplitude, steerAmp [deg]",
+   "default": "90",
+   "values": "Handwheel steer amplitude 90 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Countersteer dwell time, tDwellCntrSteer [s]",
+   "default": "0.5",
+   "values": "Countersteer dwell time 0.5 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Initial steer direction",
+   "default": "Right",
+   "values": "Initial steer direction Right (default) | Left",
+   "group": "Maneuver Parameters"
+  }
+ ]
+}

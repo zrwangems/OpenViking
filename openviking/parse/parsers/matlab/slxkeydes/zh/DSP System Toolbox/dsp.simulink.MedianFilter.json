@@ -1,0 +1,38 @@
+{
+ "key": "dsp.simulink.MedianFilter",
+ "title": "Median Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Median_Filter.md",
+  "DSP System Toolbox/Filtering/Filter Designs/Median_Filter.md"
+ ],
+ "text": "Median Filter 模块沿每个通道随时间独立计算输入信号的移动中位数，输入 1 路、输出 1 路；{Window length} 指定滑动窗口长度、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "数据输入 column vector | row vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "移动中位数输出 column vector | row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length",
+   "default": "5",
+   "values": "滑动窗口长度 5 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

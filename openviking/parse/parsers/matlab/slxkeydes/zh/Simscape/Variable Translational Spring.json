@@ -1,0 +1,13 @@
+{
+ "key": "Variable Translational Spring",
+ "title": "Variable Translational Spring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Variable_Translational_Spring.md"
+ ],
+ "text": "具有可变弹簧刚度的平移弹簧。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

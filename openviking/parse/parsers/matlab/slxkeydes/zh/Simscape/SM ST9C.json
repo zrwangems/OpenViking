@@ -1,0 +1,238 @@
+{
+ "key": "SM ST9C",
+ "title": "SM ST9C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_ST9C.md"
+ ],
+ "text": "离散时间或连续时间同步电机 ST9C 静态励磁系统，带有自动电压调节器，输入 10 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Initial field voltage, Efd0 (pu)} 指定初始输出电压、{Initial terminal voltage, Vt0 (pu)} 指定初始机端电压、{Initial terminal current, It0 (pu)} 指定初始机端电流、{Resistive component of load compensation, R_C (pu)} 指定补偿电阻、{Reactance component of load compensation, X_C (pu)} 指定补偿电抗、{Regulator input filter time constant, T_R (s)} 调节器时间常数、{Time constant of differential part of AVR, T_CD (s)} 指定 AVR 微分部分的时间常数、{RegFilter time constant of differential part of AVR, T_BD (s)} 指定 AVR 微分部分的滤波时间常数、{Dead-band for differential part influence on AVR, Z_A (1)} 指定微分部分对 AVR 影响的死区、{AVR gain, K_A (1)} 指定 AVR 增益、{Gain associated with activation of takeover UEL, K_U (1)} 指定与激活 takeover UEL 相关联的增益、{Time constant of AVR, T_A (s)} 指定 AVR 的时间常数、{Time constant of underexcitation limiter, T_AUEL (s)} 指定欠励限制器的时间常数、{Maximum regulator output, V_Rmax (pu)} 调节器最大输出、{Minimum regulator output, V_Rmin (pu)} 调节器最小输出、{Power converter gain (proportional to supply voltage), K_AS (pu)} 指定功率变换器增益、{Equivalent time constant of power converter firing control, T_AS (s)} 指定功率变换器触发控制的时间常数、{Alternate OEL input locations (V_OEL)} 指定 OEL 输入位置、{Alternate UEL input locations (V_UEL)} 指定 UEL 输入位置、{Alternate SCL input locations (V_SCL)} 指定 SCL 输入位置、{Rectifier loading factor proportional to commutating reactance, K_C (pu)} 指定整流器负载系数、{Potential circuit (voltage) gain coefficient, K_P (pu)} 指定电势电路电压增益系数、{Potential circuit (current) gain coefficient, K_I (pu)} 指定电势电路电流增益系数、{Reactance associated with the compound source, X_L (pu)} 指定复合电源电抗、{Potential circuit phase angle (degrees)} 指定电势电路相位角、{Maximum limit on exciter voltage based on supply condition, V_Bmax (pu)} 指定励磁机电压上限、{Switch to select exciter supply configuration} 指定电源选择器 Position A: power source derived from generator terminal，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "电压参考值 scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "来自稳定器的输入 scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "端电压 scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "端电流 scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "过励限制信号 scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "欠励限制信号 scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "求和点定子电流限制信号 scalar"
+  },
+  {
+   "name": "V_SCLoel",
+   "direction": "input",
+   "summary": "接管定子电流限值 (OEL) scalar"
+  },
+  {
+   "name": "V_SCLuel",
+   "direction": "input",
+   "summary": "接管定子电流限值 (UEL) scalar"
+  },
+  {
+   "name": "Ifd_pu",
+   "direction": "input",
+   "summary": "实测励磁电流 scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "励磁电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "初始输出电压 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Initial terminal voltage, Vt0 (pu)",
+   "default": "1",
+   "values": "初始机端电压 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Initial terminal current, It0 (pu)",
+   "default": "1",
+   "values": "初始机端电流 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "补偿电阻 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "补偿电抗 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0",
+   "values": "调节器时间常数 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Time constant of differential part of AVR, T_CD (s)",
+   "default": "0.06",
+   "values": "AVR 微分部分的时间常数 0.06 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "RegFilter time constant of differential part of AVR, T_BD (s)",
+   "default": "0.03",
+   "values": "AVR 微分部分的滤波时间常数 0.03 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Dead-band for differential part influence on AVR, Z_A (1)",
+   "default": "0.036",
+   "values": "微分部分对 AVR 影响的死区 0.036 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "AVR gain, K_A (1)",
+   "default": "12",
+   "values": "AVR 增益 12 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Gain associated with activation of takeover UEL, K_U (1)",
+   "default": "10000",
+   "values": "与激活 takeover UEL 相关联的增益 10000 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Time constant of AVR, T_A (s)",
+   "default": "2",
+   "values": "AVR 的时间常数 2 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Time constant of underexcitation limiter, T_AUEL (s)",
+   "default": "2",
+   "values": "欠励限制器的时间常数 2 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum regulator output, V_Rmax (pu)",
+   "default": "1",
+   "values": "调节器最大输出 1 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum regulator output, V_Rmin (pu)",
+   "default": "-0.866",
+   "values": "调节器最小输出 -0.866 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Power converter gain (proportional to supply voltage), K_AS (pu)",
+   "default": "6.1",
+   "values": "功率变换器增益 6.1 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Equivalent time constant of power converter firing control, T_AS (s)",
+   "default": "0.0018",
+   "values": "功率变换器触发控制的时间常数 0.0018 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "Unused",
+   "values": "OEL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "Unused",
+   "values": "UEL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "Unused",
+   "values": "SCL 输入位置 Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C (pu)",
+   "default": "0",
+   "values": "整流器负载系数 0 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit (voltage) gain coefficient, K_P (pu)",
+   "default": "1",
+   "values": "电势电路电压增益系数 1 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit (current) gain coefficient, K_I (pu)",
+   "default": "0",
+   "values": "电势电路电流增益系数 0 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Reactance associated with the compound source, X_L (pu)",
+   "default": "0",
+   "values": "复合电源电抗 0 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit phase angle (degrees)",
+   "default": "0",
+   "values": "电势电路相位角 0 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Maximum limit on exciter voltage based on supply condition, V_Bmax (pu)",
+   "default": "11.63",
+   "values": "励磁机电压上限 11.63 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Switch to select exciter supply configuration",
+   "default": "voltage",
+   "values": "电源选择器 Position A: power source derived from generator terminal voltage (default) | Position B: power source independent of generator terminal conditions",
+   "group": "Exciter"
+  }
+ ]
+}

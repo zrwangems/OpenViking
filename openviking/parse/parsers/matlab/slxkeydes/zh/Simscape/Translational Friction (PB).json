@@ -1,0 +1,13 @@
+{
+ "key": "Translational Friction (PB)",
+ "title": "Translational Friction (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Friction_PB.md"
+ ],
+ "text": "基于位置的机械平移系统中表面之间的阻力摩擦接触。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,32 @@
+{
+ "key": "slrealtimeloggingblock",
+ "title": "File Log",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Logging/File_Log.md"
+ ],
+ "text": "Write signal data file log on target computer, 1 input; {Decimation} sets the applies decimation to file log data and {Input Processing} sets the selects processing mode for file log data Elements. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Signal data for file log scalar | vector | matrix | array | bus | nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "Applies decimation to file log data 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Input Processing",
+   "default": "based)",
+   "values": "Selects processing mode for file log data Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": ""
+  }
+ ]
+}

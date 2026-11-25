@@ -1,0 +1,49 @@
+{
+ "key": "Monostable Flip-Flop",
+ "title": "Monostable Flip-Flop",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Monostable_Flip_Flop.md"
+ ],
+ "text": "Raising edge, falling edge, either edge monostable flip-flop, 1 input, 1 output, {Sample time} sets Block sample time; {Change detection} sets the change in trigger signal, {Initial output} sets the flip-flop initial output and {Pulse duration (s)} sets the output pulse duration. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "Flip-flop trigger 0 | 1"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "Flip-flop output 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Change detection",
+   "default": "edge",
+   "values": "Change in trigger signal Rising edge (default) | Falling edge | Either edge",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Flip-flop initial output 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pulse duration (s)",
+   "default": "0.01",
+   "values": "Output pulse duration 0.01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Block sample time 0.001 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "key": "Get Jacobian",
+ "title": "Get Jacobian",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Get_Jacobian.md"
+ ],
+ "text": "机器人位形的几何雅可比，输入 1 路、输出 1 路；{Rigid body tree} 指定机器人模型 twoJointRigidBodyTre、{End effector} 用于雅可比的末端执行器 body name、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "机器人配置 vector"
+  },
+  {
+   "name": "Jacobian",
+   "direction": "output",
+   "summary": "末端执行器的几何雅可比 6-by- n matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "机器人模型 twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "End effector",
+   "default": "",
+   "values": "用于雅可比的末端执行器 body name",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

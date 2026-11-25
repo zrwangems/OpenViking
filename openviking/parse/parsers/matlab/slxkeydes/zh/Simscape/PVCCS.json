@@ -1,0 +1,13 @@
+{
+ "key": "PVCCS",
+ "title": "PVCCS",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PVCCS.md"
+ ],
+ "text": "多项式压控电流源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

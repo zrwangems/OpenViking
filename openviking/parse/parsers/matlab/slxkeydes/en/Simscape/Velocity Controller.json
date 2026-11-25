@@ -1,0 +1,88 @@
+{
+ "key": "Velocity Controller",
+ "title": "Velocity Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Machine Control/Velocity_Controller.md"
+ ],
+ "text": "Discrete-time velocity controller, 4 inputs, 1 output, {Control type} sets Control model PI; {Controller proportional gain} sets the proportional gain, {Controller integral gain} sets the integral gain, {P controller proportional gain} sets the p proportional gain, {Integral anti-windup gain} sets the pI anti-windup gain, {Sample time (-1 for inherited)} sets the block sample time, {Discretization sample time} sets the sample time for discretization and {Enable zero cancellation} sets the feedforward zero-cancellation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wRef",
+   "direction": "input",
+   "summary": "Desired velocity scalar"
+  },
+  {
+   "name": "wMechanical",
+   "direction": "input",
+   "summary": "Actual velocity scalar"
+  },
+  {
+   "name": "TqRefSat",
+   "direction": "input",
+   "summary": "Saturated reference torque scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Integral reset scalar"
+  },
+  {
+   "name": "TqRefUnsat",
+   "direction": "output",
+   "summary": "Unsaturated desired torque scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control type",
+   "default": "control",
+   "values": "Control model PI control (default) | P control | P-PI control",
+   "group": ""
+  },
+  {
+   "name": "Controller proportional gain",
+   "default": "1",
+   "values": "Proportional gain 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller integral gain",
+   "default": "1",
+   "values": "Integral gain 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "P controller proportional gain",
+   "default": "1",
+   "values": "P proportional gain 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral anti-windup gain",
+   "default": "1",
+   "values": "PI anti-windup gain 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "Sample time for discretization 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "Feedforward zero-cancellation off (default) | on",
+   "group": ""
+  }
+ ]
+}

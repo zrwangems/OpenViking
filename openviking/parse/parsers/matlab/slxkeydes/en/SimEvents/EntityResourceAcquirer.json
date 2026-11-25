@@ -1,0 +1,81 @@
+{
+ "key": "EntityResourceAcquirer",
+ "title": "Resource Acquirer",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Resource_Acquirer.md"
+ ],
+ "text": "Acquire entity resources, 1 input, 5 outputs, {Event actions} sets the behavior of the entity on certain events; {Maximum number of waiting entities} sets the maximum number of entities that can wait, {Number of entities departed, d} sets the outputs the number of entities that have departed, {Number of entities in block, n} sets the outputs the number of entities present in the block, which have yet, {Average wait, w} sets the outputs the average wait time and {Number of entities extracted, ex} sets the number of entities extracted from this. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "Number of entities that have departed the block scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "Number of entities that have not yet departed the block scalar"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "Average wait time for entities in the block scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "Number of entities extracted scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum number of waiting entities",
+   "default": "1",
+   "values": "Maximum number of entities that can wait for a resource 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Event actions",
+   "default": "Entry",
+   "values": "Specify the behavior of the entity on certain events Entry (default) | Exit | Blocked",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "Outputs the number of entities that have departed the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "Outputs the number of entities present in the block, which have yet to depart off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average wait, w",
+   "default": "off",
+   "values": "Outputs the average wait time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "Number of entities extracted from this block off (default) | on",
+   "group": ""
+  }
+ ]
+}

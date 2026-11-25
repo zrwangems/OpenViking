@@ -1,0 +1,73 @@
+{
+ "key": "dsp.simulink.Differentiator",
+ "title": "Differentiator Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Differentiator_Filter.md"
+ ],
+ "text": "Direct form FIR fullband differentiator filter, 1 input, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode; {Design minimum order filter}, {Filter order} sets the order of differentiator filter, {Maximum passband ripple (dB)}, {Scale filter coefficients}, {View Filter Response}, {Simulate using} and {Coefficients}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Differentiator filter output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Design minimum order filter",
+   "default": "on",
+   "values": "Design minimum order filter on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter order",
+   "default": "31",
+   "values": "Order of differentiator filter 31 (default) | odd positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Maximum passband ripple (dB)",
+   "default": "0.1",
+   "values": "Maximum passband ripple 0.1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Scale filter coefficients",
+   "default": "off",
+   "values": "Scale filter coefficients off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "button",
+   "values": "View filter response button (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Simulate using Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(1,16)",
+   "values": "Coefficients fixdt(1,16) (default) | fixdt(1,16,0) |",
+   "group": "Data Types Tab"
+  }
+ ]
+}

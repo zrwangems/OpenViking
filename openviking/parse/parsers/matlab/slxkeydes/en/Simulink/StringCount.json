@@ -1,0 +1,48 @@
+{
+ "key": "StringCount",
+ "title": "String Count",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Count.md"
+ ],
+ "text": "Count occurrences of pattern in string, 2 inputs, 1 output, direct feedthrough, {Mode} sets Category of data type; {Case sensitive} sets the case sensitivity and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "str",
+   "direction": "input",
+   "summary": "String to search scalar"
+  },
+  {
+   "name": "sub",
+   "direction": "input",
+   "summary": "String pattern to search for scalar"
+  },
+  {
+   "name": "n",
+   "direction": "output",
+   "summary": "Number of times pattern was found in string scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Case sensitive",
+   "default": "on",
+   "values": "Case sensitivity on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | int8 | uint8 | int16 | uint16 | int32 | uint32 |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Category of data type Inherit (default) | Built in | Expression",
+   "group": ""
+  }
+ ]
+}

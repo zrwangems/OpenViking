@@ -1,0 +1,13 @@
+{
+ "key": "Mu-Law Expander",
+ "title": "Mu-Law Expander",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Source Coding/Mu_Law_Expander.md"
+ ],
+ "text": "实现用于信源编码的 µ-law 扩展器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Unidirectional Clutch",
+ "title": "Unidirectional Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Unidirectional_Clutch.md"
+ ],
+ "text": "单向传递动力的离合器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

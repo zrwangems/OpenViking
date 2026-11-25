@@ -1,0 +1,160 @@
+{
+ "key": "dsp.simulink.IIRHalfbandDecimator",
+ "title": "IIR Halfband Decimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/IIR_Halfband_Decimator.md"
+ ],
+ "text": "使用多相 IIR 半带滤波器对信号进行抽取，输入 3 路、输出 2 路、无直接馈通；按 {Branch 2 allpass polynomial coefficients} 指定第二分支的全通多项式滤波器系数；{Filter specification} 指定滤波器设计参数 Transition width and stopband、{Transition width (Hz)} 以 Hz 为单位的过渡带宽度 4.1e3、{Filter order} 指定 IIR 半带滤波器的阶数、{Stopband attenuation (dB)} 指定阻带中所需的最小衰减、{Design method} 指定设计方法 Elliptic、{Internal allpass structure} 指定内部全通滤波器实现结构 Minimum、{Make the first branch a pure delay} 指定使第一分支为纯延迟、{Delay length in samples for branch 1} 指定延迟长度、{Specify coefficients from input port} 指定从输入端口指定系数、{Branch 1 allpass polynomial coefficients} 指定第一分支的全通多项式滤波器系数、{Branch 1 Wave Digital coefficients} 指定第一分支的波数字滤波器形式全通滤波器系数、{Branch 2 Wave Digital coefficients} 指定第二分支的波数字滤波器形式全通滤波器系数、{Last section of branch 2 is first order} 指定分支 2 的最后一节为一阶、{Output highpass subband} 输出高通子带、{Sample rate mode} 用于指定输入采样率的模式 Use normalized、{Input sample rate (Hz)} 指定输入信号的采样率、{Allow arbitrary frame length for fixed-size input signals} 允许固定大小输入信号的任意帧长度、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入信号 column vector | matrix"
+  },
+  {
+   "name": "coeffs1",
+   "direction": "input",
+   "summary": "分支 1 全通多项式系数 N -by- 1 vector | N -by- 2 matrix"
+  },
+  {
+   "name": "coeffs2",
+   "direction": "input",
+   "summary": "分支 2 全通多项式系数 N -by- 1 vector | N -by- 2 matrix"
+  },
+  {
+   "name": "LP",
+   "direction": "output",
+   "summary": "抽取器输出的低通子带 column vector | matrix"
+  },
+  {
+   "name": "HP",
+   "direction": "output",
+   "summary": "抽取器输出的高通子带 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter specification",
+   "default": "attenuation",
+   "values": "滤波器设计参数 Transition width and stopband attenuation (default) | Filter order and transition width | Filter order and stopband attenuation | Coefficients",
+   "group": ""
+  },
+  {
+   "name": "Transition width (Hz)",
+   "default": "4.1e3",
+   "values": "以 Hz 为单位的过渡带宽度 4.1e3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "9",
+   "values": "IIR 半带滤波器的阶数 9 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "阻带中所需的最小衰减 80 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Design method",
+   "default": "Elliptic",
+   "values": "设计方法 Elliptic (default) | Quasi-linear phase",
+   "group": ""
+  },
+  {
+   "name": "Internal allpass structure",
+   "default": "multiplier",
+   "values": "内部全通滤波器实现结构 Minimum multiplier (default) | Wave Digital Filter",
+   "group": ""
+  },
+  {
+   "name": "Make the first branch a pure delay",
+   "default": "off",
+   "values": "使第一分支为纯延迟 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Delay length in samples for branch 1",
+   "default": "1",
+   "values": "延迟长度 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify coefficients from input port",
+   "default": "off",
+   "values": "从输入端口指定系数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Branch 1 allpass polynomial coefficients",
+   "default": "0.7906755]",
+   "values": "第一分支的全通多项式滤波器系数 [0.1284563; 0.7906755] (default) | N -by- 1 | N -by- 2",
+   "group": ""
+  },
+  {
+   "name": "Branch 2 allpass polynomial coefficients",
+   "default": "[0.4295667]",
+   "values": "第二分支的全通多项式滤波器系数 [0.4295667] (default) | N -by- 1 | N -by- 2",
+   "group": ""
+  },
+  {
+   "name": "Branch 1 Wave Digital coefficients",
+   "default": "0.7906755]",
+   "values": "第一分支的波数字滤波器形式全通滤波器系数 [0.1284563; 0.7906755] (default) | N -by- 1 | N -by- 2",
+   "group": ""
+  },
+  {
+   "name": "Branch 2 Wave Digital coefficients",
+   "default": "[0.4295667]",
+   "values": "第二分支的波数字滤波器形式全通滤波器系数 [0.4295667] (default) | N -by- 1 | N -by- 2",
+   "group": ""
+  },
+  {
+   "name": "Last section of branch 2 is first order",
+   "default": "off",
+   "values": "分支 2 的最后一节为一阶 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output highpass subband",
+   "default": "off",
+   "values": "输出高通子带 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "用于指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入信号的采样率 44100 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "允许固定大小输入信号的任意帧长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

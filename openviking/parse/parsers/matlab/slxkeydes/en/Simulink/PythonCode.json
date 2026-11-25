@@ -1,0 +1,55 @@
+{
+ "key": "PythonCode",
+ "title": "Python Code",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/Python_Code.md"
+ ],
+ "text": "Integrate native Python code into a Simulink model, 1 input, 1 output, no direct feedthrough, {Sample time} sets Sample period; {Port and Parameter Symbols} sets the symbols and symbol, {Output}, {Start} sets the initialization code no default and {Terminate} sets the termination code no default. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input port scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output port scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port and Parameter Symbols",
+   "default": "",
+   "values": "Symbols and symbol properties table",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample period -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "",
+   "values": "Output code no default",
+   "group": ""
+  },
+  {
+   "name": "Start",
+   "default": "",
+   "values": "Initialization code no default",
+   "group": ""
+  },
+  {
+   "name": "Terminate",
+   "default": "",
+   "values": "Termination code no default",
+   "group": ""
+  }
+ ]
+}

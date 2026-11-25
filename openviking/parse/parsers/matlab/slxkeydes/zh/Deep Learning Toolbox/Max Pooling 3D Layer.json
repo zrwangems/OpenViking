@@ -1,0 +1,79 @@
+{
+ "key": "Max Pooling 3D Layer",
+ "title": "Max Pooling 3D Layer",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Pooling Layers/Max_Pooling_3D_Layer.md"
+ ],
+ "text": "三维最大池化层，输入 1 路、输出 1 路；按 {Integer rounding mode} 指定定点运算的舍入模式；{Layer} 指定对应的层对象、{Data format} 指定输入数据的格式、{Output minimum} 用于范围检查的最小输出值、{Output maximum} 用于范围检查的最大输出值、{Output data type} 输出数据类型、{Lock output data type setting against changes by the fixed-point tools} 用于防止定点工具覆盖输出数据类型、{Saturate on integer overflow} 指定溢出操作的方法、{Sample time} 用于指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 4-dimensional array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "下采样后的输出数据 4-dimensional array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Layer",
+   "default": "layerObject",
+   "values": "对应的层对象 layerObject (default) | maxPooling3dLayer object",
+   "group": "Main"
+  },
+  {
+   "name": "Data format",
+   "default": "SSSC",
+   "values": "输入数据的格式 SSSC (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "用于范围检查的最小输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "用于范围检查的最大输出值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | Inherit: Same as first input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "用于指定采样时间的选项 -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

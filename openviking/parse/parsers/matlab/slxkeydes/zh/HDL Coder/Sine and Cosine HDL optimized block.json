@@ -1,0 +1,66 @@
+{
+ "key": "Sine and Cosine HDL optimized block",
+ "title": "Cosine HDL Optimized",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Lookup Tables/Cosine_HDL_Optimized.md",
+  "HDL Coder/Lookup Tables/Sine_HDL_Optimized.md"
+ ],
+ "text": "使用针对 HDL 代码生成优化的查找表方法实现定点正弦波和余弦波，输入 1 路、输出 3 路；按 {Output formula} 指定要输出的信号 cos(2*pi*u)；{Number of data points} 指定要从查找表中检索的数据点数、{Table data type} 指定表数据类型 fixdt、{Data type assistant} 指定数据类型的指定模式 Fixed、{Simulate RAM Delay} 指定插入单位延迟，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "用于实现正弦波或余弦波的输入信号 real-valued signal"
+  },
+  {
+   "name": "sin(2*pi*u)",
+   "direction": "output",
+   "summary": "定点正弦波 real-valued fixed-point signal"
+  },
+  {
+   "name": "cos(2*pi*u)",
+   "direction": "output",
+   "summary": "定点余弦波 real-valued fixed-point signal"
+  },
+  {
+   "name": "exp(j*2*pi*u)",
+   "direction": "output",
+   "summary": "复指数 complex-valued fixed-point signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output formula",
+   "default": "",
+   "values": "选择要输出的信号 cos(2*pi*u) | sin(2*pi*u) | exp(j*2*pi*u) | sin(2*pi*u) and cos(2*pi*u)",
+   "group": ""
+  },
+  {
+   "name": "Number of data points",
+   "default": "64",
+   "values": "指定要从查找表中检索的数据点数 64 (default) | integer, greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Table data type",
+   "default": "fixdt(0,16,15)",
+   "values": "指定表数据类型 fixdt(0,16,15) (default) | fixed point expression",
+   "group": ""
+  },
+  {
+   "name": "Data type assistant",
+   "default": "point",
+   "values": "选择数据类型的指定模式 Fixed point (default) | Expression",
+   "group": ""
+  },
+  {
+   "name": "Simulate RAM Delay",
+   "default": "off",
+   "values": "插入单位延迟 off (default) | on",
+   "group": ""
+  }
+ ]
+}

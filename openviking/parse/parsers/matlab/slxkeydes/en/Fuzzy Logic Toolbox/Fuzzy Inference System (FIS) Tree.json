@@ -1,0 +1,67 @@
+{
+ "key": "Fuzzy Inference System (FIS) Tree",
+ "title": "FIS Tree",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/FIS_Tree.md"
+ ],
+ "text": "Evaluate fuzzy inference system tree, 1 input, 1 output, {Data type} sets Signal data type; {FIS tree name} sets the fIS tree to evaluate, {Number of samples for output discretization} sets the number of points in output fuzzy sets, {Simulate using} sets the simulation mode Interpreted, {Out of range input value} sets the diagnostic message behavior when an input is out of range, {No rule fired} sets the diagnostic message behavior when no rules fire and {Empty output fuzzy set} sets the diagnostic message behavior when an output fuzzy set is empty. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "Defuzzified output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "FIS tree name",
+   "default": "",
+   "values": "FIS tree to evaluate fistree object | MAT file name in quotes",
+   "group": "General"
+  },
+  {
+   "name": "Number of samples for output discretization",
+   "default": "101",
+   "values": "Number of points in output fuzzy sets 101 (default) | integer greater than 1",
+   "group": "General"
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "Signal data type double (default) | single | fixed-point | expression",
+   "group": "General"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Simulation mode Interpreted execution (default) | Code generation",
+   "group": "General"
+  },
+  {
+   "name": "Out of range input value",
+   "default": "warning",
+   "values": "Diagnostic message behavior when an input is out of range warning (default) | error | none",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "No rule fired",
+   "default": "warning",
+   "values": "Diagnostic message behavior when no rules fire warning (default) | error | none",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "Empty output fuzzy set",
+   "default": "warning",
+   "values": "Diagnostic message behavior when an output fuzzy set is empty warning (default) | error | none",
+   "group": "Diagnostics"
+  }
+ ]
+}

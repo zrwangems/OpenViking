@@ -1,0 +1,29 @@
+{
+ "key": "Dechirp",
+ "title": "Dechirp Mixer",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Dechirp_Mixer.md"
+ ],
+ "text": "对输入信号进行去斜操作，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RefX",
+   "direction": "input",
+   "summary": "参考信号 complex-valued M -by-1 vector"
+  },
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入信号 complex-valued M -by- N matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "去斜输出信号 M -by- N matrix"
+  }
+ ],
+ "params": []
+}

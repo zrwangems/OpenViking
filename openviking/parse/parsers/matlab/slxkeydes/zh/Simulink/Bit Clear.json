@@ -1,0 +1,32 @@
+{
+ "key": "Bit Clear",
+ "title": "Bit Clear",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Bit_Clear.md",
+  "HDL Coder/Logic and Bit Operations/Bit_Clear.md"
+ ],
+ "text": "将存储整数的指定位设置为零，输入 1 路、输出 1 路、直接馈通；按 {Index of bit} 指定位的索引。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Index of bit",
+   "default": "0",
+   "values": "位的索引 0 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

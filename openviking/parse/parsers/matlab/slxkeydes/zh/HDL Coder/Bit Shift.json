@@ -1,0 +1,37 @@
+{
+ "key": "Bit Shift",
+ "title": "Bit Shift",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Bit_Shift.md"
+ ],
+ "text": "输入信号的逻辑或算术移位，输入 1 路、输出 1 路；按 {移位模式} 指定移位的类型和方向；{移位长度} 指定要移位的位数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "移位模式",
+   "default": "逻辑左移位",
+   "values": "移位的类型和方向 逻辑左移位 (默认) | 逻辑右移位 | 算术右移位",
+   "group": ""
+  },
+  {
+   "name": "移位长度",
+   "default": "0",
+   "values": "要移位的位数 0 (默认)",
+   "group": ""
+  }
+ ]
+}

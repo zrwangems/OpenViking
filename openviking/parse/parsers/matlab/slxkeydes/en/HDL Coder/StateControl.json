@@ -1,0 +1,20 @@
+{
+ "key": "StateControl",
+ "title": "State Control",
+ "toolbox": "HDL Coder",
+ "kind": "block_type",
+ "source_docs": [
+  "HDL Coder/HDL Subsystems/State_Control.md"
+ ],
+ "text": "Specify synchronous reset and enable behavior for blocks with state; {State control} selects the state control. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "State control",
+   "default": "Synchronous",
+   "values": "Select the state control type Synchronous (default) | Classic",
+   "group": ""
+  }
+ ]
+}

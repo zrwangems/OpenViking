@@ -1,0 +1,90 @@
+{
+ "key": "Rotate",
+ "title": "Rotate",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Rotate.md"
+ ],
+ "text": "Rotate image by specified angle, 2 inputs, 1 output, {Interpolation method} sets Interpolation method; {Output size} sets the size of rotated image Expanded to fit rotated input, {Rotation angle source}, {Angle (radians)} sets the rotation angle, {Maximum angle (enter pi radians to accommodate all positive and negative angles)} sets the maximum angle, {Display rotated image in} sets the position of output image, {Sine value computation method}, {Background fill value}, {Angle values} sets the fixed-point parameter for angle values Same word length and {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Image to rotate matrix | array"
+  },
+  {
+   "name": "Angle",
+   "direction": "input",
+   "summary": "Rotation angle scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Rotated image matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output size",
+   "default": "image",
+   "values": "Size of rotated image Expanded to fit rotated input image (default) | Same as input image",
+   "group": "Main"
+  },
+  {
+   "name": "Rotation angle source",
+   "default": "dialog",
+   "values": "Rotation angle source Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Angle (radians)",
+   "default": "pi/6",
+   "values": "Rotation angle pi/6 (default) | numeric scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum angle (enter pi radians to accommodate all positive and negative angles)",
+   "default": "pi",
+   "values": "Maximum angle of rotation pi (default) | nonnegative scalar less than or equal to pi",
+   "group": "Main"
+  },
+  {
+   "name": "Display rotated image in",
+   "default": "corner",
+   "values": "Position of output image Top-left corner (default) | Center",
+   "group": "Main"
+  },
+  {
+   "name": "Sine value computation method",
+   "default": "lookup",
+   "values": "Sine value computation method Table lookup (default) | Trigonometric function",
+   "group": "Main"
+  },
+  {
+   "name": "Background fill value",
+   "default": "",
+   "values": "Background fill value numeric scalar | three-element numeric vector",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "Interpolation method Bilinear (default) | Nearest neighbor | Bicubic",
+   "group": "Main"
+  },
+  {
+   "name": "Angle values",
+   "default": "input",
+   "values": "Fixed-point parameter for angle values Same word length as input (default) | Specify word length | Binary point scaling",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "key": "FractionalClockDividerWithDSM",
+ "title": "Fractional Clock Divider with DSM",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Fractional_Clock_Divider_with_DSM.md"
+ ],
+ "text": "基于 Delta Sigma 调制器的小数时钟分频器，输入 2 路、输出 1 路；按 {Delta Sigma Modulator order} 指定Delta Sigma Modulator 的阶数 3rd；{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk in",
+   "direction": "input",
+   "summary": "输入时钟频率 scalar"
+  },
+  {
+   "name": "div-by",
+   "direction": "input",
+   "summary": "输出时钟频率与输入时钟频率之比 fractional scalar"
+  },
+  {
+   "name": "clk out",
+   "direction": "output",
+   "summary": "输出时钟频率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delta Sigma Modulator order",
+   "default": "order",
+   "values": "Delta Sigma Modulator 的阶数 3rd order (default) | 1st order | 2nd order | 4th order",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "1",
+   "values": "仿真期间可用的输入缓冲样本数 1 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "key": "Video To Workspace",
+ "title": "Video To Workspace",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Video_To_Workspace.md"
+ ],
+ "text": "Export image or video to MATLAB workspace, 4 inputs; {Variable name} sets the mATLAB workspace variable, {Number of inputs}, {Limit data points to last} sets the maximum number of frames to export, {Decimation} sets the downsample video signal, {Log fixed-point data as a fi object} sets the create fixed-point numeric object and {Input port labels} sets the input port names R. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input video matrix | 3-D array | 4-D array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Red color channel scalar | vector | matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Green color channel scalar | vector | matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Blue color channel scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variable name",
+   "default": "vout",
+   "values": "MATLAB workspace variable name vout (default) | valid MATLAB variable name",
+   "group": ""
+  },
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "Number of inputs ports 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Limit data points to last",
+   "default": "10",
+   "values": "Maximum number of frames to export 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "Downsample video signal 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Log fixed-point data as a fi object",
+   "default": "off",
+   "values": "Create fixed-point numeric object off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input port labels",
+   "default": "R|G|B",
+   "values": "Input port names R|G|B (default)",
+   "group": ""
+  }
+ ]
+}

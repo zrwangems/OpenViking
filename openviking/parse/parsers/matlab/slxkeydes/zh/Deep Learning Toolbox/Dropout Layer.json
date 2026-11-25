@@ -1,0 +1,31 @@
+{
+ "key": "Dropout Layer",
+ "title": "Dropout Layer",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Utility Layers/Dropout_Layer.md"
+ ],
+ "text": "Dropout Layer 模块表示深度学习网络中的丢弃层，输入 1 路、输出 1 路；{Sample time} 用于指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入矩阵 scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出矩阵 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "用于指定采样时间的选项 -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

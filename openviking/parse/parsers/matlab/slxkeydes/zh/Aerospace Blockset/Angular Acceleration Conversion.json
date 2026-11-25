@@ -1,0 +1,37 @@
+{
+ "key": "Angular Acceleration Conversion",
+ "title": "Angular Acceleration Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Angular_Acceleration_Conversion.md"
+ ],
+ "text": "从角加速度单位转换为所需角加速度单位，输入 1 路、输出 1 路；按 {Final unit} 指定输出单位 rad/；{Initial unit} 指定输入单位 deg/s，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入角加速度 scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出角加速度 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "2",
+   "values": "输入单位 deg/s 2 (default) | rad/s 2 | rpm/s",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "s",
+   "values": "输出单位 rad/s s (default) | deg/s s | rpm/s",
+   "group": ""
+  }
+ ]
+}

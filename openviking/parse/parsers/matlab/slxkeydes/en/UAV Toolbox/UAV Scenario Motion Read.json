@@ -1,0 +1,48 @@
+{
+ "key": "UAV Scenario Motion Read",
+ "title": "UAV Scenario Motion Read",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Motion_Read.md"
+ ],
+ "text": "Read platform and sensor motions from UAV scenario simulation, 3 outputs, {Coordinate frame of output motion} sets Coordinate frame of output motion; {Platform or sensor name} and {Generate wind velocity and angular velocity samples} sets the generate wind velocity and angular velocities. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Motion",
+   "direction": "output",
+   "summary": "UAV motion data bus"
+  },
+  {
+   "name": "SampledWind",
+   "direction": "output",
+   "summary": "Resultant wind translational and angular velocity 1-by-6 vector"
+  },
+  {
+   "name": "SampledWindByComponent",
+   "direction": "output",
+   "summary": "Wind translational and angular velocities from each wind model objects N -by-6 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Platform or sensor name",
+   "default": "’UAV’",
+   "values": "Platform or sensor name ’UAV’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Coordinate frame of output motion",
+   "default": "’ENU’",
+   "values": "Coordinate frame of output motion ’ENU’ (default) | ’NED’ | string",
+   "group": ""
+  },
+  {
+   "name": "Generate wind velocity and angular velocity samples",
+   "default": "off",
+   "values": "Generate wind velocity and angular velocities samples off (default) | on",
+   "group": ""
+  }
+ ]
+}

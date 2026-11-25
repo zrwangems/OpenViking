@@ -1,0 +1,29 @@
+{
+ "key": "Complex Phase Shift",
+ "title": "Complex Phase Shift",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Complex_Phase_Shift.md"
+ ],
+ "text": "对复信号应用复相移，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector | matrix"
+  },
+  {
+   "name": "Ph",
+   "direction": "input",
+   "summary": "相移 scalar | column vector | matrix"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "相移后的信号 scalar | column vector | matrix"
+  }
+ ],
+ "params": []
+}

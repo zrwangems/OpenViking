@@ -1,0 +1,13 @@
+{
+ "key": "Pilot Valve Actuator (IL)",
+ "title": "Pilot Valve Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Pilot_Valve_Actuator_IL.md"
+ ],
+ "text": "由等温液体网络中的先导压力控制的单作用或双作用执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

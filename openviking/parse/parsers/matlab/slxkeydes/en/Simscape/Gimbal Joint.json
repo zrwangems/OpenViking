@@ -1,0 +1,13 @@
+{
+ "key": "Gimbal Joint",
+ "title": "Gimbal Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Gimbal_Joint.md"
+ ],
+ "text": "Joint with three revolute primitives.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

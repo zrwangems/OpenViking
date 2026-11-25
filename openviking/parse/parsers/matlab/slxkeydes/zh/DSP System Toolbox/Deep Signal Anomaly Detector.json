@@ -1,0 +1,94 @@
+{
+ "key": "Deep Signal Anomaly Detector",
+ "title": "Deep Signal Anomaly Detector",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/AI/Deep_Signal_Anomaly_Detector.md"
+ ],
+ "text": "在 Simulink 中使用深度学习网络检测信号异常，输入 2 路、输出 3 路、无直接馈通；按 {Window loss aggregation} 指定聚合窗口损失的统计方法；{Detector MAT-file path} 指定检测器 MAT 文件的路径、{Parameters for post-processing} 指定后处理参数的来源 Read、{Window length} 指定窗口长度、{Overlap length} 指定相邻窗口之间的重叠长度、{Threshold source} 指定检测阈值来源、{Threshold} 指定检测阈值、{Parameter values from MAT-file} 显示来自 MAT 文件的后处理参数值 Read-only: text、{Enable delay port} 输出估计延迟，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Threshold",
+   "direction": "input",
+   "summary": "检测阈值 nonnegative scalar"
+  },
+  {
+   "name": "Anomaly flag",
+   "direction": "output",
+   "summary": "异常标志 logical scalar"
+  },
+  {
+   "name": "Window loss",
+   "direction": "output",
+   "summary": "聚合窗口损失 scalar"
+  },
+  {
+   "name": "Delay",
+   "direction": "output",
+   "summary": "延迟估计 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Detector MAT-file path",
+   "default": "untitled.mat",
+   "values": "检测器 MAT 文件的路径 untitled.mat (default) | MAT-file name",
+   "group": ""
+  },
+  {
+   "name": "Parameters for post-processing",
+   "default": "MAT-file",
+   "values": "后处理参数的来源 Read from MAT-file (default) | Specify on dialog",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "1",
+   "values": "窗口长度 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "0",
+   "values": "相邻窗口之间的重叠长度 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Threshold source",
+   "default": "Dialog",
+   "values": "检测阈值来源 Dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "0.01",
+   "values": "检测阈值 0.01 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Window loss aggregation",
+   "default": "Mean",
+   "values": "聚合窗口损失的统计方法 Mean (default) | Max | Min | Median",
+   "group": ""
+  },
+  {
+   "name": "Parameter values from MAT-file",
+   "default": "",
+   "values": "显示来自 MAT 文件的后处理参数值 Read-only: text box",
+   "group": ""
+  },
+  {
+   "name": "Enable delay port",
+   "default": "off",
+   "values": "输出估计延迟 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "key": "Frame Rate Display",
+ "title": "Frame Rate Display",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Frame_Rate_Display.md"
+ ],
+ "text": "Calculate and display video frame rate, 1 input; {Update rate} sets the frequency of updates. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Update rate",
+   "default": "10",
+   "values": "Frequency of updates 10 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Pilot-Operated Check Valve (G)",
+ "title": "Pilot-Operated Check Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Directional Control Valves/Pilot_Operated_Check_Valve_G.md"
+ ],
+ "text": "气体网络中带控制口的止回阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

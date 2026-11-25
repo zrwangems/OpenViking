@@ -1,0 +1,13 @@
+{
+ "key": "Spherical Solid",
+ "title": "Spherical Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Spherical_Solid.md"
+ ],
+ "text": "Solid spherical element with geometry, inertia, and color.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

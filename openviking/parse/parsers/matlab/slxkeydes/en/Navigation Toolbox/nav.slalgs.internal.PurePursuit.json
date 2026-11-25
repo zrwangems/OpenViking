@@ -1,0 +1,93 @@
+{
+ "key": "nav.slalgs.internal.PurePursuit",
+ "title": "Pure Pursuit",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Control Algorithms/Pure_Pursuit.md",
+  "Robotics System Toolbox/Mobile Robot Algorithms/Pure_Pursuit.md"
+ ],
+ "text": "Linear and angular velocity control commands, 4 inputs, 3 outputs; {Specify desired linear velocity from input port} enables input port for desired linear, {Desired linear velocity (m/s)} sets the linear velocity, {Maximum angular velocity (rad/s)} sets the angular velocity, {Specify lookahead distance from input port} enables input port for look-ahead distances, {Lookahead distance (m)} sets the look-ahead distance, {Show Target Direction output port} sets the target direction indicator and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "Current vehicle pose [x y theta] vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "Waypoints [ ] (default) | n -by-2 array"
+  },
+  {
+   "name": "Desired Linear Velocity",
+   "direction": "input",
+   "summary": "Linear velocity scalar in meters per second"
+  },
+  {
+   "name": "Lookahead Distance",
+   "direction": "input",
+   "summary": "Look-ahead distance scalar in meters per second"
+  },
+  {
+   "name": "Linear Velocity",
+   "direction": "output",
+   "summary": "Linear velocity scalar in meters per second"
+  },
+  {
+   "name": "Angular Velocity",
+   "direction": "output",
+   "summary": "Angular velocity scalar in radians per second"
+  },
+  {
+   "name": "Target Direction",
+   "direction": "output",
+   "summary": "Target direction for vehicle scalar in radians"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify desired linear velocity from input port",
+   "default": "off",
+   "values": "Enable input port for desired linear velocities off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Desired linear velocity (m/s)",
+   "default": "0.1",
+   "values": "Linear velocity 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum angular velocity (rad/s)",
+   "default": "1.0",
+   "values": "Angular velocity 1.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify lookahead distance from input port",
+   "default": "off",
+   "values": "Enable input port for look-ahead distances off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lookahead distance (m)",
+   "default": "1.0",
+   "values": "Look-ahead distance 1.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Target Direction output port",
+   "default": "off",
+   "values": "Target direction indicator off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

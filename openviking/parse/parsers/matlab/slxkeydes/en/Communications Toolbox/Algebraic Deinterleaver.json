@@ -1,0 +1,13 @@
+{
+ "key": "Algebraic Deinterleaver",
+ "title": "Algebraic Deinterleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Algebraic_Deinterleaver.md"
+ ],
+ "text": "Restore ordering of input symbols using algebraically derived permutation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

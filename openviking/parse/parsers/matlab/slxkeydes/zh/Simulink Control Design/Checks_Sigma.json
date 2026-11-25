@@ -1,0 +1,188 @@
+{
+ "key": "Checks_Sigma",
+ "title": "Singular Value Plot",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Linear Analysis Plots/Singular_Value_Plot.md",
+  "Simulink Control Design/Model Verification/Check_Singular_Value_Characteristics.md"
+ ],
+ "text": "从非线性 Simulink 模型计算得到的线性系统 Bode 图，输入 1 路、输出 1 路；按 {Linear system sample time} 指定线性系统的采样时间；{Show Plot} 打开图、{Show plot on block open} 打开模块时打开图、{Response Optimization} 打开 Response Optimizer、{Linearization inputs/outputs} 指定要线性化的模型部分 linear analysis、{Enable regular expression} 启用使用正则表达式进行信号搜索、{Show filtered results as a flat list} 使用平铺列表显示筛选后的总线信号层次结构、{Linearize on} 指定何时计算线性模型 Simulation、{Snapshot times} 指定计算线性模型的仿真时间、{Trigger type} 指定要检测的外部触发类型 Rising、{Enable zero-crossing detection} 启用过零检测、{Use exact delays} 指定在线性模型中使用精确延迟、{Sample time rate conversion method} 指定速率转换方法 Zero-Order、{Prewarp frequency} 指定 Tustin 速率转换的预扭曲频率、{Use full block names} 指定在状态、输入和输出名称中使用完整模块路径、{Use bus signal names} 指定在线性系统中使用总线信号名称、{Include upper magnitude bound in assertion} 指定检查 Bode 幅值是否违反上限、{Frequencies} 指定幅值上限边界段的频率 vector、{Magnitudes} 指定上限边界段的幅值 vector、{Include lower magnitude bound in assertion} 指定检查 Bode 幅值是否违反下限、{Save data to workspace} 指定保存线性系统以供进一步分析、{Variable name} 用于保存线性系统的数据结构名称、{Save operating points for each linearization} 指定保存线性化工作点、{Enable assertion} 启用边界检查、{Simulation callback when assertion fails} 指定违反边界时要计算的表达式、{Stop simulation when assertion fails} 指定违反边界时停止仿真、{Output assertion signal} 添加断言输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "外部触发信号 scalar"
+  },
+  {
+   "name": "z –1",
+   "direction": "output",
+   "summary": "断言信号 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show Plot",
+   "default": "",
+   "values": "打开图 button",
+   "group": ""
+  },
+  {
+   "name": "Show plot on block open",
+   "default": "off",
+   "values": "打开模块时打开图 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Response Optimization",
+   "default": "",
+   "values": "打开 Response Optimizer button",
+   "group": ""
+  },
+  {
+   "name": "Linearization inputs/outputs",
+   "default": "",
+   "values": "指定要线性化的模型部分 linear analysis points",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Enable regular expression",
+   "default": "on",
+   "values": "启用使用正则表达式进行信号搜索 on (default) | off",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Show filtered results as a flat list",
+   "default": "off",
+   "values": "使用平铺列表显示筛选后的总线信号层次结构 off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Linearize on",
+   "default": "snapshots",
+   "values": "何时计算线性模型 Simulation snapshots (default) | External trigger",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Snapshot times",
+   "default": "0",
+   "values": "计算线性模型的仿真时间 0 (default) | positive real value | vector of positive real values",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "要检测的外部触发类型 Rising edge (default) | Falling edge",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "启用过零检测 on (default) | off",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Use exact delays",
+   "default": "off",
+   "values": "在线性模型中使用精确延迟 off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Linear system sample time",
+   "default": "’auto’",
+   "values": "线性系统的采样时间 ’auto’ (default) | positive finite value | 0",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Sample time rate conversion method",
+   "default": "Hold",
+   "values": "速率转换方法 Zero-Order Hold (default) | Tustin (bilinear) | Tustin with Prewarping |...",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Prewarp frequency",
+   "default": "’10’",
+   "values": "Tustin 速率转换的预扭曲频率 ’10’ (default) | positive scalar",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Use full block names",
+   "default": "off",
+   "values": "在状态、输入和输出名称中使用完整模块路径 off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Use bus signal names",
+   "default": "off",
+   "values": "在线性系统中使用总线信号名称 off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Include upper magnitude bound in assertion",
+   "default": "",
+   "values": "检查 Bode 幅值是否违反上限 on | off",
+   "group": "Bounds"
+  },
+  {
+   "name": "Frequencies",
+   "default": "",
+   "values": "幅值上限边界段的频率 vector | matrix | cell array",
+   "group": "Bounds"
+  },
+  {
+   "name": "Magnitudes",
+   "default": "",
+   "values": "上限边界段的幅值 vector | matrix | cell array",
+   "group": "Bounds"
+  },
+  {
+   "name": "Include lower magnitude bound in assertion",
+   "default": "",
+   "values": "检查 Bode 幅值是否违反下限 on | off",
+   "group": "Bounds"
+  },
+  {
+   "name": "Save data to workspace",
+   "default": "off",
+   "values": "保存线性系统以供进一步分析 off (default) | on",
+   "group": "Logging"
+  },
+  {
+   "name": "Variable name",
+   "default": "sys",
+   "values": "用于保存线性系统的数据结构名称 sys (default) | character vector",
+   "group": "Logging"
+  },
+  {
+   "name": "Save operating points for each linearization",
+   "default": "off",
+   "values": "保存线性化工作点 off (default) | on",
+   "group": "Logging"
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "启用边界检查 on (default) | off",
+   "group": "Assertion"
+  },
+  {
+   "name": "Simulation callback when assertion fails",
+   "default": "’’",
+   "values": "违反边界时要计算的表达式 ’’ (default) | MATLAB expression",
+   "group": "Assertion"
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "违反边界时停止仿真 off (default) | on",
+   "group": "Assertion"
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "添加断言输出端口 off (default) | on",
+   "group": "Assertion"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PS Vector Norm",
+ "title": "PS Vector Norm",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Vector_Norm.md"
+ ],
+ "text": "计算向量或矩阵物理信号的欧几里得范数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

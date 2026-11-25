@@ -1,0 +1,180 @@
+{
+ "key": "PreLookup",
+ "title": "Prelookup",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/Prelookup.md",
+  "Simulink/Quick Insert/Lookup Tables/Index_Search.md",
+  "HDL Coder/Lookup Tables/Prelookup.md"
+ ],
+ "text": "计算 Interpolation Using Prelookup 模块的索引和区间比，输入 2 路、输出 3 路；按 {索引} 指定索引数据类型；{设定} 指定如何输入断点数据、{源}、{值}、{第一个点}、{间距}、{点数}、{名称}、{输出选择} 指定模块输出的信号、{索引搜索方法} 指定搜索断点数据的方法、{使用上一个索引结果开始索引搜索} 使用在上一个时间步中找到的索引开始搜索、{外插方法} 指定处理超出范围的输入值的方法、{将最后一个断点用于等于或高于上限的输入} 指定处理等于或高于上限的输入的方法、{假设输入在范围内} 指定检查输入值是否超出范围、{输入超出范围的诊断} 指定当输入超出范围时的模块操作、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{断点}、{区间比}、{输出}、{断点最小值} 指定最小值断点数据可以有、{断点最大值} 指定最大值断点数据可以有、{锁定输出数据类型设置以防止被定点工具更改} 用于防止定点工具覆盖输出数据类型、{整数舍入模式} 指定定点运算的舍入模式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号， u 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "bp",
+   "direction": "input",
+   "summary": "断点数据 实数值信号的一维向量"
+  },
+  {
+   "name": "k",
+   "direction": "output",
+   "summary": "包含输入 u 的区间的索引 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "f",
+   "direction": "output",
+   "summary": "表示区间 k 内输入 u 的归一化位置的小数 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "包含索引 k 和区间比 f 的总线 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "设定",
+   "default": "显式值",
+   "values": "选择如何输入断点数据 显式值 (默认) | 等间距 | 断点对象",
+   "group": "常设"
+  },
+  {
+   "name": "源",
+   "default": "对话框",
+   "values": "指定断点数据的来源 对话框 (默认) | 输入端口",
+   "group": "常设"
+  },
+  {
+   "name": "值",
+   "default": "[10:10:110]",
+   "values": "断点数据值 [10:10:110] (默认) | 包含两个或更多元素的严格单调递增值的向量",
+   "group": "常设"
+  },
+  {
+   "name": "第一个点",
+   "default": "10",
+   "values": "等间距断点数据中的第一个点 10 (默认) | 实数值标量",
+   "group": "常设"
+  },
+  {
+   "name": "间距",
+   "default": "10",
+   "values": "等间距断点之间的间距 10 (默认) | 正实数值标量",
+   "group": "常设"
+  },
+  {
+   "name": "点数",
+   "default": "11",
+   "values": "等间距点数量 11 (默认) | 正实数值标量",
+   "group": "常设"
+  },
+  {
+   "name": "名称",
+   "default": "",
+   "values": "Simulink.Breakpoint 对象的名称 无默认值 | Simulink.Breakpoint 对象",
+   "group": "常设"
+  },
+  {
+   "name": "输出选择",
+   "default": "索引和区间比",
+   "values": "指定模块输出的信号 索引和区间比 (默认) | 索引和区间比作为总线 | 仅索引",
+   "group": "常设"
+  },
+  {
+   "name": "索引搜索方法",
+   "default": "二分搜索",
+   "values": "搜索断点数据的方法 二分搜索 (默认) | 线性搜索 | 等间距点",
+   "group": "常设"
+  },
+  {
+   "name": "使用上一个索引结果开始索引搜索",
+   "default": "off",
+   "values": "使用在上一个时间步中找到的索引开始搜索 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "外插方法",
+   "default": "裁剪",
+   "values": "处理超出范围的输入值的方法 裁剪 (默认) | 线性",
+   "group": "常设"
+  },
+  {
+   "name": "将最后一个断点用于等于或高于上限的输入",
+   "default": "off",
+   "values": "处理等于或高于上限的输入的方法 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "假设输入在范围内",
+   "default": "off",
+   "values": "检查输入值是否超出范围的选项 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "输入超出范围的诊断",
+   "default": "无",
+   "values": "当输入超出范围时的模块操作 无 (默认) | 警告 | 错误",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "断点",
+   "default": "input",
+   "values": "断点数据类型 Inherit: Same as input (默认) | Inherit: Inherit from ’Breakpoint data’ | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": "数据类型"
+  },
+  {
+   "name": "索引",
+   "default": "uint32",
+   "values": "索引数据类型 uint32 (默认) | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) |",
+   "group": "数据类型"
+  },
+  {
+   "name": "区间比",
+   "default": "rule",
+   "values": "区间比数据类型 Inherit: Inherit via internal rule (默认) | double | single | fixdt(1,16,0) |",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出",
+   "default": "auto",
+   "values": "输出数据类型 Inherit: auto (默认) | bus:",
+   "group": "数据类型"
+  },
+  {
+   "name": "断点最小值",
+   "default": "[]",
+   "values": "最小值断点数据可以有 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "断点最大值",
+   "default": "[]",
+   "values": "最大值断点数据可以有 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  }
+ ]
+}

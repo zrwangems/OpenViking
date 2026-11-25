@@ -1,0 +1,37 @@
+{
+ "key": "Derating Function",
+ "title": "Derating Function",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Controllers/Derating_Function.md",
+  "Motor Control Blockset/Controls/Controllers/Derating_Function.md"
+ ],
+ "text": "计算降额因子，输入 2 路、输出 1 路；{降额阈值}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "f max",
+   "direction": "input",
+   "summary": "参考信号最大限值 标量"
+  },
+  {
+   "name": "f feedback",
+   "direction": "input",
+   "summary": "参考反馈信号 标量"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "降额因子 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "降额阈值",
+   "default": "0.9",
+   "values": "降额阈值，超过该阈值必须发生降额 0.9 (默认) | 范围 [0,1) 中的标量",
+   "group": ""
+  }
+ ]
+}

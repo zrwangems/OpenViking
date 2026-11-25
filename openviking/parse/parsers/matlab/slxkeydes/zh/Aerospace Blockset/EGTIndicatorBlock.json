@@ -1,0 +1,44 @@
+{
+ "key": "EGTIndicatorBlock",
+ "title": "EGT Indicator",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Instruments/EGT_Indicator.md"
+ ],
+ "text": "显示发动机排气温度 (EGT) 的测量值；按 {Scale Colors} 指定色带范围；{Connection} 指定连接到信号 signal name、{Minimum} 指定最小刻度线值、{Maximum} 指定最大刻度标记值、{Label} 指定模块标签位置，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "连接到信号 signal name",
+   "group": ""
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "最小刻度线值 0 (default) | finite | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "1000",
+   "values": "最大刻度标记值 1000 (default) | finite | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Scale Colors",
+   "default": "0",
+   "values": "色带范围 0 (default) | double | scalar",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "模块标签位置 Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

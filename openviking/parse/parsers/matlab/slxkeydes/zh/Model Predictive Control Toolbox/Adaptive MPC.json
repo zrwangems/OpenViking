@@ -1,0 +1,316 @@
+{
+ "key": "Adaptive MPC",
+ "title": "Adaptive MPC Controller",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Adaptive_MPC_Controller.md"
+ ],
+ "text": "对自适应和时变模型预测控制器进行仿真，输入 22 路、输出 7 路；{Adaptive MPC Controller} 控制器对象 mpc object name、{Initial Controller State} 指定初始状态 mpcstate object name、{Measured disturbance} 添加可测扰动输入端口、{External manipulated variable} 添加外部操纵变量输入端口、{Targets for manipulated variables} 添加操纵变量目标输入端口、{Optimal cost} 添加最优代价输出端口、{Optimization status} 添加优化状态输出端口、{Estimated controller states} 添加估计状态输出端口、{Optimal control sequence} 添加最优控制序列输出端口、{Optimal state sequence} 添加最优状态序列输出端口、{Optimal output sequence} 添加最优输出序列输出端口、{Use custom state estimation instead of using the built-in Kalman filter} 使用自定义状态估计输入端口、{Linear Time-Varying (LTV) plants} 使用自定义状态估计输入端口、{Lower OV limits} 添加最小 OV 约束输入端口、{Upper OV limits} 添加最大 OV 约束输入端口、{Lower MV limits} 添加最小 MV 约束输入端口、{Upper MV limits} 添加最大 MV 约束输入端口、{Custom constraints} 添加混合输入/输出线性约束矩阵的输入端口、{OV weights} 添加 OV 调节权重输入端口、{MV weights} 添加 MV 调节权重输入端口、{MVRate weights} 添加 MV 速率调节权重输入端口、{Slack variable weight} 添加 ECR 调节权重输入端口、{Adjust prediction horizon and control horizon at run time} 添加时域输入端口、{Maximum prediction horizon} 添加时域输入端口、{Inherit sample time} 指定从父子系统继承模块采样时间、{Use external signal to enable or disable optimization} 添加 switch 输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "model",
+   "direction": "input",
+   "summary": "更新后的被控对象模型和标称工作点 bus signal"
+  },
+  {
+   "name": "ref",
+   "direction": "input",
+   "summary": "模型输出参考值 row vector | matrix"
+  },
+  {
+   "name": "mo",
+   "direction": "input",
+   "summary": "测量输出 vector"
+  },
+  {
+   "name": "x[k|k]",
+   "direction": "input",
+   "summary": "自定义状态估计 vector"
+  },
+  {
+   "name": "md",
+   "direction": "input",
+   "summary": "输入 row vector | matrix"
+  },
+  {
+   "name": "ext.mv",
+   "direction": "input",
+   "summary": "上一控制区间内用于被控对象的控制信号 vector"
+  },
+  {
+   "name": "switch",
+   "direction": "input",
+   "summary": "启用或禁用优化 scalar"
+  },
+  {
+   "name": "mv.target",
+   "direction": "input",
+   "summary": "操纵变量目标 vector"
+  },
+  {
+   "name": "ymin",
+   "direction": "input",
+   "summary": "输出变量最小约束 vector | matrix"
+  },
+  {
+   "name": "ymax",
+   "direction": "input",
+   "summary": "输出变量最大约束 vector | matrix"
+  },
+  {
+   "name": "umin",
+   "direction": "input",
+   "summary": "最小操纵变量约束 vector | matrix"
+  },
+  {
+   "name": "umax",
+   "direction": "input",
+   "summary": "最大操纵变量约束 vector | matrix"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "操纵变量约束矩阵 matrix"
+  },
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "受控输出约束矩阵 matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "自定义约束向量 row vector"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "可测扰动约束矩阵 matrix"
+  },
+  {
+   "name": "y.wt",
+   "direction": "input",
+   "summary": "输出变量调节权重 row vector | matrix"
+  },
+  {
+   "name": "u.wt",
+   "direction": "input",
+   "summary": "操作变量调节权重 row vector | matrix"
+  },
+  {
+   "name": "du.wt",
+   "direction": "input",
+   "summary": "操作变量速率调节权重 row vector | matrix"
+  },
+  {
+   "name": "ecr.wt",
+   "direction": "input",
+   "summary": "松弛变量调节权重 scalar"
+  },
+  {
+   "name": "p",
+   "direction": "input",
+   "summary": "预测时域 positive integer"
+  },
+  {
+   "name": "m",
+   "direction": "input",
+   "summary": "控制时域 positive integer | vector"
+  },
+  {
+   "name": "mv",
+   "direction": "output",
+   "summary": "最优操纵变量控制作用 column vector"
+  },
+  {
+   "name": "cost",
+   "direction": "output",
+   "summary": "目标函数代价 nonnegative scalar"
+  },
+  {
+   "name": "qp.status",
+   "direction": "output",
+   "summary": "优化状态 integer"
+  },
+  {
+   "name": "est.state",
+   "direction": "output",
+   "summary": "估计的控制器状态 vector"
+  },
+  {
+   "name": "mv.seq",
+   "direction": "output",
+   "summary": "最优操纵变量序列 matrix"
+  },
+  {
+   "name": "x.seq",
+   "direction": "output",
+   "summary": "最优预测模型状态序列 matrix"
+  },
+  {
+   "name": "y.seq",
+   "direction": "output",
+   "summary": "最优输出变量序列 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Adaptive MPC Controller",
+   "default": "",
+   "values": "控制器对象 mpc object name",
+   "group": ""
+  },
+  {
+   "name": "Initial Controller State",
+   "default": "",
+   "values": "初始状态 mpcstate object name",
+   "group": ""
+  },
+  {
+   "name": "Measured disturbance",
+   "default": "on",
+   "values": "添加可测扰动输入端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "External manipulated variable",
+   "default": "off",
+   "values": "添加外部操纵变量输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Targets for manipulated variables",
+   "default": "off",
+   "values": "添加操纵变量目标输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimal cost",
+   "default": "off",
+   "values": "添加最优代价输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimization status",
+   "default": "off",
+   "values": "添加优化状态输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Estimated controller states",
+   "default": "off",
+   "values": "添加估计状态输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimal control sequence",
+   "default": "off",
+   "values": "添加最优控制序列输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimal state sequence",
+   "default": "off",
+   "values": "添加最优状态序列输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimal output sequence",
+   "default": "off",
+   "values": "添加最优输出序列输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use custom state estimation instead of using the built-in Kalman filter",
+   "default": "off",
+   "values": "使用自定义状态估计输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Linear Time-Varying (LTV) plants",
+   "default": "off",
+   "values": "使用自定义状态估计输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lower OV limits",
+   "default": "off",
+   "values": "添加最小 OV 约束输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Upper OV limits",
+   "default": "off",
+   "values": "添加最大 OV 约束输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lower MV limits",
+   "default": "off",
+   "values": "添加最小 MV 约束输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Upper MV limits",
+   "default": "off",
+   "values": "添加最大 MV 约束输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Custom constraints",
+   "default": "off",
+   "values": "添加混合输入/输出线性约束矩阵的输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "OV weights",
+   "default": "off",
+   "values": "添加 OV 调节权重输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "MV weights",
+   "default": "off",
+   "values": "添加 MV 调节权重输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "MVRate weights",
+   "default": "off",
+   "values": "添加 MV 速率调节权重输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Slack variable weight",
+   "default": "off",
+   "values": "添加 ECR 调节权重输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Adjust prediction horizon and control horizon at run time",
+   "default": "off",
+   "values": "添加时域输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum prediction horizon",
+   "default": "10",
+   "values": "添加时域输入端口 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time",
+   "default": "off",
+   "values": "从父子系统继承模块采样时间 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use external signal to enable or disable optimization",
+   "default": "off",
+   "values": "添加 switch 输入端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

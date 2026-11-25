@@ -1,0 +1,13 @@
+{
+ "key": "Cartesian Joint",
+ "title": "Cartesian Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Cartesian_Joint.md"
+ ],
+ "text": "具有三个移动副基元的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

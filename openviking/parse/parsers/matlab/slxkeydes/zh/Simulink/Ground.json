@@ -1,0 +1,21 @@
+{
+ "key": "Ground",
+ "title": "Ground",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Ground.md",
+  "Simulink/Sources/Ground.md",
+  "HDL Coder/Sources/Ground.md"
+ ],
+ "text": "将未连接的输入端口接地；输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "接地信号 标量"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,73 @@
+{
+ "key": "Upsample",
+ "title": "Upsample",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Operations/Upsample.md",
+  "DSP System Toolbox/Signal Operations/Upsample.md"
+ ],
+ "text": "通过插入零以更高速率对输入进行重采样，输入 2 路、输出 1 路、无直接馈通；按 {Initial conditions} 指定初始条件；{Upsample factor source} 指定上采样因子的方式、{Upsample factor, L} 指定上采样因子、{Sample offset (0 to L−1)} 指定采样偏移、{Maximum upsample factor, Lmax} 指定最大上采样因子、{Input processing} 指定处理输入信号的方法 Columns、{Rate options} 指定上采样输入的方法 Enforce single-rate，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "上采样因子 positive integer ≤ Lmax"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "上采样后的信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Upsample factor source",
+   "default": "parameter",
+   "values": "指定上采样因子的方式 Dialog parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Upsample factor, L",
+   "default": "3",
+   "values": "上采样因子 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample offset (0 to L−1)",
+   "default": "0",
+   "values": "采样偏移 0 (default) | integer in the range [0, L −1]",
+   "group": ""
+  },
+  {
+   "name": "Maximum upsample factor, Lmax",
+   "default": "16",
+   "values": "最大上采样因子 16 (default) | positive integer ≥ 1",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "处理输入信号的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "上采样输入的方法 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "初始条件 0 (default) | scalar | vector | matrix",
+   "group": ""
+  }
+ ]
+}

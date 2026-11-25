@@ -1,0 +1,37 @@
+{
+ "key": "ADC Read",
+ "title": "ADC Read",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/ADC_Read.md"
+ ],
+ "text": "从 ADC Interface 模块读取 ADC 数据值，输入 1 路、输出 1 路；按 {Data type} 指定接收到的 ADC 测量的数据类型；{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "来自寄存器的数据消息 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "接收到的 ADC 测量的数据类型 double (default) | single | uint8 | int8 | int16 | int32 | uint16 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

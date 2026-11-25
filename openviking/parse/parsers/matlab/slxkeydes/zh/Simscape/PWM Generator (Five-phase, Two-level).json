@@ -1,0 +1,59 @@
+{
+ "key": "PWM Generator (Five-phase, Two-level)",
+ "title": "PWM Generator (Five-phase, Two-level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Generator_Five_phase_Two_level.md"
+ ],
+ "text": "生成五相两电平脉宽调制波形，输入 2 路、输出 2 路；按 {Sampling mode} 指定波形采样方法；{Continuous PWM} 指定连续脉宽调制方法 SPWM: sinusoidal、{Switching frequency (Hz)} 指定开关速率 1e3、{Sample time (s)} 指定模块采样时间 5e-5，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabcde",
+   "direction": "input",
+   "summary": "五相正弦参考信号 vector"
+  },
+  {
+   "name": "vdc",
+   "direction": "input",
+   "summary": "直流母线电压信号 scalar"
+  },
+  {
+   "name": "g",
+   "direction": "output",
+   "summary": "门极控制 vector"
+  },
+  {
+   "name": "ModWave",
+   "direction": "output",
+   "summary": "调制波 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Continuous PWM",
+   "default": "PWM",
+   "values": "连续脉宽调制方法 SPWM: sinusoidal PWM (default) | SVM: space vector modulation",
+   "group": ""
+  },
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "波形采样方法 Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1e3",
+   "values": "开关速率 1e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "5e-5",
+   "values": "模块采样时间 5e-5 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

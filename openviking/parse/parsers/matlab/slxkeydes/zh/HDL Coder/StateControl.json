@@ -1,0 +1,20 @@
+{
+ "key": "StateControl",
+ "title": "State Control",
+ "toolbox": "HDL Coder",
+ "kind": "block_type",
+ "source_docs": [
+  "HDL Coder/HDL Subsystems/State_Control.md"
+ ],
+ "text": "为带状态的模块指定同步复位和使能行为；{State control} 指定状态控制类型，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "State control",
+   "default": "Synchronous",
+   "values": "选择状态控制类型 Synchronous (default) | Classic",
+   "group": ""
+  }
+ ]
+}

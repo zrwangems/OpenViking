@@ -1,0 +1,311 @@
+{
+ "key": "drivingRadarDataGenerator",
+ "title": "Driving Radar Data Generator",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Driving_Radar_Data_Generator.md"
+ ],
+ "text": "从驾驶场景或 RoadRunner Scenario 生成雷达传感器检测或航迹报告，输入 1 路、输出 3 路；按 {Coordinate system} 指定报告的检测的坐标系；{Unique identifier of sensor} 指定唯一传感器标识符、{Update rate (Hz)} 指定传感器更新率、{Translation [ X, Y, Z ] relative to ego origin (m)} 指定传感器在自车上的位置、{Rotation [Yaw, Pitch, Roll] relative to ego’s frame (deg)} 指定雷达安装旋转角度、{Enable elevation angle measurements} 启用雷达测量目标仰角、{Enable range rate measurements} 启用雷达测量目标距离变化率、{Add noise to measurements} 启用向雷达传感器测量值添加噪声、{Enable false reports} 启用创建雷达虚警检测、{Enable occlusion} 启用视线遮挡、{Maximum number of target reports} 指定检测或航迹的最大数量、{Target reporting format} 指定生成的目标报告格式 Clustered、{Source of output bus name} 输出总线名称的来源、{Specify an output bus name} 输出总线名称 BusDrivingRadarData、{Azimuth resolution (deg)} 指定雷达方位角分辨率、{Elevation resolution (deg)} 指定雷达仰角分辨率、{Range resolution (m)} 指定雷达距离分辨率、{Range rate resolution (m/s)} 指定雷达距离变化率分辨率、{Azimuth bias fraction} 指定雷达方位角偏差比例、{Elevation bias fraction} 指定雷达仰角偏差比例、{Range bias fraction} 指定距离偏差比例、{Range rate bias fraction} 指定距离变化率偏差比例、{Total angular field of view [AZ, EL] (deg)} 指定雷达的角度视场、{Range limits [MIN, MAX] (m)} 指定雷达的最小和最大距离、{Range rate limits [MIN, MAX] (m/s)} 指定雷达的最小和最大距离变化率、{Detection probability} 指定检测目标的概率、{False alarm rate} 指定虚警报告率 1e-06、{Reference target range (m)} 指定给定检测概率下的参考距离、{Reference target RCS (dBsm)} 指定给定检测概率下的参考雷达截面积、{Center frequency (Hz)} 指定雷达频带的中心频率 77e9、{Filter initialization function name} 指定卡尔曼滤波器初始化函数、{M and N for the M-out-of-N confirmation} 指定航迹确认阈值、{P and R for the P-out-of-R deletion} 指定航迹删除阈值、{Random number generation} 指定随机数生成器种子的方法、{Initial seed} 指定随机数生成器种子、{Target profiles definition} 指定目标配置文件的方法 From Scenario Reader、{MATLAB expression for target profiles} 用于目标配置文件的 MATLAB 表达式 MATLAB、{Unique identifier for actors} 指定场景定义的目标物标识符、{User-defined integer to classify actors} 指定用户定义的分类标识符、{Length of actors’ cuboids (m)} 指定目标物长方体的长度、{Width of actors’ cuboids (m)} 指定目标物长方体的宽度、{Height of actors’ cuboids (m)} 指定目标物长方体的高度、{Rotational center of actors from bottom center (m)} 指定目标物的旋转中心、{Radar cross section pattern (dBsm)} 指定雷达截面积、{Azimuth angles defining RCSPattern (deg)} 指定雷达截面积方向图的方位角、{Elevation angles defining RCSPattern (deg)} 指定雷达截面积方向图的仰角，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Actors",
+   "direction": "input",
+   "summary": "场景参与者位姿 Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Clustered detections",
+   "direction": "output",
+   "summary": "聚类目标检测 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tracks",
+   "direction": "output",
+   "summary": "目标航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "未聚类目标检测 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unique identifier of sensor",
+   "default": "0",
+   "values": "唯一传感器标识符 0 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Update rate (Hz)",
+   "default": "10",
+   "values": "传感器更新率 10 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Translation [ X, Y, Z ] relative to ego origin (m)",
+   "default": "0.2]",
+   "values": "传感器在自车上的位置 (m) [3.4, 0, 0.2] (default) | 1-by-3 real-valued vector of form [ x y z ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Rotation [Yaw, Pitch, Roll] relative to ego’s frame (deg)",
+   "default": "0]",
+   "values": "雷达安装旋转角度 [0 0 0] (default) | 1-by-3 real-valued vector of form [ z yaw y pitch x roll ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable elevation angle measurements",
+   "default": "off",
+   "values": "启用雷达测量目标仰角 off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable range rate measurements",
+   "default": "on",
+   "values": "启用雷达测量目标距离变化率 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Add noise to measurements",
+   "default": "on",
+   "values": "启用向雷达传感器测量值添加噪声 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable false reports",
+   "default": "on",
+   "values": "启用创建雷达虚警检测 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable occlusion",
+   "default": "on",
+   "values": "启用视线遮挡 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum number of target reports",
+   "default": "50",
+   "values": "检测或航迹的最大数量 50 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Target reporting format",
+   "default": "detections",
+   "values": "生成的目标报告格式 Clustered detections (default) | Tracks | Detections",
+   "group": "Parameters"
+  },
+  {
+   "name": "Coordinate system",
+   "default": "Body",
+   "values": "报告的检测的坐标系 Body (default) | Sensor rectangular | Sensor spherical",
+   "group": "Parameters"
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出总线名称的来源 Auto (default) | Property",
+   "group": "Parameters"
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "BusDrivingRadarDataGenerator",
+   "values": "输出总线名称 BusDrivingRadarDataGenerator (default) | valid bus name",
+   "group": "Parameters"
+  },
+  {
+   "name": "Azimuth resolution (deg)",
+   "default": "4",
+   "values": "雷达方位角分辨率 4 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation resolution (deg)",
+   "default": "5",
+   "values": "雷达仰角分辨率 5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range resolution (m)",
+   "default": "2.5",
+   "values": "雷达距离分辨率 2.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate resolution (m/s)",
+   "default": "0.5",
+   "values": "雷达距离变化率分辨率 0.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Azimuth bias fraction",
+   "default": "0.1",
+   "values": "雷达方位角偏差比例 0.1 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation bias fraction",
+   "default": "0.1",
+   "values": "雷达仰角偏差比例 0.1 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range bias fraction",
+   "default": "0.05",
+   "values": "距离偏差比例 0.05 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate bias fraction",
+   "default": "0.05",
+   "values": "距离变化率偏差比例 0.05 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Total angular field of view [AZ, EL] (deg)",
+   "default": "5]",
+   "values": "雷达的角度视场 [20 5] (default) | 1-by-2 positive real-valued vector of form [azfov, elfov]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range limits [MIN, MAX] (m)",
+   "default": "150]",
+   "values": "雷达的最小和最大距离 [0 150] (default) | 1-by-2 nonnegative real-valued vector of form [min max]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate limits [MIN, MAX] (m/s)",
+   "default": "100]",
+   "values": "雷达的最小和最大距离变化率 (m/s) [-100 100] (default) | 1-by-2 real-valued vector of form [min max]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Detection probability",
+   "default": "0.9",
+   "values": "检测目标的概率 0.9 (default) | scalar in range (0, 1]",
+   "group": "Measurements"
+  },
+  {
+   "name": "False alarm rate",
+   "default": "1e-06",
+   "values": "虚警报告率 1e-06 (default) | positive real scalar in range [10 –7, 10 –3 ]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Reference target range (m)",
+   "default": "100",
+   "values": "给定检测概率下的参考距离 100 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Reference target RCS (dBsm)",
+   "default": "0",
+   "values": "给定检测概率下的参考雷达截面积 0 (default) | real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Center frequency (Hz)",
+   "default": "77e9",
+   "values": "雷达频带的中心频率 77e9 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Filter initialization function name",
+   "default": "initcvekf",
+   "values": "卡尔曼滤波器初始化函数 initcvekf (default) | function name",
+   "group": "Measurements"
+  },
+  {
+   "name": "M and N for the M-out-of-N confirmation",
+   "default": "3]",
+   "values": "航迹确认阈值 [2 3] (default) | 1-by-2 vector of positive integers",
+   "group": "Measurements"
+  },
+  {
+   "name": "P and R for the P-out-of-R deletion",
+   "default": "5]",
+   "values": "航迹删除阈值 [5 5] (default) | 1-by-2 vector of positive integers",
+   "group": "Measurements"
+  },
+  {
+   "name": "Random number generation",
+   "default": "Repeatable",
+   "values": "指定随机数生成器种子的方法 Repeatable (default) | Specify seed | Not repeatable",
+   "group": "Measurements"
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "随机数生成器种子 0 (default) | nonnegative integer less than 2 32",
+   "group": "Measurements"
+  },
+  {
+   "name": "Target profiles definition",
+   "default": "block",
+   "values": "指定目标配置文件的方法 From Scenario Reader block (default) | MATLAB expression | Parameters",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "MATLAB expression for target profiles",
+   "default": "",
+   "values": "用于目标配置文件的 MATLAB 表达式 MATLAB structure | MATLAB structure array | valid MATLAB expression",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Unique identifier for actors",
+   "default": "[]",
+   "values": "场景定义的目标物标识符 [] (default) | positive integer | length- L vector of unique positive integers",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "User-defined integer to classify actors",
+   "default": "0",
+   "values": "用户定义的分类标识符 0 (default) | integer | length- L vector of integers",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Length of actors’ cuboids (m)",
+   "default": "4.7",
+   "values": "目标物长方体的长度 4.7 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Width of actors’ cuboids (m)",
+   "default": "1.8",
+   "values": "目标物长方体的宽度 1.8 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Height of actors’ cuboids (m)",
+   "default": "1.4",
+   "values": "目标物长方体的高度 1.4 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Rotational center of actors from bottom center (m)",
+   "default": "0]}",
+   "values": "目标物的旋转中心 {[-1.35, 0, 0]} (default) | length- L cell array of real-valued 1-by-3 vectors",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Radar cross section pattern (dBsm)",
+   "default": "10]}",
+   "values": "雷达截面积 {[10, 10; 10, 10]} (default) | real-valued Q -by- P matrix | length- L cell array of real-valued Q -by- P matrices",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Azimuth angles defining RCSPattern (deg)",
+   "default": "180]}",
+   "values": "雷达截面积方向图的方位角 {[-180 180]} (default) | length- L cell array of real-valued P -length vectors",
+   "group": "Target Profiles"
+  },
+  {
+   "name": "Elevation angles defining RCSPattern (deg)",
+   "default": "90]}",
+   "values": "雷达截面积方向图的仰角 {[-90 90]} (default) | length- L cell array of real-valued Q -length vectors",
+   "group": "Target Profiles"
+  }
+ ]
+}

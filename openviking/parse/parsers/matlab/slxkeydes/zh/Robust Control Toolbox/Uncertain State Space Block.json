@@ -1,0 +1,49 @@
+{
+ "key": "Uncertain State Space Block",
+ "title": "Uncertain State Space",
+ "toolbox": "Robust Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robust Control Toolbox/Uncertain_State_Space.md"
+ ],
+ "text": "在 Simulink 中仿真不确定系统，输入 1 路、输出 1 路；按 {Uncertain system variable (uss)} 指定不确定系统；{Uncertainty value (struct or [] to use nominal value)} 用于替换不确定变量的值、{Initial states (nominal dynamics)} 指定标称系统的初始状态值、{Initial states (uncertain dynamics)} 指定不确定动态的初始状态值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Uncertain system variable (uss)",
+   "default": "ss(ureal(’a’,-5),5,1,1)",
+   "values": "不确定系统 ss(ureal(’a’,-5),5,1,1) (default) | uss model | model or element that can be converted to uss",
+   "group": ""
+  },
+  {
+   "name": "Uncertainty value (struct or [] to use nominal value)",
+   "default": "[]",
+   "values": "用于替换不确定变量的值 [] (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "Initial states (nominal dynamics)",
+   "default": "[]",
+   "values": "标称系统的初始状态值 [] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states (uncertain dynamics)",
+   "default": "",
+   "values": "不确定动态的初始状态值 [] | vector",
+   "group": ""
+  }
+ ]
+}

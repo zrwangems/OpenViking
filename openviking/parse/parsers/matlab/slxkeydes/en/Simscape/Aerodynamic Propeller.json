@@ -1,0 +1,13 @@
+{
+ "key": "Aerodynamic Propeller",
+ "title": "Aerodynamic Propeller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Aerodynamic_Propeller.md"
+ ],
+ "text": "Propeller that generates thrust from rotational motion.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

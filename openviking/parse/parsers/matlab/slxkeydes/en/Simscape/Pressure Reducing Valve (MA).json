@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Reducing Valve (MA)",
+ "title": "Pressure Reducing Valve (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Valves & Orifices/Pressure Control Valves/Pressure_Reducing_Valve_MA.md"
+ ],
+ "text": "Pressure reducing valve in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

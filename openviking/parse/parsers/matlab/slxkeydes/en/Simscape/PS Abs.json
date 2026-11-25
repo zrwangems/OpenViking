@@ -1,0 +1,13 @@
+{
+ "key": "PS Abs",
+ "title": "PS Abs",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Abs.md"
+ ],
+ "text": "Output absolute value of input physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

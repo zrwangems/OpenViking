@@ -1,0 +1,76 @@
+{
+ "key": "AeroMATLABAnimation",
+ "title": "MATLAB Animation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/MATLAB-Based Animation/MATLAB_Animation.md"
+ ],
+ "text": "创建六自由度多体自定义几何模块；{Vehicles} 指定要制作动画的飞行器、{Geometries (use ’quotes’ on filenames)} 指定飞行器几何体、{Bounding box coordinates} 指定边界坐标、{Camera offset} 指定从相机瞄准点到相机的距离、{Camera view angle} 指定相机视角、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "飞行器的下程位置、横向位置和高度 three-element vector"
+  },
+  {
+   "name": "1.X e",
+   "direction": "input",
+   "summary": "飞行器的下程位置、横向位置和高度 three-element vector"
+  },
+  {
+   "name": "1.φ θ ψ",
+   "direction": "input",
+   "summary": "欧拉角 three-element vector"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "下程位置、横向位置和高度（向下为正） three-element vector"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "欧拉角 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vehicles",
+   "default": "1",
+   "values": "要制作动画的飞行器 1 (default) | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10",
+   "group": ""
+  },
+  {
+   "name": "Geometries (use ’quotes’ on filenames)",
+   "default": "’astredwedge.mat’",
+   "values": "飞行器几何体 ’astredwedge.mat’ (default) | MAT-file",
+   "group": ""
+  },
+  {
+   "name": "Bounding box coordinates",
+   "default": "[-50,50,-50,50,-50,50]",
+   "values": "边界坐标 [-50,50,-50,50,-50,50] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Camera offset",
+   "default": "[-150,-50,0]",
+   "values": "从相机瞄准点到相机的距离 [-150,-50,0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Camera view angle",
+   "default": "3",
+   "values": "相机视角 3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.2",
+   "values": "采样时间 0.2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

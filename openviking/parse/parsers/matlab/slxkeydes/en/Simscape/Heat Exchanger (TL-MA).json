@@ -1,0 +1,13 @@
+{
+ "key": "Heat Exchanger (TL-MA)",
+ "title": "Heat Exchanger (TL-MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid - Moist Air/Heat_Exchanger_TL_MA.md"
+ ],
+ "text": "Models heat exchange between a moist air network and a thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

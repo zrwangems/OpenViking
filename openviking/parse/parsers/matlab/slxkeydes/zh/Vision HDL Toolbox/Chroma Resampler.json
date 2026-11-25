@@ -1,0 +1,77 @@
+{
+ "key": "Chroma Resampler",
+ "title": "Chroma Resampler",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Conversions/Chroma_Resampler.md"
+ ],
+ "text": "对色度分量进行下采样或上采样，输入 2 路、输出 2 路；按 {Rounding mode} 指定内部定点计算的舍入方法；{Resampling} 指定重采样类型 4:4:4、{Antialiasing filter} 指定下采样操作后使用的低通滤波器、{Horizontal filter coefficients} 指定抗混叠滤波器的系数、{Interpolation} 指定上采样操作的插值方法、{Saturate on integer overflow} 指定内部定点计算的溢出操作、{Filter coefficients} 指定抗混叠滤波器系数的数据类型 fixdt，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Y’CbCr 颜色空间中的输入像素流 vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Y’CbCr 颜色空间中的输出像素流 vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resampling",
+   "default": "4:2:2",
+   "values": "重采样类型 4:4:4 to 4:2:2 (default) | 4:2:2 to 4:4:4",
+   "group": "Main"
+  },
+  {
+   "name": "Antialiasing filter",
+   "default": "Auto",
+   "values": "下采样操作后使用的低通滤波器 Auto (default) | Property | None",
+   "group": "Main"
+  },
+  {
+   "name": "Horizontal filter coefficients",
+   "default": "0.2]",
+   "values": "抗混叠滤波器的系数 [0.2 0.6 0.2] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation",
+   "default": "Linear",
+   "values": "上采样操作的插值方法 Linear (default) | Pixel replication",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "内部定点计算的舍入方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "内部定点计算的溢出操作 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Filter coefficients",
+   "default": "fixdt(1,16,15)",
+   "values": "抗混叠滤波器系数的数据类型 fixdt(1,16,15) (default) | data type expression",
+   "group": "Data Types"
+  }
+ ]
+}

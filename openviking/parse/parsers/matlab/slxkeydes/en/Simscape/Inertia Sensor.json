@@ -1,0 +1,13 @@
+{
+ "key": "Inertia Sensor",
+ "title": "Inertia Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Inertia_Sensor.md"
+ ],
+ "text": "Sensor to measure the inertial properties of body groups or mechanisms.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

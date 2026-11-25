@@ -1,0 +1,94 @@
+{
+ "key": "vision.internal.blocks.Warp",
+ "title": "Warp",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Warp.md"
+ ],
+ "text": "Apply projective or affine transformation, 3 inputs, 2 outputs, {Interpolation method} sets Method for interpolating transformed pixel values; {Transformation matrix for source} sets the source for passing transformation matrix Input, {Transformation matrix} sets the value for transformation matrix 3-by-2, {Background fill value} sets the intensity value for background pixels in the transformed, {Output image position source} sets the source for passing output image size Same as input, {Output image position vector [x y width height]} sets the size of the output image, {Enable ROI input port} sets the input ROI, {Enable output port indicating if any part of ROI is outside input image} sets the output if transformed ROI is outside the specified image and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input image matrix | 3-D numeric array"
+  },
+  {
+   "name": "TForm",
+   "direction": "input",
+   "summary": "Transformation matrix 3-by-2 matrix | 3-by-3 matrix"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "Region of interest 4-element vector"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "Transformed image matrix | 3-D numeric array"
+  },
+  {
+   "name": "Err_roi",
+   "direction": "output",
+   "summary": "Indicator for transformed ROI outside image region 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Transformation matrix for source",
+   "default": "port",
+   "values": "Source for passing transformation matrix Input port (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Transformation matrix",
+   "default": "",
+   "values": "Value for transformation matrix 3-by-2 matrix | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "Method for interpolating transformed pixel values Bilinear (default) | Nearest neighbor | Bicubic",
+   "group": ""
+  },
+  {
+   "name": "Background fill value",
+   "default": "0",
+   "values": "Intensity value for background pixels in the transformed image 0 (default) | scalar | 3-element vector",
+   "group": ""
+  },
+  {
+   "name": "Output image position source",
+   "default": "image",
+   "values": "Source for passing output image size Same as input image (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Output image position vector [x y width height]",
+   "default": "]",
+   "values": "Size of the output image [ 1 1 512 512 ] (default) | 4-element vector",
+   "group": ""
+  },
+  {
+   "name": "Enable ROI input port",
+   "default": "off",
+   "values": "Input ROI off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable output port indicating if any part of ROI is outside input image",
+   "default": "off",
+   "values": "Output if transformed ROI is outside the specified image size off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

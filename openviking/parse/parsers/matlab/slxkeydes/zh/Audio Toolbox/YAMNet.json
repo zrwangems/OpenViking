@@ -1,0 +1,53 @@
+{
+ "key": "YAMNet",
+ "title": "YAMNet",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/YAMNet.md"
+ ],
+ "text": "YAMNet 声音分类网络，输入 1 路、输出 3 路、无直接馈通；{Mini-batch size} 指定小批量的大小、{Classification} 以输出声音分类、{Predictions} 输出所有分数及关联标签，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "features",
+   "direction": "input",
+   "summary": "梅尔频谱图 96-by-64 matrix | 96-by-64-by-1-by- N array"
+  },
+  {
+   "name": "sound",
+   "direction": "output",
+   "summary": "预测的声音标签 enumerated scalar"
+  },
+  {
+   "name": "scores",
+   "direction": "output",
+   "summary": "预测的激活值或分数 vector"
+  },
+  {
+   "name": "labels",
+   "direction": "output",
+   "summary": "预测分数的类别标签 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mini-batch size",
+   "default": "128",
+   "values": "小批量的大小 128 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Classification",
+   "default": "on",
+   "values": "选择以输出声音分类 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Predictions",
+   "default": "off",
+   "values": "输出所有分数及关联标签 off (default) | on",
+   "group": ""
+  }
+ ]
+}

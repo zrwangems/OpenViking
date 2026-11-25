@@ -1,0 +1,270 @@
+{
+ "key": "fusion.simulink.trackerGNN",
+ "title": "Global Nearest Neighbor Multi Object Tracker",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Multi-Object Tracking Algorithms/Global_Nearest_Neighbor_Multi_Object_Tracker.md"
+ ],
+ "text": "使用 GNN 分配的多传感器、多目标跟踪器，输入 5 路、输出 4 路；按 {Out-of-sequence measurements handling} 指定乱序测量处理；{Tracker identifier} 指定唯一跟踪器标识符、{Filter initialization function} 指定滤波器初始化函数、{Maximum number of tracks} 指定最大航迹数、{Maximum number of sensors} 指定最大传感器数、{Maximum number of OOSM steps} 指定最大 OOSM 步数、{Track state parameters} 指定航迹状态参考系的参数 structure、{Update track state parameters with time} 指定随时间更新航迹状态参数、{Enable memory management} 启用内存管理、{Assignment algorithm name} 指定分配算法名称、{Name of ’Custom’ assignment function} 指定自定义分配函数名称 character vector、{Threshold for assigning detections to tracks} 指定将检测分配给航迹的阈值 30*、{Cluster tracks and detections for assignment} 为分配而对航迹和检测进行聚类、{Simulate using} 指定要运行的仿真类型 Interpreted、{Type of track confirmation and deletion logic} 指定确认和删除逻辑类型、{Confirmation threshold [M N]} 指定历史逻辑的航迹确认阈值、{Deletion threshold [P Q]} 指定历史逻辑的航迹删除阈值、{Confirmation threshold [positive scalar]} 指定得分逻辑的航迹确认阈值、{Deletion threshold [negative scalar]} 指定得分逻辑的航迹删除阈值、{Probability of detection used for track score} 用于航迹得分的检测概率、{Rate of false positives used for track score} 用于航迹得分的虚警概率 1e-6、{Volume of the sensor’s detection bin} 指定传感器检测单元的体积、{Rate of new tracks per unit volume} 指定单位体积的新航迹速率、{Prediction time source} 指定预测时间来源、{Enable cost matrix input} 启用代价矩阵输入端口、{Enable detectable track IDs input} 启用可检测航迹 ID 输入、{Enable tentative tracks output} 启用暂定航迹输出端口、{Enable all tracks output} 启用所有航迹输出端口、{Enable information output} 启用分析信息的输出端口、{Source of output bus name} 输出航迹总线名称的来源、{Source of output info bus name} 输出信息总线名称的来源、{Maximum number of detections per sensor} 指定每个传感器的最大检测数、{Maximum number of detections per cluster} 指定每个聚类的最大检测数、{Maximum number of tracks per cluster} 指定每个聚类的最大航迹数、{Handle run-time violation of cluster size} 指定处理聚类大小的运行时违规，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Detections",
+   "direction": "input",
+   "summary": "检测列表 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "航迹更新时间 real scalar"
+  },
+  {
+   "name": "Cost Matrix",
+   "direction": "input",
+   "summary": "代价矩阵 real-valued N t -by- N d matrix"
+  },
+  {
+   "name": "Detectable TrackIDs",
+   "direction": "input",
+   "summary": "可检测航迹 ID real-valued M -by-1 vector | real-valued M -by-2 matrix"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "航迹状态参数 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "已确认航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "确认航迹和暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "用于分析航迹更新的附加信息 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tracker identifier",
+   "default": "0",
+   "values": "唯一跟踪器标识符 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Filter initialization function",
+   "default": "initcvekf",
+   "values": "滤波器初始化函数 initcvekf (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of tracks",
+   "default": "200",
+   "values": "最大航迹数 200 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "20",
+   "values": "最大传感器数 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Out-of-sequence measurements handling",
+   "default": "Terminate",
+   "values": "乱序测量处理 Terminate (default) | Neglect | Retrodiction",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of OOSM steps",
+   "default": "3",
+   "values": "最大 OOSM 步数 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "航迹状态参考系的参数 structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "随时间更新航迹状态参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable memory management",
+   "default": "off",
+   "values": "启用内存管理 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Assignment algorithm name",
+   "default": "’MatchPairs’",
+   "values": "分配算法名称 ’MatchPairs’ (default) | ’Munkres’ | ’Jonker-Volgenant’ | ’Auction’ | ’Custom’",
+   "group": ""
+  },
+  {
+   "name": "Name of ’Custom’ assignment function",
+   "default": "",
+   "values": "自定义分配函数名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "Threshold for assigning detections to tracks",
+   "default": "Inf]",
+   "values": "将检测分配给航迹的阈值 30*[1 Inf] (default) | positive scalar | 1-by-2 vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Cluster tracks and detections for assignment",
+   "default": "off",
+   "values": "为分配而对航迹和检测进行聚类 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "要运行的仿真类型 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Type of track confirmation and deletion logic",
+   "default": "History",
+   "values": "确认和删除逻辑类型 History (default) | Score",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [M N]",
+   "default": "3]",
+   "values": "历史逻辑的航迹确认阈值 [2 3] (default) | real-valued 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [P Q]",
+   "default": "5]",
+   "values": "历史逻辑的航迹删除阈值 [5 5] (default) | real-valued 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [positive scalar]",
+   "default": "20",
+   "values": "得分逻辑的航迹确认阈值 20 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [negative scalar]",
+   "default": "-7",
+   "values": "得分逻辑的航迹删除阈值 -7 (default) | scalar | negative scalar",
+   "group": ""
+  },
+  {
+   "name": "Probability of detection used for track score",
+   "default": "0.9",
+   "values": "用于航迹得分的检测概率 0.9 (default) | scalar in (0,1)",
+   "group": ""
+  },
+  {
+   "name": "Rate of false positives used for track score",
+   "default": "1e-6",
+   "values": "用于航迹得分的虚警概率 1e-6 (default) | scalar in (0,1)",
+   "group": ""
+  },
+  {
+   "name": "Volume of the sensor’s detection bin",
+   "default": "1",
+   "values": "传感器检测单元的体积 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Rate of new tracks per unit volume",
+   "default": "1",
+   "values": "单位体积的新航迹速率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Prediction time source",
+   "default": "Auto",
+   "values": "预测时间来源 Auto (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Enable cost matrix input",
+   "default": "off",
+   "values": "启用代价矩阵输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable detectable track IDs input",
+   "default": "off",
+   "values": "启用可检测航迹 ID 输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "启用暂定航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "启用所有航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable information output",
+   "default": "off",
+   "values": "启用分析信息的输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出航迹总线名称的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Source of output info bus name",
+   "default": "Auto",
+   "values": "输出信息总线名称的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of detections per sensor",
+   "default": "100",
+   "values": "每个传感器的最大检测数 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of detections per cluster",
+   "default": "5",
+   "values": "每个聚类的最大检测数 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of tracks per cluster",
+   "default": "5",
+   "values": "每个聚类的最大航迹数 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Handle run-time violation of cluster size",
+   "default": "Auto",
+   "values": "处理聚类大小的运行时违规 Auto (default) | Property",
+   "group": ""
+  }
+ ]
+}

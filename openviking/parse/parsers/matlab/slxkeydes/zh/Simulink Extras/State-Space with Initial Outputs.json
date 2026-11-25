@@ -1,0 +1,68 @@
+{
+ "key": "State-Space with Initial Outputs",
+ "title": "State-Space (with initial outputs)",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Linear/State_Space_with_initial_outputs.md"
+ ],
+ "text": "指定初始输出。使用优化例程尝试找到满足该初始输出的稳态 x 值；按 {Initial conditions} 指定Initial state vector；{A}、{B}、{C}、{D}、{Parameter tunability} 指定 tunable representation of block parameters、{Allow non-zero values for D matrix initially specified as zero} 指定 Allow tunability of D matrix when D =、{Absolute tolerance}、{State Name (e.g., ''''position'''')} 指定 Option to assign unique names to states，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "A",
+   "default": "1",
+   "values": "Matrix coefficient, A 1 (default) | scalar | vector | matrix | sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "Matrix coefficient, B 1 (default) | scalar | vector | matrix | sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "C",
+   "default": "1",
+   "values": "Matrix coefficient, C 1 (default) | scalar | vector | matrix | sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "D",
+   "default": "1",
+   "values": "Matrix coefficient, D 1 (default) | scalar | vector | matrix | sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial state vector 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Parameter tunability",
+   "default": "Auto",
+   "values": "Choose tunable representation of block parameters Auto (default) | Optimized | Unconstrained",
+   "group": ""
+  },
+  {
+   "name": "Allow non-zero values for D matrix initially specified as zero",
+   "default": "off",
+   "values": "Allow tunability of D matrix when D = 0 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "auto",
+   "values": "Absolute tolerance for computing block states auto (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "State Name (e.g., ''''position'''')",
+   "default": "''''''''",
+   "values": "Option to assign unique names to states '''''''' (default) | character vector | cell array of character vectors | MATLAB® variable | ...",
+   "group": ""
+  }
+ ]
+}

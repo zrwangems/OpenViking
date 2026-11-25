@@ -1,0 +1,13 @@
+{
+ "key": "Rack and Pinion Constraint",
+ "title": "Rack and Pinion Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Gears and Couplings/Gears/Rack_and_Pinion_Constraint.md"
+ ],
+ "text": "Kinematic constraint between a translating rack body and a rotating pinion body.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

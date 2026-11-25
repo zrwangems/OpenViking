@@ -1,0 +1,99 @@
+{
+ "key": "GMSK Modulator",
+ "title": "GMSK Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/GMSK_Modulator.md"
+ ],
+ "text": "Modulate data bits using Gaussian minimum shift keying (GMSK) method, 3 inputs, 3 outputs, {Symbol prehistory} sets Symbol prehistory; {Bandwidth time product} sets the product of the bandwidth and symbol time for the Gaussian pulse, {Pulse length}, {Phase offset (rad)} sets the phase offset of modulated waveform, {Number of samples per symbol}, {Number of data points}, {Output type}, {Output word length} and {Enable reset input port} sets the reset signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Data bits scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clear internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Modulated complex output data symbols complex scalar | complex column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Bandwidth time product",
+   "default": "0.3",
+   "values": "Product of the bandwidth and symbol time for the Gaussian pulse shape 0.3 (default) | positive scalar value",
+   "group": "Main"
+  },
+  {
+   "name": "Pulse length",
+   "default": "8",
+   "values": "Pulse length 8 (default) | positive integer in the range from 1 to 16",
+   "group": "Main"
+  },
+  {
+   "name": "Symbol prehistory",
+   "default": "1",
+   "values": "Symbol prehistory 1 (default) | -1 | vector of –1s or 1s with length equal to L – 1",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "Phase offset of modulated waveform 0 (default) | numeric scalar in the range from -2*π to 2*π.",
+   "group": "Main"
+  },
+  {
+   "name": "Number of samples per symbol",
+   "default": "4",
+   "values": "Number of samples per symbol 4 (default) | in the range 1 to 64",
+   "group": "Main"
+  },
+  {
+   "name": "Number of data points",
+   "default": "1024",
+   "values": "Number of data points 1024 (default) | positive integer within the range 65,536 and a power of 2",
+   "group": "Main"
+  },
+  {
+   "name": "Output type",
+   "default": "Vector",
+   "values": "Output type Vector (default) | Scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output word length",
+   "default": "16",
+   "values": "Output word length 16 (default) | positive scalar value with word length less than 16",
+   "group": "Data Type"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Reset signal off (default) | on",
+   "group": "Control Port"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Passive Balancing Interface",
+ "title": "Passive Balancing Interface",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/HIL/Passive_Balancing_Interface.md"
+ ],
+ "text": "Interface for cell balancing between battery and cell supervisory circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

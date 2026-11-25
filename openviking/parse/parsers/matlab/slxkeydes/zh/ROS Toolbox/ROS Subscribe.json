@@ -1,0 +1,55 @@
+{
+ "key": "ROS Subscribe",
+ "title": "Subscribe",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Subscribe.md"
+ ],
+ "text": "从 ROS 网络接收消息；输出 2 路；按 {Topic source} 指定用于指定话题名称的来源 Select from ROS network；{Topic} 指定要订阅的话题名称 string、{Message type} 指定 ROS 消息类型 string、{Sample time} 输出之间的间隔、{Length of subscribe callback queue} 指定消息队列长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "新消息指示符 0 | 1"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "ROS 消息 nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic source",
+   "default": "",
+   "values": "用于指定话题名称的来源 Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "要订阅的话题名称 string",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "",
+   "values": "ROS 消息类型 string",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "输出之间的间隔 –1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Length of subscribe callback queue",
+   "default": "1",
+   "values": "消息队列长度 1 (default) | integer",
+   "group": ""
+  }
+ ]
+}

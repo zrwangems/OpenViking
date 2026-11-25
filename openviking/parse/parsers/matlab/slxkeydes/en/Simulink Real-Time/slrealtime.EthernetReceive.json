@@ -1,0 +1,61 @@
+{
+ "key": "slrealtime.EthernetReceive",
+ "title": "Ethernet Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/Ethernet/Ethernet_Receive.md"
+ ],
+ "text": "Receive Ethernet packets from Simulink Real-Time target computer, 2 outputs, {Interface Name} sets Target computer Ethernet interface name wm0; {Data Width} sets the data port width in bytes, {Enable Simulink messages} sets the data as messages, {Maximum messages in a time step} limits packets per time step, {Capture filter} sets the filter on received packets character and {Sample Time} sets the sample time of block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Ethernet packet Simulink message"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "Number of bytes received double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interface Name",
+   "default": "",
+   "values": "Target computer Ethernet interface name wm0 | wm1 | character vector",
+   "group": ""
+  },
+  {
+   "name": "Data Width",
+   "default": "64",
+   "values": "Data port width in bytes 64 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Enable Simulink messages",
+   "default": "off",
+   "values": "Data as messages off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum messages in a time step",
+   "default": "1",
+   "values": "Limit packets per time step 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Capture filter",
+   "default": "",
+   "values": "Filter on received packets character vector",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

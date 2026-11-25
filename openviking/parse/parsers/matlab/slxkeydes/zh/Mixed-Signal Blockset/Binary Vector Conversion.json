@@ -1,0 +1,55 @@
+{
+ "key": "Binary Vector Conversion",
+ "title": "Binary Vector Conversion",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Binary_Vector_Conversion.md"
+ ],
+ "text": "将标量整数转换为二进制逻辑向量，反之亦然，输入 1 路、输出 1 路；按 {Output data type} 指定输出标量的数据类型；{Convert} 指定转换操作类型 Scalar to binary-coded、{Logical vector encoding} 指定逻辑向量的编码方法 Unipolar、{Input vector length} 指定输入向量中的向量元素数，指定为正实数标量。 默认情况下、{Output vector length} 输出向量中的向量元素数，指定为正实数标量。 默认情况下，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入信号 scalar | logical vector"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "输出信号 scalar | logical vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Convert",
+   "default": "vector",
+   "values": "转换操作类型 Scalar to binary-coded vector (default) | Binary-coded vector to scalar | Resize binary-coded vector | Reverse binary-coded vector",
+   "group": ""
+  },
+  {
+   "name": "Logical vector encoding",
+   "default": "(magnitude)",
+   "values": "逻辑向量的编码方法 Unipolar (magnitude) (default) | Bipolar (2’s complement)",
+   "group": ""
+  },
+  {
+   "name": "Input vector length",
+   "default": "8",
+   "values": "输入向量中的向量元素数，指定为正实数标量。 默认情况下，最低有效位 (LSB) 是向量的第一个元素（索引 1）。但您也可以将最高有效位 (MSB) 设置为向量的第一个元素。 要启用此参数，请将 Convert to 设置为 Binary-coded vector to scalar、Resize binary-coded vector 或 Reverse binary-coded vector。 8 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output vector length",
+   "default": "8",
+   "values": "输出向量中的向量元素数，指定为正实数标量。 默认情况下，最低有效位 (LSB) 是向量的第一个元素（索引 1）。但您也可以将最高有效位 (MSB) 设置为向量的第一个元素。 要启用此参数，请将 Convert to 设置为 Scalar to binary-coded vector 或 Resize binary-coded vector。 8 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出标量的数据类型 double (default) | Inherit: Inherit via back propagation | single | uint8 | uint16 | uint32 | fixdt(0,16)",
+   "group": ""
+  }
+ ]
+}

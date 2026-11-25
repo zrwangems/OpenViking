@@ -1,0 +1,13 @@
+{
+ "key": "4-Way 3-Position Directional Valve (G)",
+ "title": "4-Way 3-Position Directional Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Directional Control Valves/b_4_Way_3_Position_Directional_Valve_G.md"
+ ],
+ "text": "Controlled valve with four ports in a gas network。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,312 @@
+{
+ "key": "fusion.simulink.trackingScenarioReader",
+ "title": "Tracking Scenario Reader",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Tracking Scenario and Sensor Models/Tracking_Scenario_Reader.md"
+ ],
+ "text": "读取跟踪场景并生成仿真数据，输入 1 路、输出 8 路；按 {Random number generation} 指定生成随机数种子的方法；{Source of scenario} 指定跟踪场景的来源、{Workspace variable name} 指定工作区变量名称 trackingScenario variable、{Session file}、{Source of platform pose} 指定平台位姿的来源、{Sample time (s)} 指定仿真的采样时间、{Coordinate system to report platform poses} 用于报告平台位姿的坐标系、{Include profiles information with platforms} 指定在平台中包含 profiles 信息、{Detections} 启用检测输出端口、{Point clouds} 启用点云输出端口、{Emissions} 启用发射输出端口、{Enable occlusion in emission propagation} 指定在发射传播中启用遮挡、{Coverage} 启用覆盖配置输出端口、{Sensor} 启用传感器配置输出端口、{Emitter} 启用发射器配置输出端口、{Initial seed} 用于随机化的初始种子、{Source of platform bus name} 指定平台位姿总线名称的来源、{Specify platform bus name} 指定平台总线名称、{Source of maximum number of platforms} 指定最大平台数量的来源、{Maximum number of platforms} 指定最大平台数量、{Source of detection bus name} 指定检测总线名称的来源、{Specify detection bus name} 指定检测总线名称、{Source of maximum number of detections} 指定最大平台数量的来源、{Maximum number of detections} 指定最大检测数量、{Source of point cloud bus name} 指定点云总线名称的来源、{Specify point cloud bus name} 指定点云总线名称、{Maximum number of lidar sensors} 指定最大激光雷达传感器数量、{Source of maximum number of lidar sensors} 指定最大激光雷达传感器数量的来源、{Source of emission bus name} 指定发射总线名称的来源、{Specify emission bus name} 指定发射总线名称、{Source of maximum number of emissions} 指定最大发射数来源、{Maximum number of emissions} 指定最大发射数、{Source of coverage configuration bus name} 指定覆盖配置总线名称来源、{Specify coverage configuration bus name} 指定覆盖配置总线名称、{Source of sensor configuration bus name} 指定传感器配置总线名称来源、{Specify sensor configuration bus name} 指定传感器配置总线名称、{Source of emitter configuration bus name} 指定发射器配置总线名称来源、{Specify emitter configuration bus name} 指定发射器配置总线名称、{Source of maximum number of sensors} 指定最大传感器数来源、{Maximum number of sensors} 指定最大传感器数、{Source of maximum number of emitters} 指定最大发射器数来源、{Maximum number of emitters} 指定最大发射器数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Platform Poses",
+   "direction": "input",
+   "summary": "平台位姿信息 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Platforms",
+   "direction": "output",
+   "summary": "场景中平台的信息 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Simulation Time",
+   "direction": "output",
+   "summary": "当前仿真时间 nonnegative scalar"
+  },
+  {
+   "name": "Coverage Configurations",
+   "direction": "output",
+   "summary": "场景中的覆盖配置 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "检测列表 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Sensor Configuratons",
+   "direction": "output",
+   "summary": "场景中的传感器配置 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Emissions",
+   "direction": "output",
+   "summary": "场景中的雷达和声纳发射 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Emitter Configurations",
+   "direction": "output",
+   "summary": "场景中的发射器配置 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Point Clouds",
+   "direction": "output",
+   "summary": "点云 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of scenario",
+   "default": "trackingScenario",
+   "values": "跟踪场景的来源 trackingScenario (default) | Tracking Scenario Designer session file",
+   "group": "Scenario"
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "",
+   "values": "工作区变量名称 trackingScenario variable name",
+   "group": "Scenario"
+  },
+  {
+   "name": "Session file",
+   "default": "",
+   "values": "Session file Tracking Scenario Designer session file name",
+   "group": "Scenario"
+  },
+  {
+   "name": "Source of platform pose",
+   "default": "Scenario",
+   "values": "平台位姿的来源 Scenario (default) | Input port",
+   "group": "Scenario"
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "0.1",
+   "values": "仿真的采样时间 0.1 (default) | positive real scalar",
+   "group": "Scenario"
+  },
+  {
+   "name": "Coordinate system to report platform poses",
+   "default": "Cartesian",
+   "values": "用于报告平台位姿的坐标系 Cartesian (default) | Geodetic",
+   "group": "Scenario"
+  },
+  {
+   "name": "Include profiles information with platforms",
+   "default": "off",
+   "values": "在平台中包含 profiles 信息 off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Detections",
+   "default": "off",
+   "values": "启用检测输出端口 off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Point clouds",
+   "default": "off",
+   "values": "启用点云输出端口 off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Emissions",
+   "default": "off",
+   "values": "启用发射输出端口 off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Enable occlusion in emission propagation",
+   "default": "on",
+   "values": "在发射传播中启用遮挡 on (default) | off",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Coverage",
+   "default": "off",
+   "values": "启用覆盖配置输出端口 off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Sensor",
+   "default": "off",
+   "values": "启用传感器配置输出端口 off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Emitter",
+   "default": "off",
+   "values": "启用发射器配置输出端口 off (default) | on",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Random number generation",
+   "default": "Repeatable",
+   "values": "生成随机数种子的方法 Repeatable (default) | Not repeatable | Specify seed",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "用于随机化的初始种子 0 (default) | nonnegative integer",
+   "group": "Output Settings"
+  },
+  {
+   "name": "Source of platform bus name",
+   "default": "Auto",
+   "values": "平台位姿总线名称的来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify platform bus name",
+   "default": "BusPlatforms",
+   "values": "指定平台总线名称 BusPlatforms (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of platforms",
+   "default": "Auto",
+   "values": "最大平台数量的来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of platforms",
+   "default": "50",
+   "values": "最大平台数量 50 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of detection bus name",
+   "default": "Auto",
+   "values": "检测总线名称的来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify detection bus name",
+   "default": "BusDetection",
+   "values": "指定检测总线名称 BusDetection (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of detections",
+   "default": "Auto",
+   "values": "最大平台数量的来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of detections",
+   "default": "50",
+   "values": "最大检测数量 50 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of point cloud bus name",
+   "default": "Auto",
+   "values": "点云总线名称的来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify point cloud bus name",
+   "default": "BusPointCloud",
+   "values": "指定点云总线名称 BusPointCloud (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of lidar sensors",
+   "default": "10",
+   "values": "最大激光雷达传感器数量 10 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of lidar sensors",
+   "default": "Auto",
+   "values": "最大激光雷达传感器数量的来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of emission bus name",
+   "default": "Auto",
+   "values": "发射总线名称的来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify emission bus name",
+   "default": "BusEmission",
+   "values": "指定发射总线名称 BusEmission (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of emissions",
+   "default": "Auto",
+   "values": "最大发射数来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of emissions",
+   "default": "50",
+   "values": "最大发射数 50 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of coverage configuration bus name",
+   "default": "Auto",
+   "values": "覆盖配置总线名称来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify coverage configuration bus name",
+   "default": "BusCovConf",
+   "values": "指定覆盖配置总线名称 BusCovConf (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of sensor configuration bus name",
+   "default": "Auto",
+   "values": "传感器配置总线名称来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify sensor configuration bus name",
+   "default": "BusSensorConf",
+   "values": "指定传感器配置总线名称 BusSensorConf (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of emitter configuration bus name",
+   "default": "Auto",
+   "values": "发射器配置总线名称来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Specify emitter configuration bus name",
+   "default": "BusEmitterConf",
+   "values": "指定发射器配置总线名称 BusEmitterConf (default) | valid bus name",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of sensors",
+   "default": "Auto",
+   "values": "最大传感器数来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "10",
+   "values": "最大传感器数 10 (default) | positive integer",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Source of maximum number of emitters",
+   "default": "Auto",
+   "values": "最大发射器数来源 Auto (default) | Property",
+   "group": "Bus Settings"
+  },
+  {
+   "name": "Maximum number of emitters",
+   "default": "10",
+   "values": "最大发射器数 10 (default) | positive integer",
+   "group": "Bus Settings"
+  }
+ ]
+}

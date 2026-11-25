@@ -1,0 +1,63 @@
+{
+ "key": "Median Filter",
+ "title": "Median Filter",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Median_Filter.md",
+  "Computer Vision Toolbox/Filtering/Median_Filter.md",
+  "Vision HDL Toolbox/Analysis & Enhancement/Median_Filter.md",
+  "Vision HDL Toolbox/Filtering/Median_Filter.md"
+ ],
+ "text": "Perform 2-D median filtering, 2 inputs, 1 output, {Padding options} sets Padding method; {Neighborhood size} sets the neighborhood window size, {Output size} sets the output sizing method Same as input, {Pad value source} sets the source of constant padding value Specify via and {Pad value}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix"
+  },
+  {
+   "name": "PVal",
+   "direction": "input",
+   "summary": "Pad value scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Neighborhood size",
+   "default": "3]",
+   "values": "Neighborhood window size [3 3] (default) | positive integer | two-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "I",
+   "values": "Output sizing method Same as input port I (default) | Valid",
+   "group": ""
+  },
+  {
+   "name": "Padding options",
+   "default": "Symmetric",
+   "values": "Padding method Symmetric (default) | Constant | Replicate | Circular",
+   "group": ""
+  },
+  {
+   "name": "Pad value source",
+   "default": "dialog",
+   "values": "Source of constant padding value Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pad value",
+   "default": "0",
+   "values": "Pad value 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

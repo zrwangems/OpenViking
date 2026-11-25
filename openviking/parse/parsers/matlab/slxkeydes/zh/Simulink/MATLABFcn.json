@@ -1,0 +1,55 @@
+{
+ "key": "MATLABFcn",
+ "title": "Interpreted MATLAB Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/Interpreted_MATLAB_Function.md"
+ ],
+ "text": "（将删除）对输入应用 MATLAB 函数或表达式，输入 1 路、输出 1 路；按 {输出信号类型} 指定模块输出信号类型；{MATLAB 函数} 指定函数或表达式、{输出维度} 指定模块输出信号的维度 标量、{将二维结果降为一维} 指定将二维数组输出为一维数组、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Interpreted MATLAB function 的输入 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Interpreted MATLAB function 的输出 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "MATLAB 函数",
+   "default": "函数",
+   "values": "指定函数或表达式。 函数 (默认)",
+   "group": ""
+  },
+  {
+   "name": "输出维度",
+   "default": "",
+   "values": "指定模块输出信号的维度 标量 | 矩阵 | 向量 | 继承",
+   "group": ""
+  },
+  {
+   "name": "输出信号类型",
+   "default": "auto",
+   "values": "指定模块输出信号类型 auto (默认) | 实数 | 复数",
+   "group": ""
+  },
+  {
+   "name": "将二维结果降为一维",
+   "default": "off",
+   "values": "将二维数组输出为一维数组 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "",
+   "values": "指定模块中的采样时间 标量",
+   "group": ""
+  }
+ ]
+}

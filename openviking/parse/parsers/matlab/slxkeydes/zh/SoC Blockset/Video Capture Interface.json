@@ -1,0 +1,60 @@
+{
+ "key": "Video Capture Interface",
+ "title": "Video Capture Interface",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Peripherals/Video_Capture_Interface.md"
+ ],
+ "text": "模拟从硬件上的视频流捕获图像，输入 1 路、输出 2 路；按 {Input} 指定仿真视频数据的来源 From；{Value} 指定要导入的图像 uint8、{Object name} 指定 timeseries 对象名称、{Sample time} 指定采样时间，单位为秒、{Show event port} 启用任务事件端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "图像数据 3 M N -length vector"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "任务事件信号 scalar"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "SoC 消息数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "dialog",
+   "values": "仿真视频数据的来源 From dialog (default) | From input port | From timeseries object",
+   "group": ""
+  },
+  {
+   "name": "Value",
+   "default": "uint8(floor(rand(1,3*160*120)*255))",
+   "values": "要导入的图像 uint8(floor(rand(1,3*160*120)*255)) (default) | 3 M N -element vector",
+   "group": ""
+  },
+  {
+   "name": "Object name",
+   "default": "[]",
+   "values": "timeseries 对象名称 [] (default) | MATLAB workspace variable",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间，单位为秒 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show event port",
+   "default": "off",
+   "values": "启用任务事件端口的选项 off (default) | on",
+   "group": ""
+  }
+ ]
+}

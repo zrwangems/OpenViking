@@ -1,0 +1,55 @@
+{
+ "key": "Deep Pitch Estimator",
+ "title": "Deep Pitch Estimator",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/Deep_Pitch_Estimator.md"
+ ],
+ "text": "Estimate pitch with CREPE deep learning neural network, 1 input, 1 output, no direct feedthrough, {Model capacity} sets Size of trained neural network; {Sample rate of input signal (Hz)} sets the sample rate of input signal, {Overlap percentage (%)} sets the overlap percentage between consecutive, {Number of buffered pitch estimations} sets the number of pitch estimations in output and {Confidence threshold} sets the pitch confidence threshold. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Audio input vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Estimated fundamental frequency column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "16e3",
+   "values": "Sample rate of input signal in Hz 16e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "85",
+   "values": "Overlap percentage between consecutive frames 85 (default) | [0, 100)",
+   "group": ""
+  },
+  {
+   "name": "Number of buffered pitch estimations",
+   "default": "1",
+   "values": "Number of pitch estimations in output 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Confidence threshold",
+   "default": "0.5",
+   "values": "Pitch confidence threshold 0.5 (default) | scalar in the range [0, 1)",
+   "group": ""
+  },
+  {
+   "name": "Model capacity",
+   "default": "Full",
+   "values": "Size of trained neural network Full (default) | Large | Medium | Small | Tiny",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Ring-Planet",
+ "title": "Ring-Planet",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Planetary Subcomponents/Ring_Planet.md"
+ ],
+ "text": "Planetary gear set of carrier, planet, and ring wheels with adjustable gear ratio and friction losses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

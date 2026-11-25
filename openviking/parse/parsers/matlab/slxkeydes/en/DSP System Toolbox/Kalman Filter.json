@@ -1,0 +1,151 @@
+{
+ "key": "Kalman Filter",
+ "title": "Kalman Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Adaptive Filters/Kalman_Filter.md"
+ ],
+ "text": "Compute output, error, and weights using least mean squares (LMS) adaptive algorithm, 5 inputs, 3 outputs, no direct feedthrough, {Reset port} sets Reset port; {Algorithm} selects algorithm, {Filter length}, {Specify step size via} sets the step size, {Step size (mu)}, {Leakage factor (0 to 1)}, {Initial value of filter weights}, {Adapt port}, {Output filter weights}, {Rounding mode} sets the method of rounding, {Saturate on integer overflow} sets the method of overflow action, {Parameters}, {Weights} sets the word and fraction length of filter weights Same as first, {Product and quotient} sets the word and fraction length of product and quotient Same as first, {Accumulator} sets the word and fraction lengths of accumulators Same as first and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector"
+  },
+  {
+   "name": "Desired",
+   "direction": "input",
+   "summary": "Desired signal scalar | column vector"
+  },
+  {
+   "name": "Step-size",
+   "direction": "input",
+   "summary": "Step-size scalar"
+  },
+  {
+   "name": "Adapt",
+   "direction": "input",
+   "summary": "Update filter weights scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Reset filter weights scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Estimate of desired signal scalar | column vector"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "Error between output and desired signals scalar | column vector"
+  },
+  {
+   "name": "Wts",
+   "direction": "output",
+   "summary": "Filter weights scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Algorithm",
+   "default": "LMS",
+   "values": "Select algorithm LMS (default) | Normalized LMS | Sign-Error LMS | Sign-Data LMS | Sign-Sign LMS",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter length",
+   "default": "32",
+   "values": "Filter length 32 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Specify step size via",
+   "default": "Dialog",
+   "values": "Specify step size via Dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Step size (mu)",
+   "default": "0.1",
+   "values": "Step size 0.1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Leakage factor (0 to 1)",
+   "default": "1.0",
+   "values": "Leakage factor 1.0 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial value of filter weights",
+   "default": "0",
+   "values": "Initial value of filter weights 0 (default) | vector | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Adapt port",
+   "default": "off",
+   "values": "Enable Adapt port off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset port None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output filter weights",
+   "default": "on",
+   "values": "Output filter weights on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Parameters",
+   "default": "input",
+   "values": "Parameters Same word length as first input (default) | Specify word length | Binary point scaling",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Weights",
+   "default": "input",
+   "values": "Word and fraction length of filter weights Same as first input (default) | Binary point scaling",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Product and quotient",
+   "default": "input",
+   "values": "Word and fraction length of product and quotient Same as first input (default) | Binary point scaling",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "Word and fraction lengths of accumulators Same as first input (default) | Binary point scaling",
+   "group": "Data Type Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Type Tab"
+  }
+ ]
+}

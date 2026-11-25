@@ -1,0 +1,149 @@
+{
+ "key": "Outport",
+ "title": "Outport",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Quick Insert/Ports & Subsystems/Outport.md",
+  "Simulink/Commonly Used Blocks/Out1.md",
+  "Simulink/Ports & Subsystems/Out1.md",
+  "Simulink/Sinks/Out1.md",
+  "Simulink/Quick Insert/Ports & Subsystems/Output.md",
+  "Simulink/Ports & Subsystems/Out_Bus_Element.md",
+  "Simulink/Signal Routing/Bus_Element_Out.md",
+  "Simulink/Sinks/Out_Bus_Element.md",
+  "Simulink/Ports & Subsystems/Function_Element.md",
+  "RF Blockset/Circuit Envelope/Utilities/Outport.md",
+  "HDL Coder/Commonly Used Blocks/Out1.md",
+  "HDL Coder/Ports & Subsystems/Out1.md",
+  "HDL Coder/Sinks/Out1.md",
+  "HDL Coder/Ports & Subsystems/Out_Bus_Element.md",
+  "HDL Coder/Signal Routing/Bus_Element_Out.md",
+  "HDL Coder/Sinks/Out_Bus_Element.md"
+ ],
+ "text": "Create output port for subsystem or external output, 1 input, no direct feedthrough, {Port dimensions (-1 for inherited)} sets Port dimensions; {Port number} sets the position of port on parent block, {Signal name}, {Icon display}, {Specify output when source is unconnected} sets the unconnected output value, {Constant value} sets the output value when the block is not, {Interpret vector parameters as 1-D} treats vectors as 1-D, {Ensure outport is virtual} sets the ensure that outport is virtual, {Output when disabled}, {Initial output}, {Minimum}, {Maximum}, {Data type} sets the output data type Inherit, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding data, {Output as nonvirtual bus in parent model}, {Unit (e.g., m, m/s^2, N*m)} sets the physical unit of the input signal to the block, {Variable-size signal} allows variable-size signals, {Signal type} sets the output signal type and {Sample time (-1 for inherited)} sets the option to specify sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Outport signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port number",
+   "default": "1",
+   "values": "Position of port on parent block 1 (default) | real integer",
+   "group": "Main"
+  },
+  {
+   "name": "Signal name",
+   "default": "’",
+   "values": "Signal name ’ ’ (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Icon display",
+   "default": "number",
+   "values": "Icon display Port number (default) | Signal name | Port number and signal name",
+   "group": "Main"
+  },
+  {
+   "name": "Specify output when source is unconnected",
+   "default": "off",
+   "values": "Specify unconnected output value off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Constant value",
+   "default": "0",
+   "values": "Output value when the block is not connected 0 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "Treat vectors as 1-D on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Ensure outport is virtual",
+   "default": "off",
+   "values": "Ensure that outport is virtual off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output when disabled",
+   "default": "held",
+   "values": "Output when disabled held (default) | reset",
+   "group": "Main"
+  },
+  {
+   "name": "Initial output",
+   "default": "[]",
+   "values": "Initial output for conditionally executed subsystems [] (default) | scalar | structure",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "Minimum output value [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "Maximum output value [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "auto",
+   "values": "Output data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 |...",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output as nonvirtual bus in parent model",
+   "default": "off",
+   "values": "Output as nonvirtual bus in parent model off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Unit (e.g., m, m/s^2, N*m)",
+   "default": "inherit",
+   "values": "Physical unit of the input signal to the block inherit (default) | <Enter unit>",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Port dimensions (-1 for inherited)",
+   "default": "-1",
+   "values": "Port dimensions -1 (default) | integer | [integer, integer]",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Variable-size signal",
+   "default": "Inherit",
+   "values": "Allow variable-size signals Inherit (default) | No | Yes",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signal type",
+   "default": "auto",
+   "values": "Output signal type auto (default) | real | complex",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Option to specify sample time -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

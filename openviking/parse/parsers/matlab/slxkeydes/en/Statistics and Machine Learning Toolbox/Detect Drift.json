@@ -1,0 +1,148 @@
+{
+ "key": "Detect Drift",
+ "title": "Detect Drift",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Drift Detection/Detect_Drift.md"
+ ],
+ "text": "Update drift detector states and drift status with new data, 3 inputs, 2 outputs, direct feedthrough, {Mean data type} sets Data type of mean Inherit:; {Select concept drift detector} sets the initial incremental concept drift detector, {Add input port for observation weights} adds third input port for observation, {Sample time (–1 for inherited)} sets the option to specify sample, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Drift status data type} sets the data type of drift status output Inherit, {Drift status data type Minimum} sets the minimum value of drift status output for range checking, {Drift status data type Maximum} sets the maximum value of drift status output for range checking, {Mean data type Minimum} sets the minimum value of mean for range checking, {Mean data type Maximum} sets the maximum value of mean for range checking, {Variance data type} sets the data type of variance Inherit, {Variance data type Minimum} sets the minimum value of variance for range checking, {Variance data type Maximum} sets the maximum value of variance for range checking, {Weights sum data type} sets the data type of weights sum Inherit, {Weights sum data type Minimum} sets the minimum value of weights sum for range checking and {Weights sum data type Maximum} sets the maximum value of weights sum for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input data n-by-1 numeric vector | logical vector"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Reset signal numeric or | 0 ( false ) | 1 ( true )"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "Observation weights n-by-1 numeric vector"
+  },
+  {
+   "name": "IsWarm",
+   "direction": "output",
+   "summary": "Flag indicating whether block tracks drift status 0 ( false ) | 1 ( true )"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "Current drift status 0 (stable) | 1 (warning) | 2 (drift)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select concept drift detector",
+   "default": "IncCDDetector",
+   "values": "Initial incremental concept drift detector IncCDDetector (default) | incrementalConceptDriftDetector object",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for observation weights",
+   "default": "off",
+   "values": "Add third input port for observation weights off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Drift status data type",
+   "default": "auto",
+   "values": "Data type of drift status output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Drift status data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of drift status output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Drift status data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of drift status output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mean data type",
+   "default": "auto",
+   "values": "Data type of mean Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mean data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of mean for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mean data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of mean for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Variance data type",
+   "default": "auto",
+   "values": "Data type of variance Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Variance data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of variance for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Variance data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of variance for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Weights sum data type",
+   "default": "auto",
+   "values": "Data type of weights sum Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Weights sum data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of weights sum for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Weights sum data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of weights sum for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

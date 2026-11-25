@@ -1,0 +1,40 @@
+{
+ "key": "Bias",
+ "title": "Bias",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Bias.md",
+  "Simulink/Quick Insert/Math Operations/Add_Constant.md",
+  "HDL Coder/HDL Floating Point Operations/Bias.md",
+  "HDL Coder/Math Operations/Bias.md"
+ ],
+ "text": "为输入添加偏差，输入 1 路、输出 1 路；按 {偏置} 指定要添加到输入信号的偏移量；{对整数溢出进行饱和处理} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "偏置",
+   "default": "0.0",
+   "values": "要添加到输入信号的偏移量 0.0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

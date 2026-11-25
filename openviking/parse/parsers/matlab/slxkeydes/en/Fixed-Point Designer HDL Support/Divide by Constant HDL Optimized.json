@@ -1,0 +1,47 @@
+{
+ "key": "Divide by Constant HDL Optimized",
+ "title": "Divide by Constant HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Math Operations/Divide_by_Constant_HDL_Optimized.md"
+ ],
+ "text": "Divide input by a constant and round to integer and generate optimized HDL code, 2 inputs, 2 outputs, {Rounding Method} sets Rounding method to use; {Denominator for rational division} sets the divisor. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Dividend real scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Whether input is valid boolean scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Result of division and round operation scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Whether output data is valid boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Denominator for rational division",
+   "default": "10",
+   "values": "Divisor 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rounding Method",
+   "default": "Floor",
+   "values": "Rounding method to use Floor (default) | Ceiling | Nearest | Zero | Convergent",
+   "group": ""
+  }
+ ]
+}

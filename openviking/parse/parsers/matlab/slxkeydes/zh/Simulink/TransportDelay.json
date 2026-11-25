@@ -1,0 +1,62 @@
+{
+ "key": "TransportDelay",
+ "title": "Transport Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Transport_Delay.md",
+  "Simulink Extras/Linearization/Switched_transport_delay_for_linearization.md"
+ ],
+ "text": "按给定的时间量延迟输入，输入 1 路、输出 1 路；按 {时滞} 指定时滞；{初始输出}、{初始缓冲区大小} 指定初始内存分配、{使用固定缓冲区大小} 使用固定大小的缓冲区、{线性化期间直接馈通输入} 启用直接馈通、{帕德阶(用于线性化)} 指定帕德逼近的阶，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "延迟的信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "时滞",
+   "default": "1",
+   "values": "时滞 1 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "初始输出",
+   "default": "0",
+   "values": "初始输出值 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "初始缓冲区大小",
+   "default": "1024",
+   "values": "初始内存分配 1024 (默认) | 正整数标量",
+   "group": ""
+  },
+  {
+   "name": "使用固定缓冲区大小",
+   "default": "off",
+   "values": "使用固定大小的缓冲区 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "线性化期间直接馈通输入",
+   "default": "off",
+   "values": "启用直接馈通 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "帕德阶(用于线性化)",
+   "default": "0",
+   "values": "帕德逼近的阶 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  }
+ ]
+}

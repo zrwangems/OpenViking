@@ -1,0 +1,49 @@
+{
+ "key": "2-D Median",
+ "title": "2-D Median",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Median.md"
+ ],
+ "text": "2-D Median values of input array, 1 input, 1 output, {Find the median value over} sets Dimension in which to compute median Entire; {Sort algorithm} sets the algorithm to sort input array, {Dimension} sets the custom dimension and {Lock data type settings against change by the fixed-point tools} sets the option to prevent fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input array scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output median values scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sort algorithm",
+   "default": "sort",
+   "values": "Algorithm to sort input array Quick sort (default) | Insertion sort",
+   "group": ""
+  },
+  {
+   "name": "Find the median value over",
+   "default": "input",
+   "values": "Dimension in which to compute median Entire input (default) | Each row | Each column | Specified dimension",
+   "group": ""
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Custom dimension 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Cartridge Valve Insert (IL)",
+ "title": "Cartridge Valve Insert (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Flow Control Valves/Cartridge_Valve_Insert_IL.md"
+ ],
+ "text": "Cartridge flow-control valve in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

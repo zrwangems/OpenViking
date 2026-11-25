@@ -1,0 +1,151 @@
+{
+ "key": "shared_uav_rst.sluav.internal.system.MinSnapPolyTraj",
+ "title": "Minimum Snap Polynomial Trajectory",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Utilities/Minimum_Snap_Polynomial_Trajectory.md",
+  "UAV Toolbox/Algorithms/Minimum_Snap_Polynomial_Trajectory.md"
+ ],
+ "text": "Generate minimum snap polynomial trajectories through multiple waypoints, 7 inputs, 8 outputs, {Minimum segment time} sets Minimum time segment length; {Show boundary conditions input ports} sets the accept boundary condition inputs, {Show polynomial coefficients output port} sets the output polynomial coefficients, {Show status output port} sets the output status, {Time allocation} enables time allocation, {Time weight} sets the weight for time allocation, {Maximum segment time} sets the maximum time segment length, {Maximum iterations}, {Maximum time} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "Time point along trajectory scalar | vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "Waypoints positions along trajectory n -by- p matrix"
+  },
+  {
+   "name": "TimePoints",
+   "direction": "input",
+   "summary": "Time points for waypoints of trajectory p -element row vector"
+  },
+  {
+   "name": "VelBC",
+   "direction": "input",
+   "summary": "Velocity boundary conditions for waypoints n -by- p matrix"
+  },
+  {
+   "name": "AccelBC",
+   "direction": "input",
+   "summary": "Acceleration boundary conditions for waypoints n -by- p matrix"
+  },
+  {
+   "name": "JerkBC",
+   "direction": "input",
+   "summary": "Jerk boundary conditions for waypoints n -by- p matrix"
+  },
+  {
+   "name": "SnapBC",
+   "direction": "input",
+   "summary": "Snap boundary conditions for waypoints n -by- p matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "Positions of trajectory n -element vector | n -by- m matrix"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "Velocities of trajectory n -element vector | n -by- m matrix"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "Accelerations of trajectory n -element vector | n -by- m matrix"
+  },
+  {
+   "name": "qddd",
+   "direction": "output",
+   "summary": "Jerks of trajectory n -element vector | n -by- m matrix"
+  },
+  {
+   "name": "qdddd",
+   "direction": "output",
+   "summary": "Snaps of trajectory n -element vector | n -by- m matrix"
+  },
+  {
+   "name": "TimeOfArrival",
+   "direction": "output",
+   "summary": "Time of arrival at each waypoint p -element vector"
+  },
+  {
+   "name": "PolynomialCoefs",
+   "direction": "output",
+   "summary": "Polynomial coefficients n ( p – 1 )-by- 10 matrix"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of trajectory generation three-element vector of the form [ SingularityStatus MaxIterStatus MaxTimeStatus ]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show boundary conditions input ports",
+   "default": "off",
+   "values": "Accept boundary condition inputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show polynomial coefficients output port",
+   "default": "off",
+   "values": "Output polynomial coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show status output port",
+   "default": "off",
+   "values": "Output status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Time allocation",
+   "default": "off",
+   "values": "Enable time allocation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Time weight",
+   "default": "100",
+   "values": "Weight for time allocation 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum segment time",
+   "default": "0.1",
+   "values": "Minimum time segment length 0.1 (default) | positive scalar | ( p – 1 )-element positive row vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum segment time",
+   "default": "1",
+   "values": "Maximum time segment length 1 (default) | positive scalar | ( p – 1 )-element positive row vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum iterations",
+   "default": "1500",
+   "values": "Maximum iterations for solver 1500 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum time",
+   "default": "10",
+   "values": "Maximum time for solver 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

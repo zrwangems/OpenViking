@@ -1,0 +1,13 @@
+{
+ "key": "Passive Harmonic Filter (Three-Phase)",
+ "title": "Passive Harmonic Filter (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Passive_Harmonic_Filter_Three_Phase.md"
+ ],
+ "text": "Harmonic current filter.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

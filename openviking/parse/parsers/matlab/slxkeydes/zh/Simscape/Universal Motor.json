@@ -1,0 +1,13 @@
+{
+ "key": "Universal Motor",
+ "title": "Universal Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Brushed Motors/Universal_Motor.md"
+ ],
+ "text": "具有电气和转矩特性的通用（或串励）电动机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

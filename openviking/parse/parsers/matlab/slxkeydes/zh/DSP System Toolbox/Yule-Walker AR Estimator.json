@@ -1,0 +1,53 @@
+{
+ "key": "Yule-Walker AR Estimator",
+ "title": "Yule-Walker AR Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Parametric Estimation/Yule_Walker_AR_Estimator.md"
+ ],
+ "text": "使用 Yule-Walker 方法计算自回归 (AR) 模型参数的估计，输入 1 路、输出 3 路；按 {Output(s)} 指定AR 模型系数的输出 A；{Inherit estimation order from input dimensions} 指定从输入维度继承估计阶数、{Estimation order} 指定 AR 模型阶数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入 vector | matrix"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "AR 模型多项式系数的归一化估计 vector | matrix"
+  },
+  {
+   "name": "K",
+   "direction": "output",
+   "summary": "反射系数 column vector | unoriented vector | matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "模型增益的平方 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output(s)",
+   "default": "A",
+   "values": "AR 模型系数的输出 A (default) | A and K | K",
+   "group": ""
+  },
+  {
+   "name": "Inherit estimation order from input dimensions",
+   "default": "on",
+   "values": "从输入维度继承估计阶数 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Estimation order",
+   "default": "4",
+   "values": "AR 模型阶数 4 (default) | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Ejector (G)",
+ "title": "Ejector (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Turbomachinery/Ejector_G.md"
+ ],
+ "text": "Ejector in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

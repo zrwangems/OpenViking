@@ -1,0 +1,90 @@
+{
+ "key": "FIFO Block: reader",
+ "title": "FIFO ASCII read",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/FIFO_ASCII_read.md",
+  "Simulink Real-Time/RS232/FIFO_bin_read.md",
+  "Simulink Real-Time/RS232/FIFO_read.md"
+ ],
+ "text": "读取简单数据流，输入 3 路、输出 2 路；按 {Output vector type} 指定输出数据类型 8 bit uint null；{Maximum read size} 指定模块返回的最大字符数、{Minimum read size} 指定模块返回的最小字符数、{Read to delimiter} 指定返回带分隔符的元素集、{Delimiter} 指定带分隔符元素集的终止符值、{Max and Min read size ports} 启用最大和最小输入端口、{Enable passthrough} 启用 MAX 值的传递、{Sample time} 指定模块的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "要从中读取数据的 FIFO serialfifoptr"
+  },
+  {
+   "name": "MAX",
+   "direction": "input",
+   "summary": "从 FIFO 读取的最大字节数 integer"
+  },
+  {
+   "name": "MIN",
+   "direction": "input",
+   "summary": "从 FIFO 读取的最小字节数 integer"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "从 FIFO 读取的解析数据 vector"
+  },
+  {
+   "name": "ENA",
+   "direction": "output",
+   "summary": "传递 MAX 的值 integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum read size",
+   "default": "1024",
+   "values": "模块返回的最大字符数 1024 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Minimum read size",
+   "default": "1",
+   "values": "模块返回的最小字符数 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Read to delimiter",
+   "default": "on",
+   "values": "返回带分隔符的元素集 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Delimiter",
+   "default": "13",
+   "values": "带分隔符元素集的终止符值 13 (default) | uint",
+   "group": ""
+  },
+  {
+   "name": "Output vector type",
+   "default": "terminated",
+   "values": "指定输出数据类型 8 bit uint null terminated (default) | count+32 bit int | count+32 bit uint | count+16 bit int | count+16 bit uint | 8 bit int null terminated",
+   "group": ""
+  },
+  {
+   "name": "Max and Min read size ports",
+   "default": "off",
+   "values": "启用最大和最小输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable passthrough",
+   "default": "off",
+   "values": "启用 MAX 值的传递 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块的采样时间 -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

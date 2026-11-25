@@ -1,0 +1,178 @@
+{
+ "key": "SecondOrderIntegrator",
+ "title": "Integrator, Second-Order",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Integrator_Second_Order.md",
+  "Simulink/Continuous/Integrator_Second_Order_Limited.md"
+ ],
+ "text": "Second-order integration of input signal, 4 inputs, 2 outputs, no direct feedthrough, {State name x} sets Name for state x; {Initial condition source x} sets the source of initial condition for state x, {Initial condition x} sets the initial condition of state x, {Limit x} limits values of state x, {Upper limit x} sets the upper limit of state x, {Lower limit x} sets the lower limit of state x, {Wrap x} enables wrapping of x, {Wrapped upper value x} sets the upper value for wrapping, {Wrapped lower value x} sets the lower value for wrapping, {Absolute tolerance x} sets the absolute tolerance for computing state x, {Initial condition source dx/dt} sets the source of initial condition for state dx/dt, {Initial condition dx/dt} sets the initial condition of state dx/dt, {Limit dx/dt} limits values of state dx/dt, {Upper limit dx/dt} sets the upper limit of state, {Lower limit dx/dt} sets the lower limit of state, {Absolute tolerance dx/dt} sets the absolute tolerance for computing state, {State name dx/dt} sets the name for state dx/dt, {External reset} sets the reset states to their initial conditions, {Enable zero-crossing detection}, {Reinitialize dx/dt when x reaches saturation} sets the reset dx/dt when x reaches saturation, {Ignore state limits and the reset for linearization} sets the ignore state limits and external reset and {Show output} sets the output ports. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal u scalar | vector | matrix"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "Initial condition x0 scalar | vector | matrix"
+  },
+  {
+   "name": "dx0",
+   "direction": "input",
+   "summary": "Initial condition dx0 scalar | vector | matrix"
+  },
+  {
+   "name": "External Reset",
+   "direction": "input",
+   "summary": "Signal for resetting states to initial conditions scalar | vector | matrix"
+  },
+  {
+   "name": "x",
+   "direction": "output",
+   "summary": "Output signal x scalar | vector | matrix"
+  },
+  {
+   "name": "dx",
+   "direction": "output",
+   "summary": "Output signal dx scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition source x",
+   "default": "internal",
+   "values": "Source of initial condition for state x internal (default) | external",
+   "group": "x"
+  },
+  {
+   "name": "Initial condition x",
+   "default": "0.0",
+   "values": "Initial condition of state x 0.0 (default) | scalar | vector | matrix",
+   "group": "x"
+  },
+  {
+   "name": "Limit x",
+   "default": "",
+   "values": "Limit values of state x off | on",
+   "group": "x"
+  },
+  {
+   "name": "Upper limit x",
+   "default": "",
+   "values": "Upper limit of state x 1 | inf | scalar | vector | matrix",
+   "group": "x"
+  },
+  {
+   "name": "Lower limit x",
+   "default": "0",
+   "values": "Lower limit of state x 0 (default) | -inf | scalar | vector | matrix",
+   "group": "x"
+  },
+  {
+   "name": "Wrap x",
+   "default": "off",
+   "values": "Enable wrapping of x off (default) | on",
+   "group": "x"
+  },
+  {
+   "name": "Wrapped upper value x",
+   "default": "pi",
+   "values": "Upper value for wrapping x pi (default) | scalar | vector | matrix",
+   "group": "x"
+  },
+  {
+   "name": "Wrapped lower value x",
+   "default": "-pi",
+   "values": "Lower value for wrapping x -pi (default) | scalar | vector | matrix",
+   "group": "x"
+  },
+  {
+   "name": "Absolute tolerance x",
+   "default": "auto",
+   "values": "Absolute tolerance for computing state x auto (default) | -1 | scalar | vector",
+   "group": "x"
+  },
+  {
+   "name": "State name x",
+   "default": "’’",
+   "values": "Name for state x ’’ (default) | character vector | string",
+   "group": "x"
+  },
+  {
+   "name": "Initial condition source dx/dt",
+   "default": "internal",
+   "values": "Source of initial condition for state dx/dt internal (default) | external",
+   "group": "dx/dt"
+  },
+  {
+   "name": "Initial condition dx/dt",
+   "default": "0.0",
+   "values": "Initial condition of state dx/dt 0.0 (default) | scalar | vector | matrix",
+   "group": "dx/dt"
+  },
+  {
+   "name": "Limit dx/dt",
+   "default": "",
+   "values": "Limit values of state dx/dt off | on",
+   "group": "dx/dt"
+  },
+  {
+   "name": "Upper limit dx/dt",
+   "default": "inf",
+   "values": "Upper limit of state dx/dt inf (default) | scalar | vector | matrix",
+   "group": "dx/dt"
+  },
+  {
+   "name": "Lower limit dx/dt",
+   "default": "-inf",
+   "values": "Lower limit of state dx/dt -inf (default) | scalar | vector | matrix",
+   "group": "dx/dt"
+  },
+  {
+   "name": "Absolute tolerance dx/dt",
+   "default": "auto",
+   "values": "Absolute tolerance for computing state dx/dt auto (default) | -1 | scalar | vector",
+   "group": "dx/dt"
+  },
+  {
+   "name": "State name dx/dt",
+   "default": "’",
+   "values": "Name for state dx/dt ’ ’ (default) | character vector | string",
+   "group": "dx/dt"
+  },
+  {
+   "name": "External reset",
+   "default": "none",
+   "values": "Reset states to their initial conditions none (default) | rising | falling | either",
+   "group": "Attributes"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": "Attributes"
+  },
+  {
+   "name": "Reinitialize dx/dt when x reaches saturation",
+   "default": "off",
+   "values": "Reset dx/dt when x reaches saturation off (default) | on",
+   "group": "Attributes"
+  },
+  {
+   "name": "Ignore state limits and the reset for linearization",
+   "default": "off",
+   "values": "Ignore state limits and external reset for linearization off (default) | on",
+   "group": "Attributes"
+  },
+  {
+   "name": "Show output",
+   "default": "both",
+   "values": "Output ports to display both (default) | x | dxdt",
+   "group": "Attributes"
+  }
+ ]
+}

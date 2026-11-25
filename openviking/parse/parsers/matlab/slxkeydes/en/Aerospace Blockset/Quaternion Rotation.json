@@ -1,0 +1,29 @@
+{
+ "key": "Quaternion Rotation",
+ "title": "Quaternion Rotation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Rotation.md"
+ ],
+ "text": "Rotate vector by quaternion, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "Quaternion quaternion | vector"
+  },
+  {
+   "name": "vec",
+   "direction": "input",
+   "summary": "Initial vector vector | vector of vectors"
+  },
+  {
+   "name": "vec_rot",
+   "direction": "output",
+   "summary": "Final quaternion rotated quaternion | vector of rotated quaternions"
+  }
+ ],
+ "params": []
+}

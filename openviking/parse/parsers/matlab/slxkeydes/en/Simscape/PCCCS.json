@@ -1,0 +1,13 @@
+{
+ "key": "PCCCS",
+ "title": "PCCCS",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PCCCS.md"
+ ],
+ "text": "Polynomial current-controlled current source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

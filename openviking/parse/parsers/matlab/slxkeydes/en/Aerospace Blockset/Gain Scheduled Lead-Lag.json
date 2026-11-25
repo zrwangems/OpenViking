@@ -1,0 +1,41 @@
+{
+ "key": "Gain Scheduled Lead-Lag",
+ "title": "Gain Scheduled Lead-Lag",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/Gain_Scheduled_Lead_Lag.md"
+ ],
+ "text": "Implement first-order lead-lag with gain-scheduled coefficients, 3 inputs, 1 output; {Initial state, x_initial} sets the initial internal state. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "e",
+   "direction": "input",
+   "summary": "Filter input scalar"
+  },
+  {
+   "name": "a",
+   "direction": "input",
+   "summary": "Numerator coefficient scalar"
+  },
+  {
+   "name": "b",
+   "direction": "input",
+   "summary": "Denominator coefficient positive scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Filter output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "Initial internal state 0 (default) | vector",
+   "group": ""
+  }
+ ]
+}

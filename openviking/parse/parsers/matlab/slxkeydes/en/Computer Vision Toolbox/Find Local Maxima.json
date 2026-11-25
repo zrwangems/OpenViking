@@ -1,0 +1,83 @@
+{
+ "key": "Find Local Maxima",
+ "title": "Find Local Maxima",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/Find_Local_Maxima.md"
+ ],
+ "text": "Find local maxima in matrices, 2 inputs, 2 outputs, {Count output data type} sets Data type for number of local maximums; {Maximum number of local maxima}, {Neighborhood size} sets the size of neighborhood region, {Source of threshold value} sets the source to enter the threshold value Specify via, {Threshold}, {Input is Hough matrix spanning full theta range} sets the whether input is a Hough matrix, {Index output data type} sets the data type for coordinates of local maximums and {Output variable size signal} sets the support input signals of varying length. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input M -by- N matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "input",
+   "summary": "Threshold for detecting local maxima scalar"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "Coordinates of local maxima P -by-2 matrix"
+  },
+  {
+   "name": "Count",
+   "direction": "output",
+   "summary": "Number of local maxima scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum number of local maxima",
+   "default": "2",
+   "values": "Maximum number of local maxima to detect 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Neighborhood size",
+   "default": "]",
+   "values": "Size of neighborhood region [ 5 7 ] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Source of threshold value",
+   "default": "dialog",
+   "values": "Source to enter the threshold value Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "10",
+   "values": "Threshold for detecting local maxima 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input is Hough matrix spanning full theta range",
+   "default": "off",
+   "values": "Whether input is a Hough matrix off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Index output data type",
+   "default": "uint32",
+   "values": "Data type for coordinates of local maximums uint32 (default) | double | single | uint8 | uint16",
+   "group": ""
+  },
+  {
+   "name": "Output variable size signal",
+   "default": "on",
+   "values": "Support input signals of varying length on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Count output data type",
+   "default": "uint32",
+   "values": "Data type for number of local maximums uint32 (default) | double | single | uint8 | uint16",
+   "group": ""
+  }
+ ]
+}

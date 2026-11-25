@@ -1,0 +1,79 @@
+{
+ "key": "Sparse Second Order",
+ "title": "Sparse Second Order",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Sparse_Second_Order.md"
+ ],
+ "text": "Represent sparse second-order models in Simulink, 1 input, 1 output, {M (mass)} sets Mass matrix; {C (damping)} sets the damping, {K (stiffness)} sets the stiffness, {B} sets the input-to-state, {F} sets the displacement-to-output, {G} sets the velocity-to-output, {D} sets the input-to-output, {Initial position q(0)} sets the initial values for displacement vector and {Initial velocity q’(0)} sets the initial values for velocity vector. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Output vector scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M (mass)",
+   "default": "1",
+   "values": "Mass matrix 1 (default) | scalar | Nq -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "C (damping)",
+   "default": "0",
+   "values": "Damping matrix 0 (default) | scalar | Nq -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "K (stiffness)",
+   "default": "1",
+   "values": "Stiffness matrix 1 (default) | scalar | Nq -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "Input-to-state matrix 1 (default) | scalar | Nq -by- Nu sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "F",
+   "default": "1",
+   "values": "Displacement-to-output matrix 1 (default) | scalar | Ny -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "G",
+   "default": "0",
+   "values": "Velocity-to-output matrix 0 (default) | scalar | Ny -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "D",
+   "default": "0",
+   "values": "Input-to-output matrix 0 (default) | scalar | Ny -by- Nu sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "Initial position q(0)",
+   "default": "0",
+   "values": "Initial values for displacement vector 0 (default) | scalar | vector of doubles",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity q’(0)",
+   "default": "0",
+   "values": "Initial values for velocity vector 0 (default) | scalar | vector of doubles",
+   "group": ""
+  }
+ ]
+}

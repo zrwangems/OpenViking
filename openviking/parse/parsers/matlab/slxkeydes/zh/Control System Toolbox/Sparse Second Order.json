@@ -1,0 +1,79 @@
+{
+ "key": "Sparse Second Order",
+ "title": "Sparse Second Order",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Sparse_Second_Order.md"
+ ],
+ "text": "在 Simulink 中表示稀疏二阶模型，输入 1 路、输出 1 路；按 {M (mass)} 指定质量矩阵；{C (damping)} 指定阻尼矩阵、{K (stiffness)} 指定刚度矩阵、{B} 指定输入到状态矩阵、{F} 指定位移到输出矩阵、{G} 指定速度到输出矩阵、{D} 指定输入到输出矩阵、{Initial position q(0)} 指定位移向量的初始值、{Initial velocity q’(0)} 指定速度向量的初始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "输出向量 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M (mass)",
+   "default": "1",
+   "values": "质量矩阵 1 (default) | scalar | Nq -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "C (damping)",
+   "default": "0",
+   "values": "阻尼矩阵 0 (default) | scalar | Nq -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "K (stiffness)",
+   "default": "1",
+   "values": "刚度矩阵 1 (default) | scalar | Nq -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "输入到状态矩阵 1 (default) | scalar | Nq -by- Nu sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "F",
+   "default": "1",
+   "values": "位移到输出矩阵 1 (default) | scalar | Ny -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "G",
+   "default": "0",
+   "values": "速度到输出矩阵 0 (default) | scalar | Ny -by- Nq sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "D",
+   "default": "0",
+   "values": "输入到输出矩阵 0 (default) | scalar | Ny -by- Nu sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "Initial position q(0)",
+   "default": "0",
+   "values": "位移向量的初始值 0 (default) | scalar | vector of doubles",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity q’(0)",
+   "default": "0",
+   "values": "速度向量的初始值 0 (default) | scalar | vector of doubles",
+   "group": ""
+  }
+ ]
+}

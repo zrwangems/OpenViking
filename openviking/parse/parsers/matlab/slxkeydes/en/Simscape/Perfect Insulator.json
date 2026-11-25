@@ -1,0 +1,13 @@
+{
+ "key": "Perfect Insulator",
+ "title": "Perfect Insulator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Perfect_Insulator.md"
+ ],
+ "text": "Thermal element with perfect insulation and no thermal mass.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

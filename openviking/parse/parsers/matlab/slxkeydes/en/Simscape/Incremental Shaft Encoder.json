@@ -1,0 +1,13 @@
+{
+ "key": "Incremental Shaft Encoder",
+ "title": "Incremental Shaft Encoder",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Incremental_Shaft_Encoder.md"
+ ],
+ "text": "Behavioral model that converts angular position to electrical pulses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

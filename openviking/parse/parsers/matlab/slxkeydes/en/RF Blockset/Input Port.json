@@ -1,0 +1,74 @@
+{
+ "key": "Input Port",
+ "title": "Input Port",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Input_Output Ports/Input_Port.md"
+ ],
+ "text": "Connection block from Simulink environment to RF physical blocks, {Treat input Simulink signal as} sets Options for interpreting the input Source; {Source impedance (ohms)} sets the source impedance of the RF network, {Finite impulse response filter length} sets the desired length of the baseband-equivalent impulse, {Fractional bandwidth of guard bands} sets the fraction of modeling bandwidth, {Modeling delay (samples)} sets the number of time samples by which to delay the impulse response of baseband-equivalent, {Center frequency (Hz)} sets the center of modeling, {Sample time (s)} sets the time interval between consecutive samples, {Input Processing} sets the type of processing mode Elements, {Add noise} and {Initial seed}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Treat input Simulink signal as",
+   "default": "voltage",
+   "values": "Options for interpreting the input Source voltage (default) | Incident power wave | scalar",
+   "group": ""
+  },
+  {
+   "name": "Source impedance (ohms)",
+   "default": "50",
+   "values": "Source impedance of the RF network 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Finite impulse response filter length",
+   "default": "128",
+   "values": "Desired length of the baseband-equivalent impulse response 128 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fractional bandwidth of guard bands",
+   "default": "0",
+   "values": "Fraction of modeling bandwidth 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Modeling delay (samples)",
+   "default": "0",
+   "values": "Number of time samples by which to delay the impulse response of baseband-equivalent model 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Center frequency (Hz)",
+   "default": "2e9",
+   "values": "Center of modeling frequencies 2e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "1e-7",
+   "values": "Time interval between consecutive samples 1e-7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input Processing",
+   "default": "based)",
+   "values": "Specify type of processing mode Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": ""
+  },
+  {
+   "name": "Add noise",
+   "default": "on",
+   "values": "Add noise data to block on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "67987",
+   "values": "Initial seed for random number generator block 67987 (default) | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

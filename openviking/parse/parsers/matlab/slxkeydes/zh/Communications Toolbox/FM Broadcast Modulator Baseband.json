@@ -1,0 +1,78 @@
+{
+ "key": "FM Broadcast Modulator Baseband",
+ "title": "FM Broadcast Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Baseband Modulation/FM_Broadcast_Modulator_Baseband.md"
+ ],
+ "text": "使用广播 FM 方法进行调制，输入 2 路、输出 1 路；按 {Sample rate (Hz)} 指定输出信号采样率 240e3；{Frequency deviation (Hz)} 指定调制器输出信号频率的峰值偏差 75e3、{Pre-emphasis filter time constant (s)} 指定预加重高通滤波器时间常数 7.5e-05、{Sample rate of audio input signal (Hz)} 指定输入音频信号的采样率、{Stereo audio} 启用立体声调制、{RDS/RBDS modulation} 启用 RDS、{Oversampling factor of RDS/RBDS input}、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "音频信号 N -element column vector | 2-by- N matrix"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "RDS（或 RBDS）信号 N -element column vector | 2-by- N matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "FM 调制基带信号 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "",
+   "values": "输出信号采样率 240e3 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency deviation (Hz)",
+   "default": "",
+   "values": "调制器输出信号频率的峰值偏差 75e3 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Pre-emphasis filter time constant (s)",
+   "default": "7.5e-05",
+   "values": "预加重高通滤波器时间常数 7.5e-05 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate of audio input signal (Hz)",
+   "default": "48000",
+   "values": "输入音频信号的采样率 48000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stereo audio",
+   "default": "off",
+   "values": "启用立体声调制的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "RDS/RBDS modulation",
+   "default": "off",
+   "values": "启用 RDS（或 RBDS）波形调制的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Oversampling factor of RDS/RBDS input",
+   "default": "10",
+   "values": "RDS（或 RBDS）输入信号的过采样因子 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

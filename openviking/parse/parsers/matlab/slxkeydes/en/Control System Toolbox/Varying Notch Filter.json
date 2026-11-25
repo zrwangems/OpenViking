@@ -1,0 +1,39 @@
+{
+ "key": "Varying Notch Filter",
+ "title": "Varying Notch Filter",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Varying_Notch_Filter.md"
+ ],
+ "text": "Notch filter with varying coefficients, 4 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Filter input scalar"
+  },
+  {
+   "name": "freq",
+   "direction": "input",
+   "summary": "Notch frequency scalar"
+  },
+  {
+   "name": "gmin",
+   "direction": "input",
+   "summary": "Gain at notch frequency scalar"
+  },
+  {
+   "name": "damp",
+   "direction": "input",
+   "summary": "Damping ratio of the filter poles scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filter output scalar"
+  }
+ ],
+ "params": []
+}

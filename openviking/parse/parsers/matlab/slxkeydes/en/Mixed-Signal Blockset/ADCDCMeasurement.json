@@ -1,0 +1,101 @@
+{
+ "key": "ADCDCMeasurement",
+ "title": "ADC DC Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Measurements & Testbenches/ADC_DC_Measurement.md"
+ ],
+ "text": "Measure DC performance metrics of ADC output, 4 inputs; {Input range (V)} sets the dynamic range of ADC, {Hold off time (s)} sets the delays measurement analysis to avoid corruption, {Number of bits} sets the number of physical bits in ADC, {Start conversion frequency (Hz)} sets the frequency of the start conversion clock of ADC, {Recommended min. simulation stop time (s)} sets the minimum time simulation must run for meaningful result, {Set as model stop time} sets the automatically set recommended min. simulation stop time as model stop time, {Endpoint} sets the measure DNL, INL using endpoint method, {Best fit} sets the measure DNL, INL using best fit method, {Output result to base workspace} sets the store detailed test results to base, {Workspace variable name} sets the name of the variable that stores detailed test results and {Plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "Analog input signal to ADC scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "External conversion start clock scalar"
+  },
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "Converted digital signal from ADC scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "input",
+   "summary": "Indicates whether analog to digital conversion is complete scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "Dynamic range of ADC [-1 1] (default) | 2-element vector",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "Delays measurement analysis to avoid corruption by transients 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bits",
+   "default": "5",
+   "values": "Number of physical bits in ADC 5 (default) | positive real integer",
+   "group": ""
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "10e6",
+   "values": "Frequency of the start conversion clock of ADC 10e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Recommended min. simulation stop time (s)",
+   "default": "3.2e-5",
+   "values": "Minimum time simulation must run for meaningful result 3.2e-5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Set as model stop time",
+   "default": "",
+   "values": "Automatically set recommended min. simulation stop time as model stop time button",
+   "group": ""
+  },
+  {
+   "name": "Endpoint",
+   "default": "on",
+   "values": "Measure DNL, INL using endpoint method on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Best fit",
+   "default": "on",
+   "values": "Measure DNL, INL using best fit method on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output result to base workspace",
+   "default": "off",
+   "values": "Store detailed test results to base workspace off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "adc_dc_out",
+   "values": "Name of the variable that stores detailed test results adc_dc_out (default) | character string",
+   "group": ""
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Plot measurement results button",
+   "group": ""
+  }
+ ]
+}

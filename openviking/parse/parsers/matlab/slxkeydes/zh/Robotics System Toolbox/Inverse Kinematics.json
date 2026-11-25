@@ -1,0 +1,130 @@
+{
+ "key": "Inverse Kinematics",
+ "title": "Inverse Kinematics",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Inverse_Kinematics.md"
+ ],
+ "text": "计算关节位形以实现末端执行器位姿，输入 3 路、输出 2 路；按 {End effector} 指定末端执行器名称 ’tool’；{Rigid body tree} 指定刚体树模型 twoJointRigidBodyTre、{Show solution diagnostic outputs} 启用 Info 端口、{Solver} 指定求解逆运动学的算法 BFGS Gradient、{Enforce joint limits} 指定强制实施刚体树关节限位、{Maximum iterations} 指定最大迭代次数、{Maximum time} 指定最大秒数、{Gradient tolerance} 指定代价函数梯度的阈值 1e-7、{Solution tolerance} 指定位姿误差阈值 1e-6、{Step tolerance} 指定最小步长 1e-14、{Error change tolerance} 指定位姿误差变化阈值 1e-12、{Use error damping} 启用误差阻尼、{Damping bias} 指定代价函数上的阻尼、{Constraint tolerance} 指定约束违反量阈值 1e-6、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "末端执行器位姿 4-by-4 homogeneous transform"
+  },
+  {
+   "name": "Weights",
+   "direction": "input",
+   "summary": "位姿容差的权重 six-element vector"
+  },
+  {
+   "name": "InitialGuess",
+   "direction": "input",
+   "summary": "机器人位形的初始猜测 vector"
+  },
+  {
+   "name": "Config",
+   "direction": "output",
+   "summary": "机器人位形解 vector"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "解信息 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "刚体树模型 twoJointRigidBodyTree (default) | rigidBodyTree object",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "End effector",
+   "default": "",
+   "values": "末端执行器名称 ’tool’ | Select body",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "Show solution diagnostic outputs",
+   "default": "on",
+   "values": "启用 Info 端口 on (default) | off",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "Solver",
+   "default": "Projection",
+   "values": "求解逆运动学的算法 BFGS Gradient Projection (default) | Levenberg-Marquardt | fminconsqp",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Enforce joint limits",
+   "default": "on",
+   "values": "强制实施刚体树关节限位 on (default) | off",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Maximum iterations",
+   "default": "1500",
+   "values": "最大迭代次数 1500 (default) | positive integer",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Maximum time",
+   "default": "10",
+   "values": "最大秒数 10 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Gradient tolerance",
+   "default": "1e-7",
+   "values": "代价函数梯度的阈值 1e-7 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Solution tolerance",
+   "default": "1e-6",
+   "values": "位姿误差阈值 1e-6 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Step tolerance",
+   "default": "1e-14",
+   "values": "最小步长 1e-14 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Error change tolerance",
+   "default": "1e-12",
+   "values": "位姿误差变化阈值 1e-12 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Use error damping",
+   "default": "on",
+   "values": "启用误差阻尼 on (default) | off",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Damping bias",
+   "default": "0.0025",
+   "values": "代价函数上的阻尼 0.0025 (default) | positive scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Constraint tolerance",
+   "default": "1e-6",
+   "values": "约束违反量阈值 1e-6 (default) | nonnegative numeric scalar",
+   "group": "Solver Parameters"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Solver Parameters"
+  }
+ ]
+}

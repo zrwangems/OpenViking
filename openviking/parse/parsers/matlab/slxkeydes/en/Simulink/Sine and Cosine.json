@@ -1,0 +1,64 @@
+{
+ "key": "Sine and Cosine",
+ "title": "Cosine",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/Cosine.md",
+  "Simulink/Lookup Tables/Sine.md",
+  "Simulink/Quick Insert/Lookup Tables/Cosine_Lookup.md",
+  "Simulink/Quick Insert/Lookup Tables/Sine_Lookup.md",
+  "Simulink/Quick Insert/Lookup Tables/Exponential_Lookup.md",
+  "Simulink/Quick Insert/Lookup Tables/SinCos_Lookup.md"
+ ],
+ "text": "Implement fixed-point sine or cosine wave using lookup table approach that exploits quarter wave symmetry, 1 input, 3 outputs, no direct feedthrough, {Output formula} sets Select the signals to output cos(2*pi*u); {Number of data points for lookup table} sets the number of data points to retrieve from the lookup, {Output word length} sets the word length for the fixed-point data type of the output and {Internal rule priority for lookup table} sets the internal rule for intermediate calculations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal to implement as fixed-point sine or cosine wave real-valued signal"
+  },
+  {
+   "name": "sin(2*pi*u)",
+   "direction": "output",
+   "summary": "Fixed-point sine wave real-valued fixed-point signal"
+  },
+  {
+   "name": "cos(2*pi*u)",
+   "direction": "output",
+   "summary": "Fixed-point cosine wave real-valued fixed-point signal"
+  },
+  {
+   "name": "exp(j*2*pi*u)",
+   "direction": "output",
+   "summary": "exp(j*2*pi*u) complex-valued fixed-point signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output formula",
+   "default": "",
+   "values": "Select the signals to output cos(2*pi*u) | sin(2*pi*u) | exp(j*2*pi*u) | sin(2*pi*u) and cos(2*pi*u)",
+   "group": ""
+  },
+  {
+   "name": "Number of data points for lookup table",
+   "default": "(2^5)+1",
+   "values": "Specify the number of data points to retrieve from the lookup table (2^5)+1 (default) | integer greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Output word length",
+   "default": "16",
+   "values": "Specify the word length for the fixed-point data type of the output signal 16 (default) | integer from 2 to 53",
+   "group": ""
+  },
+  {
+   "name": "Internal rule priority for lookup table",
+   "default": "Speed",
+   "values": "Specify the internal rule for intermediate calculations Speed (default) | Precision",
+   "group": ""
+  }
+ ]
+}

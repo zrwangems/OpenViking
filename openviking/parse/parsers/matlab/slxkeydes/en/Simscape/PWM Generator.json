@@ -1,0 +1,49 @@
+{
+ "key": "PWM Generator",
+ "title": "PWM Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Generator.md"
+ ],
+ "text": "Generate pulse width modulated signal or waveform, 1 input, 1 output, {Carrier counter} sets Carrier counter strategy; {Timer period (s)} sets the pWM period, {Phase delay (s)} and {Sample time} sets the block sample time 5e-5. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DC",
+   "direction": "input",
+   "summary": "Duty cycle scalar"
+  },
+  {
+   "name": "PWM",
+   "direction": "output",
+   "summary": "PWM signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Carrier counter",
+   "default": "Up",
+   "values": "Carrier counter strategy Up (default) | Down | Up-Down",
+   "group": ""
+  },
+  {
+   "name": "Timer period (s)",
+   "default": "0.001",
+   "values": "PWM period 0.001 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Phase delay (s)",
+   "default": "0",
+   "values": "Phase delay 0 (default) | nonnegative number",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "5e-5",
+   "values": "Block sample time 5e-5 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "key": "Gazebo Blank Message",
+ "title": "Gazebo Blank Message",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Blank_Message.md"
+ ],
+ "text": "Create blank Gazebo command, 1 output, {Message type} sets Type of message; {Sample time} sets the sampling time of input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "Blank message bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Message type",
+   "default": "ApplyLinkWrench",
+   "values": "Type of message ApplyLinkWrench (default) | ApplyJointTorque | SetLinkWorldPose | SetLinkLinearVelocity | SetLinkAngularVelocity | SetJointPosition | SetJointVelocity",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Sampling time of input 0.001 (default) | positive",
+   "group": ""
+  }
+ ]
+}

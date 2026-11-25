@@ -1,0 +1,83 @@
+{
+ "key": "dsp.simulink.ParameterSmoother",
+ "title": "Parameter Smoother",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Parameter_Smoother.md"
+ ],
+ "text": "Smooth input parameters using exponential smoothing, 3 inputs, 1 output, no direct feedthrough; {Number of parameters} sets the number of input parameters, {Smoothing mode} sets the mode to use for smoothing, {Specify smoothing factor from input port} sets the option to specify smoothing factor from input, {Smoothing factor (between 0 and 1)}, {Specify smoothing time from input port} sets the option to specify smoothing time from input, {Smoothing time constant (seconds)} sets the smoothing time in seconds, {Sample time (−1 for inherited)} sets the sample time of input parameters and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "Input parameter to smooth scalar | vector | matrix"
+  },
+  {
+   "name": "alpha",
+   "direction": "input",
+   "summary": "Smoothing factor scalar in the range [0, 1)"
+  },
+  {
+   "name": "tau",
+   "direction": "input",
+   "summary": "Smoothing time nonnegative scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Smoothed parameter scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of parameters",
+   "default": "1",
+   "values": "Number of input parameters 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Smoothing mode",
+   "default": "factor",
+   "values": "Mode to use for smoothing Smoothing factor (default) | Smoothing time",
+   "group": ""
+  },
+  {
+   "name": "Specify smoothing factor from input port",
+   "default": "off",
+   "values": "Option to specify smoothing factor from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor (between 0 and 1)",
+   "default": "0.6",
+   "values": "Smoothing factor 0.6 (default) | scalar in the range [0, 1)",
+   "group": ""
+  },
+  {
+   "name": "Specify smoothing time from input port",
+   "default": "off",
+   "values": "Option to specify smoothing time from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing time constant (seconds)",
+   "default": "10",
+   "values": "Smoothing time in seconds 10 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (−1 for inherited)",
+   "default": "-1",
+   "values": "Sample time of input parameters -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

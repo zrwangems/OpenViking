@@ -1,0 +1,13 @@
+{
+ "key": "PS Saturation",
+ "title": "PS Saturation",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Saturation.md"
+ ],
+ "text": "Limit range of physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

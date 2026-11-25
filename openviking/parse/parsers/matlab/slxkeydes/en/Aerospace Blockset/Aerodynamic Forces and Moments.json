@@ -1,0 +1,86 @@
+{
+ "key": "Aerodynamic Forces and Moments",
+ "title": "Aerodynamic Forces and Moments",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Aerodynamics/Aerodynamic_Forces_and_Moments.md"
+ ],
+ "text": "Compute aerodynamic forces and moments using aerodynamic coefficients, dynamic pressure, center of gravity, center of pressure, and velocity, 5 inputs, 2 outputs, {Force axes} sets Coordinate system for aerodynamic force; {Input axes} sets the coordinate system for input coefficients, {Moment axes} sets the coordinate system for aerodynamic moment, {Reference area}, {Reference span} and {Reference length}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Coef",
+   "direction": "input",
+   "summary": "Aerodynamic coefficients six-element vector"
+  },
+  {
+   "name": "q bar",
+   "direction": "input",
+   "summary": "Dynamic pressure scalar | three-element vector"
+  },
+  {
+   "name": "CG",
+   "direction": "input",
+   "summary": "Center of gravity three-element vector"
+  },
+  {
+   "name": "CP",
+   "direction": "input",
+   "summary": "Center of pressure three-element vector"
+  },
+  {
+   "name": "V b",
+   "direction": "input",
+   "summary": "Velocity in the body axes three-element vector"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "Aerodynamic forces three-element vector"
+  },
+  {
+   "name": "M",
+   "direction": "output",
+   "summary": "Aerodynamic moments three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input axes",
+   "default": "Body",
+   "values": "Coordinate system for input coefficients Body (default) | Stability | Wind",
+   "group": ""
+  },
+  {
+   "name": "Force axes",
+   "default": "Body",
+   "values": "Coordinate system for aerodynamic force Body (default) | Stability | Wind",
+   "group": ""
+  },
+  {
+   "name": "Moment axes",
+   "default": "Body",
+   "values": "Coordinate system for aerodynamic moment Body (default) | Stability | Wind",
+   "group": ""
+  },
+  {
+   "name": "Reference area",
+   "default": "1",
+   "values": "Reference area 1 (default) | any double value",
+   "group": ""
+  },
+  {
+   "name": "Reference span",
+   "default": "1",
+   "values": "Reference span 1 (default) | any double value",
+   "group": ""
+  },
+  {
+   "name": "Reference length",
+   "default": "1",
+   "values": "Reference length 1 (default) | any double value",
+   "group": ""
+  }
+ ]
+}

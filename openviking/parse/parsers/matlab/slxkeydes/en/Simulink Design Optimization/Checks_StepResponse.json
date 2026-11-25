@@ -1,0 +1,134 @@
+{
+ "key": "Checks_StepResponse",
+ "title": "Check Step Response Characteristics",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/Model Verification/Check_Step_Response_Characteristics.md",
+  "Simulink Design Optimization/Signal Constraints/Check_Step_Response_Characteristics.md"
+ ],
+ "text": "Check that model signal satisfies step response bounds during simulation, 1 input, 1 output; {Show Plot} sets the open plot window, {Show plot on block open} sets the double-click block to open plot, {Response Optimization} sets the open Response Optimizer, {Include step response bound in assertion} sets the check that signal satisfies step response, {Step time} sets the time when step response bounds start, {Initial value} sets the signal value before step, {Final value} sets the signal value after step, {Rise time} sets the time taken to reach specified percentage of step, {% Rise} sets the percentage of step range value for rise, {Settling time (seconds)} sets the time taken to reach settling range, {% Settling} sets the tling range around final value, {% Overshoot} sets the amount by which signal can exceed final, {% Undershoot} sets the amount by which signal can undershoot initial, {Enable zero-crossing detection} sets the evaluate model at bound edges, {Enable assertion} enables or disable check, {Simulation callback when assertion fails (optional)} sets the expression to evaluate when assertion, {Stop simulation when assertion fails} sets the halt simulation when assertion fails and {Output assertion signal} sets the create output signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1 (u)",
+   "direction": "input",
+   "summary": "Signal to check against specified bounds scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1 (out)",
+   "direction": "output",
+   "summary": "Output assertion signal 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show Plot",
+   "default": "",
+   "values": "Open plot window button",
+   "group": ""
+  },
+  {
+   "name": "Show plot on block open",
+   "default": "off",
+   "values": "Double-click block to open plot off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Response Optimization",
+   "default": "",
+   "values": "Open Response Optimizer button",
+   "group": ""
+  },
+  {
+   "name": "Include step response bound in assertion",
+   "default": "on",
+   "values": "Check that signal satisfies step response bounds on (default) | off",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Step time",
+   "default": "0",
+   "values": "Time when step response bounds start 0 (default) | nonnegative scalar",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "Signal value before step 0 (default) | scalar",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Final value",
+   "default": "1",
+   "values": "Signal value after step 1 (default) | scalar",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Rise time",
+   "default": "5",
+   "values": "Time taken to reach specified percentage of step range 5 (default) | positive scalar",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "% Rise",
+   "default": "80",
+   "values": "Percentage of step range value for rise time 80 (default) | scalar in range 0–100",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Settling time (seconds)",
+   "default": "7",
+   "values": "Time taken to reach settling range 7 (default) | positive scalar",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "% Settling",
+   "default": "1",
+   "values": "Settling range around final value 1 (default) | scalar in range 0–100",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "% Overshoot",
+   "default": "10",
+   "values": "Amount by which signal can exceed final value 10 (default) | scalar in range 0–100",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "% Undershoot",
+   "default": "1",
+   "values": "Amount by which signal can undershoot initial value 1 (default) | scalar in range 0–100",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Evaluate model at bound edges on (default) | off",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "Enable or disable check on (default) | off",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "’’",
+   "values": "Expression to evaluate when assertion fails ’’ (default) | MATLAB expression",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "Halt simulation when assertion fails off (default) | on",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "Create output signal off (default) | on",
+   "group": "Assertion Tab"
+  }
+ ]
+}

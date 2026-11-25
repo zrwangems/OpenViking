@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Actuator (G)",
+ "title": "Double-Acting Actuator (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Actuators/Double_Acting_Actuator_G.md"
+ ],
+ "text": "Double-acting linear actuator in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,24 @@
+{
+ "key": "Quaternion Modulus",
+ "title": "Quaternion Modulus",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Modulus.md"
+ ],
+ "text": "计算四元数的模，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "四元数 quaternion | vector of quaternions"
+  },
+  {
+   "name": "|q|",
+   "direction": "output",
+   "summary": "四元数的模 quaternion modulus | vector of quaternion moduli"
+  }
+ ],
+ "params": []
+}

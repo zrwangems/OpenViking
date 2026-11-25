@@ -1,0 +1,13 @@
+{
+ "key": "Half-Bridge (Ideal, Switching)",
+ "title": "Half-Bridge (Ideal, Switching)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Half_Bridge_Ideal_Switching.md"
+ ],
+ "text": "Half-bridge with ideal switches and thermal port.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

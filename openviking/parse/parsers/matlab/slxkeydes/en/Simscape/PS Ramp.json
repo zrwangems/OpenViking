@@ -1,0 +1,13 @@
+{
+ "key": "PS Ramp",
+ "title": "PS Ramp",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Sources/PS_Ramp.md"
+ ],
+ "text": "Generate constantly increasing or decreasing physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

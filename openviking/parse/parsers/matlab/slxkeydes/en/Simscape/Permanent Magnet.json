@@ -1,0 +1,13 @@
+{
+ "key": "Permanent Magnet",
+ "title": "Permanent Magnet",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Elements/Permanent_Magnet.md"
+ ],
+ "text": "Permanent magnet that passively generates magnetic field.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

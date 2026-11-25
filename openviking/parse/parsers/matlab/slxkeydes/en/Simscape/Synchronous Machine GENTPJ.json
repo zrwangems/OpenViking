@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Machine GENTPJ",
+ "title": "Synchronous Machine GENTPJ",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Synchronous_Machine_GENTPJ.md"
+ ],
+ "text": "GENTPJ synchronous machine.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

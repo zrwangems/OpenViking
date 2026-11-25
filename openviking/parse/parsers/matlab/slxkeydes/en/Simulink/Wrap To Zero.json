@@ -1,0 +1,32 @@
+{
+ "key": "Wrap To Zero",
+ "title": "Wrap To Zero",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Wrap_To_Zero.md",
+  "HDL Coder/Discontinuities/Wrap_To_Zero.md"
+ ],
+ "text": "Set output to zero if input is above threshold, 1 input, 1 output, direct feedthrough; {Threshold}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Threshold",
+   "default": "255",
+   "values": "Threshold for outputting zero 255 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

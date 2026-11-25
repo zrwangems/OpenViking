@@ -1,0 +1,13 @@
+{
+ "key": "MAPSTD Preprocess",
+ "title": "mapstd",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/mapstd.md"
+ ],
+ "text": "通过将每行的均值映射为 0、偏差映射为 1 来处理矩阵。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

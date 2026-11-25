@@ -1,0 +1,348 @@
+{
+ "key": "SM Field-Oriented Control",
+ "title": "SM Field-Oriented Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_Field_Oriented_Control.md"
+ ],
+ "text": "同步电机磁场定向控制，输入 6 路、输出 3 路；按 {Sampling mode} 指定波形采样方法；{Control mode} 控制模式策略 Velocity、{Nominal dc-link voltage (V)} 指定额定直流电压、{Maximum power (W)} 指定最大功率、{Maximum torque (N*m)} 指定最大转矩、{Maximum field current (A)} 指定最大励磁电流、{Inverter dc-link voltage threshold (V)} 指定直流母线电压阈值、{Number of rotor pole pairs} 指定极对数、{Fundamental sample time (s)} 指定模块采样时间 5e-6、{Control Type} 控制类型策略 PI、{Controller proportional gain} 指定 PI 控制器的比例增益、{Controller integral gain} 指定 PI 控制器的积分增益、{P controller proportional gain} 指定 P 控制器的比例增益、{Integral anti-windup gain} 指定抗积分饱和增益、{Current references} 指定电流参考策略 Zero d-axis、{Mechanical speed vector, wMechanical (rpm)} 指定转子转速查找向量、{Torque reference vector, TqRef (N*m)} 指定转矩参考查找向量、{DC-link voltage vector, Vdc (V)} 指定直流母线电压查找向量、{D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)} 指定参考 d 轴电流值 zeros、{Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)} 指定参考 q 轴电流值 zeros、{Field current reference matrix, if(wMechanical,TqRef,Vdc), (A)} 指定励磁电流参考值 zeros、{Torque constant} 指定电机转矩常数、{D-axis current proportional gain} 指定 D 轴比例增益、{D-axis current integral gain} 指定 D 轴积分增益、{D-axis current anti-windup gain} 指定 D 轴抗积分饱和增益、{Q-axis current proportional gain} 指定 Q 轴比例增益、{Q-axis current integral gain} 指定 Q 轴积分增益、{Q-axis current anti-windup gain} 指定 Q 轴抗积分饱和增益、{Field current proportional gain} 指定励磁绕组比例增益、{Field current integral gain} 指定励磁绕组积分增益、{Field current anti-windup gain} 指定励磁绕组抗积分饱和增益、{Axis prioritization} 指定电压限幅器的轴优先级、{Enable zero cancellation} 指定前馈零消去、{Enable pre-control voltage} 指定预控制电压、{Machine parameters} 指定电机参数化 Constant、{D-axis inductance (H)} 指定前馈 d 轴电感、{Q-axis inductance (H)} 指定前馈 q 轴电感、{Mutual field armature inductance (H)} 指定励磁绕组与电枢之间的互感、{D-axis current vector, id (A)} 指定 D 轴电流断点向量、{Q-axis current vector, iq (A)} 指定 Q 轴电流断点向量、{Field current vector, if (A)} 指定励磁绕组电流向量、{Ld matrix, Ld(id,iq) (H)} 指定 D 轴电感查找表数据 0.0002 * ones、{Lq matrix, Lq(id,iq) (H)} 指定 Q 轴电感查找表数据 0.0002 * ones、{Lmf matrix, Lmf(id,iq,if), (H)} 指定励磁绕组-电枢互感查找表 0.007 * ones、{PWM method} 指定脉宽调制方法 SVM: space vector、{Switching frequency (Hz)} 指定开关速率、{Chopper type} 指定 DC-DC 斩波器类型 First and fourth quadrant、{Switching frequency excitation (Hz)} 指定励磁系统开关频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Reference",
+   "direction": "input",
+   "summary": "系统参考 scalar"
+  },
+  {
+   "name": "iabcSens",
+   "direction": "input",
+   "summary": "测量的相电流 vector"
+  },
+  {
+   "name": "ifSens",
+   "direction": "input",
+   "summary": "实测励磁电流 scalar"
+  },
+  {
+   "name": "wSens",
+   "direction": "input",
+   "summary": "旋翼转速 scalar"
+  },
+  {
+   "name": "thSens",
+   "direction": "input",
+   "summary": "转子角度 scalar"
+  },
+  {
+   "name": "vdcSens",
+   "direction": "input",
+   "summary": "直流母线电压 scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "定子变换器门极脉冲 vector"
+  },
+  {
+   "name": "Gr",
+   "direction": "output",
+   "summary": "励磁斩波器门极脉冲 vector"
+  },
+  {
+   "name": "Visualization",
+   "direction": "output",
+   "summary": "可视化的信号 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control mode",
+   "default": "control",
+   "values": "控制模式策略 Velocity control (default) | Torque control",
+   "group": "General"
+  },
+  {
+   "name": "Nominal dc-link voltage (V)",
+   "default": "V",
+   "values": "额定直流电压 300 V (default) | positive number",
+   "group": "General"
+  },
+  {
+   "name": "Maximum power (W)",
+   "default": "W",
+   "values": "最大功率 60000 W (default) | positive number",
+   "group": "General"
+  },
+  {
+   "name": "Maximum torque (N*m)",
+   "default": "N*m",
+   "values": "最大转矩 250 N*m (default) | positive number",
+   "group": "General"
+  },
+  {
+   "name": "Maximum field current (A)",
+   "default": "A",
+   "values": "最大励磁电流 25 A (default) | positive number",
+   "group": "General"
+  },
+  {
+   "name": "Inverter dc-link voltage threshold (V)",
+   "default": "V",
+   "values": "直流母线电压阈值 100 V (default) | positive number",
+   "group": "General"
+  },
+  {
+   "name": "Number of rotor pole pairs",
+   "default": "4",
+   "values": "极对数 4 (default) | positive integer",
+   "group": "General"
+  },
+  {
+   "name": "Fundamental sample time (s)",
+   "default": "5e-6",
+   "values": "模块采样时间 5e-6 (default) | positive number",
+   "group": "General"
+  },
+  {
+   "name": "Control Type",
+   "default": "control",
+   "values": "控制类型策略 PI control (default) | P control | P-PI control",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Controller proportional gain",
+   "default": "1",
+   "values": "PI 控制器的比例增益 1 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Controller integral gain",
+   "default": "1",
+   "values": "PI 控制器的积分增益 1 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "P controller proportional gain",
+   "default": "1",
+   "values": "P 控制器的比例增益 1 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Integral anti-windup gain",
+   "default": "1",
+   "values": "抗积分饱和增益 1 (default) | positive number",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Current references",
+   "default": "control",
+   "values": "电流参考策略 Zero d-axis control (default) | Lookup-table based",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Mechanical speed vector, wMechanical (rpm)",
+   "default": "rpm",
+   "values": "转子转速查找向量 [0, 3000] rpm (default) | positive monotonically increasing vector",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Torque reference vector, TqRef (N*m)",
+   "default": "N*m",
+   "values": "转矩参考查找向量 [-100, 0, 100] N*m (default) | positive monotonically increasing vector",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "DC-link voltage vector, Vdc (V)",
+   "default": "V",
+   "values": "直流母线电压查找向量 [300, 350] V (default) | positive monotonically increasing vector",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)",
+   "default": "A",
+   "values": "参考 d 轴电流值 zeros(2,3,2) A (default) | real matrix",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)",
+   "default": "A",
+   "values": "参考 q 轴电流值 zeros(2,3,2) A (default) | real matrix",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Field current reference matrix, if(wMechanical,TqRef,Vdc), (A)",
+   "default": "A",
+   "values": "励磁电流参考值 zeros(2,3,2) A (default) | real matrix",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "Torque constant",
+   "default": "N*m/A",
+   "values": "电机转矩常数 0.04 N*m/A (default) | positive scalar",
+   "group": "Outer Loop"
+  },
+  {
+   "name": "D-axis current proportional gain",
+   "default": "1",
+   "values": "D 轴比例增益 1 (default) | positive number",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "D-axis current integral gain",
+   "default": "100",
+   "values": "D 轴积分增益 100 (default) | positive number",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "D-axis current anti-windup gain",
+   "default": "1",
+   "values": "D 轴抗积分饱和增益 1 (default) | positive number",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Q-axis current proportional gain",
+   "default": "1",
+   "values": "Q 轴比例增益 1 (default) | positive number",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Q-axis current integral gain",
+   "default": "100",
+   "values": "Q 轴积分增益 100 (default) | positive number",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Q-axis current anti-windup gain",
+   "default": "1",
+   "values": "Q 轴抗积分饱和增益 1 (default) | positive number",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Field current proportional gain",
+   "default": "10",
+   "values": "励磁绕组比例增益 10 (default) | positive number",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Field current integral gain",
+   "default": "1000",
+   "values": "励磁绕组积分增益 1000 (default) | positive number",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Field current anti-windup gain",
+   "default": "1",
+   "values": "励磁绕组抗积分饱和增益 1 (default) | positive number",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "q-axis",
+   "values": "电压限幅器的轴优先级 q-axis (default) | d-axis | d-q equivalence",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "前馈零消去 off (default) | on",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Enable pre-control voltage",
+   "default": "on",
+   "values": "预控制电压 on (default) | off",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Machine parameters",
+   "default": "parameters",
+   "values": "电机参数化 Constant parameters (default) | Lookup table based parameters",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "D-axis inductance (H)",
+   "default": "0.00024",
+   "values": "前馈 d 轴电感 0.00024 (default) | positive scalar",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Q-axis inductance (H)",
+   "default": "0.00029",
+   "values": "前馈 q 轴电感 0.00029 (default) | positive scalar",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Mutual field armature inductance (H)",
+   "default": "0.007",
+   "values": "励磁绕组与电枢之间的互感 0.007 (default)",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "D-axis current vector, id (A)",
+   "default": "A",
+   "values": "D 轴电流断点向量 [-200,0,200] A (default) | monotonically increasing vector",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Q-axis current vector, iq (A)",
+   "default": "A",
+   "values": "Q 轴电流断点向量 [-200,0,200] A (default) | monotonically increasing vector",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Field current vector, if (A)",
+   "default": "A",
+   "values": "励磁绕组电流向量 [0,20] A (default) | monotonically increasing vector",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Ld matrix, Ld(id,iq) (H)",
+   "default": "H",
+   "values": "D 轴电感查找表数据 0.0002 * ones(3, 3) H (default) | positive matrix",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Lq matrix, Lq(id,iq) (H)",
+   "default": "H",
+   "values": "Q 轴电感查找表数据 0.0002 * ones(3, 3) H (default) | positive matrix",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "Lmf matrix, Lmf(id,iq,if), (H)",
+   "default": "H",
+   "values": "励磁绕组-电枢互感查找表 0.007 * ones(2,2,2) H (default) | positive matrix",
+   "group": "Inner Loop"
+  },
+  {
+   "name": "PWM method",
+   "default": "modulation",
+   "values": "脉宽调制方法 SVM: space vector modulation (default) | SPWM: sinusoidal PWM",
+   "group": "PWM"
+  },
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "波形采样方法 Natural (default) | Asymmetric | Symmetric",
+   "group": "PWM"
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "Hz",
+   "values": "开关速率 1000 Hz (default) | positive integer",
+   "group": "PWM"
+  },
+  {
+   "name": "Chopper type",
+   "default": "chopper",
+   "values": "DC-DC 斩波器类型 First and fourth quadrant chopper (default) | Four-quadrant chopper",
+   "group": "PWM"
+  },
+  {
+   "name": "Switching frequency excitation (Hz)",
+   "default": "Hz",
+   "values": "励磁系统开关频率 1000 Hz (default) | positive integer",
+   "group": "PWM"
+  }
+ ]
+}

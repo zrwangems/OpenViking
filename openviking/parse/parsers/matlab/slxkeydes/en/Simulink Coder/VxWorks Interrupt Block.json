@@ -1,0 +1,73 @@
+{
+ "key": "VxWorks Interrupt Block",
+ "title": "Async Interrupt",
+ "toolbox": "Simulink Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Coder/Asynchronous/Interrupt Templates/Async_Interrupt.md"
+ ],
+ "text": "Generate Versa Module Eurocard (VME) interrupt service routines (ISRs) that execute downstream subsystems or Task Sync blocks, 1 input, 1 output, {Timer size} sets Number of bits to store the clock tick; {VME interrupt number(s)} sets the vME interrupt numbers for the interrupts to be, {VME interrupt vector offset(s)} sets the interrupt vector offset numbers corresponding to the VME interrupt, {Simulink task priority(s)} sets the priority of downstream blocks; preemptable-1; Preemption flag(s); preemptable-1; Preemption flag(s); preemptable-1; Preemption flag(s); preemptable-1; Preemption flag(s); preemptable-1; Preemption flag(s); preemptable-1; {Preemption flag(s); preemptable-1; non-preemptable-0} sets the selects preemption, {Manage own timer} selects timer manager, {Timer resolution (seconds)} sets the resolution of ISR and {Enable simulation input} selects add simulation input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Simulated interrupt source scalar | vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Control signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "VME interrupt number(s)",
+   "default": "2]",
+   "values": "VME interrupt numbers for the interrupts to be installed [1 2] (default) | integer array",
+   "group": ""
+  },
+  {
+   "name": "VME interrupt vector offset(s)",
+   "default": "193]",
+   "values": "Interrupt vector offset numbers corresponding to the VME interrupt numbers [192 193] (default) | integer array",
+   "group": ""
+  },
+  {
+   "name": "Simulink task priority(s)",
+   "default": "11]",
+   "values": "Priority of downstream blocks [10 11] (default) | integer array",
+   "group": ""
+  },
+  {
+   "name": "Preemption flag(s); preemptable-1; non-preemptable-0",
+   "default": "1]",
+   "values": "Selects preemption [0 1] (default) | integer array",
+   "group": ""
+  },
+  {
+   "name": "Manage own timer",
+   "default": "on",
+   "values": "Select timer manager on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Timer resolution (seconds)",
+   "default": "1/60",
+   "values": "Resolution of ISR timer 1/60 (default)",
+   "group": ""
+  },
+  {
+   "name": "Timer size",
+   "default": "32bits",
+   "values": "Number of bits to store the clock tick 32bits (default) | 16bits | 8bits | auto",
+   "group": ""
+  },
+  {
+   "name": "Enable simulation input",
+   "default": "on",
+   "values": "Select add simulation input port on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+ "key": "Simulation 3D Terrain Sensor",
+ "title": "Simulation 3D Terrain Sensor",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Terrain_Sensor.md"
+ ],
+ "text": "在 3D 环境中实现多点地形传感器；输出 1 路；{Sensor identifier, sensorId} 指定唯一传感器标识符、{Parent name, VehTag} 指定传感器所安装到的父级名称、{Ray origins, RayOrigins} 指定射线原点、{Ray directions, RayDirections} 指定归一化射线方向、{Ray lengths, RayLengths} 指定长度、{Number of wheels on parent vehicle} 指定机轮数量、{Visualize trace line} 指定可视化射线追踪、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier, sensorId",
+   "default": "0",
+   "values": "唯一传感器标识符 0 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Parent name, VehTag",
+   "default": "SimulinkVehicle1",
+   "values": "传感器所安装到的父级名称 SimulinkVehicle1 (default) | vehicle name",
+   "group": ""
+  },
+  {
+   "name": "Ray origins, RayOrigins",
+   "default": "1]",
+   "values": "射线原点 [0 0 1] (default) | real-valued N -by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Ray directions, RayDirections",
+   "default": "-1]",
+   "values": "归一化射线方向 [0 0 -1] (default) | real-valued N -by-3 array",
+   "group": ""
+  },
+  {
+   "name": "Ray lengths, RayLengths",
+   "default": "20",
+   "values": "长度 20 (default) | real-valued N -by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels on parent vehicle",
+   "default": "4",
+   "values": "机轮数量 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Visualize trace line",
+   "default": "off",
+   "values": "可视化射线追踪 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,335 @@
+{
+ "key": "PID 1dof",
+ "title": "PID Controller",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Continuous/PID_Controller.md",
+  "Simulink/Discrete/Discrete_PID_Controller.md",
+  "HDL Coder/Discrete/Discrete_PID_Controller.md",
+  "HDL Coder/HDL Floating Point Operations/Discrete_PID_Controller.md",
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_PID.md",
+  "Control System Toolbox/Linear Parameter Varying/Varying_PID_Controller.md",
+  "Motor Control Blockset HDL Support/Controls/Controllers/PI_Controller.md",
+  "Motor Control Blockset/Controls/Controllers/PI_Controller.md"
+ ],
+ "text": "Continuous-time or discrete-time PID controller, 15 inputs, 2 outputs, no direct feedthrough, {Integral (I)} sets Integral gain; {Controller}, {Form} sets the controller structure, {Time domain} sets the continuous-time or discrete-time controller, {PID Controller is inside a conditionally executed subsystem} enables the discrete-integrator time port, {Sample time (-1 for inherited)} sets the discrete interval between, {Integrator method} sets the method for computing integral in discrete-time controller Forward, {Filter method} sets the method for computing derivative in discrete-time controller Forward, {Source}, {Proportional (P)} sets the proportional gain, {Integral (I*Ts)} sets the integral gain multiplied by sample time, {Use I*Ts} uses integral gain multiplied by sample, {Derivative (D)} sets the derivative gain, {Use externally sourced derivative} sets the derivative at block input port, {Use filtered derivative} applies filter to derivative term, {Filter coefficient (N)} sets the derivative filter coefficient, {Select tuning method} sets the tool for automatic tuning of controller coefficients Transfer Function, {Enable zero-crossing detection} sets the detect zero crossings on reset and on entering or leaving a saturation, {Integrator}, {Filter}, {Differentiator} sets the initial condition for unfiltered, {Initial condition setting} sets the location at which initial condition, {External reset} sets the trigger for resetting integrator and filter, {Ignore reset when linearizing} sets the force linearization to ignore reset, {Enable tracking mode} sets the activate signal tracking, {Tracking coefficient (Kt)} sets the gain of signal-tracking feedback loop, {Limit Output} limits block output to specified saturation, {Upper limit} sets the upper saturation limit for block output, {Lower limit} sets the lower saturation limit for block output, {Ignore saturation when linearizing} sets the force linearization to ignore output, {Anti-windup method} sets the integrator anti-windup method, {Back-calculation coefficient (Kb)} sets the gain coefficient of anti-windup feedback, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {State name (e.g., ’position’)} sets the name for continuous-time filter and integrator, {State name} sets the names for discrete-time filter and integrator states empty and {State name must resolve to Simulink signal object} requires that state name resolve to a signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1( u )",
+   "direction": "input",
+   "summary": "Error signal input scalar | vector"
+  },
+  {
+   "name": "ydot",
+   "direction": "input",
+   "summary": "Externally sourced derivative scalar | vector"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "Proportional gain scalar | vector"
+  },
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Integral gain scalar | vector"
+  },
+  {
+   "name": "I*T s",
+   "direction": "input",
+   "summary": "Integral gain multiplied by sample time scalar | vector"
+  },
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "Derivative gain scalar | vector"
+  },
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "Filter coefficient scalar | vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset trigger scalar"
+  },
+  {
+   "name": "I 0",
+   "direction": "input",
+   "summary": "Integrator initial condition scalar | vector"
+  },
+  {
+   "name": "D 0",
+   "direction": "input",
+   "summary": "Filter initial condition scalar | vector"
+  },
+  {
+   "name": "up",
+   "direction": "input",
+   "summary": "Output saturation upper limit scalar | vector"
+  },
+  {
+   "name": "lo",
+   "direction": "input",
+   "summary": "Output saturation lower limit scalar | vector"
+  },
+  {
+   "name": "TR",
+   "direction": "input",
+   "summary": "Tracking signal scalar | vector"
+  },
+  {
+   "name": "T DTI",
+   "direction": "input",
+   "summary": "Discrete-integrator time scalar"
+  },
+  {
+   "name": "extAW",
+   "direction": "input",
+   "summary": "External anti-windup algorithm scalar | vector"
+  },
+  {
+   "name": "Port_1( y )",
+   "direction": "output",
+   "summary": "Controller output scalar | vector"
+  },
+  {
+   "name": "preInt",
+   "direction": "output",
+   "summary": "Pre-integrator signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Controller",
+   "default": "PID",
+   "values": "Controller type PID (default) | PI | PD | P | I",
+   "group": ""
+  },
+  {
+   "name": "Form",
+   "default": "Parallel",
+   "values": "Controller structure Parallel (default) | Ideal",
+   "group": ""
+  },
+  {
+   "name": "Time domain",
+   "default": "Continuous-time",
+   "values": "Specify continuous-time or discrete-time controller Continuous-time (default) | Discrete-time",
+   "group": ""
+  },
+  {
+   "name": "PID Controller is inside a conditionally executed subsystem",
+   "default": "off",
+   "values": "Enable the discrete-integrator time port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "–1",
+   "values": "Discrete interval between samples –1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "Method for computing integral in discrete-time controller Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "Filter method",
+   "default": "Euler",
+   "values": "Method for computing derivative in discrete-time controller Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "Source",
+   "default": "internal",
+   "values": "Source for controller gains and filter coefficient internal (default) | external",
+   "group": "Main"
+  },
+  {
+   "name": "Proportional (P)",
+   "default": "1",
+   "values": "Proportional gain 1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Integral (I)",
+   "default": "1",
+   "values": "Integral gain 1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Integral (I*Ts)",
+   "default": "1",
+   "values": "Integral gain multiplied by sample time 1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Use I*Ts",
+   "default": "off",
+   "values": "Use integral gain multiplied by sample time off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Derivative (D)",
+   "default": "0",
+   "values": "Derivative gain 0 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Use externally sourced derivative",
+   "default": "off",
+   "values": "Specify derivative at block input port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Use filtered derivative",
+   "default": "on",
+   "values": "Apply filter to derivative term on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Filter coefficient (N)",
+   "default": "100",
+   "values": "Derivative filter coefficient 100 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Select tuning method",
+   "default": "App)",
+   "values": "Tool for automatic tuning of controller coefficients Transfer Function Based (PID Tuner App) (default) | Frequency Response Based",
+   "group": "Main"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Detect zero crossings on reset and on entering or leaving a saturation state on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Integrator",
+   "default": "0",
+   "values": "Integrator initial condition 0 (default) | scalar | vector",
+   "group": "Initialization"
+  },
+  {
+   "name": "Filter",
+   "default": "0",
+   "values": "Filter initial condition 0 (default) | scalar | vector",
+   "group": "Initialization"
+  },
+  {
+   "name": "Differentiator",
+   "default": "0",
+   "values": "Initial condition for unfiltered derivative 0 (default) | scalar | vector",
+   "group": "Initialization"
+  },
+  {
+   "name": "Initial condition setting",
+   "default": "Auto",
+   "values": "Location at which initial condition is applied Auto (default) | Output",
+   "group": "Initialization"
+  },
+  {
+   "name": "External reset",
+   "default": "none",
+   "values": "Trigger for resetting integrator and filter values none (default) | rising | falling | either | level",
+   "group": "Initialization"
+  },
+  {
+   "name": "Ignore reset when linearizing",
+   "default": "off",
+   "values": "Force linearization to ignore reset off (default) | on",
+   "group": "Initialization"
+  },
+  {
+   "name": "Enable tracking mode",
+   "default": "off",
+   "values": "Activate signal tracking off (default) | on",
+   "group": "Initialization"
+  },
+  {
+   "name": "Tracking coefficient (Kt)",
+   "default": "1",
+   "values": "Gain of signal-tracking feedback loop 1 (default) | scalar",
+   "group": "Initialization"
+  },
+  {
+   "name": "Limit Output",
+   "default": "off",
+   "values": "Limit block output to specified saturation values off (default) | on",
+   "group": "Saturation"
+  },
+  {
+   "name": "Upper limit",
+   "default": "Inf",
+   "values": "Upper saturation limit for block output Inf (default) | scalar",
+   "group": "Saturation"
+  },
+  {
+   "name": "Lower limit",
+   "default": "-Inf",
+   "values": "Lower saturation limit for block output -Inf (default) | scalar",
+   "group": "Saturation"
+  },
+  {
+   "name": "Ignore saturation when linearizing",
+   "default": "off",
+   "values": "Force linearization to ignore output limits off (default) | on",
+   "group": "Saturation"
+  },
+  {
+   "name": "Anti-windup method",
+   "default": "none",
+   "values": "Integrator anti-windup method none (default) | back-calculation | clamping | external",
+   "group": "Saturation"
+  },
+  {
+   "name": "Back-calculation coefficient (Kb)",
+   "default": "1",
+   "values": "Gain coefficient of anti-windup feedback loop 1 (default) | scalar",
+   "group": "Saturation"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "State name (e.g., ’position’)",
+   "default": "’’",
+   "values": "Name for continuous-time filter and integrator states ’’ (default) | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "State name",
+   "default": "string",
+   "values": "Names for discrete-time filter and integrator states empty string (default) | string | character vector",
+   "group": "State Attributes"
+  },
+  {
+   "name": "State name must resolve to Simulink signal object",
+   "default": "off",
+   "values": "Require that state name resolve to a signal object off (default) | on",
+   "group": "State Attributes"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "key": "dsp.simulink.BinaryFileWriter",
+ "title": "Binary File Writer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/Binary_File_Writer.md"
+ ],
+ "text": "将数据写入二进制文件，输入 1 路、无直接馈通；{File name} 指定文件名、{File header} 指定文件头大小 struct、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要写入的数据 column vector | row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "’Untitled.bin’",
+   "values": "文件名 ’Untitled.bin’ (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "File header",
+   "default": "struct([])",
+   "values": "文件头大小 struct([]) (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

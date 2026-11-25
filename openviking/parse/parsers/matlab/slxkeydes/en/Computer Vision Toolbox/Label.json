@@ -1,0 +1,54 @@
+{
+ "key": "Label",
+ "title": "Label",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Morphological Operations/Label.md"
+ ],
+ "text": "Label connected components in binary image, 1 input, 2 outputs, {Output data type} sets Data type of output; {Connectivity} sets the type of pixel connectivity, {Output} sets the block output Label matrix and number and {If label exceeds data type size, mark remaining regions using} sets the overflow mode of output labels maximum value of the output data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "Input binary image vector | matrix"
+  },
+  {
+   "name": "Label",
+   "direction": "output",
+   "summary": "Labeled objects vector | matrix"
+  },
+  {
+   "name": "Count",
+   "direction": "output",
+   "summary": "Number of labeled objects scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Connectivity",
+   "default": "8",
+   "values": "Type of pixel connectivity 8 (default) | 4",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "labels",
+   "values": "Block output Label matrix and number of labels (default) | Label matrix | Number of labels",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Automatic",
+   "values": "Data type of output Automatic (default) | uint8 | uint16 | uint32",
+   "group": ""
+  },
+  {
+   "name": "If label exceeds data type size, mark remaining regions using",
+   "default": "type",
+   "values": "Overflow mode of output labels maximum value of the output data type (default) | zero",
+   "group": ""
+  }
+ ]
+}

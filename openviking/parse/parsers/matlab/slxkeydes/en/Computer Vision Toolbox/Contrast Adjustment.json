@@ -1,0 +1,67 @@
+{
+ "key": "Contrast Adjustment",
+ "title": "Contrast Adjustment",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Contrast_Adjustment.md"
+ ],
+ "text": "Adjust image contrast using linear scaling, 1 input, 1 output, {Adjust pixel values from} sets Input pixel value range definition Full input data range [min; {Range [low high]} sets the input pixel value range, {Percentage of pixels to saturate [low high]} sets the maximum percentages of pixels to saturate, {Specify number of histogram bins (used to calculate the range when outliers are eliminated)} sets the custom number of histogram bins, {Number of histogram bins}, {Adjust pixel values to} sets the output pixel value range definition Full data type and {Lock data type settings against change by the fixed-point tools} sets the data type override. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Adjust pixel values from",
+   "default": "max]",
+   "values": "Input pixel value range definition Full input data range [min max] (default) | User-defined range | Range determined by saturating outlier pixels",
+   "group": "Main"
+  },
+  {
+   "name": "Range [low high]",
+   "default": "255]",
+   "values": "Input pixel value range [0 255] (default) | two-element vector of nonnegative numbers",
+   "group": "Main"
+  },
+  {
+   "name": "Percentage of pixels to saturate [low high]",
+   "default": "1]",
+   "values": "Maximum percentages of pixels to saturate [1 1] (default) | two-element vector of nonnegative numbers",
+   "group": "Main"
+  },
+  {
+   "name": "Specify number of histogram bins (used to calculate the range when outliers are eliminated)",
+   "default": "on",
+   "values": "Custom number of histogram bins on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Number of histogram bins",
+   "default": "256",
+   "values": "Number of histogram bins 256 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Adjust pixel values to",
+   "default": "range",
+   "values": "Output pixel value range definition Full data type range (default) | User-defined range",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Data type override off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

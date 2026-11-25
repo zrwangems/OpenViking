@@ -1,0 +1,44 @@
+{
+ "key": "Quantizer",
+ "title": "Quantizer",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Quantizer.md",
+  "DSP System Toolbox/Quantizers/Quantizer.md"
+ ],
+ "text": "按给定间隔将输入离散化，输入 1 路、输出 1 路；按 {采样时间(-1 表示继承)} 指定采样之间的时间间隔；{量化区间} 定义输出信号量化级别的间隔、{线性化时视为增益} 指定增益值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要量化的输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "量化后的输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "量化区间",
+   "default": "0.5",
+   "values": "定义输出信号量化级别的间隔 0.5 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "线性化时视为增益",
+   "default": "on",
+   "values": "指定增益值 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

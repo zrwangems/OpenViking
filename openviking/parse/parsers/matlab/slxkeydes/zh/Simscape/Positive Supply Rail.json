@@ -1,0 +1,13 @@
+{
+ "key": "Positive Supply Rail",
+ "title": "Positive Supply Rail",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Positive_Supply_Rail.md"
+ ],
+ "text": "理想正电源轨。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

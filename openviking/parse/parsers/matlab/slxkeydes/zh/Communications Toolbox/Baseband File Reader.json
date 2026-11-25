@@ -1,0 +1,61 @@
+{
+ "key": "Baseband File Reader",
+ "title": "Baseband File Reader",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Baseband_File_Reader.md"
+ ],
+ "text": "从文件读取基带信号；输出 2 路；{Baseband file name} 指定要读取的基带文件的名称、{Inherit sample time from file} 指定采样时间的来源、{Sample time (s)} 指定模块采样时间、{Samples per frame} 指定每个输出帧的样本数、{Repeatedly read the file} 指定连续循环文件中的数据、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "基带信号 scalar | vector | matrix"
+  },
+  {
+   "name": "EOF",
+   "direction": "output",
+   "summary": "文件末尾指示符 logical scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Baseband file name",
+   "default": "example.bb",
+   "values": "要读取的基带文件的名称 example.bb (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time from file",
+   "default": "on",
+   "values": "选择采样时间的来源 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "1",
+   "values": "模块采样时间 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "100",
+   "values": "每个输出帧的样本数 100 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Repeatedly read the file",
+   "default": "off",
+   "values": "连续循环文件中的数据 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

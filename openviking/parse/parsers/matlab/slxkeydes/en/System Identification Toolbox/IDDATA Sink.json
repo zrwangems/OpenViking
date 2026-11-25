@@ -1,0 +1,37 @@
+{
+ "key": "IDDATA Sink",
+ "title": "Iddata Sink",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Iddata_Sink.md"
+ ],
+ "text": "Export simulation data as iddata object to MATLAB workspace, 2 inputs; {IDDATA Name} sets the name of iddata and {Sample Time} sets the sample time in seconds. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input of iddata object scalar | vector"
+  },
+  {
+   "name": "Output",
+   "direction": "input",
+   "summary": "Output of iddata object scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "IDDATA Name",
+   "default": "data",
+   "values": "Name of iddata object data (default) | variable name",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "0.1",
+   "values": "Sample time in seconds 0.1 (default) | finite positive number",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,316 @@
+{
+ "key": "FlightGearUnpackNetCtrl",
+ "title": "Unpack net_ctrl Packet from FlightGear",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/Unpack_net_ctrl_Packet_from_FlightGear.md"
+ ],
+ "text": "Unpack net_ctrl variable packet received from FlightGear, 1 input, 52 outputs; {Show control surface position outputs} controls surface position outputs, {Show engine/fuel outputs} sets the engine/fuel outputs, {Show landing gear outputs} sets the landing gear outputs, {Show avionic outputs} sets the avionic outputs, {Show environment outputs} sets the environment outputs and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "net_ctrl",
+   "direction": "input",
+   "summary": "FlightGear packet to be unpacked array"
+  },
+  {
+   "name": "wind_speed_kt",
+   "direction": "output",
+   "summary": "Wind speed scalar"
+  },
+  {
+   "name": "wind_dir_deg",
+   "direction": "output",
+   "summary": "Wind direction scalar"
+  },
+  {
+   "name": "turbulence_norm",
+   "direction": "output",
+   "summary": "Turbulence norm scalar"
+  },
+  {
+   "name": "temp_c",
+   "direction": "output",
+   "summary": "Ambient temperature scalar"
+  },
+  {
+   "name": "press_inhg",
+   "direction": "output",
+   "summary": "Ambient pressure scalar"
+  },
+  {
+   "name": "hground",
+   "direction": "output",
+   "summary": "Ground elevation scalar"
+  },
+  {
+   "name": "magvar",
+   "direction": "output",
+   "summary": "Local magnetic variation scalar"
+  },
+  {
+   "name": "icing",
+   "direction": "output",
+   "summary": "Icing status scalar"
+  },
+  {
+   "name": "aileron",
+   "direction": "output",
+   "summary": "Normalized aileron position 1 | scalar"
+  },
+  {
+   "name": "elevator",
+   "direction": "output",
+   "summary": "Normalized elevator position 1 | scalar"
+  },
+  {
+   "name": "rudder",
+   "direction": "output",
+   "summary": "Normalized rudder position 1 | scalar"
+  },
+  {
+   "name": "aileron_trim",
+   "direction": "output",
+   "summary": "Normalized aileron trim position scalar"
+  },
+  {
+   "name": "elevator_trim",
+   "direction": "output",
+   "summary": "Normalized elevator trim position 1 | scalar"
+  },
+  {
+   "name": "rudder_trim",
+   "direction": "output",
+   "summary": "Normalized rudder trim position 1 | scalar"
+  },
+  {
+   "name": "flaps",
+   "direction": "output",
+   "summary": "Normalized flaps position 1 | scalar"
+  },
+  {
+   "name": "spoilers",
+   "direction": "output",
+   "summary": "Normalized spoilers position 1 | scalar"
+  },
+  {
+   "name": "speedbrake",
+   "direction": "output",
+   "summary": "Normalized speedbrake position 1 | scalar"
+  },
+  {
+   "name": "flaps_power",
+   "direction": "output",
+   "summary": "Power for flaps 1 | scalar"
+  },
+  {
+   "name": "flap_motor_ok",
+   "direction": "output",
+   "summary": "Flap motor powered scalar"
+  },
+  {
+   "name": "num_engines",
+   "direction": "output",
+   "summary": "Number of valid engines scalar"
+  },
+  {
+   "name": "master_bat",
+   "direction": "output",
+   "summary": "Master battery switch vector"
+  },
+  {
+   "name": "master_alt",
+   "direction": "output",
+   "summary": "Master alternator switch vector"
+  },
+  {
+   "name": "magnetos",
+   "direction": "output",
+   "summary": "Magnetos switch scalar"
+  },
+  {
+   "name": "starter_power",
+   "direction": "output",
+   "summary": "Power to start motor 1 | vector"
+  },
+  {
+   "name": "throttle",
+   "direction": "output",
+   "summary": "Normalized throttle position 1 | vector"
+  },
+  {
+   "name": "mixture",
+   "direction": "output",
+   "summary": "Normalized mixture lever position 1 | vector"
+  },
+  {
+   "name": "condition",
+   "direction": "output",
+   "summary": "Normalized condition 1 | vector"
+  },
+  {
+   "name": "fuel_pump_power",
+   "direction": "output",
+   "summary": "Normalized speedbrake position 1 | scalar"
+  },
+  {
+   "name": "prop_advance",
+   "direction": "output",
+   "summary": "Propeller advance 1 | vector"
+  },
+  {
+   "name": "feed_tank_to",
+   "direction": "output",
+   "summary": "Feed tank to switch vector"
+  },
+  {
+   "name": "reverse",
+   "direction": "output",
+   "summary": "Reverse switch vector"
+  },
+  {
+   "name": "engine_ok",
+   "direction": "output",
+   "summary": "Engine status indicator vector"
+  },
+  {
+   "name": "mag_left_ok",
+   "direction": "output",
+   "summary": "Left magneto status indicator vector"
+  },
+  {
+   "name": "mag_right_ok",
+   "direction": "output",
+   "summary": "Right magneto status indicator vector"
+  },
+  {
+   "name": "spark_plugs_ok",
+   "direction": "output",
+   "summary": "Normalized speedbrake position vector"
+  },
+  {
+   "name": "oil_press_status",
+   "direction": "output",
+   "summary": "Oil pressure status indicator 0 | 1 | 2 | scalar"
+  },
+  {
+   "name": "fuel_pump_ok",
+   "direction": "output",
+   "summary": "Fuel management status indicator vector"
+  },
+  {
+   "name": "num_tanks",
+   "direction": "output",
+   "summary": "Number of valid tanks scalar"
+  },
+  {
+   "name": "fuel_selector",
+   "direction": "output",
+   "summary": "Fuel selector scalar"
+  },
+  {
+   "name": "xfer_pump",
+   "direction": "output",
+   "summary": "Specify transfer vector"
+  },
+  {
+   "name": "cross_feed",
+   "direction": "output",
+   "summary": "Cross feed valve scalar"
+  },
+  {
+   "name": "brake_left",
+   "direction": "output",
+   "summary": "Left brake pedal position pilot scalar"
+  },
+  {
+   "name": "brake_right",
+   "direction": "output",
+   "summary": "Right brake pedal position pilot scalar"
+  },
+  {
+   "name": "copilot_brake_left",
+   "direction": "output",
+   "summary": "Left brake pedal position pilot scalar"
+  },
+  {
+   "name": "copilot_brake_right",
+   "direction": "output",
+   "summary": "Right brake pedal position pilot scalar"
+  },
+  {
+   "name": "brake_parking",
+   "direction": "output",
+   "summary": "Brake parking position scalar"
+  },
+  {
+   "name": "gear_handle",
+   "direction": "output",
+   "summary": "Gear handle position scalar"
+  },
+  {
+   "name": "master_avionics",
+   "direction": "output",
+   "summary": "Master avionics switch scalar"
+  },
+  {
+   "name": "comm_1",
+   "direction": "output",
+   "summary": "Comm 1 frequency scalar"
+  },
+  {
+   "name": "comm_2",
+   "direction": "output",
+   "summary": "Comm 2 frequency scalar"
+  },
+  {
+   "name": "nav_1",
+   "direction": "output",
+   "summary": "Nav 1 frequency scalar"
+  },
+  {
+   "name": "nav_2",
+   "direction": "output",
+   "summary": "Nav 2 frequency scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show control surface position outputs",
+   "default": "off",
+   "values": "Control surface position outputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show engine/fuel outputs",
+   "default": "off",
+   "values": "Engine/fuel outputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show landing gear outputs",
+   "default": "off",
+   "values": "Landing gear outputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show avionic outputs",
+   "default": "off",
+   "values": "Avionic outputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show environment outputs",
+   "default": "on",
+   "values": "Environment outputs on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "Sample time 1/30 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

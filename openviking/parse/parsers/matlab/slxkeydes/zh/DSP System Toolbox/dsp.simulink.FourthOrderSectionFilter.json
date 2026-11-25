@@ -1,0 +1,71 @@
+{
+ "key": "dsp.simulink.FourthOrderSectionFilter",
+ "title": "Fourth Order Section Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Fourth_Order_Section_Filter.md"
+ ],
+ "text": "实现四阶节滤波器的级联，输入 3 路、输出 1 路、无直接馈通；按 {Coefficient source} 指定滤波器系数来源 Dialog；{Numerator coefficients of filter} 指定分子系数、{Denominator coefficients of filter} 指定分母系数、{Filter}、{View Filter Response} 指定可视化频率响应 gui、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "分子系数 P -by-5 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "分母系数 P -by-5 matrix | P -by-4 matrix"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "滤波后输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "滤波器系数来源 Dialog parameters (default) | Input ports | Filter object",
+   "group": ""
+  },
+  {
+   "name": "Numerator coefficients of filter",
+   "default": "]",
+   "values": "分子系数 [ 0.07795634 0 -0.15591268 0 0.07795634; 0.06188520 0 -0.12377039 0 0.06188520 ] (default) | P -by-5 matrix",
+   "group": ""
+  },
+  {
+   "name": "Denominator coefficients of filter",
+   "default": "]",
+   "values": "分母系数 [ 1 0 1.32091343 0 0.63273879; 1 0 1.04859957 0 0.29614035 ] (default) | P -by-5 matrix | P -by-4 matrix",
+   "group": ""
+  },
+  {
+   "name": "Filter",
+   "default": "",
+   "values": "滤波器对象 dsp.FourthOrderSectionFilter object",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "可视化频率响应 gui button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

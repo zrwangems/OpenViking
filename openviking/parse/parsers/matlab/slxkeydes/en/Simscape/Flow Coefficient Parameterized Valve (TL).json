@@ -1,0 +1,13 @@
+{
+ "key": "Flow Coefficient Parameterized Valve (TL)",
+ "title": "Flow Coefficient Parameterized Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Flow_Coefficient_Parameterized_Valve_TL.md"
+ ],
+ "text": "Valve with flow area modeled in terms of its Cv or Kv flow coefficient.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

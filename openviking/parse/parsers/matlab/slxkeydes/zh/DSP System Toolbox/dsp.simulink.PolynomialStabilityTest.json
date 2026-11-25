@@ -1,0 +1,31 @@
+{
+ "key": "dsp.simulink.PolynomialStabilityTest",
+ "title": "Polynomial Stability Test",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Polynomial Functions/Polynomial_Stability_Test.md"
+ ],
+ "text": "使用 Schur-Cohn 算法确定输入多项式的所有根是否在单位圆内，输入 1 路、输出 1 路；{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入多项式 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "多项式稳定性测试输出 scalar | 1-by- N matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

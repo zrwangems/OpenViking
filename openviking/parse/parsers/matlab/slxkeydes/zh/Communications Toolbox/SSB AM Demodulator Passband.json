@@ -1,0 +1,67 @@
+{
+ "key": "SSB AM Demodulator Passband",
+ "title": "SSB AM Demodulator Passband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Passband Modulation/SSB_AM_Demodulator_Passband.md"
+ ],
+ "text": "解调 SSB-AM 调制数据，输入 1 路、输出 1 路；按 {Lowpass filter design method} 指定低通滤波器的设计方法；{Carrier frequency (Hz)} 指定载波频率，以 Hz 为单位、{Initial phase (rad)} 指定初始相位偏移，以弧度为单位、{Filter order} 指定低通滤波器的阶数、{Cutoff frequency} 指定截止频率，以 Hz 为单位、{Passband ripple (dB)} 指定通带峰峰值纹波，以 dB 为单位、{Stopband ripple (dB)} 指定阻带峰峰值纹波，以 dB 为单位，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "解调后的输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Carrier frequency (Hz)",
+   "default": "300",
+   "values": "载波频率，以 Hz 为单位 300 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "初始相位偏移，以弧度为单位 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lowpass filter design method",
+   "default": "Butterworth",
+   "values": "低通滤波器的设计方法 Butterworth (default) | Chebyshev type I | Chebyshev type II | Elliptic",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "4",
+   "values": "低通滤波器的阶数 4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Cutoff frequency",
+   "default": "300",
+   "values": "截止频率，以 Hz 为单位 300 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Passband ripple (dB)",
+   "default": "0.1",
+   "values": "通带峰峰值纹波，以 dB 为单位 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stopband ripple (dB)",
+   "default": "0.1",
+   "values": "阻带峰峰值纹波，以 dB 为单位 0.1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

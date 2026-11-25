@@ -1,0 +1,47 @@
+{
+ "key": "visionhdl.GrayscaleErosion",
+ "title": "Grayscale Erosion",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Morphological Operations/Grayscale_Erosion.md"
+ ],
+ "text": "灰度像素数据的形态学腐蚀，输入 2 路、输出 2 路；{Neighborhood} 指定像素邻域 ones、{Line buffer size} 指定行存储缓冲区的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "输出像素流 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Neighborhood",
+   "default": "ones(3,3)",
+   "values": "像素邻域 ones(3,3) (default) | vector or matrix of 1 s and 0 s",
+   "group": ""
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "行存储缓冲区的大小 2048 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,184 @@
+{
+ "key": "EntityServer",
+ "title": "Entity Server",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Server.md"
+ ],
+ "text": "Entity Server 模块在实体到达时为其提供服务，输入 2 路、输出 9 路；按 {Service time source} 指定用于指定服务时间的来源；{Capacity} 指定服务器的容量、{Service time attribute name} 指定服务时间来源属性名称、{Service time value} 指定服务时间的值、{Service time action} 指定服务时间 dt = rand、{Event action} 指定实体在某些事件中的行为、{Permit preemption based on attribute} 启用实体抢占、{Sorting attribute name} 用于确定优先级的属性名称 entity、{Sorting direction} 指定实体的排序方向、{Write residual time to attribute} 指定将被抢占实体的剩余服务时间保存到属性、{Residual time attribute name} 用于包含被抢占实体剩余服务时间的属性名称、{Number of entities departed, d} 输出已离开该模块的实体数、{Number of entities in block, n} 输出模块中存在但尚未离开的实体数、{Pending entity in block, pe} 指定待处理实体、{Number of pending entities, np} 指定待处理实体数、{Average wait, w} 输出平均等待时间、{Utilization, util} 输出服务器被占用的平均时间、{Number of entities preempted, p} 输出被抢占的实体数量、{Number of entities extracted, ex} 指定从该模块中提取的实体数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "服务时间来源的输入信号端口 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "已离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "尚未离开该模块的实体数 scalar"
+  },
+  {
+   "name": "Port_pe",
+   "direction": "output",
+   "summary": "模块中的待处理实体 off (default) | on"
+  },
+  {
+   "name": "Port_np",
+   "direction": "output",
+   "summary": "待处理实体数量 off (default) | on"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "实体在该模块中的平均等待时间 scalar"
+  },
+  {
+   "name": "Port_util",
+   "direction": "output",
+   "summary": "输出服务器被占用的平均时间 scalar"
+  },
+  {
+   "name": "Port_p",
+   "direction": "output",
+   "summary": "输出被抢占的实体数量 scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "已提取的实体数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Capacity",
+   "default": "1",
+   "values": "指定服务器的容量 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Service time source",
+   "default": "Dialog",
+   "values": "选择用于指定服务时间的来源 Dialog (default) | Signal port | Attribute | MATLAB action",
+   "group": ""
+  },
+  {
+   "name": "Service time attribute name",
+   "default": "ServiceTime",
+   "values": "指定服务时间来源属性名称 ServiceTime (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Service time value",
+   "default": "1",
+   "values": "指定服务时间的值 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Service time action",
+   "default": "rand(1,1)",
+   "values": "指定服务时间 dt = rand(1,1) (default) | MATLAB code",
+   "group": ""
+  },
+  {
+   "name": "Event action",
+   "default": "Entry",
+   "values": "指定实体在某些事件中的行为 Entry (default) | Service complete | Exit | Blocked | Preempt",
+   "group": ""
+  },
+  {
+   "name": "Permit preemption based on attribute",
+   "default": "off",
+   "values": "启用实体抢占 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sorting attribute name",
+   "default": "",
+   "values": "指定用于确定优先级的属性名称 entity | entitySys.priority | character vector",
+   "group": ""
+  },
+  {
+   "name": "Sorting direction",
+   "default": "Ascending",
+   "values": "选择实体的排序方向 Ascending (default) | Descending",
+   "group": ""
+  },
+  {
+   "name": "Write residual time to attribute",
+   "default": "off",
+   "values": "将被抢占实体的剩余服务时间保存到属性 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Residual time attribute name",
+   "default": "ResidualTime",
+   "values": "指定用于包含被抢占实体剩余服务时间的属性名称 ResidualTime (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "输出已离开该模块的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "输出模块中存在但尚未离开的实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pending entity in block, pe",
+   "default": "off",
+   "values": "待处理实体 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of pending entities, np",
+   "default": "off",
+   "values": "待处理实体数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average wait, w",
+   "default": "off",
+   "values": "输出平均等待时间 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Utilization, util",
+   "default": "off",
+   "values": "输出服务器被占用的平均时间 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities preempted, p",
+   "default": "off",
+   "values": "输出被抢占的实体数量 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "从该模块中提取的实体数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

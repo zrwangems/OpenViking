@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Condenser Evaporator (2P-TL)",
+ "title": "System-Level Condenser Evaporator (2P-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Two-Phase Fluid - Thermal Liquid/System_Level_Condenser_Evaporator_2P_TL.md"
+ ],
+ "text": "基于性能数据的换热器，位于两相流体网络与热液体网络之间。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

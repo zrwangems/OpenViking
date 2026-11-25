@@ -1,0 +1,76 @@
+{
+ "key": "Dead-Time Compensator",
+ "title": "Dead-Time Compensator",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Signal Management/Dead_Time_Compensator.md",
+  "Motor Control Blockset/Signal Management/Dead_Time_Compensator.md"
+ ],
+ "text": "Overcome dead-time effect by modifying reference voltages, 5 inputs, 1 output; {Dead time (s)} sets the inverter switching dead-time 1e-6, {Enable hysteresis for currents near zero-crossing} sets the option to enable hysteresis algorithm for currents near, {Current hysteresis band (A)} sets the current hysteresis band around, {Motor current input} sets the type of motor current input Two currents and {Show enable port} sets the option to enable input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V abc",
+   "direction": "input",
+   "summary": "Reference voltages scalar"
+  },
+  {
+   "name": "I ab",
+   "direction": "input",
+   "summary": "Measured motor currents scalar"
+  },
+  {
+   "name": "f PWM",
+   "direction": "input",
+   "summary": "PWM frequency scalar"
+  },
+  {
+   "name": "V dc",
+   "direction": "input",
+   "summary": "Inverter DC voltage scalar"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Signal to enable block outputs scalar"
+  },
+  {
+   "name": "V abc ± Δ",
+   "direction": "output",
+   "summary": "Compensated three-phase voltages scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Dead time (s)",
+   "default": "1e-6",
+   "values": "Inverter switching dead-time 1e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable hysteresis for currents near zero-crossing",
+   "default": "off",
+   "values": "Option to enable hysteresis algorithm for currents near zero-crossing off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Current hysteresis band (A)",
+   "default": "0.1",
+   "values": "Current hysteresis band around zero-crossing 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Motor current input",
+   "default": "(Ia,Ib)",
+   "values": "Type of motor current input Two currents (Ia,Ib) (default) | Three currents (Ia,Ib,Ic)",
+   "group": ""
+  },
+  {
+   "name": "Show enable port",
+   "default": "off",
+   "values": "Option to enable input port off (default) | on",
+   "group": "Inputs"
+  }
+ ]
+}

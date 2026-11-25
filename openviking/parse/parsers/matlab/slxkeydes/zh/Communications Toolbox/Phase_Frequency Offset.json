@@ -1,0 +1,49 @@
+{
+ "key": "Phase/Frequency Offset",
+ "title": "Phase/ Frequency Offset",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments Correction/Phase_Frequency_Offset.md",
+  "Communications Toolbox/RF Impairments and Components/Phase_Frequency_Offset.md"
+ ],
+ "text": "对复基带信号应用相位偏移和频率偏移，输入 2 路、输出 1 路；按 {Phase offset (deg)} 指定相位偏移；{Frequency offset from port} 用于添加端口的选项，以设置频率偏移、{Frequency offset (Hz)} 指定频率偏移，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "复信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Frq",
+   "direction": "input",
+   "summary": "频率偏移 scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase offset (deg)",
+   "default": "0",
+   "values": "相位偏移 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Frequency offset from port",
+   "default": "off",
+   "values": "用于添加端口的选项，以设置频率偏移 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Frequency offset (Hz)",
+   "default": "0",
+   "values": "频率偏移 0 (default) | scalar | vector | matrix",
+   "group": ""
+  }
+ ]
+}

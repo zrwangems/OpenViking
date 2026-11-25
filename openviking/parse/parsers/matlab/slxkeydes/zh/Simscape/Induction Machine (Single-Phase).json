@@ -1,0 +1,13 @@
+{
+ "key": "Induction Machine (Single-Phase)",
+ "title": "Induction Machine (Single-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/Induction_Machine_Single_Phase.md"
+ ],
+ "text": "采用 SI 或 pu 基本参数化的单相感应电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,100 @@
+{
+ "key": "msblks.System.SignalSampler",
+ "title": "Signal Sampler",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Signal_Sampler.md"
+ ],
+ "text": "在输入时钟的边沿对输入信号采样，输入 4 路、输出 1 路；{Clock edge} 确定何时对输入信号采样、{Output mode} 确定输出采样模式、{Simulate using} 指定仿真模式 Code、{DecisionThresholdPort} 指定开启判决阈值端口、{Latch decision threshold} 指定锁存输出切换极性的电压、{Latch sensitivity} 为使锁存输出切换到正确极性所需的高于或低于判决阈值的、{Symbol time (s)} 指定单个符号持续时间 100e-12、{Sample interval (s)} 指定波形的均匀时间步长 6.25e-12、{Modulation (2:NRZ, 3:PAM3, 4:PAM4)} 指定调制方案、{Input waveform type} 指定输入波形类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "signal",
+   "direction": "input",
+   "summary": "固定步长离散输入信号 scalar"
+  },
+  {
+   "name": "clock",
+   "direction": "input",
+   "summary": "饱和但已采样的时钟波形 scalar"
+  },
+  {
+   "name": "clock_time",
+   "direction": "input",
+   "summary": "时钟跳变的精确时间 scalar"
+  },
+  {
+   "name": "DecisionThreshold",
+   "direction": "input",
+   "summary": "锁存输出切换极性的电压 scalar"
+  },
+  {
+   "name": "sample",
+   "direction": "output",
+   "summary": "时钟边沿处的采样输出值 scalar | -1 | -1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Clock edge",
+   "default": "Rising",
+   "values": "确定何时对输入信号采样 Rising (default) | Falling",
+   "group": ""
+  },
+  {
+   "name": "Output mode",
+   "default": "Continuous",
+   "values": "确定输出采样模式 Continuous (default) | Latched",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "选择仿真模式 Code generation (default) | Interpreted execution",
+   "group": ""
+  },
+  {
+   "name": "DecisionThresholdPort",
+   "default": "on",
+   "values": "开启判决阈值端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Latch decision threshold",
+   "default": "0",
+   "values": "锁存输出切换极性的电压 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Latch sensitivity",
+   "default": "0",
+   "values": "为使锁存输出切换到正确极性所需的高于或低于判决阈值的电压 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Symbol time (s)",
+   "default": "100e-12",
+   "values": "单个符号持续时间 100e-12 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample interval (s)",
+   "default": "6.25e-12",
+   "values": "波形的均匀时间步长 6.25e-12 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Modulation (2:NRZ, 3:PAM3, 4:PAM4)",
+   "default": "2",
+   "values": "调制方案 2 (default) | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Input waveform type",
+   "default": "Sample",
+   "values": "输入波形类型 Sample (default) | Impulse",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,67 @@
+{
+ "key": "Deinterlacing",
+ "title": "Deinterlacing",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Deinterlacing.md"
+ ],
+ "text": "Remove interlacing effect, 1 input, 1 output, {Method} sets Deinterlacing method Line; {Input image is transposed (data order is row major)}, {Rounding mode}, {Saturate on integer overflow} sets the overflow mode, {Accumulator}, {Output} sets the data type for output Same and {Lock data type settings against change by the fixed-point tools} sets the data type override. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Interlaced input numeric matrix | 3-D numeric array | image | video"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Deinterlaced output numeric matrix | 3-D numeric array | image | video"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "repetition",
+   "values": "Deinterlacing method Line repetition (default) | Linear interpolation | Vertical temporal median filtering",
+   "group": ""
+  },
+  {
+   "name": "Input image is transposed (data order is row major)",
+   "default": "off",
+   "values": "Specify data order off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for calculating fixed-point value Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "on",
+   "values": "Specify overflow mode on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Accumulator",
+   "default": "scaling",
+   "values": "Accumulator data type Binary point scaling (default) | Same as input",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Data type for output Same as input (default) | Binary point scaling",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Data type override off (default) | on",
+   "group": ""
+  }
+ ]
+}

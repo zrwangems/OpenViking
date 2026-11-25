@@ -1,0 +1,13 @@
+{
+ "key": "Floating Neutral (Three-Phase)",
+ "title": "Floating Neutral (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Floating_Neutral_Three_Phase.md"
+ ],
+ "text": "用于星形连接网络的内部浮动中性点。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

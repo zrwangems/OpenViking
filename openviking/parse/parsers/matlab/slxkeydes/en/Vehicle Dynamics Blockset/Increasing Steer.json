@@ -1,0 +1,89 @@
+{
+ "key": "Increasing Steer",
+ "title": "Slowly Increasing Steer",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Slowly_Increasing_Steer.md"
+ ],
+ "text": "Generate commands to conduct linearly increasing steering maneuver, 2 inputs, 2 outputs; {Maneuver start time, tStart [s]} sets the start time, {Longitudinal velocity setpoint, velRef} sets the target velocity, {Longitudinal velocity setpoint units, velRefUnit []} sets the units, {Steer and countersteer speed, steerRate [deg/s]} sets the steer and countersteer rate, {Steer amplitude, steerAmp [deg]} sets the handwheel steer amplitude, {Steering hold time after max angle reached, tStop [s]}, {Lateral acceleration absolute threshold, ay_max [g]} sets the lateral acceleration threshold, {Initial steer direction} and {Stop simulation at lateral acceleration threshold} sets the option to stop simulation at lateral acceleration. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "Vehicle longitudinal velocity scalar"
+  },
+  {
+   "name": "ay",
+   "direction": "input",
+   "summary": "Vehicle lateral acceleration threshold scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "Driver reference data bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "Driver command data bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "2",
+   "values": "Start time 2 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal velocity setpoint, velRef",
+   "default": "50",
+   "values": "Target velocity 50 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Longitudinal velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "Units mph (default)",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Steer and countersteer speed, steerRate [deg/s]",
+   "default": "13.5",
+   "values": "Steer and countersteer rate 13.5 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Steer amplitude, steerAmp [deg]",
+   "default": "270",
+   "values": "Handwheel steer amplitude 270 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Steering hold time after max angle reached, tStop [s]",
+   "default": "2",
+   "values": "Steering hold time 2 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Lateral acceleration absolute threshold, ay_max [g]",
+   "default": "0.5",
+   "values": "Lateral acceleration threshold 0.5 (default) | positive scalar",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Initial steer direction",
+   "default": "Right",
+   "values": "Initial steer direction Right (default) | Left",
+   "group": "Maneuver Parameters"
+  },
+  {
+   "name": "Stop simulation at lateral acceleration threshold",
+   "default": "off",
+   "values": "Option to stop simulation at lateral acceleration threshold off (default) | on",
+   "group": "Maneuver Parameters"
+  }
+ ]
+}

@@ -1,0 +1,131 @@
+{
+ "key": "dsp.simulink.LowpassFIRFilterDesign",
+ "title": "Lowpass FIR Filter Design",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Sources/Lowpass_FIR_Filter_Design.md",
+  "DSP System Toolbox/Filtering/Filter Designs/Lowpass_FIR_Filter_Design.md"
+ ],
+ "text": "Design lowpass FIR filter with tunable filter specifications, 4 inputs, 1 output, no direct feedthrough, {Window function} sets Window function; {Smooth tuned filter parameters}, {Smoothing factor}, {Specify filter order from input port} sets the flag to specify filter order from input, {Filter order (must be even)}, {Filter maximum order (must be even)} sets the maximum order of filter, {Specify cutoff frequency from input port} sets the flag to specify cutoff frequency from input, {Cutoff frequency}, {Specify sidelobe attenuation from input port} sets the flag to specify sidelobe attenuation from input, {Sidelobe attenuation (dB)} sets the sidelobe attenuation in dB, {Specify kaiser window parameter from input port} sets the flag to specify Kaiser window parameter from input, {Kaiser window parameter}, {Sample time (−1 for inherited)} sets the sample time in seconds, {Output data type} sets the data type of filter and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "Filter order even positive integer"
+  },
+  {
+   "name": "Fcut",
+   "direction": "input",
+   "summary": "Filter cutoff frequency positive scalar ≤ 1"
+  },
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Sidelobe attenuation in dB positive scalar"
+  },
+  {
+   "name": "beta",
+   "direction": "input",
+   "summary": "Kaiser window parameter nonnegative scalar"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "Numerator coefficients row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Smooth tuned filter parameters",
+   "default": "off",
+   "values": "Smooth tuned filter parameters off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor",
+   "default": "0.6",
+   "values": "Smoothing factor 0.6 (default) | nonnegative scalar less than 1",
+   "group": ""
+  },
+  {
+   "name": "Specify filter order from input port",
+   "default": "off",
+   "values": "Flag to specify filter order from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter order (must be even)",
+   "default": "100",
+   "values": "Filter order 100 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter maximum order (must be even)",
+   "default": "100",
+   "values": "Maximum order of filter 100 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify cutoff frequency from input port",
+   "default": "off",
+   "values": "Flag to specify cutoff frequency from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cutoff frequency",
+   "default": "0.5",
+   "values": "Cutoff frequency 0.5 (default) | positive scalar ≤ 1",
+   "group": ""
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "Window function Hann (default) | Hamming | Blackman | Blackman-Harris | Chebyshev | Kaiser",
+   "group": ""
+  },
+  {
+   "name": "Specify sidelobe attenuation from input port",
+   "default": "off",
+   "values": "Flag to specify sidelobe attenuation from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation (dB)",
+   "default": "60",
+   "values": "Sidelobe attenuation in dB 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify kaiser window parameter from input port",
+   "default": "off",
+   "values": "Flag to specify Kaiser window parameter from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Kaiser window parameter",
+   "default": "0.5",
+   "values": "Kaiser window parameter 0.5 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (−1 for inherited)",
+   "default": "-1",
+   "values": "Sample time in seconds -1 (default) | positive scalar | Inf",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of filter coefficients double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

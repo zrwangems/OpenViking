@@ -1,0 +1,59 @@
+{
+ "key": "Gamma Correction",
+ "title": "Gamma Correction",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Gamma_Correction.md"
+ ],
+ "text": "对图像或视频流应用或移除伽马校正，输入 2 路、输出 2 路；{Operation} 指定 Block operation、{Gamma}、{Linear segment}、{Break point}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix | array"
+  },
+  {
+   "name": "I’",
+   "direction": "input",
+   "summary": "经过伽马校正的输入图像 matrix | array"
+  },
+  {
+   "name": "I’",
+   "direction": "output",
+   "summary": "经过伽马校正的输出图像 matrix | array"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "移除伽马校正后的输出图像 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "Gamma",
+   "values": "Block operation Gamma (default) | De-gamma",
+   "group": ""
+  },
+  {
+   "name": "Gamma",
+   "default": "2.2",
+   "values": "Gamma value 2.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Linear segment",
+   "default": "on",
+   "values": "Linear segment on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Break point",
+   "default": "0.018",
+   "values": "Break point value 0.018 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

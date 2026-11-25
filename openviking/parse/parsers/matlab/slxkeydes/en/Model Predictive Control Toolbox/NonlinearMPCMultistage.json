@@ -1,0 +1,236 @@
+{
+ "key": "NonlinearMPCMultistage",
+ "title": "Multistage Nonlinear MPC",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Multistage_Nonlinear_MPC.md"
+ ],
+ "text": "Simulate multistage nonlinear model predictive controllers, 13 inputs, 6 outputs, {Make block run at a different sample time} sets Controller sample time positive finite scalar; {Multistage Nonlinear MPC Controller} sets the controller object nlmpcMultistage object, {Use prediction model sample time} sets the flag for using the prediction model sample, {Use MEX to speed up simulation} sets the flag for simulating controller use MEX, {Specify MEX function name} sets the controller MEX function, {Measured disturbances} adds measured disturbance input port, {StateFcn parameter} adds state function parameters input port, {Stacked stage parameters} adds stage functions parameter input port, {Optimal cost} adds optimal cost output port, {Optimal control sequence} adds optimal control sequence output port, {Optimal state sequence} adds optimal state sequence output port, {Slack variable} adds slack variable output port, {Optimization status} adds optimization status output port, {Lower MV limits} adds minimum MV constraint input port, {Upper MV limits} adds maximum MV constraint input port, {Lower MVRate limits} adds minimum MV rate constraint input port, {Upper MVRate limits} adds maximum MV rate constraint input port, {Lower state limits} adds minimum state constraint input port, {Upper state limits} adds maximum state constraint input port, {Terminal state} and {Initial guess} adds initial guess input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "input vector"
+  },
+  {
+   "name": "last_mv",
+   "direction": "input",
+   "summary": "Control signals used in the plant at the previous control interval vector"
+  },
+  {
+   "name": "md",
+   "direction": "input",
+   "summary": "input row vector | matrix"
+  },
+  {
+   "name": "state.param",
+   "direction": "input",
+   "summary": "Optional parameters vector"
+  },
+  {
+   "name": "stage.param",
+   "direction": "input",
+   "summary": "Optional parameters vector"
+  },
+  {
+   "name": "mv.min",
+   "direction": "input",
+   "summary": "Minimum manipulated variable constraints vector | matrix"
+  },
+  {
+   "name": "mv.max",
+   "direction": "input",
+   "summary": "Maximum manipulated variable constraints vector | matrix"
+  },
+  {
+   "name": "dmv.min",
+   "direction": "input",
+   "summary": "Minimum manipulated variable rate constraints vector | matrix"
+  },
+  {
+   "name": "dmv.max",
+   "direction": "input",
+   "summary": "Maximum manipulated variable rate constraints vector | matrix"
+  },
+  {
+   "name": "x.min",
+   "direction": "input",
+   "summary": "Minimum state constraints vector | matrix"
+  },
+  {
+   "name": "x.max",
+   "direction": "input",
+   "summary": "Maximum state constraints vector | matrix"
+  },
+  {
+   "name": "x.terminal",
+   "direction": "input",
+   "summary": "Terminal state vector"
+  },
+  {
+   "name": "z0",
+   "direction": "input",
+   "summary": "Initial guesses for the decision variables vector vector"
+  },
+  {
+   "name": "mv",
+   "direction": "output",
+   "summary": "Optimal manipulated variable control action column vector"
+  },
+  {
+   "name": "cost",
+   "direction": "output",
+   "summary": "Objective function cost nonnegative scalar"
+  },
+  {
+   "name": "slack",
+   "direction": "output",
+   "summary": "Stacked slack variables vector nonnegative vector"
+  },
+  {
+   "name": "nlp.status",
+   "direction": "output",
+   "summary": "Optimization status scalar"
+  },
+  {
+   "name": "mv.seq",
+   "direction": "output",
+   "summary": "Optimal manipulated variable sequence matrix"
+  },
+  {
+   "name": "x.seq",
+   "direction": "output",
+   "summary": "Optimal prediction model state sequence matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Multistage Nonlinear MPC Controller",
+   "default": "",
+   "values": "Controller object nlmpcMultistage object name",
+   "group": ""
+  },
+  {
+   "name": "Use prediction model sample time",
+   "default": "on",
+   "values": "Flag for using the prediction model sample time on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Make block run at a different sample time",
+   "default": "",
+   "values": "Controller sample time positive finite scalar | -1",
+   "group": ""
+  },
+  {
+   "name": "Use MEX to speed up simulation",
+   "default": "off",
+   "values": "Flag for simulating controller use MEX function off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Specify MEX function name",
+   "default": "",
+   "values": "Controller MEX function name string",
+   "group": ""
+  },
+  {
+   "name": "Measured disturbances",
+   "default": "off",
+   "values": "Add measured disturbance input port off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "StateFcn parameter",
+   "default": "off",
+   "values": "Add state function parameters input port off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Stacked stage parameters",
+   "default": "off",
+   "values": "Add stage functions parameter input port off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Optimal cost",
+   "default": "off",
+   "values": "Add optimal cost output port off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Optimal control sequence",
+   "default": "off",
+   "values": "Add optimal control sequence output port off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Optimal state sequence",
+   "default": "off",
+   "values": "Add optimal state sequence output port off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Slack variable",
+   "default": "off",
+   "values": "Add slack variable output port off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Optimization status",
+   "default": "off",
+   "values": "Add optimization status output port off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Lower MV limits",
+   "default": "off",
+   "values": "Add minimum MV constraint input port off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Upper MV limits",
+   "default": "off",
+   "values": "Add maximum MV constraint input port off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Lower MVRate limits",
+   "default": "off",
+   "values": "Add minimum MV rate constraint input port off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Upper MVRate limits",
+   "default": "off",
+   "values": "Add maximum MV rate constraint input port off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Lower state limits",
+   "default": "off",
+   "values": "Add minimum state constraint input port off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Upper state limits",
+   "default": "off",
+   "values": "Add maximum state constraint input port off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Terminal state",
+   "default": "off",
+   "values": "Terminal State off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Initial guess",
+   "default": "off",
+   "values": "Add initial guess input port off (default) | on",
+   "group": "Online Features Tab"
+  }
+ ]
+}

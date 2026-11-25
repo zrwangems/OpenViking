@@ -1,0 +1,81 @@
+{
+ "key": "CVT Controller",
+ "title": "CVT Controller",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Transmission/Transmission Controllers/CVT_Controller.md"
+ ],
+ "text": "Continuously variable transmission controller, 4 outputs; {Maximum variator primary pulley radius, rp_max} sets the radius .08, {Maximum variator secondary pulley radius, rs_max} sets the radius .07, {Minimum variator primary pulley radius, rp_min} sets the radius .03, {Minimum variator secondary pulley radius, rs_min} sets the radius .03, {Gap distance between variator pulleys, rgap} sets the crown wheel and {Variator wedge angle, thetawedge} sets the crown wheel connection. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DirReq",
+   "direction": "unknown",
+   "summary": "Direction request scalar"
+  },
+  {
+   "name": "PllyRatioReq",
+   "direction": "unknown",
+   "summary": "Pulley ratio request scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "Dir",
+   "direction": "output",
+   "summary": "Direction request scalar"
+  },
+  {
+   "name": "PriDispCmd",
+   "direction": "output",
+   "summary": "Primary pulley displacement scalar"
+  },
+  {
+   "name": "SecDispCmd",
+   "direction": "output",
+   "summary": "Secondary pulley displacement scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum variator primary pulley radius, rp_max",
+   "default": ".08",
+   "values": "Radius .08 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum variator secondary pulley radius, rs_max",
+   "default": ".07",
+   "values": "Radius .07 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum variator primary pulley radius, rp_min",
+   "default": ".03",
+   "values": "Radius .03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum variator secondary pulley radius, rs_min",
+   "default": ".03",
+   "values": "Radius .03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gap distance between variator pulleys, rgap",
+   "default": ".025",
+   "values": "Specify crown wheel connection .025 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Variator wedge angle, thetawedge",
+   "default": "11",
+   "values": "Specify crown wheel connection 11 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "key": "StringCompare",
+ "title": "String Compare",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Compare.md"
+ ],
+ "text": "Compare two input strings, 2 inputs, 1 output, direct feedthrough; {Case sensitive} sets the case sensitivity for string comparison, {Compare Option} sets the amount of characters to compare Entire and {Number of characters}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First string to compare scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Second string to compare scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "True or false result scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Case sensitive",
+   "default": "on",
+   "values": "Case sensitivity for string comparison on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Compare Option",
+   "default": "string",
+   "values": "Amount of characters to compare Entire string (default) | First N characters",
+   "group": ""
+  },
+  {
+   "name": "Number of characters",
+   "default": "1",
+   "values": "Number of characters to compare 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

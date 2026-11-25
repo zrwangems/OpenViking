@@ -1,0 +1,190 @@
+{
+ "key": "lidarsimulink.internal.LidarSensorBlock",
+ "title": "Lidar Sensor",
+ "toolbox": "Lidar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Lidar Toolbox/Lidar_Sensor.md"
+ ],
+ "text": "Generate lidar point cloud data for a scene, 1 input, 4 outputs, {Sensor model to choose typical values} sets Name of sensor model; {Unique identifier of sensor} sets the unique sensor identifier, {Required interval between sensor updates (s)} sets the required time interval between sensor, {Position [X Y Height] (m)} sets the sensor center position, {Orientation [Roll Pitch Yaw] (deg)} sets the sensor orientation, {MATLAB or Model workspace Actor profiles variable name} sets the variable name for actor profiles, {ActorID of the host vehicle} sets the actor ID of ego vehicle, {Coordinate system to report point cloud data} sets the coordinate system of reported detections, {Maximum detection range of sensor (m)}, {Azimuth limits (deg)} sets the azimuth limits of lidar sensor, {Azimuth resolution (deg)} sets the azimuthal resolution of lidar sensor, {Use elevation angles} uses custom elevation angles, {Elevation angles (deg)} sets the elevation angles of lidar sensor N -element real-valued, {Elevation limits (deg)} sets the elevation limits of lidar sensor, {Elevation resolution (deg)} sets the elevation resolution of lidar sensor, {Add noise to measurements}, {Range accuracy (m)} sets the accuracy of sensor range measurement, {Fog visibility in meters} sets the visible distance in fog, {Rainrate in mm/hour} sets the rate of rainfall, {Simulate Motion Distortion}, {Laser firing time (s)} sets the firing times of lasers in lidar sensor, {Material attribute information in JSON format}, {Edit JSON text to add, remove, or modify material attributes}, {Output intensity port} sets the output intensity values of points and {Output clusters port} sets the output segmentation values of points. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ActorPoses",
+   "direction": "input",
+   "summary": "Actor poses Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "IsValid",
+   "direction": "output",
+   "summary": "Valid simulation time 0 | 1"
+  },
+  {
+   "name": "Location",
+   "direction": "output",
+   "summary": "Location values of points M -by- N -by-3 matrix"
+  },
+  {
+   "name": "Intensity",
+   "direction": "output",
+   "summary": "Intensity values of points M -by- N matrix"
+  },
+  {
+   "name": "Clusters",
+   "direction": "output",
+   "summary": "Classification data of actors M -by- N -by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unique identifier of sensor",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Required interval between sensor updates (s)",
+   "default": "0.1",
+   "values": "Required time interval between sensor updates 0.1 (default) | positive scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sensor model to choose typical values",
+   "default": "Custom",
+   "values": "Name of sensor model Custom (default) | HDL64E | HDL32E | VLP16 | VLP32C | VLS128 | PuckLITE | PuckHiRes | OS0-32 | OS0-64 | OS0-128 | OS1Gen1-32 | OS1Gen1-64 | OS1Gen1-128 | OS1Gen2-32 | OS1Gen2-64 | OS1Gen2-128 | OS2-32 | OS2-64 | OS2-128",
+   "group": "Parameters"
+  },
+  {
+   "name": "Position [X Y Height] (m)",
+   "default": "1.6]",
+   "values": "Sensor center position [1.5 0 1.6] (default) | three-element vector of form [ X Y Height ]",
+   "group": "Parameters"
+  },
+  {
+   "name": "Orientation [Roll Pitch Yaw] (deg)",
+   "default": "0]",
+   "values": "Sensor orientation [0 0 0] (default) | three-element vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "MATLAB or Model workspace Actor profiles variable name",
+   "default": "actor_profiles",
+   "values": "Variable name for actor profiles actor_profiles (default) | valid variable name",
+   "group": "Parameters"
+  },
+  {
+   "name": "ActorID of the host vehicle",
+   "default": "1",
+   "values": "Actor ID of ego vehicle 1 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Coordinate system to report point cloud data",
+   "default": "World",
+   "values": "Coordinate system of reported detections World (default) | Sensor | Host",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum detection range of sensor (m)",
+   "default": "120",
+   "values": "Maximum detection range 120 (default) | positive scalar",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Azimuth limits (deg)",
+   "default": "180]",
+   "values": "Azimuth limits of lidar sensor [-180 180] (default) | two-element vector",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Azimuth resolution (deg)",
+   "default": "0.16",
+   "values": "Azimuthal resolution of lidar sensor 0.16 (default) | positive scalar",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Use elevation angles",
+   "default": "off",
+   "values": "Use custom elevation angles off (default) | on",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "",
+   "values": "Elevation angles of lidar sensor N -element real-valued vector",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Elevation limits (deg)",
+   "default": "20]",
+   "values": "Elevation limits of lidar sensor [-20 20] (default) | two element vector of form [ min, max ]",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Elevation resolution (deg)",
+   "default": "1.25",
+   "values": "Elevation resolution of lidar sensor 1.25 (default) | positive scalar",
+   "group": "Sensor FOV"
+  },
+  {
+   "name": "Add noise to measurements",
+   "default": "on",
+   "values": "Add noise to measurements on (default) | off",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Range accuracy (m)",
+   "default": "0.002",
+   "values": "Accuracy of sensor range measurement 0.002 (default) | positive scalar",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Fog visibility in meters",
+   "default": "1000",
+   "values": "Visible distance in fog 1000 (default) | positive scalar",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Rainrate in mm/hour",
+   "default": "0",
+   "values": "Rate of rainfall 0 (default) | positive scalar",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Simulate Motion Distortion",
+   "default": "off",
+   "values": "Simulate motion distortion off (default) | on",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Laser firing time (s)",
+   "default": "[]",
+   "values": "Firing times of lasers in lidar sensor [] (default) | positive scalar | positive numeric vector",
+   "group": "Advance Settings"
+  },
+  {
+   "name": "Material attribute information in JSON format",
+   "default": "",
+   "values": "Material attribute information in JSON format string scalar | character vector",
+   "group": "Scene Material Attributes"
+  },
+  {
+   "name": "Edit JSON text to add, remove, or modify material attributes",
+   "default": "off",
+   "values": "Edit JSON text to add, remove, or modify material attributes off (default) | on",
+   "group": "Scene Material Attributes"
+  },
+  {
+   "name": "Output intensity port",
+   "default": "on",
+   "values": "Output intensity values of points on (default) | off",
+   "group": "Output Port Settings"
+  },
+  {
+   "name": "Output clusters port",
+   "default": "on",
+   "values": "Output segmentation values of points on (default) | off",
+   "group": "Output Port Settings"
+  }
+ ]
+}

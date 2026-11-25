@@ -1,0 +1,152 @@
+{
+ "key": "Insert Text",
+ "title": "Insert Text",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Text & Graphics/Insert_Text.md"
+ ],
+ "text": "Draw text on images or video frames, 9 inputs, 4 outputs, {Font face} sets Font of text; {Text}, {Color value source} sets the source of text color Specify, {Color value} sets the text color value, {Location source} sets the source of location indices Specify via, {Location [x y]} sets the text location index, {Opacity source} sets the source of opacity factor Specify via, {Opacity}, {Image signal} sets the input and output signal format One multidimensional, {Input image is transposed (data order is row major)} sets the mirror text and text location, {Font size (points)} and {Anti-aliased} sets the smooth text edges. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input image matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Red color component of input image matrix | array"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Green color component of input image matrix | array"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Blue color component of input image matrix | array"
+  },
+  {
+   "name": "Select",
+   "direction": "input",
+   "summary": "Select the display text positive integer"
+  },
+  {
+   "name": "Color",
+   "direction": "input",
+   "summary": "Text color value scalar | vector | matrix"
+  },
+  {
+   "name": "Location",
+   "direction": "input",
+   "summary": "Location index vector | matrix"
+  },
+  {
+   "name": "Opacity",
+   "direction": "input",
+   "summary": "Opacity factor scalar | vector"
+  },
+  {
+   "name": "Variables",
+   "direction": "input",
+   "summary": "Text variable values scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Red color component of output image matrix | array"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Green color component of output image matrix | array"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Blue color component of output image matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Text",
+   "default": "’Text’",
+   "values": "Text to insert ’Text’ (default) | character vector | cell array of character vectors",
+   "group": "Main"
+  },
+  {
+   "name": "Color value source",
+   "default": "dialog",
+   "values": "Source of text color Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Color value",
+   "default": "0]",
+   "values": "Text color value [0 0 0] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Location source",
+   "default": "dialog",
+   "values": "Source of location indices Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Location [x y]",
+   "default": "[1,1]",
+   "values": "Text location index [1,1] (default) | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity source",
+   "default": "dialog",
+   "values": "Source of opacity factor Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "Opacity factor 1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Input and output signal format One multidimensional signal (default) | Separate color signals",
+   "group": "Main"
+  },
+  {
+   "name": "Input image is transposed (data order is row major)",
+   "default": "off",
+   "values": "Mirror text and text location off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Font face",
+   "default": "LucidaSansRegular",
+   "values": "Font of text LucidaSansRegular (default) | Agency FB | Agency FB Bold | Algerian | Ariel | Arial Black | Arial Bold | Arial Bold Italic |...",
+   "group": "Font"
+  },
+  {
+   "name": "Font size (points)",
+   "default": "12",
+   "values": "Font size 12 (default) | positive scalar",
+   "group": "Font"
+  },
+  {
+   "name": "Anti-aliased",
+   "default": "on",
+   "values": "Smooth text edges on (default) | off",
+   "group": "Font"
+  }
+ ]
+}

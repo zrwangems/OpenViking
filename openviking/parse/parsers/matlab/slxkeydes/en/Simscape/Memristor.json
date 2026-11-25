@@ -1,0 +1,13 @@
+{
+ "key": "Memristor",
+ "title": "Memristor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Memristor.md"
+ ],
+ "text": "Ideal memristor with nonlinear dopant drift approach.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

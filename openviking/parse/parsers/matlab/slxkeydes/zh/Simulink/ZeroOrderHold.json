@@ -1,0 +1,32 @@
+{
+ "key": "ZeroOrderHold",
+ "title": "Zero-Order Hold",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Zero_Order_Hold.md",
+  "HDL Coder/Discrete/Zero_Order_Hold.md"
+ ],
+ "text": "实现零阶保持采样周期，输入 1 路、输出 1 路；{采样时间(-1 表示继承)} 指定采样时间命中点之间的离散间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样时间命中点之间的离散间隔 -1 (默认) | scalar",
+   "group": ""
+  }
+ ]
+}

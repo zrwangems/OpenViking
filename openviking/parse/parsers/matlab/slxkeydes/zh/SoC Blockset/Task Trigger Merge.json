@@ -1,0 +1,31 @@
+{
+ "key": "Task Trigger Merge",
+ "title": "Task Trigger Merge",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor Task Execution/Task_Trigger_Merge.md"
+ ],
+ "text": "将多个任务触发合并为一个触发，输入 1 路、输出 1 路；{Number of input task triggers} 指定要合并的触发数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入触发 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出触发 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input task triggers",
+   "default": "2",
+   "values": "要合并的触发数 2 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

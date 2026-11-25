@@ -1,0 +1,86 @@
+{
+ "key": "Sin",
+ "title": "Sine Wave Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Sine_Wave_Function.md",
+  "Simulink/Sources/Sine_Wave.md"
+ ],
+ "text": "Generate sine wave, using external signal as time source, 1 input, 1 output, direct feedthrough; {Sine type} sets the type of sine wave, {Time (t)} sets the source of time variable Use external, {Amplitude}, {Bias} sets the constant added to sine wave, {Frequency (rad/sec)} sets the frequency of sine wave, {Phase (rad)} sets the phase shift of sine wave, {Samples per period}, {Number of offset samples} sets the offset in number of time samples, {Sample time} sets the sample period and {Interpret vector parameters as 1-D} sets the output dimensions for one-row or one-column. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Time source signal scalar"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Output sine wave signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sine type",
+   "default": "based",
+   "values": "Type of sine wave Time based (default) | Sample based",
+   "group": ""
+  },
+  {
+   "name": "Time (t)",
+   "default": "signal",
+   "values": "Source of time variable Use external signal (default) | Use simulation time",
+   "group": ""
+  },
+  {
+   "name": "Amplitude",
+   "default": "1",
+   "values": "Amplitude of the sine wave 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Constant added to sine wave 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency (rad/sec)",
+   "default": "1",
+   "values": "Frequency of sine wave 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase (rad)",
+   "default": "0",
+   "values": "Phase shift of sine wave 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per period",
+   "default": "0",
+   "values": "Samples per period 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of offset samples",
+   "default": "0",
+   "values": "Offset in number of time samples 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0",
+   "values": "Sample period 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "off",
+   "values": "Output dimensions for one-row or one-column matrices off (default) | on",
+   "group": ""
+  }
+ ]
+}

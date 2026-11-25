@@ -1,0 +1,171 @@
+{
+ "key": "Trigonometry",
+ "title": "Trigonometric Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Trigonometric_Function.md",
+  "Simulink/Quick Insert/Math Operations/Acos.md",
+  "Simulink/Quick Insert/Math Operations/Acosh.md",
+  "Simulink/Quick Insert/Math Operations/Asin.md",
+  "Simulink/Quick Insert/Math Operations/Asinh.md",
+  "Simulink/Quick Insert/Math Operations/Atan.md",
+  "Simulink/Quick Insert/Math Operations/Atan2.md",
+  "Simulink/Quick Insert/Math Operations/Atan2_Cordic.md",
+  "Simulink/Quick Insert/Math Operations/Atanh.md",
+  "Simulink/Quick Insert/Math Operations/Cos.md",
+  "Simulink/Quick Insert/Math Operations/Cos_Cordic.md",
+  "Simulink/Quick Insert/Math Operations/Cos_jSin.md",
+  "Simulink/Quick Insert/Math Operations/Cosh.md",
+  "Simulink/Quick Insert/Math Operations/Sin.md",
+  "Simulink/Quick Insert/Math Operations/SinCos.md",
+  "Simulink/Quick Insert/Math Operations/SinCos_Cordic.md",
+  "Simulink/Quick Insert/Math Operations/Sin_Cordic.md",
+  "Simulink/Quick Insert/Math Operations/Sinh.md",
+  "Simulink/Quick Insert/Math Operations/Tan.md",
+  "Simulink/Quick Insert/Math Operations/Tanh.md",
+  "HDL Coder/HDL Floating Point Operations/ACosh.md",
+  "HDL Coder/HDL Floating Point Operations/ASinh.md",
+  "HDL Coder/HDL Floating Point Operations/ATanh.md",
+  "HDL Coder/HDL Floating Point Operations/Acos.md",
+  "HDL Coder/HDL Floating Point Operations/Asin.md",
+  "HDL Coder/HDL Floating Point Operations/Atan.md",
+  "HDL Coder/HDL Floating Point Operations/Cosh.md",
+  "HDL Coder/HDL Floating Point Operations/Sinh.md",
+  "HDL Coder/HDL Floating Point Operations/Tan.md",
+  "HDL Coder/HDL Floating Point Operations/Tanh.md",
+  "HDL Coder/Math Operations/Trigonometric_Function.md",
+  "HDL Coder/HDL Floating Point Operations/Atan2.md",
+  "HDL Coder/HDL Floating Point Operations/Cos.md",
+  "HDL Coder/HDL Floating Point Operations/Sin.md",
+  "HDL Coder/HDL Floating Point Operations/Sincos.md",
+  "HDL Coder/HDL Floating Point Operations/cos_jsin.md"
+ ],
+ "text": "指定应用于输入信号的三角函数，输入 2 路、输出 3 路；按 {函数} 指定三角函数；{逼近方法} 指定 CORDIC、查找或无、{插值方法} 指定断点值之间插值的方法、{迭代次数}、{角度单位}、{数据点数}、{输出信号类型} 输出信号的复/实性、{删除防止超范围输入的代码}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{表数据类型} 指定表的数据类型、{模式} 指定要指定的数据的类别、{符号性} 指定有符号或无符号、{定标}、{数据类型覆盖}、{字长} 指定存储量化整数的字的位大小、{小数长度}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "atan2 的函数参量的 x 轴坐标，即实部 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "指定输入信号的三角函数 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "sin",
+   "direction": "output",
+   "summary": "输入信号的正弦 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "cos",
+   "direction": "output",
+   "summary": "输入信号的余弦 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "函数",
+   "default": "sin",
+   "values": "三角函数 sin (默认) | cos | tan | asin | acos | atan | atan2 | sinh | cosh | Tanh | asinh | acosh | atanh | sincos | cos + jsin",
+   "group": "算法"
+  },
+  {
+   "name": "逼近方法",
+   "default": "无",
+   "values": "CORDIC、查找或无 无 (默认) | CORDIC | 查找",
+   "group": "算法"
+  },
+  {
+   "name": "插值方法",
+   "default": "线性点-斜率",
+   "values": "断点值之间插值的方法 线性点-斜率 (默认) | 均一",
+   "group": "算法"
+  },
+  {
+   "name": "迭代次数",
+   "default": "11",
+   "values": "CORDIC 算法的迭代次数 11 (默认) | 正整数，小于或等于定点输入的字长",
+   "group": "算法"
+  },
+  {
+   "name": "角度单位",
+   "default": "radian",
+   "values": "角度单位 radian (默认) | revolution",
+   "group": "算法"
+  },
+  {
+   "name": "数据点数",
+   "default": "16",
+   "values": "查找表的数据点数 16 (默认) | 标量",
+   "group": "算法"
+  },
+  {
+   "name": "输出信号类型",
+   "default": "自动",
+   "values": "输出信号的复/实性 自动 (默认) | 实数 | 复",
+   "group": "算法"
+  },
+  {
+   "name": "删除防止超范围输入的代码",
+   "default": "off",
+   "values": "删除防止超范围输入的代码 off (默认) | on",
+   "group": "算法"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "算法"
+  },
+  {
+   "name": "表数据类型",
+   "default": "从输入继承",
+   "values": "表的数据类型 继承: 从输入继承 (默认) | double | single | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "模式",
+   "default": "继承",
+   "values": "要指定的数据的类别 继承 (默认) | 内置 | 定点 | 表达式",
+   "group": "数据类型"
+  },
+  {
+   "name": "符号性",
+   "default": "Signed",
+   "values": "指定有符号或无符号 Signed (默认) | Unsigned",
+   "group": "数据类型"
+  },
+  {
+   "name": "定标",
+   "default": "二进制小数点",
+   "values": "定标定点数据的方法 二进制小数点 (默认)",
+   "group": "数据类型"
+  },
+  {
+   "name": "数据类型覆盖",
+   "default": "",
+   "values": "为此信号指定数据类型覆盖模式 Inherit | Off",
+   "group": "数据类型"
+  },
+  {
+   "name": "字长",
+   "default": "16",
+   "values": "存储量化整数的字的位大小 16 (默认) | 从 0 到 32 的整数",
+   "group": "数据类型"
+  },
+  {
+   "name": "小数长度",
+   "default": "0",
+   "values": "指定定点数据类型的小数长度 0 (默认) | 整数标量",
+   "group": "数据类型"
+  }
+ ]
+}

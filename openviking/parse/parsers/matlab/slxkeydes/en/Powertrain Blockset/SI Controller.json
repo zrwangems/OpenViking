@@ -1,0 +1,807 @@
+{
+ "key": "SI Controller",
+ "title": "SI Controller",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Controllers/SI_Controller.md"
+ ],
+ "text": "Spark-ignition engine controller that uses the driver torque request, 16 inputs, 8 outputs, {Torque table load breakpoints, f_tq_nl_l_bpt} sets Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175; {Air mass flow estimation model} selects air mass flow estimation model Dual Variable Cam, {Torque estimation model} selects torque estimation model Torque, {Engine commanded load table, f_lcmd} sets the lookup table array, {Torque command breakpoints, f_lcmd_tq_bpt} sets the breakpoints, {Speed breakpoints, f_lcmd_n_bpt} sets the breakpoints, {Throttle area percent, f_tap} sets the lookup table, % array, {Throttle area percent load breakpoints, f_tap_ld_bpt} sets the breakpoints, {Throttle area percent speed breakpoints, f_tap_n_bpt} sets the breakpoints, {Throttle area percent to position percent table, f_tpp} sets the lookup table, {Throttle area percent to position percent area breakpoints, f_tpp_tap_bpt} sets the breakpoints, {Wastegate area percent, f_wap} sets the lookup table, % array, {Load breakpoints, f_wap_ld_bpt} sets the breakpoints, {Speed breakpoints, f_wap_n_bpt} sets the breakpoints, rpm, {Intake cam phaser angle, f_icp} sets the lookup table array, {Exhaust cam phaser angle, f_ecp} sets the lookup table array, {Load breakpoints, f_cp_ld_bpt} sets the breakpoints, {Speed breakpoints, f_cp_n_bpt} sets the breakpoints, {Commanded EGR percent, f_egrpct_cmd} sets the lookup table array, {Load breakpoints, f_egrpct_ld_bpt} sets the breakpoints, {Speed breakpoints, f_egrpct_n_bpt} sets the breakpoints, {EGR valve area percent, f_egr_areapct_cmd} sets the lookup table array, {Open EGR valve standard flow, f_egr_max_stdflow} sets the breakpoints, {Normalized EGR valve standard flow breakpoints, f_egr_areapct_nrmlzdflow_bpt} sets the breakpoints, {EGR valve pressure ratio breakpoints, f_egr_areapct_pr_bpt} sets the breakpoints vector, {Injector slope, Sinj} sets the slope, {Stoichiometric air-fuel ratio, afr_stoich} sets the ratio, {Relative air-fuel ratio lambda, f_lamcmd} sets the air-fuel-ratio, {Load breakpoints, f_lamcmd_ld_bpt} sets the breakpoints, {Speed breakpoints, f_lamcmd_n_bpt} sets the breakpoints, {Engine startup lambda enrichment delta vs coolant temperature, f_startup_lambda_delta} sets the lookup table, {Engine startup lambda enrichment delta time constant vs coolant temperature, f_startup_lambda_delta_timecnst} sets the lambda time constant, {Engine startup coolant temperature breakpoints, f_startup_ect_bpt} sets the breakpoints, {Closed-loop feedback} sets the minimize commanded AFR error, {Dither} sets the model catalytic conversion efficiency, {Closed-loop fuel proportional gain, ClsdLpFuelPGain} sets the proportional gain, {Closed-loop fuel integral gain, ClsdLpFuelIGain} sets the integral gain, {Closed-loop fuel integrator limit, ClsdLpFuelIntgLmt} sets the integrator limit, {Lambda dither amplitude, LambdaDitherAmp} sets the amplitude, {Lambda dither frequency, LambdaDitherFrq} sets the frequency, {Oxygen sensor stoichiometric reset voltage, O2ResetStoichVoltSen} sets the closed-loop AFR control, {Oxygen sensor minimum voltage reset, O2ResetMinVoltSen} sets the closed-loop AFR control, {Oxygen sensor maximum voltage reset, O2ResetMaxVoltSen} sets the closed-loop AFR control, {Oxygen sensor voltage learn update period, O2LearnUpdatePerSen} sets the closed-loop AFR control, {Oxygen sensor voltage amplitude minimum, O2AmpMinVoltSen} sets the closed-loop AFR control, {Oxygen sensor ready voltage, O2ReadyVoltSen} sets the closed-loop AFR control, {Oxygen sensor not ready voltage, O2NotReadyVoltSen} sets the closed-loop AFR control, {Spark advance table, f_sa} sets the lookup table array, {Load breakpoints, f_sa_ld_bpt} sets the breakpoints, {Speed breakpoints, f_sa_n_bpt} sets the breakpoints, {Target idle speed, N_idle} sets the speed, {Enable torque command limit, Trq_idlecmd_enable} sets the torque, {Maximum torque command, Trq_idlecmd_max} sets the torque, {Proportional gain, Kp_idle} sets the pI Controller, {Integral gain, Ki_idle} sets the pI Controller, {Rev-limiter speed threshold, EngRevLim} sets the engine speed limit, {Engine cranking speed, CrankSpeed} sets the engine speed, {Enable Engine Stop-Start} selects to enable the engine stop-start, {External Enable Port} sets the create input port, {Engine stop time, EngStopTime}, {Catalyst light off time, CatLightOffTime}, {Sample time, Ts}, {Number of cylinders, NCyl} sets the engine cylinders, {Crank revolutions per power stroke, Cps} sets the revolutions per stroke, {Total displaced volume, Vd} sets the volume, {Ideal gas constant air, Rair} sets the constant, {Air standard pressure, Pstd} sets the pressure, {Air standard temperature, Tstd} sets the temperature, {Speed-density volumetric efficiency, f_nv} sets the lookup table array, {Speed-density intake manifold pressure breakpoints, f_nv_prs_bpt} sets the breakpoints, {Speed-density engine speed breakpoints, f_nv_n_bpt} sets the breakpoints, {Cylinder volume at intake valve close table, f_vivc} sets the 2-D lookup table array, {Engine speed breakpoints, f_tm_corr_n_bpt} sets the breakpoints, {Cylinder volume intake cam phase breakpoints, f_vivc_icp_bpt} sets the breakpoints, {Cylinder trapped mass correction factor, f_tm_corr} sets the lookup table array, {Normalized density breakpoints, f_tm_corr_nd_bpt} sets the breakpoints, {Intake mass flow, f_mdot_intk} sets the lookup table array, {Exhaust cam phase breakpoints, f_mdot_air_ecp_bpt} sets the breakpoints, {Trapped mass flow breakpoints, f_mdot_trpd_bpt} sets the breakpoints, {Air mass flow correction factor, f_mdot_air_corr} sets the lookup table array, {Engine load breakpoints for air mass flow correction, f_mdot_air_corr_ld_bpt} sets the breakpoints vector, {Engine speed breakpoints for air mass flow correction, f_mdot_air_n_bpt} sets the breakpoints, {EGR flow time constant, tau_egr} sets the constant, {Intake system pressure ratio table, f_intksys_stdflow_pr} sets the table array, {Standard mass flow rate breakpoints for intake pressure ratio, f_intksys_stdflow_bpt} sets the breakpoints, {EGR valve standard mass flow rate, f_egr_stdflow} sets the table vector, {EGR valve standard flow pressure ratio breakpoints, f_egr_stdflow_pr_bpt} sets the breakpoints vector, {EGR valve standard flow area percent breakpoints, f_egr_stdflow_egrap_bpt} sets the breakpoints, {Torque table, f_tq_nl} sets the lookup table, {Torque table speed breakpoints, f_tq_nl_n_bpt} sets the breakpoints, {Crank angle pressure and torque} enables Crank angle signals, {Cylinder pressure, f_crk_prs} sets the cylinder pressure table L x M x, {Brake torque, f_crk_btq} sets the brake torque table L x M x, {Speed breakpoints, f_crk_n_bpt} sets the speed breakpoints, {Load breakpoints, f_crk_l_bpt} sets the load breakpoints, {Crank angle breakpoints, f_crk_ang_bpt} sets the crank angle breakpoints, {TDC compression angles by cylinder, f_crk_tdc_ang} sets the tDC compression angles by cylinder, {Inner torque table, f_tq_inr} sets the lookup table array, {Friction torque table, f_tq_fric} sets the lookup table array, {Engine temperature modifier on friction torque, f_fric_temp_mod} sets the lookup table, {Engine temperature modifier breakpoints, f_fric_temp_bpt} sets the breakpoints, {Pumping torque table, f_tq_pump} sets the lookup table array, {Optimal spark table, f_sa_opt} sets the lookup table array, {Inner torque load breakpoints, f_tq_inr_l_bpt} sets the breakpoints, {Inner torque speed breakpoints, f_tq_inr_n_bpt} sets the breakpoints, {Spark efficiency table, f_m_sa} sets the lookup table array, {Spark retard from optimal, f_del_sa_bpt} sets the breakpoints, {Lambda efficiency, f_m_lam} sets the lookup table array, {Lambda breakpoints, f_m_lam_bpt} sets the breakpoints, {Exhaust temperature table, f_t_exh} sets the lookup table array, {Load breakpoints, f_t_exh_l_bpt} sets the breakpoints and {Speed breakpoints, f_t_exh_n_bpt} sets the breakpoints. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TrqCmd",
+   "direction": "input",
+   "summary": "Commanded engine torque scalar"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "input",
+   "summary": "Measured engine speed scalar"
+  },
+  {
+   "name": "AmbPrs",
+   "direction": "input",
+   "summary": "Measured absolute ambient pressure scalar"
+  },
+  {
+   "name": "Map",
+   "direction": "input",
+   "summary": "Measured intake manifold absolute pressure scalar"
+  },
+  {
+   "name": "Mat",
+   "direction": "input",
+   "summary": "Measured intake manifold absolute temperature scalar"
+  },
+  {
+   "name": "IntkCamPhase",
+   "direction": "input",
+   "summary": "Intake cam phaser angle scalar"
+  },
+  {
+   "name": "ExhCamPhase",
+   "direction": "input",
+   "summary": "Exhaust cam phaser angle scalar"
+  },
+  {
+   "name": "Iat",
+   "direction": "input",
+   "summary": "Intake air temperature scalar"
+  },
+  {
+   "name": "Ect",
+   "direction": "input",
+   "summary": "Engine cooling temperature scalar"
+  },
+  {
+   "name": "EgrVlvInTemp",
+   "direction": "input",
+   "summary": "EGR valve inlet temperature scalar"
+  },
+  {
+   "name": "EgrVlvAreaPct",
+   "direction": "input",
+   "summary": "EGR valve area percent scalar"
+  },
+  {
+   "name": "EgrVlvDeltaPrs",
+   "direction": "input",
+   "summary": "EGR valve delta pressure scalar"
+  },
+  {
+   "name": "O2VoltSen",
+   "direction": "input",
+   "summary": "Oxygen sensor voltage scalar"
+  },
+  {
+   "name": "LambdaCmd",
+   "direction": "input",
+   "summary": "Commanded AFR, lambda scalar"
+  },
+  {
+   "name": "IgSw",
+   "direction": "input",
+   "summary": "Ignition switch Boolean"
+  },
+  {
+   "name": "ESSEnable",
+   "direction": "input",
+   "summary": "Engine Stop-Start Enable Boolean"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "ThrPosPctCmd",
+   "direction": "output",
+   "summary": "Throttle area percent command scalar"
+  },
+  {
+   "name": "WgAreaPctCmd",
+   "direction": "output",
+   "summary": "Wastegate area percent command scalar"
+  },
+  {
+   "name": "InjPw",
+   "direction": "output",
+   "summary": "Fuel injector pulse-width scalar"
+  },
+  {
+   "name": "SpkAdv",
+   "direction": "output",
+   "summary": "Spark advance scalar"
+  },
+  {
+   "name": "IntkCamPhaseCmd",
+   "direction": "output",
+   "summary": "Intake cam phaser angle command scalar"
+  },
+  {
+   "name": "ExhCamPhaseCmd",
+   "direction": "output",
+   "summary": "Exhaust cam phaser angle command scalar"
+  },
+  {
+   "name": "EgrVlvAreaPctCmd",
+   "direction": "output",
+   "summary": "EGR valve area percent command scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Air mass flow estimation model",
+   "default": "Phasing",
+   "values": "Select air mass flow estimation model Dual Variable Cam Phasing (default) | Simple Speed-Density",
+   "group": "Configuration"
+  },
+  {
+   "name": "Torque estimation model",
+   "default": "Structure",
+   "values": "Select torque estimation model Torque Structure (default) | Simple Torque Lookup",
+   "group": "Configuration"
+  },
+  {
+   "name": "Engine commanded load table, f_lcmd",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Controls"
+  },
+  {
+   "name": "Torque command breakpoints, f_lcmd_tq_bpt",
+   "default": "175]",
+   "values": "Breakpoints [15 26.43 37.86 49.29 60.71 72.14 83.57 95 106.4 117.9 129.3 140.7 152.1 163.6 175] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_lcmd_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent, f_tap",
+   "default": "",
+   "values": "Lookup table, % array",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent load breakpoints, f_tap_ld_bpt",
+   "default": "1.25]",
+   "values": "Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent speed breakpoints, f_tap_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent to position percent table, f_tpp",
+   "default": "100]",
+   "values": "Lookup table [0 100] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Throttle area percent to position percent area breakpoints, f_tpp_tap_bpt",
+   "default": "100]",
+   "values": "Breakpoints [0 100] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Wastegate area percent, f_wap",
+   "default": "",
+   "values": "Lookup table, % array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_wap_ld_bpt",
+   "default": "1.25]",
+   "values": "Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_wap_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints, rpm [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Intake cam phaser angle, f_icp",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Controls"
+  },
+  {
+   "name": "Exhaust cam phaser angle, f_ecp",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_cp_ld_bpt",
+   "default": "1.25]",
+   "values": "Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_cp_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Commanded EGR percent, f_egrpct_cmd",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_egrpct_ld_bpt",
+   "default": "1.25]",
+   "values": "Breakpoints [0 0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_egrpct_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "EGR valve area percent, f_egr_areapct_cmd",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Controls"
+  },
+  {
+   "name": "Open EGR valve standard flow, f_egr_max_stdflow",
+   "default": "0]",
+   "values": "Breakpoints [74.87 74.87 74.74 74.39 73.81 72.98 71.91 70.58 68.97 67.06 64.84 62.25 59.27 55.81 51.79 47.07 36.33 24.22 12.11 0] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Normalized EGR valve standard flow breakpoints, f_egr_areapct_nrmlzdflow_bpt",
+   "default": "1]",
+   "values": "Breakpoints [0 0.03448 0.06897 0.1034 0.1379 0.1724 0.2069 0.2414 0.2759 0.3103 0.3448 0.3793 0.4138 0.4483 0.4828 0.5172 0.5517 0.5862 0.6207 0.6552 0.6897 0.7241 0.7586 0.7931 0.8276 0.8621 0.8966 0.931 0.9655 1] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "EGR valve pressure ratio breakpoints, f_egr_areapct_pr_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Injector slope, Sinj",
+   "default": "6.452",
+   "values": "Slope 6.452 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Stoichiometric air-fuel ratio, afr_stoich",
+   "default": "14.6",
+   "values": "Ratio 14.6 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Relative air-fuel ratio lambda, f_lamcmd",
+   "default": "",
+   "values": "Air-fuel-ratio (AFR) lookup table array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_lamcmd_ld_bpt",
+   "default": "1.25]",
+   "values": "Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_lamcmd_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine startup lambda enrichment delta vs coolant temperature, f_startup_lambda_delta",
+   "default": "0]",
+   "values": "Lookup table [0.5 0.3 0.2 0] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine startup lambda enrichment delta time constant vs coolant temperature, f_startup_lambda_delta_timecnst",
+   "default": "0]",
+   "values": "Lambda time constant [90 40 12 0] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine startup coolant temperature breakpoints, f_startup_ect_bpt",
+   "default": "50]",
+   "values": "Breakpoints [-40 0 20 50] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Closed-loop feedback",
+   "default": "off",
+   "values": "Minimize commanded AFR error off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Dither",
+   "default": "off",
+   "values": "Model catalytic conversion efficiency off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Closed-loop fuel proportional gain, ClsdLpFuelPGain",
+   "default": "0.005",
+   "values": "Proportional gain 0.005 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Closed-loop fuel integral gain, ClsdLpFuelIGain",
+   "default": "0.05",
+   "values": "Integral gain 0.05 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Closed-loop fuel integrator limit, ClsdLpFuelIntgLmt",
+   "default": "0.2",
+   "values": "Integrator limit 0.2 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Lambda dither amplitude, LambdaDitherAmp",
+   "default": "0.03",
+   "values": "Amplitude 0.03 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Lambda dither frequency, LambdaDitherFrq",
+   "default": "0.75",
+   "values": "Frequency 0.75 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor stoichiometric reset voltage, O2ResetStoichVoltSen",
+   "default": "2500",
+   "values": "Closed-loop AFR control 2500 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor minimum voltage reset, O2ResetMinVoltSen",
+   "default": "0",
+   "values": "Closed-loop AFR control 0 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor maximum voltage reset, O2ResetMaxVoltSen",
+   "default": "5000",
+   "values": "Closed-loop AFR control 5000 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor voltage learn update period, O2LearnUpdatePerSen",
+   "default": "4",
+   "values": "Closed-loop AFR control 4 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor voltage amplitude minimum, O2AmpMinVoltSen",
+   "default": "250",
+   "values": "Closed-loop AFR control 250 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor ready voltage, O2ReadyVoltSen",
+   "default": "1150",
+   "values": "Closed-loop AFR control 1150 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Oxygen sensor not ready voltage, O2NotReadyVoltSen",
+   "default": "1950",
+   "values": "Closed-loop AFR control 1950 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Spark advance table, f_sa",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Controls"
+  },
+  {
+   "name": "Load breakpoints, f_sa_ld_bpt",
+   "default": "1.25]",
+   "values": "Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Speed breakpoints, f_sa_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Controls"
+  },
+  {
+   "name": "Target idle speed, N_idle",
+   "default": "750",
+   "values": "Speed 750 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Enable torque command limit, Trq_idlecmd_enable",
+   "default": "1",
+   "values": "Torque 1 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Maximum torque command, Trq_idlecmd_max",
+   "default": "50",
+   "values": "Torque 50 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Proportional gain, Kp_idle",
+   "default": "0.05",
+   "values": "PI Controller 0.05 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Integral gain, Ki_idle",
+   "default": "0.2",
+   "values": "PI Controller 0.2 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Rev-limiter speed threshold, EngRevLim",
+   "default": "6000",
+   "values": "Engine speed limit 6000 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine cranking speed, CrankSpeed",
+   "default": "150",
+   "values": "Engine speed 150 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Enable Engine Stop-Start",
+   "default": "off",
+   "values": "Select to enable the engine stop-start logic off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "External Enable Port",
+   "default": "off",
+   "values": "Create input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Engine stop time, EngStopTime",
+   "default": "5",
+   "values": "Engine stop time 5 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Catalyst light off time, CatLightOffTime",
+   "default": "0",
+   "values": "Catalyst light off time 0 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Sample time, Ts",
+   "default": "0.01",
+   "values": "Sample time 0.01 (default) | scalar",
+   "group": "Controls"
+  },
+  {
+   "name": "Number of cylinders, NCyl",
+   "default": "4",
+   "values": "Engine cylinders 4 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Crank revolutions per power stroke, Cps",
+   "default": "2",
+   "values": "Revolutions per stroke 2 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Total displaced volume, Vd",
+   "default": "0.0015",
+   "values": "Volume 0.0015 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Ideal gas constant air, Rair",
+   "default": "287",
+   "values": "Constant 287 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Air standard pressure, Pstd",
+   "default": "101325",
+   "values": "Pressure 101325 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Air standard temperature, Tstd",
+   "default": "293.15",
+   "values": "Temperature 293.15 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed-density volumetric efficiency, f_nv",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed-density intake manifold pressure breakpoints, f_nv_prs_bpt",
+   "default": "166]",
+   "values": "Breakpoints [31 40.64 50.29 59.93 69.57 79.21 88.86 98.5 108.1 117.8 127.4 137.1 146.7 156.4 166] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed-density engine speed breakpoints, f_nv_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Cylinder volume at intake valve close table, f_vivc",
+   "default": "",
+   "values": "2-D lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine speed breakpoints, f_tm_corr_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 973.7 1197 1421 1645 1868 2092 2316 2539 2763 2987 3211 3434 3658 3882 4105 4329 4553 4776 5000] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Cylinder volume intake cam phase breakpoints, f_vivc_icp_bpt",
+   "default": "50]",
+   "values": "Breakpoints [0 2.632 5.263 7.895 10.53 13.16 15.79 18.42 21.05 23.68 26.32 28.95 31.58 34.21 36.84 39.47 42.11 44.74 47.37 50] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Cylinder trapped mass correction factor, f_tm_corr",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Normalized density breakpoints, f_tm_corr_nd_bpt",
+   "default": "2]",
+   "values": "Breakpoints [0.3 0.3895 0.4789 0.5684 0.6579 0.7474 0.8368 0.9263 1.016 1.105 1.195 1.284 1.374 1.463 1.553 1.642 1.732 1.821 1.911 2] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Intake mass flow, f_mdot_intk",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Exhaust cam phase breakpoints, f_mdot_air_ecp_bpt",
+   "default": "50]",
+   "values": "Breakpoints [0 2.632 5.263 7.895 10.53 13.16 15.79 18.42 21.05 23.68 26.32 28.95 31.58 34.21 36.84 39.47 42.11 44.74 47.37 50] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Trapped mass flow breakpoints, f_mdot_trpd_bpt",
+   "default": "110]",
+   "values": "Breakpoints [0 5.79 11.58 17.37 23.16 28.95 34.74 40.53 46.32 52.11 57.89 63.68 69.47 75.26 81.05 86.84 92.63 98.42 104.2 110] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Air mass flow correction factor, f_mdot_air_corr",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine load breakpoints for air mass flow correction, f_mdot_air_corr_ld_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine speed breakpoints for air mass flow correction, f_mdot_air_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 973.7 1197 1421 1645 1868 2092 2316 2539 2763 2987 3211 3434 3658 3882 4105 4329 4553 4776 5000] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "EGR flow time constant, tau_egr",
+   "default": "0.2",
+   "values": "Constant 0.2 (default) | scalar",
+   "group": "Estimation"
+  },
+  {
+   "name": "Intake system pressure ratio table, f_intksys_stdflow_pr",
+   "default": "",
+   "values": "Table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Standard mass flow rate breakpoints for intake pressure ratio, f_intksys_stdflow_bpt",
+   "default": "226.4]",
+   "values": "Breakpoints [0 29.67 59.34 89.01 117.8 144.1 155.7 166 175.2 183.3 190.7 197 202.7 207.7 212.2 216.1 219.4 222.2 224.5 226.4] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "EGR valve standard mass flow rate, f_egr_stdflow",
+   "default": "",
+   "values": "Table vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "EGR valve standard flow pressure ratio breakpoints, f_egr_stdflow_pr_bpt",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "EGR valve standard flow area percent breakpoints, f_egr_stdflow_egrap_bpt",
+   "default": "[0;5;10;15;20;25;30;35;40;45;50;55;60;65;70;75;80;85;90;95;100]",
+   "values": "Breakpoints [0;5;10;15;20;25;30;35;40;45;50;55;60;65;70;75;80;85;90;95;100] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Torque table, f_tq_nl",
+   "default": "",
+   "values": "Lookup table [L x N] array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Torque table load breakpoints, f_tq_nl_l_bpt",
+   "default": "1.25]",
+   "values": "Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector | [1 x L] vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Torque table speed breakpoints, f_tq_nl_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857 2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000] (default) | vector | [1 x N] vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Crank angle pressure and torque",
+   "default": "off",
+   "values": "Enable Crank angle signals off (default) | on",
+   "group": "Estimation"
+  },
+  {
+   "name": "Cylinder pressure, f_crk_prs",
+   "default": "",
+   "values": "Cylinder pressure table L x M x N array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Brake torque, f_crk_btq",
+   "default": "",
+   "values": "Brake torque table L x M x N array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed breakpoints, f_crk_n_bpt",
+   "default": "5000]",
+   "values": "Speed breakpoints [750 5000] (default) | 1 x N vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Load breakpoints, f_crk_l_bpt",
+   "default": "1.4]",
+   "values": "Load breakpoints [0.2 1.4] (default) | 1 x L vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Crank angle breakpoints, f_crk_ang_bpt",
+   "default": "660]",
+   "values": "Crank angle breakpoints [60 660] (default) | 1 x M vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "TDC compression angles by cylinder, f_crk_tdc_ang",
+   "default": "360]",
+   "values": "TDC compression angles by cylinder [0 540 180 360] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Inner torque table, f_tq_inr",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Friction torque table, f_tq_fric",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine temperature modifier on friction torque, f_fric_temp_mod",
+   "default": "0.987]",
+   "values": "Lookup table [3.96 3.22 2.56 2.26 2.11 2 1.9 1.83 1.76 1.7 1.65 1.6 1.55 1.49 1.44 1.41 1.38 1.35 1.32 1.3 1.27 1.25 1.24 1.21 1.2 1.18 1.16 1.15 1.13 1.12 1.11 1.1 1.09 1.08 1.07 1.06 1.05 1.05 1.04 1.03 1.02 1.02 1.01 1.01 1 1 1 0.999 0.997 0.995 0.993 0.991 0.989 0.987] (default) | vector | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Engine temperature modifier breakpoints, f_fric_temp_bpt",
+   "default": "380]",
+   "values": "Breakpoints [274 276 278 280 282 284 286 288 290 292 294 296 298 300 302 304 306 308 310 312 314 316 318 320 322 324 326 328 330 332 334 336 338 340 342 344 346 348 350 352 354 356 358 360 362 364 366 368 370 372 374 376 378 380] (default) | vector | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Pumping torque table, f_tq_pump",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Optimal spark table, f_sa_opt",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Inner torque load breakpoints, f_tq_inr_l_bpt",
+   "default": "1.4]",
+   "values": "Breakpoints [0.2 0.28571 0.37143 0.45714 0.54286 0.62857 0.71429 0.8 0.88571 0.97143 1.0571 1.1429 1.2286 1.3143 1.4] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Inner torque speed breakpoints, f_tq_inr_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1053.5714 1357.1429 1660.7143 1964.2857 2267.8571 2571.4286 2875 3178.5714 3482.1429 3785.7143 4089.2857 4392.8571 4696.4286 5000] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Spark efficiency table, f_m_sa",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Spark retard from optimal, f_del_sa_bpt",
+   "default": "48]",
+   "values": "Breakpoints [0 0.75 1.5 2.25 3 3.75 4.5 5.25 6 6.75 7.5 8.25 9 9.75 10.5 11.25 12 12.75 13.5 14.25 15 15.75 16.5 17.25 18 18.75 19.5 20.25 21 21.75 22.5 23.25 24 24.75 25.5 26.25 27 27.75 28.5 29.25 30 30.75 31.5 32.25 33 33.75 34.5 35.25 36 36.75 37.5 38.25 39 39.75 40.5 41.25 42 42.75 43.5 44.25 45 45.75 46.5 47.25 48] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Lambda efficiency, f_m_lam",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Lambda breakpoints, f_m_lam_bpt",
+   "default": "1.1]",
+   "values": "Breakpoints [0.65 0.7 0.75 0.8 0.85 0.9 0.95 1 1.05 1.1] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Exhaust temperature table, f_t_exh",
+   "default": "",
+   "values": "Lookup table array",
+   "group": "Estimation"
+  },
+  {
+   "name": "Load breakpoints, f_t_exh_l_bpt",
+   "default": "1.25]",
+   "values": "Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector",
+   "group": "Estimation"
+  },
+  {
+   "name": "Speed breakpoints, f_t_exh_n_bpt",
+   "default": "5000]",
+   "values": "Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector",
+   "group": "Estimation"
+  }
+ ]
+}

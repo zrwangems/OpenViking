@@ -1,0 +1,51 @@
+{
+ "key": "XCP CAN Configuration",
+ "title": "XCP CAN Configuration",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/CAN/XCP_CAN_Configuration.md",
+  "Vehicle Network Toolbox/XCP Communication/CAN/XCP_CAN_Configuration.md"
+ ],
+ "text": "Configure XCP server connection; {Config name} sets the xCP CAN session name, {A2L File} selects an A2L file, {Enable seed/key security} selects that key required to establish, {File (*.DLL)} selects file for seed and key security file, {User-defined connect mode} allows special connect mode and {Output connection status} displays connection status. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "’CAN_Config1’",
+   "values": "Specify XCP CAN session name ’CAN_Config1’ (default)",
+   "group": ""
+  },
+  {
+   "name": "A2L File",
+   "default": "",
+   "values": "Select an A2L file file name",
+   "group": ""
+  },
+  {
+   "name": "Enable seed/key security",
+   "default": "off",
+   "values": "Select that key required to establish connection off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "File (*.DLL)",
+   "default": "",
+   "values": "Select file for seed and key security file name",
+   "group": ""
+  },
+  {
+   "name": "User-defined connect mode",
+   "default": "off",
+   "values": "Allow special connect mode off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output connection status",
+   "default": "off",
+   "values": "Display connection status off (default) | on",
+   "group": ""
+  }
+ ]
+}

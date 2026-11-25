@@ -1,0 +1,64 @@
+{
+ "key": "visionhdl.LineBuffer",
+ "title": "Line Buffer",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Line_Buffer.md"
+ ],
+ "text": "Store video lines and return neighborhood pixels, 2 inputs, 3 outputs, {Padding method} sets Method for padding the boundary of input image; {Neighborhood size} sets the size of output neighborhood, {Padding value} sets the value used to pad boundary of input image and {Line buffer size} sets the size of line memory buffer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Column of neighborhood column vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying output column pixelcontrol bus"
+  },
+  {
+   "name": "shiftEnable",
+   "direction": "output",
+   "summary": "Valid signal for neighborhood column scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Neighborhood size",
+   "default": "3]",
+   "values": "Size of output neighborhood [3 3] (default) | 2-element row vector of integer dimensions",
+   "group": ""
+  },
+  {
+   "name": "Padding method",
+   "default": "Symmetric",
+   "values": "Method for padding the boundary of input image Symmetric (default) | Constant | Replicate | Reflection | None",
+   "group": ""
+  },
+  {
+   "name": "Padding value",
+   "default": "0",
+   "values": "Value used to pad boundary of input image 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "Size of line memory buffer 2048 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

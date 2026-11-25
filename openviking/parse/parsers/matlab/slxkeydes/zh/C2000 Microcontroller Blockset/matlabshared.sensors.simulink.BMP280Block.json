@@ -1,0 +1,90 @@
+{
+ "key": "matlabshared.sensors.simulink.BMP280Block",
+ "title": "BMP280",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Sensors/BMP280.md"
+ ],
+ "text": "测量 BMP280 传感器的大气气压和环境温度；输出 3 路；按 {Data type} 指定BMP280 传感器数值的输出数据类型；{I2C Module} 用于 I2C 通信的特定模块、{I2C address} 用于与 BMP280 传感器通信的 I2C 地址、{Pressure (Pa)} 用于读取压力的输出端口、{Temperature (℃)} 用于读取温度的输出端口、{Status} 输出端口，以获取所选输出的状态、{Sample time} 指定读取数据的时间间隔、{Filter coeffiecient} 指定滤波系数值、{Pressure sensitivity factor (Pa)} 指定压力灵敏度因子、{Temperature sensitivity factor (℃)} 指定温度灵敏度因子，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pressure",
+   "direction": "output",
+   "summary": "大气气压 scalar"
+  },
+  {
+   "name": "Temperature",
+   "direction": "output",
+   "summary": "环境温度 scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "读取的压力和温度值的状态 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "I2C Module",
+   "default": "I2C_A",
+   "values": "用于 I2C 通信的特定模块 I2C_A (default)",
+   "group": ""
+  },
+  {
+   "name": "I2C address",
+   "default": "0x76",
+   "values": "用于与 BMP280 传感器通信的 I2C 地址 0x76 (default) | 0x77",
+   "group": ""
+  },
+  {
+   "name": "Pressure (Pa)",
+   "default": "on",
+   "values": "设置用于读取压力的输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Temperature (℃)",
+   "default": "on",
+   "values": "设置用于读取温度的输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Status",
+   "default": "on",
+   "values": "设置输出端口，以获取所选输出的状态 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "BMP280 传感器数值的输出数据类型 single (default) | double | uint32",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "读取数据的时间间隔 -1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter coeffiecient",
+   "default": "0",
+   "values": "滤波系数值 0 (default) | 2 | 4 | 8 | 16",
+   "group": "IIR filter settings"
+  },
+  {
+   "name": "Pressure sensitivity factor (Pa)",
+   "default": "2.62",
+   "values": "压力灵敏度因子 2.62 (default) | 1.31 | 0.66 | 0.33 | 0.16",
+   "group": "Sensitivity"
+  },
+  {
+   "name": "Temperature sensitivity factor (℃)",
+   "default": "0.005",
+   "values": "温度灵敏度因子 0.005 (default) | 0.0025",
+   "group": "Sensitivity"
+  }
+ ]
+}

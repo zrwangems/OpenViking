@@ -1,0 +1,155 @@
+{
+ "key": "Sensorless Six-Step Commutation",
+ "title": "Sensorless Six-Step Commutation",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/Sensorless_Six_Step_Commutation.md"
+ ],
+ "text": "使用六步换相通过无传感器控制运行 BLDC 电机或 PMSM，输入 6 路、输出 4 路；{Alignment} 指定通过检查转子对齐来确定初始转子位置、{Discrete step size (s)} 指定模块再次执行所经过的采样时间 50e-6、{Alignment duty cycle} 指定要施加在 A 相和 B、{Alignment time} 指定在 A 相和 B、{Open-loop duty cycle (range: [0,1])} 指定要施加到全部三相的电压占空比、{Target open-loop speed (RPM)} 指定开环运行期间为生成足够反电动势而要达到的目标速度（R）{Ramp up time to reach target open-loop speed (s)} 指定达到 Target open-loop speed、{Open-loop speed to initiate transition to controlled commutation (RPM)} 指定开环阶段中算法启动电机相电压采集过程时的速度、{Speed samples required to complete transition to controlled commutation} 指定切换到受控换相阶段之前要考虑的最小速度样本数、{Compensation for filter delay (Tf) and demagnetization time (Td)} 用于定义 T f 和 T d 补偿的两种方法之一 S、{Time delay due to voltage sense filter, Tf (s)} 用于补偿由电压测量所用硬件或软件滤波器引起的延迟的时、{Demagnetization time, Td (s)} 指定绕组正在进行退磁且无需采集电压信号的时间 175e 也按实例取值；{Alignment -> Open-loop run} 指定通过以开环方式启动电机来确定转子位置、{Alignment -> Open-loop run -> Controlled commutation} 指定通过以闭环方式运行电机来确定转子位置、{Number of motor pole pairs} 指定电机极对数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "StartDir",
+   "direction": "input",
+   "summary": "电机旋转方向 +1 | -1"
+  },
+  {
+   "name": "Vabc Meas",
+   "direction": "input",
+   "summary": "测得的电机端子电压 vector"
+  },
+  {
+   "name": "Vdc Meas",
+   "direction": "input",
+   "summary": "测得的直流母线电压 vector"
+  },
+  {
+   "name": "Duty Ref",
+   "direction": "input",
+   "summary": "参考占空比输入 scalar | [0,1]"
+  },
+  {
+   "name": "[T f,T d ]",
+   "direction": "input",
+   "summary": "滤波器时间延迟和退磁时间延迟 vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "启用或禁用该模块 scalar"
+  },
+  {
+   "name": "Duty",
+   "direction": "output",
+   "summary": "使用六步换相模式的六个开关的占空比 scalar"
+  },
+  {
+   "name": "ω m",
+   "direction": "output",
+   "summary": "基于 BEMF（反电动势）过零检测检测到的角速度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "用于测试或调试的信号信息 bus"
+  },
+  {
+   "name": "ComStatus",
+   "direction": "output",
+   "summary": "指示模块正从开环切换到受控六步换相 logical"
+  }
+ ],
+ "params": [
+  {
+   "name": "Alignment",
+   "default": "off",
+   "values": "通过检查转子对齐来确定初始转子位置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Alignment -> Open-loop run",
+   "default": "off",
+   "values": "通过以开环方式启动电机来确定转子位置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Alignment -> Open-loop run -> Controlled commutation",
+   "default": "on",
+   "values": "通过以闭环方式运行电机来确定转子位置 on (default) | of",
+   "group": ""
+  },
+  {
+   "name": "Number of motor pole pairs",
+   "default": "4",
+   "values": "电机极对数 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "模块再次执行所经过的采样时间 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Alignment duty cycle",
+   "default": "0.3",
+   "values": "要施加在 A 相和 B 相之间的电压占空比 0.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Alignment time",
+   "default": "0.5",
+   "values": "在 A 相和 B 相之间施加电压的持续时间 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open-loop duty cycle (range: [0,1])",
+   "default": "0.4",
+   "values": "要施加到全部三相的电压占空比 0.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Target open-loop speed (RPM)",
+   "default": "800",
+   "values": "开环运行期间为生成足够反电动势而要达到的目标速度（RPM） 800 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ramp up time to reach target open-loop speed (s)",
+   "default": "0.7",
+   "values": "达到 Target open-loop speed 指定 RPM 值所需的斜坡上升时间（s） 0.7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open-loop speed to initiate transition to controlled commutation (RPM)",
+   "default": "500",
+   "values": "开环阶段中算法启动电机相电压采集过程时的速度 500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed samples required to complete transition to controlled commutation",
+   "default": "10",
+   "values": "切换到受控换相阶段之前要考虑的最小速度样本数 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Compensation for filter delay (Tf) and demagnetization time (Td)",
+   "default": "dialog",
+   "values": "指定用于定义 T f 和 T d 补偿的两种方法之一 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Time delay due to voltage sense filter, Tf (s)",
+   "default": "450e-6",
+   "values": "用于补偿由电压测量所用硬件或软件滤波器引起的延迟的时间延迟 450e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Demagnetization time, Td (s)",
+   "default": "175e-6",
+   "values": "绕组正在进行退磁且无需采集电压信号的时间 175e-6 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

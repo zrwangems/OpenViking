@@ -1,0 +1,889 @@
+{
+ "key": "SpacecraftDynamics",
+ "title": "Spacecraft Dynamics",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Spacecraft_Dynamics.md"
+ ],
+ "text": "为一个或多个航天器建模动力学，输入 21 路、输出 11 路；按 {Orbit type} 指定轨道分类；{Input body forces} 启用外力、{Input body moments} 启用外部力矩、{Input external accelerations} 指定输入附加力加速度、{External acceleration coordinate frame} 指定加速度输入端口的坐标系、{State vector output coordinate frame} 指定位置和速度状态输出端口的坐标系、{Output total inertial acceleration} 启用总加速度端口、{Start date/time (UTC Julian date)} 指定仿真的初始开始时间 juliandate、{Output current date/time (UTC Julian date)} 添加输出端口 t utc、{Action for out-of-range input} 指定超出范围时的模块行为、{Mass type} 指定航天器质量类型、{Mass} 指定刚体航天器的初始质量、{Empty mass} 指定航天器空质量、{Full mass} 指定航天器满质量、{Inertia tensor} 指定惯性张量矩阵、{Empty inertia tensor} 指定空载惯性张量矩阵、{Full inertia tensor} 指定满载惯性张量矩阵、{Include mass flow relative velocity} 用于启用质量流速度、{Limit mass flow when mass is empty or full} 用于限制质量流、{Output fuel tank status} 用于启用燃料箱状态、{Initial state format} 指定轨道初始状态的输入方法 Orbital、{Semi-major axis} 指定椭圆长轴的一半、{Eccentricity} 指定轨道偏离度、{Inclination} 指定轨道平面的倾斜角、{RAAN} 指定赤道平面内的角距离、{Argument of periapsis} 指定从航天器升交点到近拱点的角度、{True anomaly} 指定近拱点与航天器初始位置之间的角度、{Argument of latitude} 指定升交点与航天器初始位置之间的角度、{Longitude of periapsis} 指定 ICRF x 轴与偏心率向量之间的角度、{True longitude} 指定 ICRF x 轴与航天器初始位置之间的角度、{ICRF position} 指定航天器的笛卡尔位置向量、{ICRF velocity} 指定航天器的笛卡尔速度向量、{Fixed-frame position} 指定航天器的位置向量、{Fixed-frame velocity} 指定航天器的速度向量、{Attitude reference coordinate frame} 指定姿态和角速率坐标系、{Attitude representation} 指定方向格式 Quaternion、{Initial body attitude} 指定航天器初始姿态、{Angle rotation order} 指定角度旋转顺序、{Initial body angular rates PQR} 指定初始体固连角速率、{Output total inertial angular acceleration} 用于启用飞行器总加速度、{Include gravity gradient torque} 用于启用重力梯度力矩、{Central body} 指定航天器环绕运行的天体、{Gravitational potential model} 指定中心天体的重力模型 Spherical harmonics when Central body set to Earth, Moon, Mars, or Custom, Oblate ellipsoid when Central body set to Mercury, Venus, Jupiter, Saturn, Uranus、{Spherical harmonic model} 指定球谐模型 EGM2008 for Central body set to Earth, LP-100K for Central body set to Moon, GMM2B for Central body set、{Rotational rate} 指定旋转速率 4.06124975e-3、{Spherical harmonic coefficient file} 指定谐波系数 MAT、{Degree}、{Use Earth orientation parameters (EOPs)} 用于使用地球定向参数、{IERS EOP data file} 指定地球定向数据、{Input Moon libration angles} 指定月球天平动欧拉角速率、{Output quaternion (ICRF to Fixed-frame)} 用于添加输出变换四元数端口、{Central body spin axis source} 指定中心天体自旋源、{Spin axis right ascension (RA) at J2000} 指定中心天体自旋轴在 J2000 时的赤经、{Spin axis RA rate (deg/century)} 指定中心天体自旋轴的赤经变化率、{Spin axis declination (Dec) at J2000} 指定中心天体自旋轴在 J2000 时的赤纬、{Spin axis Dec rate (deg/century)} 指定中心天体自旋轴的赤纬变化率、{Initial rotation angle at J2000} 指定中心天体 x 轴旋转角、{Rotation rate (deg/day)} 指定中心天体 x 轴旋转速率、{Equatorial radius} 指定赤道半径 3.3962e6、{Flattening} 指定行星扁率、{Gravitational parameter} 指定引力参数 4.305e13、{Second degree zonal harmonic (J2)} 指定最显著的或最大的球谐项 1.0826269e-03、{Include atmospheric drag} 指定包括大气阻力、{Atmospheric density source} 指定大气密度值的来源、{Atmospheric model} 指定大气模型 NRLMSISE-00、{Flux source} 指定空间天气数据的来源、{Space weather data file} 指定空间天气数据的 MAT、{F10.7 extrapolation method} 指定 f107Average 和 f107Daily 的外插方法 None、{Magnetic index extrapolation method} 指定地磁指数信息的外插方法 None、{Flags source} 指定变化标志源、{Flags} 指定变化标志 ones、{Include anomalous oxygen in density calculation} 指定在密度计算中包含异常氧、{Drag coefficient source} 指定阻力系数的来源、{Drag coefficient} 指定航天器阻力系数、{Drag area source} 指定阻力面积的来源、{Drag area} 用于计算由大气阻力引起的加速度的面积、{Ephemeris model} 指定星历模型 DE405、{Limit ephemerides date range} 用于启用星历数据范围起始和结束、{Start date (JD)} 指定星历日期范围的起始日期 juliandate、{End date (JD)} 指定星历日期范围的结束日期 juliandate、{Include third body gravity} 由第三体引力引起的加速度、{Sun} 指定包括由太阳引起的引力加速度、{Sun gravity model} 指定太阳的第三体引力模型、{Mercury} 指定包括由水星引起的引力加速度、{Mercury gravity model} 指定水星引力模型、{Venus} 指定包括由金星引起的引力加速度、{Venus gravity model} 指定金星引力模型、{Earth} 指定包括由地球引起的引力加速度、{Earth gravity model} 指定地球引力模型、{Moon} 指定包括由月球引起的引力加速度、{Moon gravity model} 指定月球引力模型、{Mars} 指定包括由火星引起的引力加速度、{Mars gravity model} 指定火星引力模型、{Jupiter} 指定包括由木星引起的引力加速度、{Jupiter gravity model} 指定木星引力模型、{Saturn} 指定包括由土星引起的引力加速度、{Saturn gravity model} 指定土星引力模型、{Uranus} 指定包括由天王星引起的引力加速度、{Uranus gravity model}、{Neptune} 指定 Include gravitational acceleration due、{Neptune gravity model}、{Pluto} 指定 Include gravitational acceleration due、{Pluto gravity model}、{Custom} 指定 Include gravitational acceleration due to custom、{Custom gravity model}、{Gravitational parameter (m^3/s^2)} 指定 Custom gravitational acceleration、{Include solar radiation pressure (SRP)} 由太阳辐射压引起的加速度、{Eclipse fraction source} 指定 Source of eclipse、{Shadow model}、{Include Earth} 指定包含 Earth、{Include Moon} 指定包含 Moon、{Reflectivity coefficient source} 指定 Source for spacecraft coefficient、{Reflectivity coefficient} 指定 Spacecraft coefficient of reflectivity、{SRP area source} 指定 Source for spacecraft solar radiation pressure area、{SRP area} 指定 Cross section area of the spacecraft seen、{Solar flux pressure (W*s/m^3)} 指定 Spacecraft solar flux pressure、{Units} 指定参数和端口单位 Metric、{Angle units} 指定角度单位 Degrees、{Time format} 指定开始日期和时间输出的时间格式 Julian，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F b",
+   "direction": "input",
+   "summary": "施加的力 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "M b",
+   "direction": "input",
+   "summary": "施加的力矩 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "外部加速度 3-element vector | m -by-3 array"
+  },
+  {
+   "name": "φθψ",
+   "direction": "input",
+   "summary": "月球天平动角 3-element vector"
+  },
+  {
+   "name": "αδW",
+   "direction": "input",
+   "summary": "赤经、赤纬和旋转角 3-element vector"
+  },
+  {
+   "name": "m",
+   "direction": "input",
+   "summary": "航天器质量 scalar | 1D array of size numSat"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "质量变化率 scalar | 1D array of size numSat"
+  },
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "航天器惯性张量 3-by-3 array | 3-by-3-by- numSat array"
+  },
+  {
+   "name": "dI/dt",
+   "direction": "input",
+   "summary": "惯性张量矩阵变化率 3-by-3 array | 3-by-3-by- numSat array"
+  },
+  {
+   "name": "V re",
+   "direction": "input",
+   "summary": "相对速度 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "ρ",
+   "direction": "input",
+   "summary": "大气密度 scalar"
+  },
+  {
+   "name": "F107a",
+   "direction": "input",
+   "summary": "81 天平均 Ottawa F10.7 cm 太阳通量 scalar"
+  },
+  {
+   "name": "F107",
+   "direction": "input",
+   "summary": "每日 Ottawa F10.7 cm 太阳通量 scalar"
+  },
+  {
+   "name": "aph",
+   "direction": "input",
+   "summary": "每日磁指数信息 N -by-7 array"
+  },
+  {
+   "name": "Flags",
+   "direction": "input",
+   "summary": "变化标志 array of 23"
+  },
+  {
+   "name": "C d",
+   "direction": "input",
+   "summary": "大气阻力系数 scalar | vector of size numSat"
+  },
+  {
+   "name": "A d",
+   "direction": "input",
+   "summary": "大气阻力面积 scalar | vector of size numSat"
+  },
+  {
+   "name": "R cb, 3",
+   "direction": "input",
+   "summary": "一个或多个自定义天体的位置 3-element vector | numCustom3rdBodies x3-element vector"
+  },
+  {
+   "name": "Fraction",
+   "direction": "input",
+   "summary": "太阳圆面比例 between 0 (full eclipse) and 1 (full sunlight) | scalar | numSat"
+  },
+  {
+   "name": "R C",
+   "direction": "input",
+   "summary": "反射率系数 scalar or numSat of values in the range 1 ≤ R C ≤ 2"
+  },
+  {
+   "name": "A srp",
+   "direction": "input",
+   "summary": "航天器横截面积 scalar | numSat"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "航天器位置 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "速度 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "总惯性加速度 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "q body2icrf",
+   "direction": "output",
+   "summary": "航天器姿态四元数 4-element quaternion | numSat -by-4 array"
+  },
+  {
+   "name": "DCM",
+   "direction": "output",
+   "summary": "航天器姿态方向余弦矩阵 3-by-3 array | numSat -by-3-by-3 array"
+  },
+  {
+   "name": "R1,R2,R3",
+   "direction": "output",
+   "summary": "航天器姿态欧拉角 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "ω",
+   "direction": "output",
+   "summary": "航天器角速率 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "dω/dt",
+   "direction": "output",
+   "summary": "体坐标系角加速度 3-element array | numSat -by-3 array"
+  },
+  {
+   "name": "q icrf2ff",
+   "direction": "output",
+   "summary": "坐标系变换 4-element array"
+  },
+  {
+   "name": "t utc",
+   "direction": "output",
+   "summary": "当前时间步的时间 scalar | 6-element array"
+  },
+  {
+   "name": "Fuel Status",
+   "direction": "output",
+   "summary": "燃料状态 scalar | numSat -element array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input body forces",
+   "default": "on",
+   "values": "启用外力的选项 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Input body moments",
+   "default": "on",
+   "values": "启用外部力矩的选项 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Input external accelerations",
+   "default": "off",
+   "values": "输入附加力加速度的选项 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "External acceleration coordinate frame",
+   "default": "ICRF",
+   "values": "加速度输入端口的坐标系 ICRF (default) | Fixed-frame",
+   "group": "Main"
+  },
+  {
+   "name": "State vector output coordinate frame",
+   "default": "ICRF",
+   "values": "位置和速度状态输出端口的坐标系 ICRF (default) | Fixed-frame",
+   "group": "Main"
+  },
+  {
+   "name": "Output total inertial acceleration",
+   "default": "off",
+   "values": "启用总加速度端口的选项 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Start date/time (UTC Julian date)",
+   "default": "0)",
+   "values": "仿真的初始开始时间 juliandate (2020, 1, 1, 12, 0, 0) (default) | valid scalar Julian date | valid Gregorian date including year, month, day, hours, minutes, seconds as 1D or 6-element array for Gregorian dates",
+   "group": "Main"
+  },
+  {
+   "name": "Output current date/time (UTC Julian date)",
+   "default": "on",
+   "values": "添加输出端口 t utc 的选项 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "超出范围时的模块行为 Warning (default) | Error | None",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Fixed",
+   "values": "航天器质量类型 Fixed (default) | Simple Variable | Custom Variable",
+   "group": "Mass"
+  },
+  {
+   "name": "Mass",
+   "default": "4.0",
+   "values": "刚体航天器的初始质量 4.0 (default) | scalar | vector of size numSat",
+   "group": "Mass"
+  },
+  {
+   "name": "Empty mass",
+   "default": "3.5",
+   "values": "航天器空质量 3.5 (default) | scalar | vector of size numSat",
+   "group": "Mass"
+  },
+  {
+   "name": "Full mass",
+   "default": "4.0",
+   "values": "航天器满质量 4.0 (default) | scalar | vector of size numSat",
+   "group": "Mass"
+  },
+  {
+   "name": "Inertia tensor",
+   "default": "0.0040]",
+   "values": "惯性张量矩阵 [0.2273, 0, 0; 0 0.2273 0; 0 0.0040] (default) | 3-by-3 array | 3-by-3-by- numSat array",
+   "group": "Mass"
+  },
+  {
+   "name": "Empty inertia tensor",
+   "default": "0.0035]",
+   "values": "空载惯性张量矩阵 [0.1989, 0, 0; 0 0.1989 0; 0 0.0035] (default) | 3-by-3 array | 3-by-3-by- numSat array",
+   "group": "Mass"
+  },
+  {
+   "name": "Full inertia tensor",
+   "default": "0,.0040]",
+   "values": "满载惯性张量矩阵 [0.2273, 0, 0; 0, 0.2273, 0; 0, 0,.0040] (default) | 3-by-3 array | 3-by-3-by- numSat array",
+   "group": "Mass"
+  },
+  {
+   "name": "Include mass flow relative velocity",
+   "default": "off",
+   "values": "用于启用质量流速度的选项 off (default) | on",
+   "group": "Mass"
+  },
+  {
+   "name": "Limit mass flow when mass is empty or full",
+   "default": "on",
+   "values": "用于限制质量流的选项 on (default) | off",
+   "group": "Mass"
+  },
+  {
+   "name": "Output fuel tank status",
+   "default": "on",
+   "values": "用于启用燃料箱状态的选项 on (default) | off",
+   "group": "Mass"
+  },
+  {
+   "name": "Initial state format",
+   "default": "elements",
+   "values": "轨道初始状态的输入方法 Orbital elements (default) | ICRF state vector | Fixed-frame state vector",
+   "group": "Orbit"
+  },
+  {
+   "name": "Orbit type",
+   "default": "Keplerian",
+   "values": "轨道分类 Keplerian (default) | Elliptical equatorial | Circular | Circular equatorial",
+   "group": "Orbit"
+  },
+  {
+   "name": "Semi-major axis",
+   "default": "6786000",
+   "values": "椭圆长轴的一半 6786000 (default) | scalar | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Eccentricity",
+   "default": "0.01",
+   "values": "轨道偏离度 0.01 (default) | scalar | value between 0 and 1, or greater than 1 for Keplerian orbit type | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Inclination",
+   "default": "50",
+   "values": "轨道平面的倾斜角 50 (default) | scalar | 1D array of size numSat | degrees between 0 and 180 | radians between 0 and pi",
+   "group": "Orbit"
+  },
+  {
+   "name": "RAAN",
+   "default": "95",
+   "values": "赤道平面内的角距离 95 (default) | scalar value between 0 and 360 | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Argument of periapsis",
+   "default": "93",
+   "values": "从航天器升交点到近拱点的角度 93 (default) | value between 0 and 360 | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "True anomaly",
+   "default": "203",
+   "values": "近拱点与航天器初始位置之间的角度 203 (default) | scalar value between 0 and 360 | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Argument of latitude",
+   "default": "200",
+   "values": "升交点与航天器初始位置之间的角度 200 (default) | scalar | value between 0 and 360 | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "Longitude of periapsis",
+   "default": "100",
+   "values": "ICRF x 轴与偏心率向量之间的角度 100 (default) | scalar | value between 0 and 360 | 1D array of size numSat",
+   "group": "Orbit"
+  },
+  {
+   "name": "True longitude",
+   "default": "150",
+   "values": "ICRF x 轴与航天器初始位置之间的角度 150 (default) | scalar | value between 0 and 360 | 1D array of size numSat | numSat -by-3 vector",
+   "group": "Orbit"
+  },
+  {
+   "name": "ICRF position",
+   "default": "-4676600.0]",
+   "values": "航天器的笛卡尔位置向量 [3649700.0 3308200.0 -4676600.0] (default) | 3-element vector | | numSat -by-3 array",
+   "group": "Orbit"
+  },
+  {
+   "name": "ICRF velocity",
+   "default": "2573.4]",
+   "values": "航天器的笛卡尔速度向量 [-2750.8 6666.4 2573.4] (default) | 3-element vector | numSat -by-3 array",
+   "group": "Orbit"
+  },
+  {
+   "name": "Fixed-frame position",
+   "default": "-4669861.6]",
+   "values": "航天器的位置向量 [-4142689.0 -2676864.7 -4669861.6] (default) | 3-element vector | numSat -by-3 array",
+   "group": "Orbit"
+  },
+  {
+   "name": "Fixed-frame velocity",
+   "default": "2568.1]",
+   "values": "航天器的速度向量 [1452.7 -6720.7 2568.1] (default) | 3-element vector | numSat -by-3 array",
+   "group": "Orbit"
+  },
+  {
+   "name": "Attitude reference coordinate frame",
+   "default": "ICRF",
+   "values": "姿态和角速率坐标系 ICRF (default) | Fixed-frame | NED | LVLH",
+   "group": "Attitude"
+  },
+  {
+   "name": "Attitude representation",
+   "default": "Quaternion",
+   "values": "方向格式 Quaternion (default) | DCM | Euler angles",
+   "group": "Attitude"
+  },
+  {
+   "name": "Initial body attitude",
+   "default": "0]",
+   "values": "航天器初始姿态 [1, 0, 0, 0] (default) | 4-element vector | numSat -by-4 array | 3-by-3 array | numSat -by-3-by-3 array",
+   "group": "Attitude"
+  },
+  {
+   "name": "Angle rotation order",
+   "default": "ZYX",
+   "values": "角度旋转顺序 ZYX (default) | ZYX | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX",
+   "group": "Attitude"
+  },
+  {
+   "name": "Initial body angular rates PQR",
+   "default": "0]",
+   "values": "初始体固连角速率 [0, 0, 0] (default) | 3-element vector | numSat -by-3 array",
+   "group": "Attitude"
+  },
+  {
+   "name": "Output total inertial angular acceleration",
+   "default": "off",
+   "values": "用于启用飞行器总加速度的选项 off (default) | on",
+   "group": "Attitude"
+  },
+  {
+   "name": "Include gravity gradient torque",
+   "default": "on",
+   "values": "用于启用重力梯度力矩的选项 on (default) | off",
+   "group": "Attitude"
+  },
+  {
+   "name": "Central body",
+   "default": "Earth",
+   "values": "航天器环绕运行的天体 Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Sun | Custom",
+   "group": "Central Body"
+  },
+  {
+   "name": "Gravitational potential model",
+   "default": "Neptune",
+   "values": "中心天体的重力模型 Spherical harmonics when Central body set to Earth, Moon, Mars, or Custom, Oblate ellipsoid when Central body set to Mercury, Venus, Jupiter, Saturn, Uranus, or Neptune (default) | Point-mass | Oblate ellipsoid (J2)",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spherical harmonic model",
+   "default": "Mars,",
+   "values": "球谐模型 EGM2008 for Central body set to Earth, LP-100K for Central body set to Moon, GMM2B for Central body set to Mars, (default) | EGM96 | EIGEN-GL04C | LP-165P",
+   "group": "Central Body"
+  },
+  {
+   "name": "Rotational rate",
+   "default": "4.06124975e-3",
+   "values": "旋转速率 4.06124975e-3 (default) | scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spherical harmonic coefficient file",
+   "default": "aerogmm2b.mat",
+   "values": "谐波系数 MAT 文件 aerogmm2b.mat (default) | harmonic coefficient MAT file",
+   "group": "Central Body"
+  },
+  {
+   "name": "Degree",
+   "default": "120",
+   "values": "Degree of harmonic model 120 (default) | scalar | maximum of 2159",
+   "group": "Central Body"
+  },
+  {
+   "name": "Use Earth orientation parameters (EOPs)",
+   "default": "on",
+   "values": "用于使用地球定向参数的选项 on (default) | off",
+   "group": "Central Body"
+  },
+  {
+   "name": "IERS EOP data file",
+   "default": "aeroiersdata.mat",
+   "values": "地球定向数据 aeroiersdata.mat (default) | MAT file",
+   "group": "Central Body"
+  },
+  {
+   "name": "Input Moon libration angles",
+   "default": "off",
+   "values": "月球天平动欧拉角速率 off (default) | on",
+   "group": "Central Body"
+  },
+  {
+   "name": "Output quaternion (ICRF to Fixed-frame)",
+   "default": "off",
+   "values": "用于添加输出变换四元数端口的选项 off (default) | on",
+   "group": "Central Body"
+  },
+  {
+   "name": "Central body spin axis source",
+   "default": "Port",
+   "values": "中心天体自旋源 Port (default) | Dialog",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis right ascension (RA) at J2000",
+   "default": "317.68143",
+   "values": "中心天体自旋轴在 J2000 时的赤经 317.68143 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis RA rate (deg/century)",
+   "default": "-0.1061",
+   "values": "中心天体自旋轴的赤经变化率 -0.1061 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis declination (Dec) at J2000",
+   "default": "52.88650",
+   "values": "中心天体自旋轴在 J2000 时的赤纬 52.88650 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis Dec rate (deg/century)",
+   "default": "-0.0609",
+   "values": "中心天体自旋轴的赤纬变化率 -0.0609 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Initial rotation angle at J2000",
+   "default": "176.630",
+   "values": "中心天体 x 轴旋转角 176.630 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Rotation rate (deg/day)",
+   "default": "350.89198226",
+   "values": "中心天体 x 轴旋转速率 350.89198226 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "3.3962e6",
+   "values": "赤道半径 3.3962e6 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Flattening",
+   "default": "0.00589",
+   "values": "行星扁率 0.00589 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Gravitational parameter",
+   "default": "4.305e13",
+   "values": "引力参数 4.305e13 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Second degree zonal harmonic (J2)",
+   "default": "1.0826269e-03",
+   "values": "最显著的或最大的球谐项 1.0826269e-03 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Include atmospheric drag",
+   "default": "off",
+   "values": "包括大气阻力的选项 off (default) | on",
+   "group": "Drag"
+  },
+  {
+   "name": "Atmospheric density source",
+   "default": "Dialog",
+   "values": "大气密度值的来源 Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Atmospheric model",
+   "default": "NRLMSISE-00",
+   "values": "大气模型 NRLMSISE-00 (default)",
+   "group": "Drag"
+  },
+  {
+   "name": "Flux source",
+   "default": "Dialog",
+   "values": "空间天气数据的来源 Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Space weather data file",
+   "default": "aeroSpaceWeatherData.mat",
+   "values": "空间天气数据的 MAT 文件 aeroSpaceWeatherData.mat (default) | MAT file name",
+   "group": "Drag"
+  },
+  {
+   "name": "F10.7 extrapolation method",
+   "default": "clip",
+   "values": "f107Average 和 f107Daily 的外插方法 None - clip (default) | Constant | Least squares fit",
+   "group": "Drag"
+  },
+  {
+   "name": "Magnetic index extrapolation method",
+   "default": "clip",
+   "values": "地磁指数信息的外插方法 None - clip (default) | Constant | IGRF",
+   "group": "Drag"
+  },
+  {
+   "name": "Flags source",
+   "default": "Dialog",
+   "values": "变化标志源 Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Flags",
+   "default": "ones(1,23)",
+   "values": "变化标志 ones(1,23) (default)",
+   "group": "Drag"
+  },
+  {
+   "name": "Include anomalous oxygen in density calculation",
+   "default": "off",
+   "values": "在密度计算中包含异常氧的选项 off (default) | on",
+   "group": "Drag"
+  },
+  {
+   "name": "Drag coefficient source",
+   "default": "Dialog",
+   "values": "阻力系数的来源 Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Drag coefficient",
+   "default": "2.179",
+   "values": "航天器阻力系数 2.179 (default) | scalar | vector of size numSat",
+   "group": "Drag"
+  },
+  {
+   "name": "Drag area source",
+   "default": "Dialog",
+   "values": "阻力面积的来源 Dialog (default) | Port",
+   "group": "Drag"
+  },
+  {
+   "name": "Drag area",
+   "default": "1.0",
+   "values": "用于计算由大气阻力引起的加速度的面积 1.0 (default) | scalar | vector of size numSat",
+   "group": "Drag"
+  },
+  {
+   "name": "Ephemeris model",
+   "default": "DE405",
+   "values": "星历模型 DE405 (default) | DE421 | DE423 | DE430 | DE432t",
+   "group": "Third Body"
+  },
+  {
+   "name": "Limit ephemerides date range",
+   "default": "off",
+   "values": "用于启用星历数据范围起始和结束的选项 off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Start date (JD)",
+   "default": "1)",
+   "values": "星历日期范围的起始日期 juliandate(2020, 1, 1) (default) | Julian date",
+   "group": "Third Body"
+  },
+  {
+   "name": "End date (JD)",
+   "default": "1)",
+   "values": "星历日期范围的结束日期 juliandate(2050, 1, 1) (default) | Julian date",
+   "group": "Third Body"
+  },
+  {
+   "name": "Include third body gravity",
+   "default": "off",
+   "values": "由第三体引力引起的加速度 off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Sun",
+   "default": "on",
+   "values": "包括由太阳引起的引力加速度 on (default) | off",
+   "group": "Third Body"
+  },
+  {
+   "name": "Sun gravity model",
+   "default": "Point-mass",
+   "values": "太阳的第三体引力模型 Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Mercury",
+   "default": "off",
+   "values": "包括由水星引起的引力加速度 off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Mercury gravity model",
+   "default": "Point-mass",
+   "values": "水星引力模型 Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Venus",
+   "default": "off",
+   "values": "包括由金星引起的引力加速度 off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Venus gravity model",
+   "default": "Point-mass",
+   "values": "金星引力模型 Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Earth",
+   "default": "on",
+   "values": "包括由地球引起的引力加速度 on (default) | off",
+   "group": "Third Body"
+  },
+  {
+   "name": "Earth gravity model",
+   "default": "Point-mass",
+   "values": "地球引力模型 Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics",
+   "group": "Third Body"
+  },
+  {
+   "name": "Moon",
+   "default": "on",
+   "values": "包括由月球引起的引力加速度 on (default) | off",
+   "group": "Third Body"
+  },
+  {
+   "name": "Moon gravity model",
+   "default": "Point-mass",
+   "values": "月球引力模型 Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics",
+   "group": "Third Body"
+  },
+  {
+   "name": "Mars",
+   "default": "off",
+   "values": "包括由火星引起的引力加速度 off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Mars gravity model",
+   "default": "Point-mass",
+   "values": "火星引力模型 Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics",
+   "group": "Third Body"
+  },
+  {
+   "name": "Jupiter",
+   "default": "off",
+   "values": "包括由木星引起的引力加速度 off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Jupiter gravity model",
+   "default": "Point-mass",
+   "values": "木星引力模型 Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Saturn",
+   "default": "off",
+   "values": "包括由土星引起的引力加速度 off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Saturn gravity model",
+   "default": "Point-mass",
+   "values": "土星引力模型 Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Uranus",
+   "default": "off",
+   "values": "包括由天王星引起的引力加速度 off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Uranus gravity model",
+   "default": "Point-mass",
+   "values": "Uranus gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Neptune",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Neptune off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Neptune gravity model",
+   "default": "Point-mass",
+   "values": "Neptune gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Pluto",
+   "default": "off",
+   "values": "Include gravitational acceleration due to Pluto off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Pluto gravity model",
+   "default": "Point-mass",
+   "values": "Pluto gravity model Point-mass (default) | Oblate ellipsoid (J2)",
+   "group": "Third Body"
+  },
+  {
+   "name": "Custom",
+   "default": "off",
+   "values": "Include gravitational acceleration due to custom planet off (default) | on",
+   "group": "Third Body"
+  },
+  {
+   "name": "Custom gravity model",
+   "default": "Point-mass",
+   "values": "Custom gravity model Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics",
+   "group": "Third Body"
+  },
+  {
+   "name": "Gravitational parameter (m^3/s^2)",
+   "default": "42.828314258067e12",
+   "values": "Custom gravitational acceleration 42.828314258067e12 (default) | scalar | vector of length numCustom3rdBodies",
+   "group": "Third Body"
+  },
+  {
+   "name": "Include solar radiation pressure (SRP)",
+   "default": "off",
+   "values": "由太阳辐射压引起的加速度 off (default) | on",
+   "group": "SRP"
+  },
+  {
+   "name": "Eclipse fraction source",
+   "default": "Dialog",
+   "values": "Source of eclipse fraction Dialog (default) | Port",
+   "group": "SRP"
+  },
+  {
+   "name": "Shadow model",
+   "default": "cone",
+   "values": "Shadow model Dual cone (default) | Cylindrical",
+   "group": "SRP"
+  },
+  {
+   "name": "Include Earth",
+   "default": "on",
+   "values": "包含 Earth 的选项 on (default) | off",
+   "group": "SRP"
+  },
+  {
+   "name": "Include Moon",
+   "default": "on",
+   "values": "包含 Moon 的选项 on (default) | off",
+   "group": "SRP"
+  },
+  {
+   "name": "Reflectivity coefficient source",
+   "default": "’Dialog’",
+   "values": "Source for spacecraft coefficient of reflectivity ’Dialog’ (default) | ’Port’",
+   "group": "SRP"
+  },
+  {
+   "name": "Reflectivity coefficient",
+   "default": "1.8",
+   "values": "Spacecraft coefficient of reflectivity 1.8 (default) | scalar | 2D array of size numSat | between [1,2]",
+   "group": "SRP"
+  },
+  {
+   "name": "SRP area source",
+   "default": "Dialog",
+   "values": "Source for spacecraft solar radiation pressure area Dialog (default) | Port",
+   "group": "SRP"
+  },
+  {
+   "name": "SRP area",
+   "default": "1.0",
+   "values": "Cross section area of the spacecraft seen by the Sun 1.0 (default) | scalar | 2D array of size numSat",
+   "group": "SRP"
+  },
+  {
+   "name": "Solar flux pressure (W*s/m^3)",
+   "default": "4.5344321e-6",
+   "values": "Spacecraft solar flux pressure 4.5344321e-6 (default) | scalar",
+   "group": "SRP"
+  },
+  {
+   "name": "Units",
+   "default": "(m/s)",
+   "values": "参数和端口单位 Metric (m/s) (default) | Metric (km/s) | Metric (km/h) | English (ft/s) | English (kts)",
+   "group": "Units"
+  },
+  {
+   "name": "Angle units",
+   "default": "Degrees",
+   "values": "角度单位 Degrees (default) | Radians",
+   "group": "Units"
+  },
+  {
+   "name": "Time format",
+   "default": "date",
+   "values": "开始日期和时间输出的时间格式 Julian date (default) | Gregorian",
+   "group": "Units"
+  }
+ ]
+}

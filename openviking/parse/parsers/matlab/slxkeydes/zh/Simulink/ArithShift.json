@@ -1,0 +1,67 @@
+{
+ "key": "ArithShift",
+ "title": "Shift Arithmetic",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Shift_Arithmetic.md",
+  "HDL Coder/Logic and Bit Operations/Shift_Arithmetic.md"
+ ],
+ "text": "移动信号的位或二进制小数点，输入 2 路、输出 1 路；按 {超范围移位值的诊断} 指定诊断操作；{二进制位移位数:源} 指定要移位的位的源、{二进制位移位数:方向} 指定移位的方向、{二进制位移位数:数量}、{二进制小数点移位数:数量} 指定二进制小数点移位的位数、{检查生成代码中是否有超出范围的 ’二进制位移位数’}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "要对其执行运算的数 标量 | 向量 | 数组"
+  },
+  {
+   "name": "s",
+   "direction": "input",
+   "summary": "要移位的位数 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "运算结果 标量 | 向量 | 数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "二进制位移位数:源",
+   "default": "对话框",
+   "values": "要移位的位的源 对话框 (默认) | 输入端口",
+   "group": ""
+  },
+  {
+   "name": "二进制位移位数:方向",
+   "default": "双向",
+   "values": "移位的方向 双向 (默认) | 左侧 | 右侧",
+   "group": ""
+  },
+  {
+   "name": "二进制位移位数:数量",
+   "default": "8",
+   "values": "二进制位移位数 8 (默认) | 标量 | 向量 | 数组",
+   "group": ""
+  },
+  {
+   "name": "二进制小数点移位数:数量",
+   "default": "0",
+   "values": "二进制小数点移位的位数 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "超范围移位值的诊断",
+   "default": "无",
+   "values": "诊断操作 无 (默认) | 警告 | 错误",
+   "group": ""
+  },
+  {
+   "name": "检查生成代码中是否有超出范围的 ’二进制位移位数’",
+   "default": "off",
+   "values": "检查生成代码中是否有超出范围的二进制位移位数 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

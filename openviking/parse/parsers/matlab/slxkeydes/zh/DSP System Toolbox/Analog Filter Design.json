@@ -1,0 +1,91 @@
+{
+ "key": "Analog Filter Design",
+ "title": "Analog Filter Design",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Analog_Filter_Design.md"
+ ],
+ "text": "设计和实现模拟滤波器，输入 1 路、输出 1 路、无直接馈通；按 {设计方法} 指定滤波器设计；{滤波器类型}、{滤波器阶数}、{通带边缘频率(弧度/秒)}、{下通带边缘频率(弧度/秒)}、{上通带边缘频率(弧度/秒)}、{阻带边缘频率(弧度/秒)}、{下阻带边缘频率(弧度/秒)}、{上阻带边缘频率(弧度/秒)}、{通带波纹(dB)} 指定通带波纹、{阻带衰减(dB)} 指定阻带衰减，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "设计方法",
+   "default": "巴特沃斯",
+   "values": "滤波器设计 巴特沃斯 (默认) | 切比雪夫 I | 切比雪夫 II | 椭圆 | 贝塞尔",
+   "group": ""
+  },
+  {
+   "name": "滤波器类型",
+   "default": "低通",
+   "values": "滤波器类型 低通 (默认) | 高通 | 带通 | 带阻",
+   "group": ""
+  },
+  {
+   "name": "滤波器阶数",
+   "default": "8",
+   "values": "滤波器阶数 8 (默认) | 标量值",
+   "group": ""
+  },
+  {
+   "name": "通带边缘频率(弧度/秒)",
+   "default": "30",
+   "values": "通带边缘频率 30 (默认) | 标量值",
+   "group": ""
+  },
+  {
+   "name": "下通带边缘频率(弧度/秒)",
+   "default": "30",
+   "values": "下通带边缘频率 30 (默认) | 标量值",
+   "group": ""
+  },
+  {
+   "name": "上通带边缘频率(弧度/秒)",
+   "default": "80",
+   "values": "上通带边缘频率 80 (默认) | 标量值",
+   "group": ""
+  },
+  {
+   "name": "阻带边缘频率(弧度/秒)",
+   "default": "30",
+   "values": "阻带边缘频率 30 (默认) | 标量值",
+   "group": ""
+  },
+  {
+   "name": "下阻带边缘频率(弧度/秒)",
+   "default": "30",
+   "values": "下阻带边缘频率 30 (默认) | 标量值",
+   "group": ""
+  },
+  {
+   "name": "上阻带边缘频率(弧度/秒)",
+   "default": "80",
+   "values": "上阻带边缘频率 80 (默认) | 标量值",
+   "group": ""
+  },
+  {
+   "name": "通带波纹(dB)",
+   "default": "2",
+   "values": "通带波纹 2 (默认) | 标量值",
+   "group": ""
+  },
+  {
+   "name": "阻带衰减(dB)",
+   "default": "40",
+   "values": "阻带衰减 40 (默认) | 标量值",
+   "group": ""
+  }
+ ]
+}

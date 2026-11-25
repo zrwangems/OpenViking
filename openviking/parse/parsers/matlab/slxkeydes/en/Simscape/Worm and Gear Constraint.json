@@ -1,0 +1,13 @@
+{
+ "key": "Worm and Gear Constraint",
+ "title": "Worm and Gear Constraint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Gears and Couplings/Gears/Worm_and_Gear_Constraint.md"
+ ],
+ "text": "Kinematic constraint between worm and gear bodies with perpendicular non-intersecting rotation axes.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

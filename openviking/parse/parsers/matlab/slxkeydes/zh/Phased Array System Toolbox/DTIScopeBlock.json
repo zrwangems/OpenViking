@@ -1,0 +1,92 @@
+{
+ "key": "DTIScopeBlock",
+ "title": "Doppler-Time Intensity Scope",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Sinks/Doppler_Time_Intensity_Scope.md"
+ ],
+ "text": "Doppler-time intensity scope，输入 1 路、无直接馈通；{Doppler Output} 指定多普勒输出域、{Propagation Speed (m/s)} 指定信号传播速度 physconst、{Doppler Offset (Hz)} 指定多普勒轴偏移、{Time Span (s)} 显示的时间跨度、{Operating Frequency (Hz)} 指定工作频率 300e6、{Doppler Resolution (Hz)} 指定样本之间的多普勒间隔、{Time Resolution (s)} 指定行之间的时间差、{Show Grid} 显示笛卡尔网格叠加、{Show Ticks} 显示刻度值标签、{Time Label} 指定时间轴标签、{Colorbar Label} 指定颜色栏标签、{Title} 指定窗口标题，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入数据 real-valued length- M vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Doppler Output",
+   "default": "’Frequency’",
+   "values": "多普勒输出域 ’Frequency’ (default) | ’Speed’",
+   "group": ""
+  },
+  {
+   "name": "Propagation Speed (m/s)",
+   "default": "physconst(\"LightSpeed\")",
+   "values": "信号传播速度 physconst(\"LightSpeed\") (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Doppler Offset (Hz)",
+   "default": "0.0",
+   "values": "多普勒轴偏移 0.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Time Span (s)",
+   "default": "0.100",
+   "values": "显示的时间跨度 0.100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating Frequency (Hz)",
+   "default": "300e6",
+   "values": "工作频率 300e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Doppler Resolution (Hz)",
+   "default": "1.0",
+   "values": "样本之间的多普勒间隔 1.0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time Resolution (s)",
+   "default": "0.001",
+   "values": "行之间的时间差 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Grid",
+   "default": "on",
+   "values": "显示笛卡尔网格叠加 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show Ticks",
+   "default": "on",
+   "values": "显示刻度值标签 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Time Label",
+   "default": "(s)’",
+   "values": "时间轴标签 ’Time (s)’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Colorbar Label",
+   "default": "’dB’",
+   "values": "颜色栏标签 ’dB’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Title",
+   "default": "Time’",
+   "values": "窗口标题 ’Doppler vs. Time’ (default) | string",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,203 @@
+{
+ "key": "SM DC1C",
+ "title": "SM DC1C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_DC1C.md"
+ ],
+ "text": "Discrete-time or continuous-time synchronous machine DC1C excitation system including an automatic voltage regulator and an exciter, 9 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Initial field voltage, Efd0 (pu)} sets the initial output voltage, {Resistive component of load compensation, R_C (pu)} sets the compensation resistance, {Reactance component of load compensation, X_C (pu)} sets the compensation reactance, {Regulator input filter time constant, T_R (s)} sets the regulator time constant, {Regulator output gain, K_A (pu)} sets the regulator gain, {Regulator time constant, T_A (s)}, {Regulator denominator (lag) time constant, T_B (s)} sets the regulator lag time constant, {Regulator numerator (lead) time constant, T_C (s)} sets the regulator lead time constant, {Rate feedback gain, K_F (pu)}, {Rate feedback time constant, T_F (s)}, {Maximum controller output, V_Rmax (pu)} sets the controller output upper limit, {Minimum controller output, V_Rmin (pu)} sets the controller output lower limit, {Alternate OEL input locations (V_OEL)} sets the overexcitation limiter input location, {Alternate UEL input locations (V_UEL)} sets the underexcitation limiter input location, {Alternate SCL input locations (V_SCL)} sets the stator current limiter input location, {Exciter field proportional constant, K_E (pu)} sets the exciter field gain, {Exciter field time constant, T_E (s)}, {Lower limit, E_FDmin (pu)} sets the field voltage lower limit, {Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)} sets the first saturation output voltage, {Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)} sets the first saturation lookup voltage, {Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)} sets the second saturation output voltage and {Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)} sets the second saturation lookup voltage. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "Voltage reference scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "Input from stabilizer scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "Terminal voltage scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "Terminal current scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "Overexcitation limit signal scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "Underexcitation limit signal scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "Summation point stator current limit signal scalar"
+  },
+  {
+   "name": "V_OELscl",
+   "direction": "input",
+   "summary": "Take-over stator current limit (OEL) scalar"
+  },
+  {
+   "name": "V_UELscl",
+   "direction": "input",
+   "summary": "Take-over stator current limit (UEL) scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "Field voltage scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "Initial output voltage 1 (default) | real number",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "Compensation resistance 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "Compensation reactance 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0",
+   "values": "Regulator time constant 0 (default) | positive number",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator output gain, K_A (pu)",
+   "default": "46",
+   "values": "Regulator gain 46 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator time constant, T_A (s)",
+   "default": "0.06",
+   "values": "Regulator time constant 0.06 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator denominator (lag) time constant, T_B (s)",
+   "default": "0",
+   "values": "Regulator lag time constant 0 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Regulator numerator (lead) time constant, T_C (s)",
+   "default": "0",
+   "values": "Regulator lead time constant 0 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Rate feedback gain, K_F (pu)",
+   "default": "0.1",
+   "values": "Rate feedback gain 0.1 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Rate feedback time constant, T_F (s)",
+   "default": "1",
+   "values": "Rate feedback time constant 1 (default) | positive number",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum controller output, V_Rmax (pu)",
+   "default": "1",
+   "values": "Controller output upper limit 1 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum controller output, V_Rmin (pu)",
+   "default": "-0.9",
+   "values": "Controller output lower limit -0.9 (default) | real number",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "Unused",
+   "values": "Overexcitation limiter input location Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "Unused",
+   "values": "Underexcitation limiter input location Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "Unused",
+   "values": "Stator current limiter input location Unused (default) | Summation point | Take-over",
+   "group": "Control"
+  },
+  {
+   "name": "Exciter field proportional constant, K_E (pu)",
+   "default": "0.05",
+   "values": "Exciter field gain 0.05 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter field time constant, T_E (s)",
+   "default": "0.46",
+   "values": "Exciter field time constant 0.46 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Lower limit, E_FDmin (pu)",
+   "default": "-99",
+   "values": "Field voltage lower limit -99 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)",
+   "default": "3.1",
+   "values": "First saturation output voltage 3.1 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)",
+   "default": "0.33",
+   "values": "First saturation lookup voltage 0.33 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)",
+   "default": "2.3",
+   "values": "Second saturation output voltage 2.3 (default) | positive number",
+   "group": "Exciter"
+  },
+  {
+   "name": "Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)",
+   "default": "0.10",
+   "values": "Second saturation lookup voltage 0.10 (default) | positive number",
+   "group": "Exciter"
+  }
+ ]
+}

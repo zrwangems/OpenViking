@@ -1,0 +1,13 @@
+{
+ "key": "Algebraic Interleaver",
+ "title": "Algebraic Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Algebraic_Interleaver.md"
+ ],
+ "text": "Reorder input symbols using algebraically derived permutation table.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

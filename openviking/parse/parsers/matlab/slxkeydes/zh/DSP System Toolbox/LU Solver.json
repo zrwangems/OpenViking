@@ -1,0 +1,29 @@
+{
+ "key": "LU Solver",
+ "title": "LU Solver",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/LU_Solver.md"
+ ],
+ "text": "当 A 为方阵时求解 AX = B，输入 2 路、输出 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入 A 矩阵 M -by- M matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "B 矩阵 M -by- N matrix | M -by-1 vector"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "方程组的解 M -by- N matrix | M -by-1 matrix"
+  }
+ ],
+ "params": []
+}

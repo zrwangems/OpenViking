@@ -1,0 +1,88 @@
+{
+ "key": "Peak Finder",
+ "title": "Peak Finder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Peak_Finder.md"
+ ],
+ "text": "Determine whether each value of input signal is local minimum or maximum, 1 input, 4 outputs, no direct feedthrough, {Peak type(s)} sets Type of peaks to identify Maxima and; {Index base}, {Output peak indices} enables output of peak indices, {Output peak values} enables output of peak values, {Maximum number of peaks to find} sets the maximum number of peak values to identify, {Ignore peaks within threshold of neighboring values} sets the ignore peaks below a threshold, {Threshold} and {Saturate on integer overflow} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Data input column vector of at least three rows | matrix with at least three rows"
+  },
+  {
+   "name": "Cnt",
+   "direction": "output",
+   "summary": "Number of peak values scalar | row vector"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "Indices of the peak values column vector | matrix"
+  },
+  {
+   "name": "Val",
+   "direction": "output",
+   "summary": "Peak values column vector | matrix"
+  },
+  {
+   "name": "Pol",
+   "direction": "output",
+   "summary": "Peak value polarity column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Peak type(s)",
+   "default": "Minima",
+   "values": "Type of peaks to identify Maxima and Minima (default) | Maxima | Minima",
+   "group": ""
+  },
+  {
+   "name": "Index base",
+   "default": "Zero",
+   "values": "Index base Zero (default) | One",
+   "group": ""
+  },
+  {
+   "name": "Output peak indices",
+   "default": "off",
+   "values": "Enable output of peak indices off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output peak values",
+   "default": "off",
+   "values": "Enable output of peak values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of peaks to find",
+   "default": "10",
+   "values": "Maximum number of peak values to identify 10 (default) | integer greater than or equal to 1",
+   "group": ""
+  },
+  {
+   "name": "Ignore peaks within threshold of neighboring values",
+   "default": "off",
+   "values": "Ignore peaks below a threshold off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "0",
+   "values": "Threshold below which peaks are ignored 0 (default) | positive real scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": ""
+  }
+ ]
+}

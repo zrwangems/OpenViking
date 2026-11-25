@@ -1,0 +1,13 @@
+{
+ "key": "Orifice (MA)",
+ "title": "Orifice (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Valves & Orifices/Orifice_MA.md"
+ ],
+ "text": "湿空气网络中的 Orifice。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

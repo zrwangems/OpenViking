@@ -1,0 +1,108 @@
+{
+ "key": "ROS2 Call Service",
+ "title": "Call Service",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Call_Service.md"
+ ],
+ "text": "Call service in ROS 2 network, 1 input, 2 outputs, {Source} sets Source for specifying service name Select from ROS network; {Name} sets the service name character vector, {Type} sets the service type character vector, {Connection timeout} sets the timeout for service server connection, {Show ErrorCode output port} enables error code output port, {History} sets the mode of storing requests in the queue Keep, {Depth} sets the size of the request queue, {Reliability} sets the delivery guarantee, {Durability} sets the persistence of requests, {Deadline} sets the maximum amount of time allowed between sending service request and receiving response, {Lifespan} sets the length of time a service request is considered valid, {Liveliness} sets the level of liveliness reporting provided by the block and expected from service server and {Lease Duration} sets the maximum amount of time before which connected service server has to assert liveliness. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Req",
+   "direction": "input",
+   "summary": "Request message nonvirtual bus"
+  },
+  {
+   "name": "Resp",
+   "direction": "output",
+   "summary": "Response message nonvirtual bus"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "Error conditions for service call integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source",
+   "default": "",
+   "values": "Source for specifying service name Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Service name character vector",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "Service type character vector",
+   "group": ""
+  },
+  {
+   "name": "Connection timeout",
+   "default": "5",
+   "values": "Timeout for service server connection 5 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "on",
+   "values": "Enable error code output port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "History",
+   "default": "last",
+   "values": "Mode of storing requests in the queue Keep last (default) | Keep all",
+   "group": ""
+  },
+  {
+   "name": "Depth",
+   "default": "1",
+   "values": "Size of the request queue 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reliability",
+   "default": "Reliable",
+   "values": "Delivery guarantee of requests Reliable (default) | Best effort",
+   "group": ""
+  },
+  {
+   "name": "Durability",
+   "default": "Volatile",
+   "values": "Persistence of requests Volatile (default) | Transient local",
+   "group": ""
+  },
+  {
+   "name": "Deadline",
+   "default": "Inf",
+   "values": "Maximum amount of time allowed between sending service request and receiving response Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lifespan",
+   "default": "Inf",
+   "values": "Length of time a service request is considered valid Inf (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Liveliness",
+   "default": "automatic",
+   "values": "Level of liveliness reporting provided by the block and expected from service server automatic (default)",
+   "group": ""
+  },
+  {
+   "name": "Lease Duration",
+   "default": "Inf",
+   "values": "Maximum amount of time before which connected service server has to assert liveliness Inf (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

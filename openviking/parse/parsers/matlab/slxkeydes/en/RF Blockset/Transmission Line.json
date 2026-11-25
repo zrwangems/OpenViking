@@ -1,0 +1,262 @@
+{
+ "key": "Transmission Line",
+ "title": "Transmission Line",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Transmission_Line.md",
+  "RF Blockset/Equivalent Baseband/Transmission Lines/Transmission_Line.md",
+  "Simscape/Electrical/Passive/Lines/Transmission_Line.md"
+ ],
+ "text": "Model transmission line, {Interpolation method} sets Interpolation method used to calculate values at the modeling frequencies; {Model type} sets the transmission line model Delay-based, {Transmission delay} sets the delay in transmission line, {Characteristic impedance} sets the impedance of transmission line, {Resistance per unit length}, {Number of segments}, {Parameterization} sets the type of parameters to model segments in transmission line By characterisitc impedance, {Capacitance per unit length}, {Conductance per unit length}, {Inductance per unit length}, {Outer radius}, {Inner radius}, {Conductor width} sets the physical width of conductor, {Slot width} sets the physical width of slot, {Conductor backed} sets the infinite bottom conductor, {Structure} sets the type of microstrip transmission line, {Strip Width} sets the width of microstrip transmission line, {Strip thickness} sets the physical thickness of conductor, {Strip Height} sets the strip height of microstrip transmission line, {Wire radius} sets the radius of conducting wires of two-wire transmission line, {Wire separation} sets the physical distance between conducting wires of two-wire transmission line, {Plate width} sets the width of parallel-plate transmission line, {Plate separation} sets the thickness of dielectric separating plates, {Phase velocity (m/s)} sets the propagation velocity of a uniform plane wave on transmission, {Loss (dB/m)} sets the reduction in strength of signal as it travels over transmission, {Frequency} sets the modeling frequencies 1e9, {Conductivity of conductor}, {Dielectric Thickness} sets the thickness of dielectric on which conductor resides, {Relative permeability of dielectric}, {Relative permittivity of dielectric}, {Loss tangent of dielectric}, {Line length} sets the physical length of transmission line, {Stub mode} sets the type of stub Not, {Termination of stub} sets the type of termination, {Ground and hide negative terminals} sets the ground RF circuit terminals, {Modeling Options} sets the options to model S-parameters Frequency, {Automatically estimate impulse response duration} sets the calculate impulse response duration, {Impulse response duration} sets the manually specify impulse response duration, {Fitting options}, {Relative error desired (dB)} sets the relative error acceptable in rational fit and {Rational fitting results} sets the values of rationalfit calculations. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Model type",
+   "default": "lossless",
+   "values": "Transmission line model Delay-based and lossless (default) | Delay-based and lossy | Lumped parameter L-section | Lumped parameter Pi-section | Coaxial | Coplanar waveguide | Microstrip | Stripline | Two-wire | Parallel-plate | Equation-based | RLCG |...",
+   "group": "Main"
+  },
+  {
+   "name": "Transmission delay",
+   "default": "s",
+   "values": "Delay in transmission line 4.7e-9 s (default) | real scalar | s | ms | us | ns",
+   "group": "Main"
+  },
+  {
+   "name": "Characteristic impedance",
+   "default": "ohm",
+   "values": "Impedance of transmission line 50 ohm (default) | real scalar | Ohm | kOhm | MOhm | GOhm",
+   "group": "Main"
+  },
+  {
+   "name": "Resistance per unit length",
+   "default": "Ohm/m",
+   "values": "Resistance per unit length of transmission line 0.3 Ohm/m (default) | positive scalar | Ohm/m | kOhm/m | MOhm/m | GOhm/m",
+   "group": "Main"
+  },
+  {
+   "name": "Number of segments",
+   "default": "10",
+   "values": "Number of segments in transmission line 10 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Parameterization",
+   "default": "capacitance",
+   "values": "Type of parameters to model segments in transmission line By characterisitc impedance and capacitance (default) | By inductance and capacitance",
+   "group": "Main"
+  },
+  {
+   "name": "Capacitance per unit length",
+   "default": "F/m",
+   "values": "Capacitance per unit length of transmission line 94e-12 F/m (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Conductance per unit length",
+   "default": "S/m",
+   "values": "Conductance per unit length of transmission line 5e-6 S/m (default) | positive scalar | S/m | mS/m | uS/m | nS/m",
+   "group": "Main"
+  },
+  {
+   "name": "Inductance per unit length",
+   "default": "H/m",
+   "values": "Inductance per unit length of transmission line 235e-9 H/m (default) | positive scalar | H/m | mH/m | uH/m | nH/m",
+   "group": "Main"
+  },
+  {
+   "name": "Outer radius",
+   "default": "mm",
+   "values": "Outer radius of coaxial transmission line 2.57 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Inner radius",
+   "default": "mm",
+   "values": "Inner radius of coaxial transmission line 2.57 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Conductor width",
+   "default": "mm",
+   "values": "Physical width of conductor 0.6 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Slot width",
+   "default": "mm",
+   "values": "Physical width of slot 0.2 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Conductor backed",
+   "default": "off",
+   "values": "Infinite bottom conductor off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Structure",
+   "default": "Standard",
+   "values": "Type of microstrip transmission line Standard (default) | Embedded | Inverted | Suspended",
+   "group": "Main"
+  },
+  {
+   "name": "Strip Width",
+   "default": "mm",
+   "values": "Width of microstrip transmission line 0.6 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Strip thickness",
+   "default": "um",
+   "values": "Physical thickness of conductor 5 um (default) | nonnegative scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Strip Height",
+   "default": "mm",
+   "values": "Strip height of microstrip transmission line 0.635 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Wire radius",
+   "default": "mm",
+   "values": "Radius of conducting wires of two-wire transmission line 0.67 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Wire separation",
+   "default": "mm",
+   "values": "Physical distance between conducting wires of two-wire transmission line 1.62 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Plate width",
+   "default": "mm",
+   "values": "Width of parallel-plate transmission line 5 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Plate separation",
+   "default": "mm",
+   "values": "Thickness of dielectric separating plates 1 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Phase velocity (m/s)",
+   "default": "299792458",
+   "values": "Propagation velocity of a uniform plane wave on transmission line 299792458 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Loss (dB/m)",
+   "default": "0",
+   "values": "Reduction in strength of signal as it travels over transmission line 0 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency",
+   "default": "Hz",
+   "values": "Modeling frequencies 1e9 Hz (default) | positive scalar | Hz | kHz | MHz | GHz",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Linear",
+   "values": "Interpolation method used to calculate values at the modeling frequencies Linear (default) | Spline | Cubic",
+   "group": "Main"
+  },
+  {
+   "name": "Conductivity of conductor",
+   "default": "inf",
+   "values": "Conductivity of conductor inf (default) | scalar | S/m | mS/m | uS/m | nS/m",
+   "group": "Main"
+  },
+  {
+   "name": "Dielectric Thickness",
+   "default": "mm",
+   "values": "Thickness of dielectric on which conductor resides 0.635 mm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Relative permeability of dielectric",
+   "default": "1",
+   "values": "Relative permeability of dielectric 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Relative permittivity of dielectric",
+   "default": "2.2",
+   "values": "Relative permittivity of dielectric 2.2 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Loss tangent of dielectric",
+   "default": "0",
+   "values": "Loss tangent of dielectric 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Line length",
+   "default": "cm",
+   "values": "Physical length of transmission line 1 cm (default) | positive scalar | m | cm | mm | um | in | ft",
+   "group": "Main"
+  },
+  {
+   "name": "Stub mode",
+   "default": "stub",
+   "values": "Type of stub Not a stub (default) | Shunt | Series",
+   "group": "Main"
+  },
+  {
+   "name": "Termination of stub",
+   "default": "Open",
+   "values": "Type of termination for stub Open (default) | Short",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling Options",
+   "default": "domain",
+   "values": "Options to model S-parameters Frequency domain (default) | Time domain",
+   "group": "Modeling"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "off",
+   "values": "Calculate impulse response duration automatically off (default) | on",
+   "group": "Modeling"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "Manually specify impulse response duration 0 s (default) | positive scalar | s | ms | us | ns",
+   "group": "Modeling"
+  },
+  {
+   "name": "Fitting options",
+   "default": "poles",
+   "values": "Fitting options for rationalfit Share all poles (default) | Share poles by columns | Fit individually",
+   "group": "Modeling"
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "Relative error acceptable in rational fit output -40 (default) | real scalar",
+   "group": "Modeling"
+  },
+  {
+   "name": "Rational fitting results",
+   "default": "read-only",
+   "values": "Values of rationalfit calculations read-only (default)",
+   "group": "Modeling"
+  }
+ ]
+}

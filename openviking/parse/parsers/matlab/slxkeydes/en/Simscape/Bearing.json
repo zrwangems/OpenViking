@@ -1,0 +1,13 @@
+{
+ "key": "Bearing",
+ "title": "Bearing",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Bearing.md"
+ ],
+ "text": "Bearing that provides trans-axial support to freely rotating shaft.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

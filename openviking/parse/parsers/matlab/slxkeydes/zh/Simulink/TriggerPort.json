@@ -1,0 +1,177 @@
+{
+ "key": "TriggerPort",
+ "title": "Trigger",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Trigger.md",
+  "HDL Coder/Ports & Subsystems/Trigger.md"
+ ],
+ "text": "向子系统或模型添加触发器或函数端口；输出 1 路；按 {采样时间} 指定时间间隔；{触发器类型} 控制信号的类型、{视为 Simulink 函数} 指定创建 Simulink Function 模块、{异步执行函数调用} 指定调用函数的调用方请求是否可以等待服务执行、{函数名称}、{函数可见性} 指定函数的作用域可见性、{示波器到端口} 指定导出函数端口的名称、{启用变体条件} 控制是否激活变体控制项、{变体控制项}、{生成预处理器条件句} 控制条件语句中包含的变体选择项、{启用时的状态} 指定如何设置模块状态值、{传播可变大小信号的大小} 指定何时传播可变大小的信号、{显示输出端口} 控制输出端口的显示、{输出数据类型} 输出端口的数据类型、{采样时间类型} 指定调用速率 已触发、{启用过零检测} 控制过零检测、{初始触发信号状态} 指定触发信号的初始状态 兼容性、{触发时间} 指定消息输入触发子系统执行的时间、{作为非周期性分区调度} 指定执行模式为即时模式还是调度模式、{端口维度} 指定触发信号的维度、{触发信号采样时间} 指定时间间隔、{最小}、{最大}、{数据类型}、{模式} 指定数据类型类别、{数据插值} 控制如何估算缺失的工作区数据，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "描述控制信号或消息有效负载的值 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "触发器类型",
+   "default": "上升沿",
+   "values": "选择控制信号的类型 上升沿 (默认) | 下降沿 | 任一沿 | 函数调用 | 消息",
+   "group": "常设"
+  },
+  {
+   "name": "视为 Simulink 函数",
+   "default": "off",
+   "values": "创建 Simulink Function 模块 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "异步执行函数调用",
+   "default": "off",
+   "values": "调用函数的调用方请求是否可以等待服务执行 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "函数名称",
+   "default": "f",
+   "values": "指定 Simulink Function 模块的函数名称 f (默认) | 函数名称",
+   "group": "常设"
+  },
+  {
+   "name": "函数可见性",
+   "default": "限定作用域",
+   "values": "选择函数的作用域可见性 限定作用域 (默认) | 全局 | 端口",
+   "group": "常设"
+  },
+  {
+   "name": "示波器到端口",
+   "default": "’’",
+   "values": "指定导出函数端口的名称 ’’ (默认) | 字符向量",
+   "group": "常设"
+  },
+  {
+   "name": "启用变体条件",
+   "default": "off",
+   "values": "控制是否激活变体控制项（条件） off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "变体控制项",
+   "default": "(inherit)",
+   "values": "指定变体控制项（条件）表达式 (inherit) (默认) | 逻辑表达式",
+   "group": "常设"
+  },
+  {
+   "name": "生成预处理器条件句",
+   "default": "off",
+   "values": "控制条件语句中包含的变体选择项 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "启用时的状态",
+   "default": "保持",
+   "values": "选择如何设置模块状态值 保持 (默认) | 重置 | inherit",
+   "group": "常设"
+  },
+  {
+   "name": "传播可变大小信号的大小",
+   "default": "执行期间",
+   "values": "选择何时传播可变大小的信号 执行期间 (默认) | 仅在启用时",
+   "group": "常设"
+  },
+  {
+   "name": "显示输出端口",
+   "default": "off",
+   "values": "控制输出端口的显示 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "auto",
+   "values": "选择输出端口的数据类型 auto (默认) | double | int8",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间类型",
+   "default": "已触发",
+   "values": "选择调用速率 已触发 (默认) | 周期性",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间",
+   "default": "1",
+   "values": "指定时间间隔 1 (默认) | Ts | [Ts, To] | -1",
+   "group": "常设"
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "控制过零检测 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "初始触发信号状态",
+   "default": "兼容性(首次计算时不触发)",
+   "values": "选择触发信号的初始状态 兼容性(首次计算时不触发) (默认) | 零 | 正值 | 负值",
+   "group": "常设"
+  },
+  {
+   "name": "触发时间",
+   "default": "在消息可用时",
+   "values": "指定消息输入触发子系统执行的时间 在消息可用时 (默认) | 在采样时间命中点上",
+   "group": "常设"
+  },
+  {
+   "name": "作为非周期性分区调度",
+   "default": "on",
+   "values": "指定执行模式为即时模式还是调度模式 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "端口维度",
+   "default": "1",
+   "values": "指定触发信号的维度 1 (默认) | [n] | [m n] | -1",
+   "group": "信号属性"
+  },
+  {
+   "name": "触发信号采样时间",
+   "default": "-1",
+   "values": "指定时间间隔 -1 (默认) | Ts | [Ts, To]",
+   "group": "信号属性"
+  },
+  {
+   "name": "最小",
+   "default": "[]",
+   "values": "指定触发信号的最小输出值 [] (默认) | 实数标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "最大",
+   "default": "[]",
+   "values": "指定触发信号的最大输出值 [] (默认) | 实数标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "数据类型",
+   "default": "auto",
+   "values": "选择触发信号的输出数据类型 Inherit: auto (默认) | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^,0) | <数据类型表达式>",
+   "group": "信号属性"
+  },
+  {
+   "name": "模式",
+   "default": "内置",
+   "values": "选择数据类型类别 内置 (默认) | 定点 | 表达式",
+   "group": "信号属性"
+  },
+  {
+   "name": "数据插值",
+   "default": "on",
+   "values": "控制如何估算缺失的工作区数据 on (默认) | off",
+   "group": "信号属性"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Fault",
+ "title": "Fault",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Utilities/Fault.md"
+ ],
+ "text": "Electrical fault with temporal, behavioral, or external trigger.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

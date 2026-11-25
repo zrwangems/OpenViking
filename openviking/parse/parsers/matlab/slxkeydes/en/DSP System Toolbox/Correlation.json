@@ -1,0 +1,84 @@
+{
+ "key": "Correlation",
+ "title": "Correlation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Correlation.md"
+ ],
+ "text": "Cross-correlation of two inputs, 2 inputs, 1 output, no direct feedthrough, {Rounding mode} sets Method of rounding operation; {Computation domain} sets the domain in which the block computes the cross-correlation, {Saturate on integer overflow} sets the method of overflow action, {Product output}, {Accumulator}, {Output}, {Output Minimum} sets the minimum value block can output, {Output Maximum} sets the maximum value the block can output and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First data input signal vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Second data input signal vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Cross-correlated output vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Computation domain",
+   "default": "Time",
+   "values": "Domain in which the block computes the cross-correlation Time (default) | Frequency | Fastest",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Minimum value block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Maximum value the block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

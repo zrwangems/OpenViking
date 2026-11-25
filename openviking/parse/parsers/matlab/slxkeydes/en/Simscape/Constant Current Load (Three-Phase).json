@@ -1,0 +1,13 @@
+{
+ "key": "Constant Current Load (Three-Phase)",
+ "title": "Constant Current Load (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Constant_Current_Load_Three_Phase.md"
+ ],
+ "text": "Three-phase constant current load.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

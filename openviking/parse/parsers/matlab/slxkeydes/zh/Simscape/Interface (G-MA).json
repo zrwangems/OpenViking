@@ -1,0 +1,13 @@
+{
+ "key": "Interface (G-MA)",
+ "title": "Interface (G-MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Fluid Network Interfaces/Interface_G_MA.md"
+ ],
+ "text": "气体和湿空气网络接口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

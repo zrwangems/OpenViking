@@ -1,0 +1,13 @@
+{
+ "key": "Moisture Separator (MA)",
+ "title": "Moisture Separator (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Moisture_Separator_MA.md"
+ ],
+ "text": "从湿空气流中去除水蒸气和水滴。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

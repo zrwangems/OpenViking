@@ -1,0 +1,90 @@
+{
+ "key": "FIFO Block: reader",
+ "title": "FIFO ASCII read",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/FIFO_ASCII_read.md",
+  "Simulink Real-Time/RS232/FIFO_bin_read.md",
+  "Simulink Real-Time/RS232/FIFO_read.md"
+ ],
+ "text": "Read simple data streams, 3 inputs, 2 outputs, {Output vector type} sets output data type 8 bit uint null; {Maximum read size} sets the maximum number of characters returned, {Minimum read size} sets the minimum number of characters returned, {Read to delimiter} sets the return delimited element sets, {Delimiter} sets the terminator value for delimited element, {Max and Min read size ports} enables maximum and minimum input ports, {Enable passthrough} and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "FIFO from which to read data serialfifoptr"
+  },
+  {
+   "name": "MAX",
+   "direction": "input",
+   "summary": "Maximum number of bytes to read from FIFO integer"
+  },
+  {
+   "name": "MIN",
+   "direction": "input",
+   "summary": "Minimum number of bytes to read from FIFO integer"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "Parsed data read from FIFO vector"
+  },
+  {
+   "name": "ENA",
+   "direction": "output",
+   "summary": "Pass value of MAX through integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum read size",
+   "default": "1024",
+   "values": "Maximum number of characters returned by block 1024 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Minimum read size",
+   "default": "1",
+   "values": "Minimum number of characters returned by block 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Read to delimiter",
+   "default": "on",
+   "values": "Return delimited element sets on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Delimiter",
+   "default": "13",
+   "values": "Terminator value for delimited element sets 13 (default) | uint",
+   "group": ""
+  },
+  {
+   "name": "Output vector type",
+   "default": "terminated",
+   "values": "Specify output data type 8 bit uint null terminated (default) | count+32 bit int | count+32 bit uint | count+16 bit int | count+16 bit uint | 8 bit int null terminated",
+   "group": ""
+  },
+  {
+   "name": "Max and Min read size ports",
+   "default": "off",
+   "values": "Enable maximum and minimum input ports off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable passthrough",
+   "default": "off",
+   "values": "Enable passthrough of MAX value off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

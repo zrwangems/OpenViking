@@ -1,0 +1,44 @@
+{
+ "key": "modbusRead",
+ "title": "Modbus Client Read",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/Modbus/Modbus_Client_Read.md"
+ ],
+ "text": "Read data from Modbus server, 1 output; {Client} selects Modbus client, {Server ID} sets the address of the server, {Registers} sets the list of Modbus and {Block sample time} sets the sample time for read operation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Reg_ x",
+   "direction": "output",
+   "summary": "Current values of registers vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Client",
+   "default": "",
+   "values": "Select Modbus client drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Server ID",
+   "default": "1",
+   "values": "Address of the server 1 (default) | nonnegative integer in the range [0, 255]",
+   "group": ""
+  },
+  {
+   "name": "Registers",
+   "default": "",
+   "values": "List of Modbus registers table",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "-1",
+   "values": "Sample time for read operation -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

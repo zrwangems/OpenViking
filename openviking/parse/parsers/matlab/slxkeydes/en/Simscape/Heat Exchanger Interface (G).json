@@ -1,0 +1,13 @@
+{
+ "key": "Heat Exchanger Interface (G)",
+ "title": "Heat Exchanger Interface (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Fundamental Components/Heat_Exchanger_Interface_G.md"
+ ],
+ "text": "Thermal interface between a gas and its surroundings.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

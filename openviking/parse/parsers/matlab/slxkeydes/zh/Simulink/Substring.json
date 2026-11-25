@@ -1,0 +1,53 @@
+{
+ "key": "Substring",
+ "title": "Substring",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/Substring.md"
+ ],
+ "text": "从输入字符串信号中提取子字符串，输入 3 路、输出 1 路、直接馈通；{Inherit maximum length from input} 使用与输入字符串相同的最大长度、{Output data type} 输出数据类型、{Output string from ’idx’ to end} 指定从 idx 到末尾提取字符串，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "str",
+   "direction": "input",
+   "summary": "输入字符串信号 scalar"
+  },
+  {
+   "name": "idx",
+   "direction": "input",
+   "summary": "要提取的字符串起始位置 scalar"
+  },
+  {
+   "name": "len",
+   "direction": "input",
+   "summary": "要提取的字符串长度 scalar"
+  },
+  {
+   "name": "sub",
+   "direction": "output",
+   "summary": "提取的字符串 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit maximum length from input",
+   "default": "on",
+   "values": "使用与输入字符串相同的最大长度 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "string",
+   "values": "输出数据类型 string (default) |",
+   "group": ""
+  },
+  {
+   "name": "Output string from ’idx’ to end",
+   "default": "off",
+   "values": "从 idx 到末尾提取字符串 off (default) | on",
+   "group": ""
+  }
+ ]
+}

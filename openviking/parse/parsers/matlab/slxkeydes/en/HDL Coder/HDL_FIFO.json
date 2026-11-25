@@ -1,0 +1,109 @@
+{
+ "key": "HDL_FIFO",
+ "title": "HDL FIFO",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL RAMs/HDL_FIFO.md"
+ ],
+ "text": "Stores sequence of input samples in first in, first out (FIFO) register, 4 inputs, 4 outputs, {Push onto full register} sets Overflow condition; {Register size} sets the number of entries, {Mode} sets the operation mode, {The ratio of output sample time to input sample time} sets the sample rate ratio, {Pop empty register} sets the underflow condition, {Show empty register indicator port (Empty)} sets the optional empty port, {Show full register indicator port (Full)} sets the optional full port, {Show number of register entries port (Num)} sets the optional num port and {Local reset port} sets the optional reset port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Data input signal scalar"
+  },
+  {
+   "name": "Push",
+   "direction": "input",
+   "summary": "Write control signal scalar"
+  },
+  {
+   "name": "Pop",
+   "direction": "input",
+   "summary": "Read control signal scalar"
+  },
+  {
+   "name": "rst",
+   "direction": "input",
+   "summary": "Reset control signal scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Data output signal scalar"
+  },
+  {
+   "name": "Empty",
+   "direction": "output",
+   "summary": "Data output signal scalar"
+  },
+  {
+   "name": "Full",
+   "direction": "output",
+   "summary": "Data output signal scalar"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "Number of entries scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Register size",
+   "default": "10",
+   "values": "Number of entries 10 (default)",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "’Classic’",
+   "values": "Operation mode ’Classic’ (default) | ’FWFT’",
+   "group": ""
+  },
+  {
+   "name": "The ratio of output sample time to input sample time",
+   "default": "1",
+   "values": "Sample rate ratio 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Push onto full register",
+   "default": "’Warning’",
+   "values": "Overflow condition ’Warning’ (default) | ’Ignore’ | ’Error’",
+   "group": ""
+  },
+  {
+   "name": "Pop empty register",
+   "default": "’Warning’",
+   "values": "Underflow condition ’Warning’ (default) | ’Ignore’ | ’Error’",
+   "group": ""
+  },
+  {
+   "name": "Show empty register indicator port (Empty)",
+   "default": "on",
+   "values": "Optional empty port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show full register indicator port (Full)",
+   "default": "on",
+   "values": "Optional full port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show number of register entries port (Num)",
+   "default": "on",
+   "values": "Optional num port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Local reset port",
+   "default": "off",
+   "values": "Optional reset port off (default) | on",
+   "group": ""
+  }
+ ]
+}

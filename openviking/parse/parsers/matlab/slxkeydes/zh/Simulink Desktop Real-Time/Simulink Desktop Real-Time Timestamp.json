@@ -1,0 +1,24 @@
+{
+ "key": "Simulink Desktop Real-Time Timestamp",
+ "title": "Timestamp",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Target Profiling/Timestamp.md"
+ ],
+ "text": "在 Run in Kernel 模式下输出信号时间戳，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Signals",
+   "direction": "input",
+   "summary": "要捕获时间戳的信号 vector"
+  },
+  {
+   "name": "Timestamps",
+   "direction": "output",
+   "summary": "信号的时间戳 vector of double"
+  }
+ ],
+ "params": []
+}

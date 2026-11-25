@@ -1,0 +1,13 @@
+{
+ "key": "Mach Number Sensor (G)",
+ "title": "Mach Number Sensor (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Sensors/Mach_Number_Sensor_G.md"
+ ],
+ "text": "测量内部气体流的马赫数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

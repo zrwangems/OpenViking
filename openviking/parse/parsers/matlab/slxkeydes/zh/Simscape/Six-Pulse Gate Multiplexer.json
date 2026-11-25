@@ -1,0 +1,13 @@
+{
+ "key": "Six-Pulse Gate Multiplexer",
+ "title": "Six-Pulse Gate Multiplexer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Six_Pulse_Gate_Multiplexer.md"
+ ],
+ "text": "将栅极输入信号多路复用至 Converter 模块。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

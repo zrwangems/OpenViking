@@ -1,0 +1,90 @@
+{
+ "key": "GravityWGS84",
+ "title": "WGS84 Gravity Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/WGS84_Gravity_Model.md"
+ ],
+ "text": "Implement 1984 World Geodetic System (WGS84) representation of Earth’s gravity, 2 inputs, 1 output, {Month} sets Month; {Type of gravity model} sets the gravity model method WGS84, {Units}, {Exclude Earth’s atmosphere} sets the earth atmosphere, {Precessing reference frame}, {Input Julian date}, {Day}, {Year}, {No centrifugal effects} sets the centrifugal effects and {Action for out-of-range input} sets the out-of-range block behavior. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ l h",
+   "direction": "input",
+   "summary": "Position in geodetic latitude, longitude, and altitude three-element vector | M -by-3 array"
+  },
+  {
+   "name": "JD",
+   "direction": "input",
+   "summary": "Julian date scalar | value greater than 2451545"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Gravity three-element vector | M -by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of gravity model",
+   "default": "Series",
+   "values": "Gravity model method WGS84 Taylor Series (default) | WGS84 Close Approximation | WGS84 Exact",
+   "group": ""
+  },
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Exclude Earth’s atmosphere",
+   "default": "on",
+   "values": "Earth atmosphere on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Precessing reference frame",
+   "default": "on",
+   "values": "Precessing reference frame on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input Julian date",
+   "default": "off",
+   "values": "Julian date off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "Month January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Day",
+   "default": "10",
+   "values": "Day 10 (default) | 1 to 31",
+   "group": ""
+  },
+  {
+   "name": "Year",
+   "default": "2004",
+   "values": "Year 2004 (default) | any year",
+   "group": ""
+  },
+  {
+   "name": "No centrifugal effects",
+   "default": "on",
+   "values": "Centrifugal effects on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "Out-of-range block behavior Warning (default) | Error | None",
+   "group": ""
+  }
+ ]
+}

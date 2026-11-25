@@ -1,0 +1,13 @@
+{
+ "key": "CMOS NOT",
+ "title": "CMOS NOT",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Logic/CMOS_NOT.md"
+ ],
+ "text": "Behavioral model of CMOS NOT gate.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

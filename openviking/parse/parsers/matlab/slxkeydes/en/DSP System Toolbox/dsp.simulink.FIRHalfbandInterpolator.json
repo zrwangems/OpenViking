@@ -1,0 +1,108 @@
+{
+ "key": "dsp.simulink.FIRHalfbandInterpolator",
+ "title": "FIR Halfband Interpolator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/FIR_Halfband_Interpolator.md"
+ ],
+ "text": "Interpolate signal using polyphase FIR halfband filter, 2 inputs, 1 output, no direct feedthrough, {Filter order} sets Filter order 52; {Filter specification} sets the filter design parameters Transition width and stopband, {Transition width (Hz)} sets the transition width, {Stopband attenuation (dB)}, {Numerator} sets the fIR halfband filter coefficients, {Design method} sets the filter design method, {Input highpass subband}, {Sample rate mode} sets the mode to specify the input sample rate Use normalized, {Input sample rate (Hz)} sets the sample rate of input signal, {View Filter Response}, {Simulate using} sets the type of simulation to run Interpreted, {Rounding mode} and {Coefficients} sets the word and fraction lengths of coefficients. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LP",
+   "direction": "input",
+   "summary": "Data input column vector | matrix"
+  },
+  {
+   "name": "HP",
+   "direction": "input",
+   "summary": "Second input to the synthesis filter bank column vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output of FIR halfband interpolator column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter specification",
+   "default": "attenuation",
+   "values": "Filter design parameters Transition width and stopband attenuation (default) | Filter order and transition width | Filter order and stopband attenuation | Coefficients",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Transition width (Hz)",
+   "default": "",
+   "values": "Transition width in Hz 4.1e3 | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter order",
+   "default": "",
+   "values": "Filter order 52 | even positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "Stopband attenuation 80 (default) | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Numerator",
+   "default": "’Structure’,’interp’)",
+   "values": "FIR halfband filter coefficients designHalfbandFIR(’TransitionWidth’,0.186, ’StopbandAttenuation’,80, ’Structure’,’interp’) (default) | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Design method",
+   "default": "Auto",
+   "values": "Filter design method Auto (default) | Equiripple | Kaiser",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input highpass subband",
+   "default": "off",
+   "values": "Input highpass subband off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input signal 44100 (default) | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View Filter Response button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for output fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(1,16)",
+   "values": "Word and fraction lengths of coefficients fixdt(1,16) (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  }
+ ]
+}

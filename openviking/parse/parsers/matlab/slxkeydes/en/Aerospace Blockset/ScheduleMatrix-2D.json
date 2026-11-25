@@ -1,0 +1,46 @@
+{
+ "key": "ScheduleMatrix-2D",
+ "title": "Interpolate Matrix(x,y)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/Interpolate_Matrix_x_y.md"
+ ],
+ "text": "Return interpolated matrix for given inputs, 4 inputs, 1 output; {Matrix to interpolate} sets the matrix. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x_k",
+   "direction": "input",
+   "summary": "First interpolation index scalar"
+  },
+  {
+   "name": "x_f",
+   "direction": "input",
+   "summary": "First interpolation fraction scalar"
+  },
+  {
+   "name": "y_k",
+   "direction": "input",
+   "summary": "Second interpolation index scalar"
+  },
+  {
+   "name": "y_f",
+   "direction": "input",
+   "summary": "Second interpolation fraction scalar"
+  },
+  {
+   "name": "Matrix(x,y)",
+   "direction": "output",
+   "summary": "Interpolated matrix matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Matrix to interpolate",
+   "default": "matrix",
+   "values": "Matrix matrix (default)",
+   "group": ""
+  }
+ ]
+}

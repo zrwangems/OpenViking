@@ -1,0 +1,85 @@
+{
+ "key": "SlewRate",
+ "title": "Slew Rate",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Slew_Rate.md"
+ ],
+ "text": "对逻辑门的幅度、上升和下降时间以及传播延迟进行建模，输入 1 路、输出 1 路；{Output step size calculation} 定义如何计算输出步长、{Maximum frequency of interest (Hz)} 输出端感兴趣的最大频率 11e9、{Output sample interval} 输出采样间隔、{Minimum 20%-80% rise/fall time} 输出端为进行有意义的仿真所需的最小上升/下降时间、{Rise/fall time (s)} 输出端的 20%-80% 上升时间 30e-12、{Slew rate for 20%-80% edge of unit amplitude signal} 输出端 20%-80% 边沿的压摆率、{Minimum propagation delay} 为进行有意义的仿真所需的最小传播延迟、{Propagation delay (s)} 指定上升沿的传播延迟 48e-12、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定模块的缓冲区大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "events",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "wave",
+   "direction": "output",
+   "summary": "输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output step size calculation",
+   "default": "Default",
+   "values": "定义如何计算输出步长 Default (default) | Advanced",
+   "group": ""
+  },
+  {
+   "name": "Maximum frequency of interest (Hz)",
+   "default": "11e9",
+   "values": "输出端感兴趣的最大频率 11e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output sample interval",
+   "default": "23ps",
+   "values": "输出采样间隔 23ps (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum 20%-80% rise/fall time",
+   "default": "23ps",
+   "values": "输出端为进行有意义的仿真所需的最小上升/下降时间 23ps (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rise/fall time (s)",
+   "default": "30e-12",
+   "values": "输出端的 20%-80% 上升时间 30e-12 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Slew rate for 20%-80% edge of unit amplitude signal",
+   "default": "56GHz",
+   "values": "输出端 20%-80% 边沿的压摆率 56GHz (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum propagation delay",
+   "default": "48ps",
+   "values": "为进行有意义的仿真所需的最小传播延迟 48ps (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Propagation delay (s)",
+   "default": "48e-12",
+   "values": "上升沿的传播延迟 48e-12 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "",
+   "values": "启用增加的缓冲区大小 button",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "模块的缓冲区大小 10 (default) | positive integer scaler",
+   "group": ""
+  }
+ ]
+}

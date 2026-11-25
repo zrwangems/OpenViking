@@ -1,0 +1,68 @@
+{
+ "key": "CCSDS RS Decoder",
+ "title": "CCSDS RS Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/CCSDS_RS_Decoder.md"
+ ],
+ "text": "Decode and recover message from RS codeword according to CCSDS standard, 2 inputs, 5 outputs; {Message length (k)} sets the length of message, {Interleaving depth (I)} sets the depth of interleaving and {Output number of corrected symbol errors} sets the number of corrected symbol errors. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input codeword data integer in the range from 0 to 255"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Decoded message data integer in the range from 0 to 255"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "err",
+   "direction": "output",
+   "summary": "Indication of corruption in output data Boolean scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Block ready indicator Boolean scalar"
+  },
+  {
+   "name": "numCorrErr",
+   "direction": "output",
+   "summary": "Number of corrected errors nonnegative scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Message length (k)",
+   "default": "223",
+   "values": "Length of message 223 (default) | 239",
+   "group": ""
+  },
+  {
+   "name": "Interleaving depth (I)",
+   "default": "1",
+   "values": "Depth of interleaving 1 (default) | 2 | 3 | 4 | 5 | 8",
+   "group": ""
+  },
+  {
+   "name": "Output number of corrected symbol errors",
+   "default": "off",
+   "values": "Number of corrected symbol errors off (default) | on",
+   "group": ""
+  }
+ ]
+}

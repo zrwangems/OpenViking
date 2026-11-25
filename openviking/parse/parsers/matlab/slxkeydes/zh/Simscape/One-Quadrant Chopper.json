@@ -1,0 +1,13 @@
+{
+ "key": "One-Quadrant Chopper",
+ "title": "One-Quadrant Chopper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/One_Quadrant_Chopper.md"
+ ],
+ "text": "控制器驱动的单象限斩波器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

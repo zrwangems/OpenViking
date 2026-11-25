@@ -1,0 +1,37 @@
+{
+ "key": "Analytic Signal",
+ "title": "Analytic Signal",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Analytic_Signal.md"
+ ],
+ "text": "Compute analytic signals of discrete-time inputs, 1 input, 1 output; {Filter order (must be even)} and {Input processing} sets the method to process input signals Columns. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Analytic signal output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter order (must be even)",
+   "default": "100",
+   "values": "Filter order 100 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  }
+ ]
+}

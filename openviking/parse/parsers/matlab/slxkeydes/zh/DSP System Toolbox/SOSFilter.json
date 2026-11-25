@@ -1,0 +1,88 @@
+{
+ "key": "SOSFilter",
+ "title": "Second-Order Section Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Second_Order_Section_Filter.md"
+ ],
+ "text": "实现二阶节滤波器的级联，输入 4 路、输出 1 路、无直接馈通；按 {Scale Values} 指定每个二阶节的缩放值 [ 1 1；{Filter structure} 指定滤波器结构、{Coefficient source} 指定滤波器系数来源、{Numerator} 指定滤波器的分子系数、{Denominator} 指定滤波器的分母系数、{Specify scale values} 指定滤波器是否对每个节使用缩放值、{Input processing} 指定处理输入的方法 Columns、{View Filter Response} 指定查看滤波器响应，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "分子系数 P -by-3 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "分母系数 P -by-3 matrix | P -by-2 matrix"
+  },
+  {
+   "name": "g",
+   "direction": "input",
+   "summary": "每个二阶节的缩放值 scalar | vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "滤波后输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter structure",
+   "default": "transposed",
+   "values": "滤波器结构 Direct form II transposed (default) | Direct form I | Direct form I transposed | Direct form II",
+   "group": ""
+  },
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "滤波器系数来源 Dialog parameters (default) | Input ports",
+   "group": ""
+  },
+  {
+   "name": "Numerator",
+   "default": "]",
+   "values": "滤波器的分子系数 [ 0.0975 0.195 0.0975 ] (default) | P -by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Denominator",
+   "default": "]",
+   "values": "滤波器的分母系数 [ 1 -0.9428 0.3333 ] (default) | P -by-3 matrix | P -by-2 matrix",
+   "group": ""
+  },
+  {
+   "name": "Specify scale values",
+   "default": "off",
+   "values": "指定滤波器是否对每个节使用缩放值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Scale Values",
+   "default": "]",
+   "values": "每个二阶节的缩放值 [ 1 1 ] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "处理输入的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": ""
+  }
+ ]
+}

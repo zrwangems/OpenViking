@@ -1,0 +1,14 @@
+{
+ "key": "General Multiplexed Deinterleaver",
+ "title": "General Multiplexed Deinterleaver",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Interleaving/General_Multiplexed_Deinterleaver.md",
+  "Communications Toolbox/Interleaving/Convolutional/General_Multiplexed_Deinterleaver.md"
+ ],
+ "text": "Restore ordering of symbols using specified-delay shift registers.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

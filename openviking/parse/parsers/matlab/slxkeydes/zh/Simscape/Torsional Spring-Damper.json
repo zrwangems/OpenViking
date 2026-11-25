@@ -1,0 +1,13 @@
+{
+ "key": "Torsional Spring-Damper",
+ "title": "Torsional Spring-Damper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Torsional_Spring_Damper.md"
+ ],
+ "text": "带库仑摩擦、锁定和硬限位的旋转弹簧-阻尼器耦合。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

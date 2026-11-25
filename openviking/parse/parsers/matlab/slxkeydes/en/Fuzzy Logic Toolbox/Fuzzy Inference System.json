@@ -1,0 +1,130 @@
+{
+ "key": "Fuzzy Inference System",
+ "title": "Fuzzy Logic Controller",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Fuzzy_Logic_Controller.md",
+  "Fuzzy Logic Toolbox/Fuzzy_Logic_Controller_with_Ruleviewer.md"
+ ],
+ "text": "Evaluate fuzzy inference system, 1 input, 5 outputs, {Data type} sets Signal data type; {FIS name} sets the fuzzy inference system to evaluate mamfis, {Design}, {Number of samples for output discretization} sets the number of points in output fuzzy sets, {Implement FIS as lookup table} sets the convert FIS to lookup table, {Number of input breakpoints (samples)} sets the number of lookup table breakpoints, {Fuzzified inputs (fi)} enables fi output port, {Rule firing strengths (rfs)} enables rfs output port, {Rule outputs (ro)} enables ro output port, {Aggregated outputs (ao)} enables ao output port, {Simulate using} sets the simulation mode Interpreted, {Out of range input value} sets the diagnostic message behavior when an input is out of range, {No rule fired} sets the diagnostic message behavior when no rules fire and {Empty output fuzzy set} sets the diagnostic message behavior when an output fuzzy set is empty. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "Defuzzified output signal scalar | vector"
+  },
+  {
+   "name": "fi",
+   "direction": "output",
+   "summary": "Fuzzified input values matrix"
+  },
+  {
+   "name": "rfs",
+   "direction": "output",
+   "summary": "Rule firing strengths column vector"
+  },
+  {
+   "name": "ro",
+   "direction": "output",
+   "summary": "Rule outputs matrix"
+  },
+  {
+   "name": "ao",
+   "direction": "output",
+   "summary": "Aggregated output matrix | row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "FIS name",
+   "default": "",
+   "values": "Fuzzy inference system to evaluate mamfis object | sugfis object | mamfistype2 object | sugfistype2 object | FIS file name in quotes | MAT file name in quotes",
+   "group": "General"
+  },
+  {
+   "name": "Design",
+   "default": "",
+   "values": "Open Fuzzy Logic Designer button",
+   "group": "General"
+  },
+  {
+   "name": "Number of samples for output discretization",
+   "default": "101",
+   "values": "Number of points in output fuzzy sets 101 (default) | integer greater than 1",
+   "group": "General"
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "Signal data type double (default) | single | fixed-point | expression",
+   "group": "General"
+  },
+  {
+   "name": "Implement FIS as lookup table",
+   "default": "off",
+   "values": "Convert FIS to lookup table off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Number of input breakpoints (samples)",
+   "default": "10",
+   "values": "Number of lookup table breakpoints 10 (default) | positive integer",
+   "group": "General"
+  },
+  {
+   "name": "Fuzzified inputs (fi)",
+   "default": "off",
+   "values": "Enable fi output port off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Rule firing strengths (rfs)",
+   "default": "off",
+   "values": "Enable rfs output port off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Rule outputs (ro)",
+   "default": "off",
+   "values": "Enable ro output port off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Aggregated outputs (ao)",
+   "default": "off",
+   "values": "Enable ao output port off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Simulation mode Interpreted execution (default) | Code generation",
+   "group": "General"
+  },
+  {
+   "name": "Out of range input value",
+   "default": "warning",
+   "values": "Diagnostic message behavior when an input is out of range warning (default) | error | none",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "No rule fired",
+   "default": "warning",
+   "values": "Diagnostic message behavior when no rules fire warning (default) | error | none",
+   "group": "Diagnostics"
+  },
+  {
+   "name": "Empty output fuzzy set",
+   "default": "warning",
+   "values": "Diagnostic message behavior when an output fuzzy set is empty warning (default) | error | none",
+   "group": "Diagnostics"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Transducer",
+ "title": "Pressure Transducer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Pressure_Transducer.md"
+ ],
+ "text": "将压力测量值转换为电压的压力传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

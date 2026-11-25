@@ -1,0 +1,129 @@
+{
+ "key": "Surface Mount PMSM",
+ "title": "Surface Mount PMSM",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Electrical Systems/Motors/Surface_Mount_PMSM.md",
+  "Powertrain Blockset/Propulsion/Electric Motors and Inverters/Surface_Mount_PMSM.md"
+ ],
+ "text": "Three-phase exterior permanent magnet synchronous motor with sinusoidal back electromotive force, 3 inputs, 4 outputs; {Mechanical input configuration} selects port configuration, {Simulation type} selects simulation type, {Sample Time (Ts)} sets the sample time for discrete integration, {Number of pole pairs (P)} sets the pole pairs, {Stator resistance per phase (Rs)} sets the resistance .2, {Stator d-axis inductance (Ldq_)} sets the inductance 3.752e-4, {Permanent flux linkage constant (lambda_pm)} sets the flux, {Back-emf constant (Ke)} sets the back electromotive force, {Torque constant (Kt)}, {Physical inertia, viscous damping, static friction (mechanical)} sets the inertia, damping, friction, {Initial d-axis and q-axis current (idq0)} sets the current, {Initial mechanical position (theta_init)} sets the angle and {Initial mechanical speed (omega_init)} sets the speed. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LdTrq",
+   "direction": "input",
+   "summary": "Load torque on motor scalar"
+  },
+  {
+   "name": "Spd",
+   "direction": "input",
+   "summary": "Motor shaft speed scalar"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "input",
+   "summary": "Stator terminal voltages 1 -by- 3 array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "PhaseCurr",
+   "direction": "output",
+   "summary": "Phase a, b, c current 1 -by- 3 array"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "output",
+   "summary": "Motor torque scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "output",
+   "summary": "Motor speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mechanical input configuration",
+   "default": "Torque",
+   "values": "Select port configuration Torque (default) | Speed",
+   "group": ""
+  },
+  {
+   "name": "Simulation type",
+   "default": "Continuous",
+   "values": "Select simulation type Continuous (default) | Discrete",
+   "group": ""
+  },
+  {
+   "name": "Sample Time (Ts)",
+   "default": "0.001",
+   "values": "Sample time for discrete integration 0.001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs (P)",
+   "default": "4",
+   "values": "Pole pairs 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator resistance per phase (Rs)",
+   "default": ".2",
+   "values": "Resistance .2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator d-axis inductance (Ldq_)",
+   "default": "3.752e-4",
+   "values": "Inductance 3.752e-4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Permanent flux linkage constant (lambda_pm)",
+   "default": "0.1194",
+   "values": "Flux 0.1194 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Back-emf constant (Ke)",
+   "default": "159.9771",
+   "values": "Back electromotive force 159.9771 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque constant (Kt)",
+   "default": "1.323",
+   "values": "Torque constant 1.323 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Physical inertia, viscous damping, static friction (mechanical)",
+   "default": "[0.002700,4.924e-4,0]",
+   "values": "Inertia, damping, friction [0.002700,4.924e-4,0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial d-axis and q-axis current (idq0)",
+   "default": "0]",
+   "values": "Current [0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial mechanical position (theta_init)",
+   "default": "0",
+   "values": "Angle 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial mechanical speed (omega_init)",
+   "default": "0",
+   "values": "Speed 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

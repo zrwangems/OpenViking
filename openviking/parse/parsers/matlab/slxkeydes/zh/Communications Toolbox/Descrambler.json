@@ -1,0 +1,65 @@
+{
+ "key": "Descrambler",
+ "title": "Descrambler",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Descrambler.md"
+ ],
+ "text": "解扰输入信号，输入 3 路、输出 1 路；按 {Scramble polynomial} 指定定义解扰器中连接关系的多项式 ’1 + x^-1 + x^-2 +；{Calculation base}、{Initial states source} 指定解扰器初始状态的来源、{Initial states} 指定解扰器寄存器的初始状态、{Reset on nonzero input via port} 指定通过输入端口重置解扰器，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数据信号 vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置解扰器 scalar"
+  },
+  {
+   "name": "ISt",
+   "direction": "input",
+   "summary": "初始状态 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出解扰后的数据 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Calculation base",
+   "default": "4",
+   "values": "Calculation base 4 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Scramble polynomial",
+   "default": "x^-4’",
+   "values": "定义解扰器中连接关系的多项式 ’1 + x^-1 + x^-2 + x^-4’ (default) | character vector | integer vector | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states source",
+   "default": "Parameter",
+   "values": "设置解扰器初始状态的来源 Dialog Parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Initial states",
+   "default": "3]",
+   "values": "解扰器寄存器的初始状态 [0 1 2 3] (default) | nonnegative integer vector",
+   "group": ""
+  },
+  {
+   "name": "Reset on nonzero input via port",
+   "default": "off",
+   "values": "通过输入端口重置解扰器 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,135 @@
+{
+ "key": "dsp.simulink.PowerMeter",
+ "title": "Power Meter",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Power_Meter.md",
+  "DSP System Toolbox/Statistics/Power_Meter.md"
+ ],
+ "text": "在 Simulink 中测量电压信号的功率及其功率的 CCDF，输入 2 路、输出 5 路、无直接馈通；按 {Output power units} 指定测量功率值的单位；{Measurement} 指定所需的功率测量 Average、{Reference load (ohms)} 指定参考负载，单位为欧姆、{Compute CCDF} 启用 CCDF 计算、{Window length} 指定窗口长度、{Overlap length} 指定窗口之间的重叠长度、{Allow arbitrary frame length for fixed-size input signals} 允许固定大小输入信号的任意帧长度、{Power range (dB)} 指定功率范围、{Power resolution (dB)} 指定功率分辨率、{CCDF output} 指定 CCDF 输出 Relative、{Specify probability (%) for relative power output} 用于相对功率输出的概率、{Specify relative power (dB) for probability output} 用于概率输出的相对功率、{Reset port} 启用复位端口、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "复位端口 scalar"
+  },
+  {
+   "name": "Avg",
+   "direction": "output",
+   "summary": "平均功率 scalar | vector | matrix"
+  },
+  {
+   "name": "Peak",
+   "direction": "output",
+   "summary": "峰值功率 scalar | vector | matrix"
+  },
+  {
+   "name": "PAPR",
+   "direction": "output",
+   "summary": "峰均功率比 scalar | vector | matrix"
+  },
+  {
+   "name": "RelPwr",
+   "direction": "output",
+   "summary": "相对功率 N -by- M matrix"
+  },
+  {
+   "name": "Prob",
+   "direction": "output",
+   "summary": "概率（百分比） N -by- M matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "power",
+   "values": "所需的功率测量 Average power (default) | Peak power | Peak-to-average power ratio | All",
+   "group": ""
+  },
+  {
+   "name": "Reference load (ohms)",
+   "default": "1",
+   "values": "参考负载，单位为欧姆 1 (default) | positive scalar in ohms",
+   "group": ""
+  },
+  {
+   "name": "Output power units",
+   "default": "dBm",
+   "values": "测量功率值的单位 dBm (default) | dBW | Watts",
+   "group": ""
+  },
+  {
+   "name": "Compute CCDF",
+   "default": "off",
+   "values": "启用 CCDF 计算 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "256",
+   "values": "窗口长度 256 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "255",
+   "values": "窗口之间的重叠长度 255 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "允许固定大小输入信号的任意帧长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Power range (dB)",
+   "default": "50",
+   "values": "功率范围 (dB) 50 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Power resolution (dB)",
+   "default": "0.1",
+   "values": "功率分辨率 (dB) 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "CCDF output",
+   "default": "power)",
+   "values": "CCDF 输出 Relative power (dB above average power) (default) | Probability (%) | Relative power and probability (whole CCDF curve)",
+   "group": ""
+  },
+  {
+   "name": "Specify probability (%) for relative power output",
+   "default": "]",
+   "values": "指定用于相对功率输出的概率 [ 10; 1; 0.1; 0.01; 0.001; 0.0001 ] (default) | column vector",
+   "group": ""
+  },
+  {
+   "name": "Specify relative power (dB) for probability output",
+   "default": "]",
+   "values": "指定用于概率输出的相对功率 [ 0; 3; 6; 9; 12 ] (default) | column vector",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "off",
+   "values": "启用复位端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

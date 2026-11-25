@@ -1,0 +1,13 @@
+{
+ "key": "Brick Solid",
+ "title": "Brick Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Brick_Solid.md"
+ ],
+ "text": "Solid brick element with geometry, inertia, and color.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

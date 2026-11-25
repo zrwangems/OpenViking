@@ -1,0 +1,13 @@
+{
+ "key": "Rope Drum",
+ "title": "Rope Drum",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Rope_Drum.md"
+ ],
+ "text": "Power transmission system with tightly wound rope around cylindrical drum.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

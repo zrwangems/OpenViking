@@ -1,0 +1,60 @@
+{
+ "key": "Audio Capture Interface",
+ "title": "Audio Capture Interface",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Peripherals/Audio_Capture_Interface.md"
+ ],
+ "text": "Simulate capture of sample from audio stream on hardware, 1 input, 2 outputs, {Input} sets Source of simulated audio data From; {Value} sets the audio data to be output int16, {Object name} sets the timeseries object, {Sample time} and {Show event port} sets the option to enable task event ports. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Data frame from captured audio M -element vector | M -by- C matrix"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "Task event signal scalar"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "SoC message data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "dialog",
+   "values": "Source of simulated audio data From dialog (default) | From input port | From timeseries object",
+   "group": ""
+  },
+  {
+   "name": "Value",
+   "default": "8])",
+   "values": "Audio data to be output int16([1 2 3 4 5 6 7 8]) (default) | C N -length vector",
+   "group": ""
+  },
+  {
+   "name": "Object name",
+   "default": "]",
+   "values": "Timeseries object [ ] (default) | MATLAB workspace variable",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time in seconds -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show event port",
+   "default": "off",
+   "values": "Option to enable task event ports off (default) | on",
+   "group": ""
+  }
+ ]
+}

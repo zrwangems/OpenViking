@@ -1,0 +1,60 @@
+{
+ "key": "Binary Symmetric Channel",
+ "title": "Binary Symmetric Channel",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Channels/Binary_Symmetric_Channel.md"
+ ],
+ "text": "引入二进制错误，输入 1 路、输出 2 路；按 {Output data type} 指定输出数据类型；{Error probability} 指定错误发生概率、{Output error vector} 输出错误位置、{Initial seed} 指定初始种子、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 column vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "二进制输出信号 column vector | matrix"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "错误位置 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Error probability",
+   "default": "0.05",
+   "values": "错误发生概率 0.05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output error vector",
+   "default": "on",
+   "values": "输出错误位置的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | boolean",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "71",
+   "values": "初始种子 71 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

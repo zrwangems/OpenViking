@@ -1,0 +1,43 @@
+{
+ "key": "S-Function Examples",
+ "title": "S-Function Examples",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/S_Function_Examples.md"
+ ],
+ "text": "在模型中包含 S-Function，输入 1 路、输出 1 路；按 {S-Function 参数} 指定其他 S-Function 参数。 MATLAB 表达式；{S-Function 名称} 指定 S-Function 的名称、{S-Function 模块} 用于代码生成的其他文件，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "S-Function 模块的信号输入 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "S-Function 模块的信号输出 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "S-Function 名称",
+   "default": "system",
+   "values": "S-Function 的名称 system (默认) | S-Function 名称",
+   "group": ""
+  },
+  {
+   "name": "S-Function 参数",
+   "default": "",
+   "values": "其他 S-Function 参数。 MATLAB 表达式 | 以逗号分隔的变量",
+   "group": ""
+  },
+  {
+   "name": "S-Function 模块",
+   "default": "’’",
+   "values": "用于代码生成的其他文件 ’’ (默认) | 文件名",
+   "group": ""
+  }
+ ]
+}

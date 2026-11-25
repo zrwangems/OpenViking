@@ -1,0 +1,59 @@
+{
+ "key": "Sound Classifier",
+ "title": "Sound Classifier",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/Sound_Classifier.md"
+ ],
+ "text": "对音频信号中的声音进行分类，输入 1 路、输出 3 路、无直接馈通；{Sample rate of input signal (Hz)} 指定输入信号的采样率{Classification} 以输出声音分类、{Predictions} 输出所有分数及关联标签 也按实例取值；{Overlap percentage (%)} 指定连续 mel 频谱图之间的重叠百分比，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "audioIn",
+   "direction": "input",
+   "summary": "声音数据 column vector"
+  },
+  {
+   "name": "sound",
+   "direction": "output",
+   "summary": "预测的声音标签 enumerated scalar"
+  },
+  {
+   "name": "scores",
+   "direction": "output",
+   "summary": "预测的激活值或分数 vector"
+  },
+  {
+   "name": "labels",
+   "direction": "output",
+   "summary": "预测分数的类别标签 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "16e3",
+   "values": "输入信号的采样率（Hz） 16e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "50",
+   "values": "连续 mel 频谱图之间的重叠百分比 50 (default) | [0 100)",
+   "group": ""
+  },
+  {
+   "name": "Classification",
+   "default": "on",
+   "values": "选择以输出声音分类 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Predictions",
+   "default": "off",
+   "values": "输出所有分数及关联标签 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "key": "Pulse Voltage Source",
+ "title": "Pulse Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Pulse_Voltage_Source.md",
+  "Simscape/Electrical/Additional Components/SPICE Sources/Pulse_Voltage_Source.md"
+ ],
+ "text": "Periodic square wave voltage source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

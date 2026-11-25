@@ -1,0 +1,47 @@
+{
+ "key": "visionhdl.GrayscaleDilation",
+ "title": "Grayscale Dilation",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Morphological Operations/Grayscale_Dilation.md"
+ ],
+ "text": "Morphological dilation of grayscale pixel data, 2 inputs, 2 outputs; {Neighborhood} sets the pixel neighborhood ones and {Line buffer size} sets the size of line memory buffer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Output pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Neighborhood",
+   "default": "ones(3,3)",
+   "values": "Pixel neighborhood ones(3,3) (default) | vector or matrix of 1 s and 0 s",
+   "group": ""
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "Size of line memory buffer 2048 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

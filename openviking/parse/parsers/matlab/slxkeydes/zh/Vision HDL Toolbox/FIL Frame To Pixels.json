@@ -1,0 +1,74 @@
+{
+ "key": "FIL Frame To Pixels",
+ "title": "FIL Frame To Pixels",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/I_O Interfaces/FIL_Frame_To_Pixels.md"
+ ],
+ "text": "将基于帧的视频转换为像素流以用于 FPGA 在环，输入 1 路、输出 6 路；按 {Video format} 指定视频帧中有效区域和非有效区域的尺寸；{Number of components} 用于表示每个像素的值的数量、{Number of pixels} 输出矩阵每列中的像素数、{Output vector format} 用于与 FPGA 子系统通信的向量大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "frame",
+   "direction": "input",
+   "summary": "完整图像帧 matrix"
+  },
+  {
+   "name": "data1,...,dataN",
+   "direction": "output",
+   "summary": "图像像素 vector | matrix"
+  },
+  {
+   "name": "hStartOut",
+   "direction": "output",
+   "summary": "帧的水平行中的第一个像素 vector"
+  },
+  {
+   "name": "hEndOut",
+   "direction": "output",
+   "summary": "帧的水平行中的最后一个像素 vector"
+  },
+  {
+   "name": "vStartOut",
+   "direction": "output",
+   "summary": "帧的第一（顶部）行中的第一个像素 vector"
+  },
+  {
+   "name": "vEndOut",
+   "direction": "output",
+   "summary": "帧的最后（底部）行中的最后一个像素 vector"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "有效像素指示符 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of components",
+   "default": "1",
+   "values": "用于表示每个像素的值的数量 1 (default) | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Number of pixels",
+   "default": "1",
+   "values": "输出矩阵每列中的像素数 1 (default) | 2 | 4 | 8",
+   "group": ""
+  },
+  {
+   "name": "Output vector format",
+   "default": "Frame",
+   "values": "用于与 FPGA 子系统通信的向量大小 Frame (default) | Line | Pixel",
+   "group": ""
+  },
+  {
+   "name": "Video format",
+   "default": "1080p",
+   "values": "视频帧中有效区域和非有效区域的尺寸 1080p (default) | 240p | 480p | 480pH | 576p | 720p | 768p | 1024p | 1200p | 2KCinema | 4KUHDTV | 8KUHDTV | Custom",
+   "group": ""
+  }
+ ]
+}

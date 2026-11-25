@@ -1,0 +1,13 @@
+{
+ "key": "Valve Actuators",
+ "title": "Valve Actuators",
+ "toolbox": "Simscape",
+ "kind": "source_block",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Valve_Actuators.md"
+ ],
+ "text": "Actuator that maintains equilibrium between valve and pilot pressures in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

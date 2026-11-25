@@ -1,0 +1,13 @@
+{
+ "key": "Nonlinear Rotational Spring",
+ "title": "Nonlinear Rotational Spring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Nonlinear_Rotational_Spring.md"
+ ],
+ "text": "线性旋转阻尼器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,56 @@
+{
+ "key": "CAN FD Log",
+ "title": "CAN FD Log",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN FD Communication/CAN_FD_Log.md"
+ ],
+ "text": "记录收到的 CAN FD 报文，输入 1 路；{文件名} 指定日志文件位置和名称、{变量名称}、{要记录的最大报文数} 指定限制报文数量、{记录来自以下位置的报文} 指定报文来源 CAN FD、{设备}、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CAN Msg",
+   "direction": "input",
+   "summary": "要记录的 CAN FD 报文 CAN_FD_MESSAGE_BUS"
+  }
+ ],
+ "params": [
+  {
+   "name": "文件名",
+   "default": "untitled.mat",
+   "values": "日志文件位置和名称 untitled.mat (默认) | 文件名",
+   "group": ""
+  },
+  {
+   "name": "变量名称",
+   "default": "ans",
+   "values": "日志文件中 CAN FD 报文的变量名称 ans (默认) | 变量名称",
+   "group": ""
+  },
+  {
+   "name": "要记录的最大报文数",
+   "default": "10000",
+   "values": "限制报文数量 10000 (默认) | 数值",
+   "group": ""
+  },
+  {
+   "name": "记录来自以下位置的报文",
+   "default": "Bus",
+   "values": "报文来源 CAN FD Bus (默认) | Input port",
+   "group": ""
+  },
+  {
+   "name": "设备",
+   "default": "",
+   "values": "CAN 设备和通道 列表选项",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.01",
+   "values": "仿真中的模块采样时间 0.01 (默认) | 数值",
+   "group": ""
+  }
+ ]
+}

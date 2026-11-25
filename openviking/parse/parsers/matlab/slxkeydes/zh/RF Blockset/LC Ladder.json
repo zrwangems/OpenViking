@@ -1,0 +1,38 @@
+{
+ "key": "LC Ladder",
+ "title": "LC Ladder",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/LC_Ladder.md"
+ ],
+ "text": "对 LC 梯形网络建模；{Ladder topology} 指定梯形拓扑类型 LC Lowpass、{Inductance} 指定电感值、{Capacitance} 指定电容值 1.1327e-9、{Ground and hide negative terminals} 指定在内部接地并隐藏负端子，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Ladder topology",
+   "default": "Tee",
+   "values": "梯形拓扑类型 LC Lowpass Tee (default)",
+   "group": ""
+  },
+  {
+   "name": "Inductance",
+   "default": "H",
+   "values": "电感值 [1.3324e-5 1.3324e-5] H (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Capacitance",
+   "default": "F",
+   "values": "电容值 1.1327e-9 F (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "在内部接地并隐藏负端子 on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "key": "Start-Stop Generator",
+ "title": "Start-Stop Generator",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Signal Generation/Start_Stop_Generator.md"
+ ],
+ "text": "生成供信号生成、估计和自动整定模块使用的 start-stop 信号，输入 3 路、输出 1 路；按 {Settling time interval} 指定调节时间区间；{Sample time (Ts)} 指定采样时间、{Data Type} 指定浮点精度 double、{Source of start time points} 指定启动时间点来源 External time、{Duration (sec)} 指定启动-停止信号持续时间、{Number of samples after reaching steady-state to generate start-stop signal} 指定开始信号生成的延迟、{Settling time upper bounds} 调节时间上界、{Settling time lower bounds} 调节时间下界，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "enable",
+   "direction": "input",
+   "summary": "启用和禁用 start-stop 信号生成 scalar"
+  },
+  {
+   "name": "start times",
+   "direction": "input",
+   "summary": "开始时间 scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "稳态值 scalar | vector"
+  },
+  {
+   "name": "start/stop",
+   "direction": "output",
+   "summary": "start-stop 信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "采样时间 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "浮点精度 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Source of start time points",
+   "default": "vector",
+   "values": "启动时间点来源 External time vector (default) | Time after reaching steady-state",
+   "group": ""
+  },
+  {
+   "name": "Duration (sec)",
+   "default": "10",
+   "values": "启动-停止信号持续时间 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of samples after reaching steady-state to generate start-stop signal",
+   "default": "2",
+   "values": "开始信号生成的延迟 2 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Settling time upper bounds",
+   "default": "3.1]",
+   "values": "调节时间上界 [1.1 2.1 3.1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Settling time lower bounds",
+   "default": "2.9]",
+   "values": "调节时间下界 [0.9 1.9 2.9] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Settling time interval",
+   "default": "5",
+   "values": "调节时间区间 5 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

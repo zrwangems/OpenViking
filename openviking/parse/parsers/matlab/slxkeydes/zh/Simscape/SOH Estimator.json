@@ -1,0 +1,65 @@
+{
+ "key": "SOH Estimator",
+ "title": "SOH Estimator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/SOH_Estimator.md"
+ ],
+ "text": "健康状态估计器，输入 3 路、输出 1 路；按 {Algorithm data type} 指定用于选择模块算法数据类型的选项 Inherit:；{Vector of state-of-charge values, SOC (-)} 指定 SOC 断点、{Vector of temperatures, T} 指定温度断点、{Terminal resistance when battery cell is new, R0new(SOC,T), (ohm)} 指定电池单体全新时的端子电阻、{Terminal resistance at end of life, R0eol(SOC,T), (ohm)} 指定寿命终止时的端子电阻，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SOC",
+   "direction": "input",
+   "summary": "电池的荷电状态，无单位 scalar | vector"
+  },
+  {
+   "name": "Temperature",
+   "direction": "input",
+   "summary": "电池单元温度 scalar | vector"
+  },
+  {
+   "name": "R0",
+   "direction": "input",
+   "summary": "端子电阻，欧姆 scalar | vector"
+  },
+  {
+   "name": "SOH",
+   "direction": "output",
+   "summary": "电池的健康状态 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vector of state-of-charge values, SOC (-)",
+   "default": "1]",
+   "values": "SOC 断点 [0,.1,.25,.5,.75,.9, 1] (default) | vector of nonnegative scalars between 0 and 1",
+   "group": ""
+  },
+  {
+   "name": "Vector of temperatures, T",
+   "default": "313]",
+   "values": "温度断点 [278, 293, 313] (default) | vector of positive scalars",
+   "group": ""
+  },
+  {
+   "name": "Terminal resistance when battery cell is new, R0new(SOC,T), (ohm)",
+   "default": "[.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089]",
+   "values": "电池单体全新时的端子电阻 [.0117,.0085,.009;.011,.0085,.009;.0114,.0087,.0092;.0107,.0082,.0088;.0107,.0083,.0091;.0113,.0085,.0089;.0116,.0085,.0089] (default) | matrix of nonnegative scalars",
+   "group": ""
+  },
+  {
+   "name": "Terminal resistance at end of life, R0eol(SOC,T), (ohm)",
+   "default": "[.0234,.017,.018;.022,.017,.018;.0228,.0174,.0184;.0214,.0164,.0176;.0214,.0166,.0182;.0226,.017,.0178;.0232,.017,.0178]",
+   "values": "寿命终止时的端子电阻 [.0234,.017,.018;.022,.017,.018;.0228,.0174,.0184;.0214,.0164,.0176;.0214,.0166,.0182;.0226,.017,.0178;.0232,.017,.0178] (default) | matrix of nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

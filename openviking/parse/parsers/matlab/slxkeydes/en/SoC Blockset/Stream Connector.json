@@ -1,0 +1,54 @@
+{
+ "key": "Stream Connector",
+ "title": "Stream Connector",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/Stream_Connector.md"
+ ],
+ "text": "Connect two IPs with data streaming interfaces, 4 inputs, 4 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "Input stream data scalar"
+  },
+  {
+   "name": "wrValid",
+   "direction": "input",
+   "summary": "Indication of valid input stream data boolean scalar"
+  },
+  {
+   "name": "wrLast",
+   "direction": "input",
+   "summary": "Indication of last beat in burst boolean scalar"
+  },
+  {
+   "name": "rdReady",
+   "direction": "input",
+   "summary": "Ready signal from downstream interface boolean scalar"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "Output stream data scalar"
+  },
+  {
+   "name": "rdValid",
+   "direction": "output",
+   "summary": "Indication of valid output stream data boolean scalar"
+  },
+  {
+   "name": "rdLast",
+   "direction": "output",
+   "summary": "Indicates last beat in burst boolean scalar"
+  },
+  {
+   "name": "wrReady",
+   "direction": "output",
+   "summary": "Ready signal to upstream interface boolean scalar"
+  }
+ ],
+ "params": []
+}

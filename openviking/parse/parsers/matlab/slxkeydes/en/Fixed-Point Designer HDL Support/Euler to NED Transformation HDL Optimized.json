@@ -1,0 +1,56 @@
+{
+ "key": "Euler to NED Transformation HDL Optimized",
+ "title": "Euler to NED Transformation HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Coordinate Transformations/Euler_to_NED_Transformation_HDL_Optimized.md"
+ ],
+ "text": "Computes Euler to North-East-Down transformation using pipelined or burst architecture and generates optimized HDL code, 4 inputs, 3 outputs; {Architecture}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "U In",
+   "direction": "input",
+   "summary": "Input array 3-by-1 vector"
+  },
+  {
+   "name": "Angle In",
+   "direction": "input",
+   "summary": "Angles to rotate by 3-by-1 vector"
+  },
+  {
+   "name": "Valid In",
+   "direction": "input",
+   "summary": "Whether input is valid Boolean scalar"
+  },
+  {
+   "name": "Restart",
+   "direction": "input",
+   "summary": "Whether to clear internal states Boolean scalar"
+  },
+  {
+   "name": "U Out",
+   "direction": "output",
+   "summary": "Rotated array 3-by-1 vector"
+  },
+  {
+   "name": "Valid Out",
+   "direction": "output",
+   "summary": "Whether output data is valid boolean scalar"
+  },
+  {
+   "name": "Ready",
+   "direction": "output",
+   "summary": "Whether block is ready for input Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Architecture",
+   "default": "Pipelined",
+   "values": "Architecture type Pipelined (default) | Burst",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "key": "Stateful Predict",
+ "title": "Stateful Predict",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Neural Networks/Stateful_Predict.md"
+ ],
+ "text": "使用经过训练的循环神经网络预测响应，输入 1 路、输出 1 路；按 {采样时间} 指定输出采样周期和可选时间偏移量；{网络}、{文件路径} 指定包含经过训练的循环神经网络的 MAT、{MATLAB 函数}、{输入数据格式}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "input",
+   "direction": "input",
+   "summary": "序列或时间序列数据 数值数组"
+  },
+  {
+   "name": "output",
+   "direction": "output",
+   "summary": "预测的分数或响应 数值数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "网络",
+   "default": "文件创建网络",
+   "values": "经过训练的循环神经网络的源 从 MAT 文件创建网络 (默认) | 从 MATLAB 函数创建网络",
+   "group": ""
+  },
+  {
+   "name": "文件路径",
+   "default": "untitled.mat",
+   "values": "包含经过训练的循环神经网络的 MAT 文件 untitled.mat (默认) | MAT 文件名",
+   "group": ""
+  },
+  {
+   "name": "MATLAB 函数",
+   "default": "untitled",
+   "values": "MATLAB 函数名称 untitled (默认) | MATLAB 函数名称",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "输出采样周期和可选时间偏移量 -1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "输入数据格式",
+   "default": "",
+   "values": "dlnetwork 的输入数据格式 字符向量 | 字符串",
+   "group": ""
+  }
+ ]
+}

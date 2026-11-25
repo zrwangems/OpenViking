@@ -1,0 +1,202 @@
+{
+ "key": "driving.scenario.internal.ScenarioReader",
+ "title": "Scenario Reader",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Scenario_Reader.md"
+ ],
+ "text": "将驾驶场景读入模型，输入 1 路、输出 4 路；按 {Driving Scenario Designer file name} 指定场景文件名；{Source of driving scenario} 指定驾驶场景的来源、{MATLAB or model workspace variable name} 指定场景变量名、{Coordinate system of actors output} 指定参与者输出的坐标系 Vehicle、{Source of ego vehicle} 指定自车来源 Scenario、{Ego vehicle ActorID} 指定自车的 Actor ID、{Output ego vehicle pose} 输出自车位姿、{Output ego vehicle state} 输出自车状态、{Ego vehicle follows ground} 指定使自车定向以跟随路面、{Sample time (s)} 指定仿真的采样时间、{Lane boundaries to output} 指定要输出的车道边界、{Distances from ego vehicle for computing boundaries (m)} 指定计算车道边界时距自车的距离 linspace、{Location of boundaries on lane markings} 指定车道边界位置 Center of lane、{Source of actors bus name} 指定目标位姿总线的名称源、{Actors bus name} 指定目标位姿总线名称 valid bus name、{Source of maximum number of actors} 指定最大目标数量的来源、{Maximum number of actors} 指定最大目标数量、{Source of lane boundaries bus name} 指定车道边界总线的名称源、{Lane boundaries bus name} 指定车道边界总线名称 valid bus name、{Source of maximum number of lane boundaries} 指定最大车道边界数量的来源、{Maximum number of lane boundaries} 指定最大车道边界数量、{Source of ego vehicle pose bus name} 指定自车位姿总线的名称源、{Ego vehicle pose bus name} 指定自车姿态总线名称 valid bus name、{Source of ego vehicle state bus name} 指定自车状态总线名称的来源、{Ego vehicle state bus name} 指定自车状态总线名称 valid bus name、{Show coordinate labels} 显示输入和输出的坐标系、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ego Vehicle",
+   "direction": "input",
+   "summary": "自车位姿 Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Actors",
+   "direction": "output",
+   "summary": "场景参与者位姿 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Lane Boundaries",
+   "direction": "output",
+   "summary": "场景车道边界 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Ego Vehicle Pose",
+   "direction": "output",
+   "summary": "自车位姿 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Ego Vehicle State",
+   "direction": "output",
+   "summary": "自车状态 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of driving scenario",
+   "default": "file",
+   "values": "驾驶场景的来源 From file (default) | From workspace",
+   "group": ""
+  },
+  {
+   "name": "Driving Scenario Designer file name",
+   "default": "EgoVehicleGoesStraight.mat",
+   "values": "场景文件名 EgoVehicleGoesStraight.mat (default) | scenario file on MATLAB search path | path to scenario file",
+   "group": ""
+  },
+  {
+   "name": "MATLAB or model workspace variable name",
+   "default": "scenario",
+   "values": "场景变量名 scenario (default) | drivingScenario object variable name",
+   "group": ""
+  },
+  {
+   "name": "Coordinate system of actors output",
+   "default": "coordinates",
+   "values": "参与者输出的坐标系 Vehicle coordinates (default) | World coordinates",
+   "group": ""
+  },
+  {
+   "name": "Source of ego vehicle",
+   "default": "Scenario",
+   "values": "自车来源 Scenario (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Ego vehicle ActorID",
+   "default": "1",
+   "values": "自车的 Actor ID 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output ego vehicle pose",
+   "default": "off",
+   "values": "输出自车位姿 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output ego vehicle state",
+   "default": "off",
+   "values": "输出自车状态 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Ego vehicle follows ground",
+   "default": "off",
+   "values": "使自车定向以跟随路面 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "0.1",
+   "values": "仿真的采样时间 0.1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Lane boundaries to output",
+   "default": "None",
+   "values": "要输出的车道边界 None (default) | Ego vehicle lane boundaries | All lane boundaries",
+   "group": ""
+  },
+  {
+   "name": "Distances from ego vehicle for computing boundaries (m)",
+   "default": "linspace(-150,150,101)",
+   "values": "计算车道边界时距自车的距离 linspace(-150,150,101) (default) | N -element real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Location of boundaries on lane markings",
+   "default": "markings",
+   "values": "车道边界位置 Center of lane markings (default) | Inner edge of lane markings",
+   "group": ""
+  },
+  {
+   "name": "Source of actors bus name",
+   "default": "Auto",
+   "values": "目标位姿总线的名称源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Actors bus name",
+   "default": "",
+   "values": "目标位姿总线名称 valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Source of maximum number of actors",
+   "default": "Scenario",
+   "values": "最大目标数量的来源 Scenario (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of actors",
+   "default": "100",
+   "values": "最大目标数量 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source of lane boundaries bus name",
+   "default": "Auto",
+   "values": "车道边界总线的名称源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Lane boundaries bus name",
+   "default": "",
+   "values": "车道边界总线名称 valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Source of maximum number of lane boundaries",
+   "default": "Scenario",
+   "values": "最大车道边界数量的来源 Scenario (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of lane boundaries",
+   "default": "10",
+   "values": "最大车道边界数量 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source of ego vehicle pose bus name",
+   "default": "Auto",
+   "values": "自车位姿总线的名称源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Ego vehicle pose bus name",
+   "default": "",
+   "values": "自车姿态总线名称 valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Source of ego vehicle state bus name",
+   "default": "Auto",
+   "values": "自车状态总线名称的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Ego vehicle state bus name",
+   "default": "",
+   "values": "自车状态总线名称 valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Show coordinate labels",
+   "default": "on",
+   "values": "显示输入和输出的坐标系 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

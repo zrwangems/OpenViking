@@ -1,0 +1,13 @@
+{
+ "key": "SPST Switch (Three-Phase)",
+ "title": "SPST Switch (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/SPST_Switch_Three_Phase.md"
+ ],
+ "text": "三相单极单掷开关。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

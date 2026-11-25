@@ -1,0 +1,236 @@
+{
+ "key": "Simulation 3D Robot",
+ "title": "Simulation 3D Robot",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Simulation 3D/Simulation_3D_Robot.md"
+ ],
+ "text": "Implement robot in 3D environment, 9 inputs, 4 outputs, {Rigid body tree} sets Robot rigid body tree model; {Input type} sets the robot model source, {Actor name} sets the name of actor to represent robot in Unreal Engine scene, {Use existing Simulink 3D actor specified in the actor name prompt} uses an existing actor in the Unreal Engine scene to represent, {Sample time}, {Initial base translation} sets the initial translation of robot base, {Initial base rotation} sets the initial rotation of robot base, {Initial joint configuration}, {End effector} sets the end-effector body name, {End effector to target actor offset as an input signal}, {End effector to target actor translation}, {End effector to target actor rotation}, {Enable region-based target actor grasp approach} sets the grasp target actors automatically when target actors are within specified bounds of end, {Enable target actor grasp region as an input signal} sets the regions for grasping target actor at input, {End effector to target actor grasp region translation difference} sets the translation difference of grasp region, {End effector to target actor grasp region rotation difference} sets the rotation difference of grasp region, {Enable visual geometry visualization in 3D scene} adds rigid body tree visual geometry in 3D visualization, {Enable collision geometry visualization in 3D scene} sets the visualize rigid body tree collision geometry in 3D visualization, {Collision geometry color} sets the color of the rigid body tree collision geometry, {Collision geometry transparency} sets the transparency of the rigid body tree collision, {Enable config input signal} sets the desired robot configurations at input port, {Enable grasp settings input signals} sets the off, {Enable translation and rotation input signals} sets the translation and rotation of robot base at input, {Enable ground truth config output signal} sets the output ground truth configuration, {Enable target grasped status output signal} sets the output grasp status and {Enable ground truth translation and rotation output signal} sets the output ground truth pose of robot base. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Robot input joint configuration vector"
+  },
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Robot base translation vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Robot base rotation vector"
+  },
+  {
+   "name": "TargetActor",
+   "direction": "input",
+   "summary": "Name of target actor to grasp fixed-sized string scalar | variable-sized uint8 array"
+  },
+  {
+   "name": "ActivateTargetGrasp",
+   "direction": "input",
+   "summary": "Grasp target actor boolean"
+  },
+  {
+   "name": "GraspRegionTranslation",
+   "direction": "input",
+   "summary": "Translational distance needed to automatically grasp target actor vector"
+  },
+  {
+   "name": "GraspRegionRotation",
+   "direction": "input",
+   "summary": "Rotational distance needed to automatically grasp target actor vector"
+  },
+  {
+   "name": "TargetEETranslation",
+   "direction": "input",
+   "summary": "Translational difference between end effector and target actor vector"
+  },
+  {
+   "name": "TargetEERotation",
+   "direction": "input",
+   "summary": "Rotational difference between end effector and target actor vector"
+  },
+  {
+   "name": "GroundTruthConfiguration",
+   "direction": "output",
+   "summary": "Ground truth for robot configuration vector"
+  },
+  {
+   "name": "IsTargetGrasped",
+   "direction": "output",
+   "summary": "Target actor grasped status boolean"
+  },
+  {
+   "name": "GroundTruthTranslation",
+   "direction": "output",
+   "summary": "Robot input joint configuration vector"
+  },
+  {
+   "name": "GroundTruthRotation",
+   "direction": "output",
+   "summary": "Robot input joint configuration vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input type",
+   "default": "Object",
+   "values": "Robot model source RigidBodyTree Object (default) | Robot Library",
+   "group": "Parameters"
+  },
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "Robot rigid body tree model twoJointRigidBodyTree (default) | rigidBodyTree object | Robot name in Robot Library",
+   "group": "Parameters"
+  },
+  {
+   "name": "Actor name",
+   "default": "SimulinkRobot1",
+   "values": "Name of actor to represent robot in Unreal Engine scene SimulinkRobot1 (default) | string scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Use existing Simulink 3D actor specified in the actor name prompt",
+   "default": "off",
+   "values": "Use an existing actor in the Unreal Engine scene to represent the robot off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Initial base translation",
+   "default": "0]",
+   "values": "Initial translation of robot base [0 0 0] (default)",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial base rotation",
+   "default": "0]",
+   "values": "Initial rotation of robot base [0 0 0] (default)",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial joint configuration",
+   "default": "0]",
+   "values": "Initial joint configuration [0 0] (default) | N -element row vector",
+   "group": "Initial Values"
+  },
+  {
+   "name": "End effector",
+   "default": "tool",
+   "values": "End-effector body name tool (default)",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor offset as an input signal",
+   "default": "",
+   "values": "off (default) | on",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor translation",
+   "default": "0]",
+   "values": "[0 0 0] (default) |",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor rotation",
+   "default": "0]",
+   "values": "[0 0 0] (default) |",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "Enable region-based target actor grasp approach",
+   "default": "off",
+   "values": "Grasp target actors automatically when target actors are within specified bounds of end effector off (default) | on",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "Enable target actor grasp region as an input signal",
+   "default": "off",
+   "values": "Specify regions for grasping target actor at input ports off (default) | on",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor grasp region translation difference",
+   "default": "0.2]",
+   "values": "Translation difference of grasp region [0.2 0.2 0.2] (default)",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor grasp region rotation difference",
+   "default": "0]",
+   "values": "Rotation difference of grasp region [0 0 0] (default)",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "Enable visual geometry visualization in 3D scene",
+   "default": "on",
+   "values": "Add rigid body tree visual geometry in 3D visualization environment on (default) | off",
+   "group": "rigidBodyTree Geometry Settings"
+  },
+  {
+   "name": "Enable collision geometry visualization in 3D scene",
+   "default": "off",
+   "values": "Visualize rigid body tree collision geometry in 3D visualization environment off (default) | on",
+   "group": "rigidBodyTree Geometry Settings"
+  },
+  {
+   "name": "Collision geometry color",
+   "default": "0]",
+   "values": "Color of the rigid body tree collision geometry [0 1 0] (default) | vector",
+   "group": "rigidBodyTree Geometry Settings"
+  },
+  {
+   "name": "Collision geometry transparency",
+   "default": "0.1",
+   "values": "Transparency of the rigid body tree collision geometry 0.1 (default) | scalar",
+   "group": "rigidBodyTree Geometry Settings"
+  },
+  {
+   "name": "Enable config input signal",
+   "default": "on",
+   "values": "Specify desired robot configurations at input port on (default) | off",
+   "group": "Inputs"
+  },
+  {
+   "name": "Enable grasp settings input signals",
+   "default": "",
+   "values": "off (default) | on",
+   "group": "Inputs"
+  },
+  {
+   "name": "Enable translation and rotation input signals",
+   "default": "off",
+   "values": "Specify translation and rotation of robot base at input ports off (default) | on",
+   "group": "Inputs"
+  },
+  {
+   "name": "Enable ground truth config output signal",
+   "default": "off",
+   "values": "Output ground truth configuration off (default) | on",
+   "group": "Outputs"
+  },
+  {
+   "name": "Enable target grasped status output signal",
+   "default": "off",
+   "values": "Output grasp status off (default) | on",
+   "group": "Outputs"
+  },
+  {
+   "name": "Enable ground truth translation and rotation output signal",
+   "default": "off",
+   "values": "Output ground truth pose of robot base off (default) | on",
+   "group": "Outputs"
+  }
+ ]
+}

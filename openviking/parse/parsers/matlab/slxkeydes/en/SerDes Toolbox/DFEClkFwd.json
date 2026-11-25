@@ -1,0 +1,97 @@
+{
+ "key": "DFEClkFwd",
+ "title": "DFEClkFwd",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/DFEClkFwd.md"
+ ],
+ "text": "DFE with Clock Forwarding in the receiver AMI model, 1 input, 1 output, {Mode} sets DFE operating mode; {Initial tap weights (V)} sets the initial DFE tap weights, {Adaptive gain} Controls DFE tap weight update, {Adaptive step size (V)} sets the dFE adaptive step, {Minimum DFE tap value (V)} sets the minimum value of adapted taps, {Maximum DFE tap value (V)} sets the maximum value of adapted taps, {2x tap weights} sets the multiply DFE tap weights by a factor, {Phase offset (symbol time)} sets the manual clock phase offset, {Reference offset (ppm)} sets the reference clock offset impairment, {Early/late count threshold} sets the early or late CDR count threshold to trigger phase, {Step (symbol time)} sets the clock phase resolution and {Sensitivity (V)} sets the sampling latch metastability voltage. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "Input baseband signal scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "Estimated channel output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Fixed",
+   "values": "DFE operating mode Fixed (default) | Off | Adapt",
+   "group": "DFE"
+  },
+  {
+   "name": "Initial tap weights (V)",
+   "default": "0]",
+   "values": "Initial DFE tap weights [0 0 0 0] (default) | row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "Adaptive gain",
+   "default": "9.6e-5",
+   "values": "Controls DFE tap weight update rate 9.6e-5 (default) | positive real scalar",
+   "group": "DFE"
+  },
+  {
+   "name": "Adaptive step size (V)",
+   "default": "1e-06",
+   "values": "DFE adaptive step resolution 1e-06 (default) | nonnegative real scalar | nonnegative real-valued row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "Minimum DFE tap value (V)",
+   "default": "-1",
+   "values": "Minimum value of adapted taps -1 (default) | real scalar | real-valued row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "Maximum DFE tap value (V)",
+   "default": "1",
+   "values": "Maximum value of adapted taps 1 (default) | nonnegative real scalar | nonnegative real-valued row vector",
+   "group": "DFE"
+  },
+  {
+   "name": "2x tap weights",
+   "default": "on",
+   "values": "Multiply DFE tap weights by a factor of two on (default) | off",
+   "group": "DFE"
+  },
+  {
+   "name": "Phase offset (symbol time)",
+   "default": "0",
+   "values": "Manual clock phase offset 0 (default) | real scalar in the range [−0.5, 0.5]",
+   "group": "CDR"
+  },
+  {
+   "name": "Reference offset (ppm)",
+   "default": "0",
+   "values": "Reference clock offset impairment 0 (default) | real scalar in the range [−300, 300]",
+   "group": "CDR"
+  },
+  {
+   "name": "Early/late count threshold",
+   "default": "5",
+   "values": "Early or late CDR count threshold to trigger phase update 5 (default) | positive real integer ≥5",
+   "group": "CDR"
+  },
+  {
+   "name": "Step (symbol time)",
+   "default": "0.005",
+   "values": "Clock phase resolution 0.005 (default) | real scalar",
+   "group": "CDR"
+  },
+  {
+   "name": "Sensitivity (V)",
+   "default": "0",
+   "values": "Sampling latch metastability voltage 0 (default) | real scalar",
+   "group": "CDR"
+  }
+ ]
+}

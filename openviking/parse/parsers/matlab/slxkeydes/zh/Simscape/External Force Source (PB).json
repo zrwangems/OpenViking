@@ -1,0 +1,13 @@
+{
+ "key": "External Force Source (PB)",
+ "title": "External Force Source (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Sources/External_Force_Source_PB.md"
+ ],
+ "text": "产生与输入信号成正比的力的理想机械能源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

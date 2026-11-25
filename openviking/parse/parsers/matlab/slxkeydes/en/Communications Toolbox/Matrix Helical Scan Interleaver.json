@@ -1,0 +1,13 @@
+{
+ "key": "Matrix Helical Scan Interleaver",
+ "title": "Matrix Helical Scan Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Matrix_Helical_Scan_Interleaver.md"
+ ],
+ "text": "Permute input symbols by selecting matrix elements along diagonals.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

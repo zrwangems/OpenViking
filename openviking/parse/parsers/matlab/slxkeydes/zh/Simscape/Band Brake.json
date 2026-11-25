@@ -1,0 +1,13 @@
+{
+ "key": "Band Brake",
+ "title": "Band Brake",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Rotational/Band_Brake.md"
+ ],
+ "text": "柔性带缠绕在旋转鼓轮上的摩擦制动器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

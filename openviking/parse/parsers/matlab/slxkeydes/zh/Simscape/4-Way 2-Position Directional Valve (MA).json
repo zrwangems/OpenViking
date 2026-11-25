@@ -1,0 +1,13 @@
+{
+ "key": "4-Way 2-Position Directional Valve (MA)",
+ "title": "4-Way 2-Position Directional Valve (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Valves & Orifices/Directional Control Valves/b_4_Way_2_Position_Directional_Valve_MA.md"
+ ],
+ "text": "4-way 2-position directional valve in a moist air network。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

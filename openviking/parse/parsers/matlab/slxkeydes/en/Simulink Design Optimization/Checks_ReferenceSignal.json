@@ -1,0 +1,98 @@
+{
+ "key": "Checks_ReferenceSignal",
+ "title": "Check Against Reference",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/Model Verification/Check_Against_Reference.md",
+  "Simulink Design Optimization/Signal Constraints/Check_Against_Reference.md"
+ ],
+ "text": "Check that model signal tracks reference signal during simulation, 1 input, 1 output, {Times} sets Time vector; {Show Plot} sets the open plot window, {Show plot on block open} sets the double-click block to open plot, {Response Optimization} sets the open Response Optimizer, {Include reference signal tracking in assertion} sets the check that signal tracks reference signal, {Amplitudes} sets the reference signal amplitude 1-exp, {Absolute tolerance}, {Relative tolerance}, {Enable assertion} enables or disable check, {Simulation callback when assertion fails (optional)} sets the expression to evaluate when assertion, {Stop simulation when assertion fails} sets the halt simulation when assertion fails and {Output assertion signal} sets the create output signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1 (u)",
+   "direction": "input",
+   "summary": "Signal to check against specified reference signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1 (out)",
+   "direction": "output",
+   "summary": "Output assertion signal 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show Plot",
+   "default": "",
+   "values": "Open plot window button",
+   "group": ""
+  },
+  {
+   "name": "Show plot on block open",
+   "default": "off",
+   "values": "Double-click block to open plot off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Response Optimization",
+   "default": "",
+   "values": "Open Response Optimizer button",
+   "group": ""
+  },
+  {
+   "name": "Include reference signal tracking in assertion",
+   "default": "on",
+   "values": "Check that signal tracks reference signal on (default) | off",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Times",
+   "default": "linspace(0,10)",
+   "values": "Time vector linspace(0,10) (default) | vector of positive values | MATLAB expression",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1-exp(-linspace(0,10)/2)",
+   "values": "Reference signal amplitude 1-exp(-linspace(0,10)/2) (default) | vector | MATLAB expression",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "eps^(1/3)",
+   "values": "Absolute tolerance for signal eps^(1/3) (default) | positive real scalar",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Relative tolerance",
+   "default": "0.01",
+   "values": "Relative tolerance for signal 0.01 (default) | positive real scalar",
+   "group": "Bounds Tab"
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "Enable or disable check on (default) | off",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "’’",
+   "values": "Expression to evaluate when assertion fails ’’ (default) | MATLAB expression",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "Halt simulation when assertion fails off (default) | on",
+   "group": "Assertion Tab"
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "Create output signal off (default) | on",
+   "group": "Assertion Tab"
+  }
+ ]
+}

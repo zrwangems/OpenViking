@@ -1,0 +1,76 @@
+{
+ "key": "Digital IO Interface",
+ "title": "Digital IO Interface",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Peripherals/Digital_IO_Interface.md"
+ ],
+ "text": "Simulate digital input and output pins on processor, 2 inputs, 3 outputs, {Condition} sets Condition on when to trigger event Rising; {IO direction} sets the configure block as digital input or output, {Low input voltage}, {High input voltage}, {Enable event} sets the option to enable event generation and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "SoC message data scalar"
+  },
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input digital signal scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "Output digital signal scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "Task event signal scalar"
+  },
+  {
+   "name": "message",
+   "direction": "output",
+   "summary": "SoC message data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "IO direction",
+   "default": "Input",
+   "values": "Configure block as digital input or output Input (default) | Output",
+   "group": ""
+  },
+  {
+   "name": "Low input voltage",
+   "default": "0.2",
+   "values": "Low input voltage threshold 0.2 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "High input voltage",
+   "default": "2.5",
+   "values": "High input voltage threshold 2.5 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable event",
+   "default": "on",
+   "values": "Option to enable event generation on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Condition",
+   "default": "edge",
+   "values": "Condition on when to trigger event Rising edge (default) | Falling edge | Both",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "key": "Sine and Cosine",
+ "title": "Cosine",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/Cosine.md",
+  "Simulink/Lookup Tables/Sine.md",
+  "Simulink/Quick Insert/Lookup Tables/Cosine_Lookup.md",
+  "Simulink/Quick Insert/Lookup Tables/Sine_Lookup.md",
+  "Simulink/Quick Insert/Lookup Tables/Exponential_Lookup.md",
+  "Simulink/Quick Insert/Lookup Tables/SinCos_Lookup.md"
+ ],
+ "text": "通过利用象限波对称性的查找表方法实现定点正弦或余弦波，输入 1 路、输出 3 路；按 {输出公式} 指定要输出的信号 cos(2*pi*u)；{查找表的数据点数} 指定要从查找表中检索的数据点数量、{输出字长} 输出信号的定点数据类型的字长、{查找表的内部规则优先级} 指定进行中间计算的内部规则，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "要实现为定点正弦波或余弦波的输入信号 实数值信号"
+  },
+  {
+   "name": "sin(2*pi*u)",
+   "direction": "output",
+   "summary": "定点正弦波 实数值定点信号"
+  },
+  {
+   "name": "cos(2*pi*u)",
+   "direction": "output",
+   "summary": "定点余弦波 实数值定点信号"
+  },
+  {
+   "name": "exp(j*2*pi*u)",
+   "direction": "output",
+   "summary": "exp(j*2*pi*u) 复数值定点信号"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出公式",
+   "default": "",
+   "values": "选择要输出的信号 cos(2*pi*u) | sin(2*pi*u) | exp(j*2*pi*u) | sin(2*pi*u) and cos(2*pi*u)",
+   "group": ""
+  },
+  {
+   "name": "查找表的数据点数",
+   "default": "(2^5)+1",
+   "values": "指定要从查找表中检索的数据点数量 (2^5)+1 (默认) | 整数，大于或等于 2",
+   "group": ""
+  },
+  {
+   "name": "输出字长",
+   "default": "16",
+   "values": "指定输出信号的定点数据类型的字长 16 (默认) | 从 2 到 53 的整数",
+   "group": ""
+  },
+  {
+   "name": "查找表的内部规则优先级",
+   "default": "速度",
+   "values": "指定进行中间计算的内部规则 速度 (默认) | 精度",
+   "group": ""
+  }
+ ]
+}

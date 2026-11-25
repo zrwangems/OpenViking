@@ -1,0 +1,41 @@
+{
+ "key": "Single Point Interpolation",
+ "title": "Single Point Interpolation",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Interpolation/Single_Point_Interpolation.md"
+ ],
+ "text": "Perform single point interpolation, 3 inputs, 1 output; {Fraction}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u 1",
+   "direction": "input",
+   "summary": "First input signal scalar | vector"
+  },
+  {
+   "name": "u 2",
+   "direction": "input",
+   "summary": "Second input signal scalar | vector"
+  },
+  {
+   "name": "f",
+   "direction": "input",
+   "summary": "Fraction value scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Fraction",
+   "default": "0",
+   "values": "Fraction source and value 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

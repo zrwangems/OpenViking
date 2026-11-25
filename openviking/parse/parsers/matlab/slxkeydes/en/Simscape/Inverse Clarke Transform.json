@@ -1,0 +1,70 @@
+{
+ "key": "Inverse Clarke Transform",
+ "title": "Inverse Clarke Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Inverse_Clarke_Transform.md",
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/Inverse_Clarke_Transform.md",
+  "Motor Control Blockset/Controls/Math Transforms/Inverse_Clarke_Transform.md"
+ ],
+ "text": "Implement αβ0 to abc transform, 3 inputs, 4 outputs; {Power Invariant} enables power invariance, {Use block for embedded implementation (requires Motor Control Blockset™)} sets the option to use block for embedded and {Number of inputs} sets the number of block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "αβ0",
+   "direction": "input",
+   "summary": "α - β axis and zero components vector"
+  },
+  {
+   "name": "α",
+   "direction": "input",
+   "summary": "Alpha-axis component scalar"
+  },
+  {
+   "name": "β",
+   "direction": "input",
+   "summary": "Beta-axis component scalar"
+  },
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "a -, b -, and c -phase components vector"
+  },
+  {
+   "name": "a",
+   "direction": "output",
+   "summary": "a -phase component scalar"
+  },
+  {
+   "name": "b",
+   "direction": "output",
+   "summary": "b -phase component scalar"
+  },
+  {
+   "name": "c",
+   "direction": "output",
+   "summary": "c -phase component scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power Invariant",
+   "default": "off",
+   "values": "Enable power invariance off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use block for embedded implementation (requires Motor Control Blockset™)",
+   "default": "off",
+   "values": "Option to use block for embedded implementation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of inputs",
+   "default": "inputs",
+   "values": "Number of block inputs Two inputs (default) | Three inputs",
+   "group": ""
+  }
+ ]
+}

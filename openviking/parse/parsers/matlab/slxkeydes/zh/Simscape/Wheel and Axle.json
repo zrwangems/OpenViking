@@ -1,0 +1,13 @@
+{
+ "key": "Wheel and Axle",
+ "title": "Wheel and Axle",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanisms/Wheel_and_Axle.md"
+ ],
+ "text": "机械系统中的 Wheel and Axle 机构。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

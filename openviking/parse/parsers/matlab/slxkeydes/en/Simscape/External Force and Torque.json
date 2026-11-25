@@ -1,0 +1,13 @@
+{
+ "key": "External Force and Torque",
+ "title": "External Force and Torque",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/External_Force_and_Torque.md"
+ ],
+ "text": "Apply external force and/or torque to connected frame.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

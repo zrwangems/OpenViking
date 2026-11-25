@@ -1,0 +1,110 @@
+{
+ "key": "Mixer",
+ "title": "Mixer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Mixer.md"
+ ],
+ "text": "Model mixer in RF systems, {Source of conversion gain} sets Source parameter of conversion; {Available power gain} sets the linear gain of mixer, {Open circuit voltage gain}, {Polynomial coefficients} sets the order of polynomial, {Input impedance (Ohm)} sets the input impedance of mixer, {Output impedance (Ohm)} sets the output impedance of mixer, {LO impedance (Ohm)} sets the impedance at LO port, {Noise figure (dB)} sets the single-sideband IEEE noise figure of mixer, {Ground and hide negative terminals} sets the ground RF circuit terminals, {Nonlinear polynomial type} sets the polynomial nonlinearity Even, {Intercept points convention}, {IP2} sets the second-order intercept point, {IP3} sets the third-order intercept point, {1-dB gain compression power}, {Output saturation power} and {Gain compression at saturation}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source of conversion gain",
+   "default": "gain",
+   "values": "Source parameter of conversion gain Available power gain (default) | Open circuit voltage gain | Polynomial coefficients",
+   "group": ""
+  },
+  {
+   "name": "Available power gain",
+   "default": "dB",
+   "values": "Linear gain of mixer 0 dB (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open circuit voltage gain",
+   "default": "dB",
+   "values": "Open circuit voltage gain 0 dB (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Polynomial coefficients",
+   "default": "1]",
+   "values": "Order of polynomial [0 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "Input impedance of mixer 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "Output impedance of mixer 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "LO impedance (Ohm)",
+   "default": "inf",
+   "values": "Impedance at LO port of mixer inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "dB",
+   "values": "Single-sideband IEEE noise figure of mixer 0 dB (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Nonlinear polynomial type",
+   "default": "order",
+   "values": "Polynomial nonlinearity Even and odd order (default) | Odd order",
+   "group": ""
+  },
+  {
+   "name": "Intercept points convention",
+   "default": "Output",
+   "values": "Intercept points convention Output (default) | Input",
+   "group": ""
+  },
+  {
+   "name": "IP2",
+   "default": "dBm",
+   "values": "Second-order intercept point inf dBm (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "IP3",
+   "default": "dBm",
+   "values": "Third-order intercept point inf dBm (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "1-dB gain compression power",
+   "default": "dBm",
+   "values": "1-dB gain compression power inf dBm (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output saturation power",
+   "default": "dBm",
+   "values": "Output saturation power inf dBm (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gain compression at saturation",
+   "default": "dBm",
+   "values": "Gain compression at saturation inf dBm (default) | scalar",
+   "group": ""
+  }
+ ]
+}

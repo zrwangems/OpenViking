@@ -1,0 +1,13 @@
+{
+ "key": "Mass",
+ "title": "Mass",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Mass.md"
+ ],
+ "text": "理想机械平移质量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

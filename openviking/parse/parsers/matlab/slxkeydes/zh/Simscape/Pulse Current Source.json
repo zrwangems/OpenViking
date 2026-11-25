@@ -1,0 +1,14 @@
+{
+ "key": "Pulse Current Source",
+ "title": "Pulse Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Pulse_Current_Source.md",
+  "Simscape/Electrical/Additional Components/SPICE Sources/Pulse_Current_Source.md"
+ ],
+ "text": "周期性方波电流源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

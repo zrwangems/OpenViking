@@ -1,0 +1,101 @@
+{
+ "key": "Fishhook",
+ "title": "Fishhook",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Fishhook.md"
+ ],
+ "text": "生成用于执行鱼钩机动的命令，输入 2 路、输出 2 路；{Maneuver start time, tStart [s]} 指定开始时间、{Longitudinal velocity setpoint, velRef} 指定目标速度、{Longitudinal velocity setpoint units, velRefUnit []} 指定单位 mph、{Steer and countersteer speed, steerRate [deg/s]} 指定转向和反向转向速率、{Steer amplitude, steerAmp [deg]} 指定方向盘转向幅度、{Use roll rate to determine initial steer dwell time} 用于使用侧倾角速度确定初始转向停留时间、{Initial dwell time, tDwellSteer [s]} 指定初始停留时间、{Countersteer dwell time, tDwellCntrSteer [s]} 指定反向转向停留时间、{Return to center time, tZero [s]} 指定将反向转向幅度恢复到零转向所需的时间、{Roll rate countersteer initiation zero crossing threshold, pZero [deg/s]} 指定侧倾角速度容差、{Initial steer direction} 指定初始转向方向，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "p",
+   "direction": "input",
+   "summary": "车辆侧倾角速度 scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "驾驶员参考数据 bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "驾驶员命令数据 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "2",
+   "values": "开始时间 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity setpoint, velRef",
+   "default": "30",
+   "values": "目标速度 30 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "单位 mph (default)",
+   "group": ""
+  },
+  {
+   "name": "Steer and countersteer speed, steerRate [deg/s]",
+   "default": "720",
+   "values": "转向和反向转向速率 720 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Steer amplitude, steerAmp [deg]",
+   "default": "540",
+   "values": "方向盘转向幅度 540 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Use roll rate to determine initial steer dwell time",
+   "default": "off",
+   "values": "用于使用侧倾角速度确定初始转向停留时间的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial dwell time, tDwellSteer [s]",
+   "default": "0.5",
+   "values": "初始停留时间 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Countersteer dwell time, tDwellCntrSteer [s]",
+   "default": "3",
+   "values": "反向转向停留时间 3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Return to center time, tZero [s]",
+   "default": "2",
+   "values": "将反向转向幅度恢复到零转向所需的时间 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Roll rate countersteer initiation zero crossing threshold, pZero [deg/s]",
+   "default": "1.5",
+   "values": "侧倾角速度容差 1.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial steer direction",
+   "default": "Right",
+   "values": "初始转向方向 Right (default) | Left",
+   "group": ""
+  }
+ ]
+}

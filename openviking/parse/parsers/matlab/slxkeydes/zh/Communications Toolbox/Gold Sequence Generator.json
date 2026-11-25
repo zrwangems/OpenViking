@@ -1,0 +1,113 @@
+{
+ "key": "Gold Sequence Generator",
+ "title": "Gold Sequence Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Sequence Generators/Gold_Sequence_Generator.md"
+ ],
+ "text": "从序列集合生成 Gold 序列，输入 3 路、输出 1 路；按 {Output data type} 指定输出数据类型；{Preferred polynomial (1)} 指定第一个序列多项式、{Initial states (1)} 指定第一个序列多项式的初始状态、{Preferred polynomial (2)} 指定第二序列多项式、{Initial states (2)} 指定第二序列多项式的初始状态、{Sequence index} 指定序列索引、{Shift} 指定 Gold 序列的偏移、{Output variable-size signals} 输出可变长度信号、{Maximum output size source} 指定最大输出大小来源、{Maximum output size} 指定最大输出大小、{Sample time} 输出采样时间、{Samples per frame}、{Reset on nonzero input} 指定重置输出信号，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "oSiz",
+   "direction": "input",
+   "summary": "当前输出大小 scalar | two-element row vector"
+  },
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "参考输入信号 scalar | column vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置信号 scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Preferred polynomial (1)",
+   "default": "1’",
+   "values": "第一个序列多项式 ’z^6 + z + 1’ (default) | polynomial character vector | binary row vector | integer row vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states (1)",
+   "default": "1]",
+   "values": "第一个序列多项式的初始状态 [0 0 0 0 0 1] (default) | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Preferred polynomial (2)",
+   "default": "1’",
+   "values": "第二序列多项式 ’z^6 + z^5 + z^2 + z + 1’ (default) | polynomial character vector | binary row vector | integer row vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states (2)",
+   "default": "1]",
+   "values": "第二序列多项式的初始状态 [0 0 0 0 0 1] (default) | binary vector",
+   "group": ""
+  },
+  {
+   "name": "Sequence index",
+   "default": "0",
+   "values": "序列索引 0 (default) | integer scalar in the range [–2, 2 n –2]",
+   "group": ""
+  },
+  {
+   "name": "Shift",
+   "default": "0",
+   "values": "Gold 序列的偏移 0 (default) | integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "输出可变长度信号的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size source",
+   "default": "parameter",
+   "values": "最大输出大小来源 Dialog parameter (default) | Inherit from reference port",
+   "group": ""
+  },
+  {
+   "name": "Maximum output size",
+   "default": "1]",
+   "values": "最大输出大小 [10 1] (default) | vector of the form [ n 1]",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出采样时间 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Reset on nonzero input",
+   "default": "off",
+   "values": "重置输出信号 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | boolean | Smallest unsigned integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,105 @@
+{
+ "key": "PMSM Current Controller",
+ "title": "PMSM Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/PMSM Control/PMSM_Current_Controller.md"
+ ],
+ "text": "离散时间永磁同步电机电流控制器，输入 5 路、输出 1 路；按 {Axis prioritization} 指定电压限幅器的轴优先级；{D-axis current proportional gain} 指定 D 轴比例增益、{D-axis current integral gain} 指定 D 轴积分增益、{D-axis current anti-windup gain} 指定 D 轴抗积分饱和增益、{Q-axis current proportional gain} 指定 Q 轴比例增益、{Q-axis current integral gain} 指定 Q 轴积分增益、{Q-axis current anti-windup gain} 指定 Q 轴抗积分饱和增益、{Sample time (-1 for inherited)} 指定模块采样时间、{Enable zero cancellation} 指定前馈零点对消、{Enable pre-control voltage} 指定预控制电压，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "idqRef",
+   "direction": "input",
+   "summary": "参考电流 vector"
+  },
+  {
+   "name": "idq",
+   "direction": "input",
+   "summary": "测量电流 vector"
+  },
+  {
+   "name": "vdqFF",
+   "direction": "input",
+   "summary": "前馈电压 vector"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "最大相电压 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部复位 scalar"
+  },
+  {
+   "name": "vdqRef",
+   "direction": "output",
+   "summary": "参考电压 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "D-axis current proportional gain",
+   "default": "1",
+   "values": "D 轴比例增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current integral gain",
+   "default": "100",
+   "values": "D 轴积分增益 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current anti-windup gain",
+   "default": "1",
+   "values": "D 轴抗积分饱和增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current proportional gain",
+   "default": "1",
+   "values": "Q 轴比例增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current integral gain",
+   "default": "100",
+   "values": "Q 轴积分增益 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current anti-windup gain",
+   "default": "1",
+   "values": "Q 轴抗积分饱和增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | -1 or positive number",
+   "group": ""
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "q-axis",
+   "values": "电压限幅器的轴优先级 q-axis (default) | d-axis | d-q equivalence",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "前馈零点对消 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable pre-control voltage",
+   "default": "on",
+   "values": "预控制电压 on (default) | off",
+   "group": ""
+  }
+ ]
+}

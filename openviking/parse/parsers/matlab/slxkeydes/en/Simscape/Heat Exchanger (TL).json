@@ -1,0 +1,13 @@
+{
+ "key": "Heat Exchanger (TL)",
+ "title": "Heat Exchanger (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid/Heat_Exchanger_TL.md"
+ ],
+ "text": "Heat exchanger for systems with thermal liquid and controlled flows.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

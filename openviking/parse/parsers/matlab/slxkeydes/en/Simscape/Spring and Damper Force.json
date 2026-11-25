@@ -1,0 +1,13 @@
+{
+ "key": "Spring and Damper Force",
+ "title": "Spring and Damper Force",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Spring_and_Damper_Force.md"
+ ],
+ "text": "Model planar contact between two geometries.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

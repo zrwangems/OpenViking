@@ -1,0 +1,13 @@
+{
+ "key": "Check Valve (TL)",
+ "title": "Check Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Directional Control Valves/Check_Valve_TL.md"
+ ],
+ "text": "热液体网络中的单向阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

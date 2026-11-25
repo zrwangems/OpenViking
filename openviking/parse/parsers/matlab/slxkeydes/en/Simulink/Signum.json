@@ -1,0 +1,39 @@
+{
+ "key": "Signum",
+ "title": "Sign",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Sign.md",
+  "HDL Coder/HDL Floating Point Operations/Sign.md",
+  "HDL Coder/Math Operations/Sign.md"
+ ],
+ "text": "Indicate sign of input, 1 input, 1 output, direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Enable zero-crossing detection}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

@@ -593,6 +593,7 @@ setup(
     package_data={
         "openviking_gateway": ["client-rules.json"],
         "openviking.scheduling.expiry": ["lua/*.lua"],
+        "openviking.parse.parsers.matlab": ["slxkeydes/*/index.json", "slxkeydes/*/*/*.json"],
         "openviking": [
             "lib/ragfs_python*.so",
             "lib/ragfs_python*.pyd",

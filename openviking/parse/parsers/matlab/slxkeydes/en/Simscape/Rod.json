@@ -1,0 +1,13 @@
+{
+ "key": "Rod",
+ "title": "Rod",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Rod.md"
+ ],
+ "text": "Axially flexible bar or cable.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

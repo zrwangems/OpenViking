@@ -1,0 +1,466 @@
+{
+ "key": "Trailer Body 6DOF",
+ "title": "Trailer Body 6DOF",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Body/Trailer_Body_6DOF.md"
+ ],
+ "text": "Trailer body with translational and rotational motion, 10 inputs, 7 outputs; {Number of axles} sets the create, {Front hitch forces} sets the fhF input, {Front hitch moments} sets the mhF input, {Rear hitch forces} sets the fhR input, {Rear hitch moments} sets the mhR input, {Vehicle mass, m} sets the mass, {Longitudinal distance from center of mass to front axle, a} sets the distance, {Longitudinal distance from center of mass to middle axle, b} sets the distance, {Longitudinal distance from center of mass to rear axle, c} sets the distance, {Lateral distance from geometric centerline to center of mass, d} sets the distance, {Vertical distance from center of mass to axle plane, h} sets the distance, {Longitudinal distance from center of mass to front hitch, dh_f}, {Lateral distance from geometric centerline to front hitch, hl_f} sets the distance, {Vertical distance from front hitch to axle plane, hh_f} sets the distance, {Longitudinal distance from center of mass to rear hitch, dh_r} sets the distance, {Lateral distance from geometric centerline to rear hitch, hl_r} sets the distance, {Vertical distance from rear hitch to axle plane, hh_r} sets the distance, {Initial position in the inertial frame [Xeo,Yeo,Zeo], Xe_o} sets the initial position, {Initial velocity in body axes [xdot_o,ydot_o,zdot_o], xbdot_o} sets the initial velocity, {Initial Euler orientation [roll, pitch, yaw], eul_o} sets the rotation, {Initial body rotation rates [p,q,r], p_o} sets the initial rotation rate, {Chassis inertia tensor, Iveh} sets the inertia {Front track width, w_f}, {Middle track width, w_m}, {Rear track width, w_r}, {Mass, z1m} sets the mass, {Distance vector from front axle, z1R} sets the distance, {Inertia tensor, z1I} sets the inertia, {Mass, z2m} sets the mass, {Distance vector from front axle, z2R} sets the distance, {Inertia tensor, z2I} sets the inertia, {Mass, z3m} sets the mass, {Distance vector from front axle, z3R} sets the distance, {Inertia tensor, z3I} sets the inertia, {Mass, z4m} sets the mass, {Distance vector from front axle, z4R} sets the distance, {Inertia tensor, z4I} sets the inertia, {Mass, z5m} sets the mass, {Distance vector from front axle, z5R} sets the distance, {Inertia tensor, z5I} sets the inertia, {Mass, z6m} sets the mass, {Distance vector from front axle, z6R} sets the distance, {Inertia tensor, z6I} sets the inertia, {Mass, z7m} sets the mass, {Distance vector from front axle, z7R} sets the distance, {Inertia tensor, z7I} sets the inertia, {Longitudinal drag area, Af} sets the drag area, {Longitudinal drag coefficient, Cd} sets the drag coefficient .3, {Longitudinal lift coefficient, Cl} sets the lift .1, {Longitudinal drag pitch moment, Cpm} sets the pitch drag .1, {Relative wind angle vector, beta_w} sets the wind angle, {Side force coefficient vector, Cs} sets the side force drag, {Yaw moment coefficient vector, Cym} sets the yaw moment drag, {Absolute air pressure, Pabs} sets the pressure, {Air temperature, Tair} sets the ambient air temperature, {Gravitational acceleration, g} sets the gravity, {Longitudinal velocity tolerance, xdot_tol} sets the tolerance .1, {Geometric longitudinal offset from axle plane, longOff} sets the longitudinal offset, {Geometric lateral offset from center plane, latOff} sets the lateral offset, {Geometric vertical offset from axle plane, vertOff} sets the vertical offset and {Wrap Euler angles, wrapAng} sets the selection. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FSusp",
+   "direction": "input",
+   "summary": "Suspension forces on trailer 3-by-4 array (default) | 3-by-2 array | 3-by-6 array"
+  },
+  {
+   "name": "MSusp",
+   "direction": "input",
+   "summary": "Suspension moments on trailer 3-by-4 array (default) | 3-by-2 array | 3-by-6 array"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "External forces acting on vehicle vector"
+  },
+  {
+   "name": "MExt",
+   "direction": "input",
+   "summary": "External moments acting on vehicle vector"
+  },
+  {
+   "name": "FhF",
+   "direction": "input",
+   "summary": "Front hitch force on the body array"
+  },
+  {
+   "name": "MhF",
+   "direction": "input",
+   "summary": "Front hitch moment about body array"
+  },
+  {
+   "name": "FhR",
+   "direction": "input",
+   "summary": "Rear hitch force on the body array"
+  },
+  {
+   "name": "MhR",
+   "direction": "input",
+   "summary": "Rear hitch moment about body array"
+  },
+  {
+   "name": "WindXYZ",
+   "direction": "input",
+   "summary": "Wind speed array"
+  },
+  {
+   "name": "AirTemp",
+   "direction": "input",
+   "summary": "Ambient air temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Trailer body information bus"
+  },
+  {
+   "name": "Vb",
+   "direction": "output",
+   "summary": "Vehicle velocity along vehicle-fixed frame vector"
+  },
+  {
+   "name": "pqr",
+   "direction": "output",
+   "summary": "Vehicle angular velocity about vehicle-fixed frame vector"
+  },
+  {
+   "name": "DCM",
+   "direction": "output",
+   "summary": "Direction cosine matrix array"
+  },
+  {
+   "name": "Euler",
+   "direction": "output",
+   "summary": "Euler angles array"
+  },
+  {
+   "name": "Xe",
+   "direction": "output",
+   "summary": "Vehicle position in inertial reference frame vector"
+  },
+  {
+   "name": "Ve",
+   "direction": "output",
+   "summary": "Vehicle velocity in inertial reference frame vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of axles",
+   "default": "2",
+   "values": "Create hitch force input port 2 (default) | 1 | 3",
+   "group": "Block Options"
+  },
+  {
+   "name": "Front hitch forces",
+   "default": "on",
+   "values": "FhF input port on (default) | off",
+   "group": "Block Options"
+  },
+  {
+   "name": "Front hitch moments",
+   "default": "on",
+   "values": "MhF input port on (default) | off",
+   "group": "Block Options"
+  },
+  {
+   "name": "Rear hitch forces",
+   "default": "off",
+   "values": "FhR input port off (default) | on",
+   "group": "Block Options"
+  },
+  {
+   "name": "Rear hitch moments",
+   "default": "off",
+   "values": "MhR input port off (default) | on",
+   "group": "Block Options"
+  },
+  {
+   "name": "Vehicle mass, m",
+   "default": "2000",
+   "values": "Mass 2000 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to front axle, a",
+   "default": "1.4",
+   "values": "Distance from center of mass to front axle 1.4 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to middle axle, b",
+   "default": "1.6",
+   "values": "Distance from center of mass to middle axle 1.6 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to rear axle, c",
+   "default": "1.9",
+   "values": "Distance from center of mass to rear axle 1.9 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Lateral distance from geometric centerline to center of mass, d",
+   "default": "0",
+   "values": "Distance from geometric centerline to center of mass 0 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Vertical distance from center of mass to axle plane, h",
+   "default": ".35",
+   "values": "Distance from center of mass to axle plane .35 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to front hitch, dh_f",
+   "default": "1",
+   "values": "Longitudinal distance from CM to hitch 1 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Lateral distance from geometric centerline to front hitch, hl_f",
+   "default": "0",
+   "values": "Distance from centerline to front hitch 0 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Vertical distance from front hitch to axle plane, hh_f",
+   "default": "0.1",
+   "values": "Distance from front hitch to axle plane 0.1 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Longitudinal distance from center of mass to rear hitch, dh_r",
+   "default": "1",
+   "values": "Distance to front hitch 1 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Lateral distance from geometric centerline to rear hitch, hl_r",
+   "default": "0",
+   "values": "Distance from centerline to rear hitch 0 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Vertical distance from rear hitch to axle plane, hh_r",
+   "default": "0.1",
+   "values": "Distance from rear hitch to axle plane 0.1 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial position in the inertial frame [Xeo,Yeo,Zeo], Xe_o",
+   "default": "[0,0,0]",
+   "values": "Initial position [0,0,0] (default) | vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial velocity in body axes [xdot_o,ydot_o,zdot_o], xbdot_o",
+   "default": "[0,0,0]",
+   "values": "Initial velocity [0,0,0] (default) | vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial Euler orientation [roll, pitch, yaw], eul_o",
+   "default": "[0,0,0]",
+   "values": "Rotation [0,0,0] (default) | vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial body rotation rates [p,q,r], p_o",
+   "default": "[0,0,0]",
+   "values": "Initial rotation rate [0,0,0] (default) | vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Chassis inertia tensor, Iveh",
+   "default": "2100]",
+   "values": "Inertia [430 0 0; 0 1900 0; 0 0 2100] (default) | array",
+   "group": "Chassis"
+  },
+  {
+   "name": "Front track width, w_f",
+   "default": "1.9",
+   "values": "Front track width 1.9 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Middle track width, w_m",
+   "default": "1.9",
+   "values": "Middle track width 1.9 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Rear track width, w_r",
+   "default": "1.9",
+   "values": "Rear track width 1.9 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Mass, z1m",
+   "default": "0",
+   "values": "Mass 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z1R",
+   "default": "[-.25,.125,.15]",
+   "values": "Distance [-.25,.125,.15] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z1I",
+   "default": "[1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0",
+   "values": "Inertia [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z2m",
+   "default": "0",
+   "values": "Mass 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z2R",
+   "default": "[1.4,0,.8]",
+   "values": "Distance [1.4,0,.8] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z2I",
+   "default": "[1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0",
+   "values": "Inertia [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z3m",
+   "default": "0",
+   "values": "Mass 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z3R",
+   "default": "[.75,-.5,.4]",
+   "values": "Distance [.75,-.5,.4] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z3I",
+   "default": "[5,-.1,-2;-2,9,.1;-.1,.1,6].*0",
+   "values": "Inertia [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z4m",
+   "default": "0",
+   "values": "Mass 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z4R",
+   "default": "[.75,.5,.4]",
+   "values": "Distance [.75,.5,.4] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z4I",
+   "default": "[5,-.1,-2;-2,9,.1;-.1,.1,6].*0",
+   "values": "Inertia [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z5m",
+   "default": "0",
+   "values": "Mass 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z5R",
+   "default": "[1.25,-.5,.4]",
+   "values": "Distance [1.25,-.5,.4] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z5I",
+   "default": "[5,-.1,-2;-2,9,.1;-.1,.1,6].*0",
+   "values": "Inertia [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z6m",
+   "default": "0",
+   "values": "Mass 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z6R",
+   "default": "[1.25,-.5,.4]",
+   "values": "Distance [1.25,-.5,.4] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z6I",
+   "default": "[5,-.1,-2;-2,9,.1;-.1,.1,6].*0",
+   "values": "Inertia [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Mass, z7m",
+   "default": "0",
+   "values": "Mass 0 (default) | scalar",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Distance vector from front axle, z7R",
+   "default": "[2,0,.25]",
+   "values": "Distance [2,0,.25] (default) | vector",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Inertia tensor, z7I",
+   "default": "[1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0",
+   "values": "Inertia [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0 (default) | array",
+   "group": "Inertial Loads"
+  },
+  {
+   "name": "Longitudinal drag area, Af",
+   "default": "2",
+   "values": "Drag area 2 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal drag coefficient, Cd",
+   "default": ".3",
+   "values": "Drag coefficient .3 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal lift coefficient, Cl",
+   "default": ".1",
+   "values": "Lift .1 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Longitudinal drag pitch moment, Cpm",
+   "default": ".1",
+   "values": "Pitch drag .1 (default) | scalar",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Relative wind angle vector, beta_w",
+   "default": "[0:0.001:0.01]",
+   "values": "Wind angle [0:0.001:0.01] (default) | vector",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Side force coefficient vector, Cs",
+   "default": "[0:0.01:0.1]",
+   "values": "Side force drag [0:0.01:0.1] (default) | vector",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Yaw moment coefficient vector, Cym",
+   "default": "[0:0.001:0.01]",
+   "values": "Yaw moment drag [0:0.001:0.01] (default) | vector",
+   "group": "Aerodynamic"
+  },
+  {
+   "name": "Absolute air pressure, Pabs",
+   "default": "101325",
+   "values": "Pressure 101325 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Air temperature, Tair",
+   "default": "273",
+   "values": "Ambient air temperature 273 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.81",
+   "values": "Gravity 9.81 (default) | scalar",
+   "group": "Environment"
+  },
+  {
+   "name": "Longitudinal velocity tolerance, xdot_tol",
+   "default": ".1",
+   "values": "Tolerance .1 (default) | scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Geometric longitudinal offset from axle plane, longOff",
+   "default": "0",
+   "values": "Longitudinal offset 0 (default) | scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Geometric lateral offset from center plane, latOff",
+   "default": "0",
+   "values": "Lateral offset 0 (default) | scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Geometric vertical offset from axle plane, vertOff",
+   "default": "0",
+   "values": "Vertical offset 0 (default) | scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Wrap Euler angles, wrapAng",
+   "default": "on",
+   "values": "Selection on (default) | off",
+   "group": "Simulation"
+  }
+ ]
+}

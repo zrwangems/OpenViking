@@ -1,0 +1,151 @@
+{
+ "key": "Simulation 3D Sky Hogg Pack",
+ "title": "Simulation 3D Sky Hogg Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Sky_Hogg_Pack.md"
+ ],
+ "text": "Generate translation and rotation information for Sky Hogg, 12 inputs, 2 outputs, {Select input coordinate frame} sets Input coordinate frame; {Propeller rotation} sets the option to enable Propeller_R input port, {Rudder rotation} sets the option to enable Rudder_R input port, {Elevator rotation} sets the option to enable Elevator_R input port, {Left aileron rotation} sets the option to enable Left_Aileron_R input port, {Right aileron rotation} sets the option to enable Right_Aileron_R input, {Flaps rotation} sets the option to enable Flaps_R input port, {Nose wheel strut rotation} sets the option to enable Nose_Wheel_Strut_R input, {Nose wheel rotation} sets the option to enable Nose_Wheel_R input port, {Left wheel rotation} sets the option to enable Left_Wheel_R input port and {Right wheel rotation} sets the option to enable Right_Wheel_R input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "Body translation 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "Body rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Propeller_R",
+   "direction": "input",
+   "summary": "Propeller rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Rudder_R",
+   "direction": "input",
+   "summary": "Rudder rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Elevator_R",
+   "direction": "input",
+   "summary": "Elevator rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Aileron_R",
+   "direction": "input",
+   "summary": "Left aileron rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Aileron_R",
+   "direction": "input",
+   "summary": "Right aileron rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Flaps_R",
+   "direction": "input",
+   "summary": "Flaps rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Wheel_Strut_R",
+   "direction": "input",
+   "summary": "Nose wheel strut rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Wheel_R",
+   "direction": "input",
+   "summary": "Nose wheel rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Wheel_R",
+   "direction": "input",
+   "summary": "Left wheel rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Wheel_R",
+   "direction": "input",
+   "summary": "Right wheel rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Aircraft translation 11 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Aircraft rotation 11 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Propeller rotation",
+   "default": "off",
+   "values": "Option to enable Propeller_R input port off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rudder rotation",
+   "default": "off",
+   "values": "Option to enable Rudder_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Elevator rotation",
+   "default": "off",
+   "values": "Option to enable Elevator_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left aileron rotation",
+   "default": "off",
+   "values": "Option to enable Left_Aileron_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right aileron rotation",
+   "default": "off",
+   "values": "Option to enable Right_Aileron_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Flaps rotation",
+   "default": "off",
+   "values": "Option to enable Flaps_R input port off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Nose wheel strut rotation",
+   "default": "off",
+   "values": "Option to enable Nose_Wheel_Strut_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose wheel rotation",
+   "default": "off",
+   "values": "Option to enable Nose_Wheel_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left wheel rotation",
+   "default": "off",
+   "values": "Option to enable Left_Wheel_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right wheel rotation",
+   "default": "off",
+   "values": "Option to enable Right_Wheel_R input port off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "Input coordinate frame NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

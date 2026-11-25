@@ -1,0 +1,13 @@
+{
+ "key": "Cap (G)",
+ "title": "Cap (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Cap_G.md"
+ ],
+ "text": "零流量的气体端口终端。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,43 @@
+{
+ "key": "OpenL3 Preprocess",
+ "title": "OpenL3 Preprocess",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/OpenL3_Preprocess.md"
+ ],
+ "text": "为 OpenL3 嵌入提取预处理音频，输入 1 路、输出 1 路、无直接馈通；按 {Spectrum type} 指定频谱类型 Mel；{Sample rate of input signal (Hz)} 指定输入信号的采样率（Hz） 48e3（连续频谱图之间的重叠百分比 90） 也按实例取值{Overlap percentage (%)} 指定连续频谱图之间的重叠百分比，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "声音数据 column vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "频谱图 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "48e3",
+   "values": "输入信号的采样率（Hz） 48e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "90",
+   "values": "连续频谱图之间的重叠百分比 90 (default) | [0 100)",
+   "group": ""
+  },
+  {
+   "name": "Spectrum type",
+   "default": "bands)",
+   "values": "频谱类型 Mel (128 bands) (default) | Mel (256 bands) | Linear",
+   "group": ""
+  }
+ ]
+}

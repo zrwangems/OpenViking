@@ -1,0 +1,49 @@
+{
+ "key": "FunctionCallGenerator",
+ "title": "Function-Call Generator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Function_Call_Generator.md"
+ ],
+ "text": "提供函数调用事件来控制子系统或模型的执行，输入 1 路、输出 1 路；按 {采样时间} 指定时间间隔；{迭代次数} 指定在每个时间步中提供函数调用的次数、{不允许宽输出} 防止输出信号的隐式扩展、{显示使能端口} 添加控制信号的输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "控制信号输入 标量"
+  },
+  {
+   "name": "Function Call",
+   "direction": "output",
+   "summary": "函数调用事件输出 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "采样时间",
+   "default": "1",
+   "values": "指定时间间隔 1 (默认) | 标量 | 向量 | -1",
+   "group": ""
+  },
+  {
+   "name": "迭代次数",
+   "default": "1",
+   "values": "指定在每个时间步中提供函数调用的次数 1 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "不允许宽输出",
+   "default": "off",
+   "values": "防止输出信号的隐式扩展 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "显示使能端口",
+   "default": "off",
+   "values": "添加控制信号的输入端口 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

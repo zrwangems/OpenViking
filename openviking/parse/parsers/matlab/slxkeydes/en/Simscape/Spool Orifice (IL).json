@@ -1,0 +1,13 @@
+{
+ "key": "Spool Orifice (IL)",
+ "title": "Spool Orifice (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Orifices/Spool_Orifice_IL.md"
+ ],
+ "text": "Variable-area spool orifice in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

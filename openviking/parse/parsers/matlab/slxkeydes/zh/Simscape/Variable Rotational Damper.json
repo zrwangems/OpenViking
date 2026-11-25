@@ -1,0 +1,13 @@
+{
+ "key": "Variable Rotational Damper",
+ "title": "Variable Rotational Damper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Variable_Rotational_Damper.md"
+ ],
+ "text": "具有可变阻尼系数的旋转阻尼器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

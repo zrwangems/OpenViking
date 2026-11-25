@@ -1,0 +1,13 @@
+{
+ "key": "Compressor (MA)",
+ "title": "Compressor (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Turbomachinery/Compressor_MA.md"
+ ],
+ "text": "Compressor in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

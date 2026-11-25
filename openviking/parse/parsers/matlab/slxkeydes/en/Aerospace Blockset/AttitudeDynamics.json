@@ -1,0 +1,340 @@
+{
+ "key": "AttitudeDynamics",
+ "title": "Attitude Dynamics",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Attitude_Dynamics.md"
+ ],
+ "text": "Model attitude dynamics of one or more spacecraft, 10 inputs, 7 outputs, {Attitude representation} sets Orientation format; {Input body moments} sets the option to enable external moments, {State vector coordinate frame} sets the position and velocity state port coordinate frame, {Start date/time (UTC Julian date)} sets the initial start time for simulation, {Output current date/time (UTC Julian date)} sets the option to add output port t utc, {Action for out-of-range input} sets the out-of-range block behavior, {Mass type} sets the spacecraft mass type, {Mass} sets the initial mass of rigid body spacecraft, {Empty mass} sets the spacecraft empty mass, {Full mass} sets the spacecraft full mass, {Inertia tensor}, {Empty inertia tensor}, {Full inertia tensor}, {Include mass flow relative velocity} sets the option to enable mass flow velocity, {Limit mass flow when mass is empty or full} sets the option to limit mass flow, {Output fuel tank status} sets the option to enable fuel tank status, {Attitude reference coordinate frame} sets the attitude and angular rate coordinate frame, {Initial body attitude} sets the spacecraft initial attitude, {Angle rotation order}, {Initial body angular rates PQR} sets the initial body-fixed angular rates, {Include gravity gradient torque} sets the option to enable gravity gradient torque, {Central body} sets the celestial body around which spacecraft orbits, {Rotational rate}, {Use Earth orientation parameters (EOPs)} sets the option to use Earth orientation parameters, {IERS EOP data file} sets the earth orientation data, {Input Moon libration angles} sets the moon libration Euler angle rate, {Output quaternion (ICRF to Fixed-frame)} sets the option to add output transformation quaternion, {Central body spin axis source} sets the central body spin, {Spin axis right ascension (RA) at J2000} sets the right ascension of central body spin axis, {Spin axis RA rate (deg/century)} sets the right ascension rate of central body spin, {Spin axis declination (Dec) at J2000} sets the declination of central body spin axis, {Spin axis Dec rate (deg/century)} sets the declination rate of central body spin axis, {Initial rotation angle at J2000} sets the rotation angle of central body x -axis, {Rotation rate (deg/day)} sets the rotation rate of central body x -axis, {Equatorial radius}, {Flattening}, {Gravitational parameter}, {Units} sets the parameter and port units Metric, {Angle units} and {Time format}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Position of spacecraft 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Velocity 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "M b",
+   "direction": "input",
+   "summary": "External moments 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "Rate of change of mass scalar | 1D array of size numSat"
+  },
+  {
+   "name": "m",
+   "direction": "input",
+   "summary": "Spacecraft mass scalar | 1D array of size numSat"
+  },
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Spacecraft inertia tensor 3-by-3 array | 3-by-3-by- numSat array"
+  },
+  {
+   "name": "dI/dt",
+   "direction": "input",
+   "summary": "Rate of change of inertia tensor matrix 3-by-3 array | 3-by-3-by- numSat array"
+  },
+  {
+   "name": "V re",
+   "direction": "input",
+   "summary": "Relative velocity 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "φθψ",
+   "direction": "input",
+   "summary": "Moon libration angles 3-element vector"
+  },
+  {
+   "name": "αδW",
+   "direction": "input",
+   "summary": "Right ascension, declination, and rotation angle 3-element vector"
+  },
+  {
+   "name": "q body2icrf",
+   "direction": "output",
+   "summary": "Spacecraft attitude quaternion 4-element quaternion | numSat -by-4 array"
+  },
+  {
+   "name": "DCM",
+   "direction": "output",
+   "summary": "Spacecraft attitude direction cosine matrix 3-by-3 array | numSat -by-3-by-3 array"
+  },
+  {
+   "name": "R1,R2,R3",
+   "direction": "output",
+   "summary": "Spacecraft attitude Euler angles 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "ω",
+   "direction": "output",
+   "summary": "Angular rate of spacecraft 3-element vector | numSat -by-3 array"
+  },
+  {
+   "name": "q icrf2ff",
+   "direction": "output",
+   "summary": "Coordinate system transformation 4-element array"
+  },
+  {
+   "name": "t utc",
+   "direction": "output",
+   "summary": "Time at current time step scalar | 6-element array"
+  },
+  {
+   "name": "Fuel Status",
+   "direction": "output",
+   "summary": "Fuel status scalar | numSat -element array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input body moments",
+   "default": "on",
+   "values": "Option to enable external moments on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "State vector coordinate frame",
+   "default": "ICRF",
+   "values": "Position and velocity state port coordinate frame ICRF (default) | Fixed-frame",
+   "group": "Main"
+  },
+  {
+   "name": "Start date/time (UTC Julian date)",
+   "default": "0)",
+   "values": "Initial start time for simulation juliandate (2020, 1, 1, 12, 0, 0) (default) | valid scalar Julian date | valid Gregorian date",
+   "group": "Main"
+  },
+  {
+   "name": "Output current date/time (UTC Julian date)",
+   "default": "on",
+   "values": "Option to add output port t utc on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "Out-of-range block behavior Warning (default) | Error | None",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Fixed",
+   "values": "Spacecraft mass type Fixed (default) | Simple Variable | Custom Variable",
+   "group": "Mass"
+  },
+  {
+   "name": "Mass",
+   "default": "4.0",
+   "values": "Initial mass of rigid body spacecraft 4.0 (default) | scalar | vector of size numSat",
+   "group": "Mass"
+  },
+  {
+   "name": "Empty mass",
+   "default": "3.5",
+   "values": "Spacecraft empty mass 3.5 (default) | scalar | vector of size numSat",
+   "group": "Mass"
+  },
+  {
+   "name": "Full mass",
+   "default": "4.0",
+   "values": "Spacecraft full mass 4.0 (default) | scalar | vector of size numSat",
+   "group": "Mass"
+  },
+  {
+   "name": "Inertia tensor",
+   "default": "0.0040]",
+   "values": "Inertia tensor matrix [0.2273, 0, 0; 0 0.2273 0; 0 0.0040] (default) | 3-by-3 array | 3-by-3-by- numSat array",
+   "group": "Mass"
+  },
+  {
+   "name": "Empty inertia tensor",
+   "default": "0.0035]",
+   "values": "Empty inertia tensor matrix [0.1989, 0, 0; 0 0.1989 0; 0 0.0035] (default) | 3-by-3 array | 3-by-3-by- numSat array",
+   "group": "Mass"
+  },
+  {
+   "name": "Full inertia tensor",
+   "default": "0,.0040]",
+   "values": "Full inertia tensor matrix [0.2273, 0, 0; 0, 0.2273, 0; 0, 0,.0040] (default) | 3-by-3 array | 3-by-3-by- numSat array",
+   "group": "Mass"
+  },
+  {
+   "name": "Include mass flow relative velocity",
+   "default": "off",
+   "values": "Option to enable mass flow velocity off (default) | on",
+   "group": "Mass"
+  },
+  {
+   "name": "Limit mass flow when mass is empty or full",
+   "default": "on",
+   "values": "Option to limit mass flow on (default) | off",
+   "group": "Mass"
+  },
+  {
+   "name": "Output fuel tank status",
+   "default": "on",
+   "values": "Option to enable fuel tank status on (default) | off",
+   "group": "Mass"
+  },
+  {
+   "name": "Attitude reference coordinate frame",
+   "default": "ICRF",
+   "values": "Attitude and angular rate coordinate frame ICRF (default) | Fixed-frame | NED | LVLH",
+   "group": "Attitude"
+  },
+  {
+   "name": "Attitude representation",
+   "default": "Quaternion",
+   "values": "Orientation format Quaternion (default) | DCM | Euler angles",
+   "group": "Attitude"
+  },
+  {
+   "name": "Initial body attitude",
+   "default": "0]",
+   "values": "Spacecraft initial attitude [1, 0, 0, 0] (default) | 4-element vector | numSat -by-4 array | 3-by-3 array | numSat -by-3-by-3 array | 3-element vector | numSat -by-3 array",
+   "group": "Attitude"
+  },
+  {
+   "name": "Angle rotation order",
+   "default": "ZYX",
+   "values": "Angle rotation order ZYX (default) | ZYX | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX",
+   "group": "Attitude"
+  },
+  {
+   "name": "Initial body angular rates PQR",
+   "default": "0]",
+   "values": "Initial body-fixed angular rates [0, 0, 0] (default) | 3-element vector | numSat -by-3 array",
+   "group": "Attitude"
+  },
+  {
+   "name": "Include gravity gradient torque",
+   "default": "on",
+   "values": "Option to enable gravity gradient torque on (default) | off",
+   "group": "Attitude"
+  },
+  {
+   "name": "Central body",
+   "default": "Earth",
+   "values": "Celestial body around which spacecraft orbits Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Custom",
+   "group": "Central Body"
+  },
+  {
+   "name": "Rotational rate",
+   "default": "4.06124975e-3",
+   "values": "Rotational rate 4.06124975e-3 (default) | scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Use Earth orientation parameters (EOPs)",
+   "default": "on",
+   "values": "Option to use Earth orientation parameters on (default) | off",
+   "group": "Central Body"
+  },
+  {
+   "name": "IERS EOP data file",
+   "default": "aeroiersdata.mat",
+   "values": "Earth orientation data aeroiersdata.mat (default) | MAT-file",
+   "group": "Central Body"
+  },
+  {
+   "name": "Input Moon libration angles",
+   "default": "off",
+   "values": "Moon libration Euler angle rate off (default) | on",
+   "group": "Central Body"
+  },
+  {
+   "name": "Output quaternion (ICRF to Fixed-frame)",
+   "default": "off",
+   "values": "Option to add output transformation quaternion port off (default) | on",
+   "group": "Central Body"
+  },
+  {
+   "name": "Central body spin axis source",
+   "default": "Port",
+   "values": "Central body spin source Port (default) | Dialog",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis right ascension (RA) at J2000",
+   "default": "317.68143",
+   "values": "Right ascension of central body spin axis at J2000 317.68143 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis RA rate (deg/century)",
+   "default": "-0.1061",
+   "values": "Right ascension rate of central body spin axis -0.1061 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis declination (Dec) at J2000",
+   "default": "52.88650",
+   "values": "Declination of central body spin axis at J2000 52.88650 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Spin axis Dec rate (deg/century)",
+   "default": "-0.0609",
+   "values": "Declination rate of central body spin axis -0.0609 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Initial rotation angle at J2000",
+   "default": "176.630",
+   "values": "Rotation angle of central body x -axis 176.630 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Rotation rate (deg/day)",
+   "default": "350.89198226",
+   "values": "Rotation rate of central body x -axis 350.89198226 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "3396200",
+   "values": "Equatorial radius 3396200 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Flattening",
+   "default": "0.00589",
+   "values": "Flattening of planet 0.00589 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Gravitational parameter",
+   "default": "4.305e13",
+   "values": "Gravitational parameter 4.305e13 (default) | double scalar",
+   "group": "Central Body"
+  },
+  {
+   "name": "Units",
+   "default": "(m/s)",
+   "values": "Parameter and port units Metric (m/s) (default) | Metric (km/s) | Metric (km/h) | English (ft/s) | English (kts)",
+   "group": "Units"
+  },
+  {
+   "name": "Angle units",
+   "default": "Degrees",
+   "values": "Angle units Degrees (default) | Radians",
+   "group": "Units"
+  },
+  {
+   "name": "Time format",
+   "default": "date",
+   "values": "Time format for start date and time output Julian date (default) | Gregorian",
+   "group": "Units"
+  }
+ ]
+}

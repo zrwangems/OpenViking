@@ -1,0 +1,13 @@
+{
+ "key": "Band-Limited Op-Amp",
+ "title": "Band-Limited Op-Amp",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Band_Limited_Op_Amp.md"
+ ],
+ "text": "Model band-limited operational amplifier.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

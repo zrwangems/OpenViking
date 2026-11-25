@@ -1,0 +1,13 @@
+{
+ "key": "PS Min",
+ "title": "PS Min",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Min.md"
+ ],
+ "text": "Output minimum of two input physical signals.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

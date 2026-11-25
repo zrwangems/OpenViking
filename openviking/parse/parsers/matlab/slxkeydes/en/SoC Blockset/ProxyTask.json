@@ -1,0 +1,32 @@
+{
+ "key": "ProxyTask",
+ "title": "Proxy Task",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor Task Execution/Proxy_Task.md"
+ ],
+ "text": "A placeholder for a task in your application, 1 input; {Type} and {Sample Time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Function-call from Task Manager block scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "Timer-driven",
+   "values": "Type of task Timer-driven (default) | Event-driven",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "1",
+   "values": "Sample time 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

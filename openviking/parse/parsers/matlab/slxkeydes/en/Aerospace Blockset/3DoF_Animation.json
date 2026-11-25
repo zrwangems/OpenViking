@@ -1,0 +1,72 @@
+{
+ "key": "3DoF_Animation",
+ "title": "3DoF Animation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/MATLAB-Based Animation/b_3DoF_Animation.md"
+ ],
+ "text": "Create 3-D MATLAB Graphics animation of three-degrees-of-freedom object, 3 inputs, {Enter view} sets Entrance view Fixed; {Axes limits [xmin xmax ymin ymax zmin zmax]} sets the axes limits, {Time interval between updates}, {Size of craft displayed} scales factor, {Position of camera [xc yc zc]} sets the camera position, {View angle} and {Enable animation} displays animation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x t z t",
+   "direction": "input",
+   "summary": "Target downrange position and altitude (positive down) two-element vector"
+  },
+  {
+   "name": "x e z e",
+   "direction": "input",
+   "summary": "Craft downrange position and altitude (positive down) two-element vector"
+  },
+  {
+   "name": "θ",
+   "direction": "input",
+   "summary": "Attitude of craft 1-by-1 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Axes limits [xmin xmax ymin ymax zmin zmax]",
+   "default": "-3050]",
+   "values": "Axes limits [0 5000 -2000 2000 -5050 -3050] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Time interval between updates",
+   "default": "0.05",
+   "values": "Time interval 0.05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Size of craft displayed",
+   "default": "1.0",
+   "values": "Scale factor 1.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enter view",
+   "default": "position",
+   "values": "Entrance view Fixed position (default) | Cockpit | Fly alongside",
+   "group": ""
+  },
+  {
+   "name": "Position of camera [xc yc zc]",
+   "default": "-3150]",
+   "values": "Camera position [2000 500 -3150] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "View angle",
+   "default": "10",
+   "values": "View angle 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable animation",
+   "default": "on",
+   "values": "Display animation on (default) | off",
+   "group": ""
+  }
+ ]
+}

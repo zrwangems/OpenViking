@@ -1,0 +1,38 @@
+{
+ "key": "DiagnosticMonitorCaller",
+ "title": "DiagnosticMonitorCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/DiagnosticMonitorCaller.md"
+ ],
+ "text": "Call AUTOSAR Diagnostic Event Manager (Dem) service interface DiagnosticMonitor, {Operation} sets operation defined in Dem service interface DiagnosticMonitor; {Client port name} sets the name of client port AUTOSAR component uses to call Dem service interface, {Data type for EventStatus} sets a data type to represent a Dem event type Enum and {Sample time} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Client port name",
+   "default": "DiagnosticMonitor",
+   "values": "Name of client port AUTOSAR component uses to call Dem service interface DiagnosticMonitor DiagnosticMonitor (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "SetEventStatus",
+   "values": "Specify operation defined in Dem service interface DiagnosticMonitor SetEventStatus (default) | ResetMonitorStatus | ResetEventStatus | PrestoreFreezeFrame | ClearPrestoredFreezeFrame | SetEventDisabled",
+   "group": ""
+  },
+  {
+   "name": "Data type for EventStatus",
+   "default": "Dem_EventStatusType",
+   "values": "Specify a data type to represent a Dem event type Enum: Dem_EventStatusType (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "’-1’",
+   "values": "Block sample time ’-1’ (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "key": "slrealtimetcpsend",
+ "title": "TCP Send",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/TCP_Send.md"
+ ],
+ "text": "Send data over TCP network to a remote device, 3 inputs, 1 output; {Send using} sets the list of IP address and port pairs Read-only and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Allow data transmission integer"
+  },
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Data to transmit over the TCP network vector"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Length of data vector double"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Number of bytes sent double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Send using",
+   "default": "",
+   "values": "List of IP address and port pairs Read-only: x.x.x.x:y",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

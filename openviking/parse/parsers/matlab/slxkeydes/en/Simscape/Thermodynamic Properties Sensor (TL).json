@@ -1,0 +1,13 @@
+{
+ "key": "Thermodynamic Properties Sensor (TL)",
+ "title": "Thermodynamic Properties Sensor (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Sensors/Thermodynamic_Properties_Sensor_TL.md"
+ ],
+ "text": "Measure specific internal energy, density, and specific heat at constant pressure in thermal liquid networks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

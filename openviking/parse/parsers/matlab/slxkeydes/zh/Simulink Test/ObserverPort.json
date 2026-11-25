@@ -1,0 +1,19 @@
+{
+ "key": "ObserverPort",
+ "title": "ObserverPort",
+ "toolbox": "Simulink Test",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink Test/ObserverPort.md"
+ ],
+ "text": "无线链接信号以用于验证；输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "映射信号 scalar | vector"
+  }
+ ],
+ "params": []
+}

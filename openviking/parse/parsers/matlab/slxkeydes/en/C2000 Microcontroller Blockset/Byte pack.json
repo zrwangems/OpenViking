@@ -1,0 +1,39 @@
+{
+ "key": "Byte pack",
+ "title": "Byte Pack",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/Byte_Pack.md",
+  "Motor Control Blockset/Signal Management/Byte_Pack.md",
+  "Embedded Coder/Embedded Targets/Host Communication/Byte_Pack.md"
+ ],
+ "text": "Convert input signals to uint8 vector, 1 input, 1 output; {Input port data types (cell array)} sets the data types of block input signals and {Byte alignment} sets the byte boundary for data type alignment. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Signals to convert signal of type double (default) | array of signal data"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Converted signal data vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input port data types (cell array)",
+   "default": "{’double’}",
+   "values": "Data types of block input signals {’double’} (default) | cell array of Simulink ® data types",
+   "group": ""
+  },
+  {
+   "name": "Byte alignment",
+   "default": "1",
+   "values": "Byte boundary for data type alignment 1 (default) | 2 | 4 | 8",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,297 @@
+{
+ "key": "Simulation 3D Aircraft",
+ "title": "Simulation 3D Aircraft",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Aircraft.md"
+ ],
+ "text": "在 3D 环境中实现飞机，输入 4 路、输出 2 路；按 {Initial rotation (rad)} 指定飞机旋转；{Sample time} 指定采样时间、{Type} 指定飞机类型 Sky、{Path to general aviation mesh}、{Path to air transport mesh}、{Path to custom mesh}、{Color} 指定 Aircraft color、{Name} 指定 Aircraft name、{Initial translation (m)} 指定 Initial translation of aircraft zeros、{Scale source}、{Initial scale} 指定 Initial mesh scale、{Scale} 指定网格比例、{Enable altitude and WoW sensors} 指定 Altitude and WoW sensors、{Show sensor rays in viewer} 指定 Option to show sensor rays、{Interpret vector outputs as 1-D} 指定 Control reshaping on sensor output ports、{Length of rays (m)}、{Body Z offset (m)} 指定 Aircraft body Z offset、{Front tire radius (m)} 指定 Front gear tire radius、{Left tire radius (m)} 指定 Left gear tire radius、{Right tire radius (m)} 指定 Right gear tire radius、{WoW sensor tolerance (m)} 指定 Wow sensor tolerance、{Light configuration}、{Landing lights intensity (cd)}、{Landing lights cone half angle (deg)}、{Left landing light location}、{Left landing light orientation (deg)} 指定左着陆灯朝向、{Right landing light location} 指定右着陆灯位置、{Right landing light orientation (deg)} 指定右着陆灯朝向、{Taxi lights intensity (cd)} 指定滑行灯强度、{Taxi lights cone half angle (deg)} 指定滑行灯锥半角、{Taxi lights location} 指定滑行灯位置、{Taxi lights orientation (deg)} 指定滑行灯朝向、{Navigation lights intensity} 指定航行灯强度、{Position light intensity} 指定位置灯强度、{Strobe lights intensity} 指定频闪灯强度、{Wingtip strobe period (s)} 指定翼尖频闪周期、{Wingtip strobe pulse width (% of period)} 指定翼尖频闪脉冲宽度、{Tail strobe period (s)} 指定尾部频闪周期、{Tail strobe pulse width (% of period)} 指定尾部频闪脉冲宽度、{Beacon lights intensity} 指定信标灯强度、{Beacon period (s)} 指定信标周期、{Beacon pulse width (% of period)} 指定信标脉冲宽度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "飞机平移 11 -by- 3 array | 12 -by- 3 array | 15 -by- 3 array | 30 -by- 3 array | 57 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "飞机和机轮旋转 11 -by- 3 array | 12 -by- 3 array | 15 -by- 3 array | 30 -by- 3 array | 57 -by- 3 array"
+  },
+  {
+   "name": "LightStates",
+   "direction": "input",
+   "summary": "飞机灯光控制 1-by-7 vector of double values"
+  },
+  {
+   "name": "Scale",
+   "direction": "input",
+   "summary": "网格比例 [1 1 1] (default) | 1-by-3 array"
+  },
+  {
+   "name": "Altitude",
+   "direction": "output",
+   "summary": "飞机姿态 1-by-4 vector"
+  },
+  {
+   "name": "WoW",
+   "direction": "output",
+   "summary": "轮载 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "Hogg",
+   "values": "飞机类型 Sky Hogg (default) | Airliner | General Aviation | Air Transport | Custom",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Path to general aviation mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation’",
+   "values": "Path to general aviation mesh /MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation’ (default) | character vector",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Path to air transport mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport",
+   "values": "Path to air transport mesh /MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport (default) | character vector",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Path to custom mesh",
+   "default": "/MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20",
+   "values": "Path to custom mesh /MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20 (default) | /MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_Aircraft.SK_Aircraft | character vector",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Color",
+   "default": "Red",
+   "values": "Aircraft color Red (default) | Orange | Yellow | Green | Cyan | Blue | Black | White | Silver | Metal",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "Aircraft name SimulinkVehicle1 (default) | character vector",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Initial translation (m)",
+   "default": "zeros(11,3)",
+   "values": "Initial translation of aircraft zeros(11,3) (default) | 11 -by- 3 array | 12 -by- 3 array | 15 -by- 3 array | 30 -by- 3 array | 57 -by- 3 array",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Initial rotation (rad)",
+   "default": "zeros(11,3)",
+   "values": "飞机旋转 zeros(11,3) (default) | 11 -by- 3 array | 12 -by- 3 array | 15 -by- 3 array | 30 -by- 3 array | 57 -by- 3 array",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Scale source",
+   "default": "Dialog",
+   "values": "Scale source Dialog (default) | Port",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Initial scale",
+   "default": "1]",
+   "values": "Initial mesh scale [1 1 1] (default) | 1-by-3 array",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Scale",
+   "default": "1]",
+   "values": "网格比例 [1 1 1] (default) | 1-by-3 array",
+   "group": "Aircraft"
+  },
+  {
+   "name": "Enable altitude and WoW sensors",
+   "default": "on",
+   "values": "Altitude and WoW sensors on (default) | off",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Show sensor rays in viewer",
+   "default": "off",
+   "values": "Option to show sensor rays off (default) | on",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Interpret vector outputs as 1-D",
+   "default": "off",
+   "values": "Control reshaping on sensor output ports off (default) | on",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Length of rays (m)",
+   "default": "1524",
+   "values": "Length of rays 1524 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Body Z offset (m)",
+   "default": "0.90",
+   "values": "Aircraft body Z offset 0.90 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Front tire radius (m)",
+   "default": "0.21",
+   "values": "Front gear tire radius 0.21 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Left tire radius (m)",
+   "default": "0.21",
+   "values": "Left gear tire radius 0.21 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Right tire radius (m)",
+   "default": "0.21",
+   "values": "Right gear tire radius 0.21 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "WoW sensor tolerance (m)",
+   "default": "0.05",
+   "values": "Wow sensor tolerance 0.05 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Light configuration",
+   "default": "lights",
+   "values": "Light configurations options Automatic lights (default) | Configurable lights | Lights off",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing lights intensity (cd)",
+   "default": "30000",
+   "values": "Landing lights intensity 30000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing lights cone half angle (deg)",
+   "default": "15",
+   "values": "Landing lights cone half angle 15 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Left landing light location",
+   "default": "0]",
+   "values": "Left landing light location [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Left landing light orientation (deg)",
+   "default": "0]",
+   "values": "左着陆灯朝向 [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Right landing light location",
+   "default": "0]",
+   "values": "右着陆灯位置 [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Right landing light orientation (deg)",
+   "default": "0]",
+   "values": "右着陆灯朝向 [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Taxi lights intensity (cd)",
+   "default": "150000",
+   "values": "滑行灯强度 150000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Taxi lights cone half angle (deg)",
+   "default": "36",
+   "values": "滑行灯锥半角 36 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Taxi lights location",
+   "default": "0]",
+   "values": "滑行灯位置 [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Taxi lights orientation (deg)",
+   "default": "0]",
+   "values": "滑行灯朝向 [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Navigation lights intensity",
+   "default": "500",
+   "values": "航行灯强度 500 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Position light intensity",
+   "default": "500",
+   "values": "位置灯强度 500 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe lights intensity",
+   "default": "5000",
+   "values": "频闪灯强度 5000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Wingtip strobe period (s)",
+   "default": "1.5",
+   "values": "翼尖频闪周期 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Wingtip strobe pulse width (% of period)",
+   "default": "6",
+   "values": "翼尖频闪脉冲宽度 6 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Tail strobe period (s)",
+   "default": "1.5",
+   "values": "尾部频闪周期 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Tail strobe pulse width (% of period)",
+   "default": "6",
+   "values": "尾部频闪脉冲宽度 6 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon lights intensity",
+   "default": "4000",
+   "values": "信标灯强度 4000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon period (s)",
+   "default": "1.5",
+   "values": "信标周期 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon pulse width (% of period)",
+   "default": "10",
+   "values": "信标脉冲宽度 10 (default) | positive scalar",
+   "group": "Light Configuration"
+  }
+ ]
+}

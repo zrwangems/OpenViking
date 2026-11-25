@@ -1,0 +1,134 @@
+{
+ "key": "FromSpreadsheet",
+ "title": "From Spreadsheet",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/From_Spreadsheet.md"
+ ],
+ "text": "Read data from spreadsheet, 1 output, no direct feedthrough, {File name} sets Full path and file name; {Sheet name} sets the name of sheet, {Range} sets the cell range entire range of used cells, {Output data type}, {Treat first column as} sets the time or data, {Sample time} sets the sampling period and offset, {Data extrapolation before first data point} sets the extrapolation method for simulation times before initial time stamp in spreadsheet Linear, {Data interpolation within time range} sets the interpolation method for simulation times that fall between two time stamps in spreadsheet Linear, {Data extrapolation after last data point} sets the extrapolation method for simulation times after last time stamp in spreadsheet Linear, {Output after last data point} sets the action after last data point Repeating, {Enable zero-crossing detection} sets the option to enable zero-crossing detection, {Mode} sets the category of data, {Data type override} sets the data type override mode for this signal, {Signedness} sets the signed, {Scaling} sets the method for scaling fixed-point data Binary, {Word length} sets the bit size of the word that holds the quantized, {Fraction length} sets the fraction length for fixed-point data type, {Slope} sets the slope for the fixed-point data and {Bias} sets the bias for the fixed-point data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Data from spreadsheet scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "untitled.xlsx",
+   "values": "Full path and file name untitled.xlsx (default) | full path | relative path",
+   "group": ""
+  },
+  {
+   "name": "Sheet name",
+   "default": "Sheet1",
+   "values": "Name of sheet in spreadsheet Sheet1 (default) | sheet name",
+   "group": ""
+  },
+  {
+   "name": "Range",
+   "default": "sheet",
+   "values": "Cell range entire range of used cells in sheet (default) | comma-separated list of column: row",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "Output data type Inherit: auto (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": ""
+  },
+  {
+   "name": "Treat first column as",
+   "default": "Time",
+   "values": "Time or data Time (default) | Data",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0",
+   "values": "Sampling period and offset 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Data extrapolation before first data point",
+   "default": "extrapolation",
+   "values": "Extrapolation method for simulation times before initial time stamp in spreadsheet Linear extrapolation (default) | Hold first value | Ground value",
+   "group": ""
+  },
+  {
+   "name": "Data interpolation within time range",
+   "default": "interpolation",
+   "values": "Interpolation method for simulation times that fall between two time stamps in spreadsheet Linear interpolation (default) | Zero order hold",
+   "group": ""
+  },
+  {
+   "name": "Data extrapolation after last data point",
+   "default": "extrapolation",
+   "values": "Extrapolation method for simulation times after last time stamp in spreadsheet Linear extrapolation (default) | Hold last value | Ground value",
+   "group": ""
+  },
+  {
+   "name": "Output after last data point",
+   "default": "sequence",
+   "values": "Action after last data point Repeating sequence (default) | Hold final value | Ground value",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "Option to enable zero-crossing detection off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Category of data to specify Inherit (default) | Built in | Fixed point | Enumerated | Expression",
+   "group": ""
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": ""
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Specify signed or unsigned Signed (default) | Unsigned",
+   "group": ""
+  },
+  {
+   "name": "Scaling",
+   "default": "point",
+   "values": "Method for scaling fixed-point data Binary point (default) | Best precision | Slope and bias",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": ""
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Specify bias for the fixed-point data type 0 (default) | real-valued scalar",
+   "group": ""
+  }
+ ]
+}

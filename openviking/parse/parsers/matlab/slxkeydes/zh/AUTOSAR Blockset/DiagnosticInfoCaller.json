@@ -1,0 +1,38 @@
+{
+ "key": "DiagnosticInfoCaller",
+ "title": "DiagnosticInfoCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/DiagnosticInfoCaller.md"
+ ],
+ "text": "调用 AUTOSAR 诊断事件管理器 (Dem) 服务接口 DiagnosticInfo；按 {Operation} 指定Dem 服务接口 DiagnosticInfo 中定义的操作；{Client port name} 指定 AUTOSAR 组件用于调用 Dem 服务接口 DiagnosticInfo 的客户端端口名称、{Data type for DTCFormat} 用于表示 Dem 格式类型的数据类型、{Sample time} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Client port name",
+   "default": "DiagnosticInfo",
+   "values": "AUTOSAR 组件用于调用 Dem 服务接口 DiagnosticInfo 的客户端端口名称 DiagnosticInfo (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "GetEventStatus",
+   "values": "指定 Dem 服务接口 DiagnosticInfo 中定义的操作 GetEventStatus (default) | GetMonitorStatus | GetEventFailed | GetEventTested | GetDTCOfEvent | GetFaultDetectionCounter | GetEventExtendedDataRecord | GetEventFreezeFrameData",
+   "group": ""
+  },
+  {
+   "name": "Data type for DTCFormat",
+   "default": "Enum:Dem_DTCFormatType",
+   "values": "指定用于表示 Dem 格式类型的数据类型 Enum:Dem_DTCFormatType (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "’-1’",
+   "values": "模块采样时间 ’-1’ (default) | scalar",
+   "group": ""
+  }
+ ]
+}

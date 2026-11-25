@@ -1,0 +1,13 @@
+{
+ "key": "U-shaped Channels",
+ "title": "U-shaped Channels",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Thermal/U_shaped_Channels.md"
+ ],
+ "text": "Cooling plate with flat channels.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

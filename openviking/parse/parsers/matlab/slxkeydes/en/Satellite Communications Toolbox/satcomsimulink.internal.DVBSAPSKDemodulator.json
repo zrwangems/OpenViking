@@ -1,0 +1,96 @@
+{
+ "key": "satcomsimulink.internal.DVBSAPSKDemodulator",
+ "title": "DVBS-APSK Demodulator Baseband",
+ "toolbox": "Satellite Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Satellite Communications Toolbox/Modulation/Digital Baseband Modulation/DVBS_APSK_Demodulator_Baseband.md"
+ ],
+ "text": "DVB-S2/S2X/SH standard-specific APSK demodulation, 2 inputs, 1 output, {Decision type} sets Demodulation; {DVB standard suffix} sets the standard suffix S2, {Frame length}, {Modulation order}, {Code identifier}, {Constellation scaling}, {Output type}, {Noise variance source}, {Noise variance}, {Output data type} and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "DVB-S2/S2X/SH standard-specific APSK modulated signal scalar | vector | matrix"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "Noise variance positive scalar | vector of positive values"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Demodulated signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "DVB standard suffix",
+   "default": "",
+   "values": "Standard suffix S2 | S2X | SH",
+   "group": ""
+  },
+  {
+   "name": "Frame length",
+   "default": "Normal",
+   "values": "Frame length Normal (default) | Short",
+   "group": ""
+  },
+  {
+   "name": "Modulation order",
+   "default": "16",
+   "values": "Modulation order 16 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Code identifier",
+   "default": "",
+   "values": "Code identifier 2/3 | character vector",
+   "group": ""
+  },
+  {
+   "name": "Constellation scaling",
+   "default": "1",
+   "values": "Constellation scaling Outer radius as 1 (default) | Unit average power",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "Output type Integer (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "Demodulation decision type Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": ""
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Property",
+   "values": "Noise variance source Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "Noise variance 1 (default) | positive scalar | vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

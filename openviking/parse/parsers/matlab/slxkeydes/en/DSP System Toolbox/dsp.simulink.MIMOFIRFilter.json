@@ -1,0 +1,66 @@
+{
+ "key": "dsp.simulink.MIMOFIRFilter",
+ "title": "MIMO FIR Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/MIMO_FIR_Filter.md"
+ ],
+ "text": "Filter input signals through multipath MIMO FIR filter, 2 inputs, 1 output, no direct feedthrough, {Numerator} sets Time-domain FIR filter coefficients [ 0.5 0.5; {Numerator source} sets the source of FIR filter, {Number of propagation paths}, {Sum filtered output contributions from all input channels} sets the option to sum filtered output contributions from all input, {View Filter Response} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Time-domain FIR filter coefficients row vector | matrix"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filtered output vector | matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Numerator source",
+   "default": "Property",
+   "values": "Source of FIR filter coefficients Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Numerator",
+   "default": "]",
+   "values": "Time-domain FIR filter coefficients [ 0.5 0.5; 0.75 0.25 ] (default) | row vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of propagation paths",
+   "default": "1",
+   "values": "Number of propagation paths between each input and output channel pair 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sum filtered output contributions from all input channels",
+   "default": "on",
+   "values": "Option to sum filtered output contributions from all input channels on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View Filter Response button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

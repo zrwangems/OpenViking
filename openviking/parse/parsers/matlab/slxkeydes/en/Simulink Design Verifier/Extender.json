@@ -1,0 +1,43 @@
+{
+ "key": "Extender",
+ "title": "Extender",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Temporal Operators/Extender.md"
+ ],
+ "text": "Extend true duration of input, 1 input, 1 output; {External reset} specifies whether the block can be reset, {Extension Period} specifies a fixed number of time steps for extension and {Time steps for extension} specifies the number of time steps for extending the true. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal specified as boolean boolean"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal returns as boolean boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "External reset",
+   "default": "off",
+   "values": "specify whether the block can be reset off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Extension Period",
+   "default": "Finite",
+   "values": "specify a fixed number of time steps for extension Finite (default) | Infinite",
+   "group": ""
+  },
+  {
+   "name": "Time steps for extension",
+   "default": "3",
+   "values": "specify the number of time steps for extending the true duration 3 (default) | boolean",
+   "group": ""
+  }
+ ]
+}

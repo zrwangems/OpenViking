@@ -1,0 +1,107 @@
+{
+ "key": "Bus Creator",
+ "title": "SoC Bus Creator",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/SoC_Bus_Creator.md"
+ ],
+ "text": "Convert control signals to bus, 15 inputs, 1 output, {Control type} sets Control type selection; {Control protocol} sets the protocol interface selection. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Valid control signal boolean scalar"
+  },
+  {
+   "name": "tlast",
+   "direction": "input",
+   "summary": "Indication of end of data packet boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "input",
+   "summary": "Ready control signal boolean scalar"
+  },
+  {
+   "name": "hStart",
+   "direction": "input",
+   "summary": "First pixel in horizontal line of frame boolean scalar"
+  },
+  {
+   "name": "hEnd",
+   "direction": "input",
+   "summary": "Last pixel in horizontal line of frame boolean scalar"
+  },
+  {
+   "name": "vStart",
+   "direction": "input",
+   "summary": "First pixel in first (top) line of frame boolean scalar"
+  },
+  {
+   "name": "vEnd",
+   "direction": "input",
+   "summary": "Last pixel in last (bottom) line of frame boolean scalar"
+  },
+  {
+   "name": "fsync",
+   "direction": "input",
+   "summary": "Frame synchronization boolean scalar"
+  },
+  {
+   "name": "rd_addr",
+   "direction": "input",
+   "summary": "Reader address scalar"
+  },
+  {
+   "name": "rd_len",
+   "direction": "input",
+   "summary": "Reader data length scalar"
+  },
+  {
+   "name": "rd_avalid",
+   "direction": "input",
+   "summary": "Reader valid status boolean scalar"
+  },
+  {
+   "name": "rd_dready",
+   "direction": "input",
+   "summary": "Reader ready status boolean scalar"
+  },
+  {
+   "name": "wr_addr",
+   "direction": "input",
+   "summary": "Writer address scalar"
+  },
+  {
+   "name": "wr_len",
+   "direction": "input",
+   "summary": "Writer data length scalar"
+  },
+  {
+   "name": "wr_valid",
+   "direction": "input",
+   "summary": "Writer valid data boolean scalar"
+  },
+  {
+   "name": "ctrlBus",
+   "direction": "output",
+   "summary": "Output control bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control protocol",
+   "default": "stream",
+   "values": "Protocol interface selection Data stream (default) | Pixel stream | Random access read | Random access write",
+   "group": ""
+  },
+  {
+   "name": "Control type",
+   "default": "Valid",
+   "values": "Control type selection Valid (default) | Ready | Ready with frame sync",
+   "group": ""
+  }
+ ]
+}

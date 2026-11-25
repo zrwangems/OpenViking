@@ -1,0 +1,115 @@
+{
+ "key": "LTE OFDM Modulator",
+ "title": "LTE OFDM Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/LTE_OFDM_Modulator.md"
+ ],
+ "text": "Modulate LTE resource grid and return time-domain OFDM samples, 5 inputs, 3 outputs, {Rounding Method} sets Rounding mode for internal fixed-point calculations; {NDLRB source} sets the source of NDLRB, {NDLRB} sets the number of downlink resource blocks, {Cyclic prefix source} sets the source of cyclic, {Cyclic prefix type} sets the type of cyclic, {Windowing} sets the spectral growth reduction, {Window length per NDLRB} sets the nDRLB window length, {Enable reset input port} sets the reset signal, {Output data sample rate} sets the output sample rate Use maximum output data sample and {Divide butterfly outputs by two} sets the bit-width control. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Indicates valid input data scalar"
+  },
+  {
+   "name": "NDLRB",
+   "direction": "input",
+   "summary": "Number of downlink resource blocks 6 | 15 | 25 | 50 | 75 | 100"
+  },
+  {
+   "name": "cyclicPrefixType",
+   "direction": "input",
+   "summary": "Type of CP scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Clears internal states scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Output data scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates valid output data scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Indicates block is ready scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "NDLRB source",
+   "default": "Property",
+   "values": "Source of NDLRB Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "NDLRB",
+   "default": "6",
+   "values": "Number of downlink resource blocks 6 (default) | 15 | 25 | 50 | 75 | 100",
+   "group": "Main"
+  },
+  {
+   "name": "Cyclic prefix source",
+   "default": "Property",
+   "values": "Source of cyclic prefix Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Cyclic prefix type",
+   "default": "Normal",
+   "values": "Type of cyclic prefix Normal (default) | Extended",
+   "group": "Main"
+  },
+  {
+   "name": "Windowing",
+   "default": "off",
+   "values": "Spectral growth reduction off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Window length per NDLRB",
+   "default": "]",
+   "values": "NDRLB window length [ 4, 6, 4, 6, 8, 8 ] (default) | row vector of NDLRB window lengths",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Reset signal off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data sample rate",
+   "default": "rate",
+   "values": "Output sample rate Use maximum output data sample rate (default) | Match output data sample rate to NDLRB",
+   "group": "Main"
+  },
+  {
+   "name": "Divide butterfly outputs by two",
+   "default": "on",
+   "values": "Bit-width control on (default) | off",
+   "group": "IFFT Block Parameters"
+  },
+  {
+   "name": "Rounding Method",
+   "default": "Floor",
+   "values": "Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "IFFT Block Parameters"
+  }
+ ]
+}

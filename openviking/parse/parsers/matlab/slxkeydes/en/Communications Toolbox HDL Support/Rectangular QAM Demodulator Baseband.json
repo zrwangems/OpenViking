@@ -1,0 +1,145 @@
+{
+ "key": "Rectangular QAM Demodulator Baseband",
+ "title": "Rectangular QAM Demodulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/AM/Rectangular_QAM_Demodulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/Rectangular_QAM_Demodulator_Baseband.md"
+ ],
+ "text": "Demodulate rectangular-QAM-modulated data, 2 inputs, 1 output, {Decision type} sets Demodulation; {M-ary number} sets the modulation order, {Output type}, {Noise variance source}, {Noise variance}, {Constellation ordering} sets the mapping order, {Constellation mapping} sets the user-defined constellation mapping, {Normalization method} sets the scaling method for constellation Min. distance between, {Minimum distance} sets the distance between two nearest constellation, {Average power, referenced to 1 ohm (watts)}, {Peak power, referenced to 1 ohm (watts)} sets the maximum power, {Phase offset (rad)} sets the rotation of signal constellation, {Output data type}, {Derotate factor}, {Denormalization factor}, {Product output}, {Rounding mode}, {Saturate on integer overflow} sets the option to saturate on integer overflow and {Sum}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "QAM-modulated signal scalar | vector"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "Noise Variance positive scalar | vector of positive values"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Demodulated signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "16",
+   "values": "Modulation order 16 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "Output type Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "Demodulation decision type Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Dialog",
+   "values": "Noise variance source Dialog (default) | Port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "Noise Variance 1 (default) | positive scalar | vector of positive values",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Binary",
+   "values": "Mapping order of symbols Binary (default) | Gray | User-defined",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "[0:15]",
+   "values": "User-defined constellation mapping [0:15] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Normalization method",
+   "default": "symbols",
+   "values": "Scaling method for constellation Min. distance between symbols (default) | Average Power | Peak Power",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum distance",
+   "default": "2",
+   "values": "Distance between two nearest constellation points 2 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Average power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "Average power 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Peak power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "Maximum power 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "Rotation of signal constellation 0 (default) | numeric scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": "Data Types"
+  },
+  {
+   "name": "Derotate factor",
+   "default": "input",
+   "values": "Derotate factor data type Inherit: Same word length as input (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denormalization factor",
+   "default": "input",
+   "values": "Denormalization factor data type Inherit: Same word length as input (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Wrap",
+   "values": "Rounding mode for fixed-point operations Wrap (default) | Saturate",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Option to saturate on integer overflow off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sum",
+   "default": "rule",
+   "values": "Sum data type Inherit: Inherit via internal rule (default) | Inherit: Same as product output | fixdt(1,16) |",
+   "group": "Data Types"
+  }
+ ]
+}

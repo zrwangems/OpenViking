@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Actuator (IL)",
+ "title": "Double-Acting Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Double_Acting_Actuator_IL.md"
+ ],
+ "text": "在等温液体系统中将压差线性转换为驱动。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

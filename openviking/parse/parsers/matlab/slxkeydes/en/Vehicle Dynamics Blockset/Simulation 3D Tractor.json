@@ -1,0 +1,61 @@
+{
+ "key": "Simulation 3D Tractor",
+ "title": "Simulation 3D Tractor",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Tractor.md"
+ ],
+ "text": "Implement tractor in 3D environment, 2 inputs, {Color} sets Vehicle color; {Type} sets the tractor type Conventional, {Name}, {Initial array values to translate vehicle per part, Translation} sets the vehicle initial translation zeros, {Initial array values to rotate vehicle per part, Rotation} sets the vehicle initial rotation zeros and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "Vehicle translation 7 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "Vehicle rotation 7 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "tractor",
+   "values": "Tractor type Conventional tractor (default) | Cab-over tractor",
+   "group": ""
+  },
+  {
+   "name": "Color",
+   "default": "Red",
+   "values": "Vehicle color Red (default) | Orange | Yellow | Green | Blue | Black | White | Silver | Dazzle camouflage",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "Name of vehicle SimulinkVehicle1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to translate vehicle per part, Translation",
+   "default": ")",
+   "values": "Vehicle initial translation zeros( 7, 3 ) (default) | 7 -by- 3 array",
+   "group": ""
+  },
+  {
+   "name": "Initial array values to rotate vehicle per part, Rotation",
+   "default": ")",
+   "values": "Vehicle initial rotation zeros( 7, 3 ) (default) | 7 -by- 3 array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

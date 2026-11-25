@@ -1,0 +1,49 @@
+{
+ "key": "Washout (Discrete or Continuous)",
+ "title": "Washout (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Washout_Discrete_or_Continuous.md"
+ ],
+ "text": "离散时间或连续时间洗涤滤波器或高通滤波器，输入 1 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Time constant} 指定 Washout 时间常数、{Initialization} 指定初始状态指定 Inherited from block、{Initial state} 指定初始状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Washout 输入 vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Washout 输出 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time constant",
+   "default": "0.1",
+   "values": "Washout 时间常数 0.1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Initialization",
+   "default": "input",
+   "values": "初始状态指定 Inherited from block input (default) | Specify as parameter",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "初始状态 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

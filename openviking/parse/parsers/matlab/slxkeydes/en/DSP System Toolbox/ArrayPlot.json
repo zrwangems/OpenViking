@@ -1,0 +1,19 @@
+{
+ "key": "ArrayPlot",
+ "title": "Array Plot",
+ "toolbox": "DSP System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/Array_Plot.md"
+ ],
+ "text": "Display vectors or arrays, 1 input, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Signal or signals to visualize scalar | vector | matrix | array"
+  }
+ ],
+ "params": []
+}

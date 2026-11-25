@@ -1,0 +1,13 @@
+{
+ "key": "RLC (Three-Phase)",
+ "title": "RLC (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/RLC Assemblies/RLC_Three_Phase.md"
+ ],
+ "text": "三相阻抗。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

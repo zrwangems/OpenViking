@@ -1,0 +1,13 @@
+{
+ "key": "Pulley",
+ "title": "Pulley",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Belts and Cables/Pulley.md"
+ ],
+ "text": "Wheel wrapped in a cord for the transmission of torque and motion.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

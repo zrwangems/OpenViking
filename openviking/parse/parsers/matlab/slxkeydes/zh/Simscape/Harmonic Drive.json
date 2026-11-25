@@ -1,0 +1,13 @@
+{
+ "key": "Harmonic Drive",
+ "title": "Harmonic Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Harmonic_Drive.md"
+ ],
+ "text": "基于椭圆齿轮弹性变形的高传动比减速器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

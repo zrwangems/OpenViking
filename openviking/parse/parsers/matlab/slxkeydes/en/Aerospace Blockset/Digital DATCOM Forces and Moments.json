@@ -1,0 +1,117 @@
+{
+ "key": "Digital DATCOM Forces and Moments",
+ "title": "Digital DATCOM Forces and Moments",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Aerodynamics/Digital_DATCOM_Forces_and_Moments.md"
+ ],
+ "text": "Compute aerodynamic forces and moments using Digital DATCOM static and dynamic stability derivatives, 10 inputs, 2 outputs, {Units} sets Units Metric; {Digital DATCOM structure} sets the digital DATCOM data structure factstruct1, {Force axes} sets the coordinate system for aerodynamic force, {Interpolation method}, {Extrapolation method}, {Process out-of-range input} sets the handle out-of-range input Clip and {Action for out-of-range input} sets the out-of-range block behavior. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Angle of attack scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Sideslip angle scalar"
+  },
+  {
+   "name": "Port_3",
+   "direction": "input",
+   "summary": "Mach number scalar"
+  },
+  {
+   "name": "Port_4",
+   "direction": "input",
+   "summary": "Altitude scalar"
+  },
+  {
+   "name": "Port_5",
+   "direction": "input",
+   "summary": "Dynamic pressure scalar"
+  },
+  {
+   "name": "Port_6",
+   "direction": "input",
+   "summary": "Velocity three-element vector"
+  },
+  {
+   "name": "Port_7",
+   "direction": "input",
+   "summary": "Angle of attack rate scalar"
+  },
+  {
+   "name": "Port_8",
+   "direction": "input",
+   "summary": "Body angular rates three-element vector"
+  },
+  {
+   "name": "Port_9",
+   "direction": "input",
+   "summary": "Ground height scalar"
+  },
+  {
+   "name": "Port_10",
+   "direction": "input",
+   "summary": "Control surface deflection scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Aerodynamic forces at the center of gravity three-element vector"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Aerodynamic moments at the center of gravity three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Digital DATCOM structure",
+   "default": "factstruct{1}",
+   "values": "Digital DATCOM data structure factstruct{1} (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "Force axes",
+   "default": "Body",
+   "values": "Coordinate system for aerodynamic force Body (default) | Wind",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "flat",
+   "values": "Interpolation method None - flat (default) | Linear",
+   "group": ""
+  },
+  {
+   "name": "Extrapolation method",
+   "default": "clip",
+   "values": "Extrapolation method None - clip (default) | Linear",
+   "group": ""
+  },
+  {
+   "name": "Process out-of-range input",
+   "default": "Range",
+   "values": "Handle out-of-range input Clip to Range (default) | Linear Extrapolation",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

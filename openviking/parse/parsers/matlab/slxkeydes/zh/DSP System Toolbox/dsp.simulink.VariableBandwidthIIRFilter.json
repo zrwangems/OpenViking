@@ -1,0 +1,124 @@
+{
+ "key": "dsp.simulink.VariableBandwidthIIRFilter",
+ "title": "Variable Bandwidth IIR Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Variable_Bandwidth_IIR_Filter.md"
+ ],
+ "text": "设计可调带宽 IIR 滤波器，输入 4 路、输出 1 路；按 {Filter type} 指定滤波器类型；{IIR filter order} 指定 IIR 滤波器阶数、{Specify passband frequency from input port} 指定从输入端口指定通带频率、{Filter passband frequency} 指定滤波器通带频率、{Specify center frequency from input port} 指定从输入端口指定中心频率、{Filter center frequency} 指定滤波器中心频率、{Specify bandwidth from input port} 指定从输入端口指定带宽、{Filter bandwidth} 指定滤波器带宽、{Filter passband ripple (dB)}、{Filter Stopband attenuation (dB)}、{Sample rate mode} 用于指定输入采样率的模式 Use normalized、{Input sample rate (Hz)} 指定输入采样率、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Fp",
+   "direction": "input",
+   "summary": "滤波器通带频率 positive scalar"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "滤波器中心频率 positive scalar"
+  },
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "滤波器带宽 positive scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "滤波后输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "滤波器类型 Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": ""
+  },
+  {
+   "name": "IIR filter order",
+   "default": "8",
+   "values": "IIR 滤波器阶数 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify passband frequency from input port",
+   "default": "off",
+   "values": "从输入端口指定通带频率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter passband frequency",
+   "default": "512",
+   "values": "滤波器通带频率 512 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "off",
+   "values": "从输入端口指定中心频率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter center frequency",
+   "default": "44100/4",
+   "values": "滤波器中心频率 44100/4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify bandwidth from input port",
+   "default": "off",
+   "values": "从输入端口指定带宽 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter bandwidth",
+   "default": "7680",
+   "values": "滤波器带宽 7680 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter passband ripple (dB)",
+   "default": "1",
+   "values": "Filter passband ripple 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter Stopband attenuation (dB)",
+   "default": "60",
+   "values": "Filter Stopband attenuation 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "用于指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

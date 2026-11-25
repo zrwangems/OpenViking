@@ -1,0 +1,31 @@
+{
+ "key": "Bit Reduce",
+ "title": "Bit Reduce",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Bit_Reduce.md"
+ ],
+ "text": "对所有输入信号位进行 AND、OR 或 XOR 位缩减，得到单个位，输入 1 路、输出 1 路；按 {Reduction Mode} 指定对输入执行的缩减运算。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reduction Mode",
+   "default": "AND",
+   "values": "对输入执行的缩减运算 AND (default) | OR | XOR",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,67 @@
+{
+ "key": "Push Button",
+ "title": "Push Button",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic I_O/Push_Button.md"
+ ],
+ "text": "Connect signals attached to push buttons on hardware board, 1 input, 1 output, {IO logic} sets IO logic indicator; {Hardware board} sets the view selected hardware, {View push buttons location} sets the view push buttons, {Specify push buttons via} sets the push-button source, {Number of push buttons} sets the push-button selection, {PB n} sets the selected push buttons and {Sample time} sets the sampling interval. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PBIn x",
+   "direction": "input",
+   "summary": "Input signal Boolean scalar"
+  },
+  {
+   "name": "PB x",
+   "direction": "output",
+   "summary": "Output signal Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hardware board",
+   "default": "None",
+   "values": "View selected hardware None (default) | Supported Xilinx ® or Intel ® boards | Custom boards",
+   "group": ""
+  },
+  {
+   "name": "View push buttons location",
+   "default": "",
+   "values": "View push buttons button",
+   "group": ""
+  },
+  {
+   "name": "IO logic",
+   "default": "None",
+   "values": "IO logic indicator None (default) | Active High | Active Low",
+   "group": ""
+  },
+  {
+   "name": "Specify push buttons via",
+   "default": "Dialog",
+   "values": "Push-button source Dialog (default) | InputPort",
+   "group": ""
+  },
+  {
+   "name": "Number of push buttons",
+   "default": "1",
+   "values": "Push-button selection 1 (default) | list of integers in the range [1, n]",
+   "group": ""
+  },
+  {
+   "name": "PB n",
+   "default": "Off",
+   "values": "Selected push buttons Off (default) | On",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sampling interval -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

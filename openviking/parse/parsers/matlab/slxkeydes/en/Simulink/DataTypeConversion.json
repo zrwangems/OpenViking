@@ -1,0 +1,131 @@
+{
+ "key": "DataTypeConversion",
+ "title": "Data Type Conversion",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Data_Type_Conversion.md",
+  "Simulink/Signal Attributes/Data_Type_Conversion.md",
+  "Simulink/Quick Insert/Signal Attributes/Cast.md",
+  "Simulink/Quick Insert/Signal Attributes/Cast_To_Boolean.md",
+  "Simulink/Quick Insert/Signal Attributes/Cast_To_Double.md",
+  "Simulink/Quick Insert/Signal Attributes/Cast_To_Single.md",
+  "HDL Coder/Commonly Used Blocks/Data_Type_Conversion.md",
+  "HDL Coder/HDL Floating Point Operations/Data_Type_Conversion.md",
+  "HDL Coder/Signal Attributes/Data_Type_Conversion.md",
+  "DSP System Toolbox HDL Support/Signal Management/Data_Type_Conversion.md",
+  "DSP System Toolbox/Signal Management/Signal Attributes/Data_Type_Conversion.md"
+ ],
+ "text": "Convert input signal to specified data type, 1 input, 1 output, direct feedthrough, {Mode} sets Select data type mode; {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type}, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Input and output to have equal} sets the constraint for converting fixed-point data types Real World, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Sample time (-1 for inherited)} sets the interval between samples, {Data type override} sets the data type override mode for this signal, {Signedness} sets the signed, {Scaling} sets the method for scaling fixed-point data Best, {Word length} sets the bit size of the word that holds the quantized, {Fraction length} sets the fraction length for fixed-point data type, {Slope} sets the slope for the fixed-point data and {Bias} sets the bias for the fixed-point data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "propagation",
+   "values": "Output data type Inherit: Inherit via back propagation (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": ""
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input and output to have equal",
+   "default": "(RWV)",
+   "values": "Constraint for converting fixed-point data types Real World Value (RWV) (default) | Stored Integer (SI)",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Select data type mode Inherit (default) | Built in | Fixed Point",
+   "group": ""
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": ""
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Specify signed or unsigned Signed (default) | Unsigned",
+   "group": ""
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": ""
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Specify bias for the fixed-point data type 0 (default) | real-valued scalar",
+   "group": ""
+  }
+ ]
+}

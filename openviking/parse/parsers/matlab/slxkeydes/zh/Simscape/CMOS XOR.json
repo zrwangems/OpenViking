@@ -1,0 +1,13 @@
+{
+ "key": "CMOS XOR",
+ "title": "CMOS XOR",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Logic/CMOS_XOR.md"
+ ],
+ "text": "CMOS XOR 门的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

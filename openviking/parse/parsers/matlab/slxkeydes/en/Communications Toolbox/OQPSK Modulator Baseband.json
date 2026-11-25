@@ -1,0 +1,97 @@
+{
+ "key": "OQPSK Modulator Baseband",
+ "title": "OQPSK Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/OQPSK_Modulator_Baseband.md"
+ ],
+ "text": "Modulate using OQPSK method, 1 input, 1 output, {Pulse shape} sets Filtering pulse shape Half; {Input type}, {Symbol mapping} sets the signal constellation bit, {Phase offset (rad)} sets the phase of zeroth point of signal, {View Constellation} sets the option to plot reference constellation, {Rolloff factor} sets the raised cosine filter rolloff factor, {Filter span (in symbols)} sets the filter length, {Filter numerator}, {Filter Denominator}, {Samples per symbol} sets the number of samples per symbol, {Rate options} sets the processing rate option Enforce single-rate and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input data integer column vector | bit column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output baseband waveform column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "Input type Integer (default) | Bit",
+   "group": "Modulation"
+  },
+  {
+   "name": "Symbol mapping",
+   "default": "Gray",
+   "values": "Signal constellation bit mapping Gray (default) | Binary | custom 4-element numeric vector of integers with values from 0 to 3",
+   "group": "Modulation"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "Phase of zeroth point of signal constellation 0 (default) | scalar",
+   "group": "Modulation"
+  },
+  {
+   "name": "View Constellation",
+   "default": "",
+   "values": "Option to plot reference constellation button",
+   "group": "Modulation"
+  },
+  {
+   "name": "Pulse shape",
+   "default": "sine",
+   "values": "Filtering pulse shape Half sine (default) | Normal raised cosine | Root raised cosine | Custom",
+   "group": "Filtering"
+  },
+  {
+   "name": "Rolloff factor",
+   "default": "0.2",
+   "values": "Raised cosine filter rolloff factor 0.2 (default) | scalar",
+   "group": "Filtering"
+  },
+  {
+   "name": "Filter span (in symbols)",
+   "default": "10",
+   "values": "Filter length 10 (default) | scalar",
+   "group": "Filtering"
+  },
+  {
+   "name": "Filter numerator",
+   "default": "0.7071]",
+   "values": "Filter numerator [0.7071 0.7071] (default) | row vector",
+   "group": "Filtering"
+  },
+  {
+   "name": "Filter Denominator",
+   "default": "1",
+   "values": "Filter denominator 1 (default) | row vector",
+   "group": "Filtering"
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "4",
+   "values": "Number of samples per symbol 4 (default) | positive even integer",
+   "group": "Filtering"
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Processing rate option Enforce single-rate processing (default) | Allow multirate processing",
+   "group": "Other Parameters"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single",
+   "group": "Other Parameters"
+  }
+ ]
+}

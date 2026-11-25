@@ -1,0 +1,154 @@
+{
+ "key": "dsp.simulink.IIRHalfbandInterpolator",
+ "title": "IIR Halfband Interpolator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/IIR_Halfband_Interpolator.md"
+ ],
+ "text": "Interpolate signal using polyphase IIR halfband filter, 4 inputs, 1 output, no direct feedthrough, {Filter specification} sets Filter design parameters Transition width and stopband; {Transition width (Hz)} sets the transition width 4.1e3, {Filter order} sets the order of the IIR halfband filter, {Stopband attenuation (dB)} sets the minimum attenuation needed in stopband, {Design method}, {Internal allpass structure} sets the filter structure in coefficient mode Minimum, {Make the first branch a pure delay}, {Delay length in samples for branch 1} sets the length of the delay, {Specify coefficients from input port}, {Branch 1 allpass polynomial coefficients} sets the allpass polynomial filter coefficients of first branch, {Branch 2 allpass polynomial coefficients} sets the allpass polynomial filter coefficients of second branch, {Branch 1 Wave Digital coefficients} sets the allpass filter coefficients of first branch in wave digital filter form, {Branch 2 Wave Digital coefficients} sets the allpass filter coefficients of second branch in wave digital filter form, {Last section of branch 2 is first order} sets the make the last section of the second branch as first, {Input highpass subband}, {Sample rate mode} sets the mode to specify the input sample rate Use normalized, {Input sample rate (Hz)} sets the sample rate of input signal, {View Filter Response} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LP",
+   "direction": "input",
+   "summary": "Data input column vector | matrix"
+  },
+  {
+   "name": "HP",
+   "direction": "input",
+   "summary": "Second input to the synthesis filter bank column vector | matrix"
+  },
+  {
+   "name": "coeffs1",
+   "direction": "input",
+   "summary": "Branch 1 allpass polynomial coefficients N -by- 1 vector | N -by- 2 matrix"
+  },
+  {
+   "name": "coeffs2",
+   "direction": "input",
+   "summary": "Branch 2 allpass polynomial coefficients N -by- 1 vector | N -by- 2 matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output of interpolator column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter specification",
+   "default": "attenuation",
+   "values": "Filter design parameters Transition width and stopband attenuation (default) | Filter order and stopband attenuation | Filter order and transition width | Coefficients",
+   "group": ""
+  },
+  {
+   "name": "Transition width (Hz)",
+   "default": "4.1e3",
+   "values": "Transition width 4.1e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "9",
+   "values": "Order of the IIR halfband filter 9 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "Minimum attenuation needed in stopband 80 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Design method",
+   "default": "Elliptic",
+   "values": "Design method Elliptic (default) | Quasi-linear phase",
+   "group": ""
+  },
+  {
+   "name": "Internal allpass structure",
+   "default": "multiplier",
+   "values": "Filter structure in coefficient mode Minimum multiplier (default) | Wave Digital Filter",
+   "group": ""
+  },
+  {
+   "name": "Make the first branch a pure delay",
+   "default": "off",
+   "values": "Make the first branch a pure delay off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Delay length in samples for branch 1",
+   "default": "1",
+   "values": "Length of the delay 1 (default) | finite positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify coefficients from input port",
+   "default": "off",
+   "values": "Specify coefficients from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Branch 1 allpass polynomial coefficients",
+   "default": "0.7906755]",
+   "values": "Allpass polynomial filter coefficients of first branch [0.1284563; 0.7906755] (default) | N -by- 1 | N -by- 2",
+   "group": ""
+  },
+  {
+   "name": "Branch 2 allpass polynomial coefficients",
+   "default": "[0.4295667]",
+   "values": "Allpass polynomial filter coefficients of second branch [0.4295667] (default) | N -by- 1 | N -by- 2",
+   "group": ""
+  },
+  {
+   "name": "Branch 1 Wave Digital coefficients",
+   "default": "0.7906755]",
+   "values": "Allpass filter coefficients of first branch in wave digital filter form [0.1284563; 0.7906755] (default) | N -by- 1 | N -by- 2",
+   "group": ""
+  },
+  {
+   "name": "Branch 2 Wave Digital coefficients",
+   "default": "[0.4295667]",
+   "values": "Allpass filter coefficients of second branch in wave digital filter form [0.4295667] (default) | N -by- 1 | N -by- 2",
+   "group": ""
+  },
+  {
+   "name": "Last section of branch 2 is first order",
+   "default": "off",
+   "values": "Make the last section of the second branch as first order off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input highpass subband",
+   "default": "off",
+   "values": "Input highpass subband off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "22050",
+   "values": "Sample rate of input signal 22050 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View Filter Response button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

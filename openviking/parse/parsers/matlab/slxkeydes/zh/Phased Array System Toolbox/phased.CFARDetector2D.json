@@ -1,0 +1,117 @@
+{
+ "key": "phased.CFARDetector2D",
+ "title": "2-D CFAR Detector",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/b_2_D_CFAR_Detector.md"
+ ],
+ "text": "二维恒虚警率 (CFAR) 检测器，输入 3 路、输出 3 路；按 {Size in cells of the guard region band} 指定保护带的宽度；{CFAR algorithm} 指定噪声功率估计算法、{Rank of order statistic} 指定顺序统计量的秩、{Size in cells of the training region band} 指定训练带的宽度、{Threshold factor method} 确定阈值因子的方法、{Custom threshold factor} 指定自定义阈值因子、{Probability of false alarm} 指定虚警概率、{OutputFormat} 指定检测结果的格式 CUT、{Output threshold detection} 启用检测阈值输出、{Output estimated noise power} 启用检测阈值输出、{Source of the number of detections} 指定要报告的检测数量的来源、{Maximum number of detections} 指定要报告的检测索引最大数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入图像 real M -by- N matrix | real M -by- N -by- P array"
+  },
+  {
+   "name": "idx",
+   "direction": "input",
+   "summary": "测试单元的位置 2 -by- L matrix of positive integers"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "检测阈值因子 positive scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "检测结果 logical matrix (default) | real-valued matrix"
+  },
+  {
+   "name": "Th",
+   "direction": "output",
+   "summary": "计算出的检测阈值 real-valued matrix"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "估计的噪声功率 real-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "CFAR algorithm",
+   "default": "CA",
+   "values": "噪声功率估计算法 CA (default) | GOCA | SOCA | OS",
+   "group": ""
+  },
+  {
+   "name": "Rank of order statistic",
+   "default": "1",
+   "values": "顺序统计量的秩 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Size in cells of the guard region band",
+   "default": "[1,1]",
+   "values": "保护带的宽度 [1,1] (default) | nonnegative integer scalar | 2-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Size in cells of the training region band",
+   "default": "[1,1]",
+   "values": "训练带的宽度 [1,1] (default) | nonnegative integer scalar | 2-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Threshold factor method",
+   "default": "Auto",
+   "values": "确定阈值因子的方法 Auto (default) | Input port | Custom",
+   "group": ""
+  },
+  {
+   "name": "Custom threshold factor",
+   "default": "1",
+   "values": "自定义阈值因子 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Probability of false alarm",
+   "default": "0.1",
+   "values": "虚警概率 0.1 (default) | real scalar between 0 and 1",
+   "group": ""
+  },
+  {
+   "name": "OutputFormat",
+   "default": "result",
+   "values": "检测结果的格式 CUT result (default) | Detection index",
+   "group": ""
+  },
+  {
+   "name": "Output threshold detection",
+   "default": "off",
+   "values": "启用检测阈值输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output estimated noise power",
+   "default": "off",
+   "values": "启用检测阈值输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of the number of detections",
+   "default": "Auto",
+   "values": "要报告的检测数量的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of detections",
+   "default": "1",
+   "values": "要报告的检测索引最大数量 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

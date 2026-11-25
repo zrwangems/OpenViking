@@ -1,0 +1,13 @@
+{
+ "key": "Isothermal Liquid Predefined Properties (IL)",
+ "title": "Isothermal Liquid Predefined Properties (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Utilities/Isothermal_Liquid_Predefined_Properties_IL.md"
+ ],
+ "text": "设置等温液体网络的工作流体属性。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

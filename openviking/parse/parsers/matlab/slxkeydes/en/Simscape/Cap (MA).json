@@ -1,0 +1,13 @@
+{
+ "key": "Cap (MA)",
+ "title": "Cap (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Cap_MA.md"
+ ],
+ "text": "Moist air port terminator with zero flow.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

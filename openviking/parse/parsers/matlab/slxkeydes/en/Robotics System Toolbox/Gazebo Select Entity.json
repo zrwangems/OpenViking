@@ -1,0 +1,37 @@
+{
+ "key": "Gazebo Select Entity",
+ "title": "Gazebo Select Entity",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Select_Entity.md"
+ ],
+ "text": "Select a Gazebo entity, 2 outputs; {Model Name} and {Output vector size upper bound} sets the upper limit of output array. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "model",
+   "direction": "output",
+   "summary": "Model name of entity model1 (default) | string ( uint8[] )"
+  },
+  {
+   "name": "Joint/Link",
+   "direction": "output",
+   "summary": "Associated joint or link name of entity joint1 (default) | string ( uint8[] )"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model Name",
+   "default": "’model1/joint1’",
+   "values": "Choose model name ’model1/joint1’ (default) | string scalar",
+   "group": ""
+  },
+  {
+   "name": "Output vector size upper bound",
+   "default": "128",
+   "values": "Upper limit of output array 128 (default)",
+   "group": ""
+  }
+ ]
+}

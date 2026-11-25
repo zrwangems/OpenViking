@@ -1,0 +1,24 @@
+{
+ "key": "slrealtimestartstoptracing",
+ "title": "Enable Profiler",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Profiling/Enable_Profiler.md"
+ ],
+ "text": "在目标计算机上启动和停止执行探查器，输入 2 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Start",
+   "direction": "input",
+   "summary": "启动探查器 0 | 1"
+  },
+  {
+   "name": "Stop",
+   "direction": "input",
+   "summary": "停止探查器 0 | 1"
+  }
+ ],
+ "params": []
+}

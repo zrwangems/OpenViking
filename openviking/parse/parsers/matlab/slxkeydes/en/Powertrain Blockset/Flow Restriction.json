@@ -1,0 +1,116 @@
+{
+ "key": "Flow Restriction",
+ "title": "Flow Restriction",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Fundamental Flow/Flow_Restriction.md"
+ ],
+ "text": "Isentropic ideal gas flow through an orifice, 4 inputs, 3 outputs, {Orifice area model} sets Select model; {Image type} sets the icon color, {Ratio of specific heats, gamma} sets the ratio, {Ideal gas constant, R} sets the constant, {Pressure ratio linearize limit, Plim} limits, {Constant area value, Aorf_cnst} sets the area .1, {Discharge coefficient, Cd_cnst} sets the coefficient, {Discharge coefficient, Cd_ext} sets the coefficient, {Throttle diameter, Dthr} sets the diameter, {Discharge coefficient table, ThrCd} sets the coefficient and {Angle breakpoints, ThrAngBpts}.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Inlet orifice pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Outlet orifice pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "Area",
+   "direction": "input",
+   "summary": "Orifice area scalar"
+  },
+  {
+   "name": "ThrPct",
+   "direction": "input",
+   "summary": "Throttle body percent open scalar"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "Inlet mass flow rate, heat flow rate, temperature two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Outlet mass flow rate, heat flow rate, temperature two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Orifice area model",
+   "default": "Constant",
+   "values": "Select model Constant (default) | External input | Throttle body geometry",
+   "group": ""
+  },
+  {
+   "name": "Image type",
+   "default": "Cold",
+   "values": "Icon color Cold (default) | Hot",
+   "group": ""
+  },
+  {
+   "name": "Ratio of specific heats, gamma",
+   "default": "1.3998",
+   "values": "Ratio 1.3998 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ideal gas constant, R",
+   "default": "287.05",
+   "values": "Constant 287.05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pressure ratio linearize limit, Plim",
+   "default": "0.95",
+   "values": "Limit 0.95 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant area value, Aorf_cnst",
+   "default": ".1",
+   "values": "Area .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discharge coefficient, Cd_cnst",
+   "default": "1",
+   "values": "Coefficient 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discharge coefficient, Cd_ext",
+   "default": "1",
+   "values": "Coefficient 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Throttle diameter, Dthr",
+   "default": "50",
+   "values": "Diameter 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discharge coefficient table, ThrCd",
+   "default": "0.735]",
+   "values": "Coefficient [0.001; 0.735] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Angle breakpoints, ThrAngBpts",
+   "default": "90]",
+   "values": "Angle [0; 90] (default) | vector",
+   "group": ""
+  }
+ ]
+}

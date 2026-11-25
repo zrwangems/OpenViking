@@ -1,0 +1,55 @@
+{
+ "key": "OpenL3 Embeddings",
+ "title": "OpenL3 Embeddings",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/OpenL3_Embeddings.md"
+ ],
+ "text": "提取 OpenL3 嵌入，输入 1 路、输出 1 路、无直接馈通；按 {Spectrum type} 指定频谱类型 Mel；{Sample rate of input signal (Hz)} 指定输入信号的采样率（Hz） 48e3（连续频谱图之间的重叠百分比 90）{Content type} 指定音频内容类型 Environmental sound、{Embedding length} 输出嵌入长度 也按实例取值；{Overlap percentage (%)} 指定连续频谱图之间的重叠百分比，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "声音数据 column vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "嵌入 row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "48e3",
+   "values": "输入信号的采样率（Hz） 48e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "90",
+   "values": "连续频谱图之间的重叠百分比 90 (default) | [0 100)",
+   "group": ""
+  },
+  {
+   "name": "Spectrum type",
+   "default": "bands)",
+   "values": "频谱类型 Mel (128 bands) (default) | Mel (256 bands) | Linear",
+   "group": ""
+  },
+  {
+   "name": "Content type",
+   "default": "sounds",
+   "values": "音频内容类型 Environmental sounds (default) | Musical sounds",
+   "group": ""
+  },
+  {
+   "name": "Embedding length",
+   "default": "512",
+   "values": "输出嵌入长度 512 (default) | 6144",
+   "group": ""
+  }
+ ]
+}

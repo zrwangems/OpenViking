@@ -1,0 +1,13 @@
+{
+ "key": "MAPMINMAX Preprocess",
+ "title": "mapminmax",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/mapminmax.md"
+ ],
+ "text": "通过将行最小值和最大值映射到 [ -1 1 ] 来处理矩阵。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Rotating Cylinder Force (IL)",
+ "title": "Rotating Cylinder Force (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Auxiliary Components/Rotating_Cylinder_Force_IL.md"
+ ],
+ "text": "Centripetal pressure gradient for components in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

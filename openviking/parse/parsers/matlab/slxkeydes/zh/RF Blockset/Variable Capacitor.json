@@ -1,0 +1,20 @@
+{
+ "key": "Variable Capacitor",
+ "title": "Variable Capacitor",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Variable_Capacitor.md",
+  "Simscape/Electrical/Passive/Variable_Capacitor.md"
+ ],
+ "text": "对可变电容器建模，输入 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Simulink 控制信号 scalar"
+  }
+ ],
+ "params": []
+}

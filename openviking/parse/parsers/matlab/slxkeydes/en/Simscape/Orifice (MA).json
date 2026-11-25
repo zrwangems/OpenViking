@@ -1,0 +1,13 @@
+{
+ "key": "Orifice (MA)",
+ "title": "Orifice (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Valves & Orifices/Orifice_MA.md"
+ ],
+ "text": "Orifice in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

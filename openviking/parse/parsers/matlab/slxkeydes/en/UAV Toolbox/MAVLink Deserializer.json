@@ -1,0 +1,101 @@
+{
+ "key": "MAVLink Deserializer",
+ "title": "MAVLink Deserializer",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/MAVLink/MAVLink_Deserializer.md"
+ ],
+ "text": "Convert serialized uint8 MAVLink data stream to Simulink nonvirtual bus, 2 inputs, 2 outputs; {MAVLink dialect source} sets the source for specifying the MAVLink message definition Select from standard MAVLink, {MAVLink dialect} sets the message definition to parse for MAVLink messages, {MAVLink version} sets the mAVLink protocol version, {MAVLink Message type} sets the mAVLink message, {Input data stream length is available} sets the length of valid MAVLink data in the input byte stream, {Filter output MAVLink messages by System ID} sets the filter received messages by System ID, {System ID}, {Filter output MAVLink messages by Component ID} sets the filter received messages by System ID and Component, {Component ID}, {Queue MAVLink messages in output} enables queuing of the received MAVLink and {Number of messages to be queued} sets the size of MAVLink message queue. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "MAVLink data stream vector"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Length of valid MAVLink data at Data input port scalar"
+  },
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "New message indicator 0 | 1"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "MAVLink packet nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "MAVLink dialect source",
+   "default": "dialects",
+   "values": "Source for specifying the MAVLink message definition Select from standard MAVLink dialects (default) | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "MAVLink dialect",
+   "default": "common.xml",
+   "values": "Message definition to parse for MAVLink messages common.xml (default) | string",
+   "group": ""
+  },
+  {
+   "name": "MAVLink version",
+   "default": "2",
+   "values": "MAVLink protocol version 2 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "MAVLink Message type",
+   "default": "HEARTBEAT",
+   "values": "MAVLink message HEARTBEAT (default)",
+   "group": ""
+  },
+  {
+   "name": "Input data stream length is available",
+   "default": "off",
+   "values": "Length of valid MAVLink data in the input byte stream is known off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter output MAVLink messages by System ID",
+   "default": "off",
+   "values": "Filter received messages by System ID off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "System ID",
+   "default": "1",
+   "values": "System ID value 1 (default) | scalar in the range [0,255]",
+   "group": ""
+  },
+  {
+   "name": "Filter output MAVLink messages by Component ID",
+   "default": "off",
+   "values": "Filter received messages by System ID and Component ID off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Component ID",
+   "default": "1",
+   "values": "Component ID value 1 (default) | [ 0,255 ]",
+   "group": ""
+  },
+  {
+   "name": "Queue MAVLink messages in output",
+   "default": "off",
+   "values": "Enable queuing of the received MAVLink messages off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of messages to be queued",
+   "default": "50",
+   "values": "Size of MAVLink message queue 50 (default) | scalar in the range ( 0,65535 ]",
+   "group": ""
+  }
+ ]
+}

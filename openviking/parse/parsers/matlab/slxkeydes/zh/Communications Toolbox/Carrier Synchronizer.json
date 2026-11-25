@@ -1,0 +1,78 @@
+{
+ "key": "Carrier Synchronizer",
+ "title": "Carrier Synchronizer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Synchronization/Carrier_Synchronizer.md"
+ ],
+ "text": "补偿载波频率偏移，输入 1 路、输出 2 路；按 {Modulation} 指定调制类型；{Modulation phase offset} 指定调制相位偏移方法、{Custom phase offset (radians)} 以弧度表示的自定义相位偏移、{Samples per symbol} 指定每个符号的采样数、{Damping factor} 指定环路的阻尼因子、{Normalized loop bandwidth} 指定环路的归一化带宽、{Estimated phase error output port} 启用估计相位误差输出端口、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "相位校正后的输出信号 scalar | column vector"
+  },
+  {
+   "name": "PhEst",
+   "direction": "output",
+   "summary": "以弧度表示的相位估计 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation",
+   "default": "QAM",
+   "values": "调制类型 QAM (default) | 8PSK | BPSK | OQPSK | PAM | QPSK",
+   "group": ""
+  },
+  {
+   "name": "Modulation phase offset",
+   "default": "Auto",
+   "values": "调制相位偏移方法 Auto (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Custom phase offset (radians)",
+   "default": "0",
+   "values": "以弧度表示的自定义相位偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "2",
+   "values": "每个符号的采样数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Damping factor",
+   "default": "0.707",
+   "values": "环路的阻尼因子 0.707 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Normalized loop bandwidth",
+   "default": "0.01",
+   "values": "环路的归一化带宽 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Estimated phase error output port",
+   "default": "on",
+   "values": "启用估计相位误差输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

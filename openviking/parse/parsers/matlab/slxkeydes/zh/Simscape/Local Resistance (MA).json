@@ -1,0 +1,13 @@
+{
+ "key": "Local Resistance (MA)",
+ "title": "Local Resistance (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/Local_Resistance_MA.md"
+ ],
+ "text": "湿空气网络中的管道阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

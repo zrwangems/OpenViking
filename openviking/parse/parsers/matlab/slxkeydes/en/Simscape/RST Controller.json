@@ -1,0 +1,90 @@
+{
+ "key": "RST Controller",
+ "title": "RST Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/RST_Controller.md"
+ ],
+ "text": "Predictive control using a polynomial representation, 2 inputs, 1 output; {Controller parameterization} sets the parameterization method Controller, {R polynomial}, {S polynomial}, {T polynomial}, {Model discrete transfer function numerator} sets the transfer function numerator, {Model discrete transfer function denominator} sets the transfer function denominator, {Control horizon (samples)} sets the number of control-horizon samples, {Control weighting factor} sets the weighting factor, {System dead time (samples)} sets the number of dead-time samples and {Sample time (-1 for inherited)} sets the sampling interval. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Plant reference scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Controller output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Controller parameterization",
+   "default": "polynomials",
+   "values": "Parameterization method Controller polynomials (default) | Generate polynomials",
+   "group": ""
+  },
+  {
+   "name": "R polynomial",
+   "default": "1",
+   "values": "R polynomial values 1 (default) | positive, scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "S polynomial",
+   "default": "1",
+   "values": "S polynomial values 1 (default) | positive, scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "T polynomial",
+   "default": "1",
+   "values": "T polynomial values 1 (default) | positive, scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Model discrete transfer function numerator",
+   "default": "1",
+   "values": "Transfer function numerator 1 (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Model discrete transfer function denominator",
+   "default": "0.5]",
+   "values": "Transfer function denominator [1 0.5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Control horizon (samples)",
+   "default": "5",
+   "values": "Number of control-horizon samples 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Control weighting factor",
+   "default": "0.5",
+   "values": "Weighting factor 0.5 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "System dead time (samples)",
+   "default": "2",
+   "values": "Number of dead-time samples 2 (default) | 0 or a positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sampling interval -1 (default) | default value or a positive number",
+   "group": ""
+  }
+ ]
+}

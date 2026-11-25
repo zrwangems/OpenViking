@@ -1,0 +1,38 @@
+{
+ "key": "C2802x GPIO Digital Input",
+ "title": "Digital Input",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/Digital_Input.md"
+ ],
+ "text": "将通用输入/输出引脚配置为数字输入；输出 1 路；按 {数据类型} 指定GPIO 输入的数据类型；{GPIO 组} 指定您要配置的 GPIO 引脚、{采样时间} 指定模块读取输入引脚值的频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pin #",
+   "direction": "output",
+   "summary": "GPIO 引脚状态 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "GPIO 组",
+   "default": "GPIO0-GPIO7",
+   "values": "您要配置的 GPIO 引脚 GPIO0-GPIO7 (默认) | GPIO8-GPIO15 GPIO16-GPIO23 …",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "模块读取输入引脚值的频率 -1 (默认) | 0.1",
+   "group": ""
+  },
+  {
+   "name": "数据类型",
+   "default": "auto",
+   "values": "GPIO 输入的数据类型 auto (默认) | unit8 | 双精度 | 单精度 | int8 | int16 | uint16 | int32 | uint32 | 布尔",
+   "group": ""
+  }
+ ]
+}

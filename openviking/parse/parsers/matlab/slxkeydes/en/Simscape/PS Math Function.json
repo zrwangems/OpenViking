@@ -1,0 +1,13 @@
+{
+ "key": "PS Math Function",
+ "title": "PS Math Function",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Math_Function.md"
+ ],
+ "text": "Apply mathematical function to input physical signal.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

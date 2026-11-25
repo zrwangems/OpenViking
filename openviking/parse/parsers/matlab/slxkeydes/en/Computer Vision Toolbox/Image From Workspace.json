@@ -1,0 +1,95 @@
+{
+ "key": "Image From Workspace",
+ "title": "Image From Workspace",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sources/Image_From_Workspace.md"
+ ],
+ "text": "Import image from MATLAB workspace, 4 outputs, {Value} sets Image to be imported; {Sample time}, {Image signal} sets the signal returned by block One multidimensional, {Output port labels}, {Output data type} sets the data type of the output image Inherit, {Signed}, {Word length} sets the bits in fixed-point data type, {Set fraction length in output to} sets the scaling factor of the fixed-point, {Fractional length} sets the fractional bits and {User-defined data type} sets the user-defined fixed-point data type sfix. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "Output image matrix | 3-D array"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Red color component of image matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Green color component of image matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Blue color component of image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Value",
+   "default": "rand(100,100,3)",
+   "values": "Image to be imported rand(100,100,3) (default) | vector | matrix | 3-D array | MATLAB workspace variable | MATLAB function",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "Sample time for block execution inf (default) | positive scalar | Vector",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Signal returned by block One multidimensional signal (default) | Separate color signals",
+   "group": ""
+  },
+  {
+   "name": "Output port labels",
+   "default": "R|G|B",
+   "values": "Output port labels R|G|B (default) | port names",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Value",
+   "values": "Data type of the output image Inherit from Value (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean | Fixed-point | User-defined | Inherit via back propagation |...",
+   "group": ""
+  },
+  {
+   "name": "Signed",
+   "default": "on",
+   "values": "Signed fixed-point data type on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bits in fixed-point data type 16 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Set fraction length in output to",
+   "default": "User-defined",
+   "values": "Scaling factor of the fixed-point User-defined (default) | Best precision",
+   "group": ""
+  },
+  {
+   "name": "Fractional length",
+   "default": "15",
+   "values": "Fractional bits 15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "User-defined data type",
+   "default": "sfix(16)",
+   "values": "User-defined fixed-point data type sfix(16) (default) | user-defined fixed-point data type",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+ "key": "3-Phase Sine Voltage Generator",
+ "title": "3-Phase Sine Voltage Generator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Math Transforms/b_3_Phase_Sine_Voltage_Generator.md"
+ ],
+ "text": "Generate balanced three-phase sinusoidal signals, 2 inputs, 3 outputs, {Theta units} sets Unit of θ e; {Number of data points for lookup table} sets the size of lookup table. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Reference voltage amplitude scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "Reference voltage position scalar"
+  },
+  {
+   "name": "V a",
+   "direction": "output",
+   "summary": "a -axis component of balanced, three-phase voltage scalar"
+  },
+  {
+   "name": "V b",
+   "direction": "output",
+   "summary": "b -axis component of balanced, three-phase voltage scalar"
+  },
+  {
+   "name": "V c",
+   "direction": "output",
+   "summary": "c -axis component of balanced, three-phase voltage scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Theta units",
+   "default": "Per-unit",
+   "values": "Unit of θ e Per-unit (default) | Radians | Degrees",
+   "group": ""
+  },
+  {
+   "name": "Number of data points for lookup table",
+   "default": "1024",
+   "values": "Size of lookup table 1024 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

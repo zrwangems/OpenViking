@@ -1,0 +1,54 @@
+{
+ "key": "Trace Boundary",
+ "title": "Trace Boundary",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Trace_Boundary.md"
+ ],
+ "text": "Trace object boundaries in binary images, 2 inputs, 1 output, {Initial search direction} sets Type of initial search direction; {Connectivity} sets the type of pixel connectivity, {Trace direction} sets the boundary trace direction and {Maximum number of boundary pixels}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "Input binary image matrix"
+  },
+  {
+   "name": "Start Pt",
+   "direction": "input",
+   "summary": "Coordinate of boundary starting point two-element vector"
+  },
+  {
+   "name": "Pts",
+   "direction": "output",
+   "summary": "Coordinates of boundary points M -by-2 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Connectivity",
+   "default": "8",
+   "values": "Type of pixel connectivity 8 (default) | 4",
+   "group": ""
+  },
+  {
+   "name": "Initial search direction",
+   "default": "North",
+   "values": "Type of initial search direction North (default) | East | South | West | Northeast |...",
+   "group": ""
+  },
+  {
+   "name": "Trace direction",
+   "default": "Clockwise",
+   "values": "Boundary trace direction Clockwise (default) | Counterclockwise",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of boundary pixels",
+   "default": "500",
+   "values": "Maximum number of boundary pixels 500 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

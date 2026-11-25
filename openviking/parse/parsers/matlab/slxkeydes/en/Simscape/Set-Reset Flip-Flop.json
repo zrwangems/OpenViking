@@ -1,0 +1,53 @@
+{
+ "key": "Set-Reset Flip-Flop",
+ "title": "Set-Reset Flip-Flop",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Set_Reset_Flip_Flop.md"
+ ],
+ "text": "Set-reset flip-flop or bistable multivibrator, 2 inputs, 2 outputs, {Sample time (-1 for inherited)} sets Block sample time; {Priority when undefined state} sets the state priority and {Initial condition for Q state} sets the initial value of the output Q. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Set",
+   "direction": "input",
+   "summary": "Set input signal 0 | 1"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Reset input signal 0 | 1"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "Output signal 0 | 1"
+  },
+  {
+   "name": "!Q",
+   "direction": "output",
+   "summary": "Complement output signal 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Priority when undefined state",
+   "default": "Set",
+   "values": "State priority Set (default) | Reset",
+   "group": ""
+  },
+  {
+   "name": "Initial condition for Q state",
+   "default": "0",
+   "values": "Initial value of the output Q 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

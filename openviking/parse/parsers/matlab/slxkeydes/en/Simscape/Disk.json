@@ -1,0 +1,13 @@
+{
+ "key": "Disk",
+ "title": "Disk",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Disk.md"
+ ],
+ "text": "Disk for contact modeling.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

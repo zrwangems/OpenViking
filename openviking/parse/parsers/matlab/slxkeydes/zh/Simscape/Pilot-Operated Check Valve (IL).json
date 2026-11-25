@@ -1,0 +1,13 @@
+{
+ "key": "Pilot-Operated Check Valve (IL)",
+ "title": "Pilot-Operated Check Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Directional Control Valves/Pilot_Operated_Check_Valve_IL.md"
+ ],
+ "text": "等温液体系统中带先导压力控制的单向阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

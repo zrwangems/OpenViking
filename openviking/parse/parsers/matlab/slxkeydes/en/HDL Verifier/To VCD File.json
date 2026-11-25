@@ -1,0 +1,41 @@
+{
+ "key": "To VCD File",
+ "title": "To VCD File",
+ "toolbox": "HDL Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Verifier/For Use with AMD Vivado Simulator/To_VCD_File.md",
+  "HDL Verifier/For Use with Cadence Xcelium/To_VCD_File.md",
+  "HDL Verifier/For Use with Siemens ModelSim_Questa/To_VCD_File.md",
+  "HDL Verifier/For Use with Synopsys VCS/To_VCD_File.md"
+ ],
+ "text": "Generate value change dump (VCD) file, 1 input; {VCD file name} sets the name of generated VCD, {Number of input ports} sets the number of input signals and {Timescale} sets the timing relationship between Simulink and the HDL simulator integer and time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1, Port_2,..., Port_N",
+   "direction": "input",
+   "summary": "Signal to log to VCD file scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "VCD file name",
+   "default": "",
+   "values": "Name of generated VCD file string",
+   "group": ""
+  },
+  {
+   "name": "Number of input ports",
+   "default": "",
+   "values": "Number of input signals to log integer",
+   "group": ""
+  },
+  {
+   "name": "Timescale",
+   "default": "",
+   "values": "Timing relationship between Simulink and the HDL simulator integer and time units",
+   "group": ""
+  }
+ ]
+}

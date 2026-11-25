@@ -1,0 +1,181 @@
+{
+ "key": "Simulink and ModelSim Cosimulation",
+ "title": "HDL Cosimulation",
+ "toolbox": "HDL Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Verifier/For Use with Siemens ModelSim_Questa/HDL_Cosimulation.md"
+ ],
+ "text": "通过将 Simulink 与 HDL 仿真器连接来联合仿真 HDL 设计，输入 1 路、输出 1 路；按 {I/O Mode} 指定端口方向 Input；{Block Info}、{Enable direct feedthrough}、{Full HDL Name}、{HDL Type}、{HDL Dims}、{Sample Time}、{Data Type}、{Sign}、{Fraction Length}、{Simulink Word Length}、{HDL Word Length}、{Time to run HDL simulator before cosimulation starts}、{Full HDL Name}、{Active Clock Edge}、{Waveform Type}、{Period/Duration}、{Automatically determine timescale at start of simulation}、1 second in Simulink corresponds to in the HDL simulator、{Connection mode}、{HDL simulator is running on this computer}、{Connection method}、{Host name}、{Port number or service}、{Show connection info on icon}、{Time to run HDL simulator before cosimulation starts}、{Pre-simulation Tcl commands}、{Post-simulation Tcl commands} 同样影响行为；{1 second in Simulink corresponds to in the HDL simulator} 指定 Simulink 与 HDL 仿真器之间的时序关系 integer and time，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "HDL_input_port_name",
+   "direction": "input",
+   "summary": "从 Simulink 传递到 HDL 仿真器的信号 scalar | vector"
+  },
+  {
+   "name": "HDL_output_port_name",
+   "direction": "output",
+   "summary": "从 HDL 仿真器传递到 Simulink 的信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Block Info",
+   "default": "",
+   "values": "Vivado 联合仿真的模块信息 Read-only: block generation settings",
+   "group": ""
+  },
+  {
+   "name": "Enable direct feedthrough",
+   "default": "true",
+   "values": "规避代数环警告 true (default) | false",
+   "group": "Ports"
+  },
+  {
+   "name": "Full HDL Name",
+   "default": "",
+   "values": "信号路径名称 string",
+   "group": "Ports"
+  },
+  {
+   "name": "I/O Mode",
+   "default": "",
+   "values": "端口方向 Input | Output",
+   "group": "Ports"
+  },
+  {
+   "name": "HDL Type",
+   "default": "Logic",
+   "values": "HDL 端口信号的类型 Read-only: Logic (default) | Vector",
+   "group": "Ports"
+  },
+  {
+   "name": "HDL Dims",
+   "default": "",
+   "values": "HDL 端口信号的维度 Read-only: scalar | vector",
+   "group": "Ports"
+  },
+  {
+   "name": "Sample Time",
+   "default": "1",
+   "values": "输出端口上读取样本之间的时间 1 (default) | integer",
+   "group": "Ports"
+  },
+  {
+   "name": "Data Type",
+   "default": "Inherit",
+   "values": "输出信号的 Simulink 数据类型 Inherit (default) | Fixedpoint | Double | Single | Half",
+   "group": "Ports"
+  },
+  {
+   "name": "Sign",
+   "default": "Unsigned",
+   "values": "输出数据类型的符号分量 Unsigned (default) | Signed",
+   "group": "Ports"
+  },
+  {
+   "name": "Fraction Length",
+   "default": "",
+   "values": "输出数据类型中的小数位数 integer",
+   "group": "Ports"
+  },
+  {
+   "name": "Simulink Word Length",
+   "default": "",
+   "values": "Simulink 端口的位宽 integer <129 | inherit",
+   "group": "Ports"
+  },
+  {
+   "name": "HDL Word Length",
+   "default": "",
+   "values": "HDL 端口的位宽 Read-only: integer",
+   "group": "Ports"
+  },
+  {
+   "name": "Time to run HDL simulator before cosimulation starts",
+   "default": "0",
+   "values": "协同仿真开始前 HDL 仿真所需的运行时间 0 (default) | nonnegative integer",
+   "group": "Clocks"
+  },
+  {
+   "name": "Active Clock Edge",
+   "default": "Rising",
+   "values": "用于采样信号的 HDL 时钟边沿 Rising (default) | Falling",
+   "group": "Clocks"
+  },
+  {
+   "name": "Waveform Type",
+   "default": "Rising",
+   "values": "生成用于驱动 HDL 设计的时钟、复位或使能信号的波形 Rising (default) | Falling | Step 1 to 0 | Step 0 to 1",
+   "group": "Clocks"
+  },
+  {
+   "name": "Period/Duration",
+   "default": "2",
+   "values": "时钟周期 2 (default) | integer",
+   "group": "Clocks"
+  },
+  {
+   "name": "Automatically determine timescale at start of simulation",
+   "default": "true",
+   "values": "自动时间尺度的计算时机 true (default) | false",
+   "group": "Timescales"
+  },
+  {
+   "name": "1 second in Simulink corresponds to {} in the HDL simulator",
+   "default": "",
+   "values": "Simulink 与 HDL 仿真器之间的时序关系 integer and time units",
+   "group": "Timescales"
+  },
+  {
+   "name": "Connection mode",
+   "default": "Simulation",
+   "values": "Simulink 与 HDL 仿真器之间的连接 Full Simulation (default) | Confirm Interface Only | No Connection",
+   "group": "Connection"
+  },
+  {
+   "name": "HDL simulator is running on this computer",
+   "default": "true",
+   "values": "HDL 仿真器与 Simulink 位于同一主机 true (default) | false",
+   "group": "Connection"
+  },
+  {
+   "name": "Connection method",
+   "default": "Socket",
+   "values": "HDL 仿真器与 Simulink 之间的连接 Socket (default) | Shared memory",
+   "group": "Connection"
+  },
+  {
+   "name": "Host name",
+   "default": "",
+   "values": "HDL 仿真器主机 string",
+   "group": "Connection"
+  },
+  {
+   "name": "Port number or service",
+   "default": "",
+   "values": "套接字端口号 string",
+   "group": "Connection"
+  },
+  {
+   "name": "Show connection info on icon",
+   "default": "true",
+   "values": "在模块图标上添加连接参数 true (default) | false",
+   "group": "Connection"
+  },
+  {
+   "name": "Pre-simulation Tcl commands",
+   "default": "",
+   "values": "协同仿真前在 HDL 仿真器中运行的命令 string",
+   "group": "Simulation"
+  },
+  {
+   "name": "Post-simulation Tcl commands",
+   "default": "",
+   "values": "协同仿真后在 HDL 仿真器中运行的命令 string",
+   "group": "Simulation"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "key": "ToString",
+ "title": "To String",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/To_String.md"
+ ],
+ "text": "将输入信号转换为字符串信号，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出字符串 标量"
+  }
+ ],
+ "params": []
+}

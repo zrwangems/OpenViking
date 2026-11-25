@@ -1,0 +1,62 @@
+{
+ "key": "ethercat_pdo_receive",
+ "title": "EtherCAT PDO Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_PDO_Receive.md"
+ ],
+ "text": "接收由过程数据对象表示的从站设备的数据；输出 1 路；{Network Device Index} 指定 EtherCAT 网络标识符、{Signal name} 指定 EtherCAT 设备变量名称 character、{Signal Offset} 指定信号数据在过程中的位置 Read-only、{Signal Type} 指定 EtherCAT 数据的数据类型 Read-only: character、{Type Size (bits)} 指定 EtherCAT 数据类型的大小 Read-only、{Signal Dimension} 指定信号的维度 Read-only: integer、{Sample Time} 指定此模块的执行速率 Read-only，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "从从属设备接收的数据 [double]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT 网络标识符 0 (default) | 0-15",
+   "group": ""
+  },
+  {
+   "name": "Signal name",
+   "default": "",
+   "values": "EtherCAT 设备变量名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "Signal Offset",
+   "default": "",
+   "values": "信号数据在过程中的位置 Read-only: integer",
+   "group": ""
+  },
+  {
+   "name": "Signal Type",
+   "default": "",
+   "values": "EtherCAT 数据的数据类型 Read-only: character vector",
+   "group": ""
+  },
+  {
+   "name": "Type Size (bits)",
+   "default": "",
+   "values": "EtherCAT 数据类型的大小 Read-only: integer",
+   "group": ""
+  },
+  {
+   "name": "Signal Dimension",
+   "default": "",
+   "values": "信号的维度 Read-only: integer",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "",
+   "values": "此模块的执行速率 Read-only: numeric",
+   "group": ""
+  }
+ ]
+}

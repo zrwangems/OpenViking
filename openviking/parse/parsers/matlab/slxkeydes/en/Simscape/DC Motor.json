@@ -1,0 +1,13 @@
+{
+ "key": "DC Motor",
+ "title": "DC Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Brushed Motors/DC_Motor.md"
+ ],
+ "text": "DC motor model with electrical and torque characteristics and fault modeling.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,110 @@
+{
+ "key": "2-D Standard Deviation",
+ "title": "2-D Standard Deviation",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Standard_Deviation.md"
+ ],
+ "text": "Compute standard deviation of input or sequence of inputs, 5 inputs, 2 outputs, {Reset port} sets Reset event; {Running standard deviation} sets the track running standard deviation, {Find the standard deviation value over} sets the dimension along which standard deviation is computed Entire, {Dimension} sets the custom dimension, {Enable ROI processing} sets the compute standard deviation within a particular, {ROI type} sets the type of ROI, {ROI portion to process} sets the portion of ROI in which to calculate standard deviation Entire, {Output} sets the calculate standard deviation for individual or entire ROI Individual statistics for each, {Output flag indicating if ROI is within image bounds} enables Flag port and {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input array vector | matrix | N-D - array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset port scalar"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "Region of interest four-element vector | m -by-4 matrix | M -by- N matrix"
+  },
+  {
+   "name": "Label",
+   "direction": "input",
+   "summary": "Label matrix matrix of nonnegative integers"
+  },
+  {
+   "name": "Label Numbers",
+   "direction": "input",
+   "summary": "Label values of ROIs M -element vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Computed output standard deviation scalar | vector | matrix | N-D -array"
+  },
+  {
+   "name": "Flag",
+   "direction": "output",
+   "summary": "Validation for ROI 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Running standard deviation",
+   "default": "off",
+   "values": "Track running standard deviation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Find the standard deviation value over",
+   "default": "input",
+   "values": "Dimension along which standard deviation is computed Entire input (default) | Each row | Each column | Specified dimension",
+   "group": ""
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Custom dimension 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable ROI processing",
+   "default": "off",
+   "values": "Compute standard deviation within a particular region off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ROI type",
+   "default": "Rectangles",
+   "values": "Type of ROI Rectangles (default) | Lines | Label matrix | Binary mask",
+   "group": ""
+  },
+  {
+   "name": "ROI portion to process",
+   "default": "ROI",
+   "values": "Portion of ROI in which to calculate standard deviation Entire ROI (default) | ROI perimeter",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "ROI",
+   "values": "Calculate standard deviation for individual or entire ROI Individual statistics for each ROI (default) | Single statistic for all ROIs",
+   "group": ""
+  },
+  {
+   "name": "Output flag indicating if ROI is within image bounds",
+   "default": "off",
+   "values": "Enable Flag port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  }
+ ]
+}

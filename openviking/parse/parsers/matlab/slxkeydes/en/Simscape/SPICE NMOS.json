@@ -1,0 +1,13 @@
+{
+ "key": "SPICE NMOS",
+ "title": "SPICE NMOS",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Semiconductors/SPICE_NMOS.md"
+ ],
+ "text": "SPICE-compatible N-Channel MOSFET.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

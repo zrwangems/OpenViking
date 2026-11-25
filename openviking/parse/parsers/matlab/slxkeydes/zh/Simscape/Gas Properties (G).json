@@ -1,0 +1,13 @@
+{
+ "key": "Gas Properties (G)",
+ "title": "Gas Properties (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Utilities/Gas_Properties_G.md"
+ ],
+ "text": "用于所连接回路的气体全局属性。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Actuator (TL-G)",
+ "title": "Double-Acting Actuator (TL-G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Actuators/Double_Acting_Actuator_TL_G.md"
+ ],
+ "text": "Linear actuator with opposing thermal liquid and gas chambers.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

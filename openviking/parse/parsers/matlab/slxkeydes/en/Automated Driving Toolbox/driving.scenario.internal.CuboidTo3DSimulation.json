@@ -1,0 +1,53 @@
+{
+ "key": "driving.scenario.internal.CuboidTo3DSimulation",
+ "title": "Cuboid To 3D Simulation",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Cuboid_To_3D_Simulation.md"
+ ],
+ "text": "Convert actor from cuboid coordinates to 3D simulation coordinates, 1 input, 3 outputs; {Specify Actor ID} enables ID specification of cuboid actor, {ActorID used for conversion} sets the actorID value of cuboid actor and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Actor",
+   "direction": "input",
+   "summary": "Cuboid actor pose in world coordinates Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "Longitudinal position of actor in 3D simulation coordinates numeric scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Lateral position of actor in 3D simulation coordinates numeric scalar"
+  },
+  {
+   "name": "Yaw",
+   "direction": "output",
+   "summary": "Yaw orientation angle of actor in 3D simulation coordinates numeric scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Actor ID",
+   "default": "off",
+   "values": "Enable ID specification of cuboid actor off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ActorID used for conversion",
+   "default": "1",
+   "values": "ActorID value of cuboid actor 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

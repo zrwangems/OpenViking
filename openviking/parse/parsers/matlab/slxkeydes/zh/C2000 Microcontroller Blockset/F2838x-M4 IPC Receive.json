@@ -1,0 +1,61 @@
+{
+ "key": "F2838x-M4 IPC Receive",
+ "title": "IPC Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F2838x/M4/IPC_Receive.md"
+ ],
+ "text": "在使用每个内核独立模型时从任一内核接收数据；输出 2 路；按 {Data type} 指定要接收的数据类型；{Source} 用于接收数据的源 C28x、{Channel} 用于接收数据的通道、{Data length} 指定要接收的数据大小、{Enable blocking} 指定内核是否必须等待读取数据、{Sample time} 指定模块读取数据的时间间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "IPC 接收 vector | scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "IPC 接收状态 0 | 1 | 2 | 3 | 4 | 6"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source",
+   "default": "(CPU1/CPU2)/CPU1",
+   "values": "选择用于接收数据的源 C28x (CPU1/CPU2)/CPU1 (default) | ARM Cortex-M4 (CM)/CPU2",
+   "group": ""
+  },
+  {
+   "name": "Channel",
+   "default": "0",
+   "values": "选择用于接收数据的通道 0 (default) | 0–31",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "uint16",
+   "values": "要接收的数据类型 uint16 (default) | single | int8 | uint8 | int16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Data length",
+   "default": "1",
+   "values": "要接收的数据大小 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable blocking",
+   "default": "off",
+   "values": "指定内核是否必须等待读取数据 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "模块读取数据的时间间隔 0.001 (default) | –1 | positive scalar",
+   "group": ""
+  }
+ ]
+}

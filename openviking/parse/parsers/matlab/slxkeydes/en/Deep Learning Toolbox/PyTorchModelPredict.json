@@ -1,0 +1,79 @@
+{
+ "key": "PyTorchModelPredict",
+ "title": "PyTorch Model Predict",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Python Neural Networks/PyTorch_Model_Predict.md"
+ ],
+ "text": "Predict responses using pretrained Python PyTorch model, 1 input, 1 output, direct feedthrough, {Load command} sets Load command for Python model; {Path to model file or state_dict file} sets the name or path of Python PyTorch model file or state_dict file, {Model class name and optional arguments (if using load_state_dict)} sets the model class name and optional arguments character, {Execution device}, {Sample time (–1 for inherited)} sets the option to specify sample, {Inputs} sets the input port properties table, {Outputs} sets the output port properties table, {Path to Python file defining preprocess()} sets the name or path of Python preprocessing function file character and {Path to Python file defining postprocess()} sets the name or path of Python postprocessing function file character. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "Input data numeric array"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "Predicted responses numeric array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Load command",
+   "default": "torch.load()",
+   "values": "Load command for Python model torch.load() (default) | torch.jit.load() | load_state_dict()",
+   "group": "Specify model file"
+  },
+  {
+   "name": "Path to model file or state_dict file",
+   "default": "untitled",
+   "values": "Name or path of Python PyTorch model file or state_dict file untitled (default) | character vector",
+   "group": "Specify model file"
+  },
+  {
+   "name": "Model class name and optional arguments (if using load_state_dict)",
+   "default": "",
+   "values": "Model class name and optional arguments character vector",
+   "group": "Specify model file"
+  },
+  {
+   "name": "Execution device",
+   "default": "cpu",
+   "values": "Execution device for Python model cpu (default) | cuda | device name",
+   "group": "Specify model file"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": "Specify model file"
+  },
+  {
+   "name": "Inputs",
+   "default": "",
+   "values": "Input port properties table",
+   "group": "Inputs"
+  },
+  {
+   "name": "Outputs",
+   "default": "",
+   "values": "Output port properties table",
+   "group": "Outputs"
+  },
+  {
+   "name": "Path to Python file defining preprocess()",
+   "default": "",
+   "values": "Name or path of Python preprocessing function file character vector",
+   "group": "Pre/Post-processing"
+  },
+  {
+   "name": "Path to Python file defining postprocess()",
+   "default": "",
+   "values": "Name or path of Python postprocessing function file character vector",
+   "group": "Pre/Post-processing"
+  }
+ ]
+}

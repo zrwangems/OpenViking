@@ -1,0 +1,13 @@
+{
+ "key": "Constant Volume Chamber (IL)",
+ "title": "Constant Volume Chamber (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Constant_Volume_Chamber_IL.md"
+ ],
+ "text": "Chamber with one port and fixed volume of isothermal liquid.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

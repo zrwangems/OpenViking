@@ -1,0 +1,379 @@
+{
+ "key": "IntegerNPLLwithSingleModulusPrescaler",
+ "title": "Integer N PLL with Single Modulus Prescaler",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Architectures/Integer_N_PLL_with_Single_Modulus_Prescaler.md"
+ ],
+ "text": "Frequency synthesizer with single modulus prescaler based integer N PLL architecture, 1 input, 1 output, {Loop filter type} sets Order of the loop filter 3rd Order; {Edit System} sets the break library block links and replace internal variables by appropriate values, {Enable increased buffer size}, {Buffer size for loop filter}, {Buffer size for PFD, charge pump, VCO, prescaler} sets the buffer size for PFD, charge pump, VCO, {Deadband compensation (s)} sets the delay added for active output near zero phase offset, {Enable impairments} adds circuit impairments to simulation, {Output step size calculation} determines how output step size is calculated, {Maximum frequency of interest (Hz)} sets the maximum frequency of interest at output, {Rise/fall time (s)} sets the 20% – 80% rise/fall time for up output port of PFD, {Propagation Delay (s)} sets the delay from input port to output port of PFD, {Output current (A)} sets the design output current 1e-3, {Input threshold (V)} sets the logic switching threshold at input ports, {Enable current impairments} adds current impairments to simulation, {Current imbalance (A)} sets the difference between full scale positive and negative current, {Leakage current (A)} sets the output current without any, {Enable timing impairments} adds timing impairments to simulation, {Propagation delay (s)} sets the total propagation delay from up input port to output port of charge pump, {Rise/fall time} sets the 20% – 80% rise/fall time for down input port, {Specify using} defines how VCO output frequency is specified Voltage, {Voltage sensitivity (Hz/V)} sets the measure of change in output frequency of VCO, {Free running frequency (Hz)} sets the vCO output frequency without control voltage, {Control voltage (V)} controls voltage values, {Output frequency (Hz)} sets the vCO output frequency values, {Output amplitude} sets the maximum amplitude of VCO output voltage, {Add phase noise}, {Phase noise frequency offset (Hz)} sets the frequency offsets of phase noise from carrier frequency, {Phase noise level (dBc/Hz)} sets the phase noise power at specified frequency offsets relative to the carrier, {Estimate phase noise parameters} sets the automatically estimate phase noise, {Period jitter (S)} sets the standard deviation of period jitter, {Flicker corner frequency (Hz)} sets the corner frequency of flicker noise, {Plot fit} plots specified and expected VCO output phase noise density, {Clock divider value} sets the value by which the clock divider divides the input, {Min clock divider value} sets the minimum value by which clock divider can divide input, {Filter component values} Determines how filter components are computed, {Loop bandwidth (Hz)} sets the frequency at which magnitude of open loop transfer function becomes, {Phase margin (degrees)} sets the phase of open loop transfer function at loop bandwidth subtracted, {C1 (F)} sets the capacitance 1 1.31e-12, {C2 (F)} sets the capacitance 2 1.44e-11, {C3 (F)} sets the capacitance 3 9.41e-14, {C4 (F)} sets the capacitance, {R2 (ohms)} sets the resistance 2 1.33e+04, {R3 (ohms)} sets the resistance 3 1.7e+05, {R4 (ohms)} sets the resistance, {Operating temperature (℃)} sets the temperature to determine the level of thermal, {Export Loop Filter Component Values} sets the export loop filter component, {PFD up and PFD down (pfd_up and pfd_down)} selects to probe PFD outputs, {Charge pump output (cp_out)} selects to probe charge pump output, {Loop filter output (lf_out)} selects to probe loop filter output, {Prescaler output (ps_out)} selects to probe prescaler output, {Open Loop Analysis} plots the presimulation open loop analysis, {Closed Loop Analysis} plots the presimulation closed loop, {Plot Loop Dynamics} plots loop dynamics of PLL, {Estimate phase noise}, {Reference frequency (Hz)} sets the reference frequency of input, {Resolution bandwidth (Hz)} sets the smallest positive frequency that can be resolved, {Frequency offset vector (Hz)} sets the frequency points relative to fundamental frequency where phase noise is calculated, {Target phase-noise levels (dBc/Hz)} sets the target phase noise profile for given frequency offset and {Plot estimated phase noise} plots estimated input clock phase noise. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk in",
+   "direction": "input",
+   "summary": "Input clock signal scalar"
+  },
+  {
+   "name": "clk out",
+   "direction": "output",
+   "summary": "Output clock signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Edit System",
+   "default": "",
+   "values": "Break library block links and replace internal variables by appropriate values button",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "",
+   "values": "Enable increased buffer size button",
+   "group": ""
+  },
+  {
+   "name": "Buffer size for loop filter",
+   "default": "1000",
+   "values": "Buffer size for loop filter 1000 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer size for PFD, charge pump, VCO, prescaler",
+   "default": "10",
+   "values": "Buffer size for PFD, charge pump, VCO, and prescaler 10 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Deadband compensation (s)",
+   "default": "30e-12",
+   "values": "Delay added for active output near zero phase offset 30e-12 (default) | positive real scalar",
+   "group": "PFD"
+  },
+  {
+   "name": "Enable impairments",
+   "default": "off",
+   "values": "Add circuit impairments to simulation off (default) | on",
+   "group": "PFD"
+  },
+  {
+   "name": "Output step size calculation",
+   "default": "Default",
+   "values": "Determine how output step size is calculated Default (default) | Advanced",
+   "group": "PFD"
+  },
+  {
+   "name": "Maximum frequency of interest (Hz)",
+   "default": "10e9",
+   "values": "Maximum frequency of interest at output 10e9 (default) | positive real scalar",
+   "group": "PFD"
+  },
+  {
+   "name": "Rise/fall time (s)",
+   "default": "30e-12",
+   "values": "20% – 80% rise/fall time for up output port of PFD 30e-12 (default) | positive real scalar",
+   "group": "PFD"
+  },
+  {
+   "name": "Propagation Delay (s)",
+   "default": "50e-12",
+   "values": "Delay from input port to output port of PFD 50e-12 (default) | positive real scalar",
+   "group": "PFD"
+  },
+  {
+   "name": "Output current (A)",
+   "default": "1e-3",
+   "values": "Design output current 1e-3 (default) | positive real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Input threshold (V)",
+   "default": "0.5",
+   "values": "Logic switching threshold at input ports 0.5 (default) | real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Enable current impairments",
+   "default": "off",
+   "values": "Add current impairments to simulation off (default) | on",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Current imbalance (A)",
+   "default": "1e-7",
+   "values": "Difference between full scale positive and negative current 1e-7 (default) | positive real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Leakage current (A)",
+   "default": "1e-8",
+   "values": "Output current without any input 1e-8 (default) | nonnegative real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Enable timing impairments",
+   "default": "off",
+   "values": "Add timing impairments to simulation off (default) | on",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Propagation delay (s)",
+   "default": "6e-9",
+   "values": "Total propagation delay from up input port to output port of charge pump 6e-9 (default) | positive real scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Rise/fall time",
+   "default": "2e-9",
+   "values": "20% – 80% rise/fall time for down input port 2e-9 (default) | scalar",
+   "group": "Charge pump"
+  },
+  {
+   "name": "Specify using",
+   "default": "sensitivity",
+   "values": "Define how VCO output frequency is specified Voltage sensitivity (default) | Output frequency vs. control voltage",
+   "group": "VCO"
+  },
+  {
+   "name": "Voltage sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "Measure of change in output frequency of VCO 100e6 (default) | positive real scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Free running frequency (Hz)",
+   "default": "1.8e9",
+   "values": "VCO output frequency without control voltage 1.8e9 (default) | positive real scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "5]",
+   "values": "Control voltage values [-5 0 5] (default) | real valued vector",
+   "group": "VCO"
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "3e9]",
+   "values": "VCO output frequency values [2e9 2.5e9 3e9] (default) | real valued vector",
+   "group": "VCO"
+  },
+  {
+   "name": "Output amplitude",
+   "default": "1",
+   "values": "Maximum amplitude of VCO output voltage 1 (default) | positive real scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Add phase noise",
+   "default": "off",
+   "values": "Add phase noise as function of frequency off (default) | on",
+   "group": "VCO"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "10e6]",
+   "values": "Frequency offsets of phase noise from carrier frequency [10e3 100e3 1e6 3e6 10e6] (default) | real valued vector",
+   "group": "VCO"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-154]",
+   "values": "Phase noise power at specified frequency offsets relative to the carrier [-77 -108 -134 -145 -154] (default) | real valued vector",
+   "group": "VCO"
+  },
+  {
+   "name": "Estimate phase noise parameters",
+   "default": "on",
+   "values": "Automatically estimate phase noise parameters on (default) | off",
+   "group": "VCO"
+  },
+  {
+   "name": "Period jitter (S)",
+   "default": "2.6794e-15",
+   "values": "Standard deviation of period jitter 2.6794e-15 (default) | positive real scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Flicker corner frequency (Hz)",
+   "default": "517103.8168",
+   "values": "Corner frequency of flicker noise 517103.8168 (default) | scalar",
+   "group": "VCO"
+  },
+  {
+   "name": "Plot fit",
+   "default": "",
+   "values": "Plot specified and expected VCO output phase noise density button",
+   "group": "VCO"
+  },
+  {
+   "name": "Clock divider value",
+   "default": "100",
+   "values": "Value by which the clock divider divides the input frequency 100 (default) | real positive scalar",
+   "group": "Prescaler"
+  },
+  {
+   "name": "Min clock divider value",
+   "default": "100",
+   "values": "Minimum value by which clock divider can divide input frequency 100 (default) | real positive scalar",
+   "group": "Prescaler"
+  },
+  {
+   "name": "Filter component values",
+   "default": "Automatic",
+   "values": "Determines how filter components are computed Automatic (default) | Manual",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Loop bandwidth (Hz)",
+   "default": "2e6",
+   "values": "Frequency at which magnitude of open loop transfer function becomes 1 2e6 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Phase margin (degrees)",
+   "default": "45",
+   "values": "Phase of open loop transfer function at loop bandwidth subtracted from 180° 45 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Loop filter type",
+   "default": "Passive",
+   "values": "Order of the loop filter 3rd Order Passive (default) | 2nd Order Passive | 4th Order Passive",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "C1 (F)",
+   "default": "1.31e-12",
+   "values": "Capacitance 1 1.31e-12 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "C2 (F)",
+   "default": "1.44e-11",
+   "values": "Capacitance 2 1.44e-11 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "C3 (F)",
+   "default": "9.41e-14",
+   "values": "Capacitance 3 9.41e-14 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "C4 (F)",
+   "default": "331.5752",
+   "values": "Capacitance 4 331.5752 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "R2 (ohms)",
+   "default": "1.33e+04",
+   "values": "Resistance 2 1.33e+04 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "R3 (ohms)",
+   "default": "1.7e+05",
+   "values": "Resistance 3 1.7e+05 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "R4 (ohms)",
+   "default": "28.1695",
+   "values": "Resistance 4 28.1695 (default) | positive real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Operating temperature (℃)",
+   "default": "30",
+   "values": "Temperature to determine the level of thermal noise 30 (default) | real scalar",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "Export Loop Filter Component Values",
+   "default": "",
+   "values": "Export loop filter component values button",
+   "group": "Loop Filter"
+  },
+  {
+   "name": "PFD up and PFD down (pfd_up and pfd_down)",
+   "default": "off",
+   "values": "Select to probe PFD outputs off (default) | on",
+   "group": "Probe"
+  },
+  {
+   "name": "Charge pump output (cp_out)",
+   "default": "off",
+   "values": "Select to probe charge pump output off (default) | on",
+   "group": "Probe"
+  },
+  {
+   "name": "Loop filter output (lf_out)",
+   "default": "off",
+   "values": "Select to probe loop filter output off (default) | on",
+   "group": "Probe"
+  },
+  {
+   "name": "Prescaler output (ps_out)",
+   "default": "off",
+   "values": "Select to probe prescaler output off (default) | on",
+   "group": "Probe"
+  },
+  {
+   "name": "Open Loop Analysis",
+   "default": "on",
+   "values": "Plot the presimulation open loop analysis on (default) | off",
+   "group": "Analysis"
+  },
+  {
+   "name": "Closed Loop Analysis",
+   "default": "off",
+   "values": "Plot the presimulation closed loop analysis off (default) | on",
+   "group": "Analysis"
+  },
+  {
+   "name": "Plot Loop Dynamics",
+   "default": "",
+   "values": "Plot loop dynamics of PLL system button",
+   "group": "Analysis"
+  },
+  {
+   "name": "Estimate phase noise",
+   "default": "off",
+   "values": "Estimate phase noise from input clock off (default) | on",
+   "group": "Analysis"
+  },
+  {
+   "name": "Reference frequency (Hz)",
+   "default": "10e6",
+   "values": "Reference frequency of input clock 10e6 (default) | positive real scalar",
+   "group": "Analysis"
+  },
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "10e3",
+   "values": "Smallest positive frequency that can be resolved 10e3 (default) | positive real scalar",
+   "group": "Analysis"
+  },
+  {
+   "name": "Frequency offset vector (Hz)",
+   "default": "10e6]",
+   "values": "Frequency points relative to fundamental frequency where phase noise is calculated [10e3 100e3 1e6 3e6 10e6] (default) | real valued vector",
+   "group": "Analysis"
+  },
+  {
+   "name": "Target phase-noise levels (dBc/Hz)",
+   "default": "-inf",
+   "values": "Target phase noise profile for given frequency offset vector -inf (default) | vector | scalar",
+   "group": "Analysis"
+  },
+  {
+   "name": "Plot estimated phase noise",
+   "default": "",
+   "values": "Plot estimated input clock phase noise button",
+   "group": "Analysis"
+  }
+ ]
+}

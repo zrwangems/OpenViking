@@ -1,0 +1,128 @@
+{
+ "key": "Farrow Rate Converter",
+ "title": "Farrow Rate Converter",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Signal Operations/Farrow_Rate_Converter.md"
+ ],
+ "text": "多项式采样率转换器，输入 4 路、输出 3 路；按 {Rounding mode} 指定对输出进行类型转换的舍入模式；{Rate change source} 指定速率变化的来源、{Rate change (fsin/fsout)} 指定速率变化因子、{Coefficients matrix} 指定 FIR 滤波器系数、{Filter structure} 指定 HDL 滤波器架构 Direct form、{Minimum number of cycles between valid input samples} 指定输入时序的串行化要求、{Saturate on integer overflow} 指定对输出进行类型转换的溢出处理、{Coefficients} 指定滤波器系数的数据类型、{RateChange} 指定速率变化因子的数据类型 fixdt、{Multiplicand} 指定被乘数的数据类型、{Output} 指定滤波器输出的数据类型、{Enable reset input port} 启用复位输入端口、{Use HDL global reset} 指定将数据路径寄存器连接到生成的 HDL，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 real or complex scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "rate",
+   "direction": "input",
+   "summary": "速率变化因子 scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "清除内部状态 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "滤波后的输出数据 real or complex scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "指示模块已准备好接收新输入数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rate change source",
+   "default": "Property",
+   "values": "速率变化的来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Rate change (fsin/fsout)",
+   "default": "147/160",
+   "values": "速率变化因子 147/160 (default) | positive real scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients matrix",
+   "default": "0]",
+   "values": "FIR 滤波器系数 [-1/6 1/2 -1/3 0;1/2 -1 -1/2 1;-1/2 1/2 1 0;1/6 0 -1/6 0] (default) | matrix of real values",
+   "group": "Main"
+  },
+  {
+   "name": "Filter structure",
+   "default": "systolic",
+   "values": "HDL 滤波器架构 Direct form systolic (default) | Direct form transposed",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum number of cycles between valid input samples",
+   "default": "1",
+   "values": "输入时序的串行化要求 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "对输出进行类型转换的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对输出进行类型转换的溢出处理 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "滤波器系数的数据类型 Inherit: Same word length as input (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "RateChange",
+   "default": "fixdt(0,16)",
+   "values": "速率变化因子的数据类型 fixdt(0,16) (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Multiplicand",
+   "default": "rule",
+   "values": "被乘数的数据类型 Inherit: Inherit via internal rule (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "滤波器输出的数据类型 Inherit: Same as first input (default) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "启用复位输入端口的选项 off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Use HDL global reset",
+   "default": "off",
+   "values": "将数据路径寄存器连接到生成的 HDL 全局复位信号的选项 off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

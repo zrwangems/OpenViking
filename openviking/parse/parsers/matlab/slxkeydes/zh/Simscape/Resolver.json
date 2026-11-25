@@ -1,0 +1,13 @@
+{
+ "key": "Resolver",
+ "title": "Resolver",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Resolver.md"
+ ],
+ "text": "测量旋转角度的旋转变压器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,55 @@
+{
+ "key": "SHGravity",
+ "title": "Spherical Harmonic Gravity Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/Spherical_Harmonic_Gravity_Model.md"
+ ],
+ "text": "Implement spherical harmonic representation of planetary gravity, 1 input, 1 output, {Central body model} sets Planetary model; {Units} sets the input and output units Metric, {Action for out-of-range input} sets the out-of-range input behavior, {Degree} and {Central body MAT-file}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X ff",
+   "direction": "input",
+   "summary": "Fixed-frame coordinates N-by-3 matrix"
+  },
+  {
+   "name": "g ff",
+   "direction": "output",
+   "summary": "Gravity values N-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "Out-of-range input behavior Warning (default) | Error | None",
+   "group": ""
+  },
+  {
+   "name": "Central body model",
+   "default": "EGM2008",
+   "values": "Planetary model EGM2008 (default) | EGM96 | LP100K | LP165P | GMM2B | Custom | EIGENGL04C",
+   "group": ""
+  },
+  {
+   "name": "Degree",
+   "default": "120",
+   "values": "Degree of harmonic model 120 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Central body MAT-file",
+   "default": "’aerogmm2b.mat’",
+   "values": "Central body MAT-file ’aerogmm2b.mat’ (default)",
+   "group": ""
+  }
+ ]
+}

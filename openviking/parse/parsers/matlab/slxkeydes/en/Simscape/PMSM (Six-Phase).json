@@ -1,0 +1,13 @@
+{
+ "key": "PMSM (Six-Phase)",
+ "title": "PMSM (Six-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/PMSM_Six_Phase.md"
+ ],
+ "text": "Six-phase permanent magnet synchronous motor with sinusoidal flux distribution.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

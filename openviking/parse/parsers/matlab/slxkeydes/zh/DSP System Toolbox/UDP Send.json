@@ -1,0 +1,51 @@
+{
+ "key": "UDP Send",
+ "title": "UDP Send",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/UDP_Send.md",
+  "Embedded Coder/Embedded Targets/Host Communication/UDP_Send.md"
+ ],
+ "text": "发送 UDP 消息，输入 1 路、无直接馈通；按 {Remote IP address (’255.255.255.255’ for broadcast)} 指定从中接受 UDP 数据包的 IP 地址；{Remote IP port} 指定远程 IP 端口号、{Local IP port source} 指定本地 IP 端口的来源 Automatically、{Local IP port} 指定本地 IP 端口号、{Send buffer size (bytes)} 指定发送 UDP 数据包的缓冲区大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入数据向量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Remote IP address (’255.255.255.255’ for broadcast)",
+   "default": "’127.0.0.1’",
+   "values": "从中接受 UDP 数据包的 IP 地址 ’127.0.0.1’ (default) | IP address | string",
+   "group": ""
+  },
+  {
+   "name": "Remote IP port",
+   "default": "25000",
+   "values": "远程 IP 端口号 25000 (default) | scalar in the range [1, 65535]",
+   "group": ""
+  },
+  {
+   "name": "Local IP port source",
+   "default": "determine",
+   "values": "本地 IP 端口的来源 Automatically determine (default) | Specify via dialog",
+   "group": ""
+  },
+  {
+   "name": "Local IP port",
+   "default": "-1",
+   "values": "本地 IP 端口号 -1 (default) | scalar in the range [1, 65535]",
+   "group": ""
+  },
+  {
+   "name": "Send buffer size (bytes)",
+   "default": "8192",
+   "values": "发送 UDP 数据包的缓冲区大小 8192 (default) | scalar in the range [1, 67108864]",
+   "group": ""
+  }
+ ]
+}

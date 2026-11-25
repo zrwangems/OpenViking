@@ -1,0 +1,97 @@
+{
+ "key": "DataStoreWrite",
+ "title": "Data Store Write",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Data_Store_Write.md"
+ ],
+ "text": "Write data to data store, 2 inputs, no direct feedthrough, {Sample time} sets Sample time; {Data store name} sets the name of data store to which block, {Data store memory block} sets the data Store Memory block name Read-only: block, {Corresponding Data Store Read blocks} sets the list of corresponding Data Store Read blocks Read-only: block, {Elements in the array (Signals in the bus)} sets the elements in associated data, {Specify element(s) to assign} sets the mATLAB expression defining the elements to assign, {Assigned element(s)} sets the list of selected, {Enable indexing}, {Number of dimensions}, {Index mode}, {Index Option} sets the index method for subelements and {Index} sets the indices or starting index of subelements. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Values to write to data store scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "IdxN",
+   "direction": "input",
+   "summary": "N th index signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data store name",
+   "default": "A",
+   "values": "Name of data store to which block writes A (default) | name of data store",
+   "group": "Parameters"
+  },
+  {
+   "name": "Data store memory block",
+   "default": "",
+   "values": "Data Store Memory block name Read-only: block path",
+   "group": "Parameters"
+  },
+  {
+   "name": "Corresponding Data Store Read blocks",
+   "default": "",
+   "values": "List of corresponding Data Store Read blocks Read-only: block path",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar | vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Elements in the array (Signals in the bus)",
+   "default": "",
+   "values": "Elements in associated data store string | character vector",
+   "group": "Element Assignment"
+  },
+  {
+   "name": "Specify element(s) to assign",
+   "default": "",
+   "values": "MATLAB expression defining the elements to assign string | character vector",
+   "group": "Element Assignment"
+  },
+  {
+   "name": "Assigned element(s)",
+   "default": "",
+   "values": "List of selected elements string | character vector",
+   "group": "Element Assignment"
+  },
+  {
+   "name": "Enable indexing",
+   "default": "off",
+   "values": "Enable indexing to specify subelements of data store element to write off (default) | on",
+   "group": "Element Assignment"
+  },
+  {
+   "name": "Number of dimensions",
+   "default": "1",
+   "values": "Number of dimensions of data store element 1 (default) | positive integer",
+   "group": "Element Assignment"
+  },
+  {
+   "name": "Index mode",
+   "default": "One-based",
+   "values": "Index mode One-based (default) | Zero-based",
+   "group": "Element Assignment"
+  },
+  {
+   "name": "Index Option",
+   "default": "(dialog)",
+   "values": "Index method for subelements Index vector (dialog) (default) | Select all | Index vector (port) | Starting index (dialog) | Starting index (port)",
+   "group": "Element Assignment"
+  },
+  {
+   "name": "Index",
+   "default": "1",
+   "values": "Indices or starting index of subelements 1 (default) | integer | vector of integers",
+   "group": "Element Assignment"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "DPST Switch",
+ "title": "DPST Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/DPST_Switch.md"
+ ],
+ "text": "Double-pole single-throw switch.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

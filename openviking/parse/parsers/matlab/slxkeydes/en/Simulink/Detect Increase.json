@@ -1,0 +1,44 @@
+{
+ "key": "Detect Increase",
+ "title": "Detect Increase",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Detect_Increase.md",
+  "HDL Coder/Logic and Bit Operations/Detect_Increase.md"
+ ],
+ "text": "Detect increase in signal value, 1 input, 1 output, direct feedthrough, {Initial condition} sets Initial condition of previous input; {Input processing} sets the sample- or frame-based processing Elements and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "0.0",
+   "values": "Initial condition of previous input 0.0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "boolean",
+   "values": "Output data type boolean (default) | uint8",
+   "group": ""
+  }
+ ]
+}

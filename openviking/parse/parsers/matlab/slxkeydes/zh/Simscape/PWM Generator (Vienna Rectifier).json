@@ -1,0 +1,58 @@
+{
+ "key": "PWM Generator (Vienna Rectifier)",
+ "title": "PWM Generator (Vienna Rectifier)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Generator_Vienna_Rectifier.md"
+ ],
+ "text": "Vienna 整流器脉宽调制波形生成器，输入 4 路、输出 1 路；按 {Sampling mode} 指定波形采样方法；{Switching frequency (Hz)} 指定开关速率 1e3、{Sample time (s)} 指定模块采样时间 5e-5，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "三相正弦参考信号 vector"
+  },
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "三相电流参考信号 vector"
+  },
+  {
+   "name": "vdc",
+   "direction": "input",
+   "summary": "直流母线电压信号 positive scalar"
+  },
+  {
+   "name": "vneutral",
+   "direction": "input",
+   "summary": "直流母线中性点平衡控制 scalar"
+  },
+  {
+   "name": "g",
+   "direction": "output",
+   "summary": "门极控制 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "波形采样方法 Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "Hz",
+   "values": "开关速率 1e3 Hz (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "s",
+   "values": "模块采样时间 5e-5 s (default) | positive number",
+   "group": ""
+  }
+ ]
+}

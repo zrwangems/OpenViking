@@ -1,0 +1,81 @@
+{
+ "key": "BLDC Current Controller",
+ "title": "BLDC Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/BLDC Control/BLDC_Current_Controller.md"
+ ],
+ "text": "Discrete-time Brushless DC Motor current PI controller, 5 inputs, 1 output; {Proportional gain} sets the controller proportional gain, K p, {Integral gain}, {Anti-windup gain}, {Sample time (-1 for inherited)} sets the block sample time, {Discretization sample time} sets the sample time for discretization and {Enable zero cancellation} sets the feedforward zero cancellation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsRef",
+   "direction": "input",
+   "summary": "Reference current scalar"
+  },
+  {
+   "name": "Is",
+   "direction": "input",
+   "summary": "Measured current scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset scalar"
+  },
+  {
+   "name": "Hall",
+   "direction": "input",
+   "summary": "Hall sensor vector"
+  },
+  {
+   "name": "Direction",
+   "direction": "input",
+   "summary": "Motor direction scalar"
+  },
+  {
+   "name": "vabcRef",
+   "direction": "output",
+   "summary": "Reference voltage vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "Controller proportional gain, K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "5",
+   "values": "Integral gain, K i 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "Anti-windup gain, K aw 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "Sample time for discretization 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "Feedforward zero cancellation off (default) | on",
+   "group": ""
+  }
+ ]
+}

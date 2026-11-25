@@ -1,0 +1,13 @@
+{
+ "key": "Translational Initial Spacer (PB)",
+ "title": "Translational Initial Spacer (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Initial_Spacer_PB.md"
+ ],
+ "text": "Initial distance between blocks.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,42 @@
+{
+ "key": "SignalInvalidation",
+ "title": "Signal Invalidation",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Signal Routing/Signal_Invalidation.md"
+ ],
+ "text": "控制 AUTOSAR 根输出端口数据元素失效，输入 2 路、输出 1 路；按 {信号失效策略} 指定失效策略；{初始值}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据值 数值"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "失效控制标志 true | false"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出数据值 数值"
+  }
+ ],
+ "params": [
+  {
+   "name": "信号失效策略",
+   "default": "保持",
+   "values": "失效策略 保持 (默认) | 替换 | DontInvalidate",
+   "group": ""
+  },
+  {
+   "name": "初始值",
+   "default": "0",
+   "values": "数据元素初始值 0 (默认) | 双精度",
+   "group": ""
+  }
+ ]
+}

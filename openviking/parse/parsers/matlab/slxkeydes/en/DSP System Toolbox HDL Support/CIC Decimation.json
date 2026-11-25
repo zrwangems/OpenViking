@@ -1,0 +1,98 @@
+{
+ "key": "CIC Decimation",
+ "title": "CIC Decimation",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Filtering/CIC_Decimation.md",
+  "DSP System Toolbox/Filtering/Multirate Filters/CIC_Decimation.md"
+ ],
+ "text": "Decimate signal using cascaded integrator-comb filter, 1 input, 1 output, no direct feedthrough, {Section word lengths} sets Word length of filter sections [ 16 16 16 16; {Coefficient source} sets the source of the filter information, {Decimation factor (R)}, {Differential Delay (M)} sets the differential delay, {Number of sections (N)} sets the number of filter sections, {Data type specification mode} sets the word length and fraction length of filter sections and output Full, {Section fraction lengths} sets the fraction lengths of filter sections, {Output word length} sets the word length of filter output, {Output fraction length} sets the fraction length of filter output, {Rate options} sets the rate processing rule Enforce single-rate, {Filter object} sets the multirate filter object dsp.CICDecimator and {View Filter Response}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "CIC decimated output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "Source of the filter information Dialog parameters (default) | Filter object",
+   "group": ""
+  },
+  {
+   "name": "Decimation factor (R)",
+   "default": "2",
+   "values": "Decimation factor 2 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Differential Delay (M)",
+   "default": "1",
+   "values": "Differential delay 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of sections (N)",
+   "default": "2",
+   "values": "Number of filter sections 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Data type specification mode",
+   "default": "precision",
+   "values": "Specify word length and fraction length of filter sections and output Full precision (default) | Minimum section word lengths | Specify word lengths | Binary point scaling",
+   "group": ""
+  },
+  {
+   "name": "Section word lengths",
+   "default": "]",
+   "values": "Word length of filter sections [ 16 16 16 16 ] (default) | scalar | row vector",
+   "group": ""
+  },
+  {
+   "name": "Section fraction lengths",
+   "default": "0",
+   "values": "Fraction lengths of filter sections 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output word length",
+   "default": "32",
+   "values": "Word length of filter output 32 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output fraction length",
+   "default": "0",
+   "values": "Fraction length of filter output 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Rate processing rule Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Filter object",
+   "default": "",
+   "values": "Multirate filter object dsp.CICDecimator",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View filter response gui button",
+   "group": ""
+  }
+ ]
+}

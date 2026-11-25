@@ -1,0 +1,13 @@
+{
+ "key": "Random Interleaver",
+ "title": "Random Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Random_Interleaver.md"
+ ],
+ "text": "Reorder input symbols using random permutation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,36 @@
+{
+ "key": "ManualVariantSource",
+ "title": "Manual Variant Source",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Manual_Variant_Source.md"
+ ],
+ "text": "在输入端的多个变体选择项之间切换，输入 2 路、输出 1 路；{选择项的数量} 指定输入选择项的数目，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个变体输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_n",
+   "direction": "input",
+   "summary": "第 n 个变体输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "选择项的数量",
+   "default": "2",
+   "values": "输入选择项的数目 2 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

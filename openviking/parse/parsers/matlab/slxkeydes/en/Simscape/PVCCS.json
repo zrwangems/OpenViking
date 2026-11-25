@@ -1,0 +1,13 @@
+{
+ "key": "PVCCS",
+ "title": "PVCCS",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PVCCS.md"
+ ],
+ "text": "Polynomial voltage-controlled current source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

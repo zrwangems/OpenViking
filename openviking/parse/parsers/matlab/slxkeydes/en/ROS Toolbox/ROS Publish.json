@@ -1,0 +1,44 @@
+{
+ "key": "ROS Publish",
+ "title": "Publish",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Publish.md"
+ ],
+ "text": "Send messages to ROS network, 1 input, {Topic source} sets Source for specifying topic name Select from ROS network; {Topic}, {Message type} sets the rOS message type string and {Length of publish queue} sets the message queue length. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS message nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic source",
+   "default": "",
+   "values": "Source for specifying topic name Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "Topic name to publish to string",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "",
+   "values": "ROS message type string",
+   "group": ""
+  },
+  {
+   "name": "Length of publish queue",
+   "default": "1",
+   "values": "Message queue length 1 (default) | integer",
+   "group": ""
+  }
+ ]
+}

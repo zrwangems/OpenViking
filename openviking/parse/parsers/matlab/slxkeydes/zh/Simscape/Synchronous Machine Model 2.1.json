@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Machine Model 2.1",
+ "title": "Synchronous Machine Model 2.1",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Synchronous_Machine_Model_2_1.md"
+ ],
+ "text": "具有简化变换、简化表示以及基本或标准参数化的同步电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

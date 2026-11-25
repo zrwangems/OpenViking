@@ -1,0 +1,94 @@
+{
+ "key": "Deep Signal Anomaly Detector",
+ "title": "Deep Signal Anomaly Detector",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/AI/Deep_Signal_Anomaly_Detector.md"
+ ],
+ "text": "Detect signal anomalies using deep learning network in Simulink, 2 inputs, 3 outputs, no direct feedthrough, {Window loss aggregation} sets Statistic method to aggregate window loss; {Detector MAT-file path} sets the path to detector, {Parameters for post-processing} sets the source for post-processing parameters Read, {Window length}, {Overlap length}, {Threshold source} sets the source of detection threshold, {Threshold} sets the detection threshold value, {Parameter values from MAT-file} displays post-processing parameter values from MAT-file Read-only: text and {Enable delay port} sets the output estimated delay. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Threshold",
+   "direction": "input",
+   "summary": "Detection threshold value nonnegative scalar"
+  },
+  {
+   "name": "Anomaly flag",
+   "direction": "output",
+   "summary": "Anomaly flag logical scalar"
+  },
+  {
+   "name": "Window loss",
+   "direction": "output",
+   "summary": "Aggregate window loss scalar"
+  },
+  {
+   "name": "Delay",
+   "direction": "output",
+   "summary": "Delay estimate scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Detector MAT-file path",
+   "default": "untitled.mat",
+   "values": "Path to detector MAT-file untitled.mat (default) | MAT-file name",
+   "group": ""
+  },
+  {
+   "name": "Parameters for post-processing",
+   "default": "MAT-file",
+   "values": "Source for post-processing parameters Read from MAT-file (default) | Specify on dialog",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "1",
+   "values": "Window length 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "0",
+   "values": "Overlap length between adjoining windows 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Threshold source",
+   "default": "Dialog",
+   "values": "Source of detection threshold value Dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "0.01",
+   "values": "Detection threshold value 0.01 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Window loss aggregation",
+   "default": "Mean",
+   "values": "Statistic method to aggregate window loss Mean (default) | Max | Min | Median",
+   "group": ""
+  },
+  {
+   "name": "Parameter values from MAT-file",
+   "default": "",
+   "values": "Display post-processing parameter values from MAT-file Read-only: text box",
+   "group": ""
+  },
+  {
+   "name": "Enable delay port",
+   "default": "off",
+   "values": "Output estimated delay off (default) | on",
+   "group": ""
+  }
+ ]
+}

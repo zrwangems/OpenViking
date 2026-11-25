@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Detent",
+ "title": "Rotational Detent",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Rotational/Rotational_Detent.md"
+ ],
+ "text": "柔性带缠绕旋转鼓的摩擦制动器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Variable Inertia",
+ "title": "Variable Inertia",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Inertias & Loads/Variable_Inertia.md"
+ ],
+ "text": "Time-varying inertia specified as physical signal input.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

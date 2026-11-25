@@ -1,0 +1,37 @@
+{
+ "key": "Iddata InputOutput",
+ "title": "Iddata Source",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Iddata_Source.md"
+ ],
+ "text": "导入存储在 MATLAB 工作区中 iddata 对象内的时域数据；输出 2 路；{IDDATA object} 指定要导入的时域数据 iddata、{Start time} 指定 iddata 对象中信号的起始时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "output",
+   "summary": "存储在 iddata 对象中的输入数据 scalar | vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "存储在 iddata 对象中的输出数据 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "IDDATA object",
+   "default": "iddata(1,1)",
+   "values": "要导入的时域数据 iddata(1,1) (default) | iddata object",
+   "group": ""
+  },
+  {
+   "name": "Start time",
+   "default": "-1",
+   "values": "iddata 对象中信号的起始时间 -1 (default) | non-negative real scalar",
+   "group": ""
+  }
+ ]
+}

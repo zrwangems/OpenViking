@@ -1,0 +1,24 @@
+{
+ "key": "Matrix Exponential",
+ "title": "Matrix Exponential",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Matrix_Exponential.md"
+ ],
+ "text": "计算矩阵指数，输入 1 路、输出 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "数据输入 matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "矩阵指数输出 matrix"
+  }
+ ],
+ "params": []
+}

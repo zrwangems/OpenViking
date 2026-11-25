@@ -1,0 +1,148 @@
+{
+ "key": "PFDChargePumpTestbench",
+ "title": "PFD and Charge Pump Testbench",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Measurements & Testbenches/PFD_and_Charge_Pump_Testbench.md"
+ ],
+ "text": "用于相位/频率检测器和电荷泵的通用测试环境，输入 3 路、输出 2 路；{Phase sweep (°)} 指定相对于相位偏移的最大相位偏移量、{Phase offset (°)} 指定相位扫描中心处的相对相位值、{Clock frequency (Hz)} 指定期望参考时钟频率 2.5e9、{Number of phases in sweep} 指定要仿真的均匀间隔相位偏移总数、{Duty cycle (%)} 指定激励时钟的占空比、{Plot figures on top after simulation} 指定仿真后将图窗置于顶层、{Report PFD metrics} 指定报告 PFD 指标、{Report Charge Pump metrics} 指定报告 Charge Pump 指标、{Logic Threshold (V)} 指定电荷泵输入端的开关阈值、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数、{Target deadband (°)} 指定零相位偏移附近降低灵敏度区域的最大可接受大小、{Target linear range (°)} 输出保持近似等于输入偏移时的最大相位偏移、{Target propagation delay (s)} 指定从输入到输出的最大可接受延迟 60e-12、{Target rise/fall time (s)} 指定最大可接受 20% – 80% 上升/下降时间、{Target sensitivity (A/°)} 指定电荷泵的最大可接受灵敏度 1e-9、{Target phase offset (°)} 指定电荷泵输出端的最大可接受相位偏移、{Target spur current (A)} 指定电荷泵输出电流幅值 1e-7，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "from PFD up",
+   "direction": "input",
+   "summary": "测量 PFD 参考频率 scalar"
+  },
+  {
+   "name": "from PFD down",
+   "direction": "input",
+   "summary": "测量 PFD 反馈频率 scalar"
+  },
+  {
+   "name": "from charge pump",
+   "direction": "input",
+   "summary": "测量电荷泵输出电流 scalar"
+  },
+  {
+   "name": "to PFD reference",
+   "direction": "output",
+   "summary": "向 PFD 提供参考频率 scalar"
+  },
+  {
+   "name": "to PFD feedback",
+   "direction": "output",
+   "summary": "向 PFD 提供反馈频率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase sweep (°)",
+   "default": "300",
+   "values": "相对于相位偏移的最大相位偏移量 300 (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Phase offset (°)",
+   "default": "0",
+   "values": "相位扫描中心处的相对相位值 0 (default) | real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Clock frequency (Hz)",
+   "default": "Hz",
+   "values": "期望参考时钟频率 2.5e9 Hz (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Number of phases in sweep",
+   "default": "2000",
+   "values": "要仿真的均匀间隔相位偏移总数 2000 (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Duty cycle (%)",
+   "default": "50",
+   "values": "激励时钟的占空比 50 (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Plot figures on top after simulation",
+   "default": "on",
+   "values": "仿真后将图窗置于顶层 on (default) | off",
+   "group": "Setup"
+  },
+  {
+   "name": "Report PFD metrics",
+   "default": "on",
+   "values": "报告 PFD 指标 on (default) | off",
+   "group": "Setup"
+  },
+  {
+   "name": "Report Charge Pump metrics",
+   "default": "on",
+   "values": "报告 Charge Pump 指标 on (default) | off",
+   "group": "Setup"
+  },
+  {
+   "name": "Logic Threshold (V)",
+   "default": "0.5",
+   "values": "电荷泵输入端的开关阈值 0.5 (default) | real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Buffer size",
+   "default": "5",
+   "values": "仿真期间可用的输入缓冲样本数 5 (default) | positive integer scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Target deadband (°)",
+   "default": "0",
+   "values": "零相位偏移附近降低灵敏度区域的最大可接受大小 0 (default) | real nonnegative scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target linear range (°)",
+   "default": "290",
+   "values": "输出保持近似等于输入偏移时的最大相位偏移 290 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target propagation delay (s)",
+   "default": "60e-12",
+   "values": "从输入到输出的最大可接受延迟 60e-12 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target rise/fall time (s)",
+   "default": "30e-12",
+   "values": "最大可接受 20% – 80% 上升/下降时间 30e-12 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target sensitivity (A/°)",
+   "default": "1e-9",
+   "values": "电荷泵的最大可接受灵敏度 1e-9 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target phase offset (°)",
+   "default": "10",
+   "values": "电荷泵输出端的最大可接受相位偏移 10 (default) | real positive scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Target spur current (A)",
+   "default": "1e-7",
+   "values": "电荷泵输出电流幅值 1e-7 (default)",
+   "group": "Target Metrics"
+  }
+ ]
+}

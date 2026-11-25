@@ -1,0 +1,13 @@
+{
+ "key": "Magic Formula Tire Force and Torque",
+ "title": "Magic Formula Tire Force and Torque",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Magic_Formula_Tire_Force_and_Torque.md"
+ ],
+ "text": "Apply steady-state tire force and torque by using Magic Formula tire equations.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

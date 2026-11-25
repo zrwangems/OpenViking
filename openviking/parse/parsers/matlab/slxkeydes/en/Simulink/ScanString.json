@@ -1,0 +1,43 @@
+{
+ "key": "ScanString",
+ "title": "Scan String",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/Scan_String.md",
+  "Simulink/String/String_to_Double.md",
+  "Simulink/String/String_to_Single.md"
+ ],
+ "text": "Scan input string and convert to signals per specified format, 1 input, 3 outputs, direct feedthrough, {Format} sets Format operator for input \"%d.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input string scalar"
+  },
+  {
+   "name": "d",
+   "direction": "output",
+   "summary": "Output data whose format matches %d format scalar"
+  },
+  {
+   "name": "f",
+   "direction": "output",
+   "summary": "Output data whose format matches %f format scalar"
+  },
+  {
+   "name": "Port_N",
+   "direction": "output",
+   "summary": "Output data whose format matches N format scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Format",
+   "default": "%f\"",
+   "values": "Format operator for input \"%d %f\" (default) | format string | character vector",
+   "group": ""
+  }
+ ]
+}

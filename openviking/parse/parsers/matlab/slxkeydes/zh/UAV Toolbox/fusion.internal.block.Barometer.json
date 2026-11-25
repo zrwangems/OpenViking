@@ -1,0 +1,61 @@
+{
+ "key": "fusion.internal.block.Barometer",
+ "title": "Barometer",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/Barometer.md"
+ ],
+ "text": "带噪声的气压计传感器模型，输入 1 路、输出 1 路；{Constant bias} 指定恒定测量偏置、{Noise density} 指定白噪声标准方差、{Bias instability} 指定相关噪声标准方差、{Decay factor} 指定相关噪声衰减因子、{Seed} 指定随机数初始种子、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "True pressure",
+   "direction": "input",
+   "summary": "真实气压 scalar | vector"
+  },
+  {
+   "name": "Measured pressure",
+   "direction": "output",
+   "summary": "测量气压 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Constant bias",
+   "default": "0",
+   "values": "恒定测量偏置 0 (default) | finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Noise density",
+   "default": "1",
+   "values": "白噪声标准方差 1 (default) | nonnegative finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias instability",
+   "default": "1",
+   "values": "相关噪声标准方差 1 (default) | nonnegative finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Decay factor",
+   "default": "0.99",
+   "values": "相关噪声衰减因子 0.99 (default) | positive scalar in the range (0,1)",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "67",
+   "values": "随机数初始种子 67 (default) | nonnegative integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

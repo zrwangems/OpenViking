@@ -1,0 +1,142 @@
+{
+ "key": "dsp.simulink.FrequencyDomainFIRFilter",
+ "title": "Frequency-Domain FIR Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Frequency_Domain_FIR_Filter.md"
+ ],
+ "text": "Filter input signal in the frequency domain, 3 inputs, no direct feedthrough, {Frequency response} sets Frequency response of filter; {Frequency-domain filter method} sets the filtering method in frequency domain, {Numerator domain}, {Specify coefficients from input port} sets the flag to specify time-domain FIR filter, {Filter coefficients} sets the time-domain FIR filter coefficients fir1, {Specify frequency response from input port} sets the flag to specify frequency-domain filter, {Number of propagation paths}, {Sum filtered output contributions from all input channels} sets the option to sum filtered output contributions from all input, {Partition numerator to reduce latency} sets the option to partition the numerator to reduce, {Numerator partition length} sets the partition length of numerator, {Time-domain numerator length}, {Inherit FFT length from numerator length} sets the flag to inherit FFT length from the numerator, {FFT length}, {Filter is real} sets the flag to specify if filter is real, {Output filter latency} sets the flag to output filter latency, {View Filter Response} sets the visualize frequency response and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Data Input vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Time-domain FIR filter coefficients row vector | matrix (since R2024a)"
+  },
+  {
+   "name": "NumFFT",
+   "direction": "input",
+   "summary": "Frequency-domain FIR filter coefficients row vector | matrix | 3-D array (since R2024a)"
+  },
+  {
+   "name": "output",
+   "direction": "unknown",
+   "summary": "Filtered output vector | matrix | 3D array (since R2024a)"
+  },
+  {
+   "name": "latency",
+   "direction": "unknown",
+   "summary": "Filter latency positive integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency-domain filter method",
+   "default": "Overlap-save",
+   "values": "Filtering method in frequency domain Overlap-save (default) | Overlap-add",
+   "group": ""
+  },
+  {
+   "name": "Numerator domain",
+   "default": "Time",
+   "values": "Numerator domain Time (default) | Frequency",
+   "group": ""
+  },
+  {
+   "name": "Specify coefficients from input port",
+   "default": "off",
+   "values": "Flag to specify time-domain FIR filter coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter coefficients",
+   "default": "fir1(100,0.3)",
+   "values": "Time-domain FIR filter coefficients fir1(100,0.3) (default) | row vector | matrix (since R2024a)",
+   "group": ""
+  },
+  {
+   "name": "Specify frequency response from input port",
+   "default": "off",
+   "values": "Flag to specify frequency-domain filter coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Frequency response",
+   "default": "fft(fir1(100,0.3),202)",
+   "values": "Frequency response of filter fft(fir1(100,0.3),202) (default) | row vector | matrix | 3-D array (since R2024a)",
+   "group": ""
+  },
+  {
+   "name": "Number of propagation paths",
+   "default": "1",
+   "values": "Number of propagation paths between each input channel and output channel pair 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sum filtered output contributions from all input channels",
+   "default": "true",
+   "values": "Option to sum filtered output contributions from all input channels true (default) | false",
+   "group": ""
+  },
+  {
+   "name": "Partition numerator to reduce latency",
+   "default": "off",
+   "values": "Option to partition the numerator to reduce latency off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Numerator partition length",
+   "default": "32",
+   "values": "Partition length of numerator 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Time-domain numerator length",
+   "default": "101",
+   "values": "Time-domain numerator length 101 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT length from numerator length",
+   "default": "on",
+   "values": "Flag to inherit FFT length from the numerator length on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "FFT length 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter is real",
+   "default": "true",
+   "values": "Flag to specify if filter is real true (default) | false",
+   "group": ""
+  },
+  {
+   "name": "Output filter latency",
+   "default": "’off’",
+   "values": "Flag to output filter latency ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "Visualize frequency response button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

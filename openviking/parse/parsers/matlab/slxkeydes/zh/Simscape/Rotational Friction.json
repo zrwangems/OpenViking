@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Friction",
+ "title": "Rotational Friction",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Rotational_Friction.md"
+ ],
+ "text": "旋转体接触中的摩擦。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

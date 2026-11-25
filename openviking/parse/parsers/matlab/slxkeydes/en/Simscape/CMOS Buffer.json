@@ -1,0 +1,13 @@
+{
+ "key": "CMOS Buffer",
+ "title": "CMOS Buffer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Logic/CMOS_Buffer.md"
+ ],
+ "text": "Behavioral model of CMOS Buffer gate.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,103 @@
+{
+ "key": "VCOTestbench",
+ "title": "VCO Testbench",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Measurements & Testbenches/VCO_Testbench.md"
+ ],
+ "text": "通过测量相位噪声指标或 VCO 特性来验证压控振荡器 (VCO)，输入 1 路、输出 1 路；{Measurement} 指定要测量的目标指标 Phase、{Set stop time} 指定将建议的最小仿真停止时间设置为模型停止时间、{Plot measurement} 绘制测量结果、{Export measurement results} 指定导出测量结果、{Control voltage (V)} 指定 VCO 控制电压、{Range of control voltage (V)} 指定 VCO 控制电压范围、{Autofill setup parameters} 指定自动计算相位噪声测量的设置参数、{Resolution bandwidth (Hz)} 指定可分辨的最小正频率 30e3、{No. of spectral averages} 指定频谱平均次数、{Hold-off time (s)} 指定延迟测量分析以避免瞬态、{Autofill target metric} 指定自动填充目标相位噪声指标、{Phase noise frequency offset vector (Hz)} 指定相位噪声频率偏移向量、{Phase noise vector (dBc/Hz)} 指定相位噪声向量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "from vco",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "to vco",
+   "direction": "output",
+   "summary": "输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "noise",
+   "values": "要测量的目标指标 Phase noise (default) | Kvco and Fo",
+   "group": ""
+  },
+  {
+   "name": "Set stop time",
+   "default": "",
+   "values": "将建议的最小仿真停止时间设置为模型停止时间 button",
+   "group": ""
+  },
+  {
+   "name": "Plot measurement",
+   "default": "",
+   "values": "绘制测量结果 button",
+   "group": ""
+  },
+  {
+   "name": "Export measurement results",
+   "default": "",
+   "values": "导出测量结果 button",
+   "group": ""
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "2",
+   "values": "VCO 控制电压 2 (default) | scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Range of control voltage (V)",
+   "default": "7]",
+   "values": "VCO 控制电压范围 [2 7] (default) | two-element row vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Autofill setup parameters",
+   "default": "",
+   "values": "自动计算相位噪声测量的设置参数 button",
+   "group": "Setup"
+  },
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "30e3",
+   "values": "可分辨的最小正频率 30e3 (default) | real positive scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "No. of spectral averages",
+   "default": "8",
+   "values": "频谱平均次数 8 (default) | positive integer scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Hold-off time (s)",
+   "default": "0",
+   "values": "延迟测量分析以避免瞬态 0 (default)",
+   "group": "Setup"
+  },
+  {
+   "name": "Autofill target metric",
+   "default": "",
+   "values": "自动填充目标相位噪声指标 button",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Phase noise frequency offset vector (Hz)",
+   "default": "10e6]",
+   "values": "相位噪声频率偏移向量 [30e3 100e3 1e6 3e6 10e6] (default) | real valued vector",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Phase noise vector (dBc/Hz)",
+   "default": "-100]",
+   "values": "相位噪声向量 [-45 -55 -65 -75 -100] (default) | real valued vector",
+   "group": "Target Metric"
+  }
+ ]
+}

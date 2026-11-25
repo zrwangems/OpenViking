@@ -1,0 +1,13 @@
+{
+ "key": "Measurement Selector (MA)",
+ "title": "Measurement Selector (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sensors/Measurement_Selector_MA.md"
+ ],
+ "text": "测量湿空气内部体积中的压力、温度、湿度和痕量气体含量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

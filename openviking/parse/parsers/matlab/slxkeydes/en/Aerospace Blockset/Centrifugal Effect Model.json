@@ -1,0 +1,48 @@
+{
+ "key": "Centrifugal Effect Model",
+ "title": "Centrifugal Effect Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/Centrifugal_Effect_Model.md"
+ ],
+ "text": "Implement mathematical representation of centrifugal effect for planetary gravity, 2 inputs, 1 output, {Planet model} sets Planetary model; {Planetary rotational rate (rad/sec)} sets the planetary rotational rate 7.2921150e-05 and {Input planetary rotation rate} sets the planetary rotation rate port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X ecef",
+   "direction": "input",
+   "summary": "Planet-centered planet-fixed coordinates m-by-3 matrix"
+  },
+  {
+   "name": "ω",
+   "direction": "input",
+   "summary": "Planetary rotation rate scalar"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Gravity values m-by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Planet model",
+   "default": "Earth",
+   "values": "Planetary model Earth (default) | Venus | Mercury | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Custom",
+   "group": ""
+  },
+  {
+   "name": "Planetary rotational rate (rad/sec)",
+   "default": "7.2921150e-05",
+   "values": "Planetary rotational rate 7.2921150e-05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input planetary rotation rate",
+   "default": "off",
+   "values": "Planetary rotation rate port off (default) | on",
+   "group": ""
+  }
+ ]
+}

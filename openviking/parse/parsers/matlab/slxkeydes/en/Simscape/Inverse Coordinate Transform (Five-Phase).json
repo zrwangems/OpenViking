@@ -1,0 +1,36 @@
+{
+ "key": "Inverse Coordinate Transform (Five-Phase)",
+ "title": "Inverse Coordinate Transform (Five-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Inverse_Coordinate_Transform_Five_Phase.md"
+ ],
+ "text": "Implement dqxy0 to abcde transform, 2 inputs, 1 output; {Phase-a axis alignment} sets the dqxy0 reference frame. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dqxy0",
+   "direction": "input",
+   "summary": "Direct, quadrature, x, y, and zero components vector"
+  },
+  {
+   "name": "θ elec",
+   "direction": "input",
+   "summary": "Rotational angle scalar"
+  },
+  {
+   "name": "abcde",
+   "direction": "output",
+   "summary": "a -, b -, c -, d -, and e -phase components vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase-a axis alignment",
+   "default": "Q-axis",
+   "values": "dqxy0 reference frame alignment Q-axis (default) | D-axis",
+   "group": ""
+  }
+ ]
+}

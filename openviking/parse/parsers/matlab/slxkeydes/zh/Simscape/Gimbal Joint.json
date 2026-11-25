@@ -1,0 +1,13 @@
+{
+ "key": "Gimbal Joint",
+ "title": "Gimbal Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Gimbal_Joint.md"
+ ],
+ "text": "具有三个旋转基元的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

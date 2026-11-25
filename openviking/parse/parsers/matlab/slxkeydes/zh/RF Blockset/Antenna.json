@@ -1,0 +1,127 @@
+{
+ "key": "Antenna",
+ "title": "Antenna",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Antenna.md"
+ ],
+ "text": "对天线或天线阵列建模，考虑入射功率波 (RX) 和辐射功率波 (TX)，输入 1 路、输出 1 路；按 {Antenna Gain} 指定天线增益 0；{Source of antenna model} 指定天线模型 Isotropic、{Create Antenna} 打开 Antenna Toolbox 的 Antenna Designer 应用、{Antenna object} 指定来自工作区的天线或阵列元素输入 antenna catalog、{Impedance (Ohm)} 指定输入阻抗、{Input incident wave} 用于模拟接收天线的输入入射波、{Output radiated wave} 用于发射天线的输出辐射波、{Incident carrier frequencies} 指定接收信号的载波频率、{Radiated carrier frequencies} 指定发射信号的载波频率、{Direction of departure} 输出信号功率波辐射所朝向的方位角和仰角、{Direction of arrival} 指定输入信号功率波到达所对应的方位角和仰角、{Simulate noise} 指定模拟热噪声、{Ground and hide negative terminals} 指定 RF 电路端子接地、{Modeling options} 指定对频率相关天线参数建模 Time、{Relative error desired (dB)} 指定有理拟合可接受的相对误差、{Automatically estimate impulse response duration} 指定自动计算冲激响应、{Impulse response duration} 指定冲激响应持续时间 1e-10，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RX",
+   "direction": "input",
+   "summary": "接收信号 scalar | vector | matrix | m -by- n -by- k array"
+  },
+  {
+   "name": "TX",
+   "direction": "output",
+   "summary": "发射信号 scalar | vector | matrix | m -by- n -by- k array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of antenna model",
+   "default": "radiator",
+   "values": "天线模型 Isotropic radiator (default) | Antenna Designer | Antenna object",
+   "group": "Main"
+  },
+  {
+   "name": "Create Antenna",
+   "default": "",
+   "values": "打开 Antenna Toolbox 的 Antenna Designer 应用 button",
+   "group": "Main"
+  },
+  {
+   "name": "Antenna object",
+   "default": "",
+   "values": "来自工作区的天线或阵列元素输入 antenna catalog object | antenna array catalog object | measuredAntenna object | pcbstack object",
+   "group": "Main"
+  },
+  {
+   "name": "Antenna Gain",
+   "default": "dBi",
+   "values": "天线增益 0 dBi (default) | real scalar or vector | positive scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Impedance (Ohm)",
+   "default": "50",
+   "values": "输入阻抗 50 (default) | complex-valued scalar or vector",
+   "group": "Main"
+  },
+  {
+   "name": "Input incident wave",
+   "default": "’off’",
+   "values": "用于模拟接收天线的输入入射波 ’off’ (default) | ’on’",
+   "group": "Main"
+  },
+  {
+   "name": "Output radiated wave",
+   "default": "’on’",
+   "values": "用于发射天线的输出辐射波 ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Incident carrier frequencies",
+   "default": "GHz",
+   "values": "接收信号的载波频率 2.1 GHz (default) | nonnegative scalar or row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Radiated carrier frequencies",
+   "default": "GHz",
+   "values": "发射信号的载波频率 2.1 GHz (default) | nonnegative scalar or row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Direction of departure",
+   "default": "deg",
+   "values": "输出信号功率波辐射所朝向的方位角和仰角 [0 0] deg (default) | finite real row vector of length 1-by-2 | finite real matrix of length m -by-2",
+   "group": "Main"
+  },
+  {
+   "name": "Direction of arrival",
+   "default": "deg",
+   "values": "输入信号功率波到达所对应的方位角和仰角 [180 0] deg (default) | finite real row vector of length 1-by-2 | finite real matrix of length m -by-2",
+   "group": "Main"
+  },
+  {
+   "name": "Simulate noise",
+   "default": "’on’",
+   "values": "模拟热噪声 ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "’on’",
+   "values": "RF 电路端子接地 ’on’ (default) | ’off’",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling options",
+   "default": "domain",
+   "values": "对频率相关天线参数建模 Time domain (default) | Frequency domain",
+   "group": "Modeling"
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "有理拟合可接受的相对误差 -40 (default) | scalar",
+   "group": "Modeling"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "",
+   "values": "自动计算冲激响应 ’on’ | ’off’",
+   "group": "Modeling"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "冲激响应持续时间 1e-10 s (default) | scalar",
+   "group": "Modeling"
+  }
+ ]
+}

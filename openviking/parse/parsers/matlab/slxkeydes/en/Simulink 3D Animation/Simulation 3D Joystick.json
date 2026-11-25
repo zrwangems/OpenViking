@@ -1,0 +1,53 @@
+{
+ "key": "Simulation 3D Joystick",
+ "title": "Simulation 3D Joystick",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Hardware Interface/Simulation_3D_Joystick.md"
+ ],
+ "text": "Process input from asynchronous joystick device, 1 input, 3 outputs; {Joystick ID} sets the iD assigned to given joystick device, {Adjust I/O ports according to joystick capabilities} sets the option to dynamically adjust ports to correspond to joystick and {Enable force-feedback input} sets the option to support joysticks. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Force",
+   "direction": "input",
+   "summary": "Force feedback input scalar | vector"
+  },
+  {
+   "name": "Axes",
+   "direction": "output",
+   "summary": "Joystick position along any given axis vector with each element in the range [-1,1]"
+  },
+  {
+   "name": "Buttons",
+   "direction": "output",
+   "summary": "Status of joystick buttons vector of 0 and 1"
+  },
+  {
+   "name": "Point of view",
+   "direction": "output",
+   "summary": "Current status of joystick point-of-view selector -1 (selector inactive) | scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Joystick ID",
+   "default": "1",
+   "values": "ID assigned to given joystick device 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Adjust I/O ports according to joystick capabilities",
+   "default": "on",
+   "values": "Option to dynamically adjust ports to correspond to joystick capabilities on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable force-feedback input",
+   "default": "on",
+   "values": "Option to support joysticks with force-feedback on (default) | off",
+   "group": ""
+  }
+ ]
+}

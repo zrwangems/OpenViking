@@ -1,0 +1,47 @@
+{
+ "key": "Varying Transfer Function",
+ "title": "Varying Transfer Function",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Varying_Transfer_Function.md"
+ ],
+ "text": "Transfer function with varying coefficients, 3 inputs, 1 output; {Transfer function order} sets the number of poles N and {Enable feedthrough} adds input port for feedthrough term. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Transfer function input scalar"
+  },
+  {
+   "name": "b0, b1,...",
+   "direction": "input",
+   "summary": "Numerator coefficients scalar"
+  },
+  {
+   "name": "a1, a2,...",
+   "direction": "input",
+   "summary": "Denominator coefficients scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Transfer function output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Transfer function order",
+   "default": "1",
+   "values": "Number of poles N 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable feedthrough",
+   "default": "on",
+   "values": "Add input port for feedthrough term on (default) | off",
+   "group": ""
+  }
+ ]
+}

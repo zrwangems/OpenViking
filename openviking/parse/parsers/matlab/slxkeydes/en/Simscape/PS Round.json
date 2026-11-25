@@ -1,0 +1,13 @@
+{
+ "key": "PS Round",
+ "title": "PS Round",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Round.md"
+ ],
+ "text": "Round input physical signal toward nearest integer.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

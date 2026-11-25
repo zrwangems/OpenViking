@@ -1,0 +1,80 @@
+{
+ "key": "DisplayBlock",
+ "title": "Display",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Display.md"
+ ],
+ "text": "在仿真期间显示信号值；按 {标签} 指定模块标签位置；{连接}、{格式}、{格式字符串} 用于格式化数据的自定义字符串、{对齐}、{布局} 指定如何排列非标量数据的元素 Preserve、{显示非标量信号的网格} 是否显示网格、{不透明度}、{前景颜色}、{背景颜色} 指定模块的背景色、{网格颜色}，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "连接",
+   "default": "",
+   "values": "要连接和显示的信号 信号连接选项",
+   "group": "连接"
+  },
+  {
+   "name": "格式",
+   "default": "short",
+   "values": "用于显示信号值的格式 short (默认) | long | shortE | longE |...",
+   "group": "常设"
+  },
+  {
+   "name": "格式字符串",
+   "default": "’%d’",
+   "values": "用于格式化数据的自定义字符串 ’%d’ (默认) | 字符串",
+   "group": "常设"
+  },
+  {
+   "name": "对齐",
+   "default": "Center",
+   "values": "模块中的文本对齐方式 Center (默认) | Left | Right",
+   "group": "常设"
+  },
+  {
+   "name": "标签",
+   "default": "Hide",
+   "values": "模块标签位置 Hide (默认) | Bottom | Top",
+   "group": "常设"
+  },
+  {
+   "name": "布局",
+   "default": "dimensions",
+   "values": "如何排列非标量数据的元素 Preserve dimensions (默认) | Fill available space",
+   "group": "常设"
+  },
+  {
+   "name": "显示非标量信号的网格",
+   "default": "on",
+   "values": "是否显示网格 on (默认) | off",
+   "group": "格式"
+  },
+  {
+   "name": "不透明度",
+   "default": "1",
+   "values": "模块背景不透明度 1 (默认) | 标量",
+   "group": "格式"
+  },
+  {
+   "name": "前景颜色",
+   "default": "",
+   "values": "模块前景颜色 [r g b] 向量",
+   "group": "格式"
+  },
+  {
+   "name": "背景颜色",
+   "default": "",
+   "values": "模块的背景色。 [r g b] 向量",
+   "group": "格式"
+  },
+  {
+   "name": "网格颜色",
+   "default": "",
+   "values": "模块网格颜色 [r g b] 向量",
+   "group": "格式"
+  }
+ ]
+}

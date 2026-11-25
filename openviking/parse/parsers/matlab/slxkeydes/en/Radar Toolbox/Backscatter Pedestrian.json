@@ -1,0 +1,92 @@
+{
+ "key": "Backscatter Pedestrian",
+ "title": "Backscatter Pedestrian",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Backscatter_Pedestrian.md"
+ ],
+ "text": "Backscatter signals from pedestrian, 3 inputs, 4 outputs; {Height (m)} sets the height of pedestrian, {Walking Speed (m/s)} sets the walking speed of pedestrian 1.4 times pedestrian, {Propagation speed (m/s)} sets the signal propagation speed physconst, {Operating Frequency (Hz)} sets the carrier frequency 300e6, {Initial Position (m)} sets the initial position of pedestrian, {Initial Heading (deg)} sets the initial heading of pedestrian and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Incident radar signals complex-valued M -by-16 matrix"
+  },
+  {
+   "name": "Ang",
+   "direction": "input",
+   "summary": "Incident signal directions real-valued 2-by-16 matrix"
+  },
+  {
+   "name": "AngH",
+   "direction": "input",
+   "summary": "Pedestrian heading scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Combined reflected radar signals complex-valued M -by-1 column vector"
+  },
+  {
+   "name": "Pos",
+   "direction": "output",
+   "summary": "Positions of body segments real-valued 3-by-16 matrix"
+  },
+  {
+   "name": "Vel",
+   "direction": "output",
+   "summary": "Velocity of body segments real-valued 3-by-16 matrix"
+  },
+  {
+   "name": "Ax",
+   "direction": "output",
+   "summary": "Orientation of body segments real-valued 3-by-3-by-16 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Height (m)",
+   "default": "1.65",
+   "values": "Height of pedestrian 1.65 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Walking Speed (m/s)",
+   "default": "height",
+   "values": "Walking speed of pedestrian 1.4 times pedestrian height (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating Frequency (Hz)",
+   "default": "300e6",
+   "values": "Carrier frequency 300e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial Position (m)",
+   "default": "[0;0;0]",
+   "values": "Initial position of pedestrian [0;0;0] (default) | 3-by-1 real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Initial Heading (deg)",
+   "default": "0",
+   "values": "Initial heading of pedestrian 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

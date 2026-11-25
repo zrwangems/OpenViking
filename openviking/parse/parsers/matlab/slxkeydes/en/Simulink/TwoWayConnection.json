@@ -1,0 +1,39 @@
+{
+ "key": "TwoWayConnection",
+ "title": "Two-Way Connection",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Two_Way_Connection.md",
+  "Powertrain Blockset/Utilities/Simscape/Two_Way_Connection.md",
+  "Vehicle Dynamics Blockset/Utilities/Simscape/Two_Way_Connection.md"
+ ],
+ "text": "Combine input signals of same data type and complexity into virtual vector, 1 input, 1 output, direct feedthrough, {Display option} sets Block icon appearance; {Number of inputs} sets the number of input signals. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal to include in mux signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output mux signal vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inputs",
+   "default": "2",
+   "values": "Number of input signals 2 (default) | scalar | vector | cell array | comma-separated list of signal names",
+   "group": ""
+  },
+  {
+   "name": "Display option",
+   "default": "bar",
+   "values": "Block icon appearance bar (default) | signals | none",
+   "group": ""
+  }
+ ]
+}

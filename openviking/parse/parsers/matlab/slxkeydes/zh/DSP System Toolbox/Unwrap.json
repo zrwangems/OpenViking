@@ -1,0 +1,43 @@
+{
+ "key": "Unwrap",
+ "title": "Unwrap",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Unwrap.md"
+ ],
+ "text": "展开信号相位，输入 1 路、输出 1 路、无直接馈通；{Tolerance (radians)} 指定跳变大小 pi、{Input processing} 指定处理输入的方法 Columns、{Reset initial phase to zero for each input frame} 指定检查连续帧，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "信号输入 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "信号输出 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tolerance (radians)",
+   "default": "pi",
+   "values": "跳变大小 pi (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "处理输入的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Reset initial phase to zero for each input frame",
+   "default": "off",
+   "values": "检查连续帧 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Orifice (2P)",
+ "title": "Orifice (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Valves & Orifices/Orifice_2P.md"
+ ],
+ "text": "Constant- or variable-area orifice in a two-phase fluid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

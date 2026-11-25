@@ -1,0 +1,132 @@
+{
+ "key": "phased.WidebandCollector",
+ "title": "Wideband Receive Array",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Transmitters and Receivers/Wideband_Receive_Array.md"
+ ],
+ "text": "放大输入信号，并引入非线性失真和附加噪声，输入 2 路、输出 1 路；按 {Noise figure (dB)} 指定噪声系数；{Enable signal enabling input} 指定使能信号输入、{Add noise to input signal} 指定向输入信号添加噪声、{Input noise temperature (K)} 指定输入噪声温度、{Sample rate (Hz)} 指定采样率 1e6、{Inherit sample rate} 指定从上游模块继承采样率、{Simulate using} 指定模块仿真方法 Interpreted、{Noise method} 指定噪声方法 None、{Noise factor} 指定噪声因子、{Reference temperature (K)} 指定参考温度、{Gain method} 指定增益方法 Linear、{Gain (dB)} 指定线性接收机增益、{Output IP3 (dBm)} 输出 IP3、{Lookup table} 查找表、{Phased offset (degrees)} 指定相位偏移、{Source of seed for random number generator} 指定随机数生成器的种子来源、{Seed for random number generator} 指定随机数生成器的种子，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "接收信号 complex-valued vector | complex-valued matrix"
+  },
+  {
+   "name": "EN",
+   "direction": "input",
+   "summary": "使能信号 real-valued vector (default) | real-valued matrix | logical-valued vector | logical-valued matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "放大后的信号 complex-valued vector | complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable signal enabling input",
+   "default": "0",
+   "values": "使能信号输入 false 0 (default) | true 1",
+   "group": ""
+  },
+  {
+   "name": "Add noise to input signal",
+   "default": "off",
+   "values": "向输入信号添加噪声 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input noise temperature (K)",
+   "default": "290",
+   "values": "输入噪声温度 290 (default) | positive scalar | length- N vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "采样率 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "从上游模块继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Noise method",
+   "default": "",
+   "values": "噪声方法 None | Noise figure | Noise factor | Noise temperature",
+   "group": ""
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "3",
+   "values": "噪声系数 3 (default) | real scalar | length- N vector or real values",
+   "group": ""
+  },
+  {
+   "name": "Noise factor",
+   "default": "2",
+   "values": "噪声因子 2 (default) | positive scalar | length- N vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Reference temperature (K)",
+   "default": "290",
+   "values": "参考温度 290 (default) | positive scalar | length- N vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Gain method",
+   "default": "Linear",
+   "values": "增益方法 Linear (default) | Cubic polynomial | Lookup table",
+   "group": ""
+  },
+  {
+   "name": "Gain (dB)",
+   "default": "20",
+   "values": "线性接收机增益 20 (default) | real scalar | length- N vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Output IP3 (dBm)",
+   "default": "Inf",
+   "values": "输出 IP3 Inf (default) | scalar | length- N vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Lookup table",
+   "default": "12]",
+   "values": "查找表 [-25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12] (default) | M -by- N real-valued matrix | M -by- N real-valued matrix",
+   "group": ""
+  },
+  {
+   "name": "Phased offset (degrees)",
+   "default": "0",
+   "values": "相位偏移 0 (default) | scalar | length- N vector of real values",
+   "group": ""
+  },
+  {
+   "name": "Source of seed for random number generator",
+   "default": "Auto",
+   "values": "随机数生成器的种子来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Seed for random number generator",
+   "default": "0",
+   "values": "随机数生成器的种子 0 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

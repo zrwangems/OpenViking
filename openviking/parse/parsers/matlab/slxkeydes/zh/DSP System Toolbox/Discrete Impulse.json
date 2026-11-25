@@ -1,0 +1,80 @@
+{
+ "key": "Discrete Impulse",
+ "title": "Discrete Impulse",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Discrete_Impulse.md"
+ ],
+ "text": "生成离散冲激；输出 1 路、无直接馈通；按 {Output data type} 指定输出数据类型；{Delay (samples)} 指定取值为零的输出采样点数、{Sample time} 输出采样周期、{Samples per frame}、{Mode} 指定数据类型模式、{Signedness} 指定定点数据的有符号性、{Scaling} 指定定点数据的定标方法 Best、{Word length} 指定存放量化整数的字的位数、{Fraction length} 指定定点数据类型的小数长度、{Data type override} 指定数据类型覆盖模式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "离散冲激信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delay (samples)",
+   "default": "0",
+   "values": "取值为零的输出采样点数 0 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出采样周期 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | Inherit: Inherit via back propagation |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "数据类型模式 Inherit (default) | Built in | Fixed point | Expression",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "定点数据的有符号性 Signed (default) | Unsigned",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "定点数据的定标方法 Best precision (default) | Binary point",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "存放量化整数的字的位数 16 (default) | integer from 2 to 128",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "定点数据类型的小数长度 0 (default) | integer scalar",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Data type override",
+   "default": "Inherit",
+   "values": "数据类型覆盖模式 Inherit (default) | Off",
+   "group": "Data Type Assistant"
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "key": "J1939 Network Configuration",
+ "title": "J1939 Network Configuration",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/J1939 Communication/J1939_Network_Configuration.md",
+  "Simulink Real-Time/J1939/J1939_Network_Configuration.md"
+ ],
+ "text": "Define J1939 network configuration name and database file; {Configuration name} defines a name for this J1939 network configuration, {Database File} sets the J1939 database file name relative to the current folder not and {Enable address claiming} enables standard address claim procedure. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Configuration name",
+   "default": "ConfigX",
+   "values": "Define a name for this J1939 network configuration ConfigX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Database File",
+   "default": "set",
+   "values": "Specify the J1939 database file name relative to the current folder not set (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Enable address claiming",
+   "default": "on",
+   "values": "Enable standard address claim procedure on (default) | off",
+   "group": ""
+  }
+ ]
+}

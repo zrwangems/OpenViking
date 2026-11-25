@@ -1,0 +1,234 @@
+{
+ "key": "Simulation 3D Radar Data Generator",
+ "title": "Simulation 3D Radar Data Generator",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Radar_Data_Generator.md"
+ ],
+ "text": "Generate radar sensor detections and tracks, 3 outputs, {Coordinate frame used to report detections} sets Coordinate system of reported detections; {Sensor identifier} sets the unique sensor identifier, {Parent name} sets the name of parent vehicle, {Coordinate system}, {Mounting location} sets the sensor mounting location, {Specify offset} sets the offset from mounting location, {Relative translation [X, Y, Z]} sets the translation offset relative to mounting location, {Relative rotation [Roll, Pitch, Yaw]} sets the rotational offset relative to mounting location, {Sample time}, {Enable elevation angle measurements} enables radar to measure target elevation, {Enable range rate measurements} enables radar to measure target range rates, {Add measurement noise to observations} enables addition of noise to radar sensor, {Enable generation of reports from false observations} enables creating false alarm radar, {Maximum number of target reports} sets the maximum number of detections or tracks, {Format of generated target reports}, {Azimuthal resolution (deg)} sets the azimuth resolution of radar, {Elevation resolution (deg)} sets the elevation resolution of radar, {Range resolution (m)} sets the range resolution of radar, {Range rate resolution (m/s)} sets the range rate resolution of radar, {Azimuth bias fraction}, {Elevation bias fraction}, {Range bias fraction}, {Range rate bias fraction}, {Total angular field of view [AZ, EL] (deg)} sets the angular field of view of radar, {Range limits [MIN, MAX] (m)} sets the minimum and maximum range of radar, {Range rate limits [MIN, MAX] (m/s)} sets the minimum and maximum range rate of radar, {Detection probability} sets the probability of detecting a target, {False alarm rate} sets the false alarm report, {Reference target range (m)} sets the reference range for given probability, {Reference target RCS (dBsm)} sets the reference radar cross-section for given probability, {Center frequency (Hz)} sets the center frequency of radar, {Select method to specify initial seed} sets the method to specify random number generator seed, {Initial seed} sets the random number generator seed and {Actor types to oversample} sets the actor type for improved target detection Simulation 3D. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Clustered detections",
+   "direction": "output",
+   "summary": "Clustered object detections Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Tracks",
+   "direction": "output",
+   "summary": "Object tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "Unclustered object detections Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "Name of parent vehicle Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Coordinate system",
+   "default": "Default",
+   "values": "Coordinate system for actor transformation Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "Sensor mounting location Origin (default)",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "Specify offset from mounting location off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z]",
+   "default": "0]",
+   "values": "Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw]",
+   "default": "0]",
+   "values": "Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Enable elevation angle measurements",
+   "default": "on",
+   "values": "Enable radar to measure target elevation angles on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable range rate measurements",
+   "default": "on",
+   "values": "Enable radar to measure target range rates on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Add measurement noise to observations",
+   "default": "on",
+   "values": "Enable addition of noise to radar sensor measurements on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable generation of reports from false observations",
+   "default": "on",
+   "values": "Enable creating false alarm radar detections on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum number of target reports",
+   "default": "50",
+   "values": "Maximum number of detections or tracks 50 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Format of generated target reports",
+   "default": "detections",
+   "values": "Format of generated target reports Clustered detections (default) | Tracks | Detections",
+   "group": "Parameters"
+  },
+  {
+   "name": "Coordinate frame used to report detections",
+   "default": "Body",
+   "values": "Coordinate system of reported detections Body (default) | Sensor rectangular | Sensor spherical",
+   "group": "Parameters"
+  },
+  {
+   "name": "Azimuthal resolution (deg)",
+   "default": "4",
+   "values": "Azimuth resolution of radar 4 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation resolution (deg)",
+   "default": "5",
+   "values": "Elevation resolution of radar 5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range resolution (m)",
+   "default": "2.5",
+   "values": "Range resolution of radar 2.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate resolution (m/s)",
+   "default": "0.5",
+   "values": "Range rate resolution of radar 0.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Azimuth bias fraction",
+   "default": "0.1",
+   "values": "Azimuth bias fraction of radar 0.1 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation bias fraction",
+   "default": "0.1",
+   "values": "Elevation bias fraction of radar 0.1 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range bias fraction",
+   "default": "0.05",
+   "values": "Range bias fraction 0.05 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate bias fraction",
+   "default": "0.05",
+   "values": "Range rate bias fraction 0.05 (default) | nonnegative scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Total angular field of view [AZ, EL] (deg)",
+   "default": "5]",
+   "values": "Angular field of view of radar [20 5] (default) | 1-by-2 positive real-valued vector of form [azfov,elfov]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range limits [MIN, MAX] (m)",
+   "default": "150]",
+   "values": "Minimum and maximum range of radar [0 150] (default) | 1-by-2 nonnegative real-valued vector of form [min max]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate limits [MIN, MAX] (m/s)",
+   "default": "100]",
+   "values": "Minimum and maximum range rate of radar (m/s) [-100 100] (default) | 1-by-2 real-valued vector of form [min max]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Detection probability",
+   "default": "0.9",
+   "values": "Probability of detecting a target 0.9 (default) | scalar in range (0, 1]",
+   "group": "Measurements"
+  },
+  {
+   "name": "False alarm rate",
+   "default": "1e-06",
+   "values": "False alarm report rate 1e-06 (default) | positive real scalar in range [10 –7, 10 –3 ]",
+   "group": "Measurements"
+  },
+  {
+   "name": "Reference target range (m)",
+   "default": "100",
+   "values": "Reference range for given probability of detection 100 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Reference target RCS (dBsm)",
+   "default": "0",
+   "values": "Reference radar cross-section for given probability of detection 0 (default) | real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Center frequency (Hz)",
+   "default": "77e9",
+   "values": "Center frequency of radar band 77e9 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Select method to specify initial seed",
+   "default": "Repeatable",
+   "values": "Method to specify random number generator seed Repeatable (default) | Specify seed | Not repeatable",
+   "group": "Measurements"
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "Random number generator seed 0 (default) | nonnegative integer less than 2 32",
+   "group": "Measurements"
+  },
+  {
+   "name": "Actor types to oversample",
+   "default": "Vehicles",
+   "values": "Actor type for improved target detection Simulation 3D Vehicles (default) | None | Simulation 3D Actors | All Actors",
+   "group": "Measurements"
+  }
+ ]
+}

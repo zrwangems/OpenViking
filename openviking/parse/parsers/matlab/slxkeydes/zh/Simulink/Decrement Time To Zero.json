@@ -1,0 +1,24 @@
+{
+ "key": "Decrement Time To Zero",
+ "title": "Decrement Time To Zero",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Math_ Increment - Decrement/Decrement_Time_To_Zero.md"
+ ],
+ "text": "将信号的实际值减去采样时间，但仅减至零，输入 1 路、输出 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

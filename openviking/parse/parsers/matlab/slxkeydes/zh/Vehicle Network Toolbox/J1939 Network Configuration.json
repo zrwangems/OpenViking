@@ -1,0 +1,33 @@
+{
+ "key": "J1939 Network Configuration",
+ "title": "J1939 Network Configuration",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/J1939 Communication/J1939_Network_Configuration.md",
+  "Simulink Real-Time/J1939/J1939_Network_Configuration.md"
+ ],
+ "text": "定义 J1939 网络配置名称和数据库文件；{Configuration name} 为此 J1939 网络配置定义名称、{Database File} 指定相对于当前文件夹的 J1939 数据库文件名 not、{Enable address claiming} 启用标准地址声明过程，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Configuration name",
+   "default": "ConfigX",
+   "values": "为此 J1939 网络配置定义名称 ConfigX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Database File",
+   "default": "set",
+   "values": "指定相对于当前文件夹的 J1939 数据库文件名 not set (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Enable address claiming",
+   "default": "on",
+   "values": "启用标准地址声明过程 on (default) | off",
+   "group": ""
+  }
+ ]
+}

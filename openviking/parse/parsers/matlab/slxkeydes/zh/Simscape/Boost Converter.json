@@ -1,0 +1,13 @@
+{
+ "key": "Boost Converter",
+ "title": "Boost Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Boost_Converter.md"
+ ],
+ "text": "控制器驱动的 DC-DC 升压稳压器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

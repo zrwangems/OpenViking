@@ -1,0 +1,13 @@
+{
+ "key": "Phase Permute",
+ "title": "Phase Permute",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Phase_Permute.md"
+ ],
+ "text": "三相系统的相位置换。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

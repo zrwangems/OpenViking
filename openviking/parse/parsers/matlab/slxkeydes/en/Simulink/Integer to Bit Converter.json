@@ -1,0 +1,51 @@
+{
+ "key": "Integer to Bit Converter",
+ "title": "Integer to Bit Converter",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Integer_to_Bit_Converter.md",
+  "Communications Toolbox/Utility Blocks/Integer_to_Bit_Converter.md",
+  "HDL Coder/Logic and Bit Operations/Integer_to_Bit_Converter.md"
+ ],
+ "text": "Map vector of integers to vector of bits, 1 input, 1 output, no direct feedthrough, {Output data type} sets Output data type Inherit via internal; {Number of bits per integer(M)}, {Treat input values as} and {Output bit order}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal integer | column vector of integers"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal bit scalar | column vector of bits"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits per integer(M)",
+   "default": "3",
+   "values": "Number of bits per integer 3 (default) | integer in the range [1, 32]",
+   "group": ""
+  },
+  {
+   "name": "Treat input values as",
+   "default": "Unsigned",
+   "values": "Treat input values as Unsigned (default) | Signed",
+   "group": ""
+  },
+  {
+   "name": "Output bit order",
+   "default": "first",
+   "values": "Output bit order MSB first (default) | LSB first",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit via internal rule (default) | Smallest unsigned integer | Same as input | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "key": "Design Verifier Assumption",
+ "title": "Assumption",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Objectives and Constraints/Assumption.md"
+ ],
+ "text": "在证明模型属性时约束信号值，输入 1 路、输出 1 路；{启用}、{类型} 指定该模块是否表现为证明假设或 Test Condition、{值} 指定 Proof Assumption、{显示值} 显示 values 参数的内容、{直通模式(显示输出端口)} 指定模块是否在 Simulink 编辑器中显示输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号指定为标量或元胞数组 标量 | 元胞数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号以标量或元胞数组返回 标量 | 元胞数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "启用",
+   "default": "on",
+   "values": "是否启用模块 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "类型",
+   "default": "on",
+   "values": "该模块是否表现为证明假设或 Test Condition 模块 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "值",
+   "default": "标量",
+   "values": "Proof Assumption 标量 (默认) | 元胞数组",
+   "group": ""
+  },
+  {
+   "name": "显示值",
+   "default": "on",
+   "values": "显示 values 参数的内容 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "直通模式(显示输出端口)",
+   "default": "on",
+   "values": "模块是否在 Simulink 编辑器中显示输出端口 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Variable-Displacement Pump (IL)",
+ "title": "Variable-Displacement Pump (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pumps & Motors/Variable_Displacement_Pump_IL.md"
+ ],
+ "text": "等温液体网络中的可变排量泵。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

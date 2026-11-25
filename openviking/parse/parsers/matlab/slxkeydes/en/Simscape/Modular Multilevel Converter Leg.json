@@ -1,0 +1,13 @@
+{
+ "key": "Modular Multilevel Converter Leg",
+ "title": "Modular Multilevel Converter Leg",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Modular_Multilevel_Converter_Leg.md"
+ ],
+ "text": "Modular multilevel converter leg with series-connected power submodules.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

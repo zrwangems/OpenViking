@@ -1,0 +1,13 @@
+{
+ "key": "Motor & Drive",
+ "title": "Motor & Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Motor_Drive.md"
+ ],
+ "text": "Generic motor and drive with closed-loop torque control.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

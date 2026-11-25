@@ -1,0 +1,99 @@
+{
+ "key": "StateSpaceABCFH-3D",
+ "title": "3D Observer Form [A(v),B(v),C(v),F(v),H(v)]",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/b_3D_Observer_Form_A_v_B_v_C_v_F_v_H_v.md"
+ ],
+ "text": "Implement gain-scheduled state-space controller in observer form depending on three scheduling parameters, 5 inputs, 1 output; {A-matrix(v1,v2,v3)} sets a -matrix of the state-space implementation, {B-matrix(v1,v2,v3)} sets the b -matrix of the state-space implementation, {C-matrix(v1,v2,v3)} sets the c -matrix of the state-space implementation, {F-matrix(v1,v2,v3)} sets the f -matrix of the state-space implementation, {H-matrix(v1,v2,v3)} sets the h -matrix of the state-space implementation, {First scheduling variable (v1) breakpoints} sets the breakpoints for first scheduling variable, {Second scheduling variable (v2) breakpoints} sets the breakpoints for second scheduling variable, {Third scheduling variable (v3) breakpoints} sets the breakpoints for third scheduling variable and {Initial state, x_initial} sets the initial states. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y-y_dem",
+   "direction": "input",
+   "summary": "Set-point error vector"
+  },
+  {
+   "name": "v1",
+   "direction": "input",
+   "summary": "First scheduling variable vector"
+  },
+  {
+   "name": "v2",
+   "direction": "input",
+   "summary": "Second scheduling variable vector"
+  },
+  {
+   "name": "v3",
+   "direction": "input",
+   "summary": "Third scheduling variable vector"
+  },
+  {
+   "name": "u_meas",
+   "direction": "input",
+   "summary": "Measured actuator position vector"
+  },
+  {
+   "name": "u_dem",
+   "direction": "output",
+   "summary": "Actuator demands vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A-matrix(v1,v2,v3)",
+   "default": "A",
+   "values": "A -matrix of the state-space implementation A (default) | array",
+   "group": ""
+  },
+  {
+   "name": "B-matrix(v1,v2,v3)",
+   "default": "B",
+   "values": "B -matrix of the state-space implementation B (default) | array",
+   "group": ""
+  },
+  {
+   "name": "C-matrix(v1,v2,v3)",
+   "default": "C",
+   "values": "C -matrix of the state-space implementation C (default) | array",
+   "group": ""
+  },
+  {
+   "name": "F-matrix(v1,v2,v3)",
+   "default": "F",
+   "values": "F -matrix of the state-space implementation F (default) | array",
+   "group": ""
+  },
+  {
+   "name": "H-matrix(v1,v2,v3)",
+   "default": "H",
+   "values": "H -matrix of the state-space implementation H (default) | array",
+   "group": ""
+  },
+  {
+   "name": "First scheduling variable (v1) breakpoints",
+   "default": "v1_vec",
+   "values": "Breakpoints for first scheduling variable v1_vec (default)",
+   "group": ""
+  },
+  {
+   "name": "Second scheduling variable (v2) breakpoints",
+   "default": "v2_vec",
+   "values": "Breakpoints for second scheduling variable v2_vec (default)",
+   "group": ""
+  },
+  {
+   "name": "Third scheduling variable (v3) breakpoints",
+   "default": "v3_vec",
+   "values": "Breakpoints for third scheduling variable v3_vec (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "Initial states 0 (default)",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,162 @@
+{
+ "key": "DACTestbench",
+ "title": "DAC Testbench",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Measurements & Testbenches/DAC_Testbench.md"
+ ],
+ "text": "测量 DAC 输出的 DC 和 AC 性能指标，输入 1 路、输出 2 路；{Measurement} 是测量 DC 还是、{Recommended min. simulation stop time (s)} 指定仿真必须运行以获得有意义结果的最短时间、{Set as model stop time} 指定自动将推荐的最小仿真停止时间设置为模型停止时间、{Endpoint} 使用端点法测量 DNL、INL、{Best fit} 使用最佳拟合方法测量 DNL、INL、{Plot DC analysis result} 绘制 DC 分析结果、{Export measurement result} 指定将详细测试结果存储到基础工作区、{Digital input frequency (Hz)} 指定 DAC 的数字输入信号频率 1e4、{Start conversion frequency (Hz)} 指定内部启动转换时钟的频率 1e6、{Error tolerance (LSB)} 指定数字信号相邻采样之间的最大差值、{Autofill setup parameters} 指定从 DAC 自动传播设置参数、{Number of bits} 指定输入字的位数、{Input polarity} 指定 DAC 输入信号的极性、{Reference (V)} 指定参考电压、{Bias (V)} 添加到输出的偏置电压、{Settling time (s)} 输出稳定所需的时间、{Settling time tolerance (LSB)} 指定计算稳定时间的容差、{Hold off time (s)} 指定测量分析前的延迟、{Show spectrum analyzer during simulation} 指定在仿真期间显示 Spectrum Analyzer、{Autofill target metric} 指定从 DAC 自动传播目标指标、{Offset error} 按特定值移动量化步长、{Gain error} 指定 DAC 传输曲线斜率的误差，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "from dac analog",
+   "direction": "input",
+   "summary": "来自 DAC 输出的模拟信号 scalar"
+  },
+  {
+   "name": "to dac digital",
+   "direction": "output",
+   "summary": "用于 DAC 输入的数字激励信号 scalar"
+  },
+  {
+   "name": "to dac start",
+   "direction": "output",
+   "summary": "用于 DAC 的外部启动转换时钟 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "DC",
+   "values": "选择是测量 DC 还是 AC 性能指标 DC (default) | AC",
+   "group": ""
+  },
+  {
+   "name": "Recommended min. simulation stop time (s)",
+   "default": "2.048e-02",
+   "values": "仿真必须运行以获得有意义结果的最短时间 2.048e-02 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Set as model stop time",
+   "default": "",
+   "values": "自动将推荐的最小仿真停止时间设置为模型停止时间 button",
+   "group": ""
+  },
+  {
+   "name": "Endpoint",
+   "default": "on",
+   "values": "使用端点法测量 DNL、INL on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Best fit",
+   "default": "on",
+   "values": "使用最佳拟合方法测量 DNL、INL on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Plot DC analysis result",
+   "default": "",
+   "values": "绘制 DC 分析结果 button",
+   "group": ""
+  },
+  {
+   "name": "Export measurement result",
+   "default": "",
+   "values": "将详细测试结果存储到基础工作区 button",
+   "group": ""
+  },
+  {
+   "name": "Digital input frequency (Hz)",
+   "default": "1e4",
+   "values": "DAC 的数字输入信号频率 1e4 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "1e6",
+   "values": "内部启动转换时钟的频率 1e6 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Error tolerance (LSB)",
+   "default": "0.1",
+   "values": "数字信号相邻采样之间的最大差值 0.1 (default) | positive scalar in the range ( 0, 1 ]",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Autofill setup parameters",
+   "default": "",
+   "values": "从 DAC 自动传播设置参数 button",
+   "group": "Setup"
+  },
+  {
+   "name": "Number of bits",
+   "default": "10",
+   "values": "输入字的位数 10 (default) | positive real integer",
+   "group": "Setup"
+  },
+  {
+   "name": "Input polarity",
+   "default": "Bipolar",
+   "values": "DAC 输入信号的极性 Bipolar (default) | Unipolar",
+   "group": "Setup"
+  },
+  {
+   "name": "Reference (V)",
+   "default": "1",
+   "values": "参考电压 1 (default) | real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Bias (V)",
+   "default": "0",
+   "values": "添加到输出的偏置电压 0 (default) | real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Settling time (s)",
+   "default": "0.25/1e-6",
+   "values": "输出稳定所需的时间 0.25/1e-6 (default) | nonnegative real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Settling time tolerance (LSB)",
+   "default": "0.5",
+   "values": "计算稳定时间的容差 0.5 (default) | positive real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "测量分析前的延迟 0 (default) | nonnegative real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Show spectrum analyzer during simulation",
+   "default": "off",
+   "values": "在仿真期间显示 Spectrum Analyzer off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Autofill target metric",
+   "default": "",
+   "values": "从 DAC 自动传播目标指标 button",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "按特定值移动量化步长 0 LSB (default) | real scalar",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "DAC 传输曲线斜率的误差 0 LSB (default) | real scalar",
+   "group": "Target Metric"
+  }
+ ]
+}

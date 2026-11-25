@@ -1,0 +1,39 @@
+{
+ "key": "CCSDS LDPC Encoder",
+ "title": "CCSDS LDPC Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/CCSDS_LDPC_Encoder.md"
+ ],
+ "text": "Encode data with (8160,7136) LDPC code specified in CCSDS telemetry standard, 2 inputs, 3 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data bits scalar | column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Encoded output data bits scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Block ready indicator scalar"
+  }
+ ],
+ "params": []
+}

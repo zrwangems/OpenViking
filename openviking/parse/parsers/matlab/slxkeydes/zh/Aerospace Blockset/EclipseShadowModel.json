@@ -1,0 +1,146 @@
+{
+ "key": "EclipseShadowModel",
+ "title": "Eclipse Shadow Model (Cylindrical)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Eclipse_Shadow_Model_Cylindrical.md",
+  "Aerospace Blockset/Environment/Celestial Phenomena/Eclipse_Shadow_Model_Dual_Cone.md"
+ ],
+ "text": "计算惯性位置处可见太阳圆盘的比例，输入 5 路、输出 3 路；按 {Ephemeris model} 指定星历模型；{Units} 指定位置端口单位 Metric、{Shadow model}、{Output index of shadow region}、{Time source}、{Start date/time (JD)} 指定仿真的初始开始日期和时间 juliandate、{Central body} 用于 eclipse 计算的掩食天体、{Equatorial radius} 指定自定义中心天体半径、{Include Moon} 指定包含 Moon、{Include Earth} 指定包含 Earth、{Limit ephemerides date range} 指定展开以启用星历数据范围的起点和终点、{Start date (JD)} 指定星历日期范围的起始日期 juliandate、{End date (JD)} 指定星历日期范围的结束日期 juliandate、{Action for out-of-range input} 指定超出范围时的模块行为、{Enable zero-crossing detection} 启用过零检测，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X icrf",
+   "direction": "input",
+   "summary": "航天器位置 3-element vector | M -by-3 array"
+  },
+  {
+   "name": "T JD",
+   "direction": "input",
+   "summary": "儒略日 scalar"
+  },
+  {
+   "name": "T0 JD",
+   "direction": "input",
+   "summary": "儒略日历元 scalar"
+  },
+  {
+   "name": "ΔT JD",
+   "direction": "input",
+   "summary": "相对于 T0 JD 的经过儒略时间 scalar"
+  },
+  {
+   "name": "R ss bary, cb",
+   "direction": "input",
+   "summary": "自定义中心天体位置 3-by-1 array"
+  },
+  {
+   "name": "Fraction",
+   "direction": "output",
+   "summary": "可见太阳比例 scalar | M -element vector"
+  },
+  {
+   "name": "Region",
+   "direction": "output",
+   "summary": "区域 scalar | M -element vector | integer"
+  },
+  {
+   "name": "Secondary Region",
+   "direction": "output",
+   "summary": "次级区域 scalar | M -element vector | integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(m)",
+   "values": "位置端口单位 Metric (m) (default) | Metric (km) | English (ft) | English (M)",
+   "group": ""
+  },
+  {
+   "name": "Shadow model",
+   "default": "cone",
+   "values": "Shadow model Dual cone (default) | Cylindrical",
+   "group": ""
+  },
+  {
+   "name": "Output index of shadow region",
+   "default": "on",
+   "values": "Output index of shadow region on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Time source",
+   "default": "Dialog",
+   "values": "Time source method Dialog (default) | Port (Julian date) | Port (T0 and elapsed Julian time)",
+   "group": ""
+  },
+  {
+   "name": "Start date/time (JD)",
+   "default": "1)",
+   "values": "仿真的初始开始日期和时间 juliandate(2020, 1, 1) (default) | valid scalar Julian date",
+   "group": ""
+  },
+  {
+   "name": "Central body",
+   "default": "Earth",
+   "values": "用于 eclipse 计算的掩食天体 Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Custom",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "3396200",
+   "values": "自定义中心天体半径 3396200 (default) | double scalar",
+   "group": ""
+  },
+  {
+   "name": "Include Moon",
+   "default": "on",
+   "values": "包含 Moon 的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Include Earth",
+   "default": "on",
+   "values": "包含 Earth 的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ephemeris model",
+   "default": "DE405",
+   "values": "星历模型 DE405 (default) | DE421 | DE423 | DE430 | DE432t",
+   "group": ""
+  },
+  {
+   "name": "Limit ephemerides date range",
+   "default": "on",
+   "values": "展开以启用星历数据范围的起点和终点 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Start date (JD)",
+   "default": "1)",
+   "values": "星历日期范围的起始日期 juliandate(2020, 1, 1) (default) | Julian date",
+   "group": ""
+  },
+  {
+   "name": "End date (JD)",
+   "default": "1)",
+   "values": "星历日期范围的结束日期 juliandate(2050, 1, 1) (default) | Julian date",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Error",
+   "values": "超出范围时的模块行为 Error (default) | Warning | None",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "启用过零检测 off (default) | on",
+   "group": ""
+  }
+ ]
+}

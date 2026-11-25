@@ -1,0 +1,32 @@
+{
+ "key": "ProxyTask",
+ "title": "Proxy Task",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor Task Execution/Proxy_Task.md"
+ ],
+ "text": "应用程序中任务的占位符，输入 1 路；{Type} 指定任务类型 Timer-driven、{Sample Time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "来自 Task Manager 模块的函数调用 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "Timer-driven",
+   "values": "任务类型 Timer-driven (default) | Event-driven",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "1",
+   "values": "采样时间 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

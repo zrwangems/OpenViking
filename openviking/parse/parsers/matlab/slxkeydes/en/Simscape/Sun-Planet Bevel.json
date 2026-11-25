@@ -1,0 +1,13 @@
+{
+ "key": "Sun-Planet Bevel",
+ "title": "Sun-Planet Bevel",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Planetary Subcomponents/Sun_Planet_Bevel.md"
+ ],
+ "text": "Planetary gear set of carrier and beveled planet and sun wheels with adjustable gear ratio, assembly orientation, and friction losses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

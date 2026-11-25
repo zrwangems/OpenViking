@@ -1,0 +1,60 @@
+{
+ "key": "Read UAV Trajectory",
+ "title": "Read UAV Trajectory",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Utilities/Read_UAV_Trajectory.md"
+ ],
+ "text": "为 3D 仿真从 UAV 轨迹生成平移和旋转采样，输入 1 路、输出 2 路；按 {Trajectory object} 指定轨迹对象；{Trajectory source} 指定轨迹源 From trajectory object、{UAV scenario object} 指定 UAV 场景对象、{UAV platform name} 指定 UAV 平台名称、{Convert to ENU reference frame and Front-Left-Up body frame} 指定平移和旋转坐标系，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "沿轨迹采样的时间点 scalar"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "UAV 位置 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "UAV 的欧拉角 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trajectory source",
+   "default": "workspace",
+   "values": "轨迹源 From trajectory object in workspace (default) | From UAV Scenario in workspace",
+   "group": ""
+  },
+  {
+   "name": "UAV scenario object",
+   "default": "singleUAVScenario",
+   "values": "UAV 场景对象 singleUAVScenario (default) | uavScenario object",
+   "group": ""
+  },
+  {
+   "name": "UAV platform name",
+   "default": "UAV",
+   "values": "UAV 平台名称 UAV (default) | name of UAV platform",
+   "group": ""
+  },
+  {
+   "name": "Trajectory object",
+   "default": "waypointTrajectory()",
+   "values": "轨迹对象 waypointTrajectory() (default) | multirotorFlightTrajectory object | fixedwingFlightTrajectory object | polynomialTrajectory object | waypointTrajectory object",
+   "group": ""
+  },
+  {
+   "name": "Convert to ENU reference frame and Front-Left-Up body frame",
+   "default": "on",
+   "values": "平移和旋转坐标系 on (default) | off",
+   "group": ""
+  }
+ ]
+}

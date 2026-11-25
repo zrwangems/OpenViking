@@ -1,0 +1,422 @@
+{
+ "key": "Steering System",
+ "title": "Steering System",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Steering/Steering_System.md"
+ ],
+ "text": "用于 Ackermann 和齿轮齿条式转向机构的转向系统，输入 10 路、输出 3 路；{Type} 指定转向类型 Rack、{Intermediate shaft type} 指定中间轴类型 Single Cardan、{Power assist} 指定对助力建模、{Ackerman steering} 使用 Ackermann 转向、{Kingpin moment} 指定左、右主销力矩、{Steered axle} 指定转向系统的位置、{Steering inputs} 指定方向盘转角或力矩、{Track width, TrckWdth} 指定轮距、{Steering angle input range, StrRng} 指定方向盘范围、{Steering angle input deadband width, DbWdth} 指定转角输入死区宽度、{Steering wheel inertia, StrWhlInert} 指定方向盘转动惯量、{Steering shaft inertia, StrColInert} 指定转向轴转动惯量、{Kingpin offset, KngpnOfst} 指定主销偏移距、{Kingpin inclination angle, Lambda} 指定主销内倾角、{Hub lead, HbLead} 指定轮毂前置量 4.00E-05、{Static loaded radius, StcLdRadius} 指定静态加载半径、{Overall steering ratio, OvrlStrRatio} 指定总转向比、{Steering angle breakpoints, StrgAngBpts} 指定方向盘转角断点、{CstrAng} 指定后倾角、{Rack gain parameterized by} 指定齿条增益参数化、{Rack gain, RckGn} 指定齿条增益、{Rack gain table, RckGnTbl} 指定齿条增益表 ones、{Steering arm length, StrgArmLngth} 指定转向臂长度、{Rack casing length, RckCsLngth} 指定齿条长度、{Tie rod length, TieRodLngth} 指定横拉杆长度、{Distance between axis and rack, Dst} 指定车轴与齿条之间的距离、{Efficiency of gears, Epsilon} 指定齿轮效率、{Pinion inertia, PnInert} 指定小齿轮惯量、{Spatial angle for the single Cardan joint, SptlAng} 指定单个万向节的空间角、{Spatial angle for the upper Cardan joint, Alpha_b} 指定上万向节的空间角、{Spatial angle for the lower Cardan joint, Alpha_c} 指定下万向节的空间角、{Edge view angle between the planes of the two joints, Sigma_bc} 指定两个万向节平面之间的边缘视图角、{Phase angle, Gamma} 指定相位角、{Steering wheel torque breakpoints, TrqBpts} 指定方向盘扭矩断点、{Vehicle speed breakpoints, VehSpdBpts} 指定车速断点、{Assisting torque table, TrqTbl} 指定扭矩助力表、{Assisting torque limit, TrqLmt} 指定扭矩助力限值、{Assisting power limit, PwrLmt} 指定助力功率限值、{Assisting torque efficiency, Eta} 指定扭矩助力效率、{Cutoff frequency, CutOmege [rad/s]} 指定截止频率、{Percent Ackerman parameterized by} 指定 Ackermann 参数化、{Percent Ackerman, PctAck} 指定 Ackermann 百分比、{Percent Ackerman table, PctAckTbl} 指定 Ackermann 百分比表 ones、{Sealing stiffness, SlgStf} 指定密封刚度 1.5e4、{Upper boundary friction, UpprFric} 指定上边界摩擦力、{Pressure change due to friction boundary increase, PrsFric} 指定因摩擦边界增大导致的压力变化 1e-5、{Maxwell element stiffness, MaxStf} 指定 Maxwell 元件刚度、{Maxwell element upper boundary friction, MaxUpprFric} 指定 Maxwell 元件上边界摩擦力、{Maxwell linear damping coefficient, MaxDamp} 指定 Maxwell 线性阻尼系数、{Torsion bar stiffness coefficient, TorStf} 指定转向轴的扭转刚度、{Torsion bar damping coefficient, TorDamp} 指定转向轴中的扭转粘性阻尼、{Integral anti-windup gain, A []} 指定积分抗饱和增益、{Derivative gain, D []} 指定微分增益、{Integral gain, I []} 指定积分增益、{Steering torque output saturation lower limit, OutSatLowLmt [Nm]} 输出饱和下限、{Steering torque output saturation upper limit, OutSatUpLmt [Nm]} 指定转向扭矩输出饱和上限、{Proportional gain, P []} 指定比例增益，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VehSpd",
+   "direction": "input",
+   "summary": "车速 scalar"
+  },
+  {
+   "name": "CstrAng",
+   "direction": "input",
+   "summary": "车轮主销后倾角 1-by-2 vector"
+  },
+  {
+   "name": "WhlAngFdk",
+   "direction": "input",
+   "summary": "车轮转向角反馈 1-by-2 vector"
+  },
+  {
+   "name": "AngIn",
+   "direction": "input",
+   "summary": "转向盘角度输入 scalar"
+  },
+  {
+   "name": "TrqIn",
+   "direction": "input",
+   "summary": "转向扭矩输入 scalar"
+  },
+  {
+   "name": "PwrAstTrq",
+   "direction": "input",
+   "summary": "助力扭矩 scalar"
+  },
+  {
+   "name": "PctAck",
+   "direction": "input",
+   "summary": "阿克曼百分比值 scalar"
+  },
+  {
+   "name": "TireFdk",
+   "direction": "input",
+   "summary": "轮胎力和力矩反馈 1-by-12 vector"
+  },
+  {
+   "name": "LftKpM",
+   "direction": "input",
+   "summary": "左主销力矩 scalar"
+  },
+  {
+   "name": "RghtKpM",
+   "direction": "input",
+   "summary": "右主销力矩 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "车辆动力学信息 bus"
+  },
+  {
+   "name": "AngLft",
+   "direction": "output",
+   "summary": "左轮转向角 scalar"
+  },
+  {
+   "name": "AngRght",
+   "direction": "output",
+   "summary": "右轮转向角 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "pinion",
+   "values": "转向类型 Rack and pinion (default)",
+   "group": ""
+  },
+  {
+   "name": "Intermediate shaft type",
+   "default": "joint",
+   "values": "中间轴类型 Single Cardan joint (default) | Double Cardan joints",
+   "group": ""
+  },
+  {
+   "name": "Power assist",
+   "default": "on",
+   "values": "对助力建模的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ackerman steering",
+   "default": "on",
+   "values": "使用 Ackermann 转向的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Kingpin moment",
+   "default": "off",
+   "values": "左、右主销力矩 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Steered axle",
+   "default": "Front",
+   "values": "转向系统的位置 Front (default) | Rear",
+   "group": ""
+  },
+  {
+   "name": "Steering inputs",
+   "default": "Angle",
+   "values": "方向盘转角或力矩 Angle (default) | Torque",
+   "group": ""
+  },
+  {
+   "name": "Track width, TrckWdth",
+   "default": "1",
+   "values": "轮距 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering angle input range, StrRng",
+   "default": "1.25*pi",
+   "values": "方向盘范围 1.25*pi (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering angle input deadband width, DbWdth",
+   "default": "0",
+   "values": "转角输入死区宽度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering wheel inertia, StrWhlInert",
+   "default": "0.1",
+   "values": "方向盘转动惯量 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering shaft inertia, StrColInert",
+   "default": "0.01",
+   "values": "转向轴转动惯量 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Kingpin offset, KngpnOfst",
+   "default": "0.075",
+   "values": "主销偏移距 0.075 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Kingpin inclination angle, Lambda",
+   "default": "0.2094",
+   "values": "主销内倾角 0.2094 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Hub lead, HbLead",
+   "default": "4.00E-05",
+   "values": "轮毂前置量 4.00E-05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static loaded radius, StcLdRadius",
+   "default": "0.4",
+   "values": "静态加载半径 0.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Overall steering ratio, OvrlStrRatio",
+   "default": "17.42",
+   "values": "总转向比 17.42 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering angle breakpoints, StrgAngBpts",
+   "default": "6.2832]",
+   "values": "方向盘转角断点 [-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832] (default) | 1-by-11 vector",
+   "group": ""
+  },
+  {
+   "name": "CstrAng",
+   "default": "0",
+   "values": "后倾角 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rack gain parameterized by",
+   "default": "Constant",
+   "values": "齿条增益参数化 Constant (default) | Lookup table",
+   "group": ""
+  },
+  {
+   "name": "Rack gain, RckGn",
+   "default": "0.062",
+   "values": "齿条增益 0.062 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rack gain table, RckGnTbl",
+   "default": "ones(1,11)*0.0057*2*pi",
+   "values": "齿条增益表 ones(1,11)*0.0057*2*pi (default) | 1-by-11 vector",
+   "group": ""
+  },
+  {
+   "name": "Steering arm length, StrgArmLngth",
+   "default": "0.1",
+   "values": "转向臂长度 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rack casing length, RckCsLngth",
+   "default": "0.5",
+   "values": "齿条长度 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Tie rod length, TieRodLngth",
+   "default": "0.248",
+   "values": "横拉杆长度 0.248 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance between axis and rack, Dst",
+   "default": "0.2",
+   "values": "车轴与齿条之间的距离 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Efficiency of gears, Epsilon",
+   "default": "0.9",
+   "values": "齿轮效率 0.9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pinion inertia, PnInert",
+   "default": "0.1",
+   "values": "小齿轮惯量 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Spatial angle for the single Cardan joint, SptlAng",
+   "default": "2.6178",
+   "values": "单个万向节的空间角 2.6178 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Spatial angle for the upper Cardan joint, Alpha_b",
+   "default": "2.6178",
+   "values": "上万向节的空间角 2.6178 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Spatial angle for the lower Cardan joint, Alpha_c",
+   "default": "2.7051",
+   "values": "下万向节的空间角 2.7051 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Edge view angle between the planes of the two joints, Sigma_bc",
+   "default": "0.2618",
+   "values": "两个万向节平面之间的边缘视图角 0.2618 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase angle, Gamma",
+   "default": "0.2618",
+   "values": "相位角 0.2618 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering wheel torque breakpoints, TrqBpts",
+   "default": "100]",
+   "values": "方向盘扭矩断点 [-100 0 100] (default) | 1-by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vehicle speed breakpoints, VehSpdBpts",
+   "default": "20]",
+   "values": "车速断点 [0 20] (default) | 1-by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Assisting torque table, TrqTbl",
+   "default": "100]",
+   "values": "扭矩助力表 [0 -100;0 0;0 100] (default) | M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Assisting torque limit, TrqLmt",
+   "default": "100",
+   "values": "扭矩助力限值 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Assisting power limit, PwrLmt",
+   "default": "1000",
+   "values": "助力功率限值 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Assisting torque efficiency, Eta",
+   "default": "1",
+   "values": "扭矩助力效率 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Cutoff frequency, CutOmege [rad/s]",
+   "default": "200",
+   "values": "截止频率 200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman parameterized by",
+   "default": "Constant",
+   "values": "Ackermann 参数化 Constant (default) | Lookup table",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman, PctAck",
+   "default": "100",
+   "values": "Ackermann 百分比 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Percent Ackerman table, PctAckTbl",
+   "default": "ones(1,11)*100",
+   "values": "Ackermann 百分比表 ones(1,11)*100 (default) | 1-by-11 vector",
+   "group": ""
+  },
+  {
+   "name": "Sealing stiffness, SlgStf",
+   "default": "1.5e4",
+   "values": "密封刚度 1.5e4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Upper boundary friction, UpprFric",
+   "default": "1",
+   "values": "上边界摩擦力 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pressure change due to friction boundary increase, PrsFric",
+   "default": "1e-5",
+   "values": "因摩擦边界增大导致的压力变化 1e-5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maxwell element stiffness, MaxStf",
+   "default": "10000",
+   "values": "Maxwell 元件刚度 10000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maxwell element upper boundary friction, MaxUpprFric",
+   "default": "0.2",
+   "values": "Maxwell 元件上边界摩擦力 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maxwell linear damping coefficient, MaxDamp",
+   "default": "1",
+   "values": "Maxwell 线性阻尼系数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torsion bar stiffness coefficient, TorStf",
+   "default": "30",
+   "values": "转向轴的扭转刚度 30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Torsion bar damping coefficient, TorDamp",
+   "default": "1",
+   "values": "转向轴中的扭转粘性阻尼 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral anti-windup gain, A []",
+   "default": "0",
+   "values": "积分抗饱和增益 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Derivative gain, D []",
+   "default": "0.1",
+   "values": "微分增益 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain, I []",
+   "default": "5",
+   "values": "积分增益 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering torque output saturation lower limit, OutSatLowLmt [Nm]",
+   "default": "-500",
+   "values": "输出饱和下限 -500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Steering torque output saturation upper limit, OutSatUpLmt [Nm]",
+   "default": "500",
+   "values": "转向扭矩输出饱和上限 500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain, P []",
+   "default": "150",
+   "values": "比例增益 150 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

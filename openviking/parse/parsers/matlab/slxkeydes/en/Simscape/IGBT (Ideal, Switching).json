@@ -1,0 +1,13 @@
+{
+ "key": "IGBT (Ideal, Switching)",
+ "title": "IGBT (Ideal, Switching)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/IGBT_Ideal_Switching.md"
+ ],
+ "text": "Ideal insulated-gate bipolar transistor for switching applications.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

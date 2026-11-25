@@ -1,0 +1,81 @@
+{
+ "key": "C28x SCI Transmit",
+ "title": "SCI Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2803x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2805x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2806x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C280x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C281x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2833x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2834x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F280013x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F280015x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28002x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28003x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28004x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2807x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xD/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xS/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p55x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p65x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/SCI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/SCI_Transmit.md"
+ ],
+ "text": "Transmit data from target via serial communication interface (SCI) to host, 1 input, 1 output, {Additional package terminator} sets Indicates end of data; {SCI module}, {Additional package header} Indicates start of data, {Frame size} sets the length of data to be received, {Wait until previous data transmitted} sets the wait until data received in previous time step and {Output status} sets the option to display the transmit status during data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Data written to serial bus scalar | vector"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Data transmitted at given time step scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "SCI module",
+   "default": "A",
+   "values": "SCI module for communication A (default) | B | C | D",
+   "group": ""
+  },
+  {
+   "name": "Additional package header",
+   "default": "’S’",
+   "values": "Indicates start of data ’S’ (default) | string | char | number from 0 to 255",
+   "group": ""
+  },
+  {
+   "name": "Additional package terminator",
+   "default": "’E’",
+   "values": "Indicates end of data ’E’ (default) | string | char | number from 0 to 255",
+   "group": ""
+  },
+  {
+   "name": "Frame size",
+   "default": "600",
+   "values": "Specify length of data to be received 600 (default) | any positive integer",
+   "group": ""
+  },
+  {
+   "name": "Wait until previous data transmitted",
+   "default": "on",
+   "values": "Wait until data received in previous time step is sent on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output status",
+   "default": "off",
+   "values": "Option to display the transmit status during data transmission off (default) | on",
+   "group": ""
+  }
+ ]
+}

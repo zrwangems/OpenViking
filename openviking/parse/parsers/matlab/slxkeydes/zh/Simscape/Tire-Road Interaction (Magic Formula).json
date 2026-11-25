@@ -1,0 +1,13 @@
+{
+ "key": "Tire-Road Interaction (Magic Formula)",
+ "title": "Tire-Road Interaction (Magic Formula)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Tire Subcomponents/Tire_Road_Interaction_Magic_Formula.md"
+ ],
+ "text": "由 Magic Formula 系数给出的轮胎-道路动力学。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

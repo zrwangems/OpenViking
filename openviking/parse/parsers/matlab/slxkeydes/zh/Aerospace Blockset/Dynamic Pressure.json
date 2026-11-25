@@ -1,0 +1,29 @@
+{
+ "key": "Dynamic Pressure",
+ "title": "Dynamic Pressure",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Dynamic_Pressure.md"
+ ],
+ "text": "使用速度和空气密度计算动压，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "速度 three-element vector"
+  },
+  {
+   "name": "ρ",
+   "direction": "input",
+   "summary": "空气密度 scalar"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "动压 scalar"
+  }
+ ],
+ "params": []
+}

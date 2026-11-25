@@ -1,0 +1,83 @@
+{
+ "key": "PhaseFrequencyDetector",
+ "title": "PFD",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/PFD.md"
+ ],
+ "text": "比较两个信号之间相位和频率的相位/频率检测器，输入 2 路、输出 2 路；{Deadband compensation (s)} 指定在零相位偏移附近为有效输出添加的延迟 30e-12、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数、{Enable impairments} 指定向仿真添加电路损伤、{Output step size calculation} 确定如何计算输出步长、{Maximum frequency of interest (Hz)} 输出端感兴趣的最大频率 10e9、{Rise/fall time (s)} 指定 PFD 的 up 输出端口的 20% – 80% 上升/下降时间、{Propagation Delay (s)} 指定 PFD 从输入端口到输出端口的延迟 50e-12，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "reference",
+   "direction": "input",
+   "summary": "参考频率 scalar"
+  },
+  {
+   "name": "feedback",
+   "direction": "input",
+   "summary": "反馈频率 scalar"
+  },
+  {
+   "name": "up",
+   "direction": "output",
+   "summary": "传输参考频率 scalar"
+  },
+  {
+   "name": "down",
+   "direction": "output",
+   "summary": "传输反馈频率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Deadband compensation (s)",
+   "default": "30e-12",
+   "values": "在零相位偏移附近为有效输出添加的延迟 30e-12 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "仿真期间可用的输入缓冲样本数 10 (default) | positive integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable impairments",
+   "default": "on",
+   "values": "向仿真添加电路损伤 on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Output step size calculation",
+   "default": "Default",
+   "values": "确定如何计算输出步长 Default (default) | Advanced",
+   "group": "Impairments"
+  },
+  {
+   "name": "Maximum frequency of interest (Hz)",
+   "default": "10e9",
+   "values": "输出端感兴趣的最大频率 10e9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Rise/fall time (s)",
+   "default": "3e-11",
+   "values": "PFD 的 up 输出端口的 20% – 80% 上升/下降时间 3e-11 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Propagation Delay (s)",
+   "default": "50e-12",
+   "values": "PFD 从输入端口到输出端口的延迟 50e-12 (default) | positive real scalar",
+   "group": "Impairments"
+  }
+ ]
+}

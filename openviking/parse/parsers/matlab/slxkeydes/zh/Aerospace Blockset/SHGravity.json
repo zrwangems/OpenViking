@@ -1,0 +1,55 @@
+{
+ "key": "SHGravity",
+ "title": "Spherical Harmonic Gravity Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/Spherical_Harmonic_Gravity_Model.md"
+ ],
+ "text": "实现行星重力的球谐表示，输入 1 路、输出 1 路；按 {Central body model} 指定行星模型；{Units} 指定输入和输出单位 Metric、{Action for out-of-range input} 指定超出范围输入的行为、{Degree}、{Central body MAT-file}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X ff",
+   "direction": "input",
+   "summary": "固定坐标系坐标 N-by-3 matrix"
+  },
+  {
+   "name": "g ff",
+   "direction": "output",
+   "summary": "重力值 N-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "超出范围输入的行为 Warning (default) | Error | None",
+   "group": ""
+  },
+  {
+   "name": "Central body model",
+   "default": "EGM2008",
+   "values": "行星模型 EGM2008 (default) | EGM96 | LP100K | LP165P | GMM2B | Custom | EIGENGL04C",
+   "group": ""
+  },
+  {
+   "name": "Degree",
+   "default": "120",
+   "values": "Degree of harmonic model 120 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Central body MAT-file",
+   "default": "’aerogmm2b.mat’",
+   "values": "Central body MAT-file ’aerogmm2b.mat’ (default)",
+   "group": ""
+  }
+ ]
+}

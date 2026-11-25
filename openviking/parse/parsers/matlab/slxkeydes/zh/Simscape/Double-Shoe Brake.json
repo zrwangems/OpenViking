@@ -1,0 +1,13 @@
+{
+ "key": "Double-Shoe Brake",
+ "title": "Double-Shoe Brake",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Rotational/Double_Shoe_Brake.md"
+ ],
+ "text": "带触发故障的摩擦制动器，其两个枢转蹄片沿旋转鼓直径方向布置。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

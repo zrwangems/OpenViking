@@ -1,0 +1,13 @@
+{
+ "key": "General Block Interleaver",
+ "title": "General Block Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/General_Block_Interleaver.md"
+ ],
+ "text": "Reorder symbols in input vector.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

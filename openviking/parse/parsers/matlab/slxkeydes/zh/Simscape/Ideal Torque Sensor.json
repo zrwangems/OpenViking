@@ -1,0 +1,13 @@
+{
+ "key": "Ideal Torque Sensor",
+ "title": "Ideal Torque Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanical Sensors/Ideal_Torque_Sensor.md"
+ ],
+ "text": "机械旋转系统中的转矩传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

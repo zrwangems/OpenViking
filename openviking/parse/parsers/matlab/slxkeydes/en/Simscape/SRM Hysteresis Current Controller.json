@@ -1,0 +1,68 @@
+{
+ "key": "SRM Hysteresis Current Controller",
+ "title": "SRM Hysteresis Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SRM Control/SRM_Hysteresis_Current_Controller.md"
+ ],
+ "text": "Hysteresis current control for switched reluctance machines, 6 inputs, 1 output; {Torque capability angle (rad)} sets the torque capability angle, {Hysteresis band (A)} sets the hysteresis bandwidth and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsRef",
+   "direction": "input",
+   "summary": "Reference current scalar"
+  },
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "Measured current vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Integrator reset scalar"
+  },
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "Theta-rotor angle scalar"
+  },
+  {
+   "name": "thetaON",
+   "direction": "input",
+   "summary": "Switch-on angle scalar"
+  },
+  {
+   "name": "thetaOFF",
+   "direction": "input",
+   "summary": "Switch-off angle scalar"
+  },
+  {
+   "name": "Sabc",
+   "direction": "output",
+   "summary": "Voltage switch signal vector | 0 or 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Torque capability angle (rad)",
+   "default": "pi/2",
+   "values": "Torque capability angle pi/2 (default) | [0, 2*pi/number of rotor poles]",
+   "group": ""
+  },
+  {
+   "name": "Hysteresis band (A)",
+   "default": "5",
+   "values": "Hysteresis bandwidth 5 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

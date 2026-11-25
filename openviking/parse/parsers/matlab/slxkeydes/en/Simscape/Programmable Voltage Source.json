@@ -1,0 +1,13 @@
+{
+ "key": "Programmable Voltage Source",
+ "title": "Programmable Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Programmable_Voltage_Source.md"
+ ],
+ "text": "Single-phase AC voltage source with optional programmable magnitude, frequency, phase shift and DC offset.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

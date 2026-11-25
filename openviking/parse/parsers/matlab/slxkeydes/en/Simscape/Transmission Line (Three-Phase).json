@@ -1,0 +1,13 @@
+{
+ "key": "Transmission Line (Three-Phase)",
+ "title": "Transmission Line (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Lines/Transmission_Line_Three_Phase.md"
+ ],
+ "text": "Three-phase transmission line using lumped-parameter pi-section line model.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

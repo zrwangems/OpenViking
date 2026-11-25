@@ -1,0 +1,64 @@
+{
+ "key": "Demosaic",
+ "title": "Demosaic",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Demosaic.md"
+ ],
+ "text": "对 Bayer 格式图像去马赛克，输入 1 路、输出 4 路；按 {Sensor alignment} 指定R,G,B pixel alignment；{Interpolation algorithm}、{Output image signal} 指定 Dimensions of output image One multidimensional、{Lock data type settings against change by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "要去马赛克的图像 matrix"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "处理后图像的红色通道 matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "处理后图像的绿色通道 matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "处理后图像的蓝色通道 matrix"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "处理后的多维图像 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation algorithm",
+   "default": "Bilinear",
+   "values": "Interpolation algorithm Bilinear (default) | Gradient-corrected linear",
+   "group": "Main"
+  },
+  {
+   "name": "Sensor alignment",
+   "default": "RGGB",
+   "values": "R,G,B pixel alignment RGGB (default) | GRBG | GBRG | BGGR",
+   "group": "Main"
+  },
+  {
+   "name": "Output image signal",
+   "default": "signal",
+   "values": "Dimensions of output image One multidimensional signal (default) | Separate color signals",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "key": "Wind Angular Rates",
+ "title": "Wind Angular Rates",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Wind_Angular_Rates.md"
+ ],
+ "text": "根据体轴角速率、迎角、侧滑角、迎角变化率和侧滑角变化率计算风轴角速率，输入 3 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ɑ β",
+   "direction": "input",
+   "summary": "迎角和侧滑角 2-by-1 vector"
+  },
+  {
+   "name": "dɑ/dt dβ/dt",
+   "direction": "input",
+   "summary": "变化率 2-by-1 vector"
+  },
+  {
+   "name": "ω",
+   "direction": "input",
+   "summary": "机体角速度 three-element vector"
+  },
+  {
+   "name": "ω w",
+   "direction": "output",
+   "summary": "风轴角速率 three-element vector"
+  }
+ ],
+ "params": []
+}

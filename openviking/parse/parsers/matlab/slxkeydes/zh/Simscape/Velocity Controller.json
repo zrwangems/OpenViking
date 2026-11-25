@@ -1,0 +1,88 @@
+{
+ "key": "Velocity Controller",
+ "title": "Velocity Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Machine Control/Velocity_Controller.md"
+ ],
+ "text": "离散时间速度控制器，输入 4 路、输出 1 路；按 {Control type} 指定控制模型 PI；{Controller proportional gain} 指定比例增益、{Controller integral gain} 指定积分增益、{P controller proportional gain} 指定 P 比例增益、{Integral anti-windup gain} 指定 PI 抗积分饱和增益、{Sample time (-1 for inherited)} 指定模块采样时间、{Discretization sample time} 指定离散化采样时间、{Enable zero cancellation} 指定前馈零点对消，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wRef",
+   "direction": "input",
+   "summary": "期望速度 scalar"
+  },
+  {
+   "name": "wMechanical",
+   "direction": "input",
+   "summary": "实际速度 scalar"
+  },
+  {
+   "name": "TqRefSat",
+   "direction": "input",
+   "summary": "饱和参考转矩 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "积分重置 scalar"
+  },
+  {
+   "name": "TqRefUnsat",
+   "direction": "output",
+   "summary": "未饱和期望转矩 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control type",
+   "default": "control",
+   "values": "控制模型 PI control (default) | P control | P-PI control",
+   "group": ""
+  },
+  {
+   "name": "Controller proportional gain",
+   "default": "1",
+   "values": "比例增益 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller integral gain",
+   "default": "1",
+   "values": "积分增益 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "P controller proportional gain",
+   "default": "1",
+   "values": "P 比例增益 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral anti-windup gain",
+   "default": "1",
+   "values": "PI 抗积分饱和增益 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "离散化采样时间 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "前馈零点对消 off (default) | on",
+   "group": ""
+  }
+ ]
+}

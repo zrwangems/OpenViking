@@ -1,0 +1,13 @@
+{
+ "key": "SPST Switch",
+ "title": "SPST Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/SPST_Switch.md"
+ ],
+ "text": "Single-pole single-throw switch.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,43 @@
+{
+ "key": "Modem Control",
+ "title": "Modem Control",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Modem_Control.md"
+ ],
+ "text": "控制串口上 RTS 和 DTR 输出线路的状态，输入 2 路；按 {Serial port} 指定正在访问的端口 Legacy Serial Port；{RTS}、{DTR}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RTS",
+   "direction": "input",
+   "summary": "用于设置发送就绪线路的电平敏感信号 double"
+  },
+  {
+   "name": "DTR",
+   "direction": "input",
+   "summary": "用于设置数据终端就绪线路的电平敏感信号 double"
+  }
+ ],
+ "params": [
+  {
+   "name": "RTS",
+   "default": "on",
+   "values": "启用对串行设备 RTS 线路的控制 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "DTR",
+   "default": "on",
+   "values": "启用对串行设备 DTR 线路的控制 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "正在访问的端口 Legacy Serial Port 1 (default) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  }
+ ]
+}

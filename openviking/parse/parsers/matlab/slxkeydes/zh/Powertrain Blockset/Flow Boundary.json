@@ -1,0 +1,65 @@
+{
+ "key": "Flow Boundary",
+ "title": "Flow Boundary",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Fundamental Flow/Flow_Boundary.md"
+ ],
+ "text": "环境温度和压力的流动边界，输入 2 路、输出 2 路；{Pressure and temperature source} 指定源 External、{Image type} 指定图标颜色 Cold、{Pressure, Pcnst} 指定常量、{Temperature, Tcnst} 指定常量、{Specific heat at constant pressure, cp} 指定常量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Prs",
+   "direction": "input",
+   "summary": "压力 scalar"
+  },
+  {
+   "name": "Temp",
+   "direction": "input",
+   "summary": "温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "边界压力、温度、焓、质量分数 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pressure and temperature source",
+   "default": "input",
+   "values": "选择源 External input (default) | Constant",
+   "group": ""
+  },
+  {
+   "name": "Image type",
+   "default": "Cold",
+   "values": "图标颜色 Cold (default) | Hot",
+   "group": ""
+  },
+  {
+   "name": "Pressure, Pcnst",
+   "default": "101325",
+   "values": "常量 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Temperature, Tcnst",
+   "default": "298.15",
+   "values": "常量 298.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specific heat at constant pressure, cp",
+   "default": "1005",
+   "values": "常量 1005 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

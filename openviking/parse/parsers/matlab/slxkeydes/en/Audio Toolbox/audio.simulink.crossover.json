@@ -1,0 +1,145 @@
+{
+ "key": "audio.simulink.crossover",
+ "title": "Crossover Filter",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Crossover_Filter.md"
+ ],
+ "text": "Audio crossover filter, 9 inputs, 5 outputs, no direct feedthrough; {Number of crossovers} sets the number of magnitude response band, {Crossover frequency (Hz)} sets the intersections of magnitude response bands, {Crossover order} sets the order of individual crossover filters, {View filter response} sets the open plot of magnitude response of each filter band, {Variable name}, {Overwrite variable if it already exists}, {Export filter to workspace}, {Inherit sample rate from input} sets the source of input sample rate, {Input sample rate (Hz)} sets the sample rate of input and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input signal matrix | 1-D vector"
+  },
+  {
+   "name": "F1",
+   "direction": "input",
+   "summary": "Crossover frequency (Hz) real scalar in the range 20 to 20000"
+  },
+  {
+   "name": "O1",
+   "direction": "input",
+   "summary": "Crossover order integer in the range 0 to 8"
+  },
+  {
+   "name": "F2",
+   "direction": "input",
+   "summary": "Crossover frequency (Hz) real scalar in the range 20 to 20000"
+  },
+  {
+   "name": "O2",
+   "direction": "input",
+   "summary": "Crossover order integer in the range 0 to 8"
+  },
+  {
+   "name": "F3",
+   "direction": "input",
+   "summary": "Crossover frequency (Hz) real scalar in the range 20 to 20000"
+  },
+  {
+   "name": "O3",
+   "direction": "input",
+   "summary": "Crossover order integer in the range 0 to 8"
+  },
+  {
+   "name": "F4",
+   "direction": "input",
+   "summary": "Crossover frequency (Hz) real scalar in the range 20 to 20000"
+  },
+  {
+   "name": "O4",
+   "direction": "input",
+   "summary": "Crossover order integer in the range 0 to 8"
+  },
+  {
+   "name": "Y1",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  },
+  {
+   "name": "Y2",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  },
+  {
+   "name": "Y3",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  },
+  {
+   "name": "Y4",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  },
+  {
+   "name": "Y5",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of crossovers",
+   "default": "1",
+   "values": "Number of magnitude response band crossings 1 (default) | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Crossover frequency (Hz)",
+   "default": "100",
+   "values": "Intersections of magnitude response bands 100 (default) | real scalar in the range 20 to 20000",
+   "group": ""
+  },
+  {
+   "name": "Crossover order",
+   "default": "2",
+   "values": "Order of individual crossover filters 2 (default) | integer in the range [0, 8]",
+   "group": ""
+  },
+  {
+   "name": "View filter response",
+   "default": "",
+   "values": "Open plot of magnitude response of each filter band button",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "myFilt",
+   "values": "Variable name of exported filter myFilt (default) | valid variable name",
+   "group": ""
+  },
+  {
+   "name": "Overwrite variable if it already exists",
+   "default": "on",
+   "values": "Overwrite variable if it already exists on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Export filter to workspace",
+   "default": "",
+   "values": "Export filter to workspace button",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "Specify source of input sample rate off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "SFFM Current Source",
+ "title": "SFFM Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/SFFM_Current_Source.md"
+ ],
+ "text": "单频调频电流源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,78 @@
+{
+ "key": "HitCross",
+ "title": "Hit Crossing",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Hit_Crossing.md",
+  "Simulink/Messages & Events/Hit_Crossing_Probe.md",
+  "SimEvents/Hit_Crossing.md",
+  "HDL Coder/Discontinuities/Hit_Crossing.md"
+ ],
+ "text": "Detect crossing point, 1 input, 5 outputs, direct feedthrough, {Hit crossing direction} sets Input signal direction to hit crossing; {Hit crossing offset} sets the hit crossing value for detection, {Show output port} displays an output port, {Output type} sets the signal, message, or function-call output and {Enable zero-crossing detection}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | message | function-call event"
+  },
+  {
+   "name": "CrossingType",
+   "direction": "output",
+   "summary": "Direction of zero-crossing None | NegativeToPositive | NegativeToZero | ZeroToPositive | PositiveToNegative | PositiveToZero | ZeroToNegative"
+  },
+  {
+   "name": "Index",
+   "direction": "output",
+   "summary": "Index of the input signal at which the hit crossing event occurs nonnegative integer"
+  },
+  {
+   "name": "Time",
+   "direction": "output",
+   "summary": "Time of hit crossing event real, finite"
+  },
+  {
+   "name": "Offset",
+   "direction": "output",
+   "summary": "Hit crossing value for detection 0 (default) | real values"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hit crossing offset",
+   "default": "0",
+   "values": "Hit crossing value for detection 0 (default) | real values",
+   "group": ""
+  },
+  {
+   "name": "Hit crossing direction",
+   "default": "either",
+   "values": "Input signal direction to hit crossing either (default) | falling | rising",
+   "group": ""
+  },
+  {
+   "name": "Show output port",
+   "default": "off",
+   "values": "Display an output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "",
+   "values": "Choose signal, message, or function-call output Signal (default for Simulink ® ) | Message (default for SimEvents) | Function-Call",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": ""
+  }
+ ]
+}

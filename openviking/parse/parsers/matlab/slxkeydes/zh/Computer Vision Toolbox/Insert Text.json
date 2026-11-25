@@ -1,0 +1,152 @@
+{
+ "key": "Insert Text",
+ "title": "Insert Text",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Text & Graphics/Insert_Text.md"
+ ],
+ "text": "在图像或视频帧上绘制文本，输入 9 路、输出 4 路；按 {Font face} 指定文本字体；{Text} 指定要插入的文本、{Color value source} 指定文本颜色来源 Specify via、{Color value} 指定文本颜色值、{Location source} 指定位置索引来源 Specify via、{Location [x y]} 指定文本位置索引、{Opacity source} 指定不透明度因子的来源 Specify via、{Opacity} 指定不透明度因子、{Image signal} 指定输入和输出信号格式 One multidimensional、{Input image is transposed (data order is row major)} 指定镜像文本和文本位置、{Font size (points)} 指定字体大小、{Anti-aliased} 指定平滑文本边缘，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像 matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "输入图像的红色分量 matrix | array"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "输入图像的绿色分量 matrix | array"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "输入图像的蓝色分量 matrix | array"
+  },
+  {
+   "name": "Select",
+   "direction": "input",
+   "summary": "选择显示文本 positive integer"
+  },
+  {
+   "name": "Color",
+   "direction": "input",
+   "summary": "文本颜色值 scalar | vector | matrix"
+  },
+  {
+   "name": "Location",
+   "direction": "input",
+   "summary": "位置索引 vector | matrix"
+  },
+  {
+   "name": "Opacity",
+   "direction": "input",
+   "summary": "不透明度因子 scalar | vector"
+  },
+  {
+   "name": "Variables",
+   "direction": "input",
+   "summary": "文本变量值 scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "输出图像的红色分量 matrix | array"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "输出图像的绿色分量 matrix | array"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "输出图像的蓝色分量 matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Text",
+   "default": "’Text’",
+   "values": "要插入的文本 ’Text’ (default) | character vector | cell array of character vectors",
+   "group": "Main"
+  },
+  {
+   "name": "Color value source",
+   "default": "dialog",
+   "values": "文本颜色来源 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Color value",
+   "default": "0]",
+   "values": "文本颜色值 [0 0 0] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Location source",
+   "default": "dialog",
+   "values": "位置索引来源 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Location [x y]",
+   "default": "[1,1]",
+   "values": "文本位置索引 [1,1] (default) | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity source",
+   "default": "dialog",
+   "values": "不透明度因子的来源 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "不透明度因子 1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "输入和输出信号格式 One multidimensional signal (default) | Separate color signals",
+   "group": "Main"
+  },
+  {
+   "name": "Input image is transposed (data order is row major)",
+   "default": "off",
+   "values": "镜像文本和文本位置 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Font face",
+   "default": "LucidaSansRegular",
+   "values": "文本字体 LucidaSansRegular (default) | Agency FB | Agency FB Bold | Algerian | Ariel | Arial Black | Arial Bold | Arial Bold Italic |...",
+   "group": "Font"
+  },
+  {
+   "name": "Font size (points)",
+   "default": "12",
+   "values": "字体大小 12 (default) | positive scalar",
+   "group": "Font"
+  },
+  {
+   "name": "Anti-aliased",
+   "default": "on",
+   "values": "平滑文本边缘 on (default) | off",
+   "group": "Font"
+  }
+ ]
+}

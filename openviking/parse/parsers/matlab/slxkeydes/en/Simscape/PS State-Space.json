@@ -1,0 +1,13 @@
+{
+ "key": "PS State-Space",
+ "title": "PS State-Space",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Linear Operators/PS_State_Space.md"
+ ],
+ "text": "Implement linear state-space system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

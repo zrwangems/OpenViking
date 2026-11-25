@@ -1,0 +1,41 @@
+{
+ "key": "Inverse Decoupled Transform (Six-Phase)",
+ "title": "Inverse Decoupled Transform (Six-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Inverse_Decoupled_Transform_Six_Phase.md"
+ ],
+ "text": "Implement dqz 1 z 2 o 1 o 2 to abc and xyz transform, 2 inputs, 2 outputs; {Phase-a axis alignment} sets the dqz 1 z 2 o 1 o 2 reference frame alignment. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dqz1z2o1o2",
+   "direction": "input",
+   "summary": "Direct, Quadrature, z 1, z 2, o 1, and o 2 components vector"
+  },
+  {
+   "name": "θ elec",
+   "direction": "input",
+   "summary": "Rotational angle scalar"
+  },
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "a -, b -, and c -phase components vector"
+  },
+  {
+   "name": "xyz",
+   "direction": "output",
+   "summary": "x -, y -, and z -phase components vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase-a axis alignment",
+   "default": "Q-axis",
+   "values": "dqz 1 z 2 o 1 o 2 reference frame alignment Q-axis (default) | D-axis",
+   "group": ""
+  }
+ ]
+}

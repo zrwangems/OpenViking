@@ -1,0 +1,171 @@
+{
+ "key": "Trigonometry",
+ "title": "Trigonometric Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Trigonometric_Function.md",
+  "Simulink/Quick Insert/Math Operations/Acos.md",
+  "Simulink/Quick Insert/Math Operations/Acosh.md",
+  "Simulink/Quick Insert/Math Operations/Asin.md",
+  "Simulink/Quick Insert/Math Operations/Asinh.md",
+  "Simulink/Quick Insert/Math Operations/Atan.md",
+  "Simulink/Quick Insert/Math Operations/Atan2.md",
+  "Simulink/Quick Insert/Math Operations/Atan2_Cordic.md",
+  "Simulink/Quick Insert/Math Operations/Atanh.md",
+  "Simulink/Quick Insert/Math Operations/Cos.md",
+  "Simulink/Quick Insert/Math Operations/Cos_Cordic.md",
+  "Simulink/Quick Insert/Math Operations/Cos_jSin.md",
+  "Simulink/Quick Insert/Math Operations/Cosh.md",
+  "Simulink/Quick Insert/Math Operations/Sin.md",
+  "Simulink/Quick Insert/Math Operations/SinCos.md",
+  "Simulink/Quick Insert/Math Operations/SinCos_Cordic.md",
+  "Simulink/Quick Insert/Math Operations/Sin_Cordic.md",
+  "Simulink/Quick Insert/Math Operations/Sinh.md",
+  "Simulink/Quick Insert/Math Operations/Tan.md",
+  "Simulink/Quick Insert/Math Operations/Tanh.md",
+  "HDL Coder/HDL Floating Point Operations/ACosh.md",
+  "HDL Coder/HDL Floating Point Operations/ASinh.md",
+  "HDL Coder/HDL Floating Point Operations/ATanh.md",
+  "HDL Coder/HDL Floating Point Operations/Acos.md",
+  "HDL Coder/HDL Floating Point Operations/Asin.md",
+  "HDL Coder/HDL Floating Point Operations/Atan.md",
+  "HDL Coder/HDL Floating Point Operations/Cosh.md",
+  "HDL Coder/HDL Floating Point Operations/Sinh.md",
+  "HDL Coder/HDL Floating Point Operations/Tan.md",
+  "HDL Coder/HDL Floating Point Operations/Tanh.md",
+  "HDL Coder/Math Operations/Trigonometric_Function.md",
+  "HDL Coder/HDL Floating Point Operations/Atan2.md",
+  "HDL Coder/HDL Floating Point Operations/Cos.md",
+  "HDL Coder/HDL Floating Point Operations/Sin.md",
+  "HDL Coder/HDL Floating Point Operations/Sincos.md",
+  "HDL Coder/HDL Floating Point Operations/cos_jsin.md"
+ ],
+ "text": "Specified trigonometric function on input, 2 inputs, 3 outputs, direct feedthrough, {Function} sets Trigonometric function; {Approximation method} sets the cORDIC, Lookup, {Interpolation method} sets the method of interpolation between breakpoint values Linear, {Number of iterations}, {Angle unit}, {Number of data points}, {Output signal type} sets the complexity of output signal, {Remove protection against out-of-range input}, {Sample time (-1 for inherited)} sets the interval between samples, {Table data type} sets the data type of table, {Mode} sets the category of data, {Signedness} sets the signed, {Scaling} sets the method for scaling fixed-point data Binary, {Data type override} sets the data type override mode for this signal, {Word length} sets the bit size of the word that holds the quantized and {Fraction length} sets the fraction length for fixed-point data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "x -axis or real part of the function argument for atan2 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Specified trigonometric function of input scalar | vector | matrix"
+  },
+  {
+   "name": "sin",
+   "direction": "output",
+   "summary": "Sine of input signal scalar | vector | matrix"
+  },
+  {
+   "name": "cos",
+   "direction": "output",
+   "summary": "Cosine of input signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function",
+   "default": "sin",
+   "values": "Trigonometric function sin (default) | cos | tan | asin | acos | atan | atan2 | sinh | cosh | tanh | asinh | acosh | atanh | sincos | cos + jsin",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Approximation method",
+   "default": "None",
+   "values": "CORDIC, Lookup, or none None (default) | CORDIC | Lookup",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "point-slope",
+   "values": "Method of interpolation between breakpoint values Linear point-slope (default) | Flat",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Number of iterations",
+   "default": "11",
+   "values": "Number of iterations for CORDIC algorithm 11 (default) | positive integer, less than or equal to word length of fixed-point input",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Angle unit",
+   "default": "radian",
+   "values": "Angle unit radian (default) | revolution",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Number of data points",
+   "default": "16",
+   "values": "Number of data points for lookup table 16 (default) | scalar",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Output signal type",
+   "default": "auto",
+   "values": "Complexity of output signal auto (default) | real | complex",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Remove protection against out-of-range input",
+   "default": "off",
+   "values": "Remove protection against out-of-range input off (default) | on",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Table data type",
+   "default": "input",
+   "values": "Data type of table Inherit: Inherit via input (default) | double | single | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Category of data to specify Inherit (default) | Built in | Fixed point | Expression",
+   "group": "Data Types"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Specify signed or unsigned Signed (default) | Unsigned",
+   "group": "Data Types"
+  },
+  {
+   "name": "Scaling",
+   "default": "point",
+   "values": "Method for scaling fixed-point data Binary point (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": "Data Types"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": "Data Types"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": "Data Types"
+  }
+ ]
+}

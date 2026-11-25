@@ -1,0 +1,46 @@
+{
+ "key": "Sine Wave Generator (Three-Phase)",
+ "title": "Sine Wave Generator (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Sine_Wave_Generator_Three_Phase.md"
+ ],
+ "text": "离散时间或连续时间三相正弦波发生器，输入 3 路、输出 2 路；按 {Sample time (-1 for inherited)} 指定模块采样时间。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mag",
+   "direction": "input",
+   "summary": "所生成三相正弦波的幅值 scalar"
+  },
+  {
+   "name": "ang",
+   "direction": "input",
+   "summary": "生成的三相正弦波的相移，单位为度 scalar"
+  },
+  {
+   "name": "freq",
+   "direction": "input",
+   "summary": "生成的三相正弦波的频率，单位为 Hz scalar"
+  },
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "三相正弦波 vector"
+  },
+  {
+   "name": "wt",
+   "direction": "output",
+   "summary": "所有三相正弦波的角度，单位为 rad vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

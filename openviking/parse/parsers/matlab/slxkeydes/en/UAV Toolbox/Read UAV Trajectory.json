@@ -1,0 +1,60 @@
+{
+ "key": "Read UAV Trajectory",
+ "title": "Read UAV Trajectory",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Utilities/Read_UAV_Trajectory.md"
+ ],
+ "text": "Generate translation and rotation samples from UAV trajectory for 3D simulation, 1 input, 2 outputs, {Trajectory object} sets Trajectory object; {Trajectory source} sets the source for trajectory From trajectory object, {UAV scenario object}, {UAV platform name} sets the name and {Convert to ENU reference frame and Front-Left-Up body frame} sets the translation and rotation coordinate frame. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "Time point to sample along trajectory scalar"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Position of UAV vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Euler angle of UAV vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trajectory source",
+   "default": "workspace",
+   "values": "Source for trajectory From trajectory object in workspace (default) | From UAV Scenario in workspace",
+   "group": ""
+  },
+  {
+   "name": "UAV scenario object",
+   "default": "singleUAVScenario",
+   "values": "UAV scenario object singleUAVScenario (default) | uavScenario object",
+   "group": ""
+  },
+  {
+   "name": "UAV platform name",
+   "default": "UAV",
+   "values": "Name of UAV platform UAV (default) | name of UAV platform",
+   "group": ""
+  },
+  {
+   "name": "Trajectory object",
+   "default": "waypointTrajectory()",
+   "values": "Trajectory object waypointTrajectory() (default) | multirotorFlightTrajectory object | fixedwingFlightTrajectory object | polynomialTrajectory object | waypointTrajectory object",
+   "group": ""
+  },
+  {
+   "name": "Convert to ENU reference frame and Front-Left-Up body frame",
+   "default": "on",
+   "values": "Translation and rotation coordinate frame on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Ellipsoidal Solid",
+ "title": "Ellipsoidal Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Ellipsoidal_Solid.md"
+ ],
+ "text": "Solid ellipsoidal element with geometry, inertia, and color.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

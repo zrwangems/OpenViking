@@ -1,0 +1,13 @@
+{
+ "key": "Y-Junction (IL)",
+ "title": "Y-Junction (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pipes & Fittings/Y_Junction_IL.md"
+ ],
+ "text": "Y-junction in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

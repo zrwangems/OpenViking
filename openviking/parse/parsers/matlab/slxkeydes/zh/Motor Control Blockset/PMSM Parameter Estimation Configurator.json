@@ -1,0 +1,146 @@
+{
+ "key": "PMSM Parameter Estimation Configurator",
+ "title": "Parameter Estimation Configurator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/PMSM Parameter Estimation/Parameter_Estimation_Configurator.md"
+ ],
+ "text": "为 PMSM 参数估计生成配置元素；输出 1 路；{极对数}、{额定转速(RPM)} 指定电机额定转速、{额定电机电流(A)} 指定电机额定电流、{最大逆变器电流(A)} 指定最大可测量电流、{板电阻(欧姆)} 指定逆变器电桥电阻、{电流感测增益(A/ADC 计数)} 指定每个 ADC 计数的电流、{电压感测增益(V/ADC 计数)} 指定每个 ADC 计数的电压、{最高频率(Hz)} 指定频率扫描的最大注入频率、{最低频率(Hz)} 指定频率扫描的最小注入频率、{频率扫描步长(Hz)} 指定频率扫描的步长、{估计时所用频率步长(Hz)} 指定 L d 和 L q 估计的频率步长、{估计时所用频率数} 为 L d 和 L q 估计注入的频率数、{电流测量延迟(秒)} 指定电流测量延迟 2 * 50e-6、{反电动势估计时间(秒)} 指定估计反电动势时的电机运行持续时间、{反电动势估计最大转速限值(RPM)} 指定估计反电动势时的电机转速、{Iq 参考电流(相对于电机额定电流的比率)} 指定估计 K e 、 J 和 B 时 FOC 的基电流、{指定电流控制器增益} 指定 PI 电流控制器增益、{比例增益}、{积分增益}、{惯量估计的转速下限(RPM)} 指定减速期间的转速下限、{参数估计采样时间(秒)} 指定参数估计的采样时间 50e-6，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "output",
+   "summary": "总线信号 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "极对数",
+   "default": "4",
+   "values": "电机极对数 4 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "额定转速(RPM)",
+   "default": "4000",
+   "values": "电机额定转速 4000 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "额定电机电流(A)",
+   "default": "7",
+   "values": "电机额定电流 7 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "最大逆变器电流(A)",
+   "default": "21",
+   "values": "最大可测量电流 21 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "板电阻(欧姆)",
+   "default": "0.0043",
+   "values": "逆变器电桥电阻 0.0043 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "电流感测增益(A/ADC 计数)",
+   "default": "0.0105",
+   "values": "每个 ADC 计数的电流 0.0105 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "电压感测增益(V/ADC 计数)",
+   "default": "0.0098",
+   "values": "每个 ADC 计数的电压 0.0098 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "最高频率(Hz)",
+   "default": "1000",
+   "values": "频率扫描的最大注入频率 1000 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "最低频率(Hz)",
+   "default": "400",
+   "values": "频率扫描的最小注入频率 400 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "频率扫描步长(Hz)",
+   "default": "100",
+   "values": "频率扫描的步长 100 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "估计时所用频率步长(Hz)",
+   "default": "10",
+   "values": "L d 和 L q 估计的频率步长 10 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "估计时所用频率数",
+   "default": "10",
+   "values": "为 L d 和 L q 估计注入的频率数 10 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "电流测量延迟(秒)",
+   "default": "50e-6",
+   "values": "电流测量延迟 2 * 50e-6 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "反电动势估计时间(秒)",
+   "default": "5",
+   "values": "估计反电动势时的电机运行持续时间 5 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "反电动势估计最大转速限值(RPM)",
+   "default": "3500",
+   "values": "估计反电动势时的电机转速 3500 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Iq 参考电流(相对于电机额定电流的比率)",
+   "default": "0.2",
+   "values": "估计 K e 、 J 和 B 时 FOC 的基电流 0.2 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "指定电流控制器增益",
+   "default": "off",
+   "values": "指定 PI 电流控制器增益 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "比例增益",
+   "default": "1",
+   "values": "PI 控制器的比例增益 1 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "积分增益",
+   "default": "1000",
+   "values": "PI 控制器的积分增益 1000 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "惯量估计的转速下限(RPM)",
+   "default": "1000",
+   "values": "减速期间的转速下限 1000 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "参数估计采样时间(秒)",
+   "default": "50e-6",
+   "values": "参数估计的采样时间 50e-6 (默认) | scalar",
+   "group": ""
+  }
+ ]
+}

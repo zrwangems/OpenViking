@@ -1,0 +1,89 @@
+{
+ "key": "PRBS Signal Generator",
+ "title": "PRBS Signal Generator",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Signal Generation/PRBS_Signal_Generator.md"
+ ],
+ "text": "Generate PRBS input signal for plant frequency response estimation, 3 inputs, 1 output, {Sample time (Ts)} sets Sample time; {Data Type} sets the floating point precision, {Excitation signal source}, {Frequencies}, {Amplitudes}, {Number of frequencies} sets the number of externally supplied frequencies, {Number of periods}, {Signal order} sets the pRBS signal order and {Use Auto-Generated Value} sets the pRBS signal parameters automatically. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "Start and stop the estimation experiment scalar"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "Frequencies for estimation experiment vector"
+  },
+  {
+   "name": "amp",
+   "direction": "input",
+   "summary": "Perturbation amplitudes scalar | vector"
+  },
+  {
+   "name": "prbs",
+   "direction": "output",
+   "summary": "PRBS perturbation signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "Sample time 0.1 (default) | positive scalar | –1",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Floating point precision double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Excitation signal source",
+   "default": "parameters",
+   "values": "Excitation signal source Block parameters (default) | External ports",
+   "group": ""
+  },
+  {
+   "name": "Frequencies",
+   "default": "2]",
+   "values": "Frequencies for estimation [0.5 1 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1",
+   "values": "Amplitudes of injected perturbations 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of frequencies",
+   "default": "3",
+   "values": "Number of externally supplied frequencies 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of periods",
+   "default": "1",
+   "values": "Number of periods in PRBS signal 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Signal order",
+   "default": "12",
+   "values": "PRBS signal order 12 (default) | positive integer ≤ 24",
+   "group": ""
+  },
+  {
+   "name": "Use Auto-Generated Value",
+   "default": "off",
+   "values": "Set PRBS signal parameters automatically off (default) | on",
+   "group": ""
+  }
+ ]
+}

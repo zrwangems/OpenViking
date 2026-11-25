@@ -1,0 +1,13 @@
+{
+ "key": "Tank (G-IL)",
+ "title": "Tank (G-IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Tanks & Accumulators/Tank_G_IL.md"
+ ],
+ "text": "Pressurized tank with variable gas and isothermal liquid volumes.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

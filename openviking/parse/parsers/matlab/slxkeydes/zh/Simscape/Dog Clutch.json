@@ -1,0 +1,13 @@
+{
+ "key": "Dog Clutch",
+ "title": "Dog Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Dog_Clutch.md"
+ ],
+ "text": "带有齿板的离合器，在板齿啮合时接合。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

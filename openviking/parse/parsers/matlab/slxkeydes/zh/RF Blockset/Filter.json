@@ -1,0 +1,146 @@
+{
+ "key": "Filter",
+ "title": "Filter",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Filter.md"
+ ],
+ "text": "对 RF 滤波器建模；按 {Design method} 指定仿真类型；{Filter type} 指定滤波器类型、{Implementation} 指定实现 LC Tee、{Passband edge frequency} 指定通带边缘频率、{Implement using filter order} 使用滤波器阶数实现、{Filter order} 指定滤波器阶数、{Passband frequency} 指定低通和高通滤波器的通带频率 scalar、{Passband frequencies} 指定带通滤波器的通带频率、{Passband attenuation (dB)} 指定通带衰减 10*log10、{Stopband frequencies} 指定带阻滤波器的阻带频率、{Stopband attenuation (dB)} 指定阻带衰减、{Source impedance (Ohm)} 指定输入源电阻、{Load impedance (Ohm)} 输出负载电阻、{Ground and hide negative terminals} 指定 RF 电路端子接地、{Export} 指定将滤波器设计保存到文件、{Parameter 1} 指定 y 轴上的绘图类型 Voltage、{Parameter 2} 指定绘图类型 None、{Format 1} 指定 y 轴缩放 Magnitude、{Format 2} 指定 y 轴缩放 Magnitude、{Frequency points} 指定在 x 轴上绘制的频率点 logspace、{X-axis scale} 指定 X 轴刻度、{Y-axis scale} 指定 Y 轴刻度，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Design method",
+   "default": "Butterworth",
+   "values": "仿真类型 Butterworth (default) | Chebyshev | Inverse Chebyshev | Ideal",
+   "group": "Main"
+  },
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "滤波器类型 Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": "Main"
+  },
+  {
+   "name": "Implementation",
+   "default": "",
+   "values": "实现 LC Tee | LC Pi | Transfer function | Constant per carrier | Frequency Domain",
+   "group": "Main"
+  },
+  {
+   "name": "Passband edge frequency",
+   "default": "GHz",
+   "values": "通带边缘频率 1 GHz (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Implement using filter order",
+   "default": "off",
+   "values": "使用滤波器阶数实现 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Filter order",
+   "default": "3",
+   "values": "滤波器阶数 3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Passband frequency",
+   "default": "",
+   "values": "低通和高通滤波器的通带频率 scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Passband frequencies",
+   "default": "GHz",
+   "values": "带通滤波器的通带频率 [2 3] GHz (default) | 2-tuple vector",
+   "group": "Main"
+  },
+  {
+   "name": "Passband attenuation (dB)",
+   "default": "10*log10(2)",
+   "values": "通带衰减 10*log10(2) (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Stopband frequencies",
+   "default": "GHz",
+   "values": "带阻滤波器的阻带频率 [2.1 2.9] GHz (default) | 2-tuple vector",
+   "group": "Main"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "40",
+   "values": "阻带衰减 40 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Source impedance (Ohm)",
+   "default": "50",
+   "values": "输入源电阻 50 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Load impedance (Ohm)",
+   "default": "50",
+   "values": "输出负载电阻 50 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Export",
+   "default": "",
+   "values": "将滤波器设计保存到文件 button",
+   "group": "Main"
+  },
+  {
+   "name": "Parameter 1",
+   "default": "transfer",
+   "values": "y 轴上的绘图类型 Voltage transfer (default) | Phase delay | Group delay",
+   "group": "Visualization"
+  },
+  {
+   "name": "Parameter 2",
+   "default": "None",
+   "values": "绘图类型 None (default) | Voltage transfer | Phase delay | Group delay",
+   "group": "Visualization"
+  },
+  {
+   "name": "Format 1",
+   "default": "(decibels)",
+   "values": "y 轴缩放 Magnitude (decibels) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "Format 2",
+   "default": "(decibels)",
+   "values": "y 轴缩放 Magnitude (decibels) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency points",
+   "default": "Hz",
+   "values": "在 x 轴上绘制的频率点 logspace(0,10,101) Hz (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "X-axis scale",
+   "default": "Linear",
+   "values": "X 轴刻度 Linear (default) | Logarithmic",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y-axis scale",
+   "default": "Linear",
+   "values": "Y 轴刻度 Linear (default) | Logarithmic",
+   "group": "Visualization"
+  }
+ ]
+}

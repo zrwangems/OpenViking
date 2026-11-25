@@ -1,0 +1,13 @@
+{
+ "key": "PS Round",
+ "title": "PS Round",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Round.md"
+ ],
+ "text": "将输入物理信号舍入到最接近的整数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

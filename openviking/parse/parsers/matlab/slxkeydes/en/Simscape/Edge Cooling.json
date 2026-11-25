@@ -1,0 +1,13 @@
+{
+ "key": "Edge Cooling",
+ "title": "Edge Cooling",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Thermal/Edge_Cooling.md"
+ ],
+ "text": "Cooling plate with edge cooling.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

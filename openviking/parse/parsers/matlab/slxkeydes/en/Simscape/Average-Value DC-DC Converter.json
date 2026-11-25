@@ -1,0 +1,13 @@
+{
+ "key": "Average-Value DC-DC Converter",
+ "title": "Average-Value DC-DC Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Average_Value_DC_DC_Converter.md"
+ ],
+ "text": "Average-value DC-DC converter.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

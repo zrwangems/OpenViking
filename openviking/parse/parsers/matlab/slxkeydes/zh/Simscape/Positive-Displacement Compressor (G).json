@@ -1,0 +1,13 @@
+{
+ "key": "Positive-Displacement Compressor (G)",
+ "title": "Positive-Displacement Compressor (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Turbomachinery/Positive_Displacement_Compressor_G.md"
+ ],
+ "text": "气体网络中的容积式压缩机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

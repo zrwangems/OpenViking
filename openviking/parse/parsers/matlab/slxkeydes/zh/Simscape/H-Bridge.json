@@ -1,0 +1,13 @@
+{
+ "key": "H-Bridge",
+ "title": "H-Bridge",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/H_Bridge.md"
+ ],
+ "text": "H 桥电机驱动器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PS Lookup Table (4D)",
+ "title": "PS Lookup Table (4D)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Lookup Tables/PS_Lookup_Table_4D.md"
+ ],
+ "text": "使用指定查找方法近似四维函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

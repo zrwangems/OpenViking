@@ -1,0 +1,41 @@
+{
+ "key": "Pixel Stream FIFO",
+ "title": "Pixel Stream FIFO",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Pixel_Stream_FIFO.md"
+ ],
+ "text": "Buffer input stream to create image lines that have contiguous valid pixels, 2 inputs, 2 outputs; {Line buffer size} sets the size of line memory buffer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Output pixel stream scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "Size of line memory buffer 2048 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

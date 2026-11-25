@@ -1,0 +1,43 @@
+{
+ "key": "ScanString",
+ "title": "Scan String",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/Scan_String.md",
+  "Simulink/String/String_to_Double.md",
+  "Simulink/String/String_to_Single.md"
+ ],
+ "text": "扫描输入字符串并转换为指定格式的信号，输入 1 路、输出 3 路；按 {格式} 指定输入的格式化操作符 \"%d。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入字符串 标量"
+  },
+  {
+   "name": "d",
+   "direction": "output",
+   "summary": "格式与 %d 格式匹配的输出数据 标量"
+  },
+  {
+   "name": "f",
+   "direction": "output",
+   "summary": "格式与 %f 格式匹配的输出数据 标量"
+  },
+  {
+   "name": "Port_N",
+   "direction": "output",
+   "summary": "格式与 N 格式匹配的输出数据 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "格式",
+   "default": "%f\"",
+   "values": "输入的格式化操作符 \"%d %f\" (默认) | 格式字符串 | 字符向量",
+   "group": ""
+  }
+ ]
+}

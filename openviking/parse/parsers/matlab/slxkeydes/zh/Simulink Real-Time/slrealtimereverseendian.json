@@ -1,0 +1,32 @@
+{
+ "key": "slrealtimereverseendian",
+ "title": "Byte Reversal",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Utilities/Byte_Reversal.md"
+ ],
+ "text": "将小端数据转换为大端格式以供大端处理器使用；按 {Machine word length} 指定转换的单词长度；{Number of input ports} 指定端口数量、{Number of inputs} 指定端口数量，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "1",
+   "values": "端口数量 1 (默认)",
+   "group": "用于更改字节序的模块参数"
+  },
+  {
+   "name": "Machine word length",
+   "default": "Byte",
+   "values": "转换的单词长度 Byte (默认) | Word | Double Word",
+   "group": "用于更改字节序的模块参数"
+  },
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "端口数量 1 (默认)",
+   "group": "Byte Reversal 模块参数"
+  }
+ ]
+}

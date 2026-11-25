@@ -1,0 +1,128 @@
+{
+ "key": "Scalar Quantizer Encoder",
+ "title": "Scalar Quantizer Encoder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/Scalar_Quantizer_Encoder.md"
+ ],
+ "text": "通过将每个输入值与量化区域的索引值相关联来对其进行编码，输入 3 路、输出 4 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Source of quantizer parameters} 指定量化器参数来源 Specify via、{Partitioning} 指定分区方法 Bounded、{Boundary points}、{Searching method} 指定搜索方法 Linear、{Tie-breaking rule} 指定输入值与边界点相同时的操作 Choose the lower、{Output codeword} 输出码字、{Output quantization error} 输出量化误差、{Codebook} 指定量化输出值、{Output clipping status} 输出裁剪状态、{Action for out of range input} 指定输入超出范围时的操作 Clip、{Index output data type} 指定索引输出数据类型、{Saturate on integer overflow} 指定对整数溢出进行饱和，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "U",
+   "direction": "input",
+   "summary": "输入数据值 vector | matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Boundary points vector"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "码本值 vector"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "索引值 vector | matrix"
+  },
+  {
+   "name": "Q(U)",
+   "direction": "output",
+   "summary": "量化输出值 vector | matrix"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "量化误差 vector | matrix"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "裁剪状态 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of quantizer parameters",
+   "default": "dialog",
+   "values": "量化器参数来源 Specify via dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Partitioning",
+   "default": "Bounded",
+   "values": "分区方法 Bounded (default) | Unbounded",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Boundary points",
+   "default": "[1:10]",
+   "values": "Boundary points [1:10] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Searching method",
+   "default": "Linear",
+   "values": "搜索方法 Linear (default) | Binary",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Tie-breaking rule",
+   "default": "index",
+   "values": "输入值与边界点相同时的操作 Choose the lower index (default) | Choose the higher index",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output codeword",
+   "default": "off",
+   "values": "输出码字 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output quantization error",
+   "default": "off",
+   "values": "输出量化误差 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Codebook",
+   "default": "[1.5:9.5]",
+   "values": "量化输出值 [1.5:9.5] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output clipping status",
+   "default": "off",
+   "values": "输出裁剪状态 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Action for out of range input",
+   "default": "",
+   "values": "输入超出范围时的操作 Clip | Clip and warn | Error",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Index output data type",
+   "default": "int32",
+   "values": "索引输出数据类型 int32 (default) | int8 | uint8 | int16 | uint16 | int32 | uint32 | Inherit via back propagation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

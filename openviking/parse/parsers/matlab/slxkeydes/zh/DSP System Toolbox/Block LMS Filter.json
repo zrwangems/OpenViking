@@ -1,0 +1,109 @@
+{
+ "key": "Block LMS Filter",
+ "title": "Block LMS Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Adaptive Filters/Block_LMS_Filter.md"
+ ],
+ "text": "使用 LMS 自适应算法计算输出、误差和权重，输入 5 路、输出 3 路、无直接馈通；按 {Initial value of filter weights} 指定滤波器权重的初始值；{Filter length} 指定 FIR 滤波器系数向量的长度、{Block size} 指定权重自适应前采集的样本数、{Specify step size via} 指定自适应步长的来源、{Step size (mu)} 指定自适应步长、{Leakage factor (0 to 1)} 指定泄漏 LMS 算法中使用的泄漏因子、{Adapt port} 启用 Adapt 端口、{Reset port} 启用 Reset 端口、{Output filter weights} 输出滤波器权重，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector"
+  },
+  {
+   "name": "Desired",
+   "direction": "input",
+   "summary": "期望信号 scalar | column vector"
+  },
+  {
+   "name": "Step size",
+   "direction": "input",
+   "summary": "自适应步长 nonnegative scalar"
+  },
+  {
+   "name": "Adapt",
+   "direction": "input",
+   "summary": "用于更新滤波器权重的选项 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "重置信号 scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "滤波后的信号 scalar | column vector"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "输出与期望信号之间的差值 scalar | column vector"
+  },
+  {
+   "name": "Wts",
+   "direction": "output",
+   "summary": "自适应滤波器权重 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter length",
+   "default": "32",
+   "values": "FIR 滤波器系数向量的长度 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Block size",
+   "default": "32",
+   "values": "权重自适应前采集的样本数 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify step size via",
+   "default": "Dialog",
+   "values": "自适应步长的来源 Dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Step size (mu)",
+   "default": "0.1",
+   "values": "自适应步长 0.1 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Leakage factor (0 to 1)",
+   "default": "1.0",
+   "values": "泄漏 LMS 算法中使用的泄漏因子 1.0 (default) | scalar in the range [0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Initial value of filter weights",
+   "default": "0",
+   "values": "滤波器权重的初始值 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Adapt port",
+   "default": "off",
+   "values": "启用 Adapt 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "启用 Reset 端口 None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Output filter weights",
+   "default": "on",
+   "values": "输出滤波器权重 on (default) | off",
+   "group": ""
+  }
+ ]
+}

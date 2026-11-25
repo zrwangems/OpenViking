@@ -1,0 +1,76 @@
+{
+ "key": "LPC to/from Cepstral Coefficients",
+ "title": "LPC to/from Cepstral Coefficients",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Linear Prediction/LPC_to_from_Cepstral_Coefficients.md"
+ ],
+ "text": "将线性预测系数转换为倒谱系数，或将倒谱系数转换为线性预测系数，输入 3 路、输出 2 路、无直接馈通；按 {If first input value is not 1} 指定第一个输入值不为；{Type of conversion} 指定转换类型 LPCs to cepstral、{Specify P} 指定预测误差功率 P 的方法 assume P、{Output P} 输出预测误差功率 P、{Output size same as input size} 输出大小与输入大小相同、{Length of output cepstral coefficients vector} 输出倒谱系数长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "LPC 系数 vector | matrix"
+  },
+  {
+   "name": "CC",
+   "direction": "input",
+   "summary": "倒谱系数 vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "预测误差功率 scalar | vector"
+  },
+  {
+   "name": "CC",
+   "direction": "output",
+   "summary": "倒谱系数 vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "预测误差功率 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of conversion",
+   "default": "coefficients",
+   "values": "转换类型 LPCs to cepstral coefficients (default) | Cepstral coefficients to LPCs",
+   "group": ""
+  },
+  {
+   "name": "Specify P",
+   "default": "1",
+   "values": "指定预测误差功率 P 的方法 assume P equals 1 (default) | via input port",
+   "group": ""
+  },
+  {
+   "name": "Output P",
+   "default": "off",
+   "values": "输出预测误差功率 P off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output size same as input size",
+   "default": "off",
+   "values": "输出大小与输入大小相同 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Length of output cepstral coefficients vector",
+   "default": "10",
+   "values": "输出倒谱系数长度 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "If first input value is not 1",
+   "default": "1",
+   "values": "第一个输入值不为 1 时采取的操作 Replace it with 1 (default) | Normalize | Normalize and warn | Error",
+   "group": ""
+  }
+ ]
+}

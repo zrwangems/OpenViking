@@ -1,0 +1,13 @@
+{
+ "key": "Ideal Rotational Motion Sensor",
+ "title": "Ideal Rotational Motion Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanical Sensors/Ideal_Rotational_Motion_Sensor.md"
+ ],
+ "text": "Motion sensor in mechanical rotational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

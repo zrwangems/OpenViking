@@ -1,0 +1,48 @@
+{
+ "key": "slrealtimetcpreceive",
+ "title": "TCP Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/TCP_Receive.md"
+ ],
+ "text": "通过 TCP 网络从远程设备接收数据，输入 1 路、输出 2 路；{Receive using} 指定 IP 地址与端口对列表 只读: x.x.x.x:y、{Receive width} 指定数据向量的最大预期长度 1–65504、{Sample time} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "允许数据接收 整数"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "从远程客户端接收到的数据 向量"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "数据向量的实际大小 双精度"
+  }
+ ],
+ "params": [
+  {
+   "name": "Receive using",
+   "default": "",
+   "values": "IP 地址与端口对列表 只读: x.x.x.x:y",
+   "group": ""
+  },
+  {
+   "name": "Receive width",
+   "default": "",
+   "values": "数据向量的最大预期长度 1–65504",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 数值",
+   "group": ""
+  }
+ ]
+}

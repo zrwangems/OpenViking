@@ -1,0 +1,135 @@
+{
+ "key": "dsp.simulink.PowerMeter",
+ "title": "Power Meter",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Power_Meter.md",
+  "DSP System Toolbox/Statistics/Power_Meter.md"
+ ],
+ "text": "Measure power and the CCDF of the power of voltage signal in Simulink, 2 inputs, 5 outputs, no direct feedthrough, {Measurement} sets Desired; {Reference load (ohms)}, {Output power units}, {Compute CCDF}, {Window length}, {Overlap length}, {Allow arbitrary frame length for fixed-size input signals}, {Power range (dB)}, {Power resolution (dB)}, {CCDF output}, {Specify probability (%) for relative power output} sets the probability for relative power output, {Specify relative power (dB) for probability output} sets the relative power for probability output 3; 6; 9; {Reset port} enables reset port and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset port scalar"
+  },
+  {
+   "name": "Avg",
+   "direction": "output",
+   "summary": "Average power scalar | vector | matrix"
+  },
+  {
+   "name": "Peak",
+   "direction": "output",
+   "summary": "Peak power scalar | vector | matrix"
+  },
+  {
+   "name": "PAPR",
+   "direction": "output",
+   "summary": "Peak-to-average power ratio scalar | vector | matrix"
+  },
+  {
+   "name": "RelPwr",
+   "direction": "output",
+   "summary": "Relative power N -by- M matrix"
+  },
+  {
+   "name": "Prob",
+   "direction": "output",
+   "summary": "Probability in percentage N -by- M matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "power",
+   "values": "Desired power measurement Average power (default) | Peak power | Peak-to-average power ratio | All",
+   "group": ""
+  },
+  {
+   "name": "Reference load (ohms)",
+   "default": "1",
+   "values": "Reference load in ohms 1 (default) | positive scalar in ohms",
+   "group": ""
+  },
+  {
+   "name": "Output power units",
+   "default": "dBm",
+   "values": "Units of measured power values dBm (default) | dBW | Watts",
+   "group": ""
+  },
+  {
+   "name": "Compute CCDF",
+   "default": "off",
+   "values": "Enable CCDF computations off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "256",
+   "values": "Window length 256 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "255",
+   "values": "Overlap length between windows 255 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "Allow arbitrary frame length for fixed-size input signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Power range (dB)",
+   "default": "50",
+   "values": "Power range in dB 50 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Power resolution (dB)",
+   "default": "0.1",
+   "values": "Power Resolution in dB 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "CCDF output",
+   "default": "power)",
+   "values": "CCDF output Relative power (dB above average power) (default) | Probability (%) | Relative power and probability (whole CCDF curve)",
+   "group": ""
+  },
+  {
+   "name": "Specify probability (%) for relative power output",
+   "default": "]",
+   "values": "Specify probability for relative power output [ 10; 1; 0.1; 0.01; 0.001; 0.0001 ] (default) | column vector",
+   "group": ""
+  },
+  {
+   "name": "Specify relative power (dB) for probability output",
+   "default": "]",
+   "values": "Specify relative power for probability output [ 0; 3; 6; 9; 12 ] (default) | column vector",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "off",
+   "values": "Enable reset port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

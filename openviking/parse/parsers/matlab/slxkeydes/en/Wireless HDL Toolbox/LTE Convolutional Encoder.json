@@ -1,0 +1,41 @@
+{
+ "key": "LTE Convolutional Encoder",
+ "title": "LTE Convolutional Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/LTE_Convolutional_Encoder.md"
+ ],
+ "text": "Encode binary samples using tail-biting convolutional algorithm, 2 inputs, 2 outputs; {Maximum message length} sets the maximum input frame size. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input sample scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Encoded sample 3-by-1 column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum message length",
+   "default": "1024",
+   "values": "Maximum input frame size 1024 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

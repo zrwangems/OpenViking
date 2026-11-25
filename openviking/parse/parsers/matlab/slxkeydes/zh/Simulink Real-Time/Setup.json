@@ -1,0 +1,50 @@
+{
+ "key": "Setup",
+ "title": "Setup",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Setup.md"
+ ],
+ "text": "设置基座串行通信；按 {Parity} 指定串口奇偶校验；{Serial port} 指定正在访问的端口 Legacy Serial Port、{Baud rate} 指定串口波特率、{Number of data bits} 指定串行端口数据位、{Number of stop bits} 指定串行端口停止位、{Enable auto RTX/CTS} 指定串口 RTX/CTS 模式，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "正在访问的端口 Legacy Serial Port 1 (默认) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  },
+  {
+   "name": "Baud rate",
+   "default": "115200",
+   "values": "选择串口波特率 115200 (默认) | 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1200 | 600 | 300 | 110",
+   "group": ""
+  },
+  {
+   "name": "Number of data bits",
+   "default": "8",
+   "values": "选择串行端口数据位 8 (默认) | 7 | 6 | 5",
+   "group": ""
+  },
+  {
+   "name": "Number of stop bits",
+   "default": "1",
+   "values": "选择串行端口停止位 1 (默认) | 2",
+   "group": ""
+  },
+  {
+   "name": "Parity",
+   "default": "None",
+   "values": "选择串口奇偶校验 None (默认) | Even | Odd | Mark | Space",
+   "group": ""
+  },
+  {
+   "name": "Enable auto RTX/CTS",
+   "default": "off",
+   "values": "选择串口 RTX/CTS 模式 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

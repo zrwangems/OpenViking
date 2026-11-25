@@ -1,0 +1,13 @@
+{
+ "key": "Passive Interface",
+ "title": "Passive Interface",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/HIL/Passive_Interface.md"
+ ],
+ "text": "Passive interface between battery and cell supervisory circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,138 @@
+{
+ "key": "Simulation 3D Motorcycle",
+ "title": "Simulation 3D Motorcycle",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Motorcycle.md"
+ ],
+ "text": "在 3D 环境中实现摩托车，输入 3 路；按 {Color} 指定车辆颜色；{Type}、{Name} 指定摩托车的名称、{Sample time} 指定采样时间、{Enable light controls, VehLightsControl} 控制车辆灯光、{Headlight color [R,G,B], HeadlightColor} 指定前照灯颜色、{High beam intensity, HighBeamIntensity} 指定远光强度、{Low beam intensity, LowBeamIntensity} 指定近光强度、{High beam cone half angle, HighBeamConeAngle} 指定远光锥半角、{Low beam cone half angle, LowBeamConeAngle} 指定近光锥半角、{Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation} 指定左前照灯光束方向、{Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation} 指定右前照灯光束方向、{Brake light intensity, BrakelightIntensity} 指定强度、{Turn signal light intensity, SignallightIntensity} 指定强度、{Period, SignallightPeriod} 指定转向信号灯周期、{Pulse width, SignalPulseWidth} 指定脉冲宽度、{Initial array values to translate vehicle per part, Translation} 指定摩托车初始平移 zeros、{Initial array values to rotate vehicle per part, Rotation} 指定摩托车初始旋转 zeros，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "摩托车平移 4 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "摩托车旋转 4 -by- 3 array"
+  },
+  {
+   "name": "Light controls",
+   "direction": "input",
+   "summary": "车辆灯光开启或关闭 1-by-5 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "bike",
+   "values": "Type Sports bike (default) | Motor bike | Scooter",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Color",
+   "default": "Red",
+   "values": "车辆颜色 Red (default) | Orange | Yellow | Green | Blue | Black | White | Silver | Dazzle Camouflage",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "摩托车的名称 SimulinkVehicle1 (default) | character vector",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Enable light controls, VehLightsControl",
+   "default": "off",
+   "values": "控制车辆灯光 off (default) | on",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Headlight color [R,G,B], HeadlightColor",
+   "default": "[1,1,1]",
+   "values": "前照灯颜色 [1,1,1] (default) | 1-by-3 vector of RGB triplet values",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam intensity, HighBeamIntensity",
+   "default": "100000",
+   "values": "远光强度 100000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam intensity, LowBeamIntensity",
+   "default": "60000",
+   "values": "近光强度 60000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam cone half angle, HighBeamConeAngle",
+   "default": "1.22",
+   "values": "远光锥半角 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam cone half angle, LowBeamConeAngle",
+   "default": "1.22",
+   "values": "近光锥半角 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "左前照灯光束方向 [0,0] (default) | 1-by-2 vector greater with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "右前照灯光束方向 [0,0] (default) | 1-by-2 vector greater with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Brake light intensity, BrakelightIntensity",
+   "default": "500",
+   "values": "强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Turn signal light intensity, SignallightIntensity",
+   "default": "500",
+   "values": "强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Period, SignallightPeriod",
+   "default": "1",
+   "values": "转向信号灯周期 1 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Pulse width, SignalPulseWidth",
+   "default": "50",
+   "values": "脉冲宽度 50 (default) | positive scalar less than 100",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Initial array values to translate vehicle per part, Translation",
+   "default": ")",
+   "values": "摩托车初始平移 zeros( 4, 3 ) (default) | 4 -by- 3 array",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial array values to rotate vehicle per part, Rotation",
+   "default": ")",
+   "values": "摩托车初始旋转 zeros( 4, 3 ) (default) | 4 -by- 3 array",
+   "group": "Initial Values"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "key": "F2838x-M4 IPC Transmit",
+ "title": "IPC Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F2838x/M4/IPC_Transmit.md"
+ ],
+ "text": "使用为每个内核单独建模的方式，将数据传输到任一内核，输入 1 路；{目标} 指定已选择数据发送目的地 C28x、{通道} 用于传输数据的信道、{启用阻塞} 指定 Core 是否必须等待直到读取已发送的数据，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "要发送到另一个核心的数据 uint16 | 单精度 | int8 | uint8 | int16 | int32 | uint32 | 布尔"
+  }
+ ],
+ "params": [
+  {
+   "name": "目标",
+   "default": "(CPU1/CPU2)/CPU1",
+   "values": "已选择数据发送目的地 C28x (CPU1/CPU2)/CPU1 (默认) | ARM Cortex-M4 (CM)/CPU2",
+   "group": ""
+  },
+  {
+   "name": "通道",
+   "default": "0",
+   "values": "选择用于传输数据的信道 0 (默认) | 0–31",
+   "group": ""
+  },
+  {
+   "name": "启用阻塞",
+   "default": "off",
+   "values": "指定 Core 是否必须等待直到读取已发送的数据。 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

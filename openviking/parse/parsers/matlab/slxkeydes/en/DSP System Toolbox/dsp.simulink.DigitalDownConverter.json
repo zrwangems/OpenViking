@@ -1,0 +1,180 @@
+{
+ "key": "dsp.simulink.DigitalDownConverter",
+ "title": "Digital Down-Converter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Digital_Down_Converter.md"
+ ],
+ "text": "Translate digital signal from intermediate frequency (IF) band to baseband and decimate it, 2 inputs, 1 output, no direct feedthrough, {Decimation factor} sets Decimation factor; {Minimum order filter design} sets the design minimum-order filter, {Number of sections of CIC decimator} sets the number of sections in CIC decimator, {Order of third filter stage}, {Source of stopband frequency}, {Type of oscillator}, {Center frequency of output signal}, {Order of CIC compensation filter stage}, {Two-sided bandwidth of input signal}, {Stopband frequency}, {Passband ripple of cascade response (dB)}, {Stopband attenuation of cascade response (dB)}, {Number of NCO accumulator bits}, {Number of NCO quantized accumulator bits}, {Dither control for NCO}, {Number of NCO dither bits}, {Sample rate mode} sets the mode to specify the input sample rate Use normalized, {Input sample rate (Hz)} sets the sample rate of input, {View Filter Response}, {Simulate using} sets the type of simulation to run Interpreted, {Stage input}, {Output}, {Minimum}, {Maximum} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "Data input column vector | matrix"
+  },
+  {
+   "name": "Osc",
+   "direction": "input",
+   "summary": "Oscillator signal column vector | matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Downconverted and downsampled signal column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Decimation factor",
+   "default": "100",
+   "values": "Decimation factor 100 (default) | positive integer ≥ 2 | vector of positive integers",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Minimum order filter design",
+   "default": "on",
+   "values": "Design minimum-order filter on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of sections of CIC decimator",
+   "default": "3",
+   "values": "Number of sections in CIC decimator 3 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Order of third filter stage",
+   "default": "10",
+   "values": "Order of third filter stage 10 (default) | even positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Source of stopband frequency",
+   "default": "Auto",
+   "values": "Source of stopband frequency Auto (default) | Property",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Type of oscillator",
+   "default": "wave",
+   "values": "Type of oscillator Sine wave (default) | NCO | Input port | None",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Center frequency of output signal",
+   "default": "0.9333",
+   "values": "Center frequency of output signal 0.9333 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Order of CIC compensation filter stage",
+   "default": "12",
+   "values": "Order of CIC compensation filter stage 12 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Two-sided bandwidth of input signal",
+   "default": "0.0133",
+   "values": "Two-sided bandwidth of input signal 0.0133 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband frequency",
+   "default": "0.01",
+   "values": "Stopband frequency 0.01 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Passband ripple of cascade response (dB)",
+   "default": "0.1",
+   "values": "Passband ripple of cascade response 0.1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband attenuation of cascade response (dB)",
+   "default": "60",
+   "values": "Stopband attenuation of cascade response 60 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of NCO accumulator bits",
+   "default": "16",
+   "values": "Number of NCO accumulator bits 16 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of NCO quantized accumulator bits",
+   "default": "12",
+   "values": "Number of NCO quantized accumulator bits 12 (default) | positive integer in the range [1 128]",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Dither control for NCO",
+   "default": "on",
+   "values": "Dither control for NCO on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of NCO dither bits",
+   "default": "4",
+   "values": "Number of NCO dither bits 4 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "30e6",
+   "values": "Sample rate of input signal 30e6 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View Filter Response button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stage input",
+   "default": "input",
+   "values": "Stage input Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Output Inherit: Same as input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "Minimum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "Maximum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,315 @@
+{
+ "key": "Simulation 3D Rotorcraft",
+ "title": "Simulation 3D Rotorcraft",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Rotorcraft.md"
+ ],
+ "text": "实现 3D 旋翼航空器，输入 4 路、输出 2 路；按 {Color} 指定旋翼飞行器颜色；{Sample time} 指定采样时间、{Type} 指定旋翼航空器类型 Light、{Path to light helicopter mesh} 指定轻型直升机网格的路径、{Path to helicopter mesh} 指定直升机网格的路径、{Path to multirotor mesh} 指定多旋翼飞行器网格的路径、{Name} 指定旋翼飞行器名称、{Initial translation (m)} 指定旋翼飞行器的初始平移 zeros、{Initial rotation (rad)} 指定旋翼飞行器旋转 zeros、{Scale source}、{Initial scale} 指定 Initial mesh scale、{Scale} 指定网格比例、{Enable altitude and WoW sensors} 指定 Altitude and WoW sensors、{Show sensor rays in viewer} 指定 Option to show sensor rays、{Interpret vector outputs as 1-D} 指定 Control reshaping on sensor output ports、{Length of rays (m)}、{Rotorcraft body Z offset (m)} 指定旋翼飞行器机体 Z 偏移、{Ground-contact location 1 (m)} 指定第一个地面接触位置、{Ground-contact location 2 (m)} 指定第二个地面接触位置、{Ground-contact location 3 (m)} 指定第三个地面接触位置、{Ground-contact location 4 (m)} 指定第四个地面接触位置、{Front tire radius (m)} 指定 Front gear tire radius、{Left tire radius (m)} 指定 Left gear tire radius、{Right tire radius (m)} 指定 Right gear tire radius、{WoW sensor tolerance (m)} 指定 Wow sensor tolerance、{Light configuration}、{Landing light intensity (cd)} 指定 Landing lights intensity、{Landing light cone half angle (deg)} 指定 Landing lights cone half angle、{Landing light color [r g b]} 指定着陆灯颜色、{Landing light location} 指定着陆灯位置、{Landing light orientation (deg)} 指定着陆灯方向、{Nose light intensity (cd)} 指定机头灯强度、{Nose light cone half angle (deg)} 指定机头灯锥半角、{Nose light location} 指定机头灯位置、{Nose light orientation (deg)} 指定机头灯方向、{Navigation lights intensity} 指定航行灯强度、{Position light intensity} 指定位置灯强度、{Strobe light intensity} 指定频闪灯强度、{Strobe color [r g b]} 指定频闪灯颜色、{Strobe period (s)} 指定频闪周期、{Strobe pulse width (% of period)} 指定频闪脉冲宽度、{Beacon light intensity} 指定信标灯强度、{Beacon color [r g b]} 指定信标灯颜色、{Beacon period (s)} 指定信标周期、{Beacon pulse width (% of period)} 指定信标脉冲宽度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "旋翼航空器平移 6 -by- 3 array | 19 -by- 3 array | 11 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "旋翼航空器和车轮旋转 6 -by- 3 array | 19 -by- 3 array | 11 -by- 3 array"
+  },
+  {
+   "name": "LightStates",
+   "direction": "input",
+   "summary": "旋翼航空器灯光控制 1-by-7 vector of double values"
+  },
+  {
+   "name": "Scale",
+   "direction": "input",
+   "summary": "网格比例 [1 1 1] (default) | 1-by-3 array"
+  },
+  {
+   "name": "Altitude",
+   "direction": "output",
+   "summary": "旋翼航空器姿态 1-by-5 vector"
+  },
+  {
+   "name": "WoW",
+   "direction": "output",
+   "summary": "轮载 true | false"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "helicopter",
+   "values": "旋翼航空器类型 Light helicopter (default) | Helicopter | Multirotor",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Path to light helicopter mesh",
+   "default": "’/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter’",
+   "values": "轻型直升机网格的路径 ’/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter’ (default) | character vector",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Path to helicopter mesh",
+   "default": "’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter’",
+   "values": "直升机网格的路径 ’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter’ (default) | character vector",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Path to multirotor mesh",
+   "default": "’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter’",
+   "values": "多旋翼飞行器网格的路径 ’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter’ (default) | ’/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_QuadcopterMini.SK_QuadcopterMini’ | character vector",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Color",
+   "default": "Red",
+   "values": "旋翼飞行器颜色 Red (default) | Orange | Yellow | Green | Cyan | Blue | Black | White | Silver | Metal",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "旋翼飞行器名称 SimulinkVehicle1 (default) | character vector",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Initial translation (m)",
+   "default": "zeros(6,3)",
+   "values": "旋翼飞行器的初始平移 zeros(6,3) (default) | 19-by-3 array | 11-by-3 array",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Initial rotation (rad)",
+   "default": "zeros(6,3)",
+   "values": "旋翼飞行器旋转 zeros(6,3) (default) | 19-by-3 array | 11-by-3 array",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Scale source",
+   "default": "Dialog",
+   "values": "Scale source Dialog (default) | Port",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Initial scale",
+   "default": "1]",
+   "values": "Initial mesh scale [1 1 1] (default) | 1-by-3 array",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Scale",
+   "default": "1]",
+   "values": "网格比例 [1 1 1] (default) | 1-by-3 array",
+   "group": "Rotorcraft"
+  },
+  {
+   "name": "Enable altitude and WoW sensors",
+   "default": "on",
+   "values": "Altitude and WoW sensors on (default) | off",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Show sensor rays in viewer",
+   "default": "off",
+   "values": "Option to show sensor rays off (default) | on",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Interpret vector outputs as 1-D",
+   "default": "off",
+   "values": "Control reshaping on sensor output ports off (default) | on",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Length of rays (m)",
+   "default": "1524",
+   "values": "Length of rays 1524 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Rotorcraft body Z offset (m)",
+   "default": "1.169",
+   "values": "旋翼飞行器机体 Z 偏移 1.169 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Ground-contact location 1 (m)",
+   "default": "1.169]",
+   "values": "第一个地面接触位置 [1.47 -1.04 1.169] (default) | 3-element vector",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Ground-contact location 2 (m)",
+   "default": "1.169]",
+   "values": "第二个地面接触位置 [-1.24 -1.04 1.169] (default) | 3-element vector",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Ground-contact location 3 (m)",
+   "default": "",
+   "values": "第三个地面接触位置 [-1.24 1.04 1.169] | 3-element vector",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Ground-contact location 4 (m)",
+   "default": "",
+   "values": "第四个地面接触位置 [1.47 1.04 1.169] | 3-element vector",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Front tire radius (m)",
+   "default": "0.196",
+   "values": "Front gear tire radius 0.196 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Left tire radius (m)",
+   "default": "0.203",
+   "values": "Left gear tire radius 0.203 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Right tire radius (m)",
+   "default": "0.203",
+   "values": "Right gear tire radius 0.203 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "WoW sensor tolerance (m)",
+   "default": "0.05",
+   "values": "Wow sensor tolerance 0.05 (default) | real scalar",
+   "group": "Altitude Sensor"
+  },
+  {
+   "name": "Light configuration",
+   "default": "lights",
+   "values": "Light configurations options Automatic lights (default) | Configurable lights | Lights off",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light intensity (cd)",
+   "default": "300000",
+   "values": "Landing lights intensity 300000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light cone half angle (deg)",
+   "default": "15",
+   "values": "Landing lights cone half angle 15 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light color [r g b]",
+   "default": "1]",
+   "values": "着陆灯颜色 [1 1 1] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light location",
+   "default": "0]",
+   "values": "着陆灯位置 [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Landing light orientation (deg)",
+   "default": "0]",
+   "values": "着陆灯方向 [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Nose light intensity (cd)",
+   "default": "150000",
+   "values": "机头灯强度 150000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Nose light cone half angle (deg)",
+   "default": "36",
+   "values": "机头灯锥半角 36 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Nose light location",
+   "default": "0]",
+   "values": "机头灯位置 [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Nose light orientation (deg)",
+   "default": "0]",
+   "values": "机头灯方向 [0 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Navigation lights intensity",
+   "default": "500",
+   "values": "航行灯强度 500 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Position light intensity",
+   "default": "500",
+   "values": "位置灯强度 500 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe light intensity",
+   "default": "5000",
+   "values": "频闪灯强度 5000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe color [r g b]",
+   "default": "1]",
+   "values": "频闪灯颜色 [1 1 1] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe period (s)",
+   "default": "1.5",
+   "values": "频闪周期 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Strobe pulse width (% of period)",
+   "default": "6",
+   "values": "频闪脉冲宽度 6 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon light intensity",
+   "default": "4000",
+   "values": "信标灯强度 4000 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon color [r g b]",
+   "default": "0]",
+   "values": "信标灯颜色 [1 0 0] (default) | 3-element vector",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon period (s)",
+   "default": "1.5",
+   "values": "信标周期 1.5 (default) | positive scalar",
+   "group": "Light Configuration"
+  },
+  {
+   "name": "Beacon pulse width (% of period)",
+   "default": "10",
+   "values": "信标脉冲宽度 10 (default) | positive scalar",
+   "group": "Light Configuration"
+  }
+ ]
+}

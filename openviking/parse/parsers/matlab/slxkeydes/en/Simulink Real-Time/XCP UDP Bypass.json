@@ -1,0 +1,33 @@
+{
+ "key": "XCP UDP Bypass",
+ "title": "XCP UDP Bypass",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/UDP/XCP_UDP_Bypass.md",
+  "Vehicle Network Toolbox/XCP Communication/UDP/XCP_UDP_Bypass.md"
+ ],
+ "text": "Connect the function-call outport to a function-call subsystem, 1 output; {Task Priority} sets the task priority in QNX Neutrino scheduler and {Sample Time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Function-call",
+   "direction": "output",
+   "summary": "Function call for bypass function call"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task Priority",
+   "default": "191",
+   "values": "Task priority in QNX Neutrino scheduler 191 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | double",
+   "group": ""
+  }
+ ]
+}

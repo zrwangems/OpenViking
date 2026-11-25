@@ -1,0 +1,43 @@
+{
+ "key": "6-Phase VSD Transform",
+ "title": "6-Phase VSD Transform",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/b_6_Phase_VSD_Transform.md",
+  "Motor Control Blockset/Controls/Math Transforms/b_6_Phase_VSD_Transform.md"
+ ],
+ "text": "Compute vector space decomposition (VSD) based transformation on six-phase inputs, 2 inputs, 1 output; {Power invariant} sets the option to enable power invariant and {Motor type} sets the type of six-phase PMSM Asymmetric. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "a 1 b 1 c 1",
+   "direction": "input",
+   "summary": "First set of three-phase inputs scalar"
+  },
+  {
+   "name": "a 2 b 2 c 2",
+   "direction": "input",
+   "summary": "Second set of three-phase inputs scalar"
+  },
+  {
+   "name": "αβxyz + z -",
+   "direction": "output",
+   "summary": "Six axis components in three different subspaces scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power invariant",
+   "default": "off",
+   "values": "Option to enable power invariant transformation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Motor type",
+   "default": "offset)",
+   "values": "Type of six-phase PMSM Asymmetric (30 degree offset) (default) | Symmetric (60 degree offset)",
+   "group": ""
+  }
+ ]
+}

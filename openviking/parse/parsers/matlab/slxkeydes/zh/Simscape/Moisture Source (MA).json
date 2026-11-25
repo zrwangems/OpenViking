@@ -1,0 +1,13 @@
+{
+ "key": "Moisture Source (MA)",
+ "title": "Moisture Source (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sources/Moisture & Trace Gas Sources/Moisture_Source_MA.md"
+ ],
+ "text": "以恒定或时变速率注入或抽出湿气。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

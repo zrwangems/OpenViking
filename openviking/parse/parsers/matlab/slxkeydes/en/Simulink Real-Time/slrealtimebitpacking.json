@@ -1,0 +1,51 @@
+{
+ "key": "slrealtimebitpacking",
+ "title": "Bit Unpacking",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Utilities/Bit_Unpacking.md",
+  "Simulink Real-Time/Utilities/Bit_Packing.md"
+ ],
+ "text": "Deconstruct data frames, {Input port (packed) data types} sets Packed data type; {Bit Patterns} selects bit pattern, {Input port (packed) dimension} sets the packed data dimension, {Output port (unpacked) data types (cell array)} sets the unpacked data type, {Output port (unpacked) dimension (cell array)} sets the unpacked data dimension and {Sign extend} enables sign extension. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Bit Patterns",
+   "default": "{[0:31]}",
+   "values": "Select bit pattern {[0:31]} (default)",
+   "group": ""
+  },
+  {
+   "name": "Input port (packed) data types",
+   "default": "uint32",
+   "values": "Packed data type uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Input port (packed) dimension",
+   "default": "[1]",
+   "values": "Packed data dimension [1] (default)",
+   "group": ""
+  },
+  {
+   "name": "Output port (unpacked) data types (cell array)",
+   "default": "{’uint32’}",
+   "values": "Unpacked data type {’uint32’} (default)",
+   "group": ""
+  },
+  {
+   "name": "Output port (unpacked) dimension (cell array)",
+   "default": "{[1]}",
+   "values": "Unpacked data dimension {[1]} (default)",
+   "group": ""
+  },
+  {
+   "name": "Sign extend",
+   "default": "on",
+   "values": "Enable sign extension on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "key": "HardwareInterrupt",
+ "title": "Hardware Interrupt",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F29H85x/Hardware_Interrupt.md",
+  "C2000 Microcontroller Blockset/Scheduling/Hardware_Interrupt.md",
+  "SoC Blockset/Processor Task Execution/Hardware_Interrupt.md"
+ ],
+ "text": "Trigger downstream function-call subsystems from interrupt service routine, 1 output, {Interrupt name} sets Select ISR; {Interrupt group} selects a peripheral ISR External, {Interrupt number} sets the position of ISR in interrupt table, {Events to serve} selects events EXTI0, {Simulink task priority} sets the priority of selected ISR, {Run interrupt service routine as atomic unit} selects to disable interrupt preemption and {Clear status after servicing each event} selects to clear interrupt status flags. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "name Event",
+   "direction": "output",
+   "summary": "Generate interrupt request Scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interrupt group",
+   "default": "(EXTI)",
+   "values": "Select a peripheral ISR External interrupts (EXTI) (default) | Analog to digital converter (ADC) | Pulse width modulation (PWM) | Direct memory access (DMA)",
+   "group": ""
+  },
+  {
+   "name": "Interrupt name",
+   "default": "EXTI0_IRQHandler",
+   "values": "Select ISR EXTI0_IRQHandler (default) | ADC_IRQHandler | TIM1_BRK_TIM9_IRQHandler | DMA0_Stream0_IRQHandler",
+   "group": ""
+  },
+  {
+   "name": "Interrupt number",
+   "default": "21",
+   "values": "Position of ISR in interrupt table 21 (default) | 33 | 71 | …",
+   "group": ""
+  },
+  {
+   "name": "Events to serve",
+   "default": "Event",
+   "values": "Select events EXTI0 Event (default) | ADC1 OVR | Stream0 TC | …",
+   "group": ""
+  },
+  {
+   "name": "Simulink task priority",
+   "default": "30",
+   "values": "Set priority of selected ISR 30 (default) | positive integer or nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Run interrupt service routine as atomic unit",
+   "default": "off",
+   "values": "Select to disable interrupt preemption off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Clear status after servicing each event",
+   "default": "off",
+   "values": "Select to clear interrupt status flags off (default) | on",
+   "group": ""
+  }
+ ]
+}

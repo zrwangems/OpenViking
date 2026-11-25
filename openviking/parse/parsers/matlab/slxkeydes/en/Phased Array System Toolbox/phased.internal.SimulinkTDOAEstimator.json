@@ -1,0 +1,104 @@
+{
+ "key": "phased.internal.SimulinkTDOAEstimator",
+ "title": "TDOA Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/TDOA_Estimator.md"
+ ],
+ "text": "Estimate time-difference of arrival, 3 inputs, 4 outputs; {Inherit sample rate}, {Signal sample rate (Hz)} sets the signal sampling rate, {Maximum number of TDOA estimates}, {Enable known delay offset input}, {Output variance of TDOA Estimates}, {Output TDOA response and TDOA grid}, {Source of noise power}, {Noise power (W)} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input data N -by- M -by- L complex-valued array"
+  },
+  {
+   "name": "DelayOffset",
+   "direction": "input",
+   "summary": "Delay offset (sec) scalar | 1-by- L real-valued vector"
+  },
+  {
+   "name": "Npow",
+   "direction": "input",
+   "summary": "Input noise power (W) positive scalar | 1-by- L vector of positive values"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "TDOA estimates (sec) K -by-( L -1) real-valued matrix"
+  },
+  {
+   "name": "Var",
+   "direction": "output",
+   "summary": "Estimated TDOA variance 1-by-( L -1) positive-value vector"
+  },
+  {
+   "name": "TDOAResp",
+   "direction": "output",
+   "summary": "TDOA response P -by- M -by-( L -1) MATLAB ® array"
+  },
+  {
+   "name": "TDOAGrid",
+   "direction": "output",
+   "summary": "TDOA grid real-valued P -by-( L -1) matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Signal sample rate (Hz)",
+   "default": "1000000",
+   "values": "Signal sampling rate 1000000 (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of TDOA estimates",
+   "default": "1",
+   "values": "Maximum number of TDOA estimates 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable known delay offset input",
+   "default": "(0)",
+   "values": "Enable known delay offset input false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Output variance of TDOA Estimates",
+   "default": "(0)",
+   "values": "Output variance of TDOA estimates false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Output TDOA response and TDOA grid",
+   "default": "(0)",
+   "values": "Output TDOA response and TDOA grid false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Source of noise power",
+   "default": "Property",
+   "values": "Source of noise power Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise power (W)",
+   "default": "1",
+   "values": "Noise power 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

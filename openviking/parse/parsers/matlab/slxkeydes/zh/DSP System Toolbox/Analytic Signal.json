@@ -1,0 +1,37 @@
+{
+ "key": "Analytic Signal",
+ "title": "Analytic Signal",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Analytic_Signal.md"
+ ],
+ "text": "计算离散时间输入的解析信号，输入 1 路、输出 1 路；{Filter order (must be even)} 指定滤波器阶数、{Input processing} 指定处理输入信号的方法 Columns，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "解析信号输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter order (must be even)",
+   "default": "100",
+   "values": "滤波器阶数 100 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "处理输入信号的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  }
+ ]
+}

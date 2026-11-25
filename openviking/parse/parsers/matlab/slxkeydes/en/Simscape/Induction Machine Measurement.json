@@ -1,0 +1,13 @@
+{
+ "key": "Induction Machine Measurement",
+ "title": "Induction Machine Measurement",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/Induction_Machine_Measurement.md"
+ ],
+ "text": "Per-unit measurement from induction machine.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

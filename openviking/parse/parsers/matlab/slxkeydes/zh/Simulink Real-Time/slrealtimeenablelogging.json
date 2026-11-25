@@ -1,0 +1,19 @@
+{
+ "key": "slrealtimeenablelogging",
+ "title": "Enable File Log",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Logging/Enable_File_Log.md"
+ ],
+ "text": "启用或禁用目标计算机上信号的文件日志记录，输入 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "启用或禁用文件日志记录 布尔值"
+  }
+ ],
+ "params": []
+}

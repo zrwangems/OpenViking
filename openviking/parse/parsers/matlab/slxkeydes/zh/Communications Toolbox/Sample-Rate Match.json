@@ -1,0 +1,54 @@
+{
+ "key": "Sample-Rate Match",
+ "title": "Sample-Rate Match",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/Sample_Rate_Match.md"
+ ],
+ "text": "将两个信号上采样到公共速率，输入 2 路、输出 1 路；{Input sample rate (Hz)} 指定每个输入信号的采样率、{Output samples per frame} 指定每帧输出的样本数、{Output sample rate options} 输出采样率、{Output sample rate (Hz)} 输出信号采样率 2e6，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "第一个输入信号 column vector | matrix"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "第二个输入信号 column vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "2]*1e6",
+   "values": "每个输入信号的采样率 [1 2]*1e6 (default) | 2-element vector",
+   "group": ""
+  },
+  {
+   "name": "Output samples per frame",
+   "default": "1000",
+   "values": "每帧输出的样本数 1000 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate options",
+   "default": "Auto",
+   "values": "输出采样率选项 Auto (default) | Specify via property",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate (Hz)",
+   "default": "2e6",
+   "values": "输出信号采样率 2e6 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

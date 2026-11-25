@@ -1,0 +1,50 @@
+{
+ "key": "Simulation 3D Actor Transform Get",
+ "title": "Simulation 3D Actor Transform Get",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Actor_Transform_Get.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Actor_Transform_Get.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Actor_Transform_Get.md"
+ ],
+ "text": "Get actor translation, rotation, scale, 3 outputs; {Tag for actor in 3D scene, ActorTag} sets the name SimulinkActor1, {Number of parts per actor to get, NumberOfParts} sets the name and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Actor translation array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Actor rotation array"
+  },
+  {
+   "name": "Scale",
+   "direction": "output",
+   "summary": "Actor scale array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tag for actor in 3D scene, ActorTag",
+   "default": "SimulinkActor1",
+   "values": "Name SimulinkActor1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of parts per actor to get, NumberOfParts",
+   "default": "1",
+   "values": "Name 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

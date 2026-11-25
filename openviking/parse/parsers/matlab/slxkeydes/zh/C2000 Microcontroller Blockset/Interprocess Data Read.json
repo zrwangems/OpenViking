@@ -1,0 +1,79 @@
+{
+ "key": "Interprocess Data Read",
+ "title": "Interprocess Data Read",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Target Communication/Interprocess_Data_Read.md",
+  "SoC Blockset/Processor Interconnect/Interprocess_Data_Read.md"
+ ],
+ "text": "使用进程间通信通道从另一个处理器接收消息，输入 1 路、输出 2 路；按 {Channel number} 指定通道号；{Enable simulation port} 为模块启用外设仿真端口、{Data type} 指定进程间数据通道的数据类型、{Circular FIFO depth} 指定存储缓冲区数量、{Circular FIFO element size} 指定从进程间数据通道读取的数据向量大小、{Acknowledge interrupts} 以确认中断、{Participating cores} 指定处理器的参与内核 The options vary based on the hardware board you、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "来自进程间数据通道的数据消息 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "从另一个处理器读取的数据帧 vector"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "进程间数据读取状态 0 | 1 | 2 | 4 | 6"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable simulation port",
+   "default": "on",
+   "values": "为模块启用外设仿真端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "进程间数据通道的数据类型 double (default) | single | int8 | int16 | int32 | int64 | int64 | uint8 | uint16 | uint32 | uint64 | uint64 | Boolean | bus",
+   "group": ""
+  },
+  {
+   "name": "Circular FIFO depth",
+   "default": "1",
+   "values": "存储缓冲区数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Circular FIFO element size",
+   "default": "1",
+   "values": "从进程间数据通道读取的数据向量大小 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Channel number",
+   "default": "0",
+   "values": "选择通道号 0 (default) | 1 | 2 |...",
+   "group": ""
+  },
+  {
+   "name": "Acknowledge interrupts",
+   "default": "off",
+   "values": "选择以确认中断 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Participating cores",
+   "default": "",
+   "values": "选择处理器的参与内核 The options vary based on the hardware board you select",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

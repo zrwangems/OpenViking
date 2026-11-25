@@ -1,0 +1,53 @@
+{
+ "key": "ethercatgetemergencydata",
+ "title": "EtherCAT Get Emergency",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Get_Emergency.md"
+ ],
+ "text": "从 EtherCAT 总线收集紧急消息；输出 4 路；{Network Device Index} 指定 EtherCAT 网络标识符、{Log messages to statusmonitor} 启用消息记录、{Sample time} 指定模块的采样时间 .001，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Err Code",
+   "direction": "output",
+   "summary": "错误代码 uint16"
+  },
+  {
+   "name": "Err Reg",
+   "direction": "output",
+   "summary": "错误寄存器 uint8"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "紧急数据向量 uint8"
+  },
+  {
+   "name": "Name",
+   "direction": "output",
+   "summary": "站地址 uint8"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT 网络标识符 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "Log messages to statusmonitor",
+   "default": "on",
+   "values": "启用消息记录 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": ".001",
+   "values": "模块的采样时间 .001 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

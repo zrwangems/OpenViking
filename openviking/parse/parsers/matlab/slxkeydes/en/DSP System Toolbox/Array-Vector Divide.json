@@ -1,0 +1,84 @@
+{
+ "key": "Array-Vector Divide",
+ "title": "Array-Vector Divide",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Array_Vector_Divide.md"
+ ],
+ "text": "Divide array by vector along specified dimension, 2 inputs, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode; {Divide along dimension} sets the dimension along which to divide, {Vector (V) source} sets the source of vector V, {Vector (V)} sets the vector to divide, {Saturate on integer overflow}, {Output}, {Output Minimum}, {Output Maximum} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Input array scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "Vector to divide vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output scalar | vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Divide along dimension",
+   "default": "1",
+   "values": "Dimension along which to divide 1 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V) source",
+   "default": "port",
+   "values": "Source of vector V Input port (default) | Dialog parameter",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V)",
+   "default": "0.25]",
+   "values": "Vector to divide [0.5 0.25] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Output data type Inherit: Same as first input (default) | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Output minimum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Output maximum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

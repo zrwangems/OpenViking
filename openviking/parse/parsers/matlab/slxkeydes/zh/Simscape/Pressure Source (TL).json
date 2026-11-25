@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Source (TL)",
+ "title": "Pressure Source (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Sources/Pressure_Source_TL.md"
+ ],
+ "text": "生成恒定或随时间变化的压差。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,64 @@
+{
+ "key": "Rr L Estimator",
+ "title": "Rr L Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/ACIM Parameter Estimation/Rr_L_Estimator.md"
+ ],
+ "text": "估计交流感应电机 (ACIM) 的转子电阻 ( R r )、励磁电感 ( L m )、定子漏电感 ( L ls ) 和转子漏电感 ( L lr )，输入 4 路、输出 6 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "三相电流响应 scalar"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "直流母线电压 scalar"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "用于 L d 估计的控制信号 logical"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "总线信号输入 bus"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a、b 和 c 轴定子参考电压分量 scalar"
+  },
+  {
+   "name": "Rr",
+   "direction": "output",
+   "summary": "估计的转子电阻 scalar"
+  },
+  {
+   "name": "Lm",
+   "direction": "output",
+   "summary": "估计的励磁电感 scalar"
+  },
+  {
+   "name": "Lls",
+   "direction": "output",
+   "summary": "估计的定子漏电感 scalar"
+  },
+  {
+   "name": "Llr",
+   "direction": "output",
+   "summary": "估计的转子漏电感 scalar"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "调试信号 bus"
+  }
+ ],
+ "params": []
+}

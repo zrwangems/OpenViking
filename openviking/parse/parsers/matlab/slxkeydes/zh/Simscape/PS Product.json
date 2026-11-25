@@ -1,0 +1,13 @@
+{
+ "key": "PS Product",
+ "title": "PS Product",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Product.md"
+ ],
+ "text": "将两个物理信号输入相乘。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

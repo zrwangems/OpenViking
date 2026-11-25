@@ -1,0 +1,360 @@
+{
+ "key": "Vehicle suspension",
+ "title": "Twist-Beam Suspension - K and C",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Suspension/Twist_Beam_Suspension_K_and_C.md",
+  "Vehicle Dynamics Blockset/Suspension/Independent_Suspension_K_and_C.md",
+  "Vehicle Dynamics Blockset/Suspension/Independent_Suspension_Double_Wishbone.md",
+  "Vehicle Dynamics Blockset/Suspension/Independent_Suspension_MacPherson.md",
+  "Vehicle Dynamics Blockset/Suspension/Solid_Axle_Suspension.md",
+  "Vehicle Dynamics Blockset/Suspension/Solid_Axle_Suspension_Coil_Spring.md",
+  "Vehicle Dynamics Blockset/Suspension/Solid_Axle_Suspension_Leaf_Spring.md",
+  "Vehicle Dynamics Blockset/Suspension/Solid_Axle_Suspension_Mapped.md",
+  "Vehicle Dynamics Blockset/Suspension/Independent_Suspension_Mapped.md"
+ ],
+ "text": "Twist-beam kinematics and compliance test suspension, 11 inputs, 6 outputs, {Drivetrain type} sets Type of drivetrain; {Steered axle enable by axle, StrgEnByAxl} sets the boolean vector to enable axle steering, {Anti-sway axle enable by axle, AntiSwayEnByAxl} sets the boolean vector to enable axle anti-sway, {Suspension type} sets the type of suspension Independent front, {+ Steer angle} sets the positive steer angle, {+ Fx used in compliance tests} sets the positive longitudinal force, {+ Fy used in compliance tests} sets the positive lateral force, {+ Suspension Jounce} sets the positive suspension jounce, {+ WhlMz used in compliance tests} sets the positive yaw moment, {Shock type} sets the type of shock, {Shock force vs shock compression rate, ShckFrcVsCompRate} sets the table struct, {Motion ratios by axle, MotRatios} sets the table struct, {Bump steer, BumpSteer} sets the table struct, {Bump camber, BumpCamber} sets the table struct, {Bump caster, BumpCaster} sets the table struct, {Lateral wheel center displacement, LatWhlCtrDisp} sets the table struct, {Longitudinal wheel center displacement, LngWhlCtrDisp} sets the table struct, {Normal wheel rates, NrmlWhlRates} sets the table struct, {Normal wheel force offsets, NrmlWhlFrcOff} sets the force offset, {Roll steer, RollSteer} sets the table struct, {Roll camber, RollCamber} sets the table struct, {Roll caster, RollCaster} sets the table struct, {Front suspension roll stiffness with anti-roll bar, RollStiffArbFrnt} sets the anti-sway bar enabled, {Front suspension roll stiffness without anti-roll bar, RollStiffNoArbFrnt} sets the anti-sway bar not enabled, {Rear suspension roll stiffness without twist-beam, RollStiffNoTwstRear} sets the anti-sway bar not enabled, {Camber vs steer angle, CambVsSteerAng} sets the table struct, {Caster vs steer angle, CastVsSteerAng} sets the table struct, {Longitudinal steer compliance, LngSteerCompl} sets the table struct, {Longitudinal camber compliance, LngCambCompl} sets the table struct, {Longitudinal caster compliance, LngCastCompl} sets the table struct, {Longitudinal wheel center compliance, LngWhlCtrCompl} sets the table struct, {Lateral wheel center compliance, LatWhlCtrComplLng} sets the table struct, {Lateral steer compliance, LatSteerCompl} sets the table struct, {Lateral camber compliance, LatCambCompl} sets the table struct, {Lateral wheel center compliance from lateral sources, LatWhlCtrComplLat} sets the table struct, {Aligning torque steer compliance, AlgnTrqSteerCompl} sets the table struct, {Aligning torque camber compliance, AlgnTrqCambCompl} sets the table struct, {Vertical load transfer, VrtLdTrnsfr} sets the table struct, {Toe, StatToe} sets the wheel toe angle, {Camber, StatCamber} sets the wheel camber angle, {Caster, StatCaster} sets the wheel caster angle and {Static loaded radius of wheels, StatLdWhlR} sets the wheel radius. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WhlPz",
+   "direction": "input",
+   "summary": "Wheel z -axis displacement array"
+  },
+  {
+   "name": "WhlRe",
+   "direction": "input",
+   "summary": "Wheel effective radius array"
+  },
+  {
+   "name": "WhlVz",
+   "direction": "input",
+   "summary": "Wheel z -axis velocity array"
+  },
+  {
+   "name": "WhlFx",
+   "direction": "input",
+   "summary": "Longitudinal wheel force on vehicle array"
+  },
+  {
+   "name": "WhlFy",
+   "direction": "input",
+   "summary": "Lateral wheel force on vehicle array"
+  },
+  {
+   "name": "WhlM",
+   "direction": "input",
+   "summary": "Suspension moment on wheel array"
+  },
+  {
+   "name": "VehP",
+   "direction": "input",
+   "summary": "Vehicle displacement array"
+  },
+  {
+   "name": "VehV",
+   "direction": "input",
+   "summary": "Vehicle velocity array"
+  },
+  {
+   "name": "StrgAng",
+   "direction": "input",
+   "summary": "Steering angle, optional array"
+  },
+  {
+   "name": "Phi",
+   "direction": "input",
+   "summary": "Vehicle pitch angle scalar"
+  },
+  {
+   "name": "TrckWdth",
+   "direction": "input",
+   "summary": "Track width array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "VehF",
+   "direction": "output",
+   "summary": "Suspension force on vehicle array"
+  },
+  {
+   "name": "VehM",
+   "direction": "output",
+   "summary": "Suspension moment on vehicle array"
+  },
+  {
+   "name": "WhlF",
+   "direction": "output",
+   "summary": "Suspension force on wheel array"
+  },
+  {
+   "name": "WhlV",
+   "direction": "output",
+   "summary": "Wheel velocity array"
+  },
+  {
+   "name": "WhlAng",
+   "direction": "output",
+   "summary": "Wheel camber, caster, toe angles array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Steered axle enable by axle, StrgEnByAxl",
+   "default": "0]",
+   "values": "Boolean vector to enable axle steering [1 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Anti-sway axle enable by axle, AntiSwayEnByAxl",
+   "default": "0]",
+   "values": "Boolean vector to enable axle anti-sway [0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Suspension type",
+   "default": "rear",
+   "values": "Type of suspension Independent front and rear (default) | Independent front and twist beam rear",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Drivetrain type",
+   "default": "FWD",
+   "values": "Type of drivetrain FWD (default) | RWD | AWD",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "+ Steer angle",
+   "default": "Right",
+   "values": "Positive steer angle Right (default) | Left",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "+ Fx used in compliance tests",
+   "default": "Front",
+   "values": "Positive longitudinal force Front (default) | Rear",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "+ Fy used in compliance tests",
+   "default": "Right",
+   "values": "Positive lateral force Right (default) | Left",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "+ Suspension Jounce",
+   "default": "Up",
+   "values": "Positive suspension jounce Up (default) | Down",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "+ WhlMz used in compliance tests",
+   "default": "Counter-clockwise",
+   "values": "Positive yaw moment Counter-clockwise (default) | Clockwise",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Shock type",
+   "default": "Table-based",
+   "values": "Type of shock force Table-based (default) | Table-based individual | Constant",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Shock force vs shock compression rate, ShckFrcVsCompRate",
+   "default": "5000])",
+   "values": "Table struct(’FL’,[-100. -5000;0 0;100. 5000],’FR’,[-100. -5000;0 0;100. 5000],’RL’,[-100. -5000;0 0;100. 5000],’RR’,[-100. -5000;0 0;100. 5000]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Motion ratios by axle, MotRatios",
+   "default": "0.1])",
+   "values": "Table struct(’FL’,[-0.1 -0.1;0 0;0.1 0.1],’FR’,[-0.1 -0.1;0 0;0.1 0.1],’RL’,[-0.1 -0.1;0 0;0.1 0.1],’RR’,[-0.1 -0.1;0 0;0.1 0.1]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Bump steer, BumpSteer",
+   "default": "0.])",
+   "values": "Table struct(’FL’,[-0.1 1.1459;0 0;0.1 -1.1459],’FR’,[-0.1 1.1459;0 0;0.1 -1.1459],’RL’,[-0.1 0.;0 0;0.1 0.],’RR’,[-0.1 0.;0 0;0.1 0.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Bump camber, BumpCamber",
+   "default": "0.])",
+   "values": "Table struct(’FL’,[-0.1 1.7189;0 0;0.1 -1.7189],’FR’,[-0.1 1.7189;0 0;0.1 -1.7189],’RL’,[-0.1 0.;0 0;0.1 0.],’RR’,[-0.1 0.;0 0;0.1 0.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Bump caster, BumpCaster",
+   "default": "11.4592])",
+   "values": "Table struct(’FL’,[-0.1 1.1459;0 0;0.1 -1.1459],’FR’,[-0.1 1.1459;0 0;0.1 -1.1459],’RL’,[-0.1 -11.4592;0 0;0.1 11.4592],’RR’,[-0.1 -11.4592;0 0;0.1 11.4592]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Lateral wheel center displacement, LatWhlCtrDisp",
+   "default": "0.])",
+   "values": "Table struct(’FL’,[-0.1 0.02;0 0;0.1 -0.02],’FR’,[-0.1 0.02;0 0;0.1 -0.02],’RL’,[-0.1 0.;0 0;0.1 0.],’RR’,[-0.1 0.;0 0;0.1 0.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Longitudinal wheel center displacement, LngWhlCtrDisp",
+   "default": "0.01])",
+   "values": "Table struct(’FL’,[-0.1 -0.002;0 0;0.1 0.002],’FR’,[-0.1 -0.002;0 0;0.1 0.002],’RL’,[-0.1 0.;0 0;0.1 0.],’RR’,[-0.1 0.02;0 0;0.1 0.01]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Normal wheel rates, NrmlWhlRates",
+   "default": "5000])",
+   "values": "Table struct(’FL’,[-100. -5000;0 0;100. 5000],’FR’,[-100. -5000;0 0;100. 5000],’RL’,[-100. -5000;0 0;100. 5000],’RR’,[-100. -5000;0 0;100. 5000]) (default) | vector",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Normal wheel force offsets, NrmlWhlFrcOff",
+   "default": "0]",
+   "values": "Force offset [0 0 0 0] (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Roll steer, RollSteer",
+   "default": "-1.])",
+   "values": "Table struct(’RL’,[-10. -1.;0 0;10. 1.],’RR’,[-10. 1.;0 0;10. -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Roll camber, RollCamber",
+   "default": "-1.])",
+   "values": "Table struct(’RL’,[-10. -1.;0 0;10. 1.],’RR’,[-10. 1.;0 0;10. -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Roll caster, RollCaster",
+   "default": "-1.])",
+   "values": "Table struct(’RL’,[-10. -1.;0 0;10. 1.],’RR’,[-10. 1.;0 0;10. -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Front suspension roll stiffness with anti-roll bar, RollStiffArbFrnt",
+   "default": "800",
+   "values": "Anti-sway bar enabled 800 (default) | scalar",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Front suspension roll stiffness without anti-roll bar, RollStiffNoArbFrnt",
+   "default": "0",
+   "values": "Anti-sway bar not enabled 0 (default) | scalar",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Rear suspension roll stiffness without twist-beam, RollStiffNoTwstRear",
+   "default": "0",
+   "values": "Anti-sway bar not enabled 0 (default) | scalar",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Camber vs steer angle, CambVsSteerAng",
+   "default": "-1.])",
+   "values": "Table struct(’FL’,[-10. -1.;0 0;10. 1.],’FR’,[-10. 1.;0 0;10. -1.],’RL’,[-10. -1.;0 0;10. 1.],’RR’,[-10. 1.;0 0;10. -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Caster vs steer angle, CastVsSteerAng",
+   "default": "-1.])",
+   "values": "Table struct(’FL’,[-10. -1.;0 0;10. 1.],’FR’,[-10. 1.;0 0;10. -1.],’RL’,[-10. -1.;0 0;10. 1.],’RR’,[-10. 1.;0 0;10. -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Longitudinal steer compliance, LngSteerCompl",
+   "default": "-1.]))",
+   "values": "Table struct(’NegFx’,struct(’FL’,[-2. -1.;0 0;2. 1.],’FR’,[-2. 1.;0 0;2. -1.],’RL’,[-2. -1.;0 0;2. 1.],’RR’,[-2. 1.;0 0;2. -1.]),’PosFx’,struct(’FL’,[-2. -1.;0 0;2. 1.],’FR’,[-2. 1.;0 0;2. -1.],’RL’,[-2. -1.;0 0;2. 1.],’RR’,[-2. 1.;0 0;2. -1.])) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Longitudinal camber compliance, LngCambCompl",
+   "default": "-1.]))",
+   "values": "Table struct(’NegFx’,struct(’FL’,[-2. -1.;0 0;2. 1.],’FR’,[-2. 1.;0 0;2. -1.],’RL’,[-2. -1.;0 0;2. 1.],’RR’,[-2. 1.;0 0;2. -1.]),’PosFx’,struct(’FL’,[-2. -1.;0 0;2. 1.],’FR’,[-2. 1.;0 0;2. -1.],’RL’,[-2. -1.;0 0;2. 1.],’RR’,[-2. 1.;0 0;2. -1.])) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Longitudinal caster compliance, LngCastCompl",
+   "default": "-1.]))",
+   "values": "Table struct(’NegFx’,struct(’FL’,[-2. -1.;0 0;2. 1.],’FR’,[-2. 1.;0 0;2. -1.],’RL’,[-2. -1.;0 0;2. 1.],’RR’,[-2. 1.;0 0;2. -1.]),’PosFx’,struct(’FL’,[-2. -1.;0 0;2. 1.],’FR’,[-2. 1.;0 0;2. -1.],’RL’,[-2. -1.;0 0;2. 1.],’RR’,[-2. 1.;0 0;2. -1.])) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Longitudinal wheel center compliance, LngWhlCtrCompl",
+   "default": "-10.]))",
+   "values": "Table struct(’NegFx’,struct(’FL’,[-2. -10.;0 0;2. 10.],’FR’,[-2. 10.;0 0;2. -10.],’RL’,[-2. -10.;0 0;2. 10.],’RR’,[-2. 10.;0 0;2. -10.]),’PosFx’,struct(’FL’,[-2. -10.;0 0;2. 10.],’FR’,[-2. 10.;0 0;2. -10.],’RL’,[-2. -10.;0 0;2. 10.],’RR’,[-2. 10.;0 0;2. -10.])) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Lateral wheel center compliance, LatWhlCtrComplLng",
+   "default": "-10.]))",
+   "values": "Table struct(’NegFx’,struct(’FL’,[-2. -10.;0 0;2. 10.],’FR’,[-2. 10.;0 0;2. -10.],’RL’,[-2. -10.;0 0;2. 10.],’RR’,[-2. 10.;0 0;2. -10.]),’PosFx’,struct(’FL’,[-2. -10.;0 0;2. 10.],’FR’,[-2. 10.;0 0;2. -10.],’RL’,[-2. -10.;0 0;2. 10.],’RR’,[-2. 10.;0 0;2. -10.])) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Lateral steer compliance, LatSteerCompl",
+   "default": "-1.])",
+   "values": "Table struct(’FL’,[-2. -1.;0 0;2. 1.],’FR’,[-2. 1.;0 0;2. -1.],’RL’,[-2. -1.;0 0;2. 1.],’RR’,[-2. 1.;0 0;2. -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Lateral camber compliance, LatCambCompl",
+   "default": "-1.])",
+   "values": "Table struct(’FL’,[-2. -1.;0 0;2. 1.],’FR’,[-2. 1.;0 0;2. -1.],’RL’,[-2. -1.;0 0;2. 1.],’RR’,[-2. 1.;0 0;2. -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Lateral wheel center compliance from lateral sources, LatWhlCtrComplLat",
+   "default": "-5.])",
+   "values": "Table struct(’FL’,[-2. -5.;0 0;2. 5.],’FR’,[-2. 5.;0 0;2. -5.],’RL’,[-2. -5.;0 0;2. 5.],’RR’,[-2. 5.;0 0;2. -5.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Aligning torque steer compliance, AlgnTrqSteerCompl",
+   "default": "-1.])",
+   "values": "Table struct(’FL’,[-0.2 -1.;0 0;0.2 1.],’FR’,[-0.2 1.;0 0;0.2 -1.],’RL’,[-0.2 -1.;0 0;0.2 1.],’RR’,[-0.2 1.;0 0;0.2 -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Aligning torque camber compliance, AlgnTrqCambCompl",
+   "default": "-1.])",
+   "values": "Table struct(’FL’,[-0.2 -1.;0 0;0.2 1.],’FR’,[-0.2 1.;0 0;0.2 -1.],’RL’,[-0.2 -1.;0 0;0.2 1.],’RR’,[-0.2 1.;0 0;0.2 -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Vertical load transfer, VrtLdTrnsfr",
+   "default": "-1.])",
+   "values": "Table struct(’FL’,[-2. -1.;0 0;2. 1.],’FR’,[-2. 1.;0 0;2. -1.],’RL’,[-2. -1.;0 0;2. 1.],’RR’,[-2. 1.;0 0;2. -1.]) (default)",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Toe, StatToe",
+   "default": "0]",
+   "values": "Wheel toe angle [0 0 0 0] (default) | 1 -by- 4 vector",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Camber, StatCamber",
+   "default": "0]",
+   "values": "Wheel camber angle [0 0 0 0] (default) | 1 -by- 4 vector",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Caster, StatCaster",
+   "default": "0]",
+   "values": "Wheel caster angle [0 0 0 0] (default) | 1 -by- 4 vector",
+   "group": "Suspension Parameters"
+  },
+  {
+   "name": "Static loaded radius of wheels, StatLdWhlR",
+   "default": "0.3]",
+   "values": "Wheel radius [0.3 0.3 0.3 0.3] (default) | 1 -by- 4 vector",
+   "group": "Suspension Parameters"
+  }
+ ]
+}

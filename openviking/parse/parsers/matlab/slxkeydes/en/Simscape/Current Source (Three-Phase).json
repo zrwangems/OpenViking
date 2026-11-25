@@ -1,0 +1,13 @@
+{
+ "key": "Current Source (Three-Phase)",
+ "title": "Current Source (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Current_Source_Three_Phase.md"
+ ],
+ "text": "Ideal three-phase current source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

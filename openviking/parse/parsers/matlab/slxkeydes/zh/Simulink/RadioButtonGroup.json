@@ -1,0 +1,62 @@
+{
+ "key": "RadioButtonGroup",
+ "title": "Radio Button",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Radio_Button.md"
+ ],
+ "text": "Radio Button 模块允许您在仿真期间更改所连接参数的值；按 {Label} 指定模块标签位置；{Connection} 指定要连接的模块参数值 parameter value connection、{Enumerated Data Type} 使用枚举数据类型指定状态值和标签、{Group Name} 指定 Radio Button 组名称、{States} 为已连接参数选择的状态集 scalar and character、{Opacity} 指定模块背景不透明度、{Foreground Color} 指定模块前景色、{Background Color} 指定模块背景色，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "要连接的模块参数值 parameter value connection options",
+   "group": "Connection"
+  },
+  {
+   "name": "Enumerated Data Type",
+   "default": "off",
+   "values": "使用枚举数据类型指定状态值和标签 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Group Name",
+   "default": "RadioButtonGroup",
+   "values": "Radio Button 组名称 RadioButtonGroup (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "模块标签位置 Top (default) | Bottom | Hide",
+   "group": "Main"
+  },
+  {
+   "name": "States",
+   "default": "",
+   "values": "为已连接参数选择的状态集 scalar and character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "模块背景不透明度 1 (default) | scalar",
+   "group": "Format"
+  },
+  {
+   "name": "Foreground Color",
+   "default": "",
+   "values": "模块前景色 [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Background Color",
+   "default": "",
+   "values": "模块背景色 [r g b] vector",
+   "group": "Format"
+  }
+ ]
+}

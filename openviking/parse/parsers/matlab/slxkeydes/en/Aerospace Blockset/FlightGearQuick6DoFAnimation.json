@@ -1,0 +1,38 @@
+{
+ "key": "FlightGearQuick6DoFAnimation",
+ "title": "FlightGear Preconfigured 6DoF Animation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/FlightGear_Preconfigured_6DoF_Animation.md"
+ ],
+ "text": "Connect model to FlightGear flight simulator, 1 input; {Destination IP address}, {Destination port} and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "l,μ,h,ϕ,θ,ψ",
+   "direction": "input",
+   "summary": "Longitude, latitude, altitude, roll, pitch, and yaw vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Destination IP address",
+   "default": "127.0.0.1",
+   "values": "Destination IP address 127.0.0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Destination port",
+   "default": "",
+   "values": "Destination port scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "Sample time 1/30 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

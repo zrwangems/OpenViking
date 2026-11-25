@@ -1,0 +1,13 @@
+{
+ "key": "Constant Volume Chamber (G)",
+ "title": "Constant Volume Chamber (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Constant_Volume_Chamber_G.md"
+ ],
+ "text": "Chamber with fixed volume of gas and variable number of ports.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

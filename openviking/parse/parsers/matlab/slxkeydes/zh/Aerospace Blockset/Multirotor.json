@@ -1,0 +1,206 @@
+{
+ "key": "Multirotor",
+ "title": "Multirotor",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Propulsion/Multirotor.md"
+ ],
+ "text": "计算气动力和力矩，输入 9 路、输出 4 路；按 {Thrust coefficient (CT)} 指定推力系数；{Units} 指定输入和输出单位 Metric、{Modeling} 指定旋翼推力计算方法 Without flap、{Include pitch angle inputs} 启用桨距角输入、{Configuration} 指定飞行器配置 Quadcopter、{Arm length (m)} 指定飞行器臂长、{Height (m)} 指定相对于飞行器重心的垂直偏移、{CT and CQ Source} 用于选择推力系数和扭矩系数值来源的下拉菜单、{Torque coefficient (CQ)} 指定扭矩系数 7.8263e-4、{Number of blades} 指定每个旋翼的叶片数、{Output computed CT and CQ} 输出计算得到的推力系数和扭矩系数、{Radius (m)} 指定旋翼半径、{Chord (m)} 指定叶片弦长、{Hinge offset (m)} 指定铰链偏移、{Lift curve slope (per rad)} 指定升力曲线斜率、{Mean drag coefficient} 指定平均阻力系数、{Lock number} 指定洛克数、{Twist distribution} 指定旋翼叶片扭转分布、{Blade root angle (rad)} 指定叶片根部桨距角、{Blade twist angle (rad)} 指定叶片扭转角、{Blade tip angle (rad)} 指定叶尖桨距角，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ω (rad/sec)",
+   "direction": "input",
+   "summary": "旋翼转速 N -element vector"
+  },
+  {
+   "name": "ρ",
+   "direction": "input",
+   "summary": "空气密度 positive scalar"
+  },
+  {
+   "name": "V b",
+   "direction": "input",
+   "summary": "旋翼的机体速度 3-by-1 vector | 1-by-3 vector"
+  },
+  {
+   "name": "ω b",
+   "direction": "input",
+   "summary": "角速度 3-by-1 vector | 1-by-3 vector"
+  },
+  {
+   "name": "θ 0",
+   "direction": "input",
+   "summary": "桨叶总距角 N-by-1 vector | 1-by-N vector"
+  },
+  {
+   "name": "θ c",
+   "direction": "input",
+   "summary": "横向周期变距桨距角 N-by-1 vector | 1-by-N vector"
+  },
+  {
+   "name": "θ s",
+   "direction": "input",
+   "summary": "纵向周期变距桨距角 N-by-1 vector | 1-by-N vector"
+  },
+  {
+   "name": "C T",
+   "direction": "input",
+   "summary": "输入推力系数 nonzero positive scalar | N-by-1 vector"
+  },
+  {
+   "name": "C Q",
+   "direction": "input",
+   "summary": "输入转矩系数 nonzero positive scalar | N-by-1 vector"
+  },
+  {
+   "name": "F xyz (N)",
+   "direction": "output",
+   "summary": "总力 three-element vector"
+  },
+  {
+   "name": "M xyz (Nm)",
+   "direction": "output",
+   "summary": "净力矩 three-element vector"
+  },
+  {
+   "name": "C T",
+   "direction": "output",
+   "summary": "计算得出的推力系数 positive vector"
+  },
+  {
+   "name": "C Q",
+   "direction": "output",
+   "summary": "计算得出的转矩系数 positive vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": "Main"
+  },
+  {
+   "name": "Modeling",
+   "default": "effects",
+   "values": "旋翼推力计算方法 Without flap effects (default) | With flap effects",
+   "group": "Main"
+  },
+  {
+   "name": "Include pitch angle inputs",
+   "default": "off",
+   "values": "启用桨距角输入 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Configuration",
+   "default": "X",
+   "values": "飞行器配置 Quadcopter X (default) | Quadcopter +",
+   "group": "Vehicle"
+  },
+  {
+   "name": "Arm length (m)",
+   "default": "0.0624",
+   "values": "飞行器臂长 0.0624 (default) | nonzero positive scalar",
+   "group": "Vehicle"
+  },
+  {
+   "name": "Height (m)",
+   "default": "-0.0159",
+   "values": "相对于飞行器重心的垂直偏移 -0.0159 (default) | nonzero scalar",
+   "group": "Vehicle"
+  },
+  {
+   "name": "CT and CQ Source",
+   "default": "’Dialog’",
+   "values": "用于选择推力系数和扭矩系数值来源的下拉菜单 ’Dialog’ (default) | ’Compute using BEMT’ | ’Ports’",
+   "group": "Rotor"
+  },
+  {
+   "name": "Thrust coefficient (CT)",
+   "default": "0.0107",
+   "values": "推力系数 0.0107 (default) | nonzero positive scalar | nonzero positive N-by-1 vector",
+   "group": "Rotor"
+  },
+  {
+   "name": "Torque coefficient (CQ)",
+   "default": "7.8263e-4",
+   "values": "扭矩系数 7.8263e-4 (default) | nonzero positive scalar | nonzero positive N-by-1 vector",
+   "group": "Rotor"
+  },
+  {
+   "name": "Number of blades",
+   "default": "2",
+   "values": "每个旋翼的叶片数 2 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Output computed CT and CQ",
+   "default": "off",
+   "values": "输出计算得到的推力系数和扭矩系数 off (default) | on",
+   "group": "Rotor"
+  },
+  {
+   "name": "Radius (m)",
+   "default": "0.0330",
+   "values": "旋翼半径 0.0330 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Chord (m)",
+   "default": "0.0080",
+   "values": "叶片弦长 0.0080 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Hinge offset (m)",
+   "default": "0",
+   "values": "铰链偏移 0 (default) | positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Lift curve slope (per rad)",
+   "default": "5.5",
+   "values": "升力曲线斜率 5.5 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Mean drag coefficient",
+   "default": "0",
+   "values": "平均阻力系数 0 (default) | positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Lock number",
+   "default": "0.6051",
+   "values": "洛克数 0.6051 (default) | nonzero positive scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Twist distribution",
+   "default": "Linear",
+   "values": "旋翼叶片扭转分布 Linear (default) | Ideal",
+   "group": "Rotor"
+  },
+  {
+   "name": "Blade root angle (rad)",
+   "default": "0.2548",
+   "values": "叶片根部桨距角 0.2548 (default) | real scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Blade twist angle (rad)",
+   "default": "-0.1361",
+   "values": "叶片扭转角 -0.1361 (default) | real scalar",
+   "group": "Rotor"
+  },
+  {
+   "name": "Blade tip angle (rad)",
+   "default": "0.1018",
+   "values": "叶尖桨距角 0.1018 (default) | real scalar",
+   "group": "Rotor"
+  }
+ ]
+}

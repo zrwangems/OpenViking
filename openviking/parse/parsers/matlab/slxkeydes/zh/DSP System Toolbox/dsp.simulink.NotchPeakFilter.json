@@ -1,0 +1,126 @@
+{
+ "key": "dsp.simulink.NotchPeakFilter",
+ "title": "Notch-Peak Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Notch_Peak_Filter.md"
+ ],
+ "text": "设计二阶可调陷波和峰值 IIR 滤波器，输入 1 路、输出 2 路；按 {Filter output} 指定滤波器输出响应 Notch and；{Filter specification} 指定滤波器设计规格 Bandwidth and center、{Specify bandwidth from input port} 指定从输入端口指定 3 dB 带宽、{3 dB bandwidth} 指定 3 dB 带宽、{Specify center frequency from input port} 指定从输入端口指定中心频率、{Center frequency of notch or peak} 指定陷波或峰值中心频率、{Specify bandwidth coefficient from input port} 指定从输入端口指定带宽系数、{Bandwidth coefficient} 指定带宽系数、{Specify center frequency coefficient from input port} 用于从输入端口指定中心频率系数、{Center frequency coefficient} 指定中心频率系数、{Specify quality factor from input port} 用于从输入端口指定品质因数、{Quality factor} 指定陷波或峰值滤波器的品质因数、{Sample rate mode} 用于指定输入采样率的模式 Use normalized、{Input sample rate (Hz)} 指定输入的采样率、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "notch",
+   "direction": "output",
+   "summary": "陷波滤波器输出 vector | matrix"
+  },
+  {
+   "name": "peak",
+   "direction": "output",
+   "summary": "峰值滤波器输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter specification",
+   "default": "frequency",
+   "values": "滤波器设计规格 Bandwidth and center frequency (default) | Coefficients | Quality factor and center frequency",
+   "group": ""
+  },
+  {
+   "name": "Specify bandwidth from input port",
+   "default": "off",
+   "values": "从输入端口指定 3 dB 带宽的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "3 dB bandwidth",
+   "default": "2205",
+   "values": "3 dB 带宽 2205 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency from input port",
+   "default": "off",
+   "values": "从输入端口指定中心频率的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Center frequency of notch or peak",
+   "default": "11025",
+   "values": "陷波或峰值中心频率 11025 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify bandwidth coefficient from input port",
+   "default": "off",
+   "values": "从输入端口指定带宽系数的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Bandwidth coefficient",
+   "default": "0.72654",
+   "values": "带宽系数 0.72654 (default) | real scalar in the range [− 1 1 ]",
+   "group": ""
+  },
+  {
+   "name": "Specify center frequency coefficient from input port",
+   "default": "off",
+   "values": "用于从输入端口指定中心频率系数的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Center frequency coefficient",
+   "default": "0",
+   "values": "中心频率系数 0 (default) | real scalar in the range [− 1 1 ]",
+   "group": ""
+  },
+  {
+   "name": "Specify quality factor from input port",
+   "default": "off",
+   "values": "用于从输入端口指定品质因数的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Quality factor",
+   "default": "5",
+   "values": "陷波或峰值滤波器的品质因数 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter output",
+   "default": "Peak",
+   "values": "滤波器输出响应 Notch and Peak (default) | Notch | Peak",
+   "group": ""
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "用于指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "button",
+   "values": "查看滤波器响应 button (default)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

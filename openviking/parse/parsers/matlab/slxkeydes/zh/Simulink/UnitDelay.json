@@ -1,0 +1,56 @@
+{
+ "key": "UnitDelay",
+ "title": "Unit Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Unit_Delay.md",
+  "HDL Coder/Discrete/Unit_Delay.md"
+ ],
+ "text": "将信号延迟一个采样周期，输入 1 路、输出 1 路；按 {初始条件} 指定第一个采样周期输出；{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{采样时间(-1 表示继承)} 指定采样时间命中点之间的离散间隔、{状态名称} 指定模块状态的唯一名称、{状态名称必须解析为 Simulink 信号对象} 指定要求状态名称解析为信号对象，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "第一个采样周期输出 0 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "指定基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样时间命中点之间的离散间隔 -1 (默认) | 1×2 向量",
+   "group": "常设"
+  },
+  {
+   "name": "状态名称",
+   "default": "’’",
+   "values": "模块状态的唯一名称 ’’ (默认) | 字母数字字符串",
+   "group": "状态属性"
+  },
+  {
+   "name": "状态名称必须解析为 Simulink 信号对象",
+   "default": "off",
+   "values": "要求状态名称解析为信号对象的选项 off (默认) | on",
+   "group": "状态属性"
+  }
+ ]
+}

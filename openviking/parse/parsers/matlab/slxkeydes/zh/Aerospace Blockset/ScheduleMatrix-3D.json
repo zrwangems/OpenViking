@@ -1,0 +1,56 @@
+{
+ "key": "ScheduleMatrix-3D",
+ "title": "Interpolate Matrix(x,y,z)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/Interpolate_Matrix_x_y_z.md"
+ ],
+ "text": "返回给定输入的插值矩阵，输入 6 路、输出 1 路；{Matrix to interpolate} 指定待插值矩阵，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x_k",
+   "direction": "input",
+   "summary": "第一个插值索引 scalar"
+  },
+  {
+   "name": "x_f",
+   "direction": "input",
+   "summary": "第一个插值分数 scalar"
+  },
+  {
+   "name": "y_k",
+   "direction": "input",
+   "summary": "第二个插值索引 scalar"
+  },
+  {
+   "name": "y_f",
+   "direction": "input",
+   "summary": "第二个插值分数 scalar"
+  },
+  {
+   "name": "z_k",
+   "direction": "input",
+   "summary": "第三个插值索引 scalar"
+  },
+  {
+   "name": "z_f",
+   "direction": "input",
+   "summary": "第三个插值分数 scalar"
+  },
+  {
+   "name": "Matrix(x,y,z)",
+   "direction": "output",
+   "summary": "插值矩阵 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Matrix to interpolate",
+   "default": "matrix",
+   "values": "待插值矩阵 matrix (default)",
+   "group": ""
+  }
+ ]
+}

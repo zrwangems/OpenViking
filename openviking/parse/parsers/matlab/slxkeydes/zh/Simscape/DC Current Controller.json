@@ -1,0 +1,82 @@
+{
+ "key": "DC Current Controller",
+ "title": "DC Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Machine Control/DC_Current_Controller.md"
+ ],
+ "text": "带积分抗饱和的离散时间 DC 电流 PI 控制，输入 4 路、输出 1 路；{Proportional gain} 控制器比例增益 K p、{Integral gain} 指定积分增益 K i、{Anti-windup gain} 指定抗饱和增益 K aw、{Voltage limitation} 指定负电压限制 Positive and negative、{Sample time (-1 for inherited)} 指定模块采样时间、{Discretization sample time} 指定离散化采样时间、{Enable zero cancellation} 指定前馈零消去，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "iRef",
+   "direction": "input",
+   "summary": "参考电流 scalar"
+  },
+  {
+   "name": "i",
+   "direction": "input",
+   "summary": "测得电流 scalar"
+  },
+  {
+   "name": "v max",
+   "direction": "input",
+   "summary": "最大 DC 电压 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部复位 scalar"
+  },
+  {
+   "name": "vRef",
+   "direction": "output",
+   "summary": "参考 DC 电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "控制器比例增益 K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "5",
+   "values": "积分增益 K i 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "抗饱和增益 K aw 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Voltage limitation",
+   "default": "voltage",
+   "values": "负电压限制 Positive and negative voltage (default) | Positive voltage only",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "离散化采样时间 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "前馈零消去 off (default) | on",
+   "group": ""
+  }
+ ]
+}

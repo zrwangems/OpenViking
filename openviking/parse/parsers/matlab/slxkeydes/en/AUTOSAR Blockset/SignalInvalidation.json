@@ -1,0 +1,42 @@
+{
+ "key": "SignalInvalidation",
+ "title": "Signal Invalidation",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Signal Routing/Signal_Invalidation.md"
+ ],
+ "text": "Control AUTOSAR root outport data element invalidation, 2 inputs, 1 output, {Signal invalidation policy} sets Invalidation policy; {Initial value} sets the data element initial value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data value numeric value"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Invalidation control flag true | false"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output data value numeric value"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal invalidation policy",
+   "default": "Keep",
+   "values": "Invalidation policy Keep (default) | Replace | DontInvalidate",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "Data element initial value 0 (default) | double",
+   "group": ""
+  }
+ ]
+}

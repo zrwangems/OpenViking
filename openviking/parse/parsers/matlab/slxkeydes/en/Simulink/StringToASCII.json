@@ -1,0 +1,31 @@
+{
+ "key": "StringToASCII",
+ "title": "String to ASCII",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_to_ASCII.md"
+ ],
+ "text": "Convert string signal to uint8 vector, 1 input, 1 output, direct feedthrough; {Output vector size} sets the size of output vector. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input string signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Converted uint8 vector signal vector | 1D vector of N elements"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output vector size",
+   "default": "31",
+   "values": "Size of output vector 31 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

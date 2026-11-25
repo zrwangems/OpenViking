@@ -1,0 +1,74 @@
+{
+ "key": "Dyadic Analysis Filter Bank",
+ "title": "Dyadic Analysis Filter Bank",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Dyadic_Analysis_Filter_Bank.md",
+  "DSP System Toolbox/Transforms/DWT.md"
+ ],
+ "text": "将信号分解为带宽更小且采样率更低的子带，或计算离散小波变换 (DWT)，输入 1 路、输出 1 路、无直接馈通；按 {Filter} 指定子带分解中使用的滤波器类型；{Filter order [synthesis / analysis]} 指定双正交滤波器的分析和合成滤波器阶数、{Wavelet order} 指定正交 wavelet 的阶数、{Lowpass FIR filter coefficients}、{Highpass FIR filter coefficients}、{Number of levels} 指定分析、{Tree structure} 指定滤波器组的结构、{Output} 指定单端口或多端口 Multiple，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "数据输入 column vector | matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "二进子带分解输出 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter",
+   "default": "User-defined",
+   "values": "子带分解中使用的滤波器类型 User-defined (default) | Haar | Daubechies | Symlets | Coiflets | Biorthogonal | Reverse Biorthogonal | Discrete Meyer",
+   "group": ""
+  },
+  {
+   "name": "Filter order [synthesis / analysis]",
+   "default": "1]",
+   "values": "双正交滤波器的分析和合成滤波器阶数 [1 / 1] (default) | [1 / 3] | [1 / 5] | [2 / 2] | [2 / 4] | [2 / 6] | [2 / 8] | [3 / 1] | [3 / 3] | [3 / 5] | [3 / 7] | [3 / 9] | [4 / 4] | [5 / 5] | [6 / 8]",
+   "group": ""
+  },
+  {
+   "name": "Wavelet order",
+   "default": "2",
+   "values": "正交 wavelet 的阶数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Lowpass FIR filter coefficients",
+   "default": "0.3327]",
+   "values": "Lowpass FIR filter coefficients [0.0352 -0.0854 -0.1350 0.4599 0.8069 0.3327] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Highpass FIR filter coefficients",
+   "default": "0.0352]",
+   "values": "Highpass FIR filter coefficients [-0.3327 0.8069 -0.4599 -0.1350 0.0854 0.0352] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Number of levels",
+   "default": "2",
+   "values": "分析（分解）中使用的滤波器组级数 2 (default) | integer greater than or equal to 1",
+   "group": ""
+  },
+  {
+   "name": "Tree structure",
+   "default": "Asymmetric",
+   "values": "滤波器组的结构 Asymmetric (default) | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "ports",
+   "values": "单端口或多端口 Multiple ports (default) | Single port",
+   "group": ""
+  }
+ ]
+}

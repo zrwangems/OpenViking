@@ -1,0 +1,223 @@
+{
+ "key": "DiscreteIntegrator",
+ "title": "Discrete-Time Integrator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Discrete_Time_Integrator.md",
+  "Simulink/Discrete/Discrete_Time_Integrator.md",
+  "Simulink/Quick Insert/Discrete/Accumulator.md",
+  "HDL Coder/Discrete/Discrete_Time_Integrator.md",
+  "HDL Coder/HDL Floating Point Operations/Discrete_Time_Integrator.md"
+ ],
+ "text": "Perform discrete-time integration or accumulation of signal, 3 inputs, 3 outputs, direct feedthrough, {Mode} sets Select data type mode; {Integrator method} sets the accumulation method Integration: Forward, {Gain value} sets the value to multiply with integrator input, {External reset} selects when to reset states to initial, {Initial condition source} sets the option to set initial condition using external signal, {Initial condition}, {Initial condition setting} selects where to apply the initial, {Sample time (-1 for inherited)} sets the interval between samples, {Limit output} limits block output values to specified, {Upper saturation limit} sets the upper limit, {Lower saturation limit} sets the lower limit, {Show saturation port} enables saturation output port, {Show state port} enables state output port, {Ignore limit and reset when linearizing} treats block as not resettable, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Data type} sets the output data type, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Data type override} sets the data type override mode for this signal, {Signedness}, {Word length} sets the bit size of the word that holds the quantized, {Scaling} sets the method for scaling fixed-point data Best, {Fraction length} sets the fraction length for fixed-point data type, {Slope} sets the slope for the fixed-point data, {Bias} sets the bias for the fixed-point data type, {State name} sets the unique name for block state and {State name must resolve to Simulink signal object} sets the option to require that state names resolve to signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "External reset",
+   "direction": "input",
+   "summary": "External reset signal scalar"
+  },
+  {
+   "name": "IC",
+   "direction": "input",
+   "summary": "Initial conditions of the states scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Discrete-time integration or accumulation of input scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Saturation output scalar | vector | matrix"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "State output scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "Accumulation method Integration: Forward Euler (default) | Integration: Backward Euler | Integration: Trapezoidal | Accumulation: Forward Euler | Accumulation: Backward Euler | Accumulation: Trapezoidal",
+   "group": "Main"
+  },
+  {
+   "name": "Gain value",
+   "default": "1.0",
+   "values": "Value to multiply with integrator input 1.0 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "External reset",
+   "default": "none",
+   "values": "Select when to reset states to initial conditions none (default) | rising | falling | either | level | sampled level",
+   "group": "Main"
+  },
+  {
+   "name": "Initial condition source",
+   "default": "internal",
+   "values": "Option to set initial condition using external signal internal (default) | external",
+   "group": "Main"
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial condition of states 0 (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Initial condition setting",
+   "default": "Auto",
+   "values": "Select where to apply the initial condition Auto (default) | Output | Compatibility",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Limit output",
+   "default": "off",
+   "values": "Limit block output values to specified range off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Upper saturation limit",
+   "default": "inf",
+   "values": "Upper limit for the integral inf (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Lower saturation limit",
+   "default": "-inf",
+   "values": "Lower limit for the integral -inf (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Show saturation port",
+   "default": "off",
+   "values": "Enable saturation output port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Show state port",
+   "default": "off",
+   "values": "Enable state output port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Ignore limit and reset when linearizing",
+   "default": "off",
+   "values": "Treat block as not resettable off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Select data type mode Inherit (default) | Built in | Fixed Point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Signedness of fixed-point data Signed (default) | Unsigned",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Specify bias for the fixed-point data type 0 (default) | real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "State name",
+   "default": "’’",
+   "values": "Unique name for block state ’’ (default) | alphanumeric string",
+   "group": "State Attributes"
+  },
+  {
+   "name": "State name must resolve to Simulink signal object",
+   "default": "off",
+   "values": "Option to require that state names resolve to signal object off (default) | on",
+   "group": "State Attributes"
+  }
+ ]
+}

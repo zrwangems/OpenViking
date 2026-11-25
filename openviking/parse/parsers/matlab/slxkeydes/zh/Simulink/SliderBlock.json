@@ -1,0 +1,50 @@
+{
+ "key": "SliderBlock",
+ "title": "Slider",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Slider.md"
+ ],
+ "text": "用滑动标尺调整参数值；按 {标签} 指定模块标签位置；{连接}、{刻度类型} 指定刻度的类型、{最小}、{最大}、{刻度间隔} 指定主刻度线之间的间隔，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "连接",
+   "default": "",
+   "values": "要连接的模块参数值 参数值连接选项",
+   "group": ""
+  },
+  {
+   "name": "刻度类型",
+   "default": "Linear",
+   "values": "刻度的类型 Linear (默认) | Log",
+   "group": ""
+  },
+  {
+   "name": "最小",
+   "default": "0",
+   "values": "最小刻度线值 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "最大",
+   "default": "100",
+   "values": "最大刻度线值 100 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "刻度间隔",
+   "default": "auto",
+   "values": "主刻度线之间的间隔 auto (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "标签",
+   "default": "Top",
+   "values": "模块标签位置 Top (默认) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

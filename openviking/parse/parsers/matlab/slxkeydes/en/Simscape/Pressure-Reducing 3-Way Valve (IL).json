@@ -1,0 +1,13 @@
+{
+ "key": "Pressure-Reducing 3-Way Valve (IL)",
+ "title": "Pressure-Reducing 3-Way Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Pressure Control Valves/Pressure_Reducing_3_Way_Valve_IL.md"
+ ],
+ "text": "Combined pressure-relief and pressure-reducing valve in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

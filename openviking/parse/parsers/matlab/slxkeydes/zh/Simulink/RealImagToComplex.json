@@ -1,0 +1,60 @@
+{
+ "key": "RealImagToComplex",
+ "title": "Real-Imag to Complex",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Real_Imag_to_Complex.md",
+  "HDL Coder/Math Operations/Real_Imag_to_Complex.md"
+ ],
+ "text": "将实和/或虚输入转换为复信号，输入 3 路、输出 1 路；按 {采样时间(-1 表示继承)} 指定采样之间的时间间隔；{输入}、{虚部}、{实部}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Re",
+   "direction": "input",
+   "summary": "复数输出的实部 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Im",
+   "direction": "input",
+   "summary": "复数输出的虚部 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "复数输出的实部或虚部 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "复信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入",
+   "default": "实部",
+   "values": "实数输入，虚数输入，或两者同时存在 实部 (默认) | 虚部 | 实部和虚部",
+   "group": ""
+  },
+  {
+   "name": "虚部",
+   "default": "0",
+   "values": "复数输出的虚部 0 (默认) | 有限标量、向量或矩阵",
+   "group": ""
+  },
+  {
+   "name": "实部",
+   "default": "0",
+   "values": "复数输出的实部 0 (默认) | 有限标量、向量或矩阵",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "key": "Ideal Circulators",
+ "title": "Circulator",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/Circulator.md"
+ ],
+ "text": "使用 S 参数对理想频率无关环行器建模；按 {Reference impedances (Ohm)} 指定环行器的参考阻抗；{Select component} 指定环行器方向 Circulator、{Phase shift, ports 1 and 2 (rad)} 指定端口 1 和端口 2 中信号相位的偏移角度、{Phase shift, ports 3 (rad)} 指定端口 3 中信号相位的偏移角度、{Ground and hide negative terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Select component",
+   "default": "clockwise",
+   "values": "环行器方向 Circulator clockwise (default) | Circulator counter clockwise | Tee H-plane (S11=0) | Reciprocal phase shifter",
+   "group": ""
+  },
+  {
+   "name": "Reference impedances (Ohm)",
+   "default": "50",
+   "values": "环行器的参考阻抗 50 (default) | positive scalar | three-tuple vector",
+   "group": ""
+  },
+  {
+   "name": "Phase shift, ports 1 and 2 (rad)",
+   "default": "0",
+   "values": "端口 1 和端口 2 中信号相位的偏移角度 0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase shift, ports 3 (rad)",
+   "default": "0",
+   "values": "端口 3 中信号相位的偏移角度 0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

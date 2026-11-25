@@ -1,0 +1,65 @@
+{
+ "key": "Horizontal Wind Model",
+ "title": "Horizontal Wind Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Wind/Horizontal_Wind_Model.md"
+ ],
+ "text": "Transform horizontal wind into body-axes coordinates, 3 inputs, 1 output, {Units} sets Input and output units Metric; {Wind speed source}, {Wind speed at altitude (m/s)}, {Wind direction source} and {Wind direction at altitude (degrees clockwise from north)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DCM",
+   "direction": "input",
+   "summary": "Direction cosine matrix 3-by-3 matrix"
+  },
+  {
+   "name": "V wind",
+   "direction": "input",
+   "summary": "Wind speed 1-by-3 vector"
+  },
+  {
+   "name": "θ wind",
+   "direction": "input",
+   "summary": "Wind direction scalar"
+  },
+  {
+   "name": "V wind",
+   "direction": "output",
+   "summary": "Wind velocity 3-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Wind speed source",
+   "default": "Internal",
+   "values": "Wind speed source Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Wind speed at altitude (m/s)",
+   "default": "15",
+   "values": "Wind speed 15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wind direction source",
+   "default": "Internal",
+   "values": "Wind direction source Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Wind direction at altitude (degrees clockwise from north)",
+   "default": "0",
+   "values": "Wind direction 0 (default)",
+   "group": ""
+  }
+ ]
+}

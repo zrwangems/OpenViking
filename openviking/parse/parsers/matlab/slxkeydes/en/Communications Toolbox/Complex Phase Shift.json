@@ -1,0 +1,29 @@
+{
+ "key": "Complex Phase Shift",
+ "title": "Complex Phase Shift",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Complex_Phase_Shift.md"
+ ],
+ "text": "Apply complex phase shift to complex signal, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector | matrix"
+  },
+  {
+   "name": "Ph",
+   "direction": "input",
+   "summary": "Phase shift scalar | column vector | matrix"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "Phase-shifted signal scalar | column vector | matrix"
+  }
+ ],
+ "params": []
+}

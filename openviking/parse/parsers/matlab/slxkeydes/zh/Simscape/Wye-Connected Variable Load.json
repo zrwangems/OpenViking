@@ -1,0 +1,13 @@
+{
+ "key": "Wye-Connected Variable Load",
+ "title": "Wye-Connected Variable Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/RLC Assemblies/Wye_Connected_Variable_Load.md"
+ ],
+ "text": "采用星形配置接线的三相可变负载。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

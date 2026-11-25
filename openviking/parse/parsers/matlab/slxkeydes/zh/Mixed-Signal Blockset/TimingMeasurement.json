@@ -1,0 +1,121 @@
+{
+ "key": "TimingMeasurement",
+ "title": "Timing Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Timing_Measurement.md"
+ ],
+ "text": "测量信号的周期、频率、占空比、上升时间、下降时间和延迟，输入 2 路、输出 6 路；{Period} 指定测量输入信号的周期、{Frequency} 指定测量输入信号的频率、{Rise Time} 指定测量输入信号的上升时间、{Fall Time} 指定测量输入信号的下降时间、{Duty Cycle} 指定测量输入信号的占空比、{Delay} 指定测量输入信号的延迟、{Use same reference threshold for all measurements} 使用同一参考阈值测量所有时序指标、{Reference threshold (V)} 用于测量时序指标的参考阈值、{Input range (V)} 指定输入信号的峰峰值、{Type} 用于测量上升/下降时间的输入阈值电平、{Test threshold (V)} 用于测量延迟的测试信号中的阈值电压电平，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "reference",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "test",
+   "direction": "input",
+   "summary": "测试信号 scalar"
+  },
+  {
+   "name": "period",
+   "direction": "output",
+   "summary": "输入信号的周期 scalar"
+  },
+  {
+   "name": "frequency",
+   "direction": "output",
+   "summary": "输入信号的频率 scalar"
+  },
+  {
+   "name": "rise time",
+   "direction": "output",
+   "summary": "输入信号的上升时间 scalar"
+  },
+  {
+   "name": "fall time",
+   "direction": "output",
+   "summary": "输入信号的下降时间 scalar"
+  },
+  {
+   "name": "duty cycle",
+   "direction": "output",
+   "summary": "输入信号的占空比 scalar"
+  },
+  {
+   "name": "delay",
+   "direction": "output",
+   "summary": "输入信号的延迟 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Period",
+   "default": "on",
+   "values": "测量输入信号的周期 on (default) | off",
+   "group": "Selection"
+  },
+  {
+   "name": "Frequency",
+   "default": "off",
+   "values": "测量输入信号的频率 off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Rise Time",
+   "default": "off",
+   "values": "测量输入信号的上升时间 off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Fall Time",
+   "default": "off",
+   "values": "测量输入信号的下降时间 off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Duty Cycle",
+   "default": "off",
+   "values": "测量输入信号的占空比 off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Delay",
+   "default": "off",
+   "values": "测量输入信号的延迟 off (default) | on",
+   "group": "Selection"
+  },
+  {
+   "name": "Use same reference threshold for all measurements",
+   "default": "on",
+   "values": "使用同一参考阈值测量所有时序指标 on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Reference threshold (V)",
+   "default": "0",
+   "values": "用于测量时序指标的参考阈值 0 (default) | scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "输入信号的峰峰值 [-1 1] (default) | 2-element row vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Type",
+   "default": "80%/20%",
+   "values": "用于测量上升/下降时间的输入阈值电平 80%/20% (default) | 90%/10%",
+   "group": "Configuration"
+  },
+  {
+   "name": "Test threshold (V)",
+   "default": "0",
+   "values": "用于测量延迟的测试信号中的阈值电压电平 0 (default) | scalar",
+   "group": "Configuration"
+  }
+ ]
+}

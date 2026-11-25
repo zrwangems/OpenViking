@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Rotary Actuator (IL)",
+ "title": "Double-Acting Rotary Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Double_Acting_Rotary_Actuator_IL.md"
+ ],
+ "text": "等温液体系统中的 Double-Acting Rotary Actuator。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

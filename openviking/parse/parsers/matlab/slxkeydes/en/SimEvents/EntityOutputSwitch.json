@@ -1,0 +1,65 @@
+{
+ "key": "EntityOutputSwitch",
+ "title": "Entity Output Switch",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Output_Switch.md"
+ ],
+ "text": "Output entities, 2 inputs, 2 outputs, {Switching criterion} sets the switching criterion First port that is not; {Number of output ports} sets the number of output ports, {Initial port selection} sets the output port at the start, {Switch Attribute name} sets the attribute that determines the output port and {Seed} sets the seed. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "control",
+   "direction": "input",
+   "summary": "Incoming control entity scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Output entity scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of output ports",
+   "default": "2",
+   "values": "Specify the number of output ports 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Switching criterion",
+   "default": "blocked",
+   "values": "Choose the switching criterion First port that is not blocked (default) | Round robin | From control port | From attribute | Equiprobable",
+   "group": ""
+  },
+  {
+   "name": "Initial port selection",
+   "default": "1",
+   "values": "Specify the output port at the start of the simulation 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Switch Attribute name",
+   "default": "Attribute1",
+   "values": "Specify the attribute that determines the output port Attribute1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "34567",
+   "values": "Specify the seed 34567 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

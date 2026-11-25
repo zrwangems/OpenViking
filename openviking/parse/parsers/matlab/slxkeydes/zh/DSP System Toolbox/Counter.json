@@ -1,0 +1,113 @@
+{
+ "key": "Counter",
+ "title": "Counter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Switches and Counters/Counter.md",
+  "Simscape/Electrical/Control/General Control/Counter.md"
+ ],
+ "text": "在指定数字范围内向上或向下计数，输入 3 路、输出 2 路、无直接馈通；按 {Hit values} 指定要标记的计数值；{Count direction} 指定递增计数或递减计数、{Count event} 指定触发事件的类型 Rising、{Counter size} 指定要计数的整数值范围、{Maximum count} 指定计数器的最大值、{Initial count} 指定计数器的初始值、{Output} 输出计数值、命中值或二者、{Reset input} 启用 Rst 输入端口、{Samples per output frame} 指定每个输出向量中的样本数、{Sample time} 指定 Free Running 模式下的采样时间、{Count data type} 指定 Cnt 端口的数据类型、{Hit data type} 指定 Hit 端口的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Inc/Dec",
+   "direction": "input",
+   "summary": "用于触发计数事件的输入信号 scalar | vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置信号 scalar"
+  },
+  {
+   "name": "Max",
+   "direction": "input",
+   "summary": "最大计数器大小 scalar"
+  },
+  {
+   "name": "Cnt",
+   "direction": "output",
+   "summary": "计数器的当前值 scalar | vector"
+  },
+  {
+   "name": "Hit",
+   "direction": "output",
+   "summary": "命中状态 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Count direction",
+   "default": "Up",
+   "values": "递增计数或递减计数 Up (default) | Down",
+   "group": ""
+  },
+  {
+   "name": "Count event",
+   "default": "edge",
+   "values": "触发事件的类型 Rising edge (default) | Falling edge | Either edge | Non-zero sample | Free running",
+   "group": ""
+  },
+  {
+   "name": "Counter size",
+   "default": "bits",
+   "values": "要计数的整数值范围 8 bits (default) | 16 bits | 32 bits | User defined | Specify via input port",
+   "group": ""
+  },
+  {
+   "name": "Maximum count",
+   "default": "255",
+   "values": "计数器的最大值 255 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Initial count",
+   "default": "0",
+   "values": "计数器的初始值 0 (default) | integer ≥ 0",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "Count",
+   "values": "输出计数值、命中值或二者 Count (default) | Hit | Count and Hit",
+   "group": ""
+  },
+  {
+   "name": "Hit values",
+   "default": "32",
+   "values": "要标记的计数值 32 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Reset input",
+   "default": "on",
+   "values": "启用 Rst 输入端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Samples per output frame",
+   "default": "1",
+   "values": "每个输出向量中的样本数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Free Running 模式下的采样时间 1 (default) | -1 | scalar ≥ 0",
+   "group": ""
+  },
+  {
+   "name": "Count data type",
+   "default": "double",
+   "values": "Cnt 端口的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  },
+  {
+   "name": "Hit data type",
+   "default": "Logical",
+   "values": "Hit 端口的数据类型 Logical (default) | Boolean",
+   "group": ""
+  }
+ ]
+}

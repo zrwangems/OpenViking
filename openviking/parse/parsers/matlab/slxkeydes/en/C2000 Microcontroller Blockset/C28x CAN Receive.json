@@ -1,0 +1,135 @@
+{
+ "key": "C28x CAN Receive",
+ "title": "CAN Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C2805x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C2806x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C280x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C281x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C2833x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/C2834x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F280013x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28002x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28004x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2807x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xD/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xS/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F280015x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/CAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/CAN_Receive.md"
+ ],
+ "text": "Enhanced Controller Area Network receive mailbox, 4 outputs, {Message identifier mask} sets identifier mask; {Module} sets the cAN module the block, {Mailbox number(0–31)} sets the s value of mailbox number register, {Message identifier} sets the s value of message identifier register, {Message type} sets the message identifier type Standard, {Enable acceptance filter} enables to use ID filtering, {Sample time} sets the frequency at which mailbox is polled for new, {Data type} sets the output message data, {Initial output} sets the s output before receiving data, {Action when message not received} sets the action when no new CAN message received Output last message, {Output message ID} sets the output message identifier status, {Output message length}, {Post interrupt when message is received} sets the posts asynchronous interrupt when message and {Interrupt line}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "f()",
+   "direction": "output",
+   "summary": "Function call port scalar"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "Message data port vector"
+  },
+  {
+   "name": "len",
+   "direction": "output",
+   "summary": "Length of output message scalar"
+  },
+  {
+   "name": "ID",
+   "direction": "output",
+   "summary": "Output message identifier scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Module",
+   "default": "CAN_A",
+   "values": "CAN module the block configures CAN_A (default) | CAN_B",
+   "group": ""
+  },
+  {
+   "name": "Mailbox number(0–31)",
+   "default": "0",
+   "values": "Sets value of mailbox number register (MBNR) 0 (default) | integer in the range [0 31]",
+   "group": ""
+  },
+  {
+   "name": "Message identifier",
+   "default": "bin2dec(’111000111’)",
+   "values": "Sets value of message identifier register (MID) bin2dec(’111000111’) (default) | numeric identifier of length 11 or 29 bits",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "identifier)",
+   "values": "Message identifier type Standard (11-bit identifier) (default) | Extended (29-bit identifier)",
+   "group": ""
+  },
+  {
+   "name": "Enable acceptance filter",
+   "default": "off",
+   "values": "Enable to use ID filtering off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Message identifier mask",
+   "default": "0",
+   "values": "identifier mask 0 (default) | 1 | numeric identifier of length 11 or 29 bits",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Frequency at which mailbox is polled for new message 1 (default) | -1 | scalar",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "uint16",
+   "values": "Output message data type uint16 (default) | uint8 | uint32 | CAN_MESSAGE_TYPE",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Sets output before receiving data 0 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Action when message not received",
+   "default": "received",
+   "values": "Action when no new CAN message received Output last message received (default) | Reset all fields to zero",
+   "group": ""
+  },
+  {
+   "name": "Output message ID",
+   "default": "off",
+   "values": "Output message identifier status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output message length",
+   "default": "off",
+   "values": "Output message length in bytes off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Post interrupt when message is received",
+   "default": "off",
+   "values": "Posts asynchronous interrupt when message is received off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Interrupt line",
+   "default": "0",
+   "values": "Interrupt line of asynchronous interrupt 0 (default) | 1",
+   "group": ""
+  }
+ ]
+}

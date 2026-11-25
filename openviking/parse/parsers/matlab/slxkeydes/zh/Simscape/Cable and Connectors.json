@@ -1,0 +1,13 @@
+{
+ "key": "Cable and Connectors",
+ "title": "Cable and Connectors",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Cable_and_Connectors.md"
+ ],
+ "text": "带可选故障建模的电缆和连接器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

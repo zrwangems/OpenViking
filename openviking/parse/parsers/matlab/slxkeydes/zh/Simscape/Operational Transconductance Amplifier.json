@@ -1,0 +1,13 @@
+{
+ "key": "Operational Transconductance Amplifier",
+ "title": "Operational Transconductance Amplifier",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Operational_Transconductance_Amplifier.md"
+ ],
+ "text": "Operational Transconductance Amplifier 的行为级表示。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

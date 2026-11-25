@@ -1,0 +1,49 @@
+{
+ "key": "I/Q Imbalance",
+ "title": "I/Q Imbalance",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/I_Q_Imbalance.md"
+ ],
+ "text": "对复信号应用 I/Q 不平衡，输入 1 路、输出 1 路；{I/Q amplitude imbalance (dB)} 指定 I/Q 幅度不平衡、{I/Q phase imbalance (deg)} 指定 I/Q 相位不平衡、{I dc offset} 指定同相分量 DC 偏移、{Q dc offset} 指定正交分量 DC 偏移，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "复信号 scalar | vector"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "I/Q amplitude imbalance (dB)",
+   "default": "0",
+   "values": "I/Q 幅度不平衡 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "I/Q phase imbalance (deg)",
+   "default": "0",
+   "values": "I/Q 相位不平衡 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "I dc offset",
+   "default": "0",
+   "values": "同相分量 DC 偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Q dc offset",
+   "default": "0",
+   "values": "正交分量 DC 偏移 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

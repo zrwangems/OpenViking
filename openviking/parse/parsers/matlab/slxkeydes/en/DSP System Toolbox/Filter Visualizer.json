@@ -1,0 +1,277 @@
+{
+ "key": "Filter Visualizer",
+ "title": "Filter Visualizer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/Filter_Visualizer.md"
+ ],
+ "text": "Display magnitude and phase response of time-varying digital filters, 2 inputs, no direct feedthrough, {Style} sets Line style; {Num Filters} sets the number of filters to display, {Filter Type} sets the type of filter, {Legend} displays signal legend, {Magnitude Phase} plots magnitude and phase response of filter, {FFT Length}, {Normalized Frequency} displays the frequency response in normalized, {Sample Rate (Hz)} sets the sample rate in Hz, {Range} sets the frequency range, {Display Unit} sets the magnitude units, {Display Precision} sets the precision of data in scope display, {Title} displays title character vector, {X-Scale} scales of frequency, {Y-Limits} sets the y -axis limits, {Show Grid} shows internal grid lines, {Plot Type} sets the type of plot, {Font Size} sets the font size of labels, {Background} sets the window background, {Axes}, {Labels} sets the color of labels, {Line} sets the filter for line property settings filter, {Visible} sets the filter visibility, {Width} sets the line width, {Marker} sets the data point markers, {Color} sets the line color, {Copy to Clipboard} sets the send display, {Preserve Colors} sets the preserve colors when copying to clipboard, {Print}, {Channel} sets the filter for which to obtain measurements, {Data Cursors} enables cursor measurements, {Snap to data} sets the snap cursors to data, {Lock cursor spacing}, {Peak Finder} enables peak finder, {Num Peaks} sets the maximum number of peaks to show, {Min Height} sets the level above which scope detects, {Min Distance} sets the minimum number of samples between adjacent, {Threshold} sets the minimum difference in height of peak and its neighboring, {Label Peaks}, {Filter Names} sets the input filter names, {Maximize Axes} sets the maximize size of plots, {Axes Scaling} sets the y-axis scaling mode and {Number of Updates} sets the number of updates before scaling. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Numerator coefficients column vector | row vector | L -by-3 matrix | L -by-5 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "Denominator coefficients column vector | row vector | L -by-3 matrix | L -by-5 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Num Filters",
+   "default": "1",
+   "values": "Number of filters to display 1 (default) | positive integer in the range [1 20]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Filter Type",
+   "default": "FIR",
+   "values": "Type of filter response FIR (default) | IIR",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Legend",
+   "default": "off",
+   "values": "Display signal legend off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Magnitude Phase",
+   "default": "",
+   "values": "Plot magnitude and phase response of filter button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "FFT Length",
+   "default": "2048",
+   "values": "FFT length 2048 (default) | positive integer",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Normalized Frequency",
+   "default": "on",
+   "values": "Display the frequency response in normalized units on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Sample Rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate in Hz 44100 (default) | positive scalar",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Range",
+   "default": "[0,1]",
+   "values": "Frequency range [0,1] (default) | two-element numeric vector",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Display Unit",
+   "default": "(dB)",
+   "values": "Magnitude units Magnitude (dB) (default) | Magnitude | Magnitude squared",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Display Precision",
+   "default": "4",
+   "values": "Precision of data in scope display 4 (default) | positive integer ≤ 15",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Title",
+   "default": "",
+   "values": "Display title character vector | string",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "X-Scale",
+   "default": "Linear",
+   "values": "Scale of frequency axis Linear (default) | Log",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Y-Limits",
+   "default": "",
+   "values": "y -axis limits [ −25 25 ] | [ ymin ymax ]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Show Grid",
+   "default": "on",
+   "values": "Show internal grid lines on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Plot Type",
+   "default": "Line",
+   "values": "Type of plot Line (default) | Stairs | Stem",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Font Size",
+   "default": "8.5",
+   "values": "Font size of labels 8.5 (default) | scalar in the range [1,100]",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Background",
+   "default": "black",
+   "values": "Window background black (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Axes",
+   "default": "black",
+   "values": "Axes background color black (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Labels",
+   "default": "gray",
+   "values": "Color of labels gray (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Line",
+   "default": "",
+   "values": "Filter for line property settings filter names",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Visible",
+   "default": "on",
+   "values": "Filter visibility on (default) | off",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Style",
+   "default": "-",
+   "values": "Line style - (default) |: | -. | -- | None",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Width",
+   "default": "1.5",
+   "values": "Line width 1.5 (default) | 0.5 | 1 | 2 |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Marker",
+   "default": "None",
+   "values": "Data point markers None (default) | + | x |...",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Color",
+   "default": "yellow",
+   "values": "Line color yellow (default) | color picker",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Copy to Clipboard",
+   "default": "",
+   "values": "Send display to clipboard button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Preserve Colors",
+   "default": "off",
+   "values": "Preserve colors when copying to clipboard off (default) | on",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Print",
+   "default": "",
+   "values": "Print display button",
+   "group": "Scope Tab"
+  },
+  {
+   "name": "Channel",
+   "default": "Filter",
+   "values": "Filter for which to obtain measurements Filter (default) | filter name",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Data Cursors",
+   "default": "",
+   "values": "Enable cursor measurements button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Snap to data",
+   "default": "off",
+   "values": "Snap cursors to data off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Lock cursor spacing",
+   "default": "off",
+   "values": "Lock cursor spacing off (default) | on",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Peak Finder",
+   "default": "",
+   "values": "Enable peak finder measurements button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Num Peaks",
+   "default": "3",
+   "values": "Maximum number of peaks to show 3 (default) | positive integer less than 100",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Min Height",
+   "default": "-Inf",
+   "values": "Level above which scope detects peaks -Inf (default) | real scalar value",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Min Distance",
+   "default": "1",
+   "values": "Minimum number of samples between adjacent peaks 1 (default) | positive integer",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Threshold",
+   "default": "0",
+   "values": "Minimum difference in height of peak and its neighboring samples 0 (default) | nonnegative scalar",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Label Peaks",
+   "default": "",
+   "values": "Label peaks button",
+   "group": "Measurements Tab"
+  },
+  {
+   "name": "Filter Names",
+   "default": "[]",
+   "values": "Input filter names [] (default) | character vector | string | array of strings or character vectors.",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Maximize Axes",
+   "default": "Auto",
+   "values": "Maximize size of plots Auto (default) | Off | On",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Axes Scaling",
+   "default": "Auto",
+   "values": "Y-axis scaling mode Auto (default) | Manual | Updates | OnceAtStop",
+   "group": "Property Inspector Only"
+  },
+  {
+   "name": "Number of Updates",
+   "default": "100",
+   "values": "Number of updates before scaling 100 (default) | integer",
+   "group": "Property Inspector Only"
+  }
+ ]
+}

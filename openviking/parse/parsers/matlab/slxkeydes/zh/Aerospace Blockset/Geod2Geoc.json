@@ -1,0 +1,65 @@
+{
+ "key": "Geod2Geoc",
+ "title": "Geodetic to Geocentric Latitude",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Geodetic_to_Geocentric_Latitude.md"
+ ],
+ "text": "将大地纬度转换为地心纬度，输入 2 路、输出 2 路；{Units} 指定单位 Metric、{Planet model} 指定行星模型 Earth、{Flattening} 指定扁率 1/298.257223563、{Equatorial radius of planet} 指定半径、{Output radius} 启用半径输出，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ",
+   "direction": "input",
+   "summary": "大地纬度 scalar"
+  },
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "椭球高度 scalar"
+  },
+  {
+   "name": "λ",
+   "direction": "output",
+   "summary": "地心纬度 scalar"
+  },
+  {
+   "name": "r",
+   "direction": "output",
+   "summary": "半径 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Planet model",
+   "default": "(WGS84)",
+   "values": "行星模型 Earth (WGS84) (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "扁率 1/298.257223563 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius of planet",
+   "default": "6378137.0",
+   "values": "半径 6378137.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output radius",
+   "default": "off",
+   "values": "启用半径输出 off (default) | on",
+   "group": ""
+  }
+ ]
+}

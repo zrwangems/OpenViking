@@ -1,0 +1,53 @@
+{
+ "key": "Demosaic Interpolator",
+ "title": "Demosaic Interpolator",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Conversions/Demosaic_Interpolator.md"
+ ],
+ "text": "从 Bayer 模式像素流构建 RGB 像素数据，输入 2 路、输出 2 路；按 {Sensor alignment} 指定输入流中像素的颜色序列；{Interpolation algorithm} 用于计算缺失像素值的算法 Gradient-corrected、{Line buffer size} 指定行存储缓冲区的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "输出像素流 vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation algorithm",
+   "default": "linear",
+   "values": "用于计算缺失像素值的算法 Gradient-corrected linear (default) | Bilinear",
+   "group": ""
+  },
+  {
+   "name": "Sensor alignment",
+   "default": "RGGB",
+   "values": "输入流中像素的颜色序列 RGGB (default) | GBRG | GRBG | BGGR",
+   "group": ""
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "行存储缓冲区的大小 2048 (default) | integer",
+   "group": ""
+  }
+ ]
+}

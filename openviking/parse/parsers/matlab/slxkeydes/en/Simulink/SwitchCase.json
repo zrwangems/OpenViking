@@ -1,0 +1,44 @@
+{
+ "key": "SwitchCase",
+ "title": "Switch Case",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Switch_Case.md",
+  "HDL Coder/Ports & Subsystems/Switch_Case.md"
+ ],
+ "text": "Select subsystem execution using logic similar to switch statement, 1 input, 1 output, direct feedthrough; {Case conditions} sets the case values, {Show default case} controls display of default output port and {Enable zero-crossing detection} controls zero-crossing detection. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u1 (logical operator)",
+   "direction": "input",
+   "summary": "Value for case selection scalar"
+  },
+  {
+   "name": "case",
+   "direction": "output",
+   "summary": "Action signal for a Switch Case Action Subsystem block scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Case conditions",
+   "default": "{1}",
+   "values": "Specify case values {1} (default) | list of cases",
+   "group": ""
+  },
+  {
+   "name": "Show default case",
+   "default": "on",
+   "values": "Control display of default output port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Control zero-crossing detection on (default) | off",
+   "group": ""
+  }
+ ]
+}

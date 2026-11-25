@@ -1,0 +1,66 @@
+{
+ "key": "dsp.simulink.MIMOFIRFilter",
+ "title": "MIMO FIR Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/MIMO_FIR_Filter.md"
+ ],
+ "text": "通过多径 MIMO FIR 滤波器对输入信号进行滤波，输入 2 路、输出 1 路、无直接馈通；按 {Numerator} 指定时域 FIR 滤波器系数 [ 0.5 0.5; 0.75 0.25；{Numerator source} 指定 FIR 滤波器系数的来源、{Number of propagation paths} 指定每对输入和输出通道之间的传播路径数、{Sum filtered output contributions from all input channels} 用于对所有输入通道的滤波输出贡献求和、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "时域 FIR 滤波器系数 row vector | matrix"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "滤波后输出 vector | matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Numerator source",
+   "default": "Property",
+   "values": "FIR 滤波器系数的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Numerator",
+   "default": "]",
+   "values": "时域 FIR 滤波器系数 [ 0.5 0.5; 0.75 0.25 ] (default) | row vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Number of propagation paths",
+   "default": "1",
+   "values": "每对输入和输出通道之间的传播路径数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sum filtered output contributions from all input channels",
+   "default": "on",
+   "values": "用于对所有输入通道的滤波输出贡献求和的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

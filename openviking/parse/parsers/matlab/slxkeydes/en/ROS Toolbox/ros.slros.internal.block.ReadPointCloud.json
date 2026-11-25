@@ -1,0 +1,76 @@
+{
+ "key": "ros.slros.internal.block.ReadPointCloud",
+ "title": "Read Point Cloud",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Read_Point_Cloud.md"
+ ],
+ "text": "Extract point cloud from ROS PointCloud2 message, 1 input, 4 outputs; {Maximum point cloud size} sets the maximum point cloud image size, {Preserve point cloud structure} sets the point cloud data output shape preservation, {Show RGB output port} sets the rGB port toggle, {Show Intensity output port} sets the intensity port toggle, {Show ErrorCode output port} sets the errorCode port toggle and {Output variable-size signals} sets the variable-size signal output toggle. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS sensor_msgs/PointCloud2 message nonvirtual bus"
+  },
+  {
+   "name": "XYZ",
+   "direction": "output",
+   "summary": "XYZ coordinates matrix | array"
+  },
+  {
+   "name": "RGB",
+   "direction": "output",
+   "summary": "RGB values for each point matrix | array"
+  },
+  {
+   "name": "Intensity",
+   "direction": "output",
+   "summary": "Intensity values for each point array | matrix"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "Error code for image conversion scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum point cloud size",
+   "default": "640]",
+   "values": "Maximum point cloud image size [480 640] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Preserve point cloud structure",
+   "default": "off",
+   "values": "Point cloud data output shape preservation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show RGB output port",
+   "default": "off",
+   "values": "RGB port toggle off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show Intensity output port",
+   "default": "off",
+   "values": "Intensity port toggle off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "on",
+   "values": "ErrorCode port toggle on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "Variable-size signal output toggle off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,116 @@
+{
+ "key": "Bridge Cycloconverter Voltage Controller (Three-Phase)",
+ "title": "Bridge Cycloconverter Voltage Controller (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Converter Control/Bridge_Cycloconverter_Voltage_Controller_Three_Phase.md"
+ ],
+ "text": "RMS Voltage PI control for three-phase bridge cycloconverters, 5 inputs, 2 outputs; {Rated voltage (phase-to-phase RMS)} sets the rated RMS voltage, {Loop filter proportional gain} sets the lF proportional gain, {Loop filter integral gain} sets the lF integral gain, {Filters time constant (s)} sets the time constant 1e-2, {Controller proportional gain} sets the proportional gain, {Controller integral gain} sets the integral gain, {Controller anti-windup gain} sets the anti-windup gain, {Thyristor pulse width (rad)} sets the pulse width, {Bank selector current threshold (A)} sets the current threshold, {Pulse ordering} and {Sample time (-1 for inherited)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VRef",
+   "direction": "input",
+   "summary": "Reference voltage scalar"
+  },
+  {
+   "name": "fRef",
+   "direction": "input",
+   "summary": "Reference frequency scalar"
+  },
+  {
+   "name": "vabc",
+   "direction": "input",
+   "summary": "Phase voltages vector"
+  },
+  {
+   "name": "Vcyc",
+   "direction": "input",
+   "summary": "Cycloconverter voltages vector"
+  },
+  {
+   "name": "Icyc",
+   "direction": "input",
+   "summary": "Cycloconverter currents vector"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Pulses vector"
+  },
+  {
+   "name": "Visualization",
+   "direction": "output",
+   "summary": "Visualization bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rated voltage (phase-to-phase RMS)",
+   "default": "6000",
+   "values": "Rated RMS voltage 6000 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Loop filter proportional gain",
+   "default": "2",
+   "values": "LF proportional gain 2 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Loop filter integral gain",
+   "default": "20",
+   "values": "LF integral gain 20 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Filters time constant (s)",
+   "default": "1e-2",
+   "values": "Time constant 1e-2 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Controller proportional gain",
+   "default": "1",
+   "values": "Proportional gain 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Controller integral gain",
+   "default": "12",
+   "values": "Integral gain 12 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Controller anti-windup gain",
+   "default": "10",
+   "values": "Anti-windup gain 10 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Thyristor pulse width (rad)",
+   "default": "5*pi/6",
+   "values": "Pulse width 5*pi/6 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Bank selector current threshold (A)",
+   "default": "5",
+   "values": "Current threshold 5 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Pulse ordering",
+   "default": "order",
+   "values": "Pulse ordering rule Sequential device order (default) | Natural order of commutation",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

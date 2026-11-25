@@ -1,0 +1,143 @@
+{
+ "key": "SISO Fading Channel",
+ "title": "SISO Fading Channel",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Channels/SISO_Fading_Channel.md"
+ ],
+ "text": "通过 SISO 多径衰落信道对输入信号进行滤波，输入 1 路、输出 3 路；按 {Channel visualization} 指定信道可视化；{Inherit sample rate from input} 用于从输入继承采样率、{Sample rate (Hz)} 指定输入信号采样率、{Discrete path delays (s)} 指定每个离散路径的延迟、{Average path gains (dB)} 指定每个离散路径的平均增益、{Normalize average path gains to 0 dB} 用于将平均路径增益归一化为 0 dB、{Fading distribution} 指定信道的衰落分布、{K-factors} 指定 Rician 衰落信道的 K 因子、{LOS path Doppler shifts (Hz)} 指定视距分量的多普勒频移、{LOS path initial phases (rad)} 指定视距分量的初始相位、{Maximum Doppler shift (Hz)} 指定所有信道路径的最大多普勒频移、{Doppler spectrum} 指定所有信道路径的多普勒频谱形状 doppler、{Initial seed} 指定随机数生成器初始种子、{Output channel path gains} 用于输出信道路径增益、{Output channel filter delay} 输出信道滤波器延迟、{Simulate using} 指定编译类型 Interpreted、{Percentage of samples to display} 指定要显示的样本百分比、{Path for Doppler spectrum display} 显示 Doppler 频谱的路径，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入数据信号 vector"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "衰落信道的输出数据信号 vector"
+  },
+  {
+   "name": "Gain",
+   "direction": "output",
+   "summary": "离散路径增益 matrix"
+  },
+  {
+   "name": "Delay",
+   "direction": "output",
+   "summary": "信道滤波器延迟 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "用于从输入继承采样率的选项 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1",
+   "values": "输入信号采样率 1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Discrete path delays (s)",
+   "default": "0",
+   "values": "每个离散路径的延迟 0 (default) | nonnegative scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Average path gains (dB)",
+   "default": "0",
+   "values": "每个离散路径的平均增益 0 (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalize average path gains to 0 dB",
+   "default": "on",
+   "values": "用于将平均路径增益归一化为 0 dB 的选项 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Fading distribution",
+   "default": "Rayleigh",
+   "values": "信道的衰落分布 Rayleigh (default) | Rician",
+   "group": "Main Tab"
+  },
+  {
+   "name": "K-factors",
+   "default": "3",
+   "values": "Rician 衰落信道的 K 因子 3 (default) | positive scalar | row vector of nonnegative values",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LOS path Doppler shifts (Hz)",
+   "default": "0",
+   "values": "视距分量的多普勒频移 0 (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LOS path initial phases (rad)",
+   "default": "0",
+   "values": "视距分量的初始相位 0 (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Maximum Doppler shift (Hz)",
+   "default": "0.001",
+   "values": "所有信道路径的最大多普勒频移 0.001 (default) | nonnegative scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Doppler spectrum",
+   "default": "doppler(’Jakes’)",
+   "values": "所有信道路径的多普勒频谱形状 doppler(’Jakes’) (default) | doppler(’Flat’) | doppler(’Rounded’,...) | doppler(’Bell’,...) | doppler(’Asymmetric Jakes’,...) | doppler(’Restricted Jakes’,...) | doppler(’Gaussian’,...) | doppler(’BiGaussian’,...)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial seed",
+   "default": "73",
+   "values": "随机数生成器初始种子 73 (default) | nonnegative integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output channel path gains",
+   "default": "off",
+   "values": "用于输出信道路径增益的选项 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output channel filter delay",
+   "default": "off",
+   "values": "输出信道滤波器延迟的选项 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "编译类型 Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Channel visualization",
+   "default": "Off",
+   "values": "选择信道可视化 Off (default) | Impulse response | Frequency response | Doppler spectrum | Impulse and frequency responses",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Percentage of samples to display",
+   "default": "25%",
+   "values": "要显示的样本百分比 25% (default) | 10% | 50% | 100%",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Path for Doppler spectrum display",
+   "default": "1",
+   "values": "显示 Doppler 频谱的路径 1 (default) | positive integer",
+   "group": "Visualization Tab"
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "key": "Varying Observer Form",
+ "title": "Varying Observer Form",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Varying_Observer_Form.md"
+ ],
+ "text": "Observer-form state-space model with varying matrix values, 7 inputs, 3 outputs, {State names (e.g., ’position’)} sets Plant state names; {Initial conditions} sets the system initial conditions, {Output states} sets the provide state output and {Output state derivatives} sets the provide state derivatives. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Measurement signal scalar | vector"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Plant state matrix matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Plant input matrix matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Plant output matrix matrix"
+  },
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "Plant feedforward matrix matrix"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "State-feedback matrix matrix"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "State-observer matrix matrix"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Control signal scalar | vector"
+  },
+  {
+   "name": "x e",
+   "direction": "output",
+   "summary": "Estimated plant state vector vector"
+  },
+  {
+   "name": "dx e",
+   "direction": "output",
+   "summary": "Estimated state derivatives vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "System initial conditions 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "State names (e.g., ’position’)",
+   "default": "’’",
+   "values": "Plant state names ’’ (default) | character vector | cell array",
+   "group": ""
+  },
+  {
+   "name": "Output states",
+   "default": "on",
+   "values": "Provide state output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output state derivatives",
+   "default": "on",
+   "values": "Provide state derivatives on (default) | off",
+   "group": ""
+  }
+ ]
+}

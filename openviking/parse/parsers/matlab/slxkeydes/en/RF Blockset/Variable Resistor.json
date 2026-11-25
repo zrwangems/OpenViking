@@ -1,0 +1,27 @@
+{
+ "key": "Variable Resistor",
+ "title": "Variable Resistor",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Variable_Resistor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Variable_Resistor.md"
+ ],
+ "text": "Model variable resistor, 1 input; {Simulate noise} sets the simulate thermal noise. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Simulink control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "Simulate thermal noise on (default) | off",
+   "group": ""
+  }
+ ]
+}

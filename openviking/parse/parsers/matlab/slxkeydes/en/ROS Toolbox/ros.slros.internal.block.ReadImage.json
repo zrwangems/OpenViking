@@ -1,0 +1,65 @@
+{
+ "key": "ros.slros.internal.block.ReadImage",
+ "title": "Read Image",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Read_Image.md"
+ ],
+ "text": "Extract image from ROS Image message, 1 input, 3 outputs, {Image Encoding} sets Image encoding; {Maximum Image Size}, {Show Alpha output port} sets the toggle AlphaChannel port, {Show ErrorCode output port} sets the toggle ErrorCode port and {Output variable-size signals} sets the toggle variable-size signal output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS sensor_msgs/Image or sensor_msgs/CompressedImage message nonvirtual bus"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "Extracted image signal M -by- N -by-3 matrix | M -by- N matrix"
+  },
+  {
+   "name": "AlphaChannel",
+   "direction": "output",
+   "summary": "Alpha channel for image M -by- N matrix"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "Error code for image conversion scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum Image Size",
+   "default": "2000]",
+   "values": "Maximum image size [2000 2000] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Image Encoding",
+   "default": "rgb8",
+   "values": "Image encoding rgb8 (default) | rgba8 |...",
+   "group": ""
+  },
+  {
+   "name": "Show Alpha output port",
+   "default": "off",
+   "values": "Toggle AlphaChannel port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "on",
+   "values": "Toggle ErrorCode port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output variable-size signals",
+   "default": "off",
+   "values": "Toggle variable-size signal output off (default) | on",
+   "group": ""
+  }
+ ]
+}

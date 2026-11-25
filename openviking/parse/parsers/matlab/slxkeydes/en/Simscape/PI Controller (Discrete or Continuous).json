@@ -1,0 +1,65 @@
+{
+ "key": "PI Controller (Discrete or Continuous)",
+ "title": "PI Controller (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/PI_Controller_Discrete_or_Continuous.md"
+ ],
+ "text": "Discrete-time or continuous-time PI controller with external anti-windup input, 3 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Proportional gain} sets the k p, {Integral gain} sets the k i, {Anti-windup gain} sets the k aw and {Integrator initial condition} sets the initial integrator value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "e",
+   "direction": "input",
+   "summary": "Error signal scalar"
+  },
+  {
+   "name": "du",
+   "direction": "input",
+   "summary": "Control signal saturation scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Integrator gain reset scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "1",
+   "values": "K i 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "K aw 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integrator initial condition",
+   "default": "0",
+   "values": "Initial integrator value 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

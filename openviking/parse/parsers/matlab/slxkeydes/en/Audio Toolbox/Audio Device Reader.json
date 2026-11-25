@@ -1,0 +1,91 @@
+{
+ "key": "Audio Device Reader",
+ "title": "Audio Device Reader",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sources/Audio_Device_Reader.md"
+ ],
+ "text": "Record from sound card, 2 outputs, no direct feedthrough, {Device input channels} sets nondefault channel mapping; {Driver}, {Device}, {Info} sets the view information about your audio input configuration, {Sample rate (Hz)} sets the sample rate your device uses to acquire audio, {Number of channels}, {Samples per frame} sets the frame size read from audio device, {Device bit depth} sets the data type used by device to acquire audio data 16-bit, {Use default channel mapping} sets the toggle channel mapping source, {Output number of samples overrun} sets the additional output port for number of samples and {Output data type} sets the data type output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  },
+  {
+   "name": "O",
+   "direction": "output",
+   "summary": "Number of samples overrun scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Driver",
+   "default": "DirectSound",
+   "values": "Driver used to access your audio device DirectSound (default) | ASIO | WASAPI",
+   "group": ""
+  },
+  {
+   "name": "Device",
+   "default": "device",
+   "values": "Device used to acquire audio samples default audio device (default)",
+   "group": ""
+  },
+  {
+   "name": "Info",
+   "default": "",
+   "values": "View information about your audio input configuration button",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate your device uses to acquire audio data 44100 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of channels",
+   "default": "1",
+   "values": "Number of channels acquired by your audio device 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1024",
+   "values": "Frame size read from audio device 1024 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Device bit depth",
+   "default": "integer",
+   "values": "Data type used by device to acquire audio data 16-bit integer (default) | 8-bit integer | 16-bit integer | 24-bit integer | 32-bit integer",
+   "group": ""
+  },
+  {
+   "name": "Use default channel mapping",
+   "default": "on",
+   "values": "Toggle channel mapping source on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Device input channels",
+   "default": "[1:MaximumInputChannels]",
+   "values": "Specify nondefault channel mapping [1:MaximumInputChannels] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output number of samples overrun",
+   "default": "off",
+   "values": "Specify additional output port for number of samples overrun off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type output from block double (default) | single | int32 | int16 | uint8",
+   "group": ""
+  }
+ ]
+}

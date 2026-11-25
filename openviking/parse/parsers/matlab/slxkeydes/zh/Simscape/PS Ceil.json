@@ -1,0 +1,13 @@
+{
+ "key": "PS Ceil",
+ "title": "PS Ceil",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Ceil.md"
+ ],
+ "text": "输出大于或等于输入物理信号的最小整数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

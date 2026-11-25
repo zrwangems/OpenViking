@@ -1,0 +1,74 @@
+{
+ "key": "Input Port",
+ "title": "Input Port",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Input_Output Ports/Input_Port.md"
+ ],
+ "text": "从 Simulink 环境到 RF 物理模块的连接模块；按 {Treat input Simulink signal as} 指定用于解释输入的选项 Source；{Source impedance (ohms)} 指定 RF 网络的源阻抗、{Finite impulse response filter length} 指定基带等效冲激响应的期望长度、{Fractional bandwidth of guard bands} 指定建模带宽的比例、{Modeling delay (samples)} 用于延迟基带等效模型冲激响应的时间采样数、{Center frequency (Hz)} 指定建模频率的中心 2e9、{Sample time (s)} 指定连续采样之间的时间间隔 1e-7、{Input Processing} 指定处理模式的类型 Elements、{Add noise} 指定向模块添加噪声数据、{Initial seed} 指定随机数生成器模块的初始种子，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Treat input Simulink signal as",
+   "default": "voltage",
+   "values": "用于解释输入的选项 Source voltage (default) | Incident power wave | scalar",
+   "group": ""
+  },
+  {
+   "name": "Source impedance (ohms)",
+   "default": "50",
+   "values": "RF 网络的源阻抗 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Finite impulse response filter length",
+   "default": "128",
+   "values": "基带等效冲激响应的期望长度 128 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fractional bandwidth of guard bands",
+   "default": "0",
+   "values": "建模带宽的比例 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Modeling delay (samples)",
+   "default": "0",
+   "values": "用于延迟基带等效模型冲激响应的时间采样数 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Center frequency (Hz)",
+   "default": "2e9",
+   "values": "建模频率的中心 2e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "1e-7",
+   "values": "连续采样之间的时间间隔 1e-7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input Processing",
+   "default": "based)",
+   "values": "指定处理模式的类型 Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": ""
+  },
+  {
+   "name": "Add noise",
+   "default": "on",
+   "values": "向模块添加噪声数据 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "67987",
+   "values": "随机数生成器模块的初始种子 67987 (default) | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

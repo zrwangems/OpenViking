@@ -1,0 +1,218 @@
+{
+ "key": "Stimulus",
+ "title": "Stimulus",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Utilities/Stimulus.md"
+ ],
+ "text": "设置波形生成方法以及要在 SerDes 模型中仿真的符号数；输出 1 路；按 {Waveform creation method} 指定定义激励波形的创建方式 Random；{Number of symbols} 用于仿真的激励模式长度、{Use recommended simulation stop time} 指定将建议的仿真停止时间设置为仿真停止时间、{Random symbols seed} 用于生成随机符号波形的种子、{PRBS order} 指定伪随机二进制序列的阶数、{PRBS seed} 指定伪随机二进制序列的种子、{Reverse PRBS in time} 指定通过反转特征多项式的抽头位置来在时间上反转 PRBS、{Invert PRBS in voltage} 指定通过翻转 0 和 1 的值来反转 PRBS 的电压、{Symbol pattern} 以符号时间间隔分布的符号整数向量、{Binary pattern} 以采样时间间隔分布的 1 和 0 向量、{Symbol voltage pattern} 以符号时间间隔分布的符号电压向量 1/2*、{Sampled voltage pattern} 以采样间隔分布的电压向量、{Sub symbol time delay (s)} 按符号时间取模延迟激励波形、{Change in IBIS-AMI Manager} 指定修改 Rx_Use_Clock_Input 保留的 AMI 参数、{Generate Clock or Strobe Waveform} 指定根据波形参数生成时钟或选通波形、{Use External Waveform or Clock Times Array} 使用外部波形进行转发、{Include Analog Channel Model in clock waveform} 指定在时钟波形中包含模拟通道模型、{Clock Pattern} 指定转发时钟模式、{Strobe Pattern} 指定转发选通模式、{Delay (s)} 指定延迟转发时钟、{Burst Length} 指定选通突发模式之间的符号数、{Idle Length} 指定突发之间的符号数、{Preamble} 添加到每个突发开头的额外时钟周期数、{Postamble} 添加到每个突发末尾的额外时钟周期数、{Include Transmitter Jitter} 指定在转发的时钟中包含发射机抖动、{Tx_Dj (UI)} 指定发射机确定性抖动、{Tx_Rj (UI)} 指定发射机随机抖动、{Tx_DCD (UI)} 指定发射机占空比失真、{Tx_Sj (UI)} 指定发射机正弦抖动、{Tx_Sj_Frequency (Hz)} 指定发射机正弦抖动频率、{Waveform Name} 指定工作区中波形参数的名称、{Waveform Delay (s)} 指定延迟转发时钟、{Clock Times Name} 指定工作区中时钟时间参数的名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "输出具有特定 PRBS 模式的信号 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of symbols",
+   "default": "20000",
+   "values": "用于仿真的激励模式长度 20000 (default) | positive real integer",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Use recommended simulation stop time",
+   "default": "on",
+   "values": "将建议的仿真停止时间设置为仿真停止时间 on (default) | off",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Waveform creation method",
+   "default": "Symbols",
+   "values": "定义激励波形的创建方式 Random Symbols (default) | Serial PRBS | Symbol Pattern | Binary Pattern | Symbol Voltage Pattern | Sampled Voltage | Parallel PRBS",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Random symbols seed",
+   "default": "1431655765",
+   "values": "用于生成随机符号波形的种子 1431655765 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "PRBS order",
+   "default": "11",
+   "values": "伪随机二进制序列的阶数 11 (default) | 7 | 9 | 13 | 15 | 20 | 23 | 31 | 47",
+   "group": "Stimulus"
+  },
+  {
+   "name": "PRBS seed",
+   "default": "1",
+   "values": "伪随机二进制序列的种子 1 (default) | integer in the range [1, 2 Order -1]",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Reverse PRBS in time",
+   "default": "off",
+   "values": "通过反转特征多项式的抽头位置来在时间上反转 PRBS off (default) | on",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Invert PRBS in voltage",
+   "default": "off",
+   "values": "通过翻转 0 和 1 的值来反转 PRBS 的电压 off (default) | on",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Symbol pattern",
+   "default": "0]",
+   "values": "以符号时间间隔分布的符号整数向量 [0 0 1 0 0 1 1 0 1 0 1 1 1 1 0] (default) | vector with element values in the range [0, (Number of modulation levels-1)]",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Binary pattern",
+   "default": "0]",
+   "values": "以采样时间间隔分布的 1 和 0 向量 [0 0 0 1 0 0 1 0 1 1 0 0 1 1 1 1 1 0 0 0 1 1 0 1 1 1 0 1 0 1 0] (default) | vector with binary elements",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Symbol voltage pattern",
+   "default": "-1]",
+   "values": "以符号时间间隔分布的符号电压向量 1/2*[1 1 1 1 -1 -1 -1 -1] (default) | vector with decimal values",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Sampled voltage pattern",
+   "default": "[zeros(1,(SymbolTime/SampleInterval)),ones(1,(SymbolTime/SampleInterval))]-0.5",
+   "values": "以采样间隔分布的电压向量 [zeros(1,(SymbolTime/SampleInterval)),ones(1,(SymbolTime/SampleInterval))]-0.5 (default) | real valued vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Sub symbol time delay (s)",
+   "default": "0",
+   "values": "按符号时间取模延迟激励波形 0 (default) | nonnegative real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Change in IBIS-AMI Manager",
+   "default": "",
+   "values": "修改 Rx_Use_Clock_Input 保留的 AMI 参数 button",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Generate Clock or Strobe Waveform",
+   "default": "off",
+   "values": "根据波形参数生成时钟或选通波形 off (default) | on",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Use External Waveform or Clock Times Array",
+   "default": "on",
+   "values": "使用外部波形进行转发 on (default) | off",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Include Analog Channel Model in clock waveform",
+   "default": "on",
+   "values": "在时钟波形中包含模拟通道模型 on (default) | off",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Clock Pattern",
+   "default": "off",
+   "values": "转发时钟模式 off (default) | on",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Strobe Pattern",
+   "default": "on",
+   "values": "转发选通模式 on (default) | off",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Delay (s)",
+   "default": "0",
+   "values": "延迟转发时钟 0 (default) | nonnegative real scalar",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Burst Length",
+   "default": "16",
+   "values": "选通突发模式之间的符号数 16 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Idle Length",
+   "default": "8",
+   "values": "突发之间的符号数 8 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Preamble",
+   "default": "2",
+   "values": "添加到每个突发开头的额外时钟周期数 2 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Postamble",
+   "default": "0",
+   "values": "添加到每个突发末尾的额外时钟周期数 0 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Include Transmitter Jitter",
+   "default": "on",
+   "values": "在转发的时钟中包含发射机抖动 on (default) | off",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_Dj (UI)",
+   "default": "0",
+   "values": "发射机确定性抖动 0 (default) | scalar in the range [0 1]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_Rj (UI)",
+   "default": "0",
+   "values": "发射机随机抖动 0 (default) | scalar in the range [0 1]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_DCD (UI)",
+   "default": "0",
+   "values": "发射机占空比失真 0 (default) | scalar in the range [0 1]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_Sj (UI)",
+   "default": "0",
+   "values": "发射机正弦抖动 0 (default) | scalar in the range [0 1]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Tx_Sj_Frequency (Hz)",
+   "default": "0",
+   "values": "发射机正弦抖动频率 0 (default) | scalar in the range [0 100e9]",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Waveform Name",
+   "default": "defaultClockWave",
+   "values": "工作区中波形参数的名称 defaultClockWave (default) | character string",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Waveform Delay (s)",
+   "default": "0",
+   "values": "延迟转发时钟 0 (default) | nonnegative scalar integer",
+   "group": "Clock Forwarding"
+  },
+  {
+   "name": "Clock Times Name",
+   "default": "defaultClockTimes",
+   "values": "工作区中时钟时间参数的名称 defaultClockTimes (default) | character string",
+   "group": "Clock Forwarding"
+  }
+ ]
+}

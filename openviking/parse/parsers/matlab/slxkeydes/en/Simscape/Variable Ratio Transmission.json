@@ -1,0 +1,13 @@
+{
+ "key": "Variable Ratio Transmission",
+ "title": "Variable Ratio Transmission",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Variable_Ratio_Transmission.md"
+ ],
+ "text": "Dynamic gearbox with variable and controllable gear ratio, transmission compliance, and friction losses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

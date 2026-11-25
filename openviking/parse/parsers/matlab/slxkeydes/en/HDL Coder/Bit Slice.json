@@ -1,0 +1,37 @@
+{
+ "key": "Bit Slice",
+ "title": "Bit Slice",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Bit_Slice.md"
+ ],
+ "text": "Return field of consecutive bits from input signal, 1 input, 1 output; {MSB Position} sets the most significant bit position and {LSB Position} sets the least significant bit position. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input Signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output Signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "MSB Position",
+   "default": "7",
+   "values": "Most significant bit position 7 (default)",
+   "group": ""
+  },
+  {
+   "name": "LSB Position",
+   "default": "0",
+   "values": "Least significant bit position 0 (default)",
+   "group": ""
+  }
+ ]
+}

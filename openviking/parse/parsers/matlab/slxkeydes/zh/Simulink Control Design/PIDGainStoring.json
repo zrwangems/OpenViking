@@ -1,0 +1,160 @@
+{
+ "key": "PIDGainStoring",
+ "title": "PID Gains Store and Update",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/PID_Gains_Store_and_Update.md"
+ ],
+ "text": "存储并更新使用 Closed-Loop PID Autotuner 整定的 PID 增益，输入 4 路、输出 1 路；按 {I Gain initial conditions} 指定积分增益初始值；{Controller type} 指定 PID 控制器类型、{Use for gain scheduling} 为增益调度启用模块、{Save breakpoints in gain array} 指定将断点与 PID 增益一起保存、{Breakpoints} 指定 Gain scheduling breakpoints、{Number of breakpoints} 指定断点数、{Use external signal} 指定 breakpoints from input port、{Gain index tolerance}、{Method of storing gains}、{P Gain Parameter Name} 指定比例增益数据名称、{P Gain initial conditions} 指定 Proportional gain initial value、{I Gain Parameter Name} 指定积分增益数据名称、{D Gain Parameter Name} 指定微分增益数据名称、{D Gain initial conditions} 指定微分增益初始值、{N Gain Parameter Name} 指定滤波器增益数据名称、{N Gain initial conditions} 指定滤波器增益初始值、{Method to trigger gain update} 指定更新触发方法 Detect change in PID、{Number of samples to delay update} 指定延迟更新的采样点数、{Sample time (-1 for inherited)} 指定采样时间、{Data Type} 指定浮点精度 Double，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "tuned Gains",
+   "direction": "input",
+   "summary": "整定后的 PID 增益 bus"
+  },
+  {
+   "name": "scheduling Variable",
+   "direction": "input",
+   "summary": "调度变量 scalar"
+  },
+  {
+   "name": "Breakpoints",
+   "direction": "input",
+   "summary": "断点数据 vector"
+  },
+  {
+   "name": "Update Trigger",
+   "direction": "input",
+   "summary": "触发控制信号 scalar"
+  },
+  {
+   "name": "PID Gains Out",
+   "direction": "output",
+   "summary": "PID 增益数组 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Controller type",
+   "default": "P",
+   "values": "PID 控制器类型 P (default) | I | PI | PD | PDN | PID | PIDN",
+   "group": ""
+  },
+  {
+   "name": "Use for gain scheduling",
+   "default": "on",
+   "values": "为增益调度启用模块 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Save breakpoints in gain array",
+   "default": "off",
+   "values": "将断点与 PID 增益一起保存 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints",
+   "default": "3]",
+   "values": "Gain scheduling breakpoints [1 2 3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of breakpoints",
+   "default": "3",
+   "values": "断点数 3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Use external signal",
+   "default": "off",
+   "values": "Specify breakpoints from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Gain index tolerance",
+   "default": "1e-3",
+   "values": "Gain index tolerance 1e-3 (default) | nonegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Method of storing gains",
+   "default": "memory",
+   "values": "Method of storing gains Data store memory (default) | Goto/from | Output from block",
+   "group": ""
+  },
+  {
+   "name": "P Gain Parameter Name",
+   "default": "PGain",
+   "values": "比例增益数据名称 PGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "P Gain initial conditions",
+   "default": "0",
+   "values": "Proportional gain initial value 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "I Gain Parameter Name",
+   "default": "IGain",
+   "values": "积分增益数据名称 IGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "I Gain initial conditions",
+   "default": "0",
+   "values": "积分增益初始值 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "D Gain Parameter Name",
+   "default": "DGain",
+   "values": "微分增益数据名称 DGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "D Gain initial conditions",
+   "default": "0",
+   "values": "微分增益初始值 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "N Gain Parameter Name",
+   "default": "NGain",
+   "values": "滤波器增益数据名称 NGain (default) | string",
+   "group": ""
+  },
+  {
+   "name": "N Gain initial conditions",
+   "default": "100",
+   "values": "滤波器增益初始值 100 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Method to trigger gain update",
+   "default": "gains",
+   "values": "更新触发方法 Detect change in PID gains (default) | External trigger",
+   "group": ""
+  },
+  {
+   "name": "Number of samples to delay update",
+   "default": "1",
+   "values": "延迟更新的采样点数 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "Double",
+   "values": "浮点精度 Double (default) | Single",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "key": "EnablePort",
+ "title": "Enable",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Enable.md",
+  "HDL Coder/Ports & Subsystems/Enable.md"
+ ],
+ "text": "Add enable port to subsystem or model, 1 output, no direct feedthrough, {Sample time} sets time interval; {States when enabling} selects block states when subsystem or model is disabled, {Propagate sizes of variable-size signals} selects when to propagate a variable-size signal Only when, {Show output port} controls display of output port for enable, {Enable zero-crossing detection} controls zero-crossing detection, {Port dimensions} sets the dimensions for the enable signal, {Minimum} sets the minimum output value for the enable signal, {Maximum} sets the maximum output value for the enable signal, {Data type} sets the output data type for the enable signal, {Mode} selects data type category and {Interpolate data} sets the value of missing workspace data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable signal",
+   "direction": "output",
+   "summary": "External enable signal for a subsystem or model scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "States when enabling",
+   "default": "held",
+   "values": "Select block states when subsystem or model is disabled held (default) | reset",
+   "group": ""
+  },
+  {
+   "name": "Propagate sizes of variable-size signals",
+   "default": "enabling",
+   "values": "Select when to propagate a variable-size signal Only when enabling (default) | During execution",
+   "group": ""
+  },
+  {
+   "name": "Show output port",
+   "default": "off",
+   "values": "Control display of output port for enable signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Control zero-crossing detection on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Port dimensions",
+   "default": "1",
+   "values": "Specify dimensions for the enable signal 1 (default) | [n] | [m n]",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Specify time interval -1 (default) | Ts | [Ts, To]",
+   "group": ""
+  },
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "Specify minimum output value for the enable signal [] (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "Specify maximum output value for the enable signal [] (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "Specify output data type for the enable signal double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^,0) |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "in",
+   "values": "Select data type category Built in (default) | Fixed point | Expression",
+   "group": ""
+  },
+  {
+   "name": "Interpolate data",
+   "default": "on",
+   "values": "Specify value of missing workspace data on (default) | off",
+   "group": ""
+  }
+ ]
+}

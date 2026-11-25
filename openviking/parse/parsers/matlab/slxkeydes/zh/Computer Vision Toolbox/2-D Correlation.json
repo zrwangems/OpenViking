@@ -1,0 +1,48 @@
+{
+ "key": "2-D Correlation",
+ "title": "2-D Correlation",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Correlation.md"
+ ],
+ "text": "计算两个输入矩阵的二维相关性，输入 2 路、输出 1 路；按 {Output size} 指定互相关输出的大小；{Normalized output} 指定归一化互相关输出、{Lock data type settings against change by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I1",
+   "direction": "input",
+   "summary": "第一个输入矩阵 matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "第二个输入矩阵 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "计算得到的互相关 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output size",
+   "default": "Full",
+   "values": "互相关输出的大小 Full (default) | Same as input port I1 | Valid",
+   "group": "Main"
+  },
+  {
+   "name": "Normalized output",
+   "default": "off",
+   "values": "归一化互相关输出 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

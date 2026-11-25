@@ -1,0 +1,134 @@
+{
+ "key": "SignalSpecification",
+ "title": "Signal Specification",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Signal_Specification.md",
+  "HDL Coder/Signal Attributes/Signal_Specification.md"
+ ],
+ "text": "Specify desired dimensions, sample time, data type, numeric type, and other attributes of signal, 1 input, 1 output, no direct feedthrough, {Mode} sets Data type mode; {Minimum}, {Maximum}, {Data type} sets the output data type Inherit, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding data, {Require nonvirtual bus} sets the accept only nonvirtual bus signals, {Unit (e.g., m, m/s^2, N*m)} sets the physical unit of the input signal to the block, {Dimensions (-1 for inherited)} sets the dimensions of input and output signals, {Variable-size signal} allows signal to be variable-size, fixed-size, or both, {Sample time (-1 for inherited)} sets the time interval between samples, {Signal type} sets the complexity of signal, {Signedness} sets the signed or unsigned Signed, {Data type override} sets the data type override mode for this signal, {Word length} sets the bit size of the word that holds the quantized, {Scaling} sets the method for scaling fixed-point data Best, {Fraction length} sets the fraction length for fixed-point data type, {Slope} sets the slope for the fixed-point data and {Bias} sets the bias for the fixed-point data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "Minimum value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "Maximum value for range checking [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "auto",
+   "values": "Output data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 |...",
+   "group": ""
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Require nonvirtual bus",
+   "default": "off",
+   "values": "Accept only nonvirtual bus signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Unit (e.g., m, m/s^2, N*m)",
+   "default": "inherit",
+   "values": "Physical unit of the input signal to the block inherit (default) | <Enter unit>",
+   "group": ""
+  },
+  {
+   "name": "Dimensions (-1 for inherited)",
+   "default": "-1",
+   "values": "Dimensions of input and output signals -1 (default) | n | [m n]",
+   "group": ""
+  },
+  {
+   "name": "Variable-size signal",
+   "default": "Inherit",
+   "values": "Allow signal to be variable-size, fixed-size, or both Inherit (default) | No | Yes",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Time interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Signal type",
+   "default": "auto",
+   "values": "Complexity of signal auto (default) | real | complex",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Data type mode Inherit (default) | Built in | Fixed point | Enumerated | Bus object | Value type | Expression",
+   "group": ""
+  },
+  {
+   "name": "Signedness",
+   "default": "",
+   "values": "Signed or unsigned Signed",
+   "group": ""
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": ""
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias",
+   "group": ""
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Specify bias for the fixed-point data type 0 (default) | real-valued scalar",
+   "group": ""
+  }
+ ]
+}

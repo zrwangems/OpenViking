@@ -1,0 +1,108 @@
+{
+ "key": "Array-Vector Multiply",
+ "title": "Array-Vector Multiply",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Array_Vector_Multiply.md"
+ ],
+ "text": "沿指定维度将数组乘以向量，输入 2 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入运算的方法；{Multiply along dimension} 指定沿其乘以输入数组的维度、{Vector (V) source} 指定向量来源 Input、{Vector (V)} 指定向量参数、{Saturate on integer overflow} 指定溢出操作的方法、{Vector (V) Minimum} 指定向量元素的最小值、{Vector (V) Maximum} 指定向量元素的最大值、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Output} 输出数据类型、{Output Minimum} 指定模块输出的最小值、{Output Maximum} 指定模块输出的最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "数组输入 vector | matrix"
+  },
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "向量输入 vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "相乘输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Multiply along dimension",
+   "default": "2",
+   "values": "沿其乘以输入数组的维度 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V) source",
+   "default": "port",
+   "values": "向量来源 Input port (default) | Dialog parameter",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Vector (V)",
+   "default": "0.25]",
+   "values": "向量参数 [0.5 0.25] (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Vector (V) Minimum",
+   "default": "(unspecified)",
+   "values": "向量元素的最小值 [] (unspecified) (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Vector (V) Maximum",
+   "default": "(unspecified)",
+   "values": "向量元素的最大值 [] (unspecified) (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as first input | fixdt([],16,0) |",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as first input | Inherit: Same as product output | fixdt([],16,0) |",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "output",
+   "values": "输出数据类型 Inherit: Same as product output (default) | Inherit: Same as first input | Inherit: Same as first input | fixdt([],16,0) |",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "(unspecified)",
+   "values": "模块输出的最小值 [] (unspecified) (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "(unspecified)",
+   "values": "模块输出的最大值 [] (unspecified) (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "key": "Data Mapper",
+ "title": "Data Mapper",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/Data_Mapper.md"
+ ],
+ "text": "Map integer symbols from one coding scheme to another, 1 input, 1 output, {Mapping mode} sets Mapping mode Binary to; {Symbol set size (M)} and {Mapping vector} sets the maps input elements to the output elements. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal scalar | column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mapping mode",
+   "default": "Gray",
+   "values": "Mapping mode Binary to Gray (default) | Gray to Binary | User Defined | Straight through",
+   "group": ""
+  },
+  {
+   "name": "Symbol set size (M)",
+   "default": "8",
+   "values": "Symbol set size 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Mapping vector",
+   "default": "5]",
+   "values": "Maps input elements to the output elements [0 1 3 2 7 6 4 5] (default) | vector",
+   "group": ""
+  }
+ ]
+}

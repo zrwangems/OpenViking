@@ -1,0 +1,105 @@
+{
+ "key": "Logic",
+ "title": "Logical Operator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Logical_Operator.md",
+  "Simulink/Logic and Bit Operations/Logical_Operator.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/AND.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NAND.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NOR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NOT.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/NXOR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/OR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/XOR.md",
+  "HDL Coder/Commonly Used Blocks/Logical_Operator.md",
+  "HDL Coder/Logic and Bit Operations/Logical_Operator.md"
+ ],
+ "text": "Perform specified logical operation on input, 3 inputs, 1 output, direct feedthrough, {Operator} sets Logical operator; {Number of input ports} sets the number of inputs, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs and output to have the same data type} requires all ports to have same data type, {Output data type}, {Mode} sets the category of data to specify, {Data type override} sets the data type override mode for this signal, {Signedness}, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method of scaling. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Second input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "Nth input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operator",
+   "default": "AND",
+   "values": "Logical operator AND (default) | OR | NAND | NOR | XOR | NXOR | NOT",
+   "group": "Main"
+  },
+  {
+   "name": "Number of input ports",
+   "default": "2",
+   "values": "Number of inputs 2 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Require all inputs and output to have the same data type",
+   "default": "off",
+   "values": "Require all ports to have same data type off (default) | on",
+   "group": "Data Type"
+  },
+  {
+   "name": "Output data type",
+   "default": "boolean",
+   "values": "Output data type boolean (default) | Inherit: Logical (see Configuration Parameters: Optimization) | Inherit: Inherit via back propagation | fixdt(1,16) |",
+   "group": "Data Type"
+  },
+  {
+   "name": "Mode",
+   "default": "in",
+   "values": "Category of data to specify Built in (default) | Inherit | Fixed point | Expression",
+   "group": "Data Type"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": "Data Type"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Signedness of fixed-point data Signed (default) | Unsigned",
+   "group": "Data Type"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": "Data Type"
+  },
+  {
+   "name": "Scaling",
+   "default": "Integer",
+   "values": "Method of scaling Integer (default)",
+   "group": "Data Type"
+  }
+ ]
+}

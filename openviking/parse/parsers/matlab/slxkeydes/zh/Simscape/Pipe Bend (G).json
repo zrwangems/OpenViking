@@ -1,0 +1,13 @@
+{
+ "key": "Pipe Bend (G)",
+ "title": "Pipe Bend (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Pipes & Fittings/Pipe_Bend_G.md"
+ ],
+ "text": "气体网络中的管道弯头段。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

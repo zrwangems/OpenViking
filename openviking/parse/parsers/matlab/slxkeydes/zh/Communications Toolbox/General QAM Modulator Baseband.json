@@ -1,0 +1,13 @@
+{
+ "key": "General QAM Modulator Baseband",
+ "title": "General QAM Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/General_QAM_Modulator_Baseband.md"
+ ],
+ "text": "使用正交幅度调制进行调制。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

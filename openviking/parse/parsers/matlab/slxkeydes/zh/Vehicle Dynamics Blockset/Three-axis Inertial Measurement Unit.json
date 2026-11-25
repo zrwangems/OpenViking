@@ -1,0 +1,165 @@
+{
+ "key": "Three-axis Inertial Measurement Unit",
+ "title": "Three-axis Inertial Measurement Unit",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Sensors/Three_axis_Inertial_Measurement_Unit.md",
+  "Aerospace Blockset/GNC/Navigation/Three_axis_Inertial_Measurement_Unit.md"
+ ],
+ "text": "实现三轴惯性测量单元 (IMU)，输入 5 路、输出 2 路；{Units} 指定单位 Metric、{IMU location} 指定 IMU 位置、{Update rate} 指定更新速率、{Second order dynamics for accelerometer} 指定二阶动态、{Accelerometer natural frequency (rad/sec)} 指定加速度计固有频率、{Accelerometer damping ratio} 指定加速度计阻尼比、{Accelerometer scale factor and cross-coupling} 指定比例因子与交叉耦合、{Accelerometer measurement bias} 指定加速度计测量偏置、{Accelerometer upper and lower limits} 指定加速度的最小值和最大值、{Second-order dynamics for gyro} 指定陀螺仪二阶动态特性、{Gyro natural frequency (rad/sec)} 指定陀螺仪固有频率、{Gyro damping ratio} 指定陀螺仪阻尼比、{Gyro scale factors and cross-coupling} 指定陀螺仪比例因子和交叉耦合、{Gyro measurement bias} 指定陀螺仪测量偏置、{G-sensitive bias} 指定速率最大变化、{Gyro upper and lower limits} 指定角速率的最小值和最大值、{Noise on} 指定白噪声、{Noise seeds} 指定噪声种子、{Noise power} 指定噪声功率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A_b",
+   "direction": "input",
+   "summary": "实际加速度 three-element vector"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "角速率 three-element vector"
+  },
+  {
+   "name": "w_dot",
+   "direction": "input",
+   "summary": "角加速度 three-element vector"
+  },
+  {
+   "name": "CG",
+   "direction": "input",
+   "summary": "重心位置 three-element vector"
+  },
+  {
+   "name": "g",
+   "direction": "input",
+   "summary": "重力 three-element vector"
+  },
+  {
+   "name": "A_meas",
+   "direction": "output",
+   "summary": "测量加速度 three-element vector"
+  },
+  {
+   "name": "w_meas",
+   "direction": "output",
+   "summary": "测量角速率 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "IMU location",
+   "default": "0]",
+   "values": "IMU 位置 [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Update rate",
+   "default": "0",
+   "values": "更新速率 0 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Second order dynamics for accelerometer",
+   "default": "on",
+   "values": "二阶动态 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer natural frequency (rad/sec)",
+   "default": "190",
+   "values": "加速度计固有频率 190 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer damping ratio",
+   "default": "0.707",
+   "values": "加速度计阻尼比 0.707 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer scale factor and cross-coupling",
+   "default": "1]",
+   "values": "比例因子与交叉耦合 [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer measurement bias",
+   "default": "0]",
+   "values": "加速度计测量偏置 [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer upper and lower limits",
+   "default": "inf]",
+   "values": "加速度的最小值和最大值 [-inf -inf -inf inf inf inf] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Second-order dynamics for gyro",
+   "default": "on",
+   "values": "陀螺仪二阶动态特性 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Gyro natural frequency (rad/sec)",
+   "default": "190",
+   "values": "陀螺仪固有频率 190 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Gyro damping ratio",
+   "default": "0.707",
+   "values": "陀螺仪阻尼比 0.707 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Gyro scale factors and cross-coupling",
+   "default": "1]",
+   "values": "陀螺仪比例因子和交叉耦合 [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Gyro measurement bias",
+   "default": "0]",
+   "values": "陀螺仪测量偏置 [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "G-sensitive bias",
+   "default": "0]",
+   "values": "速率最大变化 [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Gyro upper and lower limits",
+   "default": "inf]",
+   "values": "角速率的最小值和最大值 [-inf -inf -inf inf inf inf] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Noise on",
+   "default": "on",
+   "values": "白噪声 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Noise seeds",
+   "default": "23098]",
+   "values": "噪声种子 [23093 23094 23095 23096 23097 23098] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Noise power",
+   "default": "0.0001]",
+   "values": "噪声功率 [0.001 0.001 0.001 0.0001 0.0001 0.0001] (default) | six-element vector",
+   "group": ""
+  }
+ ]
+}

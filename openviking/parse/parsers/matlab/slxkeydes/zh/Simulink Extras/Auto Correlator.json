@@ -1,0 +1,13 @@
+{
+ "key": "Auto Correlator",
+ "title": "Auto Correlator",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Sinks/Auto_Correlator.md"
+ ],
+ "text": "当该模块连接到系统输出时，会在图窗口中显示缓冲区的自相关。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

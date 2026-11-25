@@ -1,0 +1,13 @@
+{
+ "key": "Multiplier",
+ "title": "Multiplier",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Multiplier.md"
+ ],
+ "text": "集成电路乘法器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

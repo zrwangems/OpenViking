@@ -1,0 +1,13 @@
+{
+ "key": "Current Limiter",
+ "title": "Current Limiter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Current_Limiter.md"
+ ],
+ "text": "电流限制器的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

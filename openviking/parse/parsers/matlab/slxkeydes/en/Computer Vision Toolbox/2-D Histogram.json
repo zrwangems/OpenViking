@@ -1,0 +1,78 @@
+{
+ "key": "2-D Histogram",
+ "title": "2-D Histogram",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Histogram.md"
+ ],
+ "text": "Generate histogram from input, 2 inputs, 1 output, {Trigger type} sets Reset condition of running histogram; {Lower limit of histogram} sets the lower limit of lowest-valued bin, {Upper limit of histogram} sets the upper limit of highest-valued bin, {Number of bins}, {Find the histogram over} sets the dimension along which to compute histogram Entire, {Normalized} sets the normalize histogram output, {Running histogram} sets the frequency distribution for successive and {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input image vector | matrix | 3-D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset value scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Histogram output vector | matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lower limit of histogram",
+   "default": "0",
+   "values": "Lower limit of lowest-valued bin 0 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Upper limit of histogram",
+   "default": "1",
+   "values": "Upper limit of highest-valued bin 1 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bins",
+   "default": "256",
+   "values": "Number of bins in histogram 256 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Find the histogram over",
+   "default": "input",
+   "values": "Dimension along which to compute histogram Entire input (default) | Each column",
+   "group": ""
+  },
+  {
+   "name": "Normalized",
+   "default": "off",
+   "values": "Normalize histogram output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Running histogram",
+   "default": "off",
+   "values": "Frequency distribution for successive inputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "None",
+   "values": "Reset condition of running histogram None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "key": "RotarySwitchBlock",
+ "title": "Rotary Switch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Rotary_Switch.md"
+ ],
+ "text": "用于在刻度盘上设置值的开关参数；按 {Label} 指定模块标签位置；{Connection} 指定要连接的模块参数值 parameter value connection、{States} 指定定位标签和值 scalar and character、{Enumerated Data Type} 使用枚举数据类型指定状态值和标签，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "要连接的模块参数值 parameter value connection options",
+   "group": ""
+  },
+  {
+   "name": "States",
+   "default": "",
+   "values": "定位标签和值 scalar and character vector",
+   "group": ""
+  },
+  {
+   "name": "Enumerated Data Type",
+   "default": "off",
+   "values": "使用枚举数据类型指定状态值和标签 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "模块标签位置 Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

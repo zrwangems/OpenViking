@@ -1,0 +1,626 @@
+{
+ "key": "Trailer Body 3DOF",
+ "title": "Trailer Body 3DOF",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Body/Trailer_Body_3DOF.md"
+ ],
+ "text": "Trailer body with longitudinal, lateral, and yaw motion, 22 inputs, 9 outputs, {Vehicle track} sets Type of vehicle track Dual; {Axle forces} sets the type of axle force, {Front wheel steering} sets the whlAngF input port, {Middle wheel steering} sets the whlAngM input port, {Rear wheel steering} sets the whlAngR input port, {External wind} sets the windXYZ input port, {External friction} sets the mu input port, {External forces} sets the fExt input port, {External moments} sets the mExt input port, {Front hitch forces} sets the fhF input port, {Front hitch moments} sets the mhF input port, {Rear hitch forces} sets the fhR input port, {Rear hitch moments} sets the mhR input port, {Initial longitudinal position} sets the x_o input port, {Initial yaw angle} sets the psi_o input port, {Initial longitudinal velocity} sets the xdot_o input port, {Initial yaw rate} sets the r_o input port, {Initial lateral position} sets the y_o input port, {Air temperature} sets the airTemp input port, {Initial lateral velocity} sets the ydot_o input port, {Number of wheels on front axle, NF} sets the front wheel count, {Number of wheels on middle axle, NM} sets the middle wheel count, {Number of wheels on rear axle, NR} sets the rear wheel count, {Vehicle mass, m}, {Longitudinal distance from center of mass to front axle, a} sets the distance from CM to front axle, {Longitudinal distance from center of mass to middle axle, b} sets the distance from CM to middle axle, {Longitudinal distance from center of mass to rear axle, c} sets the distance from CM to rear axle, {Vertical distance from center of mass to axle plane, h} sets the distance from CM to axle plane, {Longitudinal distance from center of mass to front hitch, dh_f} sets the distance to front hitch, {Vertical distance from front hitch to axle plane, hh_f} sets the distance from front hitch to axle plane, {Longitudinal distance from center of mass to rear hitch, dh_r} sets the distance to front hitch, {Vertical distance from front hitch to axle plane, hh_r} sets the distance from rear hitch to axle plane, {Initial inertial frame longitudinal position, X_o} sets the initial inertial X location, {Initial longitudinal velocity, xdot_o} sets the initial velocity, {Mapped corner stiffness} sets the selection, {Include relaxation length dynamics} enables relaxation length dynamics, {Lateral distance from geometric centerline to center of mass, d} sets the distance from centerline to CM, {Lateral distance from geometric centerline to front hitch, hl_f} sets the distance from centerline to front hitch, {Lateral distance from geometric centerline to rear hitch, hl_r} sets the distance from centerline to rear hitch, {Front track width, w_f}, {Middle track width, w_m}, {Rear track width, w_r}, {Front axle tire corner stiffness, Cy_f} sets the front axle tire stiffness, {Middle axle tire corner stiffness, Cy_m} sets the middle axle tire stiffness, {Rear axle tire corner stiffness, Cy_r} sets the rear axle tire stiffness, {Front tire(s) relaxation length, sigma_f} sets the relaxation length .1, {Middle tire(s) relaxation length, sigma_m} sets the relaxation length .1, {Rear tire(s) relaxation length, sigma_r} sets the relaxation length .1, {Front axle slip angle breakpoints, alpha_f_brk} sets the breakpoints, {Front axle corner data, Cy_f_data} sets the breakpoints, {Middle axle slip angle breakpoints, alpha_m_brk} sets the breakpoints, {Middle axle corner data, Cy_m_data} sets the breakpoints, {Rear axle slip angle breakpoints, alpha_r_brk} sets the breakpoints, {Rear axle corner data, Cy_r_data} sets the data, {Initial inertial frame lateral displacement, Y_o} sets the position, {Initial lateral velocity, ydot_o} sets the velocity, {Yaw polar inertia, Izz} sets the inertia, {Initial yaw angle, psi_o} sets the psi rotation, {Initial yaw rate, r_o} sets the yaw rate, {Longitudinal drag area, Af} sets the effective vehicle cross-sectional area, {Longitudinal drag coefficient, Cd} sets the air drag coefficient .3, {Longitudinal lift coefficient, Cl} sets the air lift coefficient .1, {Longitudinal drag pitch moment, Cpm} sets the pitch drag .1, {Relative wind angle vector, beta_w} sets the wind angle, {Side force coefficient vector, Cs} sets the side force coefficient, {Yaw moment coefficient vector, Cym} sets the yaw moment drag, {Absolute air pressure, Pabs} sets the pressure, {Air temperature, Tair} sets the temperature, {Gravitational acceleration, g} sets the gravity, {Nominal friction scaling factor, mu} sets the friction scale factor, {Longitudinal velocity tolerance, xdot_tol} sets the tolerance .01, {Nominal normal force, Fznom} sets the normal force, {Geometric longitudinal offset from axle plane, longOff} sets the longitudinal offset, {Geometric lateral offset from center plane, latOff} sets the lateral offset, {Geometric vertical offset from axle plane, vertOff} sets the vertical offset and {Wrap Euler angles, wrapAng} sets the wrap the Euler angles to the interval. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WhlAngF",
+   "direction": "input",
+   "summary": "Front wheel steering angles scalar | array"
+  },
+  {
+   "name": "WhlAngM",
+   "direction": "input",
+   "summary": "Middle wheel steering angles scalar | array"
+  },
+  {
+   "name": "WhlAngR",
+   "direction": "input",
+   "summary": "Rear wheel steering angles scalar | array"
+  },
+  {
+   "name": "xdotin",
+   "direction": "input",
+   "summary": "Longitudinal velocity scalar"
+  },
+  {
+   "name": "FwF",
+   "direction": "input",
+   "summary": "Total force on the front wheels scalar | array"
+  },
+  {
+   "name": "FwM",
+   "direction": "input",
+   "summary": "Total force on the middle wheels scalar | array"
+  },
+  {
+   "name": "FwR",
+   "direction": "input",
+   "summary": "Total force on the rear wheels scalar | array"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "External force on the vehicle CG array"
+  },
+  {
+   "name": "MExt",
+   "direction": "input",
+   "summary": "External moment about vehicle CG array"
+  },
+  {
+   "name": "FhF",
+   "direction": "input",
+   "summary": "Front hitch force on the body array"
+  },
+  {
+   "name": "MhF",
+   "direction": "input",
+   "summary": "Front hitch moment about body array"
+  },
+  {
+   "name": "FhR",
+   "direction": "input",
+   "summary": "Rear hitch force on the body array"
+  },
+  {
+   "name": "MhR",
+   "direction": "input",
+   "summary": "Rear hitch moment about body array"
+  },
+  {
+   "name": "WindXYZ",
+   "direction": "input",
+   "summary": "Wind speed array"
+  },
+  {
+   "name": "Mu",
+   "direction": "input",
+   "summary": "Tire friction coefficient array"
+  },
+  {
+   "name": "AirTemp",
+   "direction": "input",
+   "summary": "Ambient air temperature scalar"
+  },
+  {
+   "name": "X_o",
+   "direction": "input",
+   "summary": "Initial longitudinal position scalar"
+  },
+  {
+   "name": "Y_o",
+   "direction": "input",
+   "summary": "Initial lateral position scalar"
+  },
+  {
+   "name": "xdot_o",
+   "direction": "input",
+   "summary": "Initial longitudinal position scalar"
+  },
+  {
+   "name": "ydot_o",
+   "direction": "input",
+   "summary": "Initial lateral position scalar"
+  },
+  {
+   "name": "psi_o",
+   "direction": "input",
+   "summary": "Initial yaw angle scalar"
+  },
+  {
+   "name": "r_o",
+   "direction": "input",
+   "summary": "Initial yaw rate scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Trailer data bus"
+  },
+  {
+   "name": "xdot",
+   "direction": "output",
+   "summary": "Trailer longitudinal velocity scalar"
+  },
+  {
+   "name": "ydot",
+   "direction": "output",
+   "summary": "Trailer lateral velocity scalar"
+  },
+  {
+   "name": "psi",
+   "direction": "output",
+   "summary": "Yaw scalar"
+  },
+  {
+   "name": "r",
+   "direction": "output",
+   "summary": "Yaw rate scalar"
+  },
+  {
+   "name": "FzF",
+   "direction": "output",
+   "summary": "Normal force on the front wheels scalar | array"
+  },
+  {
+   "name": "FzM",
+   "direction": "output",
+   "summary": "Normal force on the middle wheels scalar | array"
+  },
+  {
+   "name": "FzR",
+   "direction": "output",
+   "summary": "Normal force on the rear wheels scalar | array"
+  },
+  {
+   "name": "Fhz",
+   "direction": "output",
+   "summary": "Normal component of hitch force on the body scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vehicle track",
+   "default": "2-axle",
+   "values": "Type of vehicle track Dual 2-axle (default) | Single 1-axle | Dual 1-axle | Single 2-axle | Dual 3-axle",
+   "group": ""
+  },
+  {
+   "name": "Axle forces",
+   "default": "forces",
+   "values": "Type of axle force External forces (default) | External longitudinal velocity | External longitudinal forces",
+   "group": ""
+  },
+  {
+   "name": "Front wheel steering",
+   "default": "off",
+   "values": "WhlAngF input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Middle wheel steering",
+   "default": "off",
+   "values": "WhlAngM input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Rear wheel steering",
+   "default": "off",
+   "values": "WhlAngR input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External wind",
+   "default": "off",
+   "values": "WindXYZ input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External friction",
+   "default": "off",
+   "values": "Mu input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External forces",
+   "default": "off",
+   "values": "FExt input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "External moments",
+   "default": "off",
+   "values": "MExt input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Front hitch forces",
+   "default": "on",
+   "values": "FhF input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Front hitch moments",
+   "default": "on",
+   "values": "MhF input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Rear hitch forces",
+   "default": "off",
+   "values": "FhR input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Rear hitch moments",
+   "default": "off",
+   "values": "MhR input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial longitudinal position",
+   "default": "off",
+   "values": "X_o input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw angle",
+   "default": "off",
+   "values": "psi_o input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial longitudinal velocity",
+   "default": "off",
+   "values": "xdot_o input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw rate",
+   "default": "off",
+   "values": "r_o input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial lateral position",
+   "default": "off",
+   "values": "Y_o input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Air temperature",
+   "default": "off",
+   "values": "AirTemp input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial lateral velocity",
+   "default": "off",
+   "values": "ydot_o input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels on front axle, NF",
+   "default": "2",
+   "values": "Front wheel count 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels on middle axle, NM",
+   "default": "2",
+   "values": "Middle wheel count 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels on rear axle, NR",
+   "default": "2",
+   "values": "Rear wheel count 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle mass, m",
+   "default": "26000",
+   "values": "Vehicle mass 26000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal distance from center of mass to front axle, a",
+   "default": "4",
+   "values": "Distance from CM to front axle 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal distance from center of mass to middle axle, b",
+   "default": "4.5",
+   "values": "Distance from CM to middle axle 4.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal distance from center of mass to rear axle, c",
+   "default": "5",
+   "values": "Distance from CM to rear axle 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vertical distance from center of mass to axle plane, h",
+   "default": "2",
+   "values": "Distance from CM to axle plane 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal distance from center of mass to front hitch, dh_f",
+   "default": "7.5",
+   "values": "Distance to front hitch 7.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vertical distance from front hitch to axle plane, hh_f",
+   "default": "0.6",
+   "values": "Distance from front hitch to axle plane 0.6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal distance from center of mass to rear hitch, dh_r",
+   "default": "7.5",
+   "values": "Distance to front hitch 7.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vertical distance from front hitch to axle plane, hh_r",
+   "default": "0.6",
+   "values": "Distance from rear hitch to axle plane 0.6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial inertial frame longitudinal position, X_o",
+   "default": "0",
+   "values": "Initial inertial X location 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial longitudinal velocity, xdot_o",
+   "default": "0",
+   "values": "Initial velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mapped corner stiffness",
+   "default": "off",
+   "values": "Selection off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Include relaxation length dynamics",
+   "default": "on",
+   "values": "Enable relaxation length dynamics on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Lateral distance from geometric centerline to center of mass, d",
+   "default": "0",
+   "values": "Distance from centerline to CM 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lateral distance from geometric centerline to front hitch, hl_f",
+   "default": "0",
+   "values": "Distance from centerline to front hitch 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lateral distance from geometric centerline to rear hitch, hl_r",
+   "default": "0",
+   "values": "Distance from centerline to rear hitch 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Front track width, w_f",
+   "default": "1.82",
+   "values": "Front track width 1.82 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Middle track width, w_m",
+   "default": "1.82",
+   "values": "Middle track width 1.82 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rear track width, w_r",
+   "default": "1.82",
+   "values": "Rear track width 1.82 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Front axle tire corner stiffness, Cy_f",
+   "default": "12.3",
+   "values": "Front axle tire stiffness 12.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Middle axle tire corner stiffness, Cy_m",
+   "default": "11.3",
+   "values": "Middle axle tire stiffness 11.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rear axle tire corner stiffness, Cy_r",
+   "default": "11.3",
+   "values": "Rear axle tire stiffness 11.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Front tire(s) relaxation length, sigma_f",
+   "default": ".1",
+   "values": "Relaxation length .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Middle tire(s) relaxation length, sigma_m",
+   "default": ".1",
+   "values": "Relaxation length .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rear tire(s) relaxation length, sigma_r",
+   "default": ".1",
+   "values": "Relaxation length .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Front axle slip angle breakpoints, alpha_f_brk",
+   "default": "[-.1.1]",
+   "values": "Breakpoints [-.1.1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Front axle corner data, Cy_f_data",
+   "default": "9e3]",
+   "values": "Breakpoints [-9e3 9e3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Middle axle slip angle breakpoints, alpha_m_brk",
+   "default": "[-.1.1]",
+   "values": "Breakpoints [-.1.1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Middle axle corner data, Cy_m_data",
+   "default": "9e3]",
+   "values": "Breakpoints [-9e3 9e3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rear axle slip angle breakpoints, alpha_r_brk",
+   "default": "[-.1.1]",
+   "values": "Breakpoints [-.1.1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rear axle corner data, Cy_r_data",
+   "default": "9e3]",
+   "values": "Data [-9e3 9e3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial inertial frame lateral displacement, Y_o",
+   "default": "0",
+   "values": "Position 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial lateral velocity, ydot_o",
+   "default": "0",
+   "values": "Velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Yaw polar inertia, Izz",
+   "default": "4000",
+   "values": "Inertia 4000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw angle, psi_o",
+   "default": "0",
+   "values": "Psi rotation 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial yaw rate, r_o",
+   "default": "0",
+   "values": "Yaw rate 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal drag area, Af",
+   "default": "2",
+   "values": "Effective vehicle cross-sectional area 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal drag coefficient, Cd",
+   "default": ".3",
+   "values": "Air drag coefficient .3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal lift coefficient, Cl",
+   "default": ".1",
+   "values": "Air lift coefficient .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal drag pitch moment, Cpm",
+   "default": ".1",
+   "values": "Pitch drag .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Relative wind angle vector, beta_w",
+   "default": "[0:0.01:0.3]",
+   "values": "Wind angle [0:0.01:0.3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Side force coefficient vector, Cs",
+   "default": "[0:0.03:0.9]",
+   "values": "Side force coefficient [0:0.03:0.9] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Yaw moment coefficient vector, Cym",
+   "default": "[0:0.01:0.3]",
+   "values": "Yaw moment drag [0:0.01:0.3] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Absolute air pressure, Pabs",
+   "default": "101325",
+   "values": "Pressure 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air temperature, Tair",
+   "default": "273",
+   "values": "Temperature 273 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.81",
+   "values": "Gravity 9.81 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal friction scaling factor, mu",
+   "default": "1",
+   "values": "Friction scale factor 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal velocity tolerance, xdot_tol",
+   "default": ".01",
+   "values": "Tolerance .01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Nominal normal force, Fznom",
+   "default": "5000",
+   "values": "Normal force 5000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Geometric longitudinal offset from axle plane, longOff",
+   "default": "0",
+   "values": "Longitudinal offset 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Geometric lateral offset from center plane, latOff",
+   "default": "0",
+   "values": "Lateral offset 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Geometric vertical offset from axle plane, vertOff",
+   "default": "0",
+   "values": "Vertical offset 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wrap Euler angles, wrapAng",
+   "default": "off",
+   "values": "Wrap the Euler angles to the interval [-pi, pi] off (default) | on",
+   "group": ""
+  }
+ ]
+}

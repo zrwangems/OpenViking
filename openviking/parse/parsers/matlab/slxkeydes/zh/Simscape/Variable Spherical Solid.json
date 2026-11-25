@@ -1,0 +1,13 @@
+{
+ "key": "Variable Spherical Solid",
+ "title": "Variable Spherical Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Variable Mass/Variable_Spherical_Solid.md"
+ ],
+ "text": "质量和尺寸可变的实心球体。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

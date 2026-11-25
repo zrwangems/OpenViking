@@ -1,0 +1,140 @@
+{
+ "key": "Symbol Modulator",
+ "title": "Symbol Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/Symbol_Modulator.md"
+ ],
+ "text": "将数据比特调制为复数据符号，输入 5 路、输出 2 路；按 {Modulation} 指定调制类型；{Modulation source} 指定调制类型来源、{Modulation array} 指定调制数组、{Constellation ordering type} 指定星座排序类型、{Constellation mapping} 指定星座映射、{Constellation mapping array} 指定星座映射数组、{Phase offset (rad)} 指定相位偏移、{Phase offset type} 指定相位偏移类型、{Phase offset array (rad)} 指定相位偏移数组、{Normalization method} 指定缩放信号星座 Minimum distance between、{Minimum distance} 指定符号间最小距离、{Average power, referenced to 1 ohm (watts)} 指定星座中符号的平均功率、{Enable reset input port} 指定重置输入端口、{Output data type} 输出数据类型选择、{Word length} 输出字长，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "数据比特 scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效输入数据 scalar"
+  },
+  {
+   "name": "modArrIdx",
+   "direction": "input",
+   "summary": "调制数组索引 integer"
+  },
+  {
+   "name": "load",
+   "direction": "input",
+   "summary": "调制控制 scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "清除内部状态 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "调制后的复数据符号 complex scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "输出数据有效指示 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "Property",
+   "values": "调制类型来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Modulation",
+   "default": "BPSK",
+   "values": "调制类型 BPSK (default) | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM | 256-QAM | 1024-QAM | 4096-QAM",
+   "group": "Main"
+  },
+  {
+   "name": "Modulation array",
+   "default": "\"QPSK\"}",
+   "values": "调制数组 {\"BPSK\", \"QPSK\"} (default) | all the supported modulation types",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering type",
+   "default": "Default",
+   "values": "星座排序类型 Default (default) | User-defined",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "1]",
+   "values": "星座映射 [0 1] (default) | row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation mapping array",
+   "default": "2]}",
+   "values": "星座映射数组 {[0 1],[0 1 3 2]} (default) | row vector in a cell array",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "相位偏移 0 (default) | pi | pi/2 | pi/4 | pi/8 | pi/16 | pi/32 | -pi/32 | -pi/16 | -pi/8 | -pi/4 | -pi/2",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset type",
+   "default": "Default",
+   "values": "相位偏移类型 Default (default) | User-defined",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset array (rad)",
+   "default": "pi/4]",
+   "values": "相位偏移数组 [0 pi/4] (default) | scalar | row vector of supported phase offset values",
+   "group": "Main"
+  },
+  {
+   "name": "Normalization method",
+   "default": "symbols",
+   "values": "缩放信号星座 Minimum distance between symbols (default) | Average power",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum distance",
+   "default": "0.125",
+   "values": "符号间最小距离 0.125 (default) | positive scalar in the range from 1/32 to 1/8",
+   "group": "Main"
+  },
+  {
+   "name": "Average power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "星座中符号的平均功率 1 (default) | positive scalar in the range 1/32 to 10",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "重置输入端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "Custom",
+   "values": "输出数据类型选择 Custom (default) | double | single",
+   "group": "Data Types"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "输出字长 16 (default) | integer in the range from 3 to 32",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Flow Rate Source (TL)",
+ "title": "Flow Rate Source (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Sources/Flow_Rate_Source_TL.md"
+ ],
+ "text": "在热液体网络中生成恒定或随时间变化的质量流量或体积流量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

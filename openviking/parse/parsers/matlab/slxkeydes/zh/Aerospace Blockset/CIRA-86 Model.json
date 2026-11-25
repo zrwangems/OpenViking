@@ -1,0 +1,70 @@
+{
+ "key": "CIRA-86 Model",
+ "title": "CIRA-86 Atmosphere Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Atmosphere/CIRA_86_Atmosphere_Model.md"
+ ],
+ "text": "实现 1986 CIRA 大气的数学表示，输入 2 路、输出 3 路；按 {Month} 指定平均值的月份；{Units} 指定单位 Metric、{Coordinate type} 指定坐标类型表示、{Mean value type} 指定平均值类型、{Action for out-of-range input} 指定超出范围时的模块行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "纬度 array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "位势高度或压力 array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "平均温度 array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "压力或位势高度 array"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "平均纬向风 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Coordinate type",
+   "default": "Pressure",
+   "values": "坐标类型表示 Pressure (default) | GPHeight",
+   "group": ""
+  },
+  {
+   "name": "Mean value type",
+   "default": "Monthly",
+   "values": "平均值类型 Monthly (default) | Annual",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "平均值的月份 January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

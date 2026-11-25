@@ -1,0 +1,137 @@
+{
+ "key": "Fuzzy PID Controller",
+ "title": "Fuzzy PID Controller",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Fuzzy_PID_Controller.md"
+ ],
+ "text": "Fuzzy logic-based PID controller, 2 inputs, 2 outputs, {FIS name} sets Fuzzy inference system mamfis object; {Time Domain} sets the controller time domain, {Ce} sets the gain for error, {Cd} sets the gain for derivative signal, {C0} sets the gain for change in FIS output, {C1} sets the gain for FIS output, {Integrator method} sets the method for computing integral in discrete-time controller Forward, {Use accumulator} sets the accumulate signal in integrator, {Derivative signal} sets the signal used for computing derivative Error, {Use filtered derivative} applies filter to derivative term, {Filter coefficient} sets the derivative filter coefficient, {Filter method} sets the method for computing derivative in discrete-time controller Forward, {Add error (e) output} enables e output port, {Sample time (–1 for inherited)}, {Number of samples for output discretization} sets the number of points in output fuzzy sets, {Implement FIS as lookup table} sets the convert FIS to lookup table and {Number of input breakpoints (samples)} sets the number of lookup table breakpoints. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Reference scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Controller output scalar"
+  },
+  {
+   "name": "e",
+   "direction": "output",
+   "summary": "Error scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time Domain",
+   "default": "Discrete-time",
+   "values": "Controller time domain Discrete-time (default) | Continuous-time",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Ce",
+   "default": "1",
+   "values": "Gain for error 1 (default) | scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Cd",
+   "default": "1",
+   "values": "Gain for derivative signal 1 (default) | scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "C0",
+   "default": "1",
+   "values": "Gain for change in FIS output 1 (default) | scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "C1",
+   "default": "1",
+   "values": "Gain for FIS output 1 (default) | scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "Method for computing integral in discrete-time controller Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Use accumulator",
+   "default": "off",
+   "values": "Accumulate signal in integrator off (default) | on",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Derivative signal",
+   "default": "(e)",
+   "values": "Signal used for computing derivative Error (e) (default) | Process output (y)",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Use filtered derivative",
+   "default": "on",
+   "values": "Apply filter to derivative term on (default) | off",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Filter coefficient",
+   "default": "100",
+   "values": "Derivative filter coefficient 100 (default) | positive scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Filter method",
+   "default": "Euler",
+   "values": "Method for computing derivative in discrete-time controller Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Add error (e) output",
+   "default": "off",
+   "values": "Enable e output port off (default) | on",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "FIS name",
+   "default": "",
+   "values": "Fuzzy inference system mamfis object | sugfis object | mamfistype2 object | sugfistype2 object | FIS file name in quotes | MAT file name in quotes",
+   "group": "Fuzzy Inference System"
+  },
+  {
+   "name": "Number of samples for output discretization",
+   "default": "101",
+   "values": "Number of points in output fuzzy sets 101 (default) | integer greater than 1",
+   "group": "Fuzzy Inference System"
+  },
+  {
+   "name": "Implement FIS as lookup table",
+   "default": "off",
+   "values": "Convert FIS to lookup table off (default) | on",
+   "group": "Fuzzy Inference System"
+  },
+  {
+   "name": "Number of input breakpoints (samples)",
+   "default": "10",
+   "values": "Number of lookup table breakpoints 10 (default) | positive integer",
+   "group": "Fuzzy Inference System"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "key": "slrealtimereverseendian",
+ "title": "Byte Reversal",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Utilities/Byte_Reversal.md"
+ ],
+ "text": "Reverse little-endian data for big-endian processor, {Machine word length} sets Word length for conversion; {Number of input ports} sets the number of ports and {Number of inputs} sets the number of ports. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "1",
+   "values": "Number of ports 1 (default)",
+   "group": "Block Parameters for Change Endianess"
+  },
+  {
+   "name": "Machine word length",
+   "default": "Byte",
+   "values": "Word length for conversion Byte (default) | Word | Double Word",
+   "group": "Block Parameters for Change Endianess"
+  },
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "Number of ports 1 (default)",
+   "group": "Byte Reversal Block Parameters"
+  }
+ ]
+}

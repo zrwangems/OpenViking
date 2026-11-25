@@ -1,0 +1,37 @@
+{
+ "key": "Word to Bits",
+ "title": "Word to Bits",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Word_to_Bits.md"
+ ],
+ "text": "Converts real numbers to vector of bits, 1 input, 1 output; {Maximum Word Length} sets the maximum output word length and {Output bit order}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal binary-valued scalar | binary-valued vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum Word Length",
+   "default": "64",
+   "values": "Maximum output word length 64 (default) | integer in the range [1, 65535]",
+   "group": ""
+  },
+  {
+   "name": "Output bit order",
+   "default": "first",
+   "values": "Output bit order LSB first (default) | MSB first",
+   "group": ""
+  }
+ ]
+}

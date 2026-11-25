@@ -1,0 +1,67 @@
+{
+ "key": "codertarget.tic2000.blocks.SDFM38x",
+ "title": "SDFM",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28003x/SDFM.md",
+  "C2000 Microcontroller Blockset/F28p65x/SDFM.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SDFM.md"
+ ],
+ "text": "配置 SDFM 模块的滤波通道；输出 4 路；按 {Filter channel} 指定滤波器模块；{SDFM module} 指示要使用的寄存器、{Data representation} 指定内部 DAC 的来源、{Sample time} 指定读取数据的频率、{Enable comparator filter output} 启用比较器输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DFSTS",
+   "direction": "output",
+   "summary": "数据滤波器状态 0 | 1 | -1"
+  },
+  {
+   "name": "DFLTX",
+   "direction": "output",
+   "summary": "数据滤波器 scalar"
+  },
+  {
+   "name": "CFSTS",
+   "direction": "output",
+   "summary": "比较器状态 0 | 1 | 2 | 3 | 4 | 5 | -1"
+  },
+  {
+   "name": "CFLTX",
+   "direction": "output",
+   "summary": "比较器滤波器 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "SDFM module",
+   "default": "1",
+   "values": "指示要使用的寄存器 1 (default) | 2",
+   "group": ""
+  },
+  {
+   "name": "Filter channel",
+   "default": "Filter1",
+   "values": "选择滤波器模块 Filter1 (default) | Filter2 | Filter3 | Filter4",
+   "group": ""
+  },
+  {
+   "name": "Data representation",
+   "default": "16-bit",
+   "values": "内部 DAC 的来源 16-bit (default) | 32-bit",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "读取数据的频率 0.1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable comparator filter output",
+   "default": "off",
+   "values": "启用比较器输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

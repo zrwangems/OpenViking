@@ -1,0 +1,13 @@
+{
+ "key": "System-Level Heat Exchanger (MA-MA)",
+ "title": "System-Level Heat Exchanger (MA-MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Moist Air/System_Level_Heat_Exchanger_MA_MA.md"
+ ],
+ "text": "基于性能数据的两个湿空气网络之间的热交换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

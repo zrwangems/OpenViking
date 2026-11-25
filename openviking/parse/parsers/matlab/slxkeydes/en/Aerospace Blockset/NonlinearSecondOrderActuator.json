@@ -1,0 +1,67 @@
+{
+ "key": "NonlinearSecondOrderActuator",
+ "title": "Nonlinear Second-Order Actuator",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Actuators/Nonlinear_Second_Order_Actuator.md"
+ ],
+ "text": "Implement second-order actuator with rate and deflection limits, 1 input, 1 output; {Natural frequency}, {Damping ratio}, {Maximum deflection} sets the largest actuator position allowable, {Minimum deflection} sets the smallest actuator position allowable, {Rate limit} sets the fastest speed allowable, {Initial position} and {Initial velocity}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A demand",
+   "direction": "input",
+   "summary": "Demanded actuator position scalar | array"
+  },
+  {
+   "name": "A actual",
+   "direction": "output",
+   "summary": "Actual actuator position scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Natural frequency",
+   "default": "1",
+   "values": "Natural frequency 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Damping ratio",
+   "default": "0.3",
+   "values": "Damping ratio 0.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum deflection",
+   "default": "20*pi/180",
+   "values": "Largest actuator position allowable 20*pi/180 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum deflection",
+   "default": "-20*pi/180",
+   "values": "Smallest actuator position allowable -20*pi/180 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rate limit",
+   "default": "500*pi/180",
+   "values": "Fastest speed allowable 500*pi/180 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial position",
+   "default": "0",
+   "values": "Initial position 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity",
+   "default": "0",
+   "values": "Initial velocity 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

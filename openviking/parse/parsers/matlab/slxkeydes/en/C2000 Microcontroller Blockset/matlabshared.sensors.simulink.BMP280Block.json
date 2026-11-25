@@ -1,0 +1,90 @@
+{
+ "key": "matlabshared.sensors.simulink.BMP280Block",
+ "title": "BMP280",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Sensors/BMP280.md"
+ ],
+ "text": "Measure barometric air pressure and ambient temperature from BMP280 sensor, 3 outputs, {Data type} sets Output data type for values from BMP280 sensor; {I2C Module} sets the specific module used for I2C communication, {I2C address}, {Pressure (Pa)} sets the output port for reading pressure, {Temperature (℃)} sets the output port for reading temperature, {Status} sets the output port for obtaining status of selected, {Sample time} sets the time interval to read data, {Filter coeffiecient} sets the filter coefficient value, {Pressure sensitivity factor (Pa)} and {Temperature sensitivity factor (℃)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pressure",
+   "direction": "output",
+   "summary": "Barometric air pressure scalar"
+  },
+  {
+   "name": "Temperature",
+   "direction": "output",
+   "summary": "Ambient temperature scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of values read for pressure and temperature 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "I2C Module",
+   "default": "I2C_A",
+   "values": "Specific module used for I2C communication I2C_A (default)",
+   "group": ""
+  },
+  {
+   "name": "I2C address",
+   "default": "0x76",
+   "values": "I2C address to communicate with the BMP280 sensor 0x76 (default) | 0x77",
+   "group": ""
+  },
+  {
+   "name": "Pressure (Pa)",
+   "default": "on",
+   "values": "Set output port for reading pressure on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Temperature (℃)",
+   "default": "on",
+   "values": "Set output port for reading temperature on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Status",
+   "default": "on",
+   "values": "Set output port for obtaining status of selected outputs on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "Output data type for values from BMP280 sensor single (default) | double | uint32",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time interval to read data -1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter coeffiecient",
+   "default": "0",
+   "values": "Filter coefficient value 0 (default) | 2 | 4 | 8 | 16",
+   "group": "IIR filter settings"
+  },
+  {
+   "name": "Pressure sensitivity factor (Pa)",
+   "default": "2.62",
+   "values": "Pressure sensitivity factor 2.62 (default) | 1.31 | 0.66 | 0.33 | 0.16",
+   "group": "Sensitivity"
+  },
+  {
+   "name": "Temperature sensitivity factor (℃)",
+   "default": "0.005",
+   "values": "Temperature sensitivity factor 0.005 (default) | 0.0025",
+   "group": "Sensitivity"
+  }
+ ]
+}

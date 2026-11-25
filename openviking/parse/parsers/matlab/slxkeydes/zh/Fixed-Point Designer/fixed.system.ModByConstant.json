@@ -1,0 +1,31 @@
+{
+ "key": "fixed.system.ModByConstant",
+ "title": "Modulo by Constant",
+ "toolbox": "Fixed-Point Designer",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer/Modulo_by_Constant.md"
+ ],
+ "text": "用常量分母执行取模运算，输入 1 路、输出 1 路；按 {模数问题的分母} 指定除数。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "被除数 实数值标量 | 向量 | 矩阵 | 多维数组"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "模数运算的结果 标量 | 向量 | 矩阵 | 多维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "模数问题的分母",
+   "default": "10",
+   "values": "除数 10 (默认) | 实数值标量 | 向量 | 矩阵 | 多维数组",
+   "group": ""
+  }
+ ]
+}

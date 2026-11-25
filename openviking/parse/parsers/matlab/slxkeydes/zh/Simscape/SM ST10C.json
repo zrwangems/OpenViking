@@ -1,0 +1,286 @@
+{
+ "key": "SM ST10C",
+ "title": "SM ST10C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_ST10C.md"
+ ],
+ "text": "离散时间或连续时间同步电机 ST10C 静态励磁系统，带自动电压调节器，输入 10 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Initial field voltage, Efd0 (pu)} 指定初始输出电压、{Initial terminal voltage, Vt0 (pu)} 指定初始机端电压、{Initial terminal current, It0 (pu)} 指定初始机端电流、{Resistive component of load compensation, R_C (pu)} 指定补偿电阻、{Reactance component of load compensation, X_C (pu)} 指定补偿电抗、{Regulator input filter time constant, T_R (s)} 调节器时间常数、{Regulator gain, K_R (pu)} 调节器增益、{Voltage regulator denominator (lag) time constant 1, T_B1 (s)} 调节器滞后时间常数、{Voltage regulator numerator (lead) time constant 1, T_C1 (s)} 调节器超前时间常数、{Voltage regulator denominator (lag) time constant 2, T_B2 (s)} 调节器滞后时间常数、{Voltage regulator numerator (lead) time constant 2, T_C2 (s)} 调节器超前时间常数、{UEL regulator denominator (lag) time constant 1, T_UB1 (s)} 指定 UEL 调节器滞后时间常数、{UEL regulator numerator (lead) time constant 1, T_UC1 (s)} 指定 UEL 调节器超前时间常数、{UEL regulator denominator (lag) time constant 2, T_UB2 (s)} 指定 UEL 调节器滞后时间常数、{UEL regulator numerator (lead) time constant 2, T_UC2 (s)} 指定 UEL 调节器超前时间常数、{OEL regulator denominator (lag) time constant 1, T_OB1 (s)} 指定 OEL 调节器滞后时间常数、{OEL regulator numerator (lead) time constant 1, T_OC1 (s)} 指定 OEL 调节器超前时间常数、{OEL regulator denominator (lag) time constant 2, T_OB2 (s)} 指定 OEL 调节器滞后时间常数、{OEL regulator numerator (lead) time constant 2, T_OC2 (s)} 指定 OEL 调节器超前时间常数、{Maximum regulator output, V_Rmax (pu)} 调节器最大输出、{Minimum regulator output, V_Rmin (pu)} 调节器最小输出、{Maximum PSS regulator output, V_RSmax (pu)} 指定 PSS 调节器最大输出、{Minimum PSS regulator output, V_RSmin (pu)} 指定 PSS 调节器最小输出、{Alternate PSS input locations (V_S)} 指定 PSS 输入位置 Summation point at output、{Alternate OEL input locations (V_OEL)} 指定 OEL 输入位置 Summation point at voltage、{Alternate UEL input locations (V_UEL)} 指定 UEL 输入位置 Summation point at voltage、{Alternate SCL input locations (V_SCL)} 指定 SCL 输入位置 Summation point at voltage、{Rectifier loading factor proportional to commutating reactance, K_C (pu)} 指定整流器负载系数、{Equivalent time constant for rectifier bridge, T_1 (s)} 指定整流桥的时间常数、{Potential circuit (voltage) gain coefficient, K_P (pu)} 指定电势电路电压增益系数、{Potential circuit (current) gain coefficient, K_I (pu)} 指定电势电路电流增益系数、{Reactance associated with the potential source, X_L (pu)} 指定电势源电抗、{Potential circuit phase angle (degrees)} 指定电势电路相位角、{Maximum available exciter voltage, V_Bmax (pu)} 指定励磁机电压上限、{Power source selector} 指定电源选择器 Position A: power source derived from generator terminal，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_REF",
+   "direction": "input",
+   "summary": "电压参考值 scalar"
+  },
+  {
+   "name": "V_S",
+   "direction": "input",
+   "summary": "来自稳定器的输入 scalar"
+  },
+  {
+   "name": "V_T",
+   "direction": "input",
+   "summary": "端电压 scalar"
+  },
+  {
+   "name": "I_T",
+   "direction": "input",
+   "summary": "端电流 scalar"
+  },
+  {
+   "name": "V_OEL",
+   "direction": "input",
+   "summary": "过励限制信号 scalar"
+  },
+  {
+   "name": "V_UEL",
+   "direction": "input",
+   "summary": "欠励限制信号 scalar"
+  },
+  {
+   "name": "V_SCLsum",
+   "direction": "input",
+   "summary": "求和点定子电流限制信号 scalar"
+  },
+  {
+   "name": "V_SCLoel",
+   "direction": "input",
+   "summary": "用于过励限制器的接管定子电流限制 scalar"
+  },
+  {
+   "name": "V_SCLuel",
+   "direction": "input",
+   "summary": "用于欠励限制器的接管定子电流限制 scalar"
+  },
+  {
+   "name": "Ifd_pu",
+   "direction": "input",
+   "summary": "实测励磁电流 scalar"
+  },
+  {
+   "name": "Efd_pu",
+   "direction": "output",
+   "summary": "励磁电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial field voltage, Efd0 (pu)",
+   "default": "1",
+   "values": "初始输出电压 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Initial terminal voltage, Vt0 (pu)",
+   "default": "1",
+   "values": "初始机端电压 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Initial terminal current, It0 (pu)",
+   "default": "1",
+   "values": "初始机端电流 1 (default) | real scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Resistive component of load compensation, R_C (pu)",
+   "default": "0",
+   "values": "补偿电阻 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Reactance component of load compensation, X_C (pu)",
+   "default": "0",
+   "values": "补偿电抗 0 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator input filter time constant, T_R (s)",
+   "default": "0.01",
+   "values": "调节器时间常数 0.01 (default) | positive scalar",
+   "group": "Pre-Control"
+  },
+  {
+   "name": "Regulator gain, K_R (pu)",
+   "default": "500",
+   "values": "调节器增益 500 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator denominator (lag) time constant 1, T_B1 (s)",
+   "default": "12.5",
+   "values": "调节器滞后时间常数 1 12.5 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator numerator (lead) time constant 1, T_C1 (s)",
+   "default": "1.5",
+   "values": "调节器超前时间常数 1 1.5 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator denominator (lag) time constant 2, T_B2 (s)",
+   "default": "0.1",
+   "values": "调节器滞后时间常数 2 0.1 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Voltage regulator numerator (lead) time constant 2, T_C2 (s)",
+   "default": "0.1",
+   "values": "调节器超前时间常数 2 0.1 (default) | positive scalar",
+   "group": "Control"
+  },
+  {
+   "name": "UEL regulator denominator (lag) time constant 1, T_UB1 (s)",
+   "default": "12.5",
+   "values": "UEL 调节器滞后时间常数 1 12.5 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "UEL regulator numerator (lead) time constant 1, T_UC1 (s)",
+   "default": "1.5",
+   "values": "UEL 调节器超前时间常数 1 1.5 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "UEL regulator denominator (lag) time constant 2, T_UB2 (s)",
+   "default": "0.1",
+   "values": "UEL 调节器滞后时间常数 2 0.1 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "UEL regulator numerator (lead) time constant 2, T_UC2 (s)",
+   "default": "0.1",
+   "values": "UEL 调节器超前时间常数 2 0.1 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "OEL regulator denominator (lag) time constant 1, T_OB1 (s)",
+   "default": "12.5",
+   "values": "OEL 调节器滞后时间常数 1 12.5 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "OEL regulator numerator (lead) time constant 1, T_OC1 (s)",
+   "default": "1.5",
+   "values": "OEL 调节器超前时间常数 1 1.5 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "OEL regulator denominator (lag) time constant 2, T_OB2 (s)",
+   "default": "0.1",
+   "values": "OEL 调节器滞后时间常数 2 0.1 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "OEL regulator numerator (lead) time constant 2, T_OC2 (s)",
+   "default": "0.1",
+   "values": "OEL 调节器超前时间常数 2 0.1 (default)",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum regulator output, V_Rmax (pu)",
+   "default": "10",
+   "values": "调节器最大输出 10 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum regulator output, V_Rmin (pu)",
+   "default": "-8.7",
+   "values": "调节器最小输出 -8.7 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Maximum PSS regulator output, V_RSmax (pu)",
+   "default": "5",
+   "values": "PSS 调节器最大输出 5 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Minimum PSS regulator output, V_RSmin (pu)",
+   "default": "-5",
+   "values": "PSS 调节器最小输出 -5 (default) | real scalar",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate PSS input locations (V_S)",
+   "default": "AVR",
+   "values": "PSS 输入位置 Summation point at output of AVR (default) | Summation point at voltage error calculation | Summation point at voltage error or take-over limits",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate OEL input locations (V_OEL)",
+   "default": "error",
+   "values": "OEL 输入位置 Summation point at voltage error (default) | Unused | Take-over at voltage error | Take-over at voltage regulator output",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate UEL input locations (V_UEL)",
+   "default": "error",
+   "values": "UEL 输入位置 Summation point at voltage error (default) | Unused | Take-over at voltage error | Take-over at voltage regulator output",
+   "group": "Control"
+  },
+  {
+   "name": "Alternate SCL input locations (V_SCL)",
+   "default": "error",
+   "values": "SCL 输入位置 Summation point at voltage error (default) | Unused | Take-over at voltage error | Take-over at voltage regulator output",
+   "group": "Control"
+  },
+  {
+   "name": "Rectifier loading factor proportional to commutating reactance, K_C (pu)",
+   "default": "0.01",
+   "values": "整流器负载系数 0.01 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Equivalent time constant for rectifier bridge, T_1 (s)",
+   "default": "0.004",
+   "values": "整流桥的时间常数 0.004 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit (voltage) gain coefficient, K_P (pu)",
+   "default": "1",
+   "values": "电势电路电压增益系数 1 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit (current) gain coefficient, K_I (pu)",
+   "default": "0",
+   "values": "电势电路电流增益系数 0 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Reactance associated with the potential source, X_L (pu)",
+   "default": "0",
+   "values": "电势源电抗 0 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Potential circuit phase angle (degrees)",
+   "default": "0",
+   "values": "电势电路相位角 0 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Maximum available exciter voltage, V_Bmax (pu)",
+   "default": "1.5",
+   "values": "励磁机电压上限 1.5 (default) | positive scalar",
+   "group": "Exciter"
+  },
+  {
+   "name": "Power source selector",
+   "default": "voltage",
+   "values": "电源选择器 Position A: power source derived from generator terminal voltage (default) | Position B: power source independent of generator terminal conditions",
+   "group": "Exciter"
+  }
+ ]
+}

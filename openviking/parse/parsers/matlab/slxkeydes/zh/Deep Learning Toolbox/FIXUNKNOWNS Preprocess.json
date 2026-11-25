@@ -1,0 +1,13 @@
+{
+ "key": "FIXUNKNOWNS Preprocess",
+ "title": "fixunknowns",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/fixunknowns.md"
+ ],
+ "text": "通过标记含未知值的行来处理数据。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,49 @@
+{
+ "key": "slrealtime.EthernetSend",
+ "title": "Ethernet Send",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/Ethernet/Ethernet_Send.md"
+ ],
+ "text": "Send Ethernet packets from target computer, 2 inputs, {Interface Name} sets Target computer interface name wm0; {Overwrite source MAC address} sets the replace source MAC Address with MAC address from Data, {Enable Simulink messages} sets the data as messages and {Sample Time} sets the sample time of block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Inport for Ethernet packet signal input for constructed Ethernet packet"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Number of bytes of data to transmit double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interface Name",
+   "default": "",
+   "values": "Target computer interface name wm0 | wm1 | character vector",
+   "group": ""
+  },
+  {
+   "name": "Overwrite source MAC address",
+   "default": "off",
+   "values": "Replace source MAC Address with MAC address from Data port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable Simulink messages",
+   "default": "off",
+   "values": "Data as messages off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

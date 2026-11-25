@@ -1,0 +1,13 @@
+{
+ "key": "Piezo Stack",
+ "title": "Piezo Stack",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Piezo_Stack.md"
+ ],
+ "text": "压电叠堆执行器的电气和力特性。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

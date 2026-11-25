@@ -1,0 +1,13 @@
+{
+ "key": "Sun-Planet Worm Gear",
+ "title": "Sun-Planet Worm Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Planetary Subcomponents/Sun_Planet_Worm_Gear.md"
+ ],
+ "text": "由行星架、蜗杆行星轮和太阳轮组成的行星齿轮组，具有可调传动比、蜗杆螺纹类型和摩擦损耗。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

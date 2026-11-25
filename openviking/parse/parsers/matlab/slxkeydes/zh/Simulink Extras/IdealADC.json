@@ -1,0 +1,32 @@
+{
+ "key": "IdealADC",
+ "title": "Idealized ADC quantizer",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Discrete/Idealized_ADC_quantizer.md"
+ ],
+ "text": "使用此模块对理想模数转换器进行建模；按 {Sample time (-1 for inherited)} 指定Interval between samples；{Quantization interval} 指定 Interval that defines quantization levels for the output、{Treat as gain when linearizing} 指定 the gain value，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Quantization interval",
+   "default": "0.5",
+   "values": "Interval that defines quantization levels for the output signal 0.5 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Treat as gain when linearizing",
+   "default": "on",
+   "values": "Specify the gain value on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

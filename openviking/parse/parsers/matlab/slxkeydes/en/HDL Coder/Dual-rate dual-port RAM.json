@@ -1,0 +1,61 @@
+{
+ "key": "Dual-rate dual-port RAM",
+ "title": "Dual Rate Dual Port RAM",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL RAMs/Dual_Rate_Dual_Port_RAM.md"
+ ],
+ "text": "Dual Port RAM that supports two rates, 6 inputs, 2 outputs; {Address port width} sets the address bit width. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "din_A",
+   "direction": "input",
+   "summary": "Port A write data input Scalar (default)"
+  },
+  {
+   "name": "addr_A",
+   "direction": "input",
+   "summary": "Port A write address Scalar (default)"
+  },
+  {
+   "name": "we_A",
+   "direction": "input",
+   "summary": "Port A write enable Scalar (default)"
+  },
+  {
+   "name": "din_B",
+   "direction": "input",
+   "summary": "Port B write data Scalar (default)"
+  },
+  {
+   "name": "addr_B",
+   "direction": "input",
+   "summary": "Port B write address Scalar (default)"
+  },
+  {
+   "name": "we_B",
+   "direction": "input",
+   "summary": "Port B write enable Scalar (default)"
+  },
+  {
+   "name": "dout_A",
+   "direction": "output",
+   "summary": "Port A output data Scalar (default)"
+  },
+  {
+   "name": "dout_B",
+   "direction": "output",
+   "summary": "Port B output data Scalar (default)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Address port width",
+   "default": "8",
+   "values": "Address bit width 8 (default)",
+   "group": ""
+  }
+ ]
+}

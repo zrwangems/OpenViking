@@ -1,0 +1,53 @@
+{
+ "key": "Vector Control Reference",
+ "title": "Vector Control Reference",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/Vector_Control_Reference.md"
+ ],
+ "text": "计算参考矢量的 d 轴和 q 轴分量，输入 2 路、输出 2 路；按 {Theta 单位} 指定输入位置值的单位；{alpha (a 相)轴对齐} 指定 dq 参考系对齐 D、{三角查找表的数据点数} 查找表数组的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mag ref",
+   "direction": "input",
+   "summary": "参考矢量的幅值 标量"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "参考矢量的电气位置 标量"
+  },
+  {
+   "name": "d ref",
+   "direction": "output",
+   "summary": "参考矢量的 d 轴分量 标量"
+  },
+  {
+   "name": "q ref",
+   "direction": "output",
+   "summary": "参考矢量的 q 轴分量 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "alpha (a 相)轴对齐",
+   "default": "轴",
+   "values": "dq 参考系对齐 D 轴 (默认) | Q 轴",
+   "group": ""
+  },
+  {
+   "name": "Theta 单位",
+   "default": "标幺",
+   "values": "输入位置值的单位 标幺 (默认) | 弧度 | 度",
+   "group": ""
+  },
+  {
+   "name": "三角查找表的数据点数",
+   "default": "1024",
+   "values": "查找表数组的大小 1024 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

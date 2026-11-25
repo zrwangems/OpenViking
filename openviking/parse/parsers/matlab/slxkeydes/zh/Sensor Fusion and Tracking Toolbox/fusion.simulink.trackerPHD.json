@@ -1,0 +1,199 @@
+{
+ "key": "fusion.simulink.trackerPHD",
+ "title": "Probability Hypothesis Density Tracker",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Multi-Object Tracking Algorithms/Probability_Hypothesis_Density_Tracker.md"
+ ],
+ "text": "多传感器、多目标 PHD 跟踪器，输入 4 路、输出 4 路；按 {Sensor configurations} 指定跟踪传感器的配置；{Tracker identifier} 指定唯一跟踪器标识符、{Detection partition function} 用于将检测划分到检测单元的函数、{Assignment threshold} 用于分量初始化的检测的阈值、{Maximum number of sensors} 指定最大传感器数、{Maximum number of tracks} 指定最大航迹数、{Maximum number of components} 指定最大分量数、{Update sensor configurations with time} 指定随时间更新传感器配置、{Track state parameters} 指定航迹状态参考系的参数 structure、{Update track state parameters with time} 指定随时间更新航迹状态参数、{Simulate using} 指定要运行的仿真类型 Interpreted、{Birth rate of new targets} 指定密度中新目标的出生率 1e-3、{Death rate of components} 指定密度中分量的死亡率 1e-6、{Threshold for initializing tentative tracks} 指定初始化暂定航迹的阈值、{Threshold for track confirmation} 指定航迹确认阈值、{Threshold for track deletion} 指定分量删除阈值 1e-3、{Threshold for components merging} 指定分量合并阈值、{Thresholds for label management} 指定标签管理阈值、{Prediction time source} 指定预测时间来源、{Enable tentative tracks output} 启用暂定航迹输出端口、{Enable all tracks output} 启用所有航迹输出端口、{Enable information output} 启用分析信息的输出端口、{Source of output bus name} 输出航迹总线名称的来源、{Source of output info bus name} 输出信息总线名称的来源，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Detections",
+   "direction": "input",
+   "summary": "检测列表 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "航迹更新时间 real scalar"
+  },
+  {
+   "name": "Sensor Configurations",
+   "direction": "input",
+   "summary": "跟踪传感器的配置 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "航迹状态参数 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "已确认航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "确认航迹和暂定航迹 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "用于分析航迹更新的附加信息 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tracker identifier",
+   "default": "0",
+   "values": "唯一跟踪器标识符 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Detection partition function",
+   "default": "partitionDetections",
+   "values": "用于将检测划分到检测单元的函数 partitionDetections (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Assignment threshold",
+   "default": "25",
+   "values": "选择用于分量初始化的检测的阈值 25 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "20",
+   "values": "最大传感器数 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of tracks",
+   "default": "1000",
+   "values": "最大航迹数 1000 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of components",
+   "default": "1000",
+   "values": "最大分量数 1000 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sensor configurations",
+   "default": "struct(’SensorIndex’,1,’IsValidTime’,true)",
+   "values": "跟踪传感器的配置 struct(’SensorIndex’,1,’IsValidTime’,true) (default) | structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update sensor configurations with time",
+   "default": "off",
+   "values": "随时间更新传感器配置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "航迹状态参考系的参数 structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "随时间更新航迹状态参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "要运行的仿真类型 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Birth rate of new targets",
+   "default": "1e-3",
+   "values": "密度中新目标的出生率 1e-3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Death rate of components",
+   "default": "1e-6",
+   "values": "密度中分量的死亡率 1e-6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold for initializing tentative tracks",
+   "default": "0.5",
+   "values": "初始化暂定航迹的阈值 0.5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold for track confirmation",
+   "default": "0.8",
+   "values": "航迹确认阈值 0.8 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold for track deletion",
+   "default": "1e-3",
+   "values": "分量删除阈值 1e-3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold for components merging",
+   "default": "25",
+   "values": "分量合并阈值 25 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Thresholds for label management",
+   "default": "0.8]",
+   "values": "标签管理阈值 [1.1 1 0.8] (default) | 1-by-3 vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Prediction time source",
+   "default": "Auto",
+   "values": "预测时间来源 Auto (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "启用暂定航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "启用所有航迹输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable information output",
+   "default": "off",
+   "values": "启用分析信息的输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出航迹总线名称的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Source of output info bus name",
+   "default": "Auto",
+   "values": "输出信息总线名称的来源 Auto (default) | Property",
+   "group": ""
+  }
+ ]
+}

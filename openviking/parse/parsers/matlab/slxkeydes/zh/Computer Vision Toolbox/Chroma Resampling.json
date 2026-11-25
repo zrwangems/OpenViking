@@ -1,0 +1,71 @@
+{
+ "key": "Chroma Resampling",
+ "title": "Chroma Resampling",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Conversions/Chroma_Resampling.md"
+ ],
+ "text": "对图像的色度分量进行下采样或上采样，输入 2 路、输出 2 路；按 {Antialiasing filter} 指定色度下采样抗混叠滤波器；{Resampling} 指定色度重采样方法 4:4:4、{Horizontal filter coefficients} 指定水平低通滤波器系数、{Vertical filter coefficients} 指定垂直低通滤波器系数、{Interpolation} 指定色度上采样插值方法、{Input image is transposed (data order is row major)} 按行读取数据，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Cb",
+   "direction": "input",
+   "summary": "图像的蓝色差色度分量 matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "input",
+   "summary": "图像的红色差色度分量 matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "output",
+   "summary": "图像的蓝色差色度分量 matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "output",
+   "summary": "图像的红色差色度分量 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resampling",
+   "default": "4:2:2",
+   "values": "色度重采样方法 4:4:4 to 4:2:2 (default) | 4:4:4 to 4:2:0 (MPEG1) | 4:4:4 to 4:2:0 (MPEG2) |...",
+   "group": ""
+  },
+  {
+   "name": "Antialiasing filter",
+   "default": "Default",
+   "values": "色度下采样抗混叠滤波器 Default (default) | User-defined | None",
+   "group": ""
+  },
+  {
+   "name": "Horizontal filter coefficients",
+   "default": "0.2]",
+   "values": "水平低通滤波器系数 [0.2 0.6 0.2] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Vertical filter coefficients",
+   "default": "0.5]",
+   "values": "垂直低通滤波器系数 [0.5 0.5] (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Interpolation",
+   "default": "linear",
+   "values": "色度上采样插值方法 linear (default) | pixel replication",
+   "group": ""
+  },
+  {
+   "name": "Input image is transposed (data order is row major)",
+   "default": "off",
+   "values": "按行读取数据 off (default) | on",
+   "group": ""
+  }
+ ]
+}

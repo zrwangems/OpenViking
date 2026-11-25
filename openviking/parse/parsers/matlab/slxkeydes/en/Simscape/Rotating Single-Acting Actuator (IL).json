@@ -1,0 +1,13 @@
+{
+ "key": "Rotating Single-Acting Actuator (IL)",
+ "title": "Rotating Single-Acting Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Rotating_Single_Acting_Actuator_IL.md"
+ ],
+ "text": "Actuator on a rotating shaft in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,212 @@
+{
+ "key": "Particle Filter",
+ "title": "Particle Filter",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/State Estimation/Particle_Filter.md",
+  "System Identification Toolbox/Estimators/Particle_Filter.md"
+ ],
+ "text": "Estimate states of discrete-time nonlinear system using particle filter, 4 inputs, 4 outputs, {Covariance} sets Initial covariance of particles; {Function} sets the state transition, {Number of Particles} sets the number of particles used in the filter, {Distribution} sets the initial distribution of particles, {Mean} sets the initial mean value of particles, {Circular Variables} sets the circular variables used for state, {State Orientation} sets the orientation of input system states, {State bounds} sets the initial bounds on system states, {Particles} sets the custom particle distribution for state estimation, {Weights} sets the custom particle weight values for state estimation, {Add Enable Port} enables correction of estimated states only when measured data, {Resampling method} sets the method used for particle resampling, {Trigger method} sets the method to determine when resampling occurs, {Minimum effective particle ratio} sets the minimum desired ratio of the effective number of particles to the total number, {Sampling Interval} sets the fixed interval between resampling, {Randomness} sets the whether the random numbers are repeatable, {Seed}, {Data type}, {Sample time} sets the block sample time, {State Estimation Method} sets the method used for extracting a state estimate, {Output all particles}, {Output weights} sets the output particle weights, {Output state estimation error covariance}, {Use the current measurements to improve state estimates} sets the option to use current measurements for state, {Enable multirate operation} enables specification of different sample times for state transition and measurement likelihood and {Sample times} sets the state transition and measurement likelihood function sample times positive. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y1,y2,y3,y4,y5",
+   "direction": "input",
+   "summary": "Measured system outputs vector"
+  },
+  {
+   "name": "StateTransitionFcnInputs",
+   "direction": "input",
+   "summary": "Optional input argument to state transition function scalar | vector | matrix"
+  },
+  {
+   "name": "MeasurementLikelihoodFcn1Inputs,...,MeasurementLikelihoodFcn5Inputs",
+   "direction": "input",
+   "summary": "Optional input argument to each measurement likelihood function scalar | vector | matrix"
+  },
+  {
+   "name": "Enable1,Enable2,Enable3,Enable4,Enable5",
+   "direction": "input",
+   "summary": "Enable correction of estimated states when measured data is available scalar"
+  },
+  {
+   "name": "xhat",
+   "direction": "output",
+   "summary": "Estimated states vector"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "State estimation error covariance matrix"
+  },
+  {
+   "name": "Particles",
+   "direction": "output",
+   "summary": "Particle values used for state estimation array"
+  },
+  {
+   "name": "Weights",
+   "direction": "output",
+   "summary": "Particle weights used for state estimation vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function",
+   "default": "’vdpParticleFilterStateFcn’",
+   "values": "State transition function name ’vdpParticleFilterStateFcn’ (default) | function name",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Number of Particles",
+   "default": "1000",
+   "values": "Number of particles used in the filter 1000 (default) | positive scalar integer",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Distribution",
+   "default": "’Gaussian’",
+   "values": "Initial distribution of particles ’Gaussian’ (default) | ’Uniform’ | ’Custom’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Mean",
+   "default": "[0;0]",
+   "values": "Initial mean value of particles [0;0] (default) | vector",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Covariance",
+   "default": "1",
+   "values": "Initial covariance of particles 1 (default) | scalar | vector | matrix",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Circular Variables",
+   "default": "0",
+   "values": "Circular variables used for state estimation 0 (default) | scalar | vector",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "State Orientation",
+   "default": "’column’",
+   "values": "Orientation of input system states ’column’ (default) | ’row’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "State bounds",
+   "default": "3]",
+   "values": "Initial bounds on system states [-3 3;-3 3] (default) | array",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Particles",
+   "default": "[]",
+   "values": "Custom particle distribution for state estimation [] (default) | array",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Weights",
+   "default": "[]",
+   "values": "Custom particle weight values for state estimation [] (default) | vector of positive values",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Add Enable Port",
+   "default": "off",
+   "values": "Enable correction of estimated states only when measured data is available off (default) | on",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Resampling method",
+   "default": "’Multinomial’",
+   "values": "Method used for particle resampling ’Multinomial’ (default) | ’Systemic’ | ’Stratified’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Trigger method",
+   "default": "’Ratio’",
+   "values": "Method to determine when resampling occurs ’Ratio’ (default) | ’Interval’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Minimum effective particle ratio",
+   "default": "0.5",
+   "values": "Minimum desired ratio of the effective number of particles to the total number of particles 0.5 (default) | positive scalar",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Sampling Interval",
+   "default": "1",
+   "values": "Fixed interval between resampling 1 (default) | positive scalar integer",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Randomness",
+   "default": "’Repeatable’",
+   "values": "Whether the random numbers are repeatable ’Repeatable’ (default) | ’Not repeatable’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Seed",
+   "default": "0",
+   "values": "Seed value for repeatable random numbers 0 (default) | scalar",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "Data type for block parameters double (default) | single",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Block sample time 1 (default) | positive scalar",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "State Estimation Method",
+   "default": "’Mean’",
+   "values": "Method used for extracting a state estimate from particles ’Mean’ (default) | ’MaxWeight’ | ’None’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Output all particles",
+   "default": "’off’",
+   "values": "Output all particles ’off’ (default) | ’on’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Output weights",
+   "default": "’off’",
+   "values": "Output particle weights ’off’ (default) | ’on’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Output state estimation error covariance",
+   "default": "’off’",
+   "values": "Output state estimation error covariance ’off’ (default) | ’on’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Use the current measurements to improve state estimates",
+   "default": "’on’",
+   "values": "Option to use current measurements for state estimation ’on’ (default) | ’off’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Enable multirate operation",
+   "default": "’off’",
+   "values": "Enable specification of different sample times for state transition and measurement likelihood functions ’off’ (default) | ’on’",
+   "group": "Block Outputs, Multirate Tab"
+  },
+  {
+   "name": "Sample times",
+   "default": "",
+   "values": "State transition and measurement likelihood function sample times positive scalar",
+   "group": "Block Outputs, Multirate Tab"
+  }
+ ]
+}

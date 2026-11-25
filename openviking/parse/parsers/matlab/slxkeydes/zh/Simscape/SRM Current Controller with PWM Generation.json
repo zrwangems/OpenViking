@@ -1,0 +1,92 @@
+{
+ "key": "SRM Current Controller with PWM Generation",
+ "title": "SRM Current Controller with PWM Generation",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SRM Control/SRM_Current_Controller_with_PWM_Generation.md"
+ ],
+ "text": "用于开关磁阻电机的带内部脉宽调制的电流控制器，输入 6 路、输出 1 路；按 {Carrier counter} 指定载波计数器模型；{Proportional gain} 控制器比例增益 K p、{Integral gain} 指定积分增益 K i、{Anti-windup gain} 指定抗饱和增益 K aw、{Sample time (-1 for inherited)} 指定模块采样时间、{Timer period (s)} 指定 PWM 定时器周期、{Fundamental sample time (s)} 指定 PWM 生成的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsRef",
+   "direction": "input",
+   "summary": "参考电流 scalar"
+  },
+  {
+   "name": "Is",
+   "direction": "input",
+   "summary": "测得电流 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "积分器复位 scalar"
+  },
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "Theta 转子角 scalar"
+  },
+  {
+   "name": "thetaON",
+   "direction": "input",
+   "summary": "开通角 scalar"
+  },
+  {
+   "name": "thetaOFF",
+   "direction": "input",
+   "summary": "关断角 scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "门极控制 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "控制器比例增益 K p 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Integral gain",
+   "default": "5",
+   "values": "积分增益 K i 5 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "抗饱和增益 K aw 1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": "Control Parameters"
+  },
+  {
+   "name": "Carrier counter",
+   "default": "Up",
+   "values": "载波计数器模型 Up (default) | Down | Up-Down",
+   "group": "PWM Generator"
+  },
+  {
+   "name": "Timer period (s)",
+   "default": "0.001",
+   "values": "PWM 定时器周期 0.001 (default) | positive scalar",
+   "group": "PWM Generator"
+  },
+  {
+   "name": "Fundamental sample time (s)",
+   "default": "0.0001",
+   "values": "PWM 生成的采样时间 0.0001 (default) | positive scalar",
+   "group": "PWM Generator"
+  }
+ ]
+}

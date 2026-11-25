@@ -1,0 +1,172 @@
+{
+ "key": "Vehicle Terrain Sensor",
+ "title": "Vehicle Terrain Sensor",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Vehicle_Terrain_Sensor.md"
+ ],
+ "text": "Vehicle and tire distances to objects, 2 inputs, 3 outputs; {Tag for actor in 3D scene, ActorTag} sets the name SimulinVehicle1, {Distance to vehicle center} sets the selection, {Distance to tire center} sets the selection, {Distance from vehicle center to front, VehCntrLngthVal} sets the vehicle center, {Distance from tire center to ground, TireRadiiVal} sets the tire radii, {Vehicle body x-axis trace length, VehRayLngth} sets the trace length, {Left front wheel z-axis trace length, LfRayLngth} sets the trace length, {Right front wheel z-axis trace length, RfRayLngth} sets the trace length, {Left rear wheel z-axis trace length, LrRayLngth} sets the trace length, {Right rear wheel z-axis trace length, RrRayLngth} sets the trace length, {Vehicle body x-axis trace offset, VehRayOffset} sets the offset the vehicle ray trace, {Left front wheel z-axis trace offset, LfRayOffset} sets the offset the left front wheel ray trace, {Right front wheel z-axis trace offset, RfRayOffset} sets the offset the right front wheel ray trace, {Left rear wheel z-axis trace offset, LrRayOffset} sets the offset the left rear wheel ray trace, {Right rear wheel z-axis trace offset, RrRayOffset} sets the offset the right rear wheel ray trace, {Vehicle body} enables vehicle body ray tracing, {Left front tire} enables left front tire ray tracing, {Right front tire} enables right front tire ray tracing, {Left rear tire} enables left rear tire ray tracing, {Right rear tire} enables right rear tire ray tracing, {Trace line visualization} sets the visualize ray traces and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VehCntr",
+   "direction": "input",
+   "summary": "Vehicle distance from center to front scalar"
+  },
+  {
+   "name": "TireRadii",
+   "direction": "input",
+   "summary": "Tire radii array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "VehHitDist",
+   "direction": "output",
+   "summary": "Front of vehicle distance to object scalar"
+  },
+  {
+   "name": "TireHitDist",
+   "direction": "output",
+   "summary": "Tire distance to terrain vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tag for actor in 3D scene, ActorTag",
+   "default": "SimulinVehicle1",
+   "values": "Name SimulinVehicle1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Distance to vehicle center",
+   "default": "Constant",
+   "values": "Selection Constant (default) | External input",
+   "group": ""
+  },
+  {
+   "name": "Distance to tire center",
+   "default": "Constant",
+   "values": "Selection Constant (default) | External input",
+   "group": ""
+  },
+  {
+   "name": "Distance from vehicle center to front, VehCntrLngthVal",
+   "default": "0",
+   "values": "Vehicle center 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance from tire center to ground, TireRadiiVal",
+   "default": "0",
+   "values": "Tire radii 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle body x-axis trace length, VehRayLngth",
+   "default": "5",
+   "values": "Trace length 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left front wheel z-axis trace length, LfRayLngth",
+   "default": "5",
+   "values": "Trace length 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right front wheel z-axis trace length, RfRayLngth",
+   "default": "5",
+   "values": "Trace length 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left rear wheel z-axis trace length, LrRayLngth",
+   "default": "5",
+   "values": "Trace length 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right rear wheel z-axis trace length, RrRayLngth",
+   "default": "5",
+   "values": "Trace length 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle body x-axis trace offset, VehRayOffset",
+   "default": "0",
+   "values": "Offset the vehicle ray trace 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left front wheel z-axis trace offset, LfRayOffset",
+   "default": "0",
+   "values": "Offset the left front wheel ray trace 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right front wheel z-axis trace offset, RfRayOffset",
+   "default": "0",
+   "values": "Offset the right front wheel ray trace 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left rear wheel z-axis trace offset, LrRayOffset",
+   "default": "0",
+   "values": "Offset the left rear wheel ray trace 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right rear wheel z-axis trace offset, RrRayOffset",
+   "default": "0",
+   "values": "Offset the right rear wheel ray trace 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle body",
+   "default": "on",
+   "values": "Enable vehicle body ray tracing on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Left front tire",
+   "default": "on",
+   "values": "Enable left front tire ray tracing on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Right front tire",
+   "default": "on",
+   "values": "Enable right front tire ray tracing on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Left rear tire",
+   "default": "on",
+   "values": "Enable left rear tire ray tracing on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Right rear tire",
+   "default": "on",
+   "values": "Enable right rear tire ray tracing on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Trace line visualization",
+   "default": "on",
+   "values": "Visualize ray traces on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

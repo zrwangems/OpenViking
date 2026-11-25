@@ -1,0 +1,70 @@
+{
+ "key": "Samples To Frame",
+ "title": "Samples To Frame",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/I_O Interfaces/Samples_To_Frame.md"
+ ],
+ "text": "将样本流转换为基于帧的数据，输入 2 路、输出 3 路；{Input size} 表示每个样本的值的数量、{Frame search window} 指定要缓冲的输入周期数、{Output size} 指定每帧最大样本数、{Compose output from interleaved input samples} 输出样本相对于输入顺序的顺序、{Enable frame length output port} 输出有效样本数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "sample",
+   "direction": "input",
+   "summary": "样本流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "frame",
+   "direction": "output",
+   "summary": "输出样本的帧 column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "输出帧的有效性 scalar"
+  },
+  {
+   "name": "len",
+   "direction": "output",
+   "summary": "输出帧中的有效样本数 integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input size",
+   "default": "1",
+   "values": "表示每个样本的值的数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Frame search window",
+   "default": "1",
+   "values": "要缓冲的输入周期数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "1024",
+   "values": "每帧最大样本数 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Compose output from interleaved input samples",
+   "default": "off",
+   "values": "输出样本相对于输入顺序的顺序 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable frame length output port",
+   "default": "off",
+   "values": "输出有效样本数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

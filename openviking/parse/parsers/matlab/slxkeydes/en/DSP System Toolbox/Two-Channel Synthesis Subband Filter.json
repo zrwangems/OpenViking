@@ -1,0 +1,120 @@
+{
+ "key": "Two-Channel Synthesis Subband Filter",
+ "title": "Two-Channel Synthesis Subband Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Two_Channel_Synthesis_Subband_Filter.md"
+ ],
+ "text": "Reconstruct signal from high-frequency and low-frequency subbands, 2 inputs, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode; {Lowpass FIR filter coefficients}, {Highpass FIR filter coefficients}, {Input processing}, {Rate options}, {Saturate on integer overflow}, {Coefficients} sets the data type of the coefficients, {Coefficients Minimum} sets the minimum value of filter coefficients, {Coefficients Maximum} sets the maximum value of filter coefficients, {Product output}, {Accumulator} sets the data type of accumulator, {Output} sets the data type, {Output Minimum}, {Output Maximum} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Hi band",
+   "direction": "input",
+   "summary": "High-frequency subband vector | matrix"
+  },
+  {
+   "name": "Lo band",
+   "direction": "input",
+   "summary": "Low-frequency subband vector | matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "Synthesized output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lowpass FIR filter coefficients",
+   "default": "0.0352]",
+   "values": "Lowpass FIR filter coefficients [0.3327 0.8069 0.4599 -0.1350 -0.0854 0.0352] (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Highpass FIR filter coefficients",
+   "default": "-0.3327]",
+   "values": "Highpass FIR filter coefficients [0.0352 0.0854 -0.1350 -0.4599 0.8069 -0.3327] (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Input processing Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Rate options Enforce single-rate processing (default) | Allow multirate processing",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Data type of the coefficients Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Minimum",
+   "default": "[]",
+   "values": "Minimum value of filter coefficients [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Maximum",
+   "default": "[]",
+   "values": "Maximum value of filter coefficients [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Data type of accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Data type of output Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Output Minimum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Output Maximum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

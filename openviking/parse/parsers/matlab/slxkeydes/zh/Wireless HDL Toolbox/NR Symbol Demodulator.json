@@ -1,0 +1,69 @@
+{
+ "key": "NR Symbol Demodulator",
+ "title": "NR Symbol Demodulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/NR_Symbol_Demodulator.md"
+ ],
+ "text": "将复 NR 数据符号解调为数据比特或 LLR 值，输入 3 路、输出 3 路；按 {Modulation} 指定调制类型；{Modulation source} 指定调制类型来源、{Decision type} 指定解映射类型、{Rounding Method} 指定内部定点计算的舍入模式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据符号 complex scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效输入数据 scalar"
+  },
+  {
+   "name": "modSel",
+   "direction": "input",
+   "summary": "调制选择 integer from 0 to 5"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "解调后的数据比特或 LLR 值 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "输出数据有效指示 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "指示模块已就绪 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation source",
+   "default": "Property",
+   "values": "调制类型来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Modulation",
+   "default": "BPSK",
+   "values": "调制类型 BPSK (default) | QPSK | 16-QAM | 64-QAM | 256-QAM | pi/2-BPSK",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "Soft",
+   "values": "解映射类型 Soft (default) | Hard",
+   "group": ""
+  },
+  {
+   "name": "Rounding Method",
+   "default": "Floor",
+   "values": "内部定点计算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": ""
+  }
+ ]
+}

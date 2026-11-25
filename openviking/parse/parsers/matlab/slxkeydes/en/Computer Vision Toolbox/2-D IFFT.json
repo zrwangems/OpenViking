@@ -1,0 +1,55 @@
+{
+ "key": "2-D IFFT",
+ "title": "2-D IFFT",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/b_2_D_IFFT.md"
+ ],
+ "text": "Compute 2-D inverse fast Fourier transform (IFFT), 1 input, 1 output, {FFT implementation} sets FFT implementation; {Input is in bit-reversed order} sets the bit-reversed input, {Input is conjugate symmetric} sets the conjugate symmetric input, {Divide output by product of FFT length in each input dimension} scales output data and {Lock data type settings against change by the fixed-point tools} sets the data type override. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output data vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "FFT implementation",
+   "default": "Auto",
+   "values": "FFT implementation Auto (default) | Radix-2 | FFTW",
+   "group": "Main"
+  },
+  {
+   "name": "Input is in bit-reversed order",
+   "default": "off",
+   "values": "Bit-reversed input off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Input is conjugate symmetric",
+   "default": "on",
+   "values": "Conjugate symmetric input on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Divide output by product of FFT length in each input dimension",
+   "default": "on",
+   "values": "Scale output data on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Data type override off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

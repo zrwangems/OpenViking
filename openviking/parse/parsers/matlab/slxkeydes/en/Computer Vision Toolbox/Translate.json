@@ -1,0 +1,66 @@
+{
+ "key": "Translate",
+ "title": "Translate",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Translate.md"
+ ],
+ "text": "Translate image or video frame, 2 inputs, 1 output, {Interpolation method} sets Method for interpolating translated pixel values; {Output size after translation} sets the translated image size, {Offset source} sets the source of translation value Specify via, {Offset} sets the translation value, {Maximum offset} sets the translation value limits and {Background fill value} sets the intensity or color of background in translated. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input image or video matrix | array"
+  },
+  {
+   "name": "Offset",
+   "direction": "input",
+   "summary": "Translation value vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Translated image or video matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output size after translation",
+   "default": "Full",
+   "values": "Translated image size Full (default) | Same as input image",
+   "group": ""
+  },
+  {
+   "name": "Offset source",
+   "default": "dialog",
+   "values": "Source of translation value Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Offset",
+   "default": "2.3]",
+   "values": "Translation value [1.5 2.3] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum offset",
+   "default": "10]",
+   "values": "Translation value limits [8 10] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Background fill value",
+   "default": "0",
+   "values": "Intensity or color of background in translated image 0 (default) | scalar | RGB triplet",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "Method for interpolating translated pixel values Bilinear (default) | Nearest neighbor | Bicubic",
+   "group": ""
+  }
+ ]
+}

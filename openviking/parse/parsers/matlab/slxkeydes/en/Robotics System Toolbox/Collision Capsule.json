@@ -1,0 +1,52 @@
+{
+ "key": "Collision Capsule",
+ "title": "Collision Capsule",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Collision Detection/Collision_Capsule.md"
+ ],
+ "text": "Create capsule collision geometry, 3 inputs, 2 outputs; {Enable Runtime Input Dimensions Error} sets the validation of collision capsule dimensions and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Radius",
+   "direction": "input",
+   "summary": "Radius of spherical ends of capsule scalar"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Length of central line segment of capsule scalar"
+  },
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "Pose of collision geometry matrix"
+  },
+  {
+   "name": "CollGeom",
+   "direction": "output",
+   "summary": "Collision geometry bus"
+  },
+  {
+   "name": "ExitFlag",
+   "direction": "output",
+   "summary": "Validity of collision capsule dimensions scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable Runtime Input Dimensions Error",
+   "default": "on",
+   "values": "Validation of collision capsule dimensions on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "key": "Piecewise Linear Voltage Source",
+ "title": "Piecewise Linear Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Piecewise_Linear_Voltage_Source.md",
+  "Simscape/Electrical/Additional Components/SPICE Sources/Piecewise_Linear_Voltage_Source.md"
+ ],
+ "text": "Time-dependent voltage source using lookup table.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

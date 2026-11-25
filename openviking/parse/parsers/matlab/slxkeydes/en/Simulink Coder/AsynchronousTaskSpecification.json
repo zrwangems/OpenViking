@@ -1,0 +1,31 @@
+{
+ "key": "AsynchronousTaskSpecification",
+ "title": "Asynchronous Task Specification",
+ "toolbox": "Simulink Coder",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink Coder/Asynchronous/Asynchronous_Task_Specification.md"
+ ],
+ "text": "Specify priority of asynchronous task represented by referenced model triggered by asynchronous interrupt, 1 input, 1 output; {Task priority} sets the priority of asynchronous task that calls function-call. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Interrupt input signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Interrupt signal with priority scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task priority",
+   "default": "10",
+   "values": "Priority of asynchronous task that calls function-call subsystem 10 (default)",
+   "group": ""
+  }
+ ]
+}

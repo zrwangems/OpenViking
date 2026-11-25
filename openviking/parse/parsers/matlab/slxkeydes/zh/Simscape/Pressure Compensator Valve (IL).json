@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Compensator Valve (IL)",
+ "title": "Pressure Compensator Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Pressure Control Valves/Pressure_Compensator_Valve_IL.md"
+ ],
+ "text": "等温液体网络中的压力补偿阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

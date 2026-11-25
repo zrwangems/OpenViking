@@ -1,0 +1,13 @@
+{
+ "key": "Adaptive Lookup Table (nD)",
+ "title": "Adaptive Lookup Table (nD Stair-Fit)",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/Adaptive Lookup Tables/Adaptive_Lookup_Table_nD_Stair_Fit.md"
+ ],
+ "text": "任意维度的自适应查找表。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

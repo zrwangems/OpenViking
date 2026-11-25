@@ -1,0 +1,13 @@
+{
+ "key": "Interface (2P-TL)",
+ "title": "Interface (2P-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Fluid Network Interfaces/Interface_2P_TL.md"
+ ],
+ "text": "两相流体与热液体网络接口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Disk",
+ "title": "Disk",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Disk.md"
+ ],
+ "text": "用于接触建模的圆盘。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

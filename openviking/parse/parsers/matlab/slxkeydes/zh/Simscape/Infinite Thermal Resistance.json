@@ -1,0 +1,13 @@
+{
+ "key": "Infinite Thermal Resistance",
+ "title": "Infinite Thermal Resistance",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Infinite_Thermal_Resistance.md"
+ ],
+ "text": "热系统中的恒定热阻。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

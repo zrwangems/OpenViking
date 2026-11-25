@@ -1,0 +1,95 @@
+{
+ "key": "Image From File",
+ "title": "Image From File",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sources/Image_From_File.md"
+ ],
+ "text": "Read image from file location, 4 outputs, {Output data type} sets Data type of output; {File name} sets the input image, {Sample time}, {Image signal} sets the signal returned by block One multidimensional, {Output port labels}, {Signed}, {Word length} sets the bits in fixed-point data type, {Set fraction length in output to} sets the scaling factor of fixed-point data type, {Fractional length} sets the fractional bits and {User-defined data type} sets the user-defined fixed-point data type uint. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "Output image matrix | 3-D array"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Red color component of image matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Green color component of image matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Blue color component of image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "peppers.png",
+   "values": "Input image peppers.png (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "Sample time for block execution inf (default) | Positive scalar | Vector",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Signal returned by block One multidimensional signal (default) | Separate color signals",
+   "group": ""
+  },
+  {
+   "name": "Output port labels",
+   "default": "R|G|B",
+   "values": "Output port labels R|G|B (default) | port names",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "image",
+   "values": "Data type of output image inherit from input image (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean | fixed-point | user-defined | inherit via back propagation",
+   "group": ""
+  },
+  {
+   "name": "Signed",
+   "default": "on",
+   "values": "Signed fixed-point data type on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bits in fixed-point data type 16 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Set fraction length in output to",
+   "default": "User-defined",
+   "values": "Scaling factor of fixed-point data type User-defined (default) | Best precision",
+   "group": ""
+  },
+  {
+   "name": "Fractional length",
+   "default": "15",
+   "values": "Fractional bits 15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "User-defined data type",
+   "default": "uint(8)",
+   "values": "User-defined fixed-point data type uint(8) (default) | User-defined fixed-point data type",
+   "group": ""
+  }
+ ]
+}

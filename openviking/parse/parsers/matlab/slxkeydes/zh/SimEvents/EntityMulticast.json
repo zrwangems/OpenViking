@@ -1,0 +1,31 @@
+{
+ "key": "EntityMulticast",
+ "title": "Entity Multicast",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Multicast.md"
+ ],
+ "text": "发送多播实体，输入 1 路、输出 1 路；{Multicast tag} 用于广播实体的标签，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "send",
+   "direction": "output",
+   "summary": "广播实体 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Multicast tag",
+   "default": "A",
+   "values": "指定用于广播实体的标签 A (default) | character vector",
+   "group": ""
+  }
+ ]
+}

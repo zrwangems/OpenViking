@@ -1,0 +1,91 @@
+{
+ "key": "Periodogram",
+ "title": "Periodogram",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Periodogram.md"
+ ],
+ "text": "Power spectral density or mean-square spectrum estimate using periodogram method, 1 input, 1 output, {Window} sets Window type; {Measurement}, {Beta}, {Window sampling}, {FFT implementation}, {Stopband attenuation in dB}, {Inherit FFT length from input dimensions}, {FFT length} sets the number of data points, {Number of spectral averages}, {Inherit sample time from input} and {Sample time of original time series}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "density",
+   "values": "Measurement type Power spectral density (default) | Mean-square spectrum",
+   "group": ""
+  },
+  {
+   "name": "Window",
+   "default": "Hamming",
+   "values": "Window type Hamming (default) | Bartlett | Blackman | Boxcar | Chebyshev | Hann | Hanning | Kaiser | Triang",
+   "group": ""
+  },
+  {
+   "name": "Beta",
+   "default": "5",
+   "values": "Beta 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Window sampling",
+   "default": "Symmetric",
+   "values": "Window sampling Symmetric (default) | Periodic",
+   "group": ""
+  },
+  {
+   "name": "FFT implementation",
+   "default": "Auto",
+   "values": "FFT implementation Auto (default) | Radix-2 | FFTW",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation in dB",
+   "default": "50",
+   "values": "Stopband attenuation in dB 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT length from input dimensions",
+   "default": "off",
+   "values": "Inherit FFT length off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "256",
+   "values": "Number of data points 256 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of spectral averages",
+   "default": "4",
+   "values": "Number of spectral averages 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time from input",
+   "default": "on",
+   "values": "Inherit sample time from input on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time of original time series",
+   "default": "1",
+   "values": "Sample time of original time series 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

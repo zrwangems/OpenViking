@@ -1,0 +1,13 @@
+{
+ "key": "Ravigneaux Gear",
+ "title": "Ravigneaux Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Ravigneaux_Gear.md"
+ ],
+ "text": "带有两个太阳轮和两组行星轮组的行星齿轮。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

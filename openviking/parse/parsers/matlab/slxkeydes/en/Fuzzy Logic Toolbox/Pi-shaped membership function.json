@@ -1,0 +1,49 @@
+{
+ "key": "Pi-shaped membership function",
+ "title": "Pi-shaped MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Pi_shaped_MF.md"
+ ],
+ "text": "Pi-shaped membership function, 1 input, 1 output; {Left base point a} sets the foot of left transition area, {Left top point b} sets the shoulder of left transition area, {Right top point c} sets the shoulder of right transition area and {Right base point d} sets the foot of right transition area. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input value scalar | vector"
+  },
+  {
+   "name": "Pi MF",
+   "direction": "output",
+   "summary": "Membership value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Left base point a",
+   "default": "-9",
+   "values": "Foot of left transition area -9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left top point b",
+   "default": "-7",
+   "values": "Shoulder of left transition area -7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right top point c",
+   "default": "-9",
+   "values": "Shoulder of right transition area -9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right base point d",
+   "default": "-7",
+   "values": "Foot of right transition area -7 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

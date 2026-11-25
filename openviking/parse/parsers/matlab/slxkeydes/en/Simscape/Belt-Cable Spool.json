@@ -1,0 +1,13 @@
+{
+ "key": "Belt-Cable Spool",
+ "title": "Belt-Cable Spool",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Belts and Cables/Belt_Cable_Spool.md"
+ ],
+ "text": "Source and sink of cord in a pulley system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

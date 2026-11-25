@@ -1,0 +1,80 @@
+{
+ "key": "dsp.simulink.SampleRateConverter",
+ "title": "Sample-Rate Converter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Sample_Rate_Converter.md",
+  "DSP System Toolbox/Filtering/Multirate Filters/Sample_Rate_Converter.md"
+ ],
+ "text": "多级采样率转换，输入 1 路、输出 1 路、无直接馈通；{Sample rate of input signal (Hz)} 指定输入信号的采样率{Tolerance for output sample rate} 输出采样率的最大容差、{Two-sided bandwidth of interest (Hz)} 以 Hz 为单位的目标双边带宽 40e3、{Stopband attenuation (dB)} 指定混叠分量的最小衰减，单位为 dB、{Allow arbitrary frame length for fixed-size input signals} 允许固定大小输入信号的任意帧长度、{View Filter Response} 指定查看滤波器响应、{View Info} 显示有关滤波器的信息、{Simulate using} 指定要运行的仿真类型 Interpreted execu 也按实例取值；{Sample rate of output signal (Hz)} 输出信号的采样率，单位为 Hz 96e3，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "重采样信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "48e3",
+   "values": "输入信号的采样率（Hz） 48e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample rate of output signal (Hz)",
+   "default": "96e3",
+   "values": "输出信号的采样率，单位为 Hz 96e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Tolerance for output sample rate",
+   "default": "0",
+   "values": "输出采样率的最大容差 0 (default) | positive scalar in the range [ 0, 0.5 ]",
+   "group": ""
+  },
+  {
+   "name": "Two-sided bandwidth of interest (Hz)",
+   "default": "40e3",
+   "values": "以 Hz 为单位的目标双边带宽 40e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "混叠分量的最小衰减，单位为 dB 80 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "允许固定大小输入信号的任意帧长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": ""
+  },
+  {
+   "name": "View Info",
+   "default": "",
+   "values": "显示有关滤波器的信息 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

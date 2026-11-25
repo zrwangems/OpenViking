@@ -1,0 +1,47 @@
+{
+ "key": "Collision Mesh",
+ "title": "Collision Mesh",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Collision Detection/Collision_Mesh.md"
+ ],
+ "text": "Create convex mesh collision geometry, 2 inputs, 2 outputs; {Enable Runtime Input Dimensions Error} sets the validation of collision mesh vertices and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vertices",
+   "direction": "input",
+   "summary": "Vertices of mesh matrix"
+  },
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "Pose of collision geometry matrix"
+  },
+  {
+   "name": "CollGeom",
+   "direction": "output",
+   "summary": "Collision geometry bus"
+  },
+  {
+   "name": "ExitFlag",
+   "direction": "output",
+   "summary": "Validity of collision mesh vertices scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable Runtime Input Dimensions Error",
+   "default": "on",
+   "values": "Validation of collision mesh vertices on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

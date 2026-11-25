@@ -1,0 +1,37 @@
+{
+ "key": "Total Harmonic Distortion",
+ "title": "Total Harmonic Distortion",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Total_Harmonic_Distortion.md"
+ ],
+ "text": "总谐波失真测量，输入 1 路、输出 1 路；{Fundamental frequency} 指定基波频率，单位为 Hz、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "谐波幅值 scalar | vector"
+  },
+  {
+   "name": "THD (%)",
+   "direction": "output",
+   "summary": "总谐波失真 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Fundamental frequency",
+   "default": "Hz",
+   "values": "基波频率，单位为 Hz 60 Hz (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

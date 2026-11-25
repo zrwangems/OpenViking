@@ -1,0 +1,13 @@
+{
+ "key": "PS Sine Wave",
+ "title": "PS Sine Wave",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Sources/PS_Sine_Wave.md"
+ ],
+ "text": "Generate sine wave physical signal, using simulation time as time source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

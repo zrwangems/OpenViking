@@ -1,0 +1,24 @@
+{
+ "key": "Event Send",
+ "title": "Event Send",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Adaptive Platform/Signal Routing/Event_Send.md"
+ ],
+ "text": "Convert input signal to event, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output event scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

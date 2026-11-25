@@ -1,0 +1,13 @@
+{
+ "key": "Active Interface",
+ "title": "Active Interface",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/HIL/Active_Interface.md"
+ ],
+ "text": "Active interface between battery and cell supervisory circuit.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

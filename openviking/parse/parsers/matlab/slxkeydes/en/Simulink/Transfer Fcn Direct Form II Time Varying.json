@@ -1,0 +1,53 @@
+{
+ "key": "Transfer Fcn Direct Form II Time Varying",
+ "title": "Transfer Fcn Direct Form II Time Varying",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Discrete/Transfer_Fcn_Direct_Form_II_Time_Varying.md"
+ ],
+ "text": "Implement time varying Direct Form II realization of transfer function, 3 inputs, 1 output, no direct feedthrough, {Integer rounding mode} sets Rounding mode for fixed-point operations; {Initial condition} and {Saturate to max or min when overflows occur} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Numerator coefficients scalar | vector"
+  },
+  {
+   "name": "Den No Lead",
+   "direction": "input",
+   "summary": "Denominator coefficients scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "0.0",
+   "values": "Initial condition 0.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": ""
+  }
+ ]
+}

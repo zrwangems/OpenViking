@@ -1,0 +1,31 @@
+{
+ "key": "Quat2Angle",
+ "title": "Quaternions to Rotation Angles",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Quaternions_to_Rotation_Angles.md"
+ ],
+ "text": "Determine rotation vector from quaternion, 1 input, 1 output, {Rotation order} sets Rotation order.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "Quaternion 4-by-1 vector"
+  },
+  {
+   "name": "[R 1,R 2,R 3 ]",
+   "direction": "output",
+   "summary": "Rotation angles 3-by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rotation order",
+   "default": "ZYX",
+   "values": "Rotation order ZYX (default) | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX",
+   "group": ""
+  }
+ ]
+}

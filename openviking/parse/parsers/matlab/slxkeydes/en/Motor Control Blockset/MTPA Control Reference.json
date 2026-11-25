@@ -1,0 +1,130 @@
+{
+ "key": "MTPA Control Reference",
+ "title": "MTPA Control Reference",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/MTPA_Control_Reference.md"
+ ],
+ "text": "Compute reference currents for maximum torque per ampere (MTPA) and field-weakening operation, 3 inputs, 2 outputs; {Type of motor} sets the type, {Number of pole pairs} sets the number of available pole pairs, {Stator resistance per phase (Ohm)} sets the resistance of stator phase winding, {Stator d-axis inductance (H)} sets the d -axis stator winding, {Stator q-axis inductance (H)} sets the q -axis stator winding, {Permanent magnet flux linkage (Wb)} sets the magnetic flux linkage of permanent magnets, {Max current (A)} sets the maximum phase current limit for motor, {Vdc input method} sets the input method for Vdc Specify, {DC voltage (V)} sets the dC bus voltage, {Input signal units} sets the unit of block input values Per-Unit, {Base speed (rpm)} sets the base speed of motor, {Base current (A)} sets the base current for per-unit conversion, {Base torque (Nm)} sets the base torque for per-unit conversion, {Base voltage (V)} sets the base voltage for per-unit conversion and {Prioritise execution time} scales down computations to reduce algorithm execution. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T ref",
+   "direction": "input",
+   "summary": "Reference torque value scalar"
+  },
+  {
+   "name": "⍵ m",
+   "direction": "input",
+   "summary": "Mechanical speed scalar"
+  },
+  {
+   "name": "V dc",
+   "direction": "input",
+   "summary": "DC bus voltage scalar"
+  },
+  {
+   "name": "I d ref",
+   "direction": "output",
+   "summary": "Reference d -axis current scalar"
+  },
+  {
+   "name": "I q ref",
+   "direction": "output",
+   "summary": "Reference q -axis current scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of motor",
+   "default": "PMSM",
+   "values": "Type of PMSM Interior PMSM (default) | Surface PMSM",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "Number of available pole pairs 4 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Stator resistance per phase (Ohm)",
+   "default": "0.36",
+   "values": "Resistance of stator phase winding (ohms) 0.36 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Stator d-axis inductance (H)",
+   "default": "0.2e-3",
+   "values": "d -axis stator winding inductance 0.2e-3 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Stator q-axis inductance (H)",
+   "default": "0.4e-3",
+   "values": "q -axis stator winding inductance 0.4e-3 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Permanent magnet flux linkage (Wb)",
+   "default": "6.4e-3",
+   "values": "Magnetic flux linkage of permanent magnets 6.4e-3 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Max current (A)",
+   "default": "7.1",
+   "values": "Maximum phase current limit for motor (amperes) 7.1 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Vdc input method",
+   "default": "dialog",
+   "values": "Input method for Vdc Specify via dialog (default) | Input port",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "DC voltage (V)",
+   "default": "24",
+   "values": "DC bus voltage (volts) 24 (default) | scalar",
+   "group": "Motor Parameters"
+  },
+  {
+   "name": "Input signal units",
+   "default": "(PU)",
+   "values": "Unit of block input values Per-Unit (PU) (default) | SI Units",
+   "group": "Input Units"
+  },
+  {
+   "name": "Base speed (rpm)",
+   "default": "4107",
+   "values": "Base speed of motor (rpm) 4107 (default) | scalar",
+   "group": "Input Units"
+  },
+  {
+   "name": "Base current (A)",
+   "default": "19.3",
+   "values": "Base current for per-unit conversion (amperes) 19.3 (default) | scalar",
+   "group": "Input Units"
+  },
+  {
+   "name": "Base torque (Nm)",
+   "default": "0.74112",
+   "values": "Base torque for per-unit conversion (Nm) 0.74112 (default) | scalar",
+   "group": "Input Units"
+  },
+  {
+   "name": "Base voltage (V)",
+   "default": "24/sqrt(3)",
+   "values": "Base voltage for per-unit conversion (volts) 24/sqrt(3) (default) | scalar",
+   "group": "Input Units"
+  },
+  {
+   "name": "Prioritise execution time",
+   "default": "on",
+   "values": "Scale down computations to reduce algorithm execution time on (default) | off",
+   "group": "Implementation"
+  }
+ ]
+}

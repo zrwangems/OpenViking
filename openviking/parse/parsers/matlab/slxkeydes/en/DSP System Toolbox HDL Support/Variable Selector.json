@@ -1,0 +1,79 @@
+{
+ "key": "Variable Selector",
+ "title": "Variable Selector",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Management/Variable_Selector.md",
+  "DSP System Toolbox/Signal Management/Indexing/Variable_Selector.md"
+ ],
+ "text": "Select subset of rows or columns from input, 2 inputs, 1 output, no direct feedthrough, {Fill values} sets Fill values; {Number of input signals} sets the number of inputs, {Select}, {Selector mode} sets the indexing mode, {Elements} sets the selected elements, {Index mode}, {Invalid index} sets the error handling Clip and {Fill empty spaces in outputs (for logical indexing)} sets the fill in empty spaces in outputs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "InN",
+   "direction": "input",
+   "summary": "N th input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "Index vector scalar | vector"
+  },
+  {
+   "name": "OutN",
+   "direction": "output",
+   "summary": "N th Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input signals",
+   "default": "1",
+   "values": "Number of inputs 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Select",
+   "default": "Rows",
+   "values": "Select dimension Rows (default) | Columns",
+   "group": ""
+  },
+  {
+   "name": "Selector mode",
+   "default": "Variable",
+   "values": "Indexing mode Variable (default) | Fixed",
+   "group": ""
+  },
+  {
+   "name": "Elements",
+   "default": "3]",
+   "values": "Selected elements [1 3] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Index mode",
+   "default": "Zero-based",
+   "values": "Index mode Zero-based (default) | One-based",
+   "group": ""
+  },
+  {
+   "name": "Invalid index",
+   "default": "Index",
+   "values": "Error handling Clip Index (default) | Clip and Warn | Generate Error",
+   "group": ""
+  },
+  {
+   "name": "Fill empty spaces in outputs (for logical indexing)",
+   "default": "on",
+   "values": "Fill in empty spaces in outputs on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Fill values",
+   "default": "0",
+   "values": "Fill values 0 (default) | scalar value | integer",
+   "group": ""
+  }
+ ]
+}

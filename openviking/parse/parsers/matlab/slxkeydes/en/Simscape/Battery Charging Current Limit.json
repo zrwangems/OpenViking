@@ -1,0 +1,72 @@
+{
+ "key": "Battery Charging Current Limit",
+ "title": "Battery Charging Current Limit",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Current Management/Battery_Charging_Current_Limit.md"
+ ],
+ "text": "Maximum battery charging current, 2 inputs, 1 output, {Algorithm data type} sets Option to choose data type for block algorithm Inherit:; {Specify inputs as [Min,Max]} sets the option to specify inputs as minimum and maximum, {Cell overvoltage limit (V)} sets the overvoltage limit for cell, {Terminal resistance (ohm)}, {Vector of temperatures, T} sets the cell temperatures, {Current limit for coolest cell, iCool(T), (A)} sets the current limit for coolest cell and {Current limit for hottest cell, iHot(T), (A)} sets the current limit for hottest cell. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellVoltage",
+   "direction": "input",
+   "summary": "Cell voltages, V scalar | vector"
+  },
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "Temperature of cells, K scalar | vector"
+  },
+  {
+   "name": "CurrentLimit",
+   "direction": "output",
+   "summary": "Charging current limit for battery pack scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify inputs as [Min,Max]",
+   "default": "off",
+   "values": "Option to specify inputs as minimum and maximum values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cell overvoltage limit (V)",
+   "default": "4.5",
+   "values": "Overvoltage limit for cell 4.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Terminal resistance (ohm)",
+   "default": "0.0025",
+   "values": "Terminal resistance 0.0025 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Vector of temperatures, T",
+   "default": "333.15]",
+   "values": "Cell temperatures [243.15, 258.15, 273.15, 288.15, 303.15, 318.15, 333.15] (default) | vector of scalars",
+   "group": ""
+  },
+  {
+   "name": "Current limit for coolest cell, iCool(T), (A)",
+   "default": "100]",
+   "values": "Current limit for coolest cell [ 0, 0, 0, 0, 100, 100, 100] (default) | vector of positive scalars",
+   "group": ""
+  },
+  {
+   "name": "Current limit for hottest cell, iHot(T), (A)",
+   "default": "0]",
+   "values": "Current limit for hottest cell [100, 100, 100, 100, 0, 0, 0] (default) | vector of positive scalars",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

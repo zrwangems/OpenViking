@@ -1,0 +1,13 @@
+{
+ "key": "Memristor",
+ "title": "Memristor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Memristor.md"
+ ],
+ "text": "采用非线性掺杂剂漂移方法的理想忆阻器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

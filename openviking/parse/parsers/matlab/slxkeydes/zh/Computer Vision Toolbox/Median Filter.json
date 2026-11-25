@@ -1,0 +1,63 @@
+{
+ "key": "Median Filter",
+ "title": "Median Filter",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Analysis & Enhancement/Median_Filter.md",
+  "Computer Vision Toolbox/Filtering/Median_Filter.md",
+  "Vision HDL Toolbox/Analysis & Enhancement/Median_Filter.md",
+  "Vision HDL Toolbox/Filtering/Median_Filter.md"
+ ],
+ "text": "执行二维中值滤波，输入 2 路、输出 1 路；按 {Padding options} 指定填充方法；{Neighborhood size} 指定邻域窗口大小、{Output size} 输出大小确定方法 Same as input port、{Pad value source} 指定常量填充值的来源 Specify via、{Pad value} 指定填充值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix"
+  },
+  {
+   "name": "PVal",
+   "direction": "input",
+   "summary": "填充值 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Neighborhood size",
+   "default": "3]",
+   "values": "邻域窗口大小 [3 3] (default) | positive integer | two-element vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "I",
+   "values": "输出大小确定方法 Same as input port I (default) | Valid",
+   "group": ""
+  },
+  {
+   "name": "Padding options",
+   "default": "Symmetric",
+   "values": "填充方法 Symmetric (default) | Constant | Replicate | Circular",
+   "group": ""
+  },
+  {
+   "name": "Pad value source",
+   "default": "dialog",
+   "values": "常量填充值的来源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pad value",
+   "default": "0",
+   "values": "填充值 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

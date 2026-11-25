@@ -1,0 +1,190 @@
+{
+ "key": "IncrementalClassificationECOC Predict",
+ "title": "IncrementalClassificationECOC Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Classification/ECOC/IncrementalClassificationECOC_Predict.md"
+ ],
+ "text": "使用增量 ECOC 分类模型对观测值进行分类，输入 2 路、输出 3 路、直接馈通；按 {Integer rounding mode} 指定定点运算的舍入模式；{Select initial machine learning model} 指定初始增量分类 ECOC 模型、{Add output port for predicted class scores} 添加第二个输出端口、{Add output port for positive-class scores of binary learners} 添加第三个输出端口、{Binary learner loss function} 指定二分类学习器损失函数、{Decoding scheme} 指定解码方案 lossweighted、{Predictor data observation dimension} 指定预测变量数据的观测维度、{Sample time (–1 for inherited)} 用于指定采样时间、{Saturate on integer overflow} 指定溢出操作的方法、{Lock output data type setting against changes by the fixed-point tools} 防止定点工具覆盖数据类型、{Label data type} 指定 label 输出的数据类型、{Label data type Minimum} 用于范围检查的标签输出最小值、{Label data type Maximum} 用于范围检查的标签输出最大值、{Score data type} 指定分数输出的数据类型 Inherit、{Score data type Minimum} 用于范围检查的分数输出最小值、{Score data type Maximum} 用于范围检查的分数输出最大值、{Positive-class score data type} 指定正类分数数据类型 Inherit、{Positive-class score data type Minimum} 用于范围检查的 pbscore 输出最小值、{Positive-class score data type Maximum} 用于范围检查的 pbscore 输出最大值、{Binary learner score data type} 指定二值学习器分数数据类型 Inherit、{Binary learner score data type Minimum} 用于范围检查的二值学习器分数最小值、{Binary learner score data type Maximum} 用于范围检查的二值学习器分数最大值、{Binary learner kernel data type} 指定二分类学习器核计算数据类型、{Binary learner kernel data type Minimum} 用于范围检查的核计算最小值、{Binary learner kernel data type Maximum} 用于范围检查的核计算最大值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mdl",
+   "direction": "input",
+   "summary": "增量学习模型 bus signal"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "预测变量数据块 numeric matrix"
+  },
+  {
+   "name": "label",
+   "direction": "output",
+   "summary": "预测类标签块 column vector"
+  },
+  {
+   "name": "score",
+   "direction": "output",
+   "summary": "预测类分数或后验概率 matrix"
+  },
+  {
+   "name": "pbscore",
+   "direction": "output",
+   "summary": "二分类学习器的正类分数 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "ecocMdl",
+   "values": "初始增量分类 ECOC 模型 ecocMdl (default) | incrementalClassificationECOC model object",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for predicted class scores",
+   "default": "off",
+   "values": "添加第二个输出端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for positive-class scores of binary learners",
+   "default": "off",
+   "values": "添加第三个输出端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Binary learner loss function",
+   "default": "hinge",
+   "values": "二分类学习器损失函数 hinge (default) | binodeviance | exponential | hamming | linear | logit | quadratic",
+   "group": "Main"
+  },
+  {
+   "name": "Decoding scheme",
+   "default": "lossweighted",
+   "values": "解码方案 lossweighted (default) | lossbased",
+   "group": "Main"
+  },
+  {
+   "name": "Predictor data observation dimension",
+   "default": "rows",
+   "values": "预测变量数据的观测维度 rows (default) | columns",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "用于指定采样时间的选项 –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type",
+   "default": "",
+   "values": "label 输出的数据类型 Inherit: Inherit via back propagation | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的标签输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的标签输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type",
+   "default": "auto",
+   "values": "分数输出的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的分数输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的分数输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Positive-class score data type",
+   "default": "auto",
+   "values": "正类分数数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Positive-class score data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的 pbscore 输出最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Positive-class score data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的 pbscore 输出最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Binary learner score data type",
+   "default": "auto",
+   "values": "二值学习器分数数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Binary learner score data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的二值学习器分数最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Binary learner score data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的二值学习器分数最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Binary learner kernel data type",
+   "default": "double",
+   "values": "二分类学习器核计算数据类型 double (default) | single | half | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Binary learner kernel data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的核计算最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Binary learner kernel data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的核计算最大值 [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

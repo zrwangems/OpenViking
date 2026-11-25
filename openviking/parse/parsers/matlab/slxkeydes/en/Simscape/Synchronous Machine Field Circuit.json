@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Machine Field Circuit",
+ "title": "Synchronous Machine Field Circuit",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Synchronous_Machine_Field_Circuit.md"
+ ],
+ "text": "Synchronous machine field circuit per-unit interface with voltage input and current output.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

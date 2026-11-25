@@ -1,0 +1,32 @@
+{
+ "key": "Byte Reversal",
+ "title": "Byte Reversal",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Signal Management/Byte_Reversal.md",
+  "Embedded Coder/Embedded Targets/Host Communication/Byte_Reversal.md"
+ ],
+ "text": "反转输入字中的字节顺序，输入 1 路、输出 1 路；{Number of inputs} 指定模块输入数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要转换的数据 scalar, vector, matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "转换后的数据 scalar, vector, matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "模块输入数 1 (default) | integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,140 @@
+{
+ "key": "C28x SCI Receive",
+ "title": "SCI Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2803x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2805x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2806x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C280x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C281x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2833x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/C2834x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F280013x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F280015x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28002x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28004x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F2807x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xD/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F2837xS/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28p55x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/SCI_Receive.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/SCI_Receive.md"
+ ],
+ "text": "通过串行通信接口 (SCI) 从主机接收目标数据，输入 1 路、输出 2 路；按 {附加包头} 指定表示数据开始；{SCI 模块} 指定 SCI 通信模块、{附加包终止符} 表示数据结尾、{标头接收检查的重试次数}、{数据类型}、{数据长度选项} 指定模块接收的数据长度 Length via、{数据长度} 指定模块接收的数据类型数量、{最大数据长度} 指定模块接收的数据类型最大数量、{初始输出} 指定模块的默认值输出、{Action taken when connection times out} 指定连接超时时选择输出类型、{Output value when connection times out} 指定连接超时时，模块的自定义输出值、{采样时间} 指定从 SCI 设备读取数据的频率、{等待接收到数据} 指定请等待请求的数据可用、{超时} 指定模块等待接收数据的时间、{输出接收状态} 指定串口通信状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "从输入端口接收到的数据长度 标量"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "从串行总线接收的数据 标量 | 向量"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "串口通信状态 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "SCI 模块",
+   "default": "A",
+   "values": "SCI 通信模块 A (默认) | B | C | D",
+   "group": ""
+  },
+  {
+   "name": "附加包头",
+   "default": "’S’",
+   "values": "表示数据开始 ’S’ (默认) | 字符串 | char | 0 到 255 之间的数字",
+   "group": ""
+  },
+  {
+   "name": "附加包终止符",
+   "default": "’E’",
+   "values": "表示数据结尾 ’E’ (默认) | 字符串 | char | 0 到 255 之间的数字",
+   "group": ""
+  },
+  {
+   "name": "标头接收检查的重试次数",
+   "default": "16",
+   "values": "自定义标头接收检查的重试次数 16 (默认) | positive integer, finite | scalar",
+   "group": ""
+  },
+  {
+   "name": "数据类型",
+   "default": "uint8",
+   "values": "输出数据类型 uint8 (默认) | 单精度 | int8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  },
+  {
+   "name": "数据长度选项",
+   "default": "dialog",
+   "values": "模块接收的数据长度 Length via dialog (默认) | Length via input port | Variable length",
+   "group": ""
+  },
+  {
+   "name": "数据长度",
+   "default": "1",
+   "values": "模块接收的数据类型数量 1 (默认) | positive integer, finite | scalar",
+   "group": ""
+  },
+  {
+   "name": "最大数据长度",
+   "default": "1",
+   "values": "模块接收的数据类型最大数量 1 (默认) | 正整数，有限 | positive integer, finite",
+   "group": ""
+  },
+  {
+   "name": "初始输出",
+   "default": "0",
+   "values": "模块的默认值输出 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "Action taken when connection times out",
+   "default": "输出上次收到的值",
+   "values": "连接超时时选择输出类型 输出上次收到的值 (默认) | 输出自定义值",
+   "group": ""
+  },
+  {
+   "name": "Output value when connection times out",
+   "default": "0",
+   "values": "连接超时时，模块的自定义输出值 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "从 SCI 设备读取数据的频率 0.1 (默认) | -1 | 标量",
+   "group": ""
+  },
+  {
+   "name": "等待接收到数据",
+   "default": "off",
+   "values": "请等待请求的数据可用。 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "超时",
+   "default": "inf",
+   "values": "模块等待接收数据的时间（以秒为单位） inf (默认) | positive value greater than 0",
+   "group": ""
+  },
+  {
+   "name": "输出接收状态",
+   "default": "off",
+   "values": "串口通信状态 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "key": "Puncture",
+ "title": "Puncture",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Puncture.md"
+ ],
+ "text": "Output elements that correspond to 1s in binary puncture vector, 1 input, 1 output; {Puncture vector} sets the puncture pattern. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Puncture vector",
+   "default": "1]’",
+   "values": "Puncture pattern [1 1 0 1 0 1]’ (default) | column vector of binary values",
+   "group": ""
+  }
+ ]
+}

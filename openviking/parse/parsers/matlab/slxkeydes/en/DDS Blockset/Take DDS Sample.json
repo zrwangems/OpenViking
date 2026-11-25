@@ -1,0 +1,42 @@
+{
+ "key": "Take DDS Sample",
+ "title": "Take DDS Sample",
+ "toolbox": "DDS Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "DDS Blockset/Take_DDS_Sample.md"
+ ],
+ "text": "Receive data samples from DDS network, 1 input, 2 outputs; {Show receive status} shows whether a DDS sample was received and {Connect to live network} sets the connect DDS simulation to live network. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input DDS sample scalar | vector | matrix"
+  },
+  {
+   "name": "Port_S",
+   "direction": "output",
+   "summary": "Show whether a DDS sample was received scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show receive status",
+   "default": "off",
+   "values": "Show whether a DDS sample was received off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Connect to live network",
+   "default": "off",
+   "values": "Connect DDS simulation to live network off (default) | on",
+   "group": ""
+  }
+ ]
+}

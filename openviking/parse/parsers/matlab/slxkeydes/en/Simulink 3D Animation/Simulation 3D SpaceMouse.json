@@ -1,0 +1,108 @@
+{
+ "key": "Simulation 3D SpaceMouse",
+ "title": "Simulation 3D SpaceMouse",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Hardware Interface/Simulation_3D_SpaceMouse.md"
+ ],
+ "text": "Process input from space mouse device, 3 outputs, {Output type} sets Type of output; {Port} sets the serial port where mouse, {Dominant mode} sets the option to accept only prevailing movement, {Disable position movement} sets the option to fix rotations at initial values, {Disable rotation movement} sets the option to fix positions at initial values, {Normalize output angle} sets the option to determine whether rotation angles should wrap in full, {Limit position} sets the option to limit position of mouse, {Position sensitivity} sets the mouse sensitivity for translations, {Rotation sensitivity} sets the mouse sensitivity for rotations, {Initial position} sets the initial condition for translations, {Initial rotation} sets the initial condition for rotations, {Lower position limit} sets the lower limit of mouse and {Upper position limit} sets the upper limit of mouse. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Status of object translation 1 or true | 0 or false"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Status of object rotation 1 or true | 0 or false"
+  },
+  {
+   "name": "Buttons",
+   "direction": "output",
+   "summary": "Status of button 1 or true | 0 or false"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port",
+   "default": "COM1",
+   "values": "Serial port where mouse is connected COM1 (default) | COM2 | COM3 | COM4 | USB1 | USB2 | USB3 | USB4",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Speed",
+   "values": "Type of output Speed (default) | Position | Viewpoint coordinates",
+   "group": ""
+  },
+  {
+   "name": "Dominant mode",
+   "default": "off",
+   "values": "Option to accept only prevailing movement and rotation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Disable position movement",
+   "default": "off",
+   "values": "Option to fix rotations at initial values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Disable rotation movement",
+   "default": "off",
+   "values": "Option to fix positions at initial values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Normalize output angle",
+   "default": "off",
+   "values": "Option to determine whether rotation angles should wrap in full circle off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Limit position",
+   "default": "off",
+   "values": "Option to limit position of mouse off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Position sensitivity",
+   "default": "0.0001",
+   "values": "Mouse sensitivity for translations 0.0001 (default)",
+   "group": ""
+  },
+  {
+   "name": "Rotation sensitivity",
+   "default": "0.00001",
+   "values": "Mouse sensitivity for rotations 0.00001 (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial position",
+   "default": "0]",
+   "values": "Initial condition for translations [0 0 0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial rotation",
+   "default": "0]",
+   "values": "Initial condition for rotations [0 0 0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Lower position limit",
+   "default": "-100]",
+   "values": "Lower limit of mouse [-100 -100 -100] (default)",
+   "group": ""
+  },
+  {
+   "name": "Upper position limit",
+   "default": "100]",
+   "values": "Upper limit of mouse [100 100 100] (default)",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,194 @@
+{
+ "key": "Discrete Transfer Function with Initial States",
+ "title": "Discrete Transfer Fcn (with initial states)",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Discrete/Discrete_Transfer_Fcn_with_initial_states.md"
+ ],
+ "text": "指定传递函数的初始状态；按 {External reset} 指定External state reset；{Numerator Source} 指定 Source of numerator、{Numerator Value} 指定 Numerator coefficients、{Denominator Source} 指定 Source of denominator、{Denominator Value} 指定 Denominator coefficients、{Initial states Source} 指定 Source of initial、{Initial states Value} 指定 Initial filter states、{Input processing} 指定 Sample- or frame-based processing Elements、{Optimize by skipping divide by leading denominator coefficient (a0)} 指定 Skip divide by a0、{Sample time (-1 for inherited)} 指定 Interval between samples、{View Filter Response}、{State}、{Numerator coefficients} 指定 Numerator coefficient data type、{Numerator coefficient minimum} 指定 Minimum value of numerator coefficients、{Numerator coefficient maximum} 指定 Maximum value of numerator coefficients、{Numerator product output}、{Numerator accumulator}、{Denominator coefficients} 指定 Denominator coefficient data type、{Denominator coefficient minimum} 指定 Minimum value of denominator coefficients、{Denominator coefficient maximum} 指定 Maximum value of denominator coefficients、{Denominator product output}、{Denominator accumulator}、{Output}、{Output minimum} 指定 Minimum value of output、{Output maximum} 指定 Maximum value of output、{Lock data type settings against changes by the fixed-point tools} 指定 Prevent fixed-point tools from overriding data、{Integer rounding mode} 指定 Rounding mode for fixed-point operations、{Saturate on integer overflow} 指定 Method of overflow action、{State name} 指定 Unique name for block、{State name must resolve to Simulink signal object} 指定 Require state name resolve to a signal，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Numerator Source",
+   "default": "Dialog",
+   "values": "Source of numerator coefficients Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Numerator Value",
+   "default": "[1]",
+   "values": "Numerator coefficients [1] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Denominator Source",
+   "default": "Dialog",
+   "values": "Source of denominator coefficients Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Denominator Value",
+   "default": "0.5]",
+   "values": "Denominator coefficients [1 0.5] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Initial states Source",
+   "default": "Dialog",
+   "values": "Source of initial states Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Initial states Value",
+   "default": "0",
+   "values": "Initial filter states 0 (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "External reset",
+   "default": "None",
+   "values": "External state reset None (default) | Rising | Falling | Either | Level | Level hold",
+   "group": "Main"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": "Main"
+  },
+  {
+   "name": "Optimize by skipping divide by leading denominator coefficient (a0)",
+   "default": "off",
+   "values": "Skip divide by a0 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View filter response button",
+   "group": "Main"
+  },
+  {
+   "name": "State",
+   "default": "input",
+   "values": "State data type Inherit: Same as input (default) | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator coefficients",
+   "default": "rule",
+   "values": "Numerator coefficient data type Inherit: Inherit via internal rule (default) | int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) | <data type expression>",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator coefficient minimum",
+   "default": "[]",
+   "values": "Minimum value of numerator coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator coefficient maximum",
+   "default": "[]",
+   "values": "Maximum value of numerator coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator product output",
+   "default": "rule",
+   "values": "Numerator product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator accumulator",
+   "default": "rule",
+   "values": "Numerator accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator coefficients",
+   "default": "rule",
+   "values": "Denominator coefficient data type Inherit: Inherit via internal rule (default) | int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) | <data type expression>",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator coefficient minimum",
+   "default": "[]",
+   "values": "Minimum value of denominator coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator coefficient maximum",
+   "default": "[]",
+   "values": "Maximum value of denominator coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator product output",
+   "default": "rule",
+   "values": "Denominator product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator accumulator",
+   "default": "rule",
+   "values": "Denominator accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) | <data type expression>",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum value of output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum value of output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "State name",
+   "default": "''''''''",
+   "values": "Unique name for block state '''''''' (default) | alphanumeric string",
+   "group": "State Attributes"
+  },
+  {
+   "name": "State name must resolve to Simulink signal object",
+   "default": "off",
+   "values": "Require state name resolve to a signal object off (default) | on",
+   "group": "State Attributes"
+  }
+ ]
+}

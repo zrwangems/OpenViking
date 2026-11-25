@@ -1,0 +1,38 @@
+{
+ "key": "ROS Blank Message",
+ "title": "Blank Message",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Blank_Message.md"
+ ],
+ "text": "使用指定消息类型创建空白消息；输出 1 路；按 {Class} 指定ROS 消息的类；{Type} 指定 ROS 消息类型、{Sample time} 输出之间的间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "空白 ROS 消息 nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Class",
+   "default": "Message",
+   "values": "ROS 消息的类 Message (default) | Service Request | Service Response",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "’geometry_msgs/Point’",
+   "values": "ROS 消息类型 ’geometry_msgs/Point’ (default) | character vector | dialog box selection",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "Inf",
+   "values": "输出之间的间隔 Inf (default) | numeric scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "key": "Mechanical Parameter Estimator",
+ "title": "Mechanical Parameter Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/ACIM Parameter Estimation/Mechanical_Parameter_Estimator.md"
+ ],
+ "text": "Estimate rotor inertia and viscous damping of AC induction motor (ACIM), 10 inputs, 5 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "Three-phase current response scalar"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC link voltage scalar"
+  },
+  {
+   "name": "Speed",
+   "direction": "input",
+   "summary": "Rotor speed scalar"
+  },
+  {
+   "name": "Id0",
+   "direction": "input",
+   "summary": "Estimated magnetizing current scalar"
+  },
+  {
+   "name": "Rtotal",
+   "direction": "input",
+   "summary": "Sum of stator and inverter-board resistances scalar"
+  },
+  {
+   "name": "Rr",
+   "direction": "input",
+   "summary": "Estimated rotor resistance scalar"
+  },
+  {
+   "name": "Lm",
+   "direction": "input",
+   "summary": "Estimated magnetizing inductance scalar"
+  },
+  {
+   "name": "Lls",
+   "direction": "input",
+   "summary": "Estimated stator leakage inductance scalar"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "Control signal for mechanical parameter estimation logical"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Bus signal input bus"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a, b, and c -axis stator reference voltage components scalar"
+  },
+  {
+   "name": "J",
+   "direction": "output",
+   "summary": "Estimated rotor inertia scalar"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Estimated viscous damping scalar"
+  },
+  {
+   "name": "InverterEn",
+   "direction": "output",
+   "summary": "Inverter control signal logical"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "Debug signals bus"
+  }
+ ],
+ "params": []
+}

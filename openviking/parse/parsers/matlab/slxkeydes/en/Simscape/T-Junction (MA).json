@@ -1,0 +1,13 @@
+{
+ "key": "T-Junction (MA)",
+ "title": "T-Junction (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Pipes & Fittings/T_Junction_MA.md"
+ ],
+ "text": "Three-way junction in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

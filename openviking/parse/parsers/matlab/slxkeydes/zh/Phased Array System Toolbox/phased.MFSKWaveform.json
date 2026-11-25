@@ -1,0 +1,80 @@
+{
+ "key": "phased.MFSKWaveform",
+ "title": "MFSK Waveform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Waveforms/MFSK_Waveform.md"
+ ],
+ "text": "多频移键控 (MFSK) 连续波形；输出 1 路；按 {Output signal format} 指定输出信号格式；{Sample rate (Hz)} 指定采样率 151e6、{Sweep bandwidth (Hz)} 指定 MFSK 扫频带宽 150e6、{Frequency step burst time (s)} 指定频率步进突发时间 5e-6、{Number of steps per sweep} 指定频率步进总数、{Chirp offset frequency (Hz)} 指定线性调频偏移频率 -294e3、{Number of sweeps in output} 输出中的扫频数、{Number of frequency steps in output} 输出中的频率步进数、{Number of samples in output} 输出中的样本数、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "MFSK Waveform complex-valued column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "151e6",
+   "values": "采样率 151e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sweep bandwidth (Hz)",
+   "default": "150e6",
+   "values": "MFSK 扫频带宽 150e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency step burst time (s)",
+   "default": "5e-6",
+   "values": "频率步进突发时间 5e-6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of steps per sweep",
+   "default": "512",
+   "values": "频率步进总数 512 (default) | even positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Chirp offset frequency (Hz)",
+   "default": "-294e3",
+   "values": "线性调频偏移频率 -294e3 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output signal format",
+   "default": "Steps",
+   "values": "输出信号格式 Steps (default) | Samples | Sweeps",
+   "group": ""
+  },
+  {
+   "name": "Number of sweeps in output",
+   "default": "1",
+   "values": "输出中的扫频数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of frequency steps in output",
+   "default": "1",
+   "values": "输出中的频率步进数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of samples in output",
+   "default": "100",
+   "values": "输出中的样本数 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

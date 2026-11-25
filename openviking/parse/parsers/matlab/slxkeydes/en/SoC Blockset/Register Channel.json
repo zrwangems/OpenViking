@@ -1,0 +1,37 @@
+{
+ "key": "Register Channel",
+ "title": "Register Channel",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Register_Channel.md"
+ ],
+ "text": "Timing model for transfer of register values, 1 input, 1 output; {Registers} sets the edit register name, direction, data type, dimension, and initial value and {Register write sample time} sets the sample time for register access. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "regN",
+   "direction": "input",
+   "summary": "Register input scalar"
+  },
+  {
+   "name": "regN",
+   "direction": "output",
+   "summary": "Register output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Registers",
+   "default": "",
+   "values": "Edit register name, direction, data type, dimension, and initial value table",
+   "group": ""
+  },
+  {
+   "name": "Register write sample time",
+   "default": "-1",
+   "values": "Sample time for register access -1 (default) | two element vector",
+   "group": ""
+  }
+ ]
+}

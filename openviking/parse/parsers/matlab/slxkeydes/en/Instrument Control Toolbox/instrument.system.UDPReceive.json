@@ -1,0 +1,121 @@
+{
+ "key": "instrument.system.UDPReceive",
+ "title": "UDP Receive",
+ "toolbox": "Instrument Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Instrument Control Toolbox/UDP_Receive.md"
+ ],
+ "text": "Receive data over UDP network from specified remote machine, 2 outputs, {Terminator} sets Terminator; {Local address} sets the local host name or IP, {Local port} sets the port of local host for binding, {Enable local port sharing} allows other UDP sockets to bind to same local, {Remote address} sets the remote host name, {Remote port} sets the remote host port, {Verify address and port connectivity} sets the remote machine connection verification, {Output latest data} sets the receive latest data, {Data size} sets the number of values read, {Source Data type} sets the output data type, {ASCII format string} sets the format of string, {Custom Terminator} sets the custom terminator numeric array, {Byte order} sets the sequential order, {Enable blocking mode} sets the simulation waits while receiving data, {Timeout} sets the allowed time to complete operations and {Block sample time} sets the sampling time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Data received vector | matrix | array"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "New data available 0 (default) | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Local address",
+   "default": "0.0.0.0",
+   "values": "Local host name or IP address 0.0.0.0 (default) | local host name or IP address",
+   "group": ""
+  },
+  {
+   "name": "Local port",
+   "default": "-1",
+   "values": "Port of local host for binding -1 (default) | local host port",
+   "group": ""
+  },
+  {
+   "name": "Enable local port sharing",
+   "default": "off",
+   "values": "Allow other UDP sockets to bind to same local port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Remote address",
+   "default": "localhost",
+   "values": "Remote host name or address localhost (default) | remote host name or IP address",
+   "group": ""
+  },
+  {
+   "name": "Remote port",
+   "default": "9090",
+   "values": "Remote host port 9090 (default) | remote host port",
+   "group": ""
+  },
+  {
+   "name": "Verify address and port connectivity",
+   "default": "",
+   "values": "Remote machine connection verification button",
+   "group": ""
+  },
+  {
+   "name": "Output latest data",
+   "default": "off",
+   "values": "Receive latest data off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Data size",
+   "default": "1]",
+   "values": "Number of values read [1, 1] (default) | numeric array",
+   "group": ""
+  },
+  {
+   "name": "Source Data type",
+   "default": "uint8",
+   "values": "Output data type uint8 (default) | single | double | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | ASCII",
+   "group": ""
+  },
+  {
+   "name": "ASCII format string",
+   "default": "%f",
+   "values": "Format of string data %f (default) | numeric conversion specifiers",
+   "group": ""
+  },
+  {
+   "name": "Terminator",
+   "default": "LF",
+   "values": "Terminator LF (default) | CR | CR/LF | LF/CR | Custom terminator",
+   "group": ""
+  },
+  {
+   "name": "Custom Terminator",
+   "default": "",
+   "values": "Custom terminator numeric array | integer from 0 to 255",
+   "group": ""
+  },
+  {
+   "name": "Byte order",
+   "default": "big-endian",
+   "values": "Sequential order of bytes big-endian (default) | little-endian",
+   "group": ""
+  },
+  {
+   "name": "Enable blocking mode",
+   "default": "on",
+   "values": "Simulation waits while receiving data on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "10",
+   "values": "Allowed time to complete operations 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "0.01",
+   "values": "Sampling time 0.01 (default) | positive numeric",
+   "group": ""
+  }
+ ]
+}

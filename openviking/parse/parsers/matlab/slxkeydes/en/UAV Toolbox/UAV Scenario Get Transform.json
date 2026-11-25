@@ -1,0 +1,32 @@
+{
+ "key": "UAV Scenario Get Transform",
+ "title": "UAV Scenario Get Transform",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Get_Transform.md"
+ ],
+ "text": "Get transforms from UAV scenario platforms, 1 output, {Source Frame} sets Source frame; {Target Frame}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "transform",
+   "direction": "output",
+   "summary": "Transformation matrix 4-by-4 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source Frame",
+   "default": "’ENU’",
+   "values": "Source frame ’ENU’ (default) | ’NED’ | string from UAV Scenario",
+   "group": ""
+  },
+  {
+   "name": "Target Frame",
+   "default": "’NED’",
+   "values": "Target frame ’NED’ (default) | ’ENU’ | string from UAV Scenario",
+   "group": ""
+  }
+ ]
+}

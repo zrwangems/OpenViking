@@ -1,0 +1,96 @@
+{
+ "key": "matlabshared.tracking.internal.DetectionConcatenation",
+ "title": "Detection Concatenation",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Detection_Concatenation.md",
+  "Automated Driving Toolbox/Detection_Concatenation.md",
+  "Sensor Fusion and Tracking Toolbox/Utilities/Detection_Concatenation.md"
+ ],
+ "text": "Cluster detections, 3 inputs, 2 outputs, {Cluster threshold epsilon} sets Cluster neighborhood size; {Define outputs for Simulink block} sets the type of cluster data output, {Source of cluster threshold epsilon} sets the epsilon source, {Minimum number of points in a cluster} sets the minimum number of points required, {Maximum number of points for ’Auto’ epsilon} sets the maximum number of points required, {Length of cluster threshold epsilon history}, {Enable disambiguation of dimensions} sets the turn on disambiguation, {Indices of ambiguous dimensions} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input data N -by- P real-valued matrix"
+  },
+  {
+   "name": "Update",
+   "direction": "input",
+   "summary": "Enable automatic update of epsilon false (default) | true"
+  },
+  {
+   "name": "AmbLims",
+   "direction": "input",
+   "summary": "Ambiguity limits 1-by-2 real-valued vector (default) | 2-by-2 real-valued matrix"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "Cluster indices N -by-1 integer-valued column vector"
+  },
+  {
+   "name": "Clusters",
+   "direction": "output",
+   "summary": "Alternative cluster IDs 1-by- N integer-valued row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Define outputs for Simulink block",
+   "default": "ID",
+   "values": "Type of cluster data output Index and ID (default) | Cluster ID | Index",
+   "group": ""
+  },
+  {
+   "name": "Source of cluster threshold epsilon",
+   "default": "Property",
+   "values": "Epsilon source Property (default) | Auto",
+   "group": ""
+  },
+  {
+   "name": "Cluster threshold epsilon",
+   "default": "10.0",
+   "values": "Cluster neighborhood size 10.0 (default) | positive scalar | positive real-valued 1-by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Minimum number of points in a cluster",
+   "default": "3",
+   "values": "Minimum number of points required for cluster 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of points for ’Auto’ epsilon",
+   "default": "10",
+   "values": "Maximum number of points required for cluster 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Length of cluster threshold epsilon history",
+   "default": "10",
+   "values": "Length of cluster threshold epsilon history 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable disambiguation of dimensions",
+   "default": "off",
+   "values": "Turn on disambiguation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Indices of ambiguous dimensions",
+   "default": "1",
+   "values": "Indices of ambiguous dimensions 1 (default) | positive integer | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

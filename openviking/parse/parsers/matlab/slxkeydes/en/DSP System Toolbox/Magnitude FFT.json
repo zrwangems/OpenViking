@@ -1,0 +1,86 @@
+{
+ "key": "Magnitude FFT",
+ "title": "Magnitude FFT",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Magnitude_FFT.md",
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Magnitude_FFT.md"
+ ],
+ "text": "Discrete cosine transform (DCT) of input, 1 input, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode; {Sine and cosine computation}, {Saturate on integer overflow}, {Sine table}, {Product output}, {Accumulator}, {Output} sets the data type of output, {Output Minimum}, {Output Maximum} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix | N -D array"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "DCT output vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sine and cosine computation",
+   "default": "lookup",
+   "values": "Sine and cosine computation Table lookup (default) | Trigonometric fcn",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Sine table",
+   "default": "input",
+   "values": "Sine table Inherit: Same word length as input (default) | fixdt(1,16)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "Data type of output Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Output minimum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Output maximum [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

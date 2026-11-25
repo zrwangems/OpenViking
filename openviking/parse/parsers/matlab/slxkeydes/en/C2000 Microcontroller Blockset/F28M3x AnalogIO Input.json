@@ -1,0 +1,254 @@
+{
+ "key": "F28M3x AnalogIO Input",
+ "title": "AnalogIO Input",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28M35x/C28x/AnalogIO_Input.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/AnalogIO_Input.md"
+ ],
+ "text": "Receive and log transitions on capture input pin or configure auxiliary pulse width modulator, 4 inputs, 4 outputs, {Time-Stamp counter data type} sets Data type of counter; {Operating mode} selects eCAP, {eCAPx pin} selects capture unit, {Counter phase offset value (0 ~ 4294967295)} sets the time base for event captures, {Enable counter Sync-In mode} enables TSCTR counter to load from CTRPHS, {Enable software-forced counter synchronizing input} sets the synchronize one or more eCAP time bases, {Sync output selection} sets the synchronize eCAP counter with other eCAP counters, {Sample time} sets the frequency at which block reads input pin, {Event prescaler (integer from 0 to 31)} sets the prescales input signal in multiples, {Enable high resolution capture} selects to enable high resolution capture or HRCAP, {Enable continuous calibration mode} selects to enable continuous calibration, {Calibration period in seconds} sets the calibration period, {Select mode control} sets the mode of capture, {Enable One-Shot rearming control via input port} sets the re-arms a One-Shot capture sequence, {Stop value after} sets the number of capture events after which capture stops Capture, {Enable reset counter after capture event # time-stamp} sets the resets counter after capture event, {Select capture event # polarity} sets the start capture event on rising edge or falling edge Rising, {Output type} selects output type for eCAP HRCLK/SYSCLK, {Enable capture event status flag output} sets the output capture event status, {Capture flag data type} sets the data type of output port, {Enable overflow status flag output} sets the output status of elements of FIFO buffer, {Overflow flag data type} sets the data type of output port, {Waveform period units} sets the units for measuring waveform period, {Waveform period source} sets the source from which waveform period value is obtained Specify via, {Waveform period} sets the period of PWM waveform, {Duty cycle units} sets the units for measuring duty, {Duty cycle source} sets the source from which duty cycle for PWM waveform is obtained Specify via, {Duty cycle} sets the ratio of PWM waveform pulse duration to PWM waveform, {Output polarity select} sets the active level for output, {Post interrupt on capture event #} sets the interrupt source to capture event, {Post interrupt on counter overflow} sets the trigger interrupt on counter overflow, {Post interrupt on counter equal period match} sets the post interrupt when counter equals period and {Post interrupt on counter equal compare match} sets the post interrupt when counter equals compare. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SI",
+   "direction": "input",
+   "summary": "Synchronization input from software scalar"
+  },
+  {
+   "name": "RA",
+   "direction": "input",
+   "summary": "One-Shot capture sequence scalar"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "APWM period scalar"
+  },
+  {
+   "name": "W",
+   "direction": "input",
+   "summary": "APWM width scalar"
+  },
+  {
+   "name": "TS",
+   "direction": "output",
+   "summary": "Output timestamps of capture events vector"
+  },
+  {
+   "name": "CF",
+   "direction": "output",
+   "summary": "Status of capture event vector"
+  },
+  {
+   "name": "OF",
+   "direction": "output",
+   "summary": "Status of overflow scalar"
+  },
+  {
+   "name": "Scale factor",
+   "direction": "output",
+   "summary": "Scale factor of HRCLK cycles scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operating mode",
+   "default": "eCAP",
+   "values": "Select eCAP or APWM mode eCAP (default) | APWM",
+   "group": "General"
+  },
+  {
+   "name": "eCAPx pin",
+   "default": "eCAP1",
+   "values": "Select capture unit pin eCAP1 (default) | eCAP2 | eCAP3 | eCAP4 | eCAP5 | eCAP6 | eCAP7",
+   "group": "General"
+  },
+  {
+   "name": "Counter phase offset value (0 ~ 4294967295)",
+   "default": "0",
+   "values": "Time base for event captures 0 (default) | integer in [0 4294967295]",
+   "group": "General"
+  },
+  {
+   "name": "Enable counter Sync-In mode",
+   "default": "off",
+   "values": "Enable TSCTR counter to load from CTRPHS register off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Enable software-forced counter synchronizing input",
+   "default": "off",
+   "values": "Synchronize one or more eCAP time bases off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Sync output selection",
+   "default": "Disabled",
+   "values": "Synchronize eCAP counter with other eCAP counters Disabled (default) | Pass through | CTR=PRD",
+   "group": "General"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Frequency at which block reads input pin value 0.001 (default)",
+   "group": "General"
+  },
+  {
+   "name": "Event prescaler (integer from 0 to 31)",
+   "default": "0",
+   "values": "Prescales input signal in multiples of 2 0 (default) | scalar integer in [0 31]",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable high resolution capture",
+   "default": "off",
+   "values": "Select to enable high resolution capture or HRCAP mode off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable continuous calibration mode",
+   "default": "off",
+   "values": "Select to enable continuous calibration mode off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Calibration period in seconds",
+   "default": "0.0016",
+   "values": "Specify calibration period 0.0016 (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Select mode control",
+   "default": "Continuous",
+   "values": "Mode of capture Continuous (default) | One-Shot",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable One-Shot rearming control via input port",
+   "default": "off",
+   "values": "Re-arms a One-Shot capture sequence off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Stop value after",
+   "default": "1",
+   "values": "Number of capture events after which capture stops Capture Event 1 (default) | Capture Event 2 | Capture Event 3 | Capture Event 4",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable reset counter after capture event # time-stamp",
+   "default": "off",
+   "values": "Resets counter after capture event off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Select capture event # polarity",
+   "default": "Edge",
+   "values": "Start capture event on rising edge or falling edge Rising Edge (default) | Falling Edge",
+   "group": "eCAP"
+  },
+  {
+   "name": "Output type",
+   "default": "cycles",
+   "values": "Select output type for eCAP HRCLK/SYSCLK cycles (default) | Microseconds",
+   "group": "eCAP"
+  },
+  {
+   "name": "Time-Stamp counter data type",
+   "default": "uint32",
+   "values": "Data type of counter uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable capture event status flag output",
+   "default": "off",
+   "values": "Output capture event status off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Capture flag data type",
+   "default": "uint32",
+   "values": "Data type of output port CF uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean",
+   "group": "eCAP"
+  },
+  {
+   "name": "Enable overflow status flag output",
+   "default": "off",
+   "values": "Output status of elements of FIFO buffer off (default) | on",
+   "group": "eCAP"
+  },
+  {
+   "name": "Overflow flag data type",
+   "default": "uint32",
+   "values": "Data type of output port OF uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean",
+   "group": "eCAP"
+  },
+  {
+   "name": "Waveform period units",
+   "default": "Seconds",
+   "values": "Units for measuring waveform period Seconds (default) | Clock cycles",
+   "group": "APWM"
+  },
+  {
+   "name": "Waveform period source",
+   "default": "dialog",
+   "values": "Source from which waveform period value is obtained Specify via dialog (default) | Input port",
+   "group": "APWM"
+  },
+  {
+   "name": "Waveform period",
+   "default": "0.001",
+   "values": "Period of PWM waveform 0.001 (default)",
+   "group": "APWM"
+  },
+  {
+   "name": "Duty cycle units",
+   "default": "Percentages",
+   "values": "Units for measuring duty cycle Percentages (default) | Clock cycles",
+   "group": "APWM"
+  },
+  {
+   "name": "Duty cycle source",
+   "default": "dialog",
+   "values": "Source from which duty cycle for PWM waveform is obtained Specify via dialog (default) | Input port",
+   "group": "APWM"
+  },
+  {
+   "name": "Duty cycle",
+   "default": "50",
+   "values": "Ratio of PWM waveform pulse duration to PWM waveform period 50 (default)",
+   "group": "APWM"
+  },
+  {
+   "name": "Output polarity select",
+   "default": "High",
+   "values": "Set active level for output Active High (default) | Active Low",
+   "group": "APWM"
+  },
+  {
+   "name": "Post interrupt on capture event #",
+   "default": "off",
+   "values": "Set interrupt source to capture event off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Post interrupt on counter overflow",
+   "default": "off",
+   "values": "Trigger interrupt on counter overflow off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Post interrupt on counter equal period match",
+   "default": "off",
+   "values": "Post interrupt when counter equals period register off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Post interrupt on counter equal compare match",
+   "default": "off",
+   "values": "Post interrupt when counter equals compare register off (default) | on",
+   "group": "Interrupt"
+  }
+ ]
+}

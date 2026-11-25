@@ -1,0 +1,316 @@
+{
+ "key": "Adaptive MPC",
+ "title": "Adaptive MPC Controller",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Adaptive_MPC_Controller.md"
+ ],
+ "text": "Simulate adaptive and time-varying model predictive controllers, 22 inputs, 7 outputs; {Adaptive MPC Controller} sets the controller object mpc, {Initial Controller State} sets the initial state mpcstate, {Measured disturbance} adds measured disturbance input port, {External manipulated variable} adds external manipulated variable input, {Targets for manipulated variables} adds manipulated variable target input port, {Optimal cost} adds optimal cost output port, {Optimization status} adds optimization status output port, {Estimated controller states} adds estimated states output port, {Optimal control sequence} adds optimal control sequence output port, {Optimal state sequence} adds optimal state sequence output port, {Optimal output sequence} adds optimal output sequence output port, {Use custom state estimation instead of using the built-in Kalman filter} uses custom state estimate input port, {Linear Time-Varying (LTV) plants} uses custom state estimate input port, {Lower OV limits} adds minimum OV constraint input port, {Upper OV limits} adds maximum OV constraint input port, {Lower MV limits} adds minimum MV constraint input port, {Upper MV limits} adds maximum MV constraint input port, {Custom constraints} adds input ports for mixed input/output linear constraints, {OV weights} adds OV tuning weights input port, {MV weights} adds MV tuning weights input port, {MVRate weights} adds MV rate tuning weights input port, {Slack variable weight} adds ECR tuning weight input port, {Adjust prediction horizon and control horizon at run time} adds horizon input ports, {Maximum prediction horizon} adds horizon input ports, {Inherit sample time} sets the inherit block sample time from parent and {Use external signal to enable or disable optimization} adds switch input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "model",
+   "direction": "input",
+   "summary": "Updated plant model and nominal operating point bus signal"
+  },
+  {
+   "name": "ref",
+   "direction": "input",
+   "summary": "Model output reference values row vector | matrix"
+  },
+  {
+   "name": "mo",
+   "direction": "input",
+   "summary": "Measured outputs vector"
+  },
+  {
+   "name": "x[k|k]",
+   "direction": "input",
+   "summary": "Custom state estimate vector"
+  },
+  {
+   "name": "md",
+   "direction": "input",
+   "summary": "input row vector | matrix"
+  },
+  {
+   "name": "ext.mv",
+   "direction": "input",
+   "summary": "Control signals used in plant at previous control interval vector"
+  },
+  {
+   "name": "switch",
+   "direction": "input",
+   "summary": "Enable or disable optimization scalar"
+  },
+  {
+   "name": "mv.target",
+   "direction": "input",
+   "summary": "Manipulated variable targets vector"
+  },
+  {
+   "name": "ymin",
+   "direction": "input",
+   "summary": "Minimum output variable constraints vector | matrix"
+  },
+  {
+   "name": "ymax",
+   "direction": "input",
+   "summary": "Maximum output variable constraints vector | matrix"
+  },
+  {
+   "name": "umin",
+   "direction": "input",
+   "summary": "Minimum manipulated variable constraints vector | matrix"
+  },
+  {
+   "name": "umax",
+   "direction": "input",
+   "summary": "Maximum manipulated variable constraints vector | matrix"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "Manipulated variable constraint matrix matrix"
+  },
+  {
+   "name": "F",
+   "direction": "input",
+   "summary": "Controlled output constraint matrix matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Custom constraint vector row vector"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Measured disturbance constraint matrix matrix"
+  },
+  {
+   "name": "y.wt",
+   "direction": "input",
+   "summary": "Output variable tuning weights row vector | matrix"
+  },
+  {
+   "name": "u.wt",
+   "direction": "input",
+   "summary": "Manipulated variable tuning weights row vector | matrix"
+  },
+  {
+   "name": "du.wt",
+   "direction": "input",
+   "summary": "Manipulated variable rate tuning weights row vector | matrix"
+  },
+  {
+   "name": "ecr.wt",
+   "direction": "input",
+   "summary": "Slack variable tuning weight scalar"
+  },
+  {
+   "name": "p",
+   "direction": "input",
+   "summary": "Prediction horizon positive integer"
+  },
+  {
+   "name": "m",
+   "direction": "input",
+   "summary": "Control horizon positive integer | vector"
+  },
+  {
+   "name": "mv",
+   "direction": "output",
+   "summary": "Optimal manipulated variable control action column vector"
+  },
+  {
+   "name": "cost",
+   "direction": "output",
+   "summary": "Objective function cost nonnegative scalar"
+  },
+  {
+   "name": "qp.status",
+   "direction": "output",
+   "summary": "Optimization status integer"
+  },
+  {
+   "name": "est.state",
+   "direction": "output",
+   "summary": "Estimated controller states vector"
+  },
+  {
+   "name": "mv.seq",
+   "direction": "output",
+   "summary": "Optimal manipulated variable sequence matrix"
+  },
+  {
+   "name": "x.seq",
+   "direction": "output",
+   "summary": "Optimal prediction model state sequence matrix"
+  },
+  {
+   "name": "y.seq",
+   "direction": "output",
+   "summary": "Optimal output variable sequence matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Adaptive MPC Controller",
+   "default": "",
+   "values": "Controller object mpc object name",
+   "group": ""
+  },
+  {
+   "name": "Initial Controller State",
+   "default": "",
+   "values": "Initial state mpcstate object name",
+   "group": ""
+  },
+  {
+   "name": "Measured disturbance",
+   "default": "on",
+   "values": "Add measured disturbance input port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "External manipulated variable",
+   "default": "off",
+   "values": "Add external manipulated variable input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Targets for manipulated variables",
+   "default": "off",
+   "values": "Add manipulated variable target input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimal cost",
+   "default": "off",
+   "values": "Add optimal cost output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimization status",
+   "default": "off",
+   "values": "Add optimization status output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Estimated controller states",
+   "default": "off",
+   "values": "Add estimated states output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimal control sequence",
+   "default": "off",
+   "values": "Add optimal control sequence output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimal state sequence",
+   "default": "off",
+   "values": "Add optimal state sequence output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Optimal output sequence",
+   "default": "off",
+   "values": "Add optimal output sequence output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use custom state estimation instead of using the built-in Kalman filter",
+   "default": "off",
+   "values": "Use custom state estimate input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Linear Time-Varying (LTV) plants",
+   "default": "off",
+   "values": "Use custom state estimate input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lower OV limits",
+   "default": "off",
+   "values": "Add minimum OV constraint input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Upper OV limits",
+   "default": "off",
+   "values": "Add maximum OV constraint input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lower MV limits",
+   "default": "off",
+   "values": "Add minimum MV constraint input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Upper MV limits",
+   "default": "off",
+   "values": "Add maximum MV constraint input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Custom constraints",
+   "default": "off",
+   "values": "Add input ports for mixed input/output linear constraints matrices off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "OV weights",
+   "default": "off",
+   "values": "Add OV tuning weights input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "MV weights",
+   "default": "off",
+   "values": "Add MV tuning weights input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "MVRate weights",
+   "default": "off",
+   "values": "Add MV rate tuning weights input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Slack variable weight",
+   "default": "off",
+   "values": "Add ECR tuning weight input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Adjust prediction horizon and control horizon at run time",
+   "default": "off",
+   "values": "Add horizon input ports off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum prediction horizon",
+   "default": "10",
+   "values": "Add horizon input ports 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time",
+   "default": "off",
+   "values": "Inherit block sample time from parent subsystem off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use external signal to enable or disable optimization",
+   "default": "off",
+   "values": "Add switch input port off (default) | on",
+   "group": ""
+  }
+ ]
+}

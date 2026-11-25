@@ -1,0 +1,146 @@
+{
+ "key": "S-parameter Testbench",
+ "title": "S-Parameter Testbench",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Testbenches/S_Parameter_Testbench.md"
+ ],
+ "text": "测量系统的 S 参数；按 {Small signal frequencies (Hz)} 指定承载小信号瞬态的频点；{Use Internal Configuration block} 使用测试台内部配置模块、{Input power amplitude (dBm)} 指定 DUT 的输入功率、{Number of ports} 指定测量端口数、{Measure all S-parameters} 指定测量整个 S 参数矩阵、{Export measurement results to sNp} 指定将 S 参数数据保存到 Touchstone、{S-Parameter elements} 指定要测量的 S 参数元素、{Workspace variable name} 用于将测量数据存储到 MATLAB 工作区的变量名称、{Input frequency (Hz)} 指定 DUT 的载波频率 2.1e9、{Baseband bandwidth (Hz)} 指定输入信号的基带带宽 10e6、{Reference Impedance (Ohm)} 指定 S 参数测量的阻抗、{Show S-Parameter spectrum} 指定查看指定 S 参数在指定频率带宽上的测量值、{Ground and hide negative terminals} 指定在内部接地并隐藏 RF 电路端子、{FFT Length} 指定 FFT 频点数、{Measurement Time} 指定总持续时间、{Ratio of wait time to measurement time} 指定顺序测量之间的间歇、{Ratio of Envelope to Baseband bandwidths} 指定内部求解器包络带宽与测量带宽之比、{Adjust for steady state external signals} 指定针对大稳态信号进行调整、{Output frequency (Hz)} 输出载波频率 2.1e9、{Approximate transient as small signal} 为瞬态小信号分析选择小频率子集、{Use all steady-state simulation frequencies for small signal analysis} 使用为全谐波平衡非线性解自动选择的所有频率、{Populate Frequencies} 用于选择小信号瞬态频率的工具，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Use Internal Configuration block",
+   "default": "on",
+   "values": "使用测试台内部配置模块 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input power amplitude (dBm)",
+   "default": "-30",
+   "values": "DUT 的输入功率 -30 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "2",
+   "values": "测量端口数 2 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Measure all S-parameters",
+   "default": "on",
+   "values": "测量整个 S 参数矩阵 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Export measurement results to sNp",
+   "default": "",
+   "values": "将 S 参数数据保存到 Touchstone 文件 button",
+   "group": ""
+  },
+  {
+   "name": "S-Parameter elements",
+   "default": "1]",
+   "values": "要测量的 S 参数元素 [1 1] (default) | two-column matrix",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "’SparamObjOut’",
+   "values": "用于将测量数据存储到 MATLAB 工作区的变量名称 ’SparamObjOut’ (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Input frequency (Hz)",
+   "default": "2.1e9",
+   "values": "DUT 的载波频率 2.1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Baseband bandwidth (Hz)",
+   "default": "10e6",
+   "values": "输入信号的基带带宽 10e6 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference Impedance (Ohm)",
+   "default": "50",
+   "values": "S 参数测量的阻抗 50 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Show S-Parameter spectrum",
+   "default": "off",
+   "values": "查看指定 S 参数在指定频率带宽上的测量值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "在内部接地并隐藏 RF 电路端子 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT Length",
+   "default": "128",
+   "values": "FFT 频点数 128 (default) | scalar integer power of 2",
+   "group": ""
+  },
+  {
+   "name": "Measurement Time",
+   "default": "μs",
+   "values": "总持续时间 12.8 μs (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Ratio of wait time to measurement time",
+   "default": "0",
+   "values": "顺序测量之间的间歇 0 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Ratio of Envelope to Baseband bandwidths",
+   "default": "8",
+   "values": "内部求解器包络带宽与测量带宽之比 8 (default) | scalar integer power of 2",
+   "group": ""
+  },
+  {
+   "name": "Adjust for steady state external signals",
+   "default": "off",
+   "values": "针对大稳态信号进行调整 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "2.1e9",
+   "values": "输出载波频率 2.1e9 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Approximate transient as small signal",
+   "default": "off",
+   "values": "为瞬态小信号分析选择小频率子集 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use all steady-state simulation frequencies for small signal analysis",
+   "default": "on",
+   "values": "使用为全谐波平衡非线性解自动选择的所有频率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Small signal frequencies (Hz)",
+   "default": "2.1e9",
+   "values": "承载小信号瞬态的频点 2.1e9 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Populate Frequencies",
+   "default": "",
+   "values": "用于选择小信号瞬态频率的工具 button",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "key": "DiagnosticOperationCycleCaller",
+ "title": "DiagnosticOperationCycleCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/DiagnosticOperationCycleCaller.md"
+ ],
+ "text": "Call AUTOSAR Diagnostic Event Manager (Dem) service interface OperationCycle, {Operation} sets operation defined in Dem service interface OperationCycle; {Client port name} sets the name of client port AUTOSAR component uses to call Dem service interface, {Data type for CycleState} sets the to start or stop operation cycles and {Sample time} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Client port name",
+   "default": "OperationCycle",
+   "values": "Name of client port AUTOSAR component uses to call Dem service interface OperationCycle OperationCycle (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "RestartOperationCycle",
+   "values": "Specify operation defined in Dem service interface OperationCycle RestartOperationCycle (default) | SetOperationCycleState | GetOperationCycleState",
+   "group": ""
+  },
+  {
+   "name": "Data type for CycleState",
+   "default": "Enum:Dem_OperationCycleStateType",
+   "values": "Specify to start or stop operation cycles Enum:Dem_OperationCycleStateType (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "’-1’",
+   "values": "Block sample time ’-1’ (default) | scalar",
+   "group": ""
+  }
+ ]
+}

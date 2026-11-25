@@ -1,0 +1,210 @@
+{
+ "key": "SM PSS2C",
+ "title": "SM PSS2C",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_PSS2C.md"
+ ],
+ "text": "Discrete-time or continuous-time single input PSS2C power system stabilizer, 2 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {PSS gain, K_S1 (pu)} sets the power system stabilizer forward path gain, {PSS gain, K_S2 (pu)} sets the power system stabilizer transducer gain, {PSS gain, K_S3 (pu)} sets the power system stabilizer gain, {PSS transducer time constant, T_6 (s)} sets the transducer time constant, {PSS transducer time constant, T_7 (s)} sets the transducer time constant, {PSS washout time constant, T_w1 (s)} sets the washout time constant, {PSS washout time constant, T_w2 (s)} sets the washout time constant, {PSS washout time constant, T_w3 (s)} sets the washout time constant, {PSS washout time constant, T_w4 (s)} sets the washout time constant, {PSS transducer time constant, T_8 (s)} sets the transducer time constant, {PSS washout time constant, T_9 (s)} sets the washout time constant, {Denominator exponent for ramp-track filter, M} sets the exponent of the denominator of the ramp-track, {Overall exponent for ramp-track filter, N} sets the overall exponent of ramp-track filter, {PSS numerator (lead) compensating time constant (first block), T_1 (s)} sets the lead time constant, {PSS denominator (lag) compensating time constant (first block), T_2 (s)} sets the lag time constant, {PSS numerator (lead) compensating time constant (second block), T_3 (s)} sets the lead time constant, {PSS denominator (lag) compensating time constant (second block), T_4 (s)} sets the lag time constant, {PSS denominator (lead) compensating time constant (third block), T_10 (s)} sets the lag time constant, {PSS denominator (lag) compensating time constant (third block), T_11 (s)} sets the lag time constant, {PSS denominator (lead) compensating time constant (fourth block), T_12 (s)} sets the lag time constant, {PSS denominator (lag) compensating time constant (fourth block), T_13 (s)} sets the lag time constant, {Maximum PSS output, V_STmax (pu)} sets the maximum stabilization, {Minimum PSS output, V_STmin (pu)} sets the minimum stabilization, {Input signal #1 maximum limit, V_S1max (pu)} sets the maximum limit for first input, {Input signal #1 minimum limit, V_S1min (pu)} sets the minimum limit for first input, {Input signal #2 maximum limit, V_S2max (pu)} sets the maximum limit for second input, {Input signal #2 minimum limit, V_S2min (pu)} sets the minimum limit for second input, {Generator MW threshold for PSS activation, P_PSSon (pu)} sets the generator threshold for power system stabilizer and {Generator MW threshold for PSS de-activation, P_PSSoff (pu)} sets the generator threshold for power system stabilizer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_SI1",
+   "direction": "input",
+   "summary": "Speed, frequency, or power scalar"
+  },
+  {
+   "name": "V_SI2",
+   "direction": "input",
+   "summary": "Electrical power scalar"
+  },
+  {
+   "name": "V_ST",
+   "direction": "output",
+   "summary": "Stabilization speed, frequency, or power scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "PSS gain, K_S1 (pu)",
+   "default": "5",
+   "values": "Power system stabilizer forward path gain 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS gain, K_S2 (pu)",
+   "default": "1.4184",
+   "values": "Power system stabilizer transducer gain 1.4184 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS gain, K_S3 (pu)",
+   "default": "1",
+   "values": "Power system stabilizer gain 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_6 (s)",
+   "default": "0",
+   "values": "Transducer time constant 6 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_7 (s)",
+   "default": "10",
+   "values": "Transducer time constant 7 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w1 (s)",
+   "default": "10",
+   "values": "Washout time constant 1 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w2 (s)",
+   "default": "10",
+   "values": "Washout time constant 2 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w3 (s)",
+   "default": "10",
+   "values": "Washout time constant 3 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_w4 (s)",
+   "default": "0",
+   "values": "Washout time constant 4 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_8 (s)",
+   "default": "0.5",
+   "values": "Transducer time constant 8 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_9 (s)",
+   "default": "0.1",
+   "values": "Washout time constant 9 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Denominator exponent for ramp-track filter, M",
+   "default": "5",
+   "values": "Exponent of the denominator of the ramp-track filter 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Overall exponent for ramp-track filter, N",
+   "default": "1",
+   "values": "Overall exponent of ramp-track filter 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS numerator (lead) compensating time constant (first block), T_1 (s)",
+   "default": "0.16",
+   "values": "Lead time constant 1 0.16 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant (first block), T_2 (s)",
+   "default": "0.04",
+   "values": "Lag time constant 2 0.04 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS numerator (lead) compensating time constant (second block), T_3 (s)",
+   "default": "0.16",
+   "values": "Lead time constant 3 0.16 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant (second block), T_4 (s)",
+   "default": "0.04",
+   "values": "Lag time constant 4 0.04 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lead) compensating time constant (third block), T_10 (s)",
+   "default": "0.18",
+   "values": "Lag time constant 10 0.18 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant (third block), T_11 (s)",
+   "default": "0.03",
+   "values": "Lag time constant 11 0.03 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lead) compensating time constant (fourth block), T_12 (s)",
+   "default": "0",
+   "values": "Lag time constant 12 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant (fourth block), T_13 (s)",
+   "default": "0",
+   "values": "Lag time constant 13 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum PSS output, V_STmax (pu)",
+   "default": "0.1",
+   "values": "Maximum stabilization 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum PSS output, V_STmin (pu)",
+   "default": "-0.1",
+   "values": "Minimum stabilization -0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #1 maximum limit, V_S1max (pu)",
+   "default": "2",
+   "values": "Maximum limit for first input 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #1 minimum limit, V_S1min (pu)",
+   "default": "-2",
+   "values": "Minimum limit for first input -2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #2 maximum limit, V_S2max (pu)",
+   "default": "2",
+   "values": "Maximum limit for second input 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input signal #2 minimum limit, V_S2min (pu)",
+   "default": "-2",
+   "values": "Minimum limit for second input -2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Generator MW threshold for PSS activation, P_PSSon (pu)",
+   "default": "0",
+   "values": "Generator threshold for power system stabilizer activation 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Generator MW threshold for PSS de-activation, P_PSSoff (pu)",
+   "default": "0",
+   "values": "Generator threshold for power system stabilizer deactivation 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

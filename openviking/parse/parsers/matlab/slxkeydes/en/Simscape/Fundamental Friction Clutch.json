@@ -1,0 +1,13 @@
+{
+ "key": "Fundamental Friction Clutch",
+ "title": "Fundamental Friction Clutch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Fundamental Components/Fundamental_Friction_Clutch.md"
+ ],
+ "text": "Friction clutch with kinetic and static-limit friction torques as inputs.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

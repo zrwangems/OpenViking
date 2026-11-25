@@ -1,0 +1,13 @@
+{
+ "key": "SPICE NJFET",
+ "title": "SPICE NJFET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Semiconductors/SPICE_NJFET.md"
+ ],
+ "text": "SPICE-compatible N-Channel JFET.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

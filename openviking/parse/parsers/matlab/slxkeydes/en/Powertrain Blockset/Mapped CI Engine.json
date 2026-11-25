@@ -1,0 +1,352 @@
+{
+ "key": "Mapped CI Engine",
+ "title": "Mapped CI Engine",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engines/Mapped_CI_Engine.md",
+  "Vehicle Dynamics Blockset/Powertrain/Propulsion/Mapped_CI_Engine.md"
+ ],
+ "text": "Compression-ignition engine model using lookup tables, 4 inputs, 2 outputs; {Input command} sets the table functions Fuel, {Include turbocharger lag effect} sets the increase time constant, {Input engine temperature} sets the create input port, {Calibrate Maps} sets the calibrate tables with measured data, {Breakpoints for commanded fuel mass input, f_tbrake_f_bpt} sets the breakpoints 1 -by, {Breakpoints for commanded torque input, f_tbrake_t_bpt} sets the breakpoints 1 -by, {Breakpoints for engine speed input, f_tbrake_n_bpt} sets the breakpoints 1 -by, {Breakpoints for temperature input, f_tbrake_engtmp_bpt} sets the breakpoints, {Number of cylinders, NCyl}, {Crank revolutions per power stroke, Cps}, {Total displaced volume, Vd} sets the volume, {Fuel lower heating value, Lhv} sets the heating value 45e6, {Fuel specific gravity, Sg} sets the specific gravity, {Ideal gas constant air, Rair} sets the constant, {Air standard pressure, Pstd} sets the pressure, {Air standard temperature, Tstd} sets the temperature, {Boost torque line, f_tbrake_bst} sets the boost lag, {Time constant below boost line, tau_nat}, {Rising maximum fuel mass boost time constant, tau_bst_rising} sets the rising time constant, {Falling maximum fuel mass boost time constant, tau_bst_falling} sets the falling time constant, {Turbocharger time constant blend fuel mass fraction, f_blend_frac} sets the time constant, {Brake torque map, f_tbrake} sets the 2D lookup table M -by, {Plot brake torque map} plots table, {Brake torque map, f_tbrake_3d} sets the 3D lookup table M -by- N -by, {Air mass flow map, f_air} sets the 2D lookup table M -by, {Plot air mass map} plots table, {Air mass flow map, f_air_3d} sets the 3D lookup table M -by- N -by, {Fuel flow map, f_fuel} sets the 2D lookup table M -by, {Plot fuel flow map} plots table, {Fuel flow map, f_fuel_3d} sets the 3D lookup table M -by- N -by, {Exhaust temperature map, f_texh} sets the 2D lookup table M -by, {Plot exhaust temperature map} plots table, {Exhaust temperature map, f_texh_3d} sets the 3D lookup table M -by- N -by, {BSFC map, f_eff} sets the 2D lookup table M -by, {Plot BSFC map} plots table, {BSFC map, f_eff_3d} sets the 3D lookup table M -by- N -by, {EO HC map, f_hc} sets the 2D lookup table M -by, {Plot EO HC map} plots table, {EO HC map, f_hc_3d} sets the 3D lookup table M -by- N -by, {EO CO map, f_co} sets the 2D lookup table M -by, {Plot EO CO map} plots table, {EO CO map, f_co_3d} sets the 3D lookup table M -by- N -by, {EO NOx map, f_nox} sets the 2D lookup table M -by, {Plot EO NOx map} plots table, {EO NOx map, f_nox_3d} sets the 3D lookup table M -by- N -by, {EO CO2 map, f_co2} sets the 2D lookup table M -by, {Plot CO2 map} plots table, {EO CO2 map, f_co2_3d} sets the 3D lookup table M -by- N -by, {EO PM map, f_pm} sets the 2D lookup table M -by, {Plot EO PM map} plots table and {EO PM map, f_pm_3d} sets the 3D lookup table M -by- N -by. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FuelMassCmd",
+   "direction": "input",
+   "summary": "Injected fuel mass command scalar"
+  },
+  {
+   "name": "TrqCmd",
+   "direction": "input",
+   "summary": "Torque command scalar"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "input",
+   "summary": "Engine speed scalar"
+  },
+  {
+   "name": "EngTemp",
+   "direction": "input",
+   "summary": "Engine temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "EngTrq",
+   "direction": "output",
+   "summary": "Power scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input command",
+   "default": "mass",
+   "values": "Table functions Fuel mass (default) | Torque",
+   "group": ""
+  },
+  {
+   "name": "Include turbocharger lag effect",
+   "default": "off",
+   "values": "Increase time constant off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input engine temperature",
+   "default": "off",
+   "values": "Create input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Calibrate Maps",
+   "default": "",
+   "values": "Calibrate tables with measured data selection",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for commanded fuel mass input, f_tbrake_f_bpt",
+   "default": "",
+   "values": "Breakpoints 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for commanded torque input, f_tbrake_t_bpt",
+   "default": "",
+   "values": "Breakpoints 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for engine speed input, f_tbrake_n_bpt",
+   "default": "",
+   "values": "Breakpoints 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for temperature input, f_tbrake_engtmp_bpt",
+   "default": "373.15]",
+   "values": "Breakpoints [233.15 273.15 373.15] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Number of cylinders, NCyl",
+   "default": "4",
+   "values": "Number 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Crank revolutions per power stroke, Cps",
+   "default": "2",
+   "values": "Crank revolutions 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Total displaced volume, Vd",
+   "default": "0.0015",
+   "values": "Volume 0.0015 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fuel lower heating value, Lhv",
+   "default": "45e6",
+   "values": "Heating value 45e6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fuel specific gravity, Sg",
+   "default": "0.832",
+   "values": "Specific gravity 0.832 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ideal gas constant air, Rair",
+   "default": "287",
+   "values": "Constant 287 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air standard pressure, Pstd",
+   "default": "101325",
+   "values": "Pressure 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air standard temperature, Tstd",
+   "default": "293.15",
+   "values": "Temperature 293.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Boost torque line, f_tbrake_bst",
+   "default": "[90,95,95,95,96,100,104,104,104,100,95,85,75,67,60,55]",
+   "values": "Boost lag [90,95,95,95,96,100,104,104,104,100,95,85,75,67,60,55] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Time constant below boost line, tau_nat",
+   "default": "0.1",
+   "values": "Time constant below 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rising maximum fuel mass boost time constant, tau_bst_rising",
+   "default": "1.0",
+   "values": "Rising time constant 1.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Falling maximum fuel mass boost time constant, tau_bst_falling",
+   "default": "0.7",
+   "values": "Falling time constant 0.7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Turbocharger time constant blend fuel mass fraction, f_blend_frac",
+   "default": "0.01",
+   "values": "Time constant 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Brake torque map, f_tbrake",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot brake torque map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "Brake torque map, f_tbrake_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Air mass flow map, f_air",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot air mass map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "Air mass flow map, f_air_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Fuel flow map, f_fuel",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot fuel flow map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "Fuel flow map, f_fuel_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Exhaust temperature map, f_texh",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot exhaust temperature map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "Exhaust temperature map, f_texh_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "BSFC map, f_eff",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot BSFC map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "BSFC map, f_eff_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "EO HC map, f_hc",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot EO HC map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "EO HC map, f_hc_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "EO CO map, f_co",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot EO CO map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "EO CO map, f_co_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "EO NOx map, f_nox",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot EO NOx map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "EO NOx map, f_nox_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "EO CO2 map, f_co2",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot CO2 map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "EO CO2 map, f_co2_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "EO PM map, f_pm",
+   "default": "",
+   "values": "2D lookup table M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot EO PM map",
+   "default": "",
+   "values": "Plot table button",
+   "group": ""
+  },
+  {
+   "name": "EO PM map, f_pm_3d",
+   "default": "",
+   "values": "3D lookup table M -by- N -by- L array",
+   "group": ""
+  }
+ ]
+}

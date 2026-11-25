@@ -1,0 +1,97 @@
+{
+ "key": "Autocorrelation",
+ "title": "Autocorrelation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Autocorrelation.md"
+ ],
+ "text": "Autocorrelation of N -D array, 1 input, 1 output, no direct feedthrough, {Scaling} sets Scaling of the output; {Compute all non-negative lags} sets the compute autocorrelation over all nonnegative, {Maximum non-negative lag (less than input length)} sets the maximum positive lag, {Computation domain} sets the domain in which the block computes the autocorrelation, {Rounding mode} sets the method of rounding, {Saturate on integer overflow} sets the method of overflow action, {Product output}, {Accumulator}, {Output}, {Output Minimum} sets the minimum value the block can output, {Output Maximum} sets the maximum value block can output and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Data input vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Autocorrelated output vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Compute all non-negative lags",
+   "default": "on",
+   "values": "Compute autocorrelation over all nonnegative lags on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Maximum non-negative lag (less than input length)",
+   "default": "1",
+   "values": "Maximum positive lag 1 (default) | integer greater than or equal to 0 and less than input length",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Scaling",
+   "default": "None",
+   "values": "Scaling of the output None (default) | Biased | Unbiased | Unity at zero-lag",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Computation domain",
+   "default": "Time",
+   "values": "Domain in which the block computes the autocorrelation Time (default) | Frequency",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Minimum value the block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Maximum value block can output [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

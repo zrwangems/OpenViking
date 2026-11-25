@@ -1,0 +1,67 @@
+{
+ "key": "Push Button",
+ "title": "Push Button",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic I_O/Push_Button.md"
+ ],
+ "text": "连接与硬件板上按钮相连的信号，输入 1 路、输出 1 路；按 {Hardware board} 指定查看所选硬件；{View push buttons location} 指定查看按钮、{IO logic} 指定 IO 逻辑指示器、{Specify push buttons via} 按钮源、{Number of push buttons} 按钮选择、{PB n} 指定选定的按钮、{Sample time} 指定采样间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PBIn x",
+   "direction": "input",
+   "summary": "输入信号 Boolean scalar"
+  },
+  {
+   "name": "PB x",
+   "direction": "output",
+   "summary": "输出信号 Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hardware board",
+   "default": "None",
+   "values": "查看所选硬件 None (default) | Supported Xilinx ® or Intel ® boards | Custom boards",
+   "group": ""
+  },
+  {
+   "name": "View push buttons location",
+   "default": "",
+   "values": "查看按钮 button",
+   "group": ""
+  },
+  {
+   "name": "IO logic",
+   "default": "None",
+   "values": "IO 逻辑指示器 None (default) | Active High | Active Low",
+   "group": ""
+  },
+  {
+   "name": "Specify push buttons via",
+   "default": "Dialog",
+   "values": "按钮源 Dialog (default) | InputPort",
+   "group": ""
+  },
+  {
+   "name": "Number of push buttons",
+   "default": "1",
+   "values": "按钮选择 1 (default) | list of integers in the range [1, n]",
+   "group": ""
+  },
+  {
+   "name": "PB n",
+   "default": "Off",
+   "values": "选定的按钮 Off (default) | On",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样间隔 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

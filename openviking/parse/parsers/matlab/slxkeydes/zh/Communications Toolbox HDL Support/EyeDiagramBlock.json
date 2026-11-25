@@ -1,0 +1,233 @@
+{
+ "key": "EyeDiagramBlock",
+ "title": "Eye Diagram",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "block_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Sinks/Eye_Diagram.md",
+  "Communications Toolbox/Comm Sinks/Eye_Diagram.md",
+  "Mixed-Signal Blockset/Utilities/Eye_Diagram.md",
+  "SerDes Toolbox/Utilities/Eye_Diagram.md"
+ ],
+ "text": "（已删除）显示时域信号的眼图，输入 1 路、无直接馈通；按 {Oversampling method} 指定过采样方法；{Display mode} 显示模式 Line、{Enable measurements} 启用测量、{Show horizontal (jitter) histogram} 显示抖动直方图、{Show vertical (noise) histogram} 显示噪声直方图、{Do not show horizontal or vertical histogram} 指定不显示水平或垂直直方图、{Show horizontal bathtub curve} 显示水平浴盆曲线、{Show vertical bathtub curve} 显示垂直浴盆曲线、{Eye diagram to display} 指定要显示的眼图 Real、{Color fading} 指定颜色渐隐、{Samples per symbol} 指定每符号样本数、{Sample offset} 指定采样偏移、{Symbols per trace} 指定每条轨迹的符号数、{Traces to display} 指定要显示的轨迹数、{Title} 指定标题标签 None、{Show grid} 指定切换示波器网格、{Y-limits (Minimum)} 指定 y 轴的下限、{Y-limits (Maximum)} 指定 y 轴的上限、{Real axis label} 指定实轴标签 Real、{Imaginary axis label} 指定虚轴标签 Imaginary、{Color scale} 指定颜色刻度 Linear、{Export measurements, histograms and bathtub curves} 指定导出测量值、直方图和浴盆曲线、{Variable name} 指定变量名称 EyeData、{Figure color} 指定图窗颜色 black、{Axes colors} 指定坐标轴颜色 black、{Line} 指定线图的线型、粗细和颜色 continuous、{Marker} 指定数据点标记、{Colormap} 指定直方图的颜色图、{Eye level boundaries} 指定计算眼图电平的时间范围、{Decision boundary} 指定幅度电平阈值、{Rise/Fall thresholds} 指定上升和下降过渡的幅度电平、{Hysteresis} 指定水平交叉的幅度容差、{BER threshold} 用于眼图测量的 BER 1e-12、{Bathtub BERs} 用于计算浴盆曲线开口的 BER 值、{Measurement delay} 指定从测量中丢弃的初始数据的持续时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Display mode",
+   "default": "plot",
+   "values": "显示模式 Line plot (default) | 2D color Histogram",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Enable measurements",
+   "default": "off",
+   "values": "启用测量 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Show horizontal (jitter) histogram",
+   "default": "off",
+   "values": "显示抖动直方图 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Show vertical (noise) histogram",
+   "default": "off",
+   "values": "显示噪声直方图 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Do not show horizontal or vertical histogram",
+   "default": "on",
+   "values": "不显示水平或垂直直方图 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Show horizontal bathtub curve",
+   "default": "off",
+   "values": "显示水平浴盆曲线 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Show vertical bathtub curve",
+   "default": "off",
+   "values": "显示垂直浴盆曲线 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Eye diagram to display",
+   "default": "only",
+   "values": "要显示的眼图 Real only (default) | Real and imaginary",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Color fading",
+   "default": "off",
+   "values": "颜色渐隐 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "8",
+   "values": "每符号样本数 8 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample offset",
+   "default": "0",
+   "values": "采样偏移 0 (default) | nonnegative integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Symbols per trace",
+   "default": "2",
+   "values": "每条轨迹的符号数 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Traces to display",
+   "default": "40",
+   "values": "要显示的轨迹数 40 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Title",
+   "default": "None",
+   "values": "标题标签 None (default)",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Show grid",
+   "default": "on",
+   "values": "切换示波器网格 on (default) | off",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Y-limits (Minimum)",
+   "default": "-1.1",
+   "values": "y 轴的下限 -1.1 (default) | scalar",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Y-limits (Maximum)",
+   "default": "1.1",
+   "values": "y 轴的上限 1.1 (default) | scalar",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Real axis label",
+   "default": "Amplitude",
+   "values": "实轴标签 Real Amplitude (default)",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Imaginary axis label",
+   "default": "Amplitude",
+   "values": "虚轴标签 Imaginary Amplitude (default)",
+   "group": "Axes Tab"
+  },
+  {
+   "name": "Oversampling method",
+   "default": "None",
+   "values": "过采样方法 None (default) | Input interpolation | Histogram interpolation",
+   "group": "2D Histogram Tab"
+  },
+  {
+   "name": "Color scale",
+   "default": "Linear",
+   "values": "颜色刻度 Linear (default) | Logarithmic",
+   "group": "2D Histogram Tab"
+  },
+  {
+   "name": "Export measurements, histograms and bathtub curves",
+   "default": "Off",
+   "values": "导出测量值、直方图和浴盆曲线 Off (default) | off",
+   "group": "Export Tab"
+  },
+  {
+   "name": "Variable name",
+   "default": "EyeData",
+   "values": "变量名称 EyeData (default)",
+   "group": "Export Tab"
+  },
+  {
+   "name": "Figure color",
+   "default": "black",
+   "values": "图窗颜色 black (default)",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Axes colors",
+   "default": "gray",
+   "values": "坐标轴颜色 black | gray (default)",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Line",
+   "default": "yellow",
+   "values": "线图的线型、粗细和颜色 continuous | 0.5 | yellow (default)",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Marker",
+   "default": "None",
+   "values": "数据点标记 None (default) |...",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Colormap",
+   "default": "Hot",
+   "values": "直方图的颜色图 Hot (default) | Parula | Jet | HSV | Cool | Spring Summer | Autumn | Winter | Gray | Bone | Copper | Pink | Lines | Custom",
+   "group": "Style Dialog Box"
+  },
+  {
+   "name": "Eye level boundaries",
+   "default": "60]",
+   "values": "计算眼图电平的时间范围 [40 60] (default) | two-element vector",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Decision boundary",
+   "default": "0",
+   "values": "幅度电平阈值 0 (default) | scalar",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Rise/Fall thresholds",
+   "default": "90]",
+   "values": "上升和下降过渡的幅度电平 [10 90] (default) | two-element vector",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Hysteresis",
+   "default": "0",
+   "values": "水平交叉的幅度容差 0 (default) | scalar",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "BER threshold",
+   "default": "1e-12",
+   "values": "用于眼图测量的 BER 1e-12 (default) | nonnegative scalar from 0 to 0.5",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Bathtub BERs",
+   "default": "1e-12]",
+   "values": "用于计算浴盆曲线开口的 BER 值 [0.5 0.1 0.01 0.001 0.0001 1e-05 1e-06 1e-07 1e-08 1e-09 1e-10 1e-11 1e-12] (default) | vector",
+   "group": "Measurement Settings Pane"
+  },
+  {
+   "name": "Measurement delay",
+   "default": "0",
+   "values": "从测量中丢弃的初始数据的持续时间 0 (default) | nonnegative scalar",
+   "group": "Measurement Settings Pane"
+  }
+ ]
+}

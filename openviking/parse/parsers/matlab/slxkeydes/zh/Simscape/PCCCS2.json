@@ -1,0 +1,13 @@
+{
+ "key": "PCCCS2",
+ "title": "PCCCS2",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PCCCS2.md"
+ ],
+ "text": "具有两个控制输入的多项式电流控制电流源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

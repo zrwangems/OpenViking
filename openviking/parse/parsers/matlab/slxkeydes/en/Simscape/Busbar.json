@@ -1,0 +1,13 @@
+{
+ "key": "Busbar",
+ "title": "Busbar",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Busbar.md"
+ ],
+ "text": "Load flow analysis busbar connector.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

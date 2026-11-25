@@ -1,0 +1,43 @@
+{
+ "key": "slreraltimebytepacking",
+ "title": "Byte Unpacking",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Utilities/Byte_Unpacking.md"
+ ],
+ "text": "Deconstruct data frames, 1 input, 1 output, {Output port (unpacked) data types (cell array)} sets Data types for the unpacked output signals; {Output port (unpacked) dimensions (cell array)} sets the dimensions of each output port and {Byte Alignment} sets the alignment of the output signal data types before. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input port containing packed data vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "First of N output ports scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output port (unpacked) data types (cell array)",
+   "default": "uint8",
+   "values": "Data types for the unpacked output signals uint8 (default) | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Output port (unpacked) dimensions (cell array)",
+   "default": "{[1]}",
+   "values": "Dimensions of each output port (unpacked) {[1]} (default) | {[ N ], [ M ],...}",
+   "group": ""
+  },
+  {
+   "name": "Byte Alignment",
+   "default": "1",
+   "values": "Alignment of the output signal data types before unpacking 1 (default) | 2 | 4 | 8",
+   "group": ""
+  }
+ ]
+}

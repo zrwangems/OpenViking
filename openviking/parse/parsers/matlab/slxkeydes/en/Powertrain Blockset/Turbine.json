@@ -1,0 +1,168 @@
+{
+ "key": "Turbine",
+ "title": "Turbine",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Boost/Turbine.md"
+ ],
+ "text": "Turbine for boosted engines, 5 inputs, 4 outputs; {Turbine type} selects turbine type, {Include wastegate} selects, {Calibrate Performance Maps} sets the calibrate tables with measured data, {Corrected mass flow rate table, mdot_corrfx_tbl} sets the lookup table array, {Efficiency table, eta_turbfx_tb} sets the lookup table array, {Corrected speed breakpoints, w_corrfx_bpts1} sets the fixed geometry, {Pressure ratio breakpoints, Pr_fx_bpts2} sets the fixed geometry, {Corrected mass flow rate table, mdot_corrvr_tbl} sets the lookup table array, {Efficiency table, eta_turbvr_tbl} sets the lookup table array, {Corrected speed breakpoints, w_corrvr_bpts2} sets the variable geometry, {Pressure ratio breakpoints, Pr_vr_bpts2} sets the variable geometry, {Rack breakpoints, L_rack_bpts3} sets the variable geometry, {Reference temperature, T_ref} sets the temperature, {Reference pressure, P_ref} sets the pressure, {Wastegate flow area, A_wgopen} sets the area, {Pressure ratio linearize limit, Plim_wg} sets the area, m^2, {Ideal gas constant, R} sets the constant and {Specific heat at constant pressure, cp}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ds",
+   "direction": "input",
+   "summary": "Drive shaft speed two-way connector port"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Inlet pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Outlet pressure, temperature, enthalpy, mass fractions two-way connector port"
+  },
+  {
+   "name": "RackPos",
+   "direction": "input",
+   "summary": "Rack position scalar"
+  },
+  {
+   "name": "WgAreaPct",
+   "direction": "input",
+   "summary": "Wastegate area percent scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "Ds",
+   "direction": "output",
+   "summary": "Drive shaft torque two-way connector port"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "Inlet mass flow rate, heat flow rate, temperature, mass fractions two-way connector port"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Outlet mass flow rate, heat flow rate, temperature, mass fractions two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Turbine type",
+   "default": "geometry",
+   "values": "Select turbine type Fixed geometry (default) | Variable geometry",
+   "group": ""
+  },
+  {
+   "name": "Include wastegate",
+   "default": "on",
+   "values": "Select on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Calibrate Performance Maps",
+   "default": "",
+   "values": "Calibrate tables with measured data selection",
+   "group": ""
+  },
+  {
+   "name": "Corrected mass flow rate table, mdot_corrfx_tbl",
+   "default": "",
+   "values": "Lookup table array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table, eta_turbfx_tb",
+   "default": "",
+   "values": "Lookup table array",
+   "group": ""
+  },
+  {
+   "name": "Corrected speed breakpoints, w_corrfx_bpts1",
+   "default": "1.397e+04]",
+   "values": "Fixed geometry [0 1552 3104 4657 6209 7761 9313 1.087e+04 1.242e+04 1.397e+04] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Pressure ratio breakpoints, Pr_fx_bpts2",
+   "default": "4]",
+   "values": "Fixed geometry [1 1.333 1.667 2 2.333 2.667 3 3.333 3.667 4] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Corrected mass flow rate table, mdot_corrvr_tbl",
+   "default": "",
+   "values": "Lookup table array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table, eta_turbvr_tbl",
+   "default": "",
+   "values": "Lookup table array",
+   "group": ""
+  },
+  {
+   "name": "Corrected speed breakpoints, w_corrvr_bpts2",
+   "default": "1.577e+04]",
+   "values": "Variable geometry [0 1752 3504 5257 7009 8761 1.051e+04 1.227e+04 1.402e+04 1.577e+04] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Pressure ratio breakpoints, Pr_vr_bpts2",
+   "default": "3.75]",
+   "values": "Variable geometry [1 1.306 1.611 1.917 2.222 2.528 2.833 3.139 3.444 3.75] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Rack breakpoints, L_rack_bpts3",
+   "default": "1]",
+   "values": "Variable geometry [0 0.2 0.3 0.5 0.7 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Reference temperature, T_ref",
+   "default": "293.15",
+   "values": "Temperature 293.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference pressure, P_ref",
+   "default": "101325",
+   "values": "Pressure 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wastegate flow area, A_wgopen",
+   "default": "0.0003",
+   "values": "Area 0.0003 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pressure ratio linearize limit, Plim_wg",
+   "default": "0.95",
+   "values": "Area, m^2 0.95 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ideal gas constant, R",
+   "default": "287",
+   "values": "Constant 287 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specific heat at constant pressure, cp",
+   "default": "1005",
+   "values": "Specific heat 1005 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

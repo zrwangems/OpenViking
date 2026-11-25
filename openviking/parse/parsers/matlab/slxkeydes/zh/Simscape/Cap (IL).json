@@ -1,0 +1,13 @@
+{
+ "key": "Cap (IL)",
+ "title": "Cap (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Cap_IL.md"
+ ],
+ "text": "零流量的等温液体端口终端器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

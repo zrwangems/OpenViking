@@ -1,0 +1,101 @@
+{
+ "key": "BasebandPLL",
+ "title": "Baseband PLL",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Architectures/Baseband_PLL.md"
+ ],
+ "text": "Phase-domain model of PLL, 1 input, 3 outputs, {Loop filter type} sets Determine how to define loop filter Transfer; {VCO input sensitivity (Hz/V)} sets the measure of change in output frequency of VCO, {Charge pump current (A)} sets the charge pump output, {Min clock divider value} sets the minimum value by which the clock divider can divide input, {Loop bandwidth (Hz)} sets the frequency at which magnitude of open loop transfer function becomes, {Phase margin (degrees)} sets the phase of open loop transfer function at loop bandwidth subtracted, {Numerator}, {Denominator}, {Open loop analysis} plots open loop presimulation analysis, {Close loop analysis} plots closed loop presimulation analysis and {Plot loop dynamic}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal from baseband VCO scalar"
+  },
+  {
+   "name": "Filt",
+   "direction": "output",
+   "summary": "Output of loop filter scalar"
+  },
+  {
+   "name": "PD",
+   "direction": "output",
+   "summary": "Output of phase detector scalar"
+  },
+  {
+   "name": "VCO",
+   "direction": "output",
+   "summary": "Output of VCO scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Loop filter type",
+   "default": "function",
+   "values": "Determine how to define loop filter Transfer function (default) | 2nd order passive | 3rd order passive | 4th order passive",
+   "group": ""
+  },
+  {
+   "name": "VCO input sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "Measure of change in output frequency of VCO 100e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Charge pump current (A)",
+   "default": "5e3",
+   "values": "Charge pump output current 5e3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Min clock divider value",
+   "default": "100",
+   "values": "Minimum value by which the clock divider can divide input frequency 100 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Loop bandwidth (Hz)",
+   "default": "50e3",
+   "values": "Frequency at which magnitude of open loop transfer function becomes 1 50e3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase margin (degrees)",
+   "default": "45",
+   "values": "Phase of open loop transfer function at loop bandwidth subtracted from 180° 45 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Numerator",
+   "default": "5e-05]",
+   "values": "Numerator of loop filter transfer function [1.9212e-10, 5e-05] (default) | real scalar | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Denominator",
+   "default": "0]",
+   "values": "Denominator of loop filter transfer function [2.0157e-15, 3.0576e-09, 0] (default) | real valued vector",
+   "group": ""
+  },
+  {
+   "name": "Open loop analysis",
+   "default": "on",
+   "values": "Plot open loop presimulation analysis on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Close loop analysis",
+   "default": "on",
+   "values": "Plot closed loop presimulation analysis on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Plot loop dynamic",
+   "default": "",
+   "values": "Plot loop dynamics of PLL system button",
+   "group": ""
+  }
+ ]
+}

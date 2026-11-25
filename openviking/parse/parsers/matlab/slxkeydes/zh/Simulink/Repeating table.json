@@ -1,0 +1,32 @@
+{
+ "key": "Repeating table",
+ "title": "Repeating Sequence",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Repeating_Sequence.md"
+ ],
+ "text": "生成任意形状的周期信号；输出 1 路；{时间值} 输出时间的向量、{输出值}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "周期性输出信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "时间值",
+   "default": "2]",
+   "values": "输出时间的向量 [0 2] (默认) | 向量",
+   "group": ""
+  },
+  {
+   "name": "输出值",
+   "default": "2]",
+   "values": "输出值的向量 [0 2] (默认) | 向量",
+   "group": ""
+  }
+ ]
+}

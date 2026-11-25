@@ -1,0 +1,269 @@
+{
+ "key": "Simulation 3D SmallSat Pack",
+ "title": "Simulation 3D SmallSat Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_SmallSat_Pack.md"
+ ],
+ "text": "Create translation and rotation input matrices for SmallSat, 2 inputs, 2 outputs, {Select input coordinate frame} sets Input coordinate frame; {Antenna 1 translation} sets the option to enable Antenna1_T input port, {Antenna 1 rotation} sets the option to enable Antenna1_R input port, {Antenna 2 translation} sets the option to enable Antenna2_T input port, {Antenna 2 rotation} sets the option to enable Antenna2_R input port, {Antenna 3 translation} sets the option to enable Antenna3_T input port, {Antenna 3 rotation} sets the option to enable Antenna3_R input port, {Antenna 4 translation} sets the option to enable Antenna4_T input port, {Antenna 4 rotation} sets the option to enable Antenna4_R input port, {Sensor 1 translation} sets the option to enable Sensor1_T input port, {Sensor 1 rotation} sets the option to enable Sensor1_R input port, {Sensor 2 translation} sets the option to enable Sensor2_T input port, {Sensor 2 rotation} sets the option to enable Sensor2_R input port, {Sensor 3 translation} sets the option to enable Sensor3_T input port, {Sensor 3 rotation} sets the option to enable Sensor3_R input port, {Sensor 4 translation} sets the option to enable Sensor4_T input port, {Sensor 4 rotation} sets the option to enable Sensor4_R input port, {Solar array 1 translation} sets the option to enable SolarArray1_T input port, {Solar array 1 rotation} sets the option to enable SolarArray1_R input port, {Solar array 1.1 translation} sets the option to enable SolarArray1_1_T input, {Solar array 1.1 rotation} sets the option to enable SolarArray1_1_R input, {Solar array 1.1.1 translation} sets the option to enable SolarArray1_1_1_T input, {Solar array 1.1.1 rotation} sets the option to enable SolarArray1_1_1_R input, {Solar array 1.1.1.1 translation} sets the option to enable SolarArray1_1_1_1_T input, {Solar array 1.1.1.1 rotation} sets the option to enable SolarArray1_1_1_1_R input, {Solar array 1.1.1.1.1 translation} sets the option to enable SolarArray1_1_1_1_1_T input, {Solar array 1.1.1.1.1 rotation} sets the option to enable SolarArray1_1_1_1_1_R input, {Solar array 2 translation} sets the option to enable SolarArray2_T input port, {Solar array 2 rotation} sets the option to enable SolarArray2_R input port, {Solar array 2.2 translation} sets the option to enable SolarArray2_2_T input, {Solar array 2.2 rotation} sets the option to enable SolarArray2_2_R input, {Solar array 2.2.2 translation} sets the option to enable SolarArray2_2_2_T input, {Solar array 2.2.2 rotation} sets the option to enable SolarArray2_2_2_R input, {Solar array 2.2.2.2 translation} sets the option to enable SolarArray2_2_2_2_T input, {Solar array 2.2.2.2 rotation} sets the option to enable SolarArray2_2_2_2_R input, {Solar array 2.2.2.2.2 translation} sets the option to enable SolarArray2_2_2_2_2_T input, {Solar array 2.2.2.2.2 rotation} sets the option to enable SolarArray2_2_2_2_2_R input, {Thruster translation} sets the option to enable Thruster_T input port and {Thruster rotation} sets the option to enable Thruster_R input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "Body translation 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "Body rotation 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Spacecraft translation 20-by-3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Spacecraft rotation 20-by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Antenna 1 translation",
+   "default": "off",
+   "values": "Option to enable Antenna1_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 1 rotation",
+   "default": "off",
+   "values": "Option to enable Antenna1_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 2 translation",
+   "default": "off",
+   "values": "Option to enable Antenna2_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 2 rotation",
+   "default": "off",
+   "values": "Option to enable Antenna2_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 3 translation",
+   "default": "off",
+   "values": "Option to enable Antenna3_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 3 rotation",
+   "default": "off",
+   "values": "Option to enable Antenna3_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 4 translation",
+   "default": "off",
+   "values": "Option to enable Antenna4_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 4 rotation",
+   "default": "off",
+   "values": "Option to enable Antenna4_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 1 translation",
+   "default": "off",
+   "values": "Option to enable Sensor1_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 1 rotation",
+   "default": "off",
+   "values": "Option to enable Sensor1_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 translation",
+   "default": "off",
+   "values": "Option to enable Sensor2_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 2 rotation",
+   "default": "off",
+   "values": "Option to enable Sensor2_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 3 translation",
+   "default": "off",
+   "values": "Option to enable Sensor3_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 3 rotation",
+   "default": "off",
+   "values": "Option to enable Sensor3_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 4 translation",
+   "default": "off",
+   "values": "Option to enable Sensor4_T input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor 4 rotation",
+   "default": "off",
+   "values": "Option to enable Sensor4_R input port off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Solar array 1 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_1_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_1_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_1_1_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_1_1_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1.1 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_1_1_1_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1.1 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_1_1_1_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1.1.1 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_1_1_1_1_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1.1.1.1 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray1_1_1_1_1_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_2_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_2_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_2_2_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_2_2_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2.2 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_2_2_2_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2.2 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_2_2_2_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2.2.2 translation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_2_2_2_2_T input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2.2.2.2 rotation",
+   "default": "off",
+   "values": "Option to enable SolarArray2_2_2_2_2_R input port off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Thruster translation",
+   "default": "off",
+   "values": "Option to enable Thruster_T input port off (default) | on",
+   "group": "Thrusters"
+  },
+  {
+   "name": "Thruster rotation",
+   "default": "off",
+   "values": "Option to enable Thruster_R input port off (default) | on",
+   "group": "Thrusters"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "Input coordinate frame NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

@@ -1,0 +1,184 @@
+{
+ "key": "I-F Controller",
+ "title": "I-F Controller",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/I_F_Controller.md"
+ ],
+ "text": "为三相永磁同步电机实现 I-F 控制，输入 7 路、输出 4 路；按 {Position unit} 指定电气位置的单位；{Enable speed damping} 用于使模块应用速度振荡阻尼补偿、{Use input port for computed parameters (run-time motor swap)} 用于使输入端口能够接受计算参数、{Number of pole pairs} 指定电机中可用的极对数、{Speed unit} 指定速度输入的单位、{Per unit speed (RPM)} 指定一个标幺值对应的速度、{Current unit} 指定电机电流的单位 SI、{Base current (A)} 指定一个标幺值对应的额定电流、{Discrete step size (s)} 指定连续模块执行之间的时间间隔 50e-6、{Speed to exit I-F controller (RPM), ω1} 指定电机启动后 I-F 控制停止时的速度、{Speed to re-enter I-F controller (RPM), ω2} 指定重新进入 I-F 控制所需的速度、{Maximum current (A), Imax} 指定 I-F 控制期间的最大电机电流、{Maximum rate of speed change (RPM/s)} 指定 I-F 控制期间的最大速度变化率、{Maximum current decay rate (A/s)} 指定 I-F 控制期间的最大电流衰减率、{Idle time (s)} 指定速度和电流保持恒定的时间、{Minimum allowed position error for transition (rad)} 指定闭环切换的阈值误差、{Voltage unit} 指定定子电压的单位 SI、{Base voltage (V)} 指定一个标幺值对应的额定电压、{Damping coefficient, ζ} 指定速度振荡阻尼系数值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "启用模块算法的选项 scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "电机电角度位置 scalar"
+  },
+  {
+   "name": "ω m ref",
+   "direction": "input",
+   "summary": "参考电机机械速度 scalar"
+  },
+  {
+   "name": "ω m",
+   "direction": "input",
+   "summary": "电机机械速度 scalar"
+  },
+  {
+   "name": "I q",
+   "direction": "input",
+   "summary": "Q 轴定子电流 scalar"
+  },
+  {
+   "name": "V q",
+   "direction": "input",
+   "summary": "Q 轴定子电压 scalar"
+  },
+  {
+   "name": "ParameterBus",
+   "direction": "input",
+   "summary": "I-F 控制器的计算参数 bus"
+  },
+  {
+   "name": "I d ref",
+   "direction": "output",
+   "summary": "参考 d 轴电流 scalar"
+  },
+  {
+   "name": "I q ref",
+   "direction": "output",
+   "summary": "参考 q 轴电流 scalar"
+  },
+  {
+   "name": "θ e ref",
+   "direction": "output",
+   "summary": "生成的电机参考电气位置 scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "I-F 控制状态 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable speed damping",
+   "default": "off",
+   "values": "用于使模块应用速度振荡阻尼补偿的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use input port for computed parameters (run-time motor swap)",
+   "default": "off",
+   "values": "用于使输入端口能够接受计算参数的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "电机中可用的极对数 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Position unit",
+   "default": "Degrees",
+   "values": "电气位置的单位 Degrees (default) | Radians | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Speed unit",
+   "default": "Degrees/Sec",
+   "values": "速度输入的单位 Degrees/Sec (default) | Radians/Sec | RPM | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Per unit speed (RPM)",
+   "default": "6000",
+   "values": "一个标幺值对应的速度 6000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current unit",
+   "default": "unit",
+   "values": "电机电流的单位 SI unit (default) | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Base current (A)",
+   "default": "21.4286",
+   "values": "一个标幺值对应的额定电流 21.4286 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "连续模块执行之间的时间间隔 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed to exit I-F controller (RPM), ω1",
+   "default": "410.7",
+   "values": "电机启动后 I-F 控制停止时的速度 410.7 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Speed to re-enter I-F controller (RPM), ω2",
+   "default": "287.49",
+   "values": "重新进入 I-F 控制所需的速度 287.49 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Maximum current (A), Imax",
+   "default": "6.39",
+   "values": "I-F 控制期间的最大电机电流 6.39 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Maximum rate of speed change (RPM/s)",
+   "default": "960",
+   "values": "I-F 控制期间的最大速度变化率 960 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Maximum current decay rate (A/s)",
+   "default": "111.8250",
+   "values": "I-F 控制期间的最大电流衰减率 111.8250 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Idle time (s)",
+   "default": "1",
+   "values": "速度和电流保持恒定的时间 1 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Minimum allowed position error for transition (rad)",
+   "default": "0.1745",
+   "values": "闭环切换的阈值误差 0.1745 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Voltage unit",
+   "default": "unit",
+   "values": "定子电压的单位 SI unit (default) | Per-unit",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Base voltage (V)",
+   "default": "13.8564",
+   "values": "一个标幺值对应的额定电压 13.8564 (default) | scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Damping coefficient, ζ",
+   "default": "2.6172",
+   "values": "速度振荡阻尼系数值 2.6172 (default) | scalar",
+   "group": "Advanced Parameters"
+  }
+ ]
+}

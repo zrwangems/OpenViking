@@ -1,0 +1,13 @@
+{
+ "key": "CMOS NOR",
+ "title": "CMOS NOR",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Logic/CMOS_NOR.md"
+ ],
+ "text": "CMOS NOR 门的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

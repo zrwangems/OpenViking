@@ -1,0 +1,13 @@
+{
+ "key": "Measurement Selector (MA)",
+ "title": "Measurement Selector (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sensors/Measurement_Selector_MA.md"
+ ],
+ "text": "Measure pressure, temperature, humidity, and trace gas levels in moist air internal volumes.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

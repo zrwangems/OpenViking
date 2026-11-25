@@ -1,0 +1,13 @@
+{
+ "key": "Variable-Displacement Motor (TL)",
+ "title": "Variable-Displacement Motor (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pumps & Motors/Variable_Displacement_Motor_TL.md"
+ ],
+ "text": "可变排量双向热液体马达。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

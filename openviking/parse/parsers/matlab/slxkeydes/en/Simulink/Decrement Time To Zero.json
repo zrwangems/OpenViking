@@ -1,0 +1,24 @@
+{
+ "key": "Decrement Time To Zero",
+ "title": "Decrement Time To Zero",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Math_ Increment - Decrement/Decrement_Time_To_Zero.md"
+ ],
+ "text": "Decrease real-world value of signal by sample time, but only to zero, 1 input, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

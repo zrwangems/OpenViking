@@ -1,0 +1,53 @@
+{
+ "key": "ComposeString",
+ "title": "Compose String",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/Compose_String.md"
+ ],
+ "text": "根据指定格式和输入信号组成输出字符串信号，输入 3 路、输出 1 路、直接馈通；按 {Format} 指定格式化输入数据 \"%d；{Output data type} 输出数据类型、{Mode} 指定数据类别 string，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "d",
+   "direction": "input",
+   "summary": "字符串第一部分的数据 scalar"
+  },
+  {
+   "name": "f",
+   "direction": "input",
+   "summary": "字符串第二部分的数据 scalar"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "字符串第 N 部分的数据 scalar (default)"
+  },
+  {
+   "name": "str",
+   "direction": "output",
+   "summary": "输出字符串 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Format",
+   "default": "%f\"",
+   "values": "格式化输入数据 \"%d %f\" (default) | format string | character vector",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "string",
+   "values": "输出数据类型 string (default) |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "string",
+   "values": "数据类别 string (default) | scalar",
+   "group": ""
+  }
+ ]
+}

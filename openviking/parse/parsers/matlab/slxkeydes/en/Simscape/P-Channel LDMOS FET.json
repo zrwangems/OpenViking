@@ -1,0 +1,13 @@
+{
+ "key": "P-Channel LDMOS FET",
+ "title": "P-Channel LDMOS FET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/P_Channel_LDMOS_FET.md"
+ ],
+ "text": "P-Channel laterally-diffused metal-oxide-semiconductor or vertically-diffused metal-oxide-semiconductor transistors suitable for high voltage.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,104 @@
+{
+ "key": "Playback",
+ "title": "Playback",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Playback.md"
+ ],
+ "text": "从工作区、文件或 Simulation Data Inspector 加载数据；输出 1 路、无直接馈通；按 {Dimensions} 指定每个端口的维度；{Number of Ports} 输出端口数、{Data Type} 指定每个端口的输出数据类型 Inherit、{Complexity} 指定每个端口的复数性、{Units} 指定每个端口的物理单位、{Sample time} 输出采样周期和可选的时间偏移、{Dimension Mode} 指定每个端口的维度模式、{Before first point} 用于确定在已加载数据的第一个数据点之前模块输出的外插方法、{After last point} 用于确定在已加载数据的最后一个数据点之后模块输出的外插方法、{Enable zero-crossing detection} 指定过零检测、{Signals} 指定有关添加到 Playback 模块的信号的信息 Simulink.playback.Signal、{Table Placement} 指定表格可视化的位置、{Time Values} 指定基于时间的列组织选项 Union、{Use Signal Interpolation} 用于对缺失数据值进行插值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "从工作区、文件或 Simulation Data Inspector 加载的数据 scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of Ports",
+   "default": "0",
+   "values": "输出端口数 0 (default) | integer in the range [ 0,100 ]",
+   "group": "Port Parameters"
+  },
+  {
+   "name": "Data Type",
+   "default": "auto",
+   "values": "每个端口的输出数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | string | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |...",
+   "group": "Port Parameters"
+  },
+  {
+   "name": "Complexity",
+   "default": "\"auto\"",
+   "values": "每个端口的复数性 \"auto\" (default) | \"real\" | \"complex\"",
+   "group": "Port Parameters"
+  },
+  {
+   "name": "Units",
+   "default": "inherit",
+   "values": "每个端口的物理单位 inherit (default) | supported physical unit",
+   "group": "Port Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "",
+   "values": "输出采样周期和可选的时间偏移 -1 | scalar | vector",
+   "group": "Port Parameters"
+  },
+  {
+   "name": "Dimensions",
+   "default": "\"",
+   "values": "每个端口的维度 \" \" (default) | integer | integer array",
+   "group": "Port Parameters"
+  },
+  {
+   "name": "Dimension Mode",
+   "default": "\"auto\"",
+   "values": "每个端口的维度模式 \"auto\" (default) | \"Fixed\" | \"Variable\"",
+   "group": "Port Parameters"
+  },
+  {
+   "name": "Before first point",
+   "default": "Linear",
+   "values": "用于确定在已加载数据的第一个数据点之前模块输出的外插方法 Linear (default) | Hold First Value | Ground Value",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "After last point",
+   "default": "Linear",
+   "values": "用于确定在已加载数据的最后一个数据点之后模块输出的外插方法 Linear (default) | Hold Last Value | Ground Value",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "’off’",
+   "values": "过零检测 ’off’ (default) | ’on’",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "Signals",
+   "default": "",
+   "values": "有关添加到 Playback 模块的信号的信息 Simulink.playback.Signal object",
+   "group": "Block Parameters"
+  },
+  {
+   "name": "Table Placement",
+   "default": "Bottom",
+   "values": "表格可视化的位置 Bottom (default) | Top | Left | Right | Center",
+   "group": "Table Parameters"
+  },
+  {
+   "name": "Time Values",
+   "default": "Time",
+   "values": "基于时间的列组织选项 Union Time (default) | Shared Time | Individual Time",
+   "group": "Table Parameters"
+  },
+  {
+   "name": "Use Signal Interpolation",
+   "default": "off",
+   "values": "用于对缺失数据值进行插值的选项 off (default) | on",
+   "group": "Table Parameters"
+  }
+ ]
+}

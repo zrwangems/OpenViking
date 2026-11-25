@@ -1,0 +1,13 @@
+{
+ "key": "Programmable Voltage Source (Three-Phase)",
+ "title": "Programmable Voltage Source (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Programmable_Voltage_Source_Three_Phase.md"
+ ],
+ "text": "三相电压源，具有可选的可编程交流幅值、频率和相移。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,48 @@
+{
+ "key": "Frame To Pixels",
+ "title": "Frame To Pixels",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/I_O Interfaces/Frame_To_Pixels.md"
+ ],
+ "text": "Convert frame-based video to pixel stream, 1 input, 2 outputs, {Video format} sets Dimensions of active and inactive regions in video frame; {Number of components} sets the number of values used to represent each and {Number of pixels}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "frame",
+   "direction": "input",
+   "summary": "Full image frame array"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Image pixel or pixels scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of components",
+   "default": "1",
+   "values": "Number of values used to represent each pixel 1 (default) | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Number of pixels",
+   "default": "1",
+   "values": "Number of pixels streamed per time step 1 (default) | 2 | 4 | 8",
+   "group": ""
+  },
+  {
+   "name": "Video format",
+   "default": "1080p",
+   "values": "Dimensions of active and inactive regions in video frame 1080p (default) | 240p | 480p | 480pH | 576p | 720p | 768p | 1024p | 1200p | 2KCinema | 4KUHDTV | 8KUHDTV | Custom",
+   "group": ""
+  }
+ ]
+}

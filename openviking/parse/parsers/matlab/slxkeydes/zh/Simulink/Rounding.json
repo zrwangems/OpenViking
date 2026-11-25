@@ -1,0 +1,45 @@
+{
+ "key": "Rounding",
+ "title": "Rounding Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Rounding_Function.md",
+  "Simulink/Quick Insert/Math Operations/Ceil.md",
+  "Simulink/Quick Insert/Math Operations/Fix.md",
+  "Simulink/Quick Insert/Math Operations/Floor.md",
+  "Simulink/Quick Insert/Math Operations/Round.md",
+  "HDL Coder/HDL Floating Point Operations/Ceil.md",
+  "HDL Coder/HDL Floating Point Operations/Fix.md",
+  "HDL Coder/HDL Floating Point Operations/Floor.md",
+  "HDL Coder/HDL Floating Point Operations/Round.md"
+ ],
+ "text": "对信号应用舍入函数，输入 1 路、输出 1 路；按 {函数} 指定舍入函数；{采样时间(-1 表示继承)} 指定采样之间的时间间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "函数",
+   "default": "向下",
+   "values": "舍入函数 向下 (默认) | 上半框括号 | 舍入 | fix",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Gas-Charged Accumulator (TL)",
+ "title": "Gas-Charged Accumulator (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Tanks & Accumulators/Gas_Charged_Accumulator_TL.md"
+ ],
+ "text": "Gas-charged accumulator in a thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

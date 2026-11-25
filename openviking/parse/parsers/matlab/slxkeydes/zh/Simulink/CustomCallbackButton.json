@@ -1,0 +1,177 @@
+{
+ "key": "CustomCallbackButton",
+ "title": "Callback Button",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Callback_Button.md",
+  "Simulink/Dashboard/Customizable Blocks/Callback_Button.md"
+ ],
+ "text": "使用按钮执行 MATLAB 代码；按 {Select State} 指定要配置的状态选择；{Button Type} 按钮对点击的响应、{Text} 按钮标签文本、{Lock Aspect Ratio} 用于保持模块宽高比、{ClickFcn} 指定响应点击而执行的 MATLAB 代码 MATLAB、{PressFcn} 指定响应按下而执行的 MATLAB 代码 MATLAB、{Press Delay (ms)} 为触发按下而按住按钮的时间、{Repeat Interval (ms)} 指定重复执行 PressFcn 代码的时间间隔、{Color} 指定标签字体颜色、{Horizontal Alignment} 指定标签和图标对与模块的水平对齐、{Vertical Alignment} 指定标签和图标对与模块的垂直对齐、{Icon and Label X Offset} 指定图标和标签对相对于模块的水平偏移、{Icon and Label Y Offset} 指定图标和标签对相对于模块的垂直偏移、{Icon Placement} 指定图标相对于标签的位置、{Icon Width} 指定图标宽度 scalar、{Icon Height} 指定图标高度 scalar、{Image X Offset} 指定图像左边缘相对于模块左边缘的水平偏移 scalar、{Image Y Offset} 指定图像上边缘相对于模块上边缘的垂直偏移 scalar、{Image Width} 指定图像宽度 scalar、{Image Height} 指定图像高度 scalar、{Use Background Color} 用于为按钮指定纯色背景颜色、{Opacity} 按钮背景不透明度、{Corner Radius} 按钮背景颜色区域的圆角半径 scalar、{X Offset} 指定前景图像左边缘相对于模块左边缘的水平偏移、{Y Offset} 指定前景图像上边缘相对于模块上边缘的垂直偏移、{Width} 指定前景图像宽度 scalar、{Height} 指定前景图像高度 scalar，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Button Type",
+   "default": "Momentary",
+   "values": "按钮对点击的响应 Momentary (default) | Latch",
+   "group": "Parameters"
+  },
+  {
+   "name": "Text",
+   "default": "Button’",
+   "values": "按钮标签文本 ’Callback Button’ (default) | string | character array",
+   "group": "Parameters"
+  },
+  {
+   "name": "Lock Aspect Ratio",
+   "default": "on",
+   "values": "用于保持模块宽高比的选项 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "ClickFcn",
+   "default": "",
+   "values": "响应点击而执行的 MATLAB 代码 MATLAB code",
+   "group": "Parameters"
+  },
+  {
+   "name": "PressFcn",
+   "default": "",
+   "values": "响应按下而执行的 MATLAB 代码 MATLAB code",
+   "group": "Parameters"
+  },
+  {
+   "name": "Press Delay (ms)",
+   "default": "500",
+   "values": "为触发按下而按住按钮的时间 500 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Repeat Interval (ms)",
+   "default": "0",
+   "values": "重复执行 PressFcn 代码的时间间隔 0 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Select State",
+   "default": "Default",
+   "values": "要配置的状态选择 Default (default) | Pressed | Latched | Latched and Pressed",
+   "group": "Design"
+  },
+  {
+   "name": "Color",
+   "default": "",
+   "values": "标签字体颜色 [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Horizontal Alignment",
+   "default": "Left",
+   "values": "标签和图标对与模块的水平对齐 Left (default) | Center | Right",
+   "group": "Design"
+  },
+  {
+   "name": "Vertical Alignment",
+   "default": "Center",
+   "values": "标签和图标对与模块的垂直对齐 Center (default) | Bottom | Top",
+   "group": "Design"
+  },
+  {
+   "name": "Icon and Label X Offset",
+   "default": "0",
+   "values": "图标和标签对相对于模块的水平偏移 0 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Icon and Label Y Offset",
+   "default": "0",
+   "values": "图标和标签对相对于模块的垂直偏移 0 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Icon Placement",
+   "default": "Left",
+   "values": "图标相对于标签的位置 Left (default) | Top | Right | Bottom",
+   "group": "Design"
+  },
+  {
+   "name": "Icon Width",
+   "default": "",
+   "values": "图标宽度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Icon Height",
+   "default": "",
+   "values": "图标高度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Image X Offset",
+   "default": "",
+   "values": "图像左边缘相对于模块左边缘的水平偏移 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Image Y Offset",
+   "default": "",
+   "values": "图像上边缘相对于模块上边缘的垂直偏移 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Image Width",
+   "default": "",
+   "values": "图像宽度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Image Height",
+   "default": "",
+   "values": "图像高度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Use Background Color",
+   "default": "on",
+   "values": "用于为按钮指定纯色背景颜色的选项 on (default) | off",
+   "group": "Design"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "按钮背景不透明度 1 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Corner Radius",
+   "default": "",
+   "values": "按钮背景颜色区域的圆角半径 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "X Offset",
+   "default": "",
+   "values": "前景图像左边缘相对于模块左边缘的水平偏移 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Y Offset",
+   "default": "",
+   "values": "前景图像上边缘相对于模块上边缘的垂直偏移 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Width",
+   "default": "",
+   "values": "前景图像宽度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Height",
+   "default": "",
+   "values": "前景图像高度 scalar",
+   "group": "Design"
+  }
+ ]
+}

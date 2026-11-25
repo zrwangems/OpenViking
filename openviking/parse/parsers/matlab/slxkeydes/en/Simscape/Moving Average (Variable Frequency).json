@@ -1,0 +1,60 @@
+{
+ "key": "Moving Average (Variable Frequency)",
+ "title": "Moving Average (Variable Frequency)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Moving_Average_Variable_Frequency.md"
+ ],
+ "text": "Variable frequency moving average-value computation, 2 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Initial frequency (Hz)} sets the initial signal frequency, {Minimum frequency (Hz)} sets the minimum signal frequency, {Initial value} sets the initial input signal value and {Buffer size}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Moving average input scalar | vector"
+  },
+  {
+   "name": "f",
+   "direction": "input",
+   "summary": "Frequency, Hz scalar | vector"
+  },
+  {
+   "name": "Mean",
+   "direction": "output",
+   "summary": "Moving average output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "60",
+   "values": "Initial signal frequency 60 (default) | positive scalar | vector with positive values",
+   "group": ""
+  },
+  {
+   "name": "Minimum frequency (Hz)",
+   "default": "30",
+   "values": "Minimum signal frequency 30 (default) | positive scalar | vector with positive values",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "Initial input signal value 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "8192",
+   "values": "Buffer size 8192 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,67 @@
+{
+ "key": "RF Budget",
+ "title": "RF Budget",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Idealized Baseband/RF_Budget.md"
+ ],
+ "text": "在 Idealized Baseband 仿真环境中仿真双端口元件的 RF 预算链，输入 1 路、输出 1 路；{RF budget source} 指定 RF 预算源 rfbudget、{rfbudget object} 指定 rfbudget 对象作为源 rfbudget、{Open RF Budget Analyzer App} 指定 RF Budget Analyzer App 作为源、{Simulate supported blocks using code generation} 使用生成的 C 代码仿真模型、{Edit System} 指定编辑或展开 RF Budget、{Frequency resolution} 用于计算失配损耗的频率分辨率、{Modeling bandwidth (Hz)} 用于计算失配损耗的建模带宽 100e6，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "时变输入信号 real scalar | real column | complex scalar | complex column"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "时变输出信号 complex scalar | complex column"
+  }
+ ],
+ "params": [
+  {
+   "name": "RF budget source",
+   "default": "object",
+   "values": "RF 预算源 rfbudget object (default) | RF Budget Analyzer App",
+   "group": "Main"
+  },
+  {
+   "name": "rfbudget object",
+   "default": "rfbudget([],2.1e9,-30,100e6)",
+   "values": "rfbudget 对象作为源 rfbudget([],2.1e9,-30,100e6) (default) | rfbudget object",
+   "group": "Main"
+  },
+  {
+   "name": "Open RF Budget Analyzer App",
+   "default": "",
+   "values": "RF Budget Analyzer App 作为源 button",
+   "group": "Main"
+  },
+  {
+   "name": "Simulate supported blocks using code generation",
+   "default": "off",
+   "values": "使用生成的 C 代码仿真模型 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Edit System",
+   "default": "",
+   "values": "编辑或展开 RF Budget 模块 button",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency resolution",
+   "default": "51",
+   "values": "用于计算失配损耗的频率分辨率 51 (default) | positive scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Modeling bandwidth (Hz)",
+   "default": "100e6",
+   "values": "用于计算失配损耗的建模带宽 100e6 (default) | positive scalar",
+   "group": "Advanced"
+  }
+ ]
+}

@@ -1,0 +1,143 @@
+{
+ "key": "SISO Fading Channel",
+ "title": "SISO Fading Channel",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Channels/SISO_Fading_Channel.md"
+ ],
+ "text": "Filter input signal through SISO multipath fading channel, 1 input, 3 outputs, {Discrete path delays (s)} sets Delays for each discrete path; {Inherit sample rate from input} sets the option to inherit the sample rate, {Sample rate (Hz)} sets the input signal sample rate, {Average path gains (dB)} sets the average gain for each discrete path, {Normalize average path gains to 0 dB} sets the option to normalize average path gains, {Fading distribution}, {K-factors} sets the k-factor of Rician fading channel, {LOS path Doppler shifts (Hz)} sets the doppler shifts for line-of-sight, {LOS path initial phases (rad)} sets the initial phases for line-of-sight, {Maximum Doppler shift (Hz)} sets the maximum Doppler shift for all channel, {Doppler spectrum}, {Initial seed} sets the random number generator initial seed, {Output channel path gains} sets the option to output channel path gains, {Output channel filter delay} sets the option to output channel filter delay, {Simulate using} sets the compilation type Interpreted, {Channel visualization} selects the channel visualization, {Percentage of samples to display} and {Path for Doppler spectrum display} sets the path for which Doppler spectrum. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input data signal vector"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "Output data signal for fading channel vector"
+  },
+  {
+   "name": "Gain",
+   "direction": "output",
+   "summary": "Discrete path gains matrix"
+  },
+  {
+   "name": "Delay",
+   "direction": "output",
+   "summary": "Channel filter delay scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Option to inherit the sample rate from input on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1",
+   "values": "Input signal sample rate 1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Discrete path delays (s)",
+   "default": "0",
+   "values": "Delays for each discrete path 0 (default) | nonnegative scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Average path gains (dB)",
+   "default": "0",
+   "values": "Average gain for each discrete path 0 (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Normalize average path gains to 0 dB",
+   "default": "on",
+   "values": "Option to normalize average path gains to 0 dB on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Fading distribution",
+   "default": "Rayleigh",
+   "values": "Fading distribution of channel Rayleigh (default) | Rician",
+   "group": "Main Tab"
+  },
+  {
+   "name": "K-factors",
+   "default": "3",
+   "values": "K-factor of Rician fading channel 3 (default) | positive scalar | row vector of nonnegative values",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LOS path Doppler shifts (Hz)",
+   "default": "0",
+   "values": "Doppler shifts for line-of-sight components 0 (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LOS path initial phases (rad)",
+   "default": "0",
+   "values": "Initial phases for line-of-sight components 0 (default) | scalar | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Maximum Doppler shift (Hz)",
+   "default": "0.001",
+   "values": "Maximum Doppler shift for all channel paths 0.001 (default) | nonnegative scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Doppler spectrum",
+   "default": "doppler(’Jakes’)",
+   "values": "Doppler spectrum shape for all channel paths doppler(’Jakes’) (default) | doppler(’Flat’) | doppler(’Rounded’,...) | doppler(’Bell’,...) | doppler(’Asymmetric Jakes’,...) | doppler(’Restricted Jakes’,...) | doppler(’Gaussian’,...) | doppler(’BiGaussian’,...)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Initial seed",
+   "default": "73",
+   "values": "Random number generator initial seed 73 (default) | nonnegative integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output channel path gains",
+   "default": "off",
+   "values": "Option to output channel path gains off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output channel filter delay",
+   "default": "off",
+   "values": "Option to output channel filter delay off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Compilation type Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Channel visualization",
+   "default": "Off",
+   "values": "Select the channel visualization Off (default) | Impulse response | Frequency response | Doppler spectrum | Impulse and frequency responses",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Percentage of samples to display",
+   "default": "25%",
+   "values": "Percentage of samples to display 25% (default) | 10% | 50% | 100%",
+   "group": "Visualization Tab"
+  },
+  {
+   "name": "Path for Doppler spectrum display",
+   "default": "1",
+   "values": "Path for which Doppler spectrum is displayed 1 (default) | positive integer",
+   "group": "Visualization Tab"
+  }
+ ]
+}

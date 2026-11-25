@@ -1,0 +1,176 @@
+{
+ "key": "Solar PV Controller (Three-Phase)",
+ "title": "Solar PV Controller (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Renewables Control/Solar_PV_Controller_Three_Phase.md"
+ ],
+ "text": "Solar photovoltaic (PV) grid-following (GF) controller, 5 inputs, 2 outputs; {AC filter inductance (H)} sets the aC filter inductance 3e-3, {System frequency (Hz)}, {Inverter current limit (pu)}, {Base impedance on AC side (Ohm)} sets the aC-side base impedance, {Base power on AC side (V*A)} sets the aC-side base power 6e5, {DC bus base voltage (V)}, {Sample time (-1 for inherited)} sets the block sample time, {Algorithm} sets the mPPT algorithm Perturb and observe, {Initial voltage for MPPT (V)}, {Voltage step of MPPT (V)}, {Settling time of MPPT (s)} sets the tling time, {Proportional gain}, {Integral gain}, {Initial phase angle (deg)}, {Derivative gain}, {D-axis proportional gain}, {D-axis integral gain}, {D-axis derivative gain}, {Q-axis proportional gain}, {Q-axis integral gain} and {Q-axis derivative gain}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Qref (pu)",
+   "direction": "input",
+   "summary": "Reactive power reference, pu scalar"
+  },
+  {
+   "name": "ipv (A)",
+   "direction": "input",
+   "summary": "DC-side current, A scalar"
+  },
+  {
+   "name": "vdc (V)",
+   "direction": "input",
+   "summary": "DC-side voltage, V scalar"
+  },
+  {
+   "name": "vabc (pu)",
+   "direction": "input",
+   "summary": "AC-side voltage, pu vector"
+  },
+  {
+   "name": "iabc (pu)",
+   "direction": "input",
+   "summary": "AC-side current, pu vector"
+  },
+  {
+   "name": "vabcRef (pu)",
+   "direction": "output",
+   "summary": "Per-unit reference voltage wave, pu vector"
+  },
+  {
+   "name": "visualization",
+   "direction": "output",
+   "summary": "Visualization bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "AC filter inductance (H)",
+   "default": "3e-3",
+   "values": "AC filter inductance 3e-3 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "System frequency (Hz)",
+   "default": "60",
+   "values": "System frequency 60 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Inverter current limit (pu)",
+   "default": "1.2",
+   "values": "Inverter current limit 1.2 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Base impedance on AC side (Ohm)",
+   "default": "0.34",
+   "values": "AC-side base impedance 0.34 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Base power on AC side (V*A)",
+   "default": "6e5",
+   "values": "AC-side base power 6e5 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "DC bus base voltage (V)",
+   "default": "1000",
+   "values": "DC bus base voltage 1000 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | nonnegative scalar or -1",
+   "group": "General"
+  },
+  {
+   "name": "Algorithm",
+   "default": "(P&O)",
+   "values": "MPPT algorithm Perturb and observe (P&O) (default) | Incremental conductance (INC)",
+   "group": "MPPT"
+  },
+  {
+   "name": "Initial voltage for MPPT (V)",
+   "default": "2000",
+   "values": "Initial voltage for MPPT 2000 (default) | scalar",
+   "group": "MPPT"
+  },
+  {
+   "name": "Voltage step of MPPT (V)",
+   "default": "3",
+   "values": "Voltage step of MPPT 3 (default) | nonnegative scalar",
+   "group": "MPPT"
+  },
+  {
+   "name": "Settling time of MPPT (s)",
+   "default": "5e-4",
+   "values": "Settling time of MPPT 5e-4 (default) | nonnegative scalar",
+   "group": "MPPT"
+  },
+  {
+   "name": "Proportional gain",
+   "default": "200",
+   "values": "Proportional gain 200 (default) | positive scalar",
+   "group": "PLL"
+  },
+  {
+   "name": "Integral gain",
+   "default": "2000",
+   "values": "Integral gain 2000 (default) | positive scalar",
+   "group": "PLL"
+  },
+  {
+   "name": "Initial phase angle (deg)",
+   "default": "0",
+   "values": "Initial phase angle 0 (default) | scalar",
+   "group": "PLL"
+  },
+  {
+   "name": "Derivative gain",
+   "default": "0",
+   "values": "Derivative gain 0 (default) | nonnegative scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "D-axis proportional gain",
+   "default": "1",
+   "values": "D-axis proportional gain 1 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "D-axis integral gain",
+   "default": "250",
+   "values": "D-axis integral gain 250 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "D-axis derivative gain",
+   "default": "0",
+   "values": "D-axis derivative gain 0 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Q-axis proportional gain",
+   "default": "1",
+   "values": "Q-axis proportional gain 1 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Q-axis integral gain",
+   "default": "250",
+   "values": "Q-axis integral gain 250 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Q-axis derivative gain",
+   "default": "0",
+   "values": "Q-axis derivative gain 0 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  }
+ ]
+}

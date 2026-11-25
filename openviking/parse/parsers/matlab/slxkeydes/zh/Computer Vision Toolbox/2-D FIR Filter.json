@@ -1,0 +1,111 @@
+{
+ "key": "2-D FIR Filter",
+ "title": "2-D FIR Filter",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Filtering/b_2_D_FIR_Filter.md"
+ ],
+ "text": "对输入矩阵进行二维 FIR 滤波，输入 5 路、输出 1 路；按 {Padding options} 指定填充方法；{Separable filter coefficients} 指定滤波器系数可分离、{Coefficient source} 指定滤波器系数的来源 Specify via、{Coefficients} 指定滤波器系数、{Vertical coefficients (across height)} 指定垂直滤波器系数、{Horizontal coefficients (across height)} 指定水平滤波器系数、{Output size} 指定滤波后图像的大小、{Pad value source} 指定填充值的来源 Specify via、{Pad value} 指定填充值、{Filtering based on} 指定滤波方法 Convolution、{Lock data type settings against change by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入图像 matrix"
+  },
+  {
+   "name": "H",
+   "direction": "input",
+   "summary": "滤波器系数 matrix"
+  },
+  {
+   "name": "HV",
+   "direction": "input",
+   "summary": "垂直滤波器系数 vector"
+  },
+  {
+   "name": "HH",
+   "direction": "input",
+   "summary": "水平滤波器系数 vector"
+  },
+  {
+   "name": "PVal",
+   "direction": "input",
+   "summary": "填充值 scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "滤波后的输出图像 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Separable filter coefficients",
+   "default": "off",
+   "values": "滤波器系数可分离 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficient source",
+   "default": "dialog",
+   "values": "滤波器系数的来源 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients",
+   "default": "-1]",
+   "values": "滤波器系数 [1 0; 0 -1] (default) | numeric matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Vertical coefficients (across height)",
+   "default": "0]",
+   "values": "垂直滤波器系数 [4 0] (default) | numeric vector",
+   "group": "Main"
+  },
+  {
+   "name": "Horizontal coefficients (across height)",
+   "default": "0]",
+   "values": "水平滤波器系数 [4 0] (default) | numeric vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output size",
+   "default": "Full",
+   "values": "滤波后图像的大小 Full (default) | Same as input port I | Valid",
+   "group": "Main"
+  },
+  {
+   "name": "Padding options",
+   "default": "Constant",
+   "values": "填充方法 Constant (default) | Replicate | Symmetric | Circular",
+   "group": "Main"
+  },
+  {
+   "name": "Pad value source",
+   "default": "dialog",
+   "values": "填充值的来源 Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Pad value",
+   "default": "0",
+   "values": "填充值 0 (default) | numeric scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Filtering based on",
+   "default": "Convolution",
+   "values": "滤波方法 Convolution (default) | Correlation",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

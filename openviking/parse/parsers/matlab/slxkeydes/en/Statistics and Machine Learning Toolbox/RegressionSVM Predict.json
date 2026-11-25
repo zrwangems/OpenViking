@@ -1,0 +1,85 @@
+{
+ "key": "RegressionSVM Predict",
+ "title": "RegressionSVM Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Regression/RegressionSVM_Predict.md"
+ ],
+ "text": "Predict responses using support vector machine (SVM) regression model, 1 input, 1 output, direct feedthrough, {Select trained machine learning model} sets SVM regression model; {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Output data type} sets the data type of yfit output Inherit, {Output data type Minimum} sets the minimum value of yfit output for range checking, {Output data type Maximum} sets the maximum value of yfit output for range checking, {Kernel data type} sets the kernel computation data, {Kernel data type Minimum} sets the minimum kernel computation value for range checking and {Kernel data type Maximum} sets the maximum kernel computation value for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Predictor data row vector | column vector"
+  },
+  {
+   "name": "yfit",
+   "direction": "output",
+   "summary": "Predicted response scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select trained machine learning model",
+   "default": "svmMdl",
+   "values": "SVM regression model svmMdl (default) | RegressionSVM object | CompactRegressionSVM object",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "Data type of yfit output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of yfit output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of yfit output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type",
+   "default": "double",
+   "values": "Kernel computation data type double (default) | single | half | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type Minimum",
+   "default": "[]",
+   "values": "Minimum kernel computation value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type Maximum",
+   "default": "[]",
+   "values": "Maximum kernel computation value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "key": "ROS Header",
+ "title": "Header Assignment",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Header_Assignment.md"
+ ],
+ "text": "更新 ROS 消息头中的字段，输入 1 路、输出 1 路；{Set Frame ID} 指定与消息数据关联的帧、{Set Timestamp} 指定在 header 中设置时间戳、{Header field name} 指定 Header 字段名称 Use the default Header field，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "InputMsg",
+   "direction": "input",
+   "summary": "要更新的 ROS 消息 nonvirtual bus"
+  },
+  {
+   "name": "OutputMsg",
+   "direction": "output",
+   "summary": "带有更新后消息头的 ROS 消息 nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Set Frame ID",
+   "default": "off",
+   "values": "指定与消息数据关联的帧 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Set Timestamp",
+   "default": "off",
+   "values": "在 header 中设置时间戳 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Header field name",
+   "default": "name",
+   "values": "指定 Header 字段名称 Use the default Header field name (default) | Specify your own",
+   "group": ""
+  }
+ ]
+}

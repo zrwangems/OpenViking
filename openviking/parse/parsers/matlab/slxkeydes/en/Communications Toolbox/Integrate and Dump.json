@@ -1,0 +1,61 @@
+{
+ "key": "Integrate and Dump",
+ "title": "Integrate and Dump",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Filters/Integrate_and_Dump.md"
+ ],
+ "text": "Block DC component, 1 input, 1 output, no direct feedthrough, {Algorithm for estimating DC offset} sets Algorithm for estimating DC offset; {Normalized bandwidth of lowpass IIR or CIC filter}, {Order of lowpass IIR elliptic filter}, {Number of past input samples for FIR algorithm}, {View Filter Response} sets the visualize frequency response and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output signal with no DC component scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Algorithm for estimating DC offset",
+   "default": "IIR",
+   "values": "Algorithm for estimating DC offset IIR (default) | FIR | CIC | Subtract mean",
+   "group": ""
+  },
+  {
+   "name": "Normalized bandwidth of lowpass IIR or CIC filter",
+   "default": "0.001",
+   "values": "Normalized bandwidth 0.001 (default) | real scalar in the range (0 1)",
+   "group": ""
+  },
+  {
+   "name": "Order of lowpass IIR elliptic filter",
+   "default": "6",
+   "values": "Order of lowpass IIR elliptic filter 6 (default) | integer greater than 3",
+   "group": ""
+  },
+  {
+   "name": "Number of past input samples for FIR algorithm",
+   "default": "50",
+   "values": "Number of past input samples for FIR algorithm 50 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "Visualize frequency response button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

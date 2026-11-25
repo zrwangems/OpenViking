@@ -1,0 +1,13 @@
+{
+ "key": "Pipe (2P)",
+ "title": "Pipe (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Elements/Pipe_2P.md"
+ ],
+ "text": "Rigid conduit for fluid flow in two-phase fluid systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,55 @@
+{
+ "key": "Merge",
+ "title": "Merge",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Merge.md",
+  "HDL Coder/Ports & Subsystems/Merge.md"
+ ],
+ "text": "Combine multiple signals into single signal, 2 inputs, 1 output, direct feedthrough, {Initial output} sets Initial output value [; {Number of inputs} sets the number of input signals to merge, {Allow unequal port widths} allows inputs of unequal dimensions and {Input port offsets} sets the offset for input signals. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input signal scalar | vector"
+  },
+  {
+   "name": "Port_n",
+   "direction": "input",
+   "summary": "n th input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inputs",
+   "default": "2",
+   "values": "Number of input signals to merge 2 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "]",
+   "values": "Initial output value [ ] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Allow unequal port widths",
+   "default": "off",
+   "values": "Allow inputs of unequal dimensions off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input port offsets",
+   "default": "]",
+   "values": "Offset for input signals [ ] (default) | vector",
+   "group": ""
+  }
+ ]
+}

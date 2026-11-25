@@ -1,0 +1,114 @@
+{
+ "key": "dsp.simulink.FIRHalfbandDecimator",
+ "title": "FIR Halfband Decimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/FIR_Halfband_Decimator.md"
+ ],
+ "text": "Decimate signal using polyphase FIR halfband filter, 1 input, 2 outputs, no direct feedthrough, {Design method} sets Filter design method; {Filter specification} sets the filter design parameters Transition width and stopband, {Filter order}, {Transition width (Hz)} sets the transition width 4.1e3, {Stopband attenuation (dB)}, {Numerator} sets the fIR halfband filter coefficients, {Output highpass subband}, {Sample rate mode} sets the mode to specify the input sample rate Use normalized, {Input sample rate (Hz)} sets the sample rate of input signal, {Allow arbitrary frame length for fixed-size input signals}, {View Filter Response}, {Simulate using} sets the type of simulation to run Interpreted, {Rounding mode} and {Coefficients} sets the word and fraction lengths of coefficients. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal column vector | matrix"
+  },
+  {
+   "name": "LP",
+   "direction": "output",
+   "summary": "Lowpass subband of decimator output column vector | matrix"
+  },
+  {
+   "name": "HP",
+   "direction": "output",
+   "summary": "Highpass subband of decimator output column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter specification",
+   "default": "attenuation",
+   "values": "Filter design parameters Transition width and stopband attenuation (default) | Filter order and transition width | Filter order and stopband attenuation | Coefficients",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter order",
+   "default": "52",
+   "values": "Filter order 52 (default) | even positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Transition width (Hz)",
+   "default": "4.1e3",
+   "values": "Transition width 4.1e3 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "Stopband attenuation 80 (default) | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Numerator",
+   "default": "’Structure’,’decim’)",
+   "values": "FIR halfband filter coefficients designHalfbandFIR(’TransitionWidth’,0.186, ’StopbandAttenuation’,80, ’Structure’,’decim’) (default) | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Design method",
+   "default": "Auto",
+   "values": "Filter design method Auto (default) | Equiripple | Kaiser",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output highpass subband",
+   "default": "off",
+   "values": "Output highpass subband off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input signal 44100 (default) | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "Allow arbitrary frame length for fixed-size input signals off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View Filter Response button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for output fixed-point operations Floor (default) | Ceiling | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(1,16)",
+   "values": "Word and fraction lengths of coefficients fixdt(1,16) (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  }
+ ]
+}

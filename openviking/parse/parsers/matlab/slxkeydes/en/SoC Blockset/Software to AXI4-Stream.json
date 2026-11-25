@@ -1,0 +1,129 @@
+{
+ "key": "Software to AXI4-Stream",
+ "title": "Software to AXI4-Stream",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Software_to_AXI4_Stream.md"
+ ],
+ "text": "Stream AXI4 data from software to FPGA, 2 inputs, 4 outputs, {Sample time} sets Time interval of sampling; {Memory simulation} sets the simulation timing accuracy, {Memory selection} sets the between memory regions, {Region size (bytes)} sets the size of the allocated memory region, in bytes Read-only, {Number of buffers}, {Burst length}, {FIFO depth (number of bursts)} sets the depth of FIFO for data, {FIFO almost full depth (number of bursts)} sets the depth of FIFO when backpressure, {Clock frequency (MHz)} sets the interconnect frequency of manager datapath, {Data width (bits)} sets the data width of manager datapath, {Dimensions}, {Data type}, {Enable sample packing (last signal dimension as channel)} sets the pack data on last dimension of signal and {View performance plots} displays performance metrics. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "Input data signal from software scalar | vector | matrix"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "Reader input control signal bus"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "Output data signal to data consumer scalar | vector | matrix"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "Reader control signal to data consumer bus"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "Task write event signal scalar"
+  },
+  {
+   "name": "done",
+   "direction": "output",
+   "summary": "Notification of freed buffer in memory scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Memory simulation",
+   "default": "accurate",
+   "values": "Set simulation timing accuracy Burst accurate (default) | Protocol accurate | Behavioral",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "Choose between memory regions PS memory (default) | PL memory",
+   "group": "Main"
+  },
+  {
+   "name": "Region size (bytes)",
+   "default": "",
+   "values": "Size of the allocated memory region, in bytes Read-only: calculated",
+   "group": "Main"
+  },
+  {
+   "name": "Number of buffers",
+   "default": "8",
+   "values": "Number of buffers in region 8 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Burst length",
+   "default": "256",
+   "values": "Burst length for memory transactions 256 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO depth (number of bursts)",
+   "default": "8",
+   "values": "Depth of FIFO for data 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO almost full depth (number of bursts)",
+   "default": "6",
+   "values": "Depth of FIFO when backpressure is asserted 6 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Clock frequency (MHz)",
+   "default": "100",
+   "values": "Interconnect frequency of manager datapath 100 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Data width (bits)",
+   "default": "64",
+   "values": "Data width of manager datapath 64 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Dimensions",
+   "default": "1024",
+   "values": "Dimensions of software data 1024 (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "uint32",
+   "values": "Data type of software data uint32 (default) | uint16 | uint64 | fixdt(1,16,0)",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Time interval of sampling 1 (default) | positive scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "off",
+   "values": "Pack data on last dimension of signal off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "View performance plots",
+   "default": "",
+   "values": "Display performance metrics button",
+   "group": "Performance"
+  }
+ ]
+}

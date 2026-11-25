@@ -1,0 +1,97 @@
+{
+ "key": "Memory Traffic Generator",
+ "title": "Memory Traffic Generator",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Memory_Traffic_Generator.md"
+ ],
+ "text": "Generate traffic towards memory controller, 1 input, 1 output; {Show Memory Controller ports} shows input and output ports, {Memory selection} sets the between memory regions, {Request type} sets the between write or read, {Total burst requests} sets the number of burst requests to generate, {Burst size (bytes)} sets the size of generated burst transactions, {Time between bursts (s)} sets the simulation time between burst requests, {Allow simulation only parameters} sets the configure additional parameters for simulation, {First burst time} sets the simulation time for initial burst request, {Random time between bursts (s)} sets the range of simulation time for recurring requests, {Wait for burst done} sets the wait for burst-done signal before generating next, {Enable assertion} enables verbose information and {View performance plots} displays performance metrics. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "burstDone",
+   "direction": "input",
+   "summary": "End of burst and access to memory scalar"
+  },
+  {
+   "name": "burstReq",
+   "direction": "output",
+   "summary": "Request memory access from memory controller scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show Memory Controller ports",
+   "default": "on",
+   "values": "Show input and output ports on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "Choose between memory regions PS memory (default) | PL memory",
+   "group": ""
+  },
+  {
+   "name": "Request type",
+   "default": "Writer",
+   "values": "Choose between write or read request Writer (default) | Reader",
+   "group": ""
+  },
+  {
+   "name": "Total burst requests",
+   "default": "100",
+   "values": "Number of burst requests to generate 100 (default) | integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Burst size (bytes)",
+   "default": "256",
+   "values": "Size of generated burst transactions 256 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Time between bursts (s)",
+   "default": "1e-6",
+   "values": "Simulation time between burst requests 1e-6 (default) | time, in seconds",
+   "group": ""
+  },
+  {
+   "name": "Allow simulation only parameters",
+   "default": "on",
+   "values": "Configure additional parameters for simulation only on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "First burst time",
+   "default": "10e-6",
+   "values": "Simulation time for initial burst request 10e-6 (default) | time, in seconds",
+   "group": ""
+  },
+  {
+   "name": "Random time between bursts (s)",
+   "default": "1e-6]",
+   "values": "Range of simulation time for recurring requests [1e-6 1e-6] (default) | vector of the form [ min max ]",
+   "group": ""
+  },
+  {
+   "name": "Wait for burst done",
+   "default": "off",
+   "values": "Wait for burst-done signal before generating next request off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable assertion",
+   "default": "off",
+   "values": "Enable verbose information off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "View performance plots",
+   "default": "",
+   "values": "Display performance metrics button",
+   "group": ""
+  }
+ ]
+}

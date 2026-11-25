@@ -1,0 +1,43 @@
+{
+ "key": "slrealtimebytepacking",
+ "title": "Byte Packing",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Utilities/Byte_Packing.md"
+ ],
+ "text": "Construct data frames, 1 input, 1 output, {Output port (packed) data type} sets Data type for the packed output signal; {Input port (unpacked) data types (cell array)} sets the data types for the unpacked input signals and {Byte Alignment} sets the alignment of the input signal data types after. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First of N input ports scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output port containing packed data vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output port (packed) data type",
+   "default": "uint8",
+   "values": "Data type for the packed output signal uint8 (default) | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Input port (unpacked) data types (cell array)",
+   "default": "{’uint8’}",
+   "values": "Data types for the unpacked input signals {’uint8’} (default) | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Byte Alignment",
+   "default": "1",
+   "values": "Alignment of the input signal data types after packing 1 (default) | 2 | 4 | 8",
+   "group": ""
+  }
+ ]
+}

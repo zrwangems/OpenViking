@@ -1,0 +1,25 @@
+{
+ "key": "Real World Value Increment",
+ "title": "Increment Real World",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Math_ Increment - Decrement/Increment_Real_World.md",
+  "HDL Coder/Math Operations/Increment_Real_World.md"
+ ],
+ "text": "将信号的实际值加一，输入 1 路、输出 1 路、直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

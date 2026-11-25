@@ -1,0 +1,342 @@
+{
+ "key": "FlightGearPackNetFdm",
+ "title": "Pack net_fdm Packet for FlightGear",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/Pack_net_fdm_Packet_for_FlightGear.md"
+ ],
+ "text": "Generate net_fdm packet for FlightGear, 56 inputs, 1 output; {Show position/altitude inputs} sets the position and altitude inputs, {Show velocity/acceleration inputs} sets the velocity and acceleration inputs, {Show control surface position inputs} controls surface position inputs, {Show engine/fuel inputs} sets the engine and fuel inputs, {Show landing gear inputs} sets the landing gear inputs, {Show environment inputs} sets the environment inputs and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "l",
+   "direction": "input",
+   "summary": "Longitude scalar"
+  },
+  {
+   "name": "μ",
+   "direction": "input",
+   "summary": "Latitude scalar"
+  },
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "Altitude scalar"
+  },
+  {
+   "name": "ϕ",
+   "direction": "input",
+   "summary": "Roll scalar"
+  },
+  {
+   "name": "θ",
+   "direction": "input",
+   "summary": "Pitch scalar"
+  },
+  {
+   "name": "ψ",
+   "direction": "input",
+   "summary": "Yaw scalar"
+  },
+  {
+   "name": "α",
+   "direction": "input",
+   "summary": "Angle of attack scalar"
+  },
+  {
+   "name": "β",
+   "direction": "input",
+   "summary": "Sideslip angle scalar"
+  },
+  {
+   "name": "dφ/dt",
+   "direction": "input",
+   "summary": "Roll rate scalar"
+  },
+  {
+   "name": "dθ/dt",
+   "direction": "input",
+   "summary": "Pitch rate scalar"
+  },
+  {
+   "name": "dψ/dt",
+   "direction": "input",
+   "summary": "Yaw rate scalar"
+  },
+  {
+   "name": "V cas",
+   "direction": "input",
+   "summary": "Calibrated airspeed scalar"
+  },
+  {
+   "name": "climb_rate",
+   "direction": "input",
+   "summary": "Rate of climb scalar"
+  },
+  {
+   "name": "v north",
+   "direction": "input",
+   "summary": "North velocity in body frame scalar"
+  },
+  {
+   "name": "v east",
+   "direction": "input",
+   "summary": "East velocity in body frame scalar"
+  },
+  {
+   "name": "v down",
+   "direction": "input",
+   "summary": "Down velocity scalar"
+  },
+  {
+   "name": "v wind body north",
+   "direction": "input",
+   "summary": "North velocity in body frame relative to local airmass scalar"
+  },
+  {
+   "name": "v wind body east",
+   "direction": "input",
+   "summary": "East velocity in body frame relative to local airmass scalar"
+  },
+  {
+   "name": "v wind body down",
+   "direction": "input",
+   "summary": "Down velocity in body frame relative to airmass scalar"
+  },
+  {
+   "name": "A X pilot",
+   "direction": "input",
+   "summary": "X acceleration in body frame scalar"
+  },
+  {
+   "name": "A Y pilot",
+   "direction": "input",
+   "summary": "Y acceleration in body frame scalar"
+  },
+  {
+   "name": "A Z pilot",
+   "direction": "input",
+   "summary": "Z acceleration in body frame scalar"
+  },
+  {
+   "name": "stall_warning",
+   "direction": "input",
+   "summary": "Amount of stall scalar"
+  },
+  {
+   "name": "slip_degree",
+   "direction": "input",
+   "summary": "Slip ball deflection scalar"
+  },
+  {
+   "name": "elevator",
+   "direction": "input",
+   "summary": "Normalized elevator position scalar"
+  },
+  {
+   "name": "elevator_trim_tab",
+   "direction": "input",
+   "summary": "Normalized elevator trim tab position scalar"
+  },
+  {
+   "name": "left_flap",
+   "direction": "input",
+   "summary": "Normalized left flap position scalar"
+  },
+  {
+   "name": "right_flap",
+   "direction": "input",
+   "summary": "Normalized right flap position scalar"
+  },
+  {
+   "name": "left_aileron",
+   "direction": "input",
+   "summary": "Normalized left aileron position scalar"
+  },
+  {
+   "name": "right_aileron",
+   "direction": "input",
+   "summary": "Normalized right aileron position scalar"
+  },
+  {
+   "name": "rudder",
+   "direction": "input",
+   "summary": "Normalized rudder position scalar"
+  },
+  {
+   "name": "nose_wheel",
+   "direction": "input",
+   "summary": "Normalized nose wheel position scalar"
+  },
+  {
+   "name": "speedbrake",
+   "direction": "input",
+   "summary": "Normalized speedbrake position scalar"
+  },
+  {
+   "name": "spoilers",
+   "direction": "input",
+   "summary": "Normalized spoilers position scalar"
+  },
+  {
+   "name": "num_engines",
+   "direction": "input",
+   "summary": "Number of engines scalar"
+  },
+  {
+   "name": "eng_state",
+   "direction": "input",
+   "summary": "Engine state vector"
+  },
+  {
+   "name": "rpm",
+   "direction": "input",
+   "summary": "Engine RPM vector"
+  },
+  {
+   "name": "fuel_flow",
+   "direction": "input",
+   "summary": "Fuel flow vector"
+  },
+  {
+   "name": "fuel_px",
+   "direction": "input",
+   "summary": "Fuel pressure vector"
+  },
+  {
+   "name": "egt",
+   "direction": "input",
+   "summary": "Exhaust gas temperature vector"
+  },
+  {
+   "name": "cht",
+   "direction": "input",
+   "summary": "Cylinder head temperature scalar"
+  },
+  {
+   "name": "mp_osi",
+   "direction": "input",
+   "summary": "Manifold pressure vector"
+  },
+  {
+   "name": "tit",
+   "direction": "input",
+   "summary": "Turbine inlet temperature vector"
+  },
+  {
+   "name": "oil_temp",
+   "direction": "input",
+   "summary": "Oil temperature vector"
+  },
+  {
+   "name": "oil_px",
+   "direction": "input",
+   "summary": "Oil pressure vector"
+  },
+  {
+   "name": "num_tanks",
+   "direction": "input",
+   "summary": "Number of fuel tanks scalar"
+  },
+  {
+   "name": "fuel_quantity",
+   "direction": "input",
+   "summary": "Fuel quantity per tank vector"
+  },
+  {
+   "name": "num_wheels",
+   "direction": "input",
+   "summary": "Number of wheels scalar"
+  },
+  {
+   "name": "wow",
+   "direction": "input",
+   "summary": "Weight on wheels switch vector"
+  },
+  {
+   "name": "gear_pos",
+   "direction": "input",
+   "summary": "Landing gear normalized position vector"
+  },
+  {
+   "name": "gear_steer",
+   "direction": "input",
+   "summary": "Landing gear normalized steering vector"
+  },
+  {
+   "name": "gear_compression",
+   "direction": "input",
+   "summary": "Landing gear normalized compression vector"
+  },
+  {
+   "name": "agl",
+   "direction": "input",
+   "summary": "Altitude above ground level scalar"
+  },
+  {
+   "name": "cur_time",
+   "direction": "input",
+   "summary": "Current UNIX ® time scalar"
+  },
+  {
+   "name": "warp",
+   "direction": "input",
+   "summary": "Offset in seconds to UNIX time scalar"
+  },
+  {
+   "name": "visibility",
+   "direction": "input",
+   "summary": "Visibility scalar"
+  },
+  {
+   "name": "net_fdm",
+   "direction": "output",
+   "summary": "Packet generated for FlightGear array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show position/altitude inputs",
+   "default": "on",
+   "values": "Position and altitude inputs on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show velocity/acceleration inputs",
+   "default": "off",
+   "values": "Velocity and acceleration inputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show control surface position inputs",
+   "default": "off",
+   "values": "Control surface position inputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show engine/fuel inputs",
+   "default": "off",
+   "values": "Engine and fuel inputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show landing gear inputs",
+   "default": "off",
+   "values": "Landing gear inputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show environment inputs",
+   "default": "off",
+   "values": "Environment inputs off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "Sample time 1/30 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

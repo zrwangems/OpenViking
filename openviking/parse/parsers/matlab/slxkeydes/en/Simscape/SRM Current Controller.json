@@ -1,0 +1,79 @@
+{
+ "key": "SRM Current Controller",
+ "title": "SRM Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SRM Control/SRM_Current_Controller.md"
+ ],
+ "text": "Current control for switched reluctance machines, 6 inputs, 2 outputs; {Proportional gain} sets the controller proportional gain, K p, {Integral gain}, {Anti-windup gain} and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsRef",
+   "direction": "input",
+   "summary": "Reference current scalar"
+  },
+  {
+   "name": "Is",
+   "direction": "input",
+   "summary": "Measured current scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Integrator reset scalar"
+  },
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "Theta-rotor angle scalar"
+  },
+  {
+   "name": "thetaON",
+   "direction": "input",
+   "summary": "Switch-on angle scalar"
+  },
+  {
+   "name": "thetaOFF",
+   "direction": "input",
+   "summary": "Switch-off angle scalar"
+  },
+  {
+   "name": "abcRef",
+   "direction": "output",
+   "summary": "Reference voltage vector"
+  },
+  {
+   "name": "abcOnOff",
+   "direction": "output",
+   "summary": "Switch signal vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "Controller proportional gain, K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "5",
+   "values": "Integral gain, K i 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "Anti-windup gain, K aw 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

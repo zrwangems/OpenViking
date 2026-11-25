@@ -1,0 +1,72 @@
+{
+ "key": "Blend-1D",
+ "title": "1D Controller Blend: u=(1-L).K1.y+L.K2.y",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/b_1D_Controller_Blend_u_1_L_K1_y_L_K2_y.md"
+ ],
+ "text": "Implement 1-D vector of state-space controllers by linear interpolation of their outputs, 2 inputs, 1 output; {A-matrix(v)} sets a -matrix of the state-space implementation, {B-matrix(v)} sets the b -matrix of the state-space implementation, {C-matrix(v)} sets the c -matrix of the state-space implementation, {D-matrix(v)} sets the d -matrix of the state-space implementation, {Scheduling variable breakpoints} sets the breakpoints for scheduling variable, {Initial state, x_initial} sets the initial states and {Poles of A(v)-H(v)*C(v) = [w1... wn])} sets the poles of observer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Aircraft measurements vector"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "Scheduling variable vector"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Actuator demands vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A-matrix(v)",
+   "default": "A1",
+   "values": "A -matrix of the state-space implementation A1 (default) | array",
+   "group": ""
+  },
+  {
+   "name": "B-matrix(v)",
+   "default": "B1",
+   "values": "B -matrix of the state-space implementation B1 (default) | array",
+   "group": ""
+  },
+  {
+   "name": "C-matrix(v)",
+   "default": "C1",
+   "values": "C -matrix of the state-space implementation C1 (default) | array",
+   "group": ""
+  },
+  {
+   "name": "D-matrix(v)",
+   "default": "D1",
+   "values": "D -matrix of the state-space implementation D1 (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Scheduling variable breakpoints",
+   "default": "2]",
+   "values": "Breakpoints for scheduling variable [1 1.5 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "Initial states 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Poles of A(v)-H(v)*C(v) = [w1... wn])",
+   "default": "-2]",
+   "values": "Poles of observer [-5 -2] (default) | vector",
+   "group": ""
+  }
+ ]
+}

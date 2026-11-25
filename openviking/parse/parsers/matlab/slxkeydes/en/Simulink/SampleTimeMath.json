@@ -1,0 +1,110 @@
+{
+ "key": "SampleTimeMath",
+ "title": "Weighted Sample Time Math",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Weighted_Sample_Time_Math.md",
+  "Simulink/Signal Attributes/Weighted_Sample_Time.md"
+ ],
+ "text": "Support calculations involving sample time, 1 input, 1 output, direct feedthrough, {Operation} sets Math operation; {Weight value} sets the weight for sample time, {Implement using} sets the method for adjusting sample time Online, {Output data type} sets the data type of output signal, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Mode} sets the data type mode, {Signedness}, {Scaling} sets the method for scaling fixed-point data Best, {Word length} sets the bit size of word that holds quantized, {Fraction length}, {Slope} sets the slope for the fixed-point data, {Bias} sets the bias for the fixed-point data type and {Data type override}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "+",
+   "values": "Math operation + (default) | - | * | / | Ts Only | 1/Ts Only",
+   "group": "Main"
+  },
+  {
+   "name": "Weight value",
+   "default": "1.0",
+   "values": "Weight for sample time 1.0 (default) | real-valued scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Implement using",
+   "default": "Calculations",
+   "values": "Method for adjusting sample time Online Calculations (default) | Offline Scaling Adjustment",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Data type of output signal Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2 0,0) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Data type mode Inherit (default) | Built in | Fixed point | Expression",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Signedness of fixed-point data Signed (default) | Unsigned",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "Method for scaling fixed-point data Best precision (default) | Binary point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of word that holds quantized integer 16 (default) | integer from 2 to 128",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Fraction length for fixed-point data type 0 (default) | integer scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Specify bias for the fixed-point data type 0 (default) | real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type override",
+   "default": "Inherit",
+   "values": "Data type override mode Inherit (default) | Off",
+   "group": "Signal Attributes"
+  }
+ ]
+}

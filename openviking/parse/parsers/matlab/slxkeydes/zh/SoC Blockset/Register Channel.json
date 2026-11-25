@@ -1,0 +1,37 @@
+{
+ "key": "Register Channel",
+ "title": "Register Channel",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Register_Channel.md"
+ ],
+ "text": "寄存器值传输的时序模型，输入 1 路、输出 1 路；{Registers} 指定编辑寄存器名称、方向、数据类型、维度和初始值、{Register write sample time} 指定寄存器访问的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "regN",
+   "direction": "input",
+   "summary": "寄存器输入 scalar"
+  },
+  {
+   "name": "regN",
+   "direction": "output",
+   "summary": "寄存器输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Registers",
+   "default": "",
+   "values": "编辑寄存器名称、方向、数据类型、维度和初始值 table",
+   "group": ""
+  },
+  {
+   "name": "Register write sample time",
+   "default": "-1",
+   "values": "寄存器访问的采样时间 -1 (default) | two element vector",
+   "group": ""
+  }
+ ]
+}

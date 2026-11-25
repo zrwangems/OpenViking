@@ -1,0 +1,133 @@
+{
+ "key": "Ring oscillator VCO",
+ "title": "Ring Oscillator VCO",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Ring_Oscillator_VCO.md"
+ ],
+ "text": "对环形振荡器 VCO 建模，输入 1 路、输出 1 路；{Specify using} 定义如何指定 VCO 输出频率 Voltage、{Voltage sensitivity (Hz/V)} 指定 VCO 输出频率变化的度量 100e6、{Free running frequency (Hz)} 指定无控制电压时的 VCO 输出频率 2.5e9、{Control voltage (V)} 控制电压值、{Output frequency (Hz)} 指定 VCO 输出频率值、{Output amplitude (V)} 指定 VCO 输出电压的最大幅度、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲的样本数、{Add phase noise} 指定将相位噪声作为频率的函数添加、{Model double sided phase noise instead of single sided} 指定对双边相位噪声建模而非单边、{Phase noise frequency offset (Hz)} 指定相位噪声相对于载波频率的频率偏移、{Phase noise level (dBc/Hz)} 指定在相对于载波的相位噪声频率偏移处指定的相位噪声功率、{Estimate phase noise parameters} 指定旨在匹配指定噪声频谱的噪声参数、{Period jitter (S)} 指定周期抖动的标准差 1.7e-15、{Flicker corner frequency (Hz)} 指定闪烁噪声的转角频率 5e5、{Customize flicker exponent (Advanced feature)} 指定自定义闪烁噪声功率谱分布、{Flicker exponent} 指定闪烁噪声功率指数、{Plot fit} 绘制指定的和预期的输出相位噪声密度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vctrl",
+   "direction": "input",
+   "summary": "用于控制 VCO 输出频率的电压 scalar | vector"
+  },
+  {
+   "name": "vco out",
+   "direction": "output",
+   "summary": "由 vctrl 端口确定的输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify using",
+   "default": "sensitivity",
+   "values": "定义如何指定 VCO 输出频率 Voltage sensitivity (default) | Output frequency vs. control voltage",
+   "group": "Parameters"
+  },
+  {
+   "name": "Voltage sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "VCO 输出频率变化的度量 100e6 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Free running frequency (Hz)",
+   "default": "2.5e9",
+   "values": "无控制电压时的 VCO 输出频率 2.5e9 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "5]",
+   "values": "控制电压值 [-5 0 5] (default) | real valued vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "3e9]",
+   "values": "VCO 输出频率值 [2e9 2.5e9 3e9] (default) | positive real valued vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output amplitude (V)",
+   "default": "1",
+   "values": "VCO 输出电压的最大幅度 1 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "仿真期间可用的输入缓冲的样本数 10 (default) | positive integer scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Add phase noise",
+   "default": "on",
+   "values": "将相位噪声作为频率的函数添加 on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Model double sided phase noise instead of single sided",
+   "default": "off",
+   "values": "对双边相位噪声建模而非单边 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "10e6]",
+   "values": "指定相位噪声相对于载波频率的频率偏移 [30e3 100e3 1e6 3e6 10e6] (default) | positive real valued vector",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-152]",
+   "values": "在相对于载波的相位噪声频率偏移处指定的相位噪声功率 [-56 -106 -132 -143 -152] (default) | negative real valued vector",
+   "group": "Impairments"
+  },
+  {
+   "name": "Estimate phase noise parameters",
+   "default": "",
+   "values": "设置旨在匹配指定噪声频谱的噪声参数 button",
+   "group": "Impairments"
+  },
+  {
+   "name": "Period jitter (S)",
+   "default": "1.7e-15",
+   "values": "周期抖动的标准差 1.7e-15 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Flicker corner frequency (Hz)",
+   "default": "5e5",
+   "values": "闪烁噪声的转角频率 5e5 (default) | scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Customize flicker exponent (Advanced feature)",
+   "default": "off",
+   "values": "自定义闪烁噪声功率谱分布 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Flicker exponent",
+   "default": "1.0",
+   "values": "闪烁噪声功率指数 1.0 (default) | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5",
+   "group": "Impairments"
+  },
+  {
+   "name": "Plot fit",
+   "default": "",
+   "values": "绘制指定的和预期的输出相位噪声密度 button",
+   "group": "Impairments"
+  }
+ ]
+}

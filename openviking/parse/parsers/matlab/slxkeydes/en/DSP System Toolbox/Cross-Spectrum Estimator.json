@@ -1,0 +1,120 @@
+{
+ "key": "Cross-Spectrum Estimator",
+ "title": "Cross-Spectrum Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Cross_Spectrum_Estimator.md"
+ ],
+ "text": "Estimate cross-power spectrum density, 2 inputs, 1 output, {Window function} sets Window function; {Window length source}, {Window length} sets the length of window in samples, {Window overlap (%)} sets the percentage of overlap between windows, {Averaging method}, {Specify forgetting factor from input port}, {Forgetting factor} sets the exponential weighting forgetting factor, {Number of spectral averages}, {FFT length source} sets the source of FFT length value, {FFT length}, {Sidelobe attenuation of window (dB)} sets the sidelobe attenuation of window in dB, {Frequency range}, {Inherit sample rate from input}, {Sample rate (Hz)} sets the sample rate of input and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "First data input vector | matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Second data input vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Cross-power spectrum density vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Window length source",
+   "default": "length",
+   "values": "Window length source Same as input frame length (default) | Specify on dialog",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "1024",
+   "values": "Length of window in samples 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Window overlap (%)",
+   "default": "0",
+   "values": "Percentage of overlap between windows 0 (default) | scalar in the range [ 0, 100 )",
+   "group": ""
+  },
+  {
+   "name": "Averaging method",
+   "default": "Running",
+   "values": "Averaging method Running (default) | Exponential",
+   "group": ""
+  },
+  {
+   "name": "Specify forgetting factor from input port",
+   "default": "off",
+   "values": "Specify forgetting factor from input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.9",
+   "values": "Exponential weighting forgetting factor 0.9 (default) | scalar in the range ( 0, 1 ]",
+   "group": ""
+  },
+  {
+   "name": "Number of spectral averages",
+   "default": "1",
+   "values": "Number of spectral averages 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "FFT length source",
+   "default": "Auto",
+   "values": "Source of FFT length value Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "128",
+   "values": "FFT length 128 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "Window function Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation of window (dB)",
+   "default": "60",
+   "values": "Sidelobe attenuation of window in dB 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency range",
+   "default": "Centered",
+   "values": "Frequency range of the cross-spectrum estimate Centered (default) | One-sided | Two-sided",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Inherit sample rate from input on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

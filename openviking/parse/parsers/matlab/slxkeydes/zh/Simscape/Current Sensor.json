@@ -1,0 +1,14 @@
+{
+ "key": "Current Sensor",
+ "title": "Current Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Current_Sensor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Sensors/Current_Sensor.md"
+ ],
+ "text": "电气系统中的电流传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

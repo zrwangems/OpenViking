@@ -1,0 +1,94 @@
+{
+ "key": "radar.internal.SimulinkClusterDBSCAN",
+ "title": "DBSCAN Clustering",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/DBSCAN_Clustering.md"
+ ],
+ "text": "对检测结果进行聚类，输入 3 路、输出 2 路；按 {Cluster threshold epsilon} 指定聚类邻域大小；{Define outputs for Simulink block} 指定聚类数据输出类型 Index、{Source of cluster threshold epsilon} 指定 Epsilon 来源、{Minimum number of points in a cluster} 指定聚类所需的最小点数、{Maximum number of points for ’Auto’ epsilon} 指定聚类所需的最大点数、{Length of cluster threshold epsilon history} 指定聚类阈值 epsilon 历史长度、{Enable disambiguation of dimensions} 启用消歧、{Indices of ambiguous dimensions} 指定模糊维度索引、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入数据 N -by- P real-valued matrix"
+  },
+  {
+   "name": "Update",
+   "direction": "input",
+   "summary": "启用 epsilon 自动更新 false (default) | true"
+  },
+  {
+   "name": "AmbLims",
+   "direction": "input",
+   "summary": "模糊度限值 1-by-2 real-valued vector (default) | 2-by-2 real-valued matrix"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "聚类索引 N -by-1 integer-valued column vector"
+  },
+  {
+   "name": "Clusters",
+   "direction": "output",
+   "summary": "替代聚类 ID 1-by- N integer-valued row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Define outputs for Simulink block",
+   "default": "ID",
+   "values": "聚类数据输出类型 Index and ID (default) | Cluster ID | Index",
+   "group": ""
+  },
+  {
+   "name": "Source of cluster threshold epsilon",
+   "default": "Property",
+   "values": "Epsilon 来源 Property (default) | Auto",
+   "group": ""
+  },
+  {
+   "name": "Cluster threshold epsilon",
+   "default": "10.0",
+   "values": "聚类邻域大小 10.0 (default) | positive scalar | positive real-valued 1-by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Minimum number of points in a cluster",
+   "default": "3",
+   "values": "聚类所需的最小点数 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of points for ’Auto’ epsilon",
+   "default": "10",
+   "values": "聚类所需的最大点数 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Length of cluster threshold epsilon history",
+   "default": "10",
+   "values": "聚类阈值 epsilon 历史长度 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable disambiguation of dimensions",
+   "default": "off",
+   "values": "启用消歧 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Indices of ambiguous dimensions",
+   "default": "1",
+   "values": "模糊维度索引 1 (default) | positive integer | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

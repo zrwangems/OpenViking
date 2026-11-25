@@ -1,0 +1,182 @@
+{
+ "key": "phased.RangeDopplerResponse",
+ "title": "Range Doppler Response",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Range_Doppler_Response.md"
+ ],
+ "text": "Range-Doppler response, 4 inputs, 3 outputs, {Doppler output} sets Doppler output; {Measurement mode}, {Range processing method}, {Propagation speed (m/s)} sets the signal propagation speed physconst, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate, {Reference range (m)}, {Source of pulse repetition frequency}, {Pulse repetition frequency of the input signal (Hz)}, {Source of FFT length in Doppler processing}, {FFT length in Doppler processing}, {Doppler processing window}, {Doppler sidelobe attenuation level}, {Signal carrier frequency (Hz)} sets the signal carrier frequency 3e8, {FM sweep slope (Hz/s)} sets the fM sweep slope 1e9, {Dechirp input signal}, {Source of FFT length in range processing}, {FFT length in range processing}, {Range processing window}, {Set reference range at center}, {Range sidelobe attenuation level} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input complex-valued K -by- L matrix | K -by- N -by- L array"
+  },
+  {
+   "name": "Coeff",
+   "direction": "input",
+   "summary": "Matched filter coefficients column vector"
+  },
+  {
+   "name": "XRef",
+   "direction": "input",
+   "summary": "Reference signal vector"
+  },
+  {
+   "name": "PRF",
+   "direction": "input",
+   "summary": "Pulse repetition frequency positive scalar"
+  },
+  {
+   "name": "Resp",
+   "direction": "output",
+   "summary": "Range-Doppler response complex"
+  },
+  {
+   "name": "Range",
+   "direction": "output",
+   "summary": "Range samples vector"
+  },
+  {
+   "name": "Dop",
+   "direction": "output",
+   "summary": "Doppler or speed samples vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement mode",
+   "default": "Monostatic",
+   "values": "Measurement mode Monostatic (default) | Bistatic",
+   "group": ""
+  },
+  {
+   "name": "Range processing method",
+   "default": "filter",
+   "values": "Range processing method Matched filter (default) | FFT",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference range (m)",
+   "default": "0",
+   "values": "Reference range 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Source of pulse repetition frequency",
+   "default": "Auto",
+   "values": "Source of pulse repetition frequency Auto (default) | Property | Input port",
+   "group": ""
+  },
+  {
+   "name": "Pulse repetition frequency of the input signal (Hz)",
+   "default": "10e3",
+   "values": "Pulse repetition frequency of the input signal 10e3 (default)",
+   "group": ""
+  },
+  {
+   "name": "Source of FFT length in Doppler processing",
+   "default": "Auto",
+   "values": "Source of FFT length in Doppler processing Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FFT length in Doppler processing",
+   "default": "",
+   "values": "FFT length in Doppler processing 1024",
+   "group": ""
+  },
+  {
+   "name": "Doppler processing window",
+   "default": "None",
+   "values": "Doppler processing window None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor",
+   "group": ""
+  },
+  {
+   "name": "Doppler sidelobe attenuation level",
+   "default": "30",
+   "values": "Doppler sidelobe attenuation level 30 (default)",
+   "group": ""
+  },
+  {
+   "name": "Doppler output",
+   "default": "Frequency",
+   "values": "Doppler output Frequency (default) | Range rate | Speed",
+   "group": ""
+  },
+  {
+   "name": "Signal carrier frequency (Hz)",
+   "default": "3e8",
+   "values": "Signal carrier frequency 3e8 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "FM sweep slope (Hz/s)",
+   "default": "1e9",
+   "values": "FM sweep slope 1e9 (default)",
+   "group": ""
+  },
+  {
+   "name": "Dechirp input signal",
+   "default": "off",
+   "values": "Dechirp input signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of FFT length in range processing",
+   "default": "Auto",
+   "values": "Source of FFT length in range processing Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FFT length in range processing",
+   "default": "1024",
+   "values": "FFT length in range processing 1024 (default)",
+   "group": ""
+  },
+  {
+   "name": "Range processing window",
+   "default": "None",
+   "values": "Range processing window None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor",
+   "group": ""
+  },
+  {
+   "name": "Set reference range at center",
+   "default": "on",
+   "values": "Set reference range at center on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Range sidelobe attenuation level",
+   "default": "30",
+   "values": "Range sidelobe attenuation level 30 (default)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

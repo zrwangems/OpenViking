@@ -1,0 +1,43 @@
+{
+ "key": "dsp.simulink.MovingMinimum",
+ "title": "Moving Minimum",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Statistics/Moving_Minimum.md"
+ ],
+ "text": "Moving minimum, 1 input, 1 output, no direct feedthrough; {Specify window length} sets the flag to specify window length, {Window length} sets the length of the sliding window and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Data input column vector | row vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Moving minimum output column vector | row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify window length",
+   "default": "on",
+   "values": "Flag to specify window length on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Window length",
+   "default": "4",
+   "values": "Length of the sliding window 4 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

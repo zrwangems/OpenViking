@@ -1,0 +1,24 @@
+{
+ "key": "Quaternion Norm",
+ "title": "Quaternion Norm",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Norm.md"
+ ],
+ "text": "Calculate norm of quaternion, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "Quaternion norm quaternion norm | vector of quaternion norms"
+  },
+  {
+   "name": "norm(q)",
+   "direction": "output",
+   "summary": "Quaternion norm quaternion norm | vector of quaternion norms"
+  }
+ ],
+ "params": []
+}

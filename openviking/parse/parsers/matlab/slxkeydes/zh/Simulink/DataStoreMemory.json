@@ -1,0 +1,140 @@
+{
+ "key": "DataStoreMemory",
+ "title": "Data Store Memory",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Data_Store_Memory.md"
+ ],
+ "text": "定义数据存储；按 {数据存储名称} 指定数据存储的名称；{全部重命名} 用于在整个模型中重命名数据存储的选项 按钮、{数据存储引用} 指定访问在更高层级的模型中定义的内存、{对应的 Data Store Read/Write 模块} 指定所连接的 Data Store Read/Write 模块的路径、{初始值}、{最小}、{最大}、{数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 用于防止定点工具覆盖输出数据类型、{维度(-1 表示从初始值推断)} 指定数据存储的维度、{将向量参数解释为一维向量} 用于将向量解释为一维、{信号类型} 指定数据存储值的复/实性、{跨模型实例共享} 用于允许 Model、{数据存储名称必须解析为 Simulink 信号对象} 用于将数据存储名称解析为 Simulink、{检测写前读} 指定模型在当前时间步中写入之前尝试读取数据时的操作、{检测读后写} 指定模块在同一时间步中读取数据后尝试写入时的操作、{检测写后写} 指定模型在同一时间步中写入两次时的操作、{记录数据存储数据}、{记录名称} 指定与记录的信号数据相关联的名称、{将数据点限制为最后} 用于丢弃除最后 N 个数据点外的所有数据点、{抽取} 用于每隔 N 个数据点记录一次，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "数据存储名称",
+   "default": "A",
+   "values": "数据存储的名称 A (默认) | 字符向量 | 字符串",
+   "group": "常设"
+  },
+  {
+   "name": "全部重命名",
+   "default": "",
+   "values": "用于在整个模型中重命名数据存储的选项 按钮",
+   "group": "常设"
+  },
+  {
+   "name": "数据存储引用",
+   "default": "off",
+   "values": "访问在更高层级的模型中定义的内存 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "对应的 Data Store Read/Write 模块",
+   "default": "",
+   "values": "所连接的 Data Store Read/Write 模块的路径 模块路径",
+   "group": "常设"
+  },
+  {
+   "name": "初始值",
+   "default": "0",
+   "values": "数据存储的初始值 0 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": "信号属性"
+  },
+  {
+   "name": "最小",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "最大",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "数据类型",
+   "default": "auto",
+   "values": "输出数据类型 Inherit: auto (默认) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | 字符串 | Enum: | Simulink.ImageType(480,640,3)",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "维度(-1 表示从初始值推断)",
+   "default": "-1",
+   "values": "数据存储的维度 -1 (默认) | 标量 | 向量 | 矩阵",
+   "group": "信号属性"
+  },
+  {
+   "name": "将向量参数解释为一维向量",
+   "default": "on",
+   "values": "用于将向量解释为一维的选项 on (默认) | off",
+   "group": "信号属性"
+  },
+  {
+   "name": "信号类型",
+   "default": "自动",
+   "values": "数据存储值的复/实性 自动 (默认) | 实数 | 复",
+   "group": "信号属性"
+  },
+  {
+   "name": "跨模型实例共享",
+   "default": "off",
+   "values": "用于允许 Model 模块从同一个数据存储中读取数据的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "数据存储名称必须解析为 Simulink 信号对象",
+   "default": "off",
+   "values": "用于将数据存储名称解析为 Simulink 信号对象的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "检测写前读",
+   "default": "警告",
+   "values": "模型在当前时间步中写入之前尝试读取数据时的操作 警告 (默认) | 无 | 错误",
+   "group": "诊断"
+  },
+  {
+   "name": "检测读后写",
+   "default": "警告",
+   "values": "模块在同一时间步中读取数据后尝试写入时的操作 警告 (默认) | 无 | 错误",
+   "group": "诊断"
+  },
+  {
+   "name": "检测写后写",
+   "default": "警告",
+   "values": "模型在同一时间步中写入两次时的操作 警告 (默认) | 无 | 错误",
+   "group": "诊断"
+  },
+  {
+   "name": "记录数据存储数据",
+   "default": "off",
+   "values": "用于记录数据存储数据的选项 off (默认) | on",
+   "group": "记录"
+  },
+  {
+   "name": "记录名称",
+   "default": "使用数据存储名称",
+   "values": "与记录的信号数据相关联的名称 使用数据存储名称 (默认) | 自定义",
+   "group": "记录"
+  },
+  {
+   "name": "将数据点限制为最后",
+   "default": "",
+   "values": "用于丢弃除最后 N 个数据点外的所有数据点的选项 5000 | 非零整数",
+   "group": "记录"
+  },
+  {
+   "name": "抽取",
+   "default": "2",
+   "values": "用于每隔 N 个数据点记录一次的选项 2 (默认) | 整数",
+   "group": "记录"
+  }
+ ]
+}

@@ -1,0 +1,121 @@
+{
+ "key": "2-D Minimum",
+ "title": "2-D Minimum",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Minimum.md"
+ ],
+ "text": "在输入或输入序列中查找最小值，输入 5 路、输出 3 路；按 {Reset port} 指定重置事件；{Mode} 指定 Output mode、{Index Base} 指定第一个元素的索引、{Find the minimum value over} 指定计算最小值所沿的维度 Entire、{Dimension} 指定自定义维度、{Enable ROI processing} 指定在 ROI 内计算最小值、{ROI type} 指定 ROI 的格式、{ROI portion to process} 指定在其中计算最小值的 ROI 部分 Entire、{Output} 为 ROI 计算单独最小值还是统一最小值 Individual statistics for each、{Output flag indicating if ROI is within image bounds} 启用 Flag 端口、{Lock data type settings against change by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数组 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置运行最小值 scalar"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "感兴趣区域 four-element vector | m -by-4 matrix | M -by- N matrix"
+  },
+  {
+   "name": "Label",
+   "direction": "input",
+   "summary": "标签矩阵 matrix of nonnegative integers"
+  },
+  {
+   "name": "Label Numbers",
+   "direction": "input",
+   "summary": "ROI 的标签值 M -element vector"
+  },
+  {
+   "name": "Val",
+   "direction": "output",
+   "summary": "输入的最小值 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "输入中最小值的索引 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Flag",
+   "direction": "output",
+   "summary": "ROI 验证 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Index",
+   "values": "Output mode Value and Index (default) | Value | Index | Running",
+   "group": ""
+  },
+  {
+   "name": "Index Base",
+   "default": "One",
+   "values": "第一个元素的索引 One (default) | Zero",
+   "group": ""
+  },
+  {
+   "name": "Find the minimum value over",
+   "default": "input",
+   "values": "计算最小值所沿的维度 Entire input (default) | Each row | Each column | Specified dimension",
+   "group": ""
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "自定义维度 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "重置事件 None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Enable ROI processing",
+   "default": "off",
+   "values": "在 ROI 内计算最小值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "ROI type",
+   "default": "Rectangles",
+   "values": "ROI 的格式 Rectangles (default) | Lines | Label matrix | Binary mask",
+   "group": ""
+  },
+  {
+   "name": "ROI portion to process",
+   "default": "ROI",
+   "values": "在其中计算最小值的 ROI 部分 Entire ROI (default) | ROI perimeter",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "ROI",
+   "values": "为 ROI 计算单独最小值还是统一最小值 Individual statistics for each ROI (default) | Single statistic for all ROIs",
+   "group": ""
+  },
+  {
+   "name": "Output flag indicating if ROI is within image bounds",
+   "default": "off",
+   "values": "启用 Flag 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": ""
+  }
+ ]
+}

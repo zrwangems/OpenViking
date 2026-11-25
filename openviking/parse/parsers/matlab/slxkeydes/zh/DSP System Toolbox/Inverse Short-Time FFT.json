@@ -1,0 +1,48 @@
+{
+ "key": "Inverse Short-Time FFT",
+ "title": "Inverse Short-Time FFT",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Inverse_Short_Time_FFT.md"
+ ],
+ "text": "使用短时快速傅里叶变换 (STFT) 方法对频谱进行非参数估计，输入 2 路、输出 1 路、无直接馈通；{Analysis window length} 指定分析窗长度、{Overlap between consecutive windows (in samples)} 指定重叠长度、{FFT length} 指定 FFT 长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x[n]",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "w[n]",
+   "direction": "input",
+   "summary": "分析窗向量 vector"
+  },
+  {
+   "name": "X[nL,k]",
+   "direction": "output",
+   "summary": "短时 FFT 输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Analysis window length",
+   "default": "512",
+   "values": "分析窗长度 512 (default) | positive integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Overlap between consecutive windows (in samples)",
+   "default": "384",
+   "values": "重叠长度 384 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "FFT 长度 1024 (default) | positive integer greater than or equal to 2",
+   "group": ""
+  }
+ ]
+}

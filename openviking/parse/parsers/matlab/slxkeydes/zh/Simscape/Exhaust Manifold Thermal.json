@@ -1,0 +1,13 @@
+{
+ "key": "Exhaust Manifold Thermal",
+ "title": "Exhaust Manifold Thermal",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Engine Subcomponents/Exhaust_Manifold_Thermal.md"
+ ],
+ "text": "内燃机排气歧管的热力学。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

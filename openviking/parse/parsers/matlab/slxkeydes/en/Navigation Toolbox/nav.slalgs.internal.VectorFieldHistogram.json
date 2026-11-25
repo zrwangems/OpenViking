@@ -1,0 +1,95 @@
+{
+ "key": "nav.slalgs.internal.VectorFieldHistogram",
+ "title": "Vector Field Histogram",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Control Algorithms/Vector_Field_Histogram.md"
+ ],
+ "text": "Avoid obstacles using vector field histogram, 3 inputs, 1 output; {Number of angular sectors} sets the number of bins used to create, {Range distance limits (m)} sets the limits for range readings, {Histogram thresholds} sets the thresholds for computing binary histogram, {vehicle radius (m)} sets the radius of the vehicle, {Safety distance (m)} sets the safety distance around the vehicle, {Minimum turning radius (m)} sets the minimum turning radius at current speed, {Simulate using} sets the type of simulation to run, {Target direction weight} sets the cost function weight for target direction, {Current direction weight} sets the cost function weight for current direction and {Previous direction weight} sets the cost function weight for previous. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ranges",
+   "direction": "input",
+   "summary": "Range values from scan data vector of scalars"
+  },
+  {
+   "name": "Angles",
+   "direction": "input",
+   "summary": "Angle values from scan data vector of scalars"
+  },
+  {
+   "name": "TargetDir",
+   "direction": "input",
+   "summary": "Target direction for vehicle scalar"
+  },
+  {
+   "name": "SteerDir",
+   "direction": "output",
+   "summary": "Steering direction for vehicle scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of angular sectors",
+   "default": "180",
+   "values": "Number of bins used to create the histograms 180 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Range distance limits (m)",
+   "default": "2]",
+   "values": "Limits for range readings [0.05 2] (default) | two-element vector of scalars",
+   "group": ""
+  },
+  {
+   "name": "Histogram thresholds",
+   "default": "10]",
+   "values": "Thresholds for computing binary histogram [3 10] (default) | two-element vector of scalars",
+   "group": ""
+  },
+  {
+   "name": "vehicle radius (m)",
+   "default": "0.1",
+   "values": "Radius of the vehicle 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Safety distance (m)",
+   "default": "0.1",
+   "values": "Safety distance around the vehicle 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum turning radius (m)",
+   "default": "0.1",
+   "values": "Minimum turning radius at current speed 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Specify type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  },
+  {
+   "name": "Target direction weight",
+   "default": "5",
+   "values": "Cost function weight for target direction 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current direction weight",
+   "default": "2",
+   "values": "Cost function weight for current direction 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Previous direction weight",
+   "default": "2",
+   "values": "Cost function weight for previous direction 2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

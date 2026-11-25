@@ -1,0 +1,29 @@
+{
+ "key": "PSNR",
+ "title": "PSNR",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/PSNR.md"
+ ],
+ "text": "Compute peak signal-to-noise ratio (PSNR) between images, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I1",
+   "direction": "input",
+   "summary": "Input image scalar | vector | matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "Input image scalar | vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Output scalar"
+  }
+ ],
+ "params": []
+}

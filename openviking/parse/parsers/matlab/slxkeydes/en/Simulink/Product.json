@@ -1,0 +1,189 @@
+{
+ "key": "Product",
+ "title": "Product",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Product.md",
+  "Simulink/Math Operations/Product.md",
+  "Simulink/Math Operations/Product_of_Elements.md",
+  "Simulink/Math Operations/Divide.md",
+  "Simulink/Matrix Operations/Matrix_Multiply.md",
+  "Simulink/Quick Insert/Math Operations/Matrix_Divide.md",
+  "Simulink/Quick Insert/Math Operations/Matrix_Multiply.md",
+  "Simulink/Quick Insert/Math Operations/Reciprocal.md",
+  "HDL Coder/Commonly Used Blocks/Product.md",
+  "HDL Coder/HDL Floating Point Operations/Product.md",
+  "HDL Coder/HDL Floating Point Operations/Product_of_Elements.md",
+  "HDL Coder/Math Operations/Product.md",
+  "HDL Coder/Math Operations/Product_of_Elements.md",
+  "HDL Coder/HDL Floating Point Operations/Divide.md",
+  "HDL Coder/Math Operations/Divide.md",
+  "HDL Coder/Math Operations/MatrixMultiply.md",
+  "HDL Coder/HDL Floating Point Operations/Reciprocal.md",
+  "HDL Coder/Math Operations/Reciprocal.md",
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Matrix_Multiply.md",
+  "Deep Learning Toolbox/Shallow Neural Networks/Net Input Functions/netprod.md"
+ ],
+ "text": "Multiply and divide scalars and nonscalars or multiply and invert matrices, 6 inputs, 1 output, direct feedthrough, {Mode} sets Select data type mode; {Number of inputs} controls number of inputs and type, {Multiplication} sets the element-wise, {Apply over} sets how to apply function along specified dimensions All, {Dimension}, {Sample time (-1 for inherited)} sets the interval between samples, {Require all inputs to have the same data type} requires that all inputs have the same data, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the output data type, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Data type override} sets the data type override mode for this signal, {Signedness} sets the signed, {Word length} sets the bit size of the word that holds the quantized, {Fraction length} sets the fraction length for fixed-point data type, {Scaling} sets the method for scaling fixed-point data Best, {Slope} sets the slope for the fixed-point data and {Bias} sets the bias for the fixed-point data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input to multiply or divide scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "Nth input to multiply or divide scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input signal to multiply scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "÷",
+   "direction": "input",
+   "summary": "Input signal to divide or invert scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "*",
+   "direction": "input",
+   "summary": "Input signal to multiply scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Inv",
+   "direction": "input",
+   "summary": "Input signal to divide or invert scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output computed by multiplying, dividing, or inverting inputs scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inputs",
+   "default": "2",
+   "values": "Control number of inputs and type of operation 2 (default) | scalar | * or / for each input port",
+   "group": "Main"
+  },
+  {
+   "name": "Multiplication",
+   "default": "Element-wise(.*)",
+   "values": "Element-wise (.*) or Matrix (*) multiplication Element-wise(.*) (default) | Matrix(*)",
+   "group": "Main"
+  },
+  {
+   "name": "Apply over",
+   "default": "dimensions",
+   "values": "How to apply function along specified dimensions All dimensions (default) | Specified dimension",
+   "group": "Main"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Dimension along which to multiply 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Require all inputs to have the same data type",
+   "default": "off",
+   "values": "Require that all inputs have the same data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Specify the output data type Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Select data type mode Inherit (default) | Built in | Fixed Point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Specify signed or unsigned Signed (default) | Unsigned",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Specify bias for the fixed-point data type 0 (default) | real-valued scalar",
+   "group": "Signal Attributes"
+  }
+ ]
+}

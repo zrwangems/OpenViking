@@ -1,0 +1,156 @@
+{
+ "key": "Variable Fractional Delay",
+ "title": "Variable Fractional Delay",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Variable_Fractional_Delay.md"
+ ],
+ "text": "按随时间变化的分数采样周期数延迟输入，输入 2 路、输出 1 路、无直接馈通；按 {Interpolation mode} 指定插值方法；{Interpolation filter half-length (P)} 指定插值滤波器的半长、{Interpolation points per input sample} 指定每个输入采样的插值点数、{Normalized input bandwidth (0 to 1)} 指定归一化输入带宽、{Farrow filter length (N)} 指定 Farrow 滤波器长度、{Maximum delay (Dmax) in samples} 指定最大延迟、{Input processing} 指定处理输入的方法 Columns、{InitialConditions} 指定内存中的初始值、{Disable direct feedthrough by increasing minimum possible delay by one} 指定禁用直接馈通、{For small input delay values} 指定输入延迟值较小时要采取的操作 Clip to the minimum value necessary、{Valid delay range (in samples)} 指定有效延迟值的范围 Read-only、{Rounding mode} 指定定点运算的舍入方法、{Saturate on integer overflow} 指定溢出操作的方法、{Coefficients} 指定系数的数据类型 Same word length、{Product output} 指定乘积输出的数据类型 Same as first、{Accumulator} 指定累加运算的数据类型 Same as product、{Product output polyval} 指定乘积多项式值的数据类型 Same as first、{Accumulator polyval} 指定累加器多项式值的数据类型 Same as first、{Multiplicand polyval} 指定被乘数多项式值的数据类型 Same as first、{Output} 指定模块输出的数据类型 Same、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Delay",
+   "direction": "input",
+   "summary": "延迟输入 scalar | vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "延迟输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation mode",
+   "default": "Linear",
+   "values": "插值方法 Linear (default) | FIR | Farrow",
+   "group": ""
+  },
+  {
+   "name": "Interpolation filter half-length (P)",
+   "default": "4",
+   "values": "插值滤波器的半长 4 (default) | positive integer in the range [1 65535]",
+   "group": ""
+  },
+  {
+   "name": "Interpolation points per input sample",
+   "default": "10",
+   "values": "每个输入采样的插值点数 10 (default) | positive integer in the range [2, 65,535]",
+   "group": ""
+  },
+  {
+   "name": "Normalized input bandwidth (0 to 1)",
+   "default": "1",
+   "values": "归一化输入带宽 1 (default) | real scalar in the range (0, 1]",
+   "group": ""
+  },
+  {
+   "name": "Farrow filter length (N)",
+   "default": "4",
+   "values": "Farrow 滤波器长度 4 (default) | integer greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Maximum delay (Dmax) in samples",
+   "default": "100",
+   "values": "最大延迟 100 (default) | integer in the range [0 65535]",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "处理输入的方法 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "InitialConditions",
+   "default": "0",
+   "values": "内存中的初始值 0 (default) | scalar | 1-by- R -by- D array | 1-by- R -by-( D+L ) array",
+   "group": ""
+  },
+  {
+   "name": "Disable direct feedthrough by increasing minimum possible delay by one",
+   "default": "off",
+   "values": "禁用直接馈通 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "For small input delay values",
+   "default": "kernel",
+   "values": "输入延迟值较小时要采取的操作 Clip to the minimum value necessary for centered kernel (default) | Use off-centered kernel | Switch to linear interpolation if kernel cannot be centered",
+   "group": ""
+  },
+  {
+   "name": "Valid delay range (in samples)",
+   "default": "100]",
+   "values": "有效延迟值的范围 Read-only: [0 100] (default) | [ D min D max ]",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Zero",
+   "values": "定点运算的舍入方法 Zero (default) | Ceiling | Convergent | Floor | Nearest | Round | Simplest",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "系数的数据类型 Same word length as input (default) | Specify word length",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "乘积输出的数据类型 Same as first input (default) | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "累加运算的数据类型 Same as product output (default) | Same as first input | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Product output polyval",
+   "default": "input",
+   "values": "乘积多项式值的数据类型 Same as first input (default) | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Accumulator polyval",
+   "default": "input",
+   "values": "累加器多项式值的数据类型 Same as first input (default) | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Multiplicand polyval",
+   "default": "input",
+   "values": "被乘数多项式值的数据类型 Same as first input (default) | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "模块输出的数据类型 Same as accumulator (default) | Same as first input | Binary point scaling",
+   "group": "Fixed-Point Properties"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Fixed-Point Properties"
+  }
+ ]
+}

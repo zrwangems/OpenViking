@@ -1,0 +1,112 @@
+{
+ "key": "SignalGenerator",
+ "title": "Sawtooth Generator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Quick Insert/Sources/Sawtooth_Generator.md",
+  "Simulink/Quick Insert/Sources/Square_Wave_Generator.md",
+  "Simulink/Sources/Signal_Generator.md"
+ ],
+ "text": "Constant value, 1 output, no direct feedthrough, {Sample time} sets Sampling interval; {Constant value} sets the constant output value scalar, {Interpret vector parameters as 1-D} treats vectors as 1-D, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type}, {Lock output data type setting against changes by the fixed-point tools} prevents fixed-point tools from overriding Output data, {Mode} sets the category of data, {Data type override} sets the data type override mode for this signal, {Signedness} sets the signed, {Scaling} sets the method for scaling fixed-point data Best, {Word length} sets the bit size of the word that holds the quantized, {Fraction length} sets the fraction length for fixed-point data type, {Slope} sets the slope for the fixed-point data and {Bias} sets the bias for the fixed-point data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Constant value scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Constant value",
+   "default": "",
+   "values": "Constant output value scalar | vector | matrix | N-D array",
+   "group": "Main"
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "Treat vectors as 1-D on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "inf",
+   "values": "Sampling interval inf (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "value’",
+   "values": "Output data type Inherit: Inherit from ’Constant value’ (default) | Inherit: Inherit via back propagation | double | single | half | int8 | int16 |...",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Category of data to specify Inherit (default) | Built in | Fixed point | Enumerated | Bus object | Value type | Expression",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Specify signed or unsigned Signed (default) | Unsigned",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Specify fraction length for fixed-point data type 0 (default) | scalar integer",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Slope",
+   "default": "2^0",
+   "values": "Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Bias",
+   "default": "0",
+   "values": "Specify bias for the fixed-point data type 0 (default) | real-valued scalar",
+   "group": "Signal Attributes"
+  }
+ ]
+}

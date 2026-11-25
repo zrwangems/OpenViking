@@ -1,0 +1,84 @@
+{
+ "key": "Atmosphere Model",
+ "title": "COESA Atmosphere Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Atmosphere/COESA_Atmosphere_Model.md",
+  "Aerospace Blockset/Environment/Atmosphere/Non_Standard_Day_210C.md",
+  "Aerospace Blockset/Environment/Atmosphere/Non_Standard_Day_310.md"
+ ],
+ "text": "实现 1976 COESA 低层大气，输入 1 路、输出 4 路；按 {Frequency of occurrence} 指定模型类型；{Units} 指定输入和输出单位 Metric、{Specification} 指定大气模型类型 1976 COESA-extended U.S. Standard、{Atmospheric model type} 指定模型类型 Profile、{Extreme parameter} 指定模型类型 High、{Altitude of extreme value} 指定几何高度 5 km、{Action for out-of-range input} 指定超出范围时的模块行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "位势高度 scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "温度 scalar | array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "声速 scalar | array"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "空气压力 scalar | array"
+  },
+  {
+   "name": "Port_4",
+   "direction": "output",
+   "summary": "空气密度 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Specification",
+   "default": "Atmosphere",
+   "values": "大气模型类型 1976 COESA-extended U.S. Standard Atmosphere (default) | MIL-HDBK-310 | MIL-STD-210C",
+   "group": ""
+  },
+  {
+   "name": "Atmospheric model type",
+   "default": "Profile",
+   "values": "模型类型 Profile (default) | Envelope",
+   "group": ""
+  },
+  {
+   "name": "Extreme parameter",
+   "default": "temperature",
+   "values": "模型类型 High temperature (default) | Low temperature | High density | Low density | High pressure | Low pressure",
+   "group": ""
+  },
+  {
+   "name": "Frequency of occurrence",
+   "default": "1%",
+   "values": "模型类型 1% (default) | Extreme values | 5% | 10% | 20%",
+   "group": ""
+  },
+  {
+   "name": "Altitude of extreme value",
+   "default": "ft)",
+   "values": "几何高度 5 km (16404 ft) (default) | 10 km (32808 ft) | 20 km (65617 ft) | 30 km (98425 ft) | 40 km (131234 ft)",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

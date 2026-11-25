@@ -1,0 +1,55 @@
+{
+ "key": "Triggered Signal From Workspace",
+ "title": "Triggered Signal From Workspace",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Triggered_Signal_From_Workspace.md"
+ ],
+ "text": "Import signal samples from MATLAB workspace when triggered, 1 input, 1 output, no direct feedthrough, {Signal} sets Signal to import; {Trigger type} sets the type of triggering event, {Initial output}, {Samples per frame} and {Form output after final data value by} sets the values to output after final imported signal value Setting. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "trigger",
+   "direction": "input",
+   "summary": "Trigger signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Signal imported from workspace scalar | vector | matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal",
+   "default": "1:10",
+   "values": "Signal to import 1:10 (default) | MATLAB workspace variable | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "Type of triggering event Rising edge (default) | Falling edge | Either edge",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Initial output value 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Form output after final data value by",
+   "default": "zero",
+   "values": "Values to output after final imported signal value Setting to zero (default) | Holding final value | Cyclic repetition",
+   "group": ""
+  }
+ ]
+}

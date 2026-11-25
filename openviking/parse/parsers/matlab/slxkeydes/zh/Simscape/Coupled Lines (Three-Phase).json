@@ -1,0 +1,13 @@
+{
+ "key": "Coupled Lines (Three-Phase)",
+ "title": "Coupled Lines (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Lines/Coupled_Lines_Three_Phase.md"
+ ],
+ "text": "将三相线路进行磁耦合。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

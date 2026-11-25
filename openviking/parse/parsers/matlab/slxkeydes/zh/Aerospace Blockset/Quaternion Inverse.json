@@ -1,0 +1,24 @@
+{
+ "key": "Quaternion Inverse",
+ "title": "Quaternion Inverse",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Inverse.md"
+ ],
+ "text": "计算四元数的逆，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "四元数 quaternion | vector of quaternions"
+  },
+  {
+   "name": "Inv(q)",
+   "direction": "output",
+   "summary": "四元数的逆 quaternion inverse | vector of quaternion inverses"
+  }
+ ],
+ "params": []
+}

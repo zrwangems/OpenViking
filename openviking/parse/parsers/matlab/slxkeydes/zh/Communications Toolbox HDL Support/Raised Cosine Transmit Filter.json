@@ -1,0 +1,128 @@
+{
+ "key": "Raised Cosine Transmit Filter",
+ "title": "Raised Cosine Transmit Filter",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Filters/Raised_Cosine_Transmit_Filter.md",
+  "Communications Toolbox/Comm Filters/Raised_Cosine_Transmit_Filter.md"
+ ],
+ "text": "使用升余弦 FIR 滤波器对信号进行插值以应用脉冲成形，输入 1 路、输出 1 路；按 {Rounding mode} 指定定点运算的舍入模式；{Filter shape} 指定滤波器形状 Square、{Filter span in symbols} 指定滤波器跨度（以符号为单位）、{Output samples per symbol} 指定每个符号的输出采样数、{Linear amplitude filter gain} 指定线性滤波器增益、{Input processing} 指定输入处理控制 Columns as channels、{Rate options} 指定模块处理速率 Enforce single-rate、{Export filter coefficients to workspace} 指定导出滤波器系数、{Coefficient variable name} 指定系数变量名称、{View Filter Response} 打开滤波器可视化工具、{Saturate on integer overflow} 指定定点运算的溢出模式、{Coefficients} 指定系数数据类型、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Output} 输出数据类型、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型 也按实例取值；{Rolloff factor} 指定滚降因子，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | column vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter shape",
+   "default": "root",
+   "values": "滤波器形状 Square root (default) | Normal",
+   "group": ""
+  },
+  {
+   "name": "Rolloff factor",
+   "default": "0.2",
+   "values": "滚降因子 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter span in symbols",
+   "default": "10",
+   "values": "滤波器跨度（以符号为单位） 10 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output samples per symbol",
+   "default": "8",
+   "values": "每个符号的输出采样数 8 (default) | integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Linear amplitude filter gain",
+   "default": "1",
+   "values": "线性滤波器增益 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "输入处理控制 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "模块处理速率 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Export filter coefficients to workspace",
+   "default": "off",
+   "values": "导出滤波器系数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Coefficient variable name",
+   "default": "rcTxFilt",
+   "values": "系数变量名称 rcTxFilt (default)",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "打开滤波器可视化工具 button",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "定点运算的溢出模式 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "系数数据类型 Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "输出数据类型 Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": ""
+  }
+ ]
+}

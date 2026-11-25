@@ -1,0 +1,98 @@
+{
+ "key": "Clarke to Park Angle Transform",
+ "title": "Clarke to Park Angle Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Clarke_to_Park_Angle_Transform.md",
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/Park_Transform.md",
+  "Motor Control Blockset/Controls/Math Transforms/Park_Transform.md"
+ ],
+ "text": "实现 αβ0 到 dq0 变换，输入 6 路、输出 3 路；按 {Theta units} 指定电位置输入的单位；{Alpha-axis alignment} 指定 dq0 参考坐标系对齐、{Use block for embedded implementation (requires Motor Control Blockset™)} 使用模块进行嵌入式实现、{Number of inputs} 指定模块输入数 Two、{Theta input} 指定位置输入的类型 Sine and Cosine electrical、{Number of data points for lookup table} 查找表数组大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "αβ0",
+   "direction": "input",
+   "summary": "α - β 轴和零分量 vector"
+  },
+  {
+   "name": "α",
+   "direction": "input",
+   "summary": "α 轴分量 scalar"
+  },
+  {
+   "name": "β",
+   "direction": "input",
+   "summary": "β 轴分量 scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "旋转角度 scalar | in radians"
+  },
+  {
+   "name": "sinθ e",
+   "direction": "input",
+   "summary": "旋转角度的正弦值 scalar"
+  },
+  {
+   "name": "cosθ e",
+   "direction": "input",
+   "summary": "旋转角度的余弦值 scalar"
+  },
+  {
+   "name": "dq0",
+   "direction": "output",
+   "summary": "d - q 轴和零分量 vector"
+  },
+  {
+   "name": "d",
+   "direction": "output",
+   "summary": "直轴分量 scalar"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "交轴分量 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Alpha-axis alignment",
+   "default": "Q-axis",
+   "values": "dq0 参考坐标系对齐 Q-axis (default) | D-axis",
+   "group": ""
+  },
+  {
+   "name": "Use block for embedded implementation (requires Motor Control Blockset™)",
+   "default": "off",
+   "values": "使用模块进行嵌入式实现的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of inputs",
+   "default": "inputs",
+   "values": "模块输入数 Two inputs (default) | Three inputs",
+   "group": ""
+  },
+  {
+   "name": "Theta input",
+   "default": "position",
+   "values": "位置输入的类型 Sine and Cosine electrical position (default) | Electrical position",
+   "group": ""
+  },
+  {
+   "name": "Theta units",
+   "default": "Per-unit",
+   "values": "电位置输入的单位 Per-unit (default) | Radians | Degrees",
+   "group": ""
+  },
+  {
+   "name": "Number of data points for lookup table",
+   "default": "1024",
+   "values": "查找表数组大小 1024 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

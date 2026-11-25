@@ -1,0 +1,32 @@
+{
+ "key": "slrealtimepervarread",
+ "title": "Persistent Variable Read",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Target Management/Persistent_Variable_Read.md"
+ ],
+ "text": "从目标计算机读取持久变量值；输出 1 路；按 {Variable name} 指定持久变量的名称；{Default value} 指定目标计算机上不存在变量时持久变量的起始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "持久变量输出数据 variable data"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variable name",
+   "default": "Variable1",
+   "values": "持久变量的名称 Variable1 (default) | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Default value",
+   "default": "0",
+   "values": "目标计算机上不存在变量时持久变量的起始值 0 (default) | supports same data types as Data port",
+   "group": ""
+  }
+ ]
+}

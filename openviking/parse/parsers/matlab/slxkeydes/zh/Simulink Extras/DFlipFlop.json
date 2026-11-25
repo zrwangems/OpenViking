@@ -1,0 +1,46 @@
+{
+ "key": "DFlipFlop",
+ "title": "D Flip-Flop",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Flip Flops/D_Flip_Flop.md"
+ ],
+ "text": "负边沿触发的 J-K 触发器建模，输入 3 路、输出 2 路；{初始条件(Q 的状态)} 输出 Q 的初始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "J",
+   "direction": "input",
+   "summary": "输入信号 J 标量"
+  },
+  {
+   "name": "CLK",
+   "direction": "input",
+   "summary": "时钟信号 标量"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "输入信号 K 标量"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "输出信号 Q 标量"
+  },
+  {
+   "name": "!Q",
+   "direction": "output",
+   "summary": "输出信号 !Q 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始条件(Q 的状态)",
+   "default": "0",
+   "values": "输出 Q 的初始值 0 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

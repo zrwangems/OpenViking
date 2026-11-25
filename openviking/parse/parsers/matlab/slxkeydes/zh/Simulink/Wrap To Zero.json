@@ -1,0 +1,32 @@
+{
+ "key": "Wrap To Zero",
+ "title": "Wrap To Zero",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Wrap_To_Zero.md",
+  "HDL Coder/Discontinuities/Wrap_To_Zero.md"
+ ],
+ "text": "如果输入大于阈值，将输出设置为零，输入 1 路、输出 1 路；{阈值}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "阈值",
+   "default": "255",
+   "values": "使模块输出零的阈值 255 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

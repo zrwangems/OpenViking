@@ -1,0 +1,147 @@
+{
+ "key": "Interleaved ADC",
+ "title": "Interleaved ADC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Architectures/Interleaved_ADC.md"
+ ],
+ "text": "Time-interleaved ADC model, 4 inputs, 2 outputs, {Input range} sets ADC dynamic range [-1; {Number of bits} sets the number of physical output bits for all ADC, {Linearly interpolate analog input to find sampled value} sets the sub-sample interpolation with sinusoidal conversion start, {Number of ADCs (N)} sets the number of ADC cores to interleave, {Match output to input scale} sets the inherit output polarity and data type, {Output polarity} Defines ADC output polarity, {Output data type} Defines ADC output data, {Convert the output to scalar} sets the convert output to scalar, {Sample time} sets the fixed-step sample rate 6.25e-12, {Simulate using} defines how to simulate ADC, {Enable linearity impairments}, {Offset error} sets the shifts quantization steps by specific value, {Gain error} sets the error on slope of ADC transfer curve, {Enable timing impairments}, {Conversion delay (seconds)} sets the latency of ADC, {Enable offset calibration port} and {Enable gain calibration port}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "Analog input signal scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "External clock to start conversion scalar | vector"
+  },
+  {
+   "name": "Offset calibration",
+   "direction": "input",
+   "summary": "Offset error calibration at analog input scalar | vector"
+  },
+  {
+   "name": "Gain calibration",
+   "direction": "input",
+   "summary": "Gain error calibration at analog input scalar | vector"
+  },
+  {
+   "name": "digital",
+   "direction": "output",
+   "summary": "Converted digital output signal scalar | vector"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Determines whether analog to digital conversion is complete scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits",
+   "default": "8",
+   "values": "Number of physical output bits for all ADC cores 8 (default) | scalar | vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Input range",
+   "default": "1]",
+   "values": "ADC dynamic range [-1 1] (default) | 2-element row vector | [ NADCs x 2] matrix",
+   "group": "Configuration"
+  },
+  {
+   "name": "Linearly interpolate analog input to find sampled value",
+   "default": "off",
+   "values": "Sub-sample interpolation with sinusoidal conversion start signal off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Number of ADCs (N)",
+   "default": "4",
+   "values": "Number of ADC cores to interleave 4 (default) | positive real integer",
+   "group": "Configuration"
+  },
+  {
+   "name": "Match output to input scale",
+   "default": "off",
+   "values": "Inherit output polarity and data type from input off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output polarity",
+   "default": "Auto",
+   "values": "Defines ADC output polarity Auto (default) | Bipolar | Unipolar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Defines ADC output data type double (default) | single | (u)int8 | (u)int16 | (u)int32 | fixdt(OutputPolarity,NBits)",
+   "group": "Configuration"
+  },
+  {
+   "name": "Convert the output to scalar",
+   "default": "on",
+   "values": "Convert output to scalar on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Sample time",
+   "default": "6.25e-12",
+   "values": "Fixed-step sample rate 6.25e-12 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Define how to simulate ADC Code generation (default) | Interpreted execution",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable linearity impairments",
+   "default": "off",
+   "values": "Enable linearity impairments in ADC simulation off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "Shifts quantization steps by specific value 0 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "Error on slope of ADC transfer curve 0 LSB (default) | real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable timing impairments",
+   "default": "off",
+   "values": "Enable timing impairments in ADC simulation off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Conversion delay (seconds)",
+   "default": "0",
+   "values": "Latency of ADC 0 (default) | nonnegative real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable offset calibration port",
+   "default": "off",
+   "values": "Enable offset calibration port off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Enable gain calibration port",
+   "default": "off",
+   "values": "Enable gain calibration port off (default) | on",
+   "group": "Impairments"
+  }
+ ]
+}

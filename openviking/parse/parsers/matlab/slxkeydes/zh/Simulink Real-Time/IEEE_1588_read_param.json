@@ -1,0 +1,32 @@
+{
+ "key": "IEEE_1588_read_param",
+ "title": "IEEE 1588 Read Parameter",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/PTP/IEEE_1588_Read_Parameter.md"
+ ],
+ "text": "输出精确时间协议状态参数值，例如目标计算机系统时间、日历时间和延迟；输出 1 路；按 {Parameter to read} 指定输出时显示的参数 System time；{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "通过参数选择输出以读取参数 double | [uint32]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Parameter to read",
+   "default": "(nanosecond)",
+   "values": "输出时显示的参数 System time (nanosecond) (默认) | Calendar time (time_t) | Offset from Client | Client to Server Delay | One Way Delay",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 数值",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+ "key": "Analog Filter Design",
+ "title": "Analog Filter Design",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Analog_Filter_Design.md"
+ ],
+ "text": "Design and implement analog filters, 1 input, 1 output, no direct feedthrough, {Filter type} sets Filter type; {Design method} sets the filter design, {Filter order}, {Passband edge frequency (rad/s)}, {Lower passband edge frequency (rad/s)}, {Upper passband edge frequency (rad/s)}, {Stopband edge frequency (rad/s)}, {Lower stopband edge frequency (rad/s)}, {Upper stopband edge frequency (rad/s)}, {Passband ripple in dB} and {Stopband attenuation in dB}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Design method",
+   "default": "Butterworth",
+   "values": "Filter design Butterworth (default) | Chebyshev I | Chebyshev II | Elliptic | Bessel",
+   "group": ""
+  },
+  {
+   "name": "Filter type",
+   "default": "Lowpass",
+   "values": "Filter type Lowpass (default) | Highpass | Bandpass | Bandstop",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "8",
+   "values": "Filter order 8 (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Passband edge frequency (rad/s)",
+   "default": "30",
+   "values": "Passband edge frequency 30 (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Lower passband edge frequency (rad/s)",
+   "default": "30",
+   "values": "Lower passband edge frequency 30 (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Upper passband edge frequency (rad/s)",
+   "default": "80",
+   "values": "Upper passband edge frequency 80 (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Stopband edge frequency (rad/s)",
+   "default": "30",
+   "values": "Stopband edge frequency 30 (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Lower stopband edge frequency (rad/s)",
+   "default": "30",
+   "values": "Lower stopband edge frequency 30 (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Upper stopband edge frequency (rad/s)",
+   "default": "80",
+   "values": "Upper stopband edge frequency 80 (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Passband ripple in dB",
+   "default": "2",
+   "values": "Passband ripple 2 (default) | scalar value",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation in dB",
+   "default": "40",
+   "values": "Stopband attenuation 40 (default) | scalar value",
+   "group": ""
+  }
+ ]
+}

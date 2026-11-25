@@ -1,0 +1,31 @@
+{
+ "key": "IsSymmetric",
+ "title": "IsSymmetric",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/IsSymmetric.md"
+ ],
+ "text": "Check if matrix is symmetric or skew-symmetric, 1 input, 1 output, direct feedthrough; {Mode} sets the whether matrix is symmetric or skew-symmetric. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input matrix matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Symmetric or skew-symmetric matrix real scalar boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Symmetric",
+   "values": "Whether matrix is symmetric or skew-symmetric Symmetric (default) | Skew-Symmetric",
+   "group": ""
+  }
+ ]
+}

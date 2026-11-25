@@ -1,0 +1,174 @@
+{
+ "key": "Frequency Response Estimator",
+ "title": "Frequency Response Estimator",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Frequency Response Estimation/Frequency_Response_Estimator.md"
+ ],
+ "text": "Estimate plant frequency responses during simulation or in real time, 5 inputs, 4 outputs, {Experiment mode} sets Experiment mode; {Sample time (Ts)} sets the experiment sample time, {Output Signal Configuration} sets the provide control signal plus perturbation or perturbation only control action +, {Data Type} sets the floating point precision, {Excitation signal source}, {Frequencies}, {Frequency units}, {Amplitudes}, {Number of frequencies in the excitation signal} sets the number of externally supplied frequencies, {Number of settling periods} sets the number of periods to wait for settling, {Number of estimation periods} sets the number of periods after settling to use, {Number of periods of the lowest frequency used for estimation} sets the duration of data-collection window, {Number of periods}, {Signal order} sets the pRBS signal order, {Use Auto-Generated Value} sets the pRBS signal parameters automatically, {Estimation mode} sets the whether block performs estimation or only collects response data, {Display Bode plot} plots estimated frequency response, {Baseline plant model} sets the baseline model for Bode plot and {Refresh plot every N*Ts seconds where N is} sets how often to update Bode plot. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Plant input before perturbation scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "Start and stop the estimation experiment scalar"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "Frequencies for estimation experiment vector"
+  },
+  {
+   "name": "amp",
+   "direction": "input",
+   "summary": "Perturbation amplitudes scalar | vector"
+  },
+  {
+   "name": "u + Δu",
+   "direction": "output",
+   "summary": "Perturbed plant input scalar"
+  },
+  {
+   "name": "Δu",
+   "direction": "output",
+   "summary": "Plant input perturbation scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Experiment data bus"
+  },
+  {
+   "name": "frd",
+   "direction": "output",
+   "summary": "Estimated frequency responses vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "Experiment sample time 0.1 (default) | positive scalar | –1",
+   "group": ""
+  },
+  {
+   "name": "Output Signal Configuration",
+   "default": "perturbation",
+   "values": "Provide control signal plus perturbation or perturbation only control action + perturbation (default) | perturbation only",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Floating point precision double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Excitation signal source",
+   "default": "parameters",
+   "values": "Excitation signal source Block parameters (default) | External ports",
+   "group": ""
+  },
+  {
+   "name": "Frequencies",
+   "default": "2]",
+   "values": "Frequencies for estimation [0.5 1 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Frequency units",
+   "default": "rad/s",
+   "values": "Frequency units rad/s (default) | Hz",
+   "group": ""
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1",
+   "values": "Amplitudes of injected perturbations 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of frequencies in the excitation signal",
+   "default": "3",
+   "values": "Number of externally supplied frequencies 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Experiment mode",
+   "default": "Sinestream",
+   "values": "Experiment mode Sinestream (default) | Superposition | PRBS (since R2023a)",
+   "group": ""
+  },
+  {
+   "name": "Number of settling periods",
+   "default": "2",
+   "values": "Number of periods to wait for settling of transients 2 (default) | positive integer | vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Number of estimation periods",
+   "default": "4",
+   "values": "Number of periods after settling to use for estimation 4 (default) | integer ≥ 2 | vector of integers",
+   "group": ""
+  },
+  {
+   "name": "Number of periods of the lowest frequency used for estimation",
+   "default": "3",
+   "values": "Duration of data-collection window 3 (default) | integer between 1 and 5",
+   "group": ""
+  },
+  {
+   "name": "Number of periods",
+   "default": "1",
+   "values": "Number of periods in PRBS signal 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Signal order",
+   "default": "12",
+   "values": "PRBS signal order 12 (default) | positive integer ≤ 24",
+   "group": ""
+  },
+  {
+   "name": "Use Auto-Generated Value",
+   "default": "off",
+   "values": "Set PRBS signal parameters automatically off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Estimation mode",
+   "default": "Online",
+   "values": "Whether block performs estimation or only collects response data Online (default) | Offline",
+   "group": ""
+  },
+  {
+   "name": "Display Bode plot",
+   "default": "off",
+   "values": "Plot estimated frequency response off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Baseline plant model",
+   "default": "[]",
+   "values": "Baseline model for Bode plot [] (default) | LTI model",
+   "group": ""
+  },
+  {
+   "name": "Refresh plot every N*Ts seconds where N is",
+   "default": "100",
+   "values": "How often to update Bode plot 100 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

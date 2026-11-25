@@ -1,0 +1,150 @@
+{
+ "key": "CustomTuningWebBlock",
+ "title": "Horizontal Slider",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Customizable Blocks/Horizontal_Slider.md",
+  "Simulink/Dashboard/Customizable Blocks/Vertical_Slider.md",
+  "Simulink/Dashboard/Customizable Blocks/Check_Box.md",
+  "Simulink/Dashboard/Customizable Blocks/Combo_Box.md",
+  "Simulink/Dashboard/Customizable Blocks/Knob.md",
+  "Simulink/Dashboard/Customizable Blocks/Push_Button.md",
+  "Simulink/Dashboard/Customizable Blocks/Radio_Button.md",
+  "Simulink/Dashboard/Customizable Blocks/Rocker_Switch.md",
+  "Simulink/Dashboard/Customizable Blocks/Rotary_Switch.md",
+  "Simulink/Dashboard/Customizable Blocks/Slider_Switch.md",
+  "Simulink/Dashboard/Customizable Blocks/Toggle_Switch.md"
+ ],
+ "text": "使用具有可自定义外观的水平滑块更改参数或变量值；按 {Label} 指定显示所连接元素名称的标签位置；{Connection} 指定要连接的模块参数值 parameter value connection、{Minimum} 指定最小刻度线值、{Maximum} 指定最大刻度标记值、{Tick Interval} 指定主刻度标记之间的间隔、{Scale Direction} 指定刻度值递增方向、{Lock Aspect Ratio} 用于保持模块宽高比、{Origin} 指定刻度上的值，手柄从该值处移动，值条从该值处增长、{X Offset} 指定刻度边界框左边缘相对于模块左边缘的水平偏移、{Y Offset} 指定刻度边界框上边缘相对于模块上边缘的垂直偏移、{Width} 指定刻度宽度 scalar、{Height} 指定刻度高度 scalar、{Tick Color} 指定刻度线、跨度线和模块名称的颜色、{Label Color} 指定刻度标签字体颜色、{Label Offset} 指定刻度标签与刻度线自由端之间的垂直距离、{Offset from Scale} 指定值条顶边相对于跨度线的距离、{Size} 指定值条厚度 scalar、{Use Background Color} 用于指定纯色模块背景色、{Color} 指定模块背景色、{Opacity} 指定模块背景不透明度、{Corner Radius} 指定具有模块背景色的区域的圆角半径 scalar，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "要连接的模块参数值 parameter value connection options",
+   "group": "Parameters"
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "最小刻度线值 0 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum",
+   "default": "100",
+   "values": "最大刻度标记值 100 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Tick Interval",
+   "default": "auto",
+   "values": "主刻度标记之间的间隔 auto (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Scale Direction",
+   "default": "right’",
+   "values": "刻度值递增方向 ’Left to right’ (default) | ’Right to left’",
+   "group": "Parameters"
+  },
+  {
+   "name": "Label",
+   "default": "Hide",
+   "values": "显示所连接元素名称的标签位置 Hide (default) | Bottom | Top",
+   "group": "Parameters"
+  },
+  {
+   "name": "Lock Aspect Ratio",
+   "default": "on",
+   "values": "用于保持模块宽高比的选项 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Origin",
+   "default": "auto",
+   "values": "刻度上的值，手柄从该值处移动，值条从该值处增长 auto (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "X Offset",
+   "default": "",
+   "values": "刻度边界框左边缘相对于模块左边缘的水平偏移 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Y Offset",
+   "default": "",
+   "values": "刻度边界框上边缘相对于模块上边缘的垂直偏移 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Width",
+   "default": "",
+   "values": "刻度宽度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Height",
+   "default": "",
+   "values": "刻度高度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Tick Color",
+   "default": "",
+   "values": "刻度线、跨度线和模块名称的颜色 [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Label Color",
+   "default": "",
+   "values": "刻度标签字体颜色 [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Label Offset",
+   "default": "0.3",
+   "values": "刻度标签与刻度线自由端之间的垂直距离 0.3 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Offset from Scale",
+   "default": "0",
+   "values": "值条顶边相对于跨度线的距离 0 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Size",
+   "default": "",
+   "values": "值条厚度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Use Background Color",
+   "default": "off",
+   "values": "用于指定纯色模块背景色的选项 off (default) | on",
+   "group": "Design"
+  },
+  {
+   "name": "Color",
+   "default": "",
+   "values": "模块背景色 [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "模块背景不透明度 1 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Corner Radius",
+   "default": "",
+   "values": "具有模块背景色的区域的圆角半径 scalar",
+   "group": "Design"
+  }
+ ]
+}

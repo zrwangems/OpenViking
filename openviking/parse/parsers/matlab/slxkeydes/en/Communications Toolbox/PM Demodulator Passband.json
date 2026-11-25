@@ -1,0 +1,49 @@
+{
+ "key": "PM Demodulator Passband",
+ "title": "PM Demodulator Passband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Passband Modulation/PM_Demodulator_Passband.md"
+ ],
+ "text": "Demodulate PM-modulated data, 1 input, 1 output; {Carrier frequency (Hz)} sets the carrier frequency in Hz, {Initial phase (rad)} sets the initial phase offset in radians, {Phase deviation (rad)} sets the phase deviation of carrier frequency in radians and {Hilbert transform filter order (must be even)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Demodulated output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Carrier frequency (Hz)",
+   "default": "300",
+   "values": "Carrier frequency in Hz 300 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "Initial phase offset in radians 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase deviation (rad)",
+   "default": "pi/2",
+   "values": "Phase deviation of carrier frequency in radians pi/2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Hilbert transform filter order (must be even)",
+   "default": "100",
+   "values": "Hilbert transform filter order 100 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

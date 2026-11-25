@@ -1,0 +1,45 @@
+{
+ "key": "Assertion",
+ "title": "Assertion",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Model Verification/Assertion.md",
+  "HDL Coder/Model Verification/Assertion.md"
+ ],
+ "text": "检查信号是否为零，输入 1 路；按 {采样时间(-1 表示继承)} 指定采样之间的时间间隔；{启用断言} 启用或禁用检查、{断言失败时的仿真回调} 指定断言失败时要计算的表达式、{断言失败时停止仿真} 指定检查失败时是否停止仿真，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "启用断言",
+   "default": "on",
+   "values": "启用或禁用检查 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "断言失败时的仿真回调",
+   "default": "\"\"",
+   "values": "断言失败时要计算的表达式 \"\" (默认) | MATLAB 表达式",
+   "group": ""
+  },
+  {
+   "name": "断言失败时停止仿真",
+   "default": "on",
+   "values": "检查失败时是否停止仿真 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

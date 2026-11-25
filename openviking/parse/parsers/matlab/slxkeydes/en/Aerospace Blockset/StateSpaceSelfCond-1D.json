@@ -1,0 +1,77 @@
+{
+ "key": "StateSpaceSelfCond-1D",
+ "title": "1D Self-Conditioned [A(v),B(v),C(v),D(v)]",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/b_1D_Self_Conditioned_A_v_B_v_C_v_D_v.md"
+ ],
+ "text": "Implement gain-scheduled state-space controller in self-conditioned form depending on one scheduling parameter, 3 inputs, 1 output; {A-matrix(v)} sets a -matrix of the state-space implementation, {B-matrix(v)} sets the b -matrix of the state-space implementation, {C-matrix(v)} sets the c -matrix of the state-space implementation, {D-matrix(v)} sets the d -matrix of the state-space implementation, {Scheduling variable breakpoints} sets the breakpoints for scheduling, {Initial state, x_initial} sets the initial states and {Poles of A(v)-H(v)*C(v)} sets the desired poles. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Aircraft measurements vector"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "Scheduling variable vector"
+  },
+  {
+   "name": "u_meas",
+   "direction": "input",
+   "summary": "Measured actuator position vector"
+  },
+  {
+   "name": "u_dem",
+   "direction": "output",
+   "summary": "Actuator demands vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A-matrix(v)",
+   "default": "A",
+   "values": "A -matrix of the state-space implementation A (default) | array",
+   "group": ""
+  },
+  {
+   "name": "B-matrix(v)",
+   "default": "B",
+   "values": "B -matrix of the state-space implementation B (default) | array",
+   "group": ""
+  },
+  {
+   "name": "C-matrix(v)",
+   "default": "C",
+   "values": "C -matrix of the state-space implementation C (default) | array",
+   "group": ""
+  },
+  {
+   "name": "D-matrix(v)",
+   "default": "D",
+   "values": "D -matrix of the state-space implementation D (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Scheduling variable breakpoints",
+   "default": "v_vec",
+   "values": "Breakpoints for scheduling variable v_vec (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "Initial states 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Poles of A(v)-H(v)*C(v)",
+   "default": "-2]",
+   "values": "Desired poles [-5 -2] (default) | vector",
+   "group": ""
+  }
+ ]
+}

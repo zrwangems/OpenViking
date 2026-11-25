@@ -1,0 +1,155 @@
+{
+ "key": "Sensorless Six-Step Commutation",
+ "title": "Sensorless Six-Step Commutation",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/Sensorless_Six_Step_Commutation.md"
+ ],
+ "text": "Use six-step commutation to run a BLDC motor or PMSM using sensorless control, 6 inputs, 4 outputs; {Alignment} determines initial rotor position by checking rotor, {Alignment -> Open-loop run} determines rotor position by starting the motor, {Alignment -> Open-loop run -> Controlled commutation} determines rotor position by running the motor, {Number of motor pole pairs}, {Discrete step size (s)} sets the sample time after which block executes again, {Alignment duty cycle} sets the duty cycle of voltage to be applied between phases, {Alignment time} sets the duration to apply the voltage between phase, {Open-loop duty cycle (range: [0,1])} sets the duty cycle of voltage to be applied to all three, {Target open-loop speed (RPM)} sets the target speed, {Ramp up time to reach target open-loop speed (s)}, {Open-loop speed to initiate transition to controlled commutation (RPM)} sets the speed at which the algorithm starts motor phase voltage acquisition process during open-loop, {Speed samples required to complete transition to controlled commutation} sets the minimum number of speed samples to be considered before transitioning to controlled commutation, {Compensation for filter delay (Tf) and demagnetization time (Td)} sets the one of the two methods to define compensation for T f and T d Specify via, {Time delay due to voltage sense filter, Tf (s)} sets the time delay to compensate for delay due to a hardware or software filter used for voltage measurement and {Demagnetization time, Td (s)} sets the time during which the demagnetization of winding is occurring and voltage signals need not be acquired. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "StartDir",
+   "direction": "input",
+   "summary": "Direction of motor rotation +1 | -1"
+  },
+  {
+   "name": "Vabc Meas",
+   "direction": "input",
+   "summary": "Measured motor terminal voltages vector"
+  },
+  {
+   "name": "Vdc Meas",
+   "direction": "input",
+   "summary": "Measured DC bus voltages vector"
+  },
+  {
+   "name": "Duty Ref",
+   "direction": "input",
+   "summary": "Reference duty cycle input scalar | [0,1]"
+  },
+  {
+   "name": "[T f,T d ]",
+   "direction": "input",
+   "summary": "Filter time delay and demagnetization time delay vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Enable or disable the block scalar"
+  },
+  {
+   "name": "Duty",
+   "direction": "output",
+   "summary": "Duty cycle for the six switches using six-step commutation pattern scalar"
+  },
+  {
+   "name": "ω m",
+   "direction": "output",
+   "summary": "Angular speed detected based on the BEMF (back EMF) zero cross detection scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Signal information for testing or debugging bus"
+  },
+  {
+   "name": "ComStatus",
+   "direction": "output",
+   "summary": "Indication that block is transitioning from open-loop to controlled six-step commutation logical"
+  }
+ ],
+ "params": [
+  {
+   "name": "Alignment",
+   "default": "off",
+   "values": "Determine initial rotor position by checking rotor alignment off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Alignment -> Open-loop run",
+   "default": "off",
+   "values": "Determine rotor position by starting the motor in open-loop off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Alignment -> Open-loop run -> Controlled commutation",
+   "default": "on",
+   "values": "Determine rotor position by running the motor in closed-loop on (default) | of",
+   "group": ""
+  },
+  {
+   "name": "Number of motor pole pairs",
+   "default": "4",
+   "values": "Number of motor pole pairs 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Sample time after which block executes again 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Alignment duty cycle",
+   "default": "0.3",
+   "values": "Duty cycle of voltage to be applied between phases A and B 0.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Alignment time",
+   "default": "0.5",
+   "values": "Duration to apply the voltage between phase A and B 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open-loop duty cycle (range: [0,1])",
+   "default": "0.4",
+   "values": "Duty cycle of voltage to be applied to all three phases 0.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Target open-loop speed (RPM)",
+   "default": "800",
+   "values": "Target speed (RPM) to be achieved to generate a sufficient back-EMF during open-loop run 800 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ramp up time to reach target open-loop speed (s)",
+   "default": "0.7",
+   "values": "Ramp up time (s) to achieve the RPM value specified for Target open-loop speed 0.7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open-loop speed to initiate transition to controlled commutation (RPM)",
+   "default": "500",
+   "values": "Speed at which the algorithm starts motor phase voltage acquisition process during open-loop phase 500 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed samples required to complete transition to controlled commutation",
+   "default": "10",
+   "values": "Minimum number of speed samples to be considered before transitioning to controlled commutation phase 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Compensation for filter delay (Tf) and demagnetization time (Td)",
+   "default": "dialog",
+   "values": "Specify one of the two methods to define compensation for T f and T d Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Time delay due to voltage sense filter, Tf (s)",
+   "default": "450e-6",
+   "values": "Time delay to compensate for delay due to a hardware or software filter used for voltage measurement 450e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Demagnetization time, Td (s)",
+   "default": "175e-6",
+   "values": "Time during which the demagnetization of winding is occurring and voltage signals need not be acquired 175e-6 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

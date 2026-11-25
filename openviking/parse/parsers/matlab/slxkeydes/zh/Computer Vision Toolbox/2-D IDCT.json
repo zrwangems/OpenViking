@@ -1,0 +1,37 @@
+{
+ "key": "2-D IDCT",
+ "title": "2-D IDCT",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/b_2_D_IDCT.md"
+ ],
+ "text": "计算二维逆离散余弦变换 (IDCT)，输入 1 路、输出 1 路；{Sine and cosine computation} 指定模块如何计算正弦和余弦项 Table、{Lock data type settings against change by the fixed-point tools} 指定数据类型覆盖，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 matrix | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出数据 matrix | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sine and cosine computation",
+   "default": "lookup",
+   "values": "模块如何计算正弦和余弦项 Table lookup (default) | Trigonometric fcn",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "数据类型覆盖 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+ "key": "EVM Measurement",
+ "title": "EVM Measurement",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Utility Blocks/EVM_Measurement.md"
+ ],
+ "text": "测量误差矢量幅度（EVM），输入 2 路、输出 4 路；按 {Measurement interval} 指定测量区间源 Input；{Normalize RMS error vector by} 指定归一化方法 Average reference signal、{Average constellation power} 指定平均星座功率、{Peak constellation power} 指定峰值星座功率、{Reference signal} 指定参考信号源 Input port、{Reference constellation} 指定参考星座 constellation、{Custom measurement interval} 指定自定义测量区间、{Averaging dimensions} 指定求平均维度、{Output maximum EVM} 用于添加 max 端口以输出最大 EVM、{Output X-percentile EVM} 用于添加 X% 端口以输出 X 百分位 EVM、{X-percentile value (%)} 指定 X% 的 EVM 测量值低于的值、{Output the number of symbols processed} 用于添加 nSym 端口以输出符号数、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ref",
+   "direction": "input",
+   "summary": "参考信号 array"
+  },
+  {
+   "name": "Rcv",
+   "direction": "input",
+   "summary": "接收信号 array"
+  },
+  {
+   "name": "RMS",
+   "direction": "output",
+   "summary": "RMS EVM 百分比 scalar"
+  },
+  {
+   "name": "max",
+   "direction": "output",
+   "summary": "最大 EVM 百分比 scalar"
+  },
+  {
+   "name": "X%",
+   "direction": "output",
+   "summary": "X% 的 EVM 测量值低于的值 scalar in the range [0, 100]"
+  },
+  {
+   "name": "nSym",
+   "direction": "output",
+   "summary": "符号数 positive integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Normalize RMS error vector by",
+   "default": "power",
+   "values": "归一化方法 Average reference signal power (default) | Average constellation power | Peak constellation power",
+   "group": ""
+  },
+  {
+   "name": "Average constellation power",
+   "default": "1",
+   "values": "平均星座功率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Peak constellation power",
+   "default": "1",
+   "values": "峰值星座功率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference signal",
+   "default": "",
+   "values": "参考信号源 Input port | Estimated from reference constellation",
+   "group": ""
+  },
+  {
+   "name": "Reference constellation",
+   "default": "constellation(pskmod((0:3)’,4,pi/4,\"bin\"))",
+   "values": "参考星座 constellation(pskmod((0:3)’,4,pi/4,\"bin\")) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Measurement interval",
+   "default": "length",
+   "values": "测量区间源 Input length (default) | Entire history | Custom | Custom with periodic reset",
+   "group": ""
+  },
+  {
+   "name": "Custom measurement interval",
+   "default": "100",
+   "values": "自定义测量区间 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Averaging dimensions",
+   "default": "1",
+   "values": "求平均维度 1 (default) | vector of integers in the range [1, 3]",
+   "group": ""
+  },
+  {
+   "name": "Output maximum EVM",
+   "default": "Off",
+   "values": "用于添加 max 端口以输出最大 EVM 测量值的选项 Off (default) | On",
+   "group": ""
+  },
+  {
+   "name": "Output X-percentile EVM",
+   "default": "Off",
+   "values": "用于添加 X% 端口以输出 X 百分位 EVM 测量值的选项 Off (default) | On",
+   "group": ""
+  },
+  {
+   "name": "X-percentile value (%)",
+   "default": "95",
+   "values": "X% 的 EVM 测量值低于的值 95 (default) | scalar in the range [0, 100]",
+   "group": ""
+  },
+  {
+   "name": "Output the number of symbols processed",
+   "default": "Off",
+   "values": "用于添加 nSym 端口以输出符号数的选项 Off (default) | On",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

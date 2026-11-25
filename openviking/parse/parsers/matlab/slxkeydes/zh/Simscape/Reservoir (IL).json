@@ -1,0 +1,13 @@
+{
+ "key": "Reservoir (IL)",
+ "title": "Reservoir (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Reservoir_IL.md"
+ ],
+ "text": "压力恒定或随时间变化的等温液体储液器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

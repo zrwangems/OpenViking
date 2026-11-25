@@ -1,0 +1,65 @@
+{
+ "key": "OFDM Channel Response",
+ "title": "OFDM Channel Response",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Channels/OFDM_Channel_Response.md"
+ ],
+ "text": "计算 OFDM 信道响应，输入 3 路、输出 1 路；按 {Active subcarrier indices} 指定活动子载波数；{FFT length} 指定 FFT 长度、{Cyclic prefix length} 指定一个 OFDM 符号的循环前缀长度、{Enable timing offset input port} 添加定时偏移输入端口、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Path gains",
+   "direction": "input",
+   "summary": "信道路径增益 array"
+  },
+  {
+   "name": "Path filters",
+   "direction": "input",
+   "summary": "信道路径滤波器系数 matrix"
+  },
+  {
+   "name": "Offset",
+   "direction": "input",
+   "summary": "定时偏移 scalar"
+  },
+  {
+   "name": "hEst",
+   "direction": "output",
+   "summary": "频率响应 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "FFT length",
+   "default": "512",
+   "values": "FFT 长度 512 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Cyclic prefix length",
+   "default": "16",
+   "values": "一个 OFDM 符号的循环前缀长度 16 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Active subcarrier indices",
+   "default": "1:512",
+   "values": "活动子载波数 1:512 (default) | positive integer | column vector",
+   "group": ""
+  },
+  {
+   "name": "Enable timing offset input port",
+   "default": "off",
+   "values": "添加定时偏移输入端口的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

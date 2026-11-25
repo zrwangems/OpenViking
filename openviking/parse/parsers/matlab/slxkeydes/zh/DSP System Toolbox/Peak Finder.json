@@ -1,0 +1,88 @@
+{
+ "key": "Peak Finder",
+ "title": "Peak Finder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Peak_Finder.md"
+ ],
+ "text": "确定输入信号的每个值是局部最小值还是局部最大值，输入 1 路、输出 4 路、无直接馈通；按 {Threshold} 指定低于此阈值的峰值将被忽略；{Peak type(s)} 指定要识别的峰值类型 Maxima、{Index base} 指定索引基准 Zero、{Output peak indices} 启用峰值索引输出、{Output peak values} 启用峰值输出、{Maximum number of peaks to find} 指定要识别的最大峰值数量、{Ignore peaks within threshold of neighboring values} 指定忽略低于阈值的峰值、{Saturate on integer overflow} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "数据输入 column vector of at least three rows | matrix with at least three rows"
+  },
+  {
+   "name": "Cnt",
+   "direction": "output",
+   "summary": "峰值数量 scalar | row vector"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "峰值索引 column vector | matrix"
+  },
+  {
+   "name": "Val",
+   "direction": "output",
+   "summary": "峰值 column vector | matrix"
+  },
+  {
+   "name": "Pol",
+   "direction": "output",
+   "summary": "峰值极性 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Peak type(s)",
+   "default": "Minima",
+   "values": "要识别的峰值类型 Maxima and Minima (default) | Maxima | Minima",
+   "group": ""
+  },
+  {
+   "name": "Index base",
+   "default": "Zero",
+   "values": "索引基准 Zero (default) | One",
+   "group": ""
+  },
+  {
+   "name": "Output peak indices",
+   "default": "off",
+   "values": "启用峰值索引输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output peak values",
+   "default": "off",
+   "values": "启用峰值输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of peaks to find",
+   "default": "10",
+   "values": "要识别的最大峰值数量 10 (default) | integer greater than or equal to 1",
+   "group": ""
+  },
+  {
+   "name": "Ignore peaks within threshold of neighboring values",
+   "default": "off",
+   "values": "忽略低于阈值的峰值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "0",
+   "values": "低于此阈值的峰值将被忽略 0 (default) | positive real scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": ""
+  }
+ ]
+}

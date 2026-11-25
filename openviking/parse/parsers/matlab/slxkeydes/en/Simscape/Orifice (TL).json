@@ -1,0 +1,13 @@
+{
+ "key": "Orifice (TL)",
+ "title": "Orifice (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Orifice_TL.md"
+ ],
+ "text": "Constant-area or variable-area orifice in a thermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

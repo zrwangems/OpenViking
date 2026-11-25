@@ -1,0 +1,13 @@
+{
+ "key": "Wye-Connected Variable Load",
+ "title": "Wye-Connected Variable Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/RLC Assemblies/Wye_Connected_Variable_Load.md"
+ ],
+ "text": "Three-phase variable load wired in wye configuration.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

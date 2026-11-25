@@ -1,0 +1,48 @@
+{
+ "key": "EntityTransportDelay",
+ "title": "Entity Transport Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Entity_Transport_Delay.md",
+  "SimEvents/Entity_Transport_Delay.md"
+ ],
+ "text": "引入 SimEvents 消息传播的延迟，输入 2 路、输出 2 路；{容量}、{输出模块中实体的数量，n} 输出模块中存在的延迟实体的数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 SimEvents 实体"
+  },
+  {
+   "name": "t i",
+   "direction": "input",
+   "summary": "瞬时延迟 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "延迟实体 SimEvents 实体"
+  },
+  {
+   "name": "n",
+   "direction": "output",
+   "summary": "延迟实体的数量 实数标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "容量",
+   "default": "inf",
+   "values": "指定模块的容量 inf (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输出模块中实体的数量，n",
+   "default": "off",
+   "values": "输出模块中存在的延迟实体的数量 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

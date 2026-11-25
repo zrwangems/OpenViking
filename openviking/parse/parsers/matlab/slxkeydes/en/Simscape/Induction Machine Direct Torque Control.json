@@ -1,0 +1,70 @@
+{
+ "key": "Induction Machine Direct Torque Control",
+ "title": "Induction Machine Direct Torque Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Induction Machine Control/Induction_Machine_Direct_Torque_Control.md"
+ ],
+ "text": "Induction machine DTC, 4 inputs, 1 output; {Stator resistance (Ohm)} sets the resistance, {Number of pole pairs} sets the pole number, {Flux hysteresis bandwidth (Wb)} sets the flux, {Torque hysteresis bandwidth (N*m)} and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "FluxRef",
+   "direction": "input",
+   "summary": "Flux scalar"
+  },
+  {
+   "name": "TqRef",
+   "direction": "input",
+   "summary": "Torque scalar"
+  },
+  {
+   "name": "vabc",
+   "direction": "input",
+   "summary": "Voltage vector"
+  },
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "Current vector"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Gate pulses vector | 0 or 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Stator resistance (Ohm)",
+   "default": "0.25",
+   "values": "Resistance 0.25 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "1",
+   "values": "Pole number 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Flux hysteresis bandwidth (Wb)",
+   "default": "0.02",
+   "values": "Flux 0.02 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Torque hysteresis bandwidth (N*m)",
+   "default": "10",
+   "values": "Torque 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

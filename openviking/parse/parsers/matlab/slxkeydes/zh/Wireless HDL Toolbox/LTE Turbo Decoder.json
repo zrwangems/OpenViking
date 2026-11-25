@@ -1,0 +1,58 @@
+{
+ "key": "LTE Turbo Decoder",
+ "title": "LTE Turbo Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/LTE_Turbo_Decoder.md"
+ ],
+ "text": "解码 Turbo 编码样本，输入 3 路、输出 2 路；{Block size source} 指定如何指定块大小 Input、{Block size} 指定 Turbo 码块大小、{Number of decoding iterations} 指定要执行的 MAX 解码迭代次数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入样本 three-element vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "blockSize",
+   "direction": "input",
+   "summary": "Turbo 码块大小 integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "输出样本 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Block size source",
+   "default": "port",
+   "values": "如何指定块大小 Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Block size",
+   "default": "6144",
+   "values": "Turbo 码块大小 6144 (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of decoding iterations",
+   "default": "6",
+   "values": "要执行的 MAX 解码迭代次数 6 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

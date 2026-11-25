@@ -1,0 +1,50 @@
+{
+ "key": "Backlash",
+ "title": "Backlash",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Backlash.md",
+  "HDL Coder/Discontinuities/Backlash.md"
+ ],
+ "text": "Model behavior of system with play, 1 input, 1 output, direct feedthrough, {Initial output} sets the initial output value; {Deadband width} sets the width of the deadband, {Input processing} sets the sample- or frame-based processing Elements and {Enable zero-crossing detection}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Deadband width",
+   "default": "1",
+   "values": "Specify the width of the deadband 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Specify the initial output value 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": ""
+  }
+ ]
+}

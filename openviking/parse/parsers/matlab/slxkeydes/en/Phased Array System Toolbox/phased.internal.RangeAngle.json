@@ -1,0 +1,82 @@
+{
+ "key": "phased.internal.RangeAngle",
+ "title": "Range Angle Calculator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Range_Angle_Calculator.md"
+ ],
+ "text": "Range and angle calculations, 3 inputs, 2 outputs, {Output(s)} sets Output(s); {Propagation model}, {Reference position source}, {Reference position}, {Reference axes source}, {Reference axes} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pos",
+   "direction": "input",
+   "summary": "Source point position real-valued 3-by-1 vector | real-valued 3-by- N matrix"
+  },
+  {
+   "name": "RefPos",
+   "direction": "input",
+   "summary": "Reference point position [0;0;0] (default) | real-valued 3-by-1 vector | real-valued 3-by- N matrix"
+  },
+  {
+   "name": "RefAxes",
+   "direction": "input",
+   "summary": "Local coordinate system axes [1 0 0;0 1 0;0 0 1] (default) | real-valued 3-by-3 vector | real-valued 3-by-3-by- N array"
+  },
+  {
+   "name": "Ang",
+   "direction": "output",
+   "summary": "Azimuth and elevation angles real-valued 2-by- N matrix | real-valued 2-by-2 N matrix"
+  },
+  {
+   "name": "Range",
+   "direction": "output",
+   "summary": "Propagation range real-valued 1-by- N vector | real-valued 1-by-2 N vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Propagation model",
+   "default": "space",
+   "values": "Propagation model Free space (default) | Two-ray",
+   "group": ""
+  },
+  {
+   "name": "Reference position source",
+   "default": "Property",
+   "values": "Reference position source Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Reference position",
+   "default": "[0;0;0]",
+   "values": "Reference position [0;0;0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Reference axes source",
+   "default": "Property",
+   "values": "Reference axes source Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Reference axes",
+   "default": "",
+   "values": "Reference axes eye(3)",
+   "group": ""
+  },
+  {
+   "name": "Output(s)",
+   "default": "Angle",
+   "values": "Output(s) Angle (default) | Range | Range and Angle",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

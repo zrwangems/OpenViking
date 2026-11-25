@@ -1,0 +1,13 @@
+{
+ "key": "NMOS Capacitor",
+ "title": "NMOS Capacitor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/NMOS_Capacitor.md"
+ ],
+ "text": "N 型金属氧化物半导体电容器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

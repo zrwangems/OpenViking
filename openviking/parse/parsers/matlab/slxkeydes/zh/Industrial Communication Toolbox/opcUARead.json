@@ -1,0 +1,66 @@
+{
+ "key": "opcUARead",
+ "title": "OPC UA Read",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/OPC Unified Architecture/OPC_UA_Read.md"
+ ],
+ "text": "从 OPC UA 服务器读取数据；输出 3 路；{Server} 为模块定义 OPC UA 服务器 drop-down、{Nodes} 指定 OPC UA 服务器节点列表 table、{Show quality port} 指定向模块添加质量输出、{Show timestamp port} 指定向模块添加时间戳输出、{Show timestamp port as} 指定时间戳基准 Seconds since、{Sample time} 指定读取操作的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Value",
+   "direction": "output",
+   "summary": "所选节点的当前数据值 scalar | bus"
+  },
+  {
+   "name": "Timestamp",
+   "direction": "output",
+   "summary": "所选节点数据的时间戳 seconds (default) | date number"
+  },
+  {
+   "name": "Quality",
+   "direction": "output",
+   "summary": "从所选节点读取的数据的质量 boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Server",
+   "default": "",
+   "values": "为模块定义 OPC UA 服务器 drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Nodes",
+   "default": "",
+   "values": "OPC UA 服务器节点列表 table",
+   "group": ""
+  },
+  {
+   "name": "Show quality port",
+   "default": "on",
+   "values": "向模块添加质量输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show timestamp port",
+   "default": "on",
+   "values": "向模块添加时间戳输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show timestamp port as",
+   "default": "start",
+   "values": "设置时间戳基准 Seconds since start (default) | Serial date number",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "读取操作的采样时间 -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

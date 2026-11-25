@@ -1,0 +1,13 @@
+{
+ "key": "Dynamic Load",
+ "title": "Dynamic Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Dynamic_Load.md"
+ ],
+ "text": "用于直流或交流电源的动态负载。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

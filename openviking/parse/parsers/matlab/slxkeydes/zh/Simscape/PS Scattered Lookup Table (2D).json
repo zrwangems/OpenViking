@@ -1,0 +1,13 @@
+{
+ "key": "PS Scattered Lookup Table (2D)",
+ "title": "PS Scattered Lookup Table (2D)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Lookup Tables/PS_Scattered_Lookup_Table_2D.md"
+ ],
+ "text": "使用散点数据查找来近似二维函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

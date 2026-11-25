@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Source (MA)",
+ "title": "Pressure Source (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sources/Pressure_Source_MA.md"
+ ],
+ "text": "生成恒定或随时间变化的压差。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

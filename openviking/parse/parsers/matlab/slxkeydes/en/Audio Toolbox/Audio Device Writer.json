@@ -1,0 +1,80 @@
+{
+ "key": "Audio Device Writer",
+ "title": "Audio Device Writer",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sinks/Audio_Device_Writer.md",
+  "DSP System Toolbox/Sinks/Audio_Device_Writer.md"
+ ],
+ "text": "Play to sound card, 1 input, 1 output, no direct feedthrough, {Device output channels} sets nondefault channel mapping; {Driver}, {Device}, {Info} sets the view information about your audio output configuration, {Inherit sample rate from input} sets the source of input sample rate, {Sample rate (Hz)} sets the sample rate used by device to play audio, {Device bit depth} sets the data type used by device to perform digital-to-analog conversion 16-bit, {Use default channel mapping} sets the toggle channel mapping source and {Output number of samples underrun} sets the output port for number of samples underrun. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Number of samples underrun scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Driver",
+   "default": "DirectSound",
+   "values": "Driver used to access your audio device DirectSound (default) | ASIO | WASAPI",
+   "group": ""
+  },
+  {
+   "name": "Device",
+   "default": "device",
+   "values": "Device used to play audio samples default audio device (default)",
+   "group": ""
+  },
+  {
+   "name": "Info",
+   "default": "",
+   "values": "View information about your audio output configuration button",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Specify source of input sample rate on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate used by device to play audio data 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Device bit depth",
+   "default": "integer",
+   "values": "Data type used by device to perform digital-to-analog conversion 16-bit integer (default) | 8-bit integer | 24-bit integer | 32-bit float",
+   "group": ""
+  },
+  {
+   "name": "Use default channel mapping",
+   "default": "on",
+   "values": "Toggle channel mapping source on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Device output channels",
+   "default": "[1:MaximumOutputChannels]",
+   "values": "Specify nondefault channel mapping [1:MaximumOutputChannels] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output number of samples underrun",
+   "default": "off",
+   "values": "Specify output port for number of samples underrun off (default) | on",
+   "group": ""
+  }
+ ]
+}

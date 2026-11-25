@@ -1,0 +1,13 @@
+{
+ "key": "FEM-Parameterized Induction Machine (Squirrel Cage)",
+ "title": "FEM-Parameterized Induction Machine (Squirrel Cage)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/FEM_Parameterized_Induction_Machine_Squirrel_Cage.md"
+ ],
+ "text": "Squirrel-cage-rotor induction machine defined in terms of magnetic flux linkage.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

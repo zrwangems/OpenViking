@@ -1,0 +1,75 @@
+{
+ "key": "DQ Limiter",
+ "title": "DQ Limiter",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Control Reference/DQ_Limiter.md",
+  "Motor Control Blockset/Controls/Control Reference/DQ_Limiter.md"
+ ],
+ "text": "dq 参考系中的饱和电压（或电流），输入 4 路、输出 3 路；按 {选定的饱和方法} 指定模块使用的饱和方法 D-Q；{饱和方法}、{饱和界限}、{饱和限值} 指定相电压，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "d ref",
+   "direction": "input",
+   "summary": "参考 d 轴电压（或电流） 标量"
+  },
+  {
+   "name": "q ref",
+   "direction": "input",
+   "summary": "参考 q 轴电压（或电流） 标量"
+  },
+  {
+   "name": "satMethod",
+   "direction": "input",
+   "summary": "饱和方法 标量"
+  },
+  {
+   "name": "satLim",
+   "direction": "input",
+   "summary": "饱和界限 标量"
+  },
+  {
+   "name": "d sat",
+   "direction": "output",
+   "summary": "饱和 d 轴电压（或电流） 标量"
+  },
+  {
+   "name": "q sat",
+   "direction": "output",
+   "summary": "饱和 q 轴电压（或电流） 标量"
+  },
+  {
+   "name": "mag ref",
+   "direction": "output",
+   "summary": "模块输入的非饱和峰值 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "饱和方法",
+   "default": "dialog",
+   "values": "饱和方法选择方式 Specify via dialog (默认) | Input port",
+   "group": ""
+  },
+  {
+   "name": "选定的饱和方法",
+   "default": "equivalence",
+   "values": "模块使用的饱和方法 D-Q equivalence (默认) | Prioritize D axis | Prioritize Q axis",
+   "group": ""
+  },
+  {
+   "name": "饱和界限",
+   "default": "dialog",
+   "values": "饱和界限选择方式 Specify via dialog (默认) | Input port",
+   "group": ""
+  },
+  {
+   "name": "饱和限值",
+   "default": "1",
+   "values": "相电压（或电流）峰值限值 1 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+ "key": "Audio Device Reader",
+ "title": "Audio Device Reader",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sources/Audio_Device_Reader.md"
+ ],
+ "text": "Audio Device Reader 模块使用计算机的音频设备读取音频采样；输出 2 路、无直接馈通；按 {Device input channels} 指定非默认通道映射；{Driver} 用于访问音频设备的驱动程序、{Device} 用于采集音频采样的设备 default audio、{Info} 指定查看有关音频输入配置的信息、{Sample rate (Hz)} 指定设备用于采集音频数据的采样率、{Number of channels} 指定音频设备采集的通道数、{Samples per frame} 指定从音频设备读取的帧大小、{Device bit depth} 指定设备用于采集音频数据的数据类型 16-bit、{Use default channel mapping} 指定切换通道映射源、{Output number of samples overrun} 用于输出溢出样本数的附加输出端口、{Output data type} 指定模块输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  },
+  {
+   "name": "O",
+   "direction": "output",
+   "summary": "采样溢出数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Driver",
+   "default": "DirectSound",
+   "values": "用于访问音频设备的驱动程序 DirectSound (default) | ASIO | WASAPI",
+   "group": ""
+  },
+  {
+   "name": "Device",
+   "default": "device",
+   "values": "用于采集音频采样的设备 default audio device (default)",
+   "group": ""
+  },
+  {
+   "name": "Info",
+   "default": "",
+   "values": "查看有关音频输入配置的信息 button",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "设备用于采集音频数据的采样率 44100 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Number of channels",
+   "default": "1",
+   "values": "音频设备采集的通道数 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1024",
+   "values": "从音频设备读取的帧大小 1024 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Device bit depth",
+   "default": "integer",
+   "values": "设备用于采集音频数据的数据类型 16-bit integer (default) | 8-bit integer | 16-bit integer | 24-bit integer | 32-bit integer",
+   "group": ""
+  },
+  {
+   "name": "Use default channel mapping",
+   "default": "on",
+   "values": "切换通道映射源 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Device input channels",
+   "default": "[1:MaximumInputChannels]",
+   "values": "指定非默认通道映射 [1:MaximumInputChannels] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output number of samples overrun",
+   "default": "off",
+   "values": "指定用于输出溢出样本数的附加输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "模块输出的数据类型 double (default) | single | int32 | int16 | uint8",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "key": "XCP UDP Bypass",
+ "title": "XCP UDP Bypass",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/XCP/UDP/XCP_UDP_Bypass.md",
+  "Vehicle Network Toolbox/XCP Communication/UDP/XCP_UDP_Bypass.md"
+ ],
+ "text": "将函数调用输出端口连接到函数调用子系统；输出 1 路；{Task Priority} 指定 QNX Neutrino 调度器中的任务优先级、{Sample Time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Function-call",
+   "direction": "output",
+   "summary": "绕过函数调用 函数调用"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task Priority",
+   "default": "191",
+   "values": "QNX Neutrino 调度器中的任务优先级 191 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "采样时间 -1 (默认) | 双精度",
+   "group": ""
+  }
+ ]
+}

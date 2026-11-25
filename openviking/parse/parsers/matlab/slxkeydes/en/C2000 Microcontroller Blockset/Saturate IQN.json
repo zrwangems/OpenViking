@@ -1,0 +1,13 @@
+{
+ "key": "Saturate IQN",
+ "title": "Saturate IQN",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/Saturate_IQN.md"
+ ],
+ "text": "Saturate IQ number.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

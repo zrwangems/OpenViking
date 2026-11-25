@@ -1,0 +1,13 @@
+{
+ "key": "RC Servo",
+ "title": "RC Servo",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Brushed Motors/RC_Servo.md"
+ ],
+ "text": "具有基于 PWM 的角位置跟踪和故障建模的无线电控制伺服电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

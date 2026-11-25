@@ -1,0 +1,56 @@
+{
+ "key": "Diagnostic Service Component",
+ "title": "Diagnostic Service Component",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/Diagnostic_Service_Component.md"
+ ],
+ "text": "Configure AUTOSAR Diagnostic Services and Runtime Environment (RTE) for emulation, {Mask} sets Inhibition condition mask LAST_FAILED; {ID (RTE tab)} sets the iD that identifies service event, operation cycle, or function with inhibition, {Increment step size} sets the fixed-step value to increment event ID counter when PREFAIL events, {Decrement step size} sets the fixed-step value to decrement the event ID counter when PREPASS events, {Failed threshold} sets the dem event ID counter threshold that represents a failed, {Passed threshold} sets the dem event ID counter threshold that represents passed and {ID (FiM tab)} sets the inhibition condition ID. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "ID (RTE tab)",
+   "default": "1",
+   "values": "ID that identifies service event, operation cycle, or function with inhibition condition 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Increment step size",
+   "default": "1",
+   "values": "Fixed-step value to increment event ID counter when PREFAIL events arrive 1 (default) | scalar (1 to 32767)",
+   "group": ""
+  },
+  {
+   "name": "Decrement step size",
+   "default": "1",
+   "values": "Fixed-step value to decrement the event ID counter when PREPASS events arrive 1 (default) | scalar (1 to 32767)",
+   "group": ""
+  },
+  {
+   "name": "Failed threshold",
+   "default": "2",
+   "values": "Dem event ID counter threshold that represents a failed status 2 (default) | scalar (1 to 32767)",
+   "group": ""
+  },
+  {
+   "name": "Passed threshold",
+   "default": "-1",
+   "values": "Dem event ID counter threshold that represents passed status -1 (default) | scalar (-32768 to -1)",
+   "group": ""
+  },
+  {
+   "name": "ID (FiM tab)",
+   "default": "1",
+   "values": "Inhibition condition ID 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mask",
+   "default": "",
+   "values": "Inhibition condition mask LAST_FAILED | NOT_TESTED | TESTED | TESTED_AND_FAILED",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "key": "dsp.simulink.FIRHalfbandInterpolator",
+ "title": "FIR Halfband Interpolator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/FIR_Halfband_Interpolator.md"
+ ],
+ "text": "使用多相 FIR 半带滤波器对信号进行插值，输入 2 路、输出 1 路、无直接馈通；按 {Design method} 指定滤波器设计方法；{Filter specification} 指定滤波器设计参数 Transition width and stopband、{Transition width (Hz)} 以 Hz 为单位的过渡带宽度 4.1e3、{Filter order} 指定滤波器阶数、{Stopband attenuation (dB)} 指定阻带衰减、{Numerator} 指定 FIR 半带滤波器系数、{Input highpass subband} 指定输入高通子带、{Sample rate mode} 用于指定输入采样率的模式 Use normalized、{Input sample rate (Hz)} 指定输入信号的采样率、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定要运行的仿真类型 Interpreted、{Rounding mode} 输出定点运算的舍入模式、{Coefficients} 指定系数的字长和小数长度 fixdt，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LP",
+   "direction": "input",
+   "summary": "数据输入 column vector | matrix"
+  },
+  {
+   "name": "HP",
+   "direction": "input",
+   "summary": "合成滤波器组的第二个输入 column vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "FIR 半带插值器的输出 column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter specification",
+   "default": "attenuation",
+   "values": "滤波器设计参数 Transition width and stopband attenuation (default) | Filter order and transition width | Filter order and stopband attenuation | Coefficients",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Transition width (Hz)",
+   "default": "",
+   "values": "以 Hz 为单位的过渡带宽度 4.1e3 | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter order",
+   "default": "",
+   "values": "滤波器阶数 52 | even positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "阻带衰减 80 (default) | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Numerator",
+   "default": "’Structure’,’interp’)",
+   "values": "FIR 半带滤波器系数 designHalfbandFIR(’TransitionWidth’,0.186, ’StopbandAttenuation’,80, ’Structure’,’interp’) (default) | row vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Design method",
+   "default": "Auto",
+   "values": "滤波器设计方法 Auto (default) | Equiripple | Kaiser",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input highpass subband",
+   "default": "off",
+   "values": "输入高通子带 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate mode",
+   "default": "1)",
+   "values": "用于指定输入采样率的模式 Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入信号的采样率 44100 (default) | positive real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "查看滤波器响应 button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "输出定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(1,16)",
+   "values": "系数的字长和小数长度 fixdt(1,16) (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  }
+ ]
+}

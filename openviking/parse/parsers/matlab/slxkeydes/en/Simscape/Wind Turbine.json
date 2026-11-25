@@ -1,0 +1,13 @@
+{
+ "key": "Wind Turbine",
+ "title": "Wind Turbine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Wind_Turbine.md"
+ ],
+ "text": "Turbine that converts wind kinetic energy into rotational motion.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,182 @@
+{
+ "key": "CustomWebBlock",
+ "title": "Circular Gauge",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Customizable Blocks/Circular_Gauge.md",
+  "Simulink/Dashboard/Customizable Blocks/Horizontal_Gauge.md",
+  "Simulink/Dashboard/Customizable Blocks/Vertical_Gauge.md",
+  "Simulink/Dashboard/Customizable Blocks/Display.md",
+  "Simulink/Dashboard/Customizable Blocks/Half_Gauge.md",
+  "Simulink/Dashboard/Customizable Blocks/Lamp.md",
+  "Simulink/Dashboard/Customizable Blocks/Quarter_Gauge.md"
+ ],
+ "text": "在仿真期间在可自定义外观的圆形仪表上显示信号值；按 {Label} 指定显示所连接元素名称的标签位置；{Connection} 指定要连接并显示的信号 signal connection、{Minimum} 指定最小刻度线值、{Maximum} 指定最大刻度标记值、{Tick Interval} 指定主刻度标记之间的间隔、{Direction} 指定刻度值递增方向、{Lock Aspect Ratio} 用于保持模块宽高比、{Scale Colors} 指定仪表刻度上的颜色指示 colors for scale、{Origin} 指定刻度上指针移动及值条增长的起始值、{Arc} 指定刻度弧长、{Start Angle} 指定刻度最小值的角度位置、{Inner Radius} 指定刻度线自由端的半径 scalar、{Outer Radius} 指定跨度线半径 scalar、{X Offset} 指定刻度边界框左边缘相对于模块左边缘的水平偏移、{Y Offset} 指定刻度边界框上边缘相对于模块上边缘的垂直偏移、{Width} 指定刻度宽度 scalar、{Height} 指定刻度高度 scalar、{Tick Color} 指定刻度线、跨度线和模块名称的颜色、{Minor Tick Height} 指定刻度上次刻度线的高度、{Label Color} 指定刻度标签字体颜色、{Label Radius} 指定刻度标签与刻度中心的距离 scalar、{Rotate Image} 指定指针图像的旋转、{Offset from Center} 指定指针图像中心相对于刻度中心的偏移、{Use Background Color} 用于指定纯色模块背景色、{Color} 指定模块背景色、{Opacity} 指定模块背景不透明度、{Corner radius} 指定模块背景色区域外边缘相对于刻度线的偏移 scalar，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "要连接并显示的信号 signal connection options",
+   "group": "Parameters"
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "最小刻度线值 0 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum",
+   "default": "100",
+   "values": "最大刻度标记值 100 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Tick Interval",
+   "default": "auto",
+   "values": "主刻度标记之间的间隔 auto (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Direction",
+   "default": "Clockwise",
+   "values": "刻度值递增方向 Clockwise (default) | Counterclockwise",
+   "group": "Parameters"
+  },
+  {
+   "name": "Label",
+   "default": "Hide",
+   "values": "显示所连接元素名称的标签位置 Hide (default) | Bottom | Top",
+   "group": "Parameters"
+  },
+  {
+   "name": "Lock Aspect Ratio",
+   "default": "on",
+   "values": "用于保持模块宽高比的选项 on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Scale Colors",
+   "default": "",
+   "values": "仪表刻度上的颜色指示 colors for scale ranges",
+   "group": "Parameters"
+  },
+  {
+   "name": "Origin",
+   "default": "auto",
+   "values": "刻度上指针移动及值条增长的起始值 auto (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Arc",
+   "default": "270",
+   "values": "刻度弧长 270 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Start Angle",
+   "default": "135",
+   "values": "刻度最小值的角度位置 135 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Inner Radius",
+   "default": "",
+   "values": "刻度线自由端的半径 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Outer Radius",
+   "default": "",
+   "values": "跨度线半径 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "X Offset",
+   "default": "",
+   "values": "刻度边界框左边缘相对于模块左边缘的水平偏移 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Y Offset",
+   "default": "",
+   "values": "刻度边界框上边缘相对于模块上边缘的垂直偏移 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Width",
+   "default": "",
+   "values": "刻度宽度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Height",
+   "default": "",
+   "values": "刻度高度 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Tick Color",
+   "default": "",
+   "values": "刻度线、跨度线和模块名称的颜色 [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Minor Tick Height",
+   "default": "1",
+   "values": "刻度上次刻度线的高度 1 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Label Color",
+   "default": "",
+   "values": "刻度标签字体颜色 [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Label Radius",
+   "default": "",
+   "values": "刻度标签与刻度中心的距离 scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Rotate Image",
+   "default": "180",
+   "values": "指针图像的旋转 180 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Offset from Center",
+   "default": "0",
+   "values": "指针图像中心相对于刻度中心的偏移 0 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Use Background Color",
+   "default": "off",
+   "values": "用于指定纯色模块背景色的选项 off (default) | on",
+   "group": "Design"
+  },
+  {
+   "name": "Color",
+   "default": "",
+   "values": "模块背景色 [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "模块背景不透明度 1 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Corner radius",
+   "default": "",
+   "values": "模块背景色区域外边缘相对于刻度线的偏移 scalar",
+   "group": "Design"
+  }
+ ]
+}

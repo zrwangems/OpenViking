@@ -1,0 +1,32 @@
+{
+ "key": "Impedance",
+ "title": "Z",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Z.md"
+ ],
+ "text": "Model complex impedance, {Complex impedance (Ohm)} sets Impedance value; {Impedance type} sets the frequency dependency Frequency and {Frequency}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Impedance type",
+   "default": "independent",
+   "values": "Frequency dependency Frequency independent (default) | Frequency dependent",
+   "group": ""
+  },
+  {
+   "name": "Complex impedance (Ohm)",
+   "default": "50",
+   "values": "Impedance value 50 (default) | scalar complex number | vector of complex numbers",
+   "group": ""
+  },
+  {
+   "name": "Frequency",
+   "default": "1e9",
+   "values": "Frequency values for frequency dependent impedance 1e9 (default) | nonnegative scalar number | nonnegative vector numbers",
+   "group": ""
+  }
+ ]
+}

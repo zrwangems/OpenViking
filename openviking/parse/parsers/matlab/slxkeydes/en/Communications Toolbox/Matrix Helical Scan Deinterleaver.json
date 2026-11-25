@@ -1,0 +1,13 @@
+{
+ "key": "Matrix Helical Scan Deinterleaver",
+ "title": "Matrix Helical Scan Deinterleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Matrix_Helical_Scan_Deinterleaver.md"
+ ],
+ "text": "Restore ordering of input symbols by filling matrix along diagonals.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

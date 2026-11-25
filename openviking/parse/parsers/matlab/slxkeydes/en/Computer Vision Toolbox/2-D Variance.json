@@ -1,0 +1,110 @@
+{
+ "key": "2-D Variance",
+ "title": "2-D Variance",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Statistics/b_2_D_Variance.md"
+ ],
+ "text": "Compute variance of input or sequence of inputs, 5 inputs, 2 outputs, {Reset port} sets Reset event; {Running variance} sets the track running variance, {Find the variance value over} sets the dimension along which variance is computed Entire, {Dimension} sets the custom dimension, {Enable ROI processing} sets the compute variance within a particular, {ROI type} sets the type of ROI, {ROI portion to process} sets the portion of ROI in which to calculate variance Entire, {Output} sets the calculate variance for individual or entire ROI Individual statistics for each, {Output flag indicating if ROI is within image bounds} enables Flag port and {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input array vector | matrix | array"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset port scalar"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "Region of interest vector | matrix"
+  },
+  {
+   "name": "Label",
+   "direction": "input",
+   "summary": "Label matrix matrix"
+  },
+  {
+   "name": "Label Numbers",
+   "direction": "input",
+   "summary": "Label values of ROIs vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Computed output variance scalar | vector | matrix | N-D -array"
+  },
+  {
+   "name": "Flag",
+   "direction": "output",
+   "summary": "Validation for ROI 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Running variance",
+   "default": "off",
+   "values": "Track running variance off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Reset port",
+   "default": "None",
+   "values": "Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample",
+   "group": "Main"
+  },
+  {
+   "name": "Find the variance value over",
+   "default": "input",
+   "values": "Dimension along which variance is computed Entire input (default) | Each row | Each column | Specified dimension",
+   "group": "Main"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Custom dimension 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Enable ROI processing",
+   "default": "off",
+   "values": "Compute variance within a particular region off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "ROI type",
+   "default": "Rectangles",
+   "values": "Type of ROI Rectangles (default) | Lines | Label matrix | Binary mask",
+   "group": "Main"
+  },
+  {
+   "name": "ROI portion to process",
+   "default": "ROI",
+   "values": "Portion of ROI in which to calculate variance Entire ROI (default) | ROI perimeter",
+   "group": "Main"
+  },
+  {
+   "name": "Output",
+   "default": "ROI",
+   "values": "Calculate variance for individual or entire ROI Individual statistics for each ROI (default) | Single statistic for all ROIs",
+   "group": "Main"
+  },
+  {
+   "name": "Output flag indicating if ROI is within image bounds",
+   "default": "off",
+   "values": "Enable Flag port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "key": "FloatExtractBits",
+ "title": "Float Extract Bits",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Float_Extract_Bits.md"
+ ],
+ "text": "Extract bits from floating-point input samples, 1 input, 1 output, direct feedthrough, {Output mode} sets Parts of data to output All; {Bit range ([start end], 0-based relative to LSB)} sets the range of bits to return. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Signal containing floating-point data scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Binary representation of data scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output mode",
+   "default": "bits",
+   "values": "Parts of data to output All bits (default) | Range of bits | Sign | Mantissa | Exponent",
+   "group": ""
+  },
+  {
+   "name": "Bit range ([start end], 0-based relative to LSB)",
+   "default": "15]",
+   "values": "Range of bits to return [0 15] (default) | vector",
+   "group": ""
+  }
+ ]
+}

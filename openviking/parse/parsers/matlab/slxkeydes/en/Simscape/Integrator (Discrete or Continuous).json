@@ -1,0 +1,71 @@
+{
+ "key": "Integrator (Discrete or Continuous)",
+ "title": "Integrator (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Integrator_Discrete_or_Continuous.md"
+ ],
+ "text": "Discrete-time or continuous-time integrator, 3 inputs, 1 output, {External reset} sets Reset strategy; {Integrator method} sets the option to specify integration or accumulation method Integration: Forward, {Limit type} sets the saturation strategy, {Upper saturation limit} sets the state upper limit, {Lower saturation limit} sets the state lower limit and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Integrator input vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Revert to initial state scalar"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "Initial state vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Integrator output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "Option to specify integration or accumulation method Integration: Forward Euler (default) | Integration: Backward Euler | Integration: Trapezoidal | Accumulation: Forward Euler | Accumulation: Backward Euler | Accumulation: Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "External reset",
+   "default": "level",
+   "values": "Reset strategy level (default) | rising | falling | either",
+   "group": ""
+  },
+  {
+   "name": "Limit type",
+   "default": "Anti-windup",
+   "values": "Saturation strategy Anti-windup (default) | Windup",
+   "group": ""
+  },
+  {
+   "name": "Upper saturation limit",
+   "default": "inf",
+   "values": "State upper limit inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Lower saturation limit",
+   "default": "-inf",
+   "values": "State lower limit -inf (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

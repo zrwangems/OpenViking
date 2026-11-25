@@ -1,0 +1,24 @@
+{
+ "key": "Scaling Strip",
+ "title": "Data Type Scaling Strip",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Data_Type_Scaling_Strip.md"
+ ],
+ "text": "移除缩放并映射到内置整数，输入 1 路、输出 1 路、直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "映射到内置数据类型的输入信号 scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

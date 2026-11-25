@@ -1,0 +1,104 @@
+{
+ "key": "Vehicle Body Total Road Load",
+ "title": "Vehicle Body Total Road Load",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Vehicle Dynamics/Vehicle_Body_Total_Road_Load.md",
+  "Vehicle Dynamics Blockset/Vehicle Body/Vehicle_Body_Total_Road_Load.md"
+ ],
+ "text": "Vehicle motion using coast-down testing coefficients, 5 inputs, 3 outputs, {Input Mode} sets input mode; {Mass} sets the vehicle body mass, {Rolling resistance coefficient, a}, {Rolling and driveline resistance coefficient, b}, {Aerodynamic drag coefficient, c} sets the drag, {Gravitational acceleration, g} sets the gravity, {Initial position, x_o} sets the position and {Initial velocity, xdot_o} sets the velocity. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "Vehicle longitudinal velocity scalar"
+  },
+  {
+   "name": "xddot",
+   "direction": "input",
+   "summary": "Vehicle longitudinal acceleration scalar"
+  },
+  {
+   "name": "PwrTot",
+   "direction": "input",
+   "summary": "Tractive input power scalar"
+  },
+  {
+   "name": "ForceTot",
+   "direction": "input",
+   "summary": "Tractive input force scalar"
+  },
+  {
+   "name": "Grade",
+   "direction": "input",
+   "summary": "Road grade angle scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "xdot",
+   "direction": "output",
+   "summary": "Vehicle longitudinal velocity scalar"
+  },
+  {
+   "name": "ForceTot",
+   "direction": "output",
+   "summary": "Tractive input force scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input Mode",
+   "default": "Kinematic",
+   "values": "Specify input mode Kinematic (default) | Force | Power",
+   "group": ""
+  },
+  {
+   "name": "Mass",
+   "default": "1200",
+   "values": "Vehicle body mass 1200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rolling resistance coefficient, a",
+   "default": "196",
+   "values": "Rolling 196 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rolling and driveline resistance coefficient, b",
+   "default": "2.232",
+   "values": "Rolling and driveline 2.232 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Aerodynamic drag coefficient, c",
+   "default": "0.389",
+   "values": "Drag 0.389 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.81",
+   "values": "Gravity 9.81 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial position, x_o",
+   "default": "0",
+   "values": "Position 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity, xdot_o",
+   "default": "0",
+   "values": "Velocity 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

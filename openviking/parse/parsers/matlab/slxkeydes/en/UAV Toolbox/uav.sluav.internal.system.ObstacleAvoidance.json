@@ -1,0 +1,140 @@
+{
+ "key": "uav.sluav.internal.system.ObstacleAvoidance",
+ "title": "Obstacle Avoidance",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Obstacle_Avoidance.md"
+ ],
+ "text": "Compute obstacle-free direction using range sensor data and target position, 4 inputs, 3 outputs; {Sensor range limits (m)} sets the limits of range sensor, {Sensor horizontal field of view (deg)} sets the horizontal field of view limits of range sensor, {Sensor vertical field of view (deg)} sets the vertical field of view limits of range sensor, {Sensor location [X, Y, Z] (m)} sets the sensor mounting location on UAV, {Sensor orientation [Roll, Pitch, Yaw] (deg)} sets the orientation of sensor mounted on UAV, {Vehicle radius (m)} sets the radius of UAV, {Minimum distance to obstacle (m)} sets the safety distance around UAV to obstacle, {Simulate using} sets the type of simulation to run Interpreted, {Histogram resolution (deg)} sets the histogram grid resolution, {Histogram window size}, {Histogram threshold} sets the threshold for computing histogram, {Maximum age of obstacle point} sets the maximum age of remembered obstacle point, {Target direction weight} sets the cost function weight for target direction, {Current direction weight} sets the cost function weight for current direction and {Previous direction weight} sets the cost function weight for previous. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Position",
+   "direction": "input",
+   "summary": "Position of UAV vector"
+  },
+  {
+   "name": "Orientation",
+   "direction": "input",
+   "summary": "Orientation of UAV vector"
+  },
+  {
+   "name": "ObstaclePoints",
+   "direction": "input",
+   "summary": "Positions of obstacles matrix"
+  },
+  {
+   "name": "TargetPostion",
+   "direction": "input",
+   "summary": "Position of target vector"
+  },
+  {
+   "name": "DesiredDirection",
+   "direction": "output",
+   "summary": "Desired direction vector"
+  },
+  {
+   "name": "DesiredYaw",
+   "direction": "output",
+   "summary": "Desired yaw scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of obstacle-free direction 0 | 1 | 2 | 3"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor range limits (m)",
+   "default": "10]",
+   "values": "Limits of range sensor [0.2 10] (default) | vector of form [ min max ]",
+   "group": ""
+  },
+  {
+   "name": "Sensor horizontal field of view (deg)",
+   "default": "60]",
+   "values": "Horizontal field of view limits of range sensor [-60 60] (default) | vector of form [ min max ]",
+   "group": ""
+  },
+  {
+   "name": "Sensor vertical field of view (deg)",
+   "default": "30]",
+   "values": "Vertical field of view limits of range sensor [-30 30] (default) | vector of form [ min max ]",
+   "group": ""
+  },
+  {
+   "name": "Sensor location [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Sensor mounting location on UAV [0 0 0] (default) | vector of form [ x y z ]",
+   "group": ""
+  },
+  {
+   "name": "Sensor orientation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "Orientation of sensor mounted on UAV [0 0 0] (default) | vector of form [ roll pitch yaw ]",
+   "group": ""
+  },
+  {
+   "name": "Vehicle radius (m)",
+   "default": "1",
+   "values": "Radius of UAV 1 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum distance to obstacle (m)",
+   "default": "1",
+   "values": "Safety distance around UAV to obstacle 1 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  },
+  {
+   "name": "Histogram resolution (deg)",
+   "default": "5",
+   "values": "Histogram grid resolution 5 (default) | 1 | 3 | 6 | 10 | 15 | 18 | 30 | 45 | 60",
+   "group": ""
+  },
+  {
+   "name": "Histogram window size",
+   "default": "1",
+   "values": "Histogram window size 1 (default) | odd integer",
+   "group": ""
+  },
+  {
+   "name": "Histogram threshold",
+   "default": "1",
+   "values": "Threshold for computing histogram 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum age of obstacle point",
+   "default": "0",
+   "values": "Maximum age of remembered obstacle point 0 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Target direction weight",
+   "default": "5",
+   "values": "Cost function weight for target direction 5 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Current direction weight",
+   "default": "2",
+   "values": "Cost function weight for current direction 2 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Previous direction weight",
+   "default": "2",
+   "values": "Cost function weight for previous direction 2 (default) | numeric scalar",
+   "group": ""
+  }
+ ]
+}

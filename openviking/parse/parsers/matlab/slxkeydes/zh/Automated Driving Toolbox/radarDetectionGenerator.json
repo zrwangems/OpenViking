@@ -1,0 +1,295 @@
+{
+ "key": "radarDetectionGenerator",
+ "title": "Radar Detection Generator",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Radar_Detection_Generator.md"
+ ],
+ "text": "根据雷达测量创建检测对象，输入 1 路、输出 1 路；按 {Length of actors cuboids (m)} 指定长方体长度；{Unique identifier of sensor} 指定唯一传感器标识符、{Required interval between sensor updates (s)} 指定所需时间间隔、{Sensor’s (x,y) position (m)} 指定雷达传感器中心的位置、{Sensor’s height (m)} 指定雷达传感器离地平面的高度、{Yaw angle of sensor mounted on ego vehicle (deg)} 指定传感器的偏航角、{Pitch angle of sensor mounted on ego vehicle (deg)} 指定传感器的俯仰角、{Roll angle of sensor mounted on ego vehicle (deg)} 指定传感器的横滚角、{Source of output bus name} 输出总线名称的来源、{Specify an output bus name} 输出总线名称 no default、{Maximum number of reported detections} 指定报告的最大检测数、{Coordinate system used to report detections} 指定报告的检测的坐标系 Ego、{Simulate using} 指定要运行的仿真类型 Interpreted、{Azimuthal resolution of radar (deg)} 指定雷达方位角分辨率、{Elevation resolution of radar (deg)} 指定雷达仰角分辨率、{Range resolution of radar (m)} 指定雷达距离分辨率、{Range rate resolution of radar (m/s)} 指定雷达的距离变化率分辨率、{Fractional azimuthal bias component of radar} 指定方位角偏差比例、{Fractional elevation bias component of radar} 指定仰角偏差比例、{Fractional range bias component of radar} 指定距离偏差比例、{Fractional range rate bias component of radar} 指定雷达的距离变化率偏差比例、{Total angular field of view for radar (deg)} 指定雷达传感器的视场、{Maximum detection range (m)} 指定最大检测范围、{Minimum and maximum range rates that can be reported} 指定最小和最大检测距离变化率、{Detection probability} 指定检测目标的概率、{Rate at which false alarms are reported} 指定虚警率 1e-6、{Range where detection probability is achieved (m):} 指定给定检测概率下的参考距离、{Radar cross section at which detection probability is achieved (dBsm)} 指定给定检测概率下的参考雷达截面积、{Enable elevation angle measurements} 启用雷达测量仰角、{Enable range rate measurements} 启用雷达测量距离变化率、{Add noise to measurements} 启用向雷达传感器测量添加噪声、{Enable false detections} 启用创建雷达虚警检测、{Enable occlusion} 启用视线遮挡、{Select method to specify initial seed} 指定随机数生成器种子的方法、{Initial seed} 指定随机数生成器种子、{Select method to specify actor profiles} 指定参与者配置文件的方法 From Scenario Reader、{MATLAB expression for actor profiles}、{Unique identifier for actors} 指定场景定义的目标物标识符、{User-defined integer to classify actors} 指定用户定义的分类标识符、{Width of actors cuboids (m)} 指定长方体宽度、{Height of actors cuboids (m)} 指定长方体高度、{Rotational center of actors from bottom center (m)} 指定 actor 的旋转中心、{Radar cross section pattern (dBsm)} 指定雷达截面积、{Azimuth angles defining RCSPattern (deg)} 指定雷达截面积方向图的方位角、{Elevation angles defining RCSPattern (deg)} 指定雷达截面积方向图的仰角，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Actors",
+   "direction": "input",
+   "summary": "场景参与者位姿 Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "检测 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Unique identifier of sensor",
+   "default": "1",
+   "values": "唯一传感器标识符 1 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Required interval between sensor updates (s)",
+   "default": "0.1",
+   "values": "所需时间间隔 0.1 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sensor’s (x,y) position (m)",
+   "default": "0]",
+   "values": "雷达传感器中心的位置 [3.4 0] (default) | real-valued 1-by-2 vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sensor’s height (m)",
+   "default": "0.2",
+   "values": "雷达传感器离地平面的高度 0.2 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Yaw angle of sensor mounted on ego vehicle (deg)",
+   "default": "0",
+   "values": "传感器的偏航角 0 (default) | real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Pitch angle of sensor mounted on ego vehicle (deg)",
+   "default": "0",
+   "values": "传感器的俯仰角 0 (default) | real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Roll angle of sensor mounted on ego vehicle (deg)",
+   "default": "0",
+   "values": "传感器的横滚角 0 (default) | real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出总线名称的来源 Auto (default) | Property",
+   "group": "Parameters"
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "",
+   "values": "输出总线名称 no default",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum number of reported detections",
+   "default": "50",
+   "values": "报告的最大检测数 50 (default) | positive integer",
+   "group": "Parameters"
+  },
+  {
+   "name": "Coordinate system used to report detections",
+   "default": "Cartesian",
+   "values": "报告的检测的坐标系 Ego Cartesian (default) | Sensor Cartesian | Sensor Spherical",
+   "group": "Parameters"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": "Parameters"
+  },
+  {
+   "name": "Azimuthal resolution of radar (deg)",
+   "default": "4.0",
+   "values": "雷达方位角分辨率 4.0 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Elevation resolution of radar (deg)",
+   "default": "10.0",
+   "values": "雷达仰角分辨率 10.0 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range resolution of radar (m)",
+   "default": "2.5",
+   "values": "雷达距离分辨率 2.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range rate resolution of radar (m/s)",
+   "default": "0.5",
+   "values": "雷达的距离变化率分辨率 0.5 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Fractional azimuthal bias component of radar",
+   "default": "0.1",
+   "values": "方位角偏差比例 0.1 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Fractional elevation bias component of radar",
+   "default": "0.1",
+   "values": "仰角偏差比例 0.1 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Fractional range bias component of radar",
+   "default": "0.05",
+   "values": "距离偏差比例 0.05 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Fractional range rate bias component of radar",
+   "default": "0.05",
+   "values": "雷达的距离变化率偏差比例 0.05 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Total angular field of view for radar (deg)",
+   "default": "5]",
+   "values": "雷达传感器的视场 [20 5] (default) | real-valued 1-by-2 vector of positive values",
+   "group": "Measurements"
+  },
+  {
+   "name": "Maximum detection range (m)",
+   "default": "150",
+   "values": "最大检测范围 150 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Minimum and maximum range rates that can be reported",
+   "default": "100]",
+   "values": "最小和最大检测距离变化率 [-100 100] (default) | real-valued 1-by-2 vector",
+   "group": "Measurements"
+  },
+  {
+   "name": "Detection probability",
+   "default": "0.9",
+   "values": "检测目标的概率 0.9 (default) | positive real scalar less than or equal to 1",
+   "group": "Measurements"
+  },
+  {
+   "name": "Rate at which false alarms are reported",
+   "default": "1e-6",
+   "values": "虚警率 1e-6 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Range where detection probability is achieved (m):",
+   "default": "100",
+   "values": "给定检测概率下的参考距离 100 (default) | positive real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Radar cross section at which detection probability is achieved (dBsm)",
+   "default": "0.0",
+   "values": "给定检测概率下的参考雷达截面积 0.0 (default) | nonnegative real scalar",
+   "group": "Measurements"
+  },
+  {
+   "name": "Enable elevation angle measurements",
+   "default": "off",
+   "values": "启用雷达测量仰角 off (default) | on",
+   "group": "Measurements"
+  },
+  {
+   "name": "Enable range rate measurements",
+   "default": "on",
+   "values": "启用雷达测量距离变化率 on (default) | off | on",
+   "group": "Measurements"
+  },
+  {
+   "name": "Add noise to measurements",
+   "default": "on",
+   "values": "启用向雷达传感器测量添加噪声 on (default) | off",
+   "group": "Measurements"
+  },
+  {
+   "name": "Enable false detections",
+   "default": "on",
+   "values": "启用创建雷达虚警检测 on (default) | off",
+   "group": "Measurements"
+  },
+  {
+   "name": "Enable occlusion",
+   "default": "on",
+   "values": "启用视线遮挡 on (default) | off",
+   "group": "Measurements"
+  },
+  {
+   "name": "Select method to specify initial seed",
+   "default": "Repeatable",
+   "values": "指定随机数生成器种子的方法 Repeatable (default) | Specify seed | Not repeatable",
+   "group": "Measurements"
+  },
+  {
+   "name": "Initial seed",
+   "default": "0",
+   "values": "随机数生成器种子 0 (default) | nonnegative integer less than 2 32",
+   "group": "Measurements"
+  },
+  {
+   "name": "Select method to specify actor profiles",
+   "default": "block",
+   "values": "指定参与者配置文件的方法 From Scenario Reader block (default) | Parameters | MATLAB expression",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "MATLAB expression for actor profiles",
+   "default": "struct(’ClassID’,0,’Length’,4.7,’Width’,1.8,’Height’,1.4,’OriginOffset’,[-1.35,0,0])",
+   "values": "MATLAB expression for actor profiles struct(’ClassID’,0,’Length’,4.7,’Width’,1.8,’Height’,1.4,’OriginOffset’,[-1.35,0,0]) (default) | MATLAB structure | MATLAB structure array | valid MATLAB expression",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Unique identifier for actors",
+   "default": "[]",
+   "values": "场景定义的目标物标识符 [] (default) | positive integer | length- L vector of unique positive integers",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "User-defined integer to classify actors",
+   "default": "0",
+   "values": "用户定义的分类标识符 0 (default) | integer | length- L vector of integers",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Length of actors cuboids (m)",
+   "default": "4.7",
+   "values": "长方体长度 4.7 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Width of actors cuboids (m)",
+   "default": "4.7",
+   "values": "长方体宽度 4.7 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Height of actors cuboids (m)",
+   "default": "4.7",
+   "values": "长方体高度 4.7 (default) | positive real scalar | length- L vector of positive values",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Rotational center of actors from bottom center (m)",
+   "default": "}",
+   "values": "actor 的旋转中心 { [ -1.35, 0, 0 ] } (default) | length- L cell array of real-valued 1-by-3 vectors",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Radar cross section pattern (dBsm)",
+   "default": "{[10,10;10,10]}",
+   "values": "雷达截面积 {[10,10;10,10]} (default) | real-valued Q -by- P matrix | length- L cell array of real-valued Q -by- P matrices",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Azimuth angles defining RCSPattern (deg)",
+   "default": "180]}",
+   "values": "雷达截面积方向图的方位角 {[-180 180]} (default) | length- L cell array of real-valued P -length vectors",
+   "group": "Actor Profiles"
+  },
+  {
+   "name": "Elevation angles defining RCSPattern (deg)",
+   "default": "90]}",
+   "values": "雷达截面积方向图的仰角 {[-90 90]} (default) | length- L cell array of real-valued Q -length vectors",
+   "group": "Actor Profiles"
+  }
+ ]
+}

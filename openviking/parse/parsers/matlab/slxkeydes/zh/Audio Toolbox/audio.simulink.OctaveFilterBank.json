@@ -1,0 +1,103 @@
+{
+ "key": "audio.simulink.OctaveFilterBank",
+ "title": "Octave Filter Bank",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Octave_Filter_Bank.md"
+ ],
+ "text": "倍频程频带和分数倍频程频带滤波器组，输入 1 路、输出 1 路、无直接馈通；按 {Bandwidth (octaves)} 指定以倍频程指定的滤波器带宽 1；{Frequency range (Hz)} 指定滤波器组的频率范围、{Reference frequency (Hz)} 指定滤波器组的参考频率、{Filter order} 指定倍频程滤波器的阶数、{Octave ratio} 指定滤波器之间的距离 Base ten、{Inherit sample rate from input} 允许由输入信号设置采样率、{Input sample rate (Hz)} 指定输入的采样率、{Bands as separate output ports} 指定每个滤波器频带一个输出端口、{Simulate using} 指定要运行的仿真类型 Interpreted、{View filter response} 打开绘图以可视化幅值响应、{Variable name} 指定导出滤波器组的变量名、{Overwrite variable if it already exists} 指定如果变量已存在则覆盖、{Export filter to workspace} 指定将滤波器组导出到工作区，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Bandwidth (octaves)",
+   "default": "octave",
+   "values": "以倍频程指定的滤波器带宽 1 octave (default) | 2/3 octave | 1/2 octave | 1/3 octave | 1/6 octave | 1/12 octave | 1/24 octave | 1/48 octave",
+   "group": ""
+  },
+  {
+   "name": "Frequency range (Hz)",
+   "default": "22050]",
+   "values": "滤波器组的频率范围 (Hz) [22 22050] (default) | two-element row vector of positive monotonically increasing values",
+   "group": ""
+  },
+  {
+   "name": "Reference frequency (Hz)",
+   "default": "1000",
+   "values": "滤波器组的参考频率 (Hz) 1000 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "12",
+   "values": "倍频程滤波器的阶数 12 (default) | positive even integer",
+   "group": ""
+  },
+  {
+   "name": "Octave ratio",
+   "default": "preferred)",
+   "values": "滤波器之间的距离 Base ten (ANSI S1.11 preferred) (default) | Base two (musical scale)",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "允许由输入信号设置采样率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Bands as separate output ports",
+   "default": "off",
+   "values": "每个滤波器频带一个输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "指定要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  },
+  {
+   "name": "View filter response",
+   "default": "",
+   "values": "打开绘图以可视化幅值响应 button",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "myFilt",
+   "values": "导出滤波器组的变量名 myFilt (default) | valid variable name",
+   "group": ""
+  },
+  {
+   "name": "Overwrite variable if it already exists",
+   "default": "on",
+   "values": "如果变量已存在则覆盖 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Export filter to workspace",
+   "default": "",
+   "values": "将滤波器组导出到工作区 button",
+   "group": ""
+  }
+ ]
+}

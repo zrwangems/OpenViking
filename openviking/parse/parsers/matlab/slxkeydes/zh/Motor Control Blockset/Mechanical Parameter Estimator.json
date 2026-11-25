@@ -1,0 +1,89 @@
+{
+ "key": "Mechanical Parameter Estimator",
+ "title": "Mechanical Parameter Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/ACIM Parameter Estimation/Mechanical_Parameter_Estimator.md"
+ ],
+ "text": "估计 AC 感应电机 (ACIM) 的转子惯量和粘性阻尼，输入 10 路、输出 5 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "三相电流响应 标量"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC 母线电压 标量"
+  },
+  {
+   "name": "Speed",
+   "direction": "input",
+   "summary": "转子转速 标量"
+  },
+  {
+   "name": "Id0",
+   "direction": "input",
+   "summary": "估计的磁化电流 标量"
+  },
+  {
+   "name": "Rtotal",
+   "direction": "input",
+   "summary": "定子和逆变器板电阻之和 标量"
+  },
+  {
+   "name": "Rr",
+   "direction": "input",
+   "summary": "估计的转子电阻 标量"
+  },
+  {
+   "name": "Lm",
+   "direction": "input",
+   "summary": "估计的磁化电感 标量"
+  },
+  {
+   "name": "Lls",
+   "direction": "input",
+   "summary": "估计的定子泄漏电感 标量"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "用于机械参数估计的控制信号 逻辑值"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "总线信号输入 总线"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a 、 b 和 c 轴定子参考电压分量 标量"
+  },
+  {
+   "name": "J",
+   "direction": "output",
+   "summary": "估计的转子惯量 标量"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "估计的粘性阻尼 标量"
+  },
+  {
+   "name": "InverterEn",
+   "direction": "output",
+   "summary": "逆变器控制信号 逻辑值"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "调试信号 总线"
+  }
+ ],
+ "params": []
+}

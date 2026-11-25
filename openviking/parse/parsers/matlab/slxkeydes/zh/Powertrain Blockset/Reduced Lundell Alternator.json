@@ -1,0 +1,117 @@
+{
+ "key": "Reduced Lundell Alternator",
+ "title": "Reduced Lundell Alternator",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/Alternator/Reduced_Lundell_Alternator.md"
+ ],
+ "text": "带有外部电压调节器的简化 Lundell（爪极）交流发电机；输出 3 路；{Voltage constant, Kv} 指定常量 .1、{Field winding resistance, Rf} 指定电阻、{Field winding inductance, Lf} 指定电感、{Stator winding resistance, Rs} 指定电阻、{Diode voltage drop, Vd} 指定电压、{Regulator bandwidth, Fv} 指定带宽、{Current filter bandwidth, Fc} 指定带宽、{Field voltage max, Vfmax} 指定最大励磁电压、{Field voltage min, Vfmin} 指定最小励磁电压、{Coulomb friction, Kc} 指定摩擦、{Viscous friction, Kb} 指定摩擦、{Windage, Kw} 指定风阻，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RefVolt",
+   "direction": "",
+   "summary": "交流发电机输出电压指令 scalar"
+  },
+  {
+   "name": "AltSpd",
+   "direction": "",
+   "summary": "角速度 scalar"
+  },
+  {
+   "name": "LdCurr",
+   "direction": "",
+   "summary": "交流发电机负载电流 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "AltVolt",
+   "direction": "output",
+   "summary": "交流发电机输出电压 scalar"
+  },
+  {
+   "name": "LdTrq",
+   "direction": "output",
+   "summary": "电机轴转矩 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Voltage constant, Kv",
+   "default": ".1",
+   "values": "常量 .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field winding resistance, Rf",
+   "default": "0.2",
+   "values": "电阻 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field winding inductance, Lf",
+   "default": "0.002",
+   "values": "电感 0.002 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator winding resistance, Rs",
+   "default": "0.01",
+   "values": "电阻 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Diode voltage drop, Vd",
+   "default": "0.7",
+   "values": "电压 0.7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Regulator bandwidth, Fv",
+   "default": "2000",
+   "values": "带宽 2000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current filter bandwidth, Fc",
+   "default": "1000",
+   "values": "带宽 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field voltage max, Vfmax",
+   "default": "100",
+   "values": "最大励磁电压 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field voltage min, Vfmin",
+   "default": "-100",
+   "values": "最小励磁电压 -100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Coulomb friction, Kc",
+   "default": "0",
+   "values": "摩擦 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Viscous friction, Kb",
+   "default": "0",
+   "values": "摩擦 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Windage, Kw",
+   "default": "0",
+   "values": "风阻 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "key": "CompositeEntitySplitter",
+ "title": "Composite Entity Splitter",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Composite_Entity_Splitter.md"
+ ],
+ "text": "Split composite entities, 1 input, 2 outputs; {Number of output ports} sets the number of output ports. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "port_1",
+   "direction": "input",
+   "summary": "Input composite entity scalar | vector | matrix"
+  },
+  {
+   "name": "port_1",
+   "direction": "output",
+   "summary": "Output entity scalar | vector | matrix"
+  },
+  {
+   "name": "port_2",
+   "direction": "output",
+   "summary": "Output entity scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of output ports",
+   "default": "2",
+   "values": "Specify the number of output ports 2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

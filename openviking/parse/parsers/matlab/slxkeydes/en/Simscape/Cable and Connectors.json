@@ -1,0 +1,13 @@
+{
+ "key": "Cable and Connectors",
+ "title": "Cable and Connectors",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Cable_and_Connectors.md"
+ ],
+ "text": "Cable and connectors with optional fault modeling.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

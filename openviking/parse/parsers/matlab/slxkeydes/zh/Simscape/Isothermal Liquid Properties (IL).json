@@ -1,0 +1,13 @@
+{
+ "key": "Isothermal Liquid Properties (IL)",
+ "title": "Isothermal Liquid Properties (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Utilities/Isothermal_Liquid_Properties_IL.md"
+ ],
+ "text": "等温液体的物理属性。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

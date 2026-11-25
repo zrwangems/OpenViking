@@ -1,0 +1,13 @@
+{
+ "key": "Spherical Solid",
+ "title": "Spherical Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Spherical_Solid.md"
+ ],
+ "text": "具有几何、惯性和颜色的实体球形元件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "rptgen_show_rptlist",
+ "title": "Launch Rptlist",
+ "toolbox": "Report Generator",
+ "kind": "source_type",
+ "source_docs": [
+  "Report Generator/Launch_Rptlist.md"
+ ],
+ "text": "此模块启动 Report Generator Explorer。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

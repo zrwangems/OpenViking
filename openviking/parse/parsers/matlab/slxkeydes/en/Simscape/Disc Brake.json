@@ -1,0 +1,13 @@
+{
+ "key": "Disc Brake",
+ "title": "Disc Brake",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Rotational/Disc_Brake.md"
+ ],
+ "text": "Frictional brake with pressure-applying cylinder and pads.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

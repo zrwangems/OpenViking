@@ -1,0 +1,197 @@
+{
+ "key": "ADCTestbench",
+ "title": "ADC Testbench",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Measurements & Testbenches/ADC_Testbench.md"
+ ],
+ "text": "Measures DC and AC performance metrics of ADC output, 2 inputs, 2 outputs, {Analog stimulus frequency (Hz)} sets Frequency of the analog input signal to ADC positive real scalar; {Measurement} selects whether to measure DC or AC performance metrics, {Recommended min. simulation stop time (s)} sets the minimum time simulation must run for meaningful result, {Set as model stop time} sets the automatically set recommended min. simulation stop time as model stop time, {Endpoint} sets the measure DNL, INL using endpoint method, {Best fit} sets the measure DNL, INL using best fit method, {Plot DC analysis result}, {Export measurement result} sets the store detailed test results to base workspace, {Sample interval (s)} sets the rate at which ADC Testbench polls input, {Distortion measurement type} sets the type of distortion, {Resolution bandwidth (Hz)} sets the resolution bandwidth positive, {Start conversion frequency (Hz)} sets the frequency of the start conversion clock of the ADC, {RMS aperture jitter (s)} sets the rMS aperture jitter to be added by the start conversion clock, {Error tolerance (LSB)} sets the maximum difference between successive samples of analog, {Automatically determine sweep range}, {Sweep range} sets the custom sweep range, {Stop simulation on completion}, {Autofill setup parameter} sets the automatically propagate setup parameters from ADC, {Number of bits} sets the number of physical output bits, {Input range (V)} sets the aDC dynamic range, {Hold off time (s)} sets the delay before measurement analysis, {Show spectrum analyzer during simulation} sets the displays spectrum analyzer during, {Enable increased buffer size}, {Buffer size} sets the number of samples of the input buffering available during, {Autofill target metric} sets the automatically propagate target metrics from ADC, {Offset error} sets the shifts quantization steps by specific value and {Gain error} sets the error on the slope of ADC transfer curve. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "from adc digital",
+   "direction": "input",
+   "summary": "Digital signal from ADC output scalar"
+  },
+  {
+   "name": "from adc ready",
+   "direction": "input",
+   "summary": "Conversion ready signal from ADC output scalar"
+  },
+  {
+   "name": "to adc analog",
+   "direction": "output",
+   "summary": "Analog stimulus signal for ADC input scalar"
+  },
+  {
+   "name": "to adc start",
+   "direction": "output",
+   "summary": "External start conversion clock for ADC scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "DC",
+   "values": "Select whether to measure DC or AC performance metrics DC (default) | AC",
+   "group": ""
+  },
+  {
+   "name": "Recommended min. simulation stop time (s)",
+   "default": "2.048e-02",
+   "values": "Minimum time simulation must run for meaningful result 2.048e-02 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Set as model stop time",
+   "default": "",
+   "values": "Automatically set recommended min. simulation stop time as model stop time button",
+   "group": ""
+  },
+  {
+   "name": "Endpoint",
+   "default": "on",
+   "values": "Measure DNL, INL using endpoint method on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Best fit",
+   "default": "on",
+   "values": "Measure DNL, INL using best fit method on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Plot DC analysis result",
+   "default": "",
+   "values": "Plot DC analysis results button",
+   "group": ""
+  },
+  {
+   "name": "Export measurement result",
+   "default": "",
+   "values": "Store detailed test results to base workspace button",
+   "group": ""
+  },
+  {
+   "name": "Sample interval (s)",
+   "default": "1e-6",
+   "values": "Rate at which ADC Testbench polls input 1e-6 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Distortion measurement type",
+   "default": "Harmonic",
+   "values": "Type of distortion to measure Harmonic (default) | Intermodulation",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Analog stimulus frequency (Hz)",
+   "default": "",
+   "values": "Frequency of the analog input signal to ADC positive real scalar | positive real valued vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "",
+   "values": "Resolution bandwidth positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "1e6",
+   "values": "Frequency of the start conversion clock of the ADC 1e6 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "RMS aperture jitter (s)",
+   "default": "40e-12",
+   "values": "RMS aperture jitter to be added by the start conversion clock 40e-12 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Error tolerance (LSB)",
+   "default": "0.1",
+   "values": "Maximum difference between successive samples of analog signal 0.1 (default) | positive scalar in the range ( 0, 1 ]",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Automatically determine sweep range",
+   "default": "on",
+   "values": "Automatically determine sweep range on (default) | off",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Sweep range",
+   "default": "1]",
+   "values": "Custom sweep range [-1 1] (default) | 2-element vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Stop simulation on completion",
+   "default": "on",
+   "values": "Stop simulation on completion on (default) | off",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Autofill setup parameter",
+   "default": "",
+   "values": "Automatically propagate setup parameters from ADC button",
+   "group": "Setup"
+  },
+  {
+   "name": "Number of bits",
+   "default": "10",
+   "values": "Number of physical output bits 10 (default) | positive real integer in the range [1, 26]",
+   "group": "Setup"
+  },
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "ADC dynamic range [-1 1] (default) | 2-element row vector",
+   "group": "Setup"
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "Delay before measurement analysis 0 (default) | nonnegative real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Show spectrum analyzer during simulation",
+   "default": "off",
+   "values": "Displays spectrum analyzer during simulation off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Buffer size",
+   "default": "5",
+   "values": "Number of samples of the input buffering available during simulation 5 (default) | positive integer scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Autofill target metric",
+   "default": "",
+   "values": "Automatically propagate target metrics from ADC button",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "Shifts quantization steps by specific value 1.5 LSB (default) | real scalar",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "Error on the slope of ADC transfer curve 1 LSB (default) | real scalar",
+   "group": "Target Metric"
+  }
+ ]
+}

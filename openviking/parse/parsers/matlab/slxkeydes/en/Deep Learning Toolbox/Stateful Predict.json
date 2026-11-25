@@ -1,0 +1,55 @@
+{
+ "key": "Stateful Predict",
+ "title": "Stateful Predict",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Neural Networks/Stateful_Predict.md"
+ ],
+ "text": "Predict responses using a trained recurrent neural network, 1 input, 1 output, {Sample time} sets Output sample period and optional time offset; {Network}, {File path} sets the mAT file containing trained recurrent neural network, {MATLAB function} and {Input data formats} sets the input data format of dlnetwork character. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "input",
+   "direction": "input",
+   "summary": "Sequence or time series data numeric array"
+  },
+  {
+   "name": "output",
+   "direction": "output",
+   "summary": "Predicted scores or responses numeric array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network",
+   "default": "MAT-file",
+   "values": "Source for trained recurrent neural network Network from MAT-file (default) | Network from MATLAB function",
+   "group": ""
+  },
+  {
+   "name": "File path",
+   "default": "untitled.mat",
+   "values": "MAT file containing trained recurrent neural network untitled.mat (default) | MAT file name",
+   "group": ""
+  },
+  {
+   "name": "MATLAB function",
+   "default": "untitled",
+   "values": "MATLAB function name untitled (default) | MATLAB function name",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Output sample period and optional time offset -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Input data formats",
+   "default": "",
+   "values": "Input data format of dlnetwork character vector | string",
+   "group": ""
+  }
+ ]
+}

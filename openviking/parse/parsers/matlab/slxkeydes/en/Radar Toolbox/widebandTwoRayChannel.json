@@ -1,0 +1,135 @@
+{
+ "key": "widebandTwoRayChannel",
+ "title": "Wideband Two-Ray Channel",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Wideband_Two_Ray_Channel.md"
+ ],
+ "text": "Wideband two-ray channel environment, 5 inputs, 1 output, {Ground reflection coefficient} sets Ground reflection coefficient; {Signal propagation speed (m/s)} sets the signal propagation speed physconst, {Signal carrier frequency (Hz)} sets the signal carrier frequency 300e6, {Number of subbands} sets the number of processing subbands, {Specify atmospheric parameters} enables atmospheric attenuation model, {Temperature (degrees Celsius)} sets the ambient temperature, {Dry air pressure (Pa)} sets the atmospheric dry air, {Water vapour density (g/m^3)} sets the atmospheric water vapor density, {Liquid water density (g/m^3)}, {Rain rate (mm/hr)} sets the rainfall rate, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate, {Combine two rays at output} sets the option to combine two rays at output, {Maximum one-way propagation distance (m)} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Wideband input signal M -by- N complex-valued matrix | M -by- 2N complex-valued matrix"
+  },
+  {
+   "name": "Pos1",
+   "direction": "input",
+   "summary": "Position of signal origin 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Pos2",
+   "direction": "input",
+   "summary": "Position of signal destination 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Vel1",
+   "direction": "input",
+   "summary": "Velocity of signal origin 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Vel2",
+   "direction": "input",
+   "summary": "Velocity of signal destination 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Propagated signal M -by- N complex-valued matrix | M -by- 2N complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Signal carrier frequency (Hz)",
+   "default": "300e6",
+   "values": "Signal carrier frequency 300e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of subbands",
+   "default": "64",
+   "values": "Number of processing subbands 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify atmospheric parameters",
+   "default": "off",
+   "values": "Enable atmospheric attenuation model off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Temperature (degrees Celsius)",
+   "default": "15",
+   "values": "Ambient temperature 15 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Dry air pressure (Pa)",
+   "default": "101.325e3",
+   "values": "Atmospheric dry air pressure 101.325e3 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Water vapour density (g/m^3)",
+   "default": "7.5",
+   "values": "Atmospheric water vapor density 7.5 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Liquid water density (g/m^3)",
+   "default": "0.0",
+   "values": "Liquid water density 0.0 (default) | nonnegative real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Rain rate (mm/hr)",
+   "default": "0.0",
+   "values": "Rainfall rate 0.0 (default) | non-negative real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground reflection coefficient",
+   "default": "-1",
+   "values": "Ground reflection coefficient -1 (default) | complex-valued scalar | complex-valued 1-by- N row vector",
+   "group": ""
+  },
+  {
+   "name": "Combine two rays at output",
+   "default": "on",
+   "values": "Option to combine two rays at output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Maximum one-way propagation distance (m)",
+   "default": "10.0e3",
+   "values": "Maximum one-way propagation distance 10.0e3 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

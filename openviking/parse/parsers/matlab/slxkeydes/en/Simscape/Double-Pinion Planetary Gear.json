@@ -1,0 +1,13 @@
+{
+ "key": "Double-Pinion Planetary Gear",
+ "title": "Double-Pinion Planetary Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Double_Pinion_Planetary_Gear.md"
+ ],
+ "text": "Planetary gear train with two meshed planet gear sets.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

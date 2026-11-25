@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Hard Stop",
+ "title": "Rotational Hard Stop",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Rotational Elements/Rotational_Hard_Stop.md"
+ ],
+ "text": "Double-sided rotational hard stop.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

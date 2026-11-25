@@ -1,0 +1,39 @@
+{
+ "key": "CORDIC Sigmoid HDL Optimized",
+ "title": "CORDIC Sigmoid HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Math Operations/CORDIC_Sigmoid_HDL_Optimized.md"
+ ],
+ "text": "计算基于 CORDIC 的 sigmoid 激活并生成优化的 HDL 代码，输入 2 路、输出 3 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入数据 real-valued scalar"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入是否有效 Boolean scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "u 的 sigmoid 激活 scalar"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据是否有效 Boolean"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "模块是否就绪 Boolean"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,124 @@
+{
+ "key": "Multiply-Accumulate",
+ "title": "Multiply-Accumulate",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL Operations/Multiply_Accumulate.md"
+ ],
+ "text": "Perform a multiply-accumulate operation on the inputs, 6 inputs, 5 outputs, {Operation Mode} sets Mode of accumulation of inputs; {Bias} sets the offset to add to the input dot product, {Number of Samples} sets the number of samples of valid accumulated output, {Output data type} sets the data type of the block output, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Valid output port} controls generation of validOut output port, {End input and output ports} controls generation of endIn input port and endOut output, {Start output port} controls generation of startOut output port and {Count output port} controls generation of countOut output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "a",
+   "direction": "input",
+   "summary": "Input signal vector | matrix | array | bus"
+  },
+  {
+   "name": "b",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "c",
+   "direction": "input",
+   "summary": "Bias signal scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "startIn",
+   "direction": "input",
+   "summary": "Start of accumulation control signal scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Valid input control signal scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "endIn",
+   "direction": "input",
+   "summary": "End of accumulation control signal scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "dataOut",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "startOut",
+   "direction": "output",
+   "summary": "Start of accumulation output control signal scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Valid output control signal scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "endOut",
+   "direction": "output",
+   "summary": "End of accumulation output control signal scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "countOut",
+   "direction": "output",
+   "summary": "Count output control signal scalar | vector | matrix | array | bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation Mode",
+   "default": "’Vector’",
+   "values": "Mode of accumulation of inputs ’Vector’ (default) | ’Streaming - using Start and End Ports’ | ’Streaming - using Number of Samples’",
+   "group": ""
+  },
+  {
+   "name": "Bias",
+   "default": "{’0.0’}",
+   "values": "Offset to add to the input dot product {’0.0’} (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of Samples",
+   "default": "{’2’}",
+   "values": "Number of samples of valid accumulated output signal {’2’} (default)",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "propagation",
+   "values": "Data type of the block output Inherit: Inherit via back propagation (default)",
+   "group": ""
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Valid output port",
+   "default": "off",
+   "values": "Control generation of validOut output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "End input and output ports",
+   "default": "off",
+   "values": "Control generation of endIn input port and endOut output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Start output port",
+   "default": "off",
+   "values": "Control generation of startOut output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Count output port",
+   "default": "off",
+   "values": "Control generation of countOut output port off (default) | on",
+   "group": ""
+  }
+ ]
+}

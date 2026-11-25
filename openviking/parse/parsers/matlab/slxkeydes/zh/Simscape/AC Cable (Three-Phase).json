@@ -1,0 +1,13 @@
+{
+ "key": "AC Cable (Three-Phase)",
+ "title": "AC Cable (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Lines/AC_Cable_Three_Phase.md"
+ ],
+ "text": "三相交流电力电缆。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

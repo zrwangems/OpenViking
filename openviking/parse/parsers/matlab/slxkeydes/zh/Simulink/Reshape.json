@@ -1,0 +1,33 @@
+{
+ "key": "Reshape",
+ "title": "Reshape",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Reshape.md",
+  "HDL Coder/Math Operations/Reshape.md",
+  "DSP System Toolbox HDL Support/Signal Management/Convert_1_D_to_2_D.md"
+ ],
+ "text": "更改信号的维度，输入 1 路、输出 1 路；按 {输出维度} 指定输出信号的维度。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出维度",
+   "default": "一维数组",
+   "values": "输出信号的维度 一维数组 (默认) | 列向量(二维) | 行向量(二维) | 自定义 | 从引用输入端口派生",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,131 @@
+{
+ "key": "Simulink Desktop Real-Time Packet Output",
+ "title": "Packet Output",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Packet_Output.md"
+ ],
+ "text": "Write binary data or a CAN message to a communication channel, 1 input, 3 outputs, {Output packet field data types} sets Output type and grouping of data in the packet sent to the device; {Install new board} sets the register a board < no board, {Delete current board} sets the delete the current board, {Board setup} sets the up the board, {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {Packet identifier} sets the identifier of the packet, {Extended identifier}, {Output packet size} sets the number of bytes that each input packet, {Output packet field byte order} sets the byte order of packet being sent to device Little, {Show “Data Ready” port} adds port Data Ready that signals 1 when the block can accept new, {Show “Data Error” port} adds port Data Error that signals 1 if error, {Initial value} sets the data to send when simulation and {Final value} sets the data to send when simulation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input Data",
+   "direction": "input",
+   "summary": "Data to write to communication channel vector"
+  },
+  {
+   "name": "Data Ready",
+   "direction": "output",
+   "summary": "Data ready port (optional) 1 | 0"
+  },
+  {
+   "name": "Data Error",
+   "direction": "output",
+   "summary": "Data error port (optional) 1 | 0"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "Missed tick count (optional) double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "Register a board < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "Delete the current board (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "Set up the board (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Packet identifier",
+   "default": "1",
+   "values": "Identifier of the packet 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Extended identifier",
+   "default": "’off’",
+   "values": "Extended identifier of the packet (CAN boards only) ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Output packet size",
+   "default": "32",
+   "values": "Number of bytes that each input packet contains 32 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output packet field data types",
+   "default": "’4*double’",
+   "values": "Output type and grouping of data in the packet sent to the device ’4*double’ (default) | character vector | cell array of character vector",
+   "group": ""
+  },
+  {
+   "name": "Output packet field byte order",
+   "default": "Endian",
+   "values": "Byte order of packet being sent to device Little Endian (default) | Big Endian",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Ready” port",
+   "default": "’off’",
+   "values": "Add port Data Ready that signals 1 when the block can accept new data ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Error” port",
+   "default": "’off’",
+   "values": "Add port Data Error that signals 1 if error occurs ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "",
+   "values": "Data to send when simulation begins vector",
+   "group": ""
+  },
+  {
+   "name": "Final value",
+   "default": "",
+   "values": "Data to send when simulation ends vector",
+   "group": ""
+  }
+ ]
+}

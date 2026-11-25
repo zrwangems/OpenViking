@@ -1,0 +1,316 @@
+{
+ "key": "FlightGearUnpackNetCtrl",
+ "title": "Unpack net_ctrl Packet from FlightGear",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/Unpack_net_ctrl_Packet_from_FlightGear.md"
+ ],
+ "text": "解包从 FlightGear 接收的 net_ctrl 可变数据包，输入 1 路、输出 52 路；{Show control surface position outputs} 指定操纵面位置输出、{Show engine/fuel outputs} 指定发动机/燃油输出、{Show landing gear outputs} 指定起落架输出、{Show avionic outputs} 指定航空电子设备输出、{Show environment outputs} 指定环境输出、{Sample time} 指定采样时间 1/30，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "net_ctrl",
+   "direction": "input",
+   "summary": "要解包的 FlightGear 数据包 array"
+  },
+  {
+   "name": "wind_speed_kt",
+   "direction": "output",
+   "summary": "风速 scalar"
+  },
+  {
+   "name": "wind_dir_deg",
+   "direction": "output",
+   "summary": "风向 scalar"
+  },
+  {
+   "name": "turbulence_norm",
+   "direction": "output",
+   "summary": "湍流范数 scalar"
+  },
+  {
+   "name": "temp_c",
+   "direction": "output",
+   "summary": "环境温度 scalar"
+  },
+  {
+   "name": "press_inhg",
+   "direction": "output",
+   "summary": "环境压力 scalar"
+  },
+  {
+   "name": "hground",
+   "direction": "output",
+   "summary": "地面高程 scalar"
+  },
+  {
+   "name": "magvar",
+   "direction": "output",
+   "summary": "本地磁差 scalar"
+  },
+  {
+   "name": "icing",
+   "direction": "output",
+   "summary": "结冰状态 scalar"
+  },
+  {
+   "name": "aileron",
+   "direction": "output",
+   "summary": "归一化副翼位置 1 | scalar"
+  },
+  {
+   "name": "elevator",
+   "direction": "output",
+   "summary": "归一化升降舵位置 1 | scalar"
+  },
+  {
+   "name": "rudder",
+   "direction": "output",
+   "summary": "归一化方向舵位置 1 | scalar"
+  },
+  {
+   "name": "aileron_trim",
+   "direction": "output",
+   "summary": "归一化副翼配平位置 scalar"
+  },
+  {
+   "name": "elevator_trim",
+   "direction": "output",
+   "summary": "归一化升降舵配平位置 1 | scalar"
+  },
+  {
+   "name": "rudder_trim",
+   "direction": "output",
+   "summary": "归一化方向舵配平位置 1 | scalar"
+  },
+  {
+   "name": "flaps",
+   "direction": "output",
+   "summary": "归一化襟翼位置 1 | scalar"
+  },
+  {
+   "name": "spoilers",
+   "direction": "output",
+   "summary": "归一化扰流板位置 1 | scalar"
+  },
+  {
+   "name": "speedbrake",
+   "direction": "output",
+   "summary": "归一化减速板位置 1 | scalar"
+  },
+  {
+   "name": "flaps_power",
+   "direction": "output",
+   "summary": "襟翼电源 1 | scalar"
+  },
+  {
+   "name": "flap_motor_ok",
+   "direction": "output",
+   "summary": "襟翼电机已供电 scalar"
+  },
+  {
+   "name": "num_engines",
+   "direction": "output",
+   "summary": "有效发动机数量 scalar"
+  },
+  {
+   "name": "master_bat",
+   "direction": "output",
+   "summary": "主电池开关 vector"
+  },
+  {
+   "name": "master_alt",
+   "direction": "output",
+   "summary": "主交流发电机开关 vector"
+  },
+  {
+   "name": "magnetos",
+   "direction": "output",
+   "summary": "磁电机开关 scalar"
+  },
+  {
+   "name": "starter_power",
+   "direction": "output",
+   "summary": "启动电机电源 1 | vector"
+  },
+  {
+   "name": "throttle",
+   "direction": "output",
+   "summary": "归一化油门位置 1 | vector"
+  },
+  {
+   "name": "mixture",
+   "direction": "output",
+   "summary": "归一化混合杆位置 1 | vector"
+  },
+  {
+   "name": "condition",
+   "direction": "output",
+   "summary": "归一化条件 1 | vector"
+  },
+  {
+   "name": "fuel_pump_power",
+   "direction": "output",
+   "summary": "归一化减速板位置 1 | scalar"
+  },
+  {
+   "name": "prop_advance",
+   "direction": "output",
+   "summary": "螺旋桨前进 1 | vector"
+  },
+  {
+   "name": "feed_tank_to",
+   "direction": "output",
+   "summary": "供油油箱切换开关 vector"
+  },
+  {
+   "name": "reverse",
+   "direction": "output",
+   "summary": "反向开关 vector"
+  },
+  {
+   "name": "engine_ok",
+   "direction": "output",
+   "summary": "发动机状态指示器 vector"
+  },
+  {
+   "name": "mag_left_ok",
+   "direction": "output",
+   "summary": "左磁电机状态指示器 vector"
+  },
+  {
+   "name": "mag_right_ok",
+   "direction": "output",
+   "summary": "右磁电机状态指示器 vector"
+  },
+  {
+   "name": "spark_plugs_ok",
+   "direction": "output",
+   "summary": "归一化减速板位置 vector"
+  },
+  {
+   "name": "oil_press_status",
+   "direction": "output",
+   "summary": "机油压力状态指示器 0 | 1 | 2 | scalar"
+  },
+  {
+   "name": "fuel_pump_ok",
+   "direction": "output",
+   "summary": "燃油管理状态指示器 vector"
+  },
+  {
+   "name": "num_tanks",
+   "direction": "output",
+   "summary": "有效油箱数 scalar"
+  },
+  {
+   "name": "fuel_selector",
+   "direction": "output",
+   "summary": "燃油选择器 scalar"
+  },
+  {
+   "name": "xfer_pump",
+   "direction": "output",
+   "summary": "指定传输 vector"
+  },
+  {
+   "name": "cross_feed",
+   "direction": "output",
+   "summary": "交叉供油阀 scalar"
+  },
+  {
+   "name": "brake_left",
+   "direction": "output",
+   "summary": "左刹车踏板位置（飞行员） scalar"
+  },
+  {
+   "name": "brake_right",
+   "direction": "output",
+   "summary": "右刹车踏板位置（飞行员） scalar"
+  },
+  {
+   "name": "copilot_brake_left",
+   "direction": "output",
+   "summary": "左刹车踏板位置（飞行员） scalar"
+  },
+  {
+   "name": "copilot_brake_right",
+   "direction": "output",
+   "summary": "右刹车踏板位置（飞行员） scalar"
+  },
+  {
+   "name": "brake_parking",
+   "direction": "output",
+   "summary": "驻车刹车位置 scalar"
+  },
+  {
+   "name": "gear_handle",
+   "direction": "output",
+   "summary": "起落架手柄位置 scalar"
+  },
+  {
+   "name": "master_avionics",
+   "direction": "output",
+   "summary": "主航空电子设备开关 scalar"
+  },
+  {
+   "name": "comm_1",
+   "direction": "output",
+   "summary": "Comm 1 频率 scalar"
+  },
+  {
+   "name": "comm_2",
+   "direction": "output",
+   "summary": "Comm 2 频率 scalar"
+  },
+  {
+   "name": "nav_1",
+   "direction": "output",
+   "summary": "Nav 1 频率 scalar"
+  },
+  {
+   "name": "nav_2",
+   "direction": "output",
+   "summary": "Nav 2 频率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show control surface position outputs",
+   "default": "off",
+   "values": "操纵面位置输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show engine/fuel outputs",
+   "default": "off",
+   "values": "发动机/燃油输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show landing gear outputs",
+   "default": "off",
+   "values": "起落架输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show avionic outputs",
+   "default": "off",
+   "values": "航空电子设备输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show environment outputs",
+   "default": "on",
+   "values": "环境输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "采样时间 1/30 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

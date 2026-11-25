@@ -1,0 +1,65 @@
+{
+ "key": "ToWorkspace",
+ "title": "To Workspace",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/To_Workspace.md",
+  "DSP System Toolbox HDL Support/Sinks/To_Workspace.md",
+  "DSP System Toolbox/Sinks/To_Workspace.md",
+  "HDL Coder/Sinks/To_Workspace.md"
+ ],
+ "text": "Log data to workspace from Simulink model, 1 input, no direct feedthrough, {Limit data points to last} sets Number of samples to log; {Variable name} sets the name of variable for saved, {Decimation}, {Save format} sets the format for data logged to workspace, {Save 2-D signals as} sets the arrangement of 2-D sample values in logged data 3-D, {Log fixed-point data as a fi object} sets the data type for logged fixed-point data and {Sample time} sets the sampling interval and optional time offset. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Data to log to workspace scalar | vector | matrix | array | bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variable name",
+   "default": "simout",
+   "values": "Name of variable for saved data simout (default) | string | character vector",
+   "group": ""
+  },
+  {
+   "name": "Limit data points to last",
+   "default": "inf",
+   "values": "Number of samples to log inf (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "Decimation factor 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Save format",
+   "default": "Timeseries",
+   "values": "Format for data logged to workspace Timeseries (default) | Structure With Time | Structure | Array",
+   "group": ""
+  },
+  {
+   "name": "Save 2-D signals as",
+   "default": "dimension)",
+   "values": "Arrangement of 2-D sample values in logged data 3-D array (concatenate along third dimension) (default) | 2-D array (concatenate along first dimension)",
+   "group": ""
+  },
+  {
+   "name": "Log fixed-point data as a fi object",
+   "default": "on",
+   "values": "Data type for logged fixed-point data on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sampling interval and optional time offset -1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

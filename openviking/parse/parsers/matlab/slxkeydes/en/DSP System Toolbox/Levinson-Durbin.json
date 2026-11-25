@@ -1,0 +1,114 @@
+{
+ "key": "Levinson-Durbin",
+ "title": "Levinson-Durbin",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/Levinson_Durbin.md",
+  "DSP System Toolbox/Estimation/Linear Prediction/Levinson_Durbin.md"
+ ],
+ "text": "Solve linear system of equations using Levinson-Durbin recursion, 1 input, 3 outputs, no direct feedthrough, {Output(s)} sets Output(s); {Output prediction error power (P)}, {If the value of lag 0 is zero, A=[1 zeros], K=[zeros], P=0}, {Rounding mode}, {Saturate on integer overflow}, {Product output}, {Accumulator}, {Polynomial coefficients (A)} sets the polynomial coefficients data type fixdt, {Reflection coefficients (K)} sets the reflection coefficients data type fixdt, {Prediction error power (P)} sets the prediction error power data type, {Minimum}, {Maximum} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input vector | matrix"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "Model coefficients vector | matrix"
+  },
+  {
+   "name": "K",
+   "direction": "output",
+   "summary": "Reflection coefficients vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Output prediction error power vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output(s)",
+   "default": "K",
+   "values": "Output(s) K (default) | A and K | A",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output prediction error power (P)",
+   "default": "off",
+   "values": "Output prediction error power off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "If the value of lag 0 is zero, A=[1 zeros], K=[zeros], P=0",
+   "default": "on",
+   "values": "If the value of lag 0 is zero, A=[1 zeros], K=[zeros], P=0 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output Inherit: Same as input (default) | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "input",
+   "values": "Accumulator Inherit: Same as input (default) | Inherit: Same as product output | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Polynomial coefficients (A)",
+   "default": "fixdt(1,16,0)",
+   "values": "Polynomial coefficients data type fixdt(1,16,0) (default) | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Reflection coefficients (K)",
+   "default": "fixdt(1,16,0)",
+   "values": "Reflection coefficients data type fixdt(1,16,0) (default) | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Prediction error power (P)",
+   "default": "input",
+   "values": "Prediction error power data type Inherit: Same as input (default) | numeric type",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "Minimum values of polynomial coefficients, reflection coefficients, or prediction error power [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "Maximum values of polynomial coefficients, reflection coefficients, or prediction error power [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

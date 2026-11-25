@@ -1,0 +1,48 @@
+{
+ "key": "Thyristor 6-Pulse Generator",
+ "title": "Thyristor 6-Pulse Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/Thyristor_6_Pulse_Generator.md"
+ ],
+ "text": "在单脉冲模式下生成晶闸管 6 脉冲波形，输入 2 路、输出 1 路；{Pulse ordering} 指定脉冲排序策略 Sequential device、{Pulse width (rad)} 指定脉冲宽度 5*pi/6、{Sample time (-1 for inherited)} 指定模块采样时间 1e-5，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "同步角，弧度 scalar"
+  },
+  {
+   "name": "alpha",
+   "direction": "input",
+   "summary": "触发角，弧度 scalar"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "脉冲向量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pulse ordering",
+   "default": "order",
+   "values": "脉冲排序策略 Sequential device order (default) | Natural order of commutation",
+   "group": ""
+  },
+  {
+   "name": "Pulse width (rad)",
+   "default": "rad",
+   "values": "脉冲宽度 5*pi/6 rad (default) | positive scalar in range [0, pi]",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1e-5",
+   "values": "模块采样时间 1e-5 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

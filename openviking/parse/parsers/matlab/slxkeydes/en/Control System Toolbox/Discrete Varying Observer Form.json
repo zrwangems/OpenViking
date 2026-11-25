@@ -1,0 +1,89 @@
+{
+ "key": "Discrete Varying Observer Form",
+ "title": "Discrete Varying Observer Form",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Discrete_Varying_Observer_Form.md"
+ ],
+ "text": "Discrete-time observer-form state-space model with varying matrix values, 7 inputs, 3 outputs, {Initial conditions} sets System initial conditions; {Sample time (-1 for inherited)} sets the block sample time, {Output states} sets the provide state output and {Output state derivatives} sets the provide state updates. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y k",
+   "direction": "input",
+   "summary": "Measurement signal scalar | vector"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Plant state matrix matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Plant input matrix matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Plant output matrix matrix"
+  },
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "Plant feedforward matrix matrix"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "State-feedback matrix matrix"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "State-observer matrix matrix"
+  },
+  {
+   "name": "u k",
+   "direction": "output",
+   "summary": "Control signal scalar | vector"
+  },
+  {
+   "name": "x k",
+   "direction": "output",
+   "summary": "Estimated plant state vector vector"
+  },
+  {
+   "name": "x k+1",
+   "direction": "output",
+   "summary": "Estimated next state vector vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "System initial conditions 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "–1",
+   "values": "Block sample time –1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output states",
+   "default": "on",
+   "values": "Provide state output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output state derivatives",
+   "default": "on",
+   "values": "Provide state updates on (default) | off",
+   "group": ""
+  }
+ ]
+}

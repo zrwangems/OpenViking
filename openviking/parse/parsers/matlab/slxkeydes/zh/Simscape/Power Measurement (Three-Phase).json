@@ -1,0 +1,59 @@
+{
+ "key": "Power Measurement (Three-Phase)",
+ "title": "Power Measurement (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Power_Measurement_Three_Phase.md"
+ ],
+ "text": "计算三相实际功率和无功功率，输入 2 路、输出 2 路；按 {序列} 指定对称序列；{基础频率(Hz)} 指定基频、{谐波次数} 指定频率分量、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "输入电压 向量"
+  },
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "输入电流 向量"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "实际功率 标量或向量 | 向量"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "无功功率 标量或向量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "基础频率(Hz)",
+   "default": "60",
+   "values": "基频 60 (默认) | 正数",
+   "group": ""
+  },
+  {
+   "name": "谐波次数",
+   "default": "3]",
+   "values": "频率分量 [0 1 2 3] (默认) | 标量或向量",
+   "group": ""
+  },
+  {
+   "name": "序列",
+   "default": "正",
+   "values": "对称序列 正 (默认) | 负 | 零",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0",
+   "values": "模块采样时间 0 (默认) | 正数",
+   "group": ""
+  }
+ ]
+}

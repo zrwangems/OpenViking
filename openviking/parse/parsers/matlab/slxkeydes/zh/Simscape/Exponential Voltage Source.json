@@ -1,0 +1,13 @@
+{
+ "key": "Exponential Voltage Source",
+ "title": "Exponential Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/Exponential_Voltage_Source.md"
+ ],
+ "text": "指数脉冲电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

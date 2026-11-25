@@ -1,0 +1,147 @@
+{
+ "key": "AXI4 Video Frame Buffer",
+ "title": "AXI4 Video Frame Buffer",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/AXI4_Video_Frame_Buffer.md"
+ ],
+ "text": "对两个硬件算法之间通过外部存储器的连接进行建模，输入 3 路、输出 3 路；按 {Sample time} 指定采样时间间隔；{Memory simulation} 指定仿真时序精度 Burst、{Memory selection} 指定在内存区域之间选择 PS、{Region size (bytes)} 指定所分配存储器区域的大小，以字节为单位 Read-only、{Frame size} 指定帧尺寸 1080p HDTV、{Number of Frames} 指定区域中的缓冲区数量、{Burst length} 指定存储器事务的突发长度、{FIFO depth (number of bursts)} 指定数据 FIFO 的深度、{FIFO almost-full depth (number of bursts)} 指定断言背压时的 FIFO 深度、{Clock frequency (MHz)} 指定管理器数据通路的互连频率、{Data width (bits)} 指定管理器数据通路的数据宽度、{Dimensions} 指定视频数据的维度、{Data type} 指定视频像素的数据类型、{Enable sample packing (last signal dimension as channel)} 指定在信号的最后一个维度上打包数据、{Inherit sample time offset} 指定使读取端继承写入端的采样时间、{Use pixel clock sample times} 使用像素时钟采样时间、{View performance plots} 显示性能指标，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "写入器数据总线信号 scalar | vector | matrix"
+  },
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "写入器输入控制信号 bus"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "读取器输入控制信号 bus"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "输出数据信号至数据消费方 scalar | vector | matrix"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "从内存通道到数据消费方的读取器控制信号 bus"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "从内存通道到数据生产方的写入器控制信号 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Memory simulation",
+   "default": "accurate",
+   "values": "设置仿真时序精度 Burst accurate (default) | Protocol accurate | Behavioral",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "在内存区域之间选择 PS memory (default) | PL memory",
+   "group": "Main"
+  },
+  {
+   "name": "Region size (bytes)",
+   "default": "",
+   "values": "所分配存储器区域的大小，以字节为单位 Read-only: calculated",
+   "group": "Main"
+  },
+  {
+   "name": "Frame size",
+   "default": "(1920x1080p)",
+   "values": "帧尺寸 1080p HDTV (1920x1080p) (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Number of Frames",
+   "default": "3",
+   "values": "区域中的缓冲区数量 3 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Burst length",
+   "default": "256",
+   "values": "存储器事务的突发长度 256 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO depth (number of bursts)",
+   "default": "8",
+   "values": "数据 FIFO 的深度 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO almost-full depth (number of bursts)",
+   "default": "6",
+   "values": "断言背压时的 FIFO 深度 6 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Clock frequency (MHz)",
+   "default": "100",
+   "values": "管理器数据通路的互连频率 100 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Data width (bits)",
+   "default": "64",
+   "values": "管理器数据通路的数据宽度 64 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Dimensions",
+   "default": "3]",
+   "values": "视频数据的维度 [1 3] (default) | scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "视频像素的数据类型 uint8 (default) | uint16 | uint32 | uint64 | fixdt(1,16,0)",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "采样时间间隔 1 (default) | positive scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "on",
+   "values": "在信号的最后一个维度上打包数据 on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Inherit sample time offset",
+   "default": "on",
+   "values": "使读取端继承写入端的采样时间 on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Use pixel clock sample times",
+   "default": "off",
+   "values": "使用像素时钟采样时间 off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "View performance plots",
+   "default": "",
+   "values": "显示性能指标 button",
+   "group": "Performance"
+  }
+ ]
+}

@@ -1,0 +1,204 @@
+{
+ "key": "Interpolation_n-D",
+ "title": "Interpolation Using Prelookup",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/Interpolation_Using_Prelookup.md"
+ ],
+ "text": "Use precalculated index and fraction values to accelerate approximation of N-dimensional function, 8 inputs, 1 output, direct feedthrough, {Interpolation method} sets Select Linear; {Number of dimensions} sets the number of table data dimensions, {Require index and fraction as bus} sets the index and fraction inputs can be combined, {Specification} sets how to enter table data, {Source}, {Value} sets the table data values sqrt, {Name}, {Extrapolation method} sets the method of handling input that falls outside the range of the breakpoint data set, {Valid index input may reach last index} allows inputs to access the last elements of table, {Assume index is within range} sets the option to check for out-of-range index, {Diagnostic for out-of-range input} sets the block action when input is out of range, {Number of sub-table selection dimensions} sets the number of dimensions of the output computation, {Sample time (-1 for inherited)} sets the interval between samples, {Table data} sets the data type of table values, {Table minimum} sets the minimum value of table data, {Table maximum} sets the maximum value of table data, {Intermediate results} sets the data type of intermediate results, {Output}, {Output minimum} sets the minimum value the block can output, {Output maximum} sets the maximum value the block can output, {Internal rule priority} sets the internal rule for intermediate calculations, {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Integer rounding mode} sets the rounding mode for fixed-point operations and {Saturate on integer overflow} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "k1",
+   "direction": "input",
+   "summary": "Index, k, for the first dimension of the table scalar | vector | matrix"
+  },
+  {
+   "name": "f1",
+   "direction": "input",
+   "summary": "Fraction, f, for the first dimension of the table scalar | vector | matrix"
+  },
+  {
+   "name": "kn",
+   "direction": "input",
+   "summary": "Index, k, for the n -th dimension of the table scalar | vector | matrix"
+  },
+  {
+   "name": "fn",
+   "direction": "input",
+   "summary": "Fraction, f, for the n -th dimension of the table scalar | vector | matrix"
+  },
+  {
+   "name": "kf1",
+   "direction": "input",
+   "summary": "Input containing index k and fraction f bus object"
+  },
+  {
+   "name": "kfn",
+   "direction": "input",
+   "summary": "Input containing index k and fraction f bus object"
+  },
+  {
+   "name": "sm",
+   "direction": "input",
+   "summary": "Select and interpolate a subset of the table data scalar | vector | matrix"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Table data scalar | vector | matrix | n-d array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Approximation of N-dimensional function scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of dimensions",
+   "default": "2",
+   "values": "Number of table data dimensions 2 (default) | integer between 1 and 30",
+   "group": "Main"
+  },
+  {
+   "name": "Require index and fraction as bus",
+   "default": "off",
+   "values": "Index and fraction inputs can be combined in a bus off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Specification",
+   "default": "values",
+   "values": "Choose how to enter table data Explicit values (default) | Lookup table object",
+   "group": "Main"
+  },
+  {
+   "name": "Source",
+   "default": "Dialog",
+   "values": "Source of table data Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Value",
+   "default": "[1:11])",
+   "values": "Specify table data values sqrt([1:11]’ * [1:11]) (default) | multidimensional array of table data",
+   "group": "Main"
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Name of a Simulink.LookupTable object Simulink.LookupTable object",
+   "group": "Main"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "point-slope",
+   "values": "Select Linear point-slope, Flat, Nearest, or Linear Lagrange Linear point-slope (default) | Nearest | Flat | Linear Lagrange",
+   "group": "Main"
+  },
+  {
+   "name": "Extrapolation method",
+   "default": "Linear",
+   "values": "Method of handling input that falls outside the range of the breakpoint data set Linear (default) | Clip",
+   "group": "Main"
+  },
+  {
+   "name": "Valid index input may reach last index",
+   "default": "off",
+   "values": "Allow inputs to access the last elements of table data off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Assume index is within range",
+   "default": "off",
+   "values": "Option to check for out-of-range index values off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Diagnostic for out-of-range input",
+   "default": "None",
+   "values": "Block action when input is out of range None (default) | Warning | Error",
+   "group": "Main"
+  },
+  {
+   "name": "Number of sub-table selection dimensions",
+   "default": "0",
+   "values": "Number of dimensions of the output computation subtable 0 (default) | positive integer, less than or equal to the number of table dimensions",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Table data",
+   "default": "output",
+   "values": "Data type of table values Inherit: Same as output (default) | Inherit: Inherit from ’Table data’ | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Table minimum",
+   "default": "[]",
+   "values": "Minimum value of table data [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Table maximum",
+   "default": "[]",
+   "values": "Maximum value of table data [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Intermediate results",
+   "default": "rule",
+   "values": "Data type of intermediate results Inherit: Inherit via internal rule (default) | Inherit: Same as output | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "data’",
+   "values": "Output data type Inherit: Inherit from ’Table data’ (default) | Inherit: Inherit via back propagation | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum value the block can output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum value the block can output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal rule priority",
+   "default": "Speed",
+   "values": "Internal rule for intermediate calculations Speed (default) | Precision",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Convergent | Ceiling | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

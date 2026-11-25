@@ -1,0 +1,131 @@
+{
+ "key": "Math",
+ "title": "Math Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Math_Function.md",
+  "Simulink/Quick Insert/Math Operations/Conj.md",
+  "Simulink/Quick Insert/Math Operations/Exp.md",
+  "Simulink/Quick Insert/Math Operations/Hermitian.md",
+  "Simulink/Quick Insert/Math Operations/Hypot.md",
+  "Simulink/Quick Insert/Math Operations/Log.md",
+  "Simulink/Quick Insert/Math Operations/Log10.md",
+  "Simulink/Quick Insert/Math Operations/Magnitude_Squared.md",
+  "Simulink/Quick Insert/Math Operations/Mod.md",
+  "Simulink/Quick Insert/Math Operations/Power.md",
+  "Simulink/Quick Insert/Math Operations/Power_of_10.md",
+  "Simulink/Quick Insert/Math Operations/Rem.md",
+  "Simulink/Quick Insert/Math Operations/Square.md",
+  "Simulink/Quick Insert/Math Operations/Transpose.md",
+  "Simulink/Quick Insert/Math Operations/ln.md",
+  "HDL Coder/Math Operations/Math_Function.md",
+  "HDL Coder/HDL Floating Point Operations/Math_Reciprocal.md",
+  "HDL Coder/HDL Floating Point Operations/Conjugate.md",
+  "HDL Coder/HDL Floating Point Operations/Exp.md",
+  "HDL Coder/HDL Floating Point Operations/Hermitian.md",
+  "HDL Coder/HDL Floating Point Operations/Hypot.md",
+  "HDL Coder/HDL Floating Point Operations/Log.md",
+  "HDL Coder/HDL Floating Point Operations/Log10.md",
+  "HDL Coder/HDL Floating Point Operations/Magnitude_Square.md",
+  "HDL Coder/HDL Floating Point Operations/Mod.md",
+  "HDL Coder/HDL Floating Point Operations/Pow.md",
+  "HDL Coder/HDL Floating Point Operations/Pow10.md",
+  "HDL Coder/HDL Floating Point Operations/Rem.md",
+  "HDL Coder/HDL Floating Point Operations/Square.md",
+  "HDL Coder/HDL Floating Point Operations/Transpose.md"
+ ],
+ "text": "执行数学函数，输入 2 路、输出 1 路；按 {函数} 指定数学函数；{算法方法}、{有符号幂} 指定幂的符号性、{输出信号类型} 输出信号的复/实性、{迭代次数}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{输出数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定发生整数溢出时的行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "对一个或多个输入执行函数运算的结果 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "函数",
+   "default": "exp",
+   "values": "数学函数 exp (默认) | log | 2^u | 10^u | log10 | magnitude^2 | 方波 | pow | conj | 倒数 | hypot | rem | mod | 转置 | hermitian",
+   "group": "常设"
+  },
+  {
+   "name": "算法方法",
+   "default": "完全",
+   "values": "reciprocal 函数的算法方法 完全 (默认) | 牛顿-拉夫逊",
+   "group": "常设"
+  },
+  {
+   "name": "有符号幂",
+   "default": "on",
+   "values": "幂的符号性 on (默认) | off",
+   "group": "常设"
+  },
+  {
+   "name": "输出信号类型",
+   "default": "自动",
+   "values": "输出信号的复/实性 自动 (默认) | 实数 | 复",
+   "group": "常设"
+  },
+  {
+   "name": "迭代次数",
+   "default": "3",
+   "values": "牛顿-拉夫逊迭代次数 3 (默认) | 标量",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "input",
+   "values": "指定输出数据类型 Inherit: Same as first input (默认) | Inherit: Inherit via internal rule | Inherit: Inherit via back propagation | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "信号属性"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "on",
+   "values": "选择发生整数溢出时的行为 on (默认) | 布尔",
+   "group": "信号属性"
+  }
+ ]
+}

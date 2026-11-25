@@ -1,0 +1,41 @@
+{
+ "key": "Lookup Table",
+ "title": "Lookup Table",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Conversions/Lookup_Table.md"
+ ],
+ "text": "Map input pixel to output pixel using custom rule, 2 inputs, 2 outputs; {Table data} sets the map between input pixel and output pixel. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Output pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Table data",
+   "default": "uint8(0:1:255)",
+   "values": "Map between input pixel and output pixel uint8(0:1:255) (default) | vector",
+   "group": ""
+  }
+ ]
+}

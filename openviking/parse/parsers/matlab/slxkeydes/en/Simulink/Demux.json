@@ -1,0 +1,40 @@
+{
+ "key": "Demux",
+ "title": "Demux",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Demux.md",
+  "Simulink/Signal Routing/Demux.md",
+  "HDL Coder/Commonly Used Blocks/Demux.md",
+  "HDL Coder/Signal Routing/Demux.md"
+ ],
+ "text": "Extract and output elements of virtual vector signal, 1 input, 1 output, direct feedthrough, {Number of outputs} sets Number of outputs; {Display option} sets the displayed block icon. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Accept nonbus vector signal to extract and output signals from real or complex values of any nonbus data type supported by Simulink ® software"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signals extracted from input vector signal nonbus signal with real or complex values of any data type supported by Simulink software"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of outputs",
+   "default": "2",
+   "values": "Number of outputs 2 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Display option",
+   "default": "bar",
+   "values": "Displayed block icon bar (default) | none",
+   "group": ""
+  }
+ ]
+}

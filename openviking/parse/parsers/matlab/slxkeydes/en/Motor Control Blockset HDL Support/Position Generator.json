@@ -1,0 +1,60 @@
+{
+ "key": "Position Generator",
+ "title": "Position Generator",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Control Reference/Position_Generator.md",
+  "Motor Control Blockset/Controls/Control Reference/Position_Generator.md"
+ ],
+ "text": "Generate position ramp of fixed frequency, 3 inputs, 1 output, {Theta Units} sets Unit of θ; {Initial state} sets how to provide initial value of θ Specify via, {Initial theta value} sets the initial value of θ e and {External reset} sets the output value on reset. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "∆θ",
+   "direction": "input",
+   "summary": "Position increment value scalar"
+  },
+  {
+   "name": "θ 0",
+   "direction": "input",
+   "summary": "Initial position signal scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset signal scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "Reference voltage position scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Theta Units",
+   "default": "Per-unit",
+   "values": "Unit of θ Per-unit (default) | Radians | Degrees",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "dialog",
+   "values": "Specify how to provide initial value of θ Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Initial theta value",
+   "default": "0",
+   "values": "Initial value of θ e 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External reset",
+   "default": "none",
+   "values": "Output value on reset none (default) | active high resets to zero | active high resets to initial condition",
+   "group": ""
+  }
+ ]
+}

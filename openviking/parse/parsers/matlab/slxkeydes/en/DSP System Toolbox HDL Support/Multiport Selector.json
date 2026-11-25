@@ -1,0 +1,44 @@
+{
+ "key": "Multiport Selector",
+ "title": "Multiport Selector",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Management/Multiport_Selector.md",
+  "DSP System Toolbox/Signal Management/Indexing/Multiport_Selector.md"
+ ],
+ "text": "Distribute arbitrary subsets of input rows or columns to multiple output ports, 1 input, 1 output, no direct feedthrough, {Invalid index} sets Action to take for invalid index Clip; {Select} and {Indices to output}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input vector | matrix"
+  },
+  {
+   "name": "Output(s)",
+   "direction": "output",
+   "summary": "Row- or column-subsets of input vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select",
+   "default": "Rows",
+   "values": "Select input dimension Rows (default) | Columns",
+   "group": ""
+  },
+  {
+   "name": "Indices to output",
+   "default": "}",
+   "values": "Indices to output { 4, [1:2 5], [7; 8], 10:-1:6 } (default) | cell array",
+   "group": ""
+  },
+  {
+   "name": "Invalid index",
+   "default": "Index",
+   "values": "Action to take for invalid index Clip Index (default) | Clip and Warn | Generate Error",
+   "group": ""
+  }
+ ]
+}

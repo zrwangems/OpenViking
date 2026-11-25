@@ -1,0 +1,43 @@
+{
+ "key": "CREPE Preprocess",
+ "title": "CREPE Preprocess",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/CREPE_Preprocess.md"
+ ],
+ "text": "为 CREPE 深度音高估计预处理音频，输入 1 路、输出 1 路、无直接馈通；{Sample rate of input signal (Hz)} 指定输入信号的采样率（Hz） 16e3（连续帧之间的重叠百分比 85）{Number of output frames} 指定生成的帧数 也按实例取值；{Overlap percentage (%)} 指定连续帧之间的重叠百分比，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "音频输入 vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "预处理后的音频帧 4-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "16e3",
+   "values": "输入信号的采样率（Hz） 16e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "85",
+   "values": "连续帧之间的重叠百分比 85 (default) | [0, 100)",
+   "group": ""
+  },
+  {
+   "name": "Number of output frames",
+   "default": "1",
+   "values": "生成的帧数 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

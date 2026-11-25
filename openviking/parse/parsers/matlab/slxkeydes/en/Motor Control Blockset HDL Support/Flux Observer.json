@@ -1,0 +1,199 @@
+{
+ "key": "Flux Observer",
+ "title": "Flux Observer",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Sensorless Estimators/Flux_Observer.md",
+  "Motor Control Blockset/Sensorless Estimators/Flux_Observer.md"
+ ],
+ "text": "Compute electrical position, magnetic flux, and electrical torque of rotor, 6 inputs, 3 outputs, {Block output} sets Block output options Position; {Motor selection} sets the type of motor, {Support 16-bit fixedpoint datatype} sets the support the data type of 16-bit, {Input unit} sets the unit of voltage and current inputs, {Base voltage (V)} sets the nominal voltage corresponding to one, {Base current (A)} sets the nominal current corresponding to one, {Pole pairs} sets the number of pole pairs available in motor, {Stator resistance (ohm)} sets the stator winding resistance, {Stator d-axis inductance (H)} sets the stator winding inductance along d -axis, {Stator leakage inductance (H)} sets the leakage inductance of stator winding, {Rotor leakage inductance (H)} sets the leakage inductance of rotor winding, {Magnetizing inductance (H)} sets the magnetizing inductance of induction motor, {Cutoff frequency (Hz)} sets the cutoff frequency of internal highpass, {Discrete step size (s)} sets the interval between consecutive block executions, {Use input port for computed parameters (run-time motor swap)} sets the option to enable input port to accept computed, {Position unit} sets the unit of electrical position, {Position datatype} sets the data type of electrical position output, {Flux unit} sets the unit of magnetic flux, {Per unit flux (Wb)} sets the flux corresponding to one per-unit, {Flux datatype} sets the data type of magnetic flux, {Torque unit} sets the unit of electrical torque, {Per unit torque (Nm)} sets the torque corresponding to one per-unit and {Torque datatype} sets the data type of electrical torque output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V α",
+   "direction": "input",
+   "summary": "α- axis voltage scalar"
+  },
+  {
+   "name": "V β",
+   "direction": "input",
+   "summary": "β- axis voltage scalar"
+  },
+  {
+   "name": "I α",
+   "direction": "input",
+   "summary": "α- axis current scalar"
+  },
+  {
+   "name": "I β",
+   "direction": "input",
+   "summary": "β- axis current scalar"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset block scalar"
+  },
+  {
+   "name": "ParameterBus",
+   "direction": "input",
+   "summary": "Computed parameters for flux observer bus"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "Electrical position of motor scalar"
+  },
+  {
+   "name": "Ψ",
+   "direction": "output",
+   "summary": "Rotor flux of motor scalar"
+  },
+  {
+   "name": "T e",
+   "direction": "output",
+   "summary": "Electrical torque of motor scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Motor selection",
+   "default": "PMSM",
+   "values": "Type of motor PMSM (default) | ACIM",
+   "group": "Parameters"
+  },
+  {
+   "name": "Support 16-bit fixedpoint datatype",
+   "default": "off",
+   "values": "Support the data type of 16-bit fixed-point off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Input unit",
+   "default": "unit",
+   "values": "Unit of voltage and current inputs SI unit (default) | Per-unit",
+   "group": "Parameters"
+  },
+  {
+   "name": "Base voltage (V)",
+   "default": "13.86",
+   "values": "Nominal voltage corresponding to one per-unit 13.86 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Base current (A)",
+   "default": "19.3",
+   "values": "Nominal current corresponding to one per-unit 19.3 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Block output",
+   "default": "",
+   "values": "Block output options Position | Flux | Torque",
+   "group": "Parameters"
+  },
+  {
+   "name": "Pole pairs",
+   "default": "4",
+   "values": "Number of pole pairs available in motor 4 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator resistance (ohm)",
+   "default": "0.36",
+   "values": "Stator winding resistance 0.36 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator d-axis inductance (H)",
+   "default": "0.2e-3",
+   "values": "Stator winding inductance along d -axis 0.2e-3 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator leakage inductance (H)",
+   "default": "0.0068",
+   "values": "Leakage inductance of stator winding 0.0068 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Rotor leakage inductance (H)",
+   "default": "0.0068",
+   "values": "Leakage inductance of rotor winding 0.0068 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Magnetizing inductance (H)",
+   "default": "0.0300",
+   "values": "Magnetizing inductance of induction motor 0.0300 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Cutoff frequency (Hz)",
+   "default": "3.1863",
+   "values": "Cutoff frequency of internal highpass filter 3.1863 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Interval between consecutive block executions 50e-6 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Use input port for computed parameters (run-time motor swap)",
+   "default": "off",
+   "values": "Option to enable input port to accept computed parameters off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Position unit",
+   "default": "Radians",
+   "values": "Unit of electrical position output Radians (default) | Degrees | Per-unit",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Position datatype",
+   "default": "single",
+   "values": "Data type of electrical position output single (default) | double | fixed point",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Flux unit",
+   "default": "Weber",
+   "values": "Unit of magnetic flux output Weber (default) | Per-unit",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Per unit flux (Wb)",
+   "default": "0.1",
+   "values": "Flux corresponding to one per-unit 0.1 (default) | scalar",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Flux datatype",
+   "default": "single",
+   "values": "Data type of magnetic flux output single (default) | double | fixed point",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Torque unit",
+   "default": "Nm",
+   "values": "Unit of electrical torque output Nm (default) | Per-unit",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Per unit torque (Nm)",
+   "default": "100",
+   "values": "Torque corresponding to one per-unit 100 (default) | scalar",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Torque datatype",
+   "default": "single",
+   "values": "Data type of electrical torque output single (default) | double | fixed point",
+   "group": "Datatypes"
+  }
+ ]
+}

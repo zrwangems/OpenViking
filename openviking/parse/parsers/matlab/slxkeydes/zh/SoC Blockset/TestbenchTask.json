@@ -1,0 +1,19 @@
+{
+ "key": "TestbenchTask",
+ "title": "Testbench Task",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor Testbench/Testbench_Task.md"
+ ],
+ "text": "SoC 处理器应用程序上的外部定时器驱动任务负载，输入 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Timer Task Function Call",
+   "direction": "input",
+   "summary": "来自定时器驱动任务的函数调用输入端口 scalar"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,38 @@
+{
+ "key": "Coulombic and Viscous Friction",
+ "title": "Coulomb & Viscous Friction",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Coulomb_Viscous_Friction.md",
+  "HDL Coder/Discontinuities/Coulomb_Viscous_Friction.md"
+ ],
+ "text": "Model discontinuity at zero, with linear gain elsewhere, 1 input, 1 output, direct feedthrough; {Coulomb friction value} sets the static friction offset and {Coefficient of viscous friction} sets the dynamic friction coefficient. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coulomb friction value",
+   "default": "[1320]",
+   "values": "Static friction offset [1320] (default) | real values",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of viscous friction",
+   "default": "1",
+   "values": "Dynamic friction coefficient 1 (default) | real values",
+   "group": ""
+  }
+ ]
+}

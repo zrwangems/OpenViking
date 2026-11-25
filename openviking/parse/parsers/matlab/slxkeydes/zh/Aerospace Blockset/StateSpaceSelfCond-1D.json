@@ -1,0 +1,77 @@
+{
+ "key": "StateSpaceSelfCond-1D",
+ "title": "1D Self-Conditioned [A(v),B(v),C(v),D(v)]",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/b_1D_Self_Conditioned_A_v_B_v_C_v_D_v.md"
+ ],
+ "text": "依据一个调度参数实现自条件形式的增益调度状态空间控制器，输入 3 路、输出 1 路；{A-matrix(v)} 指定状态空间实现的 A 矩阵、{B-matrix(v)} 指定状态空间实现的 B 矩阵、{C-matrix(v)} 指定状态空间实现的 C 矩阵、{D-matrix(v)} 指定状态空间实现的 D 矩阵、{Scheduling variable breakpoints} 指定调度变量的断点、{Initial state, x_initial} 指定初始状态、{Poles of A(v)-H(v)*C(v)} 指定期望极点，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "飞行器测量值 vector"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "调度变量 vector"
+  },
+  {
+   "name": "u_meas",
+   "direction": "input",
+   "summary": "测得的执行机构位置 vector"
+  },
+  {
+   "name": "u_dem",
+   "direction": "output",
+   "summary": "作动器需求 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A-matrix(v)",
+   "default": "A",
+   "values": "状态空间实现的 A 矩阵 A (default) | array",
+   "group": ""
+  },
+  {
+   "name": "B-matrix(v)",
+   "default": "B",
+   "values": "状态空间实现的 B 矩阵 B (default) | array",
+   "group": ""
+  },
+  {
+   "name": "C-matrix(v)",
+   "default": "C",
+   "values": "状态空间实现的 C 矩阵 C (default) | array",
+   "group": ""
+  },
+  {
+   "name": "D-matrix(v)",
+   "default": "D",
+   "values": "状态空间实现的 D 矩阵 D (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Scheduling variable breakpoints",
+   "default": "v_vec",
+   "values": "调度变量的断点 v_vec (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "初始状态 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Poles of A(v)-H(v)*C(v)",
+   "default": "-2]",
+   "values": "期望极点 [-5 -2] (default) | vector",
+   "group": ""
+  }
+ ]
+}

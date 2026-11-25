@@ -1,0 +1,131 @@
+{
+ "key": "Model Reference Adaptive Controller",
+ "title": "Model Reference Adaptive Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Model_Reference_Adaptive_Controller.md"
+ ],
+ "text": "Discrete-time PID-based model reference adaptive control, 3 inputs, 1 output; {Proportional gain} sets the controller proportional gain, K p, {Integral gain} sets the controller integral gain, K i, {Derivative gain} sets the controller derivative gain, K d, {Anti-windup gain} sets the controller anti-windup gain, {Use filtered derivative} sets the filter, {Filter coefficient} sets the reference signal filter coefficient, {Control action upper limit} controls signal upper limit, u pid_max, {Control action lower limit} controls signal lower limit, u pid_min, {Sample time (-1 for inherited)} sets the block sample time, {Model parameterization} sets the discrete or continuous model, {Discrete-time numerator} sets the discrete-time transfer function numerator, {Discrete-time denominator} sets the discrete-time transfer function denominator, {Discretization sample time} sets the sample time for discretization, {Continuous-time numerator} sets the continuous-time transfer function numerator, {Continuous-time denominator} sets the continuous-time transfer function denominator and {Learning rate} sets the γ. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Plant reference, r scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output, y scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Integrator reset scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Controller adjusted output, u scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "Controller proportional gain, K p 1 (default) | positive scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Integral gain",
+   "default": "1",
+   "values": "Controller integral gain, K i 1 (default) | positive scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Derivative gain",
+   "default": "0",
+   "values": "Controller derivative gain, K d 0 (default)",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "Controller anti-windup gain 1 (default) | positive scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Use filtered derivative",
+   "default": "on",
+   "values": "Filter option on (default) | off",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Filter coefficient",
+   "default": "100",
+   "values": "Reference signal filter coefficient 100 (default)",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "5",
+   "values": "Control signal upper limit, u pid_max 5 (default)",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "-5",
+   "values": "Control signal lower limit, u pid_min -5 (default)",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Model parameterization",
+   "default": "Discrete-time",
+   "values": "Discrete or continuous model option Discrete-time (default) | Continuous-time",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Discrete-time numerator",
+   "default": "-0.0099]",
+   "values": "Discrete-time transfer function numerator [0.01 -0.0099] (default)",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Discrete-time denominator",
+   "default": "0.9802]",
+   "values": "Discrete-time transfer function denominator [1 -1.9801 0.9802] (default) | vector",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.01",
+   "values": "Sample time for discretization 0.01 (default) | -1 or positive number",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Continuous-time numerator",
+   "default": "1]",
+   "values": "Continuous-time transfer function numerator [1 1] (default) | vector",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Continuous-time denominator",
+   "default": "1]",
+   "values": "Continuous-time transfer function denominator [1 2 1] (default) | vector",
+   "group": "Reference Model"
+  },
+  {
+   "name": "Learning rate",
+   "default": "0.5",
+   "values": "γ 0.5 (default)",
+   "group": "Adjustment Mechanism"
+  }
+ ]
+}

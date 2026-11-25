@@ -1,0 +1,38 @@
+{
+ "key": "ROS Blank Message",
+ "title": "Blank Message",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Blank_Message.md"
+ ],
+ "text": "Create blank message using specified message type, 1 output, {Type} sets ROS message type; {Class} and {Sample time} sets the interval between outputs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "Blank ROS message nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Class",
+   "default": "Message",
+   "values": "Class of ROS message Message (default) | Service Request | Service Response",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "’geometry_msgs/Point’",
+   "values": "ROS message type ’geometry_msgs/Point’ (default) | character vector | dialog box selection",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "Inf",
+   "values": "Interval between outputs Inf (default) | numeric scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,134 @@
+{
+ "key": "SM Current Controller",
+ "title": "SM Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_Current_Controller.md"
+ ],
+ "text": "离散时间同步电机电流 PI 控制器，输入 6 路、输出 1 路；按 {Axis prioritization} 指定电压限幅器的轴优先级；{Sample time (-1 for inherited)} 指定模块采样时间、{Discretization sample time} 指定模块离散化采样时间、{Enable zero cancellation} 指定前馈零点对消、{Enable pre-control voltage} 指定预控制电压、{D-axis current proportional gain} 指定 D 轴比例增益、{D-axis current integral gain} 指定 D 轴积分增益、{D-axis current anti-windup gain} 指定 D 轴抗积分饱和增益、{Q-axis current proportional gain} 指定 Q 轴比例增益、{Q-axis current integral gain} 指定 Q 轴积分增益、{Q-axis current anti-windup gain} 指定 Q 轴抗积分饱和增益、{Field current proportional gain} 指定励磁电流比例增益、{Field current integral gain} 指定励磁电流积分增益、{Field current anti-windup gain} 指定励磁电流抗饱和增益，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "idqfRef",
+   "direction": "input",
+   "summary": "参考电流，A vector"
+  },
+  {
+   "name": "idqf",
+   "direction": "input",
+   "summary": "测量电流，A vector"
+  },
+  {
+   "name": "vdqFF",
+   "direction": "input",
+   "summary": "用途，V vector"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "最大相电压，V scalar"
+  },
+  {
+   "name": "VfMax",
+   "direction": "input",
+   "summary": "最大励磁电压，V scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部复位 scalar"
+  },
+  {
+   "name": "vdqfRef",
+   "direction": "output",
+   "summary": "参考电压，V vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "模块离散化采样时间 0.001 (default) | -1 or positive number",
+   "group": ""
+  },
+  {
+   "name": "Axis prioritization",
+   "default": "q-axis",
+   "values": "电压限幅器的轴优先级 q-axis (default) | d-axis | d-q equivalence",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "前馈零点对消 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable pre-control voltage",
+   "default": "on",
+   "values": "预控制电压 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "D-axis current proportional gain",
+   "default": "1",
+   "values": "D 轴比例增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current integral gain",
+   "default": "100",
+   "values": "D 轴积分增益 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "D-axis current anti-windup gain",
+   "default": "1",
+   "values": "D 轴抗积分饱和增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current proportional gain",
+   "default": "1",
+   "values": "Q 轴比例增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current integral gain",
+   "default": "100",
+   "values": "Q 轴积分增益 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current anti-windup gain",
+   "default": "1",
+   "values": "Q 轴抗积分饱和增益 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Field current proportional gain",
+   "default": "9",
+   "values": "励磁电流比例增益 9 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Field current integral gain",
+   "default": "350",
+   "values": "励磁电流积分增益 350 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Field current anti-windup gain",
+   "default": "1",
+   "values": "励磁电流抗饱和增益 1 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

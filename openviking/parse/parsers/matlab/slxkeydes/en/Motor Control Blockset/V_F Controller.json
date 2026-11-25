@@ -1,0 +1,73 @@
+{
+ "key": "V/F Controller",
+ "title": "VbyF Controller",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/VbyF_Controller.md"
+ ],
+ "text": "Implement V/F (open-loop or scalar) control for three-phase motors, 7 inputs, 1 output, {Input speed unit} sets Unit of the speed inputs; {Per unit speed (RPM)} sets the base speed of the motor and {Discrete step size (s) (-1 for inherit)} sets the sample time after which block executes again. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ω m ref",
+   "direction": "input",
+   "summary": "Reference speed scalar"
+  },
+  {
+   "name": "ω m rated",
+   "direction": "input",
+   "summary": "Motor rated speed scalar"
+  },
+  {
+   "name": "N pp",
+   "direction": "input",
+   "summary": "Number of motor pole pairs scalar"
+  },
+  {
+   "name": "V rated",
+   "direction": "input",
+   "summary": "Rated phase voltage amplitude of motor scalar"
+  },
+  {
+   "name": "V min",
+   "direction": "input",
+   "summary": "Minimum output voltage scalar"
+  },
+  {
+   "name": "N Ramp",
+   "direction": "input",
+   "summary": "Steps for initial ramp up scalar"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Enable block outputs scalar"
+  },
+  {
+   "name": "V abc",
+   "direction": "output",
+   "summary": "Motor phase voltages vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input speed unit",
+   "default": "Radians/Sec",
+   "values": "Unit of the speed inputs Radians/Sec (default) | RPM | Degrees/Sec | Per unit based on dialog",
+   "group": ""
+  },
+  {
+   "name": "Per unit speed (RPM)",
+   "default": "1200",
+   "values": "Base speed of the motor (RPM) 1200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s) (-1 for inherit)",
+   "default": "50e-6",
+   "values": "Sample time after which block executes again 50e-6 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

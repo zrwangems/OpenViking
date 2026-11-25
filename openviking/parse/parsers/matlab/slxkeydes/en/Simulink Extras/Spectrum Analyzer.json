@@ -1,0 +1,13 @@
+{
+ "key": "Spectrum Analyzer",
+ "title": "Spectrum Analyzer",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Sinks/Spectrum_Analyzer.md"
+ ],
+ "text": "Hook the system's input to the first port of this block and the system's output to second port.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

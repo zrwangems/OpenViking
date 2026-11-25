@@ -1,0 +1,49 @@
+{
+ "key": "Symmetric Inertia Tensor",
+ "title": "Symmetric Inertia Tensor",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Mass Properties/Symmetric_Inertia_Tensor.md"
+ ],
+ "text": "Create inertia tensor from moments and products of inertia, 6 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I xx",
+   "direction": "input",
+   "summary": "Moment of inertia scalar"
+  },
+  {
+   "name": "I xy",
+   "direction": "input",
+   "summary": "Product of inertia in xy plane scalar"
+  },
+  {
+   "name": "I xz",
+   "direction": "input",
+   "summary": "Product of inertia in xz plane scalar"
+  },
+  {
+   "name": "I yy",
+   "direction": "input",
+   "summary": "Moment of inertia about y -axis scalar"
+  },
+  {
+   "name": "I yz",
+   "direction": "input",
+   "summary": "Product of inertia in yz plane scalar"
+  },
+  {
+   "name": "I zz",
+   "direction": "input",
+   "summary": "Moment of inertia about z -axis scalar"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "Inertia tensor 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

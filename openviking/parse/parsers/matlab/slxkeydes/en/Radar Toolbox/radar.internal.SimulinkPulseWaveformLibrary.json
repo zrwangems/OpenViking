@@ -1,0 +1,49 @@
+{
+ "key": "radar.internal.SimulinkPulseWaveformLibrary",
+ "title": "Pulse Waveform Library",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Pulse_Waveform_Library.md"
+ ],
+ "text": "Library of pulse waveforms, 1 input, 1 output; {Sample rate (Hz)} sets the sample rate of the output, {Specification of each waveform in the library} sets the pulse waveforms in the library, {Source of simulation sample time} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "Waveform index positive integer"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Pulse waveform samples complex-valued column vector | complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sample rate of the output waveform 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specification of each waveform in the library",
+   "default": "{{’Rectangular’,’PRF’,1e4,’PulseWidth’,50e-6},{’LinearFM’,’PRF’,1e4,’PulseWidth’,50e-6,’SweepBandwidth’,1e5,’SweepDirection’,’Up’,’SweepInterval’,’Positive’}}",
+   "values": "Pulse waveforms in the library {{’Rectangular’,’PRF’,1e4,’PulseWidth’,50e-6},{’LinearFM’,’PRF’,1e4,’PulseWidth’,50e-6,’SweepBandwidth’,1e5,’SweepDirection’,’Up’,’SweepInterval’,’Positive’}} (default) | cell array",
+   "group": ""
+  },
+  {
+   "name": "Source of simulation sample time",
+   "default": "parameters",
+   "values": "Source of simulation sample time Derive from waveform parameters (default) | Inherit from Simulink engine",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

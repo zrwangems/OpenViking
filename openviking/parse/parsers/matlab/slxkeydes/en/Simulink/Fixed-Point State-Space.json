@@ -1,0 +1,92 @@
+{
+ "key": "Fixed-Point State-Space",
+ "title": "Fixed-Point State-Space",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Discrete/Fixed_Point_State_Space.md",
+  "HDL Coder/RCP and HIL/Fixed_Point_State_Space.md"
+ ],
+ "text": "Implement discrete-time state space, 1 input, 1 output, no direct feedthrough, {Initial condition for state} sets Initial state vector; {State Matrix A} sets the matrix of states, {Input Matrix B} sets the column vector of inputs {Output Matrix C} sets the column vector of outputs, {Direct Feedthrough Matrix D} sets the matrix for direct feedthrough, {Data type for internal calculations}, {Scaling for State Equation AX+BU} sets the scaling for state, {Scaling for Output Equation CX+DU} sets the scaling for output, {Lock output data type setting against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Integer rounding mode} sets the rounding mode for fixed-point operations and {Saturate to max or min when overflows occur} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "State Matrix A",
+   "default": "0]",
+   "values": "Matrix of states [2.6020 -2.2793 0.6708; 1 0 0; 0 1 0] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Input Matrix B",
+   "default": "0]",
+   "values": "Column vector of inputs [ 1; 0; 0] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Output Matrix C",
+   "default": "0.0055]",
+   "values": "Column vector of outputs [0.0184 0.0024 0.0055] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Direct Feedthrough Matrix D",
+   "default": "[0.0033]",
+   "values": "Matrix for direct feedthrough [0.0033] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Initial condition for state",
+   "default": "0.0",
+   "values": "Initial state vector 0.0 (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Data type for internal calculations",
+   "default": "fixdt(’double’)",
+   "values": "Data type for internal calculations fixdt(’double’) (default) | data type string",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling for State Equation AX+BU",
+   "default": "2^0",
+   "values": "Scaling for state equations 2^0 (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Scaling for Output Equation CX+DU",
+   "default": "2^0",
+   "values": "Scaling for output equations 2^0 (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate to max or min when overflows occur",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes"
+  }
+ ]
+}

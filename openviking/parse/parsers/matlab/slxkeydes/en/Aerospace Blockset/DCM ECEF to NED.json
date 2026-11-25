@@ -1,0 +1,24 @@
+{
+ "key": "DCM ECEF to NED",
+ "title": "Direction Cosine Matrix ECEF to NED",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Direction_Cosine_Matrix_ECEF_to_NED.md"
+ ],
+ "text": "Convert geodetic latitude and longitude to direction cosine matrix, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μl",
+   "direction": "input",
+   "summary": "Geodetic latitude and longitude 2-by-1 vector"
+  },
+  {
+   "name": "DCM ef",
+   "direction": "output",
+   "summary": "Direction cosine matrix 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

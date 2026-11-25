@@ -1,0 +1,151 @@
+{
+ "key": "Simulation 3D Sky Hogg Pack",
+ "title": "Simulation 3D Sky Hogg Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Sky_Hogg_Pack.md"
+ ],
+ "text": "为 Sky Hogg 生成平移和旋转信息，输入 12 路、输出 2 路；按 {Select input coordinate frame} 指定输入坐标系；{Propeller rotation} 启用 Propeller_R 输入端口、{Rudder rotation} 用于启用 Rudder_R 输入端口、{Elevator rotation} 用于启用 Elevator_R 输入端口、{Left aileron rotation} 用于启用 Left_Aileron_R、{Right aileron rotation} 用于启用 Right_Aileron_R、{Flaps rotation} 用于启用 Flaps_R 输入端口、{Nose wheel strut rotation} 用于启用 Nose_Wheel_Strut_R、{Nose wheel rotation} 用于启用 Nose_Wheel_R 输入端口、{Left wheel rotation} 用于启用 Left_Wheel_R 输入端口、{Right wheel rotation} 用于启用 Right_Wheel_R 输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "机体平移 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "机体旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Propeller_R",
+   "direction": "input",
+   "summary": "螺旋桨旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rudder_R",
+   "direction": "input",
+   "summary": "方向舵旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Elevator_R",
+   "direction": "input",
+   "summary": "升降舵旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Aileron_R",
+   "direction": "input",
+   "summary": "左副翼旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Aileron_R",
+   "direction": "input",
+   "summary": "右副翼旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Flaps_R",
+   "direction": "input",
+   "summary": "襟翼旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Wheel_Strut_R",
+   "direction": "input",
+   "summary": "前轮支柱旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Wheel_R",
+   "direction": "input",
+   "summary": "前轮旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Wheel_R",
+   "direction": "input",
+   "summary": "左轮旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Wheel_R",
+   "direction": "input",
+   "summary": "右轮旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "飞机平移 11 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "飞机旋转 11 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Propeller rotation",
+   "default": "off",
+   "values": "启用 Propeller_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rudder rotation",
+   "default": "off",
+   "values": "用于启用 Rudder_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Elevator rotation",
+   "default": "off",
+   "values": "用于启用 Elevator_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left aileron rotation",
+   "default": "off",
+   "values": "用于启用 Left_Aileron_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right aileron rotation",
+   "default": "off",
+   "values": "用于启用 Right_Aileron_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Flaps rotation",
+   "default": "off",
+   "values": "用于启用 Flaps_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Nose wheel strut rotation",
+   "default": "off",
+   "values": "用于启用 Nose_Wheel_Strut_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose wheel rotation",
+   "default": "off",
+   "values": "用于启用 Nose_Wheel_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left wheel rotation",
+   "default": "off",
+   "values": "用于启用 Left_Wheel_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right wheel rotation",
+   "default": "off",
+   "values": "用于启用 Right_Wheel_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "输入坐标系 NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "key": "Display",
+ "title": "Display",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/Display.md",
+  "DSP System Toolbox HDL Support/Sinks/Display.md",
+  "DSP System Toolbox/Sinks/Display.md",
+  "HDL Coder/Sinks/Display.md"
+ ],
+ "text": "Show value of input, 1 input, direct feedthrough, {Numeric display format} sets Format to display numeric input data; {Decimation} displays rate and {Floating display}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Numeric display format",
+   "default": "short",
+   "values": "Format to display numeric input data short (default) | long | short_e | long_e | bank | hex (Stored Integer) | binary (Stored Integer) | decimal (Stored Integer) | octal (Stored Integer)",
+   "group": ""
+  },
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "Display rate 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Floating display",
+   "default": "off",
+   "values": "Floating display off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Eddy Current",
+ "title": "Eddy Current",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Eddy_Current.md"
+ ],
+ "text": "涡流损耗表示。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

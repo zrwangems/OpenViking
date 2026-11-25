@@ -1,0 +1,49 @@
+{
+ "key": "matlabshared.tracking.internal.TrackConcatenation",
+ "title": "Track Concatenation",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Utilities/Track_Concatenation.md"
+ ],
+ "text": "Concatenate tracks, 1 input, 1 output; {Number of input tracks to combine} sets the number of input track ports, {Source of output bus name}, {Specify an output bus name} sets the name of output and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1, In2,..., InN",
+   "direction": "input",
+   "summary": "Tracks to combine Simulink ® buses containing MATLAB ® structures"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Combined tracks Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input tracks to combine",
+   "default": "2",
+   "values": "Number of input track ports 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "Source of output bus name Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "",
+   "values": "Name of output bus BusTrackConcatenation",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

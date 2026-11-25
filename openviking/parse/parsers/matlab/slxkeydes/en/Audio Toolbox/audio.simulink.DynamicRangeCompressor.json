@@ -1,0 +1,133 @@
+{
+ "key": "audio.simulink.DynamicRangeCompressor",
+ "title": "Compressor",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Dynamic Range Control/Compressor.md"
+ ],
+ "text": "Dynamic range compressor, 6 inputs, 2 outputs, no direct feedthrough; {Threshold (dB)} sets the operation threshold, {Ratio} sets the compression ratio, {Knee width (dB)} sets the transition area in compression, {View static characteristic} sets the open static characteristic plot of dynamic range compressor, {Attack time (s)} sets the time for applied gain to ramp up, {Release time (s)} sets the time for applied gain to ramp down, {Make-up gain mode}, {Make-up gain (dB)} sets the applied make-up gain, {Inherit sample rate from input} sets the source of input sample rate, {Input sample rate (Hz)} sets the sample rate of input, {Output gain (dB)} sets the gain applied on each input sample, {Sidechain} enables sidechain input and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input signal matrix | 1-D vector"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Threshold (dB) scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Ratio scalar"
+  },
+  {
+   "name": "K",
+   "direction": "input",
+   "summary": "Knee width (dB) scalar"
+  },
+  {
+   "name": "AT",
+   "direction": "input",
+   "summary": "Attack time (s) scalar"
+  },
+  {
+   "name": "RT",
+   "direction": "input",
+   "summary": "Release time (s) scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Gain applied to each input sample matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Threshold (dB)",
+   "default": "–10",
+   "values": "Operation threshold –10 (default) | scalar in the range –50 to 0 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Ratio",
+   "default": "5",
+   "values": "Compression ratio 5 (default) | scalar in the range 1 to 50 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Knee width (dB)",
+   "default": "0",
+   "values": "Transition area in compression characteristic 0 (default) | scalar in the range 0 to 20 inclusive",
+   "group": ""
+  },
+  {
+   "name": "View static characteristic",
+   "default": "",
+   "values": "Open static characteristic plot of dynamic range compressor button",
+   "group": ""
+  },
+  {
+   "name": "Attack time (s)",
+   "default": "0.05",
+   "values": "Time for applied gain to ramp up 0.05 (default) | scalar in the range 0 to 4 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Release time (s)",
+   "default": "0.2",
+   "values": "Time for applied gain to ramp down 0.2 (default) | scalar in the range 0 to 4 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Make-up gain mode",
+   "default": "Property",
+   "values": "Make-up gain mode Property (default) | Auto",
+   "group": ""
+  },
+  {
+   "name": "Make-up gain (dB)",
+   "default": "0",
+   "values": "Applied make-up gain 0 (default) | scalar in the range –10 to 24 inclusive",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Specify source of input sample rate on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output gain (dB)",
+   "default": "off",
+   "values": "Gain applied on each input sample off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sidechain",
+   "default": "off",
+   "values": "Enable sidechain input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

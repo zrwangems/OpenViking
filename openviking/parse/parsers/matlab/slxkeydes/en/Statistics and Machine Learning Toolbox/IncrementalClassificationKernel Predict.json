@@ -1,0 +1,154 @@
+{
+ "key": "IncrementalClassificationKernel Predict",
+ "title": "IncrementalClassificationKernel Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Classification/Kernel/IncrementalClassificationKernel_Predict.md"
+ ],
+ "text": "Classify observations using incremental kernel classification model, 2 inputs, 3 outputs, direct feedthrough, {Score data type} sets Data type of score output Inherit:; {Select initial machine learning model} sets the initial incremental kernel classification model, {Add output port for predicted class scores} adds second output port for predicted class, {Add output port for status of trained machine learning model} adds third output port for model status, {Sample time (–1 for inherited)} sets the option to specify sample, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Label data type} sets the data type of label output, {Label data type Minimum} sets the minimum value of label output for range checking, {Label data type Maximum} sets the maximum value of label output for range checking, {Score data type Minimum} sets the minimum value of score output for range checking, {Score data type Maximum} sets the maximum value of score output for range checking, {Kernel data type} sets the kernel computation data type, {Kernel data type Minimum} sets the minimum kernel computation value for range checking, {Kernel data type Maximum} sets the maximum kernel computation value for range checking, {Inner product data type} sets the inner product term of the predicted response, {Inner product data type Minimum} sets the minimum of inner product term for range checking and {Inner product data type Maximum} sets the maximum of inner product term for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mdl",
+   "direction": "input",
+   "summary": "Incremental learning model bus signal"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Chunk of predictor data numeric matrix"
+  },
+  {
+   "name": "label",
+   "direction": "output",
+   "summary": "Chunk of predicted class labels column vector"
+  },
+  {
+   "name": "score",
+   "direction": "output",
+   "summary": "Predicted class scores or posterior probabilities matrix"
+  },
+  {
+   "name": "CanPredict",
+   "direction": "output",
+   "summary": "Model status 0 ( false ) | 1 ( true )"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "kernelMdl",
+   "values": "Initial incremental kernel classification model kernelMdl (default) | incrementalClassificationKernel model object",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for predicted class scores",
+   "default": "off",
+   "values": "Add second output port for predicted class scores off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for status of trained machine learning model",
+   "default": "off",
+   "values": "Add third output port for model status off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type",
+   "default": "",
+   "values": "Data type of label output Inherit: Inherit via back propagation | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of label output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of label output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type",
+   "default": "auto",
+   "values": "Data type of score output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of score output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of score output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type",
+   "default": "rule",
+   "values": "Kernel computation data type Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type Minimum",
+   "default": "[]",
+   "values": "Minimum kernel computation value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type Maximum",
+   "default": "[]",
+   "values": "Maximum kernel computation value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type",
+   "default": "rule",
+   "values": "Inner product term of the predicted response Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type Minimum",
+   "default": "[]",
+   "values": "Minimum of inner product term for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type Maximum",
+   "default": "[]",
+   "values": "Maximum of inner product term for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

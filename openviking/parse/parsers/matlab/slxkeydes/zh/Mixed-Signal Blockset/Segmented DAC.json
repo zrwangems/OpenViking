@@ -1,0 +1,144 @@
+{
+ "key": "Segmented DAC",
+ "title": "Segmented DAC",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Architectures/Segmented_DAC.md"
+ ],
+ "text": "使用较小 DAC 的排列将大数字输入转换为模拟信号，输入 2 路、输出 1 路；按 {Gain error unit} 指定增益误差的单位；{Input polarity} 定义 DAC 输入数据极性、{Use external start clock} 指定连接到外部启动转换时钟、{Conversion start frequency (Hz)} 指定内部启动转换时钟的频率 1e6、{Reference (V)} 指定 DAC 输出参考幅度、{Bias (V)} 指定代码零的模拟输出与模拟零之间的差、{Settling time (s)} 输出稳定所需的时间 2e-7、{Settling time tolerance (LSB)} 指定计算稳定时间的容差、{Bit width} 指定 DAC 段的物理输入位数 integer scalar greater than or equal、{Bits} 指定每个段的位范围 vector、{Topology} 指定基础 DAC 段的拓扑 Binary、{Offset error} 指定偏移量化步长、{Offset error unit} 指定 Offset error 的单位、{Gain error} 指定 DAC 传输曲线斜率的误差、{Move selected segment up} 指定将所选段上移一行、{Move selected segment down} 指定将所选段下移一行、{New Segment} 添加新 DAC 段、{Duplicate Selected} 指定复制所选段、{Delete Selected} 指定删除所选段，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "数字输入信号 integer"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "用于启动转换的外部时钟 scalar"
+  },
+  {
+   "name": "analog",
+   "direction": "output",
+   "summary": "转换后的模拟输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input polarity",
+   "default": "Unipolar",
+   "values": "定义 DAC 输入数据极性 Unipolar (default) | Bipolar",
+   "group": ""
+  },
+  {
+   "name": "Use external start clock",
+   "default": "on",
+   "values": "连接到外部启动转换时钟 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Conversion start frequency (Hz)",
+   "default": "1e6",
+   "values": "内部启动转换时钟的频率 1e6 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference (V)",
+   "default": "0.5",
+   "values": "DAC 输出参考幅度 0.5 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Bias (V)",
+   "default": "0",
+   "values": "代码零的模拟输出与模拟零之间的差 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time (s)",
+   "default": "2e-7",
+   "values": "输出稳定所需的时间 2e-7 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time tolerance (LSB)",
+   "default": "0.5",
+   "values": "计算稳定时间的容差 0.5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Bit width",
+   "default": "",
+   "values": "DAC 段的物理输入位数 integer scalar greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Bits",
+   "default": "",
+   "values": "每个段的位范围 vector",
+   "group": ""
+  },
+  {
+   "name": "Topology",
+   "default": "Weighted",
+   "values": "基础 DAC 段的拓扑 Binary Weighted (default)",
+   "group": ""
+  },
+  {
+   "name": "Offset error",
+   "default": "0",
+   "values": "偏移量化步长 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Offset error unit",
+   "default": "LSB",
+   "values": "Offset error 的单位 LSB (default) | FS | %FS",
+   "group": ""
+  },
+  {
+   "name": "Gain error",
+   "default": "0",
+   "values": "DAC 传输曲线斜率的误差 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Gain error unit",
+   "default": "LSB",
+   "values": "增益误差的单位 LSB (default) | FS | %FS",
+   "group": ""
+  },
+  {
+   "name": "Move selected segment up",
+   "default": "",
+   "values": "将所选段上移一行 button",
+   "group": ""
+  },
+  {
+   "name": "Move selected segment down",
+   "default": "",
+   "values": "将所选段下移一行 button",
+   "group": ""
+  },
+  {
+   "name": "New Segment",
+   "default": "",
+   "values": "添加新 DAC 段 button",
+   "group": ""
+  },
+  {
+   "name": "Duplicate Selected",
+   "default": "",
+   "values": "复制所选段 button",
+   "group": ""
+  },
+  {
+   "name": "Delete Selected",
+   "default": "",
+   "values": "删除所选段 button",
+   "group": ""
+  }
+ ]
+}

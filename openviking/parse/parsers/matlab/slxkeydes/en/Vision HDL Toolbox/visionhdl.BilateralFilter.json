@@ -1,0 +1,95 @@
+{
+ "key": "visionhdl.BilateralFilter",
+ "title": "Bilateral Filter",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Filtering/Bilateral_Filter.md"
+ ],
+ "text": "2-D bilateral filtering, 2 inputs, 2 outputs, {Neighborhood size} sets Size of image region to average; {Spatial standard deviation}, {Intensity standard deviation}, {Padding method} sets the method for padding boundary of input image, {Padding value} sets the value used to pad boundary of input image, {Line buffer size} sets the size of line memory buffer, {Rounding mode} sets the rounding method for internal fixed-point calculations, {Saturate on integer overflow} sets the overflow mode for internal fixed-point, {Coefficients} sets the method to determine data type of filter coefficients and {Output} sets the method to determine data type of output pixels. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "Input pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "Output pixel stream scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals associated with pixel stream pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Neighborhood size",
+   "default": "3×3",
+   "values": "Size of image region to average 3×3 (default) | 5×5 | 7×7 | 9×9 | 11×11 | 13×13 | 15×15",
+   "group": "Main"
+  },
+  {
+   "name": "Spatial standard deviation",
+   "default": "0.5",
+   "values": "Spatial standard deviation target 0.5 (default) | positive real number",
+   "group": "Main"
+  },
+  {
+   "name": "Intensity standard deviation",
+   "default": "0.5",
+   "values": "Intensity standard deviation target 0.5 (default) | positive real number",
+   "group": "Main"
+  },
+  {
+   "name": "Padding method",
+   "default": "Constant",
+   "values": "Method for padding boundary of input image Constant (default) | Replicate | Symmetric | Reflection | None",
+   "group": "Main"
+  },
+  {
+   "name": "Padding value",
+   "default": "0",
+   "values": "Value used to pad boundary of input image 0 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "Size of line memory buffer 2048 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "on",
+   "values": "Overflow mode for internal fixed-point calculations on (default) | off",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Method to determine data type of filter coefficients Inherit: Same as first input (default) | fixdt(1,16,0) | data type expression",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "Method to determine data type of output pixels Inherit: Same as first input (default) | fixdt(1,16,0) | data type expression",
+   "group": "Data Types"
+  }
+ ]
+}

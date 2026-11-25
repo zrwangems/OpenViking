@@ -1,0 +1,13 @@
+{
+ "key": "Bidirectional DC-DC Converter",
+ "title": "Bidirectional DC-DC Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Bidirectional_DC_DC_Converter.md"
+ ],
+ "text": "Controller-driven bidirectional DC-DC step-up and step-down voltage regulator.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

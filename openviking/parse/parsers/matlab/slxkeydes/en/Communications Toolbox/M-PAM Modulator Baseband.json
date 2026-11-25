@@ -1,0 +1,79 @@
+{
+ "key": "M-PAM Modulator Baseband",
+ "title": "M-PAM Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/M_PAM_Modulator_Baseband.md"
+ ],
+ "text": "Modulate using M -ary pulse amplitude modulation, 1 input, 1 output, {Output data type} sets Output data type; {M-ary number} sets the modulation order, {Input type} sets the type of input, {Constellation ordering} sets the mapping order, {Normalization method} sets the scaling method for constellation Min. distance between, {Minimum distance} sets the distance between two nearest constellation, {Average power, referenced to 1 ohm (watts)}, {Peak power, referenced to 1 ohm (watts)} sets the maximum power and {View Constellation} sets the option to plot reference constellation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "M -PAM-modulated baseband signal scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "4",
+   "values": "Modulation order 4 (default) | positive, even integer",
+   "group": "Main"
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "Type of input value Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Binary",
+   "values": "Mapping order of symbols Binary (default) | Gray",
+   "group": "Main"
+  },
+  {
+   "name": "Normalization method",
+   "default": "symbols",
+   "values": "Scaling method for constellation Min. distance between symbols (default) | Average Power | Peak Power",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum distance",
+   "default": "2",
+   "values": "Distance between two nearest constellation points 2 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Average power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "Average power 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Peak power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "Maximum power 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "View Constellation",
+   "default": "",
+   "values": "Option to plot reference constellation button",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit: Inherit via back propagation |",
+   "group": "Data Types"
+  }
+ ]
+}

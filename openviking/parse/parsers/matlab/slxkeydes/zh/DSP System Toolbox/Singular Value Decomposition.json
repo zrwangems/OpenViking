@@ -1,0 +1,58 @@
+{
+ "key": "Singular Value Decomposition",
+ "title": "Singular Value Decomposition",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Factorizations/Singular_Value_Decomposition.md"
+ ],
+ "text": "使用奇异值分解对矩阵进行因子分解，输入 1 路、输出 4 路、无直接馈通；{Show ports with U and V matrices} 显示带有 U 和 V 矩阵的端口、{Show error status port (E)} 显示错误状态端口、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入矩阵 matrix"
+  },
+  {
+   "name": "U",
+   "direction": "output",
+   "summary": "U 分量 matrix"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "S 分量 column vector"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "V 分量 matrix"
+  },
+  {
+   "name": "E",
+   "direction": "output",
+   "summary": "错误端口 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show ports with U and V matrices",
+   "default": "on",
+   "values": "显示带有 U 和 V 矩阵的端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Show error status port (E)",
+   "default": "off",
+   "values": "显示错误状态端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

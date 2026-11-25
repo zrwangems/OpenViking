@@ -1,0 +1,13 @@
+{
+ "key": "Switched Reluctance Machine",
+ "title": "Switched Reluctance Machine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Reluctance & Stepper/Switched_Reluctance_Machine.md"
+ ],
+ "text": "三相开关磁阻电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

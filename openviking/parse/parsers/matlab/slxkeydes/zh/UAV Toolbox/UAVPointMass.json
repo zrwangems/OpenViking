@@ -1,0 +1,170 @@
+{
+ "key": "UAVPointMass",
+ "title": "Fixed-Wing UAV Point Mass",
+ "toolbox": "UAV Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Fixed_Wing_UAV_Point_Mass.md"
+ ],
+ "text": "在协调飞行中积分四阶或六阶质点运动方程，输入 8 路、输出 11 路；按 {Units} 指定单位 Metric；{Reference frame orientation} 指定参考坐标系、{Degrees of freedom} 指定自由度 6th Order、{Initial crossrange} 指定初始东向、{Initial downrange} 指定初始北向、{Initial altitude} 指定初始高度、{Initial airspeed} 指定初始空速、{Initial flight path angle} 指定初始航迹角、{Initial heading angle} 指定初始航向角、{Mass} 指定点质量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Lift",
+   "direction": "input",
+   "summary": "升力 scalar"
+  },
+  {
+   "name": "Drag",
+   "direction": "input",
+   "summary": "阻力 scalar"
+  },
+  {
+   "name": "Weight",
+   "direction": "input",
+   "summary": "重力 scalar"
+  },
+  {
+   "name": "Thrust",
+   "direction": "input",
+   "summary": "推力 scalar"
+  },
+  {
+   "name": "ɣ a",
+   "direction": "input",
+   "summary": "相对于气团的航迹角 scalar"
+  },
+  {
+   "name": "μ",
+   "direction": "input",
+   "summary": "滚转角 scalar"
+  },
+  {
+   "name": "ɑ",
+   "direction": "input",
+   "summary": "迎角 scalar"
+  },
+  {
+   "name": "V wind",
+   "direction": "input",
+   "summary": "风矢量 three-element vector"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "空速 scalar"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "地速投影 scalar"
+  },
+  {
+   "name": "V a",
+   "direction": "output",
+   "summary": "相对于气团的速度矢量 three-element vector"
+  },
+  {
+   "name": "V e",
+   "direction": "output",
+   "summary": "相对于地球且采用 [North East Down] 方向的速度矢量 three-element vector"
+  },
+  {
+   "name": "V ENU",
+   "direction": "output",
+   "summary": "相对于地球的速度矢量 three-element vector"
+  },
+  {
+   "name": "X e",
+   "direction": "output",
+   "summary": "相对于地球的位置矢量 three-element vector"
+  },
+  {
+   "name": "X ENU",
+   "direction": "output",
+   "summary": "相对于地球的位置矢量 three-element vector"
+  },
+  {
+   "name": "γ a",
+   "direction": "output",
+   "summary": "相对于气团的航迹角 scalar"
+  },
+  {
+   "name": "γ",
+   "direction": "output",
+   "summary": "相对于地球的航迹角 scalar"
+  },
+  {
+   "name": "χ a",
+   "direction": "output",
+   "summary": "相对于气团的航向角 scalar"
+  },
+  {
+   "name": "χ",
+   "direction": "output",
+   "summary": "相对于地球的航向角 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English (velocity in ft/s) | English (velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Reference frame orientation",
+   "default": "Down]",
+   "values": "参考坐标系 [North East Down] (default) | [East North Up]",
+   "group": ""
+  },
+  {
+   "name": "Degrees of freedom",
+   "default": "Flight)",
+   "values": "自由度 6th Order (Coordinated Flight) (default) | 4th Order (Longitudinal)",
+   "group": ""
+  },
+  {
+   "name": "Initial crossrange",
+   "default": "0",
+   "values": "初始东向（地球）横向位置 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial downrange",
+   "default": "0",
+   "values": "初始北向（地球）下程 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial altitude",
+   "default": "0",
+   "values": "初始高度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial airspeed",
+   "default": "50",
+   "values": "初始空速 50 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial flight path angle",
+   "default": "0",
+   "values": "初始航迹角 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial heading angle",
+   "default": "0",
+   "values": "初始航向角 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mass",
+   "default": "10",
+   "values": "点质量 10 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

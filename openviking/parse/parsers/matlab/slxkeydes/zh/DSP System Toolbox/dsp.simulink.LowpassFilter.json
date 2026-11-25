@@ -1,0 +1,103 @@
+{
+ "key": "dsp.simulink.LowpassFilter",
+ "title": "Lowpass Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Lowpass_Filter.md"
+ ],
+ "text": "设计 FIR 或 IIR 低通滤波器，输入 1 路、输出 1 路；按 {舍入模式} 指定舍入方法；{滤波器类型} 指定 FIR 或、{设计最小阶滤波器} 指定设计具有最小阶的滤波器、{滤波器阶数} 指定低通滤波器的阶数、{通带边缘频率(Hz)} 指定通带边缘频率 8e3、{阻带边缘频率(Hz)} 指定阻带边缘频率 12e3、{最大通带波纹(dB)}、{最小阻带衰减(dB)}、{采样率模式} 用于指定输入采样率的模式 使用归一化频率、{输入采样率(Hz)} 指定输入采样率、{查看滤波器响应} 打开滤波器可视化工具、{仿真方式} 指定要运行的仿真的类型、{系数}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要滤波的输入信号 列向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "滤波后的信号 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "滤波器类型",
+   "default": "FIR",
+   "values": "FIR 或 IIR 滤波器 FIR (默认) | IIR",
+   "group": "主要"
+  },
+  {
+   "name": "设计最小阶滤波器",
+   "default": "on",
+   "values": "设计具有最小阶的滤波器 on (默认) | off",
+   "group": "主要"
+  },
+  {
+   "name": "滤波器阶数",
+   "default": "50",
+   "values": "低通滤波器的阶数 50 (默认) | 正整数",
+   "group": "主要"
+  },
+  {
+   "name": "通带边缘频率(Hz)",
+   "default": "8e3",
+   "values": "通带边缘频率 8e3 (默认) | 正实数标量",
+   "group": "主要"
+  },
+  {
+   "name": "阻带边缘频率(Hz)",
+   "default": "12e3",
+   "values": "阻带边缘频率 12e3 (默认) | 正实数标量",
+   "group": "主要"
+  },
+  {
+   "name": "最大通带波纹(dB)",
+   "default": "0.1",
+   "values": "最大通带波纹 0.1 (默认) | 正实数标量",
+   "group": "主要"
+  },
+  {
+   "name": "最小阻带衰减(dB)",
+   "default": "80",
+   "values": "最小阻带衰减 80 (默认) | 正实数标量",
+   "group": "主要"
+  },
+  {
+   "name": "采样率模式",
+   "default": "1)",
+   "values": "用于指定输入采样率的模式 使用归一化频率(0 到 1) (默认) | 在对话框上指定 | 从输入端口继承",
+   "group": "主要"
+  },
+  {
+   "name": "输入采样率(Hz)",
+   "default": "44100",
+   "values": "输入采样率 44100 (默认) | 标量",
+   "group": "主要"
+  },
+  {
+   "name": "查看滤波器响应",
+   "default": "",
+   "values": "打开滤波器可视化工具 button",
+   "group": "主要"
+  },
+  {
+   "name": "仿真方式",
+   "default": "解释执行",
+   "values": "要运行的仿真的类型 解释执行 (默认) | 代码生成",
+   "group": "主要"
+  },
+  {
+   "name": "舍入模式",
+   "default": "向下",
+   "values": "舍入方法 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "系数",
+   "default": "fixdt(1,16)",
+   "values": "系数数据类型 fixdt(1,16) (默认) | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  }
+ ]
+}

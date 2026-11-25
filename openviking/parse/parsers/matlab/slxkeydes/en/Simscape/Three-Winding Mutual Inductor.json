@@ -1,0 +1,13 @@
+{
+ "key": "Three-Winding Mutual Inductor",
+ "title": "Three-Winding Mutual Inductor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Three_Winding_Mutual_Inductor.md"
+ ],
+ "text": "Three coupled inductors.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

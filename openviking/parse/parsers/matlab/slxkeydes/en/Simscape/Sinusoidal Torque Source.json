@@ -1,0 +1,13 @@
+{
+ "key": "Sinusoidal Torque Source",
+ "title": "Sinusoidal Torque Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Sinusoidal_Torque_Source.md"
+ ],
+ "text": "Produce sinusoidal torque.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

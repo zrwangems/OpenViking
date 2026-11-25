@@ -1,0 +1,97 @@
+{
+ "key": "Memory Traffic Generator",
+ "title": "Memory Traffic Generator",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Memory_Traffic_Generator.md"
+ ],
+ "text": "生成发往存储器控制器的流量，输入 1 路、输出 1 路；{Show Memory Controller ports} 显示输入和输出端口、{Memory selection} 指定在内存区域之间选择 PS、{Request type} 指定在写请求或读请求之间进行选择、{Total burst requests} 指定要生成的突发请求数、{Burst size (bytes)} 指定所生成突发事务的大小、{Time between bursts (s)} 指定突发请求之间的仿真时间 1e-6、{Allow simulation only parameters} 指定仅针对仿真配置附加参数、{First burst time} 指定初始突发请求的仿真时间 10e-6、{Random time between bursts (s)} 指定重复请求的仿真时间范围、{Wait for burst done} 指定在生成下一个请求之前等待突发完成信号、{Enable assertion} 启用详细输出信息、{View performance plots} 显示性能指标，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "burstDone",
+   "direction": "input",
+   "summary": "突发结束与访问存储器 scalar"
+  },
+  {
+   "name": "burstReq",
+   "direction": "output",
+   "summary": "从存储器控制器请求存储器访问 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show Memory Controller ports",
+   "default": "on",
+   "values": "显示输入和输出端口 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "在内存区域之间选择 PS memory (default) | PL memory",
+   "group": ""
+  },
+  {
+   "name": "Request type",
+   "default": "Writer",
+   "values": "在写请求或读请求之间进行选择 Writer (default) | Reader",
+   "group": ""
+  },
+  {
+   "name": "Total burst requests",
+   "default": "100",
+   "values": "要生成的突发请求数 100 (default) | integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Burst size (bytes)",
+   "default": "256",
+   "values": "所生成突发事务的大小 256 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Time between bursts (s)",
+   "default": "1e-6",
+   "values": "突发请求之间的仿真时间 1e-6 (default) | time, in seconds",
+   "group": ""
+  },
+  {
+   "name": "Allow simulation only parameters",
+   "default": "on",
+   "values": "仅针对仿真配置附加参数 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "First burst time",
+   "default": "10e-6",
+   "values": "初始突发请求的仿真时间 10e-6 (default) | time, in seconds",
+   "group": ""
+  },
+  {
+   "name": "Random time between bursts (s)",
+   "default": "1e-6]",
+   "values": "重复请求的仿真时间范围 [1e-6 1e-6] (default) | vector of the form [ min max ]",
+   "group": ""
+  },
+  {
+   "name": "Wait for burst done",
+   "default": "off",
+   "values": "在生成下一个请求之前等待突发完成信号 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable assertion",
+   "default": "off",
+   "values": "启用详细输出信息 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "View performance plots",
+   "default": "",
+   "values": "显示性能指标 button",
+   "group": ""
+  }
+ ]
+}

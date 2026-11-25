@@ -1,0 +1,13 @@
+{
+ "key": "Ideal Force Source",
+ "title": "Ideal Force Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanical Sources/Ideal_Force_Source.md"
+ ],
+ "text": "产生与输入信号成正比的力的理想机械能源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

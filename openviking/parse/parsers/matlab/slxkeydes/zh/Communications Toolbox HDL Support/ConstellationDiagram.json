@@ -1,0 +1,141 @@
+{
+ "key": "ConstellationDiagram",
+ "title": "Constellation Diagram",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "block_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Sinks/Constellation_Diagram.md",
+  "Communications Toolbox/Comm Sinks/Constellation_Diagram.md"
+ ],
+ "text": "在 IQ 平面中显示并分析输入信号，输入 1 路、无直接馈通；按 {Reference constellation} 指定参考星座；{Settings} 指定星座图设置、{Number of input ports} 指定示波器模块上的输入端口数、{Samples per symbol} 用于表示每个符号的样本数、{Offset} 绘制点之前要跳过的样本数、{Symbols to display} 指定要显示的最大符号数 Input frame、{AxesLimits} 指定 x 轴和 y 轴范围、{Reference Constellation} 指定参考星座配置、{Show reference constellations} 显示参考星座、{Input} 指定输入端口、{Custom value} 指定输入参考星座、{Constellation normalization} 指定归一化方法 Average、{Average reference power} 指定参考星座的平均功率、{Reference phase offset (rad)} 指定参考星座的相位偏移 scalar、{Legend} 显示图例的选项、{Trajectory} 显示信号轨迹的选项、{Channel} 指定活动输入通道 name of first channel in first、{Measurement Interval} 指定 EVM 和 MER 测量的持续时间 Current、{EVM Normalization} 指定归一化方法 Average constellation、{EVM/MER} 用于显示信号质量测量窗格的选项，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In_1,..., In_N",
+   "direction": "input",
+   "summary": "信号（作为单独端口） column vectors | matrices"
+  }
+ ],
+ "params": [
+  {
+   "name": "Settings",
+   "default": "",
+   "values": "星座图设置 button",
+   "group": "Plot"
+  },
+  {
+   "name": "Number of input ports",
+   "default": "1",
+   "values": "示波器模块上的输入端口数 1 (default) | integer in the range [1, 20]",
+   "group": "Plot"
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "1",
+   "values": "用于表示每个符号的样本数 1 (default) | positive integer",
+   "group": "Plot"
+  },
+  {
+   "name": "Offset",
+   "default": "0",
+   "values": "绘制点之前要跳过的样本数 0 (default) | nonnegative integer",
+   "group": "Plot"
+  },
+  {
+   "name": "Symbols to display",
+   "default": "length",
+   "values": "要显示的最大符号数 Input frame length (default) | positive integer",
+   "group": "Plot"
+  },
+  {
+   "name": "AxesLimits",
+   "default": "1.375]",
+   "values": "x 轴和 y 轴范围 [-1.375 1.375] (default) | two-element row vector",
+   "group": "Plot"
+  },
+  {
+   "name": "Reference Constellation",
+   "default": "",
+   "values": "参考星座配置 button",
+   "group": "Plot"
+  },
+  {
+   "name": "Show reference constellations",
+   "default": "on",
+   "values": "显示参考星座的选项 on (default) | off",
+   "group": "Plot"
+  },
+  {
+   "name": "Input",
+   "default": "1",
+   "values": "选择输入端口 1 (default) | positive integer",
+   "group": "Plot"
+  },
+  {
+   "name": "Reference constellation",
+   "default": "Custom",
+   "values": "参考星座 Custom (default) | BPSK | 8-PSK | 16-QAM | 64-QAM | 256-QAM",
+   "group": "Plot"
+  },
+  {
+   "name": "Custom value",
+   "default": "0.7070-0.7071i]",
+   "values": "输入参考星座 [0.7071+0.7071i -0.7071+0.7071i -0.7071-0.7071i 0.7070-0.7071i] (default) | vector",
+   "group": "Plot"
+  },
+  {
+   "name": "Constellation normalization",
+   "default": "power",
+   "values": "归一化方法 Average power (default) | Minimum distance | Peak power",
+   "group": "Plot"
+  },
+  {
+   "name": "Average reference power",
+   "default": "1",
+   "values": "参考星座的平均功率 1 (default) | positive scalar",
+   "group": "Plot"
+  },
+  {
+   "name": "Reference phase offset (rad)",
+   "default": "",
+   "values": "参考星座的相位偏移 scalar",
+   "group": "Plot"
+  },
+  {
+   "name": "Legend",
+   "default": "",
+   "values": "显示图例的选项 button",
+   "group": "Plot"
+  },
+  {
+   "name": "Trajectory",
+   "default": "",
+   "values": "显示信号轨迹的选项 button",
+   "group": "Plot"
+  },
+  {
+   "name": "Channel",
+   "default": "port",
+   "values": "活动输入通道 name of first channel in first port (default) | list of channels",
+   "group": "Measurements"
+  },
+  {
+   "name": "Measurement Interval",
+   "default": "display",
+   "values": "EVM 和 MER 测量的持续时间 Current display (default) | All displays | positive integer",
+   "group": "Measurements"
+  },
+  {
+   "name": "EVM Normalization",
+   "default": "power",
+   "values": "归一化方法 Average constellation power (default) | Peak constellation power",
+   "group": "Measurements"
+  },
+  {
+   "name": "EVM/MER",
+   "default": "",
+   "values": "用于显示信号质量测量窗格的选项 button",
+   "group": "Measurements"
+  }
+ ]
+}

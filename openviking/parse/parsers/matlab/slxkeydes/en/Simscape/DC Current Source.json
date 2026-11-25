@@ -1,0 +1,14 @@
+{
+ "key": "DC Current Source",
+ "title": "DC Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/DC_Current_Source.md",
+  "Simscape/Foundation Library/Electrical/Electrical Sources/DC_Current_Source.md"
+ ],
+ "text": "Constant current source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

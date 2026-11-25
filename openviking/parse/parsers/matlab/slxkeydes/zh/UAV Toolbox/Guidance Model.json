@@ -1,0 +1,66 @@
+{
+ "key": "Guidance Model",
+ "title": "Guidance Model",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Guidance_Model.md"
+ ],
+ "text": "UAV 降阶模型，输入 2 路、输出 1 路；{ModelType} 指定 UAV 制导模型类型、{DataType} 指定输入和输出数值数据类型、{Simulate using} 指定要运行的仿真类型 Interpreted、{Initial State} 指定 Initial UAV state 选项卡 multiple table、{Configuration} 指定 UAV 控制器配置选项卡 multiple table、{Input/Output Bus Names} 指定 Simulink 总线信号名称选项卡 multiple entries of character，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Control",
+   "direction": "input",
+   "summary": "控制指令 bus"
+  },
+  {
+   "name": "Environment",
+   "direction": "input",
+   "summary": "环境输入 bus"
+  },
+  {
+   "name": "State",
+   "direction": "output",
+   "summary": "仿真的 UAV 状态 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "ModelType",
+   "default": "MultirotorGuidance",
+   "values": "UAV 制导模型类型 MultirotorGuidance (default) | FixedWingGuidance",
+   "group": ""
+  },
+  {
+   "name": "DataType",
+   "default": "double",
+   "values": "输入和输出数值数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  },
+  {
+   "name": "Initial State",
+   "default": "",
+   "values": "Initial UAV state 选项卡 multiple table entries",
+   "group": ""
+  },
+  {
+   "name": "Configuration",
+   "default": "",
+   "values": "UAV 控制器配置选项卡 multiple table entries",
+   "group": ""
+  },
+  {
+   "name": "Input/Output Bus Names",
+   "default": "",
+   "values": "Simulink 总线信号名称选项卡 multiple entries of character vectors",
+   "group": ""
+  }
+ ]
+}

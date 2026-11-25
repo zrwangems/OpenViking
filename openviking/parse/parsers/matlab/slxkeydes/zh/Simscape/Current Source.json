@@ -1,0 +1,13 @@
+{
+ "key": "Current Source",
+ "title": "Current Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Current_Source.md"
+ ],
+ "text": "具有可选 DC、AC 和噪声分量的电流源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

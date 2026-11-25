@@ -1,0 +1,47 @@
+{
+ "key": "LTE CRC Encoder",
+ "title": "LTE CRC Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/LTE_CRC_Encoder.md"
+ ],
+ "text": "生成校验和并追加到输入样本流，输入 2 路、输出 2 路；按 {CRC Type} 指定编码多项式；{CRC Mask} 指定应用于校验和的掩码，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入样本 binary scalar | unsigned integer scalar | binary vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "输出样本 binary scalar | integer scalar | binary vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "CRC Type",
+   "default": "CRC16",
+   "values": "编码多项式 CRC16 (default) | CRC8 | CRC24A | CRC24B",
+   "group": ""
+  },
+  {
+   "name": "CRC Mask",
+   "default": "0",
+   "values": "应用于校验和的掩码 0 (default) | integer from 0 to 2 CRCLength – 1",
+   "group": ""
+  }
+ ]
+}

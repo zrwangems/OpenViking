@@ -1,0 +1,13 @@
+{
+ "key": "Ideal Angular Velocity Source",
+ "title": "Ideal Angular Velocity Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanical Sources/Ideal_Angular_Velocity_Source.md"
+ ],
+ "text": "机械旋转系统中的理想角速度源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

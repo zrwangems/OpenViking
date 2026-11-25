@@ -1,0 +1,13 @@
+{
+ "key": "P-H Diagram (2P)",
+ "title": "P-H Diagram (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Utilities/P_H_Diagram_2P.md"
+ ],
+ "text": "用于两相流体网络的热力学示波器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

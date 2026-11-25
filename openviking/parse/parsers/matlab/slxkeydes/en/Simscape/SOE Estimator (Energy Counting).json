@@ -1,0 +1,59 @@
+{
+ "key": "SOE Estimator (Energy Counting)",
+ "title": "SOE Estimator (Energy Counting)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/SOE_Estimator_Energy_Counting.md"
+ ],
+ "text": "State of energy estimator with energy counting, 3 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Specify Current input as cell current(s)} sets the option to specify current input port, {Nominal cell energy capacity, Enom, (W*Hr)} sets the nominal energy capacity of cell and {Algorithm data type} sets the option to choose data type for block algorithm. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Current",
+   "direction": "input",
+   "summary": "Battery current, ampere scalar | vector"
+  },
+  {
+   "name": "Voltage",
+   "direction": "input",
+   "summary": "Battery voltage, volt scalar | vector"
+  },
+  {
+   "name": "InitialSOE",
+   "direction": "input",
+   "summary": "Initial state of energy, unitless scalar | vector"
+  },
+  {
+   "name": "SOE",
+   "direction": "output",
+   "summary": "Battery state of energy scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Current input as cell current(s)",
+   "default": "off",
+   "values": "Option to specify current input port as vector off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Nominal cell energy capacity, Enom, (W*Hr)",
+   "default": "113.1300",
+   "values": "Nominal energy capacity of cell 113.1300 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "Block sample time 1 (default) | 0 | -1 | integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

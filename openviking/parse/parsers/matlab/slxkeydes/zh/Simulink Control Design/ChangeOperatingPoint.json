@@ -1,0 +1,228 @@
+{
+ "key": "ChangeOperatingPoint",
+ "title": "Change Operating Points",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/Change_Operating_Points.md"
+ ],
+ "text": "仿真期间在工作点之间切换，输入 7 路、输出 2 路；按 {稳定时间间隔} 指定稳定时间间隔；{工作模式} 指定工作点数据的模式、{输入方法}、{输入数目} 指定模型输入的数目、{工作区}、{数据字典名称}、{工作点变量}、{快照模式}、{快照时间(秒)} 指定仿真快照时间、{使用外部源} 指定对快照时间使用输入端口、{采样时间(-1 表示继承)} 指定采样时间、{工作点定义} 指定工作点数据 多个表条目、{总线名称} 指定总线对象的名称 scdPlantOPsBusObje、{指定总线名称} 指定总线名称、{数据类型} 指定浮点精度 Double、{使用模块进行自动调节} 使用模块进行 PID 自动调节的工作流、{启动自动调节的方法}、{为自动调节添加启用/禁用端口}、{自动调节时间跨度(秒)} 指定自动调节试验持续时间、{达到稳态后开始自动调节所需的采样数} 指定启动自动调节的延迟、{过渡方法}、{更改工作点算法} 指定工作点过渡算法、{上升沿压摆率(/秒)} 指定递增输入的导数的限制、{下降沿压摆率(/秒)} 指定递减输入的导数的限制、{达到稳态后过渡采样数} 指定过渡工作点的延迟、{完成自动调节后过渡采样数} 指定过渡工作点的延迟、{稳定时间上界} 指定稳定时间的上界、{稳定时间下界} 指定稳定时间的下界，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "systeminputs_in",
+   "direction": "input",
+   "summary": "系统输入 数组"
+  },
+  {
+   "name": "enable/disable",
+   "direction": "input",
+   "summary": "启用和禁用更改工作点 标量"
+  },
+  {
+   "name": "autotuning times",
+   "direction": "input",
+   "summary": "用于启动自动调节的时间向量 向量"
+  },
+  {
+   "name": "next OP",
+   "direction": "input",
+   "summary": "下一个工作点 标量"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 标量 | 向量"
+  },
+  {
+   "name": "enable autotuning",
+   "direction": "input",
+   "summary": "启用或禁用自动调节 标量"
+  },
+  {
+   "name": "snapshot trigger",
+   "direction": "input",
+   "summary": "快照触发器 向量"
+  },
+  {
+   "name": "systeminputs_out",
+   "direction": "output",
+   "summary": "工作点输出 总线"
+  },
+  {
+   "name": "start_stop",
+   "direction": "output",
+   "summary": "启动和停止自动调节的信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "工作模式",
+   "default": "导入工作点",
+   "values": "工作点数据的模式 导入工作点 (默认) | 创建工作点快照",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "输入方法",
+   "default": "手动编辑表",
+   "values": "工作点数据的输入方法 手动编辑表 (默认) | 自动填充表",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "输入数目",
+   "default": "3",
+   "values": "模型输入的数目 3 (默认) | 正标量",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "工作区",
+   "default": "基础工作区",
+   "values": "要导入工作点数据的工作区 基础工作区 (默认) | 模型工作区 | 数据字典",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "数据字典名称",
+   "default": "myDataDictionary.sldd",
+   "values": "数据字典名称 myDataDictionary.sldd (默认) | 字符串",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "工作点变量",
+   "default": "myOperatingPoint",
+   "values": "工作点变量的名称 myOperatingPoint (默认) | 字符串",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "快照模式",
+   "default": "基于时间",
+   "values": "工作点快照模式 基于时间 (默认) | 基于事件",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "快照时间(秒)",
+   "default": "2]",
+   "values": "仿真快照时间 [0 1 2] (默认) | 标量 | 向量",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "使用外部源",
+   "default": "off",
+   "values": "对快照时间使用输入端口 off (默认) | on",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样时间 -1 (默认) | 正标量",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "工作点定义",
+   "default": "",
+   "values": "工作点数据 多个表条目",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "总线名称",
+   "default": "scdPlantOPsBusObject",
+   "values": "总线对象的名称 scdPlantOPsBusObject (默认) | 字符串",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "指定总线名称",
+   "default": "off",
+   "values": "指定总线名称 off (默认) | on",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "数据类型",
+   "default": "Double",
+   "values": "浮点精度 Double (默认) | Single",
+   "group": "“导入工作点”选项卡"
+  },
+  {
+   "name": "使用模块进行自动调节",
+   "default": "on",
+   "values": "使用模块进行 PID 自动调节的工作流 on (默认) | off",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "启动自动调节的方法",
+   "default": "外部时间向量",
+   "values": "启动自动调节的方法 外部时间向量 (默认) | 达到稳态后时间",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "为自动调节添加启用/禁用端口",
+   "default": "off",
+   "values": "为自动调节添加启用/禁用端口 off (默认) | on",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "自动调节时间跨度(秒)",
+   "default": "10",
+   "values": "自动调节试验持续时间 10 (默认) | 正标量 | 向量",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "达到稳态后开始自动调节所需的采样数",
+   "default": "2",
+   "values": "启动自动调节的延迟 2 (默认) | 正标量",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "过渡方法",
+   "default": "内部时间向量(来自工作点表)",
+   "values": "工作点过渡方法 内部时间向量(来自工作点表) (默认) | 达到稳态后时间 | 完成自动调节后时间 | 外部触发器",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "更改工作点算法",
+   "default": "阶跃",
+   "values": "工作点过渡算法 阶跃 (默认) | 斜坡",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "上升沿压摆率(/秒)",
+   "default": "1",
+   "values": "递增输入的导数的限制 1 (默认) | 标量 | 向量",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "下降沿压摆率(/秒)",
+   "default": "-1",
+   "values": "递减输入的导数的限制 -1 (默认) | 标量 | 向量",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "达到稳态后过渡采样数",
+   "default": "2",
+   "values": "过渡工作点的延迟 2 (默认) | 非负标量",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "完成自动调节后过渡采样数",
+   "default": "2",
+   "values": "过渡工作点的延迟 2 (默认) | 非负标量",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "稳定时间上界",
+   "default": "3.1]",
+   "values": "稳定时间的上界 [1.1 2.1 3.1] (默认) | 向量",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "稳定时间下界",
+   "default": "2.9]",
+   "values": "稳定时间的下界 [0.9 1.9 2.9] (默认) | 向量",
+   "group": "“更改工作点设置”选项卡"
+  },
+  {
+   "name": "稳定时间间隔",
+   "default": "5",
+   "values": "稳定时间间隔 5 (默认) | 标量 | 向量",
+   "group": "“更改工作点设置”选项卡"
+  }
+ ]
+}

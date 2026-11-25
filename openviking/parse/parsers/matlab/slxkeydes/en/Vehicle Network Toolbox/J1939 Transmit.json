@@ -1,0 +1,68 @@
+{
+ "key": "J1939 Transmit",
+ "title": "J1939 Transmit",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/J1939 Communication/J1939_Transmit.md",
+  "Simulink Real-Time/J1939/J1939_Transmit.md"
+ ],
+ "text": "Transmit J1939 message, 2 inputs; {Config name} sets the name of the J1939 network configuration to associate, {Node name} sets the name of the J1939, {Parameter Group} sets the group number, {Signals}, {PG Priority} sets the priority of the parameter, {Destination Address} sets the name of the destination and {Sample time} sets the simulation transmit rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Input data signal"
+  },
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "Enables the transmission of message 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "ConfigX",
+   "values": "Name of the J1939 network configuration to associate ConfigX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Node name",
+   "default": "NodeX",
+   "values": "Name of the J1939 node NodeX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Parameter Group",
+   "default": "",
+   "values": "Group number (PGN) and name int8",
+   "group": ""
+  },
+  {
+   "name": "Signals",
+   "default": "",
+   "values": "Signals defined in parameter group array of character vectors",
+   "group": ""
+  },
+  {
+   "name": "PG Priority",
+   "default": "",
+   "values": "Priority of the parameter group int8",
+   "group": ""
+  },
+  {
+   "name": "Destination Address",
+   "default": "",
+   "values": "Name of the destination node int8",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Simulation transmit rate -1 (default) | double",
+   "group": ""
+  }
+ ]
+}

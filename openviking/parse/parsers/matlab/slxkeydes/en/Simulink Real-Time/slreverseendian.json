@@ -1,0 +1,20 @@
+{
+ "key": "slreverseendian",
+ "title": "Change endianess",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Shared Memory/Change_endianess.md"
+ ],
+ "text": "Shared memory pack; {Partition struct} sets the name of structure. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Partition struct",
+   "default": "[]",
+   "values": "Name of structure [] (default)",
+   "group": ""
+  }
+ ]
+}

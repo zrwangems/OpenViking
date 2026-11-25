@@ -1,0 +1,51 @@
+{
+ "key": "ToFile",
+ "title": "To File",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sinks/To_File.md",
+  "HDL Coder/Sinks/To_File.md"
+ ],
+ "text": "将数据写入到文件，输入 1 路；按 {采样时间} 指定采样周期和偏移量；{文件名}、{变量名称} 指定矩阵名称 ans、{保存格式} 指定数据格式 时间序列、{抽取}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | 数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "文件名",
+   "default": "untitled.mat",
+   "values": "路径或文件名 untitled.mat (默认) | MAT 文件路径或名称",
+   "group": ""
+  },
+  {
+   "name": "变量名称",
+   "default": "ans",
+   "values": "矩阵名称 ans (默认) | 字符向量",
+   "group": ""
+  },
+  {
+   "name": "保存格式",
+   "default": "时间序列",
+   "values": "数据格式 时间序列 (默认) | 数组",
+   "group": ""
+  },
+  {
+   "name": "抽取",
+   "default": "1",
+   "values": "确定数据写入时间的抽取因子 1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "采样周期和偏移量 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

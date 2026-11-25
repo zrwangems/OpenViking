@@ -1,0 +1,13 @@
+{
+ "key": "Elbow (G)",
+ "title": "Elbow (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Pipes & Fittings/Elbow_G.md"
+ ],
+ "text": "Pipe turn in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

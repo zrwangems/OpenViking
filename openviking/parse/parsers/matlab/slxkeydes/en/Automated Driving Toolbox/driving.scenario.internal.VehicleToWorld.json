@@ -1,0 +1,48 @@
+{
+ "key": "driving.scenario.internal.VehicleToWorld",
+ "title": "Vehicle To World",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Vehicle_To_World.md"
+ ],
+ "text": "Convert actors from ego vehicle coordinates to world coordinates, 2 inputs, 1 output; {Source of actors bus name} sets the source of name for actor poses bus, {Actors bus name} sets the name of actor poses bus valid and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Actors",
+   "direction": "input",
+   "summary": "Actor poses in vehicle coordinates Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Ego Vehicle",
+   "direction": "input",
+   "summary": "Ego vehicle pose Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Actors",
+   "direction": "output",
+   "summary": "Actor poses in world coordinates Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of actors bus name",
+   "default": "Auto",
+   "values": "Source of name for actor poses bus Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Actors bus name",
+   "default": "",
+   "values": "Name of actor poses bus valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

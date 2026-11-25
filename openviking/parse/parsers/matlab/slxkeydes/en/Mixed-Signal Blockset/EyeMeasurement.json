@@ -1,0 +1,260 @@
+{
+ "key": "EyeMeasurement",
+ "title": "Eye Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Eye_Measurement.md",
+  "SerDes Toolbox/Utilities/Eye_Measurement.md",
+  "Signal Integrity Toolbox/Utilities/Eye_Measurement.md"
+ ],
+ "text": "Calculate metrics from eye diagram, 3 inputs, {Eye mask type} sets Shape of eye mask; {Enable threshold input port}, {Modulation} sets the number of symbol levels in eye diagram, {Symbol thresholds}, {Enable clock input port}, {Clock type} determines how to sample waveform clock signal, {Clock threshold} sets the edge detection threshold for waveform, {Clock mode} sets the represent how data is captured by recovered clock, {Clock phase offset} sets the phase delay for moving clock PDF, {Window phase offset} sets the delay between ideal clock edge and timing, {Symbols per diagram} sets the width of eye diagram in symbols, {Amplitude range} sets the minimum and maximum eye amplitudes in eye diagram, {Amplitude bins} sets the number of amplitude bins in eye diagram, {Time bins} sets the number of time bins in eye diagram, {Hold off time} sets the delay before measurement analysis, {Symbol time} sets the time for one, {Sample time} sets the time for one sample, {Add Metric} adds new metric, {Remove Selected Metrics}, {Store results in base workspace} sets the store metric results to base workspace, {Metrics variable name} sets the name of metrics variable that stores measurement results, {Export to file} sets the export simulation results, {Export to base workspace} sets the export simulation results to base workspace, {W1 (UI)} sets the width of rectangle, diamond, and center of hexagon eye, {W2 (UI)} sets the width of top and bottom of hexagon eye, {H}, {Position mask in eye} sets the position of origin of shape of mask in eye diagram, {Custom eye mask} defines custom eye mask from eye mask, {Margin SER} sets the symbol error rate to measure eye mask margin, {Margin extrapolation} sets the extrapolation method to generate eye, {Mask variable name} sets the name of mask variable to export, {Export mask to file}, {Export mask to base workspace}, {Show plots at end of simulation} sets the automatically show plots at end, {Plot grouping} defines how plots are grouped together Subplot on same, {Add Plot} adds new plot, {Remove Selected Plots} and {Show Plots}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar"
+  },
+  {
+   "name": "clock",
+   "direction": "input",
+   "summary": "Sampling clock for input data scalar"
+  },
+  {
+   "name": "thresholds",
+   "direction": "input",
+   "summary": "Symbol thresholds used to separate symbols vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable threshold input port",
+   "default": "on",
+   "values": "Enable threshold input port on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Modulation",
+   "default": "2",
+   "values": "Number of symbol levels in eye diagram 2 (default) | nonnegative integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Symbol thresholds",
+   "default": "auto",
+   "values": "Symbol thresholds auto (default) | real valued vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable clock input port",
+   "default": "on",
+   "values": "Enable clock input port on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Clock type",
+   "default": "Rising",
+   "values": "Determine how to sample waveform clock signal Rising (default) | Falling | Both | Times",
+   "group": "Configuration"
+  },
+  {
+   "name": "Clock threshold",
+   "default": "0",
+   "values": "Edge detection threshold for waveform clocks 0 (default) | real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Clock mode",
+   "default": "Clocked",
+   "values": "Represent how data is captured by recovered clock Clocked (default) | Ideal | Convolved",
+   "group": "Configuration"
+  },
+  {
+   "name": "Clock phase offset",
+   "default": "0",
+   "values": "Phase delay for moving clock PDF 0 (default) | nonnegative real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Window phase offset",
+   "default": "0",
+   "values": "Delay between ideal clock edge and timing origin 0 (default) | nonnegative real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Symbols per diagram",
+   "default": "2",
+   "values": "Width of eye diagram in symbols 2 (default) | scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Amplitude range",
+   "default": "[]",
+   "values": "Minimum and maximum eye amplitudes in eye diagram [] (default) | two-element vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Amplitude bins",
+   "default": "257",
+   "values": "Number of amplitude bins in eye diagram 257 (default) | positive integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Time bins",
+   "default": "256",
+   "values": "Number of time bins in eye diagram 256 (default) | positive integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Hold off time",
+   "default": "0",
+   "values": "Delay before measurement analysis 0 (default) | nonnegative real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Symbol time",
+   "default": "16e-9",
+   "values": "Time for one symbol 16e-9 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Sample time",
+   "default": "0]",
+   "values": "Time for one sample [1e-9, 0] (default) | two-element vector | scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Add Metric",
+   "default": "",
+   "values": "Add new metric to calculate button",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Remove Selected Metrics",
+   "default": "",
+   "values": "Remove selected metrics button",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Store results in base workspace",
+   "default": "off",
+   "values": "Store metric results to base workspace off (default) | on",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Metrics variable name",
+   "default": "ans",
+   "values": "Name of metrics variable that stores measurement results ans (default) | string",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Export to file",
+   "default": "",
+   "values": "Export simulation results to file button",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Export to base workspace",
+   "default": "",
+   "values": "Export simulation results to base workspace button",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Eye mask type",
+   "default": "Off",
+   "values": "Shape of eye mask Off (default) | Rectangle | Diamond | Hexagon | Custom",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "W1 (UI)",
+   "default": "0.2",
+   "values": "Width of rectangle, diamond, and center of hexagon eye masks 0.2 (default) | positive real scalar",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "W2 (UI)",
+   "default": "0.1",
+   "values": "Width of top and bottom of hexagon eye mask 0.1 (default) | positive real scalar",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "H",
+   "default": "0.1",
+   "values": "Height of rectangle, diamond, or hexagon eye masks 0.1 (default) | positive real scalar",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Position mask in eye",
+   "default": "clock",
+   "values": "Position of origin of shape of mask in eye diagram At clock (default) | For best height margin | For best width margin",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Custom eye mask",
+   "default": "[]",
+   "values": "Define custom eye mask from eye mask object [] (default) | object",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Margin SER",
+   "default": "",
+   "values": "Symbol error rate to measure eye mask margin 1e-5 | nonnegative real scalar in the range [0,1]",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Margin extrapolation",
+   "default": "none",
+   "values": "Extrapolation method to generate eye contours none (default) | dualdirac | gaussian | linear | spline | pchip | makima",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Mask variable name",
+   "default": "ans",
+   "values": "Name of mask variable to export mask ans (default) | string",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Export mask to file",
+   "default": "",
+   "values": "Export mask to file button",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Export mask to base workspace",
+   "default": "",
+   "values": "Export mask to base workspace button",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Show plots at end of simulation",
+   "default": "on",
+   "values": "Automatically show plots at end of simulation on (default) | off",
+   "group": "Plot Setup"
+  },
+  {
+   "name": "Plot grouping",
+   "default": "figure",
+   "values": "define how plots are grouped together Subplot on same figure (default) | One figure per plot",
+   "group": "Plot Setup"
+  },
+  {
+   "name": "Add Plot",
+   "default": "",
+   "values": "Add new plot to show button",
+   "group": "Plot Setup"
+  },
+  {
+   "name": "Remove Selected Plots",
+   "default": "",
+   "values": "Remove selected plots button",
+   "group": "Plot Setup"
+  },
+  {
+   "name": "Show Plots",
+   "default": "",
+   "values": "Show plots button",
+   "group": "Plot Setup"
+  }
+ ]
+}

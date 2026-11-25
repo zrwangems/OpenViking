@@ -1,0 +1,13 @@
+{
+ "key": "Converter (Three-Phase)",
+ "title": "Converter (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Converter_Three_Phase.md"
+ ],
+ "text": "Controller-driven bidirectional AC/DC three-arm converter。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

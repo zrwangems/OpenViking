@@ -1,0 +1,147 @@
+{
+ "key": "dsp.simulink.HighpassIIRFilterDesign",
+ "title": "Highpass IIR Filter Design",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Sources/Highpass_IIR_Filter_Design.md",
+  "DSP System Toolbox/Filtering/Filter Designs/Highpass_IIR_Filter_Design.md"
+ ],
+ "text": "设计具有可调滤波器规格的高通 IIR 滤波器，输入 4 路、输出 3 路、无直接馈通；按 {Design method} 指定滤波器设计方法；{Smooth tuned filter parameters} 指定平滑可调滤波器参数、{Smoothing factor} 指定平滑因子、{Specify filter order from input port} 用于从输入端口指定滤波器阶数的标志、{Filter order} 指定滤波器阶数、{Filter maximum order} 指定滤波器最大阶数、{Design has scale values} 指定滤波器是否对每个节使用缩放值、{Specify 3-dB cutoff frequency from input port} 用于从输入端口指定 3-dB 截止频率的标志、{3-dB cutoff frequency} 指定 3-dB 截止频率、{Specify the passband ripple from input port} 用于指定通带波纹来自输入端口的标志、{Passband ripple (dB)} 指定通带波纹，单位为 dB、{Specify the stopband attenuation from input port} 用于指定阻带衰减来自输入端口的标志、{Stopband attenuation (dB)} 指定阻带衰减、{Sample time} 指定采样时间，单位为秒、{Output data type} 指定滤波器系数的数据类型、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "滤波器阶数 positive integer"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "3-dB 截止频率 positive scalar ≤ 1"
+  },
+  {
+   "name": "Ap",
+   "direction": "input",
+   "summary": "通带波纹，单位为 dB positive scalar"
+  },
+  {
+   "name": "Ast",
+   "direction": "input",
+   "summary": "阻带衰减 (dB) positive scalar"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "分子系数 P -by-3 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "output",
+   "summary": "分母系数 P -by-3 matrix"
+  },
+  {
+   "name": "g",
+   "direction": "output",
+   "summary": "每个二阶节的缩放值 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Smooth tuned filter parameters",
+   "default": "off",
+   "values": "平滑可调滤波器参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor",
+   "default": "0.6",
+   "values": "平滑因子 0.6 (default) | nonnegative scalar less than 1",
+   "group": ""
+  },
+  {
+   "name": "Design method",
+   "default": "Butterworth",
+   "values": "滤波器设计方法 Butterworth (default) | Chebyshev Type I | Chebyshev Type II",
+   "group": ""
+  },
+  {
+   "name": "Specify filter order from input port",
+   "default": "off",
+   "values": "用于从输入端口指定滤波器阶数的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "6",
+   "values": "滤波器阶数 6 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Filter maximum order",
+   "default": "10",
+   "values": "滤波器最大阶数 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Design has scale values",
+   "default": "off",
+   "values": "指定滤波器是否对每个节使用缩放值 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Specify 3-dB cutoff frequency from input port",
+   "default": "off",
+   "values": "用于从输入端口指定 3-dB 截止频率的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "3-dB cutoff frequency",
+   "default": "0.25",
+   "values": "3-dB 截止频率 0.25 (default) | positive scalar ≤ 1",
+   "group": ""
+  },
+  {
+   "name": "Specify the passband ripple from input port",
+   "default": "off",
+   "values": "用于指定通带波纹来自输入端口的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Passband ripple (dB)",
+   "default": "1",
+   "values": "通带波纹，单位为 dB 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify the stopband attenuation from input port",
+   "default": "off",
+   "values": "用于指定阻带衰减来自输入端口的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "60",
+   "values": "阻带衰减 (dB) 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间，单位为秒 -1 (default) | positive scalar | Inf",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "滤波器系数的数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

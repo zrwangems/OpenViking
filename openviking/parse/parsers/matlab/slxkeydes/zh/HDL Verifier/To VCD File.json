@@ -1,0 +1,41 @@
+{
+ "key": "To VCD File",
+ "title": "To VCD File",
+ "toolbox": "HDL Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Verifier/For Use with AMD Vivado Simulator/To_VCD_File.md",
+  "HDL Verifier/For Use with Cadence Xcelium/To_VCD_File.md",
+  "HDL Verifier/For Use with Siemens ModelSim_Questa/To_VCD_File.md",
+  "HDL Verifier/For Use with Synopsys VCS/To_VCD_File.md"
+ ],
+ "text": "生成值变化转储 (VCD) 文件，输入 1 路；{VCD file name} 指定生成的 VCD 文件名 string、{Number of input ports} 指定要记录的输入信号数 integer、{Timescale} 指定 Simulink 与 HDL 仿真器之间的时序关系 integer and time，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1, Port_2,..., Port_N",
+   "direction": "input",
+   "summary": "要记录到 VCD 文件的信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "VCD file name",
+   "default": "",
+   "values": "生成的 VCD 文件名 string",
+   "group": ""
+  },
+  {
+   "name": "Number of input ports",
+   "default": "",
+   "values": "要记录的输入信号数 integer",
+   "group": ""
+  },
+  {
+   "name": "Timescale",
+   "default": "",
+   "values": "Simulink 与 HDL 仿真器之间的时序关系 integer and time units",
+   "group": ""
+  }
+ ]
+}

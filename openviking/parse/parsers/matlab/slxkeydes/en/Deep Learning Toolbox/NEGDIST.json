@@ -1,0 +1,13 @@
+{
+ "key": "NEGDIST",
+ "title": "negdist",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Weight Functions/negdist.md"
+ ],
+ "text": "Negative distance weight function.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

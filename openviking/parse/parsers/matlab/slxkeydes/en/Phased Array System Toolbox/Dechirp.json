@@ -1,0 +1,29 @@
+{
+ "key": "Dechirp",
+ "title": "Dechirp Mixer",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Dechirp_Mixer.md"
+ ],
+ "text": "Dechirping operation on input signal, 2 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RefX",
+   "direction": "input",
+   "summary": "Reference signal complex-valued M -by-1 vector"
+  },
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input signal complex-valued M -by- N matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Dechirped output signal M -by- N matrix"
+  }
+ ],
+ "params": []
+}

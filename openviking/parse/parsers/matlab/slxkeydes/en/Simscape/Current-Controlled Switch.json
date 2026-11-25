@@ -1,0 +1,13 @@
+{
+ "key": "Current-Controlled Switch",
+ "title": "Current-Controlled Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Passives/Current_Controlled_Switch.md"
+ ],
+ "text": "Current-controlled switch with hysteresis.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

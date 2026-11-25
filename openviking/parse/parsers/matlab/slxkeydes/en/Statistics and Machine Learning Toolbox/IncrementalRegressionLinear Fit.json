@@ -1,0 +1,178 @@
+{
+ "key": "IncrementalRegressionLinear Fit",
+ "title": "IncrementalRegressionLinear Fit",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Regression/Linear/IncrementalRegressionLinear_Fit.md"
+ ],
+ "text": "Fit incremental linear regression model, 4 inputs, 1 output, direct feedthrough, {Internal states data type} sets Data type of internal states Inherit:; {Select initial machine learning model} sets the initial incremental linear regression model, {Add input port for observation weights} adds second input port for observation, {Add input port for resetting trained learner} adds input port for resetting trained incremental, {Predictor data observation dimension} sets the observation dimension of predictor data, {Sample time (–1 for inherited)} sets the option to specify sample, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Beta data type} sets the data type of linear coefficient estimates, {Beta data type Minimum} sets the minimum value of beta for range checking, {Beta data type Maximum} sets the maximum value of beta for range checking, {Bias data type} sets the data type of intercept estimates Inherit, {Bias data type Minimum} sets the minimum value of bias for range checking, {Bias data type Maximum} sets the maximum value of bias for range checking, {Internal states data type Minimum} sets the minimum value of internal states for range checking, {Internal states data type Maximum} sets the maximum value of internal states for range checking, {Mu data type} sets the data type of predictor means Inherit, {Mu data type Minimum} sets the minimum value of mu for range checking, {Mu data type Maximum} sets the maximum value of mu for range checking, {Sigma data type} sets the data type of predictor standard deviations, {Sigma data type Minimum} sets the minimum value of sigma for range checking and {Sigma data type Maximum} sets the maximum value of sigma for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Chunk of predictor data numeric matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Chunk of responses numeric vector"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "Chunk of observation weights vector of positive values"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Reset signal 0 ( false ) | 1 ( true ) | numeric scalar"
+  },
+  {
+   "name": "mdl",
+   "direction": "output",
+   "summary": "Updated incremental learning model parameters bus signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "linearMdl",
+   "values": "Initial incremental linear regression model linearMdl (default) | incrementalRegressionLinear model object",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for observation weights",
+   "default": "off",
+   "values": "Add second input port for observation weights off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for resetting trained learner",
+   "default": "off",
+   "values": "Add input port for resetting trained incremental learner off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Predictor data observation dimension",
+   "default": "rows",
+   "values": "Observation dimension of predictor data rows (default) | columns",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Beta data type",
+   "default": "auto",
+   "values": "Data type of linear coefficient estimates Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Beta data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of beta for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Beta data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of beta for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Bias data type",
+   "default": "auto",
+   "values": "Data type of intercept estimates Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Bias data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of bias for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Bias data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of bias for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal states data type",
+   "default": "auto",
+   "values": "Data type of internal states Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal states data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of internal states for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal states data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of internal states for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mu data type",
+   "default": "auto",
+   "values": "Data type of predictor means Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mu data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of mu for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mu data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of mu for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sigma data type",
+   "default": "auto",
+   "values": "Data type of predictor standard deviations Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sigma data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of sigma for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sigma data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of sigma for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,118 @@
+{
+ "key": "Sum",
+ "title": "Sum",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Sum.md",
+  "Simulink/Math Operations/Sum.md",
+  "Simulink/Math Operations/Sum_of_Elements.md",
+  "Simulink/Math Operations/Add.md",
+  "Simulink/Math Operations/Subtract.md",
+  "Simulink/Quick Insert/Math Operations/Minus.md",
+  "Simulink/Quick Insert/Math Operations/Plus.md",
+  "HDL Coder/Commonly Used Blocks/Sum.md",
+  "HDL Coder/HDL Floating Point Operations/Sum_of_Elements.md",
+  "HDL Coder/Math Operations/Sum.md",
+  "HDL Coder/Math Operations/Sum_of_Elements.md",
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Matrix_Sum.md",
+  "HDL Coder/HDL Floating Point Operations/Add.md",
+  "HDL Coder/HDL Floating Point Operations/Subtract.md",
+  "HDL Coder/Math Operations/Add.md",
+  "HDL Coder/Math Operations/Subtract.md",
+  "Deep Learning Toolbox/Shallow Neural Networks/Net Input Functions/netsum.md"
+ ],
+ "text": "输入信号的加减运算，输入 2 路、输出 1 路；按 {符号列表} 指定对输入执行的运算；{应用于} 指定如何沿指定维度应用函数、{维度}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{输出数据类型}、{累加器数据类型} 指定累加器的数据类型、{要求所有输入具有相同的数据类型}、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入操作数信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_n",
+   "direction": "input",
+   "summary": "第 n 个输入操作数信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "符号列表",
+   "default": "",
+   "values": "对输入执行的运算 + | - | | | 整数",
+   "group": "常设"
+  },
+  {
+   "name": "应用于",
+   "default": "所有维度",
+   "values": "如何沿指定维度应用函数 所有维度 (默认) | 指定的维度",
+   "group": "常设"
+  },
+  {
+   "name": "维度",
+   "default": "1",
+   "values": "要沿其应用求和的维度 1 (默认) | 正整数",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出数据类型",
+   "default": "从内部规则继承",
+   "values": "指定输出数据类型 继承: 从内部规则继承 (默认) | 继承: Keep MSB | 继承: Keep LSB | 继承: 通过反向传播继承 | 继承: 与第一个输入相同 | 继承: 与累加器相同 | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "信号属性"
+  },
+  {
+   "name": "累加器数据类型",
+   "default": "从内部规则继承",
+   "values": "累加器的数据类型 继承: 从内部规则继承 (默认) | 继承: 与第一个输入相同 | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "信号属性"
+  },
+  {
+   "name": "要求所有输入具有相同的数据类型",
+   "default": "off",
+   "values": "要求所有输入具有相同的数据类型 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "信号属性"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "信号属性"
+  }
+ ]
+}

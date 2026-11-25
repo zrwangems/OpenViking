@@ -1,0 +1,97 @@
+{
+ "key": "SM PSS1A",
+ "title": "SM PSS1A",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_PSS1A.md"
+ ],
+ "text": "离散时间或连续时间单输入 PSS1A 电力系统稳定器，输入 1 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Power system stabilizer (PSS) gain, K_S (pu)} 指定电力系统稳定器增益、{PSS denominator constant for second-order block, A_1} 指定滤波器常数、{PSS denominator constant for second-order block, A_2} 指定滤波器常数、{PSS numerator (lead) compensating time constant, T_1 (s)} 指定超前时间常数、{PSS denominator (lag) compensating time constant, T_2 (s)} 指定滞后时间常数、{PSS numerator (lead) compensating time constant, T_3 (s)} 指定超前时间常数、{PSS denominator (lag) compensating time constant, T_4 (s)} 指定滞后时间常数、{PSS washout time constant, T_5 (s)} 指定 Washout 时间常数、{PSS transducer time constant, T_6 (s)} 指定变送器时间常数、{Maximum PSS output, V_STmax (pu)} 指定最大稳定、{Minimum PSS output, V_STmin (pu)} 指定最小稳定，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V_SI",
+   "direction": "input",
+   "summary": "转速、频率或功率 scalar"
+  },
+  {
+   "name": "V_ST",
+   "direction": "output",
+   "summary": "稳定转速、频率或功率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power system stabilizer (PSS) gain, K_S (pu)",
+   "default": "3.15",
+   "values": "电力系统稳定器增益 3.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator constant for second-order block, A_1",
+   "default": "0",
+   "values": "滤波器常数 1 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator constant for second-order block, A_2",
+   "default": "0",
+   "values": "滤波器常数 2 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS numerator (lead) compensating time constant, T_1 (s)",
+   "default": "0.76",
+   "values": "超前时间常数 1 0.76 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant, T_2 (s)",
+   "default": "0.01",
+   "values": "滞后时间常数 2 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS numerator (lead) compensating time constant, T_3 (s)",
+   "default": "0.76",
+   "values": "超前时间常数 3 0.76 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS denominator (lag) compensating time constant, T_4 (s)",
+   "default": "0.01",
+   "values": "滞后时间常数 4 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS washout time constant, T_5 (s)",
+   "default": "10",
+   "values": "Washout 时间常数 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "PSS transducer time constant, T_6 (s)",
+   "default": "0",
+   "values": "变送器时间常数 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum PSS output, V_STmax (pu)",
+   "default": "0.09",
+   "values": "最大稳定 0.09 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum PSS output, V_STmin (pu)",
+   "default": "-0.09",
+   "values": "最小稳定 -0.09 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,135 @@
+{
+ "key": "audio.simulink.ParamEQDesign",
+ "title": "Parametric EQ Design",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Parametric_EQ_Design.md"
+ ],
+ "text": "设计可调参数均衡器系数，输入 4 路、输出 2 路、无直接馈通；{Smooth tuned filter parameters} 调节时平滑滤波器参数、{Smoothing factor} 调节后参数的平滑因子、{Maximum filter order} 指定最大滤波器阶数、{Specify filter order from input port} 使用附加输入端口指定滤波器阶数、{Filter order} 指定滤波器阶数、{Specify gain from input port} 使用附加输入端口指定增益、{Gain (dB)} 指定增益、{Specify normalized center frequency from input port} 使用附加输入端口指定归一化中心频率、{Normalized center frequency} 指定归一化中心频率、{Specify normalized bandwidth from input port} 使用附加输入端口指定归一化带宽、{Normalized bandwidth} 指定归一化带宽、{Filter cascade sections form} 指定级联滤波器节的形式 Second-order、{Output data type} 输出系数的数据类型、{Sample time} 指定模块的采样时间、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "滤波器阶数 positive even integer"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "增益 (dB) real scalar"
+  },
+  {
+   "name": "Fc",
+   "direction": "input",
+   "summary": "归一化中心频率 scalar in range [0,1]"
+  },
+  {
+   "name": "BW",
+   "direction": "input",
+   "summary": "归一化带宽 scalar in range [0,1]"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "分子滤波器系数 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "output",
+   "summary": "分母滤波器系数 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Smooth tuned filter parameters",
+   "default": "off",
+   "values": "调节时平滑滤波器参数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothing factor",
+   "default": "0.6",
+   "values": "调节后参数的平滑因子 0.6 (default) | scalar in range [0,1)",
+   "group": ""
+  },
+  {
+   "name": "Maximum filter order",
+   "default": "2",
+   "values": "最大滤波器阶数 2 (default) | positive even integer",
+   "group": ""
+  },
+  {
+   "name": "Specify filter order from input port",
+   "default": "off",
+   "values": "使用附加输入端口指定滤波器阶数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "2",
+   "values": "滤波器阶数 2 (default) | positive even integer",
+   "group": ""
+  },
+  {
+   "name": "Specify gain from input port",
+   "default": "off",
+   "values": "使用附加输入端口指定增益 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Gain (dB)",
+   "default": "0",
+   "values": "增益 (dB) 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify normalized center frequency from input port",
+   "default": "off",
+   "values": "使用附加输入端口指定归一化中心频率 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Normalized center frequency",
+   "default": "0.2",
+   "values": "归一化中心频率 0.2 (default) | scalar in range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify normalized bandwidth from input port",
+   "default": "off",
+   "values": "使用附加输入端口指定归一化带宽 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Normalized bandwidth",
+   "default": "0.1",
+   "values": "归一化带宽 0.1 (default) | scalar in range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Filter cascade sections form",
+   "default": "sections",
+   "values": "级联滤波器节的形式 Second-order sections (default) | Fourth-order sections",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出系数的数据类型 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块的采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "指定要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

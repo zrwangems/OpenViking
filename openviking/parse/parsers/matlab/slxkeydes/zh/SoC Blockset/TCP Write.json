@@ -1,0 +1,55 @@
+{
+ "key": "TCP Write",
+ "title": "TCP Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/TCP_Write.md"
+ ],
+ "text": "通过 TCP/IP 网络向远程主机发送 TCP/IP 数据包，输入 1 路、输出 1 路；{Network role} 指定将模块设置为服务器或客户端、{Remote address} 指定 TCP/IP 数据包发送到的远程服务器的 IP 地址、{Remote port} 指定 TCP/IP 数据包发送到的远程服务器的 IP 端口、{Local port} 指定发送主机上用于发送 TCP/IP 数据包的 IP、{Byte order} 指定字节顺序 LittleEndian，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 numeric vector"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "发送到远程主机的 TCP/IP 数据包流 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network role",
+   "default": "Client",
+   "values": "将模块设置为服务器或客户端 Client (default) | Server",
+   "group": ""
+  },
+  {
+   "name": "Remote address",
+   "default": "127.0.0.1",
+   "values": "TCP/IP 数据包发送到的远程服务器的 IP 地址 127.0.0.1 (default) | dotted-quad expression",
+   "group": ""
+  },
+  {
+   "name": "Remote port",
+   "default": "25000",
+   "values": "TCP/IP 数据包发送到的远程服务器的 IP 端口 25000 (default) | integer from 1 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Local port",
+   "default": "-1",
+   "values": "发送主机上用于发送 TCP/IP 数据包的 IP 端口 -1 (default) | integer from 1 to 65535",
+   "group": ""
+  },
+  {
+   "name": "Byte order",
+   "default": "LittleEndian",
+   "values": "字节顺序 LittleEndian (default) | BigEndian",
+   "group": ""
+  }
+ ]
+}

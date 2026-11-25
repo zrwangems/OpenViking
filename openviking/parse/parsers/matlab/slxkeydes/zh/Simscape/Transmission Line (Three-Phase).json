@@ -1,0 +1,13 @@
+{
+ "key": "Transmission Line (Three-Phase)",
+ "title": "Transmission Line (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Lines/Transmission_Line_Three_Phase.md"
+ ],
+ "text": "使用集总参数π型线路模型的三相输电线路。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

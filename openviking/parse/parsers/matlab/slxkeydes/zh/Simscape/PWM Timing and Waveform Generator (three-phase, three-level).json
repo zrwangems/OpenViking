@@ -1,0 +1,68 @@
+{
+ "key": "PWM Timing and Waveform Generator (three-phase, three-level)",
+ "title": "PWM Timing and Waveform Generator (Three-phase, Three-level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Timing_and_Waveform_Generator_Three_phase_Three_level.md"
+ ],
+ "text": "生成三相三电平门控时间信息，输入 3 路、输出 4 路；按 {Sampling mode} 指定波形采样方法；{Continuous PWM} 指定连续脉宽调制方法 SPWM: sinusoidal、{Switching frequency (Hz)} 指定开关速率 1e3，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "三相正弦参考信号 vector"
+  },
+  {
+   "name": "vdc",
+   "direction": "input",
+   "summary": "直流母线电压信号 scalar"
+  },
+  {
+   "name": "vneutral",
+   "direction": "input",
+   "summary": "直流母线中性点平衡控制 scalar"
+  },
+  {
+   "name": "TgabcON",
+   "direction": "output",
+   "summary": "导通门极时间 vector"
+  },
+  {
+   "name": "TgabcOFF",
+   "direction": "output",
+   "summary": "关断门极时间 vector"
+  },
+  {
+   "name": "SmallHexNum",
+   "direction": "output",
+   "summary": "小六边形编号 scalar"
+  },
+  {
+   "name": "ModWave",
+   "direction": "output",
+   "summary": "调制波 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Continuous PWM",
+   "default": "PWM",
+   "values": "连续脉宽调制方法 SPWM: sinusoidal PWM (default) | SVM: space vector modulation",
+   "group": ""
+  },
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "波形采样方法 Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1e3",
+   "values": "开关速率 1e3 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

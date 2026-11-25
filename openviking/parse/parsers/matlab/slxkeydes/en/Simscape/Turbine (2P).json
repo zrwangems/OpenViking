@@ -1,0 +1,13 @@
+{
+ "key": "Turbine (2P)",
+ "title": "Turbine (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Fluid Machines/Turbine_2P.md"
+ ],
+ "text": "Two-phase turbine in a thermodynamic cycle.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

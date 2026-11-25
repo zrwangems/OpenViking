@@ -1,0 +1,195 @@
+{
+ "key": "Control Volume System",
+ "title": "Control Volume System",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Fundamental Flow/Control_Volume_System.md"
+ ],
+ "text": "带传热的定容开放热力学系统，输入 4 路、输出 2 路；按 {Heat transfer model} 指定模型；{Number of inlet ports} 指定端口数、{Number of outlet ports} 指定端口数、{Image type} 指定图标颜色 Cold、{Chamber volume, Vch} 指定体积、{Initial chamber pressure, Pinit} 指定压力、{Initial chamber temperature, Tinit} 指定温度、{Ideal gas constant, R} 指定理想气体常数、{Specific heat capacity, cp} 指定比热、{Heat transfer rate, q_he} 指定速率、{External convection heat transfer coefficient, ext_tbl} 指定歧管外部空气、{External velocity breakpoints, ext_bpts} 指定歧管外部空气 linspace、{External convection area, Aext_conv} 指定歧管外部空气、{Thermal mass, m_wall} 指定歧管壁面通用、{Wall heat capacity, cp_wall} 指定歧管壁面通用、{Initial mass temperature, Tmass} 指定歧管壁面通用、{External wall thickness, Dext_cond} 指定歧管壁面外部、{External conduction area, Aext_cond} 指定歧管壁面外部、{External wall thermal conductivity, kext} 指定歧管壁面外部、{Internal wall thickness, Dint_cond} 指定歧管壁内部、{Internal conduction area, Aint_cond} 指定歧管壁内部、{Internal wall thermal conductivity, kint} 指定歧管壁内部、{Internal convection heat transfer coefficient, int_tbl} 指定歧管内空气、{Internal mass flow rate breakpoints, int_bpts} 指定歧管内空气 linspace、{Internal flow convection area, Aint_conv} 指定歧管内空气，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "入口质量流量、热流率、质量分数 two-way connector port"
+  },
+  {
+   "name": "HeatTrnsfrRate",
+   "direction": "input",
+   "summary": "传热 scalar"
+  },
+  {
+   "name": "ExtnlFlwVel",
+   "direction": "input",
+   "summary": "外部流速 scalar"
+  },
+  {
+   "name": "ExtnlTemp",
+   "direction": "input",
+   "summary": "环境温度，单位为 K scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "出口压力、温度、焓、质量分数 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inlet ports",
+   "default": "1",
+   "values": "端口数 1 (default) | 0 | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Number of outlet ports",
+   "default": "1",
+   "values": "端口数 1 (default) | 0 | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Heat transfer model",
+   "default": "Constant",
+   "values": "选择模型 Constant (default) | External input | External wall convection",
+   "group": ""
+  },
+  {
+   "name": "Image type",
+   "default": "Cold",
+   "values": "图标颜色 Cold (default) | Hot",
+   "group": ""
+  },
+  {
+   "name": "Chamber volume, Vch",
+   "default": "0.0029",
+   "values": "体积 0.0029 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial chamber pressure, Pinit",
+   "default": "101325",
+   "values": "压力 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial chamber temperature, Tinit",
+   "default": "298",
+   "values": "温度 298 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ideal gas constant, R",
+   "default": "287",
+   "values": "理想气体常数 287 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specific heat capacity, cp",
+   "default": "1005",
+   "values": "比热 1005 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Heat transfer rate, q_he",
+   "default": "0",
+   "values": "速率 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External convection heat transfer coefficient, ext_tbl",
+   "default": "2000]",
+   "values": "歧管外部空气 [40 160 740 2000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "External velocity breakpoints, ext_bpts",
+   "default": "linspace(0,180,4)",
+   "values": "歧管外部空气 linspace(0,180,4) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "External convection area, Aext_conv",
+   "default": "0.125",
+   "values": "歧管外部空气 0.125 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Thermal mass, m_wall",
+   "default": "7",
+   "values": "歧管壁面通用 7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wall heat capacity, cp_wall",
+   "default": "900",
+   "values": "歧管壁面通用 900 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial mass temperature, Tmass",
+   "default": "293.15",
+   "values": "歧管壁面通用 293.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External wall thickness, Dext_cond",
+   "default": "0.004",
+   "values": "歧管壁面外部 0.004 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External conduction area, Aext_cond",
+   "default": "0.003",
+   "values": "歧管壁面外部 0.003 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External wall thermal conductivity, kext",
+   "default": "25",
+   "values": "歧管壁面外部 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Internal wall thickness, Dint_cond",
+   "default": "0.004",
+   "values": "歧管壁内部 0.004 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Internal conduction area, Aint_cond",
+   "default": "0.003",
+   "values": "歧管壁内部 0.003 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Internal wall thermal conductivity, kint",
+   "default": "25",
+   "values": "歧管壁内部 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Internal convection heat transfer coefficient, int_tbl",
+   "default": "2000]",
+   "values": "歧管内空气 [40 160 740 2000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Internal mass flow rate breakpoints, int_bpts",
+   "default": "linspace(0.0020,0.1100,4)",
+   "values": "歧管内空气 linspace(0.0020,0.1100,4) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Internal flow convection area, Aint_conv",
+   "default": "0.125",
+   "values": "歧管内空气 0.125 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

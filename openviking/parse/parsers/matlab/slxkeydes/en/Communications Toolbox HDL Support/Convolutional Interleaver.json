@@ -1,0 +1,14 @@
+{
+ "key": "Convolutional Interleaver",
+ "title": "Convolutional Interleaver",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Interleaving/Convolutional_Interleaver.md",
+  "Communications Toolbox/Interleaving/Convolutional/Convolutional_Interleaver.md"
+ ],
+ "text": "Permute input symbols using set of shift registers.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

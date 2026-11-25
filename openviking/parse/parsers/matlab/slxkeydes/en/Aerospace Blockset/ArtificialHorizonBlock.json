@@ -1,0 +1,26 @@
+{
+ "key": "ArtificialHorizonBlock",
+ "title": "Artificial Horizon",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Instruments/Artificial_Horizon.md"
+ ],
+ "text": "Represent aircraft attitude relative to horizon, {Label} sets Block label location; {Connection} sets the connect to signal. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Connect to signal signal name | 2-element signal",
+   "group": ""
+  },
+  {
+   "name": "Label",
+   "default": "Top",
+   "values": "Block label location Top (default) | Bottom | Hide",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "ASCII Encode",
+ "title": "ASCII Encode",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/ASCII_Encode.md"
+ ],
+ "text": "将 Simulink 值转换为 uint8 字符向量，输入 1 路、输出 1 路；按 {Format string} 指定用于将值转换为 ASCII 的格式指定符；{Number of variables} 指定模块输入数量、{Max output string length} 指定转换后字符向量的最大长度、{Variable types} 指定 Simulink ® 允许用于输入端口的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "1",
+   "direction": "input",
+   "summary": "接收待编码值的编号端口 数值"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "空终止字符向量 character vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Format string",
+   "default": "%d\\r",
+   "values": "用于将值转换为 ASCII 的格式指定符 %d\\r (默认) | %c | %i | %o | %u | %x | %e | %f | %g",
+   "group": ""
+  },
+  {
+   "name": "Number of variables",
+   "default": "1",
+   "values": "模块输入数量 1 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "Max output string length",
+   "default": "128",
+   "values": "转换后字符向量的最大长度（以字节为单位） 128 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "Variable types",
+   "default": "{’double’}",
+   "values": "Simulink ® 允许用于输入端口的数据类型 {’double’} (默认) | {’int8’} | {’uint8’} | {’int16} | {’uint16’} | {’int32’} | {’uint32’}",
+   "group": ""
+  }
+ ]
+}

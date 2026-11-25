@@ -1,0 +1,13 @@
+{
+ "key": "Rectifier (Three-Phase)",
+ "title": "Rectifier (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Rectifier_Three_Phase.md"
+ ],
+ "text": "不可控三相 AC-DC 电压。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

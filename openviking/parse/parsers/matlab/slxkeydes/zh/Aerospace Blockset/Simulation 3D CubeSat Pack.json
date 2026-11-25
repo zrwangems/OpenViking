@@ -1,0 +1,149 @@
+{
+ "key": "Simulation 3D CubeSat Pack",
+ "title": "Simulation 3D CubeSat Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_CubeSat_Pack.md"
+ ],
+ "text": "为 CubeSat 创建平移和旋转输入矩阵，输入 2 路、输出 2 路；按 {Select input coordinate frame} 指定输入坐标系；{Antenna 1 translation} 启用 Antenna1_T 输入端口、{Antenna 1 rotation} 启用 Antenna1_R 输入端口、{Antenna 2 translation} 启用 Antenna2_T 输入端口、{Antenna 2 rotation} 启用 Antenna2_R 输入端口、{Antenna 3 translation} 启用 Antenna3_T 输入端口、{Antenna 3 rotation} 启用 Antenna3_R 输入端口、{Sensor translation} 启用 Sensor_T 输入端口、{Sensor rotation} 启用 Sensor_R 输入端口、{Solar array 1 translation} 启用 SolarArray1_T 输入端口、{Solar array 1 rotation} 启用 SolarArray1_R 输入端口、{Solar array 1.1 translation} 启用 SolarArray1_1_T 输入端口、{Solar array 1.1 rotation} 启用 SolarArray1_1_R 输入端口、{Solar array 2 translation} 启用 SolarArray2_T 输入端口、{Solar array 2 rotation} 启用 SolarArray2_R 输入端口、{Solar array 2.2 translation} 启用 SolarArray2_2_T 输入端口、{Solar array 2.2 rotation} 启用 SolarArray2_2_R 输入端口、{Thruster translation} 启用 Thruster_T 输入端口、{Thruster rotation} 启用 Thruster_R 输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "机体平移 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "机体旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "航天器平移 10-by-3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "航天器旋转 10-by-3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Antenna 1 translation",
+   "default": "off",
+   "values": "启用 Antenna1_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 1 rotation",
+   "default": "off",
+   "values": "启用 Antenna1_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 2 translation",
+   "default": "off",
+   "values": "启用 Antenna2_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 2 rotation",
+   "default": "off",
+   "values": "启用 Antenna2_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 3 translation",
+   "default": "off",
+   "values": "启用 Antenna3_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Antenna 3 rotation",
+   "default": "off",
+   "values": "启用 Antenna3_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor translation",
+   "default": "off",
+   "values": "启用 Sensor_T 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Sensor rotation",
+   "default": "off",
+   "values": "启用 Sensor_R 输入端口的选项 off (default) | on",
+   "group": "Sensors"
+  },
+  {
+   "name": "Solar array 1 translation",
+   "default": "off",
+   "values": "启用 SolarArray1_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1 rotation",
+   "default": "off",
+   "values": "启用 SolarArray1_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1 translation",
+   "default": "off",
+   "values": "启用 SolarArray1_1_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 1.1 rotation",
+   "default": "off",
+   "values": "启用 SolarArray1_1_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2 translation",
+   "default": "off",
+   "values": "启用 SolarArray2_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2 rotation",
+   "default": "off",
+   "values": "启用 SolarArray2_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2 translation",
+   "default": "off",
+   "values": "启用 SolarArray2_2_T 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Solar array 2.2 rotation",
+   "default": "off",
+   "values": "启用 SolarArray2_2_R 输入端口的选项 off (default) | on",
+   "group": "Solar Arrays"
+  },
+  {
+   "name": "Thruster translation",
+   "default": "off",
+   "values": "启用 Thruster_T 输入端口的选项 off (default) | on",
+   "group": "Thrusters"
+  },
+  {
+   "name": "Thruster rotation",
+   "default": "off",
+   "values": "启用 Thruster_R 输入端口的选项 off (default) | on",
+   "group": "Thrusters"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "输入坐标系 NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

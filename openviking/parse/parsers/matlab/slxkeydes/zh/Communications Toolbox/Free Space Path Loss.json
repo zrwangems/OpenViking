@@ -1,0 +1,49 @@
+{
+ "key": "Free Space Path Loss",
+ "title": "Free Space Path Loss",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/Free_Space_Path_Loss.md"
+ ],
+ "text": "对复信号应用自由空间路径损耗，输入 1 路、输出 1 路；{Mode} 指定损耗计算模式、{Loss (dB)} 指定功率损耗、{Distance (km)} 指定发射机与接收机之间的距离、{Carrier frequency (MHz)} 指定载波频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "复信号 scalar | column vector"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Decibels",
+   "values": "损耗计算模式 Decibels (default) | Distance and Frequency",
+   "group": ""
+  },
+  {
+   "name": "Loss (dB)",
+   "default": "10",
+   "values": "功率损耗 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Distance (km)",
+   "default": "0.100",
+   "values": "发射机与接收机之间的距离 0.100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier frequency (MHz)",
+   "default": "1920",
+   "values": "载波频率 1920 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

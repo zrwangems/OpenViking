@@ -1,0 +1,49 @@
+{
+ "key": "2-D FFT",
+ "title": "2-D FFT",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/b_2_D_FFT.md"
+ ],
+ "text": "计算二维快速傅里叶变换 (FFT)，输入 1 路、输出 1 路；按 {FFT implementation} 指定FFT implementation；{Output in bit-reversed order} 指定 Bit-reversed output、{Scale result by FFT length} 指定 Scale output data、{Lock data type settings against change by the fixed-point tools} 指定数据类型覆盖，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出数据 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "FFT implementation",
+   "default": "Auto",
+   "values": "FFT implementation Auto (default) | Radix-2 | FFTW",
+   "group": "Main"
+  },
+  {
+   "name": "Output in bit-reversed order",
+   "default": "off",
+   "values": "Bit-reversed output off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Scale result by FFT length",
+   "default": "off",
+   "values": "Scale output data off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "数据类型覆盖 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+{
+ "key": "AXI4-Stream to Software",
+ "title": "AXI4-Stream to Software",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/AXI4_Stream_to_Software.md"
+ ],
+ "text": "将 AXI4 数据从 FPGA 流式传输到软件，输入 3 路、输出 3 路；按 {Sample time} 指定采样时间间隔；{Memory simulation} 指定仿真时序精度 Burst、{Memory selection} 指定在内存区域之间选择 PS、{Region size (bytes)} 指定所分配存储器区域的大小，以字节为单位 Read-only、{Number of buffers} 指定区域中的缓冲区数量、{Burst length} 指定存储器事务的突发长度、{FIFO depth (number of bursts)} 指定数据 FIFO 的深度、{FIFO almost-full depth (number of bursts)} 指定断言背压时的 FIFO 深度、{Clock frequency (MHz)} 指定管理器数据通路的互连频率、{Data width (bits)} 指定管理器数据通路的数据宽度、{Dimensions} 指定输入数据信号的维度、{Data type} 指定写入器数据的数据类型、{Enable sample packing (last signal dimension as channel)} 指定在信号的最后一维打包数据、{View performance plots} 显示性能指标，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "写入器数据总线信号 scalar | vector | matrix"
+  },
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "写入器输入控制信号 bus"
+  },
+  {
+   "name": "done",
+   "direction": "input",
+   "summary": "完成读取的通知消息 scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "任务读取事件信号 scalar"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "输出到软件的数据信号 scalar | vector | matrix"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "写入端向数据生产者发送的控制信号 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Memory simulation",
+   "default": "accurate",
+   "values": "设置仿真时序精度 Burst accurate (default) | Protocol accurate | Behavioral",
+   "group": ""
+  },
+  {
+   "name": "Memory selection",
+   "default": "memory",
+   "values": "在内存区域之间选择 PS memory (default) | PL memory",
+   "group": "Main"
+  },
+  {
+   "name": "Region size (bytes)",
+   "default": "",
+   "values": "所分配存储器区域的大小，以字节为单位 Read-only: calculated",
+   "group": "Main"
+  },
+  {
+   "name": "Number of buffers",
+   "default": "8",
+   "values": "区域中的缓冲区数量 8 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Burst length",
+   "default": "256",
+   "values": "存储器事务的突发长度 256 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO depth (number of bursts)",
+   "default": "8",
+   "values": "数据 FIFO 的深度 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO almost-full depth (number of bursts)",
+   "default": "6",
+   "values": "断言背压时的 FIFO 深度 6 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Clock frequency (MHz)",
+   "default": "100",
+   "values": "管理器数据通路的互连频率 100 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Data width (bits)",
+   "default": "64",
+   "values": "管理器数据通路的数据宽度 64 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Dimensions",
+   "default": "1",
+   "values": "输入数据信号的维度 1 (default) | scalar | array",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "uint32",
+   "values": "写入器数据的数据类型 uint32 (default) | double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint64 | Boolean | fixed point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "采样时间间隔 1 (default) | positive scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "off",
+   "values": "在信号的最后一维打包数据 off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "View performance plots",
+   "default": "",
+   "values": "显示性能指标 button",
+   "group": "Performance"
+  }
+ ]
+}

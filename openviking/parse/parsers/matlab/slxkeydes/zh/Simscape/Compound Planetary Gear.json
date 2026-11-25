@@ -1,0 +1,13 @@
+{
+ "key": "Compound Planetary Gear",
+ "title": "Compound Planetary Gear",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Compound_Planetary_Gear.md"
+ ],
+ "text": "带有阶梯行星齿轮组的行星轮系。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

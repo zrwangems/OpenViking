@@ -1,0 +1,49 @@
+{
+ "key": "Nonlinear Grey-Box Model",
+ "title": "Nonlinear Grey-Box Model",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Models/Nonlinear_Grey_Box_Model.md"
+ ],
+ "text": "Simulate identified linear model in Simulink software, 1 input, 1 output, {Initial conditions} sets Initial conditions; {Identified model} sets the linear model to be simulated idss, {Add noise} and {Noise seed(s)} adds same noise to output for multiple simulations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "Simulation input data scalar | vector"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "Simulated output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Identified model",
+   "default": "idss(-1,1,1,0,’Ts’,1)",
+   "values": "Linear model to be simulated idss(-1,1,1,0,’Ts’,1) (default) | idss object | idgrey object | idpoly object | idtf object | idproc object",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial conditions 0 (default) | numeric vector | initialCondition object",
+   "group": ""
+  },
+  {
+   "name": "Add noise",
+   "default": "on",
+   "values": "Add noise to simulated output on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Noise seed(s)",
+   "default": "[]",
+   "values": "Add same noise to output for multiple simulations [] (default) | nonnegative integer | vector",
+   "group": ""
+  }
+ ]
+}

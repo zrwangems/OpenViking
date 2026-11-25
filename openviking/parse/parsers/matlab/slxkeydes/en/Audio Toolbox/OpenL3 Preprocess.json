@@ -1,0 +1,43 @@
+{
+ "key": "OpenL3 Preprocess",
+ "title": "OpenL3 Preprocess",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/OpenL3_Preprocess.md"
+ ],
+ "text": "Preprocess audio for OpenL3 embeddings extraction, 1 input, 1 output, no direct feedthrough, {Spectrum type} sets Type of spectrum Mel; {Sample rate of input signal (Hz)} sets the sample rate of input signal and {Overlap percentage (%)} sets the overlap percentage between consecutive. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Sound data column vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Spectrogram matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "48e3",
+   "values": "Sample rate of input signal in Hz 48e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "90",
+   "values": "Overlap percentage between consecutive spectrograms 90 (default) | [0 100)",
+   "group": ""
+  },
+  {
+   "name": "Spectrum type",
+   "default": "bands)",
+   "values": "Type of spectrum Mel (128 bands) (default) | Mel (256 bands) | Linear",
+   "group": ""
+  }
+ ]
+}

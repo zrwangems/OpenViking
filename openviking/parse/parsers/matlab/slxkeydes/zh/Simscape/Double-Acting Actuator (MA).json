@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Actuator (MA)",
+ "title": "Double-Acting Actuator (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Actuators/Double_Acting_Actuator_MA.md"
+ ],
+ "text": "湿空气网络中的双作用线性执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

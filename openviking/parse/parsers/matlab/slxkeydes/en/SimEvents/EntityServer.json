@@ -1,0 +1,184 @@
+{
+ "key": "EntityServer",
+ "title": "Entity Server",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Server.md"
+ ],
+ "text": "Serve entities, 2 inputs, 9 outputs, {Service time source} sets the source to specify the service time; {Capacity} sets the capacity of the server, {Service time attribute name} sets the service time source attribute name, {Service time value} sets the value of the service time, {Service time action} sets the service time dt = rand, {Event action} sets the behavior of the entity in certain events, {Permit preemption based on attribute} enables preemption of entities, {Sorting attribute name} sets the name of the attribute used to determine the priority, {Sorting direction} sets the direction of sorting the entities, {Write residual time to attribute} sets the save the residual service time from a preempted entity, {Residual time attribute name} sets the name of the attribute to contain the residual service time of a preempted entity, {Number of entities departed, d} sets the outputs the number of entities that have departed, {Number of entities in block, n} sets the outputs the number of entities present in the block, that are yet, {Pending entity in block, pe} sets the pending entities, {Number of pending entities, np} sets the number of Pending entities, {Average wait, w} sets the outputs the average wait time, {Utilization, util} sets the outputs the average time the server, {Number of entities preempted, p} sets the outputs the number of preempted entities and {Number of entities extracted, ex} sets the number of entities extracted from this. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Input signal port for service time source scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_d",
+   "direction": "output",
+   "summary": "Number of entities that have departed the block scalar"
+  },
+  {
+   "name": "Port_n",
+   "direction": "output",
+   "summary": "Number of entities that have not yet departed the block scalar"
+  },
+  {
+   "name": "Port_pe",
+   "direction": "output",
+   "summary": "Pending entity in block off (default) | on"
+  },
+  {
+   "name": "Port_np",
+   "direction": "output",
+   "summary": "Number of pending entities off (default) | on"
+  },
+  {
+   "name": "Port_w",
+   "direction": "output",
+   "summary": "Average wait time for entities in the block scalar"
+  },
+  {
+   "name": "Port_util",
+   "direction": "output",
+   "summary": "Outputs the average time the server is occupied scalar"
+  },
+  {
+   "name": "Port_p",
+   "direction": "output",
+   "summary": "Outputs the number of preempted entities scalar"
+  },
+  {
+   "name": "Port_ex",
+   "direction": "output",
+   "summary": "Number of entities extracted scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Capacity",
+   "default": "1",
+   "values": "Specify the capacity of the server 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Service time source",
+   "default": "Dialog",
+   "values": "Choose the source to specify the service time Dialog (default) | Signal port | Attribute | MATLAB action",
+   "group": ""
+  },
+  {
+   "name": "Service time attribute name",
+   "default": "ServiceTime",
+   "values": "Specify service time source attribute name ServiceTime (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Service time value",
+   "default": "1",
+   "values": "Specify the value of the service time 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Service time action",
+   "default": "rand(1,1)",
+   "values": "Specify service time dt = rand(1,1) (default) | MATLAB code",
+   "group": ""
+  },
+  {
+   "name": "Event action",
+   "default": "Entry",
+   "values": "Specify the behavior of the entity in certain events Entry (default) | Service complete | Exit | Blocked | Preempt",
+   "group": ""
+  },
+  {
+   "name": "Permit preemption based on attribute",
+   "default": "off",
+   "values": "Enable preemption of entities off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sorting attribute name",
+   "default": "",
+   "values": "Specify the name of the attribute used to determine the priority entity | entitySys.priority | character vector",
+   "group": ""
+  },
+  {
+   "name": "Sorting direction",
+   "default": "Ascending",
+   "values": "Choose the direction of sorting the entities Ascending (default) | Descending",
+   "group": ""
+  },
+  {
+   "name": "Write residual time to attribute",
+   "default": "off",
+   "values": "Save the residual service time from a preempted entity to an attribute off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Residual time attribute name",
+   "default": "ResidualTime",
+   "values": "Specify the name of the attribute to contain the residual service time of a preempted entity ResidualTime (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Number of entities departed, d",
+   "default": "off",
+   "values": "Outputs the number of entities that have departed the block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities in block, n",
+   "default": "off",
+   "values": "Outputs the number of entities present in the block, that are yet to depart off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pending entity in block, pe",
+   "default": "off",
+   "values": "Pending entities off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of pending entities, np",
+   "default": "off",
+   "values": "Number of Pending entities off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Average wait, w",
+   "default": "off",
+   "values": "Outputs the average wait time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Utilization, util",
+   "default": "off",
+   "values": "Outputs the average time the server is occupied off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities preempted, p",
+   "default": "off",
+   "values": "Outputs the number of preempted entities off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of entities extracted, ex",
+   "default": "off",
+   "values": "Number of entities extracted from this block off (default) | on",
+   "group": ""
+  }
+ ]
+}

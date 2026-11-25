@@ -1,0 +1,50 @@
+{
+ "key": "Baseband File Writer",
+ "title": "Baseband File Writer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sinks/Baseband_File_Writer.md"
+ ],
+ "text": "Write baseband signals to file, 1 input, {Metadata (structure or object)} sets Data describing baseband signal empty structure; {Baseband file name} sets the name of baseband file, {Center frequency (Hz)} sets the center frequency of baseband, {Number of latest samples to write} sets the number of samples and {Simulate using} selects simulation mode. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Baseband signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Baseband file name",
+   "default": "untitled.bb",
+   "values": "Name of baseband file to write untitled.bb (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Center frequency (Hz)",
+   "default": "1e8",
+   "values": "Center frequency of baseband signal 1e8 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Metadata (structure or object)",
+   "default": ")",
+   "values": "Data describing baseband signal empty structure ( struct() ) (default) | structure | object",
+   "group": ""
+  },
+  {
+   "name": "Number of latest samples to write",
+   "default": "inf",
+   "values": "Number of samples to write inf (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Select simulation mode Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

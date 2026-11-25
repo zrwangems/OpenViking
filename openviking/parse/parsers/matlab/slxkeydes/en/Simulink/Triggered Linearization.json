@@ -1,0 +1,32 @@
+{
+ "key": "Triggered Linearization",
+ "title": "Trigger-Based Linearization",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model-Wide Utilities/Trigger_Based_Linearization.md"
+ ],
+ "text": "Generate linear models in base workspace when triggered, 1 input, no direct feedthrough, {Sample time (of linearized model)} sets Sample time; {Trigger type} sets the signal type that triggers generation of a linear model. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger type",
+   "default": "",
+   "values": "Signal type that triggers generation of a linear model rising | falling | either | function-call",
+   "group": ""
+  },
+  {
+   "name": "Sample time (of linearized model)",
+   "default": "0",
+   "values": "Sample time 0 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

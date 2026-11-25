@@ -1,0 +1,117 @@
+{
+ "key": "FIR Decimator",
+ "title": "FIR Decimator",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/FIR_Decimator.md"
+ ],
+ "text": "有限脉冲响应 (FIR) 抽取滤波器，输入 4 路、输出 2 路；按 {Rounding mode} 指定对输出进行类型转换的舍入模式；{Coefficient source} 指定滤波器系数的来源、{Coefficients} 指定 FIR 滤波器系数 fir1、{Coefficients prototype} 指定原型滤波器系数、{Filter structure} 指定 HDL 滤波器架构 Direct form、{Decimation factor} 指定抽取因子、{Minimum number of cycles between valid input samples} 指定输入时序的串行化要求、{Optimize symmetric coefficients} 指定共享对称系数的乘法器、{Saturate on integer overflow} 指定对输出进行类型转换的溢出处理、{Output} 指定滤波器输出的数据类型、{Enable reset input port} 启用复位输入端口、{Use HDL global reset} 指定将数据路径寄存器连接到生成的 HDL，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 scalar | vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "coeff",
+   "direction": "input",
+   "summary": "滤波器系数 real or complex row vector"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "清除内部状态 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "滤波后的输出数据 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "Property",
+   "values": "滤波器系数的来源 Property (default) | Input port (Parallel interface)",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fir1(35,0.4)",
+   "values": "FIR 滤波器系数 fir1(35,0.4) (default) | real- or complex-valued vector",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients prototype",
+   "default": "[]",
+   "values": "原型滤波器系数 [] (default) | real or complex vector",
+   "group": "Main"
+  },
+  {
+   "name": "Filter structure",
+   "default": "systolic",
+   "values": "HDL 滤波器架构 Direct form systolic (default) | Direct form transposed",
+   "group": "Main"
+  },
+  {
+   "name": "Decimation factor",
+   "default": "2",
+   "values": "抽取因子 2 (default) | integer greater than two",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum number of cycles between valid input samples",
+   "default": "1",
+   "values": "输入时序的串行化要求 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Optimize symmetric coefficients",
+   "default": "on",
+   "values": "共享对称系数的乘法器 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "对输出进行类型转换的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对输出进行类型转换的溢出处理 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "滤波器输出的数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same word length as input |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "启用复位输入端口的选项 off (default) | on",
+   "group": "Control Ports"
+  },
+  {
+   "name": "Use HDL global reset",
+   "default": "off",
+   "values": "将数据路径寄存器连接到生成的 HDL 全局复位信号的选项 off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

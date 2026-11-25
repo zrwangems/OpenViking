@@ -1,0 +1,44 @@
+{
+ "key": "chirp",
+ "title": "Chirp Signal",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Chirp_Signal.md"
+ ],
+ "text": "生成频率不断增加的正弦波；输出 1 路；按 {目标时间的频率} 指定频率(Hz)；{初始频率}、{目标时间}、{将向量参数解释为一维向量} 指定将向量参数视为一维，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "啁啾信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始频率",
+   "default": "0.1",
+   "values": "初始频率(Hz) 0.1 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "目标时间",
+   "default": "100",
+   "values": "目标时间（秒） 100 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "目标时间的频率",
+   "default": "1",
+   "values": "频率(Hz) 1 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "将向量参数解释为一维向量",
+   "default": "on",
+   "values": "将向量参数视为一维 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

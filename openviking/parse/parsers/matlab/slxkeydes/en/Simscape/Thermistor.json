@@ -1,0 +1,13 @@
+{
+ "key": "Thermistor",
+ "title": "Thermistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Thermistor.md"
+ ],
+ "text": "Negative temperature coefficient thermistor using B-parameter equation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

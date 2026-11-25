@@ -1,0 +1,55 @@
+{
+ "key": "Detector",
+ "title": "Detector",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Temporal Operators/Detector.md"
+ ],
+ "text": "检测输入为 true 的持续期并基于输出类型构造输出为 true 的持续期，输入 1 路、输出 1 路；{外部重置} 是否可以重置模块、{输出类型} 为输出指定固定的 true 持续期长度 Delayed fixed、{输入检测时间步数} 指定输入检测的 ture 持续期的长度、{延迟时间步} 指定延迟持续期的长度、{输出持续期时间步数} 输出为 true 的持续期的长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号指定为布尔值 布尔"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号以布尔值形式返回 布尔"
+  }
+ ],
+ "params": [
+  {
+   "name": "外部重置",
+   "default": "off",
+   "values": "是否可以重置模块 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "输出类型",
+   "default": "duration",
+   "values": "为输出指定固定的 true 持续期长度 Delayed fixed duration (默认) | Synchronized",
+   "group": ""
+  },
+  {
+   "name": "输入检测时间步数",
+   "default": "2",
+   "values": "输入检测的 ture 持续期的长度 2 (默认) | 布尔",
+   "group": ""
+  },
+  {
+   "name": "延迟时间步",
+   "default": "1",
+   "values": "指定延迟持续期的长度 1 (默认) | 布尔",
+   "group": ""
+  },
+  {
+   "name": "输出持续期时间步数",
+   "default": "3",
+   "values": "指定输出为 true 的持续期的长度 3 (默认) | 布尔",
+   "group": ""
+  }
+ ]
+}

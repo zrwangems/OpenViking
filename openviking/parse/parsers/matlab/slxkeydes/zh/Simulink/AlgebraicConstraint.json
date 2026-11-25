@@ -1,0 +1,49 @@
+{
+ "key": "AlgebraicConstraint",
+ "title": "Algebraic Constraint",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Algebraic_Constraint.md"
+ ],
+ "text": "限制输入信号，输入 1 路、输出 1 路；按 {求解器} 指定代数环求解器；{约束}、{容差}、{初始估计值} 指定解值的初步估计值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "f(z)",
+   "direction": "input",
+   "summary": "输入信号 实数标量或向量"
+  },
+  {
+   "name": "z",
+   "direction": "output",
+   "summary": "输出状态 实数标量或向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "约束",
+   "default": "0",
+   "values": "输入信号的约束 f(z) = 0 (默认) | f(z) = z",
+   "group": ""
+  },
+  {
+   "name": "求解器",
+   "default": "自动",
+   "values": "代数环求解器 自动 (默认) | 信赖域 | 线搜索",
+   "group": ""
+  },
+  {
+   "name": "容差",
+   "default": "自动",
+   "values": "求解器容差 自动 (默认) | 正标量",
+   "group": ""
+  },
+  {
+   "name": "初始估计值",
+   "default": "0",
+   "values": "解值的初步估计值 0 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "2-Way Directional Valve (G)",
+ "title": "2-Way Directional Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Directional Control Valves/b_2_Way_Directional_Valve_G.md"
+ ],
+ "text": "气体网络中带两个端口的受控阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

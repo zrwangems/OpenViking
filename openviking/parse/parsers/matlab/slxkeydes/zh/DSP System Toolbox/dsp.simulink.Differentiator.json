@@ -1,0 +1,73 @@
+{
+ "key": "dsp.simulink.Differentiator",
+ "title": "Differentiator Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Designs/Differentiator_Filter.md"
+ ],
+ "text": "直接型 FIR 全频带微分器滤波器，输入 1 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Design minimum order filter} 指定设计最小阶数滤波器、{Filter order} 指定微分器滤波器的阶数、{Maximum passband ripple (dB)} 指定最大通带波纹、{Scale filter coefficients} 指定缩放滤波器系数、{View Filter Response} 指定查看滤波器响应、{Simulate using} 指定仿真方式 Interpreted、{Coefficients} 指定系数 fixdt，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "数据输入 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "微分器滤波器输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Design minimum order filter",
+   "default": "on",
+   "values": "设计最小阶数滤波器 on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter order",
+   "default": "31",
+   "values": "微分器滤波器的阶数 31 (default) | odd positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Maximum passband ripple (dB)",
+   "default": "0.1",
+   "values": "最大通带波纹 0.1 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Scale filter coefficients",
+   "default": "off",
+   "values": "缩放滤波器系数 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "button",
+   "values": "查看滤波器响应 button (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "仿真方式 Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(1,16)",
+   "values": "系数 fixdt(1,16) (default) | fixdt(1,16,0) |",
+   "group": "Data Types Tab"
+  }
+ ]
+}

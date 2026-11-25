@@ -1,0 +1,75 @@
+{
+ "key": "Offset",
+ "title": "Offset",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Offset.md"
+ ],
+ "text": "通过删除或保留开头或结尾的值来截断向量，输入 4 路、输出 2 路、无直接馈通；按 {Action for out of range offset value} 指定超出范围偏移值的操作；{Mode} 指定要丢弃哪些值以及要保留哪些值 Remove beginning、{Number of input data-offset pairs} 指定输入数据-偏移对数量、{Output port length} 输出端口长度的模式 Same、{Output length} 输出向量的所需长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "第一个输入数据 scalar | vector"
+  },
+  {
+   "name": "O1",
+   "direction": "input",
+   "summary": "第一个偏移值 integer"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "第二个输入数据 scalar | vector"
+  },
+  {
+   "name": "O2",
+   "direction": "input",
+   "summary": "第二个偏移值 integer"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "第一个截断数据 scalar | vector"
+  },
+  {
+   "name": "Out2",
+   "direction": "output",
+   "summary": "第二个截断数据 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "samples",
+   "values": "指定要丢弃哪些值以及要保留哪些值 Remove beginning samples (default) | Remove ending samples | Keep beginning samples | Keep ending samples",
+   "group": ""
+  },
+  {
+   "name": "Number of input data-offset pairs",
+   "default": "2",
+   "values": "输入数据-偏移对数量 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output port length",
+   "default": "input",
+   "values": "指定输出端口长度的模式 Same as input (default) | User-defined",
+   "group": ""
+  },
+  {
+   "name": "Output length",
+   "default": "9",
+   "values": "输出向量的所需长度 9 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Action for out of range offset value",
+   "default": "Clip",
+   "values": "超出范围偏移值的操作 Clip (default) | Clip and warn | Error",
+   "group": ""
+  }
+ ]
+}

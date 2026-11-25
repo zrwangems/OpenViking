@@ -1,0 +1,13 @@
+{
+ "key": "Cylindrical Joint",
+ "title": "Cylindrical Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Cylindrical_Joint.md"
+ ],
+ "text": "具有一个旋转自由度和一个平动自由度的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

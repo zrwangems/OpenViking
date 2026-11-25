@@ -1,0 +1,68 @@
+{
+ "key": "SRM Hysteresis Current Controller",
+ "title": "SRM Hysteresis Current Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SRM Control/SRM_Hysteresis_Current_Controller.md"
+ ],
+ "text": "开关磁阻电机的滞环电流控制，输入 6 路、输出 1 路；{Torque capability angle (rad)} 指定转矩能力角、{Hysteresis band (A)} 指定滞环带宽、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsRef",
+   "direction": "input",
+   "summary": "参考电流 scalar"
+  },
+  {
+   "name": "iabc",
+   "direction": "input",
+   "summary": "测得电流 vector"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "积分器复位 scalar"
+  },
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "Theta 转子角 scalar"
+  },
+  {
+   "name": "thetaON",
+   "direction": "input",
+   "summary": "开通角 scalar"
+  },
+  {
+   "name": "thetaOFF",
+   "direction": "input",
+   "summary": "关断角 scalar"
+  },
+  {
+   "name": "Sabc",
+   "direction": "output",
+   "summary": "电压开关信号 vector | 0 or 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Torque capability angle (rad)",
+   "default": "pi/2",
+   "values": "转矩能力角 pi/2 (default) | [0, 2*pi/number of rotor poles]",
+   "group": ""
+  },
+  {
+   "name": "Hysteresis band (A)",
+   "default": "5",
+   "values": "滞环带宽 5 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

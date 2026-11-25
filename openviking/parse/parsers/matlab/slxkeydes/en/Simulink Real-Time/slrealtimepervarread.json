@@ -1,0 +1,32 @@
+{
+ "key": "slrealtimepervarread",
+ "title": "Persistent Variable Read",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Target Management/Persistent_Variable_Read.md"
+ ],
+ "text": "Read persistent variable value from target computer, 1 output, {Variable name} sets Name of persistent variable; {Default value} sets the starting value of persistent variable when variable does not exist on target. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Persistent variable output data variable data"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variable name",
+   "default": "Variable1",
+   "values": "Name of persistent variable Variable1 (default) | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Default value",
+   "default": "0",
+   "values": "Starting value of persistent variable when variable does not exist on target computer 0 (default) | supports same data types as Data port",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Pin Slot Joint",
+ "title": "Pin Slot Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Pin_Slot_Joint.md"
+ ],
+ "text": "Joint with orthogonal prismatic and revolute primitives.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

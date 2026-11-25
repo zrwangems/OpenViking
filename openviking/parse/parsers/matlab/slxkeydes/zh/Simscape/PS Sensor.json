@@ -1,0 +1,13 @@
+{
+ "key": "PS Sensor",
+ "title": "PS Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/PS_Sensor.md"
+ ],
+ "text": "具有电气输出的通用线性换能器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,130 @@
+{
+ "key": "MTPA Control Reference",
+ "title": "MTPA Control Reference",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/MTPA_Control_Reference.md"
+ ],
+ "text": "计算最大转矩电流比 (MTPA) 和弱磁运行的参考电流，输入 3 路、输出 2 路；{电机类型} 指定 PMSM 的类型 内置式、{极对数}、{每相定子电阻(欧姆)} 指定定子相绕组的电阻、{定子 d 轴电感(H)} 指定 d 轴定子绕组电感 0.2e-3、{定子 q 轴电感(H)} 指定 q 轴定子绕组电感 0.4e-3、{永磁磁链(Wb)} 指定永磁体的磁通链 6.4e-3、{最大电流(A)} 指定电机的相电流最大限值、{Vdc 输入方法} 指定 Vdc 的输入方法、{DC 电压(V)} 指定 DC 总线电压、{输入信号单位} 指定模块输入值的单位 标幺、{基转速(rpm)} 指定电机的基转速、{基电流(A)} 指定标幺转换的基电流、{基转矩(Nm)} 指定标幺转换的基转矩、{基电压(V)} 指定标幺转换的基电压、{优先执行时间} 指定缩减计算量以减少算法执行时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T ref",
+   "direction": "input",
+   "summary": "参考转矩值 标量"
+  },
+  {
+   "name": "⍵ m",
+   "direction": "input",
+   "summary": "机械转速 标量"
+  },
+  {
+   "name": "V dc",
+   "direction": "input",
+   "summary": "DC 总线电压 标量"
+  },
+  {
+   "name": "I d ref",
+   "direction": "output",
+   "summary": "参考 d 轴电流 标量"
+  },
+  {
+   "name": "I q ref",
+   "direction": "output",
+   "summary": "参考 q 轴电流 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "电机类型",
+   "default": "PMSM",
+   "values": "PMSM 的类型 内置式 PMSM (默认) | 表贴式 PMSM",
+   "group": "电机参数"
+  },
+  {
+   "name": "极对数",
+   "default": "4",
+   "values": "可用极对数 4 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "每相定子电阻(欧姆)",
+   "default": "0.36",
+   "values": "定子相绕组的电阻（欧姆） 0.36 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "定子 d 轴电感(H)",
+   "default": "0.2e-3",
+   "values": "d 轴定子绕组电感 0.2e-3 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "定子 q 轴电感(H)",
+   "default": "0.4e-3",
+   "values": "q 轴定子绕组电感 0.4e-3 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "永磁磁链(Wb)",
+   "default": "6.4e-3",
+   "values": "永磁体的磁通链 6.4e-3 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "最大电流(A)",
+   "default": "7.1",
+   "values": "电机的相电流最大限值（安培） 7.1 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "Vdc 输入方法",
+   "default": "通过对话框指定",
+   "values": "Vdc 的输入方法 通过对话框指定 (默认) | 输入端口",
+   "group": "电机参数"
+  },
+  {
+   "name": "DC 电压(V)",
+   "default": "24",
+   "values": "DC 总线电压（伏特） 24 (默认) | 标量",
+   "group": "电机参数"
+  },
+  {
+   "name": "输入信号单位",
+   "default": "标幺(PU)",
+   "values": "模块输入值的单位 标幺(PU) (默认) | SI 单位",
+   "group": "输入单位"
+  },
+  {
+   "name": "基转速(rpm)",
+   "default": "4107",
+   "values": "电机的基转速 (rpm) 4107 (默认) | 标量",
+   "group": "输入单位"
+  },
+  {
+   "name": "基电流(A)",
+   "default": "19.3",
+   "values": "标幺转换的基电流（安培） 19.3 (默认) | 标量",
+   "group": "输入单位"
+  },
+  {
+   "name": "基转矩(Nm)",
+   "default": "0.74112",
+   "values": "标幺转换的基转矩 (Nm) 0.74112 (默认) | 标量",
+   "group": "输入单位"
+  },
+  {
+   "name": "基电压(V)",
+   "default": "24/sqrt(3)",
+   "values": "标幺转换的基电压（伏特） 24/sqrt(3) (默认) | 标量",
+   "group": "输入单位"
+  },
+  {
+   "name": "优先执行时间",
+   "default": "on",
+   "values": "缩减计算量以减少算法执行时间 on (默认) | off",
+   "group": "实现"
+  }
+ ]
+}

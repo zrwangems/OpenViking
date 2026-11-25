@@ -1,0 +1,49 @@
+{
+ "key": "matlabshared.tracking.internal.TrackConcatenation",
+ "title": "Track Concatenation",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Utilities/Track_Concatenation.md"
+ ],
+ "text": "Track Concatenation 模块将来自多个来源的航迹总线拼接成单个目标航迹列表，输入 1 路、输出 1 路；{Number of input tracks to combine} 指定输入航迹端口数、{Source of output bus name} 输出总线名称的来源、{Specify an output bus name} 输出总线名称 BusTrackConcatenati、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1, In2,..., InN",
+   "direction": "input",
+   "summary": "要合并的航迹 Simulink ® buses containing MATLAB ® structures"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "合并后的航迹 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input tracks to combine",
+   "default": "2",
+   "values": "输入航迹端口数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出总线名称的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "",
+   "values": "输出总线名称 BusTrackConcatenation",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

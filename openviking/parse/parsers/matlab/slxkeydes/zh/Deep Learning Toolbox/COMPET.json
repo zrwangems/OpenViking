@@ -1,0 +1,13 @@
+{
+ "key": "COMPET",
+ "title": "compet",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/compet.md"
+ ],
+ "text": "竞争传递函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

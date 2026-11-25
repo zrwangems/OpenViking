@@ -1,0 +1,47 @@
+{
+ "key": "SRM Commutation Logic",
+ "title": "SRM Commutation Logic",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SRM Control/SRM_Commutation_Logic.md"
+ ],
+ "text": "Commutation logic for switched reluctance machines, 3 inputs, 1 output; {Torque capability angle (rad)} sets the torque angle and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "Phase angle scalar"
+  },
+  {
+   "name": "thetaON",
+   "direction": "input",
+   "summary": "Switch-on angle scalar"
+  },
+  {
+   "name": "thetaOFF",
+   "direction": "input",
+   "summary": "Switch-off angle scalar"
+  },
+  {
+   "name": "abcOnOff",
+   "direction": "output",
+   "summary": "Commutation signal vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Torque capability angle (rad)",
+   "default": "pi/2",
+   "values": "Torque angle pi/2 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

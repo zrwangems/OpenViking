@@ -1,0 +1,70 @@
+{
+ "key": "ROS 2 Monitor Action Goal",
+ "title": "Monitor Action Goal",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Monitor_Action_Goal.md"
+ ],
+ "text": "在 ROS 2 网络中监控动作目标，输入 1 路、输出 4 路；{Name} 指定从配对的 Send Action Goal 模块继承的动作名称 character、{Type} 指定从配对的 Send Action Goal 模块继承的动作类型 character、{Paired Send Action Goal Block} 指定指向配对的 Send Action Goal 模块的路径 block、{Show Feedback output port} 启用反馈输出端口、{Show ErrorCode output port} 启用错误代码输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "UUID",
+   "direction": "input",
+   "summary": "专用于任何目标消息的唯一 ID non-virtual bus"
+  },
+  {
+   "name": "StatusCode",
+   "direction": "output",
+   "summary": "与 UUID 输入对应的动作目标的执行状态 scalar"
+  },
+  {
+   "name": "Result",
+   "direction": "output",
+   "summary": "与特定动作目标关联的结果消息 non-virtual bus"
+  },
+  {
+   "name": "Feedback",
+   "direction": "output",
+   "summary": "与特定动作目标关联的反馈消息 non-virtual bus"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "监控动作目标时的错误条件 integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Name",
+   "default": "",
+   "values": "从配对的 Send Action Goal 模块继承的动作名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "从配对的 Send Action Goal 模块继承的动作类型 character vector",
+   "group": ""
+  },
+  {
+   "name": "Paired Send Action Goal Block",
+   "default": "",
+   "values": "指向配对的 Send Action Goal 模块的路径 block path",
+   "group": ""
+  },
+  {
+   "name": "Show Feedback output port",
+   "default": "off",
+   "values": "启用反馈输出端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "off",
+   "values": "启用错误代码输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

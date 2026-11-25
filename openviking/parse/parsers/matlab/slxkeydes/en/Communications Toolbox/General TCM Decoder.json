@@ -1,0 +1,13 @@
+{
+ "key": "General TCM Decoder",
+ "title": "General TCM Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/TCM/General_TCM_Decoder.md"
+ ],
+ "text": "Decode trellis-coded modulation data, mapped using arbitrary constellation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

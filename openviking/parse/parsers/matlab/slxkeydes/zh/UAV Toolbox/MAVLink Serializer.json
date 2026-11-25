@@ -1,0 +1,54 @@
+{
+ "key": "MAVLink Serializer",
+ "title": "MAVLink Serializer",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/MAVLink/MAVLink_Serializer.md"
+ ],
+ "text": "通过将 Simulink 非虚拟总线转换为 uint8 数据流来序列化 MAVLink 数据包的消息，输入 1 路、输出 2 路；{MAVLink dialect source} 用于指定 MAVLink 消息定义的来源 Select from standard MAVLink、{MAVLink dialect} 用于解析 MAVLink 消息的消息定义、{MAVLink version} 指定 MAVLink 协议版本、{MAVLink Message type} 指定 MAVLink 消息，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "MAVLink 数据包 nonvirtual bus"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "MAVLink 数据流 vector"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "序列化数据的长度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "MAVLink dialect source",
+   "default": "dialects",
+   "values": "用于指定 MAVLink 消息定义的来源 Select from standard MAVLink dialects (default) | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "MAVLink dialect",
+   "default": "common.xml",
+   "values": "用于解析 MAVLink 消息的消息定义 common.xml (default) | string",
+   "group": ""
+  },
+  {
+   "name": "MAVLink version",
+   "default": "2",
+   "values": "MAVLink 协议版本 2 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "MAVLink Message type",
+   "default": "HEARTBEAT",
+   "values": "MAVLink 消息 HEARTBEAT (default)",
+   "group": ""
+  }
+ ]
+}

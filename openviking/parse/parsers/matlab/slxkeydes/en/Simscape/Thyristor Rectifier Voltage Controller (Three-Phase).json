@@ -1,0 +1,94 @@
+{
+ "key": "Thyristor Rectifier Voltage Controller (Three-Phase)",
+ "title": "Thyristor Rectifier Voltage Controller (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Converter Control/Thyristor_Rectifier_Voltage_Controller_Three_Phase.md"
+ ],
+ "text": "Discrete-time DC-link voltage PI control for thyristor rectifiers, 4 inputs, 1 output; {Loop filter proportional gain} sets the loop filter K p, {Loop filter integral gain} sets the loop filter K i, {Proportional gain} sets the controller K p, {Integral gain} sets the controller K i, {Thyristor pulse width (rad)} sets the pulse width, {Pulse ordering}, {Sample time (-1 for inherited)} sets the block sample time, {Time constant voltage filter} sets the dC voltage filter τ and {Filter DC voltage} sets the dC voltage filter. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "VdcRef",
+   "direction": "input",
+   "summary": "Reference DC voltage, V scalar"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC-link voltage, V scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "External reset scalar"
+  },
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "Three-phase voltage, V vector"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Pulses vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Loop filter proportional gain",
+   "default": "2",
+   "values": "Loop filter K p 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Loop filter integral gain",
+   "default": "20",
+   "values": "Loop filter K i 20 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "Controller K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "1",
+   "values": "Controller K i 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Thyristor pulse width (rad)",
+   "default": "5*pi/6",
+   "values": "Pulse width 5*pi/6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Pulse ordering",
+   "default": "order",
+   "values": "Pulse ordering rule Sequential device order (default) | Natural order of commutation",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time constant voltage filter",
+   "default": "0.001",
+   "values": "DC voltage filter τ 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter DC voltage",
+   "default": "on",
+   "values": "DC voltage filter option on (default) | off",
+   "group": ""
+  }
+ ]
+}

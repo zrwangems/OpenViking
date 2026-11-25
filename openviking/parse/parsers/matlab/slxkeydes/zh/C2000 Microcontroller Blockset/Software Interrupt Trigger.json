@@ -1,0 +1,58 @@
+{
+ "key": "Software Interrupt Trigger",
+ "title": "Software Interrupt Trigger",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2803x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2805x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2806x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C280x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C281x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2833x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/C2834x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F280013x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F280015x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28002x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28003x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28004x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F2807x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F2837xD/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F2837xS/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28p55x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28p65x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/Software_Interrupt_Trigger.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/Software_Interrupt_Trigger.md"
+ ],
+ "text": "生成软件触发的不可屏蔽中断，输入 1 路；{CPU 中断编号} 指定 CPU 中断号与硬件中断相对应、{PIE 中断编号} 指定与硬件中断对应的 PIE 中断号、{Trigger software interrupt when input value is greater than} 指定高于该值时，模块会发出中断，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PIEIFRx.INTy",
+   "direction": "input",
+   "summary": "触发软件中断 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "CPU 中断编号",
+   "default": "7",
+   "values": "CPU 中断号与硬件中断相对应 7 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "PIE 中断编号",
+   "default": "8",
+   "values": "与硬件中断对应的 PIE 中断号 8 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "Trigger software interrupt when input value is greater than",
+   "default": "0",
+   "values": "设置高于该值时，模块会发出中断。 0 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

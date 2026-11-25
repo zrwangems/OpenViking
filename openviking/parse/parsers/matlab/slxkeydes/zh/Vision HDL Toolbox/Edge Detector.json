@@ -1,0 +1,111 @@
+{
+ "key": "Edge Detector",
+ "title": "Edge Detector",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Analysis & Enhancement/Edge_Detector.md",
+  "DSP System Toolbox/Signal Management/Switches and Counters/Edge_Detector.md"
+ ],
+ "text": "在灰度像素流中查找对象的边缘，输入 3 路、输出 4 路；按 {Method} 指定边缘检测算法；{Output the binary image} 启用边缘输出端口、{Output the gradient components} 启用梯度输出端口、{Source of threshold value} 指示边缘的梯度阈值来源、{Threshold value} 指示边缘的梯度阈值、{Line buffer size} 指定行内存缓冲区的大小、{Padding method} 指定填充方法 Symmetric、{Rounding mode} 指定内部定点计算的舍入方法、{Saturate on integer overflow} 指定内部定点计算的溢出操作、{Gradient Data Type} 指定梯度输出端口的数据类型 Inherit via internal，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "Th",
+   "direction": "input",
+   "summary": "阈值 scalar"
+  },
+  {
+   "name": "Edge",
+   "direction": "output",
+   "summary": "布尔像素值，指示该像素是否为边缘 scalar | vector"
+  },
+  {
+   "name": "Gv,Gh",
+   "direction": "output",
+   "summary": "垂直和水平梯度 scalar | vector"
+  },
+  {
+   "name": "G45,G135",
+   "direction": "output",
+   "summary": "正交梯度 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "Sobel",
+   "values": "边缘检测算法 Sobel (default) | Prewitt | Roberts",
+   "group": "Main"
+  },
+  {
+   "name": "Output the binary image",
+   "default": "on",
+   "values": "启用边缘输出端口 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Output the gradient components",
+   "default": "off",
+   "values": "启用梯度输出端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Source of threshold value",
+   "default": "Property",
+   "values": "指示边缘的梯度阈值来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Threshold value",
+   "default": "20",
+   "values": "指示边缘的梯度阈值 20 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "行内存缓冲区的大小 2048 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Padding method",
+   "default": "Symmetric",
+   "values": "填充方法 Symmetric (default) | None",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "内部定点计算的舍入方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "内部定点计算的溢出操作 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Gradient Data Type",
+   "default": "rule",
+   "values": "梯度输出端口的数据类型 Inherit via internal rule (default) | data type expression",
+   "group": "Data Types"
+  }
+ ]
+}

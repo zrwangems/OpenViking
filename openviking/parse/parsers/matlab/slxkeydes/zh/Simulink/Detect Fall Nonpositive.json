@@ -1,0 +1,44 @@
+{
+ "key": "Detect Fall Nonpositive",
+ "title": "Detect Fall Nonpositive",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Detect_Fall_Nonpositive.md",
+  "HDL Coder/Logic and Bit Operations/Detect_Fall_Nonpositive.md"
+ ],
+ "text": "当信号值降至非正值且其前一值为严格正值时，检测下降沿，输入 1 路、输出 1 路、直接馈通；按 {Initial condition} 指定布尔表达式 U/z <=；{Input processing} 指定基于样本的处理还是基于帧的处理 Elements、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "布尔表达式 U/z <= 0 的初始条件 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "指定基于样本的处理还是基于帧的处理 Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "boolean",
+   "values": "输出数据类型 boolean (default) | uint8",
+   "group": ""
+  }
+ ]
+}

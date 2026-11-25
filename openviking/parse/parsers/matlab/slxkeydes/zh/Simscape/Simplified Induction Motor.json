@@ -1,0 +1,13 @@
+{
+ "key": "Simplified Induction Motor",
+ "title": "Simplified Induction Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/Simplified_Induction_Motor.md"
+ ],
+ "text": "由理想交流电源供电的感应电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,48 @@
+{
+ "key": "Thyristor 6-Pulse Generator",
+ "title": "Thyristor 6-Pulse Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/Thyristor_6_Pulse_Generator.md"
+ ],
+ "text": "Generate thyristor 6-pulse waveform in single-pulsing mode, 2 inputs, 1 output; {Pulse ordering}, {Pulse width (rad)} sets the pulse width 5*pi/6 and {Sample time (-1 for inherited)} sets the block sample time 1e-5. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "theta",
+   "direction": "input",
+   "summary": "Synchronization angle, radians scalar"
+  },
+  {
+   "name": "alpha",
+   "direction": "input",
+   "summary": "Firing angle, radians scalar"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Pulse vector vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pulse ordering",
+   "default": "order",
+   "values": "Pulse ordering strategy Sequential device order (default) | Natural order of commutation",
+   "group": ""
+  },
+  {
+   "name": "Pulse width (rad)",
+   "default": "rad",
+   "values": "Pulse width 5*pi/6 rad (default) | positive scalar in range [0, pi]",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1e-5",
+   "values": "Block sample time 1e-5 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

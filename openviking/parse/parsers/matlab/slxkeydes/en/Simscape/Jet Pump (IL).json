@@ -1,0 +1,13 @@
+{
+ "key": "Jet Pump (IL)",
+ "title": "Jet Pump (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pumps & Motors/Jet_Pump_IL.md"
+ ],
+ "text": "Liquid-liquid jet pump in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

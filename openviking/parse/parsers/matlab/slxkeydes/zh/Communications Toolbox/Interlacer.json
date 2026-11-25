@@ -1,0 +1,29 @@
+{
+ "key": "Interlacer",
+ "title": "Interlacer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Sequence Operations/Interlacer.md"
+ ],
+ "text": "交替选择两个输入向量中的元素以生成输出向量，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "O",
+   "direction": "input",
+   "summary": "奇数编号元素 vector"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "偶数编号元素 vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 column vector"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Graphic",
+ "title": "Graphic",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Graphic.md"
+ ],
+ "text": "具有图形属性的标记。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

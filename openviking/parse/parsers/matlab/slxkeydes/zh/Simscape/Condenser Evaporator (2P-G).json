@@ -1,0 +1,13 @@
+{
+ "key": "Condenser Evaporator (2P-G)",
+ "title": "Condenser Evaporator (2P-G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Two-Phase Fluid - Gas/Condenser_Evaporator_2P_G.md"
+ ],
+ "text": "气体与两相流体网络之间的热交换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

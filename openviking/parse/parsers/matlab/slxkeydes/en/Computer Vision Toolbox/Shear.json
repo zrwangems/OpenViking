@@ -1,0 +1,72 @@
+{
+ "key": "Shear",
+ "title": "Shear",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Shear.md"
+ ],
+ "text": "Shift rows or columns of an image or a video frame by linearly varying offset, 2 inputs, 1 output, {Interpolation method} sets Method for interpolating transformed pixel values; {Shear direction} sets the direction of transformation, {Output size after shear} sets the transformed image size, {Shear values source} sets the source of shear value offset limits Specify via, {Row/column shear values [first last]} sets the shear value offset limits, {Maximum shear value} sets the maximum row or column shear and {Background fill value} sets the intensity value of the background in transformed. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input image or video matrix | array"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "Shear value vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Transformed image or video matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Shear direction",
+   "default": "Horizontal",
+   "values": "Direction of transformation Horizontal (default) | Vertical",
+   "group": ""
+  },
+  {
+   "name": "Output size after shear",
+   "default": "Full",
+   "values": "Transformed image size Full (default) | Same as input image",
+   "group": ""
+  },
+  {
+   "name": "Shear values source",
+   "default": "dialog",
+   "values": "Source of shear value offset limits Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Row/column shear values [first last]",
+   "default": "3]",
+   "values": "Shear value offset limits [0 3] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum shear value",
+   "default": "20",
+   "values": "Maximum row or column shear 20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Background fill value",
+   "default": "0",
+   "values": "Intensity value of the background in transformed image 0 (default) | scalar | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "Method for interpolating transformed pixel values Bilinear (default) | Nearest neighbor | Bicubic",
+   "group": ""
+  }
+ ]
+}

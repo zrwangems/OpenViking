@@ -1,0 +1,30 @@
+{
+ "key": "CrossProduct",
+ "title": "Cross Product",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Cross_Product.md",
+  "Aerospace Blockset/Utilities/Math Operations/b_3x3_Cross_Product.md"
+ ],
+ "text": "Cross product of two vectors, 2 inputs, 1 output, direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input vector 3-element vector"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Second input vector 3-element vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Cross product of input vectors 3-element vector"
+  }
+ ],
+ "params": []
+}

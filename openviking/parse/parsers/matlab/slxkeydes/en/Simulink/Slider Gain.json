@@ -1,0 +1,43 @@
+{
+ "key": "Slider Gain",
+ "title": "Slider Gain",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Math Operations/Slider_Gain.md"
+ ],
+ "text": "Vary scalar gain using slider, 1 input, 1 output, no direct feedthrough; {Slider gain} sets the gain value, {Low} and {High} sets the upper limit of slider range. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Input multiplied by gain scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Slider gain",
+   "default": "0",
+   "values": "Gain value 0 (default) | real value",
+   "group": ""
+  },
+  {
+   "name": "Low",
+   "default": "0",
+   "values": "Lower limit of slider range 0 (default) | real value",
+   "group": ""
+  },
+  {
+   "name": "High",
+   "default": "2",
+   "values": "Upper limit of slider range 2 (default) | real value",
+   "group": ""
+  }
+ ]
+}

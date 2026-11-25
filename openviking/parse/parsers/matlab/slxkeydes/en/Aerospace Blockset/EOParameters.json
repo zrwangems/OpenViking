@@ -1,0 +1,80 @@
+{
+ "key": "EOParameters",
+ "title": "Earth Orientation Parameters",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Earth_Orientation_Parameters.md"
+ ],
+ "text": "Calculate Earth orientation parameters (EOP), 1 input, 6 outputs, {Action for out-of-range input} sets Out-of-range block behavior; {IERS data file} sets the earth orientation data, {Output parameter error} enables output ports to return errors, {IERS data URL} sets the web site or Earth orientation data file and {Destination folder} sets the folder for IERS data file. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "UTC MJD",
+   "direction": "input",
+   "summary": "UTC scalar"
+  },
+  {
+   "name": "ΔUT1",
+   "direction": "output",
+   "summary": "Difference between UT1 and UTC scalar"
+  },
+  {
+   "name": "[xp,yp]",
+   "direction": "output",
+   "summary": "Polar displacement of Earth vector"
+  },
+  {
+   "name": "[dX,dY]",
+   "direction": "output",
+   "summary": "Adjustment to location of Celestial Intermediate Pole (CIP) vector"
+  },
+  {
+   "name": "ΔUT1 err",
+   "direction": "output",
+   "summary": "Return errors for the measured and predicted values in the IERS data vector"
+  },
+  {
+   "name": "[xp,yp] err",
+   "direction": "output",
+   "summary": "Return errors for the measured and predicted values in the IERS data vector"
+  },
+  {
+   "name": "[dX,dY] err",
+   "direction": "output",
+   "summary": "Return errors for the measured and predicted values in the IERS data vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "IERS data file",
+   "default": "aeroiersdata.mat",
+   "values": "Earth orientation data aeroiersdata.mat (default) | MAT-file",
+   "group": ""
+  },
+  {
+   "name": "Output parameter error",
+   "default": "off",
+   "values": "Enable output ports to return errors off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "IERS data URL",
+   "default": "http://maia.usno.navy.mil/ser7/finals2000A.data",
+   "values": "Web site or Earth orientation data file http://maia.usno.navy.mil/ser7/finals2000A.data (default) | web site address | file name",
+   "group": ""
+  },
+  {
+   "name": "Destination folder",
+   "default": "Folder",
+   "values": "Folder for IERS data file current Folder (default)",
+   "group": ""
+  }
+ ]
+}

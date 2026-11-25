@@ -1,0 +1,146 @@
+{
+ "key": "Task Manager",
+ "title": "Task Manager",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/Task_Manager.md",
+  "SoC Blockset/Processor Task Execution/Task_Manager.md",
+  "C2000 Microcontroller Blockset/Scheduling/CLA_Task_Manager.md"
+ ],
+ "text": "Create and manage task executions in Simulink model, 2 inputs, 1 output, {Specify task duration via} sets Source of task execution time; {Enable task simulation} enables simulation of task duration, {List of tasks}, {Add}, {Delete}, {Use Schedule Editor ordering} sets the task priority using Schedule Editor tool, {Name}, {Type} sets the trigger type, {Period} sets the timer period, {Core} sets the processor core to execute task, {Priority}, {Drop tasks that overrun}, {Play recorded task execution sequence} enables playback from file, {Percent} sets the likelihood of distribution, {Mean}, {SD} sets the standard deviation of task duration, {Min} sets the lower limit of task, {Max} sets the upper limit of task and {File name} sets the file containing diagnostic scheduling data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Task1",
+   "direction": "output",
+   "summary": "Function-call from Task1 scalar"
+  },
+  {
+   "name": "Task1 Event",
+   "direction": "input",
+   "summary": "Message event notification scalar"
+  },
+  {
+   "name": "Task1 Dur",
+   "direction": "input",
+   "summary": "Task duration positive scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable task simulation",
+   "default": "on",
+   "values": "Enable simulation of task duration on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "List of tasks",
+   "default": "Task1",
+   "values": "List of tasks Task1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Add",
+   "default": "",
+   "values": "Add task button",
+   "group": ""
+  },
+  {
+   "name": "Delete",
+   "default": "",
+   "values": "Delete existing task button",
+   "group": ""
+  },
+  {
+   "name": "Use Schedule Editor ordering",
+   "default": "off",
+   "values": "Specify task priority using Schedule Editor tool off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "Task1",
+   "values": "Name of task Task1 (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Type",
+   "default": "Timer-driven",
+   "values": "Trigger type of task Timer-driven (default) | Event-driven",
+   "group": "Main"
+  },
+  {
+   "name": "Period",
+   "default": "0.1",
+   "values": "Timer period 0.1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Core",
+   "default": "0",
+   "values": "Processor core to execute task 0 (default) | non-negative integer | -1",
+   "group": "Main"
+  },
+  {
+   "name": "Priority",
+   "default": "10",
+   "values": "Priority of task in scheduler 10 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Drop tasks that overrun",
+   "default": "off",
+   "values": "Drop tasks that overrun off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Play recorded task execution sequence",
+   "default": "off",
+   "values": "Enable playback from file off (default) | on",
+   "group": "Simulation"
+  },
+  {
+   "name": "Specify task duration via",
+   "default": "Dialog",
+   "values": "Source of task execution time Dialog (default) | Input port | Record task execution statistics",
+   "group": "Simulation"
+  },
+  {
+   "name": "Percent",
+   "default": "100",
+   "values": "Likelihood of distribution 100 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Mean",
+   "default": "1e-06",
+   "values": "Mean task duration in simulation 1e-06 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "SD",
+   "default": "0",
+   "values": "Standard deviation of task duration in simulation 0 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Min",
+   "default": "1e-06",
+   "values": "Lower limit of task duration 1e-06 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "Max",
+   "default": "1e-06",
+   "values": "Upper limit of task duration 1e-06 (default) | positive scalar",
+   "group": "Simulation"
+  },
+  {
+   "name": "File name",
+   "default": "",
+   "values": "File containing diagnostic scheduling data filepath",
+   "group": "Simulation"
+  }
+ ]
+}

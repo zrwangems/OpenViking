@@ -1,0 +1,41 @@
+{
+ "key": "SVD Solver",
+ "title": "SVD Solver",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/SVD_Solver.md"
+ ],
+ "text": "使用奇异值分解求解 AX = B，输入 2 路、输出 2 路、无直接馈通；{Show error status port (E)} 指定此项以报告未能收敛，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入 A 矩阵 M -by- N matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "B 矩阵 M -by- L matrix | M -by-1 vector"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "方程组的解 N -by- L matrix"
+  },
+  {
+   "name": "E",
+   "direction": "output",
+   "summary": "显示错误状态报告 logical scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show error status port (E)",
+   "default": "off",
+   "values": "选择此项以报告未能收敛 off (default) | on",
+   "group": ""
+  }
+ ]
+}

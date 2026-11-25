@@ -1,0 +1,132 @@
+{
+ "key": "KNN Search",
+ "title": "KNN Search",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Cluster Analysis/KNN_Search.md"
+ ],
+ "text": "使用搜索器对象查找 k 最近邻，输入 1 路、输出 2 路；按 {距离度量} 指定距离度量；{选择最近邻搜索器} 指定最近邻搜索方法、{添加最近邻距离的输出端口} 为最邻距离添加第二个输出端口、{最近邻的数量}、{包括结值} 指定包含所有最近邻的标志、{协方差矩阵}、{尺度}、{P} 指定闵可夫斯基距离度量的指数、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{索引数据类型} 指定索引输出的数据类型 Inherit、{索引数据类型最小值} 指定索引输出的最小值、{索引数据类型最大值} 指定索引输出的最大值、{距离数据类型} 指定距离输出的数据类型 Inherit、{距离数据类型最小值} 指定距离输出的最小值、{距离数据类型最大值} 指定距离输出的最大值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "查询点 行向量"
+  },
+  {
+   "name": "Idx",
+   "direction": "output",
+   "summary": "最近邻的索引 数值行向量 | 1×1 元胞数组"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "最近邻的距离 数值行向量 | 1×1 元胞数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "选择最近邻搜索器",
+   "default": "searcher",
+   "values": "最近邻搜索方法 searcher (默认) | ExhaustiveSearcher 对象 | KDTreeSearcher 对象",
+   "group": "主要"
+  },
+  {
+   "name": "添加最近邻距离的输出端口",
+   "default": "off",
+   "values": "为最邻距离添加第二个输出端口 off (默认) | on",
+   "group": "主要"
+  },
+  {
+   "name": "最近邻的数量",
+   "default": "1",
+   "values": "最近邻的数量 1 (默认) | 正整数",
+   "group": "主要"
+  },
+  {
+   "name": "包括结值",
+   "default": "off",
+   "values": "包含所有最近邻的标志 off (默认) | on",
+   "group": "主要"
+  },
+  {
+   "name": "距离度量",
+   "default": "euclidean",
+   "values": "距离度量 euclidean (默认) | chebychev | cityblock | minkowski | correlation | cosine | hamming | jaccard | mahalanobis | seuclidean | spearman",
+   "group": "主要"
+  },
+  {
+   "name": "协方差矩阵",
+   "default": "使用搜索器中的数据计算",
+   "values": "马氏距离度量的协方差矩阵 使用搜索器中的数据计算 (默认) | 自定义",
+   "group": "主要"
+  },
+  {
+   "name": "尺度",
+   "default": "搜索器中数据的标准差",
+   "values": "标准化的欧几里德距离度量的尺度参数值 搜索器中数据的标准差 (默认) | 自定义",
+   "group": "主要"
+  },
+  {
+   "name": "P",
+   "default": "2",
+   "values": "闵可夫斯基距离度量的指数 2 (默认) | 正整数",
+   "group": "主要"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "索引数据类型",
+   "default": "auto",
+   "values": "索引输出的数据类型 Inherit: auto (默认) | 双精度 | 单精度 | 半精度 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "索引数据类型最小值",
+   "default": "[]",
+   "values": "索引输出的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "索引数据类型最大值",
+   "default": "[]",
+   "values": "索引输出的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "距离数据类型",
+   "default": "auto",
+   "values": "距离输出的数据类型 Inherit: auto (默认) | 双精度 | 单精度 | 半精度 | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "距离数据类型最小值",
+   "default": "[]",
+   "values": "距离输出的最小值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "距离数据类型最大值",
+   "default": "[]",
+   "values": "距离输出的最大值 [] (默认) | 标量",
+   "group": "数据类型"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Heat Exchanger (TL)",
+ "title": "Heat Exchanger (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid/Heat_Exchanger_TL.md"
+ ],
+ "text": "用于具有热液体和受控流量的系统的换热器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

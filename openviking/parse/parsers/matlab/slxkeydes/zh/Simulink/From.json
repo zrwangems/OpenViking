@@ -1,0 +1,45 @@
+{
+ "key": "From",
+ "title": "From",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/From.md",
+  "HDL Coder/Signal Routing/From.md"
+ ],
+ "text": "接受来自 Goto 模块的输入；输出 1 路；按 {图标显示} 指定要在模块图标上显示的文本 标记；{Goto 标记} 指定将信号转发给此模块的 Goto 模块的标记、{更新标记} 指定更新可见标记的列表 按钮、{Goto 源} 指定所连接的 Goto 模块的路径 模块路径，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "来自连接的 Goto 模块的信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "Goto 标记",
+   "default": "A",
+   "values": "将信号转发给此模块的 Goto 模块的标记。 A (默认) | <More Tags...> |...",
+   "group": ""
+  },
+  {
+   "name": "更新标记",
+   "default": "",
+   "values": "更新可见标记的列表 按钮",
+   "group": ""
+  },
+  {
+   "name": "Goto 源",
+   "default": "",
+   "values": "所连接的 Goto 模块的路径 模块路径",
+   "group": ""
+  },
+  {
+   "name": "图标显示",
+   "default": "",
+   "values": "要在模块图标上显示的文本 标记 | 标记和信号名称 | 信号名称",
+   "group": ""
+  }
+ ]
+}

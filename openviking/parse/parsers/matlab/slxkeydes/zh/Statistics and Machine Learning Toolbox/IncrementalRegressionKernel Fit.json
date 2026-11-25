@@ -1,0 +1,190 @@
+{
+ "key": "IncrementalRegressionKernel Fit",
+ "title": "IncrementalRegressionKernel Fit",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Regression/Kernel/IncrementalRegressionKernel_Fit.md"
+ ],
+ "text": "拟合增量核回归模型，输入 4 路、输出 1 路、直接馈通；按 {Integer rounding mode} 指定定点运算的舍入模式；{Select initial machine learning model} 指定初始增量核回归模型、{Add input port for observation weights} 添加用于观测权重的第二个输入端口、{Add input port for resetting trained learner} 添加用于重置已训练的增量学习器的输入端口、{Sample time (–1 for inherited)} 用于指定采样时间、{Saturate on integer overflow} 指定溢出操作的方法、{Lock output data type setting against changes by the fixed-point tools} 防止定点工具覆盖数据类型、{Beta data type} 指定线性系数估计的数据类型 Inherit、{Beta data type Minimum} 用于范围检查的 beta 最小值、{Beta data type Maximum} 用于范围检查的 beta 最大值、{Bias data type} 指定截距估计值的数据类型 Inherit、{Bias data type Minimum} 用于范围检查的 bias 最小值、{Bias data type Maximum} 用于范围检查的 bias 最大值、{Kernel data type} 指定核计算数据类型、{Kernel data type Minimum} 用于范围检查的核计算最小值、{Kernel data type Maximum} 用于范围检查的核计算最大值、{Internal states data type} 指定内部状态的数据类型 Inherit、{Internal states data type Minimum} 用于范围检查的内部状态最小值、{Internal states data type Maximum} 用于范围检查的内部状态最大值、{Mu data type} 指定预测变量均值的数据类型 Inherit、{Mu data type Minimum} 用于范围检查的 mu 最小值、{Mu data type Maximum} 用于范围检查的 mu 最大值、{Sigma data type} 指定预测变量标准差的数据类型 Inherit、{Sigma data type Minimum} 用于范围检查的 sigma 最小值、{Sigma data type Maximum} 用于范围检查的 sigma 最大值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "预测变量数据块 numeric matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "响应数据块 numeric vector"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "观测权重数据块 vector of positive values"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "重置信号 0 ( false ) | 1 ( true ) | numeric scalar"
+  },
+  {
+   "name": "mdl",
+   "direction": "output",
+   "summary": "更新后的增量学习模型参数 bus signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "kernelMdl",
+   "values": "初始增量核回归模型 kernelMdl (default) | incrementalRegressionKernel model object",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for observation weights",
+   "default": "off",
+   "values": "添加用于观测权重的第二个输入端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for resetting trained learner",
+   "default": "off",
+   "values": "添加用于重置已训练的增量学习器的输入端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "用于指定采样时间的选项 –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Beta data type",
+   "default": "auto",
+   "values": "线性系数估计的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Beta data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的 beta 最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Beta data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的 beta 最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Bias data type",
+   "default": "auto",
+   "values": "截距估计值的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Bias data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的 bias 最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Bias data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的 bias 最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type",
+   "default": "rule",
+   "values": "核计算数据类型 Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的核计算最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的核计算最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal states data type",
+   "default": "auto",
+   "values": "内部状态的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal states data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的内部状态最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Internal states data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的内部状态最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mu data type",
+   "default": "auto",
+   "values": "预测变量均值的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mu data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的 mu 最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mu data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的 mu 最大值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sigma data type",
+   "default": "auto",
+   "values": "预测变量标准差的数据类型 Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sigma data type Minimum",
+   "default": "[]",
+   "values": "用于范围检查的 sigma 最小值 [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sigma data type Maximum",
+   "default": "[]",
+   "values": "用于范围检查的 sigma 最大值 [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

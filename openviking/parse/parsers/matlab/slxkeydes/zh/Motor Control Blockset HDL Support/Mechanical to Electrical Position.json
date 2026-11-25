@@ -1,0 +1,72 @@
+{
+ "key": "Mechanical to Electrical Position",
+ "title": "Mechanical to Electrical Position",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Sensor Decoders/Mechanical_to_Electrical_Position.md",
+  "Motor Control Blockset/Sensor Decoders/Mechanical_to_Electrical_Position.md"
+ ],
+ "text": "根据转子的机械位置计算其电气位置，输入 3 路、输出 1 路；按 {输入机械角度单位} 指定转子机械位置的单位；{极对输入} 用于指定电机中可用极对数的方法、{极对数}、{偏移量输入类型} 用于指定偏移量的方法、{机械偏移量} 指定机械位置的偏移值、{输入数据类型} 指定输入端口的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ m",
+   "direction": "input",
+   "summary": "转子的机械位置 标量"
+  },
+  {
+   "name": "N pp",
+   "direction": "input",
+   "summary": "电机中可用的极对数 标量"
+  },
+  {
+   "name": "Offset",
+   "direction": "input",
+   "summary": "机械位置偏移量 标量"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "转子的电气位置 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "极对输入",
+   "default": "通过对话框指定",
+   "values": "用于指定电机中可用极对数的方法 通过对话框指定 (默认) | 输入端口",
+   "group": ""
+  },
+  {
+   "name": "极对数",
+   "default": "4",
+   "values": "电机中可用的极对数 4 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输入机械角度单位",
+   "default": "标幺",
+   "values": "转子机械位置的单位 标幺 (默认) | 弧度 | 度",
+   "group": ""
+  },
+  {
+   "name": "偏移量输入类型",
+   "default": "输入端口",
+   "values": "用于指定偏移量的方法 输入端口 (默认) | 通过对话框指定",
+   "group": ""
+  },
+  {
+   "name": "机械偏移量",
+   "default": "0",
+   "values": "机械位置的偏移值 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输入数据类型",
+   "default": "单精度",
+   "values": "输入端口的数据类型 单精度 (默认) | 双精度 | 定点",
+   "group": ""
+  }
+ ]
+}

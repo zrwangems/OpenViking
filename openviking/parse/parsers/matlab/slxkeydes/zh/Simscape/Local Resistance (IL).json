@@ -1,0 +1,13 @@
+{
+ "key": "Local Resistance (IL)",
+ "title": "Local Resistance (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pipes & Fittings/Local_Resistance_IL.md"
+ ],
+ "text": "等温液体系统中的管道阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

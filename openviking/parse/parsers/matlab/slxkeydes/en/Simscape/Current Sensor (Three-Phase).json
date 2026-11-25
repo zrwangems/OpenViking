@@ -1,0 +1,13 @@
+{
+ "key": "Current Sensor (Three-Phase)",
+ "title": "Current Sensor (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Current_Sensor_Three_Phase.md"
+ ],
+ "text": "Ideal three-phase current measurement.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

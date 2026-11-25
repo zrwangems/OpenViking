@@ -1,0 +1,61 @@
+{
+ "key": "FunctionCaller",
+ "title": "Function Caller",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/Function_Caller.md"
+ ],
+ "text": "调用 Simulink 函数，输入 1 路、输出 1 路；按 {函数原型} 指定函数原型；{函数名称}、{输入参量设定} 指定输入参量的数据类型、维数和复/实性 <Enter、{输出参量设定} 输出参量的数据类型、维数和复/实性 <Enter、{采样时间} 指定函数调用之间的时间间隔、{异步执行函数调用}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input argument",
+   "direction": "input",
+   "summary": "输入参量的输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Output argument",
+   "direction": "output",
+   "summary": "输出参量的输出信号或消息 标量 | 向量 | 矩阵 | 消息"
+  }
+ ],
+ "params": [
+  {
+   "name": "函数原型",
+   "default": "y=f(u)",
+   "values": "指定函数原型 y=f(u) (默认) | 字符向量 | 字符串",
+   "group": ""
+  },
+  {
+   "name": "函数名称",
+   "default": "f",
+   "values": "限定函数名称 f (默认) | 字符向量 | 字符串",
+   "group": ""
+  },
+  {
+   "name": "输入参量设定",
+   "default": "example>",
+   "values": "指定输入参量的数据类型、维数和复/实性 <Enter example> (默认) | MATLAB 表达式",
+   "group": ""
+  },
+  {
+   "name": "输出参量设定",
+   "default": "example>",
+   "values": "指定输出参量的数据类型、维数和复/实性 <Enter example> (默认) | MATLAB 表达式",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "函数调用之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "异步执行函数调用",
+   "default": "off",
+   "values": "异步执行函数调用的选项 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

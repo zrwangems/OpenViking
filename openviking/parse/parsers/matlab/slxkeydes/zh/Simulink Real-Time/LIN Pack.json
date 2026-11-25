@@ -1,0 +1,43 @@
+{
+ "key": "LIN Pack",
+ "title": "LIN Pack",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/LIN/LIN_Pack.md"
+ ],
+ "text": "通过 LIN 描述文件中的配置将信号打包到数据帧中，输入 1 路、输出 1 路；按 {Select Frame} 指定LIN 帧；{LDF File Name} 指定 LDF 文件的路径、{Frame ID} 指定 LIN 帧 ID，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "将数据输入到包中 数据"
+  },
+  {
+   "name": "lin_data",
+   "direction": "output",
+   "summary": "输出 LIN 数据 LIN 数据"
+  }
+ ],
+ "params": [
+  {
+   "name": "LDF File Name",
+   "default": "空",
+   "values": "LDF 文件的路径 空 (默认) | 字符向量 | 字符串标量",
+   "group": ""
+  },
+  {
+   "name": "Select Frame",
+   "default": "None",
+   "values": "LIN 帧 None (默认) | 字符向量 | 字符串标量",
+   "group": ""
+  },
+  {
+   "name": "Frame ID",
+   "default": "1",
+   "values": "LIN 帧 ID 1 (默认) | uint8",
+   "group": ""
+  }
+ ]
+}

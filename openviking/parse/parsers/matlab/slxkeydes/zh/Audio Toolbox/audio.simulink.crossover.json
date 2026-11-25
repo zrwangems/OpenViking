@@ -1,0 +1,145 @@
+{
+ "key": "audio.simulink.crossover",
+ "title": "Crossover Filter",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Crossover_Filter.md"
+ ],
+ "text": "音频分频滤波器，输入 9 路、输出 5 路、无直接馈通；{Number of crossovers} 指定幅值响应频带交叉的数量、{Crossover frequency (Hz)} 指定幅值响应频带的交点、{Crossover order} 指定各个分频滤波器的阶数、{View filter response} 打开每个滤波器频带的幅值响应图、{Variable name} 指定导出滤波器的变量名、{Overwrite variable if it already exists} 指定如果变量已存在则覆盖、{Export filter to workspace} 指定将滤波器导出到工作区、{Inherit sample rate from input} 指定输入采样率的来源、{Input sample rate (Hz)} 指定输入的采样率、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入信号 matrix | 1-D vector"
+  },
+  {
+   "name": "F1",
+   "direction": "input",
+   "summary": "Crossover frequency (Hz) real scalar in the range 20 to 20000"
+  },
+  {
+   "name": "O1",
+   "direction": "input",
+   "summary": "Crossover order integer in the range 0 to 8"
+  },
+  {
+   "name": "F2",
+   "direction": "input",
+   "summary": "Crossover frequency (Hz) real scalar in the range 20 to 20000"
+  },
+  {
+   "name": "O2",
+   "direction": "input",
+   "summary": "Crossover order integer in the range 0 to 8"
+  },
+  {
+   "name": "F3",
+   "direction": "input",
+   "summary": "Crossover frequency (Hz) real scalar in the range 20 to 20000"
+  },
+  {
+   "name": "O3",
+   "direction": "input",
+   "summary": "Crossover order integer in the range 0 to 8"
+  },
+  {
+   "name": "F4",
+   "direction": "input",
+   "summary": "Crossover frequency (Hz) real scalar in the range 20 to 20000"
+  },
+  {
+   "name": "O4",
+   "direction": "input",
+   "summary": "Crossover order integer in the range 0 to 8"
+  },
+  {
+   "name": "Y1",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  },
+  {
+   "name": "Y2",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  },
+  {
+   "name": "Y3",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  },
+  {
+   "name": "Y4",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  },
+  {
+   "name": "Y5",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of crossovers",
+   "default": "1",
+   "values": "幅值响应频带交叉的数量 1 (default) | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Crossover frequency (Hz)",
+   "default": "100",
+   "values": "幅值响应频带的交点 100 (default) | real scalar in the range 20 to 20000",
+   "group": ""
+  },
+  {
+   "name": "Crossover order",
+   "default": "2",
+   "values": "各个分频滤波器的阶数 2 (default) | integer in the range [0, 8]",
+   "group": ""
+  },
+  {
+   "name": "View filter response",
+   "default": "",
+   "values": "打开每个滤波器频带的幅值响应图 button",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "myFilt",
+   "values": "导出滤波器的变量名 myFilt (default) | valid variable name",
+   "group": ""
+  },
+  {
+   "name": "Overwrite variable if it already exists",
+   "default": "on",
+   "values": "如果变量已存在则覆盖 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Export filter to workspace",
+   "default": "",
+   "values": "将滤波器导出到工作区 button",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "指定输入采样率的来源 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "输入的采样率 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "指定要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

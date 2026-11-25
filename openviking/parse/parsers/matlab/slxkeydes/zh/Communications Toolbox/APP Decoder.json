@@ -1,0 +1,120 @@
+{
+ "key": "APP Decoder",
+ "title": "APP Decoder",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/Convolutional/APP_Decoder.md",
+  "Wireless HDL Toolbox/Error Detection and Correction/APP_Decoder.md"
+ ],
+ "text": "使用并行级联解码方案解码输入信号，输入 3 路、输出 1 路；按 {Decoding algorithm} 指定解码算法 True；{Trellis structure} 指定分量卷积码的网格描述 poly2trellis、{numInputSymbols} 指定输入到编码器的符号数 2 K、{numOutputSymbols} 指定从编码器输出的符号数 2 N、{numStates} 指定编码器中的状态数 power、{nextStates} 指定下一状态 matrix of integers、{outputs} 输出 matrix、{Source of interleaver indices} 指定交织器索引的来源、{Interleaver indices} 指定交织器索引、{Source of input indices} 指定输入索引的来源、{Input indices} 指定输入索引 getTurboIOIndices、{Number of scaling bits} 指定缩放比特数、{Number of decoding iterations} 指定解码迭代次数、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "并行级联码字 column vector"
+  },
+  {
+   "name": "IntrInd",
+   "direction": "input",
+   "summary": "交织器索引 column vector of integers"
+  },
+  {
+   "name": "InInd",
+   "direction": "input",
+   "summary": "输入索引 column vector of integers"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "解码消息 binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trellis structure",
+   "default": "15],13)",
+   "values": "分量卷积码的网格描述 poly2trellis(4,[13 15],13) (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "numInputSymbols",
+   "default": "",
+   "values": "输入到编码器的符号数 2 K",
+   "group": ""
+  },
+  {
+   "name": "numOutputSymbols",
+   "default": "",
+   "values": "从编码器输出的符号数 2 N",
+   "group": ""
+  },
+  {
+   "name": "numStates",
+   "default": "",
+   "values": "编码器中的状态数 power of 2",
+   "group": ""
+  },
+  {
+   "name": "nextStates",
+   "default": "",
+   "values": "下一状态 matrix of integers",
+   "group": ""
+  },
+  {
+   "name": "outputs",
+   "default": "",
+   "values": "输出 matrix of octal numbers",
+   "group": ""
+  },
+  {
+   "name": "Source of interleaver indices",
+   "default": "Property",
+   "values": "交织器索引的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Interleaver indices",
+   "default": "(64:-1:1).’",
+   "values": "交织器索引 (64:-1:1).’ (default) | column vector of integers",
+   "group": ""
+  },
+  {
+   "name": "Source of input indices",
+   "default": "",
+   "values": "输入索引的来源 Auto | Property | Input port",
+   "group": ""
+  },
+  {
+   "name": "Input indices",
+   "default": "getTurboIOIndices(64,2,3)",
+   "values": "输入索引 getTurboIOIndices(64,2,3) (default) | column vector of integers",
+   "group": ""
+  },
+  {
+   "name": "Decoding algorithm",
+   "default": "APP",
+   "values": "解码算法 True APP (default) | Max* | Max",
+   "group": ""
+  },
+  {
+   "name": "Number of scaling bits",
+   "default": "3",
+   "values": "缩放比特数 3 (default) | integer in the range [0, 8]",
+   "group": ""
+  },
+  {
+   "name": "Number of decoding iterations",
+   "default": "6",
+   "values": "解码迭代次数 6 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

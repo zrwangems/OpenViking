@@ -1,0 +1,87 @@
+{
+ "key": "Saturate",
+ "title": "Saturation",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Saturation.md",
+  "Simulink/Discontinuities/Saturation.md",
+  "HDL Coder/Discontinuities/Saturation.md"
+ ],
+ "text": "Limit input signal to the upper and lower saturation values, 1 input, 1 output, direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Upper limit} sets the upper saturation boundary for the input, {Lower limit} sets the lower saturation boundary for the input, {Treat as gain when linearizing} sets the gain value, {Enable zero-crossing detection}, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the output data type, {Lock output data type setting against changes by the fixed-point tools} sets the option to prevent fixed-point tools from overriding Output data and {Integer rounding mode} sets the rounding mode for fixed-point operations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Upper limit",
+   "default": "0.5",
+   "values": "Upper saturation boundary for the input signal 0.5 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Lower limit",
+   "default": "-0.5",
+   "values": "Lower saturation boundary for the input signal -0.5 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Treat as gain when linearizing",
+   "default": "on",
+   "values": "Specify the gain value on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "input",
+   "values": "Specify the output data type Inherit: Same as input (default) | Inherit: Inherit via back propagation | double | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | |...",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Option to prevent fixed-point tools from overriding Output data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  }
+ ]
+}

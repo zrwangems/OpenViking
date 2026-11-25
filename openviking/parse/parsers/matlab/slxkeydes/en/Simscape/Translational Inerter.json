@@ -1,0 +1,13 @@
+{
+ "key": "Translational Inerter",
+ "title": "Translational Inerter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Translational_Inerter.md"
+ ],
+ "text": "Two-port inertia in mechanical translational systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

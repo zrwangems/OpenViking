@@ -1,0 +1,13 @@
+{
+ "key": "PS Dead Zone",
+ "title": "PS Dead Zone",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Dead_Zone.md"
+ ],
+ "text": "为物理信号提供零输出区域。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

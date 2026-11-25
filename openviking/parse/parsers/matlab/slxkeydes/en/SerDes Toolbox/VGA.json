@@ -1,0 +1,38 @@
+{
+ "key": "VGA",
+ "title": "VGA",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/VGA.md",
+  "RF Blockset/Circuit Envelope/Elements/VGA.md"
+ ],
+ "text": "Models a variable gain amplifier, 1 input, 1 output; {Mode} sets the vGA operating mode and {Gain} sets the multiplicative gain used to scale the input. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "Estimated channel output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "On",
+   "values": "VGA operating mode On (default) | Off",
+   "group": ""
+  },
+  {
+   "name": "Gain",
+   "default": "1",
+   "values": "Multiplicative gain used to scale the input waveform 1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

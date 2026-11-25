@@ -1,0 +1,13 @@
+{
+ "key": "Spline",
+ "title": "Spline",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Spline.md"
+ ],
+ "text": "三次插值平面曲线或空间曲线。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

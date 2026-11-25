@@ -1,0 +1,62 @@
+{
+ "key": "visionhdl.PixelStreamAligner",
+ "title": "Pixel Stream Aligner",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/Pixel_Stream_Aligner.md"
+ ],
+ "text": "对齐两路像素数据流，输入 4 路、输出 3 路；{Line buffer size} 指定行内存缓冲区的大小、{Maximum number of lines} 指定可容纳输入流之间时序偏移的缓冲区深度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "refPixel",
+   "direction": "input",
+   "summary": "参考像素流 scalar | vector | matrix"
+  },
+  {
+   "name": "refCtrl",
+   "direction": "input",
+   "summary": "参考像素流控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "对齐后的像素流 scalar | vector | matrix"
+  },
+  {
+   "name": "refPixel",
+   "direction": "output",
+   "summary": "参考像素流 scalar | vector | matrix"
+  },
+  {
+   "name": "refCtrl",
+   "direction": "output",
+   "summary": "参考控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "行内存缓冲区的大小 2048 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of lines",
+   "default": "10",
+   "values": "可容纳输入流之间时序偏移的缓冲区深度 10 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

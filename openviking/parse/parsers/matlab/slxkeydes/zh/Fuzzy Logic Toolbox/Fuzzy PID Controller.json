@@ -1,0 +1,137 @@
+{
+ "key": "Fuzzy PID Controller",
+ "title": "Fuzzy PID Controller",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Fuzzy_PID_Controller.md"
+ ],
+ "text": "基于模糊逻辑的 PID 控制器，输入 2 路、输出 2 路；按 {FIS name} 指定模糊推理系统 mamfis object；{Time Domain} 控制器时域、{Ce} 指定误差增益、{Cd} 指定导数信号增益、{C0} 指定 FIS 输出变化增益、{C1} 指定 FIS 输出增益、{Integrator method} 指定离散时间控制器中计算积分的方法 Forward、{Use accumulator} 指定在积分器中累积信号、{Derivative signal} 用于计算导数的信号 Error、{Use filtered derivative} 指定对导数项应用滤波器、{Filter coefficient} 指定导数滤波器系数、{Filter method} 指定离散时间控制器中计算导数的方法 Forward、{Add error (e) output} 启用 e 输出端口、{Sample time (–1 for inherited)} 指定采样时间、{Number of samples for output discretization} 输出模糊集中的点数、{Implement FIS as lookup table} 指定将 FIS 转换为查找表、{Number of input breakpoints (samples)} 查找表断点数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "参考 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制器输出 scalar"
+  },
+  {
+   "name": "e",
+   "direction": "output",
+   "summary": "Error scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time Domain",
+   "default": "Discrete-time",
+   "values": "控制器时域 Discrete-time (default) | Continuous-time",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Ce",
+   "default": "1",
+   "values": "误差增益 1 (default) | scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Cd",
+   "default": "1",
+   "values": "导数信号增益 1 (default) | scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "C0",
+   "default": "1",
+   "values": "FIS 输出变化增益 1 (default) | scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "C1",
+   "default": "1",
+   "values": "FIS 输出增益 1 (default) | scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "离散时间控制器中计算积分的方法 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Use accumulator",
+   "default": "off",
+   "values": "在积分器中累积信号 off (default) | on",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Derivative signal",
+   "default": "(e)",
+   "values": "用于计算导数的信号 Error (e) (default) | Process output (y)",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Use filtered derivative",
+   "default": "on",
+   "values": "对导数项应用滤波器 on (default) | off",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Filter coefficient",
+   "default": "100",
+   "values": "导数滤波器系数 100 (default) | positive scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Filter method",
+   "default": "Euler",
+   "values": "离散时间控制器中计算导数的方法 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Add error (e) output",
+   "default": "off",
+   "values": "启用 e 输出端口 off (default) | on",
+   "group": "Controller Options"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": "Controller Options"
+  },
+  {
+   "name": "FIS name",
+   "default": "",
+   "values": "模糊推理系统 mamfis object | sugfis object | mamfistype2 object | sugfistype2 object | FIS file name in quotes | MAT file name in quotes",
+   "group": "Fuzzy Inference System"
+  },
+  {
+   "name": "Number of samples for output discretization",
+   "default": "101",
+   "values": "输出模糊集中的点数 101 (default) | integer greater than 1",
+   "group": "Fuzzy Inference System"
+  },
+  {
+   "name": "Implement FIS as lookup table",
+   "default": "off",
+   "values": "将 FIS 转换为查找表 off (default) | on",
+   "group": "Fuzzy Inference System"
+  },
+  {
+   "name": "Number of input breakpoints (samples)",
+   "default": "10",
+   "values": "查找表断点数量 10 (default) | positive integer",
+   "group": "Fuzzy Inference System"
+  }
+ ]
+}

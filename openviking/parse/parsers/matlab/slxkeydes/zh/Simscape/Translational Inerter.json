@@ -1,0 +1,13 @@
+{
+ "key": "Translational Inerter",
+ "title": "Translational Inerter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Translational_Inerter.md"
+ ],
+ "text": "机械平移系统中的双端口惯性元件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

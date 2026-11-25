@@ -1,0 +1,438 @@
+{
+ "key": "C28x eQEP",
+ "title": "eQEP",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/eQEP.md",
+  "C2000 Microcontroller Blockset/C2805x/eQEP.md",
+  "C2000 Microcontroller Blockset/C2806x/eQEP.md",
+  "C2000 Microcontroller Blockset/C280x/eQEP.md",
+  "C2000 Microcontroller Blockset/C2833x/eQEP.md",
+  "C2000 Microcontroller Blockset/C2834x/eQEP.md",
+  "C2000 Microcontroller Blockset/F280013x/eQEP.md",
+  "C2000 Microcontroller Blockset/F280015x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28002x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28003x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28004x/eQEP.md",
+  "C2000 Microcontroller Blockset/F2807x/eQEP.md",
+  "C2000 Microcontroller Blockset/F2837xD/eQEP.md",
+  "C2000 Microcontroller Blockset/F2837xS/eQEP.md",
+  "C2000 Microcontroller Blockset/F28p55x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28p65x/eQEP.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/eQEP.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/eQEP.md"
+ ],
+ "text": "Quadrature encoder pulse block used to derive position, direction, and speed, 3 inputs, 12 outputs, {Position counter reset mode} sets Resets position counter Reset on an index; {Module} sets the eQEP module to obtain position, direction, and speed, {Position counter mode} sets the mode that matches how input to eQEP peripheral is encoded, {Positive rotation} sets the direction of rotation, {External clock rate} sets the measurement resolution 2x resolution: Count the rising/falling, {Quadrature direction flag output port} sets the creates port for direction flag, {Invert input QEPxX polarity} sets the inverts polarity of eQEP input, {Index pulse gating option} sets the enables gating of index pulse with strobe, {Sample time} sets the frequency at which block reads position, {Output position counter} sets the outputs position counter signal, {Maximum position counter value (0~4294967295)} Specifies maximum position counter value, {Enable set to init value on index event} sets the enables option to set initialization value for position, {Set to init value on index event} sets the initialization value for position counter Rising, {Enable set to init value on strobe event} sets the enables option to set initialization value for position, {Set to init value on strobe event} sets the s initialization value for position counter Rising, {Enable software initialization} sets the enables option to set initialization value for position, {Software initialization source} Specifies initialization source of position counter Input, {Initialization value (0~4294967295)} sets the initialization value for position counter, {Output position counter error flag} sets the outputs position counter error flag, {Output latch position counter on index event} sets the latches position counter on index event, {Index event latch of position counter} sets the configures position counter to latch on an event Rising, {Output latch position counter on strobe event} sets the latches position counter on strobe event, {Strobe event of latched position counter} sets the configures position counter to latch on strobe Rising, {Enable QEP capture} sets the enables edge capture unit, {Output capture timer} sets the outputs capture timer, {Output capture period timer} sets the outputs capture period, {eQEP capture timer prescaler} sets the prescales capture timer clock frequency, {Unit position event prescaler} sets the prescales quadrature clock, {Enable and output overflow error flag} sets the outputs overflow error flag when capture timer, {Enable and output direction change error flag} sets the outputs direction change error flag, {Capture timer and position} sets the qEP capture latch mode On position counter, {Unit timer period (0~4294967295)} sets the s unit timer period, {Output capture timer latched value} sets the outputs capture timer latched value, {Output capture timer period latched value} sets the outputs capture timer period latched value, {Output position counter latched value} sets the outputs position counter latched value, {Enable position-compare sync signal output} sets the enables position compare sync signal, {Sync output pin selection} sets the gPIO pin used for sync signal Index pin is used for sync, {Compare value source} sets the source of value for position comparison Specify via, {Position compare shadow load mode} sets the shadow mode for generating position compare sync signal Load, {Position compare value (0~4294967295)} sets the value for comparing postiton, {Sync output pulse width (1~4096)} sets the pulse width of position compare sync output, {Polarity of sync output}, {Watchdog timer enable} sets the enables watchdog time-out flag, {Watchdog timer} sets the time-out value for watchdog timer, {Position counter error interrupt enable} sets the enables position counter error interrupts, {Quadrature phase error interrupt enable} sets the enables quadrature phase error interrupts, {Quadrature direction change interrupt enable} sets the enables quadrature direction change, {Watchdog timeout interrupt enable} sets the enables watchdog timeout interrupts, {Position counter underflow interrupt enable} sets the enables position counter underflow, {Position counter overflow interrupt enable} sets the enables position counter overflow, {Position-compare ready interrupt enable} sets the enables position compare ready interrupts, {Position-compare match interrupt enable} sets the enables position compare match interrupts, {Strobe event latch interrupt enable} sets the enables strobe event latch interrupts, {Index event latch interrupt enable} sets the enables index event latch interrupts and {Unit timeout interrupt enable} sets the enables unit timeout interrupts. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "swi",
+   "direction": "input",
+   "summary": "Dynamically update initialization value for position counter scalar"
+  },
+  {
+   "name": "cmp",
+   "direction": "input",
+   "summary": "Value for comparing position scalar"
+  },
+  {
+   "name": "iel",
+   "direction": "input",
+   "summary": "Software index marker scalar"
+  },
+  {
+   "name": "qposcnt",
+   "direction": "output",
+   "summary": "Position counter signal scalar"
+  },
+  {
+   "name": "pcef",
+   "direction": "output",
+   "summary": "Position counter error flag on error scalar"
+  },
+  {
+   "name": "qdf",
+   "direction": "output",
+   "summary": "Direction flag of quadrature module scalar"
+  },
+  {
+   "name": "qctmr",
+   "direction": "output",
+   "summary": "Capture timer signal scalar"
+  },
+  {
+   "name": "qcprd",
+   "direction": "output",
+   "summary": "Capture period signal scalar"
+  },
+  {
+   "name": "coef",
+   "direction": "output",
+   "summary": "eQEP overflow error flag scalar"
+  },
+  {
+   "name": "cdef",
+   "direction": "output",
+   "summary": "Direction change error flag scalar"
+  },
+  {
+   "name": "qctmrlat",
+   "direction": "output",
+   "summary": "Capture timer latched value scalar"
+  },
+  {
+   "name": "qcprdlat",
+   "direction": "output",
+   "summary": "Capture timer period latched value scalar"
+  },
+  {
+   "name": "qposlat",
+   "direction": "output",
+   "summary": "Position counter latched value scalar"
+  },
+  {
+   "name": "qposilat",
+   "direction": "output",
+   "summary": "Latches position counter on index event scalar"
+  },
+  {
+   "name": "qposslat",
+   "direction": "output",
+   "summary": "Latches position counter on strobe event scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Module",
+   "default": "eQEP1",
+   "values": "eQEP module to obtain position, direction, and speed eQEP1 (default) | eQEP2 | eQEP3",
+   "group": "General"
+  },
+  {
+   "name": "Position counter mode",
+   "default": "Quadrature-count",
+   "values": "Mode that matches how input to eQEP peripheral is encoded Quadrature-count (default) | Direction-count | Up-count | Down-count",
+   "group": "General"
+  },
+  {
+   "name": "Positive rotation",
+   "default": "Clockwise",
+   "values": "Direction of rotation Clockwise (default) | Counterclockwise",
+   "group": "General"
+  },
+  {
+   "name": "External clock rate",
+   "default": "edge",
+   "values": "Measurement resolution 2x resolution: Count the rising/falling edge (default) | 1x resolution: Count the rising edge only",
+   "group": "General"
+  },
+  {
+   "name": "Quadrature direction flag output port",
+   "default": "off",
+   "values": "Creates port for direction flag off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Invert input QEPxX polarity",
+   "default": "off",
+   "values": "Inverts polarity of eQEP input off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Index pulse gating option",
+   "default": "off",
+   "values": "Enables gating of index pulse with strobe input off (default) | on",
+   "group": "General"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.0001",
+   "values": "Frequency at which block reads position counter 0.0001 (default) | -1 | scalar",
+   "group": "General"
+  },
+  {
+   "name": "Output position counter",
+   "default": "on",
+   "values": "Outputs position counter signal on (default) | off",
+   "group": "Position counter"
+  },
+  {
+   "name": "Maximum position counter value (0~4294967295)",
+   "default": "4294967295",
+   "values": "Specifies maximum position counter value 4294967295 (default) | integer in [0, 4,294,967,295]",
+   "group": "Position counter"
+  },
+  {
+   "name": "Enable set to init value on index event",
+   "default": "off",
+   "values": "Enables option to set initialization value for position counter off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Set to init value on index event",
+   "default": "edge",
+   "values": "Initialization value for position counter Rising edge (default) | Falling edge",
+   "group": "Position counter"
+  },
+  {
+   "name": "Enable set to init value on strobe event",
+   "default": "off",
+   "values": "Enables option to set initialization value for position counter off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Set to init value on strobe event",
+   "default": "edge",
+   "values": "Sets initialization value for position counter Rising edge (default) | Depending on direction",
+   "group": "Position counter"
+  },
+  {
+   "name": "Enable software initialization",
+   "default": "off",
+   "values": "Enables option to set initialization value for position counter off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Software initialization source",
+   "default": "port",
+   "values": "Specifies initialization source of position counter Input port (default) | Set to init value at start up",
+   "group": "Position counter"
+  },
+  {
+   "name": "Initialization value (0~4294967295)",
+   "default": "",
+   "values": "Initialization value for position counter 2147483648 | integer in [0, 4,294,967,295]",
+   "group": "Position counter"
+  },
+  {
+   "name": "Position counter reset mode",
+   "default": "event",
+   "values": "Resets position counter Reset on an index event (default) | Reset on the maximum position | Reset on the first index event | Reset on a time unit event",
+   "group": "Position counter"
+  },
+  {
+   "name": "Output position counter error flag",
+   "default": "off",
+   "values": "Outputs position counter error flag on error off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Output latch position counter on index event",
+   "default": "off",
+   "values": "Latches position counter on index event off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Index event latch of position counter",
+   "default": "edge",
+   "values": "Configures position counter to latch on an event Rising edge (default) | Falling edge | Software index marker via input port",
+   "group": "Position counter"
+  },
+  {
+   "name": "Output latch position counter on strobe event",
+   "default": "off",
+   "values": "Latches position counter on strobe event off (default) | on",
+   "group": "Position counter"
+  },
+  {
+   "name": "Strobe event of latched position counter",
+   "default": "edge",
+   "values": "Configures position counter to latch on strobe Rising edge (default) | Depending on direction",
+   "group": "Position counter"
+  },
+  {
+   "name": "Enable QEP capture",
+   "default": "off",
+   "values": "Enables edge capture unit off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output capture timer",
+   "default": "off",
+   "values": "Outputs capture timer off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output capture period timer",
+   "default": "off",
+   "values": "Outputs capture period off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "eQEP capture timer prescaler",
+   "default": "128",
+   "values": "Prescales capture timer clock frequency 128 (default) | 1 | 2 | 4 | 8 | 16 | 32 | 64",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Unit position event prescaler",
+   "default": "128",
+   "values": "Prescales quadrature clock 128 (default) | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Enable and output overflow error flag",
+   "default": "off",
+   "values": "Outputs overflow error flag when capture timer overflows off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Enable and output direction change error flag",
+   "default": "off",
+   "values": "Outputs direction change error flag off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Capture timer and position",
+   "default": "read",
+   "values": "QEP capture latch mode On position counter read (default) | On unit time-out event",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Unit timer period (0~4294967295)",
+   "default": "100000000",
+   "values": "Sets unit timer period 100000000 (default) | value in the range [0, 4,294,967,295]",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output capture timer latched value",
+   "default": "off",
+   "values": "Outputs capture timer latched value off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output capture timer period latched value",
+   "default": "off",
+   "values": "Outputs capture timer period latched value off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Output position counter latched value",
+   "default": "off",
+   "values": "Outputs position counter latched value off (default) | on",
+   "group": "Speed calculation"
+  },
+  {
+   "name": "Enable position-compare sync signal output",
+   "default": "off",
+   "values": "Enables position compare sync signal output off (default) | on",
+   "group": "Compare output"
+  },
+  {
+   "name": "Sync output pin selection",
+   "default": "output",
+   "values": "GPIO pin used for sync signal Index pin is used for sync output (default) | Strobe pin is used for sync output",
+   "group": "Compare output"
+  },
+  {
+   "name": "Compare value source",
+   "default": "dialog",
+   "values": "Source of value for position comparison Specify via dialog (default) | Input port",
+   "group": "Compare output"
+  },
+  {
+   "name": "Position compare shadow load mode",
+   "default": "QPOSCNT=0",
+   "values": "Shadow mode for generating position compare sync signal Load on QPOSCNT=0 (default) | Shadow disabled(load immediate) | Load on QPOSCNT=QPOSCMP",
+   "group": "Compare output"
+  },
+  {
+   "name": "Position compare value (0~4294967295)",
+   "default": "4294967295",
+   "values": "Value for comparing postiton 4294967295 (default) | value in the range [0, 4,294,967,295]",
+   "group": "Compare output"
+  },
+  {
+   "name": "Sync output pulse width (1~4096)",
+   "default": "1",
+   "values": "Pulse width of position compare sync output signal 1 (default) | value in the range [0, 4,096]",
+   "group": "Compare output"
+  },
+  {
+   "name": "Polarity of sync output",
+   "default": "high",
+   "values": "Polarity of sync output Active high (default) | Active low",
+   "group": "Compare output"
+  },
+  {
+   "name": "Watchdog timer enable",
+   "default": "off",
+   "values": "Enables watchdog time-out flag off (default) | on",
+   "group": "Watchdog unit"
+  },
+  {
+   "name": "Watchdog timer",
+   "default": "65535",
+   "values": "Time-out value for watchdog timer 65535 (default) | value in the range [0, 65,535]",
+   "group": "Watchdog unit"
+  },
+  {
+   "name": "Position counter error interrupt enable",
+   "default": "off",
+   "values": "Enables position counter error interrupts off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Quadrature phase error interrupt enable",
+   "default": "off",
+   "values": "Enables quadrature phase error interrupts off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Quadrature direction change interrupt enable",
+   "default": "off",
+   "values": "Enables quadrature direction change interrupt off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Watchdog timeout interrupt enable",
+   "default": "off",
+   "values": "Enables watchdog timeout interrupts off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Position counter underflow interrupt enable",
+   "default": "off",
+   "values": "Enables position counter underflow interrupts off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Position counter overflow interrupt enable",
+   "default": "off",
+   "values": "Enables position counter overflow interrupts off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Position-compare ready interrupt enable",
+   "default": "off",
+   "values": "Enables position compare ready interrupts off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Position-compare match interrupt enable",
+   "default": "off",
+   "values": "Enables position compare match interrupts off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Strobe event latch interrupt enable",
+   "default": "off",
+   "values": "Enables strobe event latch interrupts off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Index event latch interrupt enable",
+   "default": "off",
+   "values": "Enables index event latch interrupts off (default) | on",
+   "group": "Interrupt"
+  },
+  {
+   "name": "Unit timeout interrupt enable",
+   "default": "off",
+   "values": "Enables unit timeout interrupts off (default) | on",
+   "group": "Interrupt"
+  }
+ ]
+}

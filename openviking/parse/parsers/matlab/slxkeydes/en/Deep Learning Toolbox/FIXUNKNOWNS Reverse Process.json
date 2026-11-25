@@ -1,0 +1,13 @@
+{
+ "key": "FIXUNKNOWNS Reverse Process",
+ "title": "fixunknowns_reverse",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/fixunknowns_reverse.md"
+ ],
+ "text": "Process data by marking rows with unknown values.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

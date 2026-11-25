@@ -1,0 +1,100 @@
+{
+ "key": "uav.sluav.internal.system.UAVAnimation",
+ "title": "UAV Animation",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Utilities/UAV_Animation.md"
+ ],
+ "text": "使用平移和旋转对 UAV 飞行路径进行动画显示，输入 5 路；{Number of UAVs} 指定要显示的 UAV 数量、{Enable dynamic UAV mesh configuration} 指定动态 UAV 网格配置、{UAV Type} 指定要显示的 UAV 网格类型、{UAV size} 指定框架和附加网格的大小、{UAV mesh color} 指定 UAV 网格颜色、{UAV mesh and trajectory alpha} 指定 UAV 网格和轨迹的透明度、{Inertial frame z-axis direction} 指定惯性坐标系 z 轴正方向、{Rotation format} 指定旋转输入的格式、{Draw marker} 启用标记、{Sample time} 输出之间的间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "UAV 的 xyz 位置 matrix"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "UAV 机体坐标系的旋转 matrix | m -by-4 matrix"
+  },
+  {
+   "name": "UAV Type",
+   "direction": "input",
+   "summary": "UAV 网格类型 vector"
+  },
+  {
+   "name": "UAV Mesh Configuration",
+   "direction": "input",
+   "summary": "UAV 网格配置 vector | matrix"
+  },
+  {
+   "name": "Marker",
+   "direction": "input",
+   "summary": "UAV 标记配置 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of UAVs",
+   "default": "1",
+   "values": "要显示的 UAV 数量 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable dynamic UAV mesh configuration",
+   "default": "off",
+   "values": "动态 UAV 网格配置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "UAV Type",
+   "default": "Multirotor",
+   "values": "要显示的 UAV 网格类型 Multirotor (default) | FixedWing",
+   "group": ""
+  },
+  {
+   "name": "UAV size",
+   "default": "1",
+   "values": "框架和附加网格的大小 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "UAV mesh color",
+   "default": "0]",
+   "values": "UAV 网格颜色 [1 0 0] (default) | RGB triplet",
+   "group": ""
+  },
+  {
+   "name": "UAV mesh and trajectory alpha",
+   "default": "1",
+   "values": "UAV 网格和轨迹的透明度 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Inertial frame z-axis direction",
+   "default": "Down",
+   "values": "惯性坐标系 z 轴正方向 Down (default) | Up",
+   "group": ""
+  },
+  {
+   "name": "Rotation format",
+   "default": "Quaternion",
+   "values": "旋转输入的格式 Quaternion (default) | Euler ZYX",
+   "group": ""
+  },
+  {
+   "name": "Draw marker",
+   "default": "off",
+   "values": "启用标记 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "输出之间的间隔 –1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

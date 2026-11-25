@@ -1,0 +1,65 @@
+{
+ "key": "PI Controller (Discrete or Continuous)",
+ "title": "PI Controller (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/PI_Controller_Discrete_or_Continuous.md"
+ ],
+ "text": "具有外部抗积分饱和输入的离散时间或连续时间 PI 控制器，输入 3 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Proportional gain} 指定 K p、{Integral gain} 指定 K i、{Anti-windup gain} 指定 K aw、{Integrator initial condition} 指定积分器初始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "e",
+   "direction": "input",
+   "summary": "误差信号 scalar"
+  },
+  {
+   "name": "du",
+   "direction": "input",
+   "summary": "控制信号饱和 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "积分器增益重置 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "1",
+   "values": "K i 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "K aw 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integrator initial condition",
+   "default": "0",
+   "values": "积分器初始值 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

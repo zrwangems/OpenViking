@@ -1,0 +1,13 @@
+{
+ "key": "Controlled PWM Voltage",
+ "title": "Controlled PWM Voltage",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Controlled_PWM_Voltage.md"
+ ],
+ "text": "脉宽调制电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,153 @@
+{
+ "key": "Configuration",
+ "title": "Configuration",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Utilities/Configuration.md",
+  "SerDes Toolbox/Utilities/Configuration.md"
+ ],
+ "text": "定义系统仿真设置；按 {Temperature} 指定全局噪声温度 290.0 K；{Automatically select fundamental tones and harmonic order} 指定自动选择基频音调和谐波阶数、{Fundamental tones} 指定一组仿真频率的基频 vector of positive integers、{Harmonic order} 指定每个基频的谐波阶数 vector of positive、{Total simulation frequencies: Computed at simulation time} 显示仿真频率的数量、{Step size} 指定固定步长求解器配置的时间步长 1e-6、{Envelope bandwidth} 指定最大仿真包络带宽、{Simulate noise} 指定全局启用或禁用噪声建模、{Use default random number generator} 指定 RF Blockset 源的默认伪随机噪声流、{Noise seed} 指定独立伪随机数流的种子、{Samples per frame} 指定 Inport 模块输入信号每个通道中的样本数、{Normalize Carrier Power} 指定归一化载波信号功率、{Enable input interpolation filter} 指定自动将较低速率的基带信号插值为较高速率的 RF 信号、{Transient analysis} 指定 RF Blockset 环境的定步长求解器、{Approximate transient as small signal} 为瞬态小信号分析选择小频率子集、{Use all steady-state simulation frequencies for small signal analysis} 指定所有稳态仿真频率、{Small signal frequencies} 指定小信号瞬态仿真的频率 scalar、{Populate Frequencies} 用于选择小信号瞬态频率的工具、{Relative tolerance} 指定系统变量的相对 Newton 容差 1e-3、{Absolute tolerance} 指定系统变量的绝对 Newton 容差 1e-6、{Maximum iterations} 指定收敛所需的迭代次数、{Error estimation} 指定检查系统变量的收敛误差 2-norm over all、{Restore Default Settings} 指定将 Newton 求解器恢复为默认值，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Automatically select fundamental tones and harmonic order",
+   "default": "on",
+   "values": "自动选择基频音调和谐波阶数 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Fundamental tones",
+   "default": "",
+   "values": "一组仿真频率的基频 vector of positive integers in Hz",
+   "group": ""
+  },
+  {
+   "name": "Harmonic order",
+   "default": "",
+   "values": "每个基频的谐波阶数 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Total simulation frequencies: Computed at simulation time",
+   "default": "",
+   "values": "显示仿真频率的数量 button",
+   "group": ""
+  },
+  {
+   "name": "Step size",
+   "default": "1e-6",
+   "values": "固定步长求解器配置的时间步长 1e-6 (default) | scalar in seconds",
+   "group": ""
+  },
+  {
+   "name": "Envelope bandwidth",
+   "default": "MHz",
+   "values": "最大仿真包络带宽 1 MHz (default) | scalar in Hz",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "全局启用或禁用噪声建模 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Use default random number generator",
+   "default": "on",
+   "values": "RF Blockset 源的默认伪随机噪声流 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Noise seed",
+   "default": "0",
+   "values": "独立伪随机数流的种子 0 (default) | scalar positive integer",
+   "group": ""
+  },
+  {
+   "name": "Temperature",
+   "default": "",
+   "values": "全局噪声温度 290.0 K | scalar integer in kelvin",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "",
+   "values": "Inport 模块输入信号每个通道中的样本数 1 | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Normalize Carrier Power",
+   "default": "on",
+   "values": "归一化载波信号功率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable input interpolation filter",
+   "default": "on",
+   "values": "自动将较低速率的基带信号插值为较高速率的 RF 信号 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Transient analysis",
+   "default": "Auto",
+   "values": "RF Blockset 环境的定步长求解器 Auto (default) | NDF2 | Trapezoidal Rule | Backward Euler",
+   "group": ""
+  },
+  {
+   "name": "Approximate transient as small signal",
+   "default": "off",
+   "values": "为瞬态小信号分析选择小频率子集 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use all steady-state simulation frequencies for small signal analysis",
+   "default": "on",
+   "values": "选择所有稳态仿真频率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Small signal frequencies",
+   "default": "",
+   "values": "小信号瞬态仿真的频率 scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Populate Frequencies",
+   "default": "",
+   "values": "用于选择小信号瞬态频率的工具 button",
+   "group": ""
+  },
+  {
+   "name": "Relative tolerance",
+   "default": "1e-3",
+   "values": "系统变量的相对 Newton 容差 1e-3 (default) | real positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "1e-6",
+   "values": "系统变量的绝对 Newton 容差 1e-6 (default) | real positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum iterations",
+   "default": "10",
+   "values": "收敛所需的迭代次数 10 (default) | real positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Error estimation",
+   "default": "variables",
+   "values": "检查系统变量的收敛误差 2-norm over all variables (default) | Each variable separately",
+   "group": ""
+  },
+  {
+   "name": "Restore Default Settings",
+   "default": "",
+   "values": "将 Newton 求解器恢复为默认值 button",
+   "group": ""
+  }
+ ]
+}

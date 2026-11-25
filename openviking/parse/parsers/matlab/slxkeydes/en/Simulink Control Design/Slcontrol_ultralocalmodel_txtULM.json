@@ -1,0 +1,77 @@
+{
+ "key": "Slcontrol:ultralocalmodel:txtULM",
+ "title": "Ultra-Local Model",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Disturbance Observer/Ultra_Local_Model.md"
+ ],
+ "text": "Estimate nonlinear plant as single or double integrator systems with an affine term that captures unknown dynamics and disturbances, 2 inputs, 2 outputs; {Input gain (α)}, {Model Order} sets the ultra-local model order, {Estimator sample time}, {Integration window (steps)}, {Include current time inputs for F estimation} sets the include current time inputs for estimation, {Output estimated yhat} sets the output one-step estimation of output and {Observer gain (L)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Plant input scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "Fhat",
+   "direction": "output",
+   "summary": "Estimated disturbances and unmodeled dynamics scalar"
+  },
+  {
+   "name": "yhat",
+   "direction": "output",
+   "summary": "Estimated output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input gain (α)",
+   "default": "1",
+   "values": "Input gain 1 (default) | nonzero finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Model Order",
+   "default": "1",
+   "values": "Ultra-local model order 1 (default) | 2",
+   "group": ""
+  },
+  {
+   "name": "Estimator sample time",
+   "default": "0.01",
+   "values": "Estimator sample time 0.01 (default)",
+   "group": ""
+  },
+  {
+   "name": "Integration window (steps)",
+   "default": "3",
+   "values": "Integration window 3 (default) | positive integer greater than 3",
+   "group": ""
+  },
+  {
+   "name": "Include current time inputs for F estimation",
+   "default": "off",
+   "values": "Include current time inputs for estimation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output estimated yhat",
+   "default": "off",
+   "values": "Output one-step estimation of output off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Observer gain (L)",
+   "default": "0",
+   "values": "Observer gain 0 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

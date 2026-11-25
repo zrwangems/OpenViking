@@ -1,0 +1,332 @@
+{
+ "key": "Amplifier",
+ "title": "Amplifier",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Amplifier.md"
+ ],
+ "text": "Model amplifier in RF systems, {Source of amplifier gain} sets Amplifier; {Available power gain}, {Open circuit voltage gain}, {Data source}, {Polynomial coefficients}, {AM/AM-AM/PM table} sets the lookup table -10, 20, -2; {Network-parameter object} sets the network parameter objects as data source, {Network parameter type}, {Input impedance (Ohm)}, {Output impedance (Ohm)}, {Data file} sets the name of network parameter data file, {Frequency (dB)} sets the frequency of network parameters, {Reference Impedance(Ohm)} sets the reference impedance of network parameters, {Use rational object} sets the rational object as data source, {Residues}, {Poles} sets the residues in order of rational model, {Direct feedthrough}, {Ground and hide negative terminals} sets the ground RF circuit terminals, {Nonlinear polynomial type} sets the type of nonlinearity Even, {Intercept points convention}, {IP2} sets the second-order intercept point, {IP3} sets the third-order intercept point, {1-dB gain compression power}, {Output saturation power}, {Gain compression at saturation}, {Use operation frequency at maximum S21 magnitude}, {Operation frequency}, {Use constant S21 and nonlinearity} sets the operation frequency, {Plot Power Characteristics} sets the amplifier nonlinear power curve visualization, {Simulate noise} sets the simulate thermal noise, {Noise type}, {Noise distribution}, {Noise figure (dB)}, {Frequencies} sets the frequency data, {Minimum noise figure (dB)}, {Optimal reflection coefficient}, {Equivalent normalized noise resistance}, {Automatically estimate impulse response duration}, {Impulse response duration}, {Modeling options} sets the model S-parameters Time, {Fitting options} sets the rationalfit fitting options Fit, {Relative error desired (dB)} sets the relative error acceptable for the rational, {Use only S-parameter magnitude with appropriate delay}, {Source of frequency data} sets the frequency data source Extracted from data, {Frequency data}, {Plot type} sets the type of data plot, {Parameter 1} sets the type of S-Parameters, {Parameter 2} sets the type of S-Parameters to plot, {Format1} plots format Magnitude, {Format2} plots format Magnitude, {Y-axis scale}, {X-axis scale} and {Plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source of amplifier gain",
+   "default": "gain",
+   "values": "Amplifier gain source Available power gain (default) | Open circuit voltage gain | Data source | Polynomial coefficients | AM/AM-AM/PM table",
+   "group": "Main"
+  },
+  {
+   "name": "Available power gain",
+   "default": "dB",
+   "values": "Available power gain 0 dB (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Open circuit voltage gain",
+   "default": "dB",
+   "values": "Open circuit voltage gain 0 dB (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Data source",
+   "default": "File",
+   "values": "Data source Data File (default) | Network-parameters | Rational Model",
+   "group": "Main"
+  },
+  {
+   "name": "Polynomial coefficients",
+   "default": "1]",
+   "values": "Polynomial coefficients [0 1] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "AM/AM-AM/PM table",
+   "default": "]",
+   "values": "Lookup table [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ] (default) | M -by-3 real matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Network-parameter object",
+   "default": "off",
+   "values": "Network parameter objects as data source off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Network parameter type",
+   "default": "S-parameters",
+   "values": "Network parameter type S-parameters (default) | Y-parameters | Z-parameters",
+   "group": "Main"
+  },
+  {
+   "name": "Input impedance (Ohm)",
+   "default": "50",
+   "values": "Input impedance 50 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output impedance (Ohm)",
+   "default": "50",
+   "values": "Output impedance 50 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Data file",
+   "default": "unitygain.s2p",
+   "values": "Name of network parameter data file unitygain.s2p (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (dB)",
+   "default": "Hz",
+   "values": "Frequency of network parameters 1e9 Hz (default) | scalar | Hz | kHz | MHz | GHz",
+   "group": "Main"
+  },
+  {
+   "name": "Reference Impedance(Ohm)",
+   "default": "50",
+   "values": "Reference impedance of network parameters 50 (default) | positive scalar | vector of positive scalars",
+   "group": "Main"
+  },
+  {
+   "name": "Use rational object",
+   "default": "off",
+   "values": "Rational object as data source off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Residues",
+   "default": "0",
+   "values": "Residues in order of rational model 0 (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Poles",
+   "default": "0",
+   "values": "Residues in order of rational model 0 (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Direct feedthrough",
+   "default": "0}",
+   "values": "Direct feedthrough {0 0:1 0} (default) | array of vectors",
+   "group": "Main"
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Nonlinear polynomial type",
+   "default": "order",
+   "values": "Type of nonlinearity Even and odd order (default) | Odd order",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Intercept points convention",
+   "default": "Output",
+   "values": "Intercept points convention Output (default) | Input",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "IP2",
+   "default": "dBm",
+   "values": "Second-order intercept point inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "IP3",
+   "default": "dBm",
+   "values": "Third-order intercept point inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "1-dB gain compression power",
+   "default": "dBm",
+   "values": "1-dB gain compression power inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Output saturation power",
+   "default": "dBm",
+   "values": "Output saturation power inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Gain compression at saturation",
+   "default": "dBm",
+   "values": "Gain compression at saturation inf dBm (default) | scalar | W | mW | dBW | dBm",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Use operation frequency at maximum S21 magnitude",
+   "default": "off",
+   "values": "Specify operation frequency off (default) | on",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Operation frequency",
+   "default": "GHz",
+   "values": "Operation frequency 1 GHz (default) | scalar | finite vector | Hz | KHz | MHz | GHz",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Use constant S21 and nonlinearity",
+   "default": "off",
+   "values": "Operation frequency off (default) | on",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Plot Power Characteristics",
+   "default": "button",
+   "values": "Amplifier nonlinear power curve visualization button (default)",
+   "group": "Nonlinearity"
+  },
+  {
+   "name": "Simulate noise",
+   "default": "on",
+   "values": "Simulate thermal noise on (default) | off",
+   "group": "Noise"
+  },
+  {
+   "name": "Noise type",
+   "default": "figure",
+   "values": "Noise type Noise figure (default) | Spot noise data",
+   "group": "Noise"
+  },
+  {
+   "name": "Noise distribution",
+   "default": "White",
+   "values": "Noise distribution White (default) | Piece-wise linear | Colored",
+   "group": "Noise"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": "0",
+   "values": "Noise figure 0 (default) | scalar",
+   "group": "Noise"
+  },
+  {
+   "name": "Frequencies",
+   "default": "Hz",
+   "values": "Frequency data 0 Hz (default) | real scalar | finite vector",
+   "group": "Noise"
+  },
+  {
+   "name": "Minimum noise figure (dB)",
+   "default": "0",
+   "values": "Minimum noise figure 0 (default) | scalar | finite vector",
+   "group": "Noise"
+  },
+  {
+   "name": "Optimal reflection coefficient",
+   "default": "0",
+   "values": "Optimal reflection coefficient 0 (default) | scalar | finite vector",
+   "group": "Noise"
+  },
+  {
+   "name": "Equivalent normalized noise resistance",
+   "default": "0",
+   "values": "Equivalent normalized noise resistance 0 (default) | scalar | finite vector",
+   "group": "Noise"
+  },
+  {
+   "name": "Automatically estimate impulse response duration",
+   "default": "on",
+   "values": "Automatically estimate impulse response duration on (default) | off",
+   "group": "Noise"
+  },
+  {
+   "name": "Impulse response duration",
+   "default": "s",
+   "values": "Impulse response duration 1e-10 s (default) | scalar",
+   "group": "Noise"
+  },
+  {
+   "name": "Modeling options",
+   "default": "domain",
+   "values": "Model S-parameters Time domain (default) | Frequency domain",
+   "group": "Modeling"
+  },
+  {
+   "name": "Fitting options",
+   "default": "individually",
+   "values": "Rationalfit fitting options Fit individually (default) | Share poles by column | Share all poles",
+   "group": "Modeling"
+  },
+  {
+   "name": "Relative error desired (dB)",
+   "default": "-40",
+   "values": "Relative error acceptable for the rational fit -40 (default) | scalar",
+   "group": "Modeling"
+  },
+  {
+   "name": "Use only S-parameter magnitude with appropriate delay",
+   "default": "off",
+   "values": "Use only S-parameter magnitude with appropriate delay off (default) | on",
+   "group": "Modeling"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "source",
+   "values": "Frequency data source Extracted from data source (default) | User-defined",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data",
+   "default": "[1e9:1e6:3e9]",
+   "values": "Frequency data range [1e9:1e6:3e9] (default) | finite vector | Hz | kHz | MHz | GHz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "Type of data plot X-Y plane (default) | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Parameter 1",
+   "default": "S11",
+   "values": "Type of S-Parameters to plot S11 (default) | S12 | S21 | S22 | NF",
+   "group": "Visualization"
+  },
+  {
+   "name": "Parameter 2",
+   "default": "None",
+   "values": "Type of S-Parameters to plot None (default) | S11 | S12 | S21 | S22 | NF",
+   "group": "Visualization"
+  },
+  {
+   "name": "Format1",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Magnitude (linear) | Angle(degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "Format2",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Magnitude (linear) | Angle(degrees) | Real | Imaginary",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y-axis scale",
+   "default": "Linear",
+   "values": "Y-axis scale Linear (default) | Logarithmic",
+   "group": "Visualization"
+  },
+  {
+   "name": "X-axis scale",
+   "default": "Linear",
+   "values": "X-axis scale Linear (default) | Logarithmic",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Plot specified data button",
+   "group": "Visualization"
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+{
+ "key": "Sinusoidal Measurement (PLL, Three-Phase)",
+ "title": "Sinusoidal Measurement (PLL, Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/Sinusoidal_Measurement_PLL_Three_Phase.md"
+ ],
+ "text": "Estimate three-phase sinusoidal characteristics using a phase-locked loop, 1 input, 3 outputs, {Sample time (-1 for inherited)} sets Block sample time; {Enable moving average filter on input} sets the option to enable frequency-dependent moving average, {Enable input normalization} sets the option to enable normalization of input, {Loop filter proportional gain} sets the lF proportional gain, {Loop filter integral gain} sets the lF integral gain, {Initial frequency (Hz)} sets the initial estimate of input frequency and {Initial phase angle (rad)} sets the initial estimate of phase angle. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "input",
+   "summary": "Input signal vector"
+  },
+  {
+   "name": "freq",
+   "direction": "output",
+   "summary": "Frequency, Hz scalar"
+  },
+  {
+   "name": "angle",
+   "direction": "output",
+   "summary": "Phase angle, rad scalar"
+  },
+  {
+   "name": "mag",
+   "direction": "output",
+   "summary": "Magnitude, unitless scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable moving average filter on input",
+   "default": "On",
+   "values": "Option to enable frequency-dependent moving average filter On (default) | Off",
+   "group": ""
+  },
+  {
+   "name": "Enable input normalization",
+   "default": "Off",
+   "values": "Option to enable normalization of input Off (default) | On",
+   "group": ""
+  },
+  {
+   "name": "Loop filter proportional gain",
+   "default": "1",
+   "values": "LF proportional gain 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Loop filter integral gain",
+   "default": "10",
+   "values": "LF integral gain 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "Hz",
+   "values": "Initial estimate of input frequency 60 Hz (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase angle (rad)",
+   "default": "rad",
+   "values": "Initial estimate of phase angle 0 rad (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

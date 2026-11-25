@@ -1,0 +1,78 @@
+{
+ "key": "Map Using Prelookup",
+ "title": "Map Using Prelookup",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Interpolation/Map_Using_Prelookup.md"
+ ],
+ "text": "使用先前计算的索引和小数部分值加速二维函数逼近，输入 2 路、输出 1 路；按 {Interpolation method} 指定插值方法 Linear；{Targeted Routine Library} 指示用于模块代码替换的 AUTOSAR 例程库、{Targeted Routine} 用于代码替换的 AUTOSAR 库例程、{Data Specification} 指定如何输入表数据 Explicit、{Name} 指定 Simulink.LookupTable 对象的名称 Simulink.LookupTable、{Table data} 定义输出值表、{Edit table and breakpoints} 指定启动 Lookup Table Editor、{Integer rounding mode} 指定定点或浮点运算的舍入模式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "kf1",
+   "direction": "input",
+   "summary": "包含索引 k 和小数 f 的输入 Ifx_DPResultU16_Type | Ifl_DPResultF32_Type"
+  },
+  {
+   "name": "kf2",
+   "direction": "input",
+   "summary": "包含索引 k 和小数 f 的输入 Ifx_DPResultU16_Type | Ifl_DPResultF32_Type"
+  },
+  {
+   "name": "Port 1",
+   "direction": "output",
+   "summary": "二维函数逼近 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Targeted Routine Library",
+   "default": "",
+   "values": "指示用于模块代码替换的 AUTOSAR 例程库 IFX (fixed-point) | IFL (floating-point)",
+   "group": ""
+  },
+  {
+   "name": "Targeted Routine",
+   "default": "",
+   "values": "用于代码替换的 AUTOSAR 库例程 Ifx_IpoMap | Ifl_IpoMap",
+   "group": ""
+  },
+  {
+   "name": "Data Specification",
+   "default": "values",
+   "values": "选择如何输入表数据 Explicit values (default) | Lookup table object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Simulink.LookupTable 对象的名称 Simulink.LookupTable object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Table data",
+   "default": "23]",
+   "values": "定义输出值表 [4 5 6;16 19 20;10 18 23] (default) | character vector",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Edit table and breakpoints",
+   "default": "",
+   "values": "启动 Lookup Table Editor 对话框 button",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "point-slope",
+   "values": "选择插值方法 Linear point-slope (default) | Flat | Nearest",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Zero",
+   "values": "定点或浮点运算的舍入模式 Zero (default) | Round",
+   "group": "Algorithm"
+  }
+ ]
+}

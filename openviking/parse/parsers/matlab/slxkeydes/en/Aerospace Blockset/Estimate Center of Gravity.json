@@ -1,0 +1,59 @@
+{
+ "key": "Estimate Center of Gravity",
+ "title": "Estimate Center of Gravity",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Mass Properties/Estimate_Center_of_Gravity.md"
+ ],
+ "text": "Calculate center of gravity location, 2 inputs, 2 outputs; {Full mass} sets the mass, {Empty mass}, {Full center of gravity} and {Empty center of gravity}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mass",
+   "direction": "input",
+   "summary": "Mass scalar"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "Rate of change scalar | 3-element vector"
+  },
+  {
+   "name": "CG",
+   "direction": "output",
+   "summary": "Center of gravity location 3-element vector"
+  },
+  {
+   "name": "dCG/dt",
+   "direction": "output",
+   "summary": "Rate of change 3-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Full mass",
+   "default": "2",
+   "values": "Mass 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Empty mass",
+   "default": "1",
+   "values": "Empty mass 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Full center of gravity",
+   "default": "1]’",
+   "values": "Full center of gravity [1 1 1]’ (default) | 3-element vector",
+   "group": ""
+  },
+  {
+   "name": "Empty center of gravity",
+   "default": "0.5]’",
+   "values": "Empty center of gravity [0.5 0.5 0.5]’ (default) | 3-element vector",
+   "group": ""
+  }
+ ]
+}

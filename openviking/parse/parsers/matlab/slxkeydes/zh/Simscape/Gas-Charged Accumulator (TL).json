@@ -1,0 +1,13 @@
+{
+ "key": "Gas-Charged Accumulator (TL)",
+ "title": "Gas-Charged Accumulator (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Tanks & Accumulators/Gas_Charged_Accumulator_TL.md"
+ ],
+ "text": "热液体网络中的充气式蓄能器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

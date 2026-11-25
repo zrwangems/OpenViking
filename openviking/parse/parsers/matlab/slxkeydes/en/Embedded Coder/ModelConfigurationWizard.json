@@ -1,0 +1,36 @@
+{
+ "key": "ModelConfigurationWizard",
+ "title": "Custom MATLAB file",
+ "toolbox": "Embedded Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "Embedded Coder/Configuration Wizards/Custom_MATLAB_file.md",
+  "Embedded Coder/Configuration Wizards/ERT_optimized_for_fixed_point.md",
+  "Embedded Coder/Configuration Wizards/ERT_optimized_for_floating_point.md",
+  "Embedded Coder/Configuration Wizards/GRT_debug_for_fixed_floating_point.md",
+  "Embedded Coder/Configuration Wizards/GRT_optimized_for_fixed_floating_point.md"
+ ],
+ "text": "Update active configuration parameters of parent model by using file containing custom MATLAB code, {Configure the model for} sets Configuration objective; {Configuration function} sets the custom MATLAB script and {Invoke build process after configuration} sets the initiate build process. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Configure the model for",
+   "default": "Custom",
+   "values": "Configuration objective Custom (default) | ERT (optimized for fixed-point) | ERT (optimized for floating-point) | GRT (optimized for fixed/floating-point) | GRT (debug for fixed/floating-point)",
+   "group": ""
+  },
+  {
+   "name": "Configuration function",
+   "default": "rtwsampleconfig",
+   "values": "Custom MATLAB script rtwsampleconfig (default)",
+   "group": ""
+  },
+  {
+   "name": "Invoke build process after configuration",
+   "default": "off",
+   "values": "Initiate build process off (default) | on",
+   "group": ""
+  }
+ ]
+}

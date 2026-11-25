@@ -1,0 +1,74 @@
+{
+ "key": "Transducer Gain Testbench",
+ "title": "Transducer Gain Testbench",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Testbenches/Transducer_Gain_Testbench.md"
+ ],
+ "text": "Measures transducer gain of system; {Use Internal Configuration block} uses testbench internal configuration block, {Simulate noise (both stimulus and DUT internal)} enables noise modeling in stimulus signal, {Input power amplitude (dBm)} sets the input power to DUT, {Input frequency (Hz)} sets the carrier frequency, {Output frequency (Hz)} sets the output frequency, {Baseband bandwidth (Hz)} sets the baseband bandwidth of input, {Source resistance (Ohm)} sets the source resistance to measure DUT, {Load resistance (Ohm)} sets the load resistance to measure DUT, {Show Response spectrum} sets the view response spectrum using a spectrum scope during and {Ground and hide negative terminals} sets the internally ground and hide RF circuit. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Use Internal Configuration block",
+   "default": "on",
+   "values": "Use testbench internal configuration block on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate noise (both stimulus and DUT internal)",
+   "default": "on",
+   "values": "Enable noise modeling in stimulus signal on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input power amplitude (dBm)",
+   "default": "-30",
+   "values": "Input power to DUT -30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input frequency (Hz)",
+   "default": "2.1e9",
+   "values": "Carrier frequency of DUT 2.1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "2.1e9",
+   "values": "Output frequency of DUT 2.1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Baseband bandwidth (Hz)",
+   "default": "10e6",
+   "values": "Baseband bandwidth of input signal 10e6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Source resistance (Ohm)",
+   "default": "50",
+   "values": "Source resistance to measure DUT 50 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Load resistance (Ohm)",
+   "default": "50",
+   "values": "Load resistance to measure DUT 50 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Response spectrum",
+   "default": "on",
+   "values": "View response spectrum using a spectrum scope during simulation on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Internally ground and hide RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

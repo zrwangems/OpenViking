@@ -1,0 +1,165 @@
+{
+ "key": "Three-axis Inertial Measurement Unit",
+ "title": "Three-axis Inertial Measurement Unit",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Sensors/Three_axis_Inertial_Measurement_Unit.md",
+  "Aerospace Blockset/GNC/Navigation/Three_axis_Inertial_Measurement_Unit.md"
+ ],
+ "text": "Implement three-axis inertial measurement unit (IMU), 5 inputs, 2 outputs; {Units}, {IMU location}, {Update rate}, {Second order dynamics for accelerometer} sets the second-order, {Accelerometer natural frequency (rad/sec)}, {Accelerometer damping ratio}, {Accelerometer scale factor and cross-coupling} scales factor and cross coupling, {Accelerometer measurement bias}, {Accelerometer upper and lower limits} sets the minimum, {Second-order dynamics for gyro} sets the gyroscope, {Gyro natural frequency (rad/sec)} sets the gyroscope, {Gyro damping ratio} sets the gyroscope, {Gyro scale factors and cross-coupling} sets the gyroscope scale factors and cross-coupling {Gyro measurement bias} sets the gyroscope measurement bias, {G-sensitive bias} sets the maximum change in rates, {Gyro upper and lower limits} sets the minimum and maximum values of angular rates, {Noise on} sets the white noise, {Noise seeds} and {Noise power}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A_b",
+   "direction": "input",
+   "summary": "Actual accelerations three-element vector"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "Angular rates three-element vector"
+  },
+  {
+   "name": "w_dot",
+   "direction": "input",
+   "summary": "Angular accelerations three-element vector"
+  },
+  {
+   "name": "CG",
+   "direction": "input",
+   "summary": "Location of center of gravity three-element vector"
+  },
+  {
+   "name": "g",
+   "direction": "input",
+   "summary": "Gravity three-element vector"
+  },
+  {
+   "name": "A_meas",
+   "direction": "output",
+   "summary": "Measured accelerations three-element vector"
+  },
+  {
+   "name": "w_meas",
+   "direction": "output",
+   "summary": "Measured angular rates three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "IMU location",
+   "default": "0]",
+   "values": "IMU location [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Update rate",
+   "default": "0",
+   "values": "Update rate 0 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Second order dynamics for accelerometer",
+   "default": "on",
+   "values": "Second-order dynamics on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer natural frequency (rad/sec)",
+   "default": "190",
+   "values": "Accelerometer natural frequency 190 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer damping ratio",
+   "default": "0.707",
+   "values": "Accelerometer damping ratio 0.707 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer scale factor and cross-coupling",
+   "default": "1]",
+   "values": "Scale factor and cross coupling [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer measurement bias",
+   "default": "0]",
+   "values": "Accelerometer measurement bias [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer upper and lower limits",
+   "default": "inf]",
+   "values": "Minimum and maximum values of acceleration [-inf -inf -inf inf inf inf] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Second-order dynamics for gyro",
+   "default": "on",
+   "values": "Gyroscope second-order dynamics on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Gyro natural frequency (rad/sec)",
+   "default": "190",
+   "values": "Gyroscope natural frequency 190 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Gyro damping ratio",
+   "default": "0.707",
+   "values": "Gyroscope damping ratio 0.707 (default) | real, double scalar",
+   "group": ""
+  },
+  {
+   "name": "Gyro scale factors and cross-coupling",
+   "default": "1]",
+   "values": "Gyroscope scale factors and cross-coupling [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Gyro measurement bias",
+   "default": "0]",
+   "values": "Gyroscope measurement bias [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "G-sensitive bias",
+   "default": "0]",
+   "values": "Maximum change in rates [0 0 0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Gyro upper and lower limits",
+   "default": "inf]",
+   "values": "Minimum and maximum values of angular rates [-inf -inf -inf inf inf inf] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Noise on",
+   "default": "on",
+   "values": "White noise on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Noise seeds",
+   "default": "23098]",
+   "values": "Noise seeds [23093 23094 23095 23096 23097 23098] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Noise power",
+   "default": "0.0001]",
+   "values": "Noise power [0.001 0.001 0.001 0.0001 0.0001 0.0001] (default) | six-element vector",
+   "group": ""
+  }
+ ]
+}

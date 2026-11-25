@@ -1,0 +1,13 @@
+{
+ "key": "Cycloidal Drive",
+ "title": "Cycloidal Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Cycloidal_Drive.md"
+ ],
+ "text": "基于摆线盘运动的高传动比减速器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

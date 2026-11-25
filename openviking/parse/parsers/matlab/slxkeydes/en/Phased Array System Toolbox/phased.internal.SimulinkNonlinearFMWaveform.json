@@ -1,0 +1,160 @@
+{
+ "key": "phased.internal.SimulinkNonlinearFMWaveform",
+ "title": "Nonlinear FM Waveform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Waveforms/Nonlinear_FM_Waveform.md"
+ ],
+ "text": "Nonlinear FM pulse waveform, 2 inputs, 3 outputs, {Frequency modulation} sets Frequency modulation; {Sample rate (Hz)} sets the sample rate of the output, {Method to specify pulse duration} sets the pulse duration as time or duty cycle Pulse, {Pulse width (s)} sets the time duration, {Duty cycle} sets the waveform duty cycle, {Pulse repetition frequency (Hz)} sets the pulse repetition frequency 1e4, {Enable PRF selection input} selects predefined PRF, {Coefficients of a polynomial FM} sets the coefficients of polynomial frequency function, {Sweep bandwidth (Hz)} sets the bandwidth of nonlinear FM, {Sweep direction} sets the direction of nonlinear FM, {Sweep interval} sets the fM frequency sweep, {Envelope function} sets the fM signal amplitude, {Source of Frequency Offset} sets the source of frequency, {Frequency Offset (Hz)} sets the frequency offset, {Output signal format} sets the format of the output, {Number of samples in output}, {Number of pulses in output}, {Enable PRF Output} enables output of PRF, {Enable Matched Filter Coefficients Output} enables output of matched filter and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PRFIdx",
+   "direction": "input",
+   "summary": "PRF Index positive integer"
+  },
+  {
+   "name": "FreqOffset",
+   "direction": "input",
+   "summary": "Frequency offset scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Pulse waveform complex-valued vector"
+  },
+  {
+   "name": "PRF",
+   "direction": "output",
+   "summary": "Pulse repetition frequency positive scalar"
+  },
+  {
+   "name": "Coeff",
+   "direction": "output",
+   "summary": "Matched filter coefficients vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sample rate of the output waveform 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Method to specify pulse duration",
+   "default": "width",
+   "values": "Pulse duration as time or duty cycle Pulse width (default) | Duty cycle",
+   "group": ""
+  },
+  {
+   "name": "Pulse width (s)",
+   "default": "50e-6",
+   "values": "Time duration of pulse 50e-6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Duty cycle",
+   "default": "0.5",
+   "values": "Waveform duty cycle 0.5 (default) | scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Pulse repetition frequency (Hz)",
+   "default": "1e4",
+   "values": "Pulse repetition frequency 1e4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable PRF selection input",
+   "default": "off",
+   "values": "Select predefined PRF off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Frequency modulation",
+   "default": "Polynomial",
+   "values": "Frequency modulation Polynomial (default) | Hyperbolic | Hybrid Linear-Tangent | Stepped Price",
+   "group": ""
+  },
+  {
+   "name": "Coefficients of a polynomial FM",
+   "default": "0]",
+   "values": "Coefficients of polynomial frequency function [1 0 0] (default) | ( N +1)-length real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Sweep bandwidth (Hz)",
+   "default": "100e3",
+   "values": "Bandwidth of nonlinear FM sweep 100e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sweep direction",
+   "default": "Up",
+   "values": "Direction of nonlinear FM sweep Up (default) | Down",
+   "group": ""
+  },
+  {
+   "name": "Sweep interval",
+   "default": "Positive",
+   "values": "FM frequency sweep interval Positive (default) | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Envelope function",
+   "default": "Rectangular",
+   "values": "FM signal amplitude envelope Rectangular (default) | Gaussian | Hamming | Chebyshev | Hann | Kaiser | Taylor",
+   "group": ""
+  },
+  {
+   "name": "Source of Frequency Offset",
+   "default": "Property",
+   "values": "Source of frequency offset Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Frequency Offset (Hz)",
+   "default": "0",
+   "values": "Frequency offset 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output signal format",
+   "default": "Pulses",
+   "values": "Format of the output signal Pulses (default) | Samples",
+   "group": ""
+  },
+  {
+   "name": "Number of samples in output",
+   "default": "100",
+   "values": "Number of samples in output 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of pulses in output",
+   "default": "1",
+   "values": "Number of pulses in output 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable PRF Output",
+   "default": "off",
+   "values": "Enable output of PRF off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable Matched Filter Coefficients Output",
+   "default": "off",
+   "values": "Enable output of matched filter coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

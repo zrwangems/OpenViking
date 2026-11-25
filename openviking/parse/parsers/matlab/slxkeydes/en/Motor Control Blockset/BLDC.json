@@ -1,0 +1,141 @@
+{
+ "key": "BLDC",
+ "title": "BLDC",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Electrical Systems/Motors/BLDC.md",
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/BLDC.md"
+ ],
+ "text": "Three-phase brushless DC motor with trapezoidal flux distribution, 3 inputs, 4 outputs; {Mechanical input configuration} selects port configuration, {Simulation type} selects simulation type, {Sample time (s)} sets the sample time for discrete, {Number of pole pairs} sets the pole pairs of motor, {Stator resistance per phase (Ohm)} sets the stator resistance in each phase, {Stator d-axis inductance (H)} sets the stator inductance across, {Stator q-axis inductance (H)} sets the stator inductance across, {Permanent flux linkage constant (Wb)} sets the flux-linkage constant, {Inertia (kgm^2)} sets the rotor inertia 7.0616e-06, {Viscous damping (Nm/rad/s)} sets the viscous damping 2.6369e-06, {Static friction (Nm)}, {Initial d-axis current (A)} sets the initial current across d, {Initial q-axis current (A)} sets the initial current across q, {Initial rotor mechanical position (rad)} sets the initial mechanical position of rotor and {Initial rotor mechanical speed (rad/s)} sets the initial mechanical speed of rotor. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LdTrq",
+   "direction": "input",
+   "summary": "Load torque on motor scalar"
+  },
+  {
+   "name": "Spd",
+   "direction": "input",
+   "summary": "Motor shaft speed scalar"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "input",
+   "summary": "Stator terminal voltages 1 -by- 3 array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "PhaseCurr",
+   "direction": "output",
+   "summary": "Phase a, b, c current 1-by-3 array"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "output",
+   "summary": "Motor torque scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "output",
+   "summary": "Motor speed scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mechanical input configuration",
+   "default": "Torque",
+   "values": "Select port configuration Torque (default) | Speed",
+   "group": "Block Options"
+  },
+  {
+   "name": "Simulation type",
+   "default": "Continuous",
+   "values": "Select simulation type Continuous (default) | Discrete",
+   "group": "Block Options"
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "25e-6",
+   "values": "Sample time for discrete integration 25e-6 (default) | scalar",
+   "group": "Block Options"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "Pole pairs of motor 4 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator resistance per phase (Ohm)",
+   "default": "0.36",
+   "values": "Stator resistance in each phase 0.36 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator d-axis inductance (H)",
+   "default": "2e-4",
+   "values": "Stator inductance across d-axis 2e-4 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Stator q-axis inductance (H)",
+   "default": "2e-4",
+   "values": "Stator inductance across q-axis 2e-4 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Permanent flux linkage constant (Wb)",
+   "default": "0.0064",
+   "values": "Flux-linkage constant 0.0064 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Inertia (kgm^2)",
+   "default": "7.0616e-06",
+   "values": "Rotor inertia 7.0616e-06 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Viscous damping (Nm/rad/s)",
+   "default": "2.6369e-06",
+   "values": "Viscous damping 2.6369e-06 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Static friction (Nm)",
+   "default": "0",
+   "values": "Static friction 0 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Initial d-axis current (A)",
+   "default": "0",
+   "values": "Initial current across d’ -axis 0 (default) | scalar",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial q-axis current (A)",
+   "default": "0",
+   "values": "Initial current across q’ -axis 0 (default) | scalar",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial rotor mechanical position (rad)",
+   "default": "0",
+   "values": "Initial mechanical position of rotor 0 (default) | scalar",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial rotor mechanical speed (rad/s)",
+   "default": "0",
+   "values": "Initial mechanical speed of rotor 0 (default) | scalar",
+   "group": "Initial Values"
+  }
+ ]
+}

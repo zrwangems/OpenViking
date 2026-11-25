@@ -1,0 +1,87 @@
+{
+ "key": "Turbofan Engine System",
+ "title": "Turbofan Engine System",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Propulsion/Turbofan_Engine_System.md"
+ ],
+ "text": "Implement first-order representation of turbofan engine with controller, 4 inputs, 2 outputs; {Units} sets the input and output units Metric, {Initial thrust source}, {Initial thrust}, {Maximum sea-level static thrust} sets the maximum thrust at sea-level, {Fastest engine time constant at sea-level static (sec)} sets the fastest engine time at sea level, {Sea-level static thrust specific fuel consumption} sets the thrust-specific fuel consumption at sea and {Ratio of installed thrust to uninstalled thrust} sets the coefficient representing loss. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Throttle position",
+   "direction": "input",
+   "summary": "Throttle position scalar | vector"
+  },
+  {
+   "name": "Mach",
+   "direction": "input",
+   "summary": "Mach number scalar"
+  },
+  {
+   "name": "Altitude",
+   "direction": "input",
+   "summary": "Altitude scalar | vector"
+  },
+  {
+   "name": "Initial thrust",
+   "direction": "input",
+   "summary": "Initial thrust scalar | vector"
+  },
+  {
+   "name": "Thrust",
+   "direction": "output",
+   "summary": "Thrust scalar | vector"
+  },
+  {
+   "name": "Fuel flow",
+   "direction": "output",
+   "summary": "Fuel flow scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Input and output units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Initial thrust source",
+   "default": "Internal",
+   "values": "Initial thrust source Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Initial thrust",
+   "default": "0",
+   "values": "Initial 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum sea-level static thrust",
+   "default": "45000",
+   "values": "Maximum thrust at sea-level 45000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fastest engine time constant at sea-level static (sec)",
+   "default": "1",
+   "values": "Fastest engine time at sea level 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sea-level static thrust specific fuel consumption",
+   "default": "0.35",
+   "values": "Thrust-specific fuel consumption at sea level 0.35 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ratio of installed thrust to uninstalled thrust",
+   "default": "0.9",
+   "values": "Coefficient representing loss 0.9 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

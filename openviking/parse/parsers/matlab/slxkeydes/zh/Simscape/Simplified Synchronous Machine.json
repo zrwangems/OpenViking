@@ -1,0 +1,13 @@
+{
+ "key": "Simplified Synchronous Machine",
+ "title": "Simplified Synchronous Machine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Simplified_Synchronous_Machine.md"
+ ],
+ "text": "具有电动势的简化同步电机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

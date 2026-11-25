@@ -1,0 +1,90 @@
+{
+ "key": "A4M Source",
+ "title": "AXI4 Master Source",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/AXI4_Master_Source.md"
+ ],
+ "text": "Generate random access memory data, 1 input, 2 outputs, {Data type} sets Output data type; {Dimensions} sets the output data dimensions, {Enable sample packing (last signal dimension as channel)} sets the pack data on the last dimension, {Number of transfers} sets the number of write requests to send, {Initial address} sets the start address, {Initial delay}, {Data generation} sets the output generation type, {Counter init value} sets the initial counter value, {Variable name} sets the workspace variable name and {Sample time} sets the time interval of sampling. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "Input control bus bus"
+  },
+  {
+   "name": "wrData",
+   "direction": "output",
+   "summary": "Output AXI data scalar | vector"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "Output control bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Output data type uint8 (default) | double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | fixed point",
+   "group": ""
+  },
+  {
+   "name": "Dimensions",
+   "default": "",
+   "values": "Output data dimensions 1 | positive scalar | array",
+   "group": ""
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "off",
+   "values": "Pack data on the last dimension of the signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of transfers",
+   "default": "1",
+   "values": "Number of write requests to send 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Initial address",
+   "default": "0",
+   "values": "Start address 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Initial delay",
+   "default": "0",
+   "values": "Initial delay 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Data generation",
+   "default": "counter",
+   "values": "Output generation type counter (default) | random | ones | workspace",
+   "group": ""
+  },
+  {
+   "name": "Counter init value",
+   "default": "0",
+   "values": "Initial counter value 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "simOut",
+   "values": "Workspace variable name simOut (default) | any MATLAB-supported variable name",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Time interval of sampling 1 (default) | positive scalar | vector",
+   "group": ""
+  }
+ ]
+}

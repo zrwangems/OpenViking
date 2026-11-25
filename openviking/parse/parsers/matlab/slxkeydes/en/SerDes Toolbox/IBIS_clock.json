@@ -1,0 +1,31 @@
+{
+ "key": "IBIS_clock",
+ "title": "IBIS-AMI clock_times",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Utilities/IBIS_AMI_clock_times.md"
+ ],
+ "text": "Recover SerDes clock time values from custom DFECDR and CDR, 2 inputs; {Enable IBIS-AMI Offset} sets the offset clock time values by half UI. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clockValid",
+   "direction": "input",
+   "summary": "Update input at clockTime port scalar | vector"
+  },
+  {
+   "name": "clockTime",
+   "direction": "input",
+   "summary": "Clock time data array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable IBIS-AMI Offset",
+   "default": "on",
+   "values": "Offset clock time values by half UI on (default) | off",
+   "group": ""
+  }
+ ]
+}

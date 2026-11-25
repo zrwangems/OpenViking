@@ -1,0 +1,62 @@
+{
+ "key": "Bitwise Operator",
+ "title": "Bitwise Operator",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Bitwise_Operator.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_AND.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_NAND.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_NOR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_NOT.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_OR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_XOR.md",
+  "HDL Coder/Logic and Bit Operations/Bitwise_Operator.md"
+ ],
+ "text": "Specified bitwise operation on inputs, 1 input, 1 output, no direct feedthrough, {Operator} sets Bitwise logical operator; {Use bit mask} selects to use bit, {Number of input ports} sets the number of input signals, {Bit Mask} sets the bit mask to associate with a single input and {Treat mask as} treats the mask as a real-world value or a stored integer Stored. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operator",
+   "default": "AND",
+   "values": "Bitwise logical operator AND (default) | OR | NOR | NAND | XOR | NOT",
+   "group": ""
+  },
+  {
+   "name": "Use bit mask",
+   "default": "checked",
+   "values": "Select to use bit mask checked (default) | unchecked",
+   "group": ""
+  },
+  {
+   "name": "Number of input ports",
+   "default": "1",
+   "values": "Number of input signals 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Bit Mask",
+   "default": "bin2dec",
+   "values": "Bit mask to associate with a single input bin2dec (default)",
+   "group": ""
+  },
+  {
+   "name": "Treat mask as",
+   "default": "Integer",
+   "values": "Treat the mask as a real-world value or a stored integer Stored Integer (default) | Real World Value",
+   "group": ""
+  }
+ ]
+}

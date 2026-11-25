@@ -1,0 +1,13 @@
+{
+ "key": "Variable-Displacement Pump (TL)",
+ "title": "Variable-Displacement Pump (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pumps & Motors/Variable_Displacement_Pump_TL.md"
+ ],
+ "text": "Variable-Displacement Pump (TL)。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

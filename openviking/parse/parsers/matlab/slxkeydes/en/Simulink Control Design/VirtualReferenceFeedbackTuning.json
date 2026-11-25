@@ -1,0 +1,89 @@
+{
+ "key": "VirtualReferenceFeedbackTuning",
+ "title": "Virtual Reference Feedback Tuning",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Autotuning/Virtual_Reference_Feedback_Tuning.md"
+ ],
+ "text": "Automatically tune linearly parameterized controllers based on input-output data, 3 inputs, 1 output, {Weighting Function} sets Weighting function; {Sample time (Ts)}, {Reference Model} sets the reference model tf, {Controller Structure}, {Type} sets the pID controller type, {Integrator Method} sets the discrete integration method, {FIR Filter Order}, {SISO Linear Systems Ci(z)} sets the array of SISO linear systems tf and {Show θ values while tuning} sets the output tuned parameter values. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Plant input signal scalar signal"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output signal scalar signal"
+  },
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "Tuning interval signal scalar signal"
+  },
+  {
+   "name": "θ",
+   "direction": "output",
+   "summary": "Tuned controller parameters vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "Sample time 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference Model",
+   "default": "1])",
+   "values": "Reference model tf(1,[3 1]) (default) | tf model object | ss model object | zpk model object",
+   "group": ""
+  },
+  {
+   "name": "Weighting Function",
+   "default": "1",
+   "values": "Weighting function 1 (default) | tf model object | ss model object | zpk model object",
+   "group": ""
+  },
+  {
+   "name": "Controller Structure",
+   "default": "PID",
+   "values": "Controller structure PID (default) | FIR Filter | Generic Form",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "PI",
+   "values": "PID controller type PI (default) | P | I | PD | PID",
+   "group": ""
+  },
+  {
+   "name": "Integrator Method",
+   "default": "Euler",
+   "values": "Discrete integration method Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "FIR Filter Order",
+   "default": "2",
+   "values": "FIR filter order 2 (default) | positive integer between 2 and 10",
+   "group": ""
+  },
+  {
+   "name": "SISO Linear Systems Ci(z)",
+   "default": "-1],0.1)}",
+   "values": "Array of SISO linear systems {tf([1],[1],0.1);0.1*tf([1],[1 -1],0.1)} (default) | cell array | LTI model array",
+   "group": ""
+  },
+  {
+   "name": "Show θ values while tuning",
+   "default": "on",
+   "values": "Output tuned parameter values on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Phase Splitter",
+ "title": "Phase Splitter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Phase_Splitter.md"
+ ],
+ "text": "展开或合并三个电气守恒端口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

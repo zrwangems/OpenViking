@@ -1,0 +1,102 @@
+{
+ "key": "LookupNDDirect",
+ "title": "Direct Lookup Table (n-D)",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/Direct_Lookup_Table_n_D.md",
+  "HDL Coder/Lookup Tables/Direct_Lookup_Table_n_D.md"
+ ],
+ "text": "Index into n-dimensional table to retrieve element, vector, or 2-D matrix, 3 inputs, 1 output, direct feedthrough, {Number of table dimensions} sets Number of dimensions of table data; {Make table an input} sets the provide, {Table data} sets the table of output values {Inputs select this object from table} sets the whether output is an element, vector, or 2-D matrix, {Diagnostic for out-of-range input} sets the block action when input is out of range, {Sample time (-1 for inherited)} sets the interval between samples, {Remove protection against out-of-range input in generated code} sets the remove code that checks for out-of-range input, {Table minimum} sets the minimum value table data can have, {Table maximum} sets the maximum value table data can have, {Table data type} sets the data type of table data and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Index i1 input values scalar | vector"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "Index N input values scalar | vector"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Table data vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output element, vector, or 2-D matrix scalar | vector | 2-D matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of table dimensions",
+   "default": "2",
+   "values": "Number of dimensions of table data 2 (default) | 1 | 3 | 4 |...",
+   "group": "Main"
+  },
+  {
+   "name": "Make table an input",
+   "default": "off",
+   "values": "Provide table data as a block input off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Table data",
+   "default": "23]",
+   "values": "Table of output values [4 5 6; 16 19 20; 10 18 23] (default) | scalar | vector | matrix | N-D array",
+   "group": "Main"
+  },
+  {
+   "name": "Inputs select this object from table",
+   "default": "Element",
+   "values": "Specify whether output is an element, vector, or 2-D matrix Element (default) | Vector | 2-D Matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Diagnostic for out-of-range input",
+   "default": "Warning",
+   "values": "Block action when input is out of range Warning (default) | None | Error",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Remove protection against out-of-range input in generated code",
+   "default": "off",
+   "values": "Remove code that checks for out-of-range input values off (default) | on",
+   "group": "Code generation"
+  },
+  {
+   "name": "Table minimum",
+   "default": "[]",
+   "values": "Minimum value table data can have [] (default) | finite, real, double, scalar",
+   "group": "Table Attributes"
+  },
+  {
+   "name": "Table maximum",
+   "default": "[]",
+   "values": "Maximum value table data can have [] (default) | finite, real, double, scalar",
+   "group": "Table Attributes"
+  },
+  {
+   "name": "Table data type",
+   "default": "data’",
+   "values": "Data type of table data Inherit: Inherit from ’Table data’ (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": "Table Attributes"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Table Attributes"
+  }
+ ]
+}

@@ -1,0 +1,120 @@
+{
+ "key": "Two-Channel Synthesis Subband Filter",
+ "title": "Two-Channel Synthesis Subband Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Two_Channel_Synthesis_Subband_Filter.md"
+ ],
+ "text": "从高频和低频子带重构信号，输入 2 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入模式；{Lowpass FIR filter coefficients}、{Highpass FIR filter coefficients}、{Input processing} 指定输入处理 Columns as channels、{Rate options} 指定速率选项 Enforce single-rate、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Coefficients} 指定系数的数据类型、{Coefficients Minimum} 指定滤波器系数的最小值、{Coefficients Maximum} 指定滤波器系数的最大值、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器的数据类型、{Output} 输出数据类型、{Output Minimum} 输出最小值、{Output Maximum} 输出最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Hi band",
+   "direction": "input",
+   "summary": "高频子带 vector | matrix"
+  },
+  {
+   "name": "Lo band",
+   "direction": "input",
+   "summary": "低频子带 vector | matrix"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "合成输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lowpass FIR filter coefficients",
+   "default": "0.0352]",
+   "values": "Lowpass FIR filter coefficients [0.3327 0.8069 0.4599 -0.1350 -0.0854 0.0352] (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Highpass FIR filter coefficients",
+   "default": "-0.3327]",
+   "values": "Highpass FIR filter coefficients [0.0352 0.0854 -0.1350 -0.4599 0.8069 -0.3327] (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "输入处理 Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "速率选项 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "系数的数据类型 Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Minimum",
+   "default": "[]",
+   "values": "滤波器系数的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Maximum",
+   "default": "[]",
+   "values": "滤波器系数的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器的数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "输出数据类型 Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "输出最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "输出最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

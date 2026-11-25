@@ -1,0 +1,13 @@
+{
+ "key": "Spark Ignition Engine",
+ "title": "Spark Ignition Engine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Spark_Ignition_Engine.md"
+ ],
+ "text": "火花点火发动机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

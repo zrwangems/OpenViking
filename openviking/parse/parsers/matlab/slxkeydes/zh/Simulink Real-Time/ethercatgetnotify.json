@@ -1,0 +1,32 @@
+{
+ "key": "ethercatgetnotify",
+ "title": "EtherCAT Get Notifications",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Get_Notifications.md"
+ ],
+ "text": "从 EtherCAT 总线收集通知；输出 1 路；{Network Device Index} 指定 EtherCAT 网络标识符、{Sample time} 指定模块的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Values",
+   "direction": "output",
+   "summary": "包含 EtherCAT 通知代码的自描述 21 元素向量 [ Length 20 * Notification ]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT 网络标识符 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块的采样时间 -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

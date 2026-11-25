@@ -1,0 +1,43 @@
+{
+ "key": "SOH Estimator (Capacity-Based)",
+ "title": "SOH Estimator (Capacity-Based)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/SOH_Estimator_Capacity_Based.md"
+ ],
+ "text": "State of health estimator based on capacity fade, 1 input, 1 output, {Algorithm data type} sets Option to choose data type for block algorithm Inherit:; {Cell capacity when battery is new, AH_new, (A*Hr)} and {Cell capacity at end of life, AH_eol, (A*Hr)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "AH",
+   "direction": "input",
+   "summary": "Cell capacity, A*Hr scalar | vector"
+  },
+  {
+   "name": "SOH",
+   "direction": "output",
+   "summary": "State of health of battery scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Cell capacity when battery is new, AH_new, (A*Hr)",
+   "default": "27",
+   "values": "Cell capacity when battery is new 27 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Cell capacity at end of life, AH_eol, (A*Hr)",
+   "default": "21.6",
+   "values": "Cell capacity at end of life 21.6 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

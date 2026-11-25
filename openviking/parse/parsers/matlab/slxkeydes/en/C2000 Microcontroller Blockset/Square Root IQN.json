@@ -1,0 +1,13 @@
+{
+ "key": "Square Root IQN",
+ "title": "Square Root IQN",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/Square_Root_IQN.md"
+ ],
+ "text": "Square root or inverse square root of IQ number.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,44 @@
+{
+ "key": "BPSK Modulator Baseband",
+ "title": "BPSK Modulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/PM/BPSK_Modulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/BPSK_Modulator_Baseband.md"
+ ],
+ "text": "Modulate using BPSK method, 1 input, 1 output, {Output data type} sets Output data type; {Phase offset (rad)} sets the phase offset of zeroth point and {View constellation} sets the option to plot reference constellation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input data scalar | vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "BPSK-modulated baseband signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "Phase offset of zeroth point 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "View constellation",
+   "default": "",
+   "values": "Option to plot reference constellation button",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit via back propagation |",
+   "group": "Data Types"
+  }
+ ]
+}

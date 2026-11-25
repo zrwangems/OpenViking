@@ -1,0 +1,142 @@
+{
+ "key": "phased.internal.SimulinkPhaseCodedWaveform",
+ "title": "Phase-Coded Waveform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Waveforms/Phase_Coded_Waveform.md"
+ ],
+ "text": "Phase-coded pulse waveform, 2 inputs, 3 outputs; {Sample rate (Hz)} sets the sample rate of the output, {Phase code} sets the code type used for phase, {Custom phase code}, {Chip width (s)} sets the chip time duration 1e-5, {Number of chips}, {Zadoff-Chu sequence index} sets the sequence index for Zadoff-Chu code type, {Pulse repetition frequency (Hz)} sets the pulse repetition frequency 1e4, {Enable PRF selection input} selects predefined PRF, {Source of Frequency Offset} sets the source of frequency, {Frequency Offset (Hz)} sets the frequency offset, {Source of simulation sample time}, {Output signal format} sets the format of the output, {Number of samples in output}, {Number of pulses in output}, {Enable PRF Output} enables output of PRF, {Enable Matched Filter Coefficients Output} enables output of matched filter and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PRFIdx",
+   "direction": "input",
+   "summary": "PRF Index positive integer"
+  },
+  {
+   "name": "FreqOffset",
+   "direction": "input",
+   "summary": "Frequency offset scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Pulse waveform complex-valued vector"
+  },
+  {
+   "name": "PRF",
+   "direction": "output",
+   "summary": "Pulse repetition frequency positive scalar"
+  },
+  {
+   "name": "Coeff",
+   "direction": "output",
+   "summary": "Matched filter coefficients vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sample rate of the output waveform 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase code",
+   "default": "Frank",
+   "values": "Code type used for phase modulation Frank (default)",
+   "group": ""
+  },
+  {
+   "name": "Custom phase code",
+   "default": "[1,-1]",
+   "values": "Custom phase code [1,-1] (default) | M -length vector of complex values",
+   "group": ""
+  },
+  {
+   "name": "Chip width (s)",
+   "default": "1e-5",
+   "values": "Chip time duration 1e-5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of chips",
+   "default": "4",
+   "values": "Number of chips in waveform 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Zadoff-Chu sequence index",
+   "default": "1",
+   "values": "Sequence index for Zadoff-Chu code type 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Pulse repetition frequency (Hz)",
+   "default": "1e4",
+   "values": "Pulse repetition frequency 1e4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable PRF selection input",
+   "default": "off",
+   "values": "Select predefined PRF off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of Frequency Offset",
+   "default": "Property",
+   "values": "Source of frequency offset Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Frequency Offset (Hz)",
+   "default": "0",
+   "values": "Frequency offset 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Source of simulation sample time",
+   "default": "parameters",
+   "values": "Source of simulation sample time Derive from waveform parameters (default) | Inherit from Simulink engine",
+   "group": ""
+  },
+  {
+   "name": "Output signal format",
+   "default": "Pulses",
+   "values": "Format of the output signal Pulses (default) | Samples",
+   "group": ""
+  },
+  {
+   "name": "Number of samples in output",
+   "default": "100",
+   "values": "Number of samples in output 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of pulses in output",
+   "default": "1",
+   "values": "Number of pulses in output 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable PRF Output",
+   "default": "off",
+   "values": "Enable output of PRF off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable Matched Filter Coefficients Output",
+   "default": "off",
+   "values": "Enable output of matched filter coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

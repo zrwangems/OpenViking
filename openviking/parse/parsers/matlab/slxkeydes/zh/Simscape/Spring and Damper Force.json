@@ -1,0 +1,13 @@
+{
+ "key": "Spring and Damper Force",
+ "title": "Spring and Damper Force",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Spring_and_Damper_Force.md"
+ ],
+ "text": "对两个几何体之间的平面接触进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

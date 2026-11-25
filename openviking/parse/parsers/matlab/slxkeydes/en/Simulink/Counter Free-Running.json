@@ -1,0 +1,33 @@
+{
+ "key": "Counter Free-Running",
+ "title": "Counter Free-Running",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Counter_Free_Running.md",
+  "HDL Coder/Sources/Counter_Free_Running.md"
+ ],
+ "text": "Count up and overflow back to zero after reaching maximum value for specified number of bits, 1 output, no direct feedthrough, {Sample time} sets Interval between samples; {Number of Bits}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Count value scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of Bits",
+   "default": "16",
+   "values": "Number of bits 16 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

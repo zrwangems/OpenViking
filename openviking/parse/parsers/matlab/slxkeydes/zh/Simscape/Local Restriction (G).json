@@ -1,0 +1,13 @@
+{
+ "key": "Local Restriction (G)",
+ "title": "Local Restriction (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Local_Restriction_G.md"
+ ],
+ "text": "气体网络中流道面积内的阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,96 @@
+{
+ "key": "Find",
+ "title": "Find Nonzero Elements",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Find_Nonzero_Elements.md"
+ ],
+ "text": "Find nonzero elements in array, 1 input, 2 outputs, direct feedthrough, {Mode} sets Select data type mode; {Index output format} sets the format for indices of nonzero elements Linear, {Number of input dimensions} sets the number of dimensions for the input signal, {Index mode} sets the zero- or one-based, {Show output port for nonzero input values} enables output port for nonzero values, {Sample time (-1 for inherited)} sets the interval between samples, {Output data type}, {Data type override} sets the data type override mode for this signal, {Signedness} sets the signed, {Word length} sets the bit size of the word that holds the quantized and {Scaling} sets the method for scaling your fixed-point data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Indices of nonzero elements variable-size signal"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Values of nonzero elements variable-size signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "Index output format",
+   "default": "indices",
+   "values": "Format for indices of nonzero elements Linear indices (default) | Subscripts",
+   "group": "Main"
+  },
+  {
+   "name": "Number of input dimensions",
+   "default": "1",
+   "values": "Number of dimensions for the input signal 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Index mode",
+   "default": "Zero-based",
+   "values": "Specify zero- or one-based indexing Zero-based (default) | One-based",
+   "group": "Main"
+  },
+  {
+   "name": "Show output port for nonzero input values",
+   "default": "off",
+   "values": "Enable output port for nonzero values off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "Select data type mode Inherit (default) | Built in | Fixed Point",
+   "group": "Data Types"
+  },
+  {
+   "name": "Data type override",
+   "default": "",
+   "values": "Specify data type override mode for this signal Inherit | Off",
+   "group": "Data Types"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Specify signed or unsigned Signed (default) | Unsigned",
+   "group": "Data Types"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32",
+   "group": "Data Types"
+  },
+  {
+   "name": "Scaling",
+   "default": "Integer",
+   "values": "Method for scaling your fixed-point data Integer (default)",
+   "group": "Data Types"
+  }
+ ]
+}

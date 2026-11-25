@@ -1,0 +1,36 @@
+{
+ "key": "MessageMerge",
+ "title": "Message Merge",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Messages & Events/Message_Merge.md"
+ ],
+ "text": "合并消息路径，输入 2 路、输出 1 路、无直接馈通；{Number of input ports} 指定要合并的消息线数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要合并的输入消息线 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "要合并的输入消息线 scalar | vector | matrix"
+  },
+  {
+   "name": "Port",
+   "direction": "output",
+   "summary": "输出消息线 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input ports",
+   "default": "2",
+   "values": "指定要合并的消息线数量 2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

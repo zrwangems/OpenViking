@@ -1,0 +1,86 @@
+{
+ "key": "SamplingClockSource",
+ "title": "Sampling Clock Source",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Building Blocks/Sampling_Clock_Source.md"
+ ],
+ "text": "生成带有孔径抖动的时钟信号；输出 1 路；{Clock type} 输出时钟信号波形 Square、{Clock frequency (Hz)} 输出时钟信号的期望频率 1e6、{Min (V)} 指定时钟输出最小电压、{Max (V)} 指定时钟输出最大电压、{RMS aperture jitter (s)} 指定时钟边沿位置的标准差 1e-12、{Specify custom seed} 指定种子、{Seed} 用于生成时钟信号的种子、{Specify custom initial output} 指定初始输出、{Initial output} 指定采样时钟的初始输出、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk",
+   "direction": "output",
+   "summary": "带有孔径抖动的输出时钟 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Clock type",
+   "default": "wave",
+   "values": "输出时钟信号波形 Square wave (default) | Sine wave",
+   "group": ""
+  },
+  {
+   "name": "Clock frequency (Hz)",
+   "default": "1e6",
+   "values": "输出时钟信号的期望频率 1e6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Min (V)",
+   "default": "0",
+   "values": "时钟输出最小电压 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Max (V)",
+   "default": "1",
+   "values": "时钟输出最大电压 1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "RMS aperture jitter (s)",
+   "default": "1e-12",
+   "values": "时钟边沿位置的标准差 1e-12 (default) | real nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify custom seed",
+   "default": "off",
+   "values": "指定种子 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "0",
+   "values": "用于生成时钟信号的种子 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify custom initial output",
+   "default": "off",
+   "values": "指定初始输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "1",
+   "values": "采样时钟的初始输出 1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "50",
+   "values": "仿真期间可用的输入缓冲样本数 50 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

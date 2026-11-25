@@ -1,0 +1,49 @@
+{
+ "key": "Trapezoidal membership function",
+ "title": "Trapezoidal MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Trapezoidal_MF.md"
+ ],
+ "text": "梯形隶属度函数，输入 1 路、输出 1 路；{Left base point a} 指定梯形的左底脚、{Left top point b} 指定梯形的左肩部、{Right top point c} 指定梯形的右肩部、{Right base point d} 指定梯形的右底脚，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入值 scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "隶属度值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Left base point a",
+   "default": "-8",
+   "values": "梯形的左底脚 -8 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Left top point b",
+   "default": "-4",
+   "values": "梯形的左肩部 -4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right top point c",
+   "default": "2",
+   "values": "梯形的右肩部 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Right base point d",
+   "default": "9",
+   "values": "梯形的右底脚 9 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

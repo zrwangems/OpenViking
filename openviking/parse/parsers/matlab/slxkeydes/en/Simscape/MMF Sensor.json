@@ -1,0 +1,13 @@
+{
+ "key": "MMF Sensor",
+ "title": "MMF Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Sensors/MMF_Sensor.md"
+ ],
+ "text": "Ideal magnetomotive force sensor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

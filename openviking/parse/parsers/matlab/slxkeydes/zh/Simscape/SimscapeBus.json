@@ -1,0 +1,13 @@
+{
+ "key": "SimscapeBus",
+ "title": "Simscape Bus",
+ "toolbox": "Simscape",
+ "kind": "block_type",
+ "source_docs": [
+  "Simscape/Utilities/Simscape_Bus.md"
+ ],
+ "text": "用于保留连接线的总线。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

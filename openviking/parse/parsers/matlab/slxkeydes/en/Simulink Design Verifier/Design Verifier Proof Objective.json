@@ -1,0 +1,50 @@
+{
+ "key": "Design Verifier Proof Objective",
+ "title": "Proof Objective",
+ "toolbox": "Simulink Design Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Verifier/Objectives and Constraints/Proof_Objective.md"
+ ],
+ "text": "Define objectives that signals must satisfy when proving model properties, 1 input, {Values} sets the proof objective scalar; {Enable} sets the whether the block is enabled, {Diaplay values} displays the contents of values parameter, {Pass through style} sets the proof objective and {Stop simulation when the property is violated} sets the whether to stop the simulation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Values",
+   "direction": "input",
+   "summary": "Input signal scalar | cell array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable",
+   "default": "on",
+   "values": "Specify whether the block is enabled on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Values",
+   "default": "",
+   "values": "Specify the proof objective scalar | cell array",
+   "group": ""
+  },
+  {
+   "name": "Diaplay values",
+   "default": "on",
+   "values": "Display the contents of values parameter on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Pass through style",
+   "default": "on",
+   "values": "Specify the proof objective on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when the property is violated",
+   "default": "on",
+   "values": "Specify whether to stop the simulation on (default) | off",
+   "group": ""
+  }
+ ]
+}

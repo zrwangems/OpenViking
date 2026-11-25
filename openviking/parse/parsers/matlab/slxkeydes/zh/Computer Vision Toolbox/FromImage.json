@@ -1,0 +1,31 @@
+{
+ "key": "FromImage",
+ "title": "From Simulink Image",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Utilities/From_Simulink_Image.md"
+ ],
+ "text": "从 Simulink 图像中解包数值矩阵，输入 1 路、输出 1 路、直接馈通；{Output dimensions} 指定模块输出信号的维度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 Simulink.ImageType"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output dimensions",
+   "default": "3]",
+   "values": "模块输出信号的维度 [480 640 3] (default)",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Flexible Rectangular Beam",
+ "title": "Flexible Rectangular Beam",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Flexible Bodies/Beams/Flexible_Rectangular_Beam.md"
+ ],
+ "text": "Rectangular beam with elastic properties for deformation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

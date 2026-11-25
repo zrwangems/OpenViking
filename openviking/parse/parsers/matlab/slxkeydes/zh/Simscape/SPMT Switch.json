@@ -1,0 +1,13 @@
+{
+ "key": "SPMT Switch",
+ "title": "SPMT Switch",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/SPMT_Switch.md"
+ ],
+ "text": "单刀多掷开关。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

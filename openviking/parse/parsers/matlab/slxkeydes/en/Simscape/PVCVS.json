@@ -1,0 +1,13 @@
+{
+ "key": "PVCVS",
+ "title": "PVCVS",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PVCVS.md"
+ ],
+ "text": "Polynomial voltage-controlled voltage source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Diffusion Resistor",
+ "title": "Diffusion Resistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Diffusion_Resistor.md"
+ ],
+ "text": "具有速度饱和以及可选容差、工作限制、故障行为和噪声的电阻器模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

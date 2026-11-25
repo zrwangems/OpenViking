@@ -1,0 +1,47 @@
+{
+ "key": "QuatInterp",
+ "title": "Quaternion Interpolation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Interpolation.md"
+ ],
+ "text": "Quaternion interpolation between two quaternions, 3 inputs, 1 output, {Action for out-of-range input} sets Out-of-range block behavior; {Methods} sets the quaternion interpolation method. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q 0",
+   "direction": "input",
+   "summary": "First normalized quaternion 4-by-1 vector | 1-by-4 vector"
+  },
+  {
+   "name": "q 1",
+   "direction": "input",
+   "summary": "Second normalized quaternion 4-by-1 vector | 1-by-4 vector"
+  },
+  {
+   "name": "f",
+   "direction": "input",
+   "summary": "Interval fraction scalar"
+  },
+  {
+   "name": "q f",
+   "direction": "output",
+   "summary": "Natural logarithm vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Methods",
+   "default": "SLERP",
+   "values": "Quaternion interpolation method SLERP (default) | LERP | NLERP",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

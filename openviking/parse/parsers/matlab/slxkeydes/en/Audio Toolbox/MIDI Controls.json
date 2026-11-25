@@ -1,0 +1,62 @@
+{
+ "key": "MIDI Controls",
+ "title": "MIDI Controls",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sources/MIDI_Controls.md"
+ ],
+ "text": "Output values from controls on MIDI control surface, 1 output, no direct feedthrough, {MIDI control numbers} sets Control numbers associated with MIDI surface controllers that your block responds to; {MIDI device} sets the mIDI control surface your block listens, {MIDI device name} sets the device name of MIDI control surface your block listens to character, {MIDI controls} sets the if block responds to all controllers or specific controllers on MIDI surface Respond to any, {Initial values} controls numbers associated with MIDI surface controllers that your block responds, {Send initial values to device at start} sets the synchronize MIDI surface with values specified initial and {Output Mode} sets the output mode for MIDI control value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "MIDI device",
+   "default": "Default",
+   "values": "MIDI control surface your block listens to Default (default) | Specify other",
+   "group": ""
+  },
+  {
+   "name": "MIDI device name",
+   "default": "",
+   "values": "Device name of MIDI control surface your block listens to character vector",
+   "group": ""
+  },
+  {
+   "name": "MIDI controls",
+   "default": "control",
+   "values": "Specify if block responds to all controllers or specific controllers on MIDI surface Respond to any control (default) | Respond to specified controls",
+   "group": ""
+  },
+  {
+   "name": "MIDI control numbers",
+   "default": "0",
+   "values": "Control numbers associated with MIDI surface controllers that your block responds to 0 (default) | integer | array of integers",
+   "group": ""
+  },
+  {
+   "name": "Initial values",
+   "default": "0",
+   "values": "Control numbers associated with MIDI surface controllers that your block responds to 0 (default) | scalar | array",
+   "group": ""
+  },
+  {
+   "name": "Send initial values to device at start",
+   "default": "off",
+   "values": "Synchronize MIDI surface with values specified initial values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Mode",
+   "default": "(0-1)",
+   "values": "Output mode for MIDI control value Normalized (0-1) (default) | RAW MIDI (0-127)",
+   "group": ""
+  }
+ ]
+}

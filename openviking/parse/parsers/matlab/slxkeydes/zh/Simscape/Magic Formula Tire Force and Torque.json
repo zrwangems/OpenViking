@@ -1,0 +1,13 @@
+{
+ "key": "Magic Formula Tire Force and Torque",
+ "title": "Magic Formula Tire Force and Torque",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Magic_Formula_Tire_Force_and_Torque.md"
+ ],
+ "text": "使用 Magic Formula 轮胎方程施加稳态轮胎力和力矩。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

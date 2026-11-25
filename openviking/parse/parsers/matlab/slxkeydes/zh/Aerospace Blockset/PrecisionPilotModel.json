@@ -1,0 +1,84 @@
+{
+ "key": "PrecisionPilotModel",
+ "title": "Precision Pilot Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Pilot Models/Precision_Pilot_Model.md"
+ ],
+ "text": "表示 Precision Pilot Model，输入 2 路、输出 1 路；按 {Type of control} 指定飞机动力学控制；{Pilot gain} 指定飞行员增益、{Pilot time delay(s)} 指定飞行员时间延迟、{Equalizer lead constant} 指定均衡器超前常数、{Equalizer lag constant} 指定均衡器滞后常数、{Lag constant for neuromuscular system} 指定滞后常数、{Undamped natural frequency neuromuscular system (rad/s)} 指定无阻尼自然频率、{Damping neuromuscular system} 指定神经肌肉系统阻尼、{Controlled element undamped natural frequency (rad/s)} 指定受控对象无阻尼自然频率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x com",
+   "direction": "input",
+   "summary": "信号指令 scalar"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "由飞行员控制的信号 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "飞行器指令 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of control",
+   "default": "Proportional",
+   "values": "飞机动力学控制 Proportional (default) | Rate or velocity | Acceleration | Second order",
+   "group": ""
+  },
+  {
+   "name": "Pilot gain",
+   "default": "1",
+   "values": "飞行员增益 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot time delay(s)",
+   "default": "0.1",
+   "values": "飞行员时间延迟 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equalizer lead constant",
+   "default": "1",
+   "values": "均衡器超前常数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equalizer lag constant",
+   "default": "5",
+   "values": "均衡器滞后常数 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lag constant for neuromuscular system",
+   "default": "0.1",
+   "values": "滞后常数 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Undamped natural frequency neuromuscular system (rad/s)",
+   "default": "20",
+   "values": "无阻尼自然频率 20 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Damping neuromuscular system",
+   "default": "0.7",
+   "values": "神经肌肉系统阻尼 0.7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Controlled element undamped natural frequency (rad/s)",
+   "default": "15",
+   "values": "受控对象无阻尼自然频率 15 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

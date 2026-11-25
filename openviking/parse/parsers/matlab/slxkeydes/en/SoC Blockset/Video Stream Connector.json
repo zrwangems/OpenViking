@@ -1,0 +1,44 @@
+{
+ "key": "Video Stream Connector",
+ "title": "Video Stream Connector",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/Video_Stream_Connector.md"
+ ],
+ "text": "Connect two IPs with video streaming interfaces, 3 inputs, 3 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "Input video data scalar"
+  },
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "Input control signals accompanying pixel stream pixelControl bus"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "Ready signal from downstream interface boolean scalar"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "Output video data scalar"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "Output control signals accompanying output pixel stream pixelcontrol bus"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "Ready signal to the upstream interface boolean scalar"
+  }
+ ],
+ "params": []
+}

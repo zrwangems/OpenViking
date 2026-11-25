@@ -1,0 +1,58 @@
+{
+ "key": "phased.internal.SimulinkTOAPositionEstimator",
+ "title": "TOA Position Estimator",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/TOA_Position_Estimator.md"
+ ],
+ "text": "根据到达时间估计值和锚点位置估计目标位置，输入 3 路、输出 2 路；{Signal propagation speed (m/s)} 指定信号传播速度 physconst、{Output covariance of TOA position estimate} 指定 TDOA 位置估计的输出协方差、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TOAest",
+   "direction": "input",
+   "summary": "估计的到达时间 1-by- L element real-valued vector"
+  },
+  {
+   "name": "TOAVar",
+   "direction": "input",
+   "summary": "估计的到达时间的方差 1-by- L element real-valued vector"
+  },
+  {
+   "name": "AnchorPos",
+   "direction": "input",
+   "summary": "锚点位置 2-by- L real-valued matrix | 3-by- L real-valued matrix"
+  },
+  {
+   "name": "TgtPosEst",
+   "direction": "output",
+   "summary": "估计的目标位置 real-valued Q -by-1 vector"
+  },
+  {
+   "name": "TgtPosCov",
+   "direction": "output",
+   "summary": "目标位置协方差矩阵 real-valued positive semi-definite Q -by- Q matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(\"LightSpeed\")",
+   "values": "信号传播速度 physconst(\"LightSpeed\") (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output covariance of TOA position estimate",
+   "default": "(0)",
+   "values": "TDOA 位置估计的输出协方差 false (0) (default) | true (1)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

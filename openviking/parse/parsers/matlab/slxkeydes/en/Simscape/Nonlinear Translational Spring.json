@@ -1,0 +1,13 @@
+{
+ "key": "Nonlinear Translational Spring",
+ "title": "Nonlinear Translational Spring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Nonlinear_Translational_Spring.md"
+ ],
+ "text": "Translational spring based on polynomial or table lookup parameterizations.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

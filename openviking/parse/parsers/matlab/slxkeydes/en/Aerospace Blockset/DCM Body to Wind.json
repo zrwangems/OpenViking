@@ -1,0 +1,24 @@
+{
+ "key": "DCM Body to Wind",
+ "title": "Direction Cosine Matrix Body to Wind",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Direction_Cosine_Matrix_Body_to_Wind.md"
+ ],
+ "text": "Convert angle of attack and sideslip angle to direction cosine matrix, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ɑ β",
+   "direction": "input",
+   "summary": "Angle of attack and sideslip angle 2-by-1 vector"
+  },
+  {
+   "name": "DCM wb",
+   "direction": "output",
+   "summary": "Direction cosine matrix 3-by-3 direction cosine matrix"
+  }
+ ],
+ "params": []
+}

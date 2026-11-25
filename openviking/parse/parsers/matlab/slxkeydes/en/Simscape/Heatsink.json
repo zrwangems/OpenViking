@@ -1,0 +1,13 @@
+{
+ "key": "Heatsink",
+ "title": "Heatsink",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Thermal/Heatsink.md"
+ ],
+ "text": "Dissipate heat from power semiconductors to ambient temperature.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

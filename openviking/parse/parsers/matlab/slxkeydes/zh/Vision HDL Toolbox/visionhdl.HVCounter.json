@@ -1,0 +1,47 @@
+{
+ "key": "visionhdl.HVCounter",
+ "title": "HV Counter",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Utilities/HV_Counter.md"
+ ],
+ "text": "统计像素流的有效维度，输入 1 路、输出 3 路；{Active pixels per line} 指定每行最大像素数、{Active video lines} 指定每帧最大行数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "hCount",
+   "direction": "output",
+   "summary": "行内像素位置 positive integer"
+  },
+  {
+   "name": "vCount",
+   "direction": "output",
+   "summary": "帧内行位置 positive integer"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Active pixels per line",
+   "default": "320",
+   "values": "每行最大像素数 320 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Active video lines",
+   "default": "240",
+   "values": "每帧最大行数 240 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

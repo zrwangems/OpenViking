@@ -1,0 +1,47 @@
+{
+ "key": "slrealtimetcpsend",
+ "title": "TCP Send",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/TCP_Send.md"
+ ],
+ "text": "通过 TCP 网络向远程设备发送数据，输入 3 路、输出 1 路；{Send using} 指定 IP 地址与端口对列表 只读: x.x.x.x:y、{Sample time} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "允许数据传输 整数"
+  },
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "通过 TCP 网络传输的数据 向量"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "数据向量的长度 双精度"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "发送的字节数 双精度"
+  }
+ ],
+ "params": [
+  {
+   "name": "Send using",
+   "default": "",
+   "values": "IP 地址与端口对列表 只读: x.x.x.x:y",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块采样时间 -1 (默认) | 数值",
+   "group": ""
+  }
+ ]
+}

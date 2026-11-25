@@ -1,0 +1,37 @@
+{
+ "key": "DCM2AB",
+ "title": "Direction Cosine Matrix Body to Wind to Alpha and Beta",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Direction_Cosine_Matrix_Body_to_Wind_to_Alpha_and_Beta.md"
+ ],
+ "text": "Convert direction cosine matrix to angle of attack and sideslip angle, 1 input, 1 output, {Action for invalid DCM} sets Block behavior; {Tolerance for DCM validation} sets the tolerance eps. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DCM wb",
+   "direction": "input",
+   "summary": "Direction cosine matrix 3-by-3 direction cosine matrix"
+  },
+  {
+   "name": "α β",
+   "direction": "output",
+   "summary": "Angle of attack and sideslip angle 2-by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Action for invalid DCM",
+   "default": "None",
+   "values": "Block behavior None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Tolerance for DCM validation",
+   "default": "eps(2)",
+   "values": "Tolerance eps(2) (default) | scalar",
+   "group": ""
+  }
+ ]
+}

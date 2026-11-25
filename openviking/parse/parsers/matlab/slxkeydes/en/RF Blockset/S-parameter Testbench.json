@@ -1,0 +1,146 @@
+{
+ "key": "S-parameter Testbench",
+ "title": "S-Parameter Testbench",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Testbenches/S_Parameter_Testbench.md"
+ ],
+ "text": "Measure S-parameters of system, {Small signal frequencies (Hz)} sets Frequencies that carry small signal transient; {Use Internal Configuration block} uses testbench internal configuration block, {Input power amplitude (dBm)} sets the input power to DUT, {Number of ports} sets the number of measured ports, {Measure all S-parameters} sets the measure entire S-parameters matrix, {Export measurement results to sNp} sets the save S-parameters data to Touchstone file, {S-Parameter elements} sets the s-parameter elements to measure, {Workspace variable name} sets the variable name to store the measurement data in MATLAB, {Input frequency (Hz)} sets the carrier frequency, {Baseband bandwidth (Hz)} sets the baseband bandwidth of input, {Reference Impedance (Ohm)} sets the impedance for S-parameter measurement, {Show S-Parameter spectrum} sets the view measured values of specified S-parameters over the specified frequency, {Ground and hide negative terminals} sets the internally ground and hide RF circuit, {FFT Length} sets the number of FFT bins, {Measurement Time} sets the total time duration, {Ratio of wait time to measurement time} sets the intermission between sequential, {Ratio of Envelope to Baseband bandwidths} sets the ratio of internal solver envelope bandwidth to measured, {Adjust for steady state external signals} adjusts for large steady state signals, {Output frequency (Hz)} sets the output carrier frequency 2.1e9, {Approximate transient as small signal} sets the small subset of frequencies for transient small signal, {Use all steady-state simulation frequencies for small signal analysis} uses all frequencies automatically chosen for full-harmonic balance nonlinear and {Populate Frequencies} sets the tool to choose small signal transient frequencies. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Use Internal Configuration block",
+   "default": "on",
+   "values": "Use testbench internal configuration block on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Input power amplitude (dBm)",
+   "default": "-30",
+   "values": "Input power to DUT -30 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "2",
+   "values": "Number of measured ports 2 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Measure all S-parameters",
+   "default": "on",
+   "values": "Measure entire S-parameters matrix on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Export measurement results to sNp",
+   "default": "",
+   "values": "Save S-parameters data to Touchstone file button",
+   "group": ""
+  },
+  {
+   "name": "S-Parameter elements",
+   "default": "1]",
+   "values": "S-parameter elements to measure [1 1] (default) | two-column matrix",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "’SparamObjOut’",
+   "values": "Variable name to store the measurement data in MATLAB workspace ’SparamObjOut’ (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Input frequency (Hz)",
+   "default": "2.1e9",
+   "values": "Carrier frequency of DUT 2.1e9 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Baseband bandwidth (Hz)",
+   "default": "10e6",
+   "values": "Baseband bandwidth of input signal 10e6 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference Impedance (Ohm)",
+   "default": "50",
+   "values": "Impedance for S-parameter measurement 50 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Show S-Parameter spectrum",
+   "default": "off",
+   "values": "View measured values of specified S-parameters over the specified frequency bandwidth off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Internally ground and hide RF circuit terminals on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT Length",
+   "default": "128",
+   "values": "Number of FFT bins 128 (default) | scalar integer power of 2",
+   "group": ""
+  },
+  {
+   "name": "Measurement Time",
+   "default": "μs",
+   "values": "Total time duration 12.8 μs (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Ratio of wait time to measurement time",
+   "default": "0",
+   "values": "Intermission between sequential measurements 0 (default) | scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Ratio of Envelope to Baseband bandwidths",
+   "default": "8",
+   "values": "Ratio of internal solver envelope bandwidth to measured bandwidth 8 (default) | scalar integer power of 2",
+   "group": ""
+  },
+  {
+   "name": "Adjust for steady state external signals",
+   "default": "off",
+   "values": "Adjust for large steady state signals off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "2.1e9",
+   "values": "Output carrier frequency 2.1e9 (default) | positive finite scalar",
+   "group": ""
+  },
+  {
+   "name": "Approximate transient as small signal",
+   "default": "off",
+   "values": "Choose small subset of frequencies for transient small signal analysis off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use all steady-state simulation frequencies for small signal analysis",
+   "default": "on",
+   "values": "Use all frequencies automatically chosen for full-harmonic balance nonlinear solution on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Small signal frequencies (Hz)",
+   "default": "2.1e9",
+   "values": "Frequencies that carry small signal transient 2.1e9 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Populate Frequencies",
+   "default": "",
+   "values": "Tool to choose small signal transient frequencies button",
+   "group": ""
+  }
+ ]
+}

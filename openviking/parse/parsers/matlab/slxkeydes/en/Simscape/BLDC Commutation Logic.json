@@ -1,0 +1,36 @@
+{
+ "key": "BLDC Commutation Logic",
+ "title": "BLDC Commutation Logic",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/BLDC Control/BLDC_Commutation_Logic.md"
+ ],
+ "text": "Switch-commutation logic for brushless DC motors, 2 inputs, 1 output; {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Hall",
+   "direction": "input",
+   "summary": "Hall sensor vector"
+  },
+  {
+   "name": "Direction",
+   "direction": "input",
+   "summary": "Motor direction scalar"
+  },
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "Motor phase vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

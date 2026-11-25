@@ -1,0 +1,181 @@
+{
+ "key": "SynRM Torque Estimator",
+ "title": "SynRM Torque Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/SynRM_Torque_Estimator.md"
+ ],
+ "text": "估计机电转矩和功率，输入 6 路、输出 2 路；按 {Motor parameter input method} 指定电机参数的类型 Linear model with lumped；{Motor topology} 指定同步磁阻电机拓扑 Synchronous reluctance、{Definition of d-axis and q-axis} 指定 d 轴和 q 轴的对齐 Ld > Lq、{Number of pole pairs} 指定电机中可用的极对数、{D-axis current breakpoint vector, id (A)} 指定 d 轴电流查找向量、{Q-axis current breakpoint vector, iq (A)} 指定 Q 轴电流查找向量、{Stator d-axis inductance, Ld (H)} 指定 D 轴定子绕组电感 0.9e-3、{Stator q-axis inductance, Lq (H)} 指定 Q 轴定子绕组电感 0.15e-3、{Permanent magnet flux linkage, FluxPM (Wb)} 指定永磁体磁链 0.4e-4、{D-axis flux linkage LUT, FluxD(id,iq) (Wb)} 指定 D 轴磁链查找表数据、{Q-axis flux linkage LUT, FluxQ(id,iq) (Wb)} 指定 Q 轴磁链查找表数据、{Ld LUT, Ld(id,iq) (H)} 指定 D 轴电感查找表数据 0.9e-3 * ones、{Lq LUT, Lq(id,iq) (H)} 指定 q 轴电感查找表数据 0.15e-3 * ones、{PM flux linkage LUT, FluxPM(id,iq) (Wb)} 指定 PM 磁链查找表数据 0.4e-4 * ones、{Input units} 指定输入值的单位 Per-Unit、{Base Voltage (V)} 指定额定电压限值 24/sqrt、{Base Current (A)} 指定额定电流限值、{Base Speed (rpm)} 指定额定转速限值、{Base torque (Nm)} 指定额定转矩限值、{Base power (W)} 指定额定功率限值、{Allow scaled-down motor parameters with CodeGen (higher precision with Fixed-Point data type)} 按比例缩小内部参数以匹配标幺比例，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I d",
+   "direction": "input",
+   "summary": "d 轴电流 scalar"
+  },
+  {
+   "name": "I q",
+   "direction": "input",
+   "summary": "q 轴电流 scalar"
+  },
+  {
+   "name": "ω m",
+   "direction": "input",
+   "summary": "转子机械转速 scalar"
+  },
+  {
+   "name": "L d",
+   "direction": "input",
+   "summary": "d 轴电感 scalar"
+  },
+  {
+   "name": "L q",
+   "direction": "input",
+   "summary": "q 轴电感 scalar"
+  },
+  {
+   "name": "Flux PM",
+   "direction": "input",
+   "summary": "永磁体磁链 scalar"
+  },
+  {
+   "name": "T e",
+   "direction": "output",
+   "summary": "估计转矩 scalar"
+  },
+  {
+   "name": "P e",
+   "direction": "output",
+   "summary": "估计功率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Motor topology",
+   "default": "motor",
+   "values": "同步磁阻电机拓扑 Synchronous reluctance motor (default) | PM-assisted synchronous reluctance motor",
+   "group": ""
+  },
+  {
+   "name": "Definition of d-axis and q-axis",
+   "default": "PMSM)",
+   "values": "d 轴和 q 轴的对齐 Ld > Lq (different from PMSM) (default) | Lq > Ld (same as PMSM)",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "电机中可用的极对数 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Motor parameter input method",
+   "default": "parameters",
+   "values": "电机参数的类型 Linear model with lumped parameters (default) | Non-linear model with D,Q-flux linkage LUTs | Non-linear model with Ld and Lq LUTs | Non-linear model with Ld, Lq, and FluxPM LUTs | Input port based Ld and Lq | Input port based Ld, Lq, and FluxPM",
+   "group": ""
+  },
+  {
+   "name": "D-axis current breakpoint vector, id (A)",
+   "default": "[0,10,20,30]",
+   "values": "d 轴电流查找向量 [0,10,20,30] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current breakpoint vector, iq (A)",
+   "default": "[0,10,20,30,40]",
+   "values": "Q 轴电流查找向量 [0,10,20,30,40] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Stator d-axis inductance, Ld (H)",
+   "default": "0.9e-3",
+   "values": "D 轴定子绕组电感 0.9e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator q-axis inductance, Lq (H)",
+   "default": "0.15e-3",
+   "values": "Q 轴定子绕组电感 0.15e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Permanent magnet flux linkage, FluxPM (Wb)",
+   "default": "0.4e-4",
+   "values": "永磁体磁链 0.4e-4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "D-axis flux linkage LUT, FluxD(id,iq) (Wb)",
+   "default": "[0,0,0,0,0;0.009,0.009,0.009,0.009,0.0090;0.018,0.018,0.018,0.018,0.0180;0.027,0.027,0.027,0.027,0.0270]",
+   "values": "D 轴磁链查找表数据 [0,0,0,0,0;0.009,0.009,0.009,0.009,0.0090;0.018,0.018,0.018,0.018,0.0180;0.027,0.027,0.027,0.027,0.0270] (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Q-axis flux linkage LUT, FluxQ(id,iq) (Wb)",
+   "default": "[0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060]",
+   "values": "Q 轴磁链查找表数据 [0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060] (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Ld LUT, Ld(id,iq) (H)",
+   "default": "5)",
+   "values": "D 轴电感查找表数据 0.9e-3 * ones(4, 5) (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Lq LUT, Lq(id,iq) (H)",
+   "default": "5)",
+   "values": "q 轴电感查找表数据 0.15e-3 * ones(4, 5) (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "PM flux linkage LUT, FluxPM(id,iq) (Wb)",
+   "default": "5)",
+   "values": "PM 磁链查找表数据 0.4e-4 * ones(4, 5) (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "Input units",
+   "default": "(PU)",
+   "values": "输入值的单位 Per-Unit (PU) (default) | SI Units",
+   "group": ""
+  },
+  {
+   "name": "Base Voltage (V)",
+   "default": "24/sqrt(3)",
+   "values": "额定电压限值 24/sqrt(3) (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Base Current (A)",
+   "default": "19.3",
+   "values": "额定电流限值 19.3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Base Speed (rpm)",
+   "default": "4107",
+   "values": "额定转速限值 4107 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Base torque (Nm)",
+   "default": "0.93271",
+   "values": "额定转矩限值 0.93271 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Base power (W)",
+   "default": "401.143",
+   "values": "额定功率限值 401.143 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Allow scaled-down motor parameters with CodeGen (higher precision with Fixed-Point data type)",
+   "default": "on",
+   "values": "按比例缩小内部参数以匹配标幺比例 on (default) | off",
+   "group": ""
+  }
+ ]
+}

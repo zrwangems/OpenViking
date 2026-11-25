@@ -1,0 +1,42 @@
+{
+ "key": "Signal Sample-and-Hold",
+ "title": "Signal Sample and Hold",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Signal_Sample_and_Hold.md"
+ ],
+ "text": "离散时间或连续时间采样保持输入信号，输入 2 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Initial condition} 指定初始输出值 scalar，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "控制信号 0 | 1"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "",
+   "values": "初始输出值 scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

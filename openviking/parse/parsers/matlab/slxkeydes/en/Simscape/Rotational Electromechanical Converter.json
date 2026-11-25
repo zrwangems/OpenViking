@@ -1,0 +1,13 @@
+{
+ "key": "Rotational Electromechanical Converter",
+ "title": "Rotational Electromechanical Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Rotational_Electromechanical_Converter.md"
+ ],
+ "text": "Piecewise linear diode in electrical systems.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

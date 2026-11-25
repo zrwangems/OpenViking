@@ -1,0 +1,73 @@
+{
+ "key": "ethercatcoewrite",
+ "title": "EtherCAT Sync SDO Download",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Sync_SDO_Download.md"
+ ],
+ "text": "同步传输数据到由服务数据对象表示的从站设备，输入 1 路、输出 1 路；按 {Data Type} 指定CANopen 寄存器的数据类型；{Index} 指定 CANopen 寄存器的索引 integer、{Subindex} 指定 CANopen 寄存器的子索引 integer、{Dimension} 指定 CANopen 寄存器的维度、{Network Device Index} 指定 EtherCAT 网络标识符、{SubDevice Name} 指定包含 CANopen 寄存器的设备名称 character、{Sample time} 指定模块的采样时间、{Timeout} 指定等待从属设备响应的时间 numeric，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "要写入从属设备的数据 numeric"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "报告 EtherCAT 网络错误 0 | integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Index",
+   "default": "",
+   "values": "CANopen 寄存器的索引 integer",
+   "group": ""
+  },
+  {
+   "name": "Subindex",
+   "default": "",
+   "values": "CANopen 寄存器的子索引 integer",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "CANopen 寄存器的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "CANopen 寄存器的维度 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT 网络标识符 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "SubDevice Name",
+   "default": "",
+   "values": "包含 CANopen 寄存器的设备名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块的采样时间 -1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "",
+   "values": "等待从属设备响应的时间 numeric",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Delta Reference (Three-Phase)",
+ "title": "Delta Reference (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Delta_Reference_Three_Phase.md"
+ ],
+ "text": "三角形连接网络的内部参考点。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

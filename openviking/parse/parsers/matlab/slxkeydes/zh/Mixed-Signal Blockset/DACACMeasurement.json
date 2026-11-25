@@ -1,0 +1,78 @@
+{
+ "key": "DACACMeasurement",
+ "title": "DAC AC Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/DAC/Measurements & Testbenches/DAC_AC_Measurement.md"
+ ],
+ "text": "测量 DAC 输出的 AC 性能指标，输入 3 路；{Digital signal frequency (Hz)} 指定 DAC 的数字输入信号频率 1e3、{Start conversion frequency (Hz)} 指定内部启动转换时钟的频率 1e6、{Settling time tolerance (LSB)} 指定计算稳定时间的容差、{Hold off time (s)} 指定测量分析前的延迟，以避免瞬态影响、{Recommended simulation stop time (s)} 指定仿真必须运行以获得有意义结果的最短时间、{Output result to base workspace} 指定将详细测试结果存储到基础工作区、{Workspace variable name} 指定存储详细测试结果的变量名称、{Show spectrum analyzer during simulation} 指定在仿真期间显示 Spectrum Analyzer，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "digital",
+   "direction": "input",
+   "summary": "来自 DAC 的数字输入信号 scalar"
+  },
+  {
+   "name": "analog",
+   "direction": "input",
+   "summary": "来自 DAC 的转换后模拟信号 scalar"
+  },
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "用于启动转换的外部时钟 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Digital signal frequency (Hz)",
+   "default": "1e3",
+   "values": "DAC 的数字输入信号频率 1e3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "1e6",
+   "values": "内部启动转换时钟的频率 1e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Settling time tolerance (LSB)",
+   "default": "0.5",
+   "values": "计算稳定时间的容差 0.5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "测量分析前的延迟，以避免瞬态影响 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Recommended simulation stop time (s)",
+   "default": "0.09",
+   "values": "仿真必须运行以获得有意义结果的最短时间 0.09 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output result to base workspace",
+   "default": "off",
+   "values": "将详细测试结果存储到基础工作区 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "dac_ac_out",
+   "values": "存储详细测试结果的变量名称 dac_ac_out (default) | character string",
+   "group": ""
+  },
+  {
+   "name": "Show spectrum analyzer during simulation",
+   "default": "on",
+   "values": "在仿真期间显示 Spectrum Analyzer on (default) | off",
+   "group": ""
+  }
+ ]
+}

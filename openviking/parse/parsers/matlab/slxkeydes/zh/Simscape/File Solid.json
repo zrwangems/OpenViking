@@ -1,0 +1,13 @@
+{
+ "key": "File Solid",
+ "title": "File Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/File_Solid.md"
+ ],
+ "text": "属性源自 CAD 文件的实体。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

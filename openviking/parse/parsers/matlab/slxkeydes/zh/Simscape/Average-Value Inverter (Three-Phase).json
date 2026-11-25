@@ -1,0 +1,13 @@
+{
+ "key": "Average-Value Inverter (Three-Phase)",
+ "title": "Average-Value Inverter (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Average_Value_Inverter_Three_Phase.md"
+ ],
+ "text": "具有固定功率损耗的平均值型直流电压到三相交流电压转换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,47 @@
+{
+ "key": "SRM Commutation",
+ "title": "SRM Commutation",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/SRM_Commutation.md"
+ ],
+ "text": "Generate switching sequences for n -phase switched reluctance motor (SRM), 3 inputs, 1 output, {Input position units} sets Unit of position inputs; {Number of motor phases} sets the number of phases in SRM. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "Electrical motor position scalar"
+  },
+  {
+   "name": "θ eOn",
+   "direction": "input",
+   "summary": "Turn on electrical motor position scalar"
+  },
+  {
+   "name": "θ eOff",
+   "direction": "input",
+   "summary": "Turn off electrical motor position scalar"
+  },
+  {
+   "name": "Ctrl",
+   "direction": "output",
+   "summary": "Control signal vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of motor phases",
+   "default": "3",
+   "values": "Number of phases in SRM 3 (default) | 4 | 5 | 6",
+   "group": ""
+  },
+  {
+   "name": "Input position units",
+   "default": "Radians",
+   "values": "Unit of position inputs Radians (default) | Per unit | Degrees",
+   "group": ""
+  }
+ ]
+}

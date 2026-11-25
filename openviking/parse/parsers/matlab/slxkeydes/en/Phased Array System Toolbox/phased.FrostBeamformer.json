@@ -1,0 +1,280 @@
+{
+ "key": "phased.FrostBeamformer",
+ "title": "Frost Beamformer",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Beamforming/Frost_Beamformer.md"
+ ],
+ "text": "Frost beamformer, 3 inputs, 2 outputs, {Geometry} sets Array geometry; {Signal propagation speed (m/s)} sets the signal propagation speed physconst, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate, {FIR filter length}, {Diagonal loading factor}, {Enable training data input} enables the use of training data, {Source of beamforming direction}, {Beamforming direction (deg)} sets the beamforming direction 2-by-1 real-valued, {Enable weights output} sets the option to output beamformer weights, {Simulate using} sets the block simulation method Interpreted, {Specify sensor array as} sets the method to specify array Array, {Expression} sets the mATLAB expression used to create an array Phased Array System Toolbox™ array System, {Element type} sets the array element types, {Operating frequency range (Hz)} sets the operating frequency range of the antenna or microphone element, {Operating frequency vector (Hz)} sets the operating frequency range of custom antenna or microphone elements, {Baffle the back of the element} sets the back response of an Isotropic Antenna element or an Omni Microphone element, {Exponent of cosine pattern} sets the exponents of azimuth and elevation cosine patterns, {Frequency responses (dB)} sets the antenna and microphone frequency response, {Input Pattern Coordinate System} sets the coordinate system of custom antenna pattern, {Azimuth angles (deg)} sets the azimuth angles of antenna radiation pattern, {Elevation angles (deg)} sets the elevation angles of antenna radiation pattern, {Phi Angles (deg)} sets the phi angle coordinates of custom antenna radiation pattern, {Theta Angles (deg)} sets the theta angle coordinates of custom antenna radiation pattern, {Magnitude pattern (dB)} sets the magnitude of combined antenna radiation pattern, {Phase pattern (deg)} sets the custom antenna radiation phase pattern, {MatchArrayNormal} sets the rotate antenna element to array normal, {Polar pattern frequencies (Hz)} sets the polar pattern microphone response frequencies, {Polar pattern angles (deg)} sets the polar pattern response angles, {Polar pattern (dB)} sets the custom microphone polar response zeros, {Number of elements} sets the number of array elements 2 for ULA arrays and 5 for UCA, {Element spacing (m)} sets the spacing between array elements 0.5 for ULA arrays, {Array axis} sets the linear axis direction, {Array size} sets the dimensions of URA array, {Element lattice} sets the lattice of URA element positions, {Array normal}, {Radius of UCA (m)} sets the uCA array radius, {Element positions (m)} sets the positions of conformal array elements, {Element normals (deg)} sets the direction of conformal array element normal vectors and {Taper} sets the array element tapers. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input signal M -by- N complex-valued matrix"
+  },
+  {
+   "name": "XT",
+   "direction": "input",
+   "summary": "Training signal M -by- N complex-valued matrix"
+  },
+  {
+   "name": "Ang",
+   "direction": "input",
+   "summary": "Beamforming direction 2 -by- 1 real-valued vector"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Beamformed output M -by-1 complex-valued vector"
+  },
+  {
+   "name": "W",
+   "direction": "output",
+   "summary": "Beamforming weights N -by-1 complex-valued vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "FIR filter length",
+   "default": "1",
+   "values": "FIR filter length 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Diagonal loading factor",
+   "default": "",
+   "values": "Diagonal loading factor for stability nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable training data input",
+   "default": "off",
+   "values": "Enable the use of training data off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of beamforming direction",
+   "default": "Property",
+   "values": "Source of beamforming direction Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Beamforming direction (deg)",
+   "default": "",
+   "values": "Beamforming direction 2-by-1 real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Enable weights output",
+   "default": "off",
+   "values": "Option to output beamformer weights off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Specify sensor array as",
+   "default": "subarrays)",
+   "values": "Method to specify array Array (no subarrays) (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Expression",
+   "default": "",
+   "values": "MATLAB expression used to create an array Phased Array System Toolbox™ array System object",
+   "group": ""
+  },
+  {
+   "name": "Element type",
+   "default": "Antenna",
+   "values": "Array element types Isotropic Antenna (default) | Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency range (Hz)",
+   "default": "[0,1e20]",
+   "values": "Operating frequency range of the antenna or microphone element [0,1e20] (default) | real-valued 1-by-2 row vector",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency vector (Hz)",
+   "default": "[0,1e20]",
+   "values": "Operating frequency range of custom antenna or microphone elements [0,1e20] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Baffle the back of the element",
+   "default": "off",
+   "values": "Set back response of an Isotropic Antenna element or an Omni Microphone element to zero off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Exponent of cosine pattern",
+   "default": "1.5]",
+   "values": "Exponents of azimuth and elevation cosine patterns [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2 matrix of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Frequency responses (dB)",
+   "default": "[0,0]",
+   "values": "Antenna and microphone frequency response [0,0] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Input Pattern Coordinate System",
+   "default": "az-el",
+   "values": "Coordinate system of custom antenna pattern az-el (default) | phi-theta",
+   "group": ""
+  },
+  {
+   "name": "Azimuth angles (deg)",
+   "default": "[-180:180]",
+   "values": "Azimuth angles of antenna radiation pattern [-180:180] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "[-90:90]",
+   "values": "Elevation angles of antenna radiation pattern [-90:90] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Phi Angles (deg)",
+   "default": "",
+   "values": "Phi angle coordinates of custom antenna radiation pattern 0:360 | real-valued 1-by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Theta Angles (deg)",
+   "default": "",
+   "values": "Theta angle coordinates of custom antenna radiation pattern 0:180 | real-valued 1-by- Q row vector",
+   "group": ""
+  },
+  {
+   "name": "Magnitude pattern (dB)",
+   "default": "zeros(181,361)",
+   "values": "Magnitude of combined antenna radiation pattern zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Phase pattern (deg)",
+   "default": "zeros(181,361)",
+   "values": "Custom antenna radiation phase pattern zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": ""
+  },
+  {
+   "name": "MatchArrayNormal",
+   "default": "on",
+   "values": "Rotate antenna element to array normal on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern frequencies (Hz)",
+   "default": "1e3",
+   "values": "Polar pattern microphone response frequencies 1e3 (default) | real scalar | real-valued 1-by- L row vector",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern angles (deg)",
+   "default": "[-180:180]",
+   "values": "Polar pattern response angles [-180:180] (default) | real-valued -by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern (dB)",
+   "default": "zeros(1,361)",
+   "values": "Custom microphone polar response zeros(1,361) (default) | real-valued L -by- P matrix",
+   "group": ""
+  },
+  {
+   "name": "Geometry",
+   "default": "ULA",
+   "values": "Array geometry ULA (default) | URA | UCA | Conformal Array",
+   "group": ""
+  },
+  {
+   "name": "Number of elements",
+   "default": "arrays",
+   "values": "Number of array elements 2 for ULA arrays and 5 for UCA arrays (default) | integer greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Element spacing (m)",
+   "default": "arrays",
+   "values": "Spacing between array elements 0.5 for ULA arrays and [0.5,0.5] for URA arrays (default) | positive scalar for ULA or URA arrays | 2-element vector of positive values for URA arrays",
+   "group": ""
+  },
+  {
+   "name": "Array axis",
+   "default": "y",
+   "values": "Linear axis direction of ULA y (default) | x | z",
+   "group": ""
+  },
+  {
+   "name": "Array size",
+   "default": "[2,2]",
+   "values": "Dimensions of URA array [2,2] (default) | positive integer | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Element lattice",
+   "default": "Rectangular",
+   "values": "Lattice of URA element positions Rectangular (default) | Triangular",
+   "group": ""
+  },
+  {
+   "name": "Array normal",
+   "default": "arrays",
+   "values": "Array normal direction x for URA arrays or z for UCA arrays (default) | y",
+   "group": ""
+  },
+  {
+   "name": "Radius of UCA (m)",
+   "default": "0.5",
+   "values": "UCA array radius 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Element positions (m)",
+   "default": "[0;0;0]",
+   "values": "Positions of conformal array elements [0;0;0] (default) | 3-by- N matrix of real values",
+   "group": ""
+  },
+  {
+   "name": "Element normals (deg)",
+   "default": "",
+   "values": "Direction of conformal array element normal vectors [0;0] | 2-by-1 column vector | 2-by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Taper",
+   "default": "1",
+   "values": "Array element tapers 1 (default) | complex scalar | complex-valued row vector",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "key": "phased.LCMVBeamformer",
+ "title": "LCMV Beamformer",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Beamforming/LCMV_Beamformer.md"
+ ],
+ "text": "Narrowband linear constraint minimum variance (LCMV) beamformer, 2 inputs, 2 outputs; {Constraint matrix} sets the lCMV beamformer constraint matrix complex, {Desired response vector} sets the desired response for LCMV beamforming, {Diagonal loading factor}, {Enable training data input}, {Enable weights output} enables output of beamformer weights and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input signal M -by- N complex-valued matrix"
+  },
+  {
+   "name": "XT",
+   "direction": "input",
+   "summary": "Training signal P -by- N complex-valued matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Beamformed output M -by-1 complex-valued column vector"
+  },
+  {
+   "name": "W",
+   "direction": "output",
+   "summary": "Beamformer weights output N -by-1 complex-valued column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Constraint matrix",
+   "default": "complex([1;1])",
+   "values": "LCMV beamformer constraint matrix complex([1;1]) (default) | N -by- K complex-valued matrix",
+   "group": ""
+  },
+  {
+   "name": "Desired response vector",
+   "default": "1",
+   "values": "Desired response for LCMV beamforming 1 (default) | real-valued K -by-1 column vector",
+   "group": ""
+  },
+  {
+   "name": "Diagonal loading factor",
+   "default": "",
+   "values": "Diagonal loading factor positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable training data input",
+   "default": "off",
+   "values": "Enable training data input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable weights output",
+   "default": "off",
+   "values": "Enable output of beamformer weights off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

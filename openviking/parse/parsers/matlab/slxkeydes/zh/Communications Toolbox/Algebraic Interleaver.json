@@ -1,0 +1,13 @@
+{
+ "key": "Algebraic Interleaver",
+ "title": "Algebraic Interleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/Algebraic_Interleaver.md"
+ ],
+ "text": "使用代数推导的置换表重新排列输入符号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

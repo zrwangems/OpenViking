@@ -1,0 +1,13 @@
+{
+ "key": "PS Signal Specification",
+ "title": "PS Signal Specification",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Utilities/PS_Signal_Specification.md"
+ ],
+ "text": "指定物理信号的大小和单位。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

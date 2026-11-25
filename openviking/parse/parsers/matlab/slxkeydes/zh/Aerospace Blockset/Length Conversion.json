@@ -1,0 +1,37 @@
+{
+ "key": "Length Conversion",
+ "title": "Length Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Length_Conversion.md"
+ ],
+ "text": "从长度单位转换为所需长度单位，输入 1 路、输出 1 路；按 {Initial unit} 指定输入单位；{Final unit} 指定输入单位 m，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "长度 scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "长度 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "ft",
+   "values": "输入单位 ft (default) | m | km | in | mi | naut mi",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "m",
+   "values": "输入单位 m (default) | ft | km | in | mi | naut mi",
+   "group": ""
+  }
+ ]
+}

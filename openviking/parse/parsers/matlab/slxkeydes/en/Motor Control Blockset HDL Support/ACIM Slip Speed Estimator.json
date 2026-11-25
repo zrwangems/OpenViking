@@ -1,0 +1,73 @@
+{
+ "key": "ACIM Slip Speed Estimator",
+ "title": "ACIM Slip Speed Estimator",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Control Reference/ACIM_Slip_Speed_Estimator.md",
+  "Motor Control Blockset/Controls/Control Reference/ACIM_Slip_Speed_Estimator.md"
+ ],
+ "text": "Calculate slip speed of AC induction motor, 2 inputs, 1 output; {Number of pole pairs}, {Rotor resistance (Ohm)} sets the rotor resistance of motor, {Rotor leakage inductance (H)} sets the leakage inductance of rotor winding, {Magnetizing inductance (H)} sets the magnetizing inductance of induction motor, {Output saturation (rpm)} sets the saturation value for the block output, {Input units} sets the unit of input values Per-Unit and {Base speed (rpm)} sets the base speed for per-unit system. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I sd ref",
+   "direction": "input",
+   "summary": "Reference d -axis stator current scalar"
+  },
+  {
+   "name": "I sq ref",
+   "direction": "input",
+   "summary": "Reference q -axis stator current scalar"
+  },
+  {
+   "name": "⍵ m slip",
+   "direction": "output",
+   "summary": "Slip speed of induction motor scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of pole pairs",
+   "default": "2",
+   "values": "Number of pole pairs available in motor 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rotor resistance (Ohm)",
+   "default": "1.05",
+   "values": "Rotor resistance of motor 1.05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rotor leakage inductance (H)",
+   "default": "6.81e-3",
+   "values": "Leakage inductance of rotor winding 6.81e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Magnetizing inductance (H)",
+   "default": "30e-3",
+   "values": "Magnetizing inductance of induction motor 30e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output saturation (rpm)",
+   "default": "150",
+   "values": "Saturation value for the block output 150 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input units",
+   "default": "(PU)",
+   "values": "Unit of input values Per-Unit (PU) (default) | SI Units",
+   "group": ""
+  },
+  {
+   "name": "Base speed (rpm)",
+   "default": "1500",
+   "values": "Base speed for per-unit system 1500 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

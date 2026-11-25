@@ -1,0 +1,70 @@
+{
+ "key": "Unicycle Kinematic Model",
+ "title": "Unicycle Kinematic Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Mobile Robot Algorithms/Unicycle_Kinematic_Model.md"
+ ],
+ "text": "Compute vehicle motion using unicycle kinematic model, 3 inputs, 2 outputs; {Vehicle inputs} sets the type of speed and directional inputs for vehicle Vehicle Speed & Heading Angular, {Wheel radius}, {Wheel speed range} sets the minimum and Maximum vehicle speeds, {Initial state} sets the distance between front and rear axles and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dϕ/dt",
+   "direction": "input",
+   "summary": "Angular velocity of wheel numeric scalar"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "Vehicle speed numeric scalar"
+  },
+  {
+   "name": "ω",
+   "direction": "input",
+   "summary": "Steering angular velocity numeric scalar"
+  },
+  {
+   "name": "state",
+   "direction": "output",
+   "summary": "Pose of vehicle three-element vector"
+  },
+  {
+   "name": "stateDot",
+   "direction": "output",
+   "summary": "Derivatives of state output three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vehicle inputs",
+   "default": "Velocity",
+   "values": "Type of speed and directional inputs for vehicle Vehicle Speed & Heading Angular Velocity (default) | Wheel Speed & Heading Angular Velocity",
+   "group": ""
+  },
+  {
+   "name": "Wheel radius",
+   "default": "0.1",
+   "values": "Wheel radius of vehicle 0.1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Wheel speed range",
+   "default": "Inf]",
+   "values": "Minimum and Maximum vehicle speeds [-Inf Inf] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "[0;0;0]",
+   "values": "Distance between front and rear axles [0;0;0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

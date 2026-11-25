@@ -1,0 +1,225 @@
+{
+ "key": "Delta Sigma Modulator",
+ "title": "Delta Sigma Modulator",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Building Blocks/Delta_Sigma_Modulator.md"
+ ],
+ "text": "基于 delta-sigma 调制器的 ADC，输入 3 路、输出 3 路；按 {Delta Sigma Modulator architecture} 指定delta-sigma 调制器的架构；{Delta Sigma Modulator order} 指定 delta-sigma 调制器的阶数 2nd、{System bandwidth (Hz)} 指定 delta-sigma 调制器系统的带宽、{OSR} 指定 delta-sigma、{Sampling frequency (Hz)} 指定 delta-sigma 调制器的采样频率 128e3、{Quantizer levels} 指定 delta-sigma 调制器中量化器的级数、{Quantizer output} 指定量化器输出的范围、{Enable dynamic range scaling} 启用系数的动态范围缩放、{Use custom coefficient values} 使用系数、{Coefficient ’a’} 指定来自/发往量化器的反馈/前馈系数、{Coefficient ’g’} 指定谐振器系数、{Coefficient ’b’} 指定从调制器输入端到每个积分器的馈入系数、{Coefficient ’c’} 指定积分器级间系数、{Integrator opamp gain} 指定运算放大器的开环增益、{Enable Noise Impairment} 指定在 delta-sigma 调制器 ADC、{Thermal noise value} 指定热噪声密度 200e-6、{Reference resistance (ohm)} 用于功率计算的参考电阻、{1/f corner frequency (Hz)} 指定闪烁噪声的拐角频率、{NTF zeros opitimization flag} 指定优化 NTF 中零点的方法、{Modulator passband} 指定调制器通带类型、{Center frequency} 指定调制器中心频率、{Use custom value of H_inf} 使用 H_inf 自定义值、{Maximum out-of-band H_inf} 指定 NTF 的最大带外增益、{Noise transfer function (NTF)} 绘制 NTF、{NTF pole-zero plot} 指定可视化 NTF 的极点和零点位置、{Signal transfer function (STF)} 绘制 STF、{Predict SNR} 指定预测二进制调制器的 SNR、{Append plots} 指定将绘图追加到当前图窗、{Generate analysis plots} 绘制选定的分析函数、{Export analysis data to workspace} 指定将分析数据导出到基础工作区，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "input",
+   "direction": "input",
+   "summary": "模拟输入信号 scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "复位 delta-sigma 调制器 scalar"
+  },
+  {
+   "name": "feedback",
+   "direction": "input",
+   "summary": "下一级的输出 scalar"
+  },
+  {
+   "name": "dsmOut",
+   "direction": "output",
+   "summary": "数字输出信号 scalar"
+  },
+  {
+   "name": "filterOut",
+   "direction": "output",
+   "summary": "环路滤波器的输出 scalar"
+  },
+  {
+   "name": "quantOut",
+   "direction": "output",
+   "summary": "量化器的输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Delta Sigma Modulator architecture",
+   "default": "CIFB",
+   "values": "delta-sigma 调制器的架构 CIFB (default) | CRFB | CIFF | CRFF",
+   "group": ""
+  },
+  {
+   "name": "Delta Sigma Modulator order",
+   "default": "order",
+   "values": "delta-sigma 调制器的阶数 2nd order (default) | 1st order | 3rd order | 4th order | 5th order | 6th order",
+   "group": ""
+  },
+  {
+   "name": "System bandwidth (Hz)",
+   "default": "1000",
+   "values": "delta-sigma 调制器系统的带宽 1000 (default) | nonnegative real scalar",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "OSR",
+   "default": "64",
+   "values": "delta-sigma 调制器采样率与奈奎斯特速率之比 64 (default) | nonnegative real scalar",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Sampling frequency (Hz)",
+   "default": "128e3",
+   "values": "delta-sigma 调制器的采样频率 128e3 (default) | positive real scalar",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Quantizer levels",
+   "default": "2",
+   "values": "delta-sigma 调制器中量化器的级数 2 (default) | positive real integer",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Quantizer output",
+   "default": "[-1,1]",
+   "values": "量化器输出的范围 [-1,1] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Enable dynamic range scaling",
+   "default": "off",
+   "values": "启用系数的动态范围缩放 off (default) | on",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Use custom coefficient values",
+   "default": "off",
+   "values": "使用系数 ’a’、’g’、’b’ 和 ’c’ 的自定义值的选项 off (default) | on",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Coefficient ’a’",
+   "default": "0.6515]",
+   "values": "来自/发往量化器的反馈/前馈系数 [0.1601 0.6515] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Coefficient ’g’",
+   "default": "[0.0000]",
+   "values": "谐振器系数 [0.0000] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Coefficient ’b’",
+   "default": "1.0000]",
+   "values": "从调制器输入端到每个积分器的馈入系数 [0.1601 0.6515 1.0000] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Coefficient ’c’",
+   "default": "1.0000]",
+   "values": "积分器级间系数 [1.0000 1.0000] (default) | real-valued vector",
+   "group": "Input Parameters"
+  },
+  {
+   "name": "Integrator opamp gain",
+   "default": "Inf",
+   "values": "运算放大器的开环增益 Inf (default) | positive real scalar",
+   "group": "Impairment"
+  },
+  {
+   "name": "Enable Noise Impairment",
+   "default": "off",
+   "values": "在 delta-sigma 调制器 ADC 中启用噪声计算 off (default) | on",
+   "group": "Impairment"
+  },
+  {
+   "name": "Thermal noise value",
+   "default": "200e-6",
+   "values": "热噪声密度 200e-6 (default) | real scalar",
+   "group": "Impairment"
+  },
+  {
+   "name": "Reference resistance (ohm)",
+   "default": "50",
+   "values": "用于功率计算的参考电阻 50 (default) | positive real scalar",
+   "group": "Impairment"
+  },
+  {
+   "name": "1/f corner frequency (Hz)",
+   "default": "1000",
+   "values": "闪烁噪声的拐角频率 1000 (default) | positive real scalar",
+   "group": "Impairment"
+  },
+  {
+   "name": "NTF zeros opitimization flag",
+   "default": "2",
+   "values": "优化 NTF 中零点的方法 2 (default) | 0 | 1",
+   "group": "Advanced"
+  },
+  {
+   "name": "Modulator passband",
+   "default": "Lowpass",
+   "values": "调制器通带类型 Lowpass (default) | Bandpass",
+   "group": "Advanced"
+  },
+  {
+   "name": "Center frequency",
+   "default": "0",
+   "values": "调制器中心频率 0 (default) | scalar in the range [0 0.5]",
+   "group": "Advanced"
+  },
+  {
+   "name": "Use custom value of H_inf",
+   "default": "off",
+   "values": "使用 H_inf 自定义值的选项 off (default) | on",
+   "group": "Advanced"
+  },
+  {
+   "name": "Maximum out-of-band H_inf",
+   "default": "1.4",
+   "values": "NTF 的最大带外增益 1.4 (default) | positive real scalar",
+   "group": "Advanced"
+  },
+  {
+   "name": "Noise transfer function (NTF)",
+   "default": "on",
+   "values": "绘制 NTF on (default) | off",
+   "group": "Analysis"
+  },
+  {
+   "name": "NTF pole-zero plot",
+   "default": "off",
+   "values": "可视化 NTF 的极点和零点位置 off (default) | on",
+   "group": "Analysis"
+  },
+  {
+   "name": "Signal transfer function (STF)",
+   "default": "STF",
+   "values": "绘制 STF (default) |",
+   "group": "Analysis"
+  },
+  {
+   "name": "Predict SNR",
+   "default": "off",
+   "values": "预测二进制调制器的 SNR off (default) | on",
+   "group": "Analysis"
+  },
+  {
+   "name": "Append plots",
+   "default": "off",
+   "values": "将绘图追加到当前图窗 off (default) | on",
+   "group": "Analysis"
+  },
+  {
+   "name": "Generate analysis plots",
+   "default": "",
+   "values": "绘制选定的分析函数 button",
+   "group": "Analysis"
+  },
+  {
+   "name": "Export analysis data to workspace",
+   "default": "off",
+   "values": "将分析数据导出到基础工作区 off (default) | on",
+   "group": "Analysis"
+  }
+ ]
+}

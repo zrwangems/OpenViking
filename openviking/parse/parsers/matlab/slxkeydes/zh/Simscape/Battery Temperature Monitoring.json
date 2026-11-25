@@ -1,0 +1,84 @@
+{
+ "key": "Battery Temperature Monitoring",
+ "title": "Battery Temperature Monitoring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Protection/Battery_Temperature_Monitoring.md"
+ ],
+ "text": "电池温度监测，输入 1 路、输出 2 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Specify input as [Min,Max]} 指定将输入指定为最小值和最大值、{Undertemperature limit} 指定低温限值、{Overtemperature limit} 指定高温限值、{Qualification time undertemperature (s)} 指定低温确认时间、{Disqualification time undertemperature (s)} 指定低温取消确认时间、{Qualification time overtemperature (s)} 指定高温确认时间、{Disqualification time overtemperature (s)} 指定高温取消确认时间、{Algorithm data type} 用于选择模块算法数据类型的选项 Inherit，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "电芯温度，K scalar | vector"
+  },
+  {
+   "name": "UndertemperatureError",
+   "direction": "output",
+   "summary": "低温错误指示，无单位 0 | 1"
+  },
+  {
+   "name": "OvertemperatureError",
+   "direction": "output",
+   "summary": "高温错误指示，无单位 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify input as [Min,Max]",
+   "default": "off",
+   "values": "将输入指定为最小值和最大值的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Undertemperature limit",
+   "default": "270",
+   "values": "低温限值 270 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Overtemperature limit",
+   "default": "320",
+   "values": "高温限值 320 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time undertemperature (s)",
+   "default": "2",
+   "values": "低温确认时间 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time undertemperature (s)",
+   "default": "0",
+   "values": "低温取消确认时间 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time overtemperature (s)",
+   "default": "2",
+   "values": "高温确认时间 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time overtemperature (s)",
+   "default": "0",
+   "values": "高温取消确认时间 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

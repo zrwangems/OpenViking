@@ -1,0 +1,97 @@
+{
+ "key": "LoopFilter",
+ "title": "Loop Filter",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/Loop_Filter.md"
+ ],
+ "text": "对二阶、三阶或四阶无源环路滤波器进行建模，输入 1 路、输出 1 路；按 {Loop filter type} 指定环路滤波器的阶数 3rd Order；{C1 (F)} 指定电容 1 14.5661e-15、{C2 (F)} 指定电容 2 160.276e-15、{C3 (F)} 指定电容 3 1.0452e-15、{C4 (F)} 指定电容 4 1e-12、{R2 (ohms)} 指定电阻 2 3.9955e6、{R3 (ohms)} 指定电阻 3 51.0435e6、{R4 (ohms)} 指定电阻 4 12e3、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数、{Enable impairments} 指定向仿真添加电路损伤、{Operating temperature (℃)} 用于确定热噪声水平的温度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "输入电流 scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "输出电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Loop filter type",
+   "default": "passive",
+   "values": "环路滤波器的阶数 3rd Order passive (default) | 2nd Order passive | 4th Order passive",
+   "group": "Configuration"
+  },
+  {
+   "name": "C1 (F)",
+   "default": "14.5661e-15",
+   "values": "电容 1 14.5661e-15 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "C2 (F)",
+   "default": "160.276e-15",
+   "values": "电容 2 160.276e-15 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "C3 (F)",
+   "default": "1.0452e-15",
+   "values": "电容 3 1.0452e-15 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "C4 (F)",
+   "default": "1e-12",
+   "values": "电容 4 1e-12 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "R2 (ohms)",
+   "default": "3.9955e6",
+   "values": "电阻 2 3.9955e6 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "R3 (ohms)",
+   "default": "51.0435e6",
+   "values": "电阻 3 51.0435e6 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "R4 (ohms)",
+   "default": "12e3",
+   "values": "电阻 4 12e3 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Buffer size",
+   "default": "1000",
+   "values": "仿真期间可用的输入缓冲样本数 1000 (default) | positive integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable impairments",
+   "default": "off",
+   "values": "向仿真添加电路损伤 off (default) | on",
+   "group": "Impairments"
+  },
+  {
+   "name": "Operating temperature (℃)",
+   "default": "30",
+   "values": "用于确定热噪声水平的温度 30 (default) | scalar",
+   "group": "Impairments"
+  }
+ ]
+}

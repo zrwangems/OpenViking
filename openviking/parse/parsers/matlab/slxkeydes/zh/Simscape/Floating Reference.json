@@ -1,0 +1,14 @@
+{
+ "key": "Floating Reference",
+ "title": "Floating Reference",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Floating_Reference.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Floating_Reference.md"
+ ],
+ "text": "用于测量浮动电气网络中其他节点电压的参考。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,117 @@
+{
+ "key": "Digital DATCOM Forces and Moments",
+ "title": "Digital DATCOM Forces and Moments",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Aerodynamics/Digital_DATCOM_Forces_and_Moments.md"
+ ],
+ "text": "使用 Digital DATCOM 静态和动态稳定性导数计算气动力和气动力矩，输入 10 路、输出 2 路；按 {Units} 指定单位 Metric；{Digital DATCOM structure} 指定 Digital DATCOM 数据结构、{Force axes} 指定气动力的坐标系、{Interpolation method} 指定插值方法 None、{Extrapolation method} 指定外插方法 None、{Process out-of-range input} 指定处理超出范围的输入 Clip、{Action for out-of-range input} 指定超出范围时的模块行为，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "迎角 scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "侧滑角 scalar"
+  },
+  {
+   "name": "Port_3",
+   "direction": "input",
+   "summary": "马赫数 scalar"
+  },
+  {
+   "name": "Port_4",
+   "direction": "input",
+   "summary": "高度 scalar"
+  },
+  {
+   "name": "Port_5",
+   "direction": "input",
+   "summary": "动压 scalar"
+  },
+  {
+   "name": "Port_6",
+   "direction": "input",
+   "summary": "速度 three-element vector"
+  },
+  {
+   "name": "Port_7",
+   "direction": "input",
+   "summary": "迎角变化率 scalar"
+  },
+  {
+   "name": "Port_8",
+   "direction": "input",
+   "summary": "机体角速度 three-element vector"
+  },
+  {
+   "name": "Port_9",
+   "direction": "input",
+   "summary": "地面高度 scalar"
+  },
+  {
+   "name": "Port_10",
+   "direction": "input",
+   "summary": "操纵面偏转 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "重心处的气动力 three-element vector"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "重心处的气动力矩 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Digital DATCOM structure",
+   "default": "factstruct{1}",
+   "values": "Digital DATCOM 数据结构 factstruct{1} (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "Force axes",
+   "default": "Body",
+   "values": "气动力的坐标系 Body (default) | Wind",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "flat",
+   "values": "插值方法 None - flat (default) | Linear",
+   "group": ""
+  },
+  {
+   "name": "Extrapolation method",
+   "default": "clip",
+   "values": "外插方法 None - clip (default) | Linear",
+   "group": ""
+  },
+  {
+   "name": "Process out-of-range input",
+   "default": "Range",
+   "values": "处理超出范围的输入 Clip to Range (default) | Linear Extrapolation",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  }
+ ]
+}

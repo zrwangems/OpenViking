@@ -1,0 +1,37 @@
+{
+ "key": "dsp.simulink.ExtractTriangularMatrix",
+ "title": "Extract Triangular Matrix",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Extract_Triangular_Matrix.md"
+ ],
+ "text": "从输入矩阵中提取下三角或上三角，输入 1 路、输出 1 路、无直接馈通；{Extract} 指定要提取的矩阵分量、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "输入 vector | matrix"
+  },
+  {
+   "name": "U",
+   "direction": "output",
+   "summary": "下三角或上三角输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Extract",
+   "default": "Upper",
+   "values": "要提取的矩阵分量 Upper (default) | Lower",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Weld Joint",
+ "title": "Weld Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Weld_Joint.md"
+ ],
+ "text": "Joint with zero primitives.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

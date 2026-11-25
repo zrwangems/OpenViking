@@ -1,0 +1,214 @@
+{
+ "key": "Equivalent Circuit Battery",
+ "title": "Equivalent Circuit Battery",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/Network Battery/Equivalent_Circuit_Battery.md"
+ ],
+ "text": "电阻-电容 (RC) 电路电池；输出 2 路；{Initial battery capacity} 指定输入或参数、{Output battery voltage} 指定 Unfiltered 或 Filter、{Include current polarity} 添加电流方向、{Include hysteresis} 添加迟滞电压、{Include entropic heating} 添加熵热、{Number of series RC pairs} 指定 RC 对、{Open circuit voltage Em table data, Em} 指定电压表、{Series resistance table data, R0} 指定电阻 array、{Series charge resistance table data, R0Charge} 指定充电电阻 array、{Series discharge resistance table data, R0Discharge} 指定放电电阻 array、{State of charge breakpoints, SOC_BP} 指定 SOC 断点、{Temperature breakpoints, Temperature_BP} 指定电池、{Battery capacity table, BattCap} 指定容量、{Initial battery capacity, BattCapInit} 指定容量、{Initial capacitor voltage, InitialCapVoltage} 指定电压、{Output battery voltage time constant, Tc} 指定滤波器时间常数、{Output battery voltage initial value, Vinit} 指定滤波器初始电压、{Network resistance table data, R n} 查找表、{Network capacitance table data, C n} 查找表、{Network charge resistance table data, R n Charge} 查找表、{Network charge capacitance table data, C n Charge} 查找表、{Network discharge resistance table data, R n Discharge} 查找表、{Network discharge capacitance table data, C n Disharge} 查找表、{Upper integrator voltage limit, Vu} 指定 Maximum、{Lower integrator voltage limit, Vl} 指定 Minimum、{Entropic Coefficient, EntdUdT} 查找表、{Hysteresis Rate, HystRate} 指定迟滞率、{Maximum Hysteresis Voltage, MaxHystVolt} 查找表、{Instantaneous Hysteresis Voltage, InstHystVolt} 查找表，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CapInit",
+   "direction": "",
+   "summary": "电池容量 scalar"
+  },
+  {
+   "name": "BattCurr",
+   "direction": "",
+   "summary": "电池网络电流 scalar"
+  },
+  {
+   "name": "BattTemp",
+   "direction": "",
+   "summary": "电池温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "BattVolt",
+   "direction": "output",
+   "summary": "电池输出电压 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial battery capacity",
+   "default": "Parameter",
+   "values": "输入或参数 Parameter (default) | External Input",
+   "group": ""
+  },
+  {
+   "name": "Output battery voltage",
+   "default": "Unfiltered",
+   "values": "Unfiltered 或 Filter Unfiltered (default) | Filtered",
+   "group": ""
+  },
+  {
+   "name": "Include current polarity",
+   "default": "off",
+   "values": "添加电流方向 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Include hysteresis",
+   "default": "off",
+   "values": "添加迟滞电压 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Include entropic heating",
+   "default": "off",
+   "values": "添加熵热 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of series RC pairs",
+   "default": "1",
+   "values": "RC 对 1 (default) | 0 | 2 | 3 | 4 | 5",
+   "group": ""
+  },
+  {
+   "name": "Open circuit voltage Em table data, Em",
+   "default": "4.193]",
+   "values": "电压表 [3.5042 3.5136; 3.5573 3.5646; 3.6009 3.6153; 3.6393 3.6565; 3.6742 3.6889; 3.7121 3.7214; 3.7937 3.8078; 3.8753 3.8945; 3.97 3.9859; 4.0764 4.0821; 4.1924 4.193] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Series resistance table data, R0",
+   "default": "",
+   "values": "电阻 array",
+   "group": ""
+  },
+  {
+   "name": "Series charge resistance table data, R0Charge",
+   "default": "",
+   "values": "充电电阻 array",
+   "group": ""
+  },
+  {
+   "name": "Series discharge resistance table data, R0Discharge",
+   "default": "",
+   "values": "放电电阻 array",
+   "group": ""
+  },
+  {
+   "name": "State of charge breakpoints, SOC_BP",
+   "default": "1]",
+   "values": "SOC 断点 [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Temperature breakpoints, Temperature_BP",
+   "default": "313.15]",
+   "values": "电池 [293.15 313.15] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Battery capacity table, BattCap",
+   "default": "28]",
+   "values": "容量 [28 28] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Initial battery capacity, BattCapInit",
+   "default": "28",
+   "values": "容量 28 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial capacitor voltage, InitialCapVoltage",
+   "default": "0",
+   "values": "电压 0 (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Output battery voltage time constant, Tc",
+   "default": "1/1000",
+   "values": "滤波器时间常数 1/1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output battery voltage initial value, Vinit",
+   "default": "4.193",
+   "values": "滤波器初始电压 4.193 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Network resistance table data, R n",
+   "default": "0.0010309]",
+   "values": "查找表 [0.010342 0.0012244; 0.0067316 0.0011396; 0.0051156 0.0012661; 0.0043447 0.0012265; 0.0038826 0.0011163; 0.0034226 0.0009968; 0.003346 0.0011458; 0.0033222 0.001345; 0.0033201 0.0013091; 0.0032886 0.0010986; 0.0028114 0.0010309] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Network capacitance table data, C n",
+   "default": "24795]",
+   "values": "查找表 [2287.7 11897; 6122 24515; 18460 42098; 20975 44453; 15254 33098; 10440 24492; 13903 32975; 16694 40007; 15784 35937; 12165 26430; 9118 24795] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Network charge resistance table data, R n Charge",
+   "default": "0.0010309]",
+   "values": "查找表 [0.010342 0.0012244; 0.0067316 0.0011396; 0.0051156 0.0012661; 0.0043447 0.0012265; 0.0038826 0.0011163; 0.0034226 0.0009968; 0.003346 0.0011458; 0.0033222 0.001345; 0.0033201 0.0013091; 0.0032886 0.0010986; 0.0028114 0.0010309] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Network charge capacitance table data, C n Charge",
+   "default": "24795]",
+   "values": "查找表 [2287.7 11897; 6122 24515; 18460 42098; 20975 44453; 15254 33098; 10440 24492; 13903 32975; 16694 40007; 15784 35937; 12165 26430; 9118 24795] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Network discharge resistance table data, R n Discharge",
+   "default": "0.0010309]",
+   "values": "查找表 [0.010342 0.0012244; 0.0067316 0.0011396; 0.0051156 0.0012661; 0.0043447 0.0012265; 0.0038826 0.0011163; 0.0034226 0.0009968; 0.003346 0.0011458; 0.0033222 0.001345; 0.0033201 0.0013091; 0.0032886 0.0010986; 0.0028114 0.0010309] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Network discharge capacitance table data, C n Disharge",
+   "default": "24795]",
+   "values": "查找表 [2287.7 11897; 6122 24515; 18460 42098; 20975 44453; 15254 33098; 10440 24492; 13903 32975; 16694 40007; 15784 35937; 12165 26430; 9118 24795] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Upper integrator voltage limit, Vu",
+   "default": "-Inf",
+   "values": "Maximum -Inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lower integrator voltage limit, Vl",
+   "default": "-Inf",
+   "values": "Minimum -Inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Entropic Coefficient, EntdUdT",
+   "default": "0.0324]/1000",
+   "values": "查找表 [-0.2226 -0.2922 -0.1085 -0.0580 0.1027 0.1195 0.0549 -0.0202 -0.0231 0.0165 0.0324]/1000 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Hysteresis Rate, HystRate",
+   "default": "0.1",
+   "values": "迟滞率 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum Hysteresis Voltage, MaxHystVolt",
+   "default": "0]",
+   "values": "查找表 [0 0;0 0;0 0;0 0;0 0; 0 0; 0 0; 0 0; 0 0; 0 0; 0 0] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Instantaneous Hysteresis Voltage, InstHystVolt",
+   "default": "0]",
+   "values": "查找表 [0 0;0 0;0 0;0 0;0 0; 0 0; 0 0; 0 0; 0 0; 0 0; 0 0] (default) | array",
+   "group": ""
+  }
+ ]
+}

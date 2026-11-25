@@ -1,0 +1,52 @@
+{
+ "key": "NR CRC Encoder",
+ "title": "NR CRC Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/NR_CRC_Encoder.md"
+ ],
+ "text": "Generate CRC code bits and append them to input data, 3 inputs, 2 outputs, {CRC type} sets Type of CRC; {Enable CRC mask input port} enables CRC checksum mask input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data binary scalar | binary vector | unsigned integer scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "CRCMask",
+   "direction": "input",
+   "summary": "CRC checksum mask nonnegative integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "CRC-encoded data scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "CRC type",
+   "default": "CRC16",
+   "values": "Type of CRC CRC16 (default) | CRC6 | CRC11 | CRC24A | CRC24B | CRC24C",
+   "group": ""
+  },
+  {
+   "name": "Enable CRC mask input port",
+   "default": "off",
+   "values": "Enable CRC checksum mask input port off (default) | on",
+   "group": ""
+  }
+ ]
+}

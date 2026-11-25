@@ -1,0 +1,137 @@
+{
+ "key": "Integrator",
+ "title": "Integrator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Integrator.md",
+  "Simulink/Continuous/Integrator.md",
+  "Simulink/Continuous/Integrator_Limited.md"
+ ],
+ "text": "Integrate signal, 3 inputs, 3 outputs, no direct feedthrough, {Wrapped state lower value} sets lower value for wrap state; {External reset} sets the reset states to their initial conditions, {Initial condition source} sets the option to set initial condition using external signal, {Initial condition} sets the initial state, {Limit output} limits block output values to specified, {Upper saturation limit} sets the upper limit, {Lower saturation limit} sets the lower limit, {Wrap state} enables wrapping of states, {Wrapped state upper value} sets the upper value for wrapped, {Show saturation port} enables saturation output port, {Show state port} enables state output port, {Absolute tolerance}, {Ignore limit and reset when linearizing} sets the option to use default reset and limit behavior for block during, {Enable zero-crossing detection} and {State Name (e.g., ’position’)} sets the assign unique name to each state. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Signal to integrate scalar | vector | matrix"
+  },
+  {
+   "name": "External Reset",
+   "direction": "input",
+   "summary": "Signal for resetting state to initial condition scalar | vector | matrix"
+  },
+  {
+   "name": "x 0",
+   "direction": "input",
+   "summary": "Initial condition scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Integrated signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Output saturation signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "Block state scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "External reset",
+   "default": "none",
+   "values": "Reset states to their initial conditions none (default) | rising | falling | either | level | level hold",
+   "group": ""
+  },
+  {
+   "name": "Initial condition source",
+   "default": "internal",
+   "values": "Option to set initial condition using external signal internal (default) | external",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial state 0 (default) | real scalar or array",
+   "group": ""
+  },
+  {
+   "name": "Limit output",
+   "default": "",
+   "values": "Limit block output values to specified range off (default for Integrator ) | on (default for Integrator Limited )",
+   "group": ""
+  },
+  {
+   "name": "Upper saturation limit",
+   "default": "inf",
+   "values": "Upper limit for the integral inf (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Lower saturation limit",
+   "default": "-inf",
+   "values": "Lower limit for the integral -inf (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Wrap state",
+   "default": "off",
+   "values": "Enable wrapping of states off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Wrapped state upper value",
+   "default": "pi",
+   "values": "Specify upper value for wrapped state pi (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Wrapped state lower value",
+   "default": "-pi",
+   "values": "Specify lower value for wrap state -pi (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Show saturation port",
+   "default": "off",
+   "values": "Enable saturation output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show state port",
+   "default": "off",
+   "values": "Enable state output port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "auto",
+   "values": "Absolute tolerance for block states auto (default) | real scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Ignore limit and reset when linearizing",
+   "default": "off",
+   "values": "Option to use default reset and limit behavior for block during linearization off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "State Name (e.g., ’position’)",
+   "default": "’",
+   "values": "Assign unique name to each state ’ ’ (default) | character vector | string",
+   "group": ""
+  }
+ ]
+}

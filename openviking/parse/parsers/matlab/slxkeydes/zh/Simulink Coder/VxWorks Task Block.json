@@ -1,0 +1,61 @@
+{
+ "key": "VxWorks Task Block",
+ "title": "Task Sync",
+ "toolbox": "Simulink Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Coder/Asynchronous/Interrupt Templates/Task_Sync.md"
+ ],
+ "text": "通过生成示例 RTOS（VxWorks）任务来运行下游函数调用子系统或 Stateflow 图的代码，输入 1 路；按 {Timer size} 指定用于存储时钟节拍的位数；{Task name (10 characters or less)} 指定任务函数名称、{Simulink task priority (0–255)} 指定 RTOS 任务优先级、{Stack size (bytes)} 指定任务堆栈的最大大小、{Synchronize the data transfer of this task with the caller task} 指定同步、{Timer resolution (seconds)} 指定模块计时器的分辨率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "来自中断模块的调用 call"
+  },
+  {
+   "name": "Output",
+   "direction": "",
+   "summary": "对函数调用子系统的调用 call"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task name (10 characters or less)",
+   "default": "Task0",
+   "values": "任务函数名称 Task0 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Simulink task priority (0–255)",
+   "default": "50",
+   "values": "RTOS 任务优先级 50 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Stack size (bytes)",
+   "default": "1024",
+   "values": "任务堆栈的最大大小 1024 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Synchronize the data transfer of this task with the caller task",
+   "default": "off",
+   "values": "选择同步 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Timer resolution (seconds)",
+   "default": "1/60",
+   "values": "模块计时器的分辨率 1/60 (default)",
+   "group": ""
+  },
+  {
+   "name": "Timer size",
+   "default": "32bits",
+   "values": "用于存储时钟节拍的位数 32bits (default) | 16bits | 8bits | auto",
+   "group": ""
+  }
+ ]
+}

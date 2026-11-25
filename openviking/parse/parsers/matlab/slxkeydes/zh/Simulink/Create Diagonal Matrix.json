@@ -1,0 +1,24 @@
+{
+ "key": "Create Diagonal Matrix",
+ "title": "Create Diagonal Matrix",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Create_Diagonal_Matrix.md"
+ ],
+ "text": "根据对角元素创建方对角矩阵，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 矩阵"
+  }
+ ],
+ "params": []
+}

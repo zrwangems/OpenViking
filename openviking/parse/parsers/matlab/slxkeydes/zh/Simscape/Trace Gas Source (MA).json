@@ -1,0 +1,13 @@
+{
+ "key": "Trace Gas Source (MA)",
+ "title": "Trace Gas Source (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sources/Moisture & Trace Gas Sources/Trace_Gas_Source_MA.md"
+ ],
+ "text": "以恒定或随时间变化的速率注入或提取示踪气体。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,152 @@
+{
+ "key": "Extended Kalman Filter",
+ "title": "Extended Kalman Filter",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/State Estimation/Extended_Kalman_Filter.md",
+  "System Identification Toolbox/Estimators/Extended_Kalman_Filter.md"
+ ],
+ "text": "Estimate states of discrete-time nonlinear system using extended Kalman filter, 6 inputs, 2 outputs, {Initial covariance} sets State estimation error covariance; {Function} sets the state transition, {Jacobian}, {Process noise}, {Covariance} sets the time-invariant process noise covariance, {Time-varying}, {Initial state}, {Measurement noise}, {Enable measurement wrapping}, {Add Enable Port} enables correction of estimated states only when measured data, {Use the current measurements to improve state estimates} sets the between corrected or predicted state, {Output state estimation error covariance}, {Data type}, {Sample time} sets the block sample time, {Enable multirate operation} enables specification of different sample times for state transition and measurement and {Sample times} sets the state transition and measurement function sample times positive. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "y1,y2,y3,y4,y5",
+   "direction": "input",
+   "summary": "Measured system outputs vector"
+  },
+  {
+   "name": "StateTransitionFcnInputs",
+   "direction": "input",
+   "summary": "Additional optional input argument to state transition function scalar | vector | matrix"
+  },
+  {
+   "name": "MeasurementFcn1Inputs,MeasurementFcn2Inputs,MeasurementFcn3Inputs,MeasurementFcn4Inputs,MeasurementFcn5Inputs",
+   "direction": "input",
+   "summary": "Additional optional input argument to each measurement function scalar | vector | matrix"
+  },
+  {
+   "name": "Q",
+   "direction": "input",
+   "summary": "Time-varying process noise covariance scalar | vector | matrix"
+  },
+  {
+   "name": "R1,R2,R3,R4,R5",
+   "direction": "input",
+   "summary": "Time-varying measurement noise covariance matrix"
+  },
+  {
+   "name": "Enable1,Enable2,Enable3,Enable4,Enable5",
+   "direction": "input",
+   "summary": "Enable correction of estimated states when measured data is available scalar"
+  },
+  {
+   "name": "xhat",
+   "direction": "output",
+   "summary": "Estimated states vector"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "State estimation error covariance matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function",
+   "default": "myStateTransitionFcn",
+   "values": "State transition function name myStateTransitionFcn (default) | function name",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Jacobian",
+   "default": "off",
+   "values": "Jacobian of state transition function off (default) | on",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Process noise",
+   "default": "Additive",
+   "values": "Process noise characteristics Additive (default) | Nonadditive",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Covariance",
+   "default": "1",
+   "values": "Time-invariant process noise covariance 1 (default) | scalar | vector | matrix",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Time-varying",
+   "default": "’off’",
+   "values": "Time-varying process noise covariance ’off’ (default) | ’on’",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "Initial state estimate 0 (default) | vector",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Initial covariance",
+   "default": "1",
+   "values": "State estimation error covariance 1 (default) | scalar | vector | matrix",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Measurement noise",
+   "default": "Additive",
+   "values": "Measurement noise characteristics Additive (default) | Nonadditive",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Enable measurement wrapping",
+   "default": "off",
+   "values": "Enable measurement wrapping off (default) | on",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Add Enable Port",
+   "default": "off",
+   "values": "Enable correction of estimated states only when measured data is available off (default) | on",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Use the current measurements to improve state estimates",
+   "default": "on",
+   "values": "Choose between corrected or predicted state estimate on (default) | off",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Output state estimation error covariance",
+   "default": "off",
+   "values": "Output state estimation error covariance off (default) | on",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "Data type for block parameters double (default) | single",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Block sample time 1 (default) | positive scalar",
+   "group": "System Model Tab"
+  },
+  {
+   "name": "Enable multirate operation",
+   "default": "off",
+   "values": "Enable specification of different sample times for state transition and measurement functions off (default) | on",
+   "group": "Multirate Tab"
+  },
+  {
+   "name": "Sample times",
+   "default": "",
+   "values": "State transition and measurement function sample times positive scalar",
+   "group": "Multirate Tab"
+  }
+ ]
+}

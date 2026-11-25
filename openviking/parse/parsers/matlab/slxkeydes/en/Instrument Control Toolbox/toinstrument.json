@@ -1,0 +1,281 @@
+{
+ "key": "toinstrument",
+ "title": "To Instrument",
+ "toolbox": "Instrument Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Instrument Control Toolbox/To_Instrument.md"
+ ],
+ "text": "Communicate with VISA resources, 1 input, 3 outputs, {Parity} sets Parity bit type; {Block sample time} sets the time interval between samples, {Resource name} sets the vISA resource name available VISA, {Vendor} sets the instrument manufacturer Read-only: instrument manufacturer, {Model} sets the instrument model Read-only: instrument model, {Serial Number} sets the unique serial number associated with instrument Read-only: instrument serial, {VISA resource type} sets the type of VISA resource to configure TCP/IP, {Board index}, {IP address}, {Port number}, {Device ID} sets the iD of device to connect to positive, {EOI Mode}, {Byte order} sets the sequential order, {Read terminator} sets the terminator character for reading data, {Write terminator} sets the terminator character for writing, {Data bits} sets the number of bits to represent one character, {Stop bits} sets the pattern of bits that indicates the end, {Flow control} sets the mode for managing data transmission rate, {Baud rate} sets the communication speed, {Timeout} sets the allowed time to complete operations, {Instrument identification command} sets the sCPI command to send to your instrument, {Validate and test connection} sets the vISA resource connection verification, {Response} sets the instrument query response Read-only: string, {Initialization commands} sets the sCPI command to send to your instrument, {MATLAB Code} sets the mATLAB ® code to send to your instrument MATLAB, {Instrument error check command} sets the sCPI command to send to your instrument, {Upload initialization commands and check instrument error status} sets the initialization and error check commands upload, {Instrument status} sets the instrument initialization response Read-only: string, {SCPI Command} sets the sCPI command to send to your instrument SCPI, {Binary command}, {Binblock data} sets the binblock command to send to your instrument binblock, {Data type} sets the size and format of each, {Command header} sets the sCPI command header to send with input port data SCPI, {Numeric format} sets the format of numeric data Integer, signed, {Enter numeric format} sets the custom format of numeric, {delimiter} sets the delimiting character, {Determine data size automatically} allows block to automatically detect data, {Data size} sets the number of values read, {Action when error occurs} sets the action to take when instrument errors Stop, {Check instrument error} sets the output error message and {Error check command} sets the sCPI command to send to your instrument. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Data to send vector | matrix | array"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Data received vector | matrix | array"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Instrument status 1 | 0"
+  },
+  {
+   "name": "Instrument error",
+   "direction": "output",
+   "summary": "Error message from instrument string"
+  }
+ ],
+ "params": [
+  {
+   "name": "Block sample time",
+   "default": "-1",
+   "values": "Time interval between samples -1 (default) | numeric",
+   "group": "Block parameters"
+  },
+  {
+   "name": "Resource name",
+   "default": "",
+   "values": "VISA resource name available VISA resources",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Vendor",
+   "default": "",
+   "values": "Instrument manufacturer Read-only: instrument manufacturer name",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Model",
+   "default": "",
+   "values": "Instrument model Read-only: instrument model name",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Serial Number",
+   "default": "",
+   "values": "Unique serial number associated with instrument Read-only: instrument serial number",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "VISA resource type",
+   "default": "Socket",
+   "values": "Type of VISA resource to configure TCP/IP Socket (default) | TCP/IP HiSLIP | TCP/IP VXI-11",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Board index",
+   "default": "",
+   "values": "Board index to connect to positive integer",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "IP address",
+   "default": "",
+   "values": "IP address to connect to IP address",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Port number",
+   "default": "4880",
+   "values": "Port number to use for connection 4880 (default) | positive integer",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Device ID",
+   "default": "",
+   "values": "ID of device to connect to positive integer",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "EOI Mode",
+   "default": "on",
+   "values": "EOI mode on (default) | off",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Byte order",
+   "default": "little-endian",
+   "values": "Sequential order of bytes little-endian (default) | big-endian",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Read terminator",
+   "default": "off",
+   "values": "Terminator character for reading data off (default) | LF | CR | CR/LF | 0 to 255",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Write terminator",
+   "default": "LF",
+   "values": "Terminator character for writing data LF (default) | CR | CR/LF | 0 to 255",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Data bits",
+   "default": "8",
+   "values": "Number of bits to represent one character of data 8 (default) | 5 | 6 | 7",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Parity",
+   "default": "none",
+   "values": "Parity bit type none (default) | even | odd",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Stop bits",
+   "default": "1",
+   "values": "Pattern of bits that indicates the end of a character 1 (default) | positive scalar",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Flow control",
+   "default": "none",
+   "values": "Mode for managing data transmission rate none (default) | hardware | software",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Baud rate",
+   "default": "9600",
+   "values": "Communication speed 9600 (default) | positive integer",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Timeout",
+   "default": "10",
+   "values": "Allowed time to complete operations 10 (default) | numeric",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Instrument identification command",
+   "default": "*IDN?",
+   "values": "SCPI command to send to your instrument *IDN? (default) | SCPI command",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Validate and test connection",
+   "default": "",
+   "values": "VISA resource connection verification button",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Response",
+   "default": "",
+   "values": "Instrument query response Read-only: string scalar",
+   "group": "Hardware Configuration"
+  },
+  {
+   "name": "Initialization commands",
+   "default": "*RST;*CLS",
+   "values": "SCPI command to send to your instrument *RST;*CLS (default) | SCPI command",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "MATLAB Code",
+   "default": "",
+   "values": "MATLAB ® code to send to your instrument MATLAB code",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "Instrument error check command",
+   "default": "SYSTem:ERRor?",
+   "values": "SCPI command to send to your instrument SYSTem:ERRor? (default) | SCPI command",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "Upload initialization commands and check instrument error status",
+   "default": "",
+   "values": "Initialization and error check commands upload button",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "Instrument status",
+   "default": "",
+   "values": "Instrument initialization response Read-only: string scalar",
+   "group": "Instrument Initialization"
+  },
+  {
+   "name": "SCPI Command",
+   "default": "",
+   "values": "SCPI command to send to your instrument SCPI command",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Binary command",
+   "default": "",
+   "values": "Binary command to send to your instrument binary values",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Binblock data",
+   "default": "",
+   "values": "Binblock command to send to your instrument binblock values",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Size and format of each value uint8 (default) | single | double | int8 | int16 | uint16 | int32 | uint32 | uint64 | int64",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Command header",
+   "default": "",
+   "values": "SCPI command header to send with input port data SCPI command",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Numeric format",
+   "default": "(%d)",
+   "values": "Format of numeric data Integer, signed (%d) (default) | Integer, unsigned (%u) | Floating-point (%f) | Characters (%c) | Enter numeric format",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Enter numeric format",
+   "default": "%2f",
+   "values": "Custom format of numeric data %2f (default) | numeric formats",
+   "group": "Send or Query"
+  },
+  {
+   "name": "delimiter",
+   "default": ",",
+   "values": "Delimiting character , (default)",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Determine data size automatically",
+   "default": "on",
+   "values": "Allow block to automatically detect data size on (default) | off",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Data size",
+   "default": "[1,1]",
+   "values": "Number of values read [1,1] (default) | [10000,1] (default) | numeric array",
+   "group": "Send or Query"
+  },
+  {
+   "name": "Action when error occurs",
+   "default": "simulation",
+   "values": "Action to take when instrument errors Stop simulation (default) | Continue simulation",
+   "group": "Handle Error"
+  },
+  {
+   "name": "Check instrument error",
+   "default": "off",
+   "values": "Output error message off (default) | on",
+   "group": "Handle Error"
+  },
+  {
+   "name": "Error check command",
+   "default": "SYSTem:ERRor?",
+   "values": "SCPI command to send to your instrument SYSTem:ERRor? (default) | SCPI command",
+   "group": "Handle Error"
+  }
+ ]
+}

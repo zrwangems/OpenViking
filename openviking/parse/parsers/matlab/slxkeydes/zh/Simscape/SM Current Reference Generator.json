@@ -1,0 +1,123 @@
+{
+ "key": "SM Current Reference Generator",
+ "title": "SM Current Reference Generator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/SM Control/SM_Current_Reference_Generator.md"
+ ],
+ "text": "同步电机电流参考生成器，输入 3 路、输出 3 路；{Nominal dc-link voltage (V)} 指定额定直流电压、{Maximum power (W)} 指定最大功率、{Maximum torque (N*m)} 指定最大转矩、{Maximum field current (A)} 指定最大励磁电流、{Sample time (-1 for inherited)} 指定模块采样时间、{Current references} 指定电流参考策略 Zero d-axis、{Torque constant (N*m/A)} 指定转矩常数、{Mechanical speed vector, wMechanical (rpm)} 指定转子转速查找向量、{Torque reference vector, TqRef (N*m)} 指定转矩参考查找向量、{DC-link voltage vector, Vdc (V)} 指定直流母线电压查找向量、{D-axis current reference matrix, id(wMechanical,TqRef,Vdc), (A)} 指定参考 d 轴电流值 zeros、{Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc), (A)} 指定参考 q 轴电流值 zeros、{Field current reference matrix, iq(wMechanical,TqRef,Vdc), (A)} 指定励磁电流参考值 zeros，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TqRef",
+   "direction": "input",
+   "summary": "参考转矩，N*m scalar"
+  },
+  {
+   "name": "wMechanical",
+   "direction": "input",
+   "summary": "转子机械速度，rad/s scalar"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "直流母线电压，V scalar"
+  },
+  {
+   "name": "idqfRef",
+   "direction": "output",
+   "summary": "参考电流，A vector"
+  },
+  {
+   "name": "TqRefSat",
+   "direction": "output",
+   "summary": "参考转矩，N*m scalar"
+  },
+  {
+   "name": "TqLim",
+   "direction": "output",
+   "summary": "转矩限值，N*m scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Nominal dc-link voltage (V)",
+   "default": "V",
+   "values": "额定直流电压 300 V (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum power (W)",
+   "default": "W",
+   "values": "最大功率 30000 W (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum torque (N*m)",
+   "default": "N*m",
+   "values": "最大转矩 250 N*m (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Maximum field current (A)",
+   "default": "A",
+   "values": "最大励磁电流 25 A (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | -1 or positive number",
+   "group": ""
+  },
+  {
+   "name": "Current references",
+   "default": "control",
+   "values": "电流参考策略 Zero d-axis control (default) | Lookup-table based",
+   "group": ""
+  },
+  {
+   "name": "Torque constant (N*m/A)",
+   "default": "0.0375",
+   "values": "转矩常数 0.0375 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Mechanical speed vector, wMechanical (rpm)",
+   "default": "3000]",
+   "values": "转子转速查找向量 [0, 3000] (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "Torque reference vector, TqRef (N*m)",
+   "default": "100]",
+   "values": "转矩参考查找向量 [-100, 0, 100] (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "DC-link voltage vector, Vdc (V)",
+   "default": "350]",
+   "values": "直流母线电压查找向量 [300, 350] (default) | positive monotonically increasing vector",
+   "group": ""
+  },
+  {
+   "name": "D-axis current reference matrix, id(wMechanical,TqRef,Vdc), (A)",
+   "default": "zeros(2,3,2)",
+   "values": "参考 d 轴电流值 zeros(2,3,2) (default) | real matrix",
+   "group": ""
+  },
+  {
+   "name": "Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc), (A)",
+   "default": "zeros(2,3,2)",
+   "values": "参考 q 轴电流值 zeros(2,3,2) (default) | real matrix",
+   "group": ""
+  },
+  {
+   "name": "Field current reference matrix, iq(wMechanical,TqRef,Vdc), (A)",
+   "default": "zeros(2,3,2)",
+   "values": "励磁电流参考值 zeros(2,3,2) (default) | real matrix",
+   "group": ""
+  }
+ ]
+}

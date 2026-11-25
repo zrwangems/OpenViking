@@ -1,0 +1,13 @@
+{
+ "key": "Cooling Tower (TL-MA)",
+ "title": "Cooling Tower (TL-MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid - Moist Air/Cooling_Tower_TL_MA.md"
+ ],
+ "text": "Cooling tower between a thermal liquid and moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

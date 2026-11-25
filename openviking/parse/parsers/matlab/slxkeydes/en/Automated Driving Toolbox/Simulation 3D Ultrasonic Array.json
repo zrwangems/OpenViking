@@ -1,0 +1,160 @@
+{
+ "key": "Simulation 3D Ultrasonic Array",
+ "title": "Simulation 3D Ultrasonic Array",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Ultrasonic_Array.md",
+  "Simulink 3D Animation/Simulation 3D/Sensors/Simulation_3D_Ultrasonic_Array.md"
+ ],
+ "text": "Ultrasonic sensor model with tunable acoustic parameters in 3D simulation environment, 6 outputs, {Mounting location} sets Sensor mounting location; {Sensor identifier} sets the unique, {Parent name} sets the name, {Specify offset}, {Relative translation [X, Y, Z] (m)} sets the translation, {Relative rotation [Roll, Pitch, Yaw] (deg)} sets the rotational, {Sample time}, {Relative mounting locations (m)} sets the relative mounting locations of individual sensors in the ultrasonic [0, -0.22, 0]; {Relative mounting rotations (deg)} sets the relative mounting rotations of individual sensors in the ultrasonic, {Horizontal Field of view (deg)} sets the horizontal field of view of ultrasonic, {Vertical field of view (deg)} sets the vertical field of view of ultrasonic array, {Detection ranges (m)} sets the detection range vector of ultrasonic array, {Acoustic frequency (kHz)} sets the frequency of sound waves used by all sensor emitters in ultrasonic, {Sampling frequency (kHz)} sets the sampling frequency of all sensor receivers in ultrasonic, {Pulse width (s)} sets the pulse width of ultrasonic waves used by all sensors in ultrasonic array, {Gain} sets the vector gain for sound signal used by sensors in ultrasonic array, {Sound speed (m/s)} sets the speed of sound in environment, {Use bus output} selects to output signals together as bus and {Output location (m) and orientation (rad)} sets the output location and orientation of sensor. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Detections",
+   "direction": "output",
+   "summary": "Object detections Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Has object",
+   "direction": "output",
+   "summary": "Flag indicating whether any detectable object is present in the sensor field-of-view true | false"
+  },
+  {
+   "name": "Has range",
+   "direction": "output",
+   "summary": "Flag indicating whether range measurement is possible for any object present in the sensor field-of-view true | false"
+  },
+  {
+   "name": "Range",
+   "direction": "output",
+   "summary": "Distance measurement to the closest object nonnegative scalar"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "Sensor location real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "Sensor orientation real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sensor identifier",
+   "default": "1",
+   "values": "Unique sensor identifier 1 (default) | positive integer",
+   "group": "Mounting"
+  },
+  {
+   "name": "Parent name",
+   "default": "Origin",
+   "values": "Name of parent vehicle Scene Origin (default) | vehicle name",
+   "group": "Mounting"
+  },
+  {
+   "name": "Mounting location",
+   "default": "Origin",
+   "values": "Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof center |...",
+   "group": "Mounting"
+  },
+  {
+   "name": "Specify offset",
+   "default": "off",
+   "values": "Specify offset from mounting location off (default) | on",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative translation [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Mounting"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Mounting"
+  },
+  {
+   "name": "Relative mounting locations (m)",
+   "default": "0]]",
+   "values": "Relative mounting locations of individual sensors in the ultrasonic array [[0, -0.67, 0]; [0, -0.22, 0]; [0, 0.22, 0]; [0, 0.67, 0]] (default) | real-valued N -by- 3 array",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Relative mounting rotations (deg)",
+   "default": "zeros(4,3)",
+   "values": "Relative mounting rotations of individual sensors in the ultrasonic array zeros(4,3) (default) | real-valued N -by- 3 array",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Horizontal Field of view (deg)",
+   "default": "70",
+   "values": "Horizontal field of view of ultrasonic array 70 (default) | positive real scalar",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Vertical field of view (deg)",
+   "default": "35",
+   "values": "Vertical field of view of ultrasonic array 35 (default) | positive real scalar",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Detection ranges (m)",
+   "default": "5.5]",
+   "values": "Detection range vector of ultrasonic array (m) [0.03 0.15 5.5] (default) | 1-by-3 nonnegative real-valued vector of form [minDetOnlyRange minDistRange maxDistRange]",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Acoustic frequency (kHz)",
+   "default": "50",
+   "values": "Frequency of sound waves used by all sensor emitters in ultrasonic array 50 (default) | positive real scalar",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Sampling frequency (kHz)",
+   "default": "500",
+   "values": "Sampling frequency of all sensor receivers in ultrasonic array 500 (default) | positive real scalar",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Pulse width (s)",
+   "default": "1e-6",
+   "values": "Pulse width of ultrasonic waves used by all sensors in ultrasonic array 1e-6 (default) | positive real scalar",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Gain",
+   "default": "0]",
+   "values": "Vector gain for sound signal used by sensors in ultrasonic array [1, 0] (default) | real-valued scalar | real-valued 1 -by- 2 vector",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Sound speed (m/s)",
+   "default": "330",
+   "values": "Speed of sound in environment 330 (default) | positive real scalar",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Use bus output",
+   "default": "on",
+   "values": "Select to output signals together as bus signal on (default) | off",
+   "group": "Sensor Parameters"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "Output location and orientation of sensor off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

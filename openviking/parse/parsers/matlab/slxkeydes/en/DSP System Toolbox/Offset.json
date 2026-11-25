@@ -1,0 +1,75 @@
+{
+ "key": "Offset",
+ "title": "Offset",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Offset.md"
+ ],
+ "text": "Truncate vectors by removing or keeping beginning or ending values, 4 inputs, 2 outputs, no direct feedthrough, {Action for out of range offset value} sets Action for out of range offset value; {Mode} sets the which values to discard and which values to keep Remove beginning, {Number of input data-offset pairs}, {Output port length} sets the mode to specify output port length Same and {Output length} sets the desired length of output vectors. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In1",
+   "direction": "input",
+   "summary": "First input data scalar | vector"
+  },
+  {
+   "name": "O1",
+   "direction": "input",
+   "summary": "First offset value integer"
+  },
+  {
+   "name": "In2",
+   "direction": "input",
+   "summary": "Second input data scalar | vector"
+  },
+  {
+   "name": "O2",
+   "direction": "input",
+   "summary": "Second offset value integer"
+  },
+  {
+   "name": "Out1",
+   "direction": "output",
+   "summary": "First truncated data scalar | vector"
+  },
+  {
+   "name": "Out2",
+   "direction": "output",
+   "summary": "Second truncated data scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "samples",
+   "values": "Specify which values to discard and which values to keep Remove beginning samples (default) | Remove ending samples | Keep beginning samples | Keep ending samples",
+   "group": ""
+  },
+  {
+   "name": "Number of input data-offset pairs",
+   "default": "2",
+   "values": "Number of input data-offset pairs 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output port length",
+   "default": "input",
+   "values": "Mode to specify output port length Same as input (default) | User-defined",
+   "group": ""
+  },
+  {
+   "name": "Output length",
+   "default": "9",
+   "values": "Desired length of output vectors 9 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Action for out of range offset value",
+   "default": "Clip",
+   "values": "Action for out of range offset value Clip (default) | Clip and warn | Error",
+   "group": ""
+  }
+ ]
+}

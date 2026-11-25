@@ -1,0 +1,176 @@
+{
+ "key": "Solar PV Controller (Three-Phase)",
+ "title": "Solar PV Controller (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Renewables Control/Solar_PV_Controller_Three_Phase.md"
+ ],
+ "text": "太阳能光伏 (PV) 跟网型 (GF) 控制器，输入 5 路、输出 2 路；{AC filter inductance (H)} 指定交流滤波器电感 3e-3、{System frequency (Hz)} 指定系统频率、{Inverter current limit (pu)} 指定逆变器电流限值、{Base impedance on AC side (Ohm)} 指定交流侧基准阻抗、{Base power on AC side (V*A)} 指定交流侧基准功率 6e5、{DC bus base voltage (V)} 指定直流母线基准电压、{Sample time (-1 for inherited)} 指定模块采样时间、{Algorithm} 指定 MPPT 算法 Perturb、{Initial voltage for MPPT (V)} 指定 MPPT 的初始电压、{Voltage step of MPPT (V)} 指定 MPPT 的电压步长、{Settling time of MPPT (s)} 指定 MPPT 的稳定时间 5e-4、{Proportional gain} 指定比例增益、{Integral gain} 指定积分增益、{Initial phase angle (deg)} 指定初始相位角、{Derivative gain} 指定微分增益、{D-axis proportional gain} 指定 D 轴比例增益、{D-axis integral gain} 指定 D 轴积分增益、{D-axis derivative gain} 指定 D 轴微分增益、{Q-axis proportional gain} 指定 Q 轴比例增益、{Q-axis integral gain} 指定 Q 轴积分增益、{Q-axis derivative gain} 指定 Q 轴微分增益，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Qref (pu)",
+   "direction": "input",
+   "summary": "无功功率参考值，pu scalar"
+  },
+  {
+   "name": "ipv (A)",
+   "direction": "input",
+   "summary": "直流侧电流，A scalar"
+  },
+  {
+   "name": "vdc (V)",
+   "direction": "input",
+   "summary": "直流侧电压，V scalar"
+  },
+  {
+   "name": "vabc (pu)",
+   "direction": "input",
+   "summary": "交流侧电压，pu vector"
+  },
+  {
+   "name": "iabc (pu)",
+   "direction": "input",
+   "summary": "交流侧电流，pu vector"
+  },
+  {
+   "name": "vabcRef (pu)",
+   "direction": "output",
+   "summary": "标幺参考电压波，pu vector"
+  },
+  {
+   "name": "visualization",
+   "direction": "output",
+   "summary": "可视化总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "AC filter inductance (H)",
+   "default": "3e-3",
+   "values": "交流滤波器电感 3e-3 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "System frequency (Hz)",
+   "default": "60",
+   "values": "系统频率 60 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Inverter current limit (pu)",
+   "default": "1.2",
+   "values": "逆变器电流限值 1.2 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Base impedance on AC side (Ohm)",
+   "default": "0.34",
+   "values": "交流侧基准阻抗 0.34 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Base power on AC side (V*A)",
+   "default": "6e5",
+   "values": "交流侧基准功率 6e5 (default) | scalar",
+   "group": "General"
+  },
+  {
+   "name": "DC bus base voltage (V)",
+   "default": "1000",
+   "values": "直流母线基准电压 1000 (default) | positive scalar",
+   "group": "General"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | nonnegative scalar or -1",
+   "group": "General"
+  },
+  {
+   "name": "Algorithm",
+   "default": "(P&O)",
+   "values": "MPPT 算法 Perturb and observe (P&O) (default) | Incremental conductance (INC)",
+   "group": "MPPT"
+  },
+  {
+   "name": "Initial voltage for MPPT (V)",
+   "default": "2000",
+   "values": "MPPT 的初始电压 2000 (default) | scalar",
+   "group": "MPPT"
+  },
+  {
+   "name": "Voltage step of MPPT (V)",
+   "default": "3",
+   "values": "MPPT 的电压步长 3 (default) | nonnegative scalar",
+   "group": "MPPT"
+  },
+  {
+   "name": "Settling time of MPPT (s)",
+   "default": "5e-4",
+   "values": "MPPT 的稳定时间 5e-4 (default) | nonnegative scalar",
+   "group": "MPPT"
+  },
+  {
+   "name": "Proportional gain",
+   "default": "200",
+   "values": "比例增益 200 (default) | positive scalar",
+   "group": "PLL"
+  },
+  {
+   "name": "Integral gain",
+   "default": "2000",
+   "values": "积分增益 2000 (default) | positive scalar",
+   "group": "PLL"
+  },
+  {
+   "name": "Initial phase angle (deg)",
+   "default": "0",
+   "values": "初始相位角 0 (default) | scalar",
+   "group": "PLL"
+  },
+  {
+   "name": "Derivative gain",
+   "default": "0",
+   "values": "微分增益 0 (default) | nonnegative scalar",
+   "group": "Voltage Controller"
+  },
+  {
+   "name": "D-axis proportional gain",
+   "default": "1",
+   "values": "D 轴比例增益 1 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "D-axis integral gain",
+   "default": "250",
+   "values": "D 轴积分增益 250 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "D-axis derivative gain",
+   "default": "0",
+   "values": "D 轴微分增益 0 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Q-axis proportional gain",
+   "default": "1",
+   "values": "Q 轴比例增益 1 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Q-axis integral gain",
+   "default": "250",
+   "values": "Q 轴积分增益 250 (default) | positive scalar",
+   "group": "Current Controller"
+  },
+  {
+   "name": "Q-axis derivative gain",
+   "default": "0",
+   "values": "Q 轴微分增益 0 (default) | nonnegative scalar",
+   "group": "Current Controller"
+  }
+ ]
+}

@@ -1,0 +1,227 @@
+{
+ "key": "Lateral Driver",
+ "title": "Lateral Driver",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Driver/Lateral_Driver.md"
+ ],
+ "text": "Lateral path-tracking controller, 14 inputs, 2 outputs; {Steering override} sets the override steering command, {Steering hold} sets the hold steering command, {Steering disable} sets the disable steering command, {Output handwheel angle} sets the steering port units in rad, {Lateral control type, controlTypeLat} sets the controller, {Angular units, angUnits} sets the input and output port angular, {Driver response time, tau} sets the response time, {Preview distance, L} sets the distance, {Vector input for poses} selects to create RefPose and CurrPose input, {Include dynamics} selects to include dynamics, {Position gain of forward motion, PositionGainF} sets the position gain of vehicle in forward motion, {Position gain of reverse motion, PositionGainR} sets the position gain of vehicle in reverse motion, {Yaw rate feedback gain, YawRateGain} sets the yaw rate feedback, {Steering angle feedback gain, DelayGain} sets the steering angle feedback, {Forward location of tire, a} sets the along vehicle longitudinal axis, {Rearward location of tire, b} sets the along vehicle longitudinal axis, {Vehicle mass, m} sets the mass, {Front tire cornering coefficient, Cy_f} sets the coefficient, {Rear tire cornering coefficient, Cy_r} sets the coefficient, {Vehicle rotational inertia, I} sets the inertia about yaw axis, {Nominal steering ratio, Ksteer} sets the steering ratio and {Tire wheel angle limit, theta} sets the angle limit. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LongRef",
+   "direction": "input",
+   "summary": "Longitudinal displacement reference scalar"
+  },
+  {
+   "name": "LatRef",
+   "direction": "input",
+   "summary": "Lateral displacement reference scalar"
+  },
+  {
+   "name": "EnblSteerOvr",
+   "direction": "input",
+   "summary": "Enable steering command override scalar"
+  },
+  {
+   "name": "SteerOvrCmd",
+   "direction": "input",
+   "summary": "Steering override command scalar"
+  },
+  {
+   "name": "SteerHld",
+   "direction": "input",
+   "summary": "Steering hold scalar"
+  },
+  {
+   "name": "SteerZero",
+   "direction": "input",
+   "summary": "Disable steering command scalar"
+  },
+  {
+   "name": "YawRef",
+   "direction": "input",
+   "summary": "Yaw angle reference scalar"
+  },
+  {
+   "name": "RefPose",
+   "direction": "input",
+   "summary": "Reference pose [ x, y, Θ ] vector"
+  },
+  {
+   "name": "VelFdbk",
+   "direction": "input",
+   "summary": "Longitudinal vehicle velocity scalar"
+  },
+  {
+   "name": "CurrPose",
+   "direction": "input",
+   "summary": "Current pose [ x, y, Θ ] vector"
+  },
+  {
+   "name": "LatFdbk",
+   "direction": "input",
+   "summary": "Lateral displacement scalar"
+  },
+  {
+   "name": "LatVelFdbk",
+   "direction": "input",
+   "summary": "Lateral vehicle velocity scalar"
+  },
+  {
+   "name": "YawFdbk",
+   "direction": "input",
+   "summary": "Vehicle yaw angle scalar"
+  },
+  {
+   "name": "YawVelFdbk",
+   "direction": "input",
+   "summary": "Yaw rate scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "SteerCmd",
+   "direction": "output",
+   "summary": "Steer angle command scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Steering override",
+   "default": "off",
+   "values": "Override steering command off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Steering hold",
+   "default": "off",
+   "values": "Hold steering command off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Steering disable",
+   "default": "off",
+   "values": "Disable steering command off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Output handwheel angle",
+   "default": "off",
+   "values": "Steering port units in rad off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Lateral control type, controlTypeLat",
+   "default": "Predictive",
+   "values": "Controller Predictive (default) | Stanley",
+   "group": "Configuration"
+  },
+  {
+   "name": "Angular units, angUnits",
+   "default": "rad",
+   "values": "Input and output port angular units rad (default) | deg",
+   "group": "Configuration"
+  },
+  {
+   "name": "Driver response time, tau",
+   "default": "0.1",
+   "values": "Response time 0.1 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Preview distance, L",
+   "default": "3",
+   "values": "Distance 3 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Vector input for poses",
+   "default": "off",
+   "values": "Select to create RefPose and CurrPose input ports off (default) | on",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Include dynamics",
+   "default": "off",
+   "values": "Select to include dynamics off (default) | on",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Position gain of forward motion, PositionGainF",
+   "default": "2.5",
+   "values": "Position gain of vehicle in forward motion 2.5 (default) | positive real scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Position gain of reverse motion, PositionGainR",
+   "default": "2.5",
+   "values": "Position gain of vehicle in reverse motion 2.5 (default) | positive real scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Yaw rate feedback gain, YawRateGain",
+   "default": ".2",
+   "values": "Yaw rate feedback gain .2 (default) | nonnegative real scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Steering angle feedback gain, DelayGain",
+   "default": ".2",
+   "values": "Steering angle feedback gain .2 (default) | nonnegative real scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Forward location of tire, a",
+   "default": "1.41",
+   "values": "Along vehicle longitudinal axis 1.41 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Rearward location of tire, b",
+   "default": "1.41",
+   "values": "Along vehicle longitudinal axis 1.41 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Vehicle mass, m",
+   "default": "2016",
+   "values": "Mass 2016 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Front tire cornering coefficient, Cy_f",
+   "default": "25266",
+   "values": "Coefficient 25266 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Rear tire cornering coefficient, Cy_r",
+   "default": "70933",
+   "values": "Coefficient 70933 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Vehicle rotational inertia, I",
+   "default": "4013",
+   "values": "Inertia about yaw axis 4013 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Nominal steering ratio, Ksteer",
+   "default": "18",
+   "values": "Steering ratio 18 (default) | scalar",
+   "group": "Reference Control"
+  },
+  {
+   "name": "Tire wheel angle limit, theta",
+   "default": "45*pi/180",
+   "values": "Angle limit 45*pi/180 (default) | scalar",
+   "group": "Reference Control"
+  }
+ ]
+}

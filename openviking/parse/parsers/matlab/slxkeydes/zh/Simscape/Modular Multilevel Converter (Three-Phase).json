@@ -1,0 +1,13 @@
+{
+ "key": "Modular Multilevel Converter (Three-Phase)",
+ "title": "Modular Multilevel Converter (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Modular_Multilevel_Converter_Three_Phase.md"
+ ],
+ "text": "具有串联功率子模块的三相模块化多电平换流器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

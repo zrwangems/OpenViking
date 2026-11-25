@@ -1,0 +1,13 @@
+{
+ "key": "Moisture Separator (MA)",
+ "title": "Moisture Separator (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Moisture_Separator_MA.md"
+ ],
+ "text": "Remove water vapor and water droplets from moist air flow.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

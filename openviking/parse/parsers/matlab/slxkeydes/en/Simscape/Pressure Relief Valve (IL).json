@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Relief Valve (IL)",
+ "title": "Pressure Relief Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Pressure Control Valves/Pressure_Relief_Valve_IL.md"
+ ],
+ "text": "Pressure-relief valve in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

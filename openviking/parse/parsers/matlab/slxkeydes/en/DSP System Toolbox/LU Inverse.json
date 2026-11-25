@@ -1,0 +1,24 @@
+{
+ "key": "LU Inverse",
+ "title": "LU Inverse",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Inverses/LU_Inverse.md"
+ ],
+ "text": "Compute inverse of square matrix using LU factorization, 1 input, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input square matrix square matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Matrix inverse square matrix"
+  }
+ ],
+ "params": []
+}

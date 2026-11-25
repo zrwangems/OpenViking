@@ -1,0 +1,228 @@
+{
+ "key": "DiscreteTransferFcn",
+ "title": "Discrete Transfer Fcn",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Discrete_Transfer_Fcn.md",
+  "Simulink/Quick Insert/Discrete/Discrete_Transfer_Fcn.md",
+  "HDL Coder/Discrete/Discrete_Transfer_Fcn.md",
+  "HDL Coder/HDL Floating Point Operations/Discrete_Transfer_Fcn.md"
+ ],
+ "text": "Implement discrete transfer function, 5 inputs, 1 output, no direct feedthrough, {External reset} sets External state reset; {Numerator Source} sets the source of numerator, {Numerator Value} sets the numerator coefficients, {Denominator Source} sets the source of denominator, {Denominator Value} sets the denominator coefficients, {Initial states Source} sets the source of initial, {Initial states Value} sets the initial filter states, {Input processing} sets the sample- or frame-based processing Elements, {Optimize by skipping divide by leading denominator coefficient (a0)} sets the skip divide by a0, {Sample time (-1 for inherited)} sets the interval between samples, {View Filter Response}, {State}, {Numerator coefficients} sets the numerator coefficient data type, {Numerator coefficient minimum} sets the minimum value of numerator coefficients, {Numerator coefficient maximum} sets the maximum value of numerator coefficients, {Numerator product output}, {Numerator accumulator}, {Denominator coefficients} sets the denominator coefficient data type, {Denominator coefficient minimum} sets the minimum value of denominator coefficients, {Denominator coefficient maximum} sets the maximum value of denominator coefficients, {Denominator product output}, {Denominator accumulator}, {Output}, {Output minimum} sets the minimum value of output, {Output maximum} sets the maximum value of output, {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {State name} sets the unique name for block state and {State name must resolve to Simulink signal object} requires state name resolve to a signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Numerator coefficients scalar | vector | matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "Denominator coefficients scalar | vector | matrix"
+  },
+  {
+   "name": "External reset",
+   "direction": "input",
+   "summary": "External reset signal scalar"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "Initial states scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Numerator Source",
+   "default": "Dialog",
+   "values": "Source of numerator coefficients Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Numerator Value",
+   "default": "[1]",
+   "values": "Numerator coefficients [1] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Denominator Source",
+   "default": "Dialog",
+   "values": "Source of denominator coefficients Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Denominator Value",
+   "default": "0.5]",
+   "values": "Denominator coefficients [1 0.5] (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Initial states Source",
+   "default": "Dialog",
+   "values": "Source of initial states Dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Initial states Value",
+   "default": "0",
+   "values": "Initial filter states 0 (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "External reset",
+   "default": "None",
+   "values": "External state reset None (default) | Rising | Falling | Either | Level | Level hold",
+   "group": "Main"
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)",
+   "group": "Main"
+  },
+  {
+   "name": "Optimize by skipping divide by leading denominator coefficient (a0)",
+   "default": "off",
+   "values": "Skip divide by a0 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View filter response button",
+   "group": "Main"
+  },
+  {
+   "name": "State",
+   "default": "input",
+   "values": "State data type Inherit: Same as input (default) | int8 | int16 | int32 | int64 | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator coefficients",
+   "default": "rule",
+   "values": "Numerator coefficient data type Inherit: Inherit via internal rule (default) | int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator coefficient minimum",
+   "default": "[]",
+   "values": "Minimum value of numerator coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator coefficient maximum",
+   "default": "[]",
+   "values": "Maximum value of numerator coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator product output",
+   "default": "rule",
+   "values": "Numerator product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Numerator accumulator",
+   "default": "rule",
+   "values": "Numerator accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | int8 | int16 | int32 | int64 | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator coefficients",
+   "default": "rule",
+   "values": "Denominator coefficient data type Inherit: Inherit via internal rule (default) | int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator coefficient minimum",
+   "default": "[]",
+   "values": "Minimum value of denominator coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator coefficient maximum",
+   "default": "[]",
+   "values": "Maximum value of denominator coefficients [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator product output",
+   "default": "rule",
+   "values": "Denominator product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denominator accumulator",
+   "default": "rule",
+   "values": "Denominator accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | int8 | int16 | int32 | int64 | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum value of output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum value of output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "State name",
+   "default": "’’",
+   "values": "Unique name for block state ’’ (default) | alphanumeric string",
+   "group": "State Attributes"
+  },
+  {
+   "name": "State name must resolve to Simulink signal object",
+   "default": "off",
+   "values": "Require state name resolve to a signal object off (default) | on",
+   "group": "State Attributes"
+  }
+ ]
+}

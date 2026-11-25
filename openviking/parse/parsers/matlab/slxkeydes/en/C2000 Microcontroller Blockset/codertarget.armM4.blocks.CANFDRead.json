@@ -1,0 +1,101 @@
+{
+ "key": "codertarget.armM4.blocks.CANFDRead",
+ "title": "MCAN Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F280015x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28003x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28p55x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F28p65x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/MCAN_Receive.md",
+  "C2000 Microcontroller Blockset/F2838x/M4/MCAN_Receive.md"
+ ],
+ "text": "Read data from CAN bus, 9 outputs, {Buffer number (0-63)} sets Buffer number; {MCAN module} sets the cAN module, {Read source} sets the cAN receive message, {Output Type} sets the message output type, {Output Status} enables output status and {Sample Time} sets the time interval to read message. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "CAN Message vector | scalar"
+  },
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Message data vector | scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of received message scalar"
+  },
+  {
+   "name": "CAN identifier(ID)",
+   "direction": "output",
+   "summary": "CAN message identifier scalar"
+  },
+  {
+   "name": "Length(LEN)",
+   "direction": "output",
+   "summary": "CAN message length scalar"
+  },
+  {
+   "name": "Remote transmission request(RTR)",
+   "direction": "output",
+   "summary": "Remote frame status scalar"
+  },
+  {
+   "name": "Bit rate switch(BRS)",
+   "direction": "output",
+   "summary": "Bit rate switch status scalar"
+  },
+  {
+   "name": "Extended identifier(XTD)",
+   "direction": "output",
+   "summary": "Extended or standard identifier scalar"
+  },
+  {
+   "name": "Frame data format(FDF)",
+   "direction": "output",
+   "summary": "CAN frame data format scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "MCAN module",
+   "default": "A",
+   "values": "CAN module A (default) | B",
+   "group": ""
+  },
+  {
+   "name": "Read source",
+   "default": "Buffers",
+   "values": "CAN receive message source Buffers (default) | FIFO 0 | FIFO 1",
+   "group": ""
+  },
+  {
+   "name": "Buffer number (0-63)",
+   "default": "0",
+   "values": "Buffer number 0 (default) | 1 | 2...",
+   "group": ""
+  },
+  {
+   "name": "Output Type",
+   "default": "Packed",
+   "values": "Message output type Packed (default) | Unpacked",
+   "group": ""
+  },
+  {
+   "name": "Output Status",
+   "default": "off",
+   "values": "Enable output status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "0.1",
+   "values": "Time interval to read message 0.1 (default) | -1 | nonnegative real value",
+   "group": ""
+  }
+ ]
+}

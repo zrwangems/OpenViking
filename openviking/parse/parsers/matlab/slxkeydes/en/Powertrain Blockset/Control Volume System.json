@@ -1,0 +1,195 @@
+{
+ "key": "Control Volume System",
+ "title": "Control Volume System",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Fundamental Flow/Control_Volume_System.md"
+ ],
+ "text": "Constant volume open thermodynamic system with heat transfer, 4 inputs, 2 outputs, {Heat transfer model} sets Select model; {Number of inlet ports} sets the number of ports, {Number of outlet ports} sets the number of ports, {Image type} sets the icon color, {Chamber volume, Vch} sets the volume, {Initial chamber pressure, Pinit} sets the pressure, {Initial chamber temperature, Tinit} sets the temperature, {Ideal gas constant, R}, {Specific heat capacity, cp}, {Heat transfer rate, q_he} sets the rate, {External convection heat transfer coefficient, ext_tbl} sets the manifold external air, {External velocity breakpoints, ext_bpts} sets the manifold external air linspace, {External convection area, Aext_conv} sets the manifold external air, {Thermal mass, m_wall} sets the manifold wall general, {Wall heat capacity, cp_wall} sets the manifold wall general, {Initial mass temperature, Tmass} sets the manifold wall general, {External wall thickness, Dext_cond} sets the manifold wall external, {External conduction area, Aext_cond} sets the manifold wall external, {External wall thermal conductivity, kext} sets the manifold wall external, {Internal wall thickness, Dint_cond} sets the manifold wall internal, {Internal conduction area, Aint_cond} sets the manifold wall internal, {Internal wall thermal conductivity, kint} sets the manifold wall internal, {Internal convection heat transfer coefficient, int_tbl} sets the manifold internal air, {Internal mass flow rate breakpoints, int_bpts} sets the manifold internal air linspace and {Internal flow convection area, Aint_conv} sets the manifold internal air. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Inlet mass flow rate, heat flow rate, mass fractions two-way connector port"
+  },
+  {
+   "name": "HeatTrnsfrRate",
+   "direction": "input",
+   "summary": "Heat transfer scalar"
+  },
+  {
+   "name": "ExtnlFlwVel",
+   "direction": "input",
+   "summary": "External flow velocity scalar"
+  },
+  {
+   "name": "ExtnlTemp",
+   "direction": "input",
+   "summary": "Ambient temperature, K scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "Outlet pressure, temperature, enthalpy, mass fractions two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of inlet ports",
+   "default": "1",
+   "values": "Number of ports 1 (default) | 0 | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Number of outlet ports",
+   "default": "1",
+   "values": "Number of ports 1 (default) | 0 | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Heat transfer model",
+   "default": "Constant",
+   "values": "Select model Constant (default) | External input | External wall convection",
+   "group": ""
+  },
+  {
+   "name": "Image type",
+   "default": "Cold",
+   "values": "Icon color Cold (default) | Hot",
+   "group": ""
+  },
+  {
+   "name": "Chamber volume, Vch",
+   "default": "0.0029",
+   "values": "Volume 0.0029 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial chamber pressure, Pinit",
+   "default": "101325",
+   "values": "Pressure 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial chamber temperature, Tinit",
+   "default": "298",
+   "values": "Temperature 298 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ideal gas constant, R",
+   "default": "287",
+   "values": "Ideal gas constant 287 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specific heat capacity, cp",
+   "default": "1005",
+   "values": "Specific heat 1005 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Heat transfer rate, q_he",
+   "default": "0",
+   "values": "Rate 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External convection heat transfer coefficient, ext_tbl",
+   "default": "2000]",
+   "values": "Manifold external air [40 160 740 2000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "External velocity breakpoints, ext_bpts",
+   "default": "linspace(0,180,4)",
+   "values": "Manifold external air linspace(0,180,4) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "External convection area, Aext_conv",
+   "default": "0.125",
+   "values": "Manifold external air 0.125 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Thermal mass, m_wall",
+   "default": "7",
+   "values": "Manifold wall general 7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wall heat capacity, cp_wall",
+   "default": "900",
+   "values": "Manifold wall general 900 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial mass temperature, Tmass",
+   "default": "293.15",
+   "values": "Manifold wall general 293.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External wall thickness, Dext_cond",
+   "default": "0.004",
+   "values": "Manifold wall external 0.004 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External conduction area, Aext_cond",
+   "default": "0.003",
+   "values": "Manifold wall external 0.003 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "External wall thermal conductivity, kext",
+   "default": "25",
+   "values": "Manifold wall external 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Internal wall thickness, Dint_cond",
+   "default": "0.004",
+   "values": "Manifold wall internal 0.004 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Internal conduction area, Aint_cond",
+   "default": "0.003",
+   "values": "Manifold wall internal 0.003 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Internal wall thermal conductivity, kint",
+   "default": "25",
+   "values": "Manifold wall internal 25 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Internal convection heat transfer coefficient, int_tbl",
+   "default": "2000]",
+   "values": "Manifold internal air [40 160 740 2000] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Internal mass flow rate breakpoints, int_bpts",
+   "default": "linspace(0.0020,0.1100,4)",
+   "values": "Manifold internal air linspace(0.0020,0.1100,4) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Internal flow convection area, Aint_conv",
+   "default": "0.125",
+   "values": "Manifold internal air 0.125 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

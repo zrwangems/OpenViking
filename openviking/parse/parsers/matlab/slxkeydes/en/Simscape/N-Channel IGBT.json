@@ -1,0 +1,13 @@
+{
+ "key": "N-Channel IGBT",
+ "title": "N-Channel IGBT",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/N_Channel_IGBT.md"
+ ],
+ "text": "N-Channel insulated gate bipolar transistor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

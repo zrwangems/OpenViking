@@ -1,0 +1,38 @@
+{
+ "key": "Variable Phase",
+ "title": "Variable Phase Shift",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Variable_Phase_Shift.md"
+ ],
+ "text": "对可变相位器件建模，输入 1 路；按 {Reference impedances (Ohm)} 指定移相器的参考阻抗；{Phase shift unit} 用于控制电路相位的角度单位、{Ground and hide negative terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Phase",
+   "direction": "input",
+   "summary": "Simulink 控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase shift unit",
+   "default": "rad",
+   "values": "用于控制电路相位的角度单位 rad (default) | deg",
+   "group": ""
+  },
+  {
+   "name": "Reference impedances (Ohm)",
+   "default": "50",
+   "values": "移相器的参考阻抗 50 (default) | vector of real positive scalars | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

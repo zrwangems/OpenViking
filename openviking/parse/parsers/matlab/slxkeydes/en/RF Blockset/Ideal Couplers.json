@@ -1,0 +1,62 @@
+{
+ "key": "Ideal Couplers",
+ "title": "Coupler",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Junctions/Coupler.md"
+ ],
+ "text": "Model ideal frequency-independent couplers with S-parameters, {Select component} sets Coupler type Directional; {Coupling (dB)} sets the fraction of input signal power coupled to output, {Directivity (dB)} sets the ratio of power at coupled port to power at isolated port, {Insertion loss (dB)} sets the loss of signal power between input and output ports, {Return loss (dB)} sets the loss of signal power due to impedance mismatch, {Power transmission coefficient} sets the transmitted signal power, {Reference impedances (Ohm)} sets the reference impedance of coupler and {Ground and hide negative terminals} sets the ground RF circuit terminals. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Select component",
+   "default": "coupler",
+   "values": "Coupler type Directional coupler (default) | Coupler symmetrical | Coupler antisymmetrical | Hybrid quadrature (90 deg) | Hybrid rat-race | Magic tee",
+   "group": ""
+  },
+  {
+   "name": "Coupling (dB)",
+   "default": "0",
+   "values": "Fraction of input signal power coupled to output port 0 (default) | nonnegative and real scalar",
+   "group": ""
+  },
+  {
+   "name": "Directivity (dB)",
+   "default": "inf",
+   "values": "Ratio of power at coupled port to power at isolated port inf (default) | nonnegative and real scalar",
+   "group": ""
+  },
+  {
+   "name": "Insertion loss (dB)",
+   "default": "inf",
+   "values": "Loss of signal power between input and output ports inf (default) | nonnegative and real scalar",
+   "group": ""
+  },
+  {
+   "name": "Return loss (dB)",
+   "default": "inf",
+   "values": "Loss of signal power due to impedance mismatch inf (default) | nonnegative and real scalar",
+   "group": ""
+  },
+  {
+   "name": "Power transmission coefficient",
+   "default": "0",
+   "values": "Transmitted signal power 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Reference impedances (Ohm)",
+   "default": "50",
+   "values": "Reference impedance of coupler 50 (default) | positive scalar | positive three-tuple vector",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

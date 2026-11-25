@@ -1,0 +1,34 @@
+{
+ "key": "Rate Limiter Dynamic",
+ "title": "Rate Limiter Dynamic",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Rate_Limiter_Dynamic.md"
+ ],
+ "text": "Limit rate of change of signal, 3 inputs, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "lo",
+   "direction": "input",
+   "summary": "Limit of derivative for decreasing input scalar"
+  },
+  {
+   "name": "up",
+   "direction": "input",
+   "summary": "Limit of derivative for increasing input scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Output signal scalar"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,44 @@
+{
+ "key": "ROS Publish",
+ "title": "Publish",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Publish.md"
+ ],
+ "text": "向 ROS 网络发送消息，输入 1 路；按 {Topic source} 指定用于指定话题名称的来源 Select from ROS network；{Topic} 指定要发布到的话题名称 string、{Message type} 指定 ROS 消息类型 string、{Length of publish queue} 指定消息队列长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Msg",
+   "direction": "input",
+   "summary": "ROS 消息 nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic source",
+   "default": "",
+   "values": "用于指定话题名称的来源 Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "要发布到的话题名称 string",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "",
+   "values": "ROS 消息类型 string",
+   "group": ""
+  },
+  {
+   "name": "Length of publish queue",
+   "default": "1",
+   "values": "消息队列长度 1 (default) | integer",
+   "group": ""
+  }
+ ]
+}

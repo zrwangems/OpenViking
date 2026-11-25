@@ -1,0 +1,92 @@
+{
+ "key": "CDR",
+ "title": "CDR",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/CDR.md"
+ ],
+ "text": "Models a clock data recovery circuit, 1 input; {CDR Mode} determines CDR, {Phase Detector} sets the clock phase detector, {Phase Offset (symbol time)} sets the clock phase offset, {Reference offset (ppm)} sets the reference clock offset impairment, {Early/late count threshold} sets the early or late CDR count threshold to trigger phase, {Step (symbol time)} sets the clock phase resolution, {Frequency tracking gain} sets the internal gain for frequency tracking, {Frequency tracking update}, {Frequency step ramp} sets the number of symbol times required for initial internal frequency tracking gain to reach specified, {Sensitivity (V)} sets the sampling latch metastability voltage, {Phase Offset} and {Reference offset}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "Input baseband signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CDR Mode",
+   "default": "order",
+   "values": "Determine CDR order 1st order (default) | 2nd order",
+   "group": ""
+  },
+  {
+   "name": "Phase Detector",
+   "default": "BangBang",
+   "values": "Clock phase detector option BangBang (default) | BaudRateTypeA",
+   "group": ""
+  },
+  {
+   "name": "Phase Offset (symbol time)",
+   "default": "0",
+   "values": "Clock phase offset 0 (default) | real scalar in the range [-0.5,0.5]",
+   "group": ""
+  },
+  {
+   "name": "Reference offset (ppm)",
+   "default": "0",
+   "values": "Reference clock offset impairment 0 (default) | real scalar in the range [0, 300]",
+   "group": ""
+  },
+  {
+   "name": "Early/late count threshold",
+   "default": "16",
+   "values": "Early or late CDR count threshold to trigger phase update 16 (default) | real positive integer ≥5",
+   "group": ""
+  },
+  {
+   "name": "Step (symbol time)",
+   "default": "0.0078",
+   "values": "Clock phase resolution 0.0078 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency tracking gain",
+   "default": "0.00048828125",
+   "values": "Internal gain for frequency tracking 0.00048828125 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency tracking update",
+   "default": "16",
+   "values": "Frequency tracking update 16 (default) | nonnegative integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency step ramp",
+   "default": "3000",
+   "values": "Number of symbol times required for initial internal frequency tracking gain to reach specified value 3000 (default) | nonnegative integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Sensitivity (V)",
+   "default": "0",
+   "values": "Sampling latch metastability voltage 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase Offset",
+   "default": "on",
+   "values": "Include Phase Offset parameter in IBIS-AMI model on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Reference offset",
+   "default": "on",
+   "values": "Include Reference offset parameter in IBIS-AMI model on (default) | off",
+   "group": ""
+  }
+ ]
+}

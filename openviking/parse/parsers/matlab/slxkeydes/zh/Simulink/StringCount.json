@@ -1,0 +1,48 @@
+{
+ "key": "StringCount",
+ "title": "String Count",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Count.md"
+ ],
+ "text": "统计字符串中模式的出现次数，输入 2 路、输出 1 路、直接馈通；按 {Mode} 指定数据类型类别；{Case sensitive} 指定区分大小写、{Output data type} 输出数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "str",
+   "direction": "input",
+   "summary": "要搜索的字符串 scalar"
+  },
+  {
+   "name": "sub",
+   "direction": "input",
+   "summary": "要搜索的字符串模式 scalar"
+  },
+  {
+   "name": "n",
+   "direction": "output",
+   "summary": "在字符串中找到模式的次数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Case sensitive",
+   "default": "on",
+   "values": "区分大小写 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | int8 | uint8 | int16 | uint16 | int32 | uint32 |",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "Inherit",
+   "values": "数据类型类别 Inherit (default) | Built in | Expression",
+   "group": ""
+  }
+ ]
+}

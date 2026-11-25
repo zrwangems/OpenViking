@@ -1,0 +1,96 @@
+{
+ "key": "fusion.internal.simulink.imufilter",
+ "title": "IMU Filter",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Multisensor Positioning/Navigation Filters/IMU_Filter.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Navigation Filters/IMU_Filter.md"
+ ],
+ "text": "使用 IMU 滤波器估计方向，输入 2 路、输出 2 路；{Reference frame} 指定导航参考坐标系、{Orientation format} 指定姿态输出格式、{Decimation factor} 指定抽取因子、{Initial process noise} 指定初始过程噪声 imufilter.defaultPr、{Accelerometer noise ((m/s 2 ) 2 )} 指定加速度计信号噪声的方差、{Gyroscope noise ((rad/s) 2 )} 指定陀螺仪信号噪声的方差、{Gyroscope drift noise ((rad/s) 2 )} 指定陀螺仪偏移漂移的方差、{Linear acceleration noise ((m/s 2 ) 2 )} 指定线性加速度噪声的方差、{Linear acceleration decay factor} 指定线性加速度漂移的衰减因子、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Accel",
+   "direction": "input",
+   "summary": "传感器机体坐标系中的加速度计读数 (m/s²) matrix"
+  },
+  {
+   "name": "Gyro",
+   "direction": "input",
+   "summary": "传感器机体坐标系中的陀螺仪读数 (rad/s) matrix"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "传感器机体坐标系相对于导航坐标系的姿态 matrix | array"
+  },
+  {
+   "name": "Angular Velocity",
+   "direction": "output",
+   "summary": "传感器机体坐标系中的角速度 (rad/s) matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference frame",
+   "default": "NED",
+   "values": "导航参考坐标系 NED (default) | ENU",
+   "group": ""
+  },
+  {
+   "name": "Orientation format",
+   "default": "quaternion",
+   "values": "姿态输出格式 quaternion (default) | Rotation Matrix",
+   "group": ""
+  },
+  {
+   "name": "Decimation factor",
+   "default": "1",
+   "values": "抽取因子 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Initial process noise",
+   "default": "imufilter.defaultProcessNoise",
+   "values": "初始过程噪声 imufilter.defaultProcessNoise (default) | 9-by-9 matrix of real numbers",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer noise ((m/s 2 ) 2 )",
+   "default": "0.0001924722",
+   "values": "加速度计信号噪声的方差 (m/s 2 ) 2 0.0001924722 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Gyroscope noise ((rad/s) 2 )",
+   "default": "9.1385e-5",
+   "values": "陀螺仪信号噪声的方差 (rad/s) 2 9.1385e-5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Gyroscope drift noise ((rad/s) 2 )",
+   "default": "3.0462e-13",
+   "values": "陀螺仪偏移漂移的方差 (rad/s) 2 3.0462e-13 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Linear acceleration noise ((m/s 2 ) 2 )",
+   "default": "0.0096236100000000012",
+   "values": "线性加速度噪声的方差 (m/s 2 ) 2 0.0096236100000000012 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Linear acceleration decay factor",
+   "default": "0.5",
+   "values": "线性加速度漂移的衰减因子 0.5 (default) | scalar in the range [0 1)",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

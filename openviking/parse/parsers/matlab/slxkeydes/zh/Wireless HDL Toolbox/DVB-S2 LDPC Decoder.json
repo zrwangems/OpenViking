@@ -1,0 +1,148 @@
+{
+ "key": "DVB-S2 LDPC Decoder",
+ "title": "DVB-S2 LDPC Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/DVB_S2_LDPC_Decoder.md"
+ ],
+ "text": "根据 DVB-S2 标准解码 LDPC 码，输入 6 路、输出 5 路；按 {Code rate} 指定码率；{FEC frame source} 指定 FEC 帧来源 Input、{FEC frame type} 指定 FEC 帧类型、{Parallelism level} 指定并行度级别、{Code rate source} 指定码率来源 Property、{Algorithm} 指定 LDPC 解码算法、{Source for scaling factor} 指定缩放因子来源、{Scaling factor} 指定归一化最小和解码的缩放因子、{Decoding termination criteria} 指定终止条件 Max、{Source for number of iterations} 指定迭代次数的来源选择、{Number of iterations} 指定解码迭代次数、{Maximum number of iterations} 指定最大解码迭代次数、{Enable parity check output port} 指定奇偶校验状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "LLR 值 scalar | column vector (since R2025a)"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "frameType",
+   "direction": "input",
+   "summary": "FEC 帧类型 scalar"
+  },
+  {
+   "name": "codeRateIdx",
+   "direction": "input",
+   "summary": "码率索引 integer"
+  },
+  {
+   "name": "iter",
+   "direction": "input",
+   "summary": "迭代次数 scalar"
+  },
+  {
+   "name": "scalingFactorIdx",
+   "direction": "input",
+   "summary": "缩放因子索引 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "解码比特 scalar | column vector (since R2025a)"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "模块就绪指示 scalar"
+  },
+  {
+   "name": "parityCheck",
+   "direction": "output",
+   "summary": "奇偶校验状态指示 scalar"
+  },
+  {
+   "name": "actIter",
+   "direction": "output",
+   "summary": "实际迭代次数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "FEC frame source",
+   "default": "port",
+   "values": "FEC 帧来源 Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FEC frame type",
+   "default": "Normal",
+   "values": "FEC 帧类型 Normal (default) | Short",
+   "group": ""
+  },
+  {
+   "name": "Parallelism level",
+   "default": "45",
+   "values": "并行度级别 45 (default) | 180",
+   "group": ""
+  },
+  {
+   "name": "Code rate source",
+   "default": "Property",
+   "values": "码率来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Code rate",
+   "default": "1/4",
+   "values": "码率 1/4 (default) | 1/3 | 2/5 | 1/2 | 3/5 | 2/3 | 3/4 | 4/5 | 5/6 | 8/9 | 9/10",
+   "group": ""
+  },
+  {
+   "name": "Algorithm",
+   "default": "Min-sum",
+   "values": "LDPC 解码算法 Min-sum (default) | Normalized min-sum",
+   "group": ""
+  },
+  {
+   "name": "Source for scaling factor",
+   "default": "Property",
+   "values": "缩放因子来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Scaling factor",
+   "default": "0.75",
+   "values": "归一化最小和解码的缩放因子 0.75 (default) | scalar in the range 0.5 to 1, incremented by 0.0625",
+   "group": ""
+  },
+  {
+   "name": "Decoding termination criteria",
+   "default": "Max",
+   "values": "终止条件 Max (default) | Early",
+   "group": ""
+  },
+  {
+   "name": "Source for number of iterations",
+   "default": "Property",
+   "values": "迭代次数的来源选择 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "8",
+   "values": "解码迭代次数 8 (default) | integer in the range from 1 to 63",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of iterations",
+   "default": "8",
+   "values": "最大解码迭代次数 8 (default) | integer in the range from 1 to 63",
+   "group": ""
+  },
+  {
+   "name": "Enable parity check output port",
+   "default": "off",
+   "values": "奇偶校验状态 off (default) | on",
+   "group": ""
+  }
+ ]
+}

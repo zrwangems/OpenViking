@@ -1,0 +1,50 @@
+{
+ "key": "C28x/C29x WatchDog",
+ "title": "Watchdog",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2803x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2805x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2806x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C281x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2833x/Watchdog.md",
+  "C2000 Microcontroller Blockset/C2834x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F280013x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F280015x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28002x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28003x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28004x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F2807x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F2837xD/Watchdog.md",
+  "C2000 Microcontroller Blockset/F2837xS/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28p55x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F28p65x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F29H85x/Watchdog.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/Watchdog.md"
+ ],
+ "text": "Configure counter reset source of processor watchdog module, 1 input; {Watchdog counter reset source} and {Sample time} sets the frequency at which processor resets Watchdog timer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Resets watchdog counter scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Watchdog counter reset source",
+   "default": "dialog",
+   "values": "Watchdog counter reset source Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "–1",
+   "values": "Frequency at which processor resets Watchdog timer –1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

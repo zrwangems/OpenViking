@@ -1,0 +1,59 @@
+{
+ "key": "PMSM Field-Weakening Controller",
+ "title": "PMSM Field-Weakening Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/PMSM Control/PMSM_Field_Weakening_Controller.md"
+ ],
+ "text": "Permanent magnet synchronous machine field-weakening controller, 3 inputs, 1 output; {Modulation index threshold}, {Field-weakening controller integral gain} sets the integral gain, {Integral anti-windup gain} sets the anti-windup gain and {Sample time (-1 for inherited)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "idqRef",
+   "direction": "input",
+   "summary": "Reference currents vector"
+  },
+  {
+   "name": "vdq",
+   "direction": "input",
+   "summary": "Voltages vector"
+  },
+  {
+   "name": "VphMax",
+   "direction": "input",
+   "summary": "Maximum phase voltage scalar"
+  },
+  {
+   "name": "idqRefFW",
+   "direction": "output",
+   "summary": "Field-weakening reference currents vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation index threshold",
+   "default": "1",
+   "values": "Modulation index threshold 1 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Field-weakening controller integral gain",
+   "default": "100",
+   "values": "Integral gain 100 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Integral anti-windup gain",
+   "default": "10",
+   "values": "Anti-windup gain 10 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | -1 or positive number",
+   "group": ""
+  }
+ ]
+}

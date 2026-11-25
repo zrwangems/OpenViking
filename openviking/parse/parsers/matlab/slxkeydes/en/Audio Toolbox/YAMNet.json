@@ -1,0 +1,53 @@
+{
+ "key": "YAMNet",
+ "title": "YAMNet",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/YAMNet.md"
+ ],
+ "text": "YAMNet sound classification network, 1 input, 3 outputs, no direct feedthrough; {Mini-batch size} sets the size of mini-batches, {Classification} selects to output sound classification and {Predictions} sets the output all scores and associated labels. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "features",
+   "direction": "input",
+   "summary": "Mel spectrograms 96-by-64 matrix | 96-by-64-by-1-by- N array"
+  },
+  {
+   "name": "sound",
+   "direction": "output",
+   "summary": "Predicted sound label enumerated scalar"
+  },
+  {
+   "name": "scores",
+   "direction": "output",
+   "summary": "Predicted activations or scores vector"
+  },
+  {
+   "name": "labels",
+   "direction": "output",
+   "summary": "Class labels for predicted scores vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mini-batch size",
+   "default": "128",
+   "values": "Size of mini-batches 128 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Classification",
+   "default": "on",
+   "values": "Select to output sound classification on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Predictions",
+   "default": "off",
+   "values": "Output all scores and associated labels off (default) | on",
+   "group": ""
+  }
+ ]
+}

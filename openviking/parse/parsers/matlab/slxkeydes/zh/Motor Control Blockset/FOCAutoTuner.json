@@ -1,0 +1,358 @@
+{
+ "key": "FOCAutoTuner",
+ "title": "Field Oriented Control Autotuner",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/Field_Oriented_Control_Autotuner.md"
+ ],
+ "text": "在磁场定向控制应用中自动且依次调节多个 PID 控制回路，输入 13 路、输出 10 路；按 {Type} 指定外环；{Tune D-axis current loop} 启用 d 轴电流环整定、{Tune Q-axis current loop} 启用 q 轴电流环整定、{Tune speed loop} 启用速度环整定、{Tune flux loop} 启用磁通环整定、{Use same settings for current loop controllers (D-axis + Q-axis)} 为直轴和交轴电流环启用相同的整定和实验设置、{Use same settings for outer loop controllers (Speed + Flux)} 为速度环和磁通环启用相同的整定和实验设置、{Experiment sample time} 指定频率响应估计实验的采样时间、{Use different sample time for tuning} 启用与环 PID 控制器和实验不同的采样时间进行整定、{Tuning sample time (sec)} 指定整定算法的采样时间、{Form} 指定 d 轴电流环 PID、{Controller sample time (sec)} 指定 d 轴电流环 PID 控制器采样时间、{Integrator method} 指定 d 轴电流环控制器积分项的离散积分公式 Forward、{Filter method} 指定 d 轴电流环控制器微分滤波器项的离散积分公式 Forward、{Target bandwidth (rad/sec)} 指定 d 轴电流环整定后响应的目标穿越频率、{Target phase margin (degrees)} 指定 d 轴电流环目标最小相位裕度、{D-axis current loop start time (sec)} 指定直轴电流环整定实验开始时间、{D-axis current loop experiment duration (sec)} 指定直轴电流环整定实验持续时间、{Q-axis current loop start time (sec)} 指定交轴电流环整定实验开始时间、{Q-axis current loop experiment duration (sec)} 指定交轴电流环整定实验持续时间、{Speed loop start time (sec)} 指定速度环整定实验开始时间、{Speed loop experiment duration (sec)} 指定速度环整定实验持续时间、{Flux loop start time (sec)} 指定磁通环整定实验开始时间、{Flux loop experiment duration (sec)} 指定磁通环整定实验持续时间、{Experiment Mode} 指定正弦扰动信号类型、{Plant Type} 指定直轴电流被控对象的稳定性、{Plant Sign} 指定直轴电流被控对象的符号、{Sine Amplitudes} 指定直轴电流环中正弦扰动的幅值、{Use external source for bandwidths} 为目标带宽提供外部信号、{Use external source for target phase margins} 为目标相位裕度提供外部信号、{Use external source for start/stops of experiment} 为整定实验的启动和停止提供外部信号、{Use external source for sine amplitudes} 为正弦扰动幅值提供外部信号、{Data Type} 指定浮点精度 double、{Estimated phase margin achieved by tuned controllers} 指定最近整定的环所达到的相位裕度、{Plant frequency responses near bandwidth} 指定最近整定回路的估计频率响应、{Plant nominal input and output} 指定标称工作点处的被控对象输入和输出、{Start/stop of autotuning process} 指示每个已整定环的实验开始和结束的信号、{Export to MATLAB} 指定将实验和整定结果发送到 MATLAB 工作区，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PIDout daxis",
+   "direction": "input",
+   "summary": "来自 d 轴电流控制器的信号 scalar"
+  },
+  {
+   "name": "measured feedback daxis",
+   "direction": "input",
+   "summary": "测量的 d 轴电流 scalar"
+  },
+  {
+   "name": "PIDout qaxis",
+   "direction": "input",
+   "summary": "来自 q 轴电流控制器的信号 scalar"
+  },
+  {
+   "name": "measured feedback qaxis",
+   "direction": "input",
+   "summary": "测量的 q 轴电流 scalar"
+  },
+  {
+   "name": "PIDout spd",
+   "direction": "input",
+   "summary": "来自速度控制器的信号 scalar"
+  },
+  {
+   "name": "measured feedback spd",
+   "direction": "input",
+   "summary": "测量的速度 scalar"
+  },
+  {
+   "name": "PIDout flux",
+   "direction": "input",
+   "summary": "来自磁通控制器的信号 scalar"
+  },
+  {
+   "name": "measured feedback flux",
+   "direction": "input",
+   "summary": "测量的磁通 scalar"
+  },
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "启动和停止自整定实验 scalar"
+  },
+  {
+   "name": "ActiveLoop",
+   "direction": "input",
+   "summary": "指定用于自动整定实验的活动回路 scalar"
+  },
+  {
+   "name": "bandwidth",
+   "direction": "input",
+   "summary": "用于整定的目标带宽 scalar | vector | bus"
+  },
+  {
+   "name": "target PM",
+   "direction": "input",
+   "summary": "用于整定的目标相位裕度 scalar | vector | bus"
+  },
+  {
+   "name": "sine Amp",
+   "direction": "input",
+   "summary": "注入的正弦扰动信号的幅值 vector | matrix"
+  },
+  {
+   "name": "perturbation daxis",
+   "direction": "output",
+   "summary": "d 轴电流输入扰动 scalar"
+  },
+  {
+   "name": "perturbation qaxis",
+   "direction": "output",
+   "summary": "q 轴电流输入扰动 scalar"
+  },
+  {
+   "name": "perturbation spd",
+   "direction": "output",
+   "summary": "速度输入扰动 scalar"
+  },
+  {
+   "name": "perturbation flux",
+   "direction": "output",
+   "summary": "磁通输入扰动 scalar"
+  },
+  {
+   "name": "pid gains",
+   "direction": "output",
+   "summary": "整定后的 PID 系数 bus"
+  },
+  {
+   "name": "convergence",
+   "direction": "output",
+   "summary": "实验期间 FRD 估计的收敛情况 scalar"
+  },
+  {
+   "name": "estimated PM",
+   "direction": "output",
+   "summary": "最近整定回路的估计相位裕度 scalar"
+  },
+  {
+   "name": "frd",
+   "direction": "output",
+   "summary": "最近整定回路的估计频率响应 vector"
+  },
+  {
+   "name": "nominal",
+   "direction": "output",
+   "summary": "最近整定回路的标称工作点处的对象输入和输出 vector"
+  },
+  {
+   "name": "loop startstops",
+   "direction": "output",
+   "summary": "活动回路 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tune D-axis current loop",
+   "default": "on",
+   "values": "启用 d 轴电流环整定 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Tune Q-axis current loop",
+   "default": "on",
+   "values": "启用 q 轴电流环整定 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Tune speed loop",
+   "default": "on",
+   "values": "启用速度环整定 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Tune flux loop",
+   "default": "on",
+   "values": "启用磁通环整定 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Use same settings for current loop controllers (D-axis + Q-axis)",
+   "default": "off",
+   "values": "为直轴和交轴电流环启用相同的整定和实验设置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use same settings for outer loop controllers (Speed + Flux)",
+   "default": "off",
+   "values": "为速度环和磁通环启用相同的整定和实验设置 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Experiment sample time",
+   "default": "–1",
+   "values": "频率响应估计实验的采样时间 –1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Use different sample time for tuning",
+   "default": "off",
+   "values": "启用与环 PID 控制器和实验不同的采样时间进行整定 off (default) | on",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Tuning sample time (sec)",
+   "default": "0.2",
+   "values": "整定算法的采样时间 0.2 (default) | positive scalar",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Type",
+   "default": "PI",
+   "values": "d 轴电流环 PID 控制器作用 PI (default) | PID | PIDF |...",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Form",
+   "default": "Parallel",
+   "values": "d 轴电流环 PID 控制器形式 Parallel (default) | Ideal",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Controller sample time (sec)",
+   "default": "0.001",
+   "values": "d 轴电流环 PID 控制器采样时间 0.001 (default) | positive scalar | –1",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "d 轴电流环控制器积分项的离散积分公式 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Filter method",
+   "default": "Euler",
+   "values": "d 轴电流环控制器微分滤波器项的离散积分公式 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Target bandwidth (rad/sec)",
+   "default": "100",
+   "values": "d 轴电流环整定后响应的目标穿越频率 100 (default) | positive scalar",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "Target phase margin (degrees)",
+   "default": "60",
+   "values": "d 轴电流环目标最小相位裕度 60 (default) | scalar in range 0–90",
+   "group": "Tuning Tab"
+  },
+  {
+   "name": "D-axis current loop start time (sec)",
+   "default": "1",
+   "values": "指定直轴电流环整定实验开始时间 1 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "D-axis current loop experiment duration (sec)",
+   "default": "0.05",
+   "values": "指定直轴电流环整定实验持续时间 0.05 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Q-axis current loop start time (sec)",
+   "default": "1.1",
+   "values": "指定交轴电流环整定实验开始时间 1.1 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Q-axis current loop experiment duration (sec)",
+   "default": "0.05",
+   "values": "指定交轴电流环整定实验持续时间 0.05 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Speed loop start time (sec)",
+   "default": "2",
+   "values": "指定速度环整定实验开始时间 2 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Speed loop experiment duration (sec)",
+   "default": "3",
+   "values": "指定速度环整定实验持续时间 3 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Flux loop start time (sec)",
+   "default": "6",
+   "values": "指定磁通环整定实验开始时间 6 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Flux loop experiment duration (sec)",
+   "default": "3",
+   "values": "指定磁通环整定实验持续时间 3 (default)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Experiment Mode",
+   "default": "Superposition",
+   "values": "正弦扰动信号类型 Superposition (default) | Sinestream | PRBS (since R2024a)",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Plant Type",
+   "default": "Stable",
+   "values": "直轴电流被控对象的稳定性 Stable (default) | Integrating",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Plant Sign",
+   "default": "Positive",
+   "values": "直轴电流被控对象的符号 Positive (default) | Negative",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Sine Amplitudes",
+   "default": "1",
+   "values": "直轴电流环中正弦扰动的幅值 1 (default) | scalar | vector of length 5",
+   "group": "Experiment Tab"
+  },
+  {
+   "name": "Use external source for bandwidths",
+   "default": "off",
+   "values": "为目标带宽提供外部信号 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external source for target phase margins",
+   "default": "off",
+   "values": "为目标相位裕度提供外部信号 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external source for start/stops of experiment",
+   "default": "off",
+   "values": "为整定实验的启动和停止提供外部信号 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external source for sine amplitudes",
+   "default": "off",
+   "values": "为正弦扰动幅值提供外部信号 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "浮点精度 double (default) | single",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Estimated phase margin achieved by tuned controllers",
+   "default": "off",
+   "values": "最近整定的环所达到的相位裕度 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Plant frequency responses near bandwidth",
+   "default": "off",
+   "values": "最近整定回路的估计频率响应 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Plant nominal input and output",
+   "default": "off",
+   "values": "标称工作点处的被控对象输入和输出 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Start/stop of autotuning process",
+   "default": "off",
+   "values": "指示每个已整定环的实验开始和结束的信号 off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Export to MATLAB",
+   "default": "",
+   "values": "将实验和整定结果发送到 MATLAB 工作区 button",
+   "group": "Block Tab"
+  }
+ ]
+}

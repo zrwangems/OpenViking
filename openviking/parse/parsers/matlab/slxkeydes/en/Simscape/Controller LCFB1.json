@@ -1,0 +1,95 @@
+{
+ "key": "Controller LCFB1",
+ "title": "Controller LCFB1",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Turbine-Governors/Controller_LCFB1.md"
+ ],
+ "text": "Load controller for turbine-governor model, 3 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Speed reference (pu)}, {Initial power reference, P_ref0 (pu)}, {Controller deadband (pu)} sets the deadband of controller, {Maximum error, e_max (pu)}, {Frequency bias gain, f_b (pu)} sets the gain of frequency bias, {Proportional gain, K_p (pu)} sets the proportional gain for PI control, {Integral gain, K_i (pu/s)} sets the integral gain for PI control, {Power transducer time constant, T_pelec (s)} sets the time constant of power transducer and {Maximum output, I_rmax (pu)} sets the upper limit of the output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "speed_pu",
+   "direction": "input",
+   "summary": "Speed load scalar"
+  },
+  {
+   "name": "Pmwset",
+   "direction": "input",
+   "summary": "Power setpoint scalar"
+  },
+  {
+   "name": "Pelec",
+   "direction": "input",
+   "summary": "Electrical power input scalar"
+  },
+  {
+   "name": "Pref",
+   "direction": "output",
+   "summary": "Bias scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Speed reference (pu)",
+   "default": "1",
+   "values": "Speed reference 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial power reference, P_ref0 (pu)",
+   "default": "0.45",
+   "values": "Initial power reference 0.45 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller deadband (pu)",
+   "default": "0",
+   "values": "Deadband of controller 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum error, e_max (pu)",
+   "default": "0.1",
+   "values": "Maximum error 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency bias gain, f_b (pu)",
+   "default": "0",
+   "values": "Gain of frequency bias 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain, K_p (pu)",
+   "default": "0",
+   "values": "Proportional gain for PI control 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain, K_i (pu/s)",
+   "default": "0.1",
+   "values": "Integral gain for PI control 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Power transducer time constant, T_pelec (s)",
+   "default": "3.5",
+   "values": "Time constant of power transducer 3.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum output, I_rmax (pu)",
+   "default": "0.035",
+   "values": "Upper limit of the output 0.035 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

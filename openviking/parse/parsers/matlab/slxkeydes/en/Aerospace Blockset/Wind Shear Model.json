@@ -1,0 +1,54 @@
+{
+ "key": "Wind Shear Model",
+ "title": "Wind Shear Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Wind/Wind_Shear_Model.md"
+ ],
+ "text": "Calculate wind shear conditions, 2 inputs, 1 output, {Units} sets Wind shear units Metric; {Flight phase}, {Wind speed at 20 ft altitude (kts)} and {Wind direction at 20 ft altitude (degrees clockwise from north)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "Altitude scalar"
+  },
+  {
+   "name": "DCM",
+   "direction": "input",
+   "summary": "Direction cosine matrix 3-by-3 matrix"
+  },
+  {
+   "name": "V wind",
+   "direction": "output",
+   "summary": "Mean wind speed three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Wind shear units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Flight phase",
+   "default": "Phase",
+   "values": "Flight phase Category C - Terminal Flight Phase (default) | Other",
+   "group": ""
+  },
+  {
+   "name": "Wind speed at 20 ft altitude (kts)",
+   "default": "15",
+   "values": "Wind speed 15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wind direction at 20 ft altitude (degrees clockwise from north)",
+   "default": "0",
+   "values": "Wind direction 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

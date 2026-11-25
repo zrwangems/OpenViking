@@ -1,0 +1,13 @@
+{
+ "key": "Check Valve (G)",
+ "title": "Check Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Directional Control Valves/Check_Valve_G.md"
+ ],
+ "text": "Check valve in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

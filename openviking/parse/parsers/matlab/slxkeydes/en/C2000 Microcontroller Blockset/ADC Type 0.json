@@ -1,0 +1,74 @@
+{
+ "key": "ADC Type 0",
+ "title": "ADC",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C281x/ADC.md"
+ ],
+ "text": "Analog-to-digital converter (ADC), 1 output, {Module} sets Select module to use; {Conversion mode} selects conversion type, {Start of conversion} selects start, {Sample time} sets the interval at which block reads data, {Data type} selects the output data, {Post interrupt at end of conversion} enables to post an asynchronous interrupt, {Number of conversions} selects number of ADC channels, {Conversions no. #} selects ADC channel for each conversion and {Use multiple output ports} enables to output multiple ports. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "ADC data vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Module",
+   "default": "A",
+   "values": "Select module to use A (default) | B | A and B",
+   "group": "ADC Control"
+  },
+  {
+   "name": "Conversion mode",
+   "default": "Sequential",
+   "values": "Select conversion type Sequential (default) | Simultaneous",
+   "group": "ADC Control"
+  },
+  {
+   "name": "Start of conversion",
+   "default": "Software",
+   "values": "Select start of conversion Software (default) | EVA | External pin",
+   "group": "ADC Control"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Interval at which block reads data 0.1 (default)",
+   "group": "ADC Control"
+  },
+  {
+   "name": "Data type",
+   "default": "uint16",
+   "values": "Select the output data type uint16 (default) | double | single | int8 | uint8 | int16 | int32 | uint32",
+   "group": "ADC Control"
+  },
+  {
+   "name": "Post interrupt at end of conversion",
+   "default": "Off",
+   "values": "Enable to post an asynchronous interrupt Off (default) | on",
+   "group": "ADC Control"
+  },
+  {
+   "name": "Number of conversions",
+   "default": "1",
+   "values": "Select number of ADC channels for conversion 1 (default) | 2 | 3 | …",
+   "group": "Input channels"
+  },
+  {
+   "name": "Conversions no. #",
+   "default": "1",
+   "values": "Select ADC channel for each conversion number 1 (default) | 2 | 3 | …",
+   "group": "Input channels"
+  },
+  {
+   "name": "Use multiple output ports",
+   "default": "off",
+   "values": "Enable to output multiple ports off (default) | on",
+   "group": "Input channels"
+  }
+ ]
+}

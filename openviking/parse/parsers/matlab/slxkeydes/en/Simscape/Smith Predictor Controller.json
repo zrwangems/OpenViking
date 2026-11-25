@@ -1,0 +1,89 @@
+{
+ "key": "Smith Predictor Controller",
+ "title": "Smith Predictor Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Smith_Predictor_Controller.md"
+ ],
+ "text": "Discrete-time Smith dead-time compensator, 3 inputs, 1 output; {Proportional gain} sets the k p, {Integral gain} sets the k i, {Integrator initial condition} sets the initial integrator value, {Control action upper limit} sets the u max, {Control action lower limit} sets the u min, {Model discrete transfer function numerator} sets the transfer function numerator, {Model discrete transfer function denominator} sets the transfer function denominator, {System dead time (samples)} sets the number of dead-time samples and {Sample time (-1 for inherited)} sets the sampling interval. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "Plant reference scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Integrator reset scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Plant output scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Controller output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "1",
+   "values": "K p 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "1",
+   "values": "K i 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integrator initial condition",
+   "default": "0",
+   "values": "Initial integrator value 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "5",
+   "values": "u max 5 (default) | scalar greater than the value of the Control action lower limit parameter",
+   "group": ""
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "0",
+   "values": "u min 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Model discrete transfer function numerator",
+   "default": "1",
+   "values": "Transfer function numerator 1 (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Model discrete transfer function denominator",
+   "default": "0.5]",
+   "values": "Transfer function denominator [1 0.5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "System dead time (samples)",
+   "default": "2",
+   "values": "Number of dead-time samples 2 (default) | 0 or a positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sampling interval -1 (default) | default value or a positive number",
+   "group": ""
+  }
+ ]
+}

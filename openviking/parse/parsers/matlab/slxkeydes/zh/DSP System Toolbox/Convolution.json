@@ -1,0 +1,84 @@
+{
+ "key": "Convolution",
+ "title": "Convolution",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Convolution.md"
+ ],
+ "text": "两个输入项的卷积，输入 2 路、输出 1 路、无直接馈通；按 {计算域} 指定计算域；{舍入模式} 指定舍入运算方法、{对整数溢出进行饱和处理} 指定溢出操作的方法、{乘积输出}、{累加器}、{输出}、{输出最小值} 指定模块可以输出的最小值、{输出最大值} 指定模块可以输出的最大值、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个输入信号 标量 | 向量 | 矩阵 | N - D 数组"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵 | N - D 数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "计算域",
+   "default": "时间",
+   "values": "计算域 时间 (默认) | 频率 | 最快",
+   "group": "“主要”选项卡"
+  },
+  {
+   "name": "舍入模式",
+   "default": "向下",
+   "values": "舍入运算方法 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "“数据类型”选项卡"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "“数据类型”选项卡"
+  },
+  {
+   "name": "乘积输出",
+   "default": "继承:通过内部规则继承",
+   "values": "乘积输出数据类型 继承:通过内部规则继承 (默认) | 继承:与第一个输入相同 | fixdt([],16,0)",
+   "group": "“数据类型”选项卡"
+  },
+  {
+   "name": "累加器",
+   "default": "rule",
+   "values": "累加器的数据类型 Inherit: Inherit via internal rule (默认) | Inherit: Same as first input | Inherit: Same as product output | fixdt([],16,0)",
+   "group": "“数据类型”选项卡"
+  },
+  {
+   "name": "输出",
+   "default": "继承:与累加器相同",
+   "values": "输出的数据类型 继承:与累加器相同 (默认) | 继承:与输入相同 | 继承:与乘积输出相同 | fixdt([],16,0)",
+   "group": "“数据类型”选项卡"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "模块可以输出的最小值 [] (默认) | 标量",
+   "group": "“数据类型”选项卡"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "模块可以输出的最大值 [] (默认) | 标量",
+   "group": "“数据类型”选项卡"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "“数据类型”选项卡"
+  }
+ ]
+}

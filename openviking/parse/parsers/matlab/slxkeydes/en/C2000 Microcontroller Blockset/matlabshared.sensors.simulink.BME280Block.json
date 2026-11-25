@@ -1,0 +1,113 @@
+{
+ "key": "matlabshared.sensors.simulink.BME280Block",
+ "title": "BME280",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Sensors/BME280.md"
+ ],
+ "text": "Measure barometric air pressure, relative humidity, and temperature from BME280 sensor, 4 outputs; {I2C module} sets the module for communication, {I2C address}, {Pressure (Pa)} sets the output port for reading pressure, {Temperature (℃)} sets the output port for reading temperature, {Humidity (%)} sets the output port for reading humidity, {Status} sets the output port for obtaining status of values, {Filter coefficient}, {Stand by time} sets the standby time to read values, {Pressure oversampling factor} sets the oversampling factor for the measured pressure, {Humidity oversampling factor} sets the oversampling factor for the measured humidity, {Temperature oversampling factor} sets the oversampling factor for the measured humidity, {Data type} sets the output data type for values from BME280 sensor and {Sample time} sets the time interval to read data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pressure",
+   "direction": "output",
+   "summary": "Barometric air pressure measured by BME280 sensor scalar"
+  },
+  {
+   "name": "Temperature",
+   "direction": "output",
+   "summary": "Temperature measured by BME280 sensor scalar"
+  },
+  {
+   "name": "Humidity",
+   "direction": "output",
+   "summary": "Relative humidity measured by BME280 sensor scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of read values 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "I2C module",
+   "default": "I2C_A",
+   "values": "Module for communication I2C_A (default)",
+   "group": ""
+  },
+  {
+   "name": "I2C address",
+   "default": "0x77",
+   "values": "I2C address of BME280 sensor 0x77 (default) | 0x76",
+   "group": ""
+  },
+  {
+   "name": "Pressure (Pa)",
+   "default": "on",
+   "values": "Set output port for reading pressure on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Temperature (℃)",
+   "default": "on",
+   "values": "Set output port for reading temperature on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Humidity (%)",
+   "default": "on",
+   "values": "Set output port for reading humidity on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Status",
+   "default": "off",
+   "values": "Set output port for obtaining status of values read off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter coefficient",
+   "default": "0",
+   "values": "Filter coefficient for IIR filter 0 (default) | 2 | 4 | 8 | 16",
+   "group": ""
+  },
+  {
+   "name": "Stand by time",
+   "default": "0.5",
+   "values": "Standby time to read values 0.5 (default) | 10 | 20 | 62.5 | 125 | 250 | 500 | 1000",
+   "group": ""
+  },
+  {
+   "name": "Pressure oversampling factor",
+   "default": "1",
+   "values": "Oversampling factor for the measured pressure value 1 (default) | 2 | 4 | 8 | 16",
+   "group": ""
+  },
+  {
+   "name": "Humidity oversampling factor",
+   "default": "1",
+   "values": "Oversampling factor for the measured humidity value 1 (default) | 2 | 4 | 8 | 16",
+   "group": ""
+  },
+  {
+   "name": "Temperature oversampling factor",
+   "default": "1",
+   "values": "Oversampling factor for the measured humidity value 1 (default) | 2 | 4 | 8 | 16",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "Output data type for values from BME280 sensor single (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time interval to read data -1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

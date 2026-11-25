@@ -1,0 +1,196 @@
+{
+ "key": "NCO",
+ "title": "NCO",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Signal Operations/NCO.md",
+  "DSP HDL Toolbox/Sources/NCO.md",
+  "DSP System Toolbox/Signal Operations/NCO.md",
+  "DSP System Toolbox/Sources/NCO.md"
+ ],
+ "text": "生成实数或复数正弦信号，输入 5 路、输出 3 路；按 {Type of output signal} 指定输出波形格式；{Phase increment source} 指定相位增量的来源 Input、{Phase increment} 指定生成波形的相位增量、{Phase offset source} 指定相位偏移的来源 Input、{Phase offset} 指定生成波形的相位偏移、{Dither source} 指定抖动位数的来源、{Number of dither bits} 用于表示抖动的位数、{Samples per frame} 指定基于帧的输入和输出的向量大小、{Enable look up table compression method} 指定压缩查找表、{Enable accumulator reset input port} 启用复位控制信号、{Enable phase port} 输出当前相位、{Rounding Mode} 指定定点运算的舍入模式、{Overflow mode} 指定定点运算的溢出模式、{Accumulator Data Type} 指定累加器数据类型 Binary point、{Accumulator Signed} 指定累加器数据格式为有符号或无符号、{Accumulator Word length} 指定累加器字长、{Accumulator Fraction length} 指定累加器小数长度、{Quantize phase} 指定量化累加相位、{Number of quantizer accumulator bits} 指定量化器累加器位数、{Output Data Type} 输出数据类型 Binary point、{Output Signed} 输出数据格式为有符号或无符号、{Output Word length} 输出字长、{Output Fraction length} 输出小数长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "inc",
+   "direction": "input",
+   "summary": "相位增量 scalar integer"
+  },
+  {
+   "name": "offset",
+   "direction": "input",
+   "summary": "相位偏移 scalar integer"
+  },
+  {
+   "name": "dither",
+   "direction": "input",
+   "summary": "抖动 integer | column vector of integers"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "启用 NCO 操作的控制信号 scalar"
+  },
+  {
+   "name": "reset accum",
+   "direction": "input",
+   "summary": "重置累加器 scalar"
+  },
+  {
+   "name": "sin, cos, exp",
+   "direction": "output",
+   "summary": "生成的波形 scalar | column vector"
+  },
+  {
+   "name": "phase",
+   "direction": "output",
+   "summary": "NCO 的当前相位 scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示输出数据的有效性 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase increment source",
+   "default": "port",
+   "values": "相位增量的来源 Input port (default) | Property",
+   "group": "Main"
+  },
+  {
+   "name": "Phase increment",
+   "default": "100",
+   "values": "生成波形的相位增量 100 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset source",
+   "default": "port",
+   "values": "相位偏移的来源 Input port (default) | Property",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset",
+   "default": "0",
+   "values": "生成波形的相位偏移 0 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Dither source",
+   "default": "Property",
+   "values": "抖动位数的来源 Property (default) | Input port | None",
+   "group": "Main"
+  },
+  {
+   "name": "Number of dither bits",
+   "default": "4",
+   "values": "用于表示抖动的位数 4 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "基于帧的输入和输出的向量大小 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Enable look up table compression method",
+   "default": "off",
+   "values": "压缩查找表 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Enable accumulator reset input port",
+   "default": "off",
+   "values": "启用复位控制信号 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Type of output signal",
+   "default": "Sine",
+   "values": "输出波形格式 Sine (default) | Cosine | Complex exponential | Sine and cosine",
+   "group": "Main"
+  },
+  {
+   "name": "Enable phase port",
+   "default": "off",
+   "values": "输出当前相位 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding Mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Overflow mode",
+   "default": "Wrap",
+   "values": "定点运算的溢出模式 Wrap (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator Data Type",
+   "default": "scaling",
+   "values": "累加器数据类型 Binary point scaling (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator Signed",
+   "default": "Signed",
+   "values": "累加器数据格式为有符号或无符号 Signed (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator Word length",
+   "default": "16",
+   "values": "累加器字长 16 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator Fraction length",
+   "default": "0",
+   "values": "累加器小数长度 0 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Quantize phase",
+   "default": "off",
+   "values": "量化累加相位 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Number of quantizer accumulator bits",
+   "default": "12",
+   "values": "量化器累加器位数 12 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Data Type",
+   "default": "scaling",
+   "values": "输出数据类型 Binary point scaling (default) | double | single",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Signed",
+   "default": "Signed",
+   "values": "输出数据格式为有符号或无符号 Signed (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Word length",
+   "default": "16",
+   "values": "输出字长 16 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Fraction length",
+   "default": "14",
+   "values": "输出小数长度 14 (default) | integer",
+   "group": "Data Types"
+  }
+ ]
+}

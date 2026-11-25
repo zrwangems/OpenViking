@@ -1,0 +1,13 @@
+{
+ "key": "Wye-Connected Load",
+ "title": "Wye-Connected Load",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/RLC Assemblies/Wye_Connected_Load.md"
+ ],
+ "text": "采用星形配置接线的三相负载。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

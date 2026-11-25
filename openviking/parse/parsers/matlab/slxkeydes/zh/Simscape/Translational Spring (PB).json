@@ -1,0 +1,13 @@
+{
+ "key": "Translational Spring (PB)",
+ "title": "Translational Spring (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Translational_Spring_PB.md"
+ ],
+ "text": "基于位置的机械平移系统中的理想弹簧。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

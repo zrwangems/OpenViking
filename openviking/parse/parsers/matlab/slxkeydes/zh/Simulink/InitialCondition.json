@@ -1,0 +1,37 @@
+{
+ "key": "InitialCondition",
+ "title": "IC",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/IC.md"
+ ],
+ "text": "设置信号的初始值，输入 1 路、输出 1 路；按 {采样时间(-1 表示继承)} 指定采样之间的时间间隔；{初始值}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始值",
+   "default": "1",
+   "values": "初始值 1 (默认) | 实数、有限标量、向量、矩阵或 N 维数组",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

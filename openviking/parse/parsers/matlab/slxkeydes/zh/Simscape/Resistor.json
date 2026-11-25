@@ -1,0 +1,15 @@
+{
+ "key": "Resistor",
+ "title": "Resistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Resistor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Resistor.md",
+  "RF Blockset/Circuit Envelope/Elements/R.md"
+ ],
+ "text": "电阻器，包括可选容差、工作限值、故障行为和噪声。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

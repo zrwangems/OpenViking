@@ -1,0 +1,202 @@
+{
+ "key": "driving.scenario.internal.ScenarioReader",
+ "title": "Scenario Reader",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/Scenario_Reader.md"
+ ],
+ "text": "Read driving scenario into model, 1 input, 4 outputs, {Driving Scenario Designer file name} sets Scenario file name; {Source of driving scenario}, {MATLAB or model workspace variable name} sets the scenario variable name, {Coordinate system of actors output}, {Source of ego vehicle}, {Ego vehicle ActorID} sets the actor ID of ego vehicle, {Output ego vehicle pose} sets the output pose of ego vehicle, {Output ego vehicle state} sets the output state of ego vehicle, {Ego vehicle follows ground} sets the orient ego vehicle to follow road surface, {Sample time (s)} sets the sample time of simulation, {Lane boundaries to output}, {Distances from ego vehicle for computing boundaries (m)} sets the distances from ego vehicle at which to compute lane boundaries, {Location of boundaries on lane markings} sets the lane boundary location Center of lane, {Source of actors bus name} sets the source of name for actor poses bus, {Actors bus name} sets the name of actor poses bus valid, {Source of maximum number of actors}, {Maximum number of actors}, {Source of lane boundaries bus name} sets the source of name for lane boundaries bus, {Lane boundaries bus name} sets the name of lane boundaries bus valid, {Source of maximum number of lane boundaries}, {Maximum number of lane boundaries}, {Source of ego vehicle pose bus name} sets the source of name for ego vehicle pose bus, {Ego vehicle pose bus name} sets the name of ego vehicle pose bus valid bus, {Source of ego vehicle state bus name} sets the source of name for ego vehicle state bus, {Ego vehicle state bus name} sets the name of ego vehicle state bus valid bus, {Show coordinate labels} displays coordinate system of inputs and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Ego Vehicle",
+   "direction": "input",
+   "summary": "Ego vehicle pose Simulink bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Actors",
+   "direction": "output",
+   "summary": "Scenario actor poses Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Lane Boundaries",
+   "direction": "output",
+   "summary": "Scenario lane boundaries Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Ego Vehicle Pose",
+   "direction": "output",
+   "summary": "Ego vehicle pose Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Ego Vehicle State",
+   "direction": "output",
+   "summary": "Ego vehicle state Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of driving scenario",
+   "default": "file",
+   "values": "Source of driving scenario From file (default) | From workspace",
+   "group": ""
+  },
+  {
+   "name": "Driving Scenario Designer file name",
+   "default": "EgoVehicleGoesStraight.mat",
+   "values": "Scenario file name EgoVehicleGoesStraight.mat (default) | scenario file on MATLAB search path | path to scenario file",
+   "group": ""
+  },
+  {
+   "name": "MATLAB or model workspace variable name",
+   "default": "scenario",
+   "values": "Scenario variable name scenario (default) | drivingScenario object variable name",
+   "group": ""
+  },
+  {
+   "name": "Coordinate system of actors output",
+   "default": "coordinates",
+   "values": "Coordinate system of actors output Vehicle coordinates (default) | World coordinates",
+   "group": ""
+  },
+  {
+   "name": "Source of ego vehicle",
+   "default": "Scenario",
+   "values": "Source of ego vehicle Scenario (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Ego vehicle ActorID",
+   "default": "1",
+   "values": "Actor ID of ego vehicle 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output ego vehicle pose",
+   "default": "off",
+   "values": "Output pose of ego vehicle off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output ego vehicle state",
+   "default": "off",
+   "values": "Output state of ego vehicle off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Ego vehicle follows ground",
+   "default": "off",
+   "values": "Orient ego vehicle to follow road surface off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "0.1",
+   "values": "Sample time of simulation 0.1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Lane boundaries to output",
+   "default": "None",
+   "values": "Lane boundaries to output None (default) | Ego vehicle lane boundaries | All lane boundaries",
+   "group": ""
+  },
+  {
+   "name": "Distances from ego vehicle for computing boundaries (m)",
+   "default": "linspace(-150,150,101)",
+   "values": "Distances from ego vehicle at which to compute lane boundaries linspace(-150,150,101) (default) | N -element real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Location of boundaries on lane markings",
+   "default": "markings",
+   "values": "Lane boundary location Center of lane markings (default) | Inner edge of lane markings",
+   "group": ""
+  },
+  {
+   "name": "Source of actors bus name",
+   "default": "Auto",
+   "values": "Source of name for actor poses bus Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Actors bus name",
+   "default": "",
+   "values": "Name of actor poses bus valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Source of maximum number of actors",
+   "default": "Scenario",
+   "values": "Source of maximum number of actors Scenario (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of actors",
+   "default": "100",
+   "values": "Maximum number of actors 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source of lane boundaries bus name",
+   "default": "Auto",
+   "values": "Source of name for lane boundaries bus Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Lane boundaries bus name",
+   "default": "",
+   "values": "Name of lane boundaries bus valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Source of maximum number of lane boundaries",
+   "default": "Scenario",
+   "values": "Source of maximum number of lane boundaries Scenario (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of lane boundaries",
+   "default": "10",
+   "values": "Maximum number of lane boundaries 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Source of ego vehicle pose bus name",
+   "default": "Auto",
+   "values": "Source of name for ego vehicle pose bus Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Ego vehicle pose bus name",
+   "default": "",
+   "values": "Name of ego vehicle pose bus valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Source of ego vehicle state bus name",
+   "default": "Auto",
+   "values": "Source of name for ego vehicle state bus Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Ego vehicle state bus name",
+   "default": "",
+   "values": "Name of ego vehicle state bus valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Show coordinate labels",
+   "default": "on",
+   "values": "Display coordinate system of inputs and outputs on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,310 @@
+{
+ "key": "matlabshared.sensors.simulink.BMI160Block",
+ "title": "BMI160",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Sensors/BMI160.md"
+ ],
+ "text": "Measure linear acceleration, angular rate, and temperature from BMI160 sensor, 11 outputs, {BMM150 I2C address} sets I2C address of BMM150 sensor; {I2C module} sets the module for communication, {BMI160 I2C address} sets the i2C address of BMI160, {Enable secondary magnetometer} enables read data from BMM150 connected as a secondary sensor, {Acceleration (m/s 2 )} sets the output port for reading acceleration, {Angular rate (rad/s)} sets the output port for reading angular rate, {Magnetic Field (µT)} sets the output port for reading magnetic field, {Temperature (℃)} sets the output port for reading temperature, {Acceleration status} sets the output port for obtaining acceleration, {Angular rate status} sets the output port for obtaining angular rate, {Magnetic Field Status} sets the output port for obtaining magnetic field, {Interrupt source} sets the output port for obtaining interrupt source, {Tap source} sets the output port for obtaining tap event status, {High g source} sets the output port for obtaining high g event, {Any motion source} sets the output port for obtaining any motion event, {Data type} sets the output data type for values from BMI160 sensor, {Sample time} sets the time interval to read data, {Accelerometer range} sets the full scale for measuring linear acceleration, {Accelerometer output data rate} sets the rate at which accelerometer data is sampled, {Enable low pass filter}, {Accelerometer filter mode} selects the filter mode for low pass filter for accelerometer values, {Gyroscope range} sets the full scale for measuring angular rate, {Gyroscope output data rate} sets the rate at which gyroscope data is sampled, {Gyroscope filter mode} selects the filter mode for low pass filter for gyroscope values, {Magnetometer output data rate} sets the rate at which magnetometer data is sampled, {Single tap} enables interrupt when single tap, {Quiet Time threshold} sets the quiet time duration, {Shock Time threshold} sets the shock time duration, {Amplitude threshold}, {Interrupt generate pin} sets the pin to generate single tap, {Double tap} enables interrupt when double tap, {Duration Time threshold} sets the time threshold for second tap, {High g detection} enables interrupt when high g detection, {Time threshold(2.5 ms to 640 ms)} sets the time duration for high g detection, {Any motion} enables interrupt when any motion interrupt, {Time threshold} sets the time duration for any motion detection, {Slow motion} enables interrupt when slow motion interrupt, {Flat detection} enables interrupt when flat detection interrupt, {Theta threshold (0.7 ° to 44.8 ° )} sets the theta threshold for detecting flat detection and {Data ready} enables interrupt when data is ready. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Acceleration",
+   "direction": "output",
+   "summary": "Linear acceleration measured by BMI160 sensor row vector"
+  },
+  {
+   "name": "Angular Rate",
+   "direction": "output",
+   "summary": "Angular rate measured by BMI160 sensor row vector"
+  },
+  {
+   "name": "Magnetic Field",
+   "direction": "output",
+   "summary": "Magnetic field strength measured by a secondary BMM150 sensor row vector"
+  },
+  {
+   "name": "Temperature",
+   "direction": "output",
+   "summary": "Temperature measured by BMI160 sensor scalar"
+  },
+  {
+   "name": "Acceleration Status",
+   "direction": "output",
+   "summary": "Status of acceleration value 0 | 1"
+  },
+  {
+   "name": "Angular Rate Status",
+   "direction": "output",
+   "summary": "Status of angular rate value 0 | 1"
+  },
+  {
+   "name": "Magnetic Field Status",
+   "direction": "output",
+   "summary": "Status of magnetic field value 0 | 1"
+  },
+  {
+   "name": "Interrupt Source",
+   "direction": "output",
+   "summary": "Status of interrupt source 0 | 1 | -1"
+  },
+  {
+   "name": "Tap event Source",
+   "direction": "output",
+   "summary": "Status of tap event source row vector"
+  },
+  {
+   "name": "High g event Source",
+   "direction": "output",
+   "summary": "Status of high g event source row vector"
+  },
+  {
+   "name": "Any motion event Source",
+   "direction": "output",
+   "summary": "Status of any motion event source row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "I2C module",
+   "default": "I2C_A",
+   "values": "Module for communication I2C_A (default)",
+   "group": ""
+  },
+  {
+   "name": "BMI160 I2C address",
+   "default": "0x69",
+   "values": "I2C address of BMI160 sensor 0x69 (default) | 0x68",
+   "group": ""
+  },
+  {
+   "name": "Enable secondary magnetometer",
+   "default": "on",
+   "values": "Enable read data from BMM150 connected as a secondary sensor to BMI160 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "BMM150 I2C address",
+   "default": "0x13",
+   "values": "I2C address of BMM150 sensor 0x13 (default) | 0x10 | 0x11 | 0x12",
+   "group": ""
+  },
+  {
+   "name": "Acceleration (m/s 2 )",
+   "default": "on",
+   "values": "Set output port for reading acceleration on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Angular rate (rad/s)",
+   "default": "on",
+   "values": "Set output port for reading angular rate on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Magnetic Field (µT)",
+   "default": "on",
+   "values": "Set output port for reading magnetic field on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Temperature (℃)",
+   "default": "off",
+   "values": "Set output port for reading temperature off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Acceleration status",
+   "default": "off",
+   "values": "Set output port for obtaining acceleration status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Angular rate status",
+   "default": "off",
+   "values": "Set output port for obtaining angular rate status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Magnetic Field Status",
+   "default": "off",
+   "values": "Set output port for obtaining magnetic field status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Interrupt source",
+   "default": "off",
+   "values": "Set output port for obtaining interrupt source status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Tap source",
+   "default": "off",
+   "values": "Set output port for obtaining tap event status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "High g source",
+   "default": "off",
+   "values": "Set output port for obtaining high g event status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Any motion source",
+   "default": "off",
+   "values": "Set output port for obtaining any motion event status off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "Output data type for values from BMI160 sensor single (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time interval to read data -1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer range",
+   "default": "±2g",
+   "values": "Full scale for measuring linear acceleration ±2g (default) | ±4g | ±8g | ±16g",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer output data rate",
+   "default": "Hz",
+   "values": "Rate at which accelerometer data is sampled 12.5 Hz (default) | 25 Hz | 50 Hz | 100 Hz | 200 Hz | 400 Hz | 800 Hz | 1600 Hz",
+   "group": ""
+  },
+  {
+   "name": "Enable low pass filter",
+   "default": "off",
+   "values": "Enable low pass filter to read accelerometer data from BMI160 sensor off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Accelerometer filter mode",
+   "default": "Normal",
+   "values": "Select the filter mode for low pass filter for accelerometer values Normal (default) | OSR2 | OSR4",
+   "group": ""
+  },
+  {
+   "name": "Gyroscope range",
+   "default": "dps",
+   "values": "Full scale for measuring angular rate 125 dps (default) | 250 dps | 500 dps | 1000 dps | 2000 dps",
+   "group": ""
+  },
+  {
+   "name": "Gyroscope output data rate",
+   "default": "Hz",
+   "values": "Rate at which gyroscope data is sampled 25 Hz (default) | 50 Hz | 100 Hz | 200 Hz | 400 Hz | 800 Hz | 1600 Hz | 3200 Hz",
+   "group": ""
+  },
+  {
+   "name": "Gyroscope filter mode",
+   "default": "Normal",
+   "values": "Select the filter mode for low pass filter for gyroscope values Normal (default) | OSR2 | OSR4",
+   "group": ""
+  },
+  {
+   "name": "Magnetometer output data rate",
+   "default": "Hz",
+   "values": "Rate at which magnetometer data is sampled 25 Hz (default) | 0.78125 Hz | 1.5625 Hz | 3.125 Hz | 6.25 Hz | 12.5 Hz | 50 Hz | 100 Hz | 200 Hz | 400 Hz | 800 Hz",
+   "group": ""
+  },
+  {
+   "name": "Single tap",
+   "default": "off",
+   "values": "Enable interrupt when single tap is triggered off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Quiet Time threshold",
+   "default": "ms",
+   "values": "Quiet time duration 30 ms (default) | 20 ms",
+   "group": ""
+  },
+  {
+   "name": "Shock Time threshold",
+   "default": "ms",
+   "values": "Shock time duration 50 ms (default) | 75 ms",
+   "group": ""
+  },
+  {
+   "name": "Amplitude threshold",
+   "default": "0.1",
+   "values": "Amplitude threshold for detecting a tap 0.1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Interrupt generate pin",
+   "default": "INT1",
+   "values": "Pin to generate single tap interrupt INT1 (default) | INT2",
+   "group": ""
+  },
+  {
+   "name": "Double tap",
+   "default": "off",
+   "values": "Enable interrupt when double tap is triggered off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Duration Time threshold",
+   "default": "ms",
+   "values": "Time threshold for second tap 50 ms (default) | 100 ms | 150 ms | 200 ms | 250 ms | 375 ms | 500 ms | 700 ms",
+   "group": ""
+  },
+  {
+   "name": "High g detection",
+   "default": "off",
+   "values": "Enable interrupt when high g detection is triggered off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Time threshold(2.5 ms to 640 ms)",
+   "default": "2.5",
+   "values": "Time duration for high g detection 2.5 (default) |",
+   "group": ""
+  },
+  {
+   "name": "Any motion",
+   "default": "off",
+   "values": "Enable interrupt when any motion interrupt is triggered off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Time threshold",
+   "default": "1",
+   "values": "Time duration for any motion detection 1 (default) | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "Slow motion",
+   "default": "off",
+   "values": "Enable interrupt when slow motion interrupt is triggered off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Flat detection",
+   "default": "-1",
+   "values": "Enable interrupt when flat detection interrupt is triggered -1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Theta threshold (0.7 ° to 44.8 ° )",
+   "default": "5",
+   "values": "Theta threshold for detecting flat detection interrupt 5 (default)",
+   "group": ""
+  },
+  {
+   "name": "Data ready",
+   "default": "off",
+   "values": "Enable interrupt when data is ready off (default) | on",
+   "group": ""
+  }
+ ]
+}

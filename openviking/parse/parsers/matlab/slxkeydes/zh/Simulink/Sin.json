@@ -1,0 +1,86 @@
+{
+ "key": "Sin",
+ "title": "Sine Wave Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Sine_Wave_Function.md",
+  "Simulink/Sources/Sine_Wave.md"
+ ],
+ "text": "使用外部信号作为时间源来生成正弦波，输入 1 路、输出 1 路；{正弦类型} 指定正弦波的类型、{时间(t)} 指定时间变量的来源、{振幅}、{偏置} 添加到正弦波的常量、{频率(弧度/秒)} 指定正弦波的频率、{相位(弧度)} 指定正弦波的相移、{每周期采样数}、{偏移量(采样数)}、{采样时间} 指定采样周期、{将向量参数解释为一维向量} 指定单行或单列矩阵的输出维度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "时间源信号 标量"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "正弦波输出信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "正弦类型",
+   "default": "基于时间",
+   "values": "正弦波的类型 基于时间 (默认) | 基于采样",
+   "group": ""
+  },
+  {
+   "name": "时间(t)",
+   "default": "使用外部信号",
+   "values": "时间变量的来源 使用外部信号 (默认) | 使用仿真时间",
+   "group": ""
+  },
+  {
+   "name": "振幅",
+   "default": "1",
+   "values": "正弦波的振幅 1 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "偏置",
+   "default": "0",
+   "values": "添加到正弦波的常量 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "频率(弧度/秒)",
+   "default": "1",
+   "values": "正弦波的频率 1 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "相位(弧度)",
+   "default": "0",
+   "values": "正弦波的相移 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "每周期采样数",
+   "default": "0",
+   "values": "每周期采样数 0 (默认) | integer",
+   "group": ""
+  },
+  {
+   "name": "偏移量(采样数)",
+   "default": "0",
+   "values": "偏移量（以时间采样数为单位） 0 (默认) | integer",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0",
+   "values": "采样周期 0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "将向量参数解释为一维向量",
+   "default": "off",
+   "values": "单行或单列矩阵的输出维度 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

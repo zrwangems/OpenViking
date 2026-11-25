@@ -1,0 +1,37 @@
+{
+ "key": "StringToEnum",
+ "title": "String to Enum",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_to_Enum.md"
+ ],
+ "text": "输入字符串信号转换为枚举信号，输入 1 路、输出 1 路；{输出数据类型}、{模式} 指定数据类别 Enumerated，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入字符串信号 标量"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "枚举编号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出数据类型",
+   "default": "SlDemoSign",
+   "values": "输出数据类型 SlDemoSign (默认) |",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "Enumerated",
+   "values": "数据类别 Enumerated (默认) |",
+   "group": ""
+  }
+ ]
+}

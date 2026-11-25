@@ -1,0 +1,90 @@
+{
+ "key": "VariantStart",
+ "title": "Variant Start",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Variant_Start.md"
+ ],
+ "text": "Define start of bounded region, 1 input, 2 outputs, no direct feedthrough, {Variant control mode} sets Variant control mode; {Variant Start End Tag} sets the unique identifier of bounded, {Variant activation time} sets the time when software chooses active variant choice update, {Port and associated conditions} sets the table of variant choices, variant controls, and conditions empty, {Port} sets the number of connected output port Read-only: no, {Variant control label} sets the name of choice in label mode true, {Variant control expression} sets the condition expression that determines the active choice true, {Condition (read-only)} sets the condition expression in Simulink.VariantExpression object Read-only, {Label mode active choice} sets the name of active choice in label mode and {Show variant condition on block} sets the annotate block ports. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output branch scalar | vector | matrix"
+  },
+  {
+   "name": "Port_N",
+   "direction": "output",
+   "summary": "Output from N th branch scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variant Start End Tag",
+   "default": "A",
+   "values": "Unique identifier of bounded region A (default) | valid MATLAB ® identifier",
+   "group": ""
+  },
+  {
+   "name": "Variant control mode",
+   "default": "expression",
+   "values": "Variant control mode expression (default) | label | sim codegen switching",
+   "group": ""
+  },
+  {
+   "name": "Variant activation time",
+   "default": "diagram",
+   "values": "Time when software chooses active variant choice update diagram (default) | update diagram analyze all choices | code compile | startup | inherit from Simulink.VariantControl",
+   "group": ""
+  },
+  {
+   "name": "Port and associated conditions",
+   "default": "table",
+   "values": "Table of variant choices, variant controls, and conditions empty table (default)",
+   "group": ""
+  },
+  {
+   "name": "Port",
+   "default": "",
+   "values": "Number of connected output port Read-only: no default",
+   "group": ""
+  },
+  {
+   "name": "Variant control label",
+   "default": "false",
+   "values": "Name of choice in label mode true or false (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Variant control expression",
+   "default": "false",
+   "values": "Condition expression that determines the active choice true or false (default) | boolean condition expression | a Simulink.VariantExpression object representing a boolean condition expression | (default)",
+   "group": ""
+  },
+  {
+   "name": "Condition (read-only)",
+   "default": "N/A",
+   "values": "Condition expression in Simulink.VariantExpression object Read-only: N/A (default)",
+   "group": ""
+  },
+  {
+   "name": "Label mode active choice",
+   "default": "(Subsystem)",
+   "values": "Name of active choice in label mode true (Subsystem) (default) | false (Subsystem1)",
+   "group": ""
+  },
+  {
+   "name": "Show variant condition on block",
+   "default": "off",
+   "values": "Annotate block ports off (default) | on",
+   "group": ""
+  }
+ ]
+}

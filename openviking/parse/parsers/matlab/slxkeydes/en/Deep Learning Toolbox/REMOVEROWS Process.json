@@ -1,0 +1,13 @@
+{
+ "key": "REMOVEROWS Process",
+ "title": "removerows",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/removerows.md"
+ ],
+ "text": "Process matrices by removing rows with specified indices.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

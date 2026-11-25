@@ -1,0 +1,26 @@
+{
+ "key": "StateReader",
+ "title": "State Reader",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/State_Reader.md"
+ ],
+ "text": "Read a block state, 1 output, no direct feedthrough; {State owner block} sets the name of state owner block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "State value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "State owner block",
+   "default": "none",
+   "values": "Name of state owner block none (default)",
+   "group": ""
+  }
+ ]
+}

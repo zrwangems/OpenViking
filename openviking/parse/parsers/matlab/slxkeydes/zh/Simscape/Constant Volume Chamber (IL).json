@@ -1,0 +1,13 @@
+{
+ "key": "Constant Volume Chamber (IL)",
+ "title": "Constant Volume Chamber (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Constant_Volume_Chamber_IL.md"
+ ],
+ "text": "具有一个端口且体积固定的等温液体腔室。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

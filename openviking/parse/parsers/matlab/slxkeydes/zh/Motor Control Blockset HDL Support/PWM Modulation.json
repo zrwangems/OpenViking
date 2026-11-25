@@ -1,0 +1,68 @@
+{
+ "key": "PWM Modulation",
+ "title": "PWM Reference Generator",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/PWM_Reference_Generator.md",
+  "Motor Control Blockset/Controls/Math Transforms/PWM_Reference_Generator.md"
+ ],
+ "text": "从相电压生成调制信号，输入 5 路、输出 3 路；按 {输入类型} 指定模块输入类型；{调制方法} 指定脉冲宽度调制，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V α",
+   "direction": "input",
+   "summary": "α 轴定子参考电压分量 标量"
+  },
+  {
+   "name": "V β",
+   "direction": "input",
+   "summary": "β 轴定子参考电压分量 标量"
+  },
+  {
+   "name": "Va",
+   "direction": "input",
+   "summary": "相分量 标量"
+  },
+  {
+   "name": "Vb",
+   "direction": "input",
+   "summary": "相分量 标量"
+  },
+  {
+   "name": "Vc",
+   "direction": "input",
+   "summary": "相分量 标量"
+  },
+  {
+   "name": "V ao",
+   "direction": "output",
+   "summary": "a 轴定子参考电压分量 标量"
+  },
+  {
+   "name": "V bo",
+   "direction": "output",
+   "summary": "b 轴定子参考电压分量 标量"
+  },
+  {
+   "name": "V co",
+   "direction": "output",
+   "summary": "c 轴定子参考电压分量 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入类型",
+   "default": "Valphabeta",
+   "values": "模块输入类型 Valphabeta (默认) | Vabc | 度",
+   "group": ""
+  },
+  {
+   "name": "调制方法",
+   "default": "空间矢量调制",
+   "values": "脉冲宽度调制 (PWM) 方法 SVM: 空间矢量调制 (默认) | SPWM: 正弦 PWM | 60 DPWM:60 度不连续 PWM | 60 DPWM (+30 度相移):从 60 DPWM +30 度相移 | 60 DPWM (-30 度相移):从 60 DPWM -30 度相移 | 30 DPWM:30 度不连续 PWM | 120 DPWM: 正 DC 分量 | 120 DPWM: 负 DC 分量",
+   "group": ""
+  }
+ ]
+}

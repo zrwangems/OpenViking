@@ -1,0 +1,188 @@
+{
+ "key": "Update Metrics",
+ "title": "Update Metrics",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Update_Metrics.md"
+ ],
+ "text": "Update performance metrics in incremental learning model given new data, 5 inputs, 2 outputs, direct feedthrough, {Metrics data type} sets Data type of metrics output; {Select initial machine learning model} sets the initial incremental learning, {Model performance metrics to track} sets the performance metrics function, {Add input port for observation weights} adds second input port for observation, {Add input port for resetting trained learner} adds input port for resetting trained incremental, {Predictor data observation dimension} sets the observation dimension of predictor data, {Sample time (–1 for inherited)} sets the option to specify sample, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Metrics data type Minimum} sets the minimum value of metrics for range checking, {Metrics data type Maximum} sets the maximum value of metrics for range checking, {Predict response data type} sets the data type of predict response Inherit, {Predict response data type Minimum} sets the minimum value of predict response for range checking, {Predict response data type Maximum} sets the maximum value of predict response for range checking, {Loss data type} sets the data type of loss output Inherit, {Loss data type Minimum} sets the minimum value of loss for range checking, {Loss data type Maximum} sets the maximum value of loss for range checking, {Additional predict data type}, {Additional predict data type Maximum} sets the maximum value of additional predict for range checking, {Additional loss data type}, {Additional loss data type Minimum} sets the minimum value of additional loss for range checking and {Additional loss data type Maximum} sets the maximum value of additional loss for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mdl",
+   "direction": "input",
+   "summary": "Incremental learning model bus signal"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Chunk of predictor data numeric matrix"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Chunk of responses (labels) numeric vector | logical vector | enumerated vector"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "Chunk of observation weights vector of positive values"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Reset signal 0 ( false ) | 1 ( true ) | numeric scalar"
+  },
+  {
+   "name": "IsWarm",
+   "direction": "output",
+   "summary": "Flag indicating whether model tracks performance metrics logical"
+  },
+  {
+   "name": "metrics",
+   "direction": "output",
+   "summary": "Model performance metrics matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "Mdl",
+   "values": "Initial incremental learning model Mdl (default) | incrementalRegressionLinear model object | incrementalClassificationLinear model object | incrementalClassificationECOC model object",
+   "group": "Main"
+  },
+  {
+   "name": "Model performance metrics to track",
+   "default": "classiferror",
+   "values": "Performance metrics function classiferror (default) | binodeviance | exponential | hinge | logit | quadratic | mse | epsiloninsensitive",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for observation weights",
+   "default": "off",
+   "values": "Add second input port for observation weights off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add input port for resetting trained learner",
+   "default": "off",
+   "values": "Add input port for resetting trained incremental learner off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Predictor data observation dimension",
+   "default": "rows",
+   "values": "Observation dimension of predictor data rows (default) | columns",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Metrics data type",
+   "default": "double",
+   "values": "Data type of metrics output double (default) | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Metrics data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of metrics for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Metrics data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of metrics for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Predict response data type",
+   "default": "auto",
+   "values": "Data type of predict response Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Predict response data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of predict response for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Predict response data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of predict response for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Loss data type",
+   "default": "auto",
+   "values": "Data type of loss output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Loss data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of loss for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Loss data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of loss for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional predict data type",
+   "default": "rule",
+   "values": "Additional predict data type Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional predict data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of additional predict for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional loss data type",
+   "default": "rule",
+   "values": "Additional loss data type Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional loss data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of additional loss for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Additional loss data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of additional loss for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

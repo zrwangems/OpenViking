@@ -1,0 +1,13 @@
+{
+ "key": "Center-Tapped Transformer",
+ "title": "Center-Tapped Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Center_Tapped_Transformer.md"
+ ],
+ "text": "单相中心抽头变压器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

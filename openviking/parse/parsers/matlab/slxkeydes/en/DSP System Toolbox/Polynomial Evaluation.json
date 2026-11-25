@@ -1,0 +1,42 @@
+{
+ "key": "Polynomial Evaluation",
+ "title": "Polynomial Evaluation",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Polynomial Functions/Polynomial_Evaluation.md"
+ ],
+ "text": "Evaluate polynomial expression, 2 inputs, 1 output; {Use constant coefficients} and {Constant coefficients}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input data vector | matrix"
+  },
+  {
+   "name": "Coeffs",
+   "direction": "input",
+   "summary": "Polynomial coefficients vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output of the polynomial evaluation vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use constant coefficients",
+   "default": "off",
+   "values": "Use constant coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Constant coefficients",
+   "default": "1]",
+   "values": "Constant coefficients [5 4 3 2 1] (default) | vector",
+   "group": ""
+  }
+ ]
+}

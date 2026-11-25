@@ -1,0 +1,122 @@
+{
+ "key": "IFFT",
+ "title": "IFFT",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/IFFT.md",
+  "DSP HDL Toolbox/Transforms/IFFT.md"
+ ],
+ "text": "Inverse fast Fourier transform (IFFT) of input, 1 input, 1 output, no direct feedthrough, {Rounding mode} sets Rounding method; {FFT implementation}, {Input is in bit-reversed order}, {Input is conjugate symmetric}, {Divide output by FFT length}, {Inherit FFT length from input dimensions}, {FFT length}, {Wrap input data when FFT length is shorter than input length} sets the wrap or truncate the input, {Saturate on integer overflow}, {Sine table} sets the data type of sine table values, {Product output}, {Accumulator}, {Output}, {Output Minimum} sets the minimum value block should output, {Output Maximum} sets the maximum value block should output and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix | N -D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "IFFT of input vector | matrix | N -D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "FFT implementation",
+   "default": "Auto",
+   "values": "FFT implementation Auto (default) | Radix-2 | FFTW",
+   "group": "Main"
+  },
+  {
+   "name": "Input is in bit-reversed order",
+   "default": "off",
+   "values": "Input is in bit-reversed order off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Input is conjugate symmetric",
+   "default": "off",
+   "values": "Input is conjugate symmetric off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Divide output by FFT length",
+   "default": "on",
+   "values": "Divide output by FFT length on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Inherit FFT length from input dimensions",
+   "default": "on",
+   "values": "Inherit FFT length from input dimensions on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "FFT length",
+   "default": "64",
+   "values": "FFT length 64 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Wrap input data when FFT length is shorter than input length",
+   "default": "on",
+   "values": "Wrap or truncate the input on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding method Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sine table",
+   "default": "input",
+   "values": "Data type of sine table values Inherit: Same word length as input (default) | fixdt(1,16)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "rule",
+   "values": "Output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Minimum value block should output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Maximum value block should output [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

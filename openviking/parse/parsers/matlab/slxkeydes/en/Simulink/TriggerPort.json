@@ -1,0 +1,177 @@
+{
+ "key": "TriggerPort",
+ "title": "Trigger",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Trigger.md",
+  "HDL Coder/Ports & Subsystems/Trigger.md"
+ ],
+ "text": "Add trigger or function port to subsystem or model, 1 output, no direct feedthrough, {Sample time} sets time interval; {Trigger type} selects the type of control, {Treat as Simulink function} sets the create Simulink Function block, {Execute function call asynchronously} sets the whether caller request to call function can wait for service, {Function name} sets the function name for Simulink Function block, {Function visibility} selects scope visibility, {Scope to port} sets the name of exporting function port, {Enable variant condition} Controls activating the variant control, {Variant control}, {Generate preprocessor conditionals} controls enclosing variant choices, {States when enabling} selects how to set block state, {Propagate sizes of variable-size signals} selects when to propagate variable-size signals During, {Show output port} controls display of output port, {Output data type} selects output port data type, {Sample time type} selects calling rate, {Enable zero-crossing detection} controls zero-crossing detection, {Initial trigger signal state} selects the initial state of the trigger signal, {Trigger time} sets when message input triggers execution of subsystem on message, {Schedule as aperiodic partition} sets the immediate mode or scheduled mode, {Port dimensions} sets the dimensions for the trigger signal, {Trigger signal sample time} sets the time interval, {Minimum} sets the minimum output value for the trigger signal, {Maximum} sets the maximum output value for the trigger signal, {Data type} selects output data type for the trigger signal, {Mode} selects data type category and {Interpolate data} controls how missing workspace data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Value that describes control signal or message payload scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger type",
+   "default": "rising",
+   "values": "Select the type of control signal rising (default) | falling | either | function-call | message",
+   "group": "Main"
+  },
+  {
+   "name": "Treat as Simulink function",
+   "default": "off",
+   "values": "Create Simulink Function block off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Execute function call asynchronously",
+   "default": "off",
+   "values": "Whether caller request to call function can wait for service execution off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Function name",
+   "default": "f",
+   "values": "Specify function name for Simulink Function block f (default) | function name",
+   "group": "Main"
+  },
+  {
+   "name": "Function visibility",
+   "default": "scoped",
+   "values": "Select scope visibility of function scoped (default) | global | port",
+   "group": "Main"
+  },
+  {
+   "name": "Scope to port",
+   "default": "’’",
+   "values": "Specify name of exporting function port ’’ (default) | character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Enable variant condition",
+   "default": "off",
+   "values": "Controls activating the variant control (condition) off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Variant control",
+   "default": "(inherit)",
+   "values": "Specify variant control (condition) expression (inherit) (default) | logical expression",
+   "group": "Main"
+  },
+  {
+   "name": "Generate preprocessor conditionals",
+   "default": "off",
+   "values": "Control enclosing variant choices off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "States when enabling",
+   "default": "held",
+   "values": "Select how to set block state values held (default) | reset | inherit",
+   "group": "Main"
+  },
+  {
+   "name": "Propagate sizes of variable-size signals",
+   "default": "execution",
+   "values": "Select when to propagate variable-size signals During execution (default) | Only when enabling",
+   "group": "Main"
+  },
+  {
+   "name": "Show output port",
+   "default": "off",
+   "values": "Control display of output port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "Select output port data type auto (default) | double | int8",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time type",
+   "default": "triggered",
+   "values": "Select calling rate triggered (default) | periodic",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Specify time interval 1 (default) | Ts | [Ts, To] | -1",
+   "group": "Main"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Control zero-crossing detection on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Initial trigger signal state",
+   "default": "evaluation)",
+   "values": "Select the initial state of the trigger signal compatibility (no trigger on first evaluation) (default) | zero | positive | negative",
+   "group": "Main"
+  },
+  {
+   "name": "Trigger time",
+   "default": "available",
+   "values": "Specify when message input triggers execution of subsystem on message available (default) | on sample time hit",
+   "group": "Main"
+  },
+  {
+   "name": "Schedule as aperiodic partition",
+   "default": "on",
+   "values": "Specify immediate mode or scheduled mode for execution on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Port dimensions",
+   "default": "1",
+   "values": "Specify dimensions for the trigger signal 1 (default) | [n] | [m n] | -1",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Trigger signal sample time",
+   "default": "-1",
+   "values": "Specify time interval -1 (default) | Ts | [Ts, To]",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Minimum",
+   "default": "[]",
+   "values": "Specify minimum output value for the trigger signal [] (default) | real scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Maximum",
+   "default": "[]",
+   "values": "Specify maximum output value for the trigger signal [] (default) | real scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "auto",
+   "values": "Select output data type for the trigger signal Inherit: auto (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^,0) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Mode",
+   "default": "in",
+   "values": "Select data type category Built in (default) | Fixed point | Expression",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Interpolate data",
+   "default": "on",
+   "values": "Control how missing workspace data is estimated on (default) | off",
+   "group": "Signal Attributes"
+  }
+ ]
+}

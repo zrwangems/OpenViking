@@ -1,0 +1,13 @@
+{
+ "key": "IQN1 to IQN2",
+ "title": "IQN1 to IQN2",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/IQN1_to_IQN2.md"
+ ],
+ "text": "Convert IQ number to different Q format.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

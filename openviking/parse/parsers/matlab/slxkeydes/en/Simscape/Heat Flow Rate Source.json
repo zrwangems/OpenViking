@@ -1,0 +1,13 @@
+{
+ "key": "Heat Flow Rate Source",
+ "title": "Heat Flow Rate Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Sources/Heat_Flow_Rate_Source.md"
+ ],
+ "text": "Constant source of thermal energy, characterized by heat flow.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

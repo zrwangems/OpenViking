@@ -1,0 +1,13 @@
+{
+ "key": "World Frame",
+ "title": "World Frame",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Frames and Transforms/World_Frame.md"
+ ],
+ "text": "惯性参考系。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

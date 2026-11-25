@@ -1,0 +1,105 @@
+{
+ "key": "DCMECItoECEF",
+ "title": "Direction Cosine Matrix ECI to ECEF",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Direction_Cosine_Matrix_ECI_to_ECEF.md"
+ ],
+ "text": "Convert Earth-centered inertial (ECI) to Earth-centered Earth-fixed (ECEF) coordinates, 5 inputs, 1 output, {Month} sets Month; {Reduction}, {Year}, {Day}, {Hour}, {Minutes}, {Seconds}, {Time increment}, {Action for out-of-range input} sets the out-of-range block behavior and {Higher accuracy parameters} enables higher accuracy parameters. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ΔUT1",
+   "direction": "input",
+   "summary": "Difference between UTC and Universal Time scalar"
+  },
+  {
+   "name": "ΔAT",
+   "direction": "input",
+   "summary": "Difference between International Atomic Time and UTC scalar"
+  },
+  {
+   "name": "[xp,yp]",
+   "direction": "input",
+   "summary": "Polar displacement of Earth 1-by-2 array"
+  },
+  {
+   "name": "Port_5",
+   "direction": "input",
+   "summary": "Adjustment based on reduction method 1-by-2 array"
+  },
+  {
+   "name": "Port_6",
+   "direction": "input",
+   "summary": "Time increment source scalar"
+  },
+  {
+   "name": "DCM fi",
+   "direction": "output",
+   "summary": "Direction cosine matrix 3-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reduction",
+   "default": "IAU-76/FK5",
+   "values": "Reduction method IAU-76/FK5 (default) | IAU-2000/2006",
+   "group": ""
+  },
+  {
+   "name": "Year",
+   "default": "2013",
+   "values": "Year 2013 (default) | double, whole number, greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "Month January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Day",
+   "default": "1",
+   "values": "Day 1 (default) | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31",
+   "group": ""
+  },
+  {
+   "name": "Hour",
+   "default": "0",
+   "values": "Hour 0 (default) | double, whole number, in the range of 0 and 24",
+   "group": ""
+  },
+  {
+   "name": "Minutes",
+   "default": "0",
+   "values": "Minutes 0 (default) | double, whole number, in the range of 0 and 60",
+   "group": ""
+  },
+  {
+   "name": "Seconds",
+   "default": "0",
+   "values": "Seconds 0 (default) | double, whole number, in the range of 0 and 60",
+   "group": ""
+  },
+  {
+   "name": "Time increment",
+   "default": "Day",
+   "values": "Time increment Day (default) | Hour | Min | Sec | None",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "Out-of-range block behavior None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Higher accuracy parameters",
+   "default": "on",
+   "values": "Enable higher accuracy parameters on (default) | off",
+   "group": ""
+  }
+ ]
+}

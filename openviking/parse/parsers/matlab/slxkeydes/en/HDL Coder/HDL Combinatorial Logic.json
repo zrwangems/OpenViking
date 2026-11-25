@@ -1,0 +1,37 @@
+{
+ "key": "HDL Combinatorial Logic",
+ "title": "HDL Combinatorial Logic",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/RCP and HIL/HDL_Combinatorial_Logic.md"
+ ],
+ "text": "Implement truth table, 1 input, 1 output; {Input table} sets the matrix of input and {Output table} sets the matrix of outputs matrix. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal vector"
+  },
+  {
+   "name": "v",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input table",
+   "default": "",
+   "values": "Matrix of input permutations matrix",
+   "group": ""
+  },
+  {
+   "name": "Output table",
+   "default": "",
+   "values": "Matrix of outputs matrix",
+   "group": ""
+  }
+ ]
+}

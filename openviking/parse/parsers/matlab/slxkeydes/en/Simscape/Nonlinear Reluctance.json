@@ -1,0 +1,13 @@
+{
+ "key": "Nonlinear Reluctance",
+ "title": "Nonlinear Reluctance",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Nonlinear_Reluctance.md"
+ ],
+ "text": "Linear or nonlinear reluctance with optional hysteresis.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

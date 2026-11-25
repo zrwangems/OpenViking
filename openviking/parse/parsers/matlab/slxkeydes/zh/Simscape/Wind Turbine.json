@@ -1,0 +1,13 @@
+{
+ "key": "Wind Turbine",
+ "title": "Wind Turbine",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Wind_Turbine.md"
+ ],
+ "text": "将风动能转换为旋转运动的涡轮机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

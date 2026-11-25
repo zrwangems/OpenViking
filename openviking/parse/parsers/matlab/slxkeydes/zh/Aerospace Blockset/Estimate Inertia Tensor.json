@@ -1,0 +1,59 @@
+{
+ "key": "Estimate Inertia Tensor",
+ "title": "Estimate Inertia Tensor",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Mass Properties/Estimate_Inertia_Tensor.md"
+ ],
+ "text": "计算惯性张量，输入 2 路、输出 2 路；{Full mass} 指定质量、{Empty mass} 指定空载质量、{Full inertia matrix} 指定满载惯性矩阵 eye、{Empty inertia matrix} 指定空载惯性矩阵 eye，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mass",
+   "direction": "input",
+   "summary": "质量 scalar"
+  },
+  {
+   "name": "dm/dt",
+   "direction": "input",
+   "summary": "变化率 scalar"
+  },
+  {
+   "name": "I",
+   "direction": "output",
+   "summary": "惯性张量 3-by-3 matrix"
+  },
+  {
+   "name": "dI/dt",
+   "direction": "output",
+   "summary": "变化率 3-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Full mass",
+   "default": "2",
+   "values": "质量 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Empty mass",
+   "default": "1",
+   "values": "空载质量 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Full inertia matrix",
+   "default": "eye(3)",
+   "values": "满载惯性矩阵 eye(3) (default) | 3-element matrix",
+   "group": ""
+  },
+  {
+   "name": "Empty inertia matrix",
+   "default": "eye(3)/2",
+   "values": "空载惯性矩阵 eye(3)/2 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

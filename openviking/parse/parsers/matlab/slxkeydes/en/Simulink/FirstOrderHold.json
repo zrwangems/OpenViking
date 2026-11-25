@@ -1,0 +1,49 @@
+{
+ "key": "FirstOrderHold",
+ "title": "First Order Hold",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/First_Order_Hold.md"
+ ],
+ "text": "Implement linearly extrapolated first order hold on input signal, 1 input, 1 output, no direct feedthrough, {Initial output} sets Initial output; {Output algorithm} sets the output signal approximation technique Slow, {Reset if relative extrapolation error exceeds} sets the error tolerance for solver and {Allow continuous input} applies hold on continuous signals. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port 1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port 1",
+   "direction": "output",
+   "summary": "Linearly approximated output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Initial output 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output algorithm",
+   "default": "Overshoot)",
+   "values": "Output signal approximation technique Slow (Avoid Overshoot) (default) | Fast (Minimize Error)",
+   "group": ""
+  },
+  {
+   "name": "Reset if relative extrapolation error exceeds",
+   "default": "inf",
+   "values": "Error tolerance for solver reset inf (default) | non-negative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Allow continuous input",
+   "default": "off",
+   "values": "Apply hold on continuous signals off (default) | on",
+   "group": ""
+  }
+ ]
+}

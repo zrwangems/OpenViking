@@ -1,0 +1,65 @@
+{
+ "key": "Ackermann Kinematic Model",
+ "title": "Ackermann Kinematic Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Mobile Robot Algorithms/Ackermann_Kinematic_Model.md"
+ ],
+ "text": "使用 Ackermann 运动学模型的类汽车车辆运动，输入 2 路、输出 2 路；{Wheel base} 指定前轴和后轴之间的距离、{Vehicle speed range} 指定车辆最小速度和最大速度、{Maximum steering angle} 指定最大转向角、{Initial state} 指定车辆初始状态、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "车速 numeric scalar"
+  },
+  {
+   "name": "dψ/dt",
+   "direction": "input",
+   "summary": "转向角速度 numeric scalar"
+  },
+  {
+   "name": "state",
+   "direction": "output",
+   "summary": "车辆状态 four-element vector"
+  },
+  {
+   "name": "stateDot",
+   "direction": "output",
+   "summary": "状态输出的导数 four-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Wheel base",
+   "default": "1",
+   "values": "前轴和后轴之间的距离 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle speed range",
+   "default": "Inf]",
+   "values": "车辆最小速度和最大速度 [-Inf Inf] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum steering angle",
+   "default": "pi/4",
+   "values": "最大转向角 pi/4 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "[0;0;0;0]",
+   "values": "车辆初始状态 [0;0;0;0] (default) | four-element vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "key": "LU Inverse",
+ "title": "LU Inverse",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Inverses/LU_Inverse.md"
+ ],
+ "text": "使用 LU 分解计算方阵的逆，输入 1 路、输出 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入方阵 square matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "矩阵逆 square matrix"
+  }
+ ],
+ "params": []
+}

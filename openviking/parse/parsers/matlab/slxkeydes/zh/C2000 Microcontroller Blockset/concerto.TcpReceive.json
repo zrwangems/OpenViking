@@ -1,0 +1,50 @@
+{
+ "key": "concerto.TcpReceive",
+ "title": "TCP Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28M35x/M3/TCP_Receive.md",
+  "C2000 Microcontroller Blockset/F28M36x/M3/TCP_Receive.md"
+ ],
+ "text": "从中断服务例程触发下游函数调用子系统，输入 1 路、输出 1 路；按 {要服务的事件数量} 指定要服务的事件数量；{Simulink 任务优先级} 指定所选 ISR 的优先级、{禁用中断抢占}、{启用仿真端口}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "name Event Task",
+   "direction": "input",
+   "summary": "函数调用事件输入仿真 标量"
+  },
+  {
+   "name": "name Event",
+   "direction": "output",
+   "summary": "生成中断请求 Scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "要服务的事件数量",
+   "default": "1",
+   "values": "指定要服务的事件数量 1 (默认) | 2 | 3 | <32",
+   "group": ""
+  },
+  {
+   "name": "Simulink 任务优先级",
+   "default": "50",
+   "values": "设置所选 ISR 的优先级 50 (默认) | positive integer or nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "禁用中断抢占",
+   "default": "off",
+   "values": "选择此项可禁用中断抢占。 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "启用仿真端口",
+   "default": "off",
+   "values": "启用仿真端口以阻止 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

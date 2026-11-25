@@ -1,0 +1,37 @@
+{
+ "key": "Hammerstein-Wiener Model",
+ "title": "Hammerstein-Wiener Model",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Models/Hammerstein_Wiener_Model.md"
+ ],
+ "text": "Simulate Hammerstein-Wiener model in Simulink software, 1 input, 1 output; {Model} sets the hammerstein-Wiener model to be simulated idnlhw and {Initial conditions} sets the initial condition specification for simulation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "Simulation input data scalar | vector"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "Simulated output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model",
+   "default": "",
+   "values": "Hammerstein-Wiener model to be simulated idnlhw object",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "Zero",
+   "values": "Initial condition specification for simulation Zero (default) | State values",
+   "group": ""
+  }
+ ]
+}

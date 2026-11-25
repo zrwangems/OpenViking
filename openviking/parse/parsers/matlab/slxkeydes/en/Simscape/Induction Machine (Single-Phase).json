@@ -1,0 +1,13 @@
+{
+ "key": "Induction Machine (Single-Phase)",
+ "title": "Induction Machine (Single-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/Induction_Machine_Single_Phase.md"
+ ],
+ "text": "Single-phase induction machine with SI or pu fundamental parameterization.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

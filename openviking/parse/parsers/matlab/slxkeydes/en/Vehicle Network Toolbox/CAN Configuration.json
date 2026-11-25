@@ -1,0 +1,68 @@
+{
+ "key": "CAN Configuration",
+ "title": "CAN Configuration",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN Communication/CAN_Configuration.md"
+ ],
+ "text": "Configure parameters for specified CAN device; {Device} sets the cAN device and channel, {Bus speed} sets the cAN bus bit, {Manually configure bit parameters} allows specifying individual bit parameters, {Synchronization jump width} sets the maximum allowed time, {Time segment 1} sets the number of time quanta before sample, {Time segment 2} sets the number of time quanta after, {Number of samples} sets the samples per bit integer, {Verify bit parameter settings validity} sets the check validity of settings and {Acknowledge mode} controls channel activity on CAN. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN device and channel list option",
+   "group": ""
+  },
+  {
+   "name": "Bus speed",
+   "default": "",
+   "values": "CAN bus bit rate integer",
+   "group": ""
+  },
+  {
+   "name": "Manually configure bit parameters",
+   "default": "off",
+   "values": "Allow specifying individual bit parameters off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Synchronization jump width",
+   "default": "",
+   "values": "Maximum allowed time adjustment integer",
+   "group": ""
+  },
+  {
+   "name": "Time segment 1",
+   "default": "",
+   "values": "Number of time quanta before sample integer",
+   "group": ""
+  },
+  {
+   "name": "Time segment 2",
+   "default": "",
+   "values": "Number of time quanta after sample integer",
+   "group": ""
+  },
+  {
+   "name": "Number of samples",
+   "default": "",
+   "values": "Samples per bit integer",
+   "group": ""
+  },
+  {
+   "name": "Verify bit parameter settings validity",
+   "default": "",
+   "values": "Check validity of settings",
+   "group": ""
+  },
+  {
+   "name": "Acknowledge mode",
+   "default": "Normal",
+   "values": "Control channel activity on CAN bus Normal (default) | Silent",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "key": "GotoTagVisibility",
+ "title": "Goto Tag Visibility",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Goto_Tag_Visibility.md"
+ ],
+ "text": "Define scope of Goto block tag; {Goto tag} sets the goto block tag whose visibility is defined by the location of this block. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Goto tag",
+   "default": "A",
+   "values": "Goto block tag whose visibility is defined by the location of this block A (default) |...",
+   "group": ""
+  }
+ ]
+}

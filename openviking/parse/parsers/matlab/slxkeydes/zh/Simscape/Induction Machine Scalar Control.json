@@ -1,0 +1,49 @@
+{
+ "key": "Induction Machine Scalar Control",
+ "title": "Induction Machine Scalar Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Induction Machine Control/Induction_Machine_Scalar_Control.md"
+ ],
+ "text": "Induction Machine V/f 控制，输入 1 路、输出 1 路；{Rated electrical frequency (Hz)} 指定频率、{Rated voltage (V)} 指定电压、{Minimum voltage (V)} 指定电压、{Sample time (-1 for inherited)} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "fRef",
+   "direction": "input",
+   "summary": "频率 scalar"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "电压 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rated electrical frequency (Hz)",
+   "default": "60",
+   "values": "频率 60 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Rated voltage (V)",
+   "default": "550",
+   "values": "电压 550 (default) | positive and greater than the value of the Minimum voltage (V) parameter",
+   "group": ""
+  },
+  {
+   "name": "Minimum voltage (V)",
+   "default": "10",
+   "values": "电压 10 (default) | zero or positive",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "key": "EntityReplicator",
+ "title": "Entity Replicator",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Replicator.md"
+ ],
+ "text": "Replicate entities, 1 input, 2 outputs; {Replicas depart from} sets how replicas depart Separate, {Replication amount source} sets the source of replica, {Number of replicas} sets the number of replicas, {Replicate attribute name} sets the attribute that determines the number of replicas and {Hold original entity until all replicas depart} sets how replicas depart. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output replica entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "Output the entity that is replicated scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Replicas depart from",
+   "default": "ports",
+   "values": "Choose how replicas depart Separate output ports (default) | Single output port",
+   "group": ""
+  },
+  {
+   "name": "Replication amount source",
+   "default": "Dialog",
+   "values": "Specify source of replica number Dialog (default) | Attribute",
+   "group": ""
+  },
+  {
+   "name": "Number of replicas",
+   "default": "1",
+   "values": "Specify the number of replicas 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Replicate attribute name",
+   "default": "ReplicateAttribute",
+   "values": "Specify the attribute that determines the number of replicas ReplicateAttribute (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Hold original entity until all replicas depart",
+   "default": "off",
+   "values": "Choose how replicas depart off (default) | on",
+   "group": ""
+  }
+ ]
+}

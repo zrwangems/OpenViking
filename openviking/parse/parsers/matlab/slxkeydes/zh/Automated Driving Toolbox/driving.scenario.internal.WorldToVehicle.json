@@ -1,0 +1,48 @@
+{
+ "key": "driving.scenario.internal.WorldToVehicle",
+ "title": "World To Vehicle",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/World_To_Vehicle.md"
+ ],
+ "text": "将参与者从世界坐标转换为自车坐标，输入 2 路、输出 1 路；{Source of actors bus name} 指定目标位姿总线的名称源、{Actors bus name} 指定目标位姿总线名称 valid bus name、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Actors",
+   "direction": "input",
+   "summary": "世界坐标中的参与者姿态 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Ego Vehicle",
+   "direction": "input",
+   "summary": "自车位姿 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Actors",
+   "direction": "output",
+   "summary": "车辆坐标中的参与者姿态 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of actors bus name",
+   "default": "Auto",
+   "values": "目标位姿总线的名称源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Actors bus name",
+   "default": "",
+   "values": "目标位姿总线名称 valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

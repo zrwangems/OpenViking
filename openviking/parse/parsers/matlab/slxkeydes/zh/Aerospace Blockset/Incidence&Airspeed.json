@@ -1,0 +1,29 @@
+{
+ "key": "Incidence&Airspeed",
+ "title": "Incidence & Airspeed",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Incidence_Airspeed.md"
+ ],
+ "text": "计算入射角和空速，输入 1 路、输出 2 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "U, w",
+   "direction": "input",
+   "summary": "速度 two-element vector"
+  },
+  {
+   "name": "ɑ",
+   "direction": "output",
+   "summary": "入射角 scalar"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "空速 scalar"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Revolute Joint",
+ "title": "Revolute Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Revolute_Joint.md"
+ ],
+ "text": "Joint with one revolute primitive.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

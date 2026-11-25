@@ -1,0 +1,66 @@
+{
+ "key": "ROS Call Service",
+ "title": "Call Service",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS/Call_Service.md"
+ ],
+ "text": "在 ROS 网络中调用服务，输入 1 路、输出 2 路；按 {Source} 指定服务名称的来源 Select from ROS network；{Name} 指定服务名称 character vector、{Type} 指定服务类型 character vector、{Connection timeout} 指定服务服务器连接超时、{Keep persistent connection} 保持与服务服务器的连接、{Show ErrorCode output port} 启用错误代码输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Req",
+   "direction": "input",
+   "summary": "请求消息 nonvirtual bus"
+  },
+  {
+   "name": "Resp",
+   "direction": "output",
+   "summary": "响应消息 nonvirtual bus"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "服务调用的错误条件 integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source",
+   "default": "",
+   "values": "指定服务名称的来源 Select from ROS network | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "服务名称 character vector",
+   "group": ""
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "服务类型 character vector",
+   "group": ""
+  },
+  {
+   "name": "Connection timeout",
+   "default": "5",
+   "values": "服务服务器连接超时 5 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Keep persistent connection",
+   "default": "off",
+   "values": "保持与服务服务器的连接 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "on",
+   "values": "启用错误代码输出端口 on (default) | off",
+   "group": ""
+  }
+ ]
+}

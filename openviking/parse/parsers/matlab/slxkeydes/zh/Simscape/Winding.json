@@ -1,0 +1,13 @@
+{
+ "key": "Winding",
+ "title": "Winding",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Winding.md"
+ ],
+ "text": "具有欧姆损耗和磁通损耗的电磁转换器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

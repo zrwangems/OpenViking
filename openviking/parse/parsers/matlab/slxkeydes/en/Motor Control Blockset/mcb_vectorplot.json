@@ -1,0 +1,86 @@
+{
+ "key": "mcb_vectorplot",
+ "title": "Vector plot",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Signal Management/Vector_plot.md"
+ ],
+ "text": "Plot vectors in space domain, 7 inputs, {Theta units} sets Unit of Theta input; {Select input types} sets the input port types Vabc, {Select reference frame} sets the reference frame for vectors Rotating Reference, {Alpha (phase-a) axis alignment} sets the dq reference frame, {Angle units} sets the unit of Angle and {Open plot at simulation start} sets the open vector plot at simulation start. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "Three-phase voltages vector"
+  },
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "Three-phase currents vector"
+  },
+  {
+   "name": "Theta",
+   "direction": "input",
+   "summary": "Angle of transformation scalar"
+  },
+  {
+   "name": "Vdq",
+   "direction": "input",
+   "summary": "Voltages in dq reference frame vector"
+  },
+  {
+   "name": "Idq",
+   "direction": "input",
+   "summary": "Currents in dq reference frame vector"
+  },
+  {
+   "name": "Magnitude",
+   "direction": "input",
+   "summary": "Vector magnitudes vector"
+  },
+  {
+   "name": "Angle",
+   "direction": "input",
+   "summary": "Vector angle vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select input types",
+   "default": "Theta",
+   "values": "Input port types Vabc Iabc Theta (default) | Vdq Idq | Mag Angle",
+   "group": ""
+  },
+  {
+   "name": "Select reference frame",
+   "default": "Frame",
+   "values": "Reference frame for vectors Rotating Reference Frame (default) | Stationary Reference Frame",
+   "group": ""
+  },
+  {
+   "name": "Alpha (phase-a) axis alignment",
+   "default": "D-axis",
+   "values": "dq reference frame alignment D-axis (default) | Q-axis",
+   "group": ""
+  },
+  {
+   "name": "Theta units",
+   "default": "Radians",
+   "values": "Unit of Theta input Radians (default) | Degrees | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Angle units",
+   "default": "Radians",
+   "values": "Unit of Angle input Radians (default) | Degrees | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Open plot at simulation start",
+   "default": "on",
+   "values": "Open vector plot at simulation start on (default) | off",
+   "group": ""
+  }
+ ]
+}

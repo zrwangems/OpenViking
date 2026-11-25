@@ -1,0 +1,13 @@
+{
+ "key": "Aerodynamic Propeller",
+ "title": "Aerodynamic Propeller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Engines & Motors/Aerodynamic_Propeller.md"
+ ],
+ "text": "通过旋转运动产生推力的螺旋桨。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

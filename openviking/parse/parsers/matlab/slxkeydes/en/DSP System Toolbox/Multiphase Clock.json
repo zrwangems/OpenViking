@@ -1,0 +1,57 @@
+{
+ "key": "Multiphase Clock",
+ "title": "Multiphase Clock",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sources/Multiphase_Clock.md",
+  "DSP System Toolbox/Signal Management/Switches and Counters/Multiphase_Clock.md"
+ ],
+ "text": "Generate multiple binary clock signals, 1 output; {Clock frequency (Hz)} sets the frequency of all clock signals, {Number of phases, N} sets the number of phases in output vector, {Starting phase (1 to N)} sets the vector index for starting phase, {Number of phase intervals over which clock is active (1 to N-1)} sets the duration of active level for each output, {Active level (polarity)} sets the active level High and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Vector of clock signals vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Clock frequency (Hz)",
+   "default": "1",
+   "values": "Frequency of all clock signals 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of phases, N",
+   "default": "4",
+   "values": "Number of phases in output vector 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Starting phase (1 to N)",
+   "default": "1",
+   "values": "Vector index for starting phase 1 (default) | integer from 1 to N",
+   "group": ""
+  },
+  {
+   "name": "Number of phase intervals over which clock is active (1 to N-1)",
+   "default": "3",
+   "values": "Duration of active level for each output 3 (default) | integer from 1 to N -1",
+   "group": ""
+  },
+  {
+   "name": "Active level (polarity)",
+   "default": "(1)",
+   "values": "Active level High (1) (default) | Low (0)",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "Logical",
+   "values": "Output data type Logical (default) | Boolean",
+   "group": ""
+  }
+ ]
+}

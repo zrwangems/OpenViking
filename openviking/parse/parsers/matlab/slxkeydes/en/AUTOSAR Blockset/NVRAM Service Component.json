@@ -1,0 +1,32 @@
+{
+ "key": "NVRAM Service Component",
+ "title": "NVRAM Service Component",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/NVRAM Manager (NvM)/NVRAM_Service_Component.md"
+ ],
+ "text": "Configure AUTOSAR NVRAM Services and Runtime Environment (RTE) for emulation; {Block ID} sets the iD that identifies service block, {Maximum number of memory blocks} and {Initial Value} sets the initial values of NvM client ports. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Block ID",
+   "default": "1",
+   "values": "ID that identifies service block 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of memory blocks",
+   "default": "10",
+   "values": "Maximum number of memory blocks to use in NvM service operations 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial Value",
+   "default": "0",
+   "values": "Initial values of NvM client ports 0 (default) | real, finite scalar or vector",
+   "group": ""
+  }
+ ]
+}

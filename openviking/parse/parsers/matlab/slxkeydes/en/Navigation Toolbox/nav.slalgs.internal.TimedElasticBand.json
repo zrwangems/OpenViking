@@ -1,0 +1,283 @@
+{
+ "key": "nav.slalgs.internal.TimedElasticBand",
+ "title": "Timed Elastic Band (TEB)",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Control Algorithms/Timed_Elastic_Band_TEB.md"
+ ],
+ "text": "Plan path to avoid obstacles and generate time-optimal trajectories, 16 inputs, 4 outputs; {Sample time (s)} sets the sample time of controller, {Specify lookahead time using input port} adds input port for lookahead time, {Lookahead time (s)}, {Specify goal tolerance using input port} adds input port for goal tolerance, {Goal tolerance ([m m rad])} sets the tolerance around goal pose, {Shape}, {Dimension ([m m])} sets the size of robot, {Fixed transform ([m m rad])} sets the transformation matrix, {Specify obstacle safety margin using input port} adds input port for obstacle safety margin, {Obstacle safety margin (m)} sets the safe distance between robot and obstacles, {Specify max velocity using input port} adds input port for maximum velocity, {Maximum velocity ([m/s rad/s])} sets the maximum limits of linear and angular velocity, {Specify max reverse velocity using input port} adds input port for maximum reverse, {Maximum reverse velocity (m/s)} sets the maximum velocity for reverse, {Specify max acceleration using input port} adds input port for maximum acceleration, {Maximum acceleration ([m/s^2 rad/s^2])} sets the maximum limits of linear and angular acceleration, {Specify min turning radius using input port} adds input port for minimum turning radius, {Minimum turning radius (m)} sets the minimum turning radius for vehicle on optimized, {Specify reference delta time using input port} adds input port for reference delta time, {Reference delta time (s)}, {Specify number of iterations using input port} adds input port for number of iterations, {Number of iterations}, {Specify time weight using input port} adds input port for time weight, {Time weight} sets the cost function weight for time, {Specify smoothness weight using input port} adds input port for smoothness weight, {Smoothness weight} sets the weight for smooth motion, {Specify obstacle weight using input port} adds input port for obstacle weight and {Obstacle weight} sets the weight for safe distance from obstacles. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "Current pose of robot three-element vector of form [ x y theta ]"
+  },
+  {
+   "name": "Vel",
+   "direction": "input",
+   "summary": "Current velocity of robot two-element vector of form [ v w ]"
+  },
+  {
+   "name": "MapInfo",
+   "direction": "input",
+   "summary": "Local map information bus"
+  },
+  {
+   "name": "RefPath",
+   "direction": "input",
+   "summary": "Reference path to follow N -by-3 matrix"
+  },
+  {
+   "name": "MaxVel",
+   "direction": "input",
+   "summary": "Maximum limits of linear and angular velocity [0.8, 1.6] (default) | two-element positive vector"
+  },
+  {
+   "name": "MaxRevVel",
+   "direction": "input",
+   "summary": "Maximum velocity for reverse motion NaN (default) | positive scalar"
+  },
+  {
+   "name": "MaxAccel",
+   "direction": "input",
+   "summary": "Maximum limits of linear and angular acceleration [2.4, 4.8] (default) | two-element positive vector"
+  },
+  {
+   "name": "MinTurnRad",
+   "direction": "input",
+   "summary": "Minimum turning radius for vehicle on optimized path 0 (default) | nonnegative scalar"
+  },
+  {
+   "name": "TimeWeight",
+   "direction": "input",
+   "summary": "Weight for time 10 (default) | positive scalar"
+  },
+  {
+   "name": "SmoothWeight",
+   "direction": "input",
+   "summary": "Weight for smooth motion 1000 (default) | positive scalar"
+  },
+  {
+   "name": "ObstWeight",
+   "direction": "input",
+   "summary": "Weight for safe distance from obstacles 50 (default) | positive scalar"
+  },
+  {
+   "name": "ObstMargin",
+   "direction": "input",
+   "summary": "Safe distance between robot and obstacles 0.5 (default) | positive scalar"
+  },
+  {
+   "name": "NumIter",
+   "direction": "input",
+   "summary": "Number of iterations to optimize trajectory 2 (default) | positive integer"
+  },
+  {
+   "name": "LookAheadTime",
+   "direction": "input",
+   "summary": "Lookahead time 5 (default) | positive scalar"
+  },
+  {
+   "name": "GoalTol",
+   "direction": "input",
+   "summary": "Tolerance around goal pose [0.1,0.1,0.1] (default) | three-element column vector"
+  },
+  {
+   "name": "RefDelTime",
+   "direction": "input",
+   "summary": "Reference delta time 0.3 (default) | positive scalar"
+  },
+  {
+   "name": "VelCmds",
+   "direction": "output",
+   "summary": "Velocity commands N -by-2 matrix"
+  },
+  {
+   "name": "Timestamps",
+   "direction": "output",
+   "summary": "Timestamps corresponding to velocity commands N -element column vector"
+  },
+  {
+   "name": "OptPath",
+   "direction": "output",
+   "summary": "Optimized path N -by-3 matrix"
+  },
+  {
+   "name": "SolnInfo",
+   "direction": "output",
+   "summary": "Extra information bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (s)",
+   "default": "1",
+   "values": "Sample time of controller 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify lookahead time using input port",
+   "default": "off",
+   "values": "Add input port for lookahead time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lookahead time (s)",
+   "default": "5",
+   "values": "Lookahead time 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify goal tolerance using input port",
+   "default": "off",
+   "values": "Add input port for goal tolerance off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Goal tolerance ([m m rad])",
+   "default": "0.1]",
+   "values": "Tolerance around goal pose [0.1, 0.1, 0.1] (default) | three-element column vector",
+   "group": ""
+  },
+  {
+   "name": "Shape",
+   "default": "Rectangle",
+   "values": "Shape of robot Rectangle (default) | Point",
+   "group": ""
+  },
+  {
+   "name": "Dimension ([m m])",
+   "default": "0.67]",
+   "values": "Size of robot [1, 0.67] (default) | two-element positive vector",
+   "group": ""
+  },
+  {
+   "name": "Fixed transform ([m m rad])",
+   "default": "se2",
+   "values": "Transformation matrix se2 (default) | three-element row vector of form [ x, y, theta ]",
+   "group": ""
+  },
+  {
+   "name": "Specify obstacle safety margin using input port",
+   "default": "off",
+   "values": "Add input port for obstacle safety margin off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Obstacle safety margin (m)",
+   "default": "0.5",
+   "values": "Safe distance between robot and obstacles 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify max velocity using input port",
+   "default": "off",
+   "values": "Add input port for maximum velocity off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum velocity ([m/s rad/s])",
+   "default": "1.6]",
+   "values": "Maximum limits of linear and angular velocity [0.8, 1.6] (default) | two-element positive vector",
+   "group": ""
+  },
+  {
+   "name": "Specify max reverse velocity using input port",
+   "default": "off",
+   "values": "Add input port for maximum reverse velocity off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum reverse velocity (m/s)",
+   "default": "NaN",
+   "values": "Maximum velocity for reverse motion NaN (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify max acceleration using input port",
+   "default": "off",
+   "values": "Add input port for maximum acceleration off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum acceleration ([m/s^2 rad/s^2])",
+   "default": "[2.4,4.8]",
+   "values": "Maximum limits of linear and angular acceleration [2.4,4.8] (default) | two-element positive vector",
+   "group": ""
+  },
+  {
+   "name": "Specify min turning radius using input port",
+   "default": "off",
+   "values": "Add input port for minimum turning radius off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Minimum turning radius (m)",
+   "default": "0",
+   "values": "Minimum turning radius for vehicle on optimized path 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify reference delta time using input port",
+   "default": "off",
+   "values": "Add input port for reference delta time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reference delta time (s)",
+   "default": "0.3",
+   "values": "Reference delta time 0.3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify number of iterations using input port",
+   "default": "off",
+   "values": "Add input port for number of iterations off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "2",
+   "values": "Number of iterations to optimize trajectory 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify time weight using input port",
+   "default": "off",
+   "values": "Add input port for time weight off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Time weight",
+   "default": "10",
+   "values": "Cost function weight for time 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify smoothness weight using input port",
+   "default": "off",
+   "values": "Add input port for smoothness weight off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothness weight",
+   "default": "1000",
+   "values": "Weight for smooth motion 1000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify obstacle weight using input port",
+   "default": "off",
+   "values": "Add input port for obstacle weight off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Obstacle weight",
+   "default": "50",
+   "values": "Weight for safe distance from obstacles 50 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

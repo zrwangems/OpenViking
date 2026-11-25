@@ -1,0 +1,13 @@
+{
+ "key": "Shock Absorber",
+ "title": "Shock Absorber",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Shock_Absorber.md"
+ ],
+ "text": "吸收平移冲击的弹簧阻尼系统。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

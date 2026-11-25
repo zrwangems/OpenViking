@@ -1,0 +1,64 @@
+{
+ "key": "Create 3x3 Matrix",
+ "title": "Create 3x3 Matrix",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Create_3x3_Matrix.md"
+ ],
+ "text": "Create 3-by-3 matrix from nine input values, 9 inputs, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A 11",
+   "direction": "input",
+   "summary": "First row, first column of matrix matrix element"
+  },
+  {
+   "name": "A 12",
+   "direction": "input",
+   "summary": "First row, second column of matrix matrix element"
+  },
+  {
+   "name": "A 13",
+   "direction": "input",
+   "summary": "First row, third column of matrix matrix element"
+  },
+  {
+   "name": "A 21",
+   "direction": "input",
+   "summary": "Second row, first column of matrix matrix element"
+  },
+  {
+   "name": "A 22",
+   "direction": "input",
+   "summary": "Second row, second column of matrix matrix element"
+  },
+  {
+   "name": "A 23",
+   "direction": "input",
+   "summary": "Second row, third column of matrix matrix element"
+  },
+  {
+   "name": "A 31",
+   "direction": "input",
+   "summary": "Third row, first column of matrix matrix element"
+  },
+  {
+   "name": "A 32",
+   "direction": "input",
+   "summary": "Third row, second column of matrix matrix element"
+  },
+  {
+   "name": "A 33",
+   "direction": "input",
+   "summary": "Third row, third column of matrix matrix element"
+  },
+  {
+   "name": "A",
+   "direction": "output",
+   "summary": "Matrix 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

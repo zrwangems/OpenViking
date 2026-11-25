@@ -1,0 +1,144 @@
+{
+ "key": "Mel Spectrogram",
+ "title": "Mel Spectrogram",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/Mel_Spectrogram.md"
+ ],
+ "text": "Extract mel spectrogram from audio, 1 input, 2 outputs, no direct feedthrough, {Filter bank normalization} sets Normalization technique for filter bank; {Number of bands} sets the number of bandpass filters, {Auto-determine frequency range} sets the automatically determine frequency range, {Frequency range (Hz)} sets the frequency range over which to design auditory filter bank, {Filter bank design domain} sets the domain to design filter, {Mel style}, {Visualize filter bank} sets the open plot to visualize filter, {Output frequency vector} sets the additional output port for center, {Window} sets the analysis window hamming, {Normalize window} sets the normalize analysis window, {Overlap length}, {Auto-determine FFT length} sets the automatically determine FFT length, {FFT length} sets the number of DFT points, {Spectrum type} sets the type of spectrum, {Number of spectra}, {Number of spectra overlap} sets the number of overlapped spectra, {Apply logarithm}, {Inherit sample rate from input} sets the source of input sample rate and {Input sample rate (Hz)} sets the sample rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Audio input column vector | matrix"
+  },
+  {
+   "name": "spec",
+   "direction": "output",
+   "summary": "Mel spectrogram matrix | 3-D array"
+  },
+  {
+   "name": "fvec",
+   "direction": "output",
+   "summary": "Center frequencies row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bands",
+   "default": "32",
+   "values": "Number of bandpass filters 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine frequency range",
+   "default": "on",
+   "values": "Automatically determine frequency range on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Frequency range (Hz)",
+   "default": "[0,22050]",
+   "values": "Frequency range over which to design auditory filter bank [0,22050] (default) | two-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Filter bank design domain",
+   "default": "linear",
+   "values": "Domain to design filter bank linear (default) | warped",
+   "group": ""
+  },
+  {
+   "name": "Filter bank normalization",
+   "default": "bandwidth",
+   "values": "Normalization technique for filter bank bandwidth (default) | area | none",
+   "group": ""
+  },
+  {
+   "name": "Mel style",
+   "default": "oshaughnessy",
+   "values": "Mel style oshaughnessy (default) | slaney",
+   "group": ""
+  },
+  {
+   "name": "Visualize filter bank",
+   "default": "",
+   "values": "Open plot to visualize filter bank button",
+   "group": ""
+  },
+  {
+   "name": "Output frequency vector",
+   "default": "off",
+   "values": "Specify additional output port for center frequencies off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Window",
+   "default": "hamming(1024,’periodic’)",
+   "values": "Analysis window hamming(1024,’periodic’) (default) | real vector",
+   "group": ""
+  },
+  {
+   "name": "Normalize window",
+   "default": "on",
+   "values": "Normalize analysis window on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Overlap length",
+   "default": "512",
+   "values": "Overlap length of adjacent analysis windows 512 (default) | integer in the range [0, windowLength )",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine FFT length",
+   "default": "on",
+   "values": "Automatically determine FFT length on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "Number of DFT points 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Spectrum type",
+   "default": "magnitude",
+   "values": "Type of spectrum magnitude (default) | power",
+   "group": ""
+  },
+  {
+   "name": "Number of spectra",
+   "default": "1",
+   "values": "Number of spectra 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of spectra overlap",
+   "default": "0",
+   "values": "Number of overlapped spectra 0 (default) | integer in the range [0, Number of spectra ).",
+   "group": ""
+  },
+  {
+   "name": "Apply logarithm",
+   "default": "off",
+   "values": "Apply logarithm off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "Specify source of input sample rate off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44.1e3",
+   "values": "Sample rate of input 44.1e3 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

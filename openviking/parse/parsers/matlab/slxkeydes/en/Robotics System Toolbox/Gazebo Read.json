@@ -1,0 +1,55 @@
+{
+ "key": "Gazebo Read",
+ "title": "Gazebo Read",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Gazebo Co-Simulation/Gazebo_Read.md"
+ ],
+ "text": "Receive messages from Gazebo server, 2 outputs, {Message type} sets Gazebo message type; {Topic source} sets the source for specifying topic, {Topic}, {Sample time} sets the sampling time of input and {Number of Joint Axis}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "Status of messages in the previous time step 0 (default) | 1"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "Gazebo message bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic source",
+   "default": "Gazebo",
+   "values": "Source for specifying topic From Gazebo (default) | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "/my_topic",
+   "values": "Topic name of message /my_topic (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Message type",
+   "default": "gazebo_msgs/Pose",
+   "values": "Gazebo message type gazebo_msgs/Pose (default) | gazebo_msgs/Image | gazebo_msgs/IMU | gazebo_msgs/LaserScan | gazebo_msgs/JointState | gazebo_msgs/LinkState",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "Sampling time of input 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of Joint Axis",
+   "default": "2",
+   "values": "Number of joint axis 2 (default) | positive integer in range [1, 100]",
+   "group": ""
+  }
+ ]
+}

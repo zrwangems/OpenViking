@@ -1,0 +1,13 @@
+{
+ "key": "PROCESSPCA Process",
+ "title": "processpca",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/processpca.md"
+ ],
+ "text": "Process columns of matrix with principal component analysis.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

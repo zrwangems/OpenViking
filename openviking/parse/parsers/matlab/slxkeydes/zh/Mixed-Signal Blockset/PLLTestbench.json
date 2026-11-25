@@ -1,0 +1,163 @@
+{
+ "key": "PLLTestbench",
+ "title": "PLL Testbench",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Measurements & Testbenches/PLL_Testbench.md"
+ ],
+ "text": "通过测量工作频率、锁定时间和相位噪声来验证 PLL 系统，输入 1 路、输出 1 路；{Set stop time} 指定将建议的最小仿真停止时间设置为模型停止时间、{Plot phase noise profile} 绘制 PLL DUT、{Export measurement results} 指定仿真后导出测量结果、{Amplitude (V)} 指定 PLL 输入处激励信号的最大值、{Frequency (Hz)} 指定 PLL 输入处激励信号的频率 30e6、{Add phase noise} 添加作为频率函数的相位噪声、{Phase noise frequency offset (Hz)} 指定相位噪声相对于载波频率的频率偏移、{Phase noise level (dBc/Hz)} 指定在相对于载波的指定频率偏移处的相位噪声功率、{Estimate phase noise parameters} 指定自动估计相位噪声参数、{Period jitter (S)} 指定周期抖动的标准差 4.8666e-15、{Flicker corner frequency (Hz)} 指定闪烁噪声的转角频率、{Plot fit} 绘制指定的和预期的输出相位噪声密度、{Frequency of operation} 指定测量 PLL DUT 的工作频率、{Lock time} 指定测量 PLL DUT 的锁定时间、{Target frequency of operation (Hz)} 用于计算锁定时间的 PLL DUT 目标工作频率、{Error tolerance (Hz)} 指定锁定时间测量的误差容差 1e6、{Phase noise} 指定测量 PLL DUT 的相位噪声水平、{Resolution bandwidth (Hz)} 指定可分辨的最小正频率 200e3、{No. of spectral averages} 指定频谱平均次数、{Hold off time (s)} 指定延迟测量分析以避免瞬态、{Frequency offset vector (Hz)} 指定相对于基频计算相位噪声的频率点、{Lock time (s)} 指定 PLL DUT 实现锁定所需的最长时间 3e-6、{Phase noise (dBc/Hz)} 指定与频率偏移向量对应的目标噪声功率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "from pll",
+   "direction": "input",
+   "summary": "输入时钟信号 scalar"
+  },
+  {
+   "name": "to pll",
+   "direction": "output",
+   "summary": "输出时钟信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Set stop time",
+   "default": "",
+   "values": "将建议的最小仿真停止时间设置为模型停止时间 button",
+   "group": ""
+  },
+  {
+   "name": "Plot phase noise profile",
+   "default": "",
+   "values": "绘制 PLL DUT 的相位噪声曲线 button",
+   "group": ""
+  },
+  {
+   "name": "Export measurement results",
+   "default": "",
+   "values": "仿真后导出测量结果 button",
+   "group": ""
+  },
+  {
+   "name": "Amplitude (V)",
+   "default": "1",
+   "values": "PLL 输入处激励信号的最大值 1 (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "30e6",
+   "values": "PLL 输入处激励信号的频率 30e6 (default) | real positive scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Add phase noise",
+   "default": "off",
+   "values": "添加作为频率函数的相位噪声 off (default) | on",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "100e3]",
+   "values": "相位噪声相对于载波频率的频率偏移 [500 1e3 10e3 100e3] (default) | real valued vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-161]",
+   "values": "在相对于载波的指定频率偏移处的相位噪声功率 [-115 -122 -142 -161] (default) | real valued vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Estimate phase noise parameters",
+   "default": "on",
+   "values": "自动估计相位噪声参数 on (default) | off",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Period jitter (S)",
+   "default": "4.8666e-15",
+   "values": "周期抖动的标准差 4.8666e-15 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Flicker corner frequency (Hz)",
+   "default": "517103.8168",
+   "values": "闪烁噪声的转角频率 517103.8168 (default) | scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Plot fit",
+   "default": "",
+   "values": "绘制指定的和预期的输出相位噪声密度 button",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Frequency of operation",
+   "default": "on",
+   "values": "测量 PLL DUT 的工作频率 on (default) | off",
+   "group": "Setup"
+  },
+  {
+   "name": "Lock time",
+   "default": "off",
+   "values": "测量 PLL DUT 的锁定时间 off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Target frequency of operation (Hz)",
+   "default": "2.1e9",
+   "values": "用于计算锁定时间的 PLL DUT 目标工作频率 2.1e9 (default) | real positive scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Error tolerance (Hz)",
+   "default": "1e6",
+   "values": "锁定时间测量的误差容差 1e6 (default) | real positive scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Phase noise",
+   "default": "off",
+   "values": "测量 PLL DUT 的相位噪声水平 off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "200e3",
+   "values": "可分辨的最小正频率 200e3 (default) | real positive scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "No. of spectral averages",
+   "default": "4",
+   "values": "频谱平均次数 4 (default) | positive integer scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "延迟测量分析以避免瞬态 0 (default) | real nonnegative scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Frequency offset vector (Hz)",
+   "default": "10e6]",
+   "values": "相对于基频计算相位噪声的频率点 [300e3 1e6 3e6 10e6] (default) | real valued vector",
+   "group": "Setup"
+  },
+  {
+   "name": "Lock time (s)",
+   "default": "3e-6",
+   "values": "PLL DUT 实现锁定所需的最长时间 3e-6 (default) | real nonnegative scalar",
+   "group": "Target Metrics"
+  },
+  {
+   "name": "Phase noise (dBc/Hz)",
+   "default": "[-85,-125,-150,-180]",
+   "values": "与频率偏移向量对应的目标噪声功率 [-85,-125,-150,-180] (default) | real valued vector",
+   "group": "Target Metrics"
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+{
+ "key": "SOE Estimator (Energy Counting, Variable Energy Capacity)",
+ "title": "SOE Estimator (Energy Counting, Variable Energy Capacity)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Estimators/SOE_Estimator_Energy_Counting_Variable_Energy_Capacity.md"
+ ],
+ "text": "基于能量计数和可变能量容量的能量状态估计器，输入 4 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Specify Current input as cell current(s)} 指定将电流输入端口指定为向量、{Algorithm data type} 用于选择模块算法数据类型的选项 Inherit，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Current",
+   "direction": "input",
+   "summary": "电池电流，安培 scalar | vector"
+  },
+  {
+   "name": "Voltage",
+   "direction": "input",
+   "summary": "电池电压，伏特 scalar | vector"
+  },
+  {
+   "name": "EnergyCapacity",
+   "direction": "input",
+   "summary": "电池单体能量容量，W*Hr nonnegative scalar"
+  },
+  {
+   "name": "InitialSOE",
+   "direction": "input",
+   "summary": "初始能量状态，无单位 scalar | vector"
+  },
+  {
+   "name": "SOE",
+   "direction": "output",
+   "summary": "电池能量状态 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify Current input as cell current(s)",
+   "default": "off",
+   "values": "将电流输入端口指定为向量的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "模块采样时间 1 (default) | 0 | -1 | integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

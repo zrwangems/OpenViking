@@ -1,0 +1,13 @@
+{
+ "key": "Piezo Bender",
+ "title": "Piezo Bender",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Piezo_Bender.md"
+ ],
+ "text": "Piezoelectric bimorph beam of rectangular cross-section.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,55 @@
+{
+ "key": "Covariance Method",
+ "title": "Covariance Method",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Covariance_Method.md"
+ ],
+ "text": "Power spectral density estimate using covariance method, 1 input, 1 output; {Estimation order} sets the order of AR model, {Inherit FFT length from estimation order}, {FFT length}, {Inherit sample time from input} and {Sample time of original time series} sets the sample time of original time-domain signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input column vector | unoriented vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Power spectral density estimate column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Estimation order",
+   "default": "6",
+   "values": "Order of AR model 6 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT length from estimation order",
+   "default": "off",
+   "values": "Inherit FFT length from estimation order off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "256",
+   "values": "FFT length 256 (default) | positive integer greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time from input",
+   "default": "on",
+   "values": "Inherit sample time from input on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time of original time series",
+   "default": "1",
+   "values": "Sample time of original time-domain signal 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

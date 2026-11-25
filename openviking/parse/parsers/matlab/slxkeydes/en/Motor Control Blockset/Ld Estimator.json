@@ -1,0 +1,74 @@
+{
+ "key": "Ld Estimator",
+ "title": "Ld Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/PMSM Parameter Estimation/Ld_Estimator.md"
+ ],
+ "text": "Estimate stator inductance ( L d ) of permanent magnet synchronous motor (PMSM), 4 inputs, 3 outputs; {Maximum current limit (A)} sets the maximum allowed current during test, {Step size during injected voltage ramp up (per-unit)}, {Number of sinusoidal voltage injections per frequency sweep step} sets the number of sinusoidal voltage injections per frequency during frequency and {Number of sinusoidal voltage injections per frequency during Ld estimation}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "Three-phase current response vector"
+  },
+  {
+   "name": "Rs",
+   "direction": "input",
+   "summary": "Estimated stator resistance scalar"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "Control signal for L d estimation logical"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "Bus signal input bus"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a, b, and c -axis stator reference voltage components vector"
+  },
+  {
+   "name": "Ld",
+   "direction": "output",
+   "summary": "Estimated d -axis stator inductance scalar"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "Debug signals bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum current limit (A)",
+   "default": "15",
+   "values": "Maximum allowed current during test 15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Step size during injected voltage ramp up (per-unit)",
+   "default": "0.0001",
+   "values": "Step size during injected voltage ramp up 0.0001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of sinusoidal voltage injections per frequency sweep step",
+   "default": "5",
+   "values": "Number of sinusoidal voltage injections per frequency during frequency sweep 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of sinusoidal voltage injections per frequency during Ld estimation",
+   "default": "5",
+   "values": "Number of sinusoidal voltage injections per frequency during Ld estimation 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

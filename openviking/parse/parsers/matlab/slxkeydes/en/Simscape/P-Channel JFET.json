@@ -1,0 +1,13 @@
+{
+ "key": "P-Channel JFET",
+ "title": "P-Channel JFET",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/P_Channel_JFET.md"
+ ],
+ "text": "P-Channel junction field-effect transistor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

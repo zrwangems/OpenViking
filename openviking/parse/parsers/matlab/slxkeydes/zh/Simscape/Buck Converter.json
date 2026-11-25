@@ -1,0 +1,13 @@
+{
+ "key": "Buck Converter",
+ "title": "Buck Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Buck_Converter.md"
+ ],
+ "text": "由控制器驱动的 DC-DC 降压稳压器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "DC Cable",
+ "title": "DC Cable",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Lines/DC_Cable.md"
+ ],
+ "text": "High-fidelity frequency-dependent DC cable.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

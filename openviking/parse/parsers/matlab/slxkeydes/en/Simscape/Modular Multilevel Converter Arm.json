@@ -1,0 +1,13 @@
+{
+ "key": "Modular Multilevel Converter Arm",
+ "title": "Modular Multilevel Converter Arm",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Modular_Multilevel_Converter_Arm.md"
+ ],
+ "text": "Modular multilevel converter arm with series-connected power submodules.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

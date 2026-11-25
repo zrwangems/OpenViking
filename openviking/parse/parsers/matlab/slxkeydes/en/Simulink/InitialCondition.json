@@ -1,0 +1,37 @@
+{
+ "key": "InitialCondition",
+ "title": "IC",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/IC.md"
+ ],
+ "text": "Set initial value of signal, 1 input, 1 output, direct feedthrough, {Sample time (-1 for inherited)} sets Interval between samples; {Initial value}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial value",
+   "default": "1",
+   "values": "Initial value 1 (default) | real, finite scalar, vector, matrix, or N-D array",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

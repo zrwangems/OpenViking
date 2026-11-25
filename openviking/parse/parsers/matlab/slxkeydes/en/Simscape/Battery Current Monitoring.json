@@ -1,0 +1,65 @@
+{
+ "key": "Battery Current Monitoring",
+ "title": "Battery Current Monitoring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Protection/Battery_Current_Monitoring.md"
+ ],
+ "text": "Monitor for battery current, 3 inputs, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Current error limit (A)}, {Qualification time (s)} sets the error qualification time, {Disqualification time (s)} sets the error disqualification time and {Algorithm data type} sets the option to choose data type for block algorithm. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PackCurrent",
+   "direction": "input",
+   "summary": "Battery pack current, A scalar"
+  },
+  {
+   "name": "ChargingLimit",
+   "direction": "input",
+   "summary": "Charging current limit, A scalar"
+  },
+  {
+   "name": "DischargingLimit",
+   "direction": "input",
+   "summary": "Discharging current limit, A scalar"
+  },
+  {
+   "name": "OvercurrentError",
+   "direction": "output",
+   "summary": "Indication of overcurrent error 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Current error limit (A)",
+   "default": "0",
+   "values": "Current error limit 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time (s)",
+   "default": "2",
+   "values": "Error qualification time 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time (s)",
+   "default": "0",
+   "values": "Error disqualification time 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

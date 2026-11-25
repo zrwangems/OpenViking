@@ -1,0 +1,53 @@
+{
+ "key": "Set-Reset Flip-Flop",
+ "title": "Set-Reset Flip-Flop",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Set_Reset_Flip_Flop.md"
+ ],
+ "text": "置位-复位触发器或双稳态多谐振荡器，输入 2 路、输出 2 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Priority when undefined state} 指定状态优先级、{Initial condition for Q state} 输出 Q 的初始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Set",
+   "direction": "input",
+   "summary": "置位输入信号 0 | 1"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "复位输入信号 0 | 1"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "输出信号 0 | 1"
+  },
+  {
+   "name": "!Q",
+   "direction": "output",
+   "summary": "互补输出信号 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Priority when undefined state",
+   "default": "Set",
+   "values": "状态优先级 Set (default) | Reset",
+   "group": ""
+  },
+  {
+   "name": "Initial condition for Q state",
+   "default": "0",
+   "values": "输出 Q 的初始值 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,127 @@
+{
+ "key": "Draw Shapes",
+ "title": "Draw Shapes",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Text & Graphics/Draw_Shapes.md"
+ ],
+ "text": "在图像上绘制矩形、线、多边形或圆，输入 7 路、输出 1 路；按 {Shape} 指定要绘制的形状；{Fill shapes} 指定用颜色填充形状、{Line width} 指定形状的线宽、{Fill color source} 用于指定填充色的输入源 Specify via、{Fill color} 用于填充形状的颜色、{Border color source} 用于指定边框颜色的输入源 Specify via、{Border color} 指定形状的轮廓颜色、{Color value(s)} 用于绘制边框或填充形状的颜色值 scalar、{Opacity factor (between 0 and 1)} 指定颜色的不透明度 value in the range、{Use antialiasing} 指定平滑算法、{Draw shapes in} 绘制形状的区域 Entire、{Image signal} 指定图像信号的输入端口数 One multidimensional，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像或视频流 M -by- N matrix of intensity values | M -by- N -by- 3 array of color values"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "图像或视频帧的红色通道 M -by- N matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "图像或视频帧的绿色通道 M -by- N matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "图像或视频帧的蓝色通道 M -by- N matrix"
+  },
+  {
+   "name": "Pts",
+   "direction": "input",
+   "summary": "形状坐标 M -by-3 matrix | M -by-4 matrix | M -by-2 L matrix"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "感兴趣区域 4-element vector"
+  },
+  {
+   "name": "Clr",
+   "direction": "input",
+   "summary": "形状颜色 3-element vector | M -by- 3 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出图像 M -by- N matrix of intensity values | M -by- N -by- 3 array of color values"
+  }
+ ],
+ "params": [
+  {
+   "name": "Shape",
+   "default": "Rectangles",
+   "values": "要绘制的形状 Rectangles (default) | Lines | Polygons | Circles",
+   "group": ""
+  },
+  {
+   "name": "Fill shapes",
+   "default": "off",
+   "values": "用颜色填充形状 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Line width",
+   "default": "1",
+   "values": "形状的线宽 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Fill color source",
+   "default": "dialog",
+   "values": "用于指定填充色的输入源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Fill color",
+   "default": "Black",
+   "values": "用于填充形状的颜色 Black (default) | White | User-specified value",
+   "group": ""
+  },
+  {
+   "name": "Border color source",
+   "default": "dialog",
+   "values": "用于指定边框颜色的输入源 Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Border color",
+   "default": "Black",
+   "values": "形状的轮廓颜色 Black (default) | White | User-specified value",
+   "group": ""
+  },
+  {
+   "name": "Color value(s)",
+   "default": "",
+   "values": "用于绘制边框或填充形状的颜色值 scalar | 3-element vector",
+   "group": ""
+  },
+  {
+   "name": "Opacity factor (between 0 and 1)",
+   "default": "",
+   "values": "颜色的不透明度 value in the range [0,1] | R -element vector",
+   "group": ""
+  },
+  {
+   "name": "Use antialiasing",
+   "default": "",
+   "values": "平滑算法 off | on",
+   "group": ""
+  },
+  {
+   "name": "Draw shapes in",
+   "default": "image",
+   "values": "绘制形状的区域 Entire image (default) | Specify region of interest via port",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "图像信号的输入端口数 One multidimensional signal (default) | Separate color signals",
+   "group": ""
+  }
+ ]
+}

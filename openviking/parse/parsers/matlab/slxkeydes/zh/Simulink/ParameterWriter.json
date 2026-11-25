@@ -1,0 +1,44 @@
+{
+ "key": "ParameterWriter",
+ "title": "Parameter Writer",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Parameter_Writer.md"
+ ],
+ "text": "写入模块参数或变量，输入 1 路、无直接馈通；按 {Destination} 指定写入变量和参数的选项 Block；{Validate parameter} 指定在正常模式仿真期间验证参数、{Workspace variable name} 指定工作区变量的名称 no default、{Parameter owner block} 指定参数所属模块的模块路径和模块参数名称 no，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "参数值 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Validate parameter",
+   "default": "on",
+   "values": "在正常模式仿真期间验证参数的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Destination",
+   "default": "parameter",
+   "values": "写入变量和参数的选项 Block parameter (default) | Model workspace variable | Base workspace variable",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "",
+   "values": "工作区变量的名称 no default",
+   "group": ""
+  },
+  {
+   "name": "Parameter owner block",
+   "default": "",
+   "values": "参数所属模块的模块路径和模块参数名称 no default",
+   "group": ""
+  }
+ ]
+}

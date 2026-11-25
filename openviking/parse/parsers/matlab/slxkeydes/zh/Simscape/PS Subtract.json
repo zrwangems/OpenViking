@@ -1,0 +1,13 @@
+{
+ "key": "PS Subtract",
+ "title": "PS Subtract",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Subtract.md"
+ ],
+ "text": "计算两个输入物理信号的简单减法。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

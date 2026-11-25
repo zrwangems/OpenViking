@@ -1,0 +1,13 @@
+{
+ "key": "Area Change (IL)",
+ "title": "Area Change (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pipes & Fittings/Area_Change_IL.md"
+ ],
+ "text": "Area expansion or contraction along a pipe in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

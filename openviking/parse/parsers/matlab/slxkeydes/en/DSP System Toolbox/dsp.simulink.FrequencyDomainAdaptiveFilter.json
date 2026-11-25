@@ -1,0 +1,172 @@
+{
+ "key": "dsp.simulink.FrequencyDomainAdaptiveFilter",
+ "title": "Frequency-Domain Adaptive Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Adaptive Filters/Frequency_Domain_Adaptive_Filter.md"
+ ],
+ "text": "Compute output, error, and coefficients using frequency domain FIR adaptive filter, 8 inputs, 3 outputs, no direct feedthrough, {Initial time-domain coefficients} sets Initial time-domain coefficients of filter; {Method}, {Filter length} sets the length of filter coefficients vector, {Block length}, {Specify step size from port} sets the flag to specify step size, {Step size} sets the adaptation step size, {Specify leakage factor from port} sets the flag to specify leakage factor, {LeakageFactor} sets the adaptation leakage factor, {Specify averaging factor from port} sets the flag to specify averaging factor, {Averaging factor}, {Specify offset from port} sets the flag to specify offset, {Offset}, {Initial FFT input signal power}, {Enable adapt port} sets the flag to enable coefficient update, {Enable reset port} sets the flag to reset internal states, {Output filter FFT coefficients} sets the flag to output the DFT of the filter and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Data input column vector"
+  },
+  {
+   "name": "Desired",
+   "direction": "input",
+   "summary": "Desired signal column vector"
+  },
+  {
+   "name": "Mu",
+   "direction": "input",
+   "summary": "Step size input real scalar in the range (0,1]"
+  },
+  {
+   "name": "Leak",
+   "direction": "input",
+   "summary": "Leakage factor input real scalar in the range (0,1]"
+  },
+  {
+   "name": "Avrg",
+   "direction": "input",
+   "summary": "Averaging factor input real scalar in the range (0,1]"
+  },
+  {
+   "name": "Offset",
+   "direction": "input",
+   "summary": "Offset for normalization terms nonnegative real scalar"
+  },
+  {
+   "name": "Adapt",
+   "direction": "input",
+   "summary": "Enable filter coefficient updates nonnegative real scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Enable filter states reset nonnegative real scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Filtered output column vector"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "Difference between output and desired signal column vector"
+  },
+  {
+   "name": "FFTCoeffs",
+   "direction": "output",
+   "summary": "Current FFT coefficients of filter row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "FDAF",
+   "values": "Method to calculate filter coefficients Constrained FDAF (default) | Partitioned constrained FDAF | Unconstrained FDAF | Partitioned unconstrained FDAF",
+   "group": ""
+  },
+  {
+   "name": "Filter length",
+   "default": "32",
+   "values": "Length of filter coefficients vector 32 (default) | positive, integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Block length",
+   "default": "32",
+   "values": "Block length for coefficient updates 32 (default) | positive, integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify step size from port",
+   "default": "off",
+   "values": "Flag to specify step size off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Step size",
+   "default": "1",
+   "values": "Adaptation step size 1 (default) | real scalar in the range (0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify leakage factor from port",
+   "default": "off",
+   "values": "Flag to specify leakage factor off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "LeakageFactor",
+   "default": "1",
+   "values": "Adaptation leakage factor 1 (default) | real scalar in the range (0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify averaging factor from port",
+   "default": "off",
+   "values": "Flag to specify averaging factor off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Averaging factor",
+   "default": "0.9",
+   "values": "Averaging factor for signal power 0.9 (default) | real scalar in the range (0,1]",
+   "group": ""
+  },
+  {
+   "name": "Specify offset from port",
+   "default": "off",
+   "values": "Flag to specify offset off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Offset",
+   "default": "0",
+   "values": "Offset for normalization terms 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial FFT input signal power",
+   "default": "1",
+   "values": "Initial FFT input signal power 1 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial time-domain coefficients",
+   "default": "0",
+   "values": "Initial time-domain coefficients of filter 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable adapt port",
+   "default": "off",
+   "values": "Flag to enable coefficient update off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable reset port",
+   "default": "off",
+   "values": "Flag to reset internal states off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output filter FFT coefficients",
+   "default": "off",
+   "values": "Flag to output the DFT of the filter coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

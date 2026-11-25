@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Actuator (IL)",
+ "title": "Double-Acting Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Double_Acting_Actuator_IL.md"
+ ],
+ "text": "Linear conversion of pressure differential to actuation in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

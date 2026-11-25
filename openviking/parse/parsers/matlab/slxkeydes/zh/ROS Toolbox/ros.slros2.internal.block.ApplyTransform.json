@@ -1,0 +1,36 @@
+{
+ "key": "ros.slros2.internal.block.ApplyTransform",
+ "title": "Apply Transform",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Apply_Transform.md"
+ ],
+ "text": "将输入 ROS 或 ROS 2 消息变换到目标帧，输入 2 路、输出 1 路；按 {Entity message type} 指定输入实体消息的类型。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TFMsg",
+   "direction": "input",
+   "summary": "ROS 或 ROS 2 geometry_msgs/TransformStamped 消息 non-virtual bus"
+  },
+  {
+   "name": "Entity",
+   "direction": "input",
+   "summary": "ROS 或 ROS 2 实体消息 non-virtual bus"
+  },
+  {
+   "name": "TFEntity",
+   "direction": "output",
+   "summary": "变换后的 ROS 或 ROS 2 实体消息 non-virtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Entity message type",
+   "default": "geometry_msgs/QuaternionStamped",
+   "values": "输入实体消息的类型 geometry_msgs/QuaternionStamped (default) | geometry_msgs/Vector3Stamped | geometry_msgs/PointStamped | geometry_msgs/PoseStamped",
+   "group": ""
+  }
+ ]
+}

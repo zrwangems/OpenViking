@@ -1,0 +1,123 @@
+{
+ "key": "Sine Wave",
+ "title": "Sine Wave",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Sources/Sine_Wave.md",
+  "DSP System Toolbox/Sources/Sine_Wave.md"
+ ],
+ "text": "Generate continuous or discrete sine wave, 1 output, no direct feedthrough, {Phase offset (rad)} sets Phase offset; {Amplitude}, {Frequency (Hz)} sets the frequency of each sine wave, {Sample mode} sets the continuous or discrete sampling mode, {Output complexity} sets the real or complex, {Computation method} sets the method for computing discrete-time sinusoids Trigonometric, {Optimize table for} sets the optimize for speed, {Sample time} sets the sample period, {Samples per frame}, {Resetting states when re-enabled} sets the state behavior inside enabled subsystems Restart, {Output data type}, {Mode} sets the data type mode, {Signedness}, {Scaling} sets the method for scaling fixed-point data Best, {Word length} sets the bit size of the word that holds the quantized, {Fraction length} and {Data type override}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Sinusoidal signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Amplitude",
+   "default": "1",
+   "values": "Amplitude of sine waves 1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Frequency (Hz)",
+   "default": "100",
+   "values": "Frequency of each sine wave 100 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "0",
+   "values": "Phase offset 0 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Sample mode",
+   "default": "Discrete",
+   "values": "Continuous or discrete sampling mode Discrete (default) | Continuous",
+   "group": "Main"
+  },
+  {
+   "name": "Output complexity",
+   "default": "Real",
+   "values": "Real or complex waveform Real (default) | Complex",
+   "group": "Main"
+  },
+  {
+   "name": "Computation method",
+   "default": "fcn",
+   "values": "Method for computing discrete-time sinusoids Trigonometric fcn (default) | Table lookup | Differential",
+   "group": "Main"
+  },
+  {
+   "name": "Optimize table for",
+   "default": "Speed",
+   "values": "Optimize for speed or memory Speed (default) | Memory",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "1/1000",
+   "values": "Sample period 1/1000 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Resetting states when re-enabled",
+   "default": "zero",
+   "values": "State behavior inside enabled subsystems Restart at time zero (default) | Catch up to simulation time",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single | fixdt(1,16) | fixdt(1,16,0) | | Inherit:Inherit via back propagation",
+   "group": "Data Types"
+  },
+  {
+   "name": "Mode",
+   "default": "in",
+   "values": "Data type mode Built in (default) | Inherit | Fixed point | Expression",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Signedness",
+   "default": "Signed",
+   "values": "Signedness of fixed-point data Signed (default)",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Scaling",
+   "default": "precision",
+   "values": "Method for scaling fixed-point data Best precision (default) | Binary point",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Word length",
+   "default": "16",
+   "values": "Bit size of the word that holds the quantized integer 16 (default) | integer from 2 to 128",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Fraction length",
+   "default": "0",
+   "values": "Fraction length for fixed-point data type 0 (default) | integer scalar",
+   "group": "Data Type Assistant"
+  },
+  {
+   "name": "Data type override",
+   "default": "Inherit",
+   "values": "Data type override mode Inherit (default) | Off",
+   "group": "Data Type Assistant"
+  }
+ ]
+}

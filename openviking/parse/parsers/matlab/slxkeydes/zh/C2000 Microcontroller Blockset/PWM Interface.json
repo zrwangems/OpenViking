@@ -1,0 +1,141 @@
+{
+ "key": "PWM Interface",
+ "title": "PWM Interface",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Test Bench Blocks/PWM_Interface.md",
+  "SoC Blockset/Peripherals/PWM_Interface.md"
+ ],
+ "text": "模拟来自硬件的脉宽调制 (PWM) 输出，输入 1 路、输出 6 路；按 {Generate on} 指定Generate；{PWM waveform period (s)} 指定 PWM 波形的周期 50e-6、{Output mode}、{Counter mode} 指定 Counter waveform、{Sampling mode}、{Dead time (s)} 指定 Dead band switching、{At position of period} 指定 Signal change at position、{At compare n} 指定 Signal change at comparator n、{At compare n direction count} 指定 Signal change at comparator n、{Phase offset in degree (0-360)} 指定 PWM waveform offset scalar、{Type}、{ADC start condition} 指定 Trigger mode relative to PWM waveform End of PWM、{Number of replicas} 指定 Generate replica event ports、{PWM interrupt condition} 指定 Trigger mode relative to PWM waveform End of PWM、{Interrupt latency (s)} 指定中断生成延迟，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "msg",
+   "direction": "input",
+   "summary": "SoC 消息数据 numeric vector"
+  },
+  {
+   "name": "PWM",
+   "direction": "output",
+   "summary": "脉宽调制信号 scalar"
+  },
+  {
+   "name": "~PWM",
+   "direction": "output",
+   "summary": "互补脉宽调制信号 scalar"
+  },
+  {
+   "name": "dCycle",
+   "direction": "output",
+   "summary": "脉宽调制信号的模拟近似 scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "每个 PWM 周期发出的事件 scalar"
+  },
+  {
+   "name": "event n",
+   "direction": "output",
+   "summary": "每个 PWM 周期发出的复制事件 scalar"
+  },
+  {
+   "name": "interrupt",
+   "direction": "output",
+   "summary": "每个 PWM 周期发出的中断事件 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "PWM waveform period (s)",
+   "default": "50e-6",
+   "values": "PWM 波形的周期 50e-6 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output mode",
+   "default": "Switching",
+   "values": "Output mode Switching (default) | Average",
+   "group": "Main"
+  },
+  {
+   "name": "Counter mode",
+   "default": "Up-Down",
+   "values": "Counter waveform Up-Down (default) | Up | Down",
+   "group": "Main"
+  },
+  {
+   "name": "Sampling mode",
+   "default": "period",
+   "values": "Sampling mode End of PWM period (default) | Mid or End of PWM period | Immediate (at compare matches)",
+   "group": "Main"
+  },
+  {
+   "name": "Dead time (s)",
+   "default": "1e-6",
+   "values": "Dead band switching delay 1e-6 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "At position of period",
+   "default": "",
+   "values": "Signal change at position in period High | Low | Change | NoChange",
+   "group": "PWM Output"
+  },
+  {
+   "name": "At compare n",
+   "default": "",
+   "values": "Signal change at comparator n trigger High | Low | Change | NoChange",
+   "group": "PWM Output"
+  },
+  {
+   "name": "At compare n direction count",
+   "default": "",
+   "values": "Signal change at comparator n trigger High | Low | Change | NoChange",
+   "group": "PWM Output"
+  },
+  {
+   "name": "Phase offset in degree (0-360)",
+   "default": "",
+   "values": "PWM waveform offset scalar from 0 to 360",
+   "group": "Phase"
+  },
+  {
+   "name": "Type",
+   "default": "start",
+   "values": "Type of events to generate ADC start (default) | PWM interrupt | ADC start and PWM interrupt",
+   "group": "Event"
+  },
+  {
+   "name": "ADC start condition",
+   "default": "period",
+   "values": "Trigger mode relative to PWM waveform End of PWM period (default) | Mid of PWM period | Mid or End of PWM period | Compare 1 up count | Compare 1 down count | Compare 2 up count | Compare 2 down count",
+   "group": "Event"
+  },
+  {
+   "name": "Generate on",
+   "default": "event",
+   "values": "Generate event on multiple of PWM update 1st event (default) | n th event | 16th event",
+   "group": "Event"
+  },
+  {
+   "name": "Number of replicas",
+   "default": "1",
+   "values": "Generate replica event ports 1 (default) | integer from 1 to 16",
+   "group": "Event"
+  },
+  {
+   "name": "PWM interrupt condition",
+   "default": "period",
+   "values": "Trigger mode relative to PWM waveform End of PWM period (default) | Mid of PWM period | Mid or End of PWM period | Compare 1 up count | Compare 1 down count | Compare 2 up count | Compare 2 down count",
+   "group": "Event"
+  },
+  {
+   "name": "Interrupt latency (s)",
+   "default": "0",
+   "values": "中断生成延迟 0 (default) | positive number",
+   "group": "Event"
+  }
+ ]
+}

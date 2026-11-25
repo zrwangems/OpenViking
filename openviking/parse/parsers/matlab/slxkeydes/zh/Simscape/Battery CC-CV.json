@@ -1,0 +1,82 @@
+{
+ "key": "Battery CC-CV",
+ "title": "Battery CC-CV",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Current Management/Battery_CC_CV.md"
+ ],
+ "text": "恒流恒压充电算法，输入 4 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Specify CellVoltage input as [Min,Max]} 用于将 CellVoltage、{Cell voltage threshold (V)} 允许的最大电芯电压、{Controller proportional gain} 指定 PI 控制器的比例增益、{Controller integral gain} 指定 PI 控制器的积分增益、{Controller anti-windup gain} 指定 PI 控制器的抗积分饱和增益、{Gain of signal-tracking feedback loop} 指定 PI 控制器的跟踪系数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ChargingEnabled",
+   "direction": "input",
+   "summary": "是否启用电池充电 boolean"
+  },
+  {
+   "name": "CellVoltage",
+   "direction": "input",
+   "summary": "电芯电压，V scalar | vector"
+  },
+  {
+   "name": "CurrentWhenCharging",
+   "direction": "input",
+   "summary": "充电电流，A scalar"
+  },
+  {
+   "name": "CurrentWhenDischarging",
+   "direction": "input",
+   "summary": "放电电流，A scalar"
+  },
+  {
+   "name": "Current",
+   "direction": "output",
+   "summary": "计算得到的参考电流，A scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify CellVoltage input as [Min,Max]",
+   "default": "off",
+   "values": "用于将 CellVoltage 输入指定为最小值和最大值的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cell voltage threshold (V)",
+   "default": "4.5",
+   "values": "允许的最大电芯电压 4.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller proportional gain",
+   "default": "100",
+   "values": "PI 控制器的比例增益 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller integral gain",
+   "default": "10",
+   "values": "PI 控制器的积分增益 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Controller anti-windup gain",
+   "default": "1",
+   "values": "PI 控制器的抗积分饱和增益 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gain of signal-tracking feedback loop",
+   "default": "1",
+   "values": "PI 控制器的跟踪系数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "模块采样时间 1 (default) | 0 | -1 | positive integer",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "key": "Bit Slice",
+ "title": "Bit Slice",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Bit_Slice.md"
+ ],
+ "text": "从输入信号返回连续位字段，输入 1 路、输出 1 路；{MSB 位置} 指定最高有效位的位置、{LSB 位置} 指定最低有效位的位置，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "MSB 位置",
+   "default": "7",
+   "values": "最高有效位的位置 7 (默认)",
+   "group": ""
+  },
+  {
+   "name": "LSB 位置",
+   "default": "0",
+   "values": "最低有效位的位置 0 (默认)",
+   "group": ""
+  }
+ ]
+}

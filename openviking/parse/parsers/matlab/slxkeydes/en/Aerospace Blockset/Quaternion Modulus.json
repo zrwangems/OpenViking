@@ -1,0 +1,24 @@
+{
+ "key": "Quaternion Modulus",
+ "title": "Quaternion Modulus",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Modulus.md"
+ ],
+ "text": "Calculate modulus of quaternion, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "Quaternion quaternion | vector of quaternions"
+  },
+  {
+   "name": "|q|",
+   "direction": "output",
+   "summary": "Quaternion modulus quaternion modulus | vector of quaternion moduli"
+  }
+ ],
+ "params": []
+}

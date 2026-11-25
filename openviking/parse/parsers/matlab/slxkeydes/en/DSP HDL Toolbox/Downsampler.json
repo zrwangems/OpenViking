@@ -1,0 +1,58 @@
+{
+ "key": "Downsampler",
+ "title": "Downsampler",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Signal Operations/Downsampler.md"
+ ],
+ "text": "Downsample by removing data samples between input samples, 3 inputs, 2 outputs; {Downsample factor (K)} sets the downsampling factor, {Sample offset (0 to K-1)} and {Enable reset input port} sets the option to enable reset input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Valid input data indicator 0 | 1"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "Option to clear internal states 0 | 1"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Downsampled data scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Valid output data indicator 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Downsample factor (K)",
+   "default": "2",
+   "values": "Downsampling factor 2 (default) | integer in the range [1, 2.^16]",
+   "group": "Main"
+  },
+  {
+   "name": "Sample offset (0 to K-1)",
+   "default": "0",
+   "values": "Sample offset 0 (default) | integer in the range [0, 2.^16 – 1]",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Option to enable reset input port off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

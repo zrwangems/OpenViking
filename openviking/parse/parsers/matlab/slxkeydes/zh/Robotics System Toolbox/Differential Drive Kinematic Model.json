@@ -1,0 +1,81 @@
+{
+ "key": "Differential Drive Kinematic Model",
+ "title": "Differential Drive Kinematic Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Mobile Robot Algorithms/Differential_Drive_Kinematic_Model.md"
+ ],
+ "text": "使用差速驱动运动学模型计算车辆运动，输入 4 路、输出 2 路；{Vehicle inputs} 指定车辆的速度和方向输入类型 Wheel、{Wheel radius} 指定车辆车轮半径、{Wheel speed range} 指定车辆最小速度和最大速度、{Track width} 指定车辆左右车轮之间的轮距、{Initial state} 指定车辆的初始位姿、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dϕ L /dt",
+   "direction": "input",
+   "summary": "左轮速度 numeric scalar"
+  },
+  {
+   "name": "dϕ R /dt",
+   "direction": "input",
+   "summary": "右轮速度 numeric scalar"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "车速 numeric scalar"
+  },
+  {
+   "name": "ɷ",
+   "direction": "input",
+   "summary": "车辆角速度 numeric scalar"
+  },
+  {
+   "name": "state",
+   "direction": "output",
+   "summary": "车辆位姿 three-element vector"
+  },
+  {
+   "name": "stateDot",
+   "direction": "output",
+   "summary": "状态输出的导数 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Vehicle inputs",
+   "default": "Speeds",
+   "values": "车辆的速度和方向输入类型 Wheel Speeds (default) | Vehicle Speed & Heading Angular Velocity",
+   "group": ""
+  },
+  {
+   "name": "Wheel radius",
+   "default": "0.05",
+   "values": "车辆车轮半径 0.05 (default) | positive numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Wheel speed range",
+   "default": "Inf]",
+   "values": "车辆最小速度和最大速度 [-Inf Inf] (default) | two-element vector",
+   "group": ""
+  },
+  {
+   "name": "Track width",
+   "default": "0.2",
+   "values": "车辆左右车轮之间的轮距 0.2 (default) | numeric scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "[0;0;0]",
+   "values": "车辆的初始位姿 [0;0;0] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

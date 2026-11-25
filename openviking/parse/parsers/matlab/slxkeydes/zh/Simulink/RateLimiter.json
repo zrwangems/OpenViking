@@ -1,0 +1,55 @@
+{
+ "key": "RateLimiter",
+ "title": "Rate Limiter",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Rate_Limiter.md"
+ ],
+ "text": "限制信号变化的速率，输入 1 路、输出 1 路；按 {初始条件} 指定初始输出；{上升沿压摆率} 指定递增输入的导数的限制、{下降沿压摆率} 指定递减输入的导数的限制、{采样时间模式}、{线性化时视为增益} 指定增益值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "上升沿压摆率",
+   "default": "1",
+   "values": "递增输入的导数的限制 1 (默认) | 实数",
+   "group": ""
+  },
+  {
+   "name": "下降沿压摆率",
+   "default": "-1",
+   "values": "递减输入的导数的限制 -1 (默认) | 实数",
+   "group": ""
+  },
+  {
+   "name": "采样时间模式",
+   "default": "继承",
+   "values": "采样时间模式 继承 (默认) | 连续",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "初始输出 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "线性化时视为增益",
+   "default": "on",
+   "values": "指定增益值 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

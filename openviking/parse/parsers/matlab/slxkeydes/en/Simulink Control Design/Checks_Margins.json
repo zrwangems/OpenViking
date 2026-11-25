@@ -1,0 +1,194 @@
+{
+ "key": "Checks_Margins",
+ "title": "Check Gain and Phase Margins",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Model Verification/Check_Gain_and_Phase_Margins.md",
+  "Simulink Control Design/Linear Analysis Plots/Gain_and_Phase_Margin_Plot.md"
+ ],
+ "text": "Gain and phase margins of linear system approximated from nonlinear Simulink model, 1 input, 1 output, {Plot type} sets Select plot type; {Show Plot} sets the open plot, {Show plot on block open} sets the open plot when opening block, {Response Optimization} sets the open Response Optimizer, {Linearization inputs/outputs} sets the portion of model to linearize linear analysis, {Enable regular expression} enables signal searching using regular, {Show filtered results as a flat list} displays filtered bus signal hierarchy using flat, {Linearize on} sets when to compute linear model Simulation, {Snapshot times} sets the simulation times at which to compute linear, {Trigger type} sets the type of external trigger to detect Rising, {Enable zero-crossing detection}, {Use exact delays}, {Linear system sample time} sets the sample time of linear system, {Sample time rate conversion method} sets the rate conversion method, {Prewarp frequency}, {Use full block names} uses full block path in state, input, and output, {Use bus signal names}, {Include gain and phase margins in assertion} sets the check whether gain and phase margins violate, {Gain margin} sets the minimum gain margin bound positive finite, {Phase margin} sets the minimum phase minimum bound positive finite, {Feedback sign}, {Save data to workspace} sets the save linear systems for further analysis, {Variable name} sets the name of data structure for saving linear systems, {Save operating points for each linearization} sets the save operating points with linearization, {Enable assertion} enables bound checking, {Simulation callback when assertion fails} sets the expression to evaluate when bounds are, {Stop simulation when assertion fails} sets the stop simulation when bounds are violated and {Output assertion signal} adds assertion output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "External trigger signal scalar"
+  },
+  {
+   "name": "z –1",
+   "direction": "output",
+   "summary": "Assertion signal 1 | 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Plot type",
+   "default": "Bode",
+   "values": "Select plot type Bode (default) | Nichols | Nyquist | Tabular",
+   "group": ""
+  },
+  {
+   "name": "Show Plot",
+   "default": "",
+   "values": "Open plot button",
+   "group": ""
+  },
+  {
+   "name": "Show plot on block open",
+   "default": "off",
+   "values": "Open plot when opening block off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Response Optimization",
+   "default": "",
+   "values": "Open Response Optimizer button",
+   "group": ""
+  },
+  {
+   "name": "Linearization inputs/outputs",
+   "default": "",
+   "values": "Specify portion of model to linearize linear analysis points",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Enable regular expression",
+   "default": "on",
+   "values": "Enable signal searching using regular expressions on (default) | off",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Show filtered results as a flat list",
+   "default": "off",
+   "values": "Display filtered bus signal hierarchy using flat list off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Linearize on",
+   "default": "snapshots",
+   "values": "When to compute linear model Simulation snapshots (default) | External trigger",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Snapshot times",
+   "default": "0",
+   "values": "Simulation times at which to compute linear model 0 (default) | positive real value | vector of positive real values",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "Type of external trigger to detect Rising edge (default) | Falling edge",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Enable zero-crossing detection on (default) | off",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Use exact delays",
+   "default": "off",
+   "values": "Use exact delays in linear model off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Linear system sample time",
+   "default": "’auto’",
+   "values": "Sample time of linear system ’auto’ (default) | positive finite value | 0",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Sample time rate conversion method",
+   "default": "Hold",
+   "values": "Rate conversion method Zero-Order Hold (default) | Tustin (bilinear) | Tustin with Prewarping |...",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Prewarp frequency",
+   "default": "’10’",
+   "values": "Prewarp frequency for Tustin rate conversion ’10’ (default) | positive scalar",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Use full block names",
+   "default": "off",
+   "values": "Use full block path in state, input, and output names off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Use bus signal names",
+   "default": "off",
+   "values": "Use bus signal names in linear system off (default) | on",
+   "group": "Linearizations"
+  },
+  {
+   "name": "Include gain and phase margins in assertion",
+   "default": "",
+   "values": "Check whether gain and phase margins violate bounds on | off",
+   "group": "Bounds"
+  },
+  {
+   "name": "Gain margin",
+   "default": "",
+   "values": "Minimum gain margin bound positive finite value",
+   "group": "Bounds"
+  },
+  {
+   "name": "Phase margin",
+   "default": "",
+   "values": "Minimum phase minimum bound positive finite value",
+   "group": "Bounds"
+  },
+  {
+   "name": "Feedback sign",
+   "default": "feedback",
+   "values": "Feedback sign for computing margins negative feedback (default) | positive feedback",
+   "group": "Bounds"
+  },
+  {
+   "name": "Save data to workspace",
+   "default": "off",
+   "values": "Save linear systems for further analysis off (default) | on",
+   "group": "Logging"
+  },
+  {
+   "name": "Variable name",
+   "default": "sys",
+   "values": "Name of data structure for saving linear systems sys (default) | character vector",
+   "group": "Logging"
+  },
+  {
+   "name": "Save operating points for each linearization",
+   "default": "off",
+   "values": "Save operating points with linearization off (default) | on",
+   "group": "Logging"
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "Enable bound checking on (default) | off",
+   "group": "Assertion"
+  },
+  {
+   "name": "Simulation callback when assertion fails",
+   "default": "’’",
+   "values": "Expression to evaluate when bounds are violated ’’ (default) | MATLAB expression",
+   "group": "Assertion"
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "Stop simulation when bounds are violated off (default) | on",
+   "group": "Assertion"
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "Add assertion output port off (default) | on",
+   "group": "Assertion"
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "key": "Curve Using Prelookup",
+ "title": "Curve Using Prelookup",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Interpolation/Curve_Using_Prelookup.md"
+ ],
+ "text": "Use previously calculated index and fraction values to accelerate approximation of one-dimensional function, 1 input, 1 output, {Table data} sets Data type of table data Inherit: Same as; {Targeted Routine Library} Indicates the AUTOSAR routine library used for block code replacement, {Targeted Routine} sets the aUTOSAR library routine used for code replacement, {Data Specification} sets how to enter table data, {Name}, {Edit table and breakpoints} sets the launch Lookup Table Editor dialog box, {Interpolation method} selects Linear point-slope or Flat interpolation methods Linear and {Integer rounding mode} sets the rounding mode for fixed-point or floating-point operations. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "kf1",
+   "direction": "input",
+   "summary": "Input containing index k and fraction f Ifx_DPResultU16_Type | Ifl_DPResultF32_Type"
+  },
+  {
+   "name": "Port 1",
+   "direction": "output",
+   "summary": "Approximation of one-dimensional function single | int8 | uint8 | int16 | uint16 | int32 | uint32 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |"
+  }
+ ],
+ "params": [
+  {
+   "name": "Targeted Routine Library",
+   "default": "",
+   "values": "Indicates the AUTOSAR routine library used for block code replacement IFX (fixed-point) | IFL (floating-point)",
+   "group": ""
+  },
+  {
+   "name": "Targeted Routine",
+   "default": "",
+   "values": "AUTOSAR library routine used for code replacement Ifx_IpoCur | Ifl_IpoCur",
+   "group": ""
+  },
+  {
+   "name": "Data Specification",
+   "default": "values",
+   "values": "Choose how to enter table data Explicit values (default) | Lookup table object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "Name of a Simulink.LookupTable object Simulink.LookupTable object",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Table data",
+   "default": "4]",
+   "values": "Define the table of output values [1 2 4] (default) | character vector",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Edit table and breakpoints",
+   "default": "",
+   "values": "Launch Lookup Table Editor dialog box button",
+   "group": "Table Specification"
+  },
+  {
+   "name": "Interpolation method",
+   "default": "point-slope",
+   "values": "Select Linear point-slope or Flat interpolation methods Linear point-slope (default) | Flat",
+   "group": "Algorithm"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Zero",
+   "values": "Rounding mode for fixed-point or floating-point operations Zero (default) | Round",
+   "group": "Algorithm"
+  }
+ ]
+}

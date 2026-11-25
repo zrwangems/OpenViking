@@ -1,0 +1,13 @@
+{
+ "key": "Magnetic Core",
+ "title": "Magnetic Core",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Magnetic_Core.md"
+ ],
+ "text": "Nonlinear reluctance, hysteresis, and optional eddy losses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,131 @@
+{
+ "key": "Simulink Desktop Real-Time Packet Output",
+ "title": "Packet Output",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Packet_Output.md"
+ ],
+ "text": "将二进制数据或 CAN 消息写入通信通道，输入 1 路、输出 3 路；按 {Output packet field data types} 指定发送到设备的数据包中数据的输出类型和分组方式；{Install new board} 指定注册板卡 < no board、{Delete current board} 指定删除当前板卡、{Board setup} 指定板卡、{Sample time} 指定模块的采样时间、{Maximum missed ticks} 指定模型可以落后内核的定时器节拍数、{Show “Missed Ticks” port} 指定将错过的节拍数发送到 Missed Ticks 端口、{Yield CPU when waiting} 指定内核等待硬件时让出 CPU、{Packet identifier} 指定数据包的标识符、{Extended identifier} 指定数据包的扩展标识符、{Output packet size} 指定每个输入数据包包含的字节数、{Output packet field byte order} 指定发送到设备的数据包的字节顺序 Little、{Show “Data Ready” port} 添加端口 Data Ready、{Show “Data Error” port} 添加端口 Data Error，在发生错误时信号为、{Initial value} 指定仿真开始时发送的数据 vector、{Final value} 指定仿真结束时发送的数据 vector，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input Data",
+   "direction": "input",
+   "summary": "要写入通信通道的数据 vector"
+  },
+  {
+   "name": "Data Ready",
+   "direction": "output",
+   "summary": "数据就绪端口（可选） 1 | 0"
+  },
+  {
+   "name": "Data Error",
+   "direction": "output",
+   "summary": "数据错误端口（可选） 1 | 0"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "错过的节拍计数（可选） double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "注册板卡 < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "删除当前板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "设置板卡 (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "模块的采样时间 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "模型可以落后内核的定时器节拍数 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "将错过的节拍数发送到 Missed Ticks 端口 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "内核等待硬件时让出 CPU ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Packet identifier",
+   "default": "1",
+   "values": "数据包的标识符 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Extended identifier",
+   "default": "’off’",
+   "values": "数据包的扩展标识符（仅 CAN 板卡） ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Output packet size",
+   "default": "32",
+   "values": "每个输入数据包包含的字节数 32 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Output packet field data types",
+   "default": "’4*double’",
+   "values": "发送到设备的数据包中数据的输出类型和分组方式 ’4*double’ (default) | character vector | cell array of character vector",
+   "group": ""
+  },
+  {
+   "name": "Output packet field byte order",
+   "default": "Endian",
+   "values": "发送到设备的数据包的字节顺序 Little Endian (default) | Big Endian",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Ready” port",
+   "default": "’off’",
+   "values": "添加端口 Data Ready，在模块可以接受新数据时信号为 1 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Error” port",
+   "default": "’off’",
+   "values": "添加端口 Data Error，在发生错误时信号为 1 ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Initial value",
+   "default": "",
+   "values": "仿真开始时发送的数据 vector",
+   "group": ""
+  },
+  {
+   "name": "Final value",
+   "default": "",
+   "values": "仿真结束时发送的数据 vector",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "key": "Triggered To Workspace",
+ "title": "Triggered To Workspace",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Sinks/Triggered_To_Workspace.md"
+ ],
+ "text": "Write input sample to MATLAB workspace when triggered, 2 inputs, no direct feedthrough, {Trigger type} sets Trigger type Rising; {Variable name} sets the workspace variable name, {Decimation}, {Maximum number of rows}, {Save 2-D signals as} sets the arrangement of 2-D samples values in logged data 2-D and {Log fixed-point data as a fi object}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Data to log to workspace scalar | vector | matrix | bus"
+  },
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "Trigger signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "Trigger type Rising edge (default) | Falling edge | Either edge",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "yout",
+   "values": "Workspace variable name yout (default) | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Decimation",
+   "default": "1",
+   "values": "Decimation factor 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of rows",
+   "default": "1000",
+   "values": "Maximum number of rows to be saved 1000 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Save 2-D signals as",
+   "default": "dimension)",
+   "values": "Arrangement of 2-D samples values in logged data 2-D array (concatenate along first dimension) (default) | 3-D array (concatenate along third dimension)",
+   "group": ""
+  },
+  {
+   "name": "Log fixed-point data as a fi object",
+   "default": "off",
+   "values": "Log fixed-point data as a fi object off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "key": "StringConcatenate",
+ "title": "String Concatenate",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Concatenate.md"
+ ],
+ "text": "Concatenate input strings to form one output string, 2 inputs, 1 output, direct feedthrough; {Number of Inputs} sets the number of input, {Output data type} and {Mode} sets the category of data stringtype. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input string scalar"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Second input string scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Concatenated string scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of Inputs",
+   "default": "",
+   "values": "Number of input strings scalar",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "string",
+   "values": "Output data type string (default) | | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mode",
+   "default": "stringtype(128)",
+   "values": "Category of data stringtype(128) (default) | scalar",
+   "group": ""
+  }
+ ]
+}

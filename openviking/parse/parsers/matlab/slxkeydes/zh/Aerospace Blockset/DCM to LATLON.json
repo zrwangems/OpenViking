@@ -1,0 +1,37 @@
+{
+ "key": "DCM to LATLON",
+ "title": "Direction Cosine Matrix ECEF to NED to Latitude and Longitude",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Direction_Cosine_Matrix_ECEF_to_NED_to_Latitude_and_Longitude.md"
+ ],
+ "text": "将方向余弦矩阵转换为大地纬度和经度，输入 1 路、输出 1 路；按 {Action for invalid DCM} 指定模块行为；{Tolerance for DCM validation} 指定容差 eps，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DCM ef",
+   "direction": "input",
+   "summary": "方向余弦矩阵 3-by-3 matrix"
+  },
+  {
+   "name": "μl",
+   "direction": "output",
+   "summary": "大地纬度和经度 2-by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Action for invalid DCM",
+   "default": "None",
+   "values": "模块行为 None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Tolerance for DCM validation",
+   "default": "eps(2)",
+   "values": "容差 eps(2) (default) | scalar",
+   "group": ""
+  }
+ ]
+}

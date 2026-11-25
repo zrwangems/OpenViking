@@ -1,0 +1,13 @@
+{
+ "key": "Phase Permute",
+ "title": "Phase Permute",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Phase_Permute.md"
+ ],
+ "text": "Permute phases of three-phase system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,123 @@
+{
+ "key": "phased.LOSChannel",
+ "title": "LOS Channel",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/LOS_Channel.md"
+ ],
+ "text": "Narrowband line-of-sight propagation channel, 5 inputs, 1 output; {Propagation speed (m/s)} sets the signal propagation speed physconst, {Signal carrier frequency (Hz)} sets the signal carrier frequency 3e8, {Specify atmospheric parameters} enables atmospheric attenuation model, {Temperature (degrees Celsius)} sets the ambient temperature, {Dry air pressure (Pa)} sets the atmospheric dry air, {Water vapour density (g/m^3)} sets the atmospheric water vapor density, {Liquid water density (g/m^3)}, {Rain rate (mm/hr)} sets the rainfall rate, {Perform two-way propagation} enables two-way propagation, {Inherit sample rate}, {Sample rate (Hz)} sets the sampling rate, {Maximum one-way propagation distance (m)} sets the maximum one-way propagation and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Narrowband signal M -element complex-valued column vector, M -by- N complex-valued matrix."
+  },
+  {
+   "name": "Pos1",
+   "direction": "input",
+   "summary": "Signal origin 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Pos2",
+   "direction": "input",
+   "summary": "Signal destination 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Vel1",
+   "direction": "input",
+   "summary": "Signal origin velocity 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Vel2",
+   "direction": "input",
+   "summary": "Signal destination velocity 3-by-1 real-valued column vector | 3-by- N real-valued matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Propagated narrowband signal M -element complex-valued column vector, M -by- N complex-valued matrix."
+  }
+ ],
+ "params": [
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Signal carrier frequency (Hz)",
+   "default": "3e8",
+   "values": "Signal carrier frequency 3e8 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify atmospheric parameters",
+   "default": "off",
+   "values": "Enable atmospheric attenuation model off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Temperature (degrees Celsius)",
+   "default": "15",
+   "values": "Ambient temperature 15 (default) | real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Dry air pressure (Pa)",
+   "default": "101.325e3",
+   "values": "Atmospheric dry air pressure 101.325e3 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Water vapour density (g/m^3)",
+   "default": "7.5",
+   "values": "Atmospheric water vapor density 7.5 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Liquid water density (g/m^3)",
+   "default": "0.0",
+   "values": "Liquid water density 0.0 (default) | nonnegative real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Rain rate (mm/hr)",
+   "default": "0.0",
+   "values": "Rainfall rate 0.0 (default) | non-negative real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Perform two-way propagation",
+   "default": "off",
+   "values": "Enable two-way propagation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "Inherit sample rate from upstream blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "Sampling rate of signal 1e6 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum one-way propagation distance (m)",
+   "default": "10e3",
+   "values": "Maximum one-way propagation distance 10e3 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

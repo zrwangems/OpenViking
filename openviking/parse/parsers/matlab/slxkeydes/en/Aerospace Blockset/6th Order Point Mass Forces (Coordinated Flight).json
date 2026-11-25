@@ -1,0 +1,64 @@
+{
+ "key": "6th Order Point Mass Forces (Coordinated Flight)",
+ "title": "6th Order Point Mass Forces (Coordinated Flight)",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/Point Mass/b_6th_Order_Point_Mass_Forces_Coordinated_Flight.md"
+ ],
+ "text": "Calculate forces used by sixth-order point mass in coordinated flight, 7 inputs, 3 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Lift",
+   "direction": "input",
+   "summary": "Lift scalar | array"
+  },
+  {
+   "name": "Drag",
+   "direction": "input",
+   "summary": "Drag scalar | array"
+  },
+  {
+   "name": "Weight",
+   "direction": "input",
+   "summary": "Weight scalar | array"
+  },
+  {
+   "name": "Thrust",
+   "direction": "input",
+   "summary": "Thrust scalar | array"
+  },
+  {
+   "name": "ɣ",
+   "direction": "input",
+   "summary": "Flight path angles scalar | array"
+  },
+  {
+   "name": "μ",
+   "direction": "input",
+   "summary": "Bank angle scalar | array"
+  },
+  {
+   "name": "ɑ",
+   "direction": "input",
+   "summary": "Angle of attack scalar | array"
+  },
+  {
+   "name": "F x",
+   "direction": "output",
+   "summary": "Force in x - axis scalar | array"
+  },
+  {
+   "name": "F y",
+   "direction": "output",
+   "summary": "Force in y - axis scalar | array"
+  },
+  {
+   "name": "F z",
+   "direction": "output",
+   "summary": "Force in z - axis scalar | array"
+  }
+ ],
+ "params": []
+}

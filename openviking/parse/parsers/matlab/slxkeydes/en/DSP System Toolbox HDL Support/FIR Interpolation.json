@@ -1,0 +1,145 @@
+{
+ "key": "FIR Interpolation",
+ "title": "FIR Interpolation",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Filtering/FIR_Interpolation.md",
+  "DSP System Toolbox/Filtering/Multirate Filters/FIR_Interpolation.md"
+ ],
+ "text": "Perform polyphase FIR interpolation, 2 inputs, 1 output, no direct feedthrough, {Rounding mode} sets Rounding mode; {Coefficient source} sets the fIR filter coefficient source, {FIR filter coefficients}, {Interpolation factor}, {Filter object}, {Input processing} sets the method to process input signals Columns, {Rate options} sets the method by which block interpolates input Enforce single-rate, {Output buffer initial conditions} sets the initial conditions, {View Filter Response}, {Saturate on integer overflow}, {Coefficients Data Type}, {Coefficients Minimum} sets the minimum value of filter coefficients, {Coefficients Maximum} sets the maximum value of filter coefficients, {Product output Data Type}, {Accumulator Data Type}, {Output Data Type}, {Output Minimum} sets the minimum value of block output, {Output Maximum} sets the maximum value of block output and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Data input vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Numerator coefficients vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Interpolator output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "Auto",
+   "values": "FIR filter coefficient source Auto (default) | Dialog parameters | Input port | Filter object",
+   "group": ""
+  },
+  {
+   "name": "FIR filter coefficients",
+   "default": "designMultirateFIR(3,1)",
+   "values": "Lowpass FIR filter coefficients designMultirateFIR(3,1) (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Interpolation factor",
+   "default": "3",
+   "values": "Interpolation factor 3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter object",
+   "default": "",
+   "values": "Filter object dsp.FIRInterpolator",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Method by which block interpolates input Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Output buffer initial conditions",
+   "default": "0",
+   "values": "Initial conditions 0 (default) | scalar | matrix",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "View filter response button",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Saturate on integer overflow off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Coefficients Data Type",
+   "default": "input",
+   "values": "Coefficients data type Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Coefficients Minimum",
+   "default": "[]",
+   "values": "Minimum value of filter coefficients [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Coefficients Maximum",
+   "default": "[]",
+   "values": "Maximum value of filter coefficients [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Product output Data Type",
+   "default": "rule",
+   "values": "Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Accumulator Data Type",
+   "default": "rule",
+   "values": "Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Output Data Type",
+   "default": "accumulator",
+   "values": "Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "Minimum value of block output [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "Maximum value of block output [] (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  }
+ ]
+}

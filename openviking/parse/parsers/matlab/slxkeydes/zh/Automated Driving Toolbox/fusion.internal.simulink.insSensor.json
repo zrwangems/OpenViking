@@ -1,0 +1,151 @@
+{
+ "key": "fusion.internal.simulink.insSensor",
+ "title": "INS",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Driving Scenario and Sensor Modeling/INS.md",
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/INS.md",
+  "Navigation Toolbox/Multisensor Positioning/Sensor Models/INS.md",
+  "Sensor Fusion and Tracking Toolbox/Multisensor Positioning/Sensor Models/INS.md"
+ ],
+ "text": "仿真 INS 传感器，输入 6 路、输出 5 路；按 {Position accuracy (m)} 指定位置测量精度 (m)；{Mounting location (m)} 指定传感器在平台上的位置、{Roll (X-axis) accuracy (deg)} 指定横滚测量精度、{Pitch (Y-axis) accuracy (deg)} 指定俯仰测量精度、{Yaw (Z-axis) accuracy (deg)} 指定偏航测量精度、{Velocity accuracy (m/s)} 指定速度测量精度、{Use acceleration and angular velocity} 使用加速度和角速度、{Acceleration accuracy (m/s 2 )} 指定加速度测量精度、{Angular velocity accuracy (deg/s)} 指定角速度测量精度、{Enable HasGNSSFix port} 启用 HasGNSSFix 输入端口、{Position error factor} 指定位置误差因子、{Seed} 用于随机化的初始种子、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Position",
+   "direction": "input",
+   "summary": "INS 传感器的位置 N -by-3 real-valued matrix"
+  },
+  {
+   "name": "Velocity",
+   "direction": "input",
+   "summary": "INS 传感器的速度 N -by-3 real-valued matrix of scalar"
+  },
+  {
+   "name": "Orientation",
+   "direction": "input",
+   "summary": "INS 传感器的姿态 3-by-3-by- N real-valued array | N -by-4 real-valued matrix | N -by-3 matrix of Euler angles"
+  },
+  {
+   "name": "Acceleration",
+   "direction": "input",
+   "summary": "INS 传感器的加速度 N -by-3 real-valued matrix"
+  },
+  {
+   "name": "AngularVelocity",
+   "direction": "input",
+   "summary": "INS 传感器的角速度 N -by-3 real-valued matrix"
+  },
+  {
+   "name": "HasGNSSFix",
+   "direction": "input",
+   "summary": "启用 GNSS 定位 N -by-1 logical vector"
+  },
+  {
+   "name": "Position",
+   "direction": "output",
+   "summary": "INS 传感器的位置 N -by-3 real-valued matrix"
+  },
+  {
+   "name": "Velocity",
+   "direction": "output",
+   "summary": "INS 传感器的速度 N -by-3 real-valued matrix"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "INS 传感器的姿态 3-by-3-by- N real-valued array | N -by-4 real-valued matrix"
+  },
+  {
+   "name": "Acceleration",
+   "direction": "output",
+   "summary": "INS 传感器的加速度 N -by-3 real-valued matrix"
+  },
+  {
+   "name": "AngularVelocity",
+   "direction": "output",
+   "summary": "INS 传感器的角速度 N -by-3 real-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mounting location (m)",
+   "default": "0]",
+   "values": "传感器在平台上的位置 (m) [0 0 0] (default) | three-element real-valued vector of form [ x y z ]",
+   "group": ""
+  },
+  {
+   "name": "Roll (X-axis) accuracy (deg)",
+   "default": "0.2",
+   "values": "横滚测量精度 (deg) 0.2 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Pitch (Y-axis) accuracy (deg)",
+   "default": "0.2",
+   "values": "俯仰测量精度 (deg) 0.2 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Yaw (Z-axis) accuracy (deg)",
+   "default": "1",
+   "values": "偏航测量精度 (deg) 1 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Position accuracy (m)",
+   "default": "1",
+   "values": "位置测量精度 (m) 1 (default) | nonnegative real scalar | 1-by-3 vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Velocity accuracy (m/s)",
+   "default": "0.05",
+   "values": "速度测量精度 (m/s) 0.05 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Use acceleration and angular velocity",
+   "default": "off",
+   "values": "使用加速度和角速度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Acceleration accuracy (m/s 2 )",
+   "default": "0",
+   "values": "加速度测量精度 (m/s²) 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Angular velocity accuracy (deg/s)",
+   "default": "0",
+   "values": "角速度测量精度 (deg/s) 0 (default) | nonnegative real scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable HasGNSSFix port",
+   "default": "off",
+   "values": "启用 HasGNSSFix 输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Position error factor",
+   "default": "0]",
+   "values": "位置误差因子 (m) [0 0 0] (default) | nonnegative scalar | 1-by-3 real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "67",
+   "values": "用于随机化的初始种子 67 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Generation",
+   "values": "要运行的仿真类型 Code Generation (default) | Interpreted Execution",
+   "group": ""
+  }
+ ]
+}

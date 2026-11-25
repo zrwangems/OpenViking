@@ -1,0 +1,13 @@
+{
+ "key": "Fan (MA)",
+ "title": "Fan (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Turbomachinery/Fan_MA.md"
+ ],
+ "text": "湿空气网络中的风机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

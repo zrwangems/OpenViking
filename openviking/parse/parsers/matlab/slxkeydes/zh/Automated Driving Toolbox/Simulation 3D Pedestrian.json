@@ -1,0 +1,83 @@
+{
+ "key": "Simulation 3D Pedestrian",
+ "title": "Simulation 3D Pedestrian",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Pedestrian.md",
+  "Simulink 3D Animation/Simulation 3D/Actors/Simulation_3D_Pedestrian.md"
+ ],
+ "text": "在 3D 环境中实现行人，输入 3 路、输出 2 路；按 {Type} 指定行人类型 Male；{Scale} 指定行人缩放因子、{Initial position [X, Y, Z] (m)} 指定行人初始位置、{Initial yaw (deg)} 指定行人旋转初始角度、{Name} 指定行人名称 SimulinkPedestrian1、{Sample time} 指定采样时间、{Output location (m) and orientation (rad)} 输出行人的位置和姿态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "行人的横向位置 scalar"
+  },
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "行人的纵向位置 scalar"
+  },
+  {
+   "name": "Yaw",
+   "direction": "input",
+   "summary": "行人的偏航姿态角 scalar"
+  },
+  {
+   "name": "Location",
+   "direction": "output",
+   "summary": "行人的位置 real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "行人的姿态 real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "1",
+   "values": "行人类型 Male 1 (default) | Male 2 | Male 3 | Female 1 | Female 2 | Female 3 | Child",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Scale",
+   "default": "1]",
+   "values": "行人缩放因子 [1, 1, 1] (default) | real-valued 1-by-3 vector",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Initial position [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "行人初始位置 [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Initial yaw (deg)",
+   "default": "0",
+   "values": "行人旋转初始角度 0 (default) | real-valued scalar",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkPedestrian1",
+   "values": "行人名称 SimulinkPedestrian1 (default) | pedestrian name",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": "Pedestrian Parameters"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "输出行人的位置和姿态 off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

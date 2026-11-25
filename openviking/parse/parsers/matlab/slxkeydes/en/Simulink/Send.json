@@ -1,0 +1,37 @@
+{
+ "key": "Send",
+ "title": "Send",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Messages & Events/Send.md",
+  "SimEvents/Message_Send.md"
+ ],
+ "text": "Create and send message, 2 inputs, 1 output, no direct feedthrough; {Show enable port} displays the enable port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_Enable",
+   "direction": "input",
+   "summary": "External enable signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output message scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show enable port",
+   "default": "off",
+   "values": "Display the enable port off (default) | on",
+   "group": ""
+  }
+ ]
+}

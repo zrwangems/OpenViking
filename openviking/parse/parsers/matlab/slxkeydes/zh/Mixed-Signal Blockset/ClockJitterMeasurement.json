@@ -1,0 +1,71 @@
+{
+ "key": "ClockJitterMeasurement",
+ "title": "Clock Jitter Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Clock_Jitter_Measurement.md"
+ ],
+ "text": "测量周期性信号中的抖动，输入 1 路、输出 3 路；{Clock Frequency} 指定输入时钟信号的频率 1e6、{Threshold} 指定阈值信号电平、{Period Jitter} 指定 RMS 周期抖动、{Cycle-2-Cycle (C2C) Jitter} 指定 RMS 周期间抖动、{Duty Cycle Distortion (DCD)} 指定每个周期的占空比失真、{Simulate using} 指定仿真模式 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clock",
+   "direction": "input",
+   "summary": "输入时钟信号 scalar"
+  },
+  {
+   "name": "Period Jitter",
+   "direction": "output",
+   "summary": "周期抖动的运行 RMS 值 scalar"
+  },
+  {
+   "name": "C2C",
+   "direction": "output",
+   "summary": "周期间抖动的运行 RMS 值 scalar"
+  },
+  {
+   "name": "DCD",
+   "direction": "output",
+   "summary": "实际占空比与 50% 值之间的差 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Clock Frequency",
+   "default": "1e6",
+   "values": "输入时钟信号的频率 1e6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Threshold",
+   "default": "0",
+   "values": "阈值信号电平 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Period Jitter",
+   "default": "on",
+   "values": "RMS 周期抖动 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Cycle-2-Cycle (C2C) Jitter",
+   "default": "off",
+   "values": "RMS 周期间抖动 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Duty Cycle Distortion (DCD)",
+   "default": "off",
+   "values": "每个周期的占空比失真 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "选择仿真模式 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

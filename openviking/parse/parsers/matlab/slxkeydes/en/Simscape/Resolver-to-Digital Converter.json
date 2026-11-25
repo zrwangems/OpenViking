@@ -1,0 +1,70 @@
+{
+ "key": "Resolver-to-Digital Converter",
+ "title": "Resolver-to-Digital Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Observers/Resolver_to_Digital_Converter.md"
+ ],
+ "text": "Resolver-to-digital converter, 3 inputs, 2 outputs, {Sample time (-1 for inherited)} sets Block sample time; {Number of pole pairs} sets the pole pairs in the attached machine, {Phase-looked loop proportional gain} sets the pLL proportional gain, {Phase-looked loop integral gain} sets the pLL integral gain 2.5e5 and {Initial position (rad)} sets the initial phase angle. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vp",
+   "direction": "input",
+   "summary": "Voltage phase angle scalar"
+  },
+  {
+   "name": "Vx",
+   "direction": "input",
+   "summary": "x -axis voltage scalar"
+  },
+  {
+   "name": "Vy",
+   "direction": "input",
+   "summary": "y -axis voltage scalar"
+  },
+  {
+   "name": "Velocity",
+   "direction": "output",
+   "summary": "Rotational velocity scalar"
+  },
+  {
+   "name": "Angle",
+   "direction": "output",
+   "summary": "Rotational angle scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "Pole pairs in the attached machine 4 (default) | positive scalar integer",
+   "group": ""
+  },
+  {
+   "name": "Phase-looked loop proportional gain",
+   "default": "15",
+   "values": "PLL proportional gain 15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Phase-looked loop integral gain",
+   "default": "2.5e5",
+   "values": "PLL integral gain 2.5e5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial position (rad)",
+   "default": "rad",
+   "values": "Initial phase angle 0 rad (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

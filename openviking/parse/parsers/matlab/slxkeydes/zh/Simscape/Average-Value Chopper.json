@@ -1,0 +1,13 @@
+{
+ "key": "Average-Value Chopper",
+ "title": "Average-Value Chopper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Average_Value_Chopper.md"
+ ],
+ "text": "Average-value chopper。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

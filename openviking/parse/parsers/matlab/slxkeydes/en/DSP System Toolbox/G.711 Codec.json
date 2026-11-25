@@ -1,0 +1,49 @@
+{
+ "key": "G.711 Codec",
+ "title": "G.711 Codec",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/G_711_Codec.md"
+ ],
+ "text": "Decode integer input into floating-point output, 1 input, 1 output, no direct feedthrough; {Peak} sets the largest amplitude in encoded input, {Bits} sets the number of bits, {Overflow mode} and {Output type} sets the output data type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Decoded output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Peak",
+   "default": "1",
+   "values": "Largest amplitude in encoded input 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Bits",
+   "default": "3",
+   "values": "Number of bits 3 (default) | integer in the range [ 2, 32 ]",
+   "group": ""
+  },
+  {
+   "name": "Overflow mode",
+   "default": "Saturate",
+   "values": "Overflow mode Saturate (default) | Wrap",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Double",
+   "values": "Output data type Double (default) | Single",
+   "group": ""
+  }
+ ]
+}

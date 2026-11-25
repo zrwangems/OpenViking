@@ -1,0 +1,55 @@
+{
+ "key": "PythonCode",
+ "title": "Python Code",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/User-Defined Functions/Python_Code.md"
+ ],
+ "text": "将原生 Python 代码集成到 Simulink 模型中，输入 1 路、输出 1 路、无直接馈通；按 {Sample time} 指定采样周期；{Port and Parameter Symbols} 指定符号和符号属性 table、{Output} 输出代码 no default、{Start} 指定初始化代码 no default、{Terminate} 指定终止代码 no default，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入端口 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出端口 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port and Parameter Symbols",
+   "default": "",
+   "values": "符号和符号属性 table",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样周期 -1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "",
+   "values": "输出代码 no default",
+   "group": ""
+  },
+  {
+   "name": "Start",
+   "default": "",
+   "values": "初始化代码 no default",
+   "group": ""
+  },
+  {
+   "name": "Terminate",
+   "default": "",
+   "values": "终止代码 no default",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Constant Volume Chamber (TL)",
+ "title": "Constant Volume Chamber (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Constant_Volume_Chamber_TL.md"
+ ],
+ "text": "Chamber with fixed volume of thermal liquid and variable number of ports.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

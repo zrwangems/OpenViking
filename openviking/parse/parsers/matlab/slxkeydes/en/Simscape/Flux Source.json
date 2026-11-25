@@ -1,0 +1,13 @@
+{
+ "key": "Flux Source",
+ "title": "Flux Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Sources/Flux_Source.md"
+ ],
+ "text": "Ideal flux source.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

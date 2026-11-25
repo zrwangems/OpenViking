@@ -1,0 +1,53 @@
+{
+ "key": "Substring",
+ "title": "Substring",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/Substring.md"
+ ],
+ "text": "Extract substring from input string signal, 3 inputs, 1 output, direct feedthrough; {Inherit maximum length from input} uses same maximum length as input string, {Output data type} and {Output string from ’idx’ to end} sets the extract string from idx to end. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "str",
+   "direction": "input",
+   "summary": "Input string signal scalar"
+  },
+  {
+   "name": "idx",
+   "direction": "input",
+   "summary": "Start of string to extract scalar"
+  },
+  {
+   "name": "len",
+   "direction": "input",
+   "summary": "Length of string to extract scalar"
+  },
+  {
+   "name": "sub",
+   "direction": "output",
+   "summary": "Extracted string scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit maximum length from input",
+   "default": "on",
+   "values": "Use same maximum length as input string on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "string",
+   "values": "Output data type string (default) |",
+   "group": ""
+  },
+  {
+   "name": "Output string from ’idx’ to end",
+   "default": "off",
+   "values": "Extract string from idx to end off (default) | on",
+   "group": ""
+  }
+ ]
+}

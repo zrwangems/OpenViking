@@ -1,0 +1,32 @@
+{
+ "key": "Bit Set",
+ "title": "Bit Set",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Bit_Set.md",
+  "HDL Coder/Logic and Bit Operations/Bit_Set.md"
+ ],
+ "text": "将存储整数的指定位设置为 1，输入 1 路、输出 1 路；按 {位的索引} 指定位的索引。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "位的索引",
+   "default": "0",
+   "values": "位的索引 0 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

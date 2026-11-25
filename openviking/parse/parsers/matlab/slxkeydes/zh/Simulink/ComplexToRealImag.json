@@ -1,0 +1,38 @@
+{
+ "key": "ComplexToRealImag",
+ "title": "Complex to Real-Imag",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Complex_to_Real_Imag.md",
+  "HDL Coder/Math Operations/Complex_to_Real_Imag.md"
+ ],
+ "text": "输出复输入信号的实部和虚部，输入 1 路、输出 1 路；按 {采样时间(-1 表示继承)} 指定采样之间的时间间隔；{输出}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出",
+   "default": "实部和虚部",
+   "values": "实部和/或虚部输出设定 实部和虚部 (默认) | 实部 | 虚部",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

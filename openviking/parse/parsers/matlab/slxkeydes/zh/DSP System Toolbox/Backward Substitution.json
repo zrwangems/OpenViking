@@ -1,0 +1,90 @@
+{
+ "key": "Backward Substitution",
+ "title": "Backward Substitution",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Linear System Solvers/Backward_Substitution.md"
+ ],
+ "text": "当 U 为上三角矩阵时，求解 U X = B 得到 X，输入 2 路、输出 1 路、无直接馈通；按 {Rounding mode} 指定舍入运算的方法；{Input U is unit-upper triangular} 指定输入矩阵的对角元素值为、{Diagonal of complex input U is real} 指定复数输入的对角元素为实数、{Saturate on integer overflow} 指定溢出操作的方法、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Output} 输出数据类型、{Output Minimum} 指定模块可以输出的最小值、{Output Maximum} 指定模块可以输出的最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "U",
+   "direction": "input",
+   "summary": "输入上三角矩阵 M -by- M matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "B 矩阵 M -by- N matrix | M -by-1 vector"
+  },
+  {
+   "name": "X",
+   "direction": "output",
+   "summary": "方程组的解 M -by- N matrix | M -by-1 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input U is unit-upper triangular",
+   "default": "off",
+   "values": "输入矩阵的对角元素值为 1 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Diagonal of complex input U is real",
+   "default": "off",
+   "values": "复数输入的对角元素为实数 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入运算的方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as first input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as product output | Inherit: Same as first input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出数据类型 Inherit: Same as first input (default) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "模块可以输出的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "模块可以输出的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

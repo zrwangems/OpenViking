@@ -1,0 +1,131 @@
+{
+ "key": "Math",
+ "title": "Math Function",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Math_Function.md",
+  "Simulink/Quick Insert/Math Operations/Conj.md",
+  "Simulink/Quick Insert/Math Operations/Exp.md",
+  "Simulink/Quick Insert/Math Operations/Hermitian.md",
+  "Simulink/Quick Insert/Math Operations/Hypot.md",
+  "Simulink/Quick Insert/Math Operations/Log.md",
+  "Simulink/Quick Insert/Math Operations/Log10.md",
+  "Simulink/Quick Insert/Math Operations/Magnitude_Squared.md",
+  "Simulink/Quick Insert/Math Operations/Mod.md",
+  "Simulink/Quick Insert/Math Operations/Power.md",
+  "Simulink/Quick Insert/Math Operations/Power_of_10.md",
+  "Simulink/Quick Insert/Math Operations/Rem.md",
+  "Simulink/Quick Insert/Math Operations/Square.md",
+  "Simulink/Quick Insert/Math Operations/Transpose.md",
+  "Simulink/Quick Insert/Math Operations/ln.md",
+  "HDL Coder/Math Operations/Math_Function.md",
+  "HDL Coder/HDL Floating Point Operations/Math_Reciprocal.md",
+  "HDL Coder/HDL Floating Point Operations/Conjugate.md",
+  "HDL Coder/HDL Floating Point Operations/Exp.md",
+  "HDL Coder/HDL Floating Point Operations/Hermitian.md",
+  "HDL Coder/HDL Floating Point Operations/Hypot.md",
+  "HDL Coder/HDL Floating Point Operations/Log.md",
+  "HDL Coder/HDL Floating Point Operations/Log10.md",
+  "HDL Coder/HDL Floating Point Operations/Magnitude_Square.md",
+  "HDL Coder/HDL Floating Point Operations/Mod.md",
+  "HDL Coder/HDL Floating Point Operations/Pow.md",
+  "HDL Coder/HDL Floating Point Operations/Pow10.md",
+  "HDL Coder/HDL Floating Point Operations/Rem.md",
+  "HDL Coder/HDL Floating Point Operations/Square.md",
+  "HDL Coder/HDL Floating Point Operations/Transpose.md"
+ ],
+ "text": "Perform mathematical function, 2 inputs, 1 output, direct feedthrough, {Function} sets Math function; {Algorithm method}, {Signed power} sets the power signedness, {Output signal type} sets the complexity of output signal, {Number of iterations} sets the number of Newton-Raphson iterations, {Sample time (-1 for inherited)} sets the interval between samples, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the output data type, {Lock output data type setting against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Integer rounding mode} sets the rounding mode for fixed-point operations and {Saturate on integer overflow} sets the behavior when integer overflow occurs. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Result of the operation of the function on the input or inputs scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Function",
+   "default": "exp",
+   "values": "Math function exp (default) | log | 2^u | 10^u | log10 | magnitude^2 | square | pow | conj | reciprocal | hypot | rem | mod | transpose | hermitian",
+   "group": "Main"
+  },
+  {
+   "name": "Algorithm method",
+   "default": "Exact",
+   "values": "Algorithm method for reciprocal function Exact (default) | Newton-Raphson",
+   "group": "Main"
+  },
+  {
+   "name": "Signed power",
+   "default": "on",
+   "values": "Power signedness on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Output signal type",
+   "default": "auto",
+   "values": "Complexity of output signal auto (default) | real | complex",
+   "group": "Main"
+  },
+  {
+   "name": "Number of iterations",
+   "default": "3",
+   "values": "Number of Newton-Raphson iterations 3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "input",
+   "values": "Specify the output data type Inherit: Same as first input (default) | Inherit: Inherit via internal rule | Inherit: Inherit via back propagation | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "on",
+   "values": "Choose the behavior when integer overflow occurs on (default) | boolean",
+   "group": "Signal Attributes"
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "key": "General CRC Syndrome Detector",
+ "title": "General CRC Syndrome Detector",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Error Detection and Correction/CRC/General_CRC_Syndrome_Detector.md"
+ ],
+ "text": "Detect errors in received codeword frames according to generator polynomial, 1 input, 2 outputs, {Final XOR} sets Final XOR; {Generator polynomial}, {Initial states}, {Direct method} uses direct algorithm for CRC checksum, {Reflect input bytes}, {Reflect checksums before final XOR} and {Checksums per frame} sets the number of checksums calculated for each. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Received codeword binary column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output frame binary column vector"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "Checksum error signal binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Generator polynomial",
+   "default": "1’",
+   "values": "Generator polynomial ’z^16 + z^12 + z^5 + 1’ (default) | polynomial character vector | binary row vector | integer row vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states",
+   "default": "0",
+   "values": "Initial states of internal shift register 0 (default) | 1 | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Direct method",
+   "default": "off",
+   "values": "Use direct algorithm for CRC checksum calculations off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reflect input bytes",
+   "default": "off",
+   "values": "Reflect input bytes off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reflect checksums before final XOR",
+   "default": "off",
+   "values": "Reflect checksums before final XOR off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Final XOR",
+   "default": "0",
+   "values": "Final XOR 0 (default) | 1 | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Checksums per frame",
+   "default": "1",
+   "values": "Number of checksums calculated for each frame 1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

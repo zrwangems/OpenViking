@@ -1,0 +1,50 @@
+{
+ "key": "DDS Send",
+ "title": "DDS Send",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/DDS/DDS_Send.md"
+ ],
+ "text": "发送 DDS 消息，输入 1 路；按 {Data Dictionary} 指定关联数据字典 string；{Topic} 指定主题名称 string scalar、{Writer XML Path} 指定数据写入器 XML 路径、{Writer QoS} 指定服务质量 string、{Sample time} 指定采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DDS Msg",
+   "direction": "input",
+   "summary": "DDS 消息 simulink message of Bus type"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data Dictionary",
+   "default": "",
+   "values": "关联数据字典 string | char",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "选择主题名称 string scalar | char vector",
+   "group": ""
+  },
+  {
+   "name": "Writer XML Path",
+   "default": "string",
+   "values": "数据写入器 XML 路径 string (default)",
+   "group": ""
+  },
+  {
+   "name": "Writer QoS",
+   "default": "string",
+   "values": "服务质量 string (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

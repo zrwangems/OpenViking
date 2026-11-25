@@ -1,0 +1,39 @@
+{
+ "key": "codertarget.tic2000.blocks.DACWrite",
+ "title": "DAC",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28003x/DAC.md",
+  "C2000 Microcontroller Blockset/F28004x/DAC.md",
+  "C2000 Microcontroller Blockset/F2807x/DAC.md",
+  "C2000 Microcontroller Blockset/F2837xD/DAC.md",
+  "C2000 Microcontroller Blockset/F2837xS/DAC.md",
+  "C2000 Microcontroller Blockset/F28p55x/DAC.md",
+  "C2000 Microcontroller Blockset/F28p65x/DAC.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/DAC.md"
+ ],
+ "text": "Configures the DAC to generate an analog output on the specified DAC channel A/B/C (12-bit), 1 input, {Saturate on input overflow (>4095)} sets The option to saturate the input value; {DAC channel}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal real | scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "DAC channel",
+   "default": "12",
+   "values": "The DAC channel to generate analog output 12 (default)",
+   "group": ""
+  },
+  {
+   "name": "Saturate on input overflow (>4095)",
+   "default": "",
+   "values": "The option to saturate the input value on input overflow off | on",
+   "group": ""
+  }
+ ]
+}

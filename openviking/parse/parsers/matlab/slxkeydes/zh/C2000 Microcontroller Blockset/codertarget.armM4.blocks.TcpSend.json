@@ -1,0 +1,72 @@
+{
+ "key": "codertarget.armM4.blocks.TcpSend",
+ "title": "TCP Send",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F2838x/M4/TCP_Send.md"
+ ],
+ "text": "通过 TCP/IP 网络向远程主机发送数据，输入 2 路、输出 1 路；{Connection mode} 指定将模块设置为服务器或客户端、{Server IP Address} 指定将数据发送到的服务器的远程 IP 地址、{Server IP Port} 指定数据发送到的服务器上的远程 IP 端口、{Local IP Port} 指定发送主机上用于发送数据的 IP 端口、{Enable variable length} 启用以接收可变数据长度、{Wait until previous packet transmitted} 指定等待上一时间步接收到的数据发送完成、{Output transmit status} 用于在数据传输期间显示发送状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 vector"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "接收数据长度 scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "在给定时间步传输的数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Connection mode",
+   "default": "Server",
+   "values": "将模块设置为服务器或客户端 Server (default) | Client",
+   "group": ""
+  },
+  {
+   "name": "Server IP Address",
+   "default": "192.168.1.10",
+   "values": "将数据发送到的服务器的远程 IP 地址 192.168.1.10 (default) | any valid IP address",
+   "group": ""
+  },
+  {
+   "name": "Server IP Port",
+   "default": "25002",
+   "values": "数据发送到的服务器上的远程 IP 端口 25002 (default) | positive integer in the range [1,65535]",
+   "group": ""
+  },
+  {
+   "name": "Local IP Port",
+   "default": "25000",
+   "values": "发送主机上用于发送数据的 IP 端口 25000 (default) | positive integer in the range [1,65535]",
+   "group": ""
+  },
+  {
+   "name": "Enable variable length",
+   "default": "off",
+   "values": "启用以接收可变数据长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Wait until previous packet transmitted",
+   "default": "off",
+   "values": "等待上一时间步接收到的数据发送完成 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output transmit status",
+   "default": "off",
+   "values": "用于在数据传输期间显示发送状态的选项 off (default) | on",
+   "group": ""
+  }
+ ]
+}

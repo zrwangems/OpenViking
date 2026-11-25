@@ -1,0 +1,50 @@
+{
+ "key": "Power Amplifier with Memory",
+ "title": "Power Amplifier",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Power_Amplifier.md"
+ ],
+ "text": "对带记忆的功率放大器进行建模；按 {Coefficient Matrix} 指定系数矩阵；{Model} 指定模型类型 Memory、{Measured interval of PA data (s)} 指定输入-输出数据的采样间隔 1e-6、{Rin (ohm)} 指定输入电阻、{Rout (ohm)} 输出电阻、{Ground and hide negative terminals} 指定 RF 电路端子接地，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Model",
+   "default": "polynomial",
+   "values": "模型类型 Memory polynomial (default) | Generalized Hammerstein | Cross-Term Memory | Cross-Term Hammerstein",
+   "group": ""
+  },
+  {
+   "name": "Coefficient Matrix",
+   "default": "1",
+   "values": "系数矩阵 1 (default) | complex matrix | real matrix",
+   "group": ""
+  },
+  {
+   "name": "Measured interval of PA data (s)",
+   "default": "1e-6",
+   "values": "输入-输出数据的采样间隔 1e-6 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Rin (ohm)",
+   "default": "50",
+   "values": "输入电阻 50 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Rout (ohm)",
+   "default": "50",
+   "values": "输出电阻 50 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "RF 电路端子接地 on (default) | off",
+   "group": ""
+  }
+ ]
+}

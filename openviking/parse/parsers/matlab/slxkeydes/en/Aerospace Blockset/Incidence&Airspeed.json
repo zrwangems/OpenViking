@@ -1,0 +1,29 @@
+{
+ "key": "Incidence&Airspeed",
+ "title": "Incidence & Airspeed",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Incidence_Airspeed.md"
+ ],
+ "text": "Calculate incidence and airspeed, 1 input, 2 outputs.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "U, w",
+   "direction": "input",
+   "summary": "Velocity two-element vector"
+  },
+  {
+   "name": "ɑ",
+   "direction": "output",
+   "summary": "Incidence angle scalar"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "Airspeed scalar"
+  }
+ ],
+ "params": []
+}

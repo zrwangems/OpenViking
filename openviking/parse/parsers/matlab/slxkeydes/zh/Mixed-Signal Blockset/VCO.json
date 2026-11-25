@@ -1,0 +1,91 @@
+{
+ "key": "VCO",
+ "title": "VCO",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/VCO.md"
+ ],
+ "text": "对压控振荡器建模，输入 1 路、输出 1 路；{Specify using} 定义如何指定 VCO 输出频率 Voltage、{Voltage sensitivity (Hz/V)} 指定 VCO 输出频率变化的度量 100e6、{Free running frequency (Hz)} 指定无控制电压时的 VCO 输出频率 2.5e9、{Control voltage (V)} 控制电压值、{Output frequency (Hz)} 指定 VCO 输出频率值、{Output amplitude (V)} 指定 VCO 输出电压的最大幅度、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数、{Add phase noise} 指定将相位噪声作为频率的函数添加、{Phase noise frequency offset (Hz)} 指定相位噪声相对于载波频率的频率偏移、{Phase noise level (dBc/Hz)} 指定在相对于载波的指定频率偏移处的相位噪声功率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vctrl",
+   "direction": "input",
+   "summary": "用于控制 VCO 输出频率的电压 scalar | vector"
+  },
+  {
+   "name": "vco out",
+   "direction": "output",
+   "summary": "由 vctrl 端口确定的输出方波信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify using",
+   "default": "sensitivity",
+   "values": "定义如何指定 VCO 输出频率 Voltage sensitivity (default) | Output frequency vs. control voltage",
+   "group": "Parameters"
+  },
+  {
+   "name": "Voltage sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "VCO 输出频率变化的度量 100e6 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Free running frequency (Hz)",
+   "default": "2.5e9",
+   "values": "无控制电压时的 VCO 输出频率 2.5e9 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "5]",
+   "values": "控制电压值 [-5 0 5] (default) | real valued vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "3e9]",
+   "values": "VCO 输出频率值 [2e9 2.5e9 3e9] (default) | positive real valued vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output amplitude (V)",
+   "default": "1",
+   "values": "VCO 输出电压的最大幅度 1 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "仿真期间可用的输入缓冲样本数 10 (default) | positive integer scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Add phase noise",
+   "default": "on",
+   "values": "将相位噪声作为频率的函数添加 on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "10e6]",
+   "values": "相位噪声相对于载波频率的频率偏移 [10e3 100e3 1e6 3e6 10e6] (default) | positive real valued vector",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-154]",
+   "values": "在相对于载波的指定频率偏移处的相位噪声功率 [-77 -108 -134 -145 -154] (default) | negative real valued vector",
+   "group": "Impairments"
+  }
+ ]
+}

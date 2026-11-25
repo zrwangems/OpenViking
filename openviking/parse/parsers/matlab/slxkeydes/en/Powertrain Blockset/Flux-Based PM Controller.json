@@ -1,0 +1,239 @@
+{
+ "key": "Flux-Based PM Controller",
+ "title": "Flux-Based PM Controller",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Electric Motor Controllers/Flux_Based_PM_Controller.md"
+ ],
+ "text": "Controller for a flux-based permanent magnet synchronous motor, 7 inputs, 3 outputs, {Parameterize losses by} sets Select type Single efficiency; {Control Type} selects control Torque, {Number of pole pairs, PolePairs} sets the poles, {Vector of d-axis current breakpoints, id_index} sets the current vector, {Vector of q-axis current breakpoints, iq_index} sets the current vector, {Corresponding d-axis flux, lambda_d} sets the flux vector, {Corresponding q-axis flux, lambda_q} sets the flux vector, {Sample time for the torque control, Tst} sets the time 1e-4, {D-axis proportional gain, Kp_d} sets the gain, {Q-axis proportional gain, Kp_q} sets the gain, {D-axis integral gain, Ki_d} sets the gain, {Q-axis integral gain, Ki_q} sets the gain, {Vector of speed breakpoints, wbp} sets the breakpoints vector, {Vector of torque breakpoints, tbp} sets the breakpoints vector, {Corresponding d-axis current reference, id_ref} sets the current vector, {Corresponding q-axis current reference, iq_ref} sets the current vector, {Speed regulation time constant, Ksf} sets the time .1, {Proportional gain, Kp_w} sets the gain, {Integral gain, Ki_w} sets the gain, {Inertia compensation, Jcomp}, {Static friction, Fs} sets the friction, {Viscous damping compensation, Fv} sets the dampint, {Overall inverter efficiency, eff} sets the constant, {Vector of speeds (w) for tabulated loss, w_loss_bp} sets the breakpoints, {Vector of torques (T) for tabulated loss, T_loss_bp} sets the breakpoints, {Corresponding losses, losses_table} sets the table, {Vector of speeds (w) for tabulated efficiency, w_eff_bp} sets the breakpoints, {Vector of torques (T) for tabulated efficiency, T_eff_bp} sets the breakpoints and {Corresponding efficiency, efficiency_table} sets the table. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SpdReq",
+   "direction": "input",
+   "summary": "Rotor speed command scalar"
+  },
+  {
+   "name": "TrqCmd",
+   "direction": "input",
+   "summary": "Torque command scalar"
+  },
+  {
+   "name": "BusVolt",
+   "direction": "input",
+   "summary": "DC bus voltage scalar"
+  },
+  {
+   "name": "PhaseCurrA",
+   "direction": "input",
+   "summary": "Current scalar"
+  },
+  {
+   "name": "PhaseCurrB",
+   "direction": "input",
+   "summary": "Current scalar"
+  },
+  {
+   "name": "SpdFdbk",
+   "direction": "input",
+   "summary": "Rotor speed scalar"
+  },
+  {
+   "name": "PosFdbk",
+   "direction": "input",
+   "summary": "Rotor electrical angle scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "BusCurr",
+   "direction": "output",
+   "summary": "Bus current scalar"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "output",
+   "summary": "Stator terminal voltages array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control Type",
+   "default": "Control",
+   "values": "Select control Torque Control (default) | Speed Control",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs, PolePairs",
+   "default": "4",
+   "values": "Poles 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vector of d-axis current breakpoints, id_index",
+   "default": "",
+   "values": "Current vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of q-axis current breakpoints, iq_index",
+   "default": "",
+   "values": "current vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding d-axis flux, lambda_d",
+   "default": "",
+   "values": "Flux vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding q-axis flux, lambda_q",
+   "default": "",
+   "values": "Flux vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time for the torque control, Tst",
+   "default": "1e-4",
+   "values": "Time 1e-4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "D-axis proportional gain, Kp_d",
+   "default": "2.4056",
+   "values": "Gain 2.4056 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Q-axis proportional gain, Kp_q",
+   "default": "2.4056",
+   "values": "Gain 2.4056 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "D-axis integral gain, Ki_d",
+   "default": "192.45",
+   "values": "Gain 192.45 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Q-axis integral gain, Ki_q",
+   "default": "192.45",
+   "values": "Gain 192.45 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vector of speed breakpoints, wbp",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of torque breakpoints, tbp",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding d-axis current reference, id_ref",
+   "default": "",
+   "values": "Current vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding q-axis current reference, iq_ref",
+   "default": "",
+   "values": "Current vector",
+   "group": ""
+  },
+  {
+   "name": "Speed regulation time constant, Ksf",
+   "default": ".1",
+   "values": "Time .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain, Kp_w",
+   "default": "0.40475",
+   "values": "Gain 0.40475 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain, Ki_w",
+   "default": "10.1615",
+   "values": "Gain 10.1615 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Inertia compensation, Jcomp",
+   "default": "0.0027",
+   "values": "Inertia 0.0027 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static friction, Fs",
+   "default": "0",
+   "values": "Friction 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Viscous damping compensation, Fv",
+   "default": "0.0004924",
+   "values": "Dampint 0.0004924 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Parameterize losses by",
+   "default": "measurement",
+   "values": "Select type Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data",
+   "group": ""
+  },
+  {
+   "name": "Overall inverter efficiency, eff",
+   "default": "98",
+   "values": "Constant 98 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vector of speeds (w) for tabulated loss, w_loss_bp",
+   "default": "1000]",
+   "values": "Breakpoints [0 200 400 600 800 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of torques (T) for tabulated loss, T_loss_bp",
+   "default": "100]",
+   "values": "Breakpoints [0 25 50 75 100] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding losses, losses_table",
+   "default": "1100]",
+   "values": "Table [100 100 100 100 100;100 150 200 250 300;100 200 300 400 500;100 250 400 550 700;100 300 500 700 900;100 350 600 850 1100] (default) | M -by- N array",
+   "group": ""
+  },
+  {
+   "name": "Vector of speeds (w) for tabulated efficiency, w_eff_bp",
+   "default": "1000]",
+   "values": "Breakpoints [200 400 600 800 1000] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Vector of torques (T) for tabulated efficiency, T_eff_bp",
+   "default": "100]",
+   "values": "Breakpoints [25 50 75 100] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Corresponding efficiency, efficiency_table",
+   "default": "99.8]",
+   "values": "Table [96.2 98.1 98.7 99;98.1 99 99.4 99.5;98.7 99.4 99.6 99.7;99 99.5 99.7 99.8;99.2 99.6 99.7 99.8] (default) | M -by- N array",
+   "group": ""
+  }
+ ]
+}

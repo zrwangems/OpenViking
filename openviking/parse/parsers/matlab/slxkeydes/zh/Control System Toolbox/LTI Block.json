@@ -1,0 +1,43 @@
+{
+ "key": "LTI Block",
+ "title": "LTI System",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/LTI_System.md"
+ ],
+ "text": "在 Simulink 中使用线性时不变系统模型对象，输入 1 路、输出 1 路；按 {Pade 阶(用于线性化)} 指定Pade 逼近的阶数；{LTI 系统变量} 指定线性系统 动态系统模型、{初始状态(仅限状态空间)} 指定状态空间模型的初始状态值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "LTI 系统变量",
+   "default": "",
+   "values": "线性系统 动态系统模型",
+   "group": ""
+  },
+  {
+   "name": "初始状态(仅限状态空间)",
+   "default": "[]",
+   "values": "状态空间模型的初始状态值 [] (默认) | 向量 | 标量",
+   "group": ""
+  },
+  {
+   "name": "Pade 阶(用于线性化)",
+   "default": "0",
+   "values": "Pade 逼近的阶数 0 (默认) | 正整数 | 向量",
+   "group": ""
+  }
+ ]
+}

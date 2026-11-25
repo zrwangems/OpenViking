@@ -1,0 +1,42 @@
+{
+ "key": "2-D Convolution",
+ "title": "2-D Convolution",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Filtering/b_2_D_Convolution.md"
+ ],
+ "text": "计算两个输入矩阵的二维离散卷积，输入 2 路、输出 1 路；{Output size} 输出大小 matrix、{Normalized output} 指定归一化输出 matrix，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I1",
+   "direction": "input",
+   "summary": "输入矩阵 matrix"
+  },
+  {
+   "name": "I2",
+   "direction": "input",
+   "summary": "输入矩阵 matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "卷积 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output size",
+   "default": "",
+   "values": "输出大小 matrix",
+   "group": ""
+  },
+  {
+   "name": "Normalized output",
+   "default": "",
+   "values": "归一化输出 matrix",
+   "group": ""
+  }
+ ]
+}

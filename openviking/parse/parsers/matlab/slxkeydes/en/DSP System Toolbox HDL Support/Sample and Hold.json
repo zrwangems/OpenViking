@@ -1,0 +1,49 @@
+{
+ "key": "Sample and Hold",
+ "title": "Sample and Hold",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Operations/Sample_and_Hold.md",
+  "DSP System Toolbox/Signal Operations/Sample_and_Hold.md"
+ ],
+ "text": "Sample and hold input signal, 2 inputs, 1 output, no direct feedthrough, {Trigger type} sets Type of trigger Rising; {Initial condition} sets the block output prior to first trigger event and {Latch (buffer) input}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Signal port scalar | vector | matrix"
+  },
+  {
+   "name": "Trigger",
+   "direction": "input",
+   "summary": "Trigger port scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Sample and hold value scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "Type of trigger Rising edge (default) | Falling edge | Either edge",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Block output prior to first trigger event 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Latch (buffer) input",
+   "default": "off",
+   "values": "Latch buffer input off (default) | on",
+   "group": ""
+  }
+ ]
+}

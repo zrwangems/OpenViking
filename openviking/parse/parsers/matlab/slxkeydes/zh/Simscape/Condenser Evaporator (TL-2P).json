@@ -1,0 +1,13 @@
+{
+ "key": "Condenser Evaporator (TL-2P)",
+ "title": "Condenser Evaporator (TL-2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Two-Phase Fluid - Thermal Liquid/Condenser_Evaporator_TL_2P.md"
+ ],
+ "text": "对热液体网络与两相流体网络之间的热交换进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

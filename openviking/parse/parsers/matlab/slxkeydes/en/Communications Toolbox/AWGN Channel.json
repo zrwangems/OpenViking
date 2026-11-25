@@ -1,0 +1,114 @@
+{
+ "key": "AWGN Channel",
+ "title": "AWGN Channel",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Channels/AWGN_Channel.md"
+ ],
+ "text": "Add white Gaussian noise to input signal, 2 inputs, 1 output, {Samples per symbol} sets Samples per symbol; {Mode} sets the variance mode Signal to noise ratio, {SNR (dB)} sets the ratio of signal power to noise power, {Eb/No (dB)} sets the ratio of information bit energy per symbol to noise power spectral, {Es/No (dB)} sets the ratio of information symbol energy per symbol to noise power spectral, {Number of bits per symbol} sets the number of bits in each input symbol, {Input signal power, referenced to 1 ohm (watts)} sets the mean square power of input, {Specify symbol duration in seconds}, {Symbol period (s)} sets the symbol period in seconds, {Noise variance source}, {Noise variance} sets the variance of white Gaussian noise, {Random number source}, {Initial seed} sets the noise generator initial seed and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input data signal vector | matrix"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "Variance of additive white Gaussian noise positive scalar | vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output data signal vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "(SNR)",
+   "values": "Variance mode Signal to noise ratio (SNR) (default) | Signal to noise ratio (Eb/No) | Signal to noise ratio (Es/No) | Variance",
+   "group": ""
+  },
+  {
+   "name": "SNR (dB)",
+   "default": "10",
+   "values": "Ratio of signal power to noise power 10 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Eb/No (dB)",
+   "default": "10",
+   "values": "Ratio of information bit energy per symbol to noise power spectral density 10 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Es/No (dB)",
+   "default": "10",
+   "values": "Ratio of information symbol energy per symbol to noise power spectral density 10 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of bits per symbol",
+   "default": "1",
+   "values": "Number of bits in each input symbol 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Input signal power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "Mean square power of input 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Specify symbol duration in seconds",
+   "default": "off",
+   "values": "Specify symbol duration in seconds off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "1",
+   "values": "Samples per symbol 1 (default) | positive integer | vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Symbol period (s)",
+   "default": "4]",
+   "values": "Symbol period in seconds [1 2 4] (default) | positive scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Parameter",
+   "values": "Noise variance source Parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "Variance of white Gaussian noise 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Random number source",
+   "default": "stream",
+   "values": "Random number source Global stream (default) | mt19937ar with seed",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "67",
+   "values": "Noise generator initial seed 67 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

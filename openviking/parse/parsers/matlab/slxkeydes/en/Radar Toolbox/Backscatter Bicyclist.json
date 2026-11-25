@@ -1,0 +1,132 @@
+{
+ "key": "Backscatter Bicyclist",
+ "title": "Backscatter Bicyclist",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Backscatter_Bicyclist.md"
+ ],
+ "text": "Backscatter signals from bicyclist, 5 inputs, 4 outputs, {Azimuth angles (deg)} sets Azimuth angles; {Number of wheel spokes} sets the number of spokes per wheel, {Gear transmission ratio} sets the ratio of wheel rotations to pedal, {Signal carrier frequency (Hz)} sets the carrier frequency 77e9, {Initial position (m)} sets the initial position of bicyclist, {Initial heading direction (deg)} sets the initial heading of bicyclist, {Initial bicyclist speed (m/s)} sets the initial speed of bicyclist, {Propagation speed (m/s)} sets the signal propagation speed physconst, {RCS pattern}, {Elevation angles (deg)} sets the elevation angles, {Radar cross section pattern (square meters)} sets the radar cross-section pattern 1-by-361 real-valued and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Incident radar signals complex-valued M -by- N matrix"
+  },
+  {
+   "name": "AngH",
+   "direction": "input",
+   "summary": "Bicyclist heading 0.0 | scalar"
+  },
+  {
+   "name": "Ang",
+   "direction": "input",
+   "summary": "Directions of incident signals real-valued 2-by- N vector"
+  },
+  {
+   "name": "Speed",
+   "direction": "input",
+   "summary": "Bicyclist speed nonnegative scalar"
+  },
+  {
+   "name": "Coast",
+   "direction": "input",
+   "summary": "Bicyclist coasting state false (default) | true"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "Combined reflected radar signals complex-valued M -by-1 column vector"
+  },
+  {
+   "name": "Pos",
+   "direction": "output",
+   "summary": "Positions of scatterers real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Vel",
+   "direction": "output",
+   "summary": "Velocity scatterers real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Ax",
+   "direction": "output",
+   "summary": "Orientation of scatterers real-valued 3-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of wheel spokes",
+   "default": "20",
+   "values": "Number of spokes per wheel 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Gear transmission ratio",
+   "default": "1.5",
+   "values": "Ratio of wheel rotations to pedal rotations 1.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Signal carrier frequency (Hz)",
+   "default": "77e9",
+   "values": "Carrier frequency 77e9 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial position (m)",
+   "default": "[0;0;0]",
+   "values": "Initial position of bicyclist [0;0;0] (default) | 3-by-1 real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Initial heading direction (deg)",
+   "default": "0",
+   "values": "Initial heading of bicyclist 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial bicyclist speed (m/s)",
+   "default": "4",
+   "values": "Initial speed of bicyclist 4 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "Signal propagation speed physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "RCS pattern",
+   "default": "Auto",
+   "values": "Source of RCS pattern Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Azimuth angles (deg)",
+   "default": "[-180:180]",
+   "values": "Azimuth angles [-180:180] (default) | 1-by- P real-valued row vector | P -by-1 real-valued column vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "[-90:90]",
+   "values": "Elevation angles [-90:90] (default) | 1-by- Q real-valued row vector | Q -by-1 real-valued column vector",
+   "group": ""
+  },
+  {
+   "name": "Radar cross section pattern (square meters)",
+   "default": "matrix",
+   "values": "Radar cross-section pattern 1-by-361 real-valued matrix (default) | Q -by- P real-valued matrix | 1-by- P real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

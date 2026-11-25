@@ -1,0 +1,80 @@
+{
+ "key": "Neural State Space Model",
+ "title": "Neural State Space Model",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Models/Neural_State_Space_Model.md"
+ ],
+ "text": "在 Simulink 中仿真神经状态空间模型，输入 2 路、输出 5 路；按 {Initial state} 指定初始状态；{Model} 指定神经状态空间对象 idNeuralStateSpac、{Initial state source} 指定初始状态源、{Output state} 添加外部输出状态端口、{Output state derivative/difference} 添加外部输出状态导数端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "神经状态空间模型的输入 scalar | vector"
+  },
+  {
+   "name": "x0",
+   "direction": "input",
+   "summary": "神经状态空间模型的初始状态 scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "神经状态空间模型的输出 scalar | vector"
+  },
+  {
+   "name": "x",
+   "direction": "output",
+   "summary": "神经状态空间模型的状态 scalar | vector"
+  },
+  {
+   "name": "dx",
+   "direction": "output",
+   "summary": "神经状态空间模型的状态导数/差分 scalar | vector"
+  },
+  {
+   "name": "z",
+   "direction": "output",
+   "summary": "神经状态空间模型的潜在状态 scalar | vector"
+  },
+  {
+   "name": "dz",
+   "direction": "output",
+   "summary": "神经状态空间模型的潜在状态导数/差分 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model",
+   "default": "idNeuralStateSpace(1,’NumInputs’,1,’NumOutputs’,2)",
+   "values": "神经状态空间对象 idNeuralStateSpace(1,’NumInputs’,1,’NumOutputs’,2) (default) | idNeuralStateSpace object",
+   "group": ""
+  },
+  {
+   "name": "Initial state source",
+   "default": "internal",
+   "values": "初始状态源 internal (default) | external",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "初始状态 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output state",
+   "default": "off",
+   "values": "添加外部输出状态端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output state derivative/difference",
+   "default": "off",
+   "values": "添加外部输出状态导数端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

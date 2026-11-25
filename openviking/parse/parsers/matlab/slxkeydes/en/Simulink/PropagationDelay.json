@@ -1,0 +1,48 @@
+{
+ "key": "PropagationDelay",
+ "title": "Propagation Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Propagation_Delay.md"
+ ],
+ "text": "Model loop delay, latency, pulse delay, 2 inputs, 1 output, no direct feedthrough; {Initial output} sets the initial value for output signal, {Run at fixed time intervals} sets the option to execute block at fixed rate and {Sample time} sets the output sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Signal to delay scalar"
+  },
+  {
+   "name": "dt",
+   "direction": "input",
+   "summary": "Delay signal scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Delayed signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Initial value for output signal 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Run at fixed time intervals",
+   "default": "off",
+   "values": "Option to execute block at fixed rate off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Output sample time 0.1 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

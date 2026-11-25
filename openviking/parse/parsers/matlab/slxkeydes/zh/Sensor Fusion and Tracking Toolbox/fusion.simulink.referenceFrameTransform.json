@@ -1,0 +1,60 @@
+{
+ "key": "fusion.simulink.referenceFrameTransform",
+ "title": "Scenario To Platform",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Tracking Scenario and Sensor Models/Scenario_To_Platform.md"
+ ],
+ "text": "将平台位姿从场景坐标系变换到平台机体坐标系，输入 2 路、输出 1 路；{Reference platform index} 指定参考平台索引、{Enable reference platform pose input} 启用参考平台位姿输入、{Source of output bus name} 输出总线名称的来源、{Specify an output bus name} 输出端口总线名称、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Platforms (Scenario Frame)",
+   "direction": "input",
+   "summary": "场景坐标系中的平台位姿 Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Reference Platform Pose (Scenario Frame)",
+   "direction": "input",
+   "summary": "场景坐标系中的参考平台位姿 Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Platforms (Platform Body Frame)",
+   "direction": "output",
+   "summary": "参考平台机体坐标系中的目标平台位姿 Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Reference platform index",
+   "default": "0",
+   "values": "参考平台索引 0 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable reference platform pose input",
+   "default": "off",
+   "values": "启用参考平台位姿输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "输出总线名称的来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Specify an output bus name",
+   "default": "BusPlatforms",
+   "values": "输出端口总线名称 BusPlatforms (default) | valid bus name",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

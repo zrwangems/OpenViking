@@ -1,0 +1,13 @@
+{
+ "key": "Piezo Linear Actuator",
+ "title": "Piezo Linear Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Piezo_Linear_Actuator.md"
+ ],
+ "text": "线性压电行波电机的力-速度特性。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

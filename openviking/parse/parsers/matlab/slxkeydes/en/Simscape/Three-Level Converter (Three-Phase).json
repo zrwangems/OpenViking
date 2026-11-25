@@ -1,0 +1,13 @@
+{
+ "key": "Three-Level Converter (Three-Phase)",
+ "title": "Three-Level Converter (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Three_Level_Converter_Three_Phase.md"
+ ],
+ "text": "Twelve-pulse three-phase three-level neutral-point clamped controlled converter.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

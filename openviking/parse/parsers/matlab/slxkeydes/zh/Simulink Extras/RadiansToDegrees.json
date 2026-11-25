@@ -1,0 +1,24 @@
+{
+ "key": "RadiansToDegrees",
+ "title": "Radians to Degrees",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Transformations/Radians_to_Degrees.md"
+ ],
+ "text": "将弧度转换为度，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "以弧度表示的输入角度 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "以度为单位的输出角度 标量"
+  }
+ ],
+ "params": []
+}

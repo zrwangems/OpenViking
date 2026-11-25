@@ -1,0 +1,13 @@
+{
+ "key": "PS Transfer Function",
+ "title": "PS Transfer Function",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Linear Operators/PS_Transfer_Function.md"
+ ],
+ "text": "对低通滤波器和超前-滞后滤波器建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

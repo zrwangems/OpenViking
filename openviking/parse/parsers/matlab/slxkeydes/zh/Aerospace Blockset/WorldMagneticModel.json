@@ -1,0 +1,132 @@
+{
+ "key": "WorldMagneticModel",
+ "title": "World Magnetic Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/World_Magnetic_Model.md"
+ ],
+ "text": "使用 World Magnetic Model 计算特定位置和时间的地球磁场，输入 4 路、输出 5 路；按 {Action for out-of-range input} 指定超出范围时的动作；{WMM coefficients} 指定 World Magnetic Model 系数文件、{Custom.COF file} 指定自定义 World Magnetic Model、{Units} 指定输入和输出单位 Metric、{Input decimal year} 指定输入十进制年份、{Month} 指定 Input month、{Day} 指定 Input day、{Year} 指定 Input year、{Output horizontal intensity} 输出水平强度、{Output declination} 输出磁偏角、{Output inclination} 输出磁倾角、{Output total intensity} 输出总强度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "椭球高 scalar"
+  },
+  {
+   "name": "μ (deg)",
+   "direction": "input",
+   "summary": "纬度 scalar"
+  },
+  {
+   "name": "l (deg)",
+   "direction": "input",
+   "summary": "经度 scalar"
+  },
+  {
+   "name": "Decimal Year",
+   "direction": "input",
+   "summary": "所需年份 scalar"
+  },
+  {
+   "name": "Magnetic Field (nT)",
+   "direction": "output",
+   "summary": "磁场 vector"
+  },
+  {
+   "name": "Horizontal Intensity (nT)",
+   "direction": "output",
+   "summary": "水平强度 scalar"
+  },
+  {
+   "name": "Declination (deg)",
+   "direction": "output",
+   "summary": "磁偏角 scalar"
+  },
+  {
+   "name": "Inclination (deg)",
+   "direction": "output",
+   "summary": "磁倾角 scalar"
+  },
+  {
+   "name": "Total Intensity (nT)",
+   "direction": "output",
+   "summary": "总强度 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "WMM coefficients",
+   "default": "(2025-2030)",
+   "values": "World Magnetic Model 系数文件 WMM2025 (2025-2030) (default) | WMM2020 (2020-2025) | WMM2015 V2 (2015-2020) | WMM2000 (2000-2005) | WMM2005 (2005-2010) | WMM2010 (2010-2015) | WMM2015 V1 (2015-2020) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Custom.COF file",
+   "default": "’WMM2025COF’",
+   "values": "自定义 World Magnetic Model 系数文件 ’WMM2025COF’ (default) | any coefficient file name",
+   "group": ""
+  },
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Input decimal year",
+   "default": "on",
+   "values": "输入十进制年份 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Month",
+   "default": "January",
+   "values": "Input month January (default) | February | March | April | May | June | July | August | September | October | November | December",
+   "group": ""
+  },
+  {
+   "name": "Day",
+   "default": "1",
+   "values": "Input day 1 (default) | 1 to 31",
+   "group": ""
+  },
+  {
+   "name": "Year",
+   "default": "2025",
+   "values": "Input year 2025 (default) | any year",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Error",
+   "values": "超出范围时的动作 Error (default) | Warning | None",
+   "group": ""
+  },
+  {
+   "name": "Output horizontal intensity",
+   "default": "on",
+   "values": "输出水平强度 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output declination",
+   "default": "on",
+   "values": "输出磁偏角 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output inclination",
+   "default": "on",
+   "values": "输出磁倾角 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output total intensity",
+   "default": "on",
+   "values": "输出总强度 on (default) | off",
+   "group": ""
+  }
+ ]
+}

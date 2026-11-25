@@ -1,0 +1,113 @@
+{
+ "key": "IncrementalRegressionLinear Predict",
+ "title": "IncrementalRegressionLinear Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Incremental Learning/Regression/Linear/IncrementalRegressionLinear_Predict.md"
+ ],
+ "text": "Predict responses using incremental linear regression model, 2 inputs, 2 outputs, direct feedthrough, {Inner product data type} sets Inner product data type; {Select initial machine learning model} sets the initial incremental linear regression model, {Add output port for status of trained machine learning model} adds second output port for model status, {Predictor data observation dimension} sets the observation dimension of predictor data, {Sample time (–1 for inherited)} sets the option to specify sample, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Output data type} sets the data type of yfit output Inherit, {Output data type Minimum} sets the minimum value of yfit output for range checking, {Output data type Maximum} sets the maximum value of yfit output for range checking, {Inner product data type Minimum} sets the minimum of inner product term for range checking and {Inner product data type Maximum} sets the maximum of inner product term for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "mdl",
+   "direction": "input",
+   "summary": "Incremental learning model bus signal"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Chunk of predictor data numeric matrix"
+  },
+  {
+   "name": "yfit",
+   "direction": "output",
+   "summary": "Chunk of predicted responses floating-point vector"
+  },
+  {
+   "name": "CanPredict",
+   "direction": "output",
+   "summary": "Model status logical"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select initial machine learning model",
+   "default": "linearMdl",
+   "values": "Initial incremental linear regression model linearMdl (default) | incrementalRegressionLinear model object",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for status of trained machine learning model",
+   "default": "off",
+   "values": "Add second output port for model status off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Predictor data observation dimension",
+   "default": "rows",
+   "values": "Observation dimension of predictor data rows (default) | columns",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "–1",
+   "values": "Option to specify sample time –1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "Data type of yfit output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of yfit output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of yfit output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type",
+   "default": "double",
+   "values": "Inner product data type double (default) | Inherit: Inherit via internal rule | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type Minimum",
+   "default": "[]",
+   "values": "Minimum of inner product term for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type Maximum",
+   "default": "[]",
+   "values": "Maximum of inner product term for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

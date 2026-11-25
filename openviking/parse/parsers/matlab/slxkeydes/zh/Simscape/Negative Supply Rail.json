@@ -1,0 +1,13 @@
+{
+ "key": "Negative Supply Rail",
+ "title": "Negative Supply Rail",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Negative_Supply_Rail.md"
+ ],
+ "text": "理想负供电轨。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

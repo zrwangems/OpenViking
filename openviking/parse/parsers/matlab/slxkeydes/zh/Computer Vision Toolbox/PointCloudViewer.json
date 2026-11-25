@@ -1,0 +1,108 @@
+{
+ "key": "PointCloudViewer",
+ "title": "Point Cloud Viewer",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Point_Cloud_Viewer.md"
+ ],
+ "text": "可视化流式点云数据序列，输入 3 路、无直接馈通；{Open at Start of Simulation} 指定在仿真开始时打开 Point Cloud Viewer、{Location Port} 启用点位置作为输入、{Location and Color Port} 启用点位置和颜色作为输入、{Location and Intensity Port} 启用点位置和强度作为输入、{Display the full path} 指定在标题栏中显示源数据的完整路径、{Bring All Point Cloud Viewer Windows Forward} 指定将所有 Point Cloud Viewer、{Simulation Toolbar} 显示仿真工具栏、{Status Bar} 显示状态栏、{Highlight Simulink Block} 指定突出显示 Point Cloud Viewer 模块、{Run} 指定查看整个点云序列、{Continue} 指定继续查看点云序列、{Stop} 指定停止查看点云序列、{Drop Frames to Improve Performance} 指定降低输入点云序列的帧速率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Location",
+   "direction": "input",
+   "summary": "3-D 坐标空间中点的位置 matrix | array"
+  },
+  {
+   "name": "Color",
+   "direction": "input",
+   "summary": "点云颜色 [] (default) | matrix | array"
+  },
+  {
+   "name": "Intensity",
+   "direction": "input",
+   "summary": "灰度强度 [] (default) | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Open at Start of Simulation",
+   "default": "on",
+   "values": "在仿真开始时打开 Point Cloud Viewer 窗口 on (default) | off",
+   "group": "File"
+  },
+  {
+   "name": "Location Port",
+   "default": "on",
+   "values": "启用点位置作为输入 on (default) | off",
+   "group": "File"
+  },
+  {
+   "name": "Location and Color Port",
+   "default": "off",
+   "values": "启用点位置和颜色作为输入 off (default) | on",
+   "group": "File"
+  },
+  {
+   "name": "Location and Intensity Port",
+   "default": "off",
+   "values": "启用点位置和强度作为输入 off (default) | on",
+   "group": "File"
+  },
+  {
+   "name": "Display the full path",
+   "default": "off",
+   "values": "在标题栏中显示源数据的完整路径 off (default) | on",
+   "group": "File > Configuration > Edit > Core"
+  },
+  {
+   "name": "Bring All Point Cloud Viewer Windows Forward",
+   "default": "off",
+   "values": "将所有 Point Cloud Viewer 窗口置于显示最前面 off (default) | on",
+   "group": "View"
+  },
+  {
+   "name": "Simulation Toolbar",
+   "default": "on",
+   "values": "显示仿真工具栏 on (default) | off",
+   "group": "View"
+  },
+  {
+   "name": "Status Bar",
+   "default": "on",
+   "values": "显示状态栏 on (default) | off",
+   "group": "View"
+  },
+  {
+   "name": "Highlight Simulink Block",
+   "default": "off",
+   "values": "突出显示 Point Cloud Viewer 模块 off (default) | on",
+   "group": "View"
+  },
+  {
+   "name": "Run",
+   "default": "off",
+   "values": "查看整个点云序列 off (default) | on",
+   "group": "Simulation"
+  },
+  {
+   "name": "Continue",
+   "default": "off",
+   "values": "继续查看点云序列 off (default) | on",
+   "group": "Simulation"
+  },
+  {
+   "name": "Stop",
+   "default": "off",
+   "values": "停止查看点云序列 off (default) | on",
+   "group": "Simulation"
+  },
+  {
+   "name": "Drop Frames to Improve Performance",
+   "default": "on",
+   "values": "降低输入点云序列的帧速率 on (default) | off",
+   "group": "Simulation"
+  }
+ ]
+}

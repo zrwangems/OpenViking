@@ -1,0 +1,13 @@
+{
+ "key": "Pilot-Operated Check Valve (MA)",
+ "title": "Pilot-Operated Check Valve (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Valves & Orifices/Directional Control Valves/Pilot_Operated_Check_Valve_MA.md"
+ ],
+ "text": "Pilot-operated check valve in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

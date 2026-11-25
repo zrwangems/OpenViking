@@ -1,0 +1,13 @@
+{
+ "key": "Sinusoidal Force Source",
+ "title": "Sinusoidal Force Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Sinusoidal_Force_Source.md"
+ ],
+ "text": "产生正弦力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

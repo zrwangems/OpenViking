@@ -1,0 +1,49 @@
+{
+ "key": "ASCII Encode",
+ "title": "ASCII Encode",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/ASCII_Encode.md"
+ ],
+ "text": "Convert Simulink values into uint8 character vector, 1 input, 1 output, {Variable types} sets Simulink ® data types allowed for input ports; {Format string} sets the format specifiers for converting values to ASCII, {Number of variables} sets the number of block inputs and {Max output string length} sets the maximum length of converted character vector. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "1",
+   "direction": "input",
+   "summary": "Numbered ports that receive values to encode numeric"
+  },
+  {
+   "name": "D",
+   "direction": "output",
+   "summary": "Null-terminated character vector character vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Format string",
+   "default": "%d\\r",
+   "values": "Format specifiers for converting values to ASCII %d\\r (default) | %c | %i | %o | %u | %x | %e | %f | %g",
+   "group": ""
+  },
+  {
+   "name": "Number of variables",
+   "default": "1",
+   "values": "Number of block inputs 1 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Max output string length",
+   "default": "128",
+   "values": "Maximum length of converted character vector, in bytes 128 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Variable types",
+   "default": "{’double’}",
+   "values": "Simulink ® data types allowed for input ports {’double’} (default) | {’int8’} | {’uint8’} | {’int16} | {’uint16’} | {’int32’} | {’uint32’}",
+   "group": ""
+  }
+ ]
+}

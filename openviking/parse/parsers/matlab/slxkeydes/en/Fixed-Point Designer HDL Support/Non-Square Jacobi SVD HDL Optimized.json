@@ -1,0 +1,90 @@
+{
+ "key": "Non-Square Jacobi SVD HDL Optimized",
+ "title": "Non-Square Jacobi SVD HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Matrices and Linear Algebra/Matrix Factorizations/Non_Square_Jacobi_SVD_HDL_Optimized.md"
+ ],
+ "text": "Fixed-point singular value decomposition, 4 inputs, 5 outputs, {Select outputs} sets Block outputs; {Number of rows in matrix A} sets the number of rows in m -by- n matrix, {Number of columns in matrix A} sets the number of columns in m -by- n matrix, {Number of Jacobi iterations} sets the number of iterations of Jacobi algorithm and {Signal type} sets the complexity of input matrix. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A(i,:)",
+   "direction": "input",
+   "summary": "Rows of matrix A vector"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "Whether input is valid scalar"
+  },
+  {
+   "name": "readyIn",
+   "direction": "input",
+   "summary": "Whether downstream block is ready scalar"
+  },
+  {
+   "name": "restart",
+   "direction": "input",
+   "summary": "Whether to clear internal states scalar"
+  },
+  {
+   "name": "s",
+   "direction": "output",
+   "summary": "Singular values column vector"
+  },
+  {
+   "name": "U",
+   "direction": "output",
+   "summary": "Left singular vectors unitary n -by- n matrix"
+  },
+  {
+   "name": "V",
+   "direction": "output",
+   "summary": "Right singular vectors unitary n -by- n matrix"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "Whether output data is valid Boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Whether block is ready Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of rows in matrix A",
+   "default": "8",
+   "values": "Number of rows in m -by- n matrix A 8 (default) | integer-valued scalar where m > 2 and m > n",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in matrix A",
+   "default": "4",
+   "values": "Number of columns in m -by- n matrix A 4 (default) | integer-valued scalar where n ≥ 2 and m > n",
+   "group": ""
+  },
+  {
+   "name": "Number of Jacobi iterations",
+   "default": "10",
+   "values": "Number of iterations of Jacobi algorithm 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Select outputs",
+   "default": "UsV",
+   "values": "Block outputs UsV (default) | Us | sV | s",
+   "group": ""
+  },
+  {
+   "name": "Signal type",
+   "default": "real",
+   "values": "Complexity of input matrix A real (default) | complex",
+   "group": ""
+  }
+ ]
+}

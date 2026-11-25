@@ -1,0 +1,13 @@
+{
+ "key": "Spool Orifice Flow Force (IL)",
+ "title": "Spool Orifice Flow Force (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Spool_Orifice_Flow_Force_IL.md"
+ ],
+ "text": "Axial fluid force on spool orifice in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

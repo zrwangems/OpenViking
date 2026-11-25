@@ -1,0 +1,13 @@
+{
+ "key": "Belt-Cable Properties",
+ "title": "Belt-Cable Properties",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Belts and Cables/Belt_Cable_Properties.md"
+ ],
+ "text": "General characteristics of the cord of a pulley system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

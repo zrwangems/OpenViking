@@ -1,0 +1,96 @@
+{
+ "key": "VariantSink",
+ "title": "Variant Sink",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Variant_Sink.md"
+ ],
+ "text": "使用变体在多个输出之间进行路由，输入 1 路、输出 2 路、无直接馈通；按 {Variant control mode} 指定变体控制模式；{Variant activation time} 指定软件选择活动变体选择的时间 update、{Port and associated conditions} 指定变体选择、变体控制和条件的表格 empty、{Port} 指定已连接输出端口的编号 no default、{Variant control label} 指定 label 模式下的选择名称 true、{Variant control switch} 用于仿真和代码生成工作流的变体选择、{Variant control expression} 确定活动选择的条件表达式 true、{Condition (read-only)} 指定 Simulink.VariantExpression 对象中的条件表达式 Read-only、{Label mode active choice} 指定标签模式下活动选择的名称、{Allow zero active variant controls} 指定在没有活动变体选择的情况下仿真模型、{Show variant condition on block} 指定标注模块端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "第一个变体的输出 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_N",
+   "direction": "output",
+   "summary": "第 N 个变体的输出 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Variant control mode",
+   "default": "expression",
+   "values": "变体控制模式 expression (default) | label | sim codegen switching",
+   "group": ""
+  },
+  {
+   "name": "Variant activation time",
+   "default": "diagram",
+   "values": "软件选择活动变体选择的时间 update diagram (default) | update diagram analyze all choices | code compile | startup | inherit from Simulink.VariantControl",
+   "group": ""
+  },
+  {
+   "name": "Port and associated conditions",
+   "default": "table",
+   "values": "变体选择、变体控制和条件的表格 empty table (default)",
+   "group": ""
+  },
+  {
+   "name": "Port",
+   "default": "",
+   "values": "已连接输出端口的编号 no default",
+   "group": ""
+  },
+  {
+   "name": "Variant control label",
+   "default": "false",
+   "values": "label 模式下的选择名称 true or false (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Variant control switch",
+   "default": "",
+   "values": "用于仿真和代码生成工作流的变体选择 (sim) | (codegen)",
+   "group": ""
+  },
+  {
+   "name": "Variant control expression",
+   "default": "false",
+   "values": "确定活动选择的条件表达式 true or false (default) | boolean condition expression | a Simulink.VariantExpression object representing a boolean condition expression | (default)",
+   "group": ""
+  },
+  {
+   "name": "Condition (read-only)",
+   "default": "N/A",
+   "values": "Simulink.VariantExpression 对象中的条件表达式 Read-only: N/A (default)",
+   "group": ""
+  },
+  {
+   "name": "Label mode active choice",
+   "default": "(Subsystem)",
+   "values": "标签模式下活动选择的名称 true (Subsystem) (default) | false (Subsystem1)",
+   "group": ""
+  },
+  {
+   "name": "Allow zero active variant controls",
+   "default": "off",
+   "values": "在没有活动变体选择的情况下仿真模型 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show variant condition on block",
+   "default": "off",
+   "values": "标注模块端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

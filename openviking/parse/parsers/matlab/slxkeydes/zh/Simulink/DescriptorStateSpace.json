@@ -1,0 +1,85 @@
+{
+ "key": "DescriptorStateSpace",
+ "title": "Descriptor State-Space",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Descriptor_State_Space.md"
+ ],
+ "text": "模型线性隐式系统，输入 1 路、输出 1 路；按 {初始条件} 指定初始状态值；{E}、{A}、{B}、{C}、{D}、{直接馈通} 输出信号值是否取决于输入信号值、{线性化为稀疏模型} 指定将状态线性化为稀疏矩阵、{绝对容差}、{状态名称(例如，’position’)} 用于为各状态指定唯一名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input 1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Output 1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "E",
+   "default": "1",
+   "values": "隐式系统的质量矩阵 E 1 (默认) | 标量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "A",
+   "default": "1",
+   "values": "隐式系统的 A 矩阵 1 (默认) | 标量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "隐式系统的 B 矩阵 1 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "C",
+   "default": "1",
+   "values": "隐式系统的 C 矩阵 1 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "D",
+   "default": "1",
+   "values": "隐式系统的 D 矩阵 1 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "初始状态值 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "直接馈通",
+   "default": "True",
+   "values": "输出信号值是否取决于输入信号值 True (默认) | False | 自动",
+   "group": ""
+  },
+  {
+   "name": "线性化为稀疏模型",
+   "default": "on",
+   "values": "将状态线性化为稀疏矩阵 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "绝对容差",
+   "default": "auto",
+   "values": "用于计算模块状态的绝对容差 auto (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "状态名称(例如，’position’)",
+   "default": "’’",
+   "values": "用于为各状态指定唯一名称的选项 ’’ (默认) | 字符向量 | 字符向量元胞数组 | MATLAB ® 变量 |...",
+   "group": ""
+  }
+ ]
+}

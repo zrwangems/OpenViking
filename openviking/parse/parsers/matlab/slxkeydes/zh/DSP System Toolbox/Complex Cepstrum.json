@@ -1,0 +1,37 @@
+{
+ "key": "Complex Cepstrum",
+ "title": "Complex Cepstrum",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Transforms/Complex_Cepstrum.md"
+ ],
+ "text": "计算输入的复倒谱，输入 1 路、输出 1 路；{Inherit FFT length from input port dimensions} 指定将 FFT 长度与输入端口的维度匹配、{FFT length} 指定计算 FFT 长度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入 vector | matrix"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "复倒谱输出 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit FFT length from input port dimensions",
+   "default": "on",
+   "values": "将 FFT 长度与输入端口的维度匹配 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "64",
+   "values": "计算 FFT 长度 64 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

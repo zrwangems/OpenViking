@@ -1,0 +1,36 @@
+{
+ "key": "Data Cube Slicer",
+ "title": "Cube Slicer",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Space-Time Adaptive Processing/Cube_Slicer.md"
+ ],
+ "text": "Slice data cube along specified dimensions, 2 inputs, 1 output, {Output Slice} sets Output slice.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Input data cube M -by- Q -by- N complex-valued array"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "Slice-plane index positive integer"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output Slice",
+   "default": "Angle-Doppler",
+   "values": "Output slice Angle-Doppler (default) | Range-Doppler | Range-angle",
+   "group": ""
+  }
+ ]
+}

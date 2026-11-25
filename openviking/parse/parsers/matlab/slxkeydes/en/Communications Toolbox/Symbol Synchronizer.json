@@ -1,0 +1,78 @@
+{
+ "key": "Symbol Synchronizer",
+ "title": "Symbol Synchronizer",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Synchronization/Symbol_Synchronizer.md"
+ ],
+ "text": "Correct symbol timing clock skew, 1 input, 2 outputs, {Timing error detector} sets Type of timing error detector Zero-Crossing; {Modulation type}, {Samples per symbol}, {Damping factor}, {Normalized loop bandwidth} sets the normalized bandwidth of loop filter, {Detector gain} sets the phase detector gain, {Normalized timing error output port} enables normalized timing error output port and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Samp",
+   "direction": "input",
+   "summary": "Input samples scalar (default) | column vector"
+  },
+  {
+   "name": "Sym",
+   "direction": "output",
+   "summary": "Output signal symbols scalar | column vector"
+  },
+  {
+   "name": "Err",
+   "direction": "output",
+   "summary": "Estimated timing error scalar | column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation type",
+   "default": "PAM/PSK/QAM",
+   "values": "Modulation type PAM/PSK/QAM (default) | OQPSK",
+   "group": ""
+  },
+  {
+   "name": "Timing error detector",
+   "default": "(decision-directed)",
+   "values": "Type of timing error detector Zero-Crossing (decision-directed) (default) | Gardner (non-data-aided) | Early-Late (non-data-aided) | Mueller-Muller (decision-directed)",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "2",
+   "values": "Samples per symbol 2 (default) | positive integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Damping factor",
+   "default": "1",
+   "values": "Damping factor of the loop filter 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Normalized loop bandwidth",
+   "default": "0.01",
+   "values": "Normalized bandwidth of loop filter 0.01 (default) | positive scalar less than 1",
+   "group": ""
+  },
+  {
+   "name": "Detector gain",
+   "default": "2.7",
+   "values": "Phase detector gain 2.7 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Normalized timing error output port",
+   "default": "on",
+   "values": "Enable normalized timing error output port on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

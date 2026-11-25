@@ -1,0 +1,51 @@
+{
+ "key": "Bit to Integer Converter",
+ "title": "Bit to Integer Converter",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Bit_to_Integer_Converter.md",
+  "Communications Toolbox/Utility Blocks/Bit_to_Integer_Converter.md",
+  "HDL Coder/Logic and Bit Operations/Bit_to_Integer_Converter.md"
+ ],
+ "text": "将位向量映射到对应的整数向量，输入 1 路、输出 1 路、无直接馈通；按 {Output data type} 指定输出数据类型 Inherit via internal；{Number of bits per integer(M)} 指定每个整数的位数、{Input bit order} 指定输入位顺序 MSB、{After bit packing, treat resulting integer values as} 指定位打包后有符号整数值的标志，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 bit scalar | column vector of bits"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 integer | column vector of integers"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of bits per integer(M)",
+   "default": "3",
+   "values": "每个整数的位数 3 (default) | integer in the range [1, 32]",
+   "group": ""
+  },
+  {
+   "name": "Input bit order",
+   "default": "first",
+   "values": "输入位顺序 MSB first (default) | LSB first",
+   "group": ""
+  },
+  {
+   "name": "After bit packing, treat resulting integer values as",
+   "default": "Unsigned",
+   "values": "位打包后有符号整数值的标志 Unsigned (default) | Signed",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit via internal rule (default) | Smallest integer | Same as input | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": ""
+  }
+ ]
+}

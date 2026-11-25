@@ -1,0 +1,13 @@
+{
+ "key": "Neutral Port (Three-Phase)",
+ "title": "Neutral Port (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Neutral_Port_Three_Phase.md"
+ ],
+ "text": "将三相系统的各相连接到电气守恒端口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

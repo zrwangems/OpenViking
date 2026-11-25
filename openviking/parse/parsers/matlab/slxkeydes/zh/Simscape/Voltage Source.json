@@ -1,0 +1,13 @@
+{
+ "key": "Voltage Source",
+ "title": "Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Voltage_Source.md"
+ ],
+ "text": "具有可选直流、交流和噪声分量的电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Interface (2P-TL)",
+ "title": "Interface (2P-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Fluid Network Interfaces/Interface_2P_TL.md"
+ ],
+ "text": "Two-phase fluid and thermal liquid network interface.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

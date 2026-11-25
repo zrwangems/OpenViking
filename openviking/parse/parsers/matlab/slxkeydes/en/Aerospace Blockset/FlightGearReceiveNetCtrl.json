@@ -1,0 +1,49 @@
+{
+ "key": "FlightGearReceiveNetCtrl",
+ "title": "Receive net_ctrl Packet from FlightGear",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/Receive_net_ctrl_Packet_from_FlightGear.md"
+ ],
+ "text": "Receive net_ctrl packet from FlightGear, 2 outputs; {Origin IP address}, {Origin port}, {Sample time} and {Enable received flag port} enables received flag output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "net_ctrl",
+   "direction": "output",
+   "summary": "Controls information from FlightGear 744-by-1 vector"
+  },
+  {
+   "name": "Rx bytes",
+   "direction": "output",
+   "summary": "Received FlightGear packet size 0 | 744"
+  }
+ ],
+ "params": [
+  {
+   "name": "Origin IP address",
+   "default": "127.0.0.1",
+   "values": "Origin IP address 127.0.0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Origin port",
+   "default": "5505",
+   "values": "Origin port 5505 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "Sample time 1/30 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable received flag port",
+   "default": "off",
+   "values": "Enable received flag output port off (default) | on",
+   "group": ""
+  }
+ ]
+}

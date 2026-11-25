@@ -1,0 +1,13 @@
+{
+ "key": "Belt Drive",
+ "title": "Belt Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Belt_Drive.md"
+ ],
+ "text": "Power transmission system with taut belt connecting two pulleys.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

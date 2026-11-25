@@ -1,0 +1,85 @@
+{
+ "key": "M-PSK Demodulator Baseband",
+ "title": "M-PSK Demodulator Baseband",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Modulation/PM/M_PSK_Demodulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PSK/M_PSK_Demodulator_Baseband.md"
+ ],
+ "text": "解调 PSK 调制数据，输入 2 路、输出 1 路；按 {Constellation ordering} 指定符号映射；{M-ary number} 指定 PSK 星座图的调制阶数、{Output type} 输出信号数据类型、{Decision type} 指定解调器输出 Hard、{Noise variance source} 指定噪声方差估计的来源、{Noise variance} 指定噪声方差的估计值、{Constellation mapping} 指定用户定义符号映射、{Phase offset (rad)} 以弧度表示的相位偏移、{Output data type} 输出数据类型 Inherit via internal，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "噪声方差估计 positive scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "8",
+   "values": "PSK 星座图的调制阶数 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "输出信号数据类型 Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "解调器输出 Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Dialog",
+   "values": "噪声方差估计的来源 Dialog (default) | Port",
+   "group": "Main"
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "噪声方差的估计值 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Gray",
+   "values": "符号映射 Gray (default) | Binary | User-defined",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation mapping",
+   "default": "[0:7]",
+   "values": "用户定义符号映射 [0:7] (default) | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset (rad)",
+   "default": "pi/8",
+   "values": "以弧度表示的相位偏移 pi/8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32",
+   "group": "Data Types"
+  }
+ ]
+}

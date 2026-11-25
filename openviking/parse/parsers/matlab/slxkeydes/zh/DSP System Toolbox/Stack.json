@@ -1,0 +1,109 @@
+{
+ "key": "Stack",
+ "title": "Stack",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Buffers/Stack.md"
+ ],
+ "text": "将输入存储到 LIFO 寄存器，输入 4 路、输出 4 路、无直接馈通；按 {Pop empty stack} 指定Pop 空栈；{Stack depth} 指定栈可容纳的条目数、{Trigger type} 指定触发类型 Rising、{Push full stack} 指定 Push 满栈 Dynamic、{Show empty stack indicator port (Empty)} 启用空栈指示端口、{Show full stack indicator port (Full)} 启用满栈指示端口、{Show number of stack entries port (Num)} 启用栈条目数端口、{Show reset port (Rst) to clear internal stack buffer} 启用复位端口、{Clear output port on reset} 指定复位时清除输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入 scalar | vector | matrix"
+  },
+  {
+   "name": "Push",
+   "direction": "input",
+   "summary": "用于推入输入的触发事件 scalar"
+  },
+  {
+   "name": "Pop",
+   "direction": "input",
+   "summary": "用于弹出元素的触发事件 scalar"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "清空栈内容 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出 scalar | vector | matrix"
+  },
+  {
+   "name": "Empty",
+   "direction": "output",
+   "summary": "空栈指示端口 scalar"
+  },
+  {
+   "name": "Full",
+   "direction": "output",
+   "summary": "满栈指示端口 scalar"
+  },
+  {
+   "name": "Num",
+   "direction": "output",
+   "summary": "栈条目数端口 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Stack depth",
+   "default": "8",
+   "values": "栈可容纳的条目数 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "触发类型 Rising edge (default) | Falling edge | Either edge | Non-zero sample",
+   "group": ""
+  },
+  {
+   "name": "Push full stack",
+   "default": "reallocation",
+   "values": "Push 满栈 Dynamic reallocation (default) | Ignore | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Pop empty stack",
+   "default": "Warning",
+   "values": "Pop 空栈 Warning (default) | Ignore | Error",
+   "group": ""
+  },
+  {
+   "name": "Show empty stack indicator port (Empty)",
+   "default": "off",
+   "values": "启用空栈指示端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show full stack indicator port (Full)",
+   "default": "off",
+   "values": "启用满栈指示端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show number of stack entries port (Num)",
+   "default": "off",
+   "values": "启用栈条目数端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show reset port (Rst) to clear internal stack buffer",
+   "default": "off",
+   "values": "启用复位端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Clear output port on reset",
+   "default": "off",
+   "values": "复位时清除输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

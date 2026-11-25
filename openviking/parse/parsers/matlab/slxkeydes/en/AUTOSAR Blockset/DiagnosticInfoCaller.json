@@ -1,0 +1,38 @@
+{
+ "key": "DiagnosticInfoCaller",
+ "title": "DiagnosticInfoCaller",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Basic Software/Diagnostic Event Manager (Dem)/DiagnosticInfoCaller.md"
+ ],
+ "text": "Call AUTOSAR Diagnostic Event Manager (Dem) service interface DiagnosticInfo, {Operation} sets operation defined in Dem service interface DiagnosticInfo; {Client port name} sets the name of client port AUTOSAR component uses to call Dem service interface, {Data type for DTCFormat} sets the data type to represent a Dem format type and {Sample time} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Client port name",
+   "default": "DiagnosticInfo",
+   "values": "Name of client port AUTOSAR component uses to call Dem service interface DiagnosticInfo DiagnosticInfo (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "GetEventStatus",
+   "values": "Specify operation defined in Dem service interface DiagnosticInfo GetEventStatus (default) | GetMonitorStatus | GetEventFailed | GetEventTested | GetDTCOfEvent | GetFaultDetectionCounter | GetEventExtendedDataRecord | GetEventFreezeFrameData",
+   "group": ""
+  },
+  {
+   "name": "Data type for DTCFormat",
+   "default": "Enum:Dem_DTCFormatType",
+   "values": "Specify data type to represent a Dem format type Enum:Dem_DTCFormatType (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "’-1’",
+   "values": "Block sample time ’-1’ (default) | scalar",
+   "group": ""
+  }
+ ]
+}

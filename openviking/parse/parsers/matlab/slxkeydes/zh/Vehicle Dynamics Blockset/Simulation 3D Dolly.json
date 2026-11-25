@@ -1,0 +1,55 @@
+{
+ "key": "Simulation 3D Dolly",
+ "title": "Simulation 3D Dolly",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Dolly.md"
+ ],
+ "text": "在 3D 环境中实现台车，输入 2 路；按 {Type} 指定Type One-axle；{Name} 指定台车名称 SimulinkVehicle1、{Sample time} 指定采样时间、{Initial array values to translate vehicle per part, Translation} 指定车辆初始平移 zeros、{Initial array values to rotate vehicle per part, Rotation} 指定初始旋转 zeros，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "台车平移 5 -by- 3 array (default) | 8 -by- 3 array | 11 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "台车旋转 5 -by- 3 array (default) | 8 -by- 3 array | 11 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "dolly",
+   "values": "Type One-axle dolly (default) | Two-axle dolly | Three-axle dolly",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "台车名称 SimulinkVehicle1 (default) | character vector",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Initial array values to translate vehicle per part, Translation",
+   "default": ")",
+   "values": "车辆初始平移 zeros( 5, 3 ) (default) | zeros( 8, 3 ) | zeros( 11, 3 )",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial array values to rotate vehicle per part, Rotation",
+   "default": ")",
+   "values": "初始旋转 zeros( 5, 3 ) (default) | zeros( 8, 3 ) | zeros( 11, 3 )",
+   "group": "Initial Values"
+  }
+ ]
+}

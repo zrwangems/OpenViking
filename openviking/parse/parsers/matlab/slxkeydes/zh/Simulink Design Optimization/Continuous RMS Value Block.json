@@ -1,0 +1,24 @@
+{
+ "key": "Continuous RMS Value Block",
+ "title": "CRMS",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/RMS Blocks/CRMS.md"
+ ],
+ "text": "计算信号的连续时间累积均方根值，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "CRMS 值 scalar"
+  }
+ ],
+ "params": []
+}

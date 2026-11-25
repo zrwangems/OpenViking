@@ -1,0 +1,103 @@
+{
+ "key": "M-PAM Demodulator Baseband",
+ "title": "M-PAM Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/M_PAM_Demodulator_Baseband.md"
+ ],
+ "text": "解调 M-PAM 调制数据，输入 1 路、输出 1 路；按 {Output data type} 指定输出数据类型 Inherit via internal；{M-ary number} 指定调制阶数、{Output type} 输出类型 Integer、{Constellation ordering} 指定符号的映射顺序、{Normalization method} 指定星座的缩放方法 Min. distance between、{Minimum distance} 指定两个最近星座点之间的距离、{Average power, referenced to 1 ohm (watts)} 指定平均功率、{Peak power, referenced to 1 ohm (watts)} 指定最大功率、{Denormalization factor} 指定反归一化因子数据类型、{Product output} 指定乘积输出数据类型、{Rounding mode} 指定定点运算的舍入模式、{Saturate on integer overflow} 指定对整数溢出进行饱和、{Sum} 指定求和数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "M-PAM 调制信号 scalar | column vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "解调信号 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "M-ary number",
+   "default": "4",
+   "values": "调制阶数 4 (default) | positive, even integer",
+   "group": "Main"
+  },
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "输出类型 Integer (default) | Bit",
+   "group": "Main"
+  },
+  {
+   "name": "Constellation ordering",
+   "default": "Binary",
+   "values": "符号的映射顺序 Binary (default) | Gray",
+   "group": "Main"
+  },
+  {
+   "name": "Normalization method",
+   "default": "symbols",
+   "values": "星座的缩放方法 Min. distance between symbols (default) | Average Power | Peak Power",
+   "group": "Main"
+  },
+  {
+   "name": "Minimum distance",
+   "default": "2",
+   "values": "两个最近星座点之间的距离 2 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Average power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "平均功率 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Peak power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "最大功率 1 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": "Data Types"
+  },
+  {
+   "name": "Denormalization factor",
+   "default": "input",
+   "values": "反归一化因子数据类型 Inherit: Same word length as input (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | fixdt(1,16) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Wrap",
+   "values": "定点运算的舍入模式 Wrap (default) | Saturate",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "对整数溢出进行饱和的选项 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Sum",
+   "default": "rule",
+   "values": "求和数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as product output | fixdt(1,16) |",
+   "group": "Data Types"
+  }
+ ]
+}

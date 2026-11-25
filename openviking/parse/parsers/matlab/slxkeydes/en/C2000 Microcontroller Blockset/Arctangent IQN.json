@@ -1,0 +1,13 @@
+{
+ "key": "Arctangent IQN",
+ "title": "Arctangent IQN",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/Arctangent_IQN.md"
+ ],
+ "text": "Four-quadrant arc tangent.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

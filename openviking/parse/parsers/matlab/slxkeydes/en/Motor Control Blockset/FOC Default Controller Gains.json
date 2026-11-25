@@ -1,0 +1,197 @@
+{
+ "key": "FOC Default Controller Gains",
+ "title": "FOC Default Controller Gains",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/FOC_Default_Controller_Gains.md"
+ ],
+ "text": "Compute controller gains for the FOC based algorithms at run time based on empirical method or optimum theory, {Block Output} sets Output of the block Current controller (d,q-axes), and so does the port count; {Motor selection} sets the type of motor, {Output unit} sets the unit of the block output, {Specify filter and sensor delays} enables addition of filter and sensor, {Current sensor delay (s)} sets the delay due to current, {Speed sensor delay (s)} sets the delay due to speed and {Speed filter delay (s)} sets the delay due to speed filtering. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "R s",
+   "direction": "input",
+   "summary": "Stator resistance scalar"
+  },
+  {
+   "name": "L d",
+   "direction": "input",
+   "summary": "d -axis inductance scalar"
+  },
+  {
+   "name": "L q",
+   "direction": "input",
+   "summary": "q -axis inductance scalar"
+  },
+  {
+   "name": "L m",
+   "direction": "input",
+   "summary": "Magnetizing inductance scalar"
+  },
+  {
+   "name": "L ls",
+   "direction": "input",
+   "summary": "Stator leakage inductance scalar"
+  },
+  {
+   "name": "L lr",
+   "direction": "input",
+   "summary": "Rotor leakage inductance scalar"
+  },
+  {
+   "name": "J",
+   "direction": "input",
+   "summary": "Motor inertia scalar"
+  },
+  {
+   "name": "T s",
+   "direction": "input",
+   "summary": "Current controller sample time scalar"
+  },
+  {
+   "name": "T sc",
+   "direction": "input",
+   "summary": "Speed controller sample time scalar"
+  },
+  {
+   "name": "SlowdownFactor",
+   "direction": "input",
+   "summary": "Factor to slow down system response scalar in the range of [1, 20]"
+  },
+  {
+   "name": "I Max",
+   "direction": "input",
+   "summary": "Maximum measurable peak-neutral current scalar"
+  },
+  {
+   "name": "V dc",
+   "direction": "input",
+   "summary": "DC link voltage scalar"
+  },
+  {
+   "name": "N base",
+   "direction": "input",
+   "summary": "Motor rated speed scalar"
+  },
+  {
+   "name": "R s",
+   "direction": "input",
+   "summary": "Stator resistance scalar"
+  },
+  {
+   "name": "L d",
+   "direction": "input",
+   "summary": "d -axis inductance scalar"
+  },
+  {
+   "name": "L q",
+   "direction": "input",
+   "summary": "q -axis inductance scalar"
+  },
+  {
+   "name": "J",
+   "direction": "input",
+   "summary": "Motor inertia scalar"
+  },
+  {
+   "name": "p",
+   "direction": "input",
+   "summary": "Number of pole pairs available in the motor scalar"
+  },
+  {
+   "name": "Flux PM",
+   "direction": "input",
+   "summary": "Peak permanent magnet flux linkage scalar"
+  },
+  {
+   "name": "T s",
+   "direction": "input",
+   "summary": "Current controller sample time scalar"
+  },
+  {
+   "name": "T sc",
+   "direction": "input",
+   "summary": "Speed controller sample time scalar"
+  },
+  {
+   "name": "CurrLoopDelay",
+   "direction": "input",
+   "summary": "Overall time constant value for the current delay present in feedback path scalar"
+  },
+  {
+   "name": "SpeedLoopDelay",
+   "direction": "input",
+   "summary": "Overall time constant value for the speed delay present in feedback path scalar"
+  },
+  {
+   "name": "V base",
+   "direction": "input",
+   "summary": "Base voltage scalar"
+  },
+  {
+   "name": "I base",
+   "direction": "input",
+   "summary": "Base current scalar"
+  },
+  {
+   "name": "N base",
+   "direction": "input",
+   "summary": "Motor rated speed scalar"
+  },
+  {
+   "name": "PI Gains",
+   "direction": "output",
+   "summary": "PI controller gains bus"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "PI gains computation status true | false"
+  }
+ ],
+ "params": [
+  {
+   "name": "Motor selection",
+   "default": "PMSM",
+   "values": "Type of motor PMSM (default) | ACIM",
+   "group": ""
+  },
+  {
+   "name": "Output unit",
+   "default": "Unit",
+   "values": "Unit of the block output SI Unit (default) | Per-Unit",
+   "group": ""
+  },
+  {
+   "name": "Block Output",
+   "default": "",
+   "values": "Output of the block Current controller (d,q-axes) | Field-weakening controller | Speed controller",
+   "group": ""
+  },
+  {
+   "name": "Specify filter and sensor delays",
+   "default": "off",
+   "values": "Enable addition of filter and sensor delays off (default) | on",
+   "group": "Delays"
+  },
+  {
+   "name": "Current sensor delay (s)",
+   "default": "50e-6",
+   "values": "Delay due to current sensor 50e-6 (default) | scalar",
+   "group": "Delays"
+  },
+  {
+   "name": "Speed sensor delay (s)",
+   "default": "50e-6",
+   "values": "Delay due to speed sensor 50e-6 (default) | scalar",
+   "group": "Delays"
+  },
+  {
+   "name": "Speed filter delay (s)",
+   "default": "0.02",
+   "values": "Delay due to speed filtering 0.02 (default) | scalar",
+   "group": "Delays"
+  }
+ ]
+}

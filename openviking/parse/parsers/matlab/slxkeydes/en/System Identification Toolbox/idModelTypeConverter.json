@@ -1,0 +1,308 @@
+{
+ "key": "idModelTypeConverter",
+ "title": "Model Type Converter",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Estimators/Model_Type_Converter.md"
+ ],
+ "text": "Estimate states of discrete-time or continuous-time linear system, 15 inputs, 4 outputs, {G} sets the G matrix; {Time domain} sets the whether to estimate continuous-time or discrete-time states, {Use the current measurement y[n] to improve xhat[n]} sets the update output state estimates using the measure, {Sample Time} sets the block sample time, {Model source} sets how the A, B, C, D matrices are provided to the block LTI State-Space, {A} sets the state Matrix, {B} sets the input Matrix, {C} sets the output Matrix, {D} sets the feedthrough Matrix, {Number of states}, {Number of inputs} sets the number of known inputs, {Number of outputs} sets the number of measured output, {Source} sets how to enter the initial state estimates and initial state estimation error covariance, {Initial states x[0]} sets the initial state estimate, {State estimation error covariance P[0]} sets the initial state estimation error, {Use the Kalman Gain K from the model variable} sets the whether to use pre-identified Kalman Gain contained in state-space plant, {Use G and H matrices (default G=I and H=0)} sets the whether to use non-default values for G and H, {Time-invariant G} sets the G matrix is time invariant, {H}, {Time-invariant H} sets the H matrix is time invariant, {Number of process noise inputs} sets the process noise inputs, {Q} sets the process noise covariance, {Time-invariant Q} sets the if Q matrix is time invariant, {R} sets the measurement noise covariance, {Time-invariant R} sets the if R matrix is time invariant, {N} sets the process and measurement noise cross-covariance, {Time-invariant N} sets the if N matrix is time invariant, {Add input port u} sets the if model contains known inputs, {Add input port Enable to control measurement updates} controls the measurement updates, {External Reset} sets the option to reset estimated states and parameter covariance matrix using specified initial, {Output estimated model output y} sets the include estimated model outputs, {Output state estimation error covariance Z} adds Z output port to the block and {Output state estimation error covariance P} adds P output port to the block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Known inputs scalar | vector"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "Measured outputs scalar | vector"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "State matrix real matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Input matrix real matrix"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Output matrix real matrix"
+  },
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "Feedthrough matrix real matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Measured outputs real matrix"
+  },
+  {
+   "name": "H",
+   "direction": "input",
+   "summary": "Measured outputs real matrix"
+  },
+  {
+   "name": "Q",
+   "direction": "input",
+   "summary": "Process noise covariance matrix scalar | vector | matrix"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Measurement noise covariance matrix scalar | vector | matrix"
+  },
+  {
+   "name": "N",
+   "direction": "input",
+   "summary": "Process and measurement noise cross-covariance matrix scalar | vector | matrix"
+  },
+  {
+   "name": "P0",
+   "direction": "input",
+   "summary": "Initial state estimation error covariance scalar | vector | matrix"
+  },
+  {
+   "name": "X0",
+   "direction": "input",
+   "summary": "Initial state estimates scalar | vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Control signal to enable measurement updates scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "Control signal to reset state estimates scalar"
+  },
+  {
+   "name": "xhat",
+   "direction": "output",
+   "summary": "Estimated states scalar | vector"
+  },
+  {
+   "name": "yhat",
+   "direction": "output",
+   "summary": "Estimated outputs scalar | vector"
+  },
+  {
+   "name": "Z",
+   "direction": "output",
+   "summary": "State estimation error covariance matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "State estimation error covariance matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time domain",
+   "default": "Discrete-Time",
+   "values": "Specify whether to estimate continuous-time or discrete-time states Discrete-Time (default) | Continuous-Time",
+   "group": "Filter Settings"
+  },
+  {
+   "name": "Use the current measurement y[n] to improve xhat[n]",
+   "default": "on",
+   "values": "Update output state estimates using the measure outputs on (default) | off",
+   "group": "Filter Settings"
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | non-negative scalar",
+   "group": "Filter Settings"
+  },
+  {
+   "name": "Model source",
+   "default": "Variable",
+   "values": "Specify how the A, B, C, D matrices are provided to the block LTI State-Space Variable (default) | Individual A, B, C, D matrices | Input port",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "A",
+   "default": "0.95",
+   "values": "State Matrix 0.95 (default)",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "Input Matrix 1 (default)",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "C",
+   "default": "1",
+   "values": "Output Matrix 1 (default)",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "D",
+   "default": "0",
+   "values": "Feedthrough Matrix 0 (default)",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of states",
+   "default": "1",
+   "values": "Number of states to be estimated 1 (default) | non-negative scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of inputs",
+   "default": "1",
+   "values": "Number of known inputs 1 (default) | non-negative scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of outputs",
+   "default": "1",
+   "values": "Number of measured output 1 (default) | non-negative scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Source",
+   "default": "Dialog",
+   "values": "Specify how to enter the initial state estimates and initial state estimation error covariance Dialog (default) | Input port",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Initial states x[0]",
+   "default": "0",
+   "values": "Specify the initial state estimate 0 (default) | scalar | vector",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "State estimation error covariance P[0]",
+   "default": "10",
+   "values": "Specify the initial state estimation error covariance 10 (default) | scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Use the Kalman Gain K from the model variable",
+   "default": "off",
+   "values": "Specify whether to use pre-identified Kalman Gain contained in state-space plant model off (default) | on",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Use G and H matrices (default G=I and H=0)",
+   "default": "off",
+   "values": "Specify whether to use non-default values for G and H matrices off (default) | on",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "G",
+   "default": "1",
+   "values": "Specify the G matrix 1 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant G",
+   "default": "on",
+   "values": "Specify the G matrix is time invariant on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "H",
+   "default": "0",
+   "values": "Specify the H matrix 0 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant H",
+   "default": "on",
+   "values": "Specify the H matrix is time invariant on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Number of process noise inputs",
+   "default": "1",
+   "values": "Process noise inputs 1 (default) | non-negative scalar",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Q",
+   "default": "0.05",
+   "values": "Process noise covariance matrix 0.05 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant Q",
+   "default": "on",
+   "values": "Specify if Q matrix is time invariant on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "R",
+   "default": "1",
+   "values": "Measurement noise covariance matrix 1 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant R",
+   "default": "on",
+   "values": "Specify if R matrix is time invariant on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "N",
+   "default": "0",
+   "values": "Process and measurement noise cross-covariance matrix 0 (default) | non-negative scalar | vector | matrix",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Time-invariant N",
+   "default": "on",
+   "values": "Specify if N matrix is time invariant on (default) | off",
+   "group": "Model Parameters"
+  },
+  {
+   "name": "Add input port u",
+   "default": "on",
+   "values": "Specify if model contains known inputs on (default) | off",
+   "group": "Options"
+  },
+  {
+   "name": "Add input port Enable to control measurement updates",
+   "default": "off",
+   "values": "Control the measurement updates off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "External Reset",
+   "default": "None",
+   "values": "Option to reset estimated states and parameter covariance matrix using specified initial values None (default) | Rising | Falling | Either | Level | Level hold",
+   "group": "Options"
+  },
+  {
+   "name": "Output estimated model output y",
+   "default": "off",
+   "values": "Include estimated model outputs off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Output state estimation error covariance Z",
+   "default": "off",
+   "values": "Add Z output port to the block off (default) | on",
+   "group": "Options"
+  },
+  {
+   "name": "Output state estimation error covariance P",
+   "default": "off",
+   "values": "Add P output port to the block off (default) | on",
+   "group": "Options"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Planet-Planet",
+ "title": "Planet-Planet",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Planetary Subcomponents/Planet_Planet.md"
+ ],
+ "text": "Planetary gear set of carrier, inner planet, and outer planet wheels with adjustable gear ratio and friction losses.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

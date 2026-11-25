@@ -1,0 +1,56 @@
+{
+ "key": "Checks_Resolution",
+ "title": "Check Input Resolution",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model Verification/Check_Input_Resolution.md",
+  "HDL Coder/Model Verification/Check_Input_Resolution.md"
+ ],
+ "text": "检查输入信号是否具有指定的分辨率，输入 1 路、输出 1 路、无直接馈通；按 {Resolution} 指定用于与输入信号进行比较的分辨率值 scalar；{Enable assertion} 启用或禁用检查、{Simulation callback when assertion fails (optional)} 指定断言失败时要计算的表达式、{Stop simulation when assertion fails} 指定检查失败时是否停止仿真、{Output assertion signal} 指定创建输出信号，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "根据分辨率进行检查的输入信号 scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "断言输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Resolution",
+   "default": "",
+   "values": "用于与输入信号进行比较的分辨率值 scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "启用或禁用检查 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "\"\"",
+   "values": "断言失败时要计算的表达式 \"\" (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "on",
+   "values": "检查失败时是否停止仿真 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "创建输出信号 off (default) | on",
+   "group": ""
+  }
+ ]
+}

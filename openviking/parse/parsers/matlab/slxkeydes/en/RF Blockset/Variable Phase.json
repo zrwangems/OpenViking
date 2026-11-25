@@ -1,0 +1,38 @@
+{
+ "key": "Variable Phase",
+ "title": "Variable Phase Shift",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Variable_Phase_Shift.md"
+ ],
+ "text": "Model variable phase device, 1 input, {Reference impedances (Ohm)} sets Reference impedance for phase shifter; {Phase shift unit} sets the angle units for controlling phase of circuit and {Ground and hide negative terminals} sets the ground RF circuit terminals. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Phase",
+   "direction": "input",
+   "summary": "Simulink control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase shift unit",
+   "default": "rad",
+   "values": "Angle units for controlling phase of circuit rad (default) | deg",
+   "group": ""
+  },
+  {
+   "name": "Reference impedances (Ohm)",
+   "default": "50",
+   "values": "Reference impedance for phase shifter 50 (default) | vector of real positive scalars | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

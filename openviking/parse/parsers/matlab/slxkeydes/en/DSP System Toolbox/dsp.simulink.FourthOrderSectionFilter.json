@@ -1,0 +1,71 @@
+{
+ "key": "dsp.simulink.FourthOrderSectionFilter",
+ "title": "Fourth Order Section Filter",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Filter Implementations/Fourth_Order_Section_Filter.md"
+ ],
+ "text": "Implement cascade of fourth-order section filters, 3 inputs, 1 output, no direct feedthrough, {Coefficient source} sets Filter coefficient source Dialog; {Numerator coefficients of filter} sets the numerator coefficients, {Denominator coefficients of filter} sets the denominator coefficients {Filter}, {View Filter Response} sets the visualize frequency response and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Num",
+   "direction": "input",
+   "summary": "Numerator coefficients P -by-5 matrix"
+  },
+  {
+   "name": "Den",
+   "direction": "input",
+   "summary": "Denominator coefficients P -by-5 matrix | P -by-4 matrix"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filtered output vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "parameters",
+   "values": "Filter coefficient source Dialog parameters (default) | Input ports | Filter object",
+   "group": ""
+  },
+  {
+   "name": "Numerator coefficients of filter",
+   "default": "]",
+   "values": "Numerator coefficients [ 0.07795634 0 -0.15591268 0 0.07795634; 0.06188520 0 -0.12377039 0 0.06188520 ] (default) | P -by-5 matrix",
+   "group": ""
+  },
+  {
+   "name": "Denominator coefficients of filter",
+   "default": "]",
+   "values": "Denominator coefficients [ 1 0 1.32091343 0 0.63273879; 1 0 1.04859957 0 0.29614035 ] (default) | P -by-5 matrix | P -by-4 matrix",
+   "group": ""
+  },
+  {
+   "name": "Filter",
+   "default": "",
+   "values": "Filter object dsp.FourthOrderSectionFilter object",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "Visualize frequency response gui button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,130 @@
+{
+ "key": "Simulink Desktop Real-Time Packet Input",
+ "title": "Packet Input",
+ "toolbox": "Simulink Desktop Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Desktop Real-Time/Packet_Input.md"
+ ],
+ "text": "Read binary data or a CAN message from a communication channel, 5 outputs, {Block output data types} sets Output type and grouping of data from the packet; {Install new board} sets the register a board < no board, {Delete current board} sets the delete the current board, {Board setup} sets the up the board, {Sample time}, {Maximum missed ticks} sets the number of timer ticks by which your model can trail, {Show “Missed Ticks” port} sets the send number of missed ticks to port Missed, {Yield CPU when waiting} sets the yield CPU while kernel waits for hardware, {Packet identifier} sets the identifier of the packet, {Extended identifier}, {Input packet size} sets the number of bytes that each input packet, {Input packet field byte order} sets the byte order of packet acquired from device Little, {Show “Data Ready” port} adds port Data Ready that signals 1 when data, {Show “Data Error” port} adds port Data Error that signals 1 if error and {Show packet timestamp port} adds port Timestamp that outputs CAN message. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Output Data",
+   "direction": "output",
+   "summary": "Data received from communication channel vector"
+  },
+  {
+   "name": "Data Ready",
+   "direction": "output",
+   "summary": "Data ready port (optional) 1 | 0"
+  },
+  {
+   "name": "Data Error",
+   "direction": "output",
+   "summary": "Data error port (optional) 1 | 0"
+  },
+  {
+   "name": "Timestamp",
+   "direction": "output",
+   "summary": "Packet timestamp port (optional) double"
+  },
+  {
+   "name": "Missed Ticks",
+   "direction": "output",
+   "summary": "Missed tick count (optional) double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Install new board",
+   "default": ">",
+   "values": "Register a board < no board selected > (default)",
+   "group": ""
+  },
+  {
+   "name": "Delete current board",
+   "default": "",
+   "values": "Delete the current board (button)",
+   "group": ""
+  },
+  {
+   "name": "Board setup",
+   "default": "",
+   "values": "Set up the board (button)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time of block 0.1 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Maximum missed ticks",
+   "default": "10",
+   "values": "Number of timer ticks by which your model can trail the kernel 10 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Show “Missed Ticks” port",
+   "default": "’off’",
+   "values": "Send number of missed ticks to port Missed Ticks ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Yield CPU when waiting",
+   "default": "’off’",
+   "values": "Yield CPU while kernel waits for hardware ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Packet identifier",
+   "default": "1",
+   "values": "Identifier of the packet 1 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Extended identifier",
+   "default": "’off’",
+   "values": "Extended identifier of the packet (CAN boards only) ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Input packet size",
+   "default": "32",
+   "values": "Number of bytes that each input packet contains 32 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Block output data types",
+   "default": "’4*double’",
+   "values": "Output type and grouping of data from the packet ’4*double’ (default) | character vector | cell array of character vector",
+   "group": ""
+  },
+  {
+   "name": "Input packet field byte order",
+   "default": "Endian",
+   "values": "Byte order of packet acquired from device Little Endian (default) | Big Endian",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Ready” port",
+   "default": "’off’",
+   "values": "Add port Data Ready that signals 1 when data is available ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Show “Data Error” port",
+   "default": "’off’",
+   "values": "Add port Data Error that signals 1 if error occurs ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Show packet timestamp port",
+   "default": "’off’",
+   "values": "Add port Timestamp that outputs CAN message timestamps ’off’ (default) | ’on’",
+   "group": ""
+  }
+ ]
+}

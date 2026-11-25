@@ -1,0 +1,248 @@
+{
+ "key": "Mapped Core Engine",
+ "title": "Mapped Core Engine",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Core Engine/Mapped_Core_Engine.md"
+ ],
+ "text": "Steady-state core engine model using lookup tables, 3 inputs, 10 outputs; {Engine Type} sets the type of engine image Compression-ignition, {Load input port name} sets the name TrqCmd, {Breakpoints for load input} sets the breakpoints vector, {Speed input port name} sets the name EngSpd, {Breakpoints for speed input} sets the breakpoints vector, {Temperature input port name} sets the name EngTemp, {Breakpoints for temperature input} sets the breakpoints, {Output Configuration} sets the create output ports, {Power output port name} sets the power, {Power table} sets the power array, {Air output port name} sets the air IntkAirMassFlw, {Air table} sets the air array, {Fuel output port name} sets the fuel FuelMassFlw, {Fuel table} sets the fuel array, {Temperature output port name} sets the temperature, {Temperature table} sets the temperature array, {Efficiency output port name} sets the efficiency, {Efficiency table} sets the efficiency array, {HC output port name} sets the hydrocarbon, {HC table} sets the hydrocarbon array, {CO output port name} sets the carbon dioxide, {CO table} sets the carbon dioxide array, {NOx output port name} sets the nitric oxide NO and nitrogen dioxide NO, {NOx table} sets the nitric oxide NO and nitrogen dioxide NO, {CO2 output port name} sets the carbon dioxide, {CO2 table} sets the carbon dioxide array, {PM output port name} sets the particulate matter and {PM table} sets the particulate matter array. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "<TrqCmd>",
+   "direction": "input",
+   "summary": "Engine load TrqCmd (default)"
+  },
+  {
+   "name": "<EngSpd>",
+   "direction": "input",
+   "summary": "Engine speed EngSpd (default)"
+  },
+  {
+   "name": "<EngTemp>",
+   "direction": "input",
+   "summary": "Engine temperature EngTemp (default)"
+  },
+  {
+   "name": "<EngTrq>",
+   "direction": "output",
+   "summary": "Power EngTrq (default)"
+  },
+  {
+   "name": "<IntkAirMassFlw>",
+   "direction": "output",
+   "summary": "Air mass flow IntkAirMassFlw (default)"
+  },
+  {
+   "name": "<FuelMassFlw>",
+   "direction": "output",
+   "summary": "Fuel flow FuelMassFlw (default)"
+  },
+  {
+   "name": "<ExhManGasTemp>",
+   "direction": "output",
+   "summary": "Exhaust temperature ExhManGasTemp (default)"
+  },
+  {
+   "name": "<Bsfc>",
+   "direction": "output",
+   "summary": "Efficiency Bsfc (default)"
+  },
+  {
+   "name": "<EoHC>",
+   "direction": "output",
+   "summary": "Hydrocarbon emissions EoHC (default)"
+  },
+  {
+   "name": "<EoCO>",
+   "direction": "output",
+   "summary": "Carbon monoxide emissions EoCO (default)"
+  },
+  {
+   "name": "<EoNOx>",
+   "direction": "output",
+   "summary": "Nitric oxide and nitrogen dioxide emissions EoNOx (default)"
+  },
+  {
+   "name": "<EoCO2>",
+   "direction": "output",
+   "summary": "Carbon dioxide emissions EoCO2 (default)"
+  },
+  {
+   "name": "<EoPm>",
+   "direction": "output",
+   "summary": "Particulate matter emissions EoPm (default)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Engine Type",
+   "default": "(CI)",
+   "values": "Type of engine image Compression-ignition (CI) (default) | Spark-ignition (SI)",
+   "group": ""
+  },
+  {
+   "name": "Load input port name",
+   "default": "TrqCmd",
+   "values": "Name TrqCmd (default)",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for load input",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": ""
+  },
+  {
+   "name": "Speed input port name",
+   "default": "EngSpd",
+   "values": "Name EngSpd (default)",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for speed input",
+   "default": "",
+   "values": "Breakpoints vector",
+   "group": ""
+  },
+  {
+   "name": "Temperature input port name",
+   "default": "EngTemp",
+   "values": "Name EngTemp (default)",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for temperature input",
+   "default": "373.15]",
+   "values": "Breakpoints [233.15 273.15 373.15] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Output Configuration",
+   "default": "on",
+   "values": "Create output ports on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Power output port name",
+   "default": "EngTrq",
+   "values": "Power EngTrq (default)",
+   "group": ""
+  },
+  {
+   "name": "Power table",
+   "default": "",
+   "values": "Power array",
+   "group": ""
+  },
+  {
+   "name": "Air output port name",
+   "default": "IntkAirMassFlw",
+   "values": "Air IntkAirMassFlw (default)",
+   "group": ""
+  },
+  {
+   "name": "Air table",
+   "default": "",
+   "values": "Air array",
+   "group": ""
+  },
+  {
+   "name": "Fuel output port name",
+   "default": "FuelMassFlw",
+   "values": "Fuel FuelMassFlw (default)",
+   "group": ""
+  },
+  {
+   "name": "Fuel table",
+   "default": "",
+   "values": "Fuel array",
+   "group": ""
+  },
+  {
+   "name": "Temperature output port name",
+   "default": "ExhManGasTemp",
+   "values": "Temperature ExhManGasTemp (default)",
+   "group": ""
+  },
+  {
+   "name": "Temperature table",
+   "default": "",
+   "values": "Temperature array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency output port name",
+   "default": "Bsfc",
+   "values": "Efficiency Bsfc (default)",
+   "group": ""
+  },
+  {
+   "name": "Efficiency table",
+   "default": "",
+   "values": "Efficiency array",
+   "group": ""
+  },
+  {
+   "name": "HC output port name",
+   "default": "EoHC",
+   "values": "Hydrocarbon EoHC (default)",
+   "group": ""
+  },
+  {
+   "name": "HC table",
+   "default": "",
+   "values": "Hydrocarbon array",
+   "group": ""
+  },
+  {
+   "name": "CO output port name",
+   "default": "EoCO",
+   "values": "Carbon dioxide EoCO (default)",
+   "group": ""
+  },
+  {
+   "name": "CO table",
+   "default": "",
+   "values": "Carbon dioxide array",
+   "group": ""
+  },
+  {
+   "name": "NOx output port name",
+   "default": "EoNOx",
+   "values": "Nitric oxide NO and nitrogen dioxide NO 2 EoNOx (default)",
+   "group": ""
+  },
+  {
+   "name": "NOx table",
+   "default": "",
+   "values": "Nitric oxide NO and nitrogen dioxide NO 2 array",
+   "group": ""
+  },
+  {
+   "name": "CO2 output port name",
+   "default": "EoCO2",
+   "values": "Carbon dioxide EoCO2 (default)",
+   "group": ""
+  },
+  {
+   "name": "CO2 table",
+   "default": "",
+   "values": "Carbon dioxide array",
+   "group": ""
+  },
+  {
+   "name": "PM output port name",
+   "default": "EoPm",
+   "values": "Particulate matter EoPm (default)",
+   "group": ""
+  },
+  {
+   "name": "PM table",
+   "default": "",
+   "values": "Particulate matter array",
+   "group": ""
+  }
+ ]
+}

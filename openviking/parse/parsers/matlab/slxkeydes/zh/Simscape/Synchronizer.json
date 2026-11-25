@@ -1,0 +1,13 @@
+{
+ "key": "Synchronizer",
+ "title": "Synchronizer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Clutches/Synchronizer.md"
+ ],
+ "text": "机械同步器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

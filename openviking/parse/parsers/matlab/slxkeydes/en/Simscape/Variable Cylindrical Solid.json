@@ -1,0 +1,13 @@
+{
+ "key": "Variable Cylindrical Solid",
+ "title": "Variable Cylindrical Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Variable Mass/Variable_Cylindrical_Solid.md"
+ ],
+ "text": "Solid cylinder with variable mass and size.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

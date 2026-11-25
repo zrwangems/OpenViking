@@ -1,0 +1,173 @@
+{
+ "key": "ClassificationECOC Predict",
+ "title": "ClassificationECOC Predict",
+ "toolbox": "Statistics and Machine Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Statistics and Machine Learning Toolbox/Classification/ClassificationECOC_Predict.md"
+ ],
+ "text": "Classify observations using error-correcting output codes (ECOC) classification model, 1 input, 3 outputs, direct feedthrough, {Select trained machine learning model} sets ECOC classification model; {Add output port for predicted class scores (negated average binary losses)} adds second output port, {Add output port for positive-class scores of binary learners} adds third output port, {Binary learner loss function}, {Decoding scheme}, {Integer rounding mode} sets the rounding mode for fixed-point operations, {Saturate on integer overflow} sets the method of overflow action, {Lock output data type setting against changes by the fixed-point tools} sets the prevention of fixed-point tools from overriding data, {Label data type} sets the data type of label output, {Label data type Minimum} sets the minimum value of label output for range checking, {Label data type Maximum} sets the maximum value of label output for range checking, {Score data type} sets the data type of score output Inherit, {Score data type Minimum} sets the minimum value of score output for range checking, {Score data type Maximum} sets the maximum value of score output for range checking, {Positive-class score data type}, {Positive-class score data type Minimum} sets the minimum value of pbscore output for range checking, {Positive-class score data type Maximum} sets the maximum value of pbscore output for range checking, {Kernel data type} sets the binary learner kernel computation data type, {Kernel data type Minimum} sets the minimum kernel computation value for range checking, {Kernel data type Maximum} sets the maximum kernel computation value for range checking, {Inner product data type}, {Inner product data type Minimum} sets the minimum of inner product term for range checking and {Inner product data type Maximum} sets the maximum of inner product term for range checking. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Predictor data row vector | column vector"
+  },
+  {
+   "name": "label",
+   "direction": "output",
+   "summary": "Predicted class label scalar"
+  },
+  {
+   "name": "score",
+   "direction": "output",
+   "summary": "Predicted class scores or posterior probabilities row vector"
+  },
+  {
+   "name": "pbscore",
+   "direction": "output",
+   "summary": "Positive-class scores of binary learners row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select trained machine learning model",
+   "default": "ecocMdl",
+   "values": "ECOC classification model ecocMdl (default) | ClassificationECOC object | CompactClassificationECOC object",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for predicted class scores (negated average binary losses)",
+   "default": "off",
+   "values": "Add second output port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Add output port for positive-class scores of binary learners",
+   "default": "off",
+   "values": "Add third output port off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Binary learner loss function",
+   "default": "hinge",
+   "values": "Binary learner loss function hinge (default) | binodeviance | exponential | hamming | linear | logit | quadratic",
+   "group": "Main"
+  },
+  {
+   "name": "Decoding scheme",
+   "default": "lossweighted",
+   "values": "Decoding scheme lossweighted (default) | lossbased",
+   "group": "Main"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock output data type setting against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevention of fixed-point tools from overriding data type off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type",
+   "default": "",
+   "values": "Data type of label output Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of label output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Label data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of label output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type",
+   "default": "auto",
+   "values": "Data type of score output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of score output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Score data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of score output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Positive-class score data type",
+   "default": "auto",
+   "values": "Positive-class score data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Positive-class score data type Minimum",
+   "default": "[]",
+   "values": "Minimum value of pbscore output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Positive-class score data type Maximum",
+   "default": "[]",
+   "values": "Maximum value of pbscore output for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type",
+   "default": "double",
+   "values": "Binary learner kernel computation data type double (default) | single | half | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type Minimum",
+   "default": "[]",
+   "values": "Minimum kernel computation value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Kernel data type Maximum",
+   "default": "[]",
+   "values": "Maximum kernel computation value for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type",
+   "default": "rule",
+   "values": "Inner product data type for binary learners Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type Minimum",
+   "default": "[]",
+   "values": "Minimum of inner product term for range checking [] (default) | scalar",
+   "group": "Data Types"
+  },
+  {
+   "name": "Inner product data type Maximum",
+   "default": "[]",
+   "values": "Maximum of inner product term for range checking [] (default) | scalar",
+   "group": "Data Types"
+  }
+ ]
+}

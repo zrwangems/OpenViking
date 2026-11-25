@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Reducing Valve (TL)",
+ "title": "Pressure Reducing Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Pressure Control Valves/Pressure_Reducing_Valve_TL.md"
+ ],
+ "text": "热液网络中的减压阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

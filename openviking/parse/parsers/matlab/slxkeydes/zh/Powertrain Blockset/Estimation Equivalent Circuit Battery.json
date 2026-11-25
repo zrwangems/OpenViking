@@ -1,0 +1,101 @@
+{
+ "key": "Estimation Equivalent Circuit Battery",
+ "title": "Estimation Equivalent Circuit Battery",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/Network Battery/Estimation_Equivalent_Circuit_Battery.md"
+ ],
+ "text": "使用查找表确定总电压的电阻-电容 (RC) 电路电池；输出 3 路；{Number of series RC pairs} 指定 RC 对、{Open circuit voltage Em table data, Em} 指定电压表、{Series resistance table data, R0} 指定电阻、{State of charge breakpoints, SOC_BP} 指定 SOC 断点、{Battery capacity, BattCap} 指定容量、{Initial battery capacity, BattCapInit} 指定容量、{Initial capacitor voltage, InitialCapVoltage} 指定电压、{Network resistance table data, R n} 查找表、{Network capacitance table data, C n} 查找表、{Upper Integrator Voltage Limit, Vu} 指定 Maximum、{Lower Integrator Voltage Limit, Vl} 指定 Minimum，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BattCurr",
+   "direction": "",
+   "summary": "电池网络电流 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "BattVolt",
+   "direction": "output",
+   "summary": "电池输出电压 scalar"
+  },
+  {
+   "name": "BattSoc",
+   "direction": "output",
+   "summary": "电池 SOC scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of series RC pairs",
+   "default": "1",
+   "values": "RC 对 1 (default) | 2 | 3 | 4 | 5",
+   "group": ""
+  },
+  {
+   "name": "Open circuit voltage Em table data, Em",
+   "default": "3.8]",
+   "values": "电压表 [3.8 3.8 3.8 3.8 3.8 3.8] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Series resistance table data, R0",
+   "default": "0.01]",
+   "values": "电阻 [0.01 0.01 0.01 0.01 0.01 0.01] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "State of charge breakpoints, SOC_BP",
+   "default": "1]",
+   "values": "SOC 断点 [0.2.4.6.8 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Battery capacity, BattCap",
+   "default": "27.6250",
+   "values": "容量 27.6250 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial battery capacity, BattCapInit",
+   "default": "27.6250",
+   "values": "容量 27.6250 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial capacitor voltage, InitialCapVoltage",
+   "default": "0",
+   "values": "电压 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Network resistance table data, R n",
+   "default": "0.005]",
+   "values": "查找表 [0.005 0.005 0.005 0.005 0.005 0.005] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Network capacitance table data, C n",
+   "default": "10000]",
+   "values": "查找表 [10000 10000 10000 10000 10000 10000] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "Upper Integrator Voltage Limit, Vu",
+   "default": "Inf",
+   "values": "Maximum Inf (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lower Integrator Voltage Limit, Vl",
+   "default": "Inf",
+   "values": "Minimum Inf (default) | scalar",
+   "group": ""
+  }
+ ]
+}

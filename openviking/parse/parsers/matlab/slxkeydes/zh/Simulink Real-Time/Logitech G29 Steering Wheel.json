@@ -1,0 +1,46 @@
+{
+ "key": "Logitech G29 Steering Wheel",
+ "title": "Steering Wheel Read",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/Logitech G29/Steering_Wheel_Read.md"
+ ],
+ "text": "接收 Logitech G29 方向盘读取数据；输出 5 路；{sampleTime} 指定方向盘数据采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Buttons",
+   "direction": "output",
+   "summary": "方向盘按钮状态 0（=未按下） | 1（=按下）"
+  },
+  {
+   "name": "Steering",
+   "direction": "output",
+   "summary": "方向盘位置的值 0（=最左侧） | 65535（=最右侧）"
+  },
+  {
+   "name": "Pedals",
+   "direction": "output",
+   "summary": "油门、刹车和离合器踏板状态 0（=未踩下） | 255（=完全踩下）"
+  },
+  {
+   "name": "Direction",
+   "direction": "output",
+   "summary": "方向盘方向键按钮状态 0（=上） | 2（=右） | 4（=下） | 6（=左） | 8（=未按下）"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "方向盘通信状态 0 (默认) | 负值"
+  }
+ ],
+ "params": [
+  {
+   "name": "sampleTime",
+   "default": "-1（继承）",
+   "values": "方向盘数据采样时间 -1（继承） (默认)",
+   "group": ""
+  }
+ ]
+}

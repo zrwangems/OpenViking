@@ -1,0 +1,58 @@
+{
+ "key": "CC-CV Charging (Proportional Control)",
+ "title": "CC-CV Charging (Proportional Control)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Current Management/CC_CV_Charging_Proportional_Control.md"
+ ],
+ "text": "采用比例控制的恒流恒压充电算法，输入 4 路、输出 1 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Specify CellVoltage input as [Min,Max]} 用于将 CellVoltage、{Controller proportional gain} 控制器的比例增益，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ChargingEnabled",
+   "direction": "input",
+   "summary": "是否启用电池充电 boolean"
+  },
+  {
+   "name": "CellVoltage",
+   "direction": "input",
+   "summary": "电芯电压，V scalar | vector"
+  },
+  {
+   "name": "ChargeCurrentLimit",
+   "direction": "input",
+   "summary": "充电电流限值，A scalar"
+  },
+  {
+   "name": "CellVoltageThreshold",
+   "direction": "input",
+   "summary": "放电电流，V scalar"
+  },
+  {
+   "name": "ChargeCurrentRequest",
+   "direction": "output",
+   "summary": "充电电流 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify CellVoltage input as [Min,Max]",
+   "default": "off",
+   "values": "用于将 CellVoltage 输入指定为最小值和最大值的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Controller proportional gain",
+   "default": "0.02",
+   "values": "控制器的比例增益 0.02 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "1",
+   "values": "模块采样时间 1 (default) | -1 | positive integer",
+   "group": ""
+  }
+ ]
+}

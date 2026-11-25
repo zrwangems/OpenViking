@@ -1,0 +1,50 @@
+{
+ "key": "Extract Bits",
+ "title": "Extract Bits",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Extract_Bits.md",
+  "HDL Coder/Logic and Bit Operations/Extract_Bits.md"
+ ],
+ "text": "输出从输入信号选择的连续位，输入 1 路、输出 1 路；按 {提取位} 指定提取位的方法；{位数}、{位索引} 指定要输出的位数的连续范围、{输出定标模式}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "提取位 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "提取位",
+   "default": "上半部",
+   "values": "提取位的方法 上半部 (默认) | 下半部 | 以最高有效位开始的范围 | 以最低有效位结束的范围 | 位范围",
+   "group": ""
+  },
+  {
+   "name": "位数",
+   "default": "8",
+   "values": "要输出的位数 8 (默认) | 正整数标量",
+   "group": ""
+  },
+  {
+   "name": "位索引",
+   "default": "7]",
+   "values": "要输出的位数的连续范围 [0 7] (默认) | 二元素向量 | 正整数标量",
+   "group": ""
+  },
+  {
+   "name": "输出定标模式",
+   "default": "保留定点定标",
+   "values": "输出定标模式 保留定点定标 (默认) | 将位域视为整数",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PS Max",
+ "title": "PS Max",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Max.md"
+ ],
+ "text": "Output maximum of two input physical signals.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

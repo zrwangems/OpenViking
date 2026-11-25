@@ -1,0 +1,53 @@
+{
+ "key": "Stream Write",
+ "title": "Stream Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Stream_Write.md"
+ ],
+ "text": "将数据从处理器算法流式传输到共享内存，输入 2 路、输出 2 路；{Device name} 指定 IP 核设备名称、{Number of buffers} 指定数据缓冲区数量、{Enable event-based execution} 用于启用事件驱动任务执行，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "来自软件算法的数据帧 vector"
+  },
+  {
+   "name": "done",
+   "direction": "input",
+   "summary": "内存中有可用缓冲区的通知 scalar"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "发往内存的数据消息 scalar"
+  },
+  {
+   "name": "status",
+   "direction": "output",
+   "summary": "已完成写入事务的状态 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device name",
+   "default": "ip:MM2S",
+   "values": "IP 核设备名称 ip:MM2S (default) | colon-separated list of IP core name and channel",
+   "group": ""
+  },
+  {
+   "name": "Number of buffers",
+   "default": "3",
+   "values": "数据缓冲区数量 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable event-based execution",
+   "default": "on",
+   "values": "用于启用事件驱动任务执行的选项 on (default) | off",
+   "group": ""
+  }
+ ]
+}

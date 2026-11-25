@@ -1,0 +1,13 @@
+{
+ "key": "Liquid Properties Sensor (IL)",
+ "title": "Liquid Properties Sensor (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Sensors/Liquid_Properties_Sensor_IL.md"
+ ],
+ "text": "测量等温液体网络中的密度、体积模量和夹带空气分数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

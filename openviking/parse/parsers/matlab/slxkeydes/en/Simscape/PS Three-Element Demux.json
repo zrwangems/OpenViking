@@ -1,0 +1,14 @@
+{
+ "key": "PS Three-Element Demux",
+ "title": "PS Three-Element Demux",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/PS_Three_Element_Demux.md",
+  "Simscape/Foundation Library/Physical Signals/Nonlinear Operators/PS_Three_Element_Demux.md"
+ ],
+ "text": "Load flow analysis busbar connector.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

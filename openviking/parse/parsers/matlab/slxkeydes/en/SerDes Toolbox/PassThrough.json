@@ -1,0 +1,24 @@
+{
+ "key": "PassThrough",
+ "title": "PassThrough",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Datapath Blocks/PassThrough.md"
+ ],
+ "text": "Propagates baseband signal without modification, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "Input baseband signal scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "Unchanged output voltage scalar | vector"
+  }
+ ],
+ "params": []
+}

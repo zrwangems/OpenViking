@@ -1,0 +1,51 @@
+{
+ "key": "Dual-port RAM",
+ "title": "Dual Port RAM",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL RAMs/Dual_Port_RAM.md"
+ ],
+ "text": "(To be removed) Dual port RAM with two output ports, 4 inputs, 2 outputs; {Address port width} sets the address bit width. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wr_din",
+   "direction": "input",
+   "summary": "Write data input Scalar (default)"
+  },
+  {
+   "name": "wr_addr",
+   "direction": "input",
+   "summary": "Write address Scalar (default)"
+  },
+  {
+   "name": "wr_en",
+   "direction": "input",
+   "summary": "Write enable Scalar (default)"
+  },
+  {
+   "name": "rd_addr",
+   "direction": "input",
+   "summary": "Read address Scalar (default)"
+  },
+  {
+   "name": "wr_dout",
+   "direction": "output",
+   "summary": "Output data from write address Scalar (default)"
+  },
+  {
+   "name": "rd_dout",
+   "direction": "output",
+   "summary": "Output data from read address Scalar (default)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Address port width",
+   "default": "8",
+   "values": "Address bit width 8 (default)",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+{
+ "key": "phased.BackscatterRadarTarget",
+ "title": "Backscatter Radar Target",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Backscatter_Radar_Target.md"
+ ],
+ "text": "后向散射雷达目标，输入 3 路、输出 1 路；按 {Azimuth angles (deg)} 指定方位角；{Elevation angles (deg)} 指定俯仰角、{RCS pattern (m^2)} 指定雷达截面积方向图 ones、{Fluctuation model} 指定目标起伏模型、{Propagation speed (m/s)} 指定信号传播速度 physconst、{Operating frequency (Hz)} 指定工作频率 3e8、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "窄带信号 N -by- 1 complex-valued vector | N -by- M complex-valued matrix"
+  },
+  {
+   "name": "Ang",
+   "direction": "input",
+   "summary": "入射信号方向 2-by-1 real-valued column vector | 2-by- M real-valued column matrix"
+  },
+  {
+   "name": "Update",
+   "direction": "input",
+   "summary": "用于更新 RCS 的开关 false | true"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "窄带反射信号 1-by- M complex-valued vector | N -by- M complex-valued matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Azimuth angles (deg)",
+   "default": "[-180:180]",
+   "values": "方位角 [-180:180] (default) | 1-by- P real-valued row vector | P -by-1 real-valued column vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "[-90:90]",
+   "values": "俯仰角 [-90:90] (default) | 1-by- Q real-valued row vector | Q -by-1 real-valued column vector",
+   "group": ""
+  },
+  {
+   "name": "RCS pattern (m^2)",
+   "default": "ones(181,361)",
+   "values": "雷达截面积方向图 ones(181,361) (default) | Q -by- P real-valued matrix | Q -by- P -by- M real-valued array | 1-by- P real-valued vector | M -by- P real-valued matrix",
+   "group": ""
+  },
+  {
+   "name": "Fluctuation model",
+   "default": "Nonfluctuating",
+   "values": "目标起伏模型 Nonfluctuating (default) | Swerling1 | Swerling2 | Swerling3 | Swerling4",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency (Hz)",
+   "default": "3e8",
+   "values": "工作频率 3e8 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

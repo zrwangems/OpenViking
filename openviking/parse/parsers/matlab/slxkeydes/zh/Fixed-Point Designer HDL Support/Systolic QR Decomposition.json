@@ -1,0 +1,84 @@
+{
+ "key": "Systolic QR Decomposition",
+ "title": "Systolic QR Decomposition",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Matrices and Linear Algebra/Matrix Factorizations/Systolic_QR_Decomposition.md"
+ ],
+ "text": "矩阵的 QR 分解，输入 5 路、输出 4 路；{Number of rows in matrices A and B} 指定矩阵 A 和 B 的行数、{Number of columns in matrix A} 指定矩阵 A 的列数、{Number of columns in matrix B} 指定矩阵 B 的列数、{Signal type} 指定矩阵 A 和 B，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "矩阵 A matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "矩阵 B matrix"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入是否有效 scalar"
+  },
+  {
+   "name": "readyIn",
+   "direction": "input",
+   "summary": "下游模块是否已就绪 scalar"
+  },
+  {
+   "name": "restart",
+   "direction": "input",
+   "summary": "是否清除内部状态 scalar"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "矩阵 R matrix"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "矩阵 C = Q’B matrix"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据是否有效 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "模块是否就绪 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of rows in matrices A and B",
+   "default": "2",
+   "values": "矩阵 A 和 B 的行数 2 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in matrix A",
+   "default": "2",
+   "values": "矩阵 A 的列数 2 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of columns in matrix B",
+   "default": "1",
+   "values": "矩阵 B 的列数 1 (default) | positive integer-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Signal type",
+   "default": "real",
+   "values": "矩阵 A 和 B 的复/实性 real (default) | complex",
+   "group": ""
+  }
+ ]
+}

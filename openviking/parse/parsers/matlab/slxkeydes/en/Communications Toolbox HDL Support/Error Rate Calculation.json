@@ -1,0 +1,101 @@
+{
+ "key": "Error Rate Calculation",
+ "title": "Error Rate Calculation",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Sinks/Error_Rate_Calculation.md",
+  "Communications Toolbox/Comm Sinks/Error_Rate_Calculation.md"
+ ],
+ "text": "Compute bit error rate or symbol error rate of input data, 4 inputs, 1 output, {Selected samples from frame} sets Sample indices; {Receive delay} sets the received signal delay, {Computation delay}, {Computation mode} sets the samples to consider, {Output data}, {Variable name} sets the output data variable, {Reset port} sets the option to add Rst input port, {Stop simulation} sets the option to stop simulation after specified number of errors, {Target number of errors} sets the option to stop simulation after specified number and {Maximum number of symbols} sets the option to stop simulation after comparing specified number of symbols. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tx",
+   "direction": "input",
+   "summary": "Transmitted data scalar | column vector"
+  },
+  {
+   "name": "Rx",
+   "direction": "input",
+   "summary": "Received data scalar | column vector"
+  },
+  {
+   "name": "Sel",
+   "direction": "input",
+   "summary": "Sample indices positive integer | column vector of positive integers"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset error count scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Difference between transmitted and received data column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Receive delay",
+   "default": "0",
+   "values": "Received signal delay 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Computation delay",
+   "default": "0",
+   "values": "Computation delay 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Computation mode",
+   "default": "frame",
+   "values": "Samples to consider Entire frame (default) | Select samples from mask | Select samples from port",
+   "group": ""
+  },
+  {
+   "name": "Selected samples from frame",
+   "default": "[]",
+   "values": "Sample indices [] (default) | positive integer | column vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Output data",
+   "default": "Workspace",
+   "values": "Output data location Workspace (default) | Port",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "ErrorVec",
+   "values": "Output data variable name ErrorVec (default) | character vector | string scalar",
+   "group": ""
+  },
+  {
+   "name": "Reset port",
+   "default": "off",
+   "values": "Option to add Rst input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation",
+   "default": "off",
+   "values": "Option to stop simulation after specified number of errors or comparisons off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Target number of errors",
+   "default": "100",
+   "values": "Option to stop simulation after specified number of errors 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of symbols",
+   "default": "1e6",
+   "values": "Option to stop simulation after comparing specified number of symbols 1e6 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

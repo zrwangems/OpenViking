@@ -1,0 +1,108 @@
+{
+ "key": "Iterative Learning Control",
+ "title": "Iterative Learning Control",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Adaptive Control/Iterative_Learning_Control.md"
+ ],
+ "text": "Design iterative learning controller for repetitive control tasks, 2 inputs, 1 output; {Sample time (Ts)} sets the iLC sample time, {Iteration duration (Tspan)}, {Data Type}, {ILC Algorithm} sets the iLC algorithm Model, {P-gain (gamma_p)} sets the proportional gain in model-free ILC, {D-gain (gamma_d)} sets the derivative gain in model-free ILC, {State Space Model} sets the model time domain, {A} sets the state-space model matrices, {ILC methods} sets the model-based ILC method, {ILC Gain (gamma_gradient)} sets the gradient-based ILC gain, {ILC Gain (gamma_inverse)} sets the inverse-model-based ILC gain, {Enable first-order low-pass filter} and {Filter time constant (tau)}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "error",
+   "direction": "input",
+   "summary": "Error signal scalar | vector"
+  },
+  {
+   "name": "control/reset",
+   "direction": "input",
+   "summary": "ILC mode signal scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "Updated control signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.01",
+   "values": "ILC sample time 0.01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Iteration duration (Tspan)",
+   "default": "1",
+   "values": "Iteration duration 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Data type double (default) | single |",
+   "group": ""
+  },
+  {
+   "name": "ILC Algorithm",
+   "default": "ILC",
+   "values": "ILC algorithm Model free ILC (default) | Model based ILC",
+   "group": ""
+  },
+  {
+   "name": "P-gain (gamma_p)",
+   "default": "1",
+   "values": "Proportional gain in model-free ILC 1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "D-gain (gamma_d)",
+   "default": "0",
+   "values": "Derivative gain in model-free ILC 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "State Space Model",
+   "default": "time",
+   "values": "Model time domain Continuous time (default) | Discrete time (Ts)",
+   "group": ""
+  },
+  {
+   "name": "A",
+   "default": "1",
+   "values": "State-space model matrices 1 (default) | matrix",
+   "group": ""
+  },
+  {
+   "name": "ILC methods",
+   "default": "based",
+   "values": "Model-based ILC method Gradient based (default) | Inverse-model based",
+   "group": ""
+  },
+  {
+   "name": "ILC Gain (gamma_gradient)",
+   "default": "1",
+   "values": "Gradient-based ILC gain 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "ILC Gain (gamma_inverse)",
+   "default": "1",
+   "values": "Inverse-model-based ILC gain 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable first-order low-pass filter",
+   "default": "off",
+   "values": "Enable first-order low-pass filter off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter time constant (tau)",
+   "default": "1",
+   "values": "Filter time constant 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

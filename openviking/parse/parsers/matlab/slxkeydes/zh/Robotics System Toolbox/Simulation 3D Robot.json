@@ -1,0 +1,236 @@
+{
+ "key": "Simulation 3D Robot",
+ "title": "Simulation 3D Robot",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Simulation 3D/Simulation_3D_Robot.md"
+ ],
+ "text": "在 3D 环境中实现机器人，输入 9 路、输出 4 路；按 {Rigid body tree} 指定机器人刚体树模型；{Input type} 指定机器人模型源 RigidBodyTree、{Actor name} 指定在 Unreal Engine 场景中表示机器人的 actor 的名称、{Use existing Simulink 3D actor specified in the actor name prompt} 使用 Unreal Engine 场景中的现有 actor、{Sample time} 指定采样时间、{Initial base translation} 指定机器人基座的初始平移、{Initial base rotation} 指定机器人基座的初始旋转、{Initial joint configuration} 指定初始关节配置、{End effector} 指定末端执行器刚体名称、{End effector to target actor offset as an input signal}、{End effector to target actor translation}、{End effector to target actor rotation}、{Enable region-based target actor grasp approach} 指定当目标 actor 位于末端执行器的指定边界内时自动抓取目标、{Enable target actor grasp region as an input signal} 指定在输入端口指定用于抓取目标 actor 的区域、{End effector to target actor grasp region translation difference} 指定抓取区域的平移差、{End effector to target actor grasp region rotation difference} 指定抓取区域的旋转差、{Enable visual geometry visualization in 3D scene} 指定在 3D 可视化环境中添加刚体树可视几何体、{Enable collision geometry visualization in 3D scene} 指定在 3D 可视化环境中可视化刚体树碰撞几何体、{Collision geometry color} 指定刚体树碰撞几何体的颜色、{Collision geometry transparency} 指定刚体树碰撞几何体的透明度、{Enable config input signal} 指定在输入端口指定所需机器人配置、{Enable grasp settings input signals} 指定 off、{Enable translation and rotation input signals} 指定在输入端口指定机器人基座的平移和旋转、{Enable ground truth config output signal} 输出真值配置、{Enable target grasped status output signal} 输出抓取状态、{Enable ground truth translation and rotation output signal} 输出机器人基座的真值位姿，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "机器人输入关节配置 vector"
+  },
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "机器人基座平移 vector"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "机器人基座旋转 vector"
+  },
+  {
+   "name": "TargetActor",
+   "direction": "input",
+   "summary": "要抓取的目标 actor 的名称 fixed-sized string scalar | variable-sized uint8 array"
+  },
+  {
+   "name": "ActivateTargetGrasp",
+   "direction": "input",
+   "summary": "抓取目标 actor boolean"
+  },
+  {
+   "name": "GraspRegionTranslation",
+   "direction": "input",
+   "summary": "自动抓取目标 actor 所需的平移距离 vector"
+  },
+  {
+   "name": "GraspRegionRotation",
+   "direction": "input",
+   "summary": "自动抓取目标 actor 所需的旋转距离 vector"
+  },
+  {
+   "name": "TargetEETranslation",
+   "direction": "input",
+   "summary": "末端执行器与目标 actor 之间的平移差 vector"
+  },
+  {
+   "name": "TargetEERotation",
+   "direction": "input",
+   "summary": "末端执行器与目标 actor 之间的旋转差 vector"
+  },
+  {
+   "name": "GroundTruthConfiguration",
+   "direction": "output",
+   "summary": "机器人配置的真值 vector"
+  },
+  {
+   "name": "IsTargetGrasped",
+   "direction": "output",
+   "summary": "目标 actor 的抓取状态 boolean"
+  },
+  {
+   "name": "GroundTruthTranslation",
+   "direction": "output",
+   "summary": "机器人输入关节配置 vector"
+  },
+  {
+   "name": "GroundTruthRotation",
+   "direction": "output",
+   "summary": "机器人输入关节配置 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input type",
+   "default": "Object",
+   "values": "机器人模型源 RigidBodyTree Object (default) | Robot Library",
+   "group": "Parameters"
+  },
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "机器人刚体树模型 twoJointRigidBodyTree (default) | rigidBodyTree object | Robot name in Robot Library",
+   "group": "Parameters"
+  },
+  {
+   "name": "Actor name",
+   "default": "SimulinkRobot1",
+   "values": "在 Unreal Engine 场景中表示机器人的 actor 的名称 SimulinkRobot1 (default) | string scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Use existing Simulink 3D actor specified in the actor name prompt",
+   "default": "off",
+   "values": "使用 Unreal Engine 场景中的现有 actor 来表示机器人 off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | positive scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Initial base translation",
+   "default": "0]",
+   "values": "机器人基座的初始平移 [0 0 0] (default)",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial base rotation",
+   "default": "0]",
+   "values": "机器人基座的初始旋转 [0 0 0] (default)",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial joint configuration",
+   "default": "0]",
+   "values": "初始关节配置 [0 0] (default) | N -element row vector",
+   "group": "Initial Values"
+  },
+  {
+   "name": "End effector",
+   "default": "tool",
+   "values": "末端执行器刚体名称 tool (default)",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor offset as an input signal",
+   "default": "",
+   "values": "off (default) | on",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor translation",
+   "default": "0]",
+   "values": "[0 0 0] (default) |",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor rotation",
+   "default": "0]",
+   "values": "[0 0 0] (default) |",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "Enable region-based target actor grasp approach",
+   "default": "off",
+   "values": "当目标 actor 位于末端执行器的指定边界内时自动抓取目标 actor off (default) | on",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "Enable target actor grasp region as an input signal",
+   "default": "off",
+   "values": "在输入端口指定用于抓取目标 actor 的区域 off (default) | on",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor grasp region translation difference",
+   "default": "0.2]",
+   "values": "抓取区域的平移差 [0.2 0.2 0.2] (default)",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "End effector to target actor grasp region rotation difference",
+   "default": "0]",
+   "values": "抓取区域的旋转差 [0 0 0] (default)",
+   "group": "Grasp Settings"
+  },
+  {
+   "name": "Enable visual geometry visualization in 3D scene",
+   "default": "on",
+   "values": "在 3D 可视化环境中添加刚体树可视几何体 on (default) | off",
+   "group": "rigidBodyTree Geometry Settings"
+  },
+  {
+   "name": "Enable collision geometry visualization in 3D scene",
+   "default": "off",
+   "values": "在 3D 可视化环境中可视化刚体树碰撞几何体 off (default) | on",
+   "group": "rigidBodyTree Geometry Settings"
+  },
+  {
+   "name": "Collision geometry color",
+   "default": "0]",
+   "values": "刚体树碰撞几何体的颜色 [0 1 0] (default) | vector",
+   "group": "rigidBodyTree Geometry Settings"
+  },
+  {
+   "name": "Collision geometry transparency",
+   "default": "0.1",
+   "values": "刚体树碰撞几何体的透明度 0.1 (default) | scalar",
+   "group": "rigidBodyTree Geometry Settings"
+  },
+  {
+   "name": "Enable config input signal",
+   "default": "on",
+   "values": "在输入端口指定所需机器人配置 on (default) | off",
+   "group": "Inputs"
+  },
+  {
+   "name": "Enable grasp settings input signals",
+   "default": "",
+   "values": "off (default) | on",
+   "group": "Inputs"
+  },
+  {
+   "name": "Enable translation and rotation input signals",
+   "default": "off",
+   "values": "在输入端口指定机器人基座的平移和旋转 off (default) | on",
+   "group": "Inputs"
+  },
+  {
+   "name": "Enable ground truth config output signal",
+   "default": "off",
+   "values": "输出真值配置 off (default) | on",
+   "group": "Outputs"
+  },
+  {
+   "name": "Enable target grasped status output signal",
+   "default": "off",
+   "values": "输出抓取状态 off (default) | on",
+   "group": "Outputs"
+  },
+  {
+   "name": "Enable ground truth translation and rotation output signal",
+   "default": "off",
+   "values": "输出机器人基座的真值位姿 off (default) | on",
+   "group": "Outputs"
+  }
+ ]
+}

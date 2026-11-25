@@ -1,0 +1,25 @@
+{
+ "key": "Real World Value Decrement",
+ "title": "Decrement Real World",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Additional Math & Discrete/Additional Math_ Increment - Decrement/Decrement_Real_World.md",
+  "HDL Coder/Math Operations/Decrement_Real_World.md"
+ ],
+ "text": "将信号的实际值减一，输入 1 路、输出 1 路、无直接馈通。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

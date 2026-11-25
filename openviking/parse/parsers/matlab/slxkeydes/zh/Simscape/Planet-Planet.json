@@ -1,0 +1,13 @@
+{
+ "key": "Planet-Planet",
+ "title": "Planet-Planet",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Planetary Subcomponents/Planet_Planet.md"
+ ],
+ "text": "由行星架、内行星轮和外行星轮组成的行星齿轮组，具有可调传动比和摩擦损耗。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,31 @@
+{
+ "key": "Audio Playback",
+ "title": "Audio Playback",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Audio_Playback.md"
+ ],
+ "text": "Playback audio samples from an algorithm to an output audio device, 1 input, 1 output; {Number of channels}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Audio data frame M -element vector | M -by- C matrix"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "Data message from audio capture interface scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of channels",
+   "default": "2",
+   "values": "Number of channels 2 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

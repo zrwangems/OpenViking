@@ -1,0 +1,13 @@
+{
+ "key": "Fault (Three-Phase)",
+ "title": "Fault (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Utilities/Fault_Three_Phase.md"
+ ],
+ "text": "由信号启用或基于时间的单相、两相或三相接地或不接地故障。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

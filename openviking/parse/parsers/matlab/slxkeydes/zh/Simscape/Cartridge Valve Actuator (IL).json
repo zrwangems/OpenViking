@@ -1,0 +1,13 @@
+{
+ "key": "Cartridge Valve Actuator (IL)",
+ "title": "Cartridge Valve Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Cartridge_Valve_Actuator_IL.md"
+ ],
+ "text": "在等温液体系统中保持阀压力与先导压力平衡的执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

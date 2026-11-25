@@ -1,0 +1,113 @@
+{
+ "key": "ROS 2 Send Action Goal",
+ "title": "Send Action Goal",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Send_Action_Goal.md"
+ ],
+ "text": "向 ROS 2 网络发送动作目标消息，输入 2 路、输出 2 路；按 {Source} 指定用于指定动作名称的源 Select from ROS network；{Name} 指定 ROS 2 动作名称 character、{Type} 指定 ROS 2 动作类型 character、{Paired Monitor Action Goal Block} 指定配对 Monitor Action Goal 模块的路径 block、{Show ErrorCode output port} 启用错误代码输出端口、{History} 指定将目标请求存储在队列中的模式 Keep、{Depth} 指定目标请求队列的大小、{Reliability} 指定目标请求的传递保证、{Durability} 指定动作目标请求的持久性、{Deadline} 指定从接收目标请求到发送目标结果之间允许的最长时间、{Lifespan} 指定目标请求被视为有效的时间长度、{Liveliness} 指定动作客户端对动作服务器的活跃性检查、{Lease Duration} 指定动作客户端必须声明活跃性之前的最长时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Goal",
+   "direction": "input",
+   "summary": "ROS 2 动作目标消息输入 non-virtual bus"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "在没有正在运行的目标时发送动作目标的布尔值 true | false"
+  },
+  {
+   "name": "UUID",
+   "direction": "output",
+   "summary": "专用于任何目标消息的唯一 ID non-virtual bus"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "发送动作目标请求的错误条件 integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source",
+   "default": "",
+   "values": "用于指定动作名称的源 Select from ROS network | Specify your own",
+   "group": "Main"
+  },
+  {
+   "name": "Name",
+   "default": "",
+   "values": "ROS 2 动作名称 character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Type",
+   "default": "",
+   "values": "ROS 2 动作类型 character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Paired Monitor Action Goal Block",
+   "default": "",
+   "values": "配对 Monitor Action Goal 模块的路径 block path",
+   "group": "Main"
+  },
+  {
+   "name": "Show ErrorCode output port",
+   "default": "off",
+   "values": "启用错误代码输出端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "History",
+   "default": "last",
+   "values": "将目标请求存储在队列中的模式 Keep last (default) | Keep all",
+   "group": "QoS"
+  },
+  {
+   "name": "Depth",
+   "default": "1",
+   "values": "目标请求队列的大小 1 (default) | non-negative scalar integer",
+   "group": "QoS"
+  },
+  {
+   "name": "Reliability",
+   "default": "Reliable",
+   "values": "目标请求的传递保证 Reliable (default) | Best effort",
+   "group": "QoS"
+  },
+  {
+   "name": "Durability",
+   "default": "Volatile",
+   "values": "动作目标请求的持久性 Volatile (default) | Transient local",
+   "group": "QoS"
+  },
+  {
+   "name": "Deadline",
+   "default": "Inf",
+   "values": "从接收目标请求到发送目标结果之间允许的最长时间 Inf (default) | positive scalar",
+   "group": "QoS"
+  },
+  {
+   "name": "Lifespan",
+   "default": "Inf",
+   "values": "目标请求被视为有效的时间长度 Inf (default) | positive scalar",
+   "group": "QoS"
+  },
+  {
+   "name": "Liveliness",
+   "default": "automatic",
+   "values": "动作客户端对动作服务器的活跃性检查 automatic (default)",
+   "group": "QoS"
+  },
+  {
+   "name": "Lease Duration",
+   "default": "Inf",
+   "values": "动作客户端必须声明活跃性之前的最长时间 Inf (default) | positive scalar",
+   "group": "QoS"
+  }
+ ]
+}

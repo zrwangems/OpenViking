@@ -1,0 +1,67 @@
+{
+ "key": "codertarget.tic2000.blocks.SDFM38x",
+ "title": "SDFM",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F28003x/SDFM.md",
+  "C2000 Microcontroller Blockset/F28p65x/SDFM.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SDFM.md"
+ ],
+ "text": "Configure filter channel for SDFM Module, 4 outputs, {Filter channel} sets Select filter module; {SDFM module} Indicates which register to use, {Data representation} sets the source of internal, {Sample time} sets the frequency at which data is read and {Enable comparator filter output} sets the enables comparator output ports. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DFSTS",
+   "direction": "output",
+   "summary": "Data filter status 0 | 1 | -1"
+  },
+  {
+   "name": "DFLTX",
+   "direction": "output",
+   "summary": "Data filter scalar"
+  },
+  {
+   "name": "CFSTS",
+   "direction": "output",
+   "summary": "Comparator Status 0 | 1 | 2 | 3 | 4 | 5 | -1"
+  },
+  {
+   "name": "CFLTX",
+   "direction": "output",
+   "summary": "Comparator filter scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "SDFM module",
+   "default": "1",
+   "values": "Indicates which register to use 1 (default) | 2",
+   "group": ""
+  },
+  {
+   "name": "Filter channel",
+   "default": "Filter1",
+   "values": "Select filter module Filter1 (default) | Filter2 | Filter3 | Filter4",
+   "group": ""
+  },
+  {
+   "name": "Data representation",
+   "default": "16-bit",
+   "values": "Source of internal DAC 16-bit (default) | 32-bit",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Frequency at which data is read 0.1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable comparator filter output",
+   "default": "off",
+   "values": "Enables comparator output ports off (default) | on",
+   "group": ""
+  }
+ ]
+}

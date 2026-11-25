@@ -1,0 +1,78 @@
+{
+ "key": "Varying Delay",
+ "title": "Varying Delay",
+ "toolbox": "Control System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Control System Toolbox/Linear Parameter Varying/Varying_Delay.md"
+ ],
+ "text": "Varying delay with support for fixed delay and zero delay (direct feedthrough), 2 inputs, 1 output, {Initial output} sets Initial output; {Nominal delay} sets the nominal value of delay, {Maximum delay} sets the maximum value of time delay input, {Minimum delay} sets the minimum value of time delay input, {Fixed delays (indices)} sets the signal indices with fixed delays, {Initial buffer size} sets the initial memory allocation, {Use fixed buffer size} uses fixed-size buffer and {Pade order (for linearization)} sets the order of Pade approximation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Instantaneous time delay input scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Delayed signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Nominal delay",
+   "default": "1",
+   "values": "Nominal value of delay 1 (default) | positive scalar | vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Maximum delay",
+   "default": "10",
+   "values": "Maximum value of time delay input 10 (default) | nonnegative scalar | vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Minimum delay",
+   "default": "0",
+   "values": "Minimum value of time delay input 0 (default) | nonnegative scalar | vector of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Fixed delays (indices)",
+   "default": "[]",
+   "values": "Signal indices with fixed delays [] (default) | positive scalar | vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Initial output 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial buffer size",
+   "default": "1024",
+   "values": "Initial memory allocation 1024 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Use fixed buffer size",
+   "default": "off",
+   "values": "Use fixed-size buffer off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pade order (for linearization)",
+   "default": "0",
+   "values": "Order of Pade approximation 0 (default) | positive integer | vector",
+   "group": ""
+  }
+ ]
+}

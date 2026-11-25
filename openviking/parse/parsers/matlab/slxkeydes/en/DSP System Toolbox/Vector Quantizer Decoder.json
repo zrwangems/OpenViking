@@ -1,0 +1,54 @@
+{
+ "key": "Vector Quantizer Decoder",
+ "title": "Vector Quantizer Decoder",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Quantizers/Vector_Quantizer_Decoder.md"
+ ],
+ "text": "Find vector quantizer codeword that corresponds to zero-based index value, 2 inputs, 1 output, no direct feedthrough, {Codebook and output data type} sets Codebook and output data type; {Action for out of range index value}, {Source of codebook} and {Codebook values}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Index values scalar | row vector"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Codebook values vector | matrix"
+  },
+  {
+   "name": "Q(U)",
+   "direction": "output",
+   "summary": "Quantized output values row vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Action for out of range index value",
+   "default": "Clip",
+   "values": "Action for out of range index value Clip (default) | Clip and warn | Error",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Source of codebook",
+   "default": "dialog",
+   "values": "Source of codebook Specify via dialog (default) | Input port",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Codebook values",
+   "default": "8.8]",
+   "values": "Codebook values [1.5 13.3 136.4 6.8; 2.5 14.3 137.4 7.8; 3.5 15.3 138.4 8.8] (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Codebook and output data type",
+   "default": "double",
+   "values": "Codebook and output data type double (default) | Inherit: Inherit via back propagation | Inherit: Same as input | single | fixdt(1,16) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "General Variable Mass",
+ "title": "General Variable Mass",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Variable Mass/General_Variable_Mass.md"
+ ],
+ "text": "具有可变惯性特性的质量元件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

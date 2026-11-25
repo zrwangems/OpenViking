@@ -1,0 +1,24 @@
+{
+ "key": "Continuous RMS Value Block",
+ "title": "CRMS",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/RMS Blocks/CRMS.md"
+ ],
+ "text": "Compute continuous-time, cumulative root mean square of signal, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "CRMS value scalar"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,111 @@
+{
+ "key": "Sinestream Signal Generator",
+ "title": "Sinestream Signal Generator",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Signal Generation/Sinestream_Signal_Generator.md"
+ ],
+ "text": "为被控对象频率响应估计生成正弦流输入信号，输入 3 路、输出 3 路；按 {Sample time (Ts)} 指定采样时间；{Data Type} 指定浮点精度 double、{Excitation signal source} 指定激励信号源 Block、{Frequencies} 用于估计的频率、{Amplitudes} 指定注入扰动的幅值、{Number of frequencies} 指定外部提供的频率数、{Number of signal periods} 指定每个正弦波处于最大幅值时的周期数、{Waveform Type} 指定波形类型 sine、{Phase Shift} 指定波的相移、{Generate three-phase perturbation signal}、{Show frequency index port} 启用频率索引端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "start/stop",
+   "direction": "input",
+   "summary": "启动和停止信号生成 scalar"
+  },
+  {
+   "name": "w",
+   "direction": "input",
+   "summary": "用于估计实验的频率 vector"
+  },
+  {
+   "name": "amp",
+   "direction": "input",
+   "summary": "扰动幅值 scalar | vector"
+  },
+  {
+   "name": "sin",
+   "direction": "output",
+   "summary": "Sinestream 扰动信号 scalar | vector"
+  },
+  {
+   "name": "3ϕ-sin",
+   "direction": "output",
+   "summary": "三相 sinestream 扰动信号 vector"
+  },
+  {
+   "name": "idx w",
+   "direction": "output",
+   "summary": "输出频率索引 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (Ts)",
+   "default": "0.1",
+   "values": "采样时间 0.1 (default) | positive scalar | –1",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "浮点精度 double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Excitation signal source",
+   "default": "parameters",
+   "values": "激励信号源 Block parameters (default) | External ports",
+   "group": ""
+  },
+  {
+   "name": "Frequencies",
+   "default": "2]",
+   "values": "用于估计的频率 [0.5 1 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Amplitudes",
+   "default": "1",
+   "values": "注入扰动的幅值 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of frequencies",
+   "default": "3",
+   "values": "外部提供的频率数 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of signal periods",
+   "default": "6",
+   "values": "每个正弦波处于最大幅值时的周期数 6 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Waveform Type",
+   "default": "sine",
+   "values": "波形类型 sine (default) | cosine | both",
+   "group": "Advanced Settings"
+  },
+  {
+   "name": "Phase Shift",
+   "default": "0",
+   "values": "波的相移 0 (default) | scalar | vector",
+   "group": "Advanced Settings"
+  },
+  {
+   "name": "Generate three-phase perturbation signal",
+   "default": "off",
+   "values": "Generate three-phase perturbation signal off (default) | on",
+   "group": "Advanced Settings"
+  },
+  {
+   "name": "Show frequency index port",
+   "default": "off",
+   "values": "启用频率索引端口 off (default) | on",
+   "group": "Advanced Settings"
+  }
+ ]
+}

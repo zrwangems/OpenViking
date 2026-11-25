@@ -1,0 +1,76 @@
+{
+ "key": "Complex to Magnitude-Angle",
+ "title": "Complex to Magnitude-Angle",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Math Functions/Complex_to_Magnitude_Angle.md"
+ ],
+ "text": "使用 CORDIC 算法计算复信号的幅值和相位角，输入 2 路、输出 3 路；按 {Output format} 指定输出信号格式 Magnitude and；{Number of iterations source} 指定迭代次数来源、{Number of iterations} 指定 CORDIC 迭代次数 positive、{Angle format} 输出角度格式、{Scale output} 指定缩放输出、{Scaling method} 指定 CORDIC 增益缩放的实现，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "复输入信号 scalar | vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "Magnitude",
+   "direction": "output",
+   "summary": "输入信号的幅值 scalar | vector"
+  },
+  {
+   "name": "Angle",
+   "direction": "output",
+   "summary": "输入信号的相位角 scalar | vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of iterations source",
+   "default": "Auto",
+   "values": "迭代次数来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "",
+   "values": "CORDIC 迭代次数 positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output format",
+   "default": "Angle",
+   "values": "输出信号格式 Magnitude and Angle (default) | Magnitude | Angle",
+   "group": ""
+  },
+  {
+   "name": "Angle format",
+   "default": "Normalized",
+   "values": "输出角度格式 Normalized (default) | Radians",
+   "group": ""
+  },
+  {
+   "name": "Scale output",
+   "default": "on",
+   "values": "缩放输出 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Scaling method",
+   "default": "Shift-Add",
+   "values": "CORDIC 增益缩放的实现 Shift-Add (default) | Multipliers",
+   "group": ""
+  }
+ ]
+}

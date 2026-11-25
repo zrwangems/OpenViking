@@ -1,0 +1,13 @@
+{
+ "key": "Mass With Length (PB)",
+ "title": "Mass With Length (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Mass_With_Length_PB.md"
+ ],
+ "text": "Mass with length and gravitational effects.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

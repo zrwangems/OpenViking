@@ -1,0 +1,13 @@
+{
+ "key": "PCCVS",
+ "title": "PCCVS",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PCCVS.md"
+ ],
+ "text": "多项式电流控制电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

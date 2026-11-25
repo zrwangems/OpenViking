@@ -1,0 +1,36 @@
+{
+ "key": "Coordinate Transform (Five-Phase)",
+ "title": "Coordinate Transform (Five-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Coordinate_Transform_Five_Phase.md"
+ ],
+ "text": "实现 abcde 到 dqxy0 的变换，输入 2 路、输出 1 路；{a 相轴对齐} 指定 dqxy0 参考系对齐 Q，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abcde",
+   "direction": "input",
+   "summary": "a 相、 b 相、 c 相、 d 相和 e 相分量 向量"
+  },
+  {
+   "name": "θ elec",
+   "direction": "input",
+   "summary": "旋转角度 标量"
+  },
+  {
+   "name": "dqxy0",
+   "direction": "output",
+   "summary": "直轴、交轴、 x 轴、 y 轴和零轴分量 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "a 相轴对齐",
+   "default": "轴",
+   "values": "dqxy0 参考系对齐 Q 轴 (默认) | D 轴",
+   "group": ""
+  }
+ ]
+}

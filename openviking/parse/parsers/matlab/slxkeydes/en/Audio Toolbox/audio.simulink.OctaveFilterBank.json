@@ -1,0 +1,103 @@
+{
+ "key": "audio.simulink.OctaveFilterBank",
+ "title": "Octave Filter Bank",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Filters/Octave_Filter_Bank.md"
+ ],
+ "text": "Octave-band and fractional octave-band filter bank, 1 input, 1 output, no direct feedthrough, {Bandwidth (octaves)} sets Bandwidth of filters specified in; {Frequency range (Hz)} sets the frequency range of filter bank, {Reference frequency (Hz)} sets the reference frequency of filter bank, {Filter order} sets the order of octave filters, {Octave ratio} sets the distance between filters Base ten, {Inherit sample rate from input} allows sample rate to be set by input, {Input sample rate (Hz)} sets the sample rate of input, {Bands as separate output ports} sets the one output port per filter band, {Simulate using} sets the type of simulation to run Interpreted, {View filter response} sets the open plot to visualize magnitude response, {Variable name}, {Overwrite variable if it already exists} and {Export filter to workspace} sets the export filter bank. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Bandwidth (octaves)",
+   "default": "octave",
+   "values": "Bandwidth of filters specified in octaves 1 octave (default) | 2/3 octave | 1/2 octave | 1/3 octave | 1/6 octave | 1/12 octave | 1/24 octave | 1/48 octave",
+   "group": ""
+  },
+  {
+   "name": "Frequency range (Hz)",
+   "default": "22050]",
+   "values": "Frequency range of filter bank (Hz) [22 22050] (default) | two-element row vector of positive monotonically increasing values",
+   "group": ""
+  },
+  {
+   "name": "Reference frequency (Hz)",
+   "default": "1000",
+   "values": "Reference frequency of filter bank (Hz) 1000 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "12",
+   "values": "Order of octave filters 12 (default) | positive even integer",
+   "group": ""
+  },
+  {
+   "name": "Octave ratio",
+   "default": "preferred)",
+   "values": "Distance between filters Base ten (ANSI S1.11 preferred) (default) | Base two (musical scale)",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "off",
+   "values": "Allow sample rate to be set by input signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Bands as separate output ports",
+   "default": "off",
+   "values": "One output port per filter band off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  },
+  {
+   "name": "View filter response",
+   "default": "",
+   "values": "Open plot to visualize magnitude response button",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "myFilt",
+   "values": "Variable name of exported filter bank myFilt (default) | valid variable name",
+   "group": ""
+  },
+  {
+   "name": "Overwrite variable if it already exists",
+   "default": "on",
+   "values": "Overwrite variable if it already exists on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Export filter to workspace",
+   "default": "",
+   "values": "Export filter bank to workspace button",
+   "group": ""
+  }
+ ]
+}

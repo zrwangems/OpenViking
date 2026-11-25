@@ -1,0 +1,42 @@
+{
+ "key": "Unit Delay Enabled Synchronous",
+ "title": "Unit Delay Enabled Synchronous",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Discrete/Unit_Delay_Enabled_Synchronous.md"
+ ],
+ "text": "Delay input signal by one sample period when external Enable signal is true, 2 inputs, 1 output, {Initial condition} sets Initial output of simulation; {Sample time} sets the time interval between samples. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal Scalar | Vector | Matrix | Array | Bus"
+  },
+  {
+   "name": "E",
+   "direction": "input",
+   "summary": "Enable signal Scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output signal Scalar | Vector | Matrix | Array | Bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial condition",
+   "default": "0.0",
+   "values": "Initial output of simulation 0.0 (default) | Scalar | Vector | Matrix | Array | Bus",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time interval between samples -1 (default) | Scalar | Vector",
+   "group": ""
+  }
+ ]
+}

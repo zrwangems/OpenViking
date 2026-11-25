@@ -1,0 +1,50 @@
+{
+ "key": "UniformRandomNumber",
+ "title": "Uniform Random Number",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Uniform_Random_Number.md"
+ ],
+ "text": "Generate uniformly distributed random numbers, 1 output, no direct feedthrough, {Minimum} sets Minimum interval; {Maximum}, {Seed} sets the random number seed, {Sample time} and {Interpret vector parameters as 1-D} treats vectors as 1-D. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Random number output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "Minimum interval 0 (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Maximum",
+   "default": "0",
+   "values": "Maximum interval 0 (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Seed",
+   "default": "0",
+   "values": "Random number seed 0 (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "Treat vectors as 1-D on (default) | off",
+   "group": ""
+  }
+ ]
+}

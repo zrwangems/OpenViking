@@ -1,0 +1,103 @@
+{
+ "key": "RS Decoder",
+ "title": "RS Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/RS_Decoder.md"
+ ],
+ "text": "Decode and recover message from RS codeword, 3 inputs, 5 outputs; {Codeword length (N)} sets the length of codeword, {Message length (K)} sets the length of message, {Source of primitive polynomial} sets the primitive polynomial source, {Primitive polynomial}, {Source of B, the starting power for roots of the primitive polynomial} sets the source of starting power for roots of primitive, {B value} sets the starting power of roots, {Output number of corrected symbol errors} sets the number of corrected symbol errors and {Enable erasure input port}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "Input codeword data scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "erasure",
+   "direction": "input",
+   "summary": "Erasure location scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Decoded message data scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "err",
+   "direction": "output",
+   "summary": "Indication of corruption of received data scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Block ready indicator scalar"
+  },
+  {
+   "name": "numErrors",
+   "direction": "output",
+   "summary": "Number of corrected errors nonnegative scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Codeword length (N)",
+   "default": "7",
+   "values": "Length of codeword 7 (default) | range from 7 to 65,535",
+   "group": ""
+  },
+  {
+   "name": "Message length (K)",
+   "default": "3",
+   "values": "Length of message 3 (default) | integer in the range from 3 to ( Codeword length (N) – 2 )",
+   "group": ""
+  },
+  {
+   "name": "Source of primitive polynomial",
+   "default": "Auto",
+   "values": "Primitive polynomial source Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Primitive polynomial",
+   "default": "1]",
+   "values": "Primitive polynomial [1 0 1 1] (default) | binary row vector",
+   "group": ""
+  },
+  {
+   "name": "Source of B, the starting power for roots of the primitive polynomial",
+   "default": "Auto",
+   "values": "Source of starting power for roots of primitive polynomial Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "B value",
+   "default": "1",
+   "values": "Starting power of roots 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output number of corrected symbol errors",
+   "default": "off",
+   "values": "Number of corrected symbol errors off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable erasure input port",
+   "default": "off",
+   "values": "Enable erasure input port off (default) | on",
+   "group": ""
+  }
+ ]
+}

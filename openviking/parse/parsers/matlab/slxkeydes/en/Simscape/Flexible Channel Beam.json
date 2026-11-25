@@ -1,0 +1,13 @@
+{
+ "key": "Flexible Channel Beam",
+ "title": "Flexible Channel Beam",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Flexible Bodies/Beams/Flexible_Channel_Beam.md"
+ ],
+ "text": "Channel beam with elastic properties for deformation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

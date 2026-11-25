@@ -1,0 +1,260 @@
+{
+ "key": "EyeMeasurement",
+ "title": "Eye Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Eye_Measurement.md",
+  "SerDes Toolbox/Utilities/Eye_Measurement.md",
+  "Signal Integrity Toolbox/Utilities/Eye_Measurement.md"
+ ],
+ "text": "从眼图计算指标，输入 3 路；按 {Eye mask type} 指定眼图掩码的形状；{Enable threshold input port} 启用阈值输入端口、{Modulation} 指定眼图中的符号电平数、{Symbol thresholds} 指定符号阈值、{Enable clock input port} 启用时钟输入端口、{Clock type} 确定如何对波形时钟信号进行采样、{Clock threshold} 指定波形时钟的边沿检测阈值、{Clock mode} 表示恢复时钟如何捕获数据、{Clock phase offset} 指定移动时钟 PDF 的相位延迟、{Window phase offset} 指定理想时钟边沿与定时原点之间的延迟、{Symbols per diagram} 以符号为单位的眼图宽度、{Amplitude range} 指定眼图中的最小和最大眼幅度、{Amplitude bins} 指定眼图中的幅度 bin 数、{Time bins} 指定眼图中的时间 bin 数、{Hold off time} 指定测量分析前的延迟、{Symbol time} 指定一个符号的时间 16e-9、{Sample time} 指定一个采样的时间、{Add Metric} 添加要计算的新指标、{Remove Selected Metrics} 指定删除选定的指标、{Store results in base workspace} 指定将指标结果存储到基础工作区、{Metrics variable name} 指定存储测量结果的指标变量名称、{Export to file} 指定将仿真结果导出到文件、{Export to base workspace} 指定将仿真结果导出到基础工作区、{W1 (UI)} 指定矩形、菱形和六边形眼图掩码中心的宽度、{W2 (UI)} 指定六边形眼图掩码顶部和底部的宽度、{H} 指定矩形、菱形或六边形眼图掩码的高度、{Position mask in eye} 指定眼图中掩码形状原点的位置、{Custom eye mask} 指定从眼图模板对象定义自定义眼图模板、{Margin SER} 用于测量眼图模板裕量的符号错误率 1e-5、{Margin extrapolation} 用于生成眼图轮廓的外推方法、{Mask variable name} 用于导出眼图模板的模板变量名称、{Export mask to file} 指定将眼图模板导出到文件、{Export mask to base workspace} 指定将眼图模板导出到基础工作区、{Show plots at end of simulation} 指定在仿真结束时自动显示绘图、{Plot grouping} 定义绘图如何分组在一起 Subplot on same、{Add Plot} 添加要显示的新绘图、{Remove Selected Plots} 指定删除所选绘图、{Show Plots} 显示绘图，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 scalar"
+  },
+  {
+   "name": "clock",
+   "direction": "input",
+   "summary": "输入数据的采样时钟 scalar"
+  },
+  {
+   "name": "thresholds",
+   "direction": "input",
+   "summary": "用于分隔符号的符号阈值 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable threshold input port",
+   "default": "on",
+   "values": "启用阈值输入端口 on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Modulation",
+   "default": "2",
+   "values": "眼图中的符号电平数 2 (default) | nonnegative integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Symbol thresholds",
+   "default": "auto",
+   "values": "符号阈值 auto (default) | real valued vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable clock input port",
+   "default": "on",
+   "values": "启用时钟输入端口 on (default) | off",
+   "group": "Configuration"
+  },
+  {
+   "name": "Clock type",
+   "default": "Rising",
+   "values": "确定如何对波形时钟信号进行采样 Rising (default) | Falling | Both | Times",
+   "group": "Configuration"
+  },
+  {
+   "name": "Clock threshold",
+   "default": "0",
+   "values": "波形时钟的边沿检测阈值 0 (default) | real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Clock mode",
+   "default": "Clocked",
+   "values": "表示恢复时钟如何捕获数据 Clocked (default) | Ideal | Convolved",
+   "group": "Configuration"
+  },
+  {
+   "name": "Clock phase offset",
+   "default": "0",
+   "values": "移动时钟 PDF 的相位延迟 0 (default) | nonnegative real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Window phase offset",
+   "default": "0",
+   "values": "理想时钟边沿与定时原点之间的延迟 0 (default) | nonnegative real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Symbols per diagram",
+   "default": "2",
+   "values": "以符号为单位的眼图宽度 2 (default) | scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Amplitude range",
+   "default": "[]",
+   "values": "眼图中的最小和最大眼幅度 [] (default) | two-element vector",
+   "group": "Configuration"
+  },
+  {
+   "name": "Amplitude bins",
+   "default": "257",
+   "values": "眼图中的幅度 bin 数 257 (default) | positive integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Time bins",
+   "default": "256",
+   "values": "眼图中的时间 bin 数 256 (default) | positive integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Hold off time",
+   "default": "0",
+   "values": "测量分析前的延迟 0 (default) | nonnegative real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Symbol time",
+   "default": "16e-9",
+   "values": "一个符号的时间 16e-9 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Sample time",
+   "default": "0]",
+   "values": "一个采样的时间 [1e-9, 0] (default) | two-element vector | scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Add Metric",
+   "default": "",
+   "values": "添加要计算的新指标 button",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Remove Selected Metrics",
+   "default": "",
+   "values": "删除选定的指标 button",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Store results in base workspace",
+   "default": "off",
+   "values": "将指标结果存储到基础工作区 off (default) | on",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Metrics variable name",
+   "default": "ans",
+   "values": "存储测量结果的指标变量名称 ans (default) | string",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Export to file",
+   "default": "",
+   "values": "将仿真结果导出到文件 button",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Export to base workspace",
+   "default": "",
+   "values": "将仿真结果导出到基础工作区 button",
+   "group": "Metric Setup"
+  },
+  {
+   "name": "Eye mask type",
+   "default": "Off",
+   "values": "眼图掩码的形状 Off (default) | Rectangle | Diamond | Hexagon | Custom",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "W1 (UI)",
+   "default": "0.2",
+   "values": "矩形、菱形和六边形眼图掩码中心的宽度 0.2 (default) | positive real scalar",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "W2 (UI)",
+   "default": "0.1",
+   "values": "六边形眼图掩码顶部和底部的宽度 0.1 (default) | positive real scalar",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "H",
+   "default": "0.1",
+   "values": "矩形、菱形或六边形眼图掩码的高度 0.1 (default) | positive real scalar",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Position mask in eye",
+   "default": "clock",
+   "values": "眼图中掩码形状原点的位置 At clock (default) | For best height margin | For best width margin",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Custom eye mask",
+   "default": "[]",
+   "values": "从眼图模板对象定义自定义眼图模板 [] (default) | object",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Margin SER",
+   "default": "",
+   "values": "用于测量眼图模板裕量的符号错误率 1e-5 | nonnegative real scalar in the range [0,1]",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Margin extrapolation",
+   "default": "none",
+   "values": "用于生成眼图轮廓的外推方法 none (default) | dualdirac | gaussian | linear | spline | pchip | makima",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Mask variable name",
+   "default": "ans",
+   "values": "用于导出眼图模板的模板变量名称 ans (default) | string",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Export mask to file",
+   "default": "",
+   "values": "将眼图模板导出到文件 button",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Export mask to base workspace",
+   "default": "",
+   "values": "将眼图模板导出到基础工作区 button",
+   "group": "Eye Mask"
+  },
+  {
+   "name": "Show plots at end of simulation",
+   "default": "on",
+   "values": "在仿真结束时自动显示绘图 on (default) | off",
+   "group": "Plot Setup"
+  },
+  {
+   "name": "Plot grouping",
+   "default": "figure",
+   "values": "定义绘图如何分组在一起 Subplot on same figure (default) | One figure per plot",
+   "group": "Plot Setup"
+  },
+  {
+   "name": "Add Plot",
+   "default": "",
+   "values": "添加要显示的新绘图 button",
+   "group": "Plot Setup"
+  },
+  {
+   "name": "Remove Selected Plots",
+   "default": "",
+   "values": "删除所选绘图 button",
+   "group": "Plot Setup"
+  },
+  {
+   "name": "Show Plots",
+   "default": "",
+   "values": "显示绘图 button",
+   "group": "Plot Setup"
+  }
+ ]
+}

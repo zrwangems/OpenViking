@@ -1,0 +1,34 @@
+{
+ "key": "Simulation 3D Message Set",
+ "title": "Simulation 3D Message Set",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Message_Set.md",
+  "Simulink 3D Animation/Simulation 3D/Utilities/Simulation_3D_Message_Set.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core/Simulation_3D_Message_Set.md"
+ ],
+ "text": "将数据发送到 Unreal Engine 可视化环境，输入 1 路；按 {Sample time} 指定采样时间；{Signal name, SigName} 指定消息信号名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WriteMsg",
+   "direction": "input",
+   "summary": "发送到场景的数据 scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal name, SigName",
+   "default": "mySignal",
+   "values": "消息信号名称 mySignal (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.02",
+   "values": "采样时间 0.02 (default) | -1 | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "key": "Band-Limited White Noise.",
+ "title": "Band-Limited White Noise",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Band_Limited_White_Noise.md"
+ ],
+ "text": "在连续系统中引入白噪声；输出 1 路；按 {种子} 指定起始种子；{噪声功率} 指定白噪声的 PSD 高度、{采样时间} 指定噪声的相关时间、{将向量参数解释为一维向量} 指定将向量参数视为一维，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "正态分布的随机数 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "噪声功率",
+   "default": "[0.1]",
+   "values": "白噪声的 PSD 高度 [0.1] (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "噪声的相关时间 0.1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "种子",
+   "default": "[23341]",
+   "values": "起始种子 [23341] (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": ""
+  },
+  {
+   "name": "将向量参数解释为一维向量",
+   "default": "on",
+   "values": "将向量参数视为一维 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

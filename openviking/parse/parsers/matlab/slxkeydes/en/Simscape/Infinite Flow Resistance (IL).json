@@ -1,0 +1,13 @@
+{
+ "key": "Infinite Flow Resistance (IL)",
+ "title": "Infinite Flow Resistance (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Elements/Infinite_Flow_Resistance_IL.md"
+ ],
+ "text": "Isothermal liquid element for setting initial pressure difference between two nodes.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

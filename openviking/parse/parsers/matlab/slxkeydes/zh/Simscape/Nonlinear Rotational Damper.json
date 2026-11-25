@@ -1,0 +1,13 @@
+{
+ "key": "Nonlinear Rotational Damper",
+ "title": "Nonlinear Rotational Damper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Nonlinear_Rotational_Damper.md"
+ ],
+ "text": "旋转系统中的非线性阻尼器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

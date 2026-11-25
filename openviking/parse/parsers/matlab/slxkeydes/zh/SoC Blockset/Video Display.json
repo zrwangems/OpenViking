@@ -1,0 +1,31 @@
+{
+ "key": "Video Display",
+ "title": "Video Display",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Video_Display.md"
+ ],
+ "text": "将算法中的图像样本显示到输出视频设备，输入 1 路、输出 1 路；{Pixel format} 指定像素数据的格式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Color",
+   "direction": "input",
+   "summary": "图像的颜色分量 height -by- width size matrix"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "发往视频显示接口的数据消息 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pixel format",
+   "default": "RGB",
+   "values": "像素数据的格式 RGB (default) | YCbCr 4:2:2",
+   "group": ""
+  }
+ ]
+}

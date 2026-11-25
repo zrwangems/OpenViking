@@ -1,0 +1,13 @@
+{
+ "key": "Nonlinear Transformer",
+ "title": "Nonlinear Transformer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Transformers/Nonlinear_Transformer.md"
+ ],
+ "text": "Transformer with nonideal core.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

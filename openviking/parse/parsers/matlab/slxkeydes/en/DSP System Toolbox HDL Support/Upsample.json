@@ -1,0 +1,73 @@
+{
+ "key": "Upsample",
+ "title": "Upsample",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Operations/Upsample.md",
+  "DSP System Toolbox/Signal Operations/Upsample.md"
+ ],
+ "text": "Resample input at higher rate by inserting zeros, 2 inputs, 1 output, no direct feedthrough, {Initial conditions} sets Initial conditions; {Upsample factor source} sets the mode of specifying upsample factor, {Upsample factor, L}, {Sample offset (0 to L−1)}, {Maximum upsample factor, Lmax}, {Input processing} sets the method to process input signals Columns and {Rate options} sets the method to upsample input Enforce single-rate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "L",
+   "direction": "input",
+   "summary": "Upsample factor positive integer ≤ Lmax"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Upsampled signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Upsample factor source",
+   "default": "parameter",
+   "values": "Mode of specifying upsample factor Dialog parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Upsample factor, L",
+   "default": "3",
+   "values": "Upsample factor 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample offset (0 to L−1)",
+   "default": "0",
+   "values": "Sample offset 0 (default) | integer in the range [0, L −1]",
+   "group": ""
+  },
+  {
+   "name": "Maximum upsample factor, Lmax",
+   "default": "16",
+   "values": "Maximum upsample factor 16 (default) | positive integer ≥ 1",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Method to upsample input Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial conditions 0 (default) | scalar | vector | matrix",
+   "group": ""
+  }
+ ]
+}

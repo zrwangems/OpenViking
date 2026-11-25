@@ -1,0 +1,48 @@
+{
+ "key": "ethercatsetstate",
+ "title": "EtherCAT Set State",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/EtherCAT_Set_State.md"
+ ],
+ "text": "Set state of EtherCAT network, 1 input, 2 outputs; {Network Device Index} sets the etherCAT network identifier, {Timeout} sets the time to wait for the network to change state and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "New State",
+   "direction": "input",
+   "summary": "State transmitted to the EtherCAT network 1 | 2 | 4 | 8"
+  },
+  {
+   "name": "Prev State",
+   "direction": "output",
+   "summary": "Previous state of the network 1 | 2 | 4 | 8"
+  },
+  {
+   "name": "Error",
+   "direction": "output",
+   "summary": "Report an EtherCAT state error 0 | integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT network identifier 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "Timeout",
+   "default": "",
+   "values": "Time to wait for the network to change state integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

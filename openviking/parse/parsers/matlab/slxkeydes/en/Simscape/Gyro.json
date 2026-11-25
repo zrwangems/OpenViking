@@ -1,0 +1,13 @@
+{
+ "key": "Gyro",
+ "title": "Gyro",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Gyro.md"
+ ],
+ "text": "Behavioral model of MEMS gyro.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,142 @@
+{
+ "key": "Draw Markers",
+ "title": "Draw Markers",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Text & Graphics/Draw_Markers.md"
+ ],
+ "text": "Draw markers on image, 7 inputs, 4 outputs, {Opacity factor (between 0 and 1)} sets Opacity factor; {Marker shape} sets the shape of marker, {Marker size} sets the size of marker, {Filled}, {Border color source} sets the color source of marker border Specify via, {Border color} sets the color value, {Fill color source} sets the color source of filled marker Specify via, {Fill color} sets the color value of filled, {Color value(s)} sets the user-specified color values, {Draw Markers in} sets the area for markers, {Use antialiasing} sets the smoothing algorithm and {Image signal} sets the port configuration for RGB image One multidimensional. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "Input Image matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Red color component of image matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "Green color component of image matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Blue color component of image matrix"
+  },
+  {
+   "name": "Pts",
+   "direction": "input",
+   "summary": "Marker coordinates vector | matrix"
+  },
+  {
+   "name": "Clr",
+   "direction": "input",
+   "summary": "Marker color scalar | vector | matrix"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "Region of interest vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output image matrix | array"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Red color component of output image matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "Green color component of output image matrix"
+  },
+  {
+   "name": "B",
+   "direction": "output",
+   "summary": "Blue color component of output image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Marker shape",
+   "default": "Circle",
+   "values": "Shape of marker Circle (default) | X-mark | Plus | Star | Square",
+   "group": "Main"
+  },
+  {
+   "name": "Marker size",
+   "default": "3",
+   "values": "Size of marker 3 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Filled",
+   "default": "off",
+   "values": "Filled marker off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Border color source",
+   "default": "dialog",
+   "values": "Color source of marker border Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Border color",
+   "default": "Black",
+   "values": "Color value of marker Black (default) | White | User-specified value",
+   "group": "Main"
+  },
+  {
+   "name": "Fill color source",
+   "default": "dialog",
+   "values": "Color source of filled marker Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Fill color",
+   "default": "Black",
+   "values": "Color value of filled marker Black (default) | White | User-specified value",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity factor (between 0 and 1)",
+   "default": "0.6",
+   "values": "Opacity factor 0.6 (default) | scalar in range [ 0, 1 ] | K -element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Color value(s)",
+   "default": "100]",
+   "values": "User-specified color values [200 255 100] (default) | scalar | P -element vector | K -by- P matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Draw Markers in",
+   "default": "image",
+   "values": "Area for markers Entire image (default) | Specify region of interest via port",
+   "group": "Main"
+  },
+  {
+   "name": "Use antialiasing",
+   "default": "off",
+   "values": "Smoothing algorithm off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Image signal",
+   "default": "signal",
+   "values": "Port configuration for RGB image One multidimensional signal (default) | Separate color signals",
+   "group": "Main"
+  }
+ ]
+}

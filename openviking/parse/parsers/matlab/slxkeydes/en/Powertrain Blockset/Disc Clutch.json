@@ -1,0 +1,145 @@
+{
+ "key": "Disc Clutch",
+ "title": "Disc Clutch",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Disc_Clutch.md"
+ ],
+ "text": "Idealized disc clutch coupler, 4 inputs, 4 outputs; {Port Configuration} sets the configuration, {Clutch force equivalent net radius, Reff} sets the radius, {Number of disks, Ndisk} sets the ratio, {Effective applied pressure area, Aeff} sets the pressure area .01, {Engagement pressure threshold, Peng} sets the pressure threshold, {Input shaft inertia, Jin} sets the inertia .1, {Output shaft inertia, Jout} sets the inertia .1, {Kinetic friction coefficient, muk} sets the coefficient .3, {Static friction coefficient, mus} sets the coefficient .5, {Input shaft viscous damping, bin} sets the damping .001, {Output shaft viscous damping, bout} sets the damping .001, {Initial input shaft velocity, win_o} sets the initial velocity, {Initial output shaft velocity, wout_o} sets the initial velocity, {Clutch actuation time constant, tauC} sets the constant .01 and {Start simulation with clutch locked} selects to initially lock clutch. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Press",
+   "direction": "input",
+   "summary": "Applied clutch pressure scalar"
+  },
+  {
+   "name": "BTrq",
+   "direction": "input",
+   "summary": "Applied input torque scalar"
+  },
+  {
+   "name": "FTrq",
+   "direction": "input",
+   "summary": "Applied load torque scalar"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "Applied drive shaft angular speed and torque two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "BSpd",
+   "direction": "output",
+   "summary": "Angular speed scalar"
+  },
+  {
+   "name": "FSpd",
+   "direction": "output",
+   "summary": "Angular speed scalar"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "Output velocity and torque two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "Specify configuration Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Clutch force equivalent net radius, Reff",
+   "default": "1",
+   "values": "Radius 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of disks, Ndisk",
+   "default": "1",
+   "values": "Ratio 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Effective applied pressure area, Aeff",
+   "default": ".01",
+   "values": "Pressure area .01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Engagement pressure threshold, Peng",
+   "default": "0",
+   "values": "Pressure threshold 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft inertia, Jin",
+   "default": ".1",
+   "values": "Inertia .1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output shaft inertia, Jout",
+   "default": ".1",
+   "values": "Inertia .1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Kinetic friction coefficient, muk",
+   "default": ".3",
+   "values": "Coefficient .3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Static friction coefficient, mus",
+   "default": ".5",
+   "values": "Coefficient .5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft viscous damping, bin",
+   "default": ".001",
+   "values": "Damping .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output shaft viscous damping, bout",
+   "default": ".001",
+   "values": "Damping .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial input shaft velocity, win_o",
+   "default": "0",
+   "values": "Initial velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial output shaft velocity, wout_o",
+   "default": "0",
+   "values": "Initial velocity 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Clutch actuation time constant, tauC",
+   "default": ".01",
+   "values": "Constant .01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Start simulation with clutch locked",
+   "default": "off",
+   "values": "Select to initially lock clutch off (default) | on",
+   "group": ""
+  }
+ ]
+}

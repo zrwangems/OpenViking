@@ -1,0 +1,72 @@
+{
+ "key": "dsp.simulink.ChannelSynthesizer",
+ "title": "Channel Synthesizer",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/Channel_Synthesizer.md"
+ ],
+ "text": "Polyphase FFT synthesis filter bank, 2 inputs, 1 output; {InterpolationFactor} sets the interpolation factor Number of frequency, {Polyphase filter specification} sets the filter design parameters or coefficients Number of taps per band and stopband, {Number of filter taps per frequency band} sets the number of filter coefficients per frequency, {Stopband attenuation (dB)}, {Specify coefficients from input port} sets the flag to specify lowpass filter, {Prototype lowpass filter coefficients} sets the coefficients of prototype lowpass filter and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input narrowband signals Q -by- M matrix | L -by- M -by- N array"
+  },
+  {
+   "name": "coeffs",
+   "direction": "input",
+   "summary": "Prototype lowpass filter coefficients row vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Broadband signal Q×M -by-1 vector | L×M -by- N matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "InterpolationFactor",
+   "default": "bands",
+   "values": "Interpolation factor Number of frequency bands (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Polyphase filter specification",
+   "default": "attenuation",
+   "values": "Filter design parameters or coefficients Number of taps per band and stopband attenuation (default) | Coefficients",
+   "group": ""
+  },
+  {
+   "name": "Number of filter taps per frequency band",
+   "default": "12",
+   "values": "Number of filter coefficients per frequency band 12 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Stopband attenuation (dB)",
+   "default": "80",
+   "values": "Stopband attenuation 80 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify coefficients from input port",
+   "default": "off",
+   "values": "Flag to specify lowpass filter coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Prototype lowpass filter coefficients",
+   "default": "rcosdesign(0.25,6,8,’sqrt’)",
+   "values": "Coefficients of prototype lowpass filter rcosdesign(0.25,6,8,’sqrt’) (default) | row vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

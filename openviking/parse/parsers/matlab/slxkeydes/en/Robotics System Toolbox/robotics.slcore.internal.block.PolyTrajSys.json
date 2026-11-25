@@ -1,0 +1,103 @@
+{
+ "key": "robotics.slcore.internal.block.PolyTrajSys",
+ "title": "Polynomial Trajectory",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Utilities/Polynomial_Trajectory.md"
+ ],
+ "text": "Generate polynomial trajectories through waypoints, 5 inputs, 3 outputs, {Method} sets Method for trajectory generation Cubic; {Waypoint source} sets the source for waypoints, {Waypoints} sets the waypoint positions along trajectory n -by- p, {Time points}, {Parameter source} sets the source for waypoints, {Velocity boundary conditions}, {Acceleration boundary conditions} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "Time point along trajectory scalar | vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "Waypoint positions along trajectory n -by- p matrix"
+  },
+  {
+   "name": "TimePoints",
+   "direction": "input",
+   "summary": "Time points for waypoints of trajectory p -element vector"
+  },
+  {
+   "name": "VelBC",
+   "direction": "input",
+   "summary": "Velocity boundary conditions for waypoints n -by- p matrix"
+  },
+  {
+   "name": "AccelBC",
+   "direction": "input",
+   "summary": "Acceleration boundary conditions for trajectory n -by- p matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "Position of trajectory scalar | vector | matrix"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "Velocity of trajectory scalar | vector | matrix"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "Acceleration of trajectory scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Waypoint source",
+   "default": "Internal",
+   "values": "Source for waypoints Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Waypoints",
+   "default": "",
+   "values": "Waypoint positions along trajectory n -by- p matrix",
+   "group": ""
+  },
+  {
+   "name": "Time points",
+   "default": "",
+   "values": "Time points for waypoints of trajectory p -element vector",
+   "group": ""
+  },
+  {
+   "name": "Method",
+   "default": "Polynomial",
+   "values": "Method for trajectory generation Cubic Polynomial (default) | Quintic Polynomial | B-Spline",
+   "group": ""
+  },
+  {
+   "name": "Parameter source",
+   "default": "Internal",
+   "values": "Source for waypoints Internal (default) | External",
+   "group": ""
+  },
+  {
+   "name": "Velocity boundary conditions",
+   "default": "zeroes(2,5)",
+   "values": "Velocity boundary conditions for waypoints zeroes(2,5) (default) | n -by- p matrix",
+   "group": ""
+  },
+  {
+   "name": "Acceleration boundary conditions",
+   "default": "",
+   "values": "Acceleration boundary conditions for trajectory n -by- p matrix",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

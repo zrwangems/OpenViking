@@ -1,0 +1,13 @@
+{
+ "key": "U-shaped Channels",
+ "title": "U-shaped Channels",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Thermal/U_shaped_Channels.md"
+ ],
+ "text": "带扁平通道的冷却板。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

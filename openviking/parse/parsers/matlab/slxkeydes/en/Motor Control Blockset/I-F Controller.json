@@ -1,0 +1,184 @@
+{
+ "key": "I-F Controller",
+ "title": "I-F Controller",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Controllers/I_F_Controller.md"
+ ],
+ "text": "Implement I-F control for a three-phase permanent magnet synchronous motor, 7 inputs, 4 outputs, {Speed unit} sets Unit of the speed inputs; {Enable speed damping} sets the option to enable block to apply speed oscillation damping, {Use input port for computed parameters (run-time motor swap)} sets the option to enable input port to accept computed, {Number of pole pairs}, {Position unit} sets the unit of electrical, {Per unit speed (RPM)} sets the speed corresponding to one per-unit, {Current unit} sets the unit of motor currents, {Base current (A)} sets the nominal current corresponding to one, {Discrete step size (s)} sets the interval between consecutive block executions, {Speed to exit I-F controller (RPM), ω1}, {Speed to re-enter I-F controller (RPM), ω2} sets the speed required to re-enter I-F control, {Maximum current (A), Imax} sets the maximum motor current during I-F control, {Maximum rate of speed change (RPM/s)} sets the maximum rate of speed change during I-F, {Maximum current decay rate (A/s)} sets the maximum rate of current decay during I-F, {Idle time (s)} sets the time of constant speed and current, {Minimum allowed position error for transition (rad)} sets the threshold error for closed-loop transition, {Voltage unit} sets the unit of stator voltages, {Base voltage (V)} sets the nominal voltage corresponding to one and {Damping coefficient, ζ} sets the speed oscillation damping coefficient. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "Option to enable block algorithm scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "Electrical position of motor scalar"
+  },
+  {
+   "name": "ω m ref",
+   "direction": "input",
+   "summary": "Reference motor mechanical speed scalar"
+  },
+  {
+   "name": "ω m",
+   "direction": "input",
+   "summary": "Motor mechanical speed scalar"
+  },
+  {
+   "name": "I q",
+   "direction": "input",
+   "summary": "Q -axis stator current scalar"
+  },
+  {
+   "name": "V q",
+   "direction": "input",
+   "summary": "Q -axis stator voltage scalar"
+  },
+  {
+   "name": "ParameterBus",
+   "direction": "input",
+   "summary": "Computed parameters for I-F controller bus"
+  },
+  {
+   "name": "I d ref",
+   "direction": "output",
+   "summary": "Reference d -axis current scalar"
+  },
+  {
+   "name": "I q ref",
+   "direction": "output",
+   "summary": "Reference q -axis current scalar"
+  },
+  {
+   "name": "θ e ref",
+   "direction": "output",
+   "summary": "Generated reference electrical position of motor scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "I-F control status scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable speed damping",
+   "default": "off",
+   "values": "Option to enable block to apply speed oscillation damping compensation off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use input port for computed parameters (run-time motor swap)",
+   "default": "off",
+   "values": "Option to enable input port to accept computed parameters off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "Number of pole pairs available in motor 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Position unit",
+   "default": "Degrees",
+   "values": "Unit of electrical position Degrees (default) | Radians | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Speed unit",
+   "default": "Degrees/Sec",
+   "values": "Unit of the speed inputs Degrees/Sec (default) | Radians/Sec | RPM | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Per unit speed (RPM)",
+   "default": "6000",
+   "values": "Speed corresponding to one per-unit 6000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current unit",
+   "default": "unit",
+   "values": "Unit of motor currents SI unit (default) | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Base current (A)",
+   "default": "21.4286",
+   "values": "Nominal current corresponding to one per-unit 21.4286 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Interval between consecutive block executions 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Speed to exit I-F controller (RPM), ω1",
+   "default": "410.7",
+   "values": "Speed (after motor starts) at which I-F control stops 410.7 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Speed to re-enter I-F controller (RPM), ω2",
+   "default": "287.49",
+   "values": "Speed required to re-enter I-F control 287.49 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Maximum current (A), Imax",
+   "default": "6.39",
+   "values": "Maximum motor current during I-F control 6.39 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Maximum rate of speed change (RPM/s)",
+   "default": "960",
+   "values": "Maximum rate of speed change during I-F control 960 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Maximum current decay rate (A/s)",
+   "default": "111.8250",
+   "values": "Maximum rate of current decay during I-F control 111.8250 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Idle time (s)",
+   "default": "1",
+   "values": "Time of constant speed and current 1 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Minimum allowed position error for transition (rad)",
+   "default": "0.1745",
+   "values": "Threshold error for closed-loop transition 0.1745 (default) | scalar",
+   "group": "Controller Parameters"
+  },
+  {
+   "name": "Voltage unit",
+   "default": "unit",
+   "values": "Unit of stator voltages SI unit (default) | Per-unit",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Base voltage (V)",
+   "default": "13.8564",
+   "values": "Nominal voltage corresponding to one per-unit 13.8564 (default) | scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Damping coefficient, ζ",
+   "default": "2.6172",
+   "values": "Speed oscillation damping coefficient value 2.6172 (default) | scalar",
+   "group": "Advanced Parameters"
+  }
+ ]
+}

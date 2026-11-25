@@ -1,0 +1,68 @@
+{
+ "key": "CCSDS RS Decoder",
+ "title": "CCSDS RS Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/CCSDS_RS_Decoder.md"
+ ],
+ "text": "根据 CCSDS 标准从 RS 码字中解码并恢复消息，输入 2 路、输出 5 路；{Message length (k)} 指定消息长度、{Interleaving depth (I)} 指定交织深度、{Output number of corrected symbol errors} 指定已纠正符号错误数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入码字数据 integer in the range from 0 to 255"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "解码后的消息数据 integer in the range from 0 to 255"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "err",
+   "direction": "output",
+   "summary": "输出数据中出现损坏的指示 Boolean scalar"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "模块就绪指示 Boolean scalar"
+  },
+  {
+   "name": "numCorrErr",
+   "direction": "output",
+   "summary": "已纠正错误数 nonnegative scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Message length (k)",
+   "default": "223",
+   "values": "消息长度 223 (default) | 239",
+   "group": ""
+  },
+  {
+   "name": "Interleaving depth (I)",
+   "default": "1",
+   "values": "交织深度 1 (default) | 2 | 3 | 4 | 5 | 8",
+   "group": ""
+  },
+  {
+   "name": "Output number of corrected symbol errors",
+   "default": "off",
+   "values": "已纠正符号错误数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

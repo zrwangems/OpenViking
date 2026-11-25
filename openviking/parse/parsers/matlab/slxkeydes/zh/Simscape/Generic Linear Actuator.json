@@ -1,0 +1,13 @@
+{
+ "key": "Generic Linear Actuator",
+ "title": "Generic Linear Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Generic_Linear_Actuator.md"
+ ],
+ "text": "由 DC 电压源或 PWM 驱动器驱动的 Generic Linear Actuator。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

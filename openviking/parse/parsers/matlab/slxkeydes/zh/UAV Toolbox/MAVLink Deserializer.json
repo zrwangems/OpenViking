@@ -1,0 +1,101 @@
+{
+ "key": "MAVLink Deserializer",
+ "title": "MAVLink Deserializer",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/MAVLink/MAVLink_Deserializer.md"
+ ],
+ "text": "将序列化的 uint8 MAVLink 数据流转换为 Simulink 非虚拟总线，输入 2 路、输出 2 路；{MAVLink dialect source} 用于指定 MAVLink 消息定义的来源 Select from standard MAVLink、{MAVLink dialect} 用于解析 MAVLink 消息的消息定义、{MAVLink version} 指定 MAVLink 协议版本、{MAVLink Message type} 指定 MAVLink 消息、{Input data stream length is available} 指定输入字节流中有效 MAVLink 数据的长度已知、{Filter output MAVLink messages by System ID} 按 System ID 过滤接收到的消息、{System ID}、{Filter output MAVLink messages by Component ID} 按 System ID 和 Component ID、{Component ID}、{Queue MAVLink messages in output} 启用接收到的 MAVLink 消息的排队、{Number of messages to be queued} 指定 MAVLink 消息队列的大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "MAVLink 数据流 vector"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Data 输入端口处有效 MAVLink 数据的长度 scalar"
+  },
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "新消息指示符 0 | 1"
+  },
+  {
+   "name": "Msg",
+   "direction": "output",
+   "summary": "MAVLink 数据包 nonvirtual bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "MAVLink dialect source",
+   "default": "dialects",
+   "values": "用于指定 MAVLink 消息定义的来源 Select from standard MAVLink dialects (default) | Specify your own",
+   "group": ""
+  },
+  {
+   "name": "MAVLink dialect",
+   "default": "common.xml",
+   "values": "用于解析 MAVLink 消息的消息定义 common.xml (default) | string",
+   "group": ""
+  },
+  {
+   "name": "MAVLink version",
+   "default": "2",
+   "values": "MAVLink 协议版本 2 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "MAVLink Message type",
+   "default": "HEARTBEAT",
+   "values": "MAVLink 消息 HEARTBEAT (default)",
+   "group": ""
+  },
+  {
+   "name": "Input data stream length is available",
+   "default": "off",
+   "values": "输入字节流中有效 MAVLink 数据的长度已知 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter output MAVLink messages by System ID",
+   "default": "off",
+   "values": "按 System ID 过滤接收到的消息 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "System ID",
+   "default": "1",
+   "values": "System ID 值 1 (default) | scalar in the range [0,255]",
+   "group": ""
+  },
+  {
+   "name": "Filter output MAVLink messages by Component ID",
+   "default": "off",
+   "values": "按 System ID 和 Component ID 过滤接收到的消息 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Component ID",
+   "default": "1",
+   "values": "Component ID 值 1 (default) | [ 0,255 ]",
+   "group": ""
+  },
+  {
+   "name": "Queue MAVLink messages in output",
+   "default": "off",
+   "values": "启用接收到的 MAVLink 消息的排队 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of messages to be queued",
+   "default": "50",
+   "values": "MAVLink 消息队列的大小 50 (default) | scalar in the range ( 0,65535 ]",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "key": "Geoid Height",
+ "title": "Geoid Height",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Gravity/Geoid_Height.md"
+ ],
+ "text": "Calculate undulations/height, 2 inputs, 1 output, {Geopotential model} sets Geopotential model; {Units} sets the parameter and output units Metric, {Geopotential mat-file} sets the geopotential, {Data type} and {Action for out-of-range input} sets the out-of-range input behavior. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ (deg)",
+   "direction": "input",
+   "summary": "Geodetic latitude scalar"
+  },
+  {
+   "name": "l (deg)",
+   "direction": "input",
+   "summary": "Longitude scalar"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "geoid height scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Parameter and output units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Geopotential model",
+   "default": "EGM96",
+   "values": "Geopotential model EGM96 (default) | EGM2008 | Custom",
+   "group": ""
+  },
+  {
+   "name": "Geopotential mat-file",
+   "default": "’geoidegm96grid’",
+   "values": "Geopotential MAT-file ’geoidegm96grid’ (default) | MAT-file",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "double",
+   "values": "Data type of input and output signals double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "Out-of-range input behavior Warning (default) | Error | None",
+   "group": ""
+  }
+ ]
+}

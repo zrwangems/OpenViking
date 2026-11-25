@@ -1,0 +1,13 @@
+{
+ "key": "2-Way Directional Valve (TL)",
+ "title": "2-Way Directional Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Directional Control Valves/b_2_Way_Directional_Valve_TL.md"
+ ],
+ "text": "热液体网络中的二通方向阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

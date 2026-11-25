@@ -1,0 +1,18 @@
+{
+ "key": "PMIOPort",
+ "title": "Connection Port",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Connection_Port.md",
+  "RF Blockset/Equivalent Baseband/Input_Output Ports/Connection_Port.md",
+  "Simscape/Utilities/Connection_Port.md",
+  "Powertrain Blockset/Utilities/Simscape/Connection_Port.md",
+  "RF Blockset/Circuit Envelope/Utilities/Connection_Port.md",
+  "Vehicle Dynamics Blockset/Utilities/Simscape/Connection_Port.md"
+ ],
+ "text": "子系统的物理建模连接端口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

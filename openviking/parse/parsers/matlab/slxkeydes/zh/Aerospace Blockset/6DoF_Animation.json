@@ -1,0 +1,73 @@
+{
+ "key": "6DoF_Animation",
+ "title": "6DoF Animation",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/MATLAB-Based Animation/b_6DoF_Animation.md"
+ ],
+ "text": "创建六自由度对象的三维 MATLAB Graphics 动画，输入 2 路；按 {Enter view} 指定入场视图 Fixed；{Axes limits [xmin xmax ymin ymax zmin zmax]} 指定坐标轴范围、{Time interval between updates} 指定时间间隔、{Size of craft displayed} 指定比例因子、{Static object position [xp yp zp]} 指定静态对象位置、{Position of camera [xc yc zc]} 指定相机位置、{View angle} 指定视角、{Enable animation} 显示动画，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x e",
+   "direction": "input",
+   "summary": "下程位置、横向位置和高度（向下为正） three-element vector"
+  },
+  {
+   "name": "φ θ ψ",
+   "direction": "input",
+   "summary": "欧拉角 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Axes limits [xmin xmax ymin ymax zmin zmax]",
+   "default": "-3000]",
+   "values": "坐标轴范围 [0 4000 -2000 2000 -5000 -3000] (default) | six-element vector",
+   "group": ""
+  },
+  {
+   "name": "Time interval between updates",
+   "default": "0.1",
+   "values": "时间间隔 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Size of craft displayed",
+   "default": "1.0",
+   "values": "比例因子 1.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Static object position [xp yp zp]",
+   "default": "-5000]",
+   "values": "静态对象位置 [4000 0 -5000] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "Enter view",
+   "default": "position",
+   "values": "入场视图 Fixed position (default) | Cockpit | Fly alongside",
+   "group": ""
+  },
+  {
+   "name": "Position of camera [xc yc zc]",
+   "default": "-3150]",
+   "values": "相机位置 [2000 500 -3150] (default) | three-element vector",
+   "group": ""
+  },
+  {
+   "name": "View angle",
+   "default": "10",
+   "values": "视角 10 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable animation",
+   "default": "on",
+   "values": "显示动画 on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "key": "Gaussian membership function",
+ "title": "Gaussian MF",
+ "toolbox": "Fuzzy Logic Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Fuzzy Logic Toolbox/Membership Functions/Gaussian_MF.md"
+ ],
+ "text": "Gaussian membership function, 1 input, 1 output; {Standard deviation sigma} and {Mean c} sets the mean. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "Input value scalar | vector"
+  },
+  {
+   "name": "MF",
+   "direction": "output",
+   "summary": "Membership value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Standard deviation sigma",
+   "default": "1",
+   "values": "Standard deviation 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mean c",
+   "default": "0",
+   "values": "Mean 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

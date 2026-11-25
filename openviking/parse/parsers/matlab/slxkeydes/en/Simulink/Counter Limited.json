@@ -1,0 +1,33 @@
+{
+ "key": "Counter Limited",
+ "title": "Counter Limited",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Counter_Limited.md",
+  "HDL Coder/Sources/Counter_Limited.md"
+ ],
+ "text": "Count up and wrap to zero after specified upper limit, 1 output, no direct feedthrough, {Sample time} sets Interval between samples; {Upper limit}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Count value scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Upper limit",
+   "default": "7",
+   "values": "Upper limit 7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

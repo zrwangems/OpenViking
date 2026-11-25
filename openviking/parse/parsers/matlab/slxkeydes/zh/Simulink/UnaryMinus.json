@@ -1,0 +1,39 @@
+{
+ "key": "UnaryMinus",
+ "title": "Unary Minus",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Unary_Minus.md",
+  "HDL Coder/HDL Floating Point Operations/Unary_Minus.md",
+  "HDL Coder/Math Operations/Unary_Minus.md"
+ ],
+ "text": "Unary Minus 模块对输入进行求反，输入 1 路、输出 1 路；按 {采样时间(-1 表示继承)} 指定采样之间的时间间隔；{对整数溢出进行饱和处理} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要求反的信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入信号的求反 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

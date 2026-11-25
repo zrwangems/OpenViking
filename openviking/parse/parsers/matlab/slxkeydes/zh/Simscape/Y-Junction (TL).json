@@ -1,0 +1,13 @@
+{
+ "key": "Y-Junction (TL)",
+ "title": "Y-Junction (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Y_Junction_TL.md"
+ ],
+ "text": "热液系统中的 Y 型接头。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

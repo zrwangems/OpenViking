@@ -1,0 +1,13 @@
+{
+ "key": "Longitudinal Vehicle",
+ "title": "Longitudinal Vehicle",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Tires & Vehicles/Longitudinal_Vehicle.md"
+ ],
+ "text": "Longitudinal motion abstract vehicle with ideal brakes and tires.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

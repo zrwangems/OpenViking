@@ -1,0 +1,13 @@
+{
+ "key": "Reservoir (G)",
+ "title": "Reservoir (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Reservoir_G.md"
+ ],
+ "text": "气体网络在恒定压力和温度下的边界条件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

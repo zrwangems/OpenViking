@@ -1,0 +1,68 @@
+{
+ "key": "robotics.slcore.internal.block.CoordinateTransformationConversion",
+ "title": "Coordinate Transformation Conversion",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Utilities/Coordinate_Transformation_Conversion.md",
+  "ROS Toolbox/Utilities/Coordinate_Transformation_Conversion.md",
+  "Robotics System Toolbox/Utilities/Coordinate_Transformation_Conversion.md",
+  "UAV Toolbox/Utilities/Coordinate_Transformation_Conversion.md"
+ ],
+ "text": "Convert to a specified coordinate transformation representation, 2 inputs, {Representation} sets Input representation Axis-Angle; {Axis rotation sequence} sets the order of Euler angle axis, {Show TrVec input port} sets the toggle TrVec port, {Show TrVec output port} sets the toggle TrVec port and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input transformation",
+   "direction": "input",
+   "summary": "Coordinate transformation column vector | 3-by-3 matrix | 4-by-4 matrix"
+  },
+  {
+   "name": "TrVec",
+   "direction": "input",
+   "summary": "Translation vector 3-element column vector"
+  },
+  {
+   "name": "Output transformation",
+   "direction": "unknown",
+   "summary": "Coordinate transformation column vector | 3-by-3 matrix | 4-by-4 matrix"
+  },
+  {
+   "name": "TrVec",
+   "direction": "unknown",
+   "summary": "Translation vector three-element column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Representation",
+   "default": "",
+   "values": "Input representation Axis-Angle | Euler Angles | Homogeneous Transformation | Quaternion | Rotation Matrix | Translation Vector",
+   "group": ""
+  },
+  {
+   "name": "Axis rotation sequence",
+   "default": "ZYX",
+   "values": "Order of Euler angle axis rotations ZYX (default) | ZYZ | XYZ",
+   "group": ""
+  },
+  {
+   "name": "Show TrVec input port",
+   "default": "off",
+   "values": "Toggle TrVec port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show TrVec output port",
+   "default": "off",
+   "values": "Toggle TrVec port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

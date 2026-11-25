@@ -1,0 +1,138 @@
+{
+ "key": "Simulation 3D Three Wheeled Vehicle",
+ "title": "Simulation 3D Three Wheeled Vehicle",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Three_Wheeled_Vehicle.md"
+ ],
+ "text": "在 3D 环境中实现三轮车辆，输入 3 路；{Type} 指定车辆类型 Tuk、{Name} 指定车辆名称 SimulinkVehicle1、{Sample time} 指定采样时间、{Initial array values to translate vehicle per part, Translation} 指定车辆初始平移 zeros、{Initial array values to rotate vehicle per part, Rotation} 指定车辆初始旋转 zeros、{Enable light controls} 控制车辆车灯、{Headlight color [R,G,B], HeadlightColor} 指定前照灯颜色、{High beam intensity, HighBeamIntensity} 指定远光强度、{Low beam intensity, LowBeamIntensity} 指定近光强度、{High beam cone half angle, HighBeamConeAngle} 指定远光锥半角、{Low beam cone half angle, LowBeamConeAngle} 指定近光锥半角、{Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation} 指定左前照灯光束方向、{Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation} 指定右前照灯光束方向、{Brake light intensity, BrakelightIntensity} 指定制动灯强度、{Reverse light intensity, ReverselightIntensity} 指定倒车灯强度、{Turn signal light intensity, SignallightIntensity} 指定转向信号灯强度、{Period, SignallightPeriod} 指定转向信号灯周期、{Pulse width, SignalPulseWidth} 指定脉冲宽度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "input",
+   "summary": "车辆平移 5-by-3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "input",
+   "summary": "车辆旋转 5-by-3 array"
+  },
+  {
+   "name": "Light controls",
+   "direction": "input",
+   "summary": "车辆灯光控制 1-by-6 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "tuk",
+   "values": "车辆类型 Tuk tuk (default)",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "车辆名称 SimulinkVehicle1 (default) | character vector",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Initial array values to translate vehicle per part, Translation",
+   "default": ")",
+   "values": "车辆初始平移 zeros( 5, 3 ) (default) | 5-by-3 array",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Initial array values to rotate vehicle per part, Rotation",
+   "default": ")",
+   "values": "车辆初始旋转 zeros( 5, 3 ) (default) | 5-by-3 array",
+   "group": "Initial Values"
+  },
+  {
+   "name": "Enable light controls",
+   "default": "off",
+   "values": "控制车辆车灯的选项 off (default) | on",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Headlight color [R,G,B], HeadlightColor",
+   "default": "[1,1,1]",
+   "values": "前照灯颜色 [1,1,1] (default) | 1-by-3 vector of RGB triplet values",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam intensity, HighBeamIntensity",
+   "default": "100000",
+   "values": "远光强度 100000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam intensity, LowBeamIntensity",
+   "default": "60000",
+   "values": "近光强度 60000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam cone half angle, HighBeamConeAngle",
+   "default": "1.22",
+   "values": "远光锥半角 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam cone half angle, LowBeamConeAngle",
+   "default": "1.22",
+   "values": "近光锥半角 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "左前照灯光束方向 [0,0] (default) | 1-by-2 vector with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "右前照灯光束方向 [0,0] (default) | 1-by-2 vector with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Brake light intensity, BrakelightIntensity",
+   "default": "500",
+   "values": "制动灯强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Reverse light intensity, ReverselightIntensity",
+   "default": "500",
+   "values": "倒车灯强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Turn signal light intensity, SignallightIntensity",
+   "default": "500",
+   "values": "转向信号灯强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Period, SignallightPeriod",
+   "default": "1",
+   "values": "转向信号灯周期 1 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Pulse width, SignalPulseWidth",
+   "default": "50",
+   "values": "脉冲宽度 50 (default) | positive scalar less than 100",
+   "group": "Light Controls"
+  }
+ ]
+}

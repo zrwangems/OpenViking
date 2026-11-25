@@ -1,0 +1,13 @@
+{
+ "key": "Thermistor",
+ "title": "Thermistor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Thermistor.md"
+ ],
+ "text": "使用 B 参数方程的负温度系数热敏电阻。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

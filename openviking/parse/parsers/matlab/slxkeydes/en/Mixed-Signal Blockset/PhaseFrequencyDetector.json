@@ -1,0 +1,83 @@
+{
+ "key": "PhaseFrequencyDetector",
+ "title": "PFD",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/PFD.md"
+ ],
+ "text": "Phase/frequency detector that compares phase and frequency between two signals, 2 inputs, 2 outputs; {Deadband compensation (s)} sets the delay added for active output near zero phase offset, {Enable increased buffer size}, {Buffer size} sets the number of samples of the input buffering available during, {Enable impairments} adds circuit impairments to simulation, {Output step size calculation} determines how output step size is calculated, {Maximum frequency of interest (Hz)} sets the maximum frequency of interest at output, {Rise/fall time (s)} sets the 20% – 80% rise/fall time for up output port of PFD and {Propagation Delay (s)} sets the delay from input port to output port of PFD. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "reference",
+   "direction": "input",
+   "summary": "Reference frequency scalar"
+  },
+  {
+   "name": "feedback",
+   "direction": "input",
+   "summary": "Feedback frequency scalar"
+  },
+  {
+   "name": "up",
+   "direction": "output",
+   "summary": "Transmits reference frequency scalar"
+  },
+  {
+   "name": "down",
+   "direction": "output",
+   "summary": "Transmits feedback frequency scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Deadband compensation (s)",
+   "default": "30e-12",
+   "values": "Delay added for active output near zero phase offset 30e-12 (default) | positive real scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": "Configuration"
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "Number of samples of the input buffering available during simulation 10 (default) | positive integer scalar",
+   "group": "Configuration"
+  },
+  {
+   "name": "Enable impairments",
+   "default": "on",
+   "values": "Add circuit impairments to simulation on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Output step size calculation",
+   "default": "Default",
+   "values": "Determine how output step size is calculated Default (default) | Advanced",
+   "group": "Impairments"
+  },
+  {
+   "name": "Maximum frequency of interest (Hz)",
+   "default": "10e9",
+   "values": "Maximum frequency of interest at output 10e9 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Rise/fall time (s)",
+   "default": "3e-11",
+   "values": "20% – 80% rise/fall time for up output port of PFD 3e-11 (default) | positive real scalar",
+   "group": "Impairments"
+  },
+  {
+   "name": "Propagation Delay (s)",
+   "default": "50e-12",
+   "values": "Delay from input port to output port of PFD 50e-12 (default) | positive real scalar",
+   "group": "Impairments"
+  }
+ ]
+}

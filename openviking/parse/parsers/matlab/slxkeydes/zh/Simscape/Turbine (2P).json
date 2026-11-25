@@ -1,0 +1,13 @@
+{
+ "key": "Turbine (2P)",
+ "title": "Turbine (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Two-Phase Fluid/Fluid Machines/Turbine_2P.md"
+ ],
+ "text": "热力学循环中的两相涡轮机。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Temperature Control Valve (TL)",
+ "title": "Temperature Control Valve (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Valves & Orifices/Flow Control Valves/Temperature_Control_Valve_TL.md"
+ ],
+ "text": "热液体网络中的 Temperature Control Valve。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

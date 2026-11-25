@@ -1,0 +1,13 @@
+{
+ "key": "Double-Acting Actuator (TL-G)",
+ "title": "Double-Acting Actuator (TL-G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Actuators/Double_Acting_Actuator_TL_G.md"
+ ],
+ "text": "具有对置的热液体腔和气体腔的线性执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

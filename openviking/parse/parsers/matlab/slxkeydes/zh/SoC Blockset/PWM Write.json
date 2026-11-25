@@ -1,0 +1,47 @@
+{
+ "key": "PWM Write",
+ "title": "PWM Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/PWM_Write.md"
+ ],
+ "text": "将脉宽调制 (PWM) 信号配置发送到 PWM Interface 模块，输入 3 路、输出 1 路；{Show period as input} 显示周期输入端口、{Show phase as input} 显示相位输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Compare",
+   "direction": "input",
+   "summary": "比较器触发值 positive scalar | N -length positive vector"
+  },
+  {
+   "name": "Period",
+   "direction": "input",
+   "summary": "PWM 波形的周期 positive scalar"
+  },
+  {
+   "name": "Phase",
+   "direction": "input",
+   "summary": "波形的相位偏移 scalar from 0 to PWM period"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "PWM 占空比值 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show period as input",
+   "default": "off",
+   "values": "显示周期输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show phase as input",
+   "default": "off",
+   "values": "显示相位输入端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}

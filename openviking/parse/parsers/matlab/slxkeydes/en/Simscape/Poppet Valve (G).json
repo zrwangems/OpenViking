@@ -1,0 +1,13 @@
+{
+ "key": "Poppet Valve (G)",
+ "title": "Poppet Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Flow Control Valves/Poppet_Valve_G.md"
+ ],
+ "text": "Poppet valve in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

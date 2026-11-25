@@ -1,0 +1,106 @@
+{
+ "key": "Battery Voltage Monitoring",
+ "title": "Battery Voltage Monitoring",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Protection/Battery_Voltage_Monitoring.md"
+ ],
+ "text": "电池电压监测，输入 2 路、输出 3 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Undervoltage limit (V)} 指定欠压限值、{Overvoltage limit (V)} 指定过压限值、{Voltage sensor fault threshold (V)} 指定电压传感器故障阈值、{Qualification time undervoltage (s)} 指定欠压确认时间、{Disqualification time undervoltage (s)} 指定欠压取消确认时间、{Qualification time overvoltage (s)} 指定过压确认时间、{Disqualification time overvoltage (s)} 指定过压取消确认时间、{Qualification time faulty sensor (s)} 指定传感器故障确认时间、{Disqualification time faulty sensor (s)} 指定传感器故障取消确认时间、{Algorithm data type} 用于选择模块算法数据类型的选项 Inherit，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellVoltage",
+   "direction": "input",
+   "summary": "电芯电压，V scalar | vector"
+  },
+  {
+   "name": "PackVoltage",
+   "direction": "input",
+   "summary": "电池包电压，V scalar"
+  },
+  {
+   "name": "UndervoltageError",
+   "direction": "output",
+   "summary": "欠压错误指示 0 | 1"
+  },
+  {
+   "name": "OvervoltageError",
+   "direction": "output",
+   "summary": "过压错误指示 0 | 1"
+  },
+  {
+   "name": "SensoryFaultyError",
+   "direction": "output",
+   "summary": "传感器故障错误指示 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Undervoltage limit (V)",
+   "default": "2.5",
+   "values": "欠压限值 2.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overvoltage limit (V)",
+   "default": "4.5",
+   "values": "过压限值 4.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Voltage sensor fault threshold (V)",
+   "default": "0.25",
+   "values": "电压传感器故障阈值 0.25 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time undervoltage (s)",
+   "default": "2",
+   "values": "欠压确认时间 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time undervoltage (s)",
+   "default": "0",
+   "values": "欠压取消确认时间 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time overvoltage (s)",
+   "default": "2",
+   "values": "过压确认时间 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time overvoltage (s)",
+   "default": "0",
+   "values": "过压取消确认时间 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Qualification time faulty sensor (s)",
+   "default": "2",
+   "values": "传感器故障确认时间 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Disqualification time faulty sensor (s)",
+   "default": "0",
+   "values": "传感器故障取消确认时间 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

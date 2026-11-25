@@ -1,0 +1,68 @@
+{
+ "key": "Sinusoidal Source",
+ "title": "Sinusoid",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Sources/Sinusoid.md"
+ ],
+ "text": "Model DC offset and sinusoidal modulation, {Offset in-phase} sets In-phase offset 0; {Source type} sets the wave type Ideal, {Offset quadrature} sets the quadrature offset, {Sinusoidal amplitude in-phase} sets the in-phase amplitude, {Sinusoidal amplitude quadrature} sets the quadrature amplitude, {Sinusoidal modulation frequency} sets the modulation frequency, {Time delay}, {Carrier frequencies} and {Ground and hide negative terminals} sets the ground RF circuit terminals. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Source type",
+   "default": "voltage",
+   "values": "Wave type Ideal voltage (default) | Ideal current",
+   "group": ""
+  },
+  {
+   "name": "Offset in-phase",
+   "default": "V",
+   "values": "In-phase offset 0 V (default) | 0 A | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA",
+   "group": ""
+  },
+  {
+   "name": "Offset quadrature",
+   "default": "V",
+   "values": "Quadrature offset 0 V (default) | 0 A | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA",
+   "group": ""
+  },
+  {
+   "name": "Sinusoidal amplitude in-phase",
+   "default": "0",
+   "values": "In-phase amplitude 0 (default) | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA",
+   "group": ""
+  },
+  {
+   "name": "Sinusoidal amplitude quadrature",
+   "default": "0",
+   "values": "Quadrature amplitude 0 (default) | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA",
+   "group": ""
+  },
+  {
+   "name": "Sinusoidal modulation frequency",
+   "default": "0",
+   "values": "Modulation frequency 0 (default) | vector of real or complex numbers | Hz | kHz | MHz | GHz",
+   "group": ""
+  },
+  {
+   "name": "Time delay",
+   "default": "0",
+   "values": "Time delay of modulation 0 (default) | vector of real | s | ms | us | ns",
+   "group": ""
+  },
+  {
+   "name": "Carrier frequencies",
+   "default": "0",
+   "values": "Carrier frequencies 0 (default) | vector of real positive numbers | Hz | kHz | MHz | GHz",
+   "group": ""
+  },
+  {
+   "name": "Ground and hide negative terminals",
+   "default": "on",
+   "values": "Ground RF circuit terminals on (default) | off",
+   "group": ""
+  }
+ ]
+}

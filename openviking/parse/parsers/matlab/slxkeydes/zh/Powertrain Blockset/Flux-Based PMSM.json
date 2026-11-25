@@ -1,0 +1,170 @@
+{
+ "key": "Flux-Based PMSM",
+ "title": "Flux-Based PMSM",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Electric Motors and Inverters/Flux_Based_PMSM.md"
+ ],
+ "text": "基于磁链的永磁同步电机，输入 3 路、输出 4 路；{Simulation type} 指定仿真类型 Continuous、{Sample time, Ts} 指定离散积分的采样时间、{Port Configuration} 指定端口配置 Torque、{Enable memory optimized 2D LUT} 指定 off、{Vector of d-axis flux, flux_d} 指定磁链断点 1 -by、{Resample storage size for flux_d, n1} 指定磁链位大小、{Vector of q-axis flux, flux_q} 指定磁链断点 1 -by、{Resample storage size for flux_q, n2} 指定磁链位大小、{Corresponding d-axis current, id} 指定二维查找表 M -by、{Corresponding q-axis current, iq} 指定二维查找表 M -by、{flux_d max endpoint, u1max} 指定磁链断点、{flux_d min endpoint, u1min} 指定磁链断点、{flux_q max endpoint, u2max} 指定磁链断点、{flux_q min endpoint, u2min} 指定磁链断点、{Stator phase resistance, Rs} 指定电阻、{Number of pole pairs, P} 指定极对数、{Initial flux, fluxdq0} 指定磁链、{Initial mechanical position, theta_init} 指定角度、{Initial mechanical speed, omega_init} 指定速度、{Physical inertia, viscous damping, and static friction, mechanical} 指定惯量、阻尼、摩擦，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LdTrq",
+   "direction": "input",
+   "summary": "转子轴转矩 scalar"
+  },
+  {
+   "name": "Spd",
+   "direction": "input",
+   "summary": "转子轴转速 scalar"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "input",
+   "summary": "定子端电压 1 -by- 3 array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "PhaseCurr",
+   "direction": "output",
+   "summary": "a、b、c 相电流 1 -by- 3 array"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "output",
+   "summary": "电机转矩 scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "output",
+   "summary": "电机转速 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Simulation type",
+   "default": "Continuous",
+   "values": "选择仿真类型 Continuous (default) | Discrete",
+   "group": ""
+  },
+  {
+   "name": "Sample time, Ts",
+   "default": "0.001",
+   "values": "离散积分的采样时间 0.001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Port Configuration",
+   "default": "Torque",
+   "values": "选择端口配置 Torque (default) | Speed",
+   "group": ""
+  },
+  {
+   "name": "Enable memory optimized 2D LUT",
+   "default": "off",
+   "values": "选择 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Vector of d-axis flux, flux_d",
+   "default": "",
+   "values": "磁链断点 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Resample storage size for flux_d, n1",
+   "default": "2",
+   "values": "磁链位大小 2 (default) | 4 | 8 | 16 | 32 | 64 | 128 | 256",
+   "group": ""
+  },
+  {
+   "name": "Vector of q-axis flux, flux_q",
+   "default": "",
+   "values": "磁链断点 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Resample storage size for flux_q, n2",
+   "default": "2",
+   "values": "磁链位大小 2 (default) | 4 | 8 | 16 | 32 | 64 | 128 | 256",
+   "group": ""
+  },
+  {
+   "name": "Corresponding d-axis current, id",
+   "default": "",
+   "values": "二维查找表 M -by- N array",
+   "group": ""
+  },
+  {
+   "name": "Corresponding q-axis current, iq",
+   "default": "",
+   "values": "二维查找表 M -by- N array",
+   "group": ""
+  },
+  {
+   "name": "flux_d max endpoint, u1max",
+   "default": "0.22457",
+   "values": "磁链断点 0.22457 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "flux_d min endpoint, u1min",
+   "default": "-0.22607",
+   "values": "磁链断点 -0.22607 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "flux_q max endpoint, u2max",
+   "default": "0.42959",
+   "values": "磁链断点 0.42959 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "flux_q min endpoint, u2min",
+   "default": "-0.4296",
+   "values": "磁链断点 -0.4296 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator phase resistance, Rs",
+   "default": "0.02",
+   "values": "电阻 0.02 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs, P",
+   "default": "4",
+   "values": "极对数 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial flux, fluxdq0",
+   "default": "0]",
+   "values": "磁链 [0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial mechanical position, theta_init",
+   "default": "0",
+   "values": "角度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial mechanical speed, omega_init",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Physical inertia, viscous damping, and static friction, mechanical",
+   "default": "0]",
+   "values": "惯量、阻尼、摩擦 [0.0027, 4.924e-4, 0] (default) | vector",
+   "group": ""
+  }
+ ]
+}

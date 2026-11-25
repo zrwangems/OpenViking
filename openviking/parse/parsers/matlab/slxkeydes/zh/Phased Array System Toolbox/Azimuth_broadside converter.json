@@ -1,0 +1,46 @@
+{
+ "key": "Azimuth/broadside converter",
+ "title": "Azimuth Broadside Converter",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Environment and Target/Azimuth_Broadside_Converter.md"
+ ],
+ "text": "将方位角转换为侧射角或将侧射角转换为方位角，输入 3 路、输出 2 路；{Conversion mode} 指定角度转换类型 broadside ->，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "az",
+   "direction": "input",
+   "summary": "方位角 scalar | vector of real-values"
+  },
+  {
+   "name": "bsd",
+   "direction": "input",
+   "summary": "侧射角 scalar | vector of real-values"
+  },
+  {
+   "name": "el",
+   "direction": "input",
+   "summary": "仰角 scalar | vector of real-values"
+  },
+  {
+   "name": "az",
+   "direction": "output",
+   "summary": "方位角 scalar | vector of real-values"
+  },
+  {
+   "name": "bsd",
+   "direction": "output",
+   "summary": "侧射角 scalar | vector of real-values"
+  }
+ ],
+ "params": [
+  {
+   "name": "Conversion mode",
+   "default": "azimuth",
+   "values": "角度转换类型 broadside -> azimuth (default) | azimuth -> broadside",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "key": "Stream Data Sink",
+ "title": "Stream Data Sink",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Testbench/Stream_Data_Sink.md"
+ ],
+ "text": "接收连续流数据，输入 2 路、输出 1 路；{Save data in workspace} 指定在工作区中保存数据、{Variable name} 指定工作区变量名称，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "rdData",
+   "direction": "input",
+   "summary": "输入流数据 scalar | vector"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "输入控制总线 bus"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "输出控制总线 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Save data in workspace",
+   "default": "off",
+   "values": "在工作区中保存数据 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Variable name",
+   "default": "simOut",
+   "values": "工作区变量名称 simOut (default) | any MATLAB-supported variable name",
+   "group": ""
+  }
+ ]
+}

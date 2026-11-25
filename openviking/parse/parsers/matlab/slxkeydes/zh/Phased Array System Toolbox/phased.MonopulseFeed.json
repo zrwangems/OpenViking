@@ -1,0 +1,321 @@
+{
+ "key": "phased.MonopulseFeed",
+ "title": "Monopulse Feed",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Direction of Arrival/Monopulse_Feed.md"
+ ],
+ "text": "创建单脉冲和差通道，输入 2 路、输出 4 路；按 {Squint angle (degrees)} 指定斜视角度；{Signal propagation speed (m/s)} 指定信号传播速度 physconst、{Operating frequency (Hz)} 指定系统工作频率 3e8、{Monopulse coverage} 指定单脉冲覆盖方向、{Output angle estimate} 启用角度估计输出、{Generate Monopulse Tracker} 指定创建 Monopulse Estimator 模块、{Simulate using} 指定模块仿真方法 Interpreted、{Specify sensor array as} 指定阵列的方法 Array、{Expression} 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ array System、{Element type} 指定阵列阵元类型 Isotropic、{Operating frequency range (Hz)} 指定天线或麦克风阵元的工作频率范围、{Operating frequency vector (Hz)} 指定自定义天线或麦克风阵元的工作频率范围、{Baffle the back of the element} 指定将 Isotropic Antenna 阵元或 Omni Microphone、{Exponent of cosine pattern} 指定方位角和俯仰角余弦方向图的指数、{Frequency responses (dB)} 指定天线和麦克风频率响应、{Input Pattern Coordinate System} 指定自定义天线方向图的坐标系、{Azimuth angles (deg)} 指定天线辐射方向图的方位角、{Elevation angles (deg)} 指定天线辐射方向图的俯仰角、{Phi Angles (deg)} 指定自定义天线辐射方向图的 Phi 角坐标 0:360、{Theta Angles (deg)} 指定自定义天线辐射方向图的 Theta 角坐标、{Magnitude pattern (dB)} 指定组合天线辐射方向图的幅值 zeros、{Phase pattern (deg)} 指定自定义天线辐射相位方向图 zeros、{MatchArrayNormal} 指定将天线阵元旋转到阵列法向、{Polar pattern frequencies (Hz)} 指定极性图麦克风响应频率 1e3、{Polar pattern angles (deg)} 指定极性图响应角度、{Polar pattern (dB)} 指定自定义麦克风极性响应 zeros、{Geometry} 指定阵列几何结构、{Number of elements} 指定阵列阵元数 2 for ULA arrays and 5 for UCA、{Element spacing (m)} 指定阵列阵元间距 0.5 for ULA arrays、{Array axis} 指定 ULA 的线性轴方向、{Array size} 指定 URA 阵列的维度、{Element lattice} 指定 URA 阵元位置的格点、{Array normal} 指定阵列法线方向 x for URA arrays or z for UCA、{Radius of UCA (m)} 指定 UCA 阵列半径、{Element positions (m)} 指定共形阵列阵元的位置、{Element normals (deg)} 指定共形阵列阵元法向量方向、{Taper} 指定阵列阵元渐削、{Subarray definition matrix} 定义属于子阵的元素 logical matrix、{Subarray steering method} 指定子阵导向方法、{Phase shifter frequency (Hz)} 指定子阵相移频率 3.0e8、{Number of bits in phase shifters} 指定子阵导向相移量化位数、{Subarrays layout} 指定子阵位置指定、{Grid size} 指定矩形子阵网格的维度、{Grid spacing (m)} 指定矩形网格上子阵之间的间距、{Subarray positions (m)} 指定子阵的位置、{Subarray normals} 指定子阵法向量的方向，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入信号 complex-valued M -by- N matrix"
+  },
+  {
+   "name": "STEER",
+   "direction": "input",
+   "summary": "阵列引导方向 scalar | real-valued 2-by-1 column vector"
+  },
+  {
+   "name": "SIGMA",
+   "direction": "output",
+   "summary": "和通道信号 complex-valued M -by-1 column vector"
+  },
+  {
+   "name": "DeltaAz",
+   "direction": "output",
+   "summary": "方位差通道信号 complex-valued M -by-1 column vector"
+  },
+  {
+   "name": "DeltaEl",
+   "direction": "output",
+   "summary": "俯仰差通道信号 complex-valued M -by-1 vector"
+  },
+  {
+   "name": "ANG",
+   "direction": "output",
+   "summary": "目标方向的估计 real-valued 2-by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | real-valued positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency (Hz)",
+   "default": "3e8",
+   "values": "系统工作频率 3e8 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Monopulse coverage",
+   "default": "3D",
+   "values": "单脉冲覆盖方向 3D (default) | Azimuth",
+   "group": ""
+  },
+  {
+   "name": "Squint angle (degrees)",
+   "default": "10",
+   "values": "斜视角度 10 (default) | scalar | real-valued 2-by-1 vector",
+   "group": ""
+  },
+  {
+   "name": "Output angle estimate",
+   "default": "off",
+   "values": "启用角度估计输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Generate Monopulse Tracker",
+   "default": "",
+   "values": "创建 Monopulse Estimator 模块 button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Specify sensor array as",
+   "default": "subarrays)",
+   "values": "指定阵列的方法 Array (no subarrays) (default) | Partitioned array | Replicated subarray | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Expression",
+   "default": "",
+   "values": "用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ array System object",
+   "group": ""
+  },
+  {
+   "name": "Element type",
+   "default": "Antenna",
+   "values": "阵列阵元类型 Isotropic Antenna (default) | Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency range (Hz)",
+   "default": "[0,1e20]",
+   "values": "天线或麦克风阵元的工作频率范围 [0,1e20] (default) | real-valued 1-by-2 row vector",
+   "group": ""
+  },
+  {
+   "name": "Operating frequency vector (Hz)",
+   "default": "[0,1e20]",
+   "values": "自定义天线或麦克风阵元的工作频率范围 [0,1e20] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Baffle the back of the element",
+   "default": "off",
+   "values": "将 Isotropic Antenna 阵元或 Omni Microphone 阵元的后向响应设置为零 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Exponent of cosine pattern",
+   "default": "1.5]",
+   "values": "方位角和俯仰角余弦方向图的指数 [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2 matrix of nonnegative values",
+   "group": ""
+  },
+  {
+   "name": "Frequency responses (dB)",
+   "default": "[0,0]",
+   "values": "天线和麦克风频率响应 [0,0] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Input Pattern Coordinate System",
+   "default": "az-el",
+   "values": "自定义天线方向图的坐标系 az-el (default) | phi-theta",
+   "group": ""
+  },
+  {
+   "name": "Azimuth angles (deg)",
+   "default": "[-180:180]",
+   "values": "天线辐射方向图的方位角 [-180:180] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "[-90:90]",
+   "values": "天线辐射方向图的俯仰角 [-90:90] (default) | real-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Phi Angles (deg)",
+   "default": "",
+   "values": "自定义天线辐射方向图的 Phi 角坐标 0:360 | real-valued 1-by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Theta Angles (deg)",
+   "default": "",
+   "values": "自定义天线辐射方向图的 Theta 角坐标 0:180 | real-valued 1-by- Q row vector",
+   "group": ""
+  },
+  {
+   "name": "Magnitude pattern (dB)",
+   "default": "zeros(181,361)",
+   "values": "组合天线辐射方向图的幅值 zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Phase pattern (deg)",
+   "default": "zeros(181,361)",
+   "values": "自定义天线辐射相位方向图 zeros(181,361) (default) | real-valued Q -by- P matrix | real-valued Q -by- P -by- L array",
+   "group": ""
+  },
+  {
+   "name": "MatchArrayNormal",
+   "default": "on",
+   "values": "将天线阵元旋转到阵列法向 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern frequencies (Hz)",
+   "default": "1e3",
+   "values": "极性图麦克风响应频率 1e3 (default) | real scalar | real-valued 1-by- L row vector",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern angles (deg)",
+   "default": "[-180:180]",
+   "values": "极性图响应角度 [-180:180] (default) | real-valued -by- P row vector",
+   "group": ""
+  },
+  {
+   "name": "Polar pattern (dB)",
+   "default": "zeros(1,361)",
+   "values": "自定义麦克风极性响应 zeros(1,361) (default) | real-valued L -by- P matrix",
+   "group": ""
+  },
+  {
+   "name": "Geometry",
+   "default": "ULA",
+   "values": "阵列几何结构 ULA (default) | URA | UCA | Conformal Array",
+   "group": ""
+  },
+  {
+   "name": "Number of elements",
+   "default": "arrays",
+   "values": "阵列阵元数 2 for ULA arrays and 5 for UCA arrays (default) | integer greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Element spacing (m)",
+   "default": "arrays",
+   "values": "阵列阵元间距 0.5 for ULA arrays and [0.5,0.5] for URA arrays (default) | positive scalar for ULA or URA arrays | 2-element vector of positive values for URA arrays",
+   "group": ""
+  },
+  {
+   "name": "Array axis",
+   "default": "y",
+   "values": "ULA 的线性轴方向 y (default) | x | z",
+   "group": ""
+  },
+  {
+   "name": "Array size",
+   "default": "[2,2]",
+   "values": "URA 阵列的维度 [2,2] (default) | positive integer | 1-by-2 vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Element lattice",
+   "default": "Rectangular",
+   "values": "URA 阵元位置的格点 Rectangular (default) | Triangular",
+   "group": ""
+  },
+  {
+   "name": "Array normal",
+   "default": "arrays",
+   "values": "阵列法线方向 x for URA arrays or z for UCA arrays (default) | y",
+   "group": ""
+  },
+  {
+   "name": "Radius of UCA (m)",
+   "default": "0.5",
+   "values": "UCA 阵列半径 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Element positions (m)",
+   "default": "[0;0;0]",
+   "values": "共形阵列阵元的位置 [0;0;0] (default) | 3-by- N matrix of real values",
+   "group": ""
+  },
+  {
+   "name": "Element normals (deg)",
+   "default": "",
+   "values": "共形阵列阵元法向量方向 [0;0] | 2-by-1 column vector | 2-by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Taper",
+   "default": "1",
+   "values": "阵列阵元渐削 1 (default) | complex-valued scalar | complex-valued row vector",
+   "group": ""
+  },
+  {
+   "name": "Subarray definition matrix",
+   "default": "",
+   "values": "定义属于子阵的元素 logical matrix",
+   "group": ""
+  },
+  {
+   "name": "Subarray steering method",
+   "default": "None",
+   "values": "指定子阵导向方法 None (default) | Phase | Time",
+   "group": ""
+  },
+  {
+   "name": "Phase shifter frequency (Hz)",
+   "default": "3.0e8",
+   "values": "子阵相移频率 3.0e8 (default) | positive real-valued scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of bits in phase shifters",
+   "default": "0",
+   "values": "子阵导向相移量化位数 0 (default) | non-negative integer",
+   "group": ""
+  },
+  {
+   "name": "Subarrays layout",
+   "default": "Rectangular",
+   "values": "子阵位置指定 Rectangular (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Grid size",
+   "default": "[1,2]",
+   "values": "矩形子阵网格的维度 [1,2] (default)",
+   "group": ""
+  },
+  {
+   "name": "Grid spacing (m)",
+   "default": "Auto",
+   "values": "矩形网格上子阵之间的间距 Auto (default) | positive real-valued scalar | 1-by-2 vector of positive real-values",
+   "group": ""
+  },
+  {
+   "name": "Subarray positions (m)",
+   "default": "[0,0;0.5,0.5;0,0]",
+   "values": "子阵的位置 [0,0;0.5,0.5;0,0] (default) | 3-by- N real-valued matrix",
+   "group": ""
+  },
+  {
+   "name": "Subarray normals",
+   "default": "[0,0;0,0]",
+   "values": "子阵法向量的方向 [0,0;0,0] (default) | 2-by- N real matrix",
+   "group": ""
+  }
+ ]
+}

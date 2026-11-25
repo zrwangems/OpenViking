@@ -1,0 +1,50 @@
+{
+ "key": "UAV Scenario Configuration",
+ "title": "UAV Scenario Configuration",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Configuration.md"
+ ],
+ "text": "配置并仿真 UAV 场景；{MATLAB or model workspace variable name} 指定 MATLAB 或模型工作区变量名、{Sample time} 指定采样时间、{Sensor motion bus name} 指定传感器运动总线名称、{Platform motion bus name} 指定平台运动总线名称、{Scenario motion bus name} 指定场景运动总线名称、{Scenario motion signal name} 指定场景运动信号名称，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "MATLAB or model workspace variable name",
+   "default": "’singleUAVScenario’",
+   "values": "MATLAB 或模型工作区变量名 ’singleUAVScenario’ (default) | string",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "采样时间 0.1 (default) | positive double",
+   "group": "Main"
+  },
+  {
+   "name": "Sensor motion bus name",
+   "default": "’SensorMotionBus’",
+   "values": "传感器运动总线名称 ’SensorMotionBus’ (default) | string",
+   "group": "Scenario Bus and Signal Names"
+  },
+  {
+   "name": "Platform motion bus name",
+   "default": "’PlatformMotionBus’",
+   "values": "平台运动总线名称 ’PlatformMotionBus’ (default) | string",
+   "group": "Scenario Bus and Signal Names"
+  },
+  {
+   "name": "Scenario motion bus name",
+   "default": "’SensorMotionBus’",
+   "values": "场景运动总线名称 ’SensorMotionBus’ (default) | string",
+   "group": "Scenario Bus and Signal Names"
+  },
+  {
+   "name": "Scenario motion signal name",
+   "default": "’ScenarioMotions’",
+   "values": "场景运动信号名称 ’ScenarioMotions’ (default) | string",
+   "group": "Scenario Bus and Signal Names"
+  }
+ ]
+}

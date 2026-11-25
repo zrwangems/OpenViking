@@ -1,0 +1,49 @@
+{
+ "key": "Get Transform",
+ "title": "Get Transform",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Get_Transform.md"
+ ],
+ "text": "获取刚体坐标系之间的变换，输入 1 路、输出 1 路；{Rigid body tree} 指定机器人模型 twoJointRigidBodyTre、{Target body} 指定目标刚体名称 body name、{Source body} 指定源刚体名称 body name、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "机器人配置 vector"
+  },
+  {
+   "name": "Transform",
+   "direction": "output",
+   "summary": "齐次变换 4-by-4 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "twoJointRigidBodyTree",
+   "values": "机器人模型 twoJointRigidBodyTree (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "Target body",
+   "default": "",
+   "values": "目标刚体名称 body name",
+   "group": ""
+  },
+  {
+   "name": "Source body",
+   "default": "",
+   "values": "源刚体名称 body name",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

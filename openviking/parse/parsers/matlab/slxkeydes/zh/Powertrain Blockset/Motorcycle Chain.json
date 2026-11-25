@@ -1,0 +1,144 @@
+{
+ "key": "Motorcycle Chain",
+ "title": "Motorcycle Chain",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Motorcycle_Chain.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Motorcycle_Chain.md"
+ ],
+ "text": "实现摩托车链条，输入 6 路、输出 4 路；{Coordinates, SprktFrPxz} 指定前链轮位置、{Mass moment of inertia, SprktFrIyy} 指定前链轮惯量、{Radius, SprktFrR} 指定前链轮半径、{Mass moment of inertia, SprktRrIyy} 指定后链轮惯量、{Radius, SprktRrR} 指定后链轮半径、{Mass moment of inertia, WhlRrIyy} 指定后轮惯量、{Radius, WhlRrR} 指定后轮半径、{Arm length, ArmRrLen} 指定后摇臂长度、{Stiffness, WhlDmpK} 指定车轮阻尼器刚度 1e4、{Damping, WhlDmpC} 指定车轮阻尼 1e2、{Equilibrium angle} 指定车轮阻尼器平衡角 -15e-3、{Rear sprocket angular velocity, SprktRrAngV0} 指定角速度、{Rear wheel angular velocity, WhlRrAngV0} 指定角速度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "MDshft",
+   "direction": "input",
+   "summary": "前链轮上的传动轴力矩 scalar"
+  },
+  {
+   "name": "FCpR",
+   "direction": "input",
+   "summary": "后轮接地点处的纵向力和垂向力 vector"
+  },
+  {
+   "name": "ThetaFrm",
+   "direction": "input",
+   "summary": "主车架俯仰角 scalar"
+  },
+  {
+   "name": "ThetaArmR",
+   "direction": "input",
+   "summary": "后摇臂俯仰角 scalar"
+  },
+  {
+   "name": "MBrkR",
+   "direction": "input",
+   "summary": "后轮制动力矩 scalar"
+  },
+  {
+   "name": "AngAWhlR",
+   "direction": "input",
+   "summary": "后轮角加速度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "MDrvSprtR",
+   "direction": "output",
+   "summary": "后链轮处的车轮阻尼器力矩 scalar"
+  },
+  {
+   "name": "MDrvArmR",
+   "direction": "output",
+   "summary": "后摇臂处的驱动链力矩 scalar"
+  },
+  {
+   "name": "MDrvFrm",
+   "direction": "output",
+   "summary": "车架处的驱动链力矩 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coordinates, SprktFrPxz",
+   "default": "-0.05]",
+   "values": "前链轮位置 [0.05 -0.05] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Mass moment of inertia, SprktFrIyy",
+   "default": "0.005",
+   "values": "前链轮惯量 0.005 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Radius, SprktFrR",
+   "default": "0.04",
+   "values": "前链轮半径 0.04 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mass moment of inertia, SprktRrIyy",
+   "default": "0.01",
+   "values": "后链轮惯量 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Radius, SprktRrR",
+   "default": "0.12",
+   "values": "后链轮半径 0.12 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Mass moment of inertia, WhlRrIyy",
+   "default": "0.66",
+   "values": "后轮惯量 0.66 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Radius, WhlRrR",
+   "default": "0.33",
+   "values": "后轮半径 0.33 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Arm length, ArmRrLen",
+   "default": "0.535",
+   "values": "后摇臂长度 0.535 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stiffness, WhlDmpK",
+   "default": "1e4",
+   "values": "车轮阻尼器刚度 1e4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Damping, WhlDmpC",
+   "default": "1e2",
+   "values": "车轮阻尼 1e2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equilibrium angle",
+   "default": "-15e-3",
+   "values": "车轮阻尼器平衡角 -15e-3 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rear sprocket angular velocity, SprktRrAngV0",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rear wheel angular velocity, WhlRrAngV0",
+   "default": "0",
+   "values": "角速度 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Band-Limited Op-Amp",
+ "title": "Band-Limited Op-Amp",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Band_Limited_Op_Amp.md"
+ ],
+ "text": "对带限运算放大器进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

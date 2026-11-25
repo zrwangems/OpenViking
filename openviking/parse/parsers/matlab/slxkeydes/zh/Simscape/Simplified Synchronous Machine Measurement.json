@@ -1,0 +1,13 @@
+{
+ "key": "Simplified Synchronous Machine Measurement",
+ "title": "Simplified Synchronous Machine Measurement",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Simplified_Synchronous_Machine_Measurement.md"
+ ],
+ "text": "来自简化同步电机的标幺值测量。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

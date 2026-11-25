@@ -1,0 +1,34 @@
+{
+ "key": "Mutual Inductor",
+ "title": "Mutual Inductor",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Circuit Envelope/Elements/Mutual_Inductor.md",
+  "Simscape/Electrical/Passive/Transformers/Mutual_Inductor.md",
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Mutual_Inductor.md"
+ ],
+ "text": "为电路包络分析对两个耦合电感进行建模；{Inductance L1} 指定第一个电感的电感值 1e-6、{Inductance L2} 指定第二个电感的电感值 1e-6、{Coefficient of coupling} 指定互感耦合系数，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Inductance L1",
+   "default": "H",
+   "values": "第一个电感的电感值 1e-6 H (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inductance L2",
+   "default": "H",
+   "values": "第二个电感的电感值 1e-6 H (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Coefficient of coupling",
+   "default": "0.9",
+   "values": "互感耦合系数 0.9 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

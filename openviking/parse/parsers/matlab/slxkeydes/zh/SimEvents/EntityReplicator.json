@@ -1,0 +1,60 @@
+{
+ "key": "EntityReplicator",
+ "title": "Entity Replicator",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Replicator.md"
+ ],
+ "text": "Entity Replicator 模块复制实体，输入 1 路、输出 2 路；{Replicas depart from} 指定副本离开的方式 Separate output、{Replication amount source} 指定副本数量的来源、{Number of replicas} 指定副本数量、{Replicate attribute name} 确定副本数量的属性、{Hold original entity until all replicas depart} 指定副本离开的方式，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出副本实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "输出被复制的实体 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Replicas depart from",
+   "default": "ports",
+   "values": "选择副本离开的方式 Separate output ports (default) | Single output port",
+   "group": ""
+  },
+  {
+   "name": "Replication amount source",
+   "default": "Dialog",
+   "values": "指定副本数量的来源 Dialog (default) | Attribute",
+   "group": ""
+  },
+  {
+   "name": "Number of replicas",
+   "default": "1",
+   "values": "指定副本数量 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Replicate attribute name",
+   "default": "ReplicateAttribute",
+   "values": "指定确定副本数量的属性 ReplicateAttribute (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Hold original entity until all replicas depart",
+   "default": "off",
+   "values": "选择副本离开的方式 off (default) | on",
+   "group": ""
+  }
+ ]
+}

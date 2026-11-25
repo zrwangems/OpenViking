@@ -1,0 +1,13 @@
+{
+ "key": "Gyro",
+ "title": "Gyro",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Gyro.md"
+ ],
+ "text": "MEMS 陀螺仪的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

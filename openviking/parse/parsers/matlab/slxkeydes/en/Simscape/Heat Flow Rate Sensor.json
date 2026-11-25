@@ -1,0 +1,13 @@
+{
+ "key": "Heat Flow Rate Sensor",
+ "title": "Heat Flow Rate Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Sensors/Heat_Flow_Rate_Sensor.md"
+ ],
+ "text": "Ideal heat flow meter.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

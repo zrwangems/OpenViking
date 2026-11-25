@@ -1,0 +1,13 @@
+{
+ "key": "Absolute Reference (G)",
+ "title": "Absolute Reference (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Gas/Elements/Absolute_Reference_G.md"
+ ],
+ "text": "(Not recommended) Reference point at zero absolute temperature and pressure.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

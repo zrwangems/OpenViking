@@ -1,0 +1,56 @@
+{
+ "key": "Assertion for DPI-C",
+ "title": "Assertion",
+ "toolbox": "HDL Verifier",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Verifier/For Use with DPI-C SystemVerilog/Assertion.md"
+ ],
+ "text": "从 Simulink 断言生成 SystemVerilog 断言，输入 1 路；按 {Severity} 指定断言失败的严重性；{Enable assertion} 启用或禁用断言、{Simulation callback when assertion fails} 指定断言失败时要计算的表达式 MATLAB、{Stop simulation when assertion fails} 指定断言失败时停止 Simulink 仿真、{Assertion fail message} 指定断言失败时的自定义消息 no default、{Assertion custom command} 指定断言失败时要执行的自定义命令 SystemVerilog，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要检查非零值的信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "启用或禁用断言 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulation callback when assertion fails",
+   "default": "",
+   "values": "断言失败时要计算的表达式 MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "off",
+   "values": "断言失败时停止 Simulink 仿真 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Severity",
+   "default": "error",
+   "values": "断言失败的严重性 error (default) | warning | custom",
+   "group": "DPI-C Assertion Options"
+  },
+  {
+   "name": "Assertion fail message",
+   "default": "",
+   "values": "断言失败时的自定义消息 no default",
+   "group": "DPI-C Assertion Options"
+  },
+  {
+   "name": "Assertion custom command",
+   "default": "",
+   "values": "断言失败时要执行的自定义命令 SystemVerilog command",
+   "group": "DPI-C Assertion Options"
+  }
+ ]
+}

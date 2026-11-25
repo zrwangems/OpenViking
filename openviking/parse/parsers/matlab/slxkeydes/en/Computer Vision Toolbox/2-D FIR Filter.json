@@ -1,0 +1,111 @@
+{
+ "key": "2-D FIR Filter",
+ "title": "2-D FIR Filter",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Filtering/b_2_D_FIR_Filter.md"
+ ],
+ "text": "2-D FIR filter on input matrix, 5 inputs, 1 output, {Padding options} sets Padding method; {Separable filter coefficients} sets the filter coefficients are separable, {Coefficient source} sets the source of filter coefficients Specify via, {Coefficients} sets the filter coefficients {Vertical coefficients (across height)} sets the vertical filter coefficients, {Horizontal coefficients (across height)} sets the horizontal filter coefficients, {Output size} sets the size of filtered, {Pad value source} sets the source of padding value Specify, {Pad value} sets the padding value, {Filtering based on} sets the method of filtering and {Lock data type settings against change by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I",
+   "direction": "input",
+   "summary": "Input image matrix"
+  },
+  {
+   "name": "H",
+   "direction": "input",
+   "summary": "Filter coefficients matrix"
+  },
+  {
+   "name": "HV",
+   "direction": "input",
+   "summary": "Vertical filter coefficients vector"
+  },
+  {
+   "name": "HH",
+   "direction": "input",
+   "summary": "Horizontal filter coefficients vector"
+  },
+  {
+   "name": "PVal",
+   "direction": "input",
+   "summary": "Pad value scalar"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "Filtered output image matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Separable filter coefficients",
+   "default": "off",
+   "values": "Filter coefficients are separable off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficient source",
+   "default": "dialog",
+   "values": "Source of filter coefficients Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Coefficients",
+   "default": "-1]",
+   "values": "Filter coefficients [1 0; 0 -1] (default) | numeric matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Vertical coefficients (across height)",
+   "default": "0]",
+   "values": "Vertical filter coefficients [4 0] (default) | numeric vector",
+   "group": "Main"
+  },
+  {
+   "name": "Horizontal coefficients (across height)",
+   "default": "0]",
+   "values": "Horizontal filter coefficients [4 0] (default) | numeric vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output size",
+   "default": "Full",
+   "values": "Size of filtered image Full (default) | Same as input port I | Valid",
+   "group": "Main"
+  },
+  {
+   "name": "Padding options",
+   "default": "Constant",
+   "values": "Padding method Constant (default) | Replicate | Symmetric | Circular",
+   "group": "Main"
+  },
+  {
+   "name": "Pad value source",
+   "default": "dialog",
+   "values": "Source of padding value Specify via dialog (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Pad value",
+   "default": "0",
+   "values": "Padding value 0 (default) | numeric scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Filtering based on",
+   "default": "Convolution",
+   "values": "Method of filtering Convolution (default) | Correlation",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

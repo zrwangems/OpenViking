@@ -1,0 +1,13 @@
+{
+ "key": "PCCVS2",
+ "title": "PCCVS2",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PCCVS2.md"
+ ],
+ "text": "具有两个控制输入的多项式电流控制电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

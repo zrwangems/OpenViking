@@ -1,0 +1,13 @@
+{
+ "key": "Two-Quadrant Chopper",
+ "title": "Two-Quadrant Chopper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Two_Quadrant_Chopper.md"
+ ],
+ "text": "两象限受控 DC-DC 斩波器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

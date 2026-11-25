@@ -1,0 +1,13 @@
+{
+ "key": "Floating Neutral (Three-Phase)",
+ "title": "Floating Neutral (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Floating_Neutral_Three_Phase.md"
+ ],
+ "text": "Internal floating neutral point for wye-connected network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

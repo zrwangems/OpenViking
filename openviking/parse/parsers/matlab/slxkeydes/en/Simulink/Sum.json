@@ -1,0 +1,118 @@
+{
+ "key": "Sum",
+ "title": "Sum",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Sum.md",
+  "Simulink/Math Operations/Sum.md",
+  "Simulink/Math Operations/Sum_of_Elements.md",
+  "Simulink/Math Operations/Add.md",
+  "Simulink/Math Operations/Subtract.md",
+  "Simulink/Quick Insert/Math Operations/Minus.md",
+  "Simulink/Quick Insert/Math Operations/Plus.md",
+  "HDL Coder/Commonly Used Blocks/Sum.md",
+  "HDL Coder/HDL Floating Point Operations/Sum_of_Elements.md",
+  "HDL Coder/Math Operations/Sum.md",
+  "HDL Coder/Math Operations/Sum_of_Elements.md",
+  "DSP System Toolbox/Math Functions/Matrices and Linear Algebra/Matrix Operations/Matrix_Sum.md",
+  "HDL Coder/HDL Floating Point Operations/Add.md",
+  "HDL Coder/HDL Floating Point Operations/Subtract.md",
+  "HDL Coder/Math Operations/Add.md",
+  "HDL Coder/Math Operations/Subtract.md",
+  "Deep Learning Toolbox/Shallow Neural Networks/Net Input Functions/netsum.md"
+ ],
+ "text": "Add or subtract inputs, 1 output, direct feedthrough, {List of signs} sets Operations performed on inputs; {Apply over} sets how to apply function along specified dimensions All, {Dimension}, {Sample time (-1 for inherited)} sets the interval between samples, {Output minimum} sets the minimum output value for range checking, {Output maximum} sets the maximum output value for range checking, {Output data type} sets the output data type, {Accumulator data type} sets the data type of the accumulator, {Require all inputs to have the same data type} requires that all inputs have the same data, {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data, {Integer rounding mode} sets the rounding mode for fixed-point operations and {Saturate on integer overflow} sets the method of overflow action. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "unknown",
+   "summary": "First input operand signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_n",
+   "direction": "unknown",
+   "summary": "n th input operand signal scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "List of signs",
+   "default": "",
+   "values": "Operations performed on inputs + | - | | | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Apply over",
+   "default": "dimensions",
+   "values": "How to apply function along specified dimensions All dimensions (default) | Specified dimension",
+   "group": "Main"
+  },
+  {
+   "name": "Dimension",
+   "default": "1",
+   "values": "Dimension along which to apply summation 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Output minimum",
+   "default": "[]",
+   "values": "Minimum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output maximum",
+   "default": "[]",
+   "values": "Maximum output value for range checking [] (default) | scalar",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Specify the output data type Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via back propagation | Inherit: Same as first input | Inherit: Same as accumulator | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Accumulator data type",
+   "default": "rule",
+   "values": "Data type of the accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as first input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Require all inputs to have the same data type",
+   "default": "off",
+   "values": "Require that all inputs have the same data type off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Integer rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Method of overflow action off (default) | on",
+   "group": "Signal Attributes"
+  }
+ ]
+}

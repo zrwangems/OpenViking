@@ -1,0 +1,149 @@
+{
+ "key": "Adaptive cruise control (ACC) system",
+ "title": "Adaptive Cruise Control System",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Automated Driving/Adaptive_Cruise_Control_System.md"
+ ],
+ "text": "Simulate adaptive cruise control using model predictive controller, 9 inputs, 1 output, {Linear model from longitudinal acceleration to longitudinal velocity} sets Ego vehicle model; {Initial condition for longitudinal velocity} sets the initial velocity of the ego vehicle model, {Default spacing} sets the minimum spacing to lead vehicle, {Maximum velocity} sets the maximum longitudinal velocity, {Minimum longitudinal acceleration} sets the minimum ego vehicle acceleration, {Maximum longitudinal acceleration} sets the maximum ego vehicle acceleration, {Sample time} sets the controller sample time, {Prediction horizon} sets the controller prediction horizon, {Controller behavior} sets the closed-loop controller performance, {Use suboptimal solution} applies suboptimal solution after specified number, {Maximum iteration number} sets the maximum optimization iterations, {Use external signal to enable or disable optimization} adds port for enabling optimization, {Use external signal for bumpless transfer between ACC and other controllers} adds external control signal input port and {Create ACC subsystem} sets the create custom controller. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Set velocity",
+   "direction": "input",
+   "summary": "Ego vehicle velocity setpoint nonnegative scalar"
+  },
+  {
+   "name": "Time gap",
+   "direction": "input",
+   "summary": "Safe time gap nonnegative scalar"
+  },
+  {
+   "name": "Longitudinal velocity",
+   "direction": "input",
+   "summary": "Ego vehicle velocity nonnegative scalar"
+  },
+  {
+   "name": "Relative distance",
+   "direction": "input",
+   "summary": "Distance between lead vehicle and ego vehicle positive scalar"
+  },
+  {
+   "name": "Relative velocity",
+   "direction": "input",
+   "summary": "Velocity difference between lead vehicle and ego vehicle scalar"
+  },
+  {
+   "name": "Minimum longitudinal acceleration",
+   "direction": "input",
+   "summary": "Minimum ego vehicle acceleration negative scalar"
+  },
+  {
+   "name": "Maximum longitudinal acceleration",
+   "direction": "input",
+   "summary": "Maximum ego vehicle acceleration positive scalar"
+  },
+  {
+   "name": "Enable optimization",
+   "direction": "input",
+   "summary": "Controller optimization enable signal scalar"
+  },
+  {
+   "name": "External control signal",
+   "direction": "input",
+   "summary": "Longitudinal acceleration applied to ego vehicle scalar"
+  },
+  {
+   "name": "Longitudinal acceleration",
+   "direction": "output",
+   "summary": "Acceleration control signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Linear model from longitudinal acceleration to longitudinal velocity",
+   "default": "tf(1,[0.5,1,0])",
+   "values": "Ego vehicle model tf(1,[0.5,1,0]) (default) | LTI model | linear System Identification Toolbox™ model",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Initial condition for longitudinal velocity",
+   "default": "20",
+   "values": "Initial velocity of the ego vehicle model 20 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Default spacing",
+   "default": "10",
+   "values": "Minimum spacing to lead vehicle 10 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Maximum velocity",
+   "default": "50",
+   "values": "Maximum longitudinal velocity 50 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Minimum longitudinal acceleration",
+   "default": "-3",
+   "values": "Minimum ego vehicle acceleration -3 (default) | negative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Maximum longitudinal acceleration",
+   "default": "2",
+   "values": "Maximum ego vehicle acceleration 2 (default) | nonnegative scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Controller sample time 0.1 (default) | positive scalar",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Prediction horizon",
+   "default": "10",
+   "values": "Controller prediction horizon 10 (default) | positive integer",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Controller behavior",
+   "default": "0.5",
+   "values": "Closed-loop controller performance 0.5 (default) | scalar between 0 and 1",
+   "group": "Parameters Tab"
+  },
+  {
+   "name": "Use suboptimal solution",
+   "default": "off",
+   "values": "Apply suboptimal solution after specified number of iterations off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Maximum iteration number",
+   "default": "10",
+   "values": "Maximum optimization iterations 10 (default) | positive integer",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external signal to enable or disable optimization",
+   "default": "off",
+   "values": "Add port for enabling optimization off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Use external signal for bumpless transfer between ACC and other controllers",
+   "default": "off",
+   "values": "Add external control signal input port off (default) | on",
+   "group": "Block Tab"
+  },
+  {
+   "name": "Create ACC subsystem",
+   "default": "",
+   "values": "Create custom controller button",
+   "group": "Block Tab"
+  }
+ ]
+}

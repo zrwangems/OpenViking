@@ -1,0 +1,92 @@
+{
+ "key": "Bus Selector",
+ "title": "SoC Bus Selector",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/SoC_Bus_Selector.md"
+ ],
+ "text": "Convert bus to control signals, 1 input, 12 outputs, {Control protocol} sets Protocol interface selection Data; {Control type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ctrlBus",
+   "direction": "input",
+   "summary": "Input control bus bus"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Valid control signal boolean scalar"
+  },
+  {
+   "name": "tlast",
+   "direction": "output",
+   "summary": "Indication of end of data packet boolean scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "Ready control signal boolean scalar"
+  },
+  {
+   "name": "hStart",
+   "direction": "output",
+   "summary": "First pixel in horizontal line of frame boolean scalar"
+  },
+  {
+   "name": "hEnd",
+   "direction": "output",
+   "summary": "Last pixel in horizontal line of frame boolean scalar"
+  },
+  {
+   "name": "vStart",
+   "direction": "output",
+   "summary": "First pixel in first (top) line of frame boolean scalar"
+  },
+  {
+   "name": "vEnd",
+   "direction": "output",
+   "summary": "Last pixel in last (bottom) line of frame boolean scalar"
+  },
+  {
+   "name": "rd_aready",
+   "direction": "output",
+   "summary": "Accept read requests boolean scalar"
+  },
+  {
+   "name": "rd_dvalid",
+   "direction": "output",
+   "summary": "Read request valid boolean scalar"
+  },
+  {
+   "name": "wr_ready",
+   "direction": "output",
+   "summary": "Write ready signal boolean scalar"
+  },
+  {
+   "name": "wr_bvalid",
+   "direction": "output",
+   "summary": "Write valid signal boolean scalar"
+  },
+  {
+   "name": "wr_complete",
+   "direction": "output",
+   "summary": "Write transaction complete boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Control protocol",
+   "default": "stream",
+   "values": "Protocol interface selection Data stream (default) | Pixel stream | Random access read | Random access write",
+   "group": ""
+  },
+  {
+   "name": "Control type",
+   "default": "Valid",
+   "values": "Control type selection Valid (default) | Ready",
+   "group": ""
+  }
+ ]
+}

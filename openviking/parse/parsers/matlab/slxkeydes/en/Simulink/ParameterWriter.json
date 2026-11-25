@@ -1,0 +1,44 @@
+{
+ "key": "ParameterWriter",
+ "title": "Parameter Writer",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Parameter_Writer.md"
+ ],
+ "text": "Write to block parameter or variable, 1 input, no direct feedthrough, {Destination} sets Option to write to variables and; {Validate parameter} sets the option to validate parameter during normal mode, {Workspace variable name} sets the name of the workspace variable and {Parameter owner block} sets the block path of parameter owner block and name of block parameter no. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Parameter value scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Validate parameter",
+   "default": "on",
+   "values": "Option to validate parameter during normal mode simulation on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Destination",
+   "default": "parameter",
+   "values": "Option to write to variables and parameters Block parameter (default) | Model workspace variable | Base workspace variable",
+   "group": ""
+  },
+  {
+   "name": "Workspace variable name",
+   "default": "",
+   "values": "Name of the workspace variable no default",
+   "group": ""
+  },
+  {
+   "name": "Parameter owner block",
+   "default": "",
+   "values": "Block path of parameter owner block and name of block parameter no default",
+   "group": ""
+  }
+ ]
+}

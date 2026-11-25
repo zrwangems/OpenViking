@@ -1,0 +1,14 @@
+{
+ "key": "Convolutional Deinterleaver",
+ "title": "Convolutional Deinterleaver",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Interleaving/Convolutional_Deinterleaver.md",
+  "Communications Toolbox/Interleaving/Convolutional/Convolutional_Deinterleaver.md"
+ ],
+ "text": "Restore ordering of symbols that were permuted using shift registers.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

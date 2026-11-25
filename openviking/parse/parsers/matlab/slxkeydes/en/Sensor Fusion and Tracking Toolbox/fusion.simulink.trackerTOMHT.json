@@ -1,0 +1,245 @@
+{
+ "key": "fusion.simulink.trackerTOMHT",
+ "title": "Track-Oriented Multi-Hypothesis Tracker",
+ "toolbox": "Sensor Fusion and Tracking Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Sensor Fusion and Tracking Toolbox/Multi-Object Tracking Algorithms/Track_Oriented_Multi_Hypothesis_Tracker.md"
+ ],
+ "text": "Track-Oriented Multi-Hypothesis Tracker, 5 inputs, 5 outputs, {Track output method} sets Track output method; {Tracker identifier} sets the unique tracker identifier, {Filter initialization function}, {Threshold for assigning detections to tracks}, {Maximum number of tracks}, {Maximum number of sensors}, {Out-of-sequence measurements handling}, {Track state parameters} sets the parameters of track state reference frame, {Update track state parameters with time}, {Simulate using} sets the type of simulation to run Interpreted, {Maximum number of hypotheses to be maintained}, {Maximum number of track branches per track}, {Maximum number of scans maintained in the branch history}, {Minimum probability required to keep a branch}, {N-scan pruning method}, {Confirmation threshold [positive scalar]} sets the minimum score required to confirm track, {Deletion threshold [negative scalar]} sets the maximum score drop for track deletion, {Probability of detection used for track score}, {Rate of false positives used for track score} sets the probability of false alarm used for track score, {Volume of the sensor’s detection bin} sets the volume of sensor measurement bin, {Rate of new tracks per unit volume}, {Prediction time source} sets the source of prediction time, {Enable cost matrix input} enables input port for cost matrix, {Enable detectable branch IDs input}, {Enable tentative tracks output} enables output port for tentative tracks, {Enable all tracks output} enables output port for all tracks, {Enable information output} enables output port for analysis, {Enable all branches output} enables output port for all branches, {Source of output bus name} sets the source of output track bus name and {Source of output info bus name} sets the source of output information bus name. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Detections",
+   "direction": "input",
+   "summary": "Detection list Simulink ® bus containing MATLAB ® structure"
+  },
+  {
+   "name": "Prediction Time",
+   "direction": "input",
+   "summary": "Track update time real scalar"
+  },
+  {
+   "name": "Cost Matrix",
+   "direction": "input",
+   "summary": "Cost matrix real-valued N -by- M matrix"
+  },
+  {
+   "name": "Detectable BranchIDs",
+   "direction": "input",
+   "summary": "Detectable Branch IDs real-valued M -by-1 vector | real-valued M -by-2 matrix"
+  },
+  {
+   "name": "State Parameters",
+   "direction": "input",
+   "summary": "Track state parameters Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Confirmed Tracks",
+   "direction": "output",
+   "summary": "Confirmed tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Tentative Tracks",
+   "direction": "output",
+   "summary": "Tentative tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Tracks",
+   "direction": "output",
+   "summary": "Confirmed and tentative tracks Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Additional information for analyzing track updates Simulink bus containing MATLAB structure"
+  },
+  {
+   "name": "All Branches",
+   "direction": "output",
+   "summary": "All branches Simulink bus containing MATLAB structure"
+  }
+ ],
+ "params": [
+  {
+   "name": "Tracker identifier",
+   "default": "0",
+   "values": "Unique tracker identifier 0 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Filter initialization function",
+   "default": "@initcvekf",
+   "values": "Filter initialization function @initcvekf (default) | function name",
+   "group": ""
+  },
+  {
+   "name": "Threshold for assigning detections to tracks",
+   "default": "Inf]",
+   "values": "Threshold for assigning detections to tracks 30*[0.3 0.7 1 Inf] (default) | positive scalar | 1-by-3 vector of positive values | 1-by-4 vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of tracks",
+   "default": "100",
+   "values": "Maximum number of tracks 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of sensors",
+   "default": "20",
+   "values": "Maximum number of sensors 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Out-of-sequence measurements handling",
+   "default": "Terminate",
+   "values": "Out-of-sequence measurements handling Terminate (default) | neglect",
+   "group": ""
+  },
+  {
+   "name": "Track state parameters",
+   "default": "",
+   "values": "Parameters of track state reference frame structure | structure array",
+   "group": ""
+  },
+  {
+   "name": "Update track state parameters with time",
+   "default": "off",
+   "values": "Update track state parameters with time off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Track output method",
+   "default": "’Tracks’",
+   "values": "Track output method ’Tracks’ (default) | ’Hypothesis’ | ’Clusters’",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Type of simulation to run Interpreted Execution (default) | Code Generation",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of hypotheses to be maintained",
+   "default": "5",
+   "values": "Maximum number of hypotheses to be maintained 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of track branches per track",
+   "default": "3",
+   "values": "Maximum number of track branches per track 3 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of scans maintained in the branch history",
+   "default": "4",
+   "values": "Maximum number of scans maintained in the branch history 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Minimum probability required to keep a branch",
+   "default": ".001",
+   "values": "Minimum probability required to keep a branch .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "N-scan pruning method",
+   "default": "’None’",
+   "values": "N-scan pruning method ’None’ (default) | ’Hypothesis’",
+   "group": ""
+  },
+  {
+   "name": "Confirmation threshold [positive scalar]",
+   "default": "20",
+   "values": "Minimum score required to confirm track 20 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Deletion threshold [negative scalar]",
+   "default": "-7",
+   "values": "Maximum score drop for track deletion -7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Probability of detection used for track score",
+   "default": "0.9",
+   "values": "Probability of detection used for track score 0.9 (default) | positive scalar between 0 and 1",
+   "group": ""
+  },
+  {
+   "name": "Rate of false positives used for track score",
+   "default": "1e-6",
+   "values": "Probability of false alarm used for track score 1e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Volume of the sensor’s detection bin",
+   "default": "1",
+   "values": "Volume of sensor measurement bin 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Rate of new tracks per unit volume",
+   "default": "1",
+   "values": "Rate of new tracks per unit volume 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Prediction time source",
+   "default": "Auto",
+   "values": "Source of prediction time Auto (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Enable cost matrix input",
+   "default": "off",
+   "values": "Enable input port for cost matrix off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable detectable branch IDs input",
+   "default": "off",
+   "values": "Enable detectable branch IDs input off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable tentative tracks output",
+   "default": "off",
+   "values": "Enable output port for tentative tracks off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all tracks output",
+   "default": "off",
+   "values": "Enable output port for all tracks off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable information output",
+   "default": "off",
+   "values": "Enable output port for analysis information off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable all branches output",
+   "default": "off",
+   "values": "Enable output port for all branches off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Source of output bus name",
+   "default": "Auto",
+   "values": "Source of output track bus name Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Source of output info bus name",
+   "default": "Auto",
+   "values": "Source of output information bus name Auto (default) | Property",
+   "group": ""
+  }
+ ]
+}

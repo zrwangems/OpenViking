@@ -1,0 +1,13 @@
+{
+ "key": "Eight-Pulse Gate Multiplexer",
+ "title": "Eight-Pulse Gate Multiplexer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/Eight_Pulse_Gate_Multiplexer.md"
+ ],
+ "text": "Multiplex gate voltage signals to Bidirectional DC-DC Converter block.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

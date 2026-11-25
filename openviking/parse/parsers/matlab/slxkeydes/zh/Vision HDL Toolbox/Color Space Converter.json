@@ -1,0 +1,53 @@
+{
+ "key": "Color Space Converter",
+ "title": "Color Space Converter",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Conversions/Color_Space_Converter.md"
+ ],
+ "text": "在颜色空间之间转换颜色信息，输入 2 路、输出 2 路；按 {Conversion} 指定颜色空间转换的类型 RGB to；{Use conversion specified by} 指定转换方程 Rec、{Scanning standard} 指定 HDTV 扫描标准，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "新颜色空间中的输出像素流 scalar | vector | matrix"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Conversion",
+   "default": "YCbCr",
+   "values": "颜色空间转换的类型 RGB to YCbCr (default) | YCbCr to RGB | RGB to intensity",
+   "group": ""
+  },
+  {
+   "name": "Use conversion specified by",
+   "default": "(SDTV)",
+   "values": "转换方程 Rec. 601 (SDTV) (default) | Rec. 709 (HDTV)",
+   "group": ""
+  },
+  {
+   "name": "Scanning standard",
+   "default": "1250/50/2:1",
+   "values": "HDTV 扫描标准 1250/50/2:1 (default) | 1125/60/2:1",
+   "group": ""
+  }
+ ]
+}

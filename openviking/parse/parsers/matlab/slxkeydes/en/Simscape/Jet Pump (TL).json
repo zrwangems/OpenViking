@@ -1,0 +1,13 @@
+{
+ "key": "Jet Pump (TL)",
+ "title": "Jet Pump (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pumps & Motors/Jet_Pump_TL.md"
+ ],
+ "text": "Liquid-liquid jet pump in an thermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

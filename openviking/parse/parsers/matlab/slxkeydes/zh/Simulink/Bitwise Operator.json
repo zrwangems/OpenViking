@@ -1,0 +1,62 @@
+{
+ "key": "Bitwise Operator",
+ "title": "Bitwise Operator",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Bitwise_Operator.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_AND.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_NAND.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_NOR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_NOT.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_OR.md",
+  "Simulink/Quick Insert/Logic and Bit Operations/Bitwise_XOR.md",
+  "HDL Coder/Logic and Bit Operations/Bitwise_Operator.md"
+ ],
+ "text": "对输入执行指定的按位运算，输入 1 路、输出 1 路；按 {运算符} 指定按位逻辑运算符；{使用位掩码}、{输入端口数目} 指定输入信号的数量、{位掩码}、{将掩码视为}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "运算符",
+   "default": "AND",
+   "values": "按位逻辑运算符 AND (默认) | OR | NOR | NAND | XOR | NOT",
+   "group": ""
+  },
+  {
+   "name": "使用位掩码",
+   "default": "选中",
+   "values": "选择使用位掩码 选中 (默认) | 未选中",
+   "group": ""
+  },
+  {
+   "name": "输入端口数目",
+   "default": "1",
+   "values": "输入信号的数量 1 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "位掩码",
+   "default": "bin2dec",
+   "values": "要与单个输入关联的位掩码 bin2dec (默认)",
+   "group": ""
+  },
+  {
+   "name": "将掩码视为",
+   "default": "存储的整数",
+   "values": "将掩码视为真实值还是存储的整数 存储的整数 (默认) | 真实值",
+   "group": ""
+  }
+ ]
+}

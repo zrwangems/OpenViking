@@ -1,0 +1,86 @@
+{
+ "key": "FluxSolarAndGeomagnetic",
+ "title": "Solar Flux and Geomagnetic Index",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Solar_Flux_and_Geomagnetic_Index.md"
+ ],
+ "text": "Return solar flux and geomagnetic index, 4 inputs, 3 outputs, {F10.7 extrapolation method} sets Extrapolation method for f107Average and f107Daily None -; {Space weather data file} sets the mAT file of space weather data, {Input time specification} sets the input time format Year, {F10.7 extrapolation value} sets the extrapolation value to assign to f107Average and to calculate, {Magnetic index extrapolation method} sets the extrapolation method for magnetic index information None and {Magnetic index extrapolation value} sets the extrapolation value used to calculate magnetic index. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Year",
+   "direction": "input",
+   "summary": "Year scalar"
+  },
+  {
+   "name": "DOY",
+   "direction": "input",
+   "summary": "Day of year scalar"
+  },
+  {
+   "name": "UTC (sec)",
+   "direction": "input",
+   "summary": "Coordinated Universal Time (UCT) scalar"
+  },
+  {
+   "name": "T JD",
+   "direction": "input",
+   "summary": "Coordinated Universal Time (UTC) scalar"
+  },
+  {
+   "name": "F107A",
+   "direction": "output",
+   "summary": "81-day average of F10.7 flux scalar"
+  },
+  {
+   "name": "F107",
+   "direction": "output",
+   "summary": "Daily F10.7 flux for previous day scalar"
+  },
+  {
+   "name": "aph",
+   "direction": "output",
+   "summary": "Magnetic index information 1-by-7 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Space weather data file",
+   "default": "aeroSpaceWeatherData.mat",
+   "values": "MAT file of space weather data aeroSpaceWeatherData.mat (default) | MAT file name",
+   "group": ""
+  },
+  {
+   "name": "Input time specification",
+   "default": "sec",
+   "values": "Input time format Year, day, sec (default) | Julian date",
+   "group": ""
+  },
+  {
+   "name": "F10.7 extrapolation method",
+   "default": "clip",
+   "values": "Extrapolation method for f107Average and f107Daily None - clip (default) | Constant | Least squares fit",
+   "group": ""
+  },
+  {
+   "name": "F10.7 extrapolation value",
+   "default": "150.0",
+   "values": "Extrapolation value to assign to f107Average and to calculate f107Daily 150.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Magnetic index extrapolation method",
+   "default": "clip",
+   "values": "Extrapolation method for magnetic index information None - clip (default) | Constant | IGRF",
+   "group": ""
+  },
+  {
+   "name": "Magnetic index extrapolation value",
+   "default": "4.0",
+   "values": "Extrapolation value used to calculate magnetic index elements 4.0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

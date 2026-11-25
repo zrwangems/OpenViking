@@ -1,0 +1,37 @@
+{
+ "key": "Bit Rotate",
+ "title": "Bit Rotate",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/Logic and Bit Operations/Bit_Rotate.md"
+ ],
+ "text": "Rotate input signal by bit positions, 1 input, 1 output; {Rotate Mode} Specifies direction of rotation, left or right Rotate and {Rotate Length} Specifies the number of bits to rotate. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input Signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output Signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rotate Mode",
+   "default": "Left",
+   "values": "Specifies direction of rotation, left or right Rotate Left (default) | Rotate Right",
+   "group": ""
+  },
+  {
+   "name": "Rotate Length",
+   "default": "0",
+   "values": "Specifies the number of bits to rotate 0 (default) | integer greater than or equal to zero",
+   "group": ""
+  }
+ ]
+}

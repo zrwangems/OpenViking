@@ -1,0 +1,80 @@
+{
+ "key": "ATIScopeBlock",
+ "title": "Angle-Time Intensity Scope",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Sinks/Angle_Time_Intensity_Scope.md"
+ ],
+ "text": "角度-时间强度示波器，输入 1 路、无直接馈通；按 {Angle label} 指定角度轴标签 ’Angle；{Angle offset (degree)} 指定角度偏移、{Angle resolution (degree)} 指定样本之间的角度差、{Time span (s)} 显示的时间跨度、{Time resolution (s)} 指定行之间的时间差、{Grid} 显示笛卡尔网格叠加、{Ticks} 显示刻度值标签、{Time label} 指定时间轴标签、{Title} 指定窗口标题 Angle vs. Time、{Colorbar label} 指定颜色栏标签，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入数据 real-valued length- M vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Angle offset (degree)",
+   "default": "0.0",
+   "values": "角度偏移 0.0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Angle resolution (degree)",
+   "default": "1.0",
+   "values": "样本之间的角度差 1.0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time span (s)",
+   "default": "Auto",
+   "values": "显示的时间跨度 Auto (default)",
+   "group": ""
+  },
+  {
+   "name": "Time resolution (s)",
+   "default": "Auto",
+   "values": "行之间的时间差 Auto (default)",
+   "group": ""
+  },
+  {
+   "name": "Grid",
+   "default": "on",
+   "values": "显示笛卡尔网格叠加 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Ticks",
+   "default": "on",
+   "values": "显示刻度值标签 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Angle label",
+   "default": "(degree)’",
+   "values": "角度轴标签 ’Angle (degree)’ (default) | character vector | string",
+   "group": ""
+  },
+  {
+   "name": "Time label",
+   "default": "(s)’",
+   "values": "时间轴标签 ’Time History (s)’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Title",
+   "default": "Time’",
+   "values": "窗口标题 Angle vs. Time’ (default) | string",
+   "group": ""
+  },
+  {
+   "name": "Colorbar label",
+   "default": "’dB’",
+   "values": "颜色栏标签 ’dB’ (default) | string",
+   "group": ""
+  }
+ ]
+}

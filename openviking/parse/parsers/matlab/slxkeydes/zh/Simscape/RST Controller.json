@@ -1,0 +1,90 @@
+{
+ "key": "RST Controller",
+ "title": "RST Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/RST_Controller.md"
+ ],
+ "text": "使用多项式表示的预测控制，输入 2 路、输出 1 路；{Controller parameterization} 指定参数化方法 Controller、{R polynomial} 指定 R 多项式值、{S polynomial} 指定 S 多项式值、{T polynomial} 指定 T 多项式值、{Model discrete transfer function numerator} 指定传递函数分子、{Model discrete transfer function denominator} 指定传递函数分母、{Control horizon (samples)} 控制时域采样数、{Control weighting factor} 指定加权因子、{System dead time (samples)} 指定死区时间采样数、{Sample time (-1 for inherited)} 指定采样间隔，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "被控对象参考 scalar"
+  },
+  {
+   "name": "y",
+   "direction": "input",
+   "summary": "被控对象输出 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制器输出 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Controller parameterization",
+   "default": "polynomials",
+   "values": "参数化方法 Controller polynomials (default) | Generate polynomials",
+   "group": ""
+  },
+  {
+   "name": "R polynomial",
+   "default": "1",
+   "values": "R 多项式值 1 (default) | positive, scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "S polynomial",
+   "default": "1",
+   "values": "S 多项式值 1 (default) | positive, scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "T polynomial",
+   "default": "1",
+   "values": "T 多项式值 1 (default) | positive, scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Model discrete transfer function numerator",
+   "default": "1",
+   "values": "传递函数分子 1 (default) | scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "Model discrete transfer function denominator",
+   "default": "0.5]",
+   "values": "传递函数分母 [1 0.5] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Control horizon (samples)",
+   "default": "5",
+   "values": "控制时域采样数 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Control weighting factor",
+   "default": "0.5",
+   "values": "加权因子 0.5 (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "System dead time (samples)",
+   "default": "2",
+   "values": "死区时间采样数 2 (default) | 0 or a positive integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "采样间隔 -1 (default) | default value or a positive number",
+   "group": ""
+  }
+ ]
+}

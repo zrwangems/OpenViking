@@ -1,0 +1,13 @@
+{
+ "key": "Single-Acting Actuator (IL)",
+ "title": "Single-Acting Actuator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Single_Acting_Actuator_IL.md"
+ ],
+ "text": "等温液体系统中的单作用线性执行器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

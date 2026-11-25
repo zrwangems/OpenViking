@@ -1,0 +1,13 @@
+{
+ "key": "Magnetic Rotor",
+ "title": "Magnetic Rotor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Magnetic_Rotor.md"
+ ],
+ "text": "Air gaps between stator teeth and rotating permanent magnet rotor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

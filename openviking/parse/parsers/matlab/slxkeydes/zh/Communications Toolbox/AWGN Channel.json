@@ -1,0 +1,114 @@
+{
+ "key": "AWGN Channel",
+ "title": "AWGN Channel",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Channels/AWGN_Channel.md"
+ ],
+ "text": "向输入信号添加高斯白噪声，输入 2 路、输出 1 路；按 {Input signal power, referenced to 1 ohm (watts)} 指定输入均方功率；{Mode} 指定方差模式 Signal to noise ratio、{SNR (dB)} 指定信号功率与噪声功率之比、{Eb/No (dB)} 指定每符号信息比特能量与噪声功率谱密度之比、{Es/No (dB)} 指定每个符号的信息符号能量与噪声功率谱密度之比、{Number of bits per symbol} 指定每个输入符号中的比特数、{Specify symbol duration in seconds} 指定符号持续时间、{Samples per symbol} 指定每符号样本数、{Symbol period (s)} 指定符号周期、{Noise variance source} 指定噪声方差源、{Noise variance} 指定高斯白噪声的方差、{Random number source} 指定随机数源 Global、{Initial seed} 指定噪声生成器初始种子、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "输入数据信号 vector | matrix"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "加性高斯白噪声的方差 positive scalar | vector"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出数据信号 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "(SNR)",
+   "values": "方差模式 Signal to noise ratio (SNR) (default) | Signal to noise ratio (Eb/No) | Signal to noise ratio (Es/No) | Variance",
+   "group": ""
+  },
+  {
+   "name": "SNR (dB)",
+   "default": "10",
+   "values": "信号功率与噪声功率之比 10 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Eb/No (dB)",
+   "default": "10",
+   "values": "每符号信息比特能量与噪声功率谱密度之比 10 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Es/No (dB)",
+   "default": "10",
+   "values": "每个符号的信息符号能量与噪声功率谱密度之比 10 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Number of bits per symbol",
+   "default": "1",
+   "values": "每个输入符号中的比特数 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Input signal power, referenced to 1 ohm (watts)",
+   "default": "1",
+   "values": "输入均方功率 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Specify symbol duration in seconds",
+   "default": "off",
+   "values": "指定符号持续时间（秒） off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Samples per symbol",
+   "default": "1",
+   "values": "每符号样本数 1 (default) | positive integer | vector of positive integers",
+   "group": ""
+  },
+  {
+   "name": "Symbol period (s)",
+   "default": "4]",
+   "values": "符号周期（秒） [1 2 4] (default) | positive scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Parameter",
+   "values": "噪声方差源 Parameter (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "高斯白噪声的方差 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Random number source",
+   "default": "stream",
+   "values": "随机数源 Global stream (default) | mt19937ar with seed",
+   "group": ""
+  },
+  {
+   "name": "Initial seed",
+   "default": "67",
+   "values": "噪声生成器初始种子 67 (default) | nonnegative integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

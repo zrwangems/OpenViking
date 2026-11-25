@@ -1,0 +1,13 @@
+{
+ "key": "Gas-Charged Accumulator (IL)",
+ "title": "Gas-Charged Accumulator (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Tanks & Accumulators/Gas_Charged_Accumulator_IL.md"
+ ],
+ "text": "Gas-charged accumulator in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

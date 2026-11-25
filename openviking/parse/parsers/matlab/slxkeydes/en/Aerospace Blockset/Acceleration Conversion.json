@@ -1,0 +1,37 @@
+{
+ "key": "Acceleration Conversion",
+ "title": "Acceleration Conversion",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Unit Conversions/Acceleration_Conversion.md"
+ ],
+ "text": "Convert from acceleration units to desired acceleration units, 1 input, 1 output, {Initial unit} sets Input unit; {Final unit} sets the output units ft/s^2. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Acceleration scalar | array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Acceleration scalar | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial unit",
+   "default": "s",
+   "values": "Input units ft/s s (default) | m/s 2 | km/s 2 | in/s 2 | km/h-s | mph/s | G’s",
+   "group": ""
+  },
+  {
+   "name": "Final unit",
+   "default": "ft/s^2’",
+   "values": "Output units ft/s^2’ (default) | m/s^2 | km/s^2 | in/s^2 | km/h-s | mph/s | G’s",
+   "group": ""
+  }
+ ]
+}

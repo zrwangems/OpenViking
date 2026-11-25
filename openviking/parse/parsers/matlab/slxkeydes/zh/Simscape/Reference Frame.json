@@ -1,0 +1,13 @@
+{
+ "key": "Reference Frame",
+ "title": "Reference Frame",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Frames and Transforms/Reference_Frame.md"
+ ],
+ "text": "非惯性参考系。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

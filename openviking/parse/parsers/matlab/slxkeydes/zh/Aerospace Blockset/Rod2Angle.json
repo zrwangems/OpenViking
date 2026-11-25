@@ -1,0 +1,31 @@
+{
+ "key": "Rod2Angle",
+ "title": "Rodrigues to Rotation Angles",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Rodrigues_to_Rotation_Angles.md"
+ ],
+ "text": "将 Euler-Rodrigues 向量转换为旋转角度，输入 1 路、输出 1 路；按 {Rotation order} 指定旋转顺序。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "rod",
+   "direction": "input",
+   "summary": "欧拉-罗德里格斯向量 three-element vector"
+  },
+  {
+   "name": "R1,R2,R3",
+   "direction": "output",
+   "summary": "旋转角 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rotation order",
+   "default": "ZYX",
+   "values": "旋转顺序 ZYX (default) | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Grounded Neutral (Three-Phase)",
+ "title": "Grounded Neutral (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Grounded_Neutral_Three_Phase.md"
+ ],
+ "text": "Connect phases of three-phase system to electrical reference.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

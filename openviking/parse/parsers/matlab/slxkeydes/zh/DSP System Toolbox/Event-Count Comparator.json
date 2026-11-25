@@ -1,0 +1,36 @@
+{
+ "key": "Event-Count Comparator",
+ "title": "Event-Count Comparator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Management/Switches and Counters/Event_Count_Comparator.md"
+ ],
+ "text": "检测累积非零输入的阈值穿越，输入 2 路、输出 1 路、无直接馈通；{Event threshold}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "数据输入 scalar"
+  },
+  {
+   "name": "Int",
+   "direction": "input",
+   "summary": "区间使能信号 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "检测所需的非零输入数量 true or 1 | false or 0"
+  }
+ ],
+ "params": [
+  {
+   "name": "Event threshold",
+   "default": "10",
+   "values": "Event threshold 10 (default) | nonnegative integer",
+   "group": ""
+  }
+ ]
+}

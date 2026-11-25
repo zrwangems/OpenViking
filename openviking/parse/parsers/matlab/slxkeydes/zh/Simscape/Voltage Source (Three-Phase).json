@@ -1,0 +1,13 @@
+{
+ "key": "Voltage Source (Three-Phase)",
+ "title": "Voltage Source (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Voltage_Source_Three_Phase.md"
+ ],
+ "text": "具有可选谐波的理想三相电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

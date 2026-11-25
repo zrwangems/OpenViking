@@ -1,0 +1,56 @@
+{
+ "key": "ComboBox",
+ "title": "Combo Box",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Combo_Box.md"
+ ],
+ "text": "Select parameter value from drop-down menu, {Label} sets Block label position; {Connection} sets the block parameter value to connect parameter value connection, {Enumerated Data Type} sets the state values and labels using an enumerated data, {States} sets the of states to select for connected parameter scalar and character, {Opacity} sets the block background opacity, {Foreground Color} sets the block foreground color and {Background Color} sets the block background color. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Block parameter value to connect parameter value connection options",
+   "group": "Connection"
+  },
+  {
+   "name": "Enumerated Data Type",
+   "default": "off",
+   "values": "Specify state values and labels using an enumerated data type off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Label",
+   "default": "Hide",
+   "values": "Block label position Hide (default) | Bottom | Top",
+   "group": "Main"
+  },
+  {
+   "name": "States",
+   "default": "",
+   "values": "Set of states to select for connected parameter scalar and character vector",
+   "group": "Main"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "Block background opacity 1 (default) | scalar",
+   "group": "Format"
+  },
+  {
+   "name": "Foreground Color",
+   "default": "",
+   "values": "Block foreground color [r g b] vector",
+   "group": "Format"
+  },
+  {
+   "name": "Background Color",
+   "default": "",
+   "values": "Block background color [r g b] vector",
+   "group": "Format"
+  }
+ ]
+}

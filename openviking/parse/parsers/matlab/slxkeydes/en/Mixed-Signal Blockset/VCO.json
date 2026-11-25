@@ -1,0 +1,91 @@
+{
+ "key": "VCO",
+ "title": "VCO",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/PLL/Building Blocks/VCO.md"
+ ],
+ "text": "Model voltage controlled oscillator, 1 input, 1 output; {Specify using} defines how VCO output frequency is specified Voltage, {Voltage sensitivity (Hz/V)} sets the measure of change in output frequency of VCO, {Free running frequency (Hz)} sets the vCO output frequency without control voltage, {Control voltage (V)} controls voltage values, {Output frequency (Hz)} sets the vCO output frequency values, {Output amplitude (V)} sets the maximum amplitude of the VCO output, {Enable increased buffer size}, {Buffer size} sets the number of samples of the input buffering available during, {Add phase noise}, {Phase noise frequency offset (Hz)} sets the frequency offsets of phase noise from carrier frequency and {Phase noise level (dBc/Hz)} sets the phase noise power at specified frequency offsets relative to the carrier. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vctrl",
+   "direction": "input",
+   "summary": "Voltage used to control VCO output frequency scalar | vector"
+  },
+  {
+   "name": "vco out",
+   "direction": "output",
+   "summary": "Output square wave signal determined by vctrl port scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify using",
+   "default": "sensitivity",
+   "values": "Define how VCO output frequency is specified Voltage sensitivity (default) | Output frequency vs. control voltage",
+   "group": "Parameters"
+  },
+  {
+   "name": "Voltage sensitivity (Hz/V)",
+   "default": "100e6",
+   "values": "Measure of change in output frequency of VCO 100e6 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Free running frequency (Hz)",
+   "default": "2.5e9",
+   "values": "VCO output frequency without control voltage 2.5e9 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Control voltage (V)",
+   "default": "5]",
+   "values": "Control voltage values [-5 0 5] (default) | real valued vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output frequency (Hz)",
+   "default": "3e9]",
+   "values": "VCO output frequency values [2e9 2.5e9 3e9] (default) | positive real valued vector",
+   "group": "Parameters"
+  },
+  {
+   "name": "Output amplitude (V)",
+   "default": "1",
+   "values": "Maximum amplitude of the VCO output voltage 1 (default) | positive real scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "Enable increased buffer size off (default) | on",
+   "group": "Parameters"
+  },
+  {
+   "name": "Buffer size",
+   "default": "10",
+   "values": "Number of samples of the input buffering available during simulation 10 (default) | positive integer scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Add phase noise",
+   "default": "on",
+   "values": "Add phase noise as a function of frequency on (default) | off",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise frequency offset (Hz)",
+   "default": "10e6]",
+   "values": "Frequency offsets of phase noise from carrier frequency [10e3 100e3 1e6 3e6 10e6] (default) | positive real valued vector",
+   "group": "Impairments"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-154]",
+   "values": "Phase noise power at specified frequency offsets relative to the carrier [-77 -108 -134 -145 -154] (default) | negative real valued vector",
+   "group": "Impairments"
+  }
+ ]
+}

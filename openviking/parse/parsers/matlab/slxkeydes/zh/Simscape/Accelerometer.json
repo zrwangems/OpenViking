@@ -1,0 +1,13 @@
+{
+ "key": "Accelerometer",
+ "title": "Accelerometer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Accelerometer.md"
+ ],
+ "text": "MEMS 加速度计的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "General Block Deinterleaver",
+ "title": "General Block Deinterleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Block/General_Block_Deinterleaver.md"
+ ],
+ "text": "恢复输入向量中符号的顺序。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Extruded Solid",
+ "title": "Extruded Solid",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Extruded_Solid.md"
+ ],
+ "text": "具有几何、惯性和颜色的实体拉伸元件。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

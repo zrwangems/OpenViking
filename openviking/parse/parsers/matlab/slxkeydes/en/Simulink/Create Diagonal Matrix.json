@@ -1,0 +1,24 @@
+{
+ "key": "Create Diagonal Matrix",
+ "title": "Create Diagonal Matrix",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/Create_Diagonal_Matrix.md"
+ ],
+ "text": "Create square diagonal matrix from diagonal elements, 1 input, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal matrix"
+  }
+ ],
+ "params": []
+}

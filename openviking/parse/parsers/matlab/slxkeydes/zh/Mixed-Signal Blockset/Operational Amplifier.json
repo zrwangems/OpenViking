@@ -1,0 +1,137 @@
+{
+ "key": "Operational Amplifier",
+ "title": "Operational Amplifier",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Operational_Amplifier.md"
+ ],
+ "text": "对具有两个或更多极点的运算放大器建模，输入 2 路、输出 2 路；{Operational Amplifier Circuit} 指定运算放大器电路类型 Double-pole、{Inherit sample interval from input} 指定从输入继承采样间隔、{Sample interval (s)} 指定 MATLAB 分析中使用的采样间隔值 1e-8、{Simulate using} 指定仿真模式 Code、{Supply rail high (V)} 指定最大电源电压、{Supply rail low (V)} 指定最小电源电压、{Input offset voltage (V)} 指定输入端子处的失调电压、{Open loop gain (V/V)} 指定无反馈时的运算放大器增益 3e3、{Unity gain bandwidth (Hz)} 指定运算放大器增益等于 1 时的频率 10e6、{Maximum tail current (A)} 指定运算放大器电路中流过尾部 MOSFET 的最大电流、{Slew rate (V/s)} 指定运算放大器输出电压的变化率 10e6、{Output resistance (Ohms)} 输出端子处的电阻 10e3、{Output Capacitance (F)} 输出端子处的电容 50e-12、{Transfer function poles} 指定拉普拉斯域中传递函数的极点、{Transfer function zeroes} 指定拉普拉斯域中传递函数的零点、{Include Z-domain approximation} 绘制开环响应时包含 z 域近似、{Plot open loop response} 绘制运放的开环响应，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "InP",
+   "direction": "input",
+   "summary": "正输入端子 scalar"
+  },
+  {
+   "name": "InN",
+   "direction": "input",
+   "summary": "负输入端子 scalar"
+  },
+  {
+   "name": "OutP",
+   "direction": "output",
+   "summary": "正输出端子 scalar"
+  },
+  {
+   "name": "OutN",
+   "direction": "output",
+   "summary": "负输出端子 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operational Amplifier Circuit",
+   "default": "Circuit",
+   "values": "运算放大器电路类型 Double-pole Circuit (default) | Multipole Circuit",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample interval from input",
+   "default": "off",
+   "values": "从输入继承采样间隔 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample interval (s)",
+   "default": "1e-8",
+   "values": "MATLAB 分析中使用的采样间隔值 1e-8 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "选择仿真模式 Code generation (default) | Interpreted execution",
+   "group": ""
+  },
+  {
+   "name": "Supply rail high (V)",
+   "default": "5",
+   "values": "最大电源电压 5 (default) | real scalar",
+   "group": "Signal Parameters"
+  },
+  {
+   "name": "Supply rail low (V)",
+   "default": "-5",
+   "values": "最小电源电压 -5 (default) | real scalar",
+   "group": "Signal Parameters"
+  },
+  {
+   "name": "Input offset voltage (V)",
+   "default": "0",
+   "values": "输入端子处的失调电压 0 (default) | scalar",
+   "group": "Signal Parameters"
+  },
+  {
+   "name": "Open loop gain (V/V)",
+   "default": "3e3",
+   "values": "无反馈时的运算放大器增益 3e3 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Unity gain bandwidth (Hz)",
+   "default": "10e6",
+   "values": "运算放大器增益等于 1 时的频率 10e6 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Maximum tail current (A)",
+   "default": "100e-6",
+   "values": "运算放大器电路中流过尾部 MOSFET 的最大电流 100e-6 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Slew rate (V/s)",
+   "default": "10e6",
+   "values": "运算放大器输出电压的变化率 10e6 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Output resistance (Ohms)",
+   "default": "10e3",
+   "values": "输出端子处的电阻 10e3 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Output Capacitance (F)",
+   "default": "50e-12",
+   "values": "输出端子处的电容 50e-12 (default) | positive real scalar",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Transfer function poles",
+   "default": "-8.62e+07]",
+   "values": "拉普拉斯域中传递函数的极点 [-2.09e+04 -8.62e+07] (default) | column vector",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Transfer function zeroes",
+   "default": "[-9.14e+07]",
+   "values": "拉普拉斯域中传递函数的零点 [-9.14e+07] (default) | column vector",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Include Z-domain approximation",
+   "default": "off",
+   "values": "绘制开环响应时包含 z 域近似 off (default) | on",
+   "group": "Analysis"
+  },
+  {
+   "name": "Plot open loop response",
+   "default": "",
+   "values": "绘制运放的开环响应 button",
+   "group": "Analysis"
+  }
+ ]
+}

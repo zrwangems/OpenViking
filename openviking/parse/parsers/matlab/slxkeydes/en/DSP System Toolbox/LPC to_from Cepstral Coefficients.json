@@ -1,0 +1,76 @@
+{
+ "key": "LPC to/from Cepstral Coefficients",
+ "title": "LPC to/from Cepstral Coefficients",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Linear Prediction/LPC_to_from_Cepstral_Coefficients.md"
+ ],
+ "text": "Convert linear prediction coefficients to cepstral coefficients or cepstral coefficients to linear prediction coefficients, 3 inputs, 2 outputs, no direct feedthrough, {If first input value is not 1} sets Action to take if first input value is not; {Type of conversion}, {Specify P} sets the method of specifying prediction error power P assume P, {Output P} sets the output prediction error power P, {Output size same as input size} and {Length of output cepstral coefficients vector}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "LPC coefficients vector | matrix"
+  },
+  {
+   "name": "CC",
+   "direction": "input",
+   "summary": "Cepstral coefficients vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "input",
+   "summary": "Prediction error power scalar | vector"
+  },
+  {
+   "name": "CC",
+   "direction": "output",
+   "summary": "Cepstral coefficients vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Prediction error power scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type of conversion",
+   "default": "coefficients",
+   "values": "Type of conversion LPCs to cepstral coefficients (default) | Cepstral coefficients to LPCs",
+   "group": ""
+  },
+  {
+   "name": "Specify P",
+   "default": "1",
+   "values": "Method of specifying prediction error power P assume P equals 1 (default) | via input port",
+   "group": ""
+  },
+  {
+   "name": "Output P",
+   "default": "off",
+   "values": "Output prediction error power P off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output size same as input size",
+   "default": "off",
+   "values": "Output size same as input size off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Length of output cepstral coefficients vector",
+   "default": "10",
+   "values": "Length of output cepstral coefficients 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "If first input value is not 1",
+   "default": "1",
+   "values": "Action to take if first input value is not 1 Replace it with 1 (default) | Normalize | Normalize and warn | Error",
+   "group": ""
+  }
+ ]
+}

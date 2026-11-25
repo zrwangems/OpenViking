@@ -1,0 +1,160 @@
+{
+ "key": "phased.internal.SimulinkNonlinearFMWaveform",
+ "title": "Nonlinear FM Waveform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Waveforms/Nonlinear_FM_Waveform.md"
+ ],
+ "text": "非线性 FM 脉冲波形，输入 2 路、输出 3 路；按 {Frequency modulation} 指定频率调制；{Sample rate (Hz)} 输出波形的采样率 1e6、{Method to specify pulse duration} 以时间或占空比表示的脉冲持续时间 Pulse、{Pulse width (s)} 指定脉冲持续时间 50e-6、{Duty cycle} 指定波形占空比、{Pulse repetition frequency (Hz)} 指定脉冲重复频率 1e4、{Enable PRF selection input} 指定预定义 PRF、{Coefficients of a polynomial FM} 指定多项式频率函数的系数、{Sweep bandwidth (Hz)} 指定非线性 FM 扫频的带宽 100e3、{Sweep direction} 指定非线性 FM 扫频的方向、{Sweep interval} 指定 FM 频率扫频区间、{Envelope function} 指定 FM 信号幅度包络、{Source of Frequency Offset} 指定频率偏移源、{Frequency Offset (Hz)} 指定频率偏移、{Output signal format} 输出信号的格式、{Number of samples in output} 输出中的样本数、{Number of pulses in output} 输出中的脉冲数、{Enable PRF Output} 启用 PRF 输出、{Enable Matched Filter Coefficients Output} 启用匹配滤波器系数输出、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PRFIdx",
+   "direction": "input",
+   "summary": "PRF 索引 positive integer"
+  },
+  {
+   "name": "FreqOffset",
+   "direction": "input",
+   "summary": "频率偏移 scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "脉冲波形 complex-valued vector"
+  },
+  {
+   "name": "PRF",
+   "direction": "output",
+   "summary": "脉冲重复频率 positive scalar"
+  },
+  {
+   "name": "Coeff",
+   "direction": "output",
+   "summary": "匹配滤波器系数 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "输出波形的采样率 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Method to specify pulse duration",
+   "default": "width",
+   "values": "以时间或占空比表示的脉冲持续时间 Pulse width (default) | Duty cycle",
+   "group": ""
+  },
+  {
+   "name": "Pulse width (s)",
+   "default": "50e-6",
+   "values": "脉冲持续时间 50e-6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Duty cycle",
+   "default": "0.5",
+   "values": "波形占空比 0.5 (default) | scalar in the range [0,1]",
+   "group": ""
+  },
+  {
+   "name": "Pulse repetition frequency (Hz)",
+   "default": "1e4",
+   "values": "脉冲重复频率 1e4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable PRF selection input",
+   "default": "off",
+   "values": "选择预定义 PRF off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Frequency modulation",
+   "default": "Polynomial",
+   "values": "频率调制 Polynomial (default) | Hyperbolic | Hybrid Linear-Tangent | Stepped Price",
+   "group": ""
+  },
+  {
+   "name": "Coefficients of a polynomial FM",
+   "default": "0]",
+   "values": "多项式频率函数的系数 [1 0 0] (default) | ( N +1)-length real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Sweep bandwidth (Hz)",
+   "default": "100e3",
+   "values": "非线性 FM 扫频的带宽 100e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sweep direction",
+   "default": "Up",
+   "values": "非线性 FM 扫频的方向 Up (default) | Down",
+   "group": ""
+  },
+  {
+   "name": "Sweep interval",
+   "default": "Positive",
+   "values": "FM 频率扫频区间 Positive (default) | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Envelope function",
+   "default": "Rectangular",
+   "values": "FM 信号幅度包络 Rectangular (default) | Gaussian | Hamming | Chebyshev | Hann | Kaiser | Taylor",
+   "group": ""
+  },
+  {
+   "name": "Source of Frequency Offset",
+   "default": "Property",
+   "values": "频率偏移源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Frequency Offset (Hz)",
+   "default": "0",
+   "values": "频率偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output signal format",
+   "default": "Pulses",
+   "values": "输出信号的格式 Pulses (default) | Samples",
+   "group": ""
+  },
+  {
+   "name": "Number of samples in output",
+   "default": "100",
+   "values": "输出中的样本数 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of pulses in output",
+   "default": "1",
+   "values": "输出中的脉冲数 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Enable PRF Output",
+   "default": "off",
+   "values": "启用 PRF 输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable Matched Filter Coefficients Output",
+   "default": "off",
+   "values": "启用匹配滤波器系数输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

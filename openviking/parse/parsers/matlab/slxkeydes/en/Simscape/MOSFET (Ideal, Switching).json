@@ -1,0 +1,13 @@
+{
+ "key": "MOSFET (Ideal, Switching)",
+ "title": "MOSFET (Ideal, Switching)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/MOSFET_Ideal_Switching.md"
+ ],
+ "text": "Ideal N-channel MOSFET for switching applications.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

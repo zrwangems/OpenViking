@@ -1,0 +1,55 @@
+{
+ "key": "Digital Input (Single Sample)",
+ "title": "Digital Input (Single Sample)",
+ "toolbox": "Data Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Data Acquisition Toolbox/Digital_Input_Single_Sample.md"
+ ],
+ "text": "从数据采集设备的多个数字线采集单个采样；输出 2 路；按 {Number of ports} 指定输出数据端口数 1 for all lines；{Device} 指定要从中采集数据的设备、{Lines} 指定设备线路选择和配置 options depend、{Sample time} 指定模块执行速率、{Output timestamp} 添加时间戳输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "采集的数字输入 boolean"
+  },
+  {
+   "name": "Timestamp",
+   "direction": "output",
+   "summary": "扫描的时间戳 double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "要从中采集数据的设备",
+   "group": ""
+  },
+  {
+   "name": "Lines",
+   "default": "",
+   "values": "设备线路选择和配置 options depend on device",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "",
+   "values": "输出数据端口数 1 for all lines | 1 per line",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "模块执行速率 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Output timestamp",
+   "default": "",
+   "values": "添加时间戳输出端口",
+   "group": ""
+  }
+ ]
+}

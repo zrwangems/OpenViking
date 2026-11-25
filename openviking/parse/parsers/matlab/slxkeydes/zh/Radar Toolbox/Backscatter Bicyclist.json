@@ -1,0 +1,132 @@
+{
+ "key": "Backscatter Bicyclist",
+ "title": "Backscatter Bicyclist",
+ "toolbox": "Radar Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Radar Toolbox/Backscatter_Bicyclist.md"
+ ],
+ "text": "来自骑行者的反向散射信号，输入 5 路、输出 4 路；按 {Azimuth angles (deg)} 指定方位角；{Number of wheel spokes} 指定每个车轮的辐条数、{Gear transmission ratio} 指定车轮转数与踏板转数之比、{Signal carrier frequency (Hz)} 指定载波频率 77e9、{Initial position (m)} 指定骑行者的初始位置、{Initial heading direction (deg)} 指定骑行者的初始航向、{Initial bicyclist speed (m/s)} 指定骑行者的初始速度、{Propagation speed (m/s)} 指定信号传播速度 physconst、{RCS pattern} 指定 RCS 方向图来源、{Elevation angles (deg)} 指定俯仰角、{Radar cross section pattern (square meters)} 指定雷达截面积方向图 1-by-361 real-valued、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "入射雷达信号 complex-valued M -by- N matrix"
+  },
+  {
+   "name": "AngH",
+   "direction": "input",
+   "summary": "骑行者航向 0.0 | scalar"
+  },
+  {
+   "name": "Ang",
+   "direction": "input",
+   "summary": "入射信号的方向 real-valued 2-by- N vector"
+  },
+  {
+   "name": "Speed",
+   "direction": "input",
+   "summary": "骑行者速度 nonnegative scalar"
+  },
+  {
+   "name": "Coast",
+   "direction": "input",
+   "summary": "骑行者滑行状态 false (default) | true"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "合并后的反射雷达信号 complex-valued M -by-1 column vector"
+  },
+  {
+   "name": "Pos",
+   "direction": "output",
+   "summary": "散射体的位置 real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Vel",
+   "direction": "output",
+   "summary": "散射体速度 real-valued 3-by- N matrix"
+  },
+  {
+   "name": "Ax",
+   "direction": "output",
+   "summary": "散射体方位 real-valued 3-by-3 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of wheel spokes",
+   "default": "20",
+   "values": "每个车轮的辐条数 20 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Gear transmission ratio",
+   "default": "1.5",
+   "values": "车轮转数与踏板转数之比 1.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Signal carrier frequency (Hz)",
+   "default": "77e9",
+   "values": "载波频率 77e9 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial position (m)",
+   "default": "[0;0;0]",
+   "values": "骑行者的初始位置 [0;0;0] (default) | 3-by-1 real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Initial heading direction (deg)",
+   "default": "0",
+   "values": "骑行者的初始航向 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial bicyclist speed (m/s)",
+   "default": "4",
+   "values": "骑行者的初始速度 4 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Propagation speed (m/s)",
+   "default": "physconst(’LightSpeed’)",
+   "values": "信号传播速度 physconst(’LightSpeed’) (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "RCS pattern",
+   "default": "Auto",
+   "values": "RCS 方向图来源 Auto (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "Azimuth angles (deg)",
+   "default": "[-180:180]",
+   "values": "方位角 [-180:180] (default) | 1-by- P real-valued row vector | P -by-1 real-valued column vector",
+   "group": ""
+  },
+  {
+   "name": "Elevation angles (deg)",
+   "default": "[-90:90]",
+   "values": "俯仰角 [-90:90] (default) | 1-by- Q real-valued row vector | Q -by-1 real-valued column vector",
+   "group": ""
+  },
+  {
+   "name": "Radar cross section pattern (square meters)",
+   "default": "matrix",
+   "values": "雷达截面积方向图 1-by-361 real-valued matrix (default) | Q -by- P real-valued matrix | 1-by- P real-valued vector",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

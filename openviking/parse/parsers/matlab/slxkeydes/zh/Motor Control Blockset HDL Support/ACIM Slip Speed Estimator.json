@@ -1,0 +1,73 @@
+{
+ "key": "ACIM Slip Speed Estimator",
+ "title": "ACIM Slip Speed Estimator",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Control Reference/ACIM_Slip_Speed_Estimator.md",
+  "Motor Control Blockset/Controls/Control Reference/ACIM_Slip_Speed_Estimator.md"
+ ],
+ "text": "计算 AC 感应电机的转差速度，输入 2 路、输出 1 路；{极对数}、{转子电阻(Ohm)} 指定电机转子电阻、{转子泄漏电感(H)} 指定转子绕组的漏感 6.81e-3、{磁化电感(H)} 指定感应电机的磁化电感 30e-3、{输出饱和(rpm)} 指定模块输出的饱和值、{输入单位} 指定输入值的单位 Per-Unit、{基转速(rpm)} 指定标幺制的基转速，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I sd ref",
+   "direction": "input",
+   "summary": "参考 d 轴定子电流 标量"
+  },
+  {
+   "name": "I sq ref",
+   "direction": "input",
+   "summary": "参考 q 轴定子电流 标量"
+  },
+  {
+   "name": "⍵ m slip",
+   "direction": "output",
+   "summary": "感应电机的转差转速 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "极对数",
+   "default": "2",
+   "values": "电机中可用的极对数 2 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "转子电阻(Ohm)",
+   "default": "1.05",
+   "values": "电机转子电阻 1.05 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "转子泄漏电感(H)",
+   "default": "6.81e-3",
+   "values": "转子绕组的漏感 6.81e-3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "磁化电感(H)",
+   "default": "30e-3",
+   "values": "感应电机的磁化电感 30e-3 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输出饱和(rpm)",
+   "default": "150",
+   "values": "模块输出的饱和值 150 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输入单位",
+   "default": "(PU)",
+   "values": "输入值的单位 Per-Unit (PU) (默认) | SI 单位",
+   "group": ""
+  },
+  {
+   "name": "基转速(rpm)",
+   "default": "1500",
+   "values": "标幺制的基转速 1500 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

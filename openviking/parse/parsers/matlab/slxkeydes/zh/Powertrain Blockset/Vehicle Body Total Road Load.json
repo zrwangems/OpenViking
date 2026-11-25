@@ -1,0 +1,104 @@
+{
+ "key": "Vehicle Body Total Road Load",
+ "title": "Vehicle Body Total Road Load",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Vehicle Dynamics/Vehicle_Body_Total_Road_Load.md",
+  "Vehicle Dynamics Blockset/Vehicle Body/Vehicle_Body_Total_Road_Load.md"
+ ],
+ "text": "使用滑行测试系数的车辆运动，输入 5 路、输出 3 路；按 {Input Mode} 指定输入模式；{Mass} 指定车身质量、{Rolling resistance coefficient, a} 指定滚动、{Rolling and driveline resistance coefficient, b} 指定滚动和传动系、{Aerodynamic drag coefficient, c} 指定阻力、{Gravitational acceleration, g} 指定重力、{Initial position, x_o} 指定位置、{Initial velocity, xdot_o} 指定速度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "xddot",
+   "direction": "input",
+   "summary": "车辆纵向加速度 scalar"
+  },
+  {
+   "name": "PwrTot",
+   "direction": "input",
+   "summary": "牵引输入功率 scalar"
+  },
+  {
+   "name": "ForceTot",
+   "direction": "input",
+   "summary": "牵引输入力 scalar"
+  },
+  {
+   "name": "Grade",
+   "direction": "input",
+   "summary": "道路坡度角 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "xdot",
+   "direction": "output",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "ForceTot",
+   "direction": "output",
+   "summary": "牵引输入力 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input Mode",
+   "default": "Kinematic",
+   "values": "指定输入模式 Kinematic (default) | Force | Power",
+   "group": ""
+  },
+  {
+   "name": "Mass",
+   "default": "1200",
+   "values": "车身质量 1200 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rolling resistance coefficient, a",
+   "default": "196",
+   "values": "滚动 196 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rolling and driveline resistance coefficient, b",
+   "default": "2.232",
+   "values": "滚动和传动系 2.232 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Aerodynamic drag coefficient, c",
+   "default": "0.389",
+   "values": "阻力 0.389 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gravitational acceleration, g",
+   "default": "9.81",
+   "values": "重力 9.81 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial position, x_o",
+   "default": "0",
+   "values": "位置 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity, xdot_o",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

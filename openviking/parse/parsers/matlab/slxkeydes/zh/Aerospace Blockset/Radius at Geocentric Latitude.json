@@ -1,0 +1,49 @@
+{
+ "key": "Radius at Geocentric Latitude",
+ "title": "Radius at Geocentric Latitude",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Flight Parameters/Radius_at_Geocentric_Latitude.md"
+ ],
+ "text": "估计椭球行星在地心纬度处的半径，输入 1 路、输出 1 路；{Units} 输出单位 Metric、{Planet model} 指定行星模型 Earth、{Flattening} 指定行星扁率 1/298.257223563、{Equatorial radius of planet} 指定行星赤道半径，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "λ s",
+   "direction": "input",
+   "summary": "地心纬度 scalar | vector"
+  },
+  {
+   "name": "r s",
+   "direction": "output",
+   "summary": "半径 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输出单位 Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Planet model",
+   "default": "(WGS84)",
+   "values": "行星模型 Earth (WGS84) (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "行星扁率 1/298.257223563 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius of planet",
+   "default": "6378137",
+   "values": "行星赤道半径 6378137 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

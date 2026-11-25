@@ -1,0 +1,94 @@
+{
+ "key": "vision.internal.blocks.Warp",
+ "title": "Warp",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Geometric Transformations/Warp.md"
+ ],
+ "text": "应用投影或仿射变换，输入 3 路、输出 2 路；按 {Interpolation method} 指定变换后像素值的插值方法；{Transformation matrix for source} 用于传递变换矩阵的源 Input、{Transformation matrix} 指定变换矩阵的值 3-by-2 matrix、{Background fill value} 指定变换后图像中背景像素的强度值、{Output image position source} 用于传递输出图像大小的源 Same as input、{Output image position vector [x y width height]} 输出图像的大小、{Enable ROI input port} 指定输入 ROI、{Enable output port indicating if any part of ROI is outside input image} 指定变换后的 ROI 位于指定图像大小之外时的输出、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "输入图像 matrix | 3-D numeric array"
+  },
+  {
+   "name": "TForm",
+   "direction": "input",
+   "summary": "变换矩阵 3-by-2 matrix | 3-by-3 matrix"
+  },
+  {
+   "name": "ROI",
+   "direction": "input",
+   "summary": "感兴趣区域 4-element vector"
+  },
+  {
+   "name": "Image",
+   "direction": "output",
+   "summary": "变换后的图像 matrix | 3-D numeric array"
+  },
+  {
+   "name": "Err_roi",
+   "direction": "output",
+   "summary": "变换后的 ROI 位于图像区域外的指示 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Transformation matrix for source",
+   "default": "port",
+   "values": "用于传递变换矩阵的源 Input port (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Transformation matrix",
+   "default": "",
+   "values": "变换矩阵的值 3-by-2 matrix | 3-by-3 matrix",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "Bilinear",
+   "values": "变换后像素值的插值方法 Bilinear (default) | Nearest neighbor | Bicubic",
+   "group": ""
+  },
+  {
+   "name": "Background fill value",
+   "default": "0",
+   "values": "变换后图像中背景像素的强度值 0 (default) | scalar | 3-element vector",
+   "group": ""
+  },
+  {
+   "name": "Output image position source",
+   "default": "image",
+   "values": "用于传递输出图像大小的源 Same as input image (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Output image position vector [x y width height]",
+   "default": "]",
+   "values": "输出图像的大小 [ 1 1 512 512 ] (default) | 4-element vector",
+   "group": ""
+  },
+  {
+   "name": "Enable ROI input port",
+   "default": "off",
+   "values": "输入 ROI off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable output port indicating if any part of ROI is outside input image",
+   "default": "off",
+   "values": "变换后的 ROI 位于指定图像大小之外时的输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

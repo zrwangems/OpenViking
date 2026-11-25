@@ -1,0 +1,13 @@
+{
+ "key": "Shuttle Valve (IL)",
+ "title": "Shuttle Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Directional Control Valves/Shuttle_Valve_IL.md"
+ ],
+ "text": "等温液体系统中的单向切换阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

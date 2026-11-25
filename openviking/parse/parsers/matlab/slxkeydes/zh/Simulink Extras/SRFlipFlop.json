@@ -1,0 +1,41 @@
+{
+ "key": "SRFlipFlop",
+ "title": "S-R Flip-Flop",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Flip Flops/S_R_Flip_Flop.md"
+ ],
+ "text": "S-R 触发器建模，输入 2 路、输出 2 路；{初始条件(Q 的状态)} 输出 Q 的初始值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "S",
+   "direction": "input",
+   "summary": "设置的输入 标量"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "重置的输入 标量"
+  },
+  {
+   "name": "Q",
+   "direction": "output",
+   "summary": "输出信号 Q 标量"
+  },
+  {
+   "name": "!Q",
+   "direction": "output",
+   "summary": "输出信号 !Q 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始条件(Q 的状态)",
+   "default": "0",
+   "values": "输出 Q 的初始值 0 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

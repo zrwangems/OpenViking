@@ -1,0 +1,79 @@
+{
+ "key": "MIL-188 QAM Demodulator Baseband",
+ "title": "MIL-188 QAM Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/MIL_188_QAM_Demodulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/Standard-Compliant/MIL_188_QAM_Demodulator_Baseband.md"
+ ],
+ "text": "MIL-STD-188-110 B/C 标准特定的正交幅度解调，输入 2 路、输出 1 路；按 {Noise variance} 指定噪声方差；{Modulation order} 指定调制阶数、{Constellation scaling} 指定星座缩放 As specified、{Output type} 指定输入类型 Integer、{Decision type} 指定解调判决类型 Hard、{Noise variance source} 指定噪声方差源、{Output data type} 输出数据类型、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "MIL-STD-188 标准特定的 QAM 调制信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "噪声方差 positive scalar | vector of positive values"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "解调信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation order",
+   "default": "16",
+   "values": "调制阶数 16 (default) | 32 | 64 | 256",
+   "group": ""
+  },
+  {
+   "name": "Constellation scaling",
+   "default": "standard",
+   "values": "星座缩放 As specified in standard (default) | Unit average power",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "输入类型 Integer (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "解调判决类型 Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": ""
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Property",
+   "values": "噪声方差源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "噪声方差 1 (default) | positive scalar | vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

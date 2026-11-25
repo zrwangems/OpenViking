@@ -1,0 +1,31 @@
+{
+ "key": "IsHermitian",
+ "title": "IsHermitian",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Matrix Operations/IsHermitian.md"
+ ],
+ "text": "检查矩阵是 Hermitian 还是斜 Hermitian，输入 1 路、输出 1 路、直接馈通；{Mode} 指定矩阵是否为 Hermitian 或斜，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入矩阵 matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Hermitian 或斜 Hermitian 矩阵 real scalar Boolean"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mode",
+   "default": "Hermitian",
+   "values": "矩阵是否为 Hermitian 或斜 Hermitian Hermitian (default) | Skew-Hermitian",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,141 @@
+{
+ "key": "shared_uav_rst.sluav.internal.system.MinJerkPolyTraj",
+ "title": "Minimum Jerk Polynomial Trajectory",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Utilities/Minimum_Jerk_Polynomial_Trajectory.md",
+  "UAV Toolbox/Algorithms/Minimum_Jerk_Polynomial_Trajectory.md"
+ ],
+ "text": "生成经过多个路点的最小加加速度多项式轨迹，输入 6 路、输出 7 路；按 {Minimum segment time} 指定最小时间段长度；{Show boundary conditions input ports} 指定接受边界条件输入、{Show polynomial coefficients output port} 输出多项式系数、{Show status output port} 输出状态、{Time allocation} 启用时间分配、{Time weight} 指定时间分配权重、{Maximum segment time} 指定最大时间段长度、{Maximum iterations} 指定求解器的最大迭代次数、{Maximum time} 指定求解器的最大时间、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Time",
+   "direction": "input",
+   "summary": "沿轨迹的时间点 scalar | vector"
+  },
+  {
+   "name": "Waypoints",
+   "direction": "input",
+   "summary": "沿轨迹的路点位置 n -by- p matrix"
+  },
+  {
+   "name": "TimePoints",
+   "direction": "input",
+   "summary": "轨迹路点的时间点 p -element row vector"
+  },
+  {
+   "name": "VelBC",
+   "direction": "input",
+   "summary": "路点的速度边界条件 n -by- p matrix"
+  },
+  {
+   "name": "AccelBC",
+   "direction": "input",
+   "summary": "路点的加速度边界条件 n -by- p matrix"
+  },
+  {
+   "name": "JerkBC",
+   "direction": "input",
+   "summary": "路点的加加速度边界条件 n -by- p matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "轨迹的位置 n -element vector | n -by- m matrix"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "轨迹的速度 n -element vector | n -by- m matrix"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "轨迹的加速度 n -element vector | n -by- m matrix"
+  },
+  {
+   "name": "qddd",
+   "direction": "output",
+   "summary": "轨迹的加加速度 n -element vector | n -by- m matrix"
+  },
+  {
+   "name": "TimeOfArrival",
+   "direction": "output",
+   "summary": "到达每个路点的时间 p -element vector"
+  },
+  {
+   "name": "PolynomialCoefs",
+   "direction": "output",
+   "summary": "多项式系数 n ( p – 1 )-by- 8 matrix"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "轨迹生成的状态 three-element vector of the form [ SingularityStatus MaxIterStatus MaxTimeStatus ]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show boundary conditions input ports",
+   "default": "off",
+   "values": "接受边界条件输入 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show polynomial coefficients output port",
+   "default": "off",
+   "values": "输出多项式系数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show status output port",
+   "default": "off",
+   "values": "输出状态 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Time allocation",
+   "default": "off",
+   "values": "启用时间分配 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Time weight",
+   "default": "100",
+   "values": "时间分配权重 100 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Minimum segment time",
+   "default": "0.1",
+   "values": "最小时间段长度 0.1 (default) | positive scalar | ( p – 1 )-element positive row vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum segment time",
+   "default": "1",
+   "values": "最大时间段长度 1 (default) | positive scalar | ( p – 1 )-element positive row vector",
+   "group": ""
+  },
+  {
+   "name": "Maximum iterations",
+   "default": "1500",
+   "values": "求解器的最大迭代次数 1500 (default) | positive integer scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum time",
+   "default": "10",
+   "values": "求解器的最大时间 10 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

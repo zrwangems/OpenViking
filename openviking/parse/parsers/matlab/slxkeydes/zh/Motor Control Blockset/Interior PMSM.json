@@ -1,0 +1,123 @@
+{
+ "key": "Interior PMSM",
+ "title": "Interior PMSM",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Electrical Systems/Motors/Interior_PMSM.md",
+  "Powertrain Blockset/Propulsion/Electric Motors and Inverters/Interior_PMSM.md"
+ ],
+ "text": "具有正弦反电动势的三相内置式永磁同步电机，输入 3 路、输出 4 路；{Mechanical input configuration} 指定端口配置 Torque、{Simulation type} 指定仿真类型 Continuous、{Sample Time (Ts)} 指定离散积分的采样时间、{Number of pole pairs (P)} 指定极对数、{Stator resistance per phase (Rs)} 指定电阻 .2、{Stator d-axis and q-axis inductance (Ldq)} 指定电感、{Permanent flux linkage constant (lambda_pm)} 指定磁链、{Back-emf constant (Ke)} 指定反电动势、{Physical inertia, viscous damping, static friction (mechanical)} 指定惯量、阻尼、摩擦、{Initial d-axis and q-axis current (idq0)} 指定电流、{Initial mechanical position (theta_init)} 指定角度、{Initial mechanical speed (omega_init)} 指定速度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "LdTrq",
+   "direction": "input",
+   "summary": "电机上的负载转矩 scalar"
+  },
+  {
+   "name": "Spd",
+   "direction": "input",
+   "summary": "电机轴转速 scalar"
+  },
+  {
+   "name": "PhaseVolt",
+   "direction": "input",
+   "summary": "定子端电压 1 -by- 3 array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "PhaseCurr",
+   "direction": "output",
+   "summary": "a、b、c 相电流 1 -by- 3 array"
+  },
+  {
+   "name": "MtrTrq",
+   "direction": "output",
+   "summary": "电机转矩 scalar"
+  },
+  {
+   "name": "MtrSpd",
+   "direction": "output",
+   "summary": "电机转速 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mechanical input configuration",
+   "default": "Torque",
+   "values": "选择端口配置 Torque (default) | Speed",
+   "group": ""
+  },
+  {
+   "name": "Simulation type",
+   "default": "Continuous",
+   "values": "选择仿真类型 Continuous (default) | Discrete",
+   "group": ""
+  },
+  {
+   "name": "Sample Time (Ts)",
+   "default": "0.001",
+   "values": "离散积分的采样时间 0.001 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs (P)",
+   "default": "4",
+   "values": "极对数 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator resistance per phase (Rs)",
+   "default": ".2",
+   "values": "电阻 .2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator d-axis and q-axis inductance (Ldq)",
+   "default": "4.148e-4]",
+   "values": "电感 [3.752e-4 4.148e-4] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Permanent flux linkage constant (lambda_pm)",
+   "default": "4.148e-4]",
+   "values": "磁链 [3.752e-4 4.148e-4] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Back-emf constant (Ke)",
+   "default": "159.9771",
+   "values": "反电动势 159.9771 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Physical inertia, viscous damping, static friction (mechanical)",
+   "default": "[0.002700,4.924e-4,0]",
+   "values": "惯量、阻尼、摩擦 [0.002700,4.924e-4,0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial d-axis and q-axis current (idq0)",
+   "default": "0]",
+   "values": "电流 [0 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial mechanical position (theta_init)",
+   "default": "0",
+   "values": "角度 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial mechanical speed (omega_init)",
+   "default": "0",
+   "values": "速度 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

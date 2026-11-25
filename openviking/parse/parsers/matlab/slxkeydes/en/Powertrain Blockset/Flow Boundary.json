@@ -1,0 +1,65 @@
+{
+ "key": "Flow Boundary",
+ "title": "Flow Boundary",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engine Components/Fundamental Flow/Flow_Boundary.md"
+ ],
+ "text": "Flow boundary for ambient temperature and pressure, 2 inputs, 2 outputs; {Pressure and temperature source} selects source External, {Image type} sets the icon color, {Pressure, Pcnst} sets the constant, {Temperature, Tcnst} sets the constant and {Specific heat at constant pressure, cp} sets the constant. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Prs",
+   "direction": "input",
+   "summary": "Pressure scalar"
+  },
+  {
+   "name": "Temp",
+   "direction": "input",
+   "summary": "Temperature scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "Boundary pressure, temperature, enthalpy, mass fractions two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pressure and temperature source",
+   "default": "input",
+   "values": "Select source External input (default) | Constant",
+   "group": ""
+  },
+  {
+   "name": "Image type",
+   "default": "Cold",
+   "values": "Icon color Cold (default) | Hot",
+   "group": ""
+  },
+  {
+   "name": "Pressure, Pcnst",
+   "default": "101325",
+   "values": "Constant 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Temperature, Tcnst",
+   "default": "298.15",
+   "values": "Constant 298.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specific heat at constant pressure, cp",
+   "default": "1005",
+   "values": "Constant 1005 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

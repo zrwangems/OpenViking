@@ -1,0 +1,63 @@
+{
+ "key": "NR CRC Decoder",
+ "title": "NR CRC Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/NR_CRC_Decoder.md"
+ ],
+ "text": "Detect errors in input data using CRC, 3 inputs, 3 outputs, {CRC type} sets Type of CRC; {Full checksum mismatch} enables full checksum and {Enable CRC mask input port} enables CRC checksum mask input port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "CRC-encoded data binary scalar | binary vector | unsigned integer scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "CRCMask",
+   "direction": "input",
+   "summary": "CRC checksum mask nonnegative integer"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "CRC-decoded data scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "err",
+   "direction": "output",
+   "summary": "Indication of corruption of received data binary or integer scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CRC type",
+   "default": "CRC16",
+   "values": "Type of CRC CRC16 (default) | CRC6 | CRC11 | CRC24A | CRC24B | CRC24C",
+   "group": ""
+  },
+  {
+   "name": "Full checksum mismatch",
+   "default": "off",
+   "values": "Enable full checksum off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable CRC mask input port",
+   "default": "off",
+   "values": "Enable CRC checksum mask input port off (default) | on",
+   "group": ""
+  }
+ ]
+}

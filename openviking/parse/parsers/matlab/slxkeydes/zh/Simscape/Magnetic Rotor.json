@@ -1,0 +1,13 @@
+{
+ "key": "Magnetic Rotor",
+ "title": "Magnetic Rotor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Magnetic_Rotor.md"
+ ],
+ "text": "定子齿与旋转永磁转子之间的气隙。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

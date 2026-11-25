@@ -1,0 +1,56 @@
+{
+ "key": "FromWorkspace",
+ "title": "From Workspace",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/From_Workspace.md"
+ ],
+ "text": "Load signal data from workspace into Simulink model, 1 output, no direct feedthrough, {Output data type} sets Loaded workspace data type Inherit:; {Data}, {Sample time} sets the output sample period and optional time, {Interpolate data} sets the interpolation method, {Enable zero-crossing detection} sets the zero-crossing detection and {Form output after final data value by} sets the method to determine block output after final data point. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Data loaded from workspace scalar | vector | matrix | array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data",
+   "default": "",
+   "values": "Data to load from workspace timeseries object | timetable object | structure | 2-D array | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "Loaded workspace data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 |...",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0",
+   "values": "Output sample period and optional time offset 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Interpolate data",
+   "default": "on",
+   "values": "Interpolation method on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "on",
+   "values": "Zero-crossing detection on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Form output after final data value by",
+   "default": "Extrapolation",
+   "values": "Method to determine block output after final data point Extrapolation (default) | Setting to zero | Holding final value | Cyclic repetition",
+   "group": ""
+  }
+ ]
+}

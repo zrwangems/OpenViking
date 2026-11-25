@@ -1,0 +1,35 @@
+{
+ "key": "Dead Zone Dynamic",
+ "title": "Dead Zone Dynamic",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Dead_Zone_Dynamic.md",
+  "HDL Coder/Discontinuities/Dead_Zone_Dynamic.md"
+ ],
+ "text": "提供零输出的动态区域，输入 3 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "lo",
+   "direction": "input",
+   "summary": "死区下限 标量 | 向量"
+  },
+  {
+   "name": "up",
+   "direction": "input",
+   "summary": "死区上限 标量"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": []
+}

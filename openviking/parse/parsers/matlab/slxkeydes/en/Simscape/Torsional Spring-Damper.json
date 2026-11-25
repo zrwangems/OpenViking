@@ -1,0 +1,13 @@
+{
+ "key": "Torsional Spring-Damper",
+ "title": "Torsional Spring-Damper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Torsional_Spring_Damper.md"
+ ],
+ "text": "Rotational spring and damper coupling with Coulomb friction, locking, and hard stops.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

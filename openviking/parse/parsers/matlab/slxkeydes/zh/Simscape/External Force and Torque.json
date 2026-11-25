@@ -1,0 +1,13 @@
+{
+ "key": "External Force and Torque",
+ "title": "External Force and Torque",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/External_Force_and_Torque.md"
+ ],
+ "text": "向连接的坐标系施加外力和/或转矩。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

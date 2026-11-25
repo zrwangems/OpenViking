@@ -1,0 +1,93 @@
+{
+ "key": "Probe",
+ "title": "Probe",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Probe.md",
+  "Simulink/Quick Insert/Signal Attributes/Probe_Complexity.md",
+  "Simulink/Quick Insert/Signal Attributes/Probe_Dimension.md",
+  "Simulink/Quick Insert/Signal Attributes/Probe_Sample_Time.md",
+  "Simulink/Quick Insert/Signal Attributes/Probe_Width.md",
+  "HDL Coder/Signal Attributes/Probe.md"
+ ],
+ "text": "输出信号属性，包括宽度、维度、采样时间和复信号标志，输入 1 路、输出 4 路、直接馈通；按 {Data type for signal complexity} 指定复杂度输出的数据类型；{Probe width} 指定输入信号的输出宽度、{Probe sample time} 指定输入信号的采样时间输出、{Detect complex signal} 指示输入信号的复杂度、{Probe signal dimensions} 指定输入信号的维度输出、{Data type for width} 指定信号宽度输出的数据类型、{Data type for sample time} 指定采样时间输出的数据类型、{Data type for signal dimensions} 指定信号维度输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1 (W)",
+   "direction": "output",
+   "summary": "信号宽度 scalar"
+  },
+  {
+   "name": "Port_2 (Ts)",
+   "direction": "output",
+   "summary": "采样时间 vector"
+  },
+  {
+   "name": "Port_3 (C)",
+   "direction": "output",
+   "summary": "信号复杂度 scalar"
+  },
+  {
+   "name": "Port_4 (D)",
+   "direction": "output",
+   "summary": "信号维度 scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Probe width",
+   "default": "on",
+   "values": "输入信号的输出宽度 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Probe sample time",
+   "default": "on",
+   "values": "输入信号的采样时间输出 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Detect complex signal",
+   "default": "on",
+   "values": "指示输入信号的复杂度 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Probe signal dimensions",
+   "default": "on",
+   "values": "输入信号的维度输出 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Data type for width",
+   "default": "double",
+   "values": "信号宽度输出的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same as input",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type for sample time",
+   "default": "double",
+   "values": "采样时间输出的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same as input",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type for signal complexity",
+   "default": "double",
+   "values": "复杂度输出的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean | Same as input",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type for signal dimensions",
+   "default": "double",
+   "values": "信号维度输出的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same as input",
+   "group": "Signal Attributes"
+  }
+ ]
+}

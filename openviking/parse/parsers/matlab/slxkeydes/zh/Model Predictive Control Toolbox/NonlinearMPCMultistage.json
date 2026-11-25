@@ -1,0 +1,236 @@
+{
+ "key": "NonlinearMPCMultistage",
+ "title": "Multistage Nonlinear MPC",
+ "toolbox": "Model Predictive Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Model Predictive Control Toolbox/Multistage_Nonlinear_MPC.md"
+ ],
+ "text": "仿真多级非线性模型预测控制器，输入 13 路、输出 6 路；按 {Make block run at a different sample time} 指定控制器采样时间 positive finite scalar；{Multistage Nonlinear MPC Controller} 控制器对象 nlmpcMultistage object、{Use prediction model sample time} 使用预测模型采样时间的标志、{Use MEX to speed up simulation} 使用 MEX 函数仿真控制器的标志、{Specify MEX function name} 控制器 MEX 函数名称 string、{Measured disturbances} 添加可测扰动输入端口、{StateFcn parameter} 添加状态函数参数输入端口、{Stacked stage parameters} 添加阶段函数参数输入端口、{Optimal cost} 添加最优代价输出端口、{Optimal control sequence} 添加最优控制序列输出端口、{Optimal state sequence} 添加最优状态序列输出端口、{Slack variable} 添加松弛变量输出端口、{Optimization status} 添加优化状态输出端口、{Lower MV limits} 添加最小 MV 约束输入端口、{Upper MV limits} 添加最大 MV 约束输入端口、{Lower MVRate limits} 添加最小 MV 变化率约束输入端口、{Upper MVRate limits} 添加最大 MV 变化率约束输入端口、{Lower state limits} 添加最小状态约束输入端口、{Upper state limits} 添加最大状态约束输入端口、{Terminal state} 指定终端状态、{Initial guess} 添加初始猜测输入端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "输入 vector"
+  },
+  {
+   "name": "last_mv",
+   "direction": "input",
+   "summary": "在上一控制区间中用于被控对象的控制信号 vector"
+  },
+  {
+   "name": "md",
+   "direction": "input",
+   "summary": "输入 row vector | matrix"
+  },
+  {
+   "name": "state.param",
+   "direction": "input",
+   "summary": "可选参数 vector"
+  },
+  {
+   "name": "stage.param",
+   "direction": "input",
+   "summary": "可选参数 vector"
+  },
+  {
+   "name": "mv.min",
+   "direction": "input",
+   "summary": "最小操纵变量约束 vector | matrix"
+  },
+  {
+   "name": "mv.max",
+   "direction": "input",
+   "summary": "最大操纵变量约束 vector | matrix"
+  },
+  {
+   "name": "dmv.min",
+   "direction": "input",
+   "summary": "最小操纵变量速率约束 vector | matrix"
+  },
+  {
+   "name": "dmv.max",
+   "direction": "input",
+   "summary": "最大操纵变量变化率约束 vector | matrix"
+  },
+  {
+   "name": "x.min",
+   "direction": "input",
+   "summary": "最小状态约束 vector | matrix"
+  },
+  {
+   "name": "x.max",
+   "direction": "input",
+   "summary": "最大状态约束 vector | matrix"
+  },
+  {
+   "name": "x.terminal",
+   "direction": "input",
+   "summary": "终端状态 vector"
+  },
+  {
+   "name": "z0",
+   "direction": "input",
+   "summary": "决策变量向量的初始猜测 vector"
+  },
+  {
+   "name": "mv",
+   "direction": "output",
+   "summary": "最优操纵变量控制作用 column vector"
+  },
+  {
+   "name": "cost",
+   "direction": "output",
+   "summary": "目标函数代价 nonnegative scalar"
+  },
+  {
+   "name": "slack",
+   "direction": "output",
+   "summary": "堆叠的松弛变量向量 nonnegative vector"
+  },
+  {
+   "name": "nlp.status",
+   "direction": "output",
+   "summary": "优化状态 scalar"
+  },
+  {
+   "name": "mv.seq",
+   "direction": "output",
+   "summary": "最优操纵变量序列 matrix"
+  },
+  {
+   "name": "x.seq",
+   "direction": "output",
+   "summary": "最优预测模型状态序列 matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Multistage Nonlinear MPC Controller",
+   "default": "",
+   "values": "控制器对象 nlmpcMultistage object name",
+   "group": ""
+  },
+  {
+   "name": "Use prediction model sample time",
+   "default": "on",
+   "values": "使用预测模型采样时间的标志 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Make block run at a different sample time",
+   "default": "",
+   "values": "控制器采样时间 positive finite scalar | -1",
+   "group": ""
+  },
+  {
+   "name": "Use MEX to speed up simulation",
+   "default": "off",
+   "values": "使用 MEX 函数仿真控制器的标志 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Specify MEX function name",
+   "default": "",
+   "values": "控制器 MEX 函数名称 string",
+   "group": ""
+  },
+  {
+   "name": "Measured disturbances",
+   "default": "off",
+   "values": "添加可测扰动输入端口 off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "StateFcn parameter",
+   "default": "off",
+   "values": "添加状态函数参数输入端口 off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Stacked stage parameters",
+   "default": "off",
+   "values": "添加阶段函数参数输入端口 off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Optimal cost",
+   "default": "off",
+   "values": "添加最优代价输出端口 off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Optimal control sequence",
+   "default": "off",
+   "values": "添加最优控制序列输出端口 off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Optimal state sequence",
+   "default": "off",
+   "values": "添加最优状态序列输出端口 off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Slack variable",
+   "default": "off",
+   "values": "添加松弛变量输出端口 off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Optimization status",
+   "default": "off",
+   "values": "添加优化状态输出端口 off (default) | on",
+   "group": "General Tab"
+  },
+  {
+   "name": "Lower MV limits",
+   "default": "off",
+   "values": "添加最小 MV 约束输入端口 off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Upper MV limits",
+   "default": "off",
+   "values": "添加最大 MV 约束输入端口 off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Lower MVRate limits",
+   "default": "off",
+   "values": "添加最小 MV 变化率约束输入端口 off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Upper MVRate limits",
+   "default": "off",
+   "values": "添加最大 MV 变化率约束输入端口 off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Lower state limits",
+   "default": "off",
+   "values": "添加最小状态约束输入端口 off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Upper state limits",
+   "default": "off",
+   "values": "添加最大状态约束输入端口 off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Terminal state",
+   "default": "off",
+   "values": "终端状态 off (default) | on",
+   "group": "Online Features Tab"
+  },
+  {
+   "name": "Initial guess",
+   "default": "off",
+   "values": "添加初始猜测输入端口 off (default) | on",
+   "group": "Online Features Tab"
+  }
+ ]
+}

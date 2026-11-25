@@ -1,0 +1,13 @@
+{
+ "key": "Cylindrical Joint",
+ "title": "Cylindrical Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Cylindrical_Joint.md"
+ ],
+ "text": "Joint with one rotational and one translational degree of freedom.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

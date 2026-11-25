@@ -1,0 +1,93 @@
+{
+ "key": "Torsional Compliance",
+ "title": "Torsional Compliance",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Torsional_Compliance.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Torsional_Compliance.md"
+ ],
+ "text": "Parallel spring-damper, 3 inputs, 4 outputs; {Port Configuration} sets the configuration, {Output Info bus} sets the selection, {Torsional stiffness, k} sets the inertia 1e4, {Torsional damping, b} sets the damping 1e2, {Initial deflection, theta_o} sets the angular, {Initial velocity difference, domega_o} sets the angular and {Damping cut-off frequency, omega_c} sets the frequency. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RSpd",
+   "direction": "input",
+   "summary": "Driveshaft R angular velocity scalar"
+  },
+  {
+   "name": "CSpd",
+   "direction": "input",
+   "summary": "Driveshaft C angular velocity scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Angular velocity and torque two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "RTrq",
+   "direction": "output",
+   "summary": "Driveshaft R torque scalar"
+  },
+  {
+   "name": "CTrq",
+   "direction": "output",
+   "summary": "Driveshaft C torque scalar"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "Angular velocity and torque two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "Specify configuration Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Output Info bus",
+   "default": "off",
+   "values": "Selection off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Torsional stiffness, k",
+   "default": "1e4",
+   "values": "Inertia 1e4 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Torsional damping, b",
+   "default": "1e2",
+   "values": "Damping 1e2 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial deflection, theta_o",
+   "default": "0",
+   "values": "Angular 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial velocity difference, domega_o",
+   "default": "0",
+   "values": "Angular 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Damping cut-off frequency, omega_c",
+   "default": "3000",
+   "values": "Frequency 3000 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

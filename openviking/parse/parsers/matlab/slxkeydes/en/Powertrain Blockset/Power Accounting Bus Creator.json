@@ -1,0 +1,83 @@
+{
+ "key": "Power Accounting Bus Creator",
+ "title": "Power Accounting Bus Creator",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Utilities/Power Accounting/Power_Accounting_Bus_Creator.md"
+ ],
+ "text": "Create power information bus, 3 inputs, 1 output; {Associated block}, {Library block name} sets the block name Block name, {Transferred power} sets the power transferred between blocks, {Not transferred power} sets the power crossing block boundary, {Stored power} sets the stored energy rate of change, {Signal name} sets the name of signal char, {Associated Port} sets the name of ports that transfer power and {Description} sets the signal description char. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "PwrTrnsfrd",
+   "direction": "input",
+   "summary": "Power transferred between blocks bus"
+  },
+  {
+   "name": "PwrNotTrnsfrd",
+   "direction": "input",
+   "summary": "Power crossing block boundary, not transferred bus"
+  },
+  {
+   "name": "PwrStored",
+   "direction": "input",
+   "summary": "Stored energy rate of change bus"
+  },
+  {
+   "name": "PwrInfo",
+   "direction": "output",
+   "summary": "Power information bus bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Associated block",
+   "default": "Parent",
+   "values": "Associated block Parent (default) | Parent reference block",
+   "group": ""
+  },
+  {
+   "name": "Library block name",
+   "default": "",
+   "values": "Block name Block name",
+   "group": ""
+  },
+  {
+   "name": "Transferred power",
+   "default": "on",
+   "values": "Power transferred between blocks on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Not transferred power",
+   "default": "on",
+   "values": "Power crossing block boundary on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Stored power",
+   "default": "on",
+   "values": "Stored energy rate of change on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Signal name",
+   "default": "",
+   "values": "Name of signal char",
+   "group": ""
+  },
+  {
+   "name": "Associated Port",
+   "default": "",
+   "values": "Name of ports that transfer power {’PortA’,’PortB’,’PortC’}",
+   "group": ""
+  },
+  {
+   "name": "Description",
+   "default": "",
+   "values": "Signal description char",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "key": "Hardware Profiler",
+ "title": "Hardware Profiler",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/Hardware_Profiler.md"
+ ],
+ "text": "使用 GPIO、ERAD 或 Timer 测量模式对函数调用子系统进行性能分析；输出 2 路；按 {Measurement mode} 指定硬件性能分析技术 Embedded Real-time Analysis & Diagnostic；{ERAD module} 指定 ERAD 模块、{GPIO number} 指定 GPIO 编号、{Sample time} 指定模块从 Hardware Profiler，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "f()",
+   "direction": "output",
+   "summary": "函数调用端口 scalar"
+  },
+  {
+   "name": "cnt",
+   "direction": "output",
+   "summary": "计数端口 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement mode",
+   "default": "(ERAD)",
+   "values": "选择硬件性能分析技术 Embedded Real-time Analysis & Diagnostic (ERAD) (default) | General Purpose Input Output (GPIO) | Timer",
+   "group": ""
+  },
+  {
+   "name": "ERAD module",
+   "default": "1",
+   "values": "指定 ERAD 模块 1 (default) | 2 | 3 | 4",
+   "group": ""
+  },
+  {
+   "name": "GPIO number",
+   "default": "0",
+   "values": "指定 GPIO 编号 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "模块从 Hardware Profiler 读取数据的采样时间 -1 (default)",
+   "group": ""
+  }
+ ]
+}

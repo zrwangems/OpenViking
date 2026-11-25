@@ -1,0 +1,13 @@
+{
+ "key": "FEM-Parameterized Rotary Actuator",
+ "title": "FEM-Parameterized Rotary Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/FEM_Parameterized_Rotary_Actuator.md"
+ ],
+ "text": "Rotary actuator defined in terms of magnetic flux.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

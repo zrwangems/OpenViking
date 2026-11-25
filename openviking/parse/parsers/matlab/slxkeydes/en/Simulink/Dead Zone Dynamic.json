@@ -1,0 +1,35 @@
+{
+ "key": "Dead Zone Dynamic",
+ "title": "Dead Zone Dynamic",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Dead_Zone_Dynamic.md",
+  "HDL Coder/Discontinuities/Dead_Zone_Dynamic.md"
+ ],
+ "text": "Provide dynamic region of zero output, 3 inputs, 1 output, direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "lo",
+   "direction": "input",
+   "summary": "Lower limit for the dead zone scalar | vector"
+  },
+  {
+   "name": "up",
+   "direction": "input",
+   "summary": "Upper limit for the dead zone scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": []
+}

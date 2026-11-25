@@ -1,0 +1,139 @@
+{
+ "key": "FIR Rate Conversion",
+ "title": "FIR Rate Conversion",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Filtering/Multirate Filters/FIR_Rate_Conversion.md"
+ ],
+ "text": "执行多相 FIR 采样率转换，输入 1 路、输出 1 路、无直接馈通；按 {Coefficient source} 指定操作模式；{Interpolation factor} 指定插值因子、{FIR filter coefficients} 指定 FIR 滤波器系数、{Decimation factor} 指定抽取因子、{Rate options} 指定强制单速率或允许多速率处理 Enforce single-rate、{Filter object} 指定滤波器对象、{Allow arbitrary frame length for fixed-size input signals} 允许固定大小输入信号的任意帧长度、{View Filter Response} 指定可视化滤波器响应、{Rounding mode} 指定舍入方法 Floor、{Saturate on integer overflow} 指定溢出处理方法、{Coefficients} 指定系数数据类型、{Coefficients Minimum} 指定滤波器系数的最小值、{Coefficients Maximum} 指定滤波器系数的最大值、{Product output} 指定乘积输出数据类型、{Accumulator} 指定累加器数据类型、{Output} 输出数据类型、{Output Minimum} 指定模块可以输出的最小值、{Output Maximum} 指定模块可以输出的最大值、{Lock data type settings against changes by the fixed-point tools} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "输入信号 vector | matrix"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "速率转换后的信号 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Coefficient source",
+   "default": "Auto",
+   "values": "操作模式 Auto (default) | Dialog parameters | Filter object",
+   "group": ""
+  },
+  {
+   "name": "Interpolation factor",
+   "default": "3",
+   "values": "插值因子 3 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "FIR filter coefficients",
+   "default": "designMultirateFIR(3,2)",
+   "values": "FIR 滤波器系数 designMultirateFIR(3,2) (default) | vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Decimation factor",
+   "default": "2",
+   "values": "抽取因子 2 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "强制单速率或允许多速率处理 Enforce single-rate processing (default) | Allow multirate processing",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Filter object",
+   "default": "FRC",
+   "values": "滤波器对象 FRC (default) | dsp.FIRRateConverter System object",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Allow arbitrary frame length for fixed-size input signals",
+   "default": "off",
+   "values": "允许固定大小输入信号的任意帧长度 off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "可视化滤波器响应 button",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "舍入方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出处理方法 off (default) | on",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "系数数据类型 Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Minimum",
+   "default": "[]",
+   "values": "滤波器系数的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Coefficients Maximum",
+   "default": "[]",
+   "values": "滤波器系数的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Product output",
+   "default": "rule",
+   "values": "乘积输出数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Accumulator",
+   "default": "rule",
+   "values": "累加器数据类型 Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "输出数据类型 Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Minimum",
+   "default": "[]",
+   "values": "模块可以输出的最小值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Output Maximum",
+   "default": "[]",
+   "values": "模块可以输出的最大值 [] (default) | scalar",
+   "group": "Data Types Tab"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (default) | on",
+   "group": "Data Types Tab"
+  }
+ ]
+}

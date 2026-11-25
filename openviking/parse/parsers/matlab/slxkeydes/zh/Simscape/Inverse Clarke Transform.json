@@ -1,0 +1,70 @@
+{
+ "key": "Inverse Clarke Transform",
+ "title": "Inverse Clarke Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Inverse_Clarke_Transform.md",
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/Inverse_Clarke_Transform.md",
+  "Motor Control Blockset/Controls/Math Transforms/Inverse_Clarke_Transform.md"
+ ],
+ "text": "实现 αβ0 到 abc 的变换，输入 3 路、输出 4 路；{Power Invariant} 启用功率不变性、{Use block for embedded implementation (requires Motor Control Blockset™)} 使用模块进行嵌入式实现、{Number of inputs} 指定模块输入数 Two，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "αβ0",
+   "direction": "input",
+   "summary": "α - β 轴和零分量 vector"
+  },
+  {
+   "name": "α",
+   "direction": "input",
+   "summary": "α 轴分量 scalar"
+  },
+  {
+   "name": "β",
+   "direction": "input",
+   "summary": "β 轴分量 scalar"
+  },
+  {
+   "name": "abc",
+   "direction": "output",
+   "summary": "a 相、b 相和 c 相分量 vector"
+  },
+  {
+   "name": "a",
+   "direction": "output",
+   "summary": "a 相分量 scalar"
+  },
+  {
+   "name": "b",
+   "direction": "output",
+   "summary": "b 相分量 scalar"
+  },
+  {
+   "name": "c",
+   "direction": "output",
+   "summary": "c 相分量 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power Invariant",
+   "default": "off",
+   "values": "启用功率不变性 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Use block for embedded implementation (requires Motor Control Blockset™)",
+   "default": "off",
+   "values": "使用模块进行嵌入式实现的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of inputs",
+   "default": "inputs",
+   "values": "模块输入数 Two inputs (default) | Three inputs",
+   "group": ""
+  }
+ ]
+}

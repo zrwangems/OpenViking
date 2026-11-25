@@ -1,0 +1,13 @@
+{
+ "key": "SPICE Diode",
+ "title": "SPICE Diode",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Semiconductors/SPICE_Diode.md"
+ ],
+ "text": "兼容 SPICE 的二极管。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

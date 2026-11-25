@@ -1,0 +1,145 @@
+{
+ "key": "Feed Forward PLL",
+ "title": "PLL with Feed Forward",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Signal Management/PLL_with_Feed_Forward.md"
+ ],
+ "text": "根据正交正弦信号计算位置和角频率，输入 4 路、输出 4 路；按 {Position unit} 指定位置输出的单位；{Enable input normalization} 启用模块以归一化输入、{Use input port for computed parameters (run-time motor swap)} 用于使输入端口能够接受计算参数、{Position output} 指定位置输出类型 Angular、{Discrete step size (s)} 指定模块再次执行所经过的采样时间 50e-6、{Frequency ratio} 输出信号与输入信号的频率之比、{Maximum application frequency (Hz)} 指定最大适用输入频率、{Cutoff frequency for output filter (Hz)} 指定低通滤波器截止频率、{Number of data points for lookup table} 查找表数组大小、{Proportional (P)} 指定比例控制器增益、{Integral (I)} 指定积分控制器增益、{Position data type} 指定位置输出的数据类型、{Frequency unit} 指定角频率输出的单位、{Frequency data type} 指定角频率输出的数据类型、{Table data type} 指定正弦-余弦查找表的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "α",
+   "direction": "input",
+   "summary": "α 轴信号 scalar"
+  },
+  {
+   "name": "β",
+   "direction": "input",
+   "summary": "β 轴信号 scalar"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "外部复位脉冲 scalar"
+  },
+  {
+   "name": "ParameterBus",
+   "direction": "input",
+   "summary": "PLL with Feed Forward 的计算参数 bus"
+  },
+  {
+   "name": "θ",
+   "direction": "output",
+   "summary": "角位置 scalar"
+  },
+  {
+   "name": "Sin θ",
+   "direction": "output",
+   "summary": "角位置的正弦 scalar"
+  },
+  {
+   "name": "Cos θ",
+   "direction": "output",
+   "summary": "角位置的余弦 scalar"
+  },
+  {
+   "name": "ω",
+   "direction": "output",
+   "summary": "角频率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Enable input normalization",
+   "default": "on",
+   "values": "启用模块以归一化输入 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Use input port for computed parameters (run-time motor swap)",
+   "default": "off",
+   "values": "用于使输入端口能够接受计算参数的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Position output",
+   "default": "position",
+   "values": "位置输出类型 Angular position (default) | Sine and Cosine Position",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "模块再次执行所经过的采样时间 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency ratio",
+   "default": "1",
+   "values": "输出信号与输入信号的频率之比 1 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Maximum application frequency (Hz)",
+   "default": "7500",
+   "values": "最大适用输入频率 7500 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Cutoff frequency for output filter (Hz)",
+   "default": "15",
+   "values": "低通滤波器截止频率 15 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Number of data points for lookup table",
+   "default": "1024",
+   "values": "查找表数组大小 1024 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Proportional (P)",
+   "default": "942.4778",
+   "values": "比例控制器增益 942.4778 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Integral (I)",
+   "default": "222066.099",
+   "values": "积分控制器增益 222066.099 (default) | scalar",
+   "group": "PLL Parameters"
+  },
+  {
+   "name": "Position unit",
+   "default": "Degrees",
+   "values": "位置输出的单位 Degrees (default) | Radians | Per-unit",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Position data type",
+   "default": "single",
+   "values": "位置输出的数据类型 single (default) | double | fixed point",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Frequency unit",
+   "default": "Degrees/sec",
+   "values": "角频率输出的单位 Degrees/sec (default) | Radians/sec | Hz",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Frequency data type",
+   "default": "single",
+   "values": "角频率输出的数据类型 single (default) | double | fixed point",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Table data type",
+   "default": "single",
+   "values": "正弦-余弦查找表的数据类型 single (default) | double | fixed point",
+   "group": "Datatypes"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Single-Acting Actuator (G)",
+ "title": "Single-Acting Actuator (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Actuators/Single_Acting_Actuator_G.md"
+ ],
+ "text": "Single-acting linear actuator in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

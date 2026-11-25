@@ -1,0 +1,13 @@
+{
+ "key": "Electrolyzer",
+ "title": "Electrolyzer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Electrolyzer.md"
+ ],
+ "text": "电解槽的电气负载。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

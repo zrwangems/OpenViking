@@ -1,0 +1,46 @@
+{
+ "key": "Simple Dual-port RAM",
+ "title": "Simple Dual Port RAM",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL RAMs/Simple_Dual_Port_RAM.md"
+ ],
+ "text": "（将移除）具有单个输出端口的 Dual Port RAM，输入 4 路、输出 1 路；{Address port width} 指定地址位宽，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wr_din",
+   "direction": "input",
+   "summary": "写数据输入 Scalar (default)"
+  },
+  {
+   "name": "wr_addr",
+   "direction": "input",
+   "summary": "写地址 Scalar (default)"
+  },
+  {
+   "name": "wr_en",
+   "direction": "input",
+   "summary": "写使能 Scalar (default)"
+  },
+  {
+   "name": "rd_addr",
+   "direction": "input",
+   "summary": "读地址 Scalar (default)"
+  },
+  {
+   "name": "rd_dout",
+   "direction": "output",
+   "summary": "来自读地址的输出数据 Scalar (default)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Address port width",
+   "default": "8",
+   "values": "地址位宽 8 (default)",
+   "group": ""
+  }
+ ]
+}

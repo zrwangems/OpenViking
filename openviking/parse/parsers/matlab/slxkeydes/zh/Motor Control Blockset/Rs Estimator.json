@@ -1,0 +1,87 @@
+{
+ "key": "Rs Estimator",
+ "title": "Rs Estimator",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Parameter Estimation/PMSM Parameter Estimation/Rs_Estimator.md",
+  "Motor Control Blockset/Parameter Estimation/ACIM Parameter Estimation/Rs_Estimator.md"
+ ],
+ "text": "估计永磁同步电机 (PMSM) 的定子电阻 ( R s )，输入 4 路、输出 3 路；{最大电流限值(A)} 指定测试时允许的最大电流、{注入电压斜升步长(标幺)} 指定注入电压上升过程中的步长、{最大电压斜升时间限值(秒)} 指定最大电压斜升持续时间、{每次电压注入的电压和电流采样数} 用于估算 Rs 的电压和电流采样数、{电压注入之间的驻留时间(秒)} 指定电压注入之间的等待时间、{相电阻不平衡判断阈值(0,1)} 确定相间电阻不平衡的阈值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "三相电流响应 矢量"
+  },
+  {
+   "name": "Vdc",
+   "direction": "input",
+   "summary": "DC 母线电压 标量"
+  },
+  {
+   "name": "StartStop",
+   "direction": "input",
+   "summary": "用于 R s 估计的控制信号 逻辑值"
+  },
+  {
+   "name": "Config",
+   "direction": "input",
+   "summary": "总线信号输入 总线"
+  },
+  {
+   "name": "Vabc",
+   "direction": "output",
+   "summary": "a 、 b 和 c 轴定子参考电压分量 矢量"
+  },
+  {
+   "name": "Rs",
+   "direction": "output",
+   "summary": "估计定子电阻 标量"
+  },
+  {
+   "name": "Log",
+   "direction": "output",
+   "summary": "调试信号 总线"
+  }
+ ],
+ "params": [
+  {
+   "name": "最大电流限值(A)",
+   "default": "15",
+   "values": "测试时允许的最大电流 15 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "注入电压斜升步长(标幺)",
+   "default": "0.0001",
+   "values": "注入电压上升过程中的步长 0.0001 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "最大电压斜升时间限值(秒)",
+   "default": "0.25",
+   "values": "最大电压斜升持续时间 0.25 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "每次电压注入的电压和电流采样数",
+   "default": "1000",
+   "values": "用于估算 Rs 的电压和电流采样数 1000 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "电压注入之间的驻留时间(秒)",
+   "default": "0.25",
+   "values": "电压注入之间的等待时间 0.25 (默认) | scalar",
+   "group": ""
+  },
+  {
+   "name": "相电阻不平衡判断阈值(0,1)",
+   "default": "0.2",
+   "values": "确定相间电阻不平衡的阈值 0.2 (默认) | scalar",
+   "group": ""
+  }
+ ]
+}

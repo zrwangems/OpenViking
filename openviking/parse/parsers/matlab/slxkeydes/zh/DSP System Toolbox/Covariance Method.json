@@ -1,0 +1,55 @@
+{
+ "key": "Covariance Method",
+ "title": "Covariance Method",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Covariance_Method.md"
+ ],
+ "text": "使用协方差法的功率谱密度估计，输入 1 路、输出 1 路；{Estimation order} 指定 AR 模型阶数、{Inherit FFT length from estimation order} 指定从估计阶数继承 FFT 长度、{FFT length} 指定 FFT 长度、{Inherit sample time from input} 指定从输入继承采样时间、{Sample time of original time series} 指定原始时域信号的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "输入 column vector | unoriented vector"
+  },
+  {
+   "name": "Output",
+   "direction": "output",
+   "summary": "功率谱密度估计 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Estimation order",
+   "default": "6",
+   "values": "AR 模型阶数 6 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Inherit FFT length from estimation order",
+   "default": "off",
+   "values": "从估计阶数继承 FFT 长度 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "FFT length",
+   "default": "256",
+   "values": "FFT 长度 256 (default) | positive integer greater than or equal to 2",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample time from input",
+   "default": "on",
+   "values": "从输入继承采样时间 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time of original time series",
+   "default": "1",
+   "values": "原始时域信号的采样时间 1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

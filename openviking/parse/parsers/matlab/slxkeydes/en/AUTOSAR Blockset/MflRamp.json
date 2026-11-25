@@ -1,0 +1,70 @@
+{
+ "key": "MflRamp",
+ "title": "Ramp",
+ "toolbox": "AUTOSAR Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "AUTOSAR Blockset/Classic Platform/Library Routines/Math Operations/Ramp.md"
+ ],
+ "text": "Generate signal that follows input value bound by rising or falling slope, 4 inputs, 1 output, {Sample time} sets Sample period; {Rise slope} sets the increase value, {Fall slope} sets the decrease value, {Show reset port} sets the option to add R input port and {Initial condition} sets the initial value of output signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Reset port scalar"
+  },
+  {
+   "name": "rs",
+   "direction": "input",
+   "summary": "Rise slope scalar"
+  },
+  {
+   "name": "fs",
+   "direction": "input",
+   "summary": "Fall slope scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rise slope",
+   "default": "",
+   "values": "Increase value of output Dialog | Input port",
+   "group": ""
+  },
+  {
+   "name": "Fall slope",
+   "default": "",
+   "values": "Decrease value of output scalar",
+   "group": ""
+  },
+  {
+   "name": "Show reset port",
+   "default": "’off’",
+   "values": "Option to add R input port ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "Initial value of output signal 0 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample period -1 (default) | [-1, 0] | vector",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Piezo Linear Actuator",
+ "title": "Piezo Linear Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Piezo_Linear_Actuator.md"
+ ],
+ "text": "Force-speed characteristics of linear piezoelectric traveling wave motor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

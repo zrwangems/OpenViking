@@ -1,0 +1,44 @@
+{
+ "key": "Detect Rise Positive",
+ "title": "Detect Rise Positive",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Logic and Bit Operations/Detect_Rise_Positive.md",
+  "HDL Coder/Logic and Bit Operations/Detect_Rise_Positive.md"
+ ],
+ "text": "上升沿检测，当信号值从上一个严格意义上的负值变为非负值时，输入 1 路、输出 1 路；按 {初始条件} 指定布尔表达式 U/z >；{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{输出数据类型}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "布尔表达式 U/z > 0 的初始条件 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": ""
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "指定基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "boolean",
+   "values": "输出数据类型 boolean (默认) | uint8",
+   "group": ""
+  }
+ ]
+}

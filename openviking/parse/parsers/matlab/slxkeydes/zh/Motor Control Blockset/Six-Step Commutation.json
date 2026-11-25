@@ -1,0 +1,65 @@
+{
+ "key": "Six-Step Commutation",
+ "title": "Six Step Commutation",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Control Reference/Six_Step_Commutation.md"
+ ],
+ "text": "生成用于无刷 DC (BLDC) 电机的六步换相的开关序列，输入 3 路、输出 1 路；按 {位置单位} 指定位置输入的单位；{输入类型}、{霍尔序列号} 指定霍尔序列、{启用自定义换相} 启用 换相开关 参数、{换相开关}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Hall",
+   "direction": "input",
+   "summary": "霍尔传感器序列 标量"
+  },
+  {
+   "name": "Position",
+   "direction": "input",
+   "summary": "转子位置 标量"
+  },
+  {
+   "name": "TorqueSign",
+   "direction": "input",
+   "summary": "旋转方向 标量"
+  },
+  {
+   "name": "Ctrl",
+   "direction": "output",
+   "summary": "电机控制开关序列 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入类型",
+   "default": "霍尔",
+   "values": "模块输入类型 霍尔 (默认) | 位置",
+   "group": ""
+  },
+  {
+   "name": "位置单位",
+   "default": "标幺",
+   "values": "位置输入的单位 标幺 (默认) | 度 | 弧度",
+   "group": ""
+  },
+  {
+   "name": "霍尔序列号",
+   "default": "[5,4,6,2,3,1]",
+   "values": "霍尔序列 [5,4,6,2,3,1] (默认) | 矢量",
+   "group": ""
+  },
+  {
+   "name": "启用自定义换相",
+   "default": "off",
+   "values": "启用 换相开关 参数 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "换相开关",
+   "default": "1]",
+   "values": "换相开关序列 [0 0 1 0 0 1;0 1 1 0 0 0;0 1 0 0 1 0;0 0 0 1 1 0;1 0 0 1 0 0;1 0 0 0 0 1] (默认) | 矢量",
+   "group": ""
+  }
+ ]
+}

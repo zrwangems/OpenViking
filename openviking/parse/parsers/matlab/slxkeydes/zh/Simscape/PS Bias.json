@@ -1,0 +1,13 @@
+{
+ "key": "PS Bias",
+ "title": "PS Bias",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Bias.md"
+ ],
+ "text": "向输入物理信号添加恒定偏置。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,67 @@
+{
+ "key": "Lowpass Resampler",
+ "title": "Lowpass Resampler",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Lowpass_Resampler.md"
+ ],
+ "text": "将信号从一个采样时间转换为另一个采样时间，输入 1 路、输出 1 路；按 {Output sample time} 指定输出采样时间类型；{Inherit output rise/fall time} 指定从固定步长输入采样时间继承输出上升/下降时间、{Output rise/fall time} 指定 20%−80% 输出上升/下降时间 1e-10、{Number of samples of delay} 指定固定步长操作的传播延迟采样点数、{Samples out per rise/fall time} 指定单个输出上升/下降时间内的输出采样点数、{Enable large buffer} 启用额外缓冲区采样点、{Number of extra buffer samples} 用于支持采样延迟的额外缓冲区采样点数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "in",
+   "direction": "input",
+   "summary": "离散时间输入信号 scalar"
+  },
+  {
+   "name": "out",
+   "direction": "output",
+   "summary": "连续时间输出信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Inherit output rise/fall time",
+   "default": "on",
+   "values": "从固定步长输入采样时间继承输出上升/下降时间 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output rise/fall time",
+   "default": "1e-10",
+   "values": "20%−80% 输出上升/下降时间 1e-10 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of samples of delay",
+   "default": "1",
+   "values": "固定步长操作的传播延迟采样点数 1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output sample time",
+   "default": "Inherited",
+   "values": "输出采样时间类型 Inherited (default) | Fixed step discrete | Variable step discrete",
+   "group": ""
+  },
+  {
+   "name": "Samples out per rise/fall time",
+   "default": "5",
+   "values": "单个输出上升/下降时间内的输出采样点数 5 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable large buffer",
+   "default": "on",
+   "values": "启用额外缓冲区采样点 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Number of extra buffer samples",
+   "default": "10",
+   "values": "用于支持采样延迟的额外缓冲区采样点数 10 (default) | positive real scalar",
+   "group": ""
+  }
+ ]
+}

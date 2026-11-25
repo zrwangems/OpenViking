@@ -1,0 +1,79 @@
+{
+ "key": "MIL-188 QAM Demodulator Baseband",
+ "title": "MIL-188 QAM Demodulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/PAM_QAM/MIL_188_QAM_Demodulator_Baseband.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/Standard-Compliant/MIL_188_QAM_Demodulator_Baseband.md"
+ ],
+ "text": "MIL-STD-188-110 B/C standard-specific quadrature amplitude demodulation, 2 inputs, 1 output, {Decision type} sets Demodulation; {Modulation order}, {Constellation scaling}, {Output type} sets the input type, {Noise variance source}, {Noise variance}, {Output data type} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "MIL-STD-188 standard-specific QAM modulated signal scalar | vector | matrix"
+  },
+  {
+   "name": "Var",
+   "direction": "input",
+   "summary": "Noise variance positive scalar | vector of positive values"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Demodulated signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Modulation order",
+   "default": "16",
+   "values": "Modulation order 16 (default) | 32 | 64 | 256",
+   "group": ""
+  },
+  {
+   "name": "Constellation scaling",
+   "default": "standard",
+   "values": "Constellation scaling As specified in standard (default) | Unit average power",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Integer",
+   "values": "Input type Integer (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "decision",
+   "values": "Demodulation decision type Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio",
+   "group": ""
+  },
+  {
+   "name": "Noise variance source",
+   "default": "Property",
+   "values": "Noise variance source Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Noise variance",
+   "default": "1",
+   "values": "Noise variance 1 (default) | positive scalar | vector of positive values",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

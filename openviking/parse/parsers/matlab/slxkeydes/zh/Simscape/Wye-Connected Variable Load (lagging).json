@@ -1,0 +1,13 @@
+{
+ "key": "Wye-Connected Variable Load (lagging)",
+ "title": "Wye-Connected Variable Load (lagging)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/RLC Assemblies/Wye_Connected_Variable_Load_lagging.md"
+ ],
+ "text": "以星形配置接线的三相可变滞后负载。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

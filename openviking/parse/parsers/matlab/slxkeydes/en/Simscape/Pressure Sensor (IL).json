@@ -1,0 +1,13 @@
+{
+ "key": "Pressure Sensor (IL)",
+ "title": "Pressure Sensor (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Isothermal Liquid/Sensors/Pressure_Sensor_IL.md"
+ ],
+ "text": "Measure pressure differences, absolute pressure, or gauge pressure.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

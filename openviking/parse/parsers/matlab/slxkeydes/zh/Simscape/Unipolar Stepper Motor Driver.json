@@ -1,0 +1,13 @@
+{
+ "key": "Unipolar Stepper Motor Driver",
+ "title": "Unipolar Stepper Motor Driver",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Reluctance & Stepper/Unipolar_Stepper_Motor_Driver.md"
+ ],
+ "text": "单极步进电机的驱动器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,66 @@
+{
+ "key": "Self-Conditioned",
+ "title": "Self-Conditioned [A,B,C,D]",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/GNC/Control/Self_Conditioned_A_B_C_D.md"
+ ],
+ "text": "以自条件形式实现状态空间控制器，输入 2 路、输出 1 路；按 {D-matrix} 指定状态空间实现的 D 矩阵；{A-matrix} 指定状态空间实现的 A 矩阵、{B-matrix} 指定状态空间实现的 B 矩阵、{C-matrix} 指定状态空间实现的 C 矩阵、{Initial state, x_initial} 指定初始状态、{Poles of A-H*C} 指定期望极点，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "e",
+   "direction": "input",
+   "summary": "控制误差 vector"
+  },
+  {
+   "name": "u_meas",
+   "direction": "input",
+   "summary": "实际达到的执行器位置 vector"
+  },
+  {
+   "name": "u_dem",
+   "direction": "output",
+   "summary": "作动器需求 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A-matrix",
+   "default": "-3]",
+   "values": "状态空间实现的 A 矩阵 [-1 -0.2;0 -3] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "B-matrix",
+   "default": "[1;1]",
+   "values": "状态空间实现的 B 矩阵 [1;1] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "C-matrix",
+   "default": "0]",
+   "values": "状态空间实现的 C 矩阵 [1 0] (default) | array",
+   "group": ""
+  },
+  {
+   "name": "D-matrix",
+   "default": "0.02",
+   "values": "状态空间实现的 D 矩阵 0.02 (default) | array | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state, x_initial",
+   "default": "0",
+   "values": "初始状态 0 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Poles of A-H*C",
+   "default": "-2]",
+   "values": "期望极点 [-5 -2] (default) | vector",
+   "group": ""
+  }
+ ]
+}

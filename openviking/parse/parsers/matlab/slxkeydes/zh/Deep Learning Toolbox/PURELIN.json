@@ -1,0 +1,13 @@
+{
+ "key": "PURELIN",
+ "title": "purelin",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/purelin.md"
+ ],
+ "text": "线性传递函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

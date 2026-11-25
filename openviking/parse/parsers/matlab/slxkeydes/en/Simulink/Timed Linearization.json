@@ -1,0 +1,26 @@
+{
+ "key": "Timed Linearization",
+ "title": "Timed-Based Linearization",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model-Wide Utilities/Timed_Based_Linearization.md"
+ ],
+ "text": "Generate linear models in base workspace at specific times, {Sample time (of linearized model)} sets Sample time; {Linearization time} sets the time at which to generate a linear model. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Linearization time",
+   "default": "1",
+   "values": "Time at which to generate a linear model 1 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time (of linearized model)",
+   "default": "0",
+   "values": "Sample time 0 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

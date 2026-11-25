@@ -1,0 +1,24 @@
+{
+ "key": "FunctionCallFeedbackLatch",
+ "title": "Function-Call Feedback Latch",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Ports & Subsystems/Function_Call_Feedback_Latch.md"
+ ],
+ "text": "Break feedback loop involving data signals between function-call blocks, 1 input, 1 output, no direct feedthrough.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Signal from function-call subsystem block scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Signal to function-call subsystem scalar | vector | matrix"
+  }
+ ],
+ "params": []
+}

@@ -1,0 +1,71 @@
+{
+ "key": "Passive Cell Balancing",
+ "title": "Passive Cell Balancing",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Cell Balancing/Passive_Cell_Balancing.md"
+ ],
+ "text": "无源电池单体均衡算法，输入 2 路、输出 2 路；按 {Sample time (-1 for inherited)} 指定模块采样时间；{Threshold for balancing} 指定均衡阈值、{Hysteresis band for switching balancing off} 关闭无源均衡的迟滞带、{ON delay time (s)} 指定均衡激活前的时间延迟、{OFF delay time (s)} 指定均衡完成后的时间延迟、{Command Data Type} 指定 Command 输出的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "电池单体电压或电池单体 SOC 值 vector"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "是否启用电池单体均衡 scalar"
+  },
+  {
+   "name": "Command",
+   "direction": "output",
+   "summary": "均衡命令 vector"
+  },
+  {
+   "name": "BalancingActive",
+   "direction": "output",
+   "summary": "均衡过程是否处于活动状态 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Threshold for balancing",
+   "default": "0.2",
+   "values": "均衡阈值 0.2 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Hysteresis band for switching balancing off",
+   "default": "0",
+   "values": "关闭无源均衡的迟滞带 0 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "ON delay time (s)",
+   "default": "1",
+   "values": "均衡激活前的时间延迟 1 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "OFF delay time (s)",
+   "default": "1",
+   "values": "均衡完成后的时间延迟 1 (default) | nonnegative scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | 0 | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Command Data Type",
+   "default": "double",
+   "values": "Command 输出的数据类型 double (default) | single | boolean |",
+   "group": "Signal Attributes"
+  }
+ ]
+}

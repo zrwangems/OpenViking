@@ -1,0 +1,13 @@
+{
+ "key": "Specific Dissipation Heat Exchanger Interface (TL)",
+ "title": "Specific Dissipation Heat Exchanger Interface (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Fundamental Components/Specific_Dissipation_Heat_Exchanger_Interface_TL.md"
+ ],
+ "text": "Thermal interface between a thermal liquid and its surroundings.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

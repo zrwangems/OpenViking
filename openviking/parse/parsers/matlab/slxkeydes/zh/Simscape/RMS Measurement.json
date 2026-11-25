@@ -1,0 +1,49 @@
+{
+ "key": "RMS Measurement",
+ "title": "RMS Measurement",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Measurements/RMS_Measurement.md"
+ ],
+ "text": "计算信号的均方根 (RMS) 属性，输入 1 路、输出 1 路；{Base frequency (Hz)} 指定基频、{Specify harmonics} 指定 RMS 输出模式、{Harmonic numbers} 指定谐波指定、{Sample time} 指定模块采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 scalar"
+  },
+  {
+   "name": "RMS",
+   "direction": "output",
+   "summary": "均方根 scalar or vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Base frequency (Hz)",
+   "default": "Hz",
+   "values": "基频 60 Hz (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify harmonics",
+   "default": "off",
+   "values": "RMS 输出模式 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Harmonic numbers",
+   "default": "2]",
+   "values": "谐波指定 [0 1 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0",
+   "values": "模块采样时间 0 (default) | positive number",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Solenoid Valve (IL)",
+ "title": "Solenoid Valve (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Directional Control Valves/Solenoid_Valve_IL.md"
+ ],
+ "text": "等温液体系统中的电磁阀。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

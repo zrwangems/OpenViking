@@ -1,0 +1,102 @@
+{
+ "key": "phased.internal.SimulinkGLRTDetector",
+ "title": "GLRT Detector",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/GLRT_Detector.md"
+ ],
+ "text": "执行广义似然比检验检测，输入 4 路、输出 5 路；{Probability of false alarm} 指定虚警概率、{Output format} 输出数据的格式 Detection、{Output detection statistics and threshold} 输出检测统计量和阈值、{Enable known noise power input} 启用已知噪声功率输入、{Output MLEs of unknown signal parameters} 输出未知信号参数的最大似然估计、{Output estimated noise power} 输出估计噪声功率、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入数据 real-valued N -by- 1 vector | complex-valued N -by- 1 vector | real-valued N -by- M matrix | complex-valued N -by- M matrix"
+  },
+  {
+   "name": "Hyp",
+   "direction": "input",
+   "summary": "增广线性等式约束矩阵 real-valued R -by-( P + 1) matrix | complex-valued R -by-( P + 1) matrix"
+  },
+  {
+   "name": "Obs",
+   "direction": "input",
+   "summary": "观测矩阵 N -by- P -by- D array"
+  },
+  {
+   "name": "Ncov",
+   "direction": "input",
+   "summary": "已知噪声功率 positive scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "检测结果 D -by- M logical-valued vector | 1-by- L integer-valued vector | 2-by- L integer-valued matrix"
+  },
+  {
+   "name": "Stat",
+   "direction": "output",
+   "summary": "检测统计量 N -by- M (default) | 1-by- L"
+  },
+  {
+   "name": "Th",
+   "direction": "output",
+   "summary": "检测阈值 scalar"
+  },
+  {
+   "name": "Param",
+   "direction": "output",
+   "summary": "信号参数的最大似然估计 P -by- M -by- D array"
+  },
+  {
+   "name": "N",
+   "direction": "output",
+   "summary": "估计的噪声功率 positive scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Probability of false alarm",
+   "default": "0.1",
+   "values": "虚警概率 0.1 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Output format",
+   "default": "result",
+   "values": "输出数据的格式 Detection result (default) | Detection index",
+   "group": ""
+  },
+  {
+   "name": "Output detection statistics and threshold",
+   "default": "0",
+   "values": "输出检测统计量和阈值 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Enable known noise power input",
+   "default": "1",
+   "values": "启用已知噪声功率输入 1 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Output MLEs of unknown signal parameters",
+   "default": "0",
+   "values": "输出未知信号参数的最大似然估计 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Output estimated noise power",
+   "default": "0",
+   "values": "输出估计噪声功率 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

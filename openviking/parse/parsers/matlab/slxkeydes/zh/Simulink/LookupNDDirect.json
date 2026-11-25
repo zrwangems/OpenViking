@@ -1,0 +1,102 @@
+{
+ "key": "LookupNDDirect",
+ "title": "Direct Lookup Table (n-D)",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/Direct_Lookup_Table_n_D.md",
+  "HDL Coder/Lookup Tables/Direct_Lookup_Table_n_D.md"
+ ],
+ "text": "为 N 维表进行索引，以检索元素、向量或二维矩阵，输入 3 路、输出 1 路；按 {输入从表中选择的对象} 指定输出是；{表维数} 指定表数据的维数、{将表作为输入} 指定提供表数据作为模块输入、{表数据} 输出值的表、{输入超出范围的诊断} 指定当输入超出范围时的模块操作、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{删除生成代码中防止超范围输入的代码} 指定删除检查超出范围的输入值的代码、{表数据最小值} 指定表数据可以具有的最小值、{表数据最大值} 指定表数据可以具有的最大值、{表数据类型} 指定表数据的数据类型、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "索引 i1 的输入值 标量 | 向量"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "索引 N 的输入值 标量 | 向量"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "表数据 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出元素、向量或二维矩阵 标量 | 向量 | 二维矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "表维数",
+   "default": "2",
+   "values": "表数据的维数 2 (默认) | 1 | 3 | 4 |...",
+   "group": "常设"
+  },
+  {
+   "name": "将表作为输入",
+   "default": "off",
+   "values": "提供表数据作为模块输入 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "表数据",
+   "default": "23]",
+   "values": "输出值的表 [4 5 6; 16 19 20; 10 18 23] (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": "常设"
+  },
+  {
+   "name": "输入从表中选择的对象",
+   "default": "元素",
+   "values": "指定输出是元素、向量还是二维矩阵 元素 (默认) | 向量 | 二维矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "输入超出范围的诊断",
+   "default": "警告",
+   "values": "当输入超出范围时的模块操作 警告 (默认) | 无 | 错误",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "删除生成代码中防止超范围输入的代码",
+   "default": "off",
+   "values": "删除检查超出范围的输入值的代码 off (默认) | on",
+   "group": "代码生成"
+  },
+  {
+   "name": "表数据最小值",
+   "default": "[]",
+   "values": "表数据可以具有的最小值 [] (默认) | 有限双精度实数标量",
+   "group": "表属性"
+  },
+  {
+   "name": "表数据最大值",
+   "default": "[]",
+   "values": "表数据可以具有的最大值 [] (默认) | 有限双精度实数标量",
+   "group": "表属性"
+  },
+  {
+   "name": "表数据类型",
+   "default": "继承",
+   "values": "表数据的数据类型 继承: 从 ’表数据’ 继承 (默认) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: | <数据类型表达式>",
+   "group": "表属性"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "表属性"
+  }
+ ]
+}

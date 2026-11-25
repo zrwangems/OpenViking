@@ -1,0 +1,13 @@
+{
+ "key": "Array of Electrical Nodes Connector",
+ "title": "Array of Electrical Nodes Connector",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Connectors/Array_of_Electrical_Nodes_Connector.md"
+ ],
+ "text": "（将删除）将电气节点数组串联为单个电气节点端口数组。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

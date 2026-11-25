@@ -1,0 +1,20 @@
+{
+ "key": "SimEvents Debugger (Tech Preview)",
+ "title": "SimEvents Debugger",
+ "toolbox": "SimEvents",
+ "kind": "source_type",
+ "source_docs": [
+  "SimEvents/SimEvents_Debugger.md"
+ ],
+ "text": "调试 SimEvents 模型；{Enable debugger} 启用调试器，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Enable debugger",
+   "default": "on",
+   "values": "启用调试器 on (default) | off",
+   "group": ""
+  }
+ ]
+}

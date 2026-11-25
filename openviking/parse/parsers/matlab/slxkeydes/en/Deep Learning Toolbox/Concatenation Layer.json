@@ -1,0 +1,53 @@
+{
+ "key": "Concatenation Layer",
+ "title": "Concatenation Layer",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Deep Learning Layers/Combination Layers/Concatenation_Layer.md"
+ ],
+ "text": "Concatenation layer, 3 inputs, 1 output, {Data format} sets Format of input data; {Layer} sets the corresponding layer object and {Sample time} sets the option to specify sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "First input data array"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "Second input data scalar | vector | matrix"
+  },
+  {
+   "name": "Port_N",
+   "direction": "input",
+   "summary": "N th input data scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Concatenated output data array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Layer",
+   "default": "layerObject",
+   "values": "Corresponding layer object layerObject (default) | concatenationLayer object",
+   "group": "Main"
+  },
+  {
+   "name": "Data format",
+   "default": "SSC",
+   "values": "Format of input data SSC (default) | C | CT | SC | SSSC",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Option to specify sample time -1 (default) | scalar",
+   "group": "Execution"
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "key": "Gamma Corrector",
+ "title": "Gamma Corrector",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Conversions/Gamma_Corrector.md"
+ ],
+ "text": "应用或去除像素流的 gamma 校正，输入 2 路、输出 2 路；{Operation} 指定像素值调整方向、{Gamma} 指定目标伽马值、{Linear segment} 指定在伽马曲线中包含线性段、{Break point} 指定伽马曲线与线性段的交汇点，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "输出像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operation",
+   "default": "Gamma",
+   "values": "像素值调整方向 Gamma (default) | De-gamma",
+   "group": ""
+  },
+  {
+   "name": "Gamma",
+   "default": "2.2",
+   "values": "目标伽马值 2.2 (default) | scalar greater than or equal to 1",
+   "group": ""
+  },
+  {
+   "name": "Linear segment",
+   "default": "on",
+   "values": "在伽马曲线中包含线性段 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Break point",
+   "default": "0.018",
+   "values": "伽马曲线与线性段的交汇点 0.018 (default) | scalar between 0 and 1",
+   "group": ""
+  }
+ ]
+}

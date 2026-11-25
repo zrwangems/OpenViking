@@ -1,0 +1,47 @@
+{
+ "key": "Single-port RAM",
+ "title": "Single Port RAM",
+ "toolbox": "HDL Coder",
+ "kind": "source_type",
+ "source_docs": [
+  "HDL Coder/HDL RAMs/Single_Port_RAM.md"
+ ],
+ "text": "（将删除）单端口 RAM，输入 3 路、输出 1 路；{Address port width} 指定地址位宽、{Output data during write} 控制输出数据 New，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "din",
+   "direction": "input",
+   "summary": "写数据输入 Scalar (default)"
+  },
+  {
+   "name": "addr",
+   "direction": "input",
+   "summary": "写地址 Scalar (default)"
+  },
+  {
+   "name": "we",
+   "direction": "input",
+   "summary": "写使能 Scalar (default)"
+  },
+  {
+   "name": "dout",
+   "direction": "output",
+   "summary": "输出数据 Scalar (default)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Address port width",
+   "default": "8",
+   "values": "地址位宽 8 (default)",
+   "group": ""
+  },
+  {
+   "name": "Output data during write",
+   "default": "data",
+   "values": "控制输出数据 New data (default) | Old data",
+   "group": ""
+  }
+ ]
+}

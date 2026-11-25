@@ -1,0 +1,54 @@
+{
+ "key": "LogicDecision",
+ "title": "Logic Decision",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/Utilities/Logic_Decision.md"
+ ],
+ "text": "Threshold crossing detector at input to binary process, 2 inputs, 1 output; {Sample time} sets the source of sample, {Sample time value} sets the actual value of sample, {Minimum delay value} sets the minimum propagation delay and {Buffer size} sets the number of threshold crossings to buffer. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wave",
+   "direction": "input",
+   "summary": "Input signal fixed step sampling | variable step sampling | scalar"
+  },
+  {
+   "name": "vth",
+   "direction": "input",
+   "summary": "Decision threshold value scalar"
+  },
+  {
+   "name": "events",
+   "direction": "output",
+   "summary": "Output signal 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "Inherited",
+   "values": "Source of sample time Inherited (default) | Fixed",
+   "group": ""
+  },
+  {
+   "name": "Sample time value",
+   "default": "20e-12",
+   "values": "Actual value of sample time 20e-12 (default) | real scalar excluding zero",
+   "group": ""
+  },
+  {
+   "name": "Minimum delay value",
+   "default": "1e-15",
+   "values": "Minimum propagation delay value 1e-15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Buffer size",
+   "default": "1",
+   "values": "Number of threshold crossings to buffer 1 (default) | positive integer scalar",
+   "group": ""
+  }
+ ]
+}

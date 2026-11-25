@@ -1,0 +1,70 @@
+{
+ "key": "Samples To Frame",
+ "title": "Samples To Frame",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/I_O Interfaces/Samples_To_Frame.md"
+ ],
+ "text": "Convert sample stream to frame-based data, 2 inputs, 3 outputs; {Input size} sets the number of values representing each sample, {Frame search window} sets the number of input cycles to buffer, {Output size} sets the maximum samples per frame, {Compose output from interleaved input samples} sets the order of output samples relative to input and {Enable frame length output port} sets the output number of valid samples. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "sample",
+   "direction": "input",
+   "summary": "Stream of samples scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "frame",
+   "direction": "output",
+   "summary": "Frame of output samples column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Validity of output frame scalar"
+  },
+  {
+   "name": "len",
+   "direction": "output",
+   "summary": "Number of valid samples in output frame integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input size",
+   "default": "1",
+   "values": "Number of values representing each sample 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Frame search window",
+   "default": "1",
+   "values": "Number of input cycles to buffer 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output size",
+   "default": "1024",
+   "values": "Maximum samples per frame 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Compose output from interleaved input samples",
+   "default": "off",
+   "values": "Order of output samples relative to input order off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable frame length output port",
+   "default": "off",
+   "values": "Output number of valid samples off (default) | on",
+   "group": ""
+  }
+ ]
+}

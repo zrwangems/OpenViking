@@ -1,0 +1,43 @@
+{
+ "key": "ASCII Decode",
+ "title": "ASCII Decode",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/ASCII_Decode.md"
+ ],
+ "text": "将 ASCII 字符向量解析为 Simulink 值，输入 1 路、输出 1 路；按 {Format string} 指定用于解析输入向量的格式指定符；{Number of variables} 指定此模块的输出端口数量、{Variable types} 指定 Simulink 输出端口允许的数据类型，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D",
+   "direction": "input",
+   "summary": "待解析的输入向量 character vector"
+  },
+  {
+   "name": "1",
+   "direction": "output",
+   "summary": "发送 Simulink ® 值的编号端口 数值"
+  }
+ ],
+ "params": [
+  {
+   "name": "Format string",
+   "default": "%d\\r",
+   "values": "用于解析输入向量的格式指定符 %d\\r (默认) | %c | %i | %o | %u | %x | %e | %f | %g",
+   "group": ""
+  },
+  {
+   "name": "Number of variables",
+   "default": "1",
+   "values": "此模块的输出端口数量 1 (默认) | 整数",
+   "group": ""
+  },
+  {
+   "name": "Variable types",
+   "default": "{’double’}",
+   "values": "Simulink 输出端口允许的数据类型 {’double’} (默认) | {’int8’} | {’uint8’} | {’int16} | {’uint16’} | {’int32’} | {’uint32’}",
+   "group": ""
+  }
+ ]
+}

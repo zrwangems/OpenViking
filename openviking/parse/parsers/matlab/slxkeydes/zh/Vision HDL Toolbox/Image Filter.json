@@ -1,0 +1,100 @@
+{
+ "key": "Image Filter",
+ "title": "Image Filter",
+ "toolbox": "Vision HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vision HDL Toolbox/Filtering/Image_Filter.md"
+ ],
+ "text": "二维 FIR 滤波，输入 3 路、输出 2 路；按 {Padding method} 指定填充方法；{Filter coefficients source} 指定提供滤波器系数的来源、{Filter coefficients} 指定滤波器系数、{Padding value} 用于填充输入图像边界的值、{Line buffer size} 指定行缓冲区大小、{Rounding mode} 指定内部定点计算的舍入方法、{Saturate on integer overflow} 指定内部定点计算的溢出操作、{Coefficients} 指定滤波器系数数据类型、{Output} 输出数据类型、{Lock data type settings against changes by the fixed-point tools} 指定锁定数据类型设置，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "pixel",
+   "direction": "input",
+   "summary": "输入像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  },
+  {
+   "name": "coeff",
+   "direction": "input",
+   "summary": "滤波器系数 matrix"
+  },
+  {
+   "name": "pixel",
+   "direction": "output",
+   "summary": "输出像素流 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "与像素流关联的控制信号 pixelcontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter coefficients source",
+   "default": "Property",
+   "values": "提供滤波器系数的来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Filter coefficients",
+   "default": "]",
+   "values": "滤波器系数 [ 1, 0; 0, -1 ] (default) | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Padding method",
+   "default": "Constant",
+   "values": "填充方法 Constant (default) | Replicate | Symmetric | Reflection | None",
+   "group": "Main"
+  },
+  {
+   "name": "Padding value",
+   "default": "0",
+   "values": "用于填充输入图像边界的值 0 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Line buffer size",
+   "default": "2048",
+   "values": "行缓冲区大小 2048 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "内部定点计算的舍入方法 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "内部定点计算的溢出操作 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "滤波器系数数据类型 Inherit: Same as first input (default) | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出数据类型 Inherit: Same as first input (default) | Inherit: Inherit via internal rule | fixdt(1,16,0) |",
+   "group": "Data Types"
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "锁定数据类型设置 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

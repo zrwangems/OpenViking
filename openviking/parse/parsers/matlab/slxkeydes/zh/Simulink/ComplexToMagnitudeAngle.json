@@ -1,0 +1,54 @@
+{
+ "key": "ComplexToMagnitudeAngle",
+ "title": "Complex to Magnitude-Angle",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Complex_to_Magnitude_Angle.md"
+ ],
+ "text": "计算复信号的幅值和/或相位角，输入 1 路、输出 2 路；按 {采样时间(-1 表示继承)} 指定采样之间的时间间隔；{输出}、{逼近方法}、{迭代次数}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "幅值 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "相位角弧度 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出",
+   "default": "幅值和角度",
+   "values": "幅值和/或相位角输出设定 幅值和角度 (默认) | 幅值 | 角度",
+   "group": ""
+  },
+  {
+   "name": "逼近方法",
+   "default": "无",
+   "values": "逼近方法 无 (默认) | CORDIC",
+   "group": ""
+  },
+  {
+   "name": "迭代次数",
+   "default": "11",
+   "values": "CORDIC 算法的迭代次数 11 (默认) | 正整数，小于或等于定点输入的字长",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  }
+ ]
+}

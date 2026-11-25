@@ -1,0 +1,13 @@
+{
+ "key": "Ejector (MA)",
+ "title": "Ejector (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Turbomachinery/Ejector_MA.md"
+ ],
+ "text": "湿空气网络中的喷射器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

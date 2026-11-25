@@ -1,0 +1,13 @@
+{
+ "key": "Weld Joint",
+ "title": "Weld Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Weld_Joint.md"
+ ],
+ "text": "不含任何关节基元的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

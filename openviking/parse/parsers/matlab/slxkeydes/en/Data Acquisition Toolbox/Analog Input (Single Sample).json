@@ -1,0 +1,55 @@
+{
+ "key": "Analog Input (Single Sample)",
+ "title": "Analog Input (Single Sample)",
+ "toolbox": "Data Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Data Acquisition Toolbox/Analog_Input_Single_Sample.md"
+ ],
+ "text": "Acquire single sample from multiple analog channels of data acquisition device, 2 outputs, {Number of ports} sets Number of output data ports 1 for all channels; {Device}, {Channels} sets the device channel selection and configuration options depend, {Sample time} sets the block execution rate and {Output timestamp} adds timestamp output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Acquired analog input double"
+  },
+  {
+   "name": "Timestamp",
+   "direction": "output",
+   "summary": "Timestamp of scan"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "Device from which you want to acquire data",
+   "group": ""
+  },
+  {
+   "name": "Channels",
+   "default": "",
+   "values": "Device channel selection and configuration options depend on device",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "",
+   "values": "Number of output data ports 1 for all channels | 1 per channel",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Block execution rate 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Output timestamp",
+   "default": "",
+   "values": "Add timestamp output port",
+   "group": ""
+  }
+ ]
+}

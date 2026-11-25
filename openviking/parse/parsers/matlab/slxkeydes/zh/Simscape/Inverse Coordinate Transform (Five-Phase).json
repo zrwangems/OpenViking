@@ -1,0 +1,36 @@
+{
+ "key": "Inverse Coordinate Transform (Five-Phase)",
+ "title": "Inverse Coordinate Transform (Five-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Inverse_Coordinate_Transform_Five_Phase.md"
+ ],
+ "text": "实现 dqxy0 到 abcde 变换，输入 2 路、输出 1 路；{Phase-a axis alignment} 指定 *dqxy0* 参考坐标系对齐，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dqxy0",
+   "direction": "input",
+   "summary": "直轴、交轴、*x*、*y* 和零分量 vector"
+  },
+  {
+   "name": "θ elec",
+   "direction": "input",
+   "summary": "旋转角度 scalar"
+  },
+  {
+   "name": "abcde",
+   "direction": "output",
+   "summary": "*a* 相、*b* 相、*c* 相、*d* 相和 *e* 相分量 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase-a axis alignment",
+   "default": "Q-axis",
+   "values": "*dqxy0* 参考坐标系对齐 Q-axis (default) | D-axis",
+   "group": ""
+  }
+ ]
+}

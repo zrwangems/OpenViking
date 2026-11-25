@@ -1,0 +1,191 @@
+{
+ "key": "Simulation 3D Vehicle with Ground Following",
+ "title": "Simulation 3D Vehicle with Ground Following",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Vehicle_with_Ground_Following.md",
+  "Simulink 3D Animation/Simulation 3D/Actors/Simulation_3D_Vehicle_with_Ground_Following.md",
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Vehicle_with_Ground_Following.md"
+ ],
+ "text": "Implement vehicle that follows ground in 3D environment, 4 inputs, 2 outputs, {Color} sets Color of vehicle; {Type}, {Path to custom mesh}, {Track width in custom mesh (m)}, {Wheel base in custom mesh (m)}, {Wheel radius in custom mesh (m)}, {Initial position [X, Y, Z] (m)} sets the initial vehicle position, {Initial rotation [Roll, Pitch, Yaw] (deg)} sets the initial angle of vehicle rotation, {Name}, {Sample time}, {Enable light controls} controls vehicle lights, {Headlight color [R,G,B]} sets the headlight color, {High beam intensity (cd)}, {Low beam intensity (cd)}, {High beam cone half angle (deg)}, {Low beam cone half angle (deg)}, {Left headlight beam orientation [Pitch, Yaw] (deg)}, {Right headlight beam orientation [Pitch, Yaw] (deg)} sets the right headlight beam orientation, {Brake light intensity (cd/m^2)} sets the intensity, {Reverse light intensity (cd/m^2)} sets the intensity, {Turn signal light intensity (cd/m^2)} sets the intensity, {Period (s)} sets the turn signal light period, {Pulse width (% of period)} and {Output location (m) and orientation (rad)} sets the output location and orientation of vehicle. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "Longitudinal position of vehicle scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "Lateral position of vehicle scalar"
+  },
+  {
+   "name": "Yaw",
+   "direction": "input",
+   "summary": "Yaw orientation angle of vehicle scalar"
+  },
+  {
+   "name": "Light controls",
+   "direction": "input",
+   "summary": "Vehicle light controls 1-by-6 vector"
+  },
+  {
+   "name": "Location",
+   "direction": "output",
+   "summary": "Location of vehicle real-valued 1-by-3 vector"
+  },
+  {
+   "name": "Orientation",
+   "direction": "output",
+   "summary": "Orientation of vehicle real-valued 1-by-3 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type",
+   "default": "car",
+   "values": "Type of vehicle Muscle car (default) | Sedan | Sport utility vehicle | Small pickup truck | Hatchback | Box truck | Custom",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Path to custom mesh",
+   "default": "/MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar",
+   "values": "Path to custom mesh /MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar (default) | valid path",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Track width in custom mesh (m)",
+   "default": "1.9",
+   "values": "Track width 1.9 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Wheel base in custom mesh (m)",
+   "default": "3",
+   "values": "Wheel base 3 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Wheel radius in custom mesh (m)",
+   "default": "0.35",
+   "values": "Wheel radius 0.35 (default) | scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Color",
+   "default": "Red",
+   "values": "Color of vehicle Red (default) | Orange | Yellow | Green | Blue | Black | White | Silver",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Initial position [X, Y, Z] (m)",
+   "default": "0]",
+   "values": "Initial vehicle position [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Initial rotation [Roll, Pitch, Yaw] (deg)",
+   "default": "0]",
+   "values": "Initial angle of vehicle rotation [0, 0, 0] (default) | real-valued 1-by-3 vector",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Name",
+   "default": "SimulinkVehicle1",
+   "values": "Name of vehicle SimulinkVehicle1 (default) | vehicle name",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | positive scalar",
+   "group": "Vehicle Parameters"
+  },
+  {
+   "name": "Enable light controls",
+   "default": "off",
+   "values": "Control vehicle lights off (default) | on",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Headlight color [R,G,B]",
+   "default": "[1,1,1]",
+   "values": "Headlight color [1,1,1] (default) | 1-by-3 array of RGB triplet values",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam intensity (cd)",
+   "default": "100000",
+   "values": "High beam intensity 100000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam intensity (cd)",
+   "default": "60000",
+   "values": "Low beam intensity 60000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam cone half angle (deg)",
+   "default": "70",
+   "values": "High beam cone half angle 70 (default) | positive scalar less than or equal to 90",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam cone half angle (deg)",
+   "default": "70",
+   "values": "Low beam cone half angle 70 (default) | positive scalar less than or equal to 90",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Left headlight beam orientation [Pitch, Yaw] (deg)",
+   "default": "[0,0]",
+   "values": "Left headlight beam orientation [Pitch, Yaw] (deg) [0,0] (default) | 1-by-2 array with values between -180 and 180",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Right headlight beam orientation [Pitch, Yaw] (deg)",
+   "default": "[0,0]",
+   "values": "Right headlight beam orientation [0,0] (default) | 1-by-2 array with values between -180 and 180",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Brake light intensity (cd/m^2)",
+   "default": "500",
+   "values": "Intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Reverse light intensity (cd/m^2)",
+   "default": "500",
+   "values": "Intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Turn signal light intensity (cd/m^2)",
+   "default": "500",
+   "values": "Intensity 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Period (s)",
+   "default": "1",
+   "values": "Turn signal light period 1 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Pulse width (% of period)",
+   "default": "50",
+   "values": "Pulse width 50 (default) | positive scalar less than 100",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Output location (m) and orientation (rad)",
+   "default": "off",
+   "values": "Output location and orientation of vehicle off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

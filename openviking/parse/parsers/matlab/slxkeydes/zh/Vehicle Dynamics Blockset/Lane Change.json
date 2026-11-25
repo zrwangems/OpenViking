@@ -1,0 +1,140 @@
+{
+ "key": "Lane Change",
+ "title": "Lane Change",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Drive Cycle and Maneuvers/Lane_Change.md"
+ ],
+ "text": "生成用于执行换道机动的命令，输入 4 路、输出 3 路；按 {Lane change type, changeType} 指定要执行的换道类型 Double lane change；{Maneuver start time, tStart [s]} 指定开始时间、{Inertial longitudinal position of gate extrance, XGate [m]} 指定门入口起点的全局纵向位置、{Longitudinal entrance velocity setpoint, velRef} 指定目标速度、{Longitudinal entrance velocity setpoint units, velRefUnit []} 指定单位 mph、{Distance after target speed to begin reference, xStart [m]} 指定纵向偏移、{Vehicle width, vehWidth [m]} 指定标称车辆宽度、{Lateral offset, nomLatOffset [m]} 指定标称横向偏移、{Lateral reference position breakpoints, latRefbp [m]} 指定纵向路径断点 1-by- n、{Lateral reference data, latRef [m]} 指定横向路径参考点 1-by-7、{Use reference data} 使用参考数据、{Stop simulation on course exit} 指定退出赛道时停止仿真、{Output info bus} 输出信息总线、{Instantiate 3D cones (Simulation 3D Scene Configuration required)} 用于实例化 3D 锥桶、{Show Maneuver Plot} 指定可视化机动的选项，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "xdot",
+   "direction": "input",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "车辆质心纵向位置 scalar"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "车辆质心横向位置 scalar"
+  },
+  {
+   "name": "psi",
+   "direction": "input",
+   "summary": "车辆横摆角 scalar"
+  },
+  {
+   "name": "DrvRef",
+   "direction": "output",
+   "summary": "驾驶员参考数据 bus"
+  },
+  {
+   "name": "DrvCmd",
+   "direction": "output",
+   "summary": "驾驶员命令数据 bus"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "信息数据 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lane change type, changeType",
+   "default": "3888-1)",
+   "values": "要执行的换道类型 Double lane change (ISO 3888-1) (default) | Obstacle avoidance (ISO 3888-2) | Obstacle avoidance truck-trailer (SAE J2179)",
+   "group": ""
+  },
+  {
+   "name": "Maneuver start time, tStart [s]",
+   "default": "3",
+   "values": "开始时间 3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Inertial longitudinal position of gate extrance, XGate [m]",
+   "default": "176",
+   "values": "门入口起点的全局纵向位置 176 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal entrance velocity setpoint, velRef",
+   "default": "35",
+   "values": "目标速度 35 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Longitudinal entrance velocity setpoint units, velRefUnit []",
+   "default": "mph",
+   "values": "单位 mph (default)",
+   "group": ""
+  },
+  {
+   "name": "Distance after target speed to begin reference, xStart [m]",
+   "default": "2",
+   "values": "纵向偏移 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Vehicle width, vehWidth [m]",
+   "default": "2",
+   "values": "标称车辆宽度 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Lateral offset, nomLatOffset [m]",
+   "default": "0",
+   "values": "标称横向偏移 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lateral reference position breakpoints, latRefbp [m]",
+   "default": "vector",
+   "values": "纵向路径断点 1-by- n vector (default)",
+   "group": ""
+  },
+  {
+   "name": "Lateral reference data, latRef [m]",
+   "default": "vector",
+   "values": "横向路径参考点 1-by-7 vector (default)",
+   "group": ""
+  },
+  {
+   "name": "Use reference data",
+   "default": "on",
+   "values": "使用参考数据的选项 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation on course exit",
+   "default": "off",
+   "values": "退出赛道时停止仿真的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output info bus",
+   "default": "off",
+   "values": "输出信息总线的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Instantiate 3D cones (Simulation 3D Scene Configuration required)",
+   "default": "off",
+   "values": "用于实例化 3D 锥桶的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Show Maneuver Plot",
+   "default": "",
+   "values": "可视化机动的选项 button",
+   "group": ""
+  }
+ ]
+}

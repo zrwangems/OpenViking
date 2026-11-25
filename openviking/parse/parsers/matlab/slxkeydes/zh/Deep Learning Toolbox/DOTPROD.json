@@ -1,0 +1,13 @@
+{
+ "key": "DOTPROD",
+ "title": "dotprod",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Weight Functions/dotprod.md"
+ ],
+ "text": "点积权重函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

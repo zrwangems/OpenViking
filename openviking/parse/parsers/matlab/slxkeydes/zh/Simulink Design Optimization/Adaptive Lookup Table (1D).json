@@ -1,0 +1,13 @@
+{
+ "key": "Adaptive Lookup Table (1D)",
+ "title": "Adaptive Lookup Table (1D Stair-Fit)",
+ "toolbox": "Simulink Design Optimization",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Design Optimization/Adaptive Lookup Tables/Adaptive_Lookup_Table_1D_Stair_Fit.md"
+ ],
+ "text": "一维自适应查找表。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

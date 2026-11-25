@@ -1,0 +1,13 @@
+{
+ "key": "Programmable Voltage Source",
+ "title": "Programmable Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Programmable_Voltage_Source.md"
+ ],
+ "text": "具有可选的可编程幅值、频率、相移和直流偏移的单相交流电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

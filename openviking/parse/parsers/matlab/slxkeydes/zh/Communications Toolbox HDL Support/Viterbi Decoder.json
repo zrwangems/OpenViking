@@ -1,0 +1,145 @@
+{
+ "key": "Viterbi Decoder",
+ "title": "Viterbi Decoder",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Error Detection and Correction/Convolutional/Viterbi_Decoder.md",
+  "Communications Toolbox/Error Detection and Correction/Convolutional/Viterbi_Decoder.md",
+  "Wireless HDL Toolbox/Error Detection and Correction/Viterbi_Decoder.md"
+ ],
+ "text": "使用 Viterbi 算法解码卷积编码数据，输入 3 路、输出 1 路；按 {Decision type} 指定解码器判决类型；{Trellis structure} 指定卷积码的网格描述 poly2trellis、{numInputSymbols} 指定输入到编码器的符号数 2 K、{numOutputSymbols} 指定从编码器输出的符号数 2 N、{numStates} 指定编码器中的状态数 power、{nextStates} 指定下一状态 matrix of integers、{outputs} 输出 matrix、{Punctured code} 启用代码打孔指定、{Puncture vector} 指定打孔模式向量、{Enable erasures input port} 用于启用删除输入端口、{Number of soft decision bits} 指定 Soft input word length、{Error if quantized input values are out of range} 指定 Option to error if quantized input values are out、{Traceback depth}、{Operation mode} 指定编码帧的终止方法、{Enable reset input port} 指定 Option to add reset input port、{Delay reset action to next time step} 指定将复位操作延迟到下一时间步、{State metric word length}、{Output data type} 输出数据类型 Inherit via internal，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "卷积编码后的码字 column vector"
+  },
+  {
+   "name": "Era",
+   "direction": "input",
+   "summary": "码字中的删除比特 binary-valued vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "重置解码器寄存器状态的选项 scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "输出消息 binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trellis structure",
+   "default": "133])",
+   "values": "卷积码的网格描述 poly2trellis(7,[171 133]) (default)",
+   "group": ""
+  },
+  {
+   "name": "numInputSymbols",
+   "default": "",
+   "values": "输入到编码器的符号数 2 K",
+   "group": ""
+  },
+  {
+   "name": "numOutputSymbols",
+   "default": "",
+   "values": "从编码器输出的符号数 2 N",
+   "group": ""
+  },
+  {
+   "name": "numStates",
+   "default": "",
+   "values": "编码器中的状态数 power of 2",
+   "group": ""
+  },
+  {
+   "name": "nextStates",
+   "default": "",
+   "values": "下一状态 matrix of integers",
+   "group": ""
+  },
+  {
+   "name": "outputs",
+   "default": "",
+   "values": "输出 matrix of octal numbers",
+   "group": ""
+  },
+  {
+   "name": "Punctured code",
+   "default": "off",
+   "values": "启用代码打孔指定的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "1]",
+   "values": "打孔模式向量 [1; 1; 0; 1; 0; 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable erasures input port",
+   "default": "off",
+   "values": "用于启用删除输入端口的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "Unquantized",
+   "values": "解码器判决类型 Unquantized (default) | Hard decision | Soft decision",
+   "group": ""
+  },
+  {
+   "name": "Number of soft decision bits",
+   "default": "4",
+   "values": "Soft input word length 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Error if quantized input values are out of range",
+   "default": "off",
+   "values": "Option to error if quantized input values are out of range off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Traceback depth",
+   "default": "34",
+   "values": "Traceback depth 34 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Operation mode",
+   "default": "Continuous",
+   "values": "编码帧的终止方法 Continuous (default) | Truncated | Terminated",
+   "group": ""
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Option to add reset input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Delay reset action to next time step",
+   "default": "off",
+   "values": "将复位操作延迟到下一时间步的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "State metric word length",
+   "default": "16",
+   "values": "State metric word length 16 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "输出数据类型 Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  }
+ ]
+}

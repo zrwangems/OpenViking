@@ -1,0 +1,72 @@
+{
+ "key": "Battery Discharging Current Limit",
+ "title": "Battery Discharging Current Limit",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Current Management/Battery_Discharging_Current_Limit.md"
+ ],
+ "text": "最大电池放电电流，输入 2 路、输出 1 路；按 {Algorithm data type} 指定用于选择模块算法数据类型的选项 Inherit:；{Specify inputs as [Min,Max]} 用于将输入指定为最小值和最大值、{Cell undervoltage limit (V)} 指定电芯欠压限值、{Terminal resistance (ohm)} 指定端子电阻、{Vector of temperatures, T} 指定电芯温度、{Current limit for coolest cell, iCool(T), (A)} 指定最冷电芯的电流限值、{Current limit for hottest cell, iHot(T), (A)} 指定最热电芯的电流限值，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellVoltage",
+   "direction": "input",
+   "summary": "电芯电压，V scalar | vector"
+  },
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "电芯温度，K scalar | vector"
+  },
+  {
+   "name": "CurrentLimit",
+   "direction": "output",
+   "summary": "电池包的充电电流限值 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify inputs as [Min,Max]",
+   "default": "off",
+   "values": "用于将输入指定为最小值和最大值的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Cell undervoltage limit (V)",
+   "default": "2.5",
+   "values": "电芯欠压限值 2.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Terminal resistance (ohm)",
+   "default": "0.0025",
+   "values": "端子电阻 0.0025 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Vector of temperatures, T",
+   "default": "333.15]",
+   "values": "电芯温度 [243.15, 258.15, 273.15, 288.15, 303.15, 318.15, 333.15] (default) | vector of scalars",
+   "group": ""
+  },
+  {
+   "name": "Current limit for coolest cell, iCool(T), (A)",
+   "default": "100]",
+   "values": "最冷电芯的电流限值 [ 0, 0, 0, 0, 100, 100, 100] (default) | vector of positive scalars",
+   "group": ""
+  },
+  {
+   "name": "Current limit for hottest cell, iHot(T), (A)",
+   "default": "0]",
+   "values": "最热电芯的电流限值 [100, 100, 100, 100, 0, 0, 0] (default) | vector of positive scalars",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "用于选择模块算法数据类型的选项 Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

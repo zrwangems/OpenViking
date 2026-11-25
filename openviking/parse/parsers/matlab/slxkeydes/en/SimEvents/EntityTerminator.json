@@ -1,0 +1,37 @@
+{
+ "key": "EntityTerminator",
+ "title": "Entity Terminator",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Terminator.md"
+ ],
+ "text": "Terminate entities, 1 input, 1 output; {Event action} sets the behavior of the entity in certain events and {Number of entities arrived, a} sets the outputs the number of entities that have arrived. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input entity scalar | vector | matrix"
+  },
+  {
+   "name": "Port_a",
+   "direction": "output",
+   "summary": "Number of entities arrived scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Event action",
+   "default": "",
+   "values": "Specify the behavior of the entity in certain events Entry",
+   "group": ""
+  },
+  {
+   "name": "Number of entities arrived, a",
+   "default": "off",
+   "values": "Outputs the number of entities that have arrived at the block off (default) | on",
+   "group": ""
+  }
+ ]
+}

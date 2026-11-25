@@ -1,0 +1,13 @@
+{
+ "key": "AC-DC Converter (Three-Phase)",
+ "title": "AC-DC Converter (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Semiconductors & Converters/Converters/AC_DC_Converter_Three_Phase.md"
+ ],
+ "text": "AC-DC 变换器的行为模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

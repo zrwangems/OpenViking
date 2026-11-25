@@ -1,0 +1,97 @@
+{
+ "key": "audio.simulink.DesignmelFilterBank",
+ "title": "Design Mel Filter Bank",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Features/Design_Mel_Filter_Bank.md"
+ ],
+ "text": "Design frequency-domain mel filter bank, 2 outputs, no direct feedthrough, {Filter bank normalization} sets Normalization technique for filter bank; {FFT length} sets the number of DFT points, {Design one-sided filter bank} sets the design one-sided or two-sided filter bank, {Number of bands} sets the number of bandpass filters, {Auto-determine frequency range} sets the automatically determine frequency range, {Frequency range (Hz)} sets the frequency range over which to design filter bank, {Filter bank design domain} sets the domain to design filter, {Mel style}, {Output data type} sets the data type, {Sample rate (Hz)} sets the sample rate 44.1e3, {Visualize filter bank} sets the open plot to visualize filter and {Output center frequencies} sets the additional output port for center. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "fb",
+   "direction": "output",
+   "summary": "Filter bank column vector | matrix"
+  },
+  {
+   "name": "fvec",
+   "direction": "output",
+   "summary": "Center frequencies row vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "Number of DFT points 1024 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Design one-sided filter bank",
+   "default": "on",
+   "values": "Design one-sided or two-sided filter bank on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Number of bands",
+   "default": "32",
+   "values": "Number of bandpass filters 32 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Auto-determine frequency range",
+   "default": "on",
+   "values": "Automatically determine frequency range on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Frequency range (Hz)",
+   "default": "[0,22050]",
+   "values": "Frequency range over which to design filter bank [0,22050] (default) | two-element row vector",
+   "group": ""
+  },
+  {
+   "name": "Filter bank design domain",
+   "default": "linear",
+   "values": "Domain to design filter bank linear (default) | warped",
+   "group": ""
+  },
+  {
+   "name": "Filter bank normalization",
+   "default": "bandwidth",
+   "values": "Normalization technique for filter bank bandwidth (default) | area | none",
+   "group": ""
+  },
+  {
+   "name": "Mel style",
+   "default": "oshaughnessy",
+   "values": "Mel style oshaughnessy (default) | slaney",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Data type of output double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44.1e3",
+   "values": "Sample rate 44.1e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Visualize filter bank",
+   "default": "",
+   "values": "Open plot to visualize filter bank button",
+   "group": ""
+  },
+  {
+   "name": "Output center frequencies",
+   "default": "off",
+   "values": "Specify additional output port for center frequencies off (default) | on",
+   "group": ""
+  }
+ ]
+}

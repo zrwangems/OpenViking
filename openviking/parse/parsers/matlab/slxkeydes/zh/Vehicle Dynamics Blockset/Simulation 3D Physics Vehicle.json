@@ -1,0 +1,570 @@
+{
+ "key": "Simulation 3D Physics Vehicle",
+ "title": "Simulation 3D Physics Vehicle",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components/Simulation_3D_Physics_Vehicle.md"
+ ],
+ "text": "实现可控的 6DOF 车辆 3D 环境，输入 4 路、输出 5 路；按 {Color, VehColor} 指定车辆颜色；{Type, PassVehMesh} 指定 Type Muscle、{Name, ActorName} 指定车辆名称 SimulinkVehicle1、{Initial position [X, Y, Z], InitialPos [m]} 指定车辆初始位置、{Initial rotation [Roll, Pitch, Yaw], InitialRot [rad]} 指定车辆初始旋转、{Mass, Mass [kg]} 指定车辆质量、{Center of mass offset vector, CgOffset [m]} 指定质心偏移、{Inertia tensor scaling vector, IvehScale []} 指定惯性张量的缩放、{Chassis height (used in drag), ChassisHeight [m]} 指定底盘高度、{Drag coefficient, Cd []} 指定车辆阻力系数、{Drag lift coefficient, Cl []} 指定纵向升力系数、{Path to custom mesh, MeshPath} 指定 Path to custom mesh、{Track width, TrackWidth [m]} 指定车轮间距、{Wheel base in custom mesh [m]} 指定自定义网格中的轴距、{Front Wheel radius, FrntWhlRadius [m]} 指定前轮半径、{Front wheel width, FrntWhlWidth [m]} 指定前轮宽度、{Rear Wheel radius, RearWhlRadius [m]} 指定后轮半径、{Rear wheel width, RearWhlWidth [m]} 指定后轮宽度、{Motor torque indices, TrqCrv [Nm]} 指定电机扭矩索引、{Motor speed breakpoints, SpdCrv [rpm]} 指定电机转速断点、{Maximum powertrain speed, MaxRPM [rpm]} 指定最大动力总成转速、{Powertrain rotational inertia, Jmot [kg*m^2]} 指定动力总成转动惯量、{Powertrain damping at full torque request, bEngMax [Nms/rad]} 指定全扭矩请求时的动力总成阻尼、{Powertrain damping at zero torque request in gear, bEngMin [Nms/rad]} 指定挂挡时零扭矩请求下的动力总成阻尼、{Drivetrain type} 指定传动系统 Rear Wheel、{Front to rear torque split ratio, FrntRearSplit []} 指定前后扭矩分配比、{Transmission type} 指定变速器 Automatic、{Gear number vector, G []} 指定挡位编号、{Gear ratio vector, N []} 指定传动比、{Upshift speed, UpShiftRPM [rpm]} 指定升挡转速、{Downshift speed, DownShiftRPM [rpm]} 指定降挡转速、{Minimum (idle) speed, MinRPM [rpm]} 指定最小动力总成转速、{Shift time, tShift [s]} 指定完成换挡所需时间、{Final drive ratio, NDiff []} 指定主减速比、{Transmission efficiency, eta []} 指定效率因子、{Steering type} 用于设置转向类型、{Outside to inside steering ratio, SteerAngleRatio []} 指定外侧与内侧转向角比、{Front wheel max steer angle, FrntWhlMaxSteer [rad]} 指定前轮最大转向角、{Rear wheel max steer angle, RearWhlMaxSteer [rad]} 指定后轮最大转向角、{Maximum steering ratio breakpoints, SteerCrv []} 指定最大转向比、{Steering ratio speed breakpoints, SteerSpdCrv [m/s]} 指定转向比车速断点、{Maximum front wheel torque, FrntWhlMaxTrq [Nm]} 指定前轮最大扭矩、{Maximum rear wheel torque, RearWhlMaxTrq [Nm]} 指定后轮最大扭矩、{Option to enable handbrake input} 启用手刹输入、{Front wheels affected by handbrake} 指定前轮手刹、{Rear wheels affected by handbrake} 指定后轮手刹、{Maximum front wheel hand brake torque, FrntWhlMaxHndBrkTrq [Nm]} 指定前轮最大手刹扭矩、{Maximum rear wheel hand brake torque, RearWhlMaxHndBrkTrq [Nm]} 指定后轮最大手刹扭矩、{Front suspension force offset location, FrntSuspFOffset [m]} 指定前悬架力偏移、{Maximum front suspension compression (jounce), FrntSuspMaxComp [m]} 指定前悬架最大压缩量、{Front spring preload, FrntSpringPreload [N]} 指定前悬架预紧力、{Front spring stiffness, FrntSpringRate [N/m]} 指定前悬架弹簧刚度 30e3、{Maximum front suspension extension (rebound), FrntSuspMaxExt [m]} 指定前悬架最大伸张量、{Front suspension damping ratio, FrntSuspDamping []} 指定前悬架阻尼比、{Front roll bar stiffness scaling, FrntRollbarScaling []} 指定前抗侧倾效果、{Rear suspension force offset location, RearSuspFOffset [m]} 指定后悬架力偏移、{Maximum rear suspension compression (jounce), RearSuspMaxComp [m]} 指定后悬架最大压缩量、{Rear spring preload, RearSpringPreload [N]} 指定后悬架预紧力、{Rear spring stiffness, RearSpringRate [N/m]} 指定后悬架弹簧刚度 30e3、{Maximum rear suspension extension (rebound), RearSuspMaxExt [m]} 指定后悬架最大伸张量、{Rear suspension damping ratio, RearSuspDamping []} 指定后悬架阻尼比、{Rear roll bar stiffness scaling, RearRollbarScaling []} 指定后抗侧倾效果、{Enable anti-lock braking} 启用防抱死制动、{Enable traction control} 启用牵引力控制、{Front wheel corner stiffness, Cy_f [N/rad]} 指定前轮侧偏刚度 70e3、{Front wheel slip modifier, FrntSideSlipModifier []} 指定前轮滑移修正系数、{Rear wheel corner stiffness, Cy_r [N/rad]} 指定后轮侧偏刚度 70e3、{Rear wheel slip modifier, RearSideSlipModifier []} 指定后轮滑移修正系数、{Friction scaling factor, lambda_mu []} 指定摩擦缩放、{Enable light controls} 控制车辆车灯、{Headlight color [R,G,B], HeadlightColor} 指定前照灯颜色、{High beam intensity, HighBeamIntensity} 指定远光强度、{Low beam intensity, LowBeamIntensity} 指定近光强度、{High beam cone half angle, HighBeamConeAngle} 指定远光锥半角、{Low beam cone half angle, LowBeamConeAngle} 指定近光锥半角、{Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation} 指定左前照灯光束方向、{Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation} 指定右前照灯光束方向、{Brake light intensity, BrakelightIntensity} 指定制动灯强度、{Reverse light intensity, ReverselightIntensity} 指定倒车灯强度、{Turn signal light intensity, SignallightIntensity} 指定转向信号灯强度、{Period, SignallightPeriod} 指定转向信号灯周期、{Pulse width, SignalPulseWidth} 指定脉冲宽度、{Sample time, SampleTime} 指定采样时间、{Output location and orientation} 指定返回位置和方向、{Output nominal vehicle state feedback} 指定返回标称车辆状态反馈，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SteerCmd",
+   "direction": "input",
+   "summary": "归一化转向角 scalar"
+  },
+  {
+   "name": "AccelCmd",
+   "direction": "input",
+   "summary": "归一化车辆加速度 scalar"
+  },
+  {
+   "name": "DecelCmd",
+   "direction": "input",
+   "summary": "归一化车辆减速度 scalar"
+  },
+  {
+   "name": "GearCmd",
+   "direction": "input",
+   "summary": "挡位输入 1 | -1 | 0"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "xdot",
+   "direction": "output",
+   "summary": "车辆纵向速度 scalar"
+  },
+  {
+   "name": "ydot",
+   "direction": "output",
+   "summary": "车辆横向速度 scalar"
+  },
+  {
+   "name": "psi",
+   "direction": "output",
+   "summary": "偏航 scalar"
+  },
+  {
+   "name": "r",
+   "direction": "output",
+   "summary": "偏航角速率 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Type, PassVehMesh",
+   "default": "car",
+   "values": "Type Muscle car (default) | Sedan | Sport utility vehicle | Small pickup truck | Hatchback | Box truck | Custom",
+   "group": "Chassis"
+  },
+  {
+   "name": "Color, VehColor",
+   "default": "Red",
+   "values": "车辆颜色 Red (default) | Orange | Yellow | Green | Blue | Black | White | Silver | Dazzle camouflage",
+   "group": "Chassis"
+  },
+  {
+   "name": "Name, ActorName",
+   "default": "SimulinkVehicle1",
+   "values": "车辆名称 SimulinkVehicle1 (default) | character vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial position [X, Y, Z], InitialPos [m]",
+   "default": "-0.5]",
+   "values": "车辆初始位置 [ 0, 0, -0.5] (default) | 1-by-3 array",
+   "group": "Chassis"
+  },
+  {
+   "name": "Initial rotation [Roll, Pitch, Yaw], InitialRot [rad]",
+   "default": "]",
+   "values": "车辆初始旋转 [ 0, 0, 0 ] (default) | 1-by-3 array",
+   "group": "Chassis"
+  },
+  {
+   "name": "Mass, Mass [kg]",
+   "default": "1500",
+   "values": "车辆质量 1500 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Center of mass offset vector, CgOffset [m]",
+   "default": "0]",
+   "values": "质心偏移 [0, 0, 0] (default) | three-element vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Inertia tensor scaling vector, IvehScale []",
+   "default": "1]",
+   "values": "惯性张量的缩放 [1, 1, 1] (default) | three-element vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Chassis height (used in drag), ChassisHeight [m]",
+   "default": "1.0",
+   "values": "底盘高度 1.0 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Drag coefficient, Cd []",
+   "default": "0.3",
+   "values": "车辆阻力系数 0.3 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Drag lift coefficient, Cl []",
+   "default": "0.1",
+   "values": "纵向升力系数 0.1 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Path to custom mesh, MeshPath",
+   "default": "",
+   "values": "Path to custom mesh character vector",
+   "group": "Chassis"
+  },
+  {
+   "name": "Track width, TrackWidth [m]",
+   "default": "1.9",
+   "values": "车轮间距 1.9 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Wheel base in custom mesh [m]",
+   "default": "3",
+   "values": "自定义网格中的轴距 3 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Front Wheel radius, FrntWhlRadius [m]",
+   "default": "0.23",
+   "values": "前轮半径 0.23 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Front wheel width, FrntWhlWidth [m]",
+   "default": "0.20",
+   "values": "前轮宽度 0.20 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Rear Wheel radius, RearWhlRadius [m]",
+   "default": "0.23",
+   "values": "后轮半径 0.23 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Rear wheel width, RearWhlWidth [m]",
+   "default": "0.20",
+   "values": "后轮宽度 0.20 (default) | scalar",
+   "group": "Chassis"
+  },
+  {
+   "name": "Motor torque indices, TrqCrv [Nm]",
+   "default": "]",
+   "values": "电机扭矩索引 [ 75, 75, 97, 117, 152, 175, 175, 175, 175, 165, 155, 145, 140, 135, 125, 115, 50 ] (default) | vector",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Motor speed breakpoints, SpdCrv [rpm]",
+   "default": "]",
+   "values": "电机转速断点 [ 0, 750, 1054, 1357, 1660, 1964, 2267, 2571, 2875, 3178, 3482, 3785, 4089, 4393, 4696, 5000, 7000 ] (default) | vector",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Maximum powertrain speed, MaxRPM [rpm]",
+   "default": "7000",
+   "values": "最大动力总成转速 7000 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Powertrain rotational inertia, Jmot [kg*m^2]",
+   "default": "1.0",
+   "values": "动力总成转动惯量 1.0 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Powertrain damping at full torque request, bEngMax [Nms/rad]",
+   "default": "0.15",
+   "values": "全扭矩请求时的动力总成阻尼 0.15 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Powertrain damping at zero torque request in gear, bEngMin [Nms/rad]",
+   "default": "2",
+   "values": "挂挡时零扭矩请求下的动力总成阻尼 2 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Drivetrain type",
+   "default": "Drive",
+   "values": "传动系统 Rear Wheel Drive (default) | Front Wheel Drive | All Wheel Drive",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Front to rear torque split ratio, FrntRearSplit []",
+   "default": "0.5",
+   "values": "前后扭矩分配比 0.5 (default) | scalar in the range (0,1)",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Transmission type",
+   "default": "Automatic",
+   "values": "变速器 Automatic (default) | Manual",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Gear number vector, G []",
+   "default": "8]",
+   "values": "挡位编号 [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8] (default) | vector",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Gear ratio vector, N []",
+   "default": "]",
+   "values": "传动比 [ -3.5, 1, 4.75, 3.75, 3.25, 2.75, 2.25, 1.5, 1, 0.75 ] (default) | vector",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Upshift speed, UpShiftRPM [rpm]",
+   "default": "4000",
+   "values": "升挡转速 4000 (default) | scalar greater than DownShiftRPM",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Downshift speed, DownShiftRPM [rpm]",
+   "default": "2000",
+   "values": "降挡转速 2000 (default) | scalar in the range [0, UpShiftRPM )",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Minimum (idle) speed, MinRPM [rpm]",
+   "default": "750",
+   "values": "最小动力总成转速 750 (default) | scalar in the range [ 0, MaxRPM ]",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Shift time, tShift [s]",
+   "default": "0.1",
+   "values": "完成换挡所需时间 0.1 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Final drive ratio, NDiff []",
+   "default": "3.2",
+   "values": "主减速比 3.2 (default) | scalar",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Transmission efficiency, eta []",
+   "default": "0.94",
+   "values": "效率因子 0.94 (default) | scalar in the range [0,1)",
+   "group": "Powertrain and Driveline"
+  },
+  {
+   "name": "Steering type",
+   "default": "Ackermann",
+   "values": "用于设置转向类型的选项 Ackermann (default) | Linear",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Outside to inside steering ratio, SteerAngleRatio []",
+   "default": "1.0",
+   "values": "外侧与内侧转向角比 1.0 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Front wheel max steer angle, FrntWhlMaxSteer [rad]",
+   "default": "45*pi/180",
+   "values": "前轮最大转向角 45*pi/180 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Rear wheel max steer angle, RearWhlMaxSteer [rad]",
+   "default": "0",
+   "values": "后轮最大转向角 0 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum steering ratio breakpoints, SteerCrv []",
+   "default": "]",
+   "values": "最大转向比 [ 1, 0.8, 0.7 ] (default) | vector",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Steering ratio speed breakpoints, SteerSpdCrv [m/s]",
+   "default": "]./3.6",
+   "values": "转向比车速断点 [ 0, 60, 120 ]./3.6 (default) | vector",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum front wheel torque, FrntWhlMaxTrq [Nm]",
+   "default": "1500",
+   "values": "前轮最大扭矩 1500 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum rear wheel torque, RearWhlMaxTrq [Nm]",
+   "default": "1500",
+   "values": "后轮最大扭矩 1500 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Option to enable handbrake input",
+   "default": "off",
+   "values": "启用手刹输入 off (default) | on",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Front wheels affected by handbrake",
+   "default": "off",
+   "values": "前轮手刹选项 off (default) | on",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Rear wheels affected by handbrake",
+   "default": "off",
+   "values": "后轮手刹选项 off (default) | on",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum front wheel hand brake torque, FrntWhlMaxHndBrkTrq [Nm]",
+   "default": "3000",
+   "values": "前轮最大手刹扭矩 3000 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Maximum rear wheel hand brake torque, RearWhlMaxHndBrkTrq [Nm]",
+   "default": "3000",
+   "values": "后轮最大手刹扭矩 3000 (default) | scalar",
+   "group": "Steering and Brakes"
+  },
+  {
+   "name": "Front suspension force offset location, FrntSuspFOffset [m]",
+   "default": "[0,0,0]",
+   "values": "前悬架力偏移 [0,0,0] (default) | three-element vector",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Maximum front suspension compression (jounce), FrntSuspMaxComp [m]",
+   "default": "0.15",
+   "values": "前悬架最大压缩量 0.15 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front spring preload, FrntSpringPreload [N]",
+   "default": "200",
+   "values": "前悬架预紧力 200 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front spring stiffness, FrntSpringRate [N/m]",
+   "default": "30e3",
+   "values": "前悬架弹簧刚度 30e3 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Maximum front suspension extension (rebound), FrntSuspMaxExt [m]",
+   "default": "0.1",
+   "values": "前悬架最大伸张量 0.1 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front suspension damping ratio, FrntSuspDamping []",
+   "default": "0.5",
+   "values": "前悬架阻尼比 0.5 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front roll bar stiffness scaling, FrntRollbarScaling []",
+   "default": "0.15",
+   "values": "前抗侧倾效果 0.15 (default) | scalar in the range (0,1)",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear suspension force offset location, RearSuspFOffset [m]",
+   "default": "[0,0,0]",
+   "values": "后悬架力偏移 [0,0,0] (default) | three-element vector",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Maximum rear suspension compression (jounce), RearSuspMaxComp [m]",
+   "default": "0.15",
+   "values": "后悬架最大压缩量 0.15 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear spring preload, RearSpringPreload [N]",
+   "default": "200",
+   "values": "后悬架预紧力 200 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear spring stiffness, RearSpringRate [N/m]",
+   "default": "30e3",
+   "values": "后悬架弹簧刚度 30e3 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Maximum rear suspension extension (rebound), RearSuspMaxExt [m]",
+   "default": "0.1",
+   "values": "后悬架最大伸张量 0.1 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear suspension damping ratio, RearSuspDamping []",
+   "default": "0.5",
+   "values": "后悬架阻尼比 0.5 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear roll bar stiffness scaling, RearRollbarScaling []",
+   "default": "0.15",
+   "values": "后抗侧倾效果 0.15 (default) | scalar in the range (0,1)",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Enable anti-lock braking",
+   "default": "off",
+   "values": "启用防抱死制动的选项 off (default) | on",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Enable traction control",
+   "default": "off",
+   "values": "启用牵引力控制的选项 off (default) | on",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front wheel corner stiffness, Cy_f [N/rad]",
+   "default": "70e3",
+   "values": "前轮侧偏刚度 70e3 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Front wheel slip modifier, FrntSideSlipModifier []",
+   "default": "20",
+   "values": "前轮滑移修正系数 20 (default) | scalar in the range (0,1)",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear wheel corner stiffness, Cy_r [N/rad]",
+   "default": "70e3",
+   "values": "后轮侧偏刚度 70e3 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Rear wheel slip modifier, RearSideSlipModifier []",
+   "default": "20",
+   "values": "后轮滑移修正系数 20 (default) | scalar in the range (0,1)",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Friction scaling factor, lambda_mu []",
+   "default": "1.0",
+   "values": "摩擦缩放 1.0 (default) | scalar",
+   "group": "Suspension, Wheels and Tires"
+  },
+  {
+   "name": "Enable light controls",
+   "default": "off",
+   "values": "控制车辆车灯的选项 off (default) | on",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Headlight color [R,G,B], HeadlightColor",
+   "default": "[1,1,1]",
+   "values": "前照灯颜色 [1,1,1] (default) | 1-by-3 vector of RGB triplet values",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam intensity, HighBeamIntensity",
+   "default": "100000",
+   "values": "远光强度 100000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam intensity, LowBeamIntensity",
+   "default": "60000",
+   "values": "近光强度 60000 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "High beam cone half angle, HighBeamConeAngle",
+   "default": "1.22",
+   "values": "远光锥半角 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Low beam cone half angle, LowBeamConeAngle",
+   "default": "1.22",
+   "values": "近光锥半角 1.22 (default) | positive scalar less than pi/2",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Left headlight beam orientation [Pitch, Yaw], LeftHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "左前照灯光束方向 [0,0] (default) | 1-by-2 vector with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Right headlight beam orientation [Pitch, Yaw], RightHeadlightOrientation",
+   "default": "[0,0]",
+   "values": "右前照灯光束方向 [0,0] (default) | 1-by-2 vector with values between -pi and pi",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Brake light intensity, BrakelightIntensity",
+   "default": "500",
+   "values": "制动灯强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Reverse light intensity, ReverselightIntensity",
+   "default": "500",
+   "values": "倒车灯强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Turn signal light intensity, SignallightIntensity",
+   "default": "500",
+   "values": "转向信号灯强度 500 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Period, SignallightPeriod",
+   "default": "1",
+   "values": "转向信号灯周期 1 (default) | positive scalar",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Pulse width, SignalPulseWidth",
+   "default": "50",
+   "values": "脉冲宽度 50 (default) | positive scalar less than 100",
+   "group": "Light Controls"
+  },
+  {
+   "name": "Sample time, SampleTime",
+   "default": "-1",
+   "values": "采样时间 -1 (default) | scalar",
+   "group": "Sample Time"
+  },
+  {
+   "name": "Output location and orientation",
+   "default": "off",
+   "values": "返回位置和方向的选项 off (default) | on",
+   "group": "Ground Truth"
+  },
+  {
+   "name": "Output nominal vehicle state feedback",
+   "default": "off",
+   "values": "返回标称车辆状态反馈的选项 off (default) | on",
+   "group": "Ground Truth"
+  }
+ ]
+}

@@ -1,0 +1,323 @@
+{
+ "key": "Mapped SI Engine",
+ "title": "Mapped SI Engine",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Propulsion/Combustion Engines/Mapped_SI_Engine.md",
+  "Vehicle Dynamics Blockset/Powertrain/Propulsion/Mapped_SI_Engine.md"
+ ],
+ "text": "使用查找表的火花点火发动机模型，输入 3 路、输出 2 路；{Include turbocharger lag effect} 指定增大时间常数、{Input engine temperature} 指定创建输入端口、{Calibrate Maps} 使用测量数据校准表 selection、{Breakpoints for commanded torque, f_tbrake_t_bpt} 指定断点 1 -by、{Breakpoints for engine speed input, f_tbrake_n_bpt} 指定断点 1 -by、{Breakpoints for temperature input, f_tbrake_engtmp_bpt} 指定断点、{Number of cylinders, NCyl} 指定数量、{Crank revolutions per power stroke, Cps} 指定曲轴转数、{Total displaced volume, Vd} 指定体积、{Fuel lower heating value, Lhv} 指定热值 45e6、{Fuel specific gravity, Sg} 指定比重、{Ideal gas constant air, Rair} 指定常量、{Air standard pressure, Pstd} 指定压力、{Air standard temperature, Tstd} 指定温度、{Boost torque line, f_tbrake_bst} 指定增压迟滞 1 -by、{Time constant below boost line, tau_thr} 指定下方时间常数、{Rising torque boost time constant, tau_bst_rising} 指定上升时间常数、{Falling torque boost time constant, tau_bst_falling} 指定下降时间常数、{Brake torque map, f_tbrake} 指定二维查找表 M -by、{Plot brake torque map} 绘制表格、{Brake torque map, f_tbrake_3d} 指定三维查找表 M -by- N -by- L、{Air mass flow map, f_air} 指定二维查找表 M -by、{Plot air mass map} 绘制表格、{Air mass flow map, f_air_3d} 指定三维查找表 M -by- N -by- L、{Fuel flow map, f_fuel} 指定二维查找表 M -by、{Plot fuel flow map} 绘制表格、{Fuel flow map, f_fuel_3d} 指定三维查找表 M -by- N -by- L、{Exhaust temperature map, f_texh} 指定二维查找表 M -by、{Plot exhaust temperature map} 绘制表格、{Exhaust temperature map, f_texh_3d} 指定三维查找表 array、{BSFC map, f_eff} 指定二维查找表 M -by- N -by- L、{Plot BSFC map} 绘制表格、{BSFC map, f_eff_3d} 指定三维查找表 M -by- N -by- L、{EO HC map, f_hc} 指定二维查找表 M -by、{Plot EO HC map} 绘制表格、{EO HC map, f_hc_3d} 指定三维查找表 M -by- N -by- L、{EO CO map, f_co} 指定二维查找表 M -by、{Plot EO CO map} 绘制表格、{EO NOx map, f_nox} 指定二维查找表 M -by、{Plot EO NOx map} 绘制表格、{EO NOx map, f_nox_3d} 指定三维查找表 M -by- N -by- L、{EO CO2 map, f_co2} 指定二维查找表 M -by、{Plot CO2 map} 绘制表格、{EO CO2 map, f_co2_3d} 指定三维查找表 M -by- N -by- L、{EO PM map, f_pm} 指定二维查找表 M -by、{Plot EO PM map} 绘制表格、{EO PM map, f_pm_3d} 指定三维查找表 M -by- N -by- L，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TrqCmd",
+   "direction": "input",
+   "summary": "指令转矩 scalar"
+  },
+  {
+   "name": "EngSpd",
+   "direction": "input",
+   "summary": "发动机转速 scalar"
+  },
+  {
+   "name": "EngTemp",
+   "direction": "input",
+   "summary": "发动机温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "EngTrq",
+   "direction": "output",
+   "summary": "发动机制动转矩 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Include turbocharger lag effect",
+   "default": "off",
+   "values": "增大时间常数 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input engine temperature",
+   "default": "off",
+   "values": "创建输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Calibrate Maps",
+   "default": "",
+   "values": "使用测量数据校准表 selection",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for commanded torque, f_tbrake_t_bpt",
+   "default": "",
+   "values": "断点 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for engine speed input, f_tbrake_n_bpt",
+   "default": "",
+   "values": "断点 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Breakpoints for temperature input, f_tbrake_engtmp_bpt",
+   "default": "373.15]",
+   "values": "断点 [233.15 273.15 373.15] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Number of cylinders, NCyl",
+   "default": "4",
+   "values": "数量 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Crank revolutions per power stroke, Cps",
+   "default": "2",
+   "values": "曲轴转数 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Total displaced volume, Vd",
+   "default": "0.0015",
+   "values": "体积 0.0015 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fuel lower heating value, Lhv",
+   "default": "45e6",
+   "values": "热值 45e6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Fuel specific gravity, Sg",
+   "default": "0.745",
+   "values": "比重 0.745 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Ideal gas constant air, Rair",
+   "default": "287",
+   "values": "常量 287 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air standard pressure, Pstd",
+   "default": "101325",
+   "values": "压力 101325 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air standard temperature, Tstd",
+   "default": "293.15",
+   "values": "温度 293.15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Boost torque line, f_tbrake_bst",
+   "default": "",
+   "values": "增压迟滞 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Time constant below boost line, tau_thr",
+   "default": "0.2",
+   "values": "下方时间常数 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Rising torque boost time constant, tau_bst_rising",
+   "default": "1.5",
+   "values": "上升时间常数 1.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Falling torque boost time constant, tau_bst_falling",
+   "default": "1",
+   "values": "下降时间常数 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Brake torque map, f_tbrake",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot brake torque map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "Brake torque map, f_tbrake_3d",
+   "default": "",
+   "values": "三维查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Air mass flow map, f_air",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot air mass map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "Air mass flow map, f_air_3d",
+   "default": "",
+   "values": "三维查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Fuel flow map, f_fuel",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot fuel flow map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "Fuel flow map, f_fuel_3d",
+   "default": "",
+   "values": "三维查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Exhaust temperature map, f_texh",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot exhaust temperature map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "Exhaust temperature map, f_texh_3d",
+   "default": "",
+   "values": "三维查找表 array",
+   "group": ""
+  },
+  {
+   "name": "BSFC map, f_eff",
+   "default": "",
+   "values": "二维查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Plot BSFC map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "BSFC map, f_eff_3d",
+   "default": "",
+   "values": "三维查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "EO HC map, f_hc",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot EO HC map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "EO HC map, f_hc_3d",
+   "default": "",
+   "values": "三维查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "EO CO map, f_co",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot EO CO map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "EO NOx map, f_nox",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot EO NOx map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "EO NOx map, f_nox_3d",
+   "default": "",
+   "values": "三维查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "EO CO2 map, f_co2",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot CO2 map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "EO CO2 map, f_co2_3d",
+   "default": "",
+   "values": "三维查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "EO PM map, f_pm",
+   "default": "",
+   "values": "二维查找表 M -by- N matrix",
+   "group": ""
+  },
+  {
+   "name": "Plot EO PM map",
+   "default": "",
+   "values": "绘制表格 button",
+   "group": ""
+  },
+  {
+   "name": "EO PM map, f_pm_3d",
+   "default": "",
+   "values": "三维查找表 M -by- N -by- L array",
+   "group": ""
+  }
+ ]
+}

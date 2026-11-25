@@ -1,0 +1,13 @@
+{
+ "key": "Flux Sensor",
+ "title": "Flux Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Magnetic/Magnetic Sensors/Flux_Sensor.md"
+ ],
+ "text": "理想磁通传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,101 @@
+{
+ "key": "phased.internal.SimulinkMatchedFilter",
+ "title": "Matched Filter",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Detection/Matched_Filter.md"
+ ],
+ "text": "Matched Filter 模块实现输入信号的匹配滤波，输入 2 路、输出 2 路；按 {Spectrum window} 指定用于频谱加权的窗；{Source of coefficients} 指定匹配滤波器系数的来源、{Coefficients} 指定匹配滤波器系数、{Spectrum window range (Hz)} 指定频谱窗覆盖区域、{Inherit sample rate} 指定从上游模块继承采样率、{Sample rate (Hz)} 输出波形的采样率 1e6、{Sidelobe attenuation level} 指定窗旁瓣衰减电平、{Kaiser shape parameter} 指定 Kaiser 形状参数、{Number of constant level sidelobes} 指定 Taylor 窗中近似恒定旁瓣的数量、{Enable SNR gain output} 启用 SNR 增益输出、{Simulate using} 指定模块仿真方法 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "输入信号 M -by- N complex valued matrix"
+  },
+  {
+   "name": "Coeff",
+   "direction": "input",
+   "summary": "匹配滤波器系数 M -length complex column vector"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "匹配滤波器输出 M -by- N complex valued matrix"
+  },
+  {
+   "name": "G",
+   "direction": "output",
+   "summary": "匹配滤波器增益 N -length real-valued"
+  }
+ ],
+ "params": [
+  {
+   "name": "Source of coefficients",
+   "default": "Property",
+   "values": "匹配滤波器系数的来源 Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Coefficients",
+   "default": "[1;1]",
+   "values": "匹配滤波器系数 [1;1] (default)",
+   "group": ""
+  },
+  {
+   "name": "Spectrum window",
+   "default": "None",
+   "values": "用于频谱加权的窗 None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor",
+   "group": ""
+  },
+  {
+   "name": "Spectrum window range (Hz)",
+   "default": "1e5]",
+   "values": "频谱窗覆盖区域 [0, 1e5] (default)",
+   "group": ""
+  },
+  {
+   "name": "Inherit sample rate",
+   "default": "on",
+   "values": "从上游模块继承采样率 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "1e6",
+   "values": "输出波形的采样率 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sidelobe attenuation level",
+   "default": "30",
+   "values": "窗旁瓣衰减电平 30 (default)",
+   "group": ""
+  },
+  {
+   "name": "Kaiser shape parameter",
+   "default": "0.5",
+   "values": "Kaiser 形状参数 0.5 (default)",
+   "group": ""
+  },
+  {
+   "name": "Number of constant level sidelobes",
+   "default": "4",
+   "values": "Taylor 窗中近似恒定旁瓣的数量 4 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable SNR gain output",
+   "default": "off",
+   "values": "启用 SNR 增益输出 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "模块仿真方法 Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Internal Force",
+ "title": "Internal Force",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Forces and Torques/Internal_Force.md"
+ ],
+ "text": "Model planar contact between two geometries.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

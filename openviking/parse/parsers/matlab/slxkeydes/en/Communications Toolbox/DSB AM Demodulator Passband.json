@@ -1,0 +1,73 @@
+{
+ "key": "DSB AM Demodulator Passband",
+ "title": "DSB AM Demodulator Passband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Analog Passband Modulation/DSB_AM_Demodulator_Passband.md"
+ ],
+ "text": "Demodulate DSB-AM-modulated data, 1 input, 1 output, {Lowpass filter design method} sets Design method for lowpass filter; {Input signal offset}, {Carrier frequency (Hz)} sets the carrier frequency in Hz, {Initial phase (rad)} sets the initial phase offset in radians, {Filter order} sets the order of lowpass filter, {Cutoff frequency}, {Passband ripple (dB)} sets the peak-to-peak passband ripple in dB and {Stopband ripple (dB)} sets the peak-to-peak stopband ripple in dB. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Demodulated output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input signal offset",
+   "default": "1",
+   "values": "Input signal offset factor 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier frequency (Hz)",
+   "default": "300",
+   "values": "Carrier frequency in Hz 300 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "Initial phase offset in radians 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Lowpass filter design method",
+   "default": "Butterworth",
+   "values": "Design method for lowpass filter Butterworth (default) | Chebyshev type I | Chebyshev type II | Elliptic",
+   "group": ""
+  },
+  {
+   "name": "Filter order",
+   "default": "4",
+   "values": "Order of lowpass filter 4 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Cutoff frequency",
+   "default": "300",
+   "values": "Cutoff frequency in Hz 300 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Passband ripple (dB)",
+   "default": "0.1",
+   "values": "Peak-to-peak passband ripple in dB 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Stopband ripple (dB)",
+   "default": "0.1",
+   "values": "Peak-to-peak stopband ripple in dB 0.1 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

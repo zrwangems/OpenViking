@@ -1,0 +1,58 @@
+{
+ "key": "PWM Generator (Vienna Rectifier)",
+ "title": "PWM Generator (Vienna Rectifier)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Generator_Vienna_Rectifier.md"
+ ],
+ "text": "Vienna rectifier pulse-width modulation waveform generator, 4 inputs, 1 output, {Sampling mode} sets Wave sampling method; {Switching frequency (Hz)} sets the switching rate 1e3 and {Sample time (s)} sets the block sample time. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "Three-phase sinusoidal reference signal vector"
+  },
+  {
+   "name": "Iabc",
+   "direction": "input",
+   "summary": "Three-phase current reference signal vector"
+  },
+  {
+   "name": "vdc",
+   "direction": "input",
+   "summary": "DC link voltage signal positive scalar"
+  },
+  {
+   "name": "vneutral",
+   "direction": "input",
+   "summary": "DC link neutral point balance control scalar"
+  },
+  {
+   "name": "g",
+   "direction": "output",
+   "summary": "Gate control vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "Wave sampling method Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "Hz",
+   "values": "Switching rate 1e3 Hz (default) | positive number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (s)",
+   "default": "s",
+   "values": "Block sample time 5e-5 s (default) | positive number",
+   "group": ""
+  }
+ ]
+}

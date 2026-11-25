@@ -1,0 +1,13 @@
+{
+ "key": "Translational Mechanical Converter (MA)",
+ "title": "Translational Mechanical Converter (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Elements/Translational_Mechanical_Converter_MA.md"
+ ],
+ "text": "湿空气与机械平移网络之间的接口。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

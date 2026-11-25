@@ -1,0 +1,57 @@
+{
+ "key": "Stream FIFO",
+ "title": "Stream FIFO",
+ "toolbox": "SoC Blockset",
+ "kind": "source_block",
+ "source_docs": [
+  "SoC Blockset/Hardware Logic Connectivity/Stream_FIFO.md"
+ ],
+ "text": "Control backpressure between hardware logic and upstream data interface, 3 inputs, 3 outputs; {Depth of FIFO} sets the fIFO depth and {Almost full threshold}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "dataIn",
+   "direction": "input",
+   "summary": "Input stream data scalar"
+  },
+  {
+   "name": "dValidIn",
+   "direction": "input",
+   "summary": "Indication of valid input stream data Boolean scalar"
+  },
+  {
+   "name": "rdyFromDown",
+   "direction": "input",
+   "summary": "Ready signal from downstream interface Boolean scalar"
+  },
+  {
+   "name": "dataOut",
+   "direction": "output",
+   "summary": "Output stream data scalar"
+  },
+  {
+   "name": "dValidOut",
+   "direction": "output",
+   "summary": "Indication of valid output stream data Boolean scalar"
+  },
+  {
+   "name": "rdyToUp",
+   "direction": "output",
+   "summary": "Ready signal to upstream interface Boolean scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Depth of FIFO",
+   "default": "16",
+   "values": "FIFO depth 16 (default) | integer greater than or equal to four",
+   "group": ""
+  },
+  {
+   "name": "Almost full threshold",
+   "default": "8",
+   "values": "Almost full threshold value 8 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

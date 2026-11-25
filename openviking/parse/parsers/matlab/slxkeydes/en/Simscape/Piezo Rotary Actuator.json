@@ -1,0 +1,13 @@
+{
+ "key": "Piezo Rotary Actuator",
+ "title": "Piezo Rotary Actuator",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Mechatronic Actuators/Piezo_Rotary_Actuator.md"
+ ],
+ "text": "Torque-speed characteristics of rotary piezoelectric traveling wave motor.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

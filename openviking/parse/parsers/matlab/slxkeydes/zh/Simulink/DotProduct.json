@@ -1,0 +1,73 @@
+{
+ "key": "DotProduct",
+ "title": "Dot Product",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Dot_Product.md",
+  "HDL Coder/Math Operations/Dot_Product.md"
+ ],
+ "text": "生成两个向量的点积，输入 2 路、输出 1 路；按 {整数舍入模式} 指定定点运算的舍入模式；{要求所有输入具有相同的数据类型}、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{输出数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{对整数溢出进行饱和处理} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "第一个操作数输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "第二个操作数输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "点积输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "要求所有输入具有相同的数据类型",
+   "default": "on",
+   "values": "要求所有输入具有相同的数据类型 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "从内部规则继承",
+   "values": "指定输出数据类型 继承: 从内部规则继承 (默认) | 继承: 通过反向传播继承 | 继承: 与第一个输入相同 | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": ""
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": ""
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

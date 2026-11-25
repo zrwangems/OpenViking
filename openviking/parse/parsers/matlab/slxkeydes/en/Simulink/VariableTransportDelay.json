@@ -1,0 +1,96 @@
+{
+ "key": "VariableTransportDelay",
+ "title": "Variable Time Delay",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/Variable_Time_Delay.md",
+  "Simulink/Continuous/Variable_Transport_Delay.md"
+ ],
+ "text": "Delay input by variable amount of time, 3 inputs, 1 output, no direct feedthrough, {Initial output} sets Initial output; {Select delay type} sets the type of delay Variable, {Maximum delay} sets the maximum value of time delay input, {Initial buffer size} sets the initial memory allocation, {Use fixed buffer size} uses fixed-size buffer, {Handle zero delay} sets the option to allow zero delay, {Direct feedthrough of input during linearization} sets the option to use zero delay during linearization and trimming, {Pade order (for linearization)} sets the order of Pade approximation, {Absolute tolerance} and {State Name (e.g., ’position’)} sets the unique name for each state. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "t 0",
+   "direction": "input",
+   "summary": "Time delay input scalar | vector | matrix"
+  },
+  {
+   "name": "t i",
+   "direction": "input",
+   "summary": "Instantaneous time delay input scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Delayed signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Select delay type",
+   "default": "",
+   "values": "Type of delay Variable time delay | Variable transport delay",
+   "group": ""
+  },
+  {
+   "name": "Maximum delay",
+   "default": "10",
+   "values": "Maximum value of time delay input 10 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "Initial output 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial buffer size",
+   "default": "1024",
+   "values": "Initial memory allocation 1024 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Use fixed buffer size",
+   "default": "off",
+   "values": "Use fixed-size buffer off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Handle zero delay",
+   "default": "off",
+   "values": "Option to allow zero delay off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Direct feedthrough of input during linearization",
+   "default": "off",
+   "values": "Option to use zero delay during linearization and trimming operations off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Pade order (for linearization)",
+   "default": "0",
+   "values": "Order of Pade approximation 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "auto",
+   "values": "Absolute tolerance for computing block state auto (default) | positive, real, scalar or vector",
+   "group": ""
+  },
+  {
+   "name": "State Name (e.g., ’position’)",
+   "default": "’",
+   "values": "Unique name for each state ’ ’ (default) | character vector, string",
+   "group": ""
+  }
+ ]
+}

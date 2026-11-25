@@ -1,0 +1,54 @@
+{
+ "key": "LLA2ECEF",
+ "title": "LLA to ECEF Position",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/LLA_to_ECEF_Position.md"
+ ],
+ "text": "Calculate Earth-centered Earth-fixed (ECEF) position from geodetic latitude, longitude, and altitude above planetary ellipsoid, 2 inputs, 1 output; {Units}, {Planet model}, {Flattening} and {Equatorial radius of planet} sets the radius of planet at equator. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ l",
+   "direction": "input",
+   "summary": "Geodetic latitude and longitude 2-by-1 vector"
+  },
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "Altitude scalar"
+  },
+  {
+   "name": "X f",
+   "direction": "output",
+   "summary": "Position 3-by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "Units Metric (MKS) (default) | English",
+   "group": ""
+  },
+  {
+   "name": "Planet model",
+   "default": "(WGS84)",
+   "values": "Planet model Earth (WGS84) (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Flattening",
+   "default": "1/298.257223563",
+   "values": "Flattening of planet 1/298.257223563 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Equatorial radius of planet",
+   "default": "6378137",
+   "values": "Radius of planet at equator 6378137 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

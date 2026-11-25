@@ -1,0 +1,55 @@
+{
+ "key": "ApertureJitterMeasurement",
+ "title": "Aperture Jitter Measurement",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Measurements & Testbenches/Aperture_Jitter_Measurement.md"
+ ],
+ "text": "Measure aperture jitter of periodic signals, 1 input, 1 output; {Frequency} sets the input clock frequency 1e6, {Recommended min. simulation stop time} sets the minimum time the simulation must run for meaningful result, {Min}, {Max} and {Hold off time (s)} sets the delay before measurement analysis. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "clk",
+   "direction": "input",
+   "summary": "Clock signal input scalar"
+  },
+  {
+   "name": "jitter",
+   "direction": "output",
+   "summary": "Jitter output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Frequency",
+   "default": "1e6",
+   "values": "Input clock frequency 1e6 (default) | real positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Recommended min. simulation stop time",
+   "default": "9.901e-05",
+   "values": "Minimum time the simulation must run for meaningful result 9.901e-05 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Min",
+   "default": "0",
+   "values": "Minimum value of clock signal 0 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Max",
+   "default": "1",
+   "values": "Maximum value of clock signal 1 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "Delay before measurement analysis 0 (default) | nonnegative real scalar",
+   "group": ""
+  }
+ ]
+}

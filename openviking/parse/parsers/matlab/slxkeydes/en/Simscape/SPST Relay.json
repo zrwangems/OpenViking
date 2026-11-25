@@ -1,0 +1,13 @@
+{
+ "key": "SPST Relay",
+ "title": "SPST Relay",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Switches & Breakers/Relays/SPST_Relay.md"
+ ],
+ "text": "Single-pole single-throw relay with delays and faults.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

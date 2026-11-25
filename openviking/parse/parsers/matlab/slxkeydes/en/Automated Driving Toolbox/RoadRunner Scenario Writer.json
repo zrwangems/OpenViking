@@ -1,0 +1,44 @@
+{
+ "key": "RoadRunner Scenario Writer",
+ "title": "RoadRunner Scenario Writer",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_block",
+ "source_docs": [
+  "Automated Driving Toolbox/RoadRunner Scenario/RoadRunner_Scenario_Writer.md"
+ ],
+ "text": "Write selected topic to RoadRunner scenario, 1 input, {Topic Category} sets Topic category; {Actor Type} sets the type of actor in scenario, {Topic} sets the actor or vehicle data and {Event Type} sets the type of event. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Message",
+   "direction": "input",
+   "summary": "State information Simulink message"
+  }
+ ],
+ "params": [
+  {
+   "name": "Topic Category",
+   "default": "Actor",
+   "values": "Topic category Actor (default) | Event | Diagnostics",
+   "group": ""
+  },
+  {
+   "name": "Actor Type",
+   "default": "Types",
+   "values": "Type of actor in scenario All Types (default) | Vehicle",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "Actor or vehicle data Actor Pose | Actor Pose (Driving Scenario compatible) | Vehicle Pose",
+   "group": ""
+  },
+  {
+   "name": "Event Type",
+   "default": "Complete",
+   "values": "Type of event Action Complete (default) | User-Defined",
+   "group": ""
+  }
+ ]
+}

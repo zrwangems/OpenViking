@@ -1,0 +1,49 @@
+{
+ "key": "2-D FFT",
+ "title": "2-D FFT",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/b_2_D_FFT.md"
+ ],
+ "text": "Compute 2-D fast Fourier transform (FFT), 1 input, 1 output, {FFT implementation} sets FFT implementation; {Output in bit-reversed order} sets the bit-reversed output, {Scale result by FFT length} scales output data and {Lock data type settings against change by the fixed-point tools} sets the data type override. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input data vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output data vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "FFT implementation",
+   "default": "Auto",
+   "values": "FFT implementation Auto (default) | Radix-2 | FFTW",
+   "group": "Main"
+  },
+  {
+   "name": "Output in bit-reversed order",
+   "default": "off",
+   "values": "Bit-reversed output off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Scale result by FFT length",
+   "default": "off",
+   "values": "Scale output data off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "Data type override off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

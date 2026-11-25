@@ -1,0 +1,93 @@
+{
+ "key": "Probe",
+ "title": "Probe",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Probe.md",
+  "Simulink/Quick Insert/Signal Attributes/Probe_Complexity.md",
+  "Simulink/Quick Insert/Signal Attributes/Probe_Dimension.md",
+  "Simulink/Quick Insert/Signal Attributes/Probe_Sample_Time.md",
+  "Simulink/Quick Insert/Signal Attributes/Probe_Width.md",
+  "HDL Coder/Signal Attributes/Probe.md"
+ ],
+ "text": "Output signal attributes, including width, dimensionality, sample time, and complex signal flag, 1 input, 4 outputs, direct feedthrough, {Data type for signal complexity} sets Data type of complexity output; {Probe width} sets the output width of the input signal, {Probe sample time} sets the output sample time of input signal, {Detect complex signal} indicates the complexity of input signal, {Probe signal dimensions} sets the output dimensions of input signal, {Data type for width} sets the data type of signal width, {Data type for sample time} sets the data type of sample time and {Data type for signal dimensions} sets the data type for signal dimension output. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix | N-D array"
+  },
+  {
+   "name": "Port_1 (W)",
+   "direction": "output",
+   "summary": "Signal width scalar"
+  },
+  {
+   "name": "Port_2 (Ts)",
+   "direction": "output",
+   "summary": "Sample time vector"
+  },
+  {
+   "name": "Port_3 (C)",
+   "direction": "output",
+   "summary": "Signal complexity scalar"
+  },
+  {
+   "name": "Port_4 (D)",
+   "direction": "output",
+   "summary": "Signal dimensions scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Probe width",
+   "default": "on",
+   "values": "Output width of the input signal on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Probe sample time",
+   "default": "on",
+   "values": "Output sample time of input signal on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Detect complex signal",
+   "default": "on",
+   "values": "Indicate the complexity of input signal on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Probe signal dimensions",
+   "default": "on",
+   "values": "Output dimensions of input signal on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Data type for width",
+   "default": "double",
+   "values": "Data type of signal width output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same as input",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type for sample time",
+   "default": "double",
+   "values": "Data type of sample time output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same as input",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type for signal complexity",
+   "default": "double",
+   "values": "Data type of complexity output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean | Same as input",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type for signal dimensions",
+   "default": "double",
+   "values": "Data type for signal dimension output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same as input",
+   "group": "Signal Attributes"
+  }
+ ]
+}

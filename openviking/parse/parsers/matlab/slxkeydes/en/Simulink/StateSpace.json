@@ -1,0 +1,79 @@
+{
+ "key": "StateSpace",
+ "title": "State-Space",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Continuous/State_Space.md"
+ ],
+ "text": "Implement linear state-space system, 1 input, 1 output, direct feedthrough, {Initial conditions} sets Initial state vector; {A}, {B}, {C}, {D}, {Parameter tunability} sets the tunable representation of block parameters, {Allow non-zero values for D matrix initially specified as zero} allows tunability of D matrix when D =, {Absolute tolerance} and {State Name (e.g., ’position’)} sets the option to assign unique names to states. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output vector scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A",
+   "default": "1",
+   "values": "Matrix coefficient, A 1 (default) | scalar | vector | matrix | sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "Matrix coefficient, B 1 (default) | scalar | vector | matrix | sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "C",
+   "default": "1",
+   "values": "Matrix coefficient, C 1 (default) | scalar | vector | matrix | sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "D",
+   "default": "1",
+   "values": "Matrix coefficient, D 1 (default) | scalar | vector | matrix | sparse matrix",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial state vector 0 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Parameter tunability",
+   "default": "Auto",
+   "values": "Choose tunable representation of block parameters Auto (default) | Optimized | Unconstrained",
+   "group": ""
+  },
+  {
+   "name": "Allow non-zero values for D matrix initially specified as zero",
+   "default": "off",
+   "values": "Allow tunability of D matrix when D = 0 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Absolute tolerance",
+   "default": "auto",
+   "values": "Absolute tolerance for computing block states auto (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "State Name (e.g., ’position’)",
+   "default": "’’",
+   "values": "Option to assign unique names to states ’’ (default) | character vector | cell array of character vectors | MATLAB ® variable |...",
+   "group": ""
+  }
+ ]
+}

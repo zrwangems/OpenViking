@@ -1,0 +1,13 @@
+{
+ "key": "LVQOUTPUTS Preprocess",
+ "title": "lvqoutputs",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/lvqoutputs.md"
+ ],
+ "text": "LVQ outputs processing function.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

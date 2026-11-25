@@ -1,0 +1,49 @@
+{
+ "key": "On-Off Delay",
+ "title": "On-Off Delay",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/On_Off_Delay.md"
+ ],
+ "text": "布尔信号延迟，输入 1 路、输出 1 路；按 {Sample time} 指定模块采样时间；{ON delay time (s)} 指定输入 ON 延迟时间、{OFF delay time (s)} 指定输入 OFF 延迟时间、{Initial state} 指定信号初始状态，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "输入信号 0 | 1"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "输出信号 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "ON delay time (s)",
+   "default": "0.01",
+   "values": "输入 ON 延迟时间 0.01 (default) | 0 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "OFF delay time (s)",
+   "default": "0",
+   "values": "输入 OFF 延迟时间 0 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial state",
+   "default": "0",
+   "values": "信号初始状态 0 (default) | 1",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.001",
+   "values": "模块采样时间 0.001 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

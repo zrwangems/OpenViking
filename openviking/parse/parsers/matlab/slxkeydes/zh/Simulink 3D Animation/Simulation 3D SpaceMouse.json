@@ -1,0 +1,108 @@
+{
+ "key": "Simulation 3D SpaceMouse",
+ "title": "Simulation 3D SpaceMouse",
+ "toolbox": "Simulink 3D Animation",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink 3D Animation/Simulation 3D/Hardware Interface/Simulation_3D_SpaceMouse.md"
+ ],
+ "text": "处理来自空间鼠标设备的输入；输出 3 路；按 {Output type} 指定输出类型；{Port} 指定鼠标连接的串行端口、{Dominant mode} 用于仅接受主要运动和旋转、{Disable position movement} 用于将旋转固定为初始值、{Disable rotation movement} 用于将位置固定为初始值、{Normalize output angle} 用于确定旋转角度是否应按整圆环绕、{Limit position} 用于限制鼠标位置、{Position sensitivity} 指定平移的鼠标灵敏度、{Rotation sensitivity} 指定旋转的鼠标灵敏度、{Initial position} 指定平移的初始条件、{Initial rotation} 指定旋转的初始条件、{Lower position limit} 指定鼠标的下限、{Upper position limit} 指定鼠标的上限，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "对象平移的状态 1 or true | 0 or false"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "对象旋转的状态 1 or true | 0 or false"
+  },
+  {
+   "name": "Buttons",
+   "direction": "output",
+   "summary": "按钮的状态 1 or true | 0 or false"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port",
+   "default": "COM1",
+   "values": "鼠标连接的串行端口 COM1 (default) | COM2 | COM3 | COM4 | USB1 | USB2 | USB3 | USB4",
+   "group": ""
+  },
+  {
+   "name": "Output type",
+   "default": "Speed",
+   "values": "输出类型 Speed (default) | Position | Viewpoint coordinates",
+   "group": ""
+  },
+  {
+   "name": "Dominant mode",
+   "default": "off",
+   "values": "用于仅接受主要运动和旋转的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Disable position movement",
+   "default": "off",
+   "values": "用于将旋转固定为初始值的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Disable rotation movement",
+   "default": "off",
+   "values": "用于将位置固定为初始值的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Normalize output angle",
+   "default": "off",
+   "values": "用于确定旋转角度是否应按整圆环绕的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Limit position",
+   "default": "off",
+   "values": "用于限制鼠标位置的选项 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Position sensitivity",
+   "default": "0.0001",
+   "values": "平移的鼠标灵敏度 0.0001 (default)",
+   "group": ""
+  },
+  {
+   "name": "Rotation sensitivity",
+   "default": "0.00001",
+   "values": "旋转的鼠标灵敏度 0.00001 (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial position",
+   "default": "0]",
+   "values": "平移的初始条件 [0 0 0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial rotation",
+   "default": "0]",
+   "values": "旋转的初始条件 [0 0 0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Lower position limit",
+   "default": "-100]",
+   "values": "鼠标的下限 [-100 -100 -100] (default)",
+   "group": ""
+  },
+  {
+   "name": "Upper position limit",
+   "default": "100]",
+   "values": "鼠标的上限 [100 100 100] (default)",
+   "group": ""
+  }
+ ]
+}

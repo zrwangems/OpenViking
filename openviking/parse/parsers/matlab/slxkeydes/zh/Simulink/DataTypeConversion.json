@@ -1,0 +1,131 @@
+{
+ "key": "DataTypeConversion",
+ "title": "Data Type Conversion",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Data_Type_Conversion.md",
+  "Simulink/Signal Attributes/Data_Type_Conversion.md",
+  "Simulink/Quick Insert/Signal Attributes/Cast.md",
+  "Simulink/Quick Insert/Signal Attributes/Cast_To_Boolean.md",
+  "Simulink/Quick Insert/Signal Attributes/Cast_To_Double.md",
+  "Simulink/Quick Insert/Signal Attributes/Cast_To_Single.md",
+  "HDL Coder/Commonly Used Blocks/Data_Type_Conversion.md",
+  "HDL Coder/HDL Floating Point Operations/Data_Type_Conversion.md",
+  "HDL Coder/Signal Attributes/Data_Type_Conversion.md",
+  "DSP System Toolbox HDL Support/Signal Management/Data_Type_Conversion.md",
+  "DSP System Toolbox/Signal Management/Signal Attributes/Data_Type_Conversion.md"
+ ],
+ "text": "将输入信号转换为指定的数据类型，输入 1 路、输出 1 路；按 {模式} 指定数据类型模式；{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{输出数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 用于防止定点工具覆盖输出数据类型、{输入和输出具有相等的} 指定转换定点数据类型的约束 真实值、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{数据类型覆盖}、{符号性} 指定有符号或无符号、{定标}、{字长} 指定存储量化整数的字的位大小、{小数长度}、{斜率}、{偏置}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "输出数据类型",
+   "default": "通过反向传播继承",
+   "values": "输出数据类型 继承: 通过反向传播继承 (默认) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: | <数据类型表达式>",
+   "group": ""
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "输入和输出具有相等的",
+   "default": "真实值(RWV)",
+   "values": "转换定点数据类型的约束 真实值(RWV) (默认) | 存储的整数(SI)",
+   "group": ""
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "指定定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": ""
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "模式",
+   "default": "Inherit",
+   "values": "选择数据类型模式 Inherit (默认) | Built in | Fixed Point",
+   "group": ""
+  },
+  {
+   "name": "数据类型覆盖",
+   "default": "",
+   "values": "为此信号指定数据类型覆盖模式 Inherit | Off",
+   "group": ""
+  },
+  {
+   "name": "符号性",
+   "default": "Signed",
+   "values": "指定有符号或无符号 Signed (默认) | Unsigned",
+   "group": ""
+  },
+  {
+   "name": "定标",
+   "default": "最佳精度",
+   "values": "定标定点数据的方法 最佳精度 (默认) | 二进制小数点 | 斜率和偏置",
+   "group": ""
+  },
+  {
+   "name": "字长",
+   "default": "16",
+   "values": "存储量化整数的字的位大小 16 (默认) | 从 0 到 32 的整数",
+   "group": ""
+  },
+  {
+   "name": "小数长度",
+   "default": "0",
+   "values": "指定定点数据类型的小数长度 0 (默认) | 整数标量",
+   "group": ""
+  },
+  {
+   "name": "斜率",
+   "default": "2^0",
+   "values": "指定定点数据类型的斜率。 2^0 (默认) | 正实数值标量",
+   "group": ""
+  },
+  {
+   "name": "偏置",
+   "default": "0",
+   "values": "指定定点数据类型的偏置。 0 (默认) | 实数值标量",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Floating Bar Plot",
+ "title": "Floating Bar Plot",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Sinks/Floating_Bar_Plot.md"
+ ],
+ "text": "Floating Bar Plot。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

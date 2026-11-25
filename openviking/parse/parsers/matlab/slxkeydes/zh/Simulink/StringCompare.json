@@ -1,0 +1,48 @@
+{
+ "key": "StringCompare",
+ "title": "String Compare",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/String/String_Compare.md"
+ ],
+ "text": "比较两个输入字符串，输入 2 路、输出 1 路；{区分大小写}、{比较选项} 指定要比较的字符量、{字符数}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要比较的第一个字符串 标量"
+  },
+  {
+   "name": "Port_2",
+   "direction": "input",
+   "summary": "要比较的第二个字符串 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "true 或 false 结果 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "区分大小写",
+   "default": "on",
+   "values": "在字符串比较时区分大小写 on (默认) | off",
+   "group": ""
+  },
+  {
+   "name": "比较选项",
+   "default": "整个字符串",
+   "values": "要比较的字符量 整个字符串 (默认) | 前 N 个字符",
+   "group": ""
+  },
+  {
+   "name": "字符数",
+   "default": "1",
+   "values": "要比较的字符数 1 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

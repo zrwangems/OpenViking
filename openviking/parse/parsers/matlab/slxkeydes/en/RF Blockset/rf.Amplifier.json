@@ -1,0 +1,193 @@
+{
+ "key": "rf.Amplifier",
+ "title": "Amplifier",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Idealized Baseband/Amplifier.md"
+ ],
+ "text": "Complex baseband model of amplifier with noise and nonlinearities, 1 input, 1 output, {Specify noise type} sets Noise representation; {Model} sets the amplifier, {Linear power gain (dB)}, {Type of Non-Linearity} sets the third, {IIP3 (dBm)} sets the input third-order, {OIP3 (dBm)} sets the output, {IP1dB (dBm)} sets the input, {OP1dB (dBm)} sets the output, {IPsat (dBm)} sets the input saturation, {OPsat (dBm)} sets the output, {Simulate using} sets the type, {Plot power characteristics}, {Lookup table (Pin(dBm), Pout(dBm), deg)} sets the lookup table -10, 20, -2; {Output saturation level (V)}, {Magnitude smoothness factor}, {Phase gain (rad)}, {Phase saturation}, {Phase smoothness factor}, {Input scaling (dB)} sets the scaling factor for input signal level, {AM / AM parameters [alpha beta]} sets the aM/AM conversion parameters, {AM / PM parameters [alpha beta]} sets the aM/PM conversion parameters, {Output scaling (dB)} sets the scaling factor for output signal level, {Include Noise} adds noise to system, {Noise temperature (K)} sets the noise temperature to model noises, {Noise figure (dB)} sets the noise figure to model noise in amplifier 10 *, {Noise factor}, {Seed source} sets the source of initial seed and {Seed}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input baseband signal real scalar | real column | complex scalar | complex column"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output baseband signal real scalar | real column | complex scalar | complex column"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model",
+   "default": "cubic",
+   "values": "Amplifier nonlinearity model cubic (default) | ampm | modified-rapp | saleh",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Linear power gain (dB)",
+   "default": "0",
+   "values": "Linear gain of amplifier 0 (default) | real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Type of Non-Linearity",
+   "default": "OIP3",
+   "values": "Third - order nonlinearity type OIP3 (default) | IIP3 | IP1dB | OP1dB | IPsat | OPsat",
+   "group": "Main Tab"
+  },
+  {
+   "name": "IIP3 (dBm)",
+   "default": "Inf",
+   "values": "Input third-order intercept point Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "OIP3 (dBm)",
+   "default": "Inf",
+   "values": "Output third-order intercept point Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "IP1dB (dBm)",
+   "default": "Inf",
+   "values": "Input 1 dB compression point Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "OP1dB (dBm)",
+   "default": "Inf",
+   "values": "Output 1 dB compression point Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "IPsat (dBm)",
+   "default": "Inf",
+   "values": "Input saturation point Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "OPsat (dBm)",
+   "default": "Inf",
+   "values": "Output saturation point Inf (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Specify type of simulation to run Code generation (default) | Interpreted execution",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Plot power characteristics",
+   "default": "button",
+   "values": "Plot power characteristics button (default)",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Lookup table (Pin(dBm), Pout(dBm), deg)",
+   "default": "]",
+   "values": "Lookup table [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ] (default) | M -by-3 real matrix",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output saturation level (V)",
+   "default": "1",
+   "values": "Output saturation level 1 (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Magnitude smoothness factor",
+   "default": "2",
+   "values": "Magnitude smoothness factor 2 (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Phase gain (rad)",
+   "default": "-0.45",
+   "values": "Phase gain -0.45 (default) | real scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Phase saturation",
+   "default": "0.88",
+   "values": "Phase saturation 0.88 (default) | real positive number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Phase smoothness factor",
+   "default": "3.43]",
+   "values": "Phase smoothness factor [3.43, 3.43] (default) | real positive number | two-tuple vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Input scaling (dB)",
+   "default": "0",
+   "values": "Scaling factor for input signal level 0 (default) | nonnegative real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "AM / AM parameters [alpha beta]",
+   "default": "]",
+   "values": "AM/AM conversion parameters [ 2.1587, 1.1517 ] (default) | two-element vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "AM / PM parameters [alpha beta]",
+   "default": "]",
+   "values": "AM/PM conversion parameters [ 4.0033, 9.1040 ] (default) | two-element vector",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Output scaling (dB)",
+   "default": "0",
+   "values": "Scaling factor for output signal level 0 (default) | nonnegative real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Include Noise",
+   "default": "off",
+   "values": "Add noise to system off (default) | on",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Specify noise type",
+   "default": "NF",
+   "values": "Noise representation NF (default) | noise-temperature | noise-factor",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise temperature (K)",
+   "default": "290",
+   "values": "Noise temperature to model noises in amplifier 290 (default) | nonnegative real number",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": ")",
+   "values": "Noise figure to model noise in amplifier 10 * log10( 2 ) (default) | nonnegative real number",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise factor",
+   "default": "2",
+   "values": "Noise factor to model noise in amplifier 2 (default) | positive integer scalar greater than or equal to 1",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed source",
+   "default": "auto",
+   "values": "Source of initial seed auto (default) | user",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed",
+   "default": "67987",
+   "values": "Seed for random number generator 67987 (default) | nonnegative integer",
+   "group": "Noise Tab"
+  }
+ ]
+}

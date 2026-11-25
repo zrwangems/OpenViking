@@ -1,0 +1,79 @@
+{
+ "key": "codertarget.tic2000.blocks.RegisterRWBlock",
+ "title": "Register ReadWrite",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Memory Operations/Register_ReadWrite.md"
+ ],
+ "text": "读取或写入 TI C2000 寄存器的各个位字段，输入 1 路、输出 1 路；按 {Device family} 指定TI C2000 器件系列；{Register group} 指定所需的寄存器组、{Register name} 指定寄存器名称、{Register field} 指定寄存器字段、{Access register using} 指定寄存器访问 Specified、{Operation} 指定读或写操作、{Insert code before/after} 指定在之前或之后插入代码、{Bit to process} 指定自定义位、{Register bit fields} 指定要访问的位字段，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "All",
+   "direction": "output",
+   "summary": "选定的位字段 scalar"
+  },
+  {
+   "name": "All",
+   "direction": "input",
+   "summary": "所选位字段数量 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device family",
+   "default": "None",
+   "values": "选择 TI C2000 器件系列 None (default) | F2804x | F280x | F281x | F2833x | F2844x | F280013x | F280015x | F28002x | F28003x | F28004x | F2802x | F2803x | F2805x | F2806x | F2807x | F2837xS | F2837xD_CPU1 | F2837xD_CPU2 | F2838x_CPU1 | F2838x_CPU2 | F2838x_CORTEXM4 | F28M35x | F28M35x | F28M35x | F28p65x_CPU1 | F28p65x_CPU2",
+   "group": ""
+  },
+  {
+   "name": "Register group",
+   "default": "Unspecified",
+   "values": "选择所需的寄存器组 Unspecified (default)",
+   "group": ""
+  },
+  {
+   "name": "Register name",
+   "default": "Unspecified",
+   "values": "选择寄存器名称 Unspecified (default)",
+   "group": ""
+  },
+  {
+   "name": "Register field",
+   "default": "Unspecified",
+   "values": "选择寄存器字段 Unspecified (default)",
+   "group": ""
+  },
+  {
+   "name": "Access register using",
+   "default": "bits",
+   "values": "选择寄存器访问 Specified bits (default) | Custom bits",
+   "group": ""
+  },
+  {
+   "name": "Operation",
+   "default": "Read",
+   "values": "选择读或写操作 Read (default) | Write",
+   "group": ""
+  },
+  {
+   "name": "Insert code before/after",
+   "default": "None",
+   "values": "在之前或之后插入代码 None (default) | EALLOW/EDIS",
+   "group": ""
+  },
+  {
+   "name": "Bit to process",
+   "default": "{[15,0]}|",
+   "values": "指定自定义位 {[15,0]}| (default)",
+   "group": ""
+  },
+  {
+   "name": "Register bit fields",
+   "default": "All",
+   "values": "选择要访问的位字段 All (default)",
+   "group": ""
+  }
+ ]
+}

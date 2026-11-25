@@ -1,0 +1,107 @@
+{
+ "key": "Sqrt",
+ "title": "Reciprocal Sqrt",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Math Operations/Reciprocal_Sqrt.md",
+  "Simulink/Math Operations/Signed_Sqrt.md",
+  "Simulink/Math Operations/Sqrt.md",
+  "Simulink/Quick Insert/Math Operations/Reciprocal_Square_Root.md",
+  "Simulink/Quick Insert/Math Operations/Signed_Square_Root.md",
+  "Simulink/Quick Insert/Math Operations/Square_Root.md",
+  "HDL Coder/HDL Floating Point Operations/Reciprocal_Sqrt.md",
+  "HDL Coder/HDL Floating Point Operations/Sqrt.md",
+  "HDL Coder/Math Operations/Reciprocal_Sqrt.md",
+  "HDL Coder/Math Operations/Sqrt.md",
+  "HDL Coder/HDL Floating Point Operations/SignedSqrt.md"
+ ],
+ "text": "计算平方根、带符号的平方根或平方根的倒数，输入 1 路、输出 1 路；按 {输出信号类型} 指定输出信号类型；{函数}、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{方法}、{迭代次数}、{中间结果数据类型} 指定中间结果的数据类型、{输出}、{最小}、{最大}、{整数舍入模式} 指定定点运算的舍入模式、{锁定输出数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{对整数溢出进行饱和处理} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "函数",
+   "default": "",
+   "values": "模块执行的函数 sqrt | signedSqrt | rSqrt",
+   "group": "常设"
+  },
+  {
+   "name": "输出信号类型",
+   "default": "自动",
+   "values": "输出信号类型 自动 (默认) | 实数 | 复",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "方法",
+   "default": "完全",
+   "values": "计算平方根倒数的方法 完全 (默认) | 牛顿-拉夫逊",
+   "group": "算法"
+  },
+  {
+   "name": "迭代次数",
+   "default": "3",
+   "values": "牛顿-拉夫逊算法的迭代次数 3 (默认) | 整数",
+   "group": "算法"
+  },
+  {
+   "name": "中间结果数据类型",
+   "default": "从内部规则继承",
+   "values": "中间结果的数据类型 继承: 从内部规则继承 (默认) | 继承: 从输入继承 | 继承: 从输出继承 | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出",
+   "default": "与第一个输入相同",
+   "values": "输出数据类型 继承: 与第一个输入相同 (默认) | 继承: 从内部规则继承 | 继承: 通过反向传播继承 | double | single | half | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <数据类型表达式> |...",
+   "group": "数据类型"
+  },
+  {
+   "name": "最小",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "最大",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "数据类型"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "on",
+   "values": "溢出操作的方法 on (默认) | off",
+   "group": "数据类型"
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "key": "Wind Shear Model",
+ "title": "Wind Shear Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Wind/Wind_Shear_Model.md"
+ ],
+ "text": "计算风切变条件，输入 2 路、输出 1 路；按 {Units} 指定风切变单位 Metric；{Flight phase} 指定飞行阶段 Category C - Terminal Flight、{Wind speed at 20 ft altitude (kts)} 指定风速、{Wind direction at 20 ft altitude (degrees clockwise from north)} 指定风向，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "h",
+   "direction": "input",
+   "summary": "高度 scalar"
+  },
+  {
+   "name": "DCM",
+   "direction": "input",
+   "summary": "方向余弦矩阵 3-by-3 matrix"
+  },
+  {
+   "name": "V wind",
+   "direction": "output",
+   "summary": "平均风速 three-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "风切变单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Flight phase",
+   "default": "Phase",
+   "values": "飞行阶段 Category C - Terminal Flight Phase (default) | Other",
+   "group": ""
+  },
+  {
+   "name": "Wind speed at 20 ft altitude (kts)",
+   "default": "15",
+   "values": "风速 15 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Wind direction at 20 ft altitude (degrees clockwise from north)",
+   "default": "0",
+   "values": "风向 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

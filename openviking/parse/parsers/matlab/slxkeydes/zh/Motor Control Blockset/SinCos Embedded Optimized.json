@@ -1,0 +1,72 @@
+{
+ "key": "SinCos Embedded Optimized",
+ "title": "SinCos Embedded Optimized",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Controls/Math Transforms/SinCos_Embedded_Optimized.md"
+ ],
+ "text": "实现正弦和余弦函数，输入 1 路、输出 2 路；按 {Theta units} 指定θ e 的单位；{Optimize for selected embedded target hardware} 指定针对所选硬件优化模块、{Approximation method} 用于计算正弦和余弦信号的近似方法、{Number of data points for lookup table} 查找表数组大小、{Table data type} 查找表数组的数据类型、{Number of iterations} 指定 CORDIC 算法的迭代次数、{Theta data type} 查找表数组的数据类型 fixdt，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ e",
+   "direction": "input",
+   "summary": "参考电压位置 scalar"
+  },
+  {
+   "name": "sin",
+   "direction": "output",
+   "summary": "正弦电压波形 scalar"
+  },
+  {
+   "name": "cos",
+   "direction": "output",
+   "summary": "余弦电压波形 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Optimize for selected embedded target hardware",
+   "default": "off",
+   "values": "针对所选硬件优化模块 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Approximation method",
+   "default": "Lookup",
+   "values": "用于计算正弦和余弦信号的近似方法 Lookup (default) | None | CORDIC | TI IQMATH",
+   "group": ""
+  },
+  {
+   "name": "Theta units",
+   "default": "Per-unit",
+   "values": "θ e 的单位 Per-unit (default) | Radians | Degrees",
+   "group": ""
+  },
+  {
+   "name": "Number of data points for lookup table",
+   "default": "1024",
+   "values": "查找表数组大小 1024 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Table data type",
+   "default": "input",
+   "values": "查找表数组的数据类型 Inherit: Inherit via input (default) | double | single | fixdt(1,16,0) |",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "11",
+   "values": "CORDIC 算法的迭代次数 11 (default) | positive integer, less than or equal to word length of fixed-point input",
+   "group": ""
+  },
+  {
+   "name": "Theta data type",
+   "default": "fixdt([],16,0)",
+   "values": "查找表数组的数据类型 fixdt([],16,0) (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

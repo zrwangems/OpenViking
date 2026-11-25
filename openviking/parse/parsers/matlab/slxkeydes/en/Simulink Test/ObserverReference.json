@@ -1,0 +1,20 @@
+{
+ "key": "ObserverReference",
+ "title": "Observer",
+ "toolbox": "Simulink Test",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink Test/Observer.md"
+ ],
+ "text": "Create and contain an Observer model; {Observer Model name} sets the filename of Observer model. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Observer Model name",
+   "default": "’’",
+   "values": "Filename of Observer model ’’ (default) | character vector",
+   "group": ""
+  }
+ ]
+}

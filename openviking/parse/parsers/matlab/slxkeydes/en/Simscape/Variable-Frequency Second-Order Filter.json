@@ -1,0 +1,78 @@
+{
+ "key": "Variable-Frequency Second-Order Filter",
+ "title": "Variable-Frequency Second-Order Filter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Variable_Frequency_Second_Order_Filter.md"
+ ],
+ "text": "Discrete-time or continuous-time variable-frequency second-order filter, 2 inputs, 1 output, {Filter type} sets Filter type; {Initial natural frequency (Hz)}, {Damping factor}, {Sample time (-1 for inherited)} sets the block sample time, {Initial amplitude}, {Initial phase (rad)}, {Initial frequency (Hz)} and {Initial bias}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Filter input scalar"
+  },
+  {
+   "name": "fn",
+   "direction": "input",
+   "summary": "Natural frequency scalar"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Filtered output scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter type",
+   "default": "Low-pass",
+   "values": "Filter type Low-pass (default) | High-pass | Band-pass | Band-stop",
+   "group": "Main"
+  },
+  {
+   "name": "Initial natural frequency (Hz)",
+   "default": "60",
+   "values": "Initial natural frequency 60 (default) | positive scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Damping factor",
+   "default": "0.707",
+   "values": "Damping factor 0.707 (default) | nonnegative scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Initial amplitude",
+   "default": "0",
+   "values": "Initial amplitude 0 (default) | nonnegative scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Initial phase (rad)",
+   "default": "0",
+   "values": "Initial phase 0 (default) | nonnegative scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Initial frequency (Hz)",
+   "default": "0",
+   "values": "Initial frequency 0 (default) | scalar",
+   "group": "Initial Conditions"
+  },
+  {
+   "name": "Initial bias",
+   "default": "0",
+   "values": "Initial bias 0 (default) | nonnegative scalar",
+   "group": "Initial Conditions"
+  }
+ ]
+}

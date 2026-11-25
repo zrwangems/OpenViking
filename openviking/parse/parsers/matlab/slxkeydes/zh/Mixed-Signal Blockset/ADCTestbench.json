@@ -1,0 +1,197 @@
+{
+ "key": "ADCTestbench",
+ "title": "ADC Testbench",
+ "toolbox": "Mixed-Signal Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Mixed-Signal Blockset/ADC/Measurements & Testbenches/ADC_Testbench.md"
+ ],
+ "text": "测量 ADC 输出的 DC 和 AC 性能指标，输入 2 路、输出 2 路；按 {Analog stimulus frequency (Hz)} 指定ADC 模拟输入信号的频率 positive real scalar；{Measurement} 是测量 DC 还是、{Recommended min. simulation stop time (s)} 指定仿真必须运行以获得有意义结果的最短时间、{Set as model stop time} 指定自动将推荐的最小仿真停止时间设置为模型停止时间、{Endpoint} 使用端点法测量 DNL、INL、{Best fit} 使用最佳拟合方法测量 DNL、INL、{Plot DC analysis result} 绘制 DC 分析结果、{Export measurement result} 指定将详细测试结果存储到基础工作区、{Sample interval (s)} 指定 ADC Testbench 轮询输入的速率 1e-6、{Distortion measurement type} 指定要测量的失真类型、{Resolution bandwidth (Hz)} 指定分辨率带宽 positive real scalar、{Start conversion frequency (Hz)} 指定 ADC 启动转换时钟的频率 1e6、{RMS aperture jitter (s)} 由起始转换时钟添加的 RMS 孔径抖动 40e-12、{Error tolerance (LSB)} 指定模拟信号连续采样之间的最大差值、{Automatically determine sweep range} 指定自动确定扫描范围、{Sweep range} 指定自定义扫描范围、{Stop simulation on completion} 指定完成后停止仿真、{Autofill setup parameter} 指定自动从 ADC 传播设置参数、{Number of bits} 指定物理输出位数、{Input range (V)} 指定 ADC 动态范围、{Hold off time (s)} 指定测量分析前的延迟、{Show spectrum analyzer during simulation} 指定在仿真期间显示频谱分析仪、{Enable increased buffer size} 启用增加的缓冲区大小、{Buffer size} 指定仿真期间可用的输入缓冲样本数、{Autofill target metric} 指定自动从 ADC 传播目标指标、{Offset error} 按特定值移动量化步长、{Gain error} 指定 ADC 传输曲线斜率的误差，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "from adc digital",
+   "direction": "input",
+   "summary": "来自 ADC 输出的数字信号 scalar"
+  },
+  {
+   "name": "from adc ready",
+   "direction": "input",
+   "summary": "来自 ADC 输出的转换就绪信号 scalar"
+  },
+  {
+   "name": "to adc analog",
+   "direction": "output",
+   "summary": "用于 ADC 输入的模拟激励信号 scalar"
+  },
+  {
+   "name": "to adc start",
+   "direction": "output",
+   "summary": "用于 ADC 的外部启动转换时钟 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Measurement",
+   "default": "DC",
+   "values": "选择是测量 DC 还是 AC 性能指标 DC (default) | AC",
+   "group": ""
+  },
+  {
+   "name": "Recommended min. simulation stop time (s)",
+   "default": "2.048e-02",
+   "values": "仿真必须运行以获得有意义结果的最短时间 2.048e-02 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Set as model stop time",
+   "default": "",
+   "values": "自动将推荐的最小仿真停止时间设置为模型停止时间 button",
+   "group": ""
+  },
+  {
+   "name": "Endpoint",
+   "default": "on",
+   "values": "使用端点法测量 DNL、INL on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Best fit",
+   "default": "on",
+   "values": "使用最佳拟合方法测量 DNL、INL on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Plot DC analysis result",
+   "default": "",
+   "values": "绘制 DC 分析结果 button",
+   "group": ""
+  },
+  {
+   "name": "Export measurement result",
+   "default": "",
+   "values": "将详细测试结果存储到基础工作区 button",
+   "group": ""
+  },
+  {
+   "name": "Sample interval (s)",
+   "default": "1e-6",
+   "values": "ADC Testbench 轮询输入的速率 1e-6 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Distortion measurement type",
+   "default": "Harmonic",
+   "values": "要测量的失真类型 Harmonic (default) | Intermodulation",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Analog stimulus frequency (Hz)",
+   "default": "",
+   "values": "ADC 模拟输入信号的频率 positive real scalar | positive real valued vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Resolution bandwidth (Hz)",
+   "default": "",
+   "values": "分辨率带宽 positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Start conversion frequency (Hz)",
+   "default": "1e6",
+   "values": "ADC 启动转换时钟的频率 1e6 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "RMS aperture jitter (s)",
+   "default": "40e-12",
+   "values": "由起始转换时钟添加的 RMS 孔径抖动 40e-12 (default) | positive real scalar",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Error tolerance (LSB)",
+   "default": "0.1",
+   "values": "模拟信号连续采样之间的最大差值 0.1 (default) | positive scalar in the range ( 0, 1 ]",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Automatically determine sweep range",
+   "default": "on",
+   "values": "自动确定扫描范围 on (default) | off",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Sweep range",
+   "default": "1]",
+   "values": "自定义扫描范围 [-1 1] (default) | 2-element vector",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Stop simulation on completion",
+   "default": "on",
+   "values": "完成后停止仿真 on (default) | off",
+   "group": "Stimulus"
+  },
+  {
+   "name": "Autofill setup parameter",
+   "default": "",
+   "values": "自动从 ADC 传播设置参数 button",
+   "group": "Setup"
+  },
+  {
+   "name": "Number of bits",
+   "default": "10",
+   "values": "物理输出位数 10 (default) | positive real integer in the range [1, 26]",
+   "group": "Setup"
+  },
+  {
+   "name": "Input range (V)",
+   "default": "1]",
+   "values": "ADC 动态范围 [-1 1] (default) | 2-element row vector",
+   "group": "Setup"
+  },
+  {
+   "name": "Hold off time (s)",
+   "default": "0",
+   "values": "测量分析前的延迟 0 (default) | nonnegative real scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Show spectrum analyzer during simulation",
+   "default": "off",
+   "values": "在仿真期间显示频谱分析仪 off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Enable increased buffer size",
+   "default": "off",
+   "values": "启用增加的缓冲区大小 off (default) | on",
+   "group": "Setup"
+  },
+  {
+   "name": "Buffer size",
+   "default": "5",
+   "values": "仿真期间可用的输入缓冲样本数 5 (default) | positive integer scalar",
+   "group": "Setup"
+  },
+  {
+   "name": "Autofill target metric",
+   "default": "",
+   "values": "自动从 ADC 传播目标指标 button",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Offset error",
+   "default": "LSB",
+   "values": "按特定值移动量化步长 1.5 LSB (default) | real scalar",
+   "group": "Target Metric"
+  },
+  {
+   "name": "Gain error",
+   "default": "LSB",
+   "values": "ADC 传输曲线斜率的误差 1 LSB (default) | real scalar",
+   "group": "Target Metric"
+  }
+ ]
+}

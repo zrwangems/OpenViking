@@ -1,0 +1,196 @@
+{
+ "key": "NCO",
+ "title": "NCO",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Signal Operations/NCO.md",
+  "DSP HDL Toolbox/Sources/NCO.md",
+  "DSP System Toolbox/Signal Operations/NCO.md",
+  "DSP System Toolbox/Sources/NCO.md"
+ ],
+ "text": "Generate real or complex sinusoidal signals, 5 inputs, 3 outputs, {Type of output signal} sets Format of output waveform; {Phase increment source} sets the source of phase increment, {Phase increment}, {Phase offset source} sets the source of phase offset, {Phase offset}, {Dither source} sets the source of number of dither, {Number of dither bits} sets the bits used to express dither, {Samples per frame} sets the vector size for frame-based input, {Enable look up table compression method} sets the compress the lookup table, {Enable accumulator reset input port} enables reset control signal, {Enable phase port} sets the output current phase, {Rounding Mode} sets the rounding mode for fixed-point operations, {Overflow mode}, {Accumulator Data Type} sets the accumulator data type Binary, {Accumulator Signed} sets the signed or unsigned accumulator data format, {Accumulator Word length}, {Accumulator Fraction length}, {Quantize phase} sets the quantize accumulated phase, {Number of quantizer accumulator bits}, {Output Data Type} sets the output data type Binary, {Output Signed} sets the signed or unsigned output data format, {Output Word length} and {Output Fraction length}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "inc",
+   "direction": "input",
+   "summary": "Phase increment scalar integer"
+  },
+  {
+   "name": "offset",
+   "direction": "input",
+   "summary": "Phase offset scalar integer"
+  },
+  {
+   "name": "dither",
+   "direction": "input",
+   "summary": "Dither integer | column vector of integers"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "Control signal that enables NCO operation scalar"
+  },
+  {
+   "name": "reset accum",
+   "direction": "input",
+   "summary": "Resets the accumulator scalar"
+  },
+  {
+   "name": "sin, cos, exp",
+   "direction": "output",
+   "summary": "Generated waveform scalar | column vector"
+  },
+  {
+   "name": "phase",
+   "direction": "output",
+   "summary": "Current phase of NCO scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "Indicates validity of output data scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Phase increment source",
+   "default": "port",
+   "values": "Source of phase increment Input port (default) | Property",
+   "group": "Main"
+  },
+  {
+   "name": "Phase increment",
+   "default": "100",
+   "values": "Phase increment for generated waveform 100 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset source",
+   "default": "port",
+   "values": "Source of phase offset Input port (default) | Property",
+   "group": "Main"
+  },
+  {
+   "name": "Phase offset",
+   "default": "0",
+   "values": "Phase offset for generated waveform 0 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Dither source",
+   "default": "Property",
+   "values": "Source of number of dither bits Property (default) | Input port | None",
+   "group": "Main"
+  },
+  {
+   "name": "Number of dither bits",
+   "default": "4",
+   "values": "Bits used to express dither 4 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Vector size for frame-based input and output 1 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Enable look up table compression method",
+   "default": "off",
+   "values": "Compress the lookup table off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Enable accumulator reset input port",
+   "default": "off",
+   "values": "Enable reset control signal off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Type of output signal",
+   "default": "Sine",
+   "values": "Format of output waveform Sine (default) | Cosine | Complex exponential | Sine and cosine",
+   "group": "Main"
+  },
+  {
+   "name": "Enable phase port",
+   "default": "off",
+   "values": "Output current phase off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding Mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Overflow mode",
+   "default": "Wrap",
+   "values": "Overflow mode for fixed-point operations Wrap (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator Data Type",
+   "default": "scaling",
+   "values": "Accumulator data type Binary point scaling (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator Signed",
+   "default": "Signed",
+   "values": "Signed or unsigned accumulator data format Signed (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator Word length",
+   "default": "16",
+   "values": "Accumulator word length 16 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Accumulator Fraction length",
+   "default": "0",
+   "values": "Accumulator fraction length 0 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Quantize phase",
+   "default": "off",
+   "values": "Quantize accumulated phase off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Number of quantizer accumulator bits",
+   "default": "12",
+   "values": "Number of quantizer accumulator bits 12 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Data Type",
+   "default": "scaling",
+   "values": "Output data type Binary point scaling (default) | double | single",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Signed",
+   "default": "Signed",
+   "values": "Signed or unsigned output data format Signed (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Word length",
+   "default": "16",
+   "values": "Output word length 16 (default) | integer",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output Fraction length",
+   "default": "14",
+   "values": "Output fraction length 14 (default) | integer",
+   "group": "Data Types"
+  }
+ ]
+}

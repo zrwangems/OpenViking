@@ -1,0 +1,39 @@
+{
+ "key": "CCSDS LDPC Encoder",
+ "title": "CCSDS LDPC Encoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/CCSDS_LDPC_Encoder.md"
+ ],
+ "text": "使用 CCSDS 遥测标准中指定的 (8160,7136) LDPC 码对数据进行编码，输入 2 路、输出 3 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据比特 scalar | column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "编码输出数据比特 scalar | vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "模块就绪指示 scalar"
+  }
+ ],
+ "params": []
+}

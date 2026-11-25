@@ -1,0 +1,50 @@
+{
+ "key": "DDS Send",
+ "title": "DDS Send",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/DDS/DDS_Send.md"
+ ],
+ "text": "Send a DDS message, 1 input, {Topic} sets Select a topic name string scalar; {Data Dictionary} sets the associate a data, {Writer XML Path} sets the data writer XML, {Writer QoS} sets the quality of service and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "DDS Msg",
+   "direction": "input",
+   "summary": "DDS message simulink message of Bus type"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data Dictionary",
+   "default": "",
+   "values": "Associate a data dictionary string | char",
+   "group": ""
+  },
+  {
+   "name": "Topic",
+   "default": "",
+   "values": "Select a topic name string scalar | char vector",
+   "group": ""
+  },
+  {
+   "name": "Writer XML Path",
+   "default": "string",
+   "values": "Data writer XML path string (default)",
+   "group": ""
+  },
+  {
+   "name": "Writer QoS",
+   "default": "string",
+   "values": "Quality of service string (default)",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

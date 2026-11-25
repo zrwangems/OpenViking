@@ -1,0 +1,13 @@
+{
+ "key": "Voltage-Controlled Voltage Source",
+ "title": "Voltage-Controlled Voltage Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Sources/Voltage_Controlled_Voltage_Source.md"
+ ],
+ "text": "由输入信号驱动的理想电压源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

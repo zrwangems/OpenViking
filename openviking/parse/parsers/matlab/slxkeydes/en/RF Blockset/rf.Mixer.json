@@ -1,0 +1,217 @@
+{
+ "key": "rf.Mixer",
+ "title": "Mixer",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Idealized Baseband/Mixer.md"
+ ],
+ "text": "Model RF and IQ modulator and RF and IQ demodulator with impairments and noise, 1 input, 1 output, {Mixer type} sets Type of mixer; {Sideband}, {RF (Hz)} sets the rF carrier frequency 1e9, {LO (Hz)} sets the local oscillator frequency 1e8, {Gain (dB)} sets the conversion gain for mixer, {Simulate using} sets the type of simulation to run Interpreted, {LO phase offset (deg)}, {I/Q gain imbalance (dB)} sets the iQ gain imbalance, {I/Q phase imbalance (deg)} sets the iQ phase imbalance, {Non-Linearity} sets the third-order nonlinearity type, {IIP3 (dBm)} sets the input third-order intercept, {OIP3 (dBm)} sets the output third-order intercept, {IP1dB (dBm)} sets the input 1 dB compression, {OP1dB (dBm)} sets the output 1 dB compression, {IPsat (dBm)} sets the input saturation point, {OPsat (dBm)} sets the output saturation point, {Plot power characteristics}, {Include mixer noise} adds mixer noise to system, {Mixer noise type} sets the noise representation, {Noise temperature (K)} sets the noise temperature to model mixer noise, {Noise figure (dB)} sets the noise figure to model mixer noise 10 *, {Noise factor}, {Seed source, mixer noise} sets the source of initial seed, {Seed for mixer noise} sets the seed for random number generator, {Include phase noise} adds LO phase noise to LO signal, {Phase noise level (dBc/Hz)} sets the phase noise level relative to carrier, {Frequency offset (Hz)} sets the phase frequency offset, {Automatic frequency resolution} sets the automatically determine number of frequency, {Number of signal samples} sets the number of samples in time-domain signal, {Seed source, phase noise} sets the source of initial seed, {Seed for phase noise} sets the seed for random number generator and {Plot phase characteristics}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Time-dependent input signal real scalar | real column | complex scalar | complex column"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Time-dependent output signal complex scalar | complex column"
+  }
+ ],
+ "params": [
+  {
+   "name": "Mixer type",
+   "default": "mod",
+   "values": "Type of mixer mod (default) | demod | iqmod | iqdemod",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sideband",
+   "default": "upper",
+   "values": "Sidebands of mixer upper (default) | lower",
+   "group": "Main Tab"
+  },
+  {
+   "name": "RF (Hz)",
+   "default": "1e9",
+   "values": "RF carrier frequency 1e9 (default) | real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LO (Hz)",
+   "default": "1e8",
+   "values": "Local oscillator frequency 1e8 (default) | real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Gain (dB)",
+   "default": "0",
+   "values": "Conversion gain for mixer 0 (default) | real number",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Specify type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Main Tab"
+  },
+  {
+   "name": "LO phase offset (deg)",
+   "default": "0",
+   "values": "LO phase offset 0 (default) | real number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "I/Q gain imbalance (dB)",
+   "default": "0",
+   "values": "IQ gain imbalance 0 (default) | nonnegative real numbers",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "I/Q phase imbalance (deg)",
+   "default": "0",
+   "values": "IQ phase imbalance 0 (default) | real numbers",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "Non-Linearity",
+   "default": "OIP3",
+   "values": "Third-order nonlinearity type OIP3 (default) | IIP3 | IP1dB | OP1dB | IPsat | OPsat",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "IIP3 (dBm)",
+   "default": "Inf",
+   "values": "Input third-order intercept point Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "OIP3 (dBm)",
+   "default": "Inf",
+   "values": "Output third-order intercept point Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "IP1dB (dBm)",
+   "default": "Inf",
+   "values": "Input 1 dB compression point Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "OP1dB (dBm)",
+   "default": "Inf",
+   "values": "Output 1 dB compression point Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "IPsat (dBm)",
+   "default": "Inf",
+   "values": "Input saturation point Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "OPsat (dBm)",
+   "default": "Inf",
+   "values": "Output saturation point Inf (default) | real positive number",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "Plot power characteristics",
+   "default": "",
+   "values": "Plot power characteristics button",
+   "group": "Impairments Tab"
+  },
+  {
+   "name": "Include mixer noise",
+   "default": "off",
+   "values": "Add mixer noise to system off (default) | on",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Mixer noise type",
+   "default": "NF",
+   "values": "Noise representation NF (default) | noise-temperature | noise-factor",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise temperature (K)",
+   "default": "290",
+   "values": "Noise temperature to model mixer noise 290 (default) | nonnegative real number",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise figure (dB)",
+   "default": ")",
+   "values": "Noise figure to model mixer noise 10 * log10( 2 ) (default) | nonnegative real number",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Noise factor",
+   "default": "2",
+   "values": "Noise factor to model mixer noise 2 (default) | positive integer scalar greater than or equal to 1",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed source, mixer noise",
+   "default": "auto",
+   "values": "Source of initial seed auto (default) | user",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed for mixer noise",
+   "default": "67987",
+   "values": "Seed for random number generator 67987 (default) | nonnegative integer less than 2 32",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Include phase noise",
+   "default": "off",
+   "values": "Add LO phase noise to LO signal off (default) | on",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Phase noise level (dBc/Hz)",
+   "default": "-150]",
+   "values": "Phase noise level relative to carrier [-145 -150] (default) | negative real scalar | negative real vector",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Frequency offset (Hz)",
+   "default": "20000]",
+   "values": "Phase frequency offset [2000 20000] (default) | positive real scalar | vector of positive increasing real values",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Automatic frequency resolution",
+   "default": "on",
+   "values": "Automatically determine number of frequency bins on (default) | off",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Number of signal samples",
+   "default": "0",
+   "values": "Number of samples in time-domain signal 0 (default) | real nonnegative integer less than or equaled to 65536",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed source, phase noise",
+   "default": "auto",
+   "values": "Source of initial seed auto (default) | user",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Seed for phase noise",
+   "default": "67987",
+   "values": "Seed for random number generator 67987 (default) | nonnegative integer less than 2 32",
+   "group": "Noise Tab"
+  },
+  {
+   "name": "Plot phase characteristics",
+   "default": "",
+   "values": "Plot phase characteristics button",
+   "group": "Noise Tab"
+  }
+ ]
+}

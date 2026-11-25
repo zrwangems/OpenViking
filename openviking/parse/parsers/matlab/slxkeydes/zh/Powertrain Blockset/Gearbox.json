@@ -1,0 +1,158 @@
+{
+ "key": "Gearbox",
+ "title": "Gearbox",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Gearbox.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Gearbox.md"
+ ],
+ "text": "理想旋转变速箱，输入 4 路、输出 4 路；按 {Interpolation method} 指定方法 Flat；{Port Configuration} 指定配置 Simulink、{Efficiency factors} 指定配置 Constant、{Output shaft rotates in same direction as input} 指定旋转、{Input ambient temperature} 指定创建输入端口、{Input to output gear ratio, N} 指定比值、{Input shaft inertia, J1} 指定惯性 .01、{Output shaft inertia, J2} 指定惯性 .01、{Input shaft damping, b1} 指定阻尼 .001、{Output shaft damping, b2} 指定阻尼 .001、{Input shaft initial velocity, w1_o} 指定初始速度、{Constant efficiency factor, eta} 指定效率、{Efficiency lookup table, eta_tbl} 查找表 M -by- N -by、{Efficiency torque breakpoints, Trq_bpts} 指定扭矩断点、{Efficiency speed breakpoints, omega_bpts} 指定速度断点、{Efficiency temperature breakpoints, Temp_bpts} 指定温度断点、{Air temperature, Tair} 指定环境空气温度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "BTrq",
+   "direction": "input",
+   "summary": "基础齿轮输入转矩 scalar"
+  },
+  {
+   "name": "FTrq",
+   "direction": "input",
+   "summary": "从动齿轮输出转矩 scalar"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "基础齿轮角速度和转矩 two-way connector port"
+  },
+  {
+   "name": "AirTemp",
+   "direction": "input",
+   "summary": "环境空气温度 scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "总线信号 bus"
+  },
+  {
+   "name": "BSpd",
+   "direction": "output",
+   "summary": "输入齿轮角速度 scalar"
+  },
+  {
+   "name": "FSpd",
+   "direction": "output",
+   "summary": "输出齿轮角速度 scalar"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "输出齿轮角速度和扭矩 two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "指定配置 Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Efficiency factors",
+   "default": "Constant",
+   "values": "指定配置 Constant (default) | Driveshaft torque, speed and temperature",
+   "group": ""
+  },
+  {
+   "name": "Interpolation method",
+   "default": "",
+   "values": "方法 Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline",
+   "group": ""
+  },
+  {
+   "name": "Output shaft rotates in same direction as input",
+   "default": "off",
+   "values": "旋转 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input ambient temperature",
+   "default": "off",
+   "values": "创建输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Input to output gear ratio, N",
+   "default": "2",
+   "values": "比值 2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft inertia, J1",
+   "default": ".01",
+   "values": "惯性 .01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output shaft inertia, J2",
+   "default": ".01",
+   "values": "惯性 .01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft damping, b1",
+   "default": ".001",
+   "values": "阻尼 .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output shaft damping, b2",
+   "default": ".001",
+   "values": "阻尼 .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input shaft initial velocity, w1_o",
+   "default": "0",
+   "values": "初始速度 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Constant efficiency factor, eta",
+   "default": "1",
+   "values": "效率 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Efficiency lookup table, eta_tbl",
+   "default": "",
+   "values": "查找表 M -by- N -by- L array",
+   "group": ""
+  },
+  {
+   "name": "Efficiency torque breakpoints, Trq_bpts",
+   "default": "250]",
+   "values": "扭矩断点 [25, 50, 75, 100, 150, 200, 250] (default) | 1 -by- M vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency speed breakpoints, omega_bpts",
+   "default": "524]",
+   "values": "速度断点 [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | 1 -by- N vector",
+   "group": ""
+  },
+  {
+   "name": "Efficiency temperature breakpoints, Temp_bpts",
+   "default": "358]",
+   "values": "温度断点 [290 358] (default) | 1 -by- L vector",
+   "group": ""
+  },
+  {
+   "name": "Air temperature, Tair",
+   "default": "297.15",
+   "values": "环境空气温度 297.15 (default) | scalar greater than 0",
+   "group": ""
+  }
+ ]
+}

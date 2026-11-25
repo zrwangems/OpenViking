@@ -1,0 +1,74 @@
+{
+ "key": "CAN FD Configuration",
+ "title": "CAN FD Configuration",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/CAN FD Communication/CAN_FD_Configuration.md"
+ ],
+ "text": "Configure parameters for specified CAN FD device; {Device} sets the cAN device and channel, {Arbitration Bus speed} sets the arbitration bit rate numeric, {Data Bus speed} sets the data bit rate numeric, {Bus frequency} sets the pEAK-System bus rate numeric, {Arbitration/Data bit rate prescaler} sets the bit rate prescaler integer, {Synchronization jump width} sets the maximum allowed time, {Time segment 1} sets the number of time quanta before sample, {Time segment 2} sets the number of time quanta after, {Verify bit parameter settings validity} sets the check validity of settings and {Acknowledge mode} controls channel activity on CAN. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "CAN device and channel list option",
+   "group": ""
+  },
+  {
+   "name": "Arbitration Bus speed",
+   "default": "",
+   "values": "Arbitration bit rate numeric",
+   "group": ""
+  },
+  {
+   "name": "Data Bus speed",
+   "default": "",
+   "values": "Data bit rate numeric",
+   "group": ""
+  },
+  {
+   "name": "Bus frequency",
+   "default": "",
+   "values": "PEAK-System bus rate numeric",
+   "group": ""
+  },
+  {
+   "name": "Arbitration/Data bit rate prescaler",
+   "default": "",
+   "values": "Bit rate prescaler integer",
+   "group": ""
+  },
+  {
+   "name": "Synchronization jump width",
+   "default": "",
+   "values": "Maximum allowed time adjustment integer",
+   "group": ""
+  },
+  {
+   "name": "Time segment 1",
+   "default": "",
+   "values": "Number of time quanta before sample integer",
+   "group": ""
+  },
+  {
+   "name": "Time segment 2",
+   "default": "",
+   "values": "Number of time quanta after sample integer",
+   "group": ""
+  },
+  {
+   "name": "Verify bit parameter settings validity",
+   "default": "",
+   "values": "Check validity of settings",
+   "group": ""
+  },
+  {
+   "name": "Acknowledge mode",
+   "default": "Normal",
+   "values": "Control channel activity on CAN bus Normal (default) | Silent",
+   "group": ""
+  }
+ ]
+}

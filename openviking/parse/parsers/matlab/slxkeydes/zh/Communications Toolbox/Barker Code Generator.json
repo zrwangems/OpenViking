@@ -1,0 +1,50 @@
+{
+ "key": "Barker Code Generator",
+ "title": "Barker Code Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Sequence Generators/Barker_Code_Generator.md"
+ ],
+ "text": "生成双极性 Barker 码；输出 1 路；按 {Sample time} 指定输出采样时间；{Code length} 指定所生成码的长度、{Samples per frame} 指定 Samples per output frame、{Output data type} 输出数据类型、{Simulate using} 指定要运行的仿真类型 Code，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "output",
+   "direction": "output",
+   "summary": "Barker 码帧 column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Code length",
+   "default": "7",
+   "values": "所生成码的长度 7 (default) | 1 | 2 | 3 | 4 | 5 | 11 | 13",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "输出采样时间 1 (default) | -1 | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per output frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "输出数据类型 double (default) | int8",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "要运行的仿真类型 Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

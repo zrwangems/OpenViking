@@ -1,0 +1,129 @@
+{
+ "key": "To Multimedia File",
+ "title": "To Multimedia File",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Sinks/To_Multimedia_File.md",
+  "DSP System Toolbox/Sinks/To_Multimedia_File.md",
+  "Computer Vision Toolbox/Sinks/To_Multimedia_File.md"
+ ],
+ "text": "将视频帧和音频样本流式传输到多媒体文件，输入 8 路、无直接馈通；按 {File type} 指定多媒体文件的文件类型；{File name} 指定文件名 output.wav、{Write} 指定多媒体类型 Audio、{Audio Quality (0-100)} 指定音频文件质量、{Audio Bit Rate (kb/s)} 指定音频压缩器、{Audio compressor} 指定音频压缩器 None、{Audio data type} 指定音频数据类型 16-bit、{Video compressor} 指定视频压缩器 None、{Compression Factor (>1)} 指定压缩因子大于 1、{File color format} 指定文件颜色格式、{Image signal} 指定图像信号 Separate color、{Video Quality (0-100)} 指定视频质量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Image",
+   "direction": "input",
+   "summary": "彩色图像或视频帧 array"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "图像或视频帧的红色分量 matrix"
+  },
+  {
+   "name": "G",
+   "direction": "input",
+   "summary": "图像或视频帧的绿色分量 matrix"
+  },
+  {
+   "name": "B",
+   "direction": "input",
+   "summary": "图像或视频帧的蓝色分量 matrix"
+  },
+  {
+   "name": "Y",
+   "direction": "input",
+   "summary": "图像或视频帧的亮度分量 matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "input",
+   "summary": "图像或视频帧的蓝色差色度分量 matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "input",
+   "summary": "图像或视频帧的红色差色度分量 matrix"
+  },
+  {
+   "name": "Audio",
+   "direction": "input",
+   "summary": "音频信号 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "output.wav",
+   "values": "文件名 output.wav (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "File type",
+   "default": "WAV",
+   "values": "多媒体文件的文件类型 WAV (default) | AVI MJ2000 | WMA | WMV | MPEG4 | FLAC | MP3 | OGG | OPUS",
+   "group": ""
+  },
+  {
+   "name": "Write",
+   "default": "only",
+   "values": "多媒体类型 Audio only (default) | Video and audio | Video only",
+   "group": ""
+  },
+  {
+   "name": "Audio Quality (0-100)",
+   "default": "75",
+   "values": "音频文件质量 75 (default) | integer in range [0 100]",
+   "group": ""
+  },
+  {
+   "name": "Audio Bit Rate (kb/s)",
+   "default": "128",
+   "values": "音频压缩器 128 (default) | 64 | 96 | 160 | 192 | 256 | 320",
+   "group": ""
+  },
+  {
+   "name": "Audio compressor",
+   "default": "(uncompressed)",
+   "values": "音频压缩器 None (uncompressed) (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Audio data type",
+   "default": "integer",
+   "values": "音频数据类型 16-bit integer (default) | Determine from input data type | 8-bit integer | 24-bit integer | 32-bit integer | 32-bit float | 64-bit float",
+   "group": ""
+  },
+  {
+   "name": "Video compressor",
+   "default": "(uncompressed)",
+   "values": "视频压缩器 None (uncompressed) (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Compression Factor (>1)",
+   "default": "10",
+   "values": "压缩因子大于 1) 10 (default) | integer > 1",
+   "group": ""
+  },
+  {
+   "name": "File color format",
+   "default": "RGB",
+   "values": "文件颜色格式 RGB (default) | YCbCr 4:2:2",
+   "group": ""
+  },
+  {
+   "name": "Image signal",
+   "default": "signals",
+   "values": "图像信号 Separate color signals (default) | One multidimensional signal",
+   "group": ""
+  },
+  {
+   "name": "Video Quality (0-100)",
+   "default": "75",
+   "values": "视频质量 75 (default) | integer in range [0 100]",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "key": "EntityGate",
+ "title": "Entity Gate",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Gate.md"
+ ],
+ "text": "Entity Gate 模块控制待处理实体何时可以在模型中前进，输入 2 路、输出 1 路；按 {Operating mode} 指定操作模式 Enable；{Matching attribute} 指定与控制端口值匹配的属性名称、{Initial value from the control port} 指定来自控制端口的初始值，以与要匹配的属性匹配、{Open gate at simulation start} 指定在开始时打开门，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "control",
+   "direction": "input",
+   "summary": "输入控制实体 scalar"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "离开实体 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Operating mode",
+   "default": "gate",
+   "values": "选择操作模式 Enable gate (default) | Release gate | Selection gate",
+   "group": ""
+  },
+  {
+   "name": "Matching attribute",
+   "default": "Attribute1",
+   "values": "指定与控制端口值匹配的属性名称 Attribute1 (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Initial value from the control port",
+   "default": "NaN",
+   "values": "指定来自控制端口的初始值，以与要匹配的属性匹配 NaN (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Open gate at simulation start",
+   "default": "off",
+   "values": "在开始时打开门 off (default) | on",
+   "group": ""
+  }
+ ]
+}

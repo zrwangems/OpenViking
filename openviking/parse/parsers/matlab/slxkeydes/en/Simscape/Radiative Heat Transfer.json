@@ -1,0 +1,13 @@
+{
+ "key": "Radiative Heat Transfer",
+ "title": "Radiative Heat Transfer",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Elements/Radiative_Heat_Transfer.md"
+ ],
+ "text": "Heat transfer by radiation.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

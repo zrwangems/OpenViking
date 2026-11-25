@@ -1,0 +1,679 @@
+{
+ "key": "Simulation 3D Air Transport Pack",
+ "title": "Simulation 3D Air Transport Pack",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Simulation 3D/Simulation_3D_Air_Transport_Pack.md"
+ ],
+ "text": "为空中运输飞机生成平移和旋转信息，输入 60 路、输出 2 路；按 {Select input coordinate frame} 指定输入坐标系；{Engine 1 translation} 用于启用 Engine1_T 输入端口、{Engine 2 translation} 用于启用 Engine2_T 输入端口、{Engine 3 translation} 用于启用 Engine3_T 输入端口、{Engine 4 translation} 用于启用 Engine4_T 输入端口、{Engine 1 rotation} 用于启用 Engine1_R 输入端口、{Engine 2 rotation} 用于启用 Engine2_R 输入端口、{Engine 3 rotation} 用于启用 Engine3_R 输入端口、{Engine 4 rotation} 用于启用 Engine4_R 输入端口、{Rudder translation} 用于启用 Rudder_T 输入端口、{Elevator translation} 用于启用 Elevator_T 输入端口、{Horizontal stab translation} 用于启用 Horizontal_Stab_T、{Left aileron translation} 用于启用 Left_Aileron_T、{Right aileron translation} 用于启用 Right_Aileron_T、{Flaps set 1 translation} 用于启用 Flaps1_T 输入端口、{Flaps set 2 translation} 用于启用 Flaps2_T 输入端口、{Left spoiler translation} 用于启用 Left_Spoiler_T、{Right spoiler translation} 用于启用 Right_Spoiler_T、{Rudder rotation} 用于启用 Rudder_R 输入端口、{Elevator rotation} 用于启用 Elevator_R 输入端口、{Horizontal stab rotation} 用于启用 Horizontal_Stab_R、{Left aileron rotation} 用于启用 Left_Aileron_R、{Right aileron rotation} 用于启用 Right_Aileron_R、{Flaps set 1 rotation} 用于启用 Flaps1_R 输入端口、{Flaps set 2 rotation} 用于启用 Flaps2_R 输入端口、{Left spoiler rotation} 用于启用 Left_Spoiler_R、{Right spoiler rotation} 用于启用 Right_Spoiler_R、{Nose gear translation} 用于启用 Nose_Gear_T 输入端口、{Nose wheel translation} 用于启用 Nose_Wheel_T 输入端口、{Nose gear door 1 translation} 用于启用 Nose_Gear_Door1_T、{Nose gear door 2 translation} 用于启用 Nose_Gear_Door2_T、{Left gear translation} 用于启用 Left_Gear_T 输入端口、{Left wheel translation} 用于启用 Left_Wheel_T 输入端口、{Left gear link translation} 用于启用 Left_Gear_Link_T、{Left gear door 1 translation} 用于启用 Left_Gear_Door1_T、{Left gear door 2 translation} 用于启用 Left_Gear_Door2_T、{Left gear door 2.2 translation} 用于启用 Left_Gear_Door2_2_T、{Right gear translation} 用于启用 Right_Gear_T 输入端口、{Right wheel translation} 用于启用 Right_Wheel_T 输入端口、{Right gear link translation} 用于启用 Right_Gear_Link_T、{Right gear door 1 translation} 用于启用 Right_Gear_Door1_T、{Right gear door 2 translation} 用于启用 Right_Gear_Door2_T、{Right gear door 2.2 translation} 用于启用 Right_Gear_Door2_2_T、{Nose gear rotation} 用于启用 Nose_Gear_R 输入端口、{Nose wheel rotation} 用于启用 Nose_Wheel_R 输入端口、{Nose gear door 1 rotation} 用于启用 Nose_Gear_Door1_R、{Nose gear door 2 rotation} 用于启用 Nose_Gear_Door2_T、{Left gear rotation} 用于启用 Left_Gear_R 输入端口、{Left wheel rotation} 用于启用 Left_Wheel_R 输入端口、{Left gear link rotation} 用于启用 Left_Gear_Link_R、{Left gear door 1 rotation} 用于启用 Left_Gear_Door1_R、{Left gear door 2 rotation} 用于启用 Left_Gear_Door2_R、{Left gear door 2.2 rotation} 用于启用 Left_Gear_Door2_2_R、{Right gear rotation} 用于启用 Right_Gear_R 输入端口、{Right wheel rotation} 用于启用 Right_Wheel_R 输入端口、{Right gear link rotation} 用于启用 Right_Gear_Link_R、{Right gear door 1 rotation} 用于启用 Right_Gear_Door1_R、{Right gear door 2 rotation} 用于启用 Right_Gear_Door2_R、{Right gear door 2.2 rotation} 用于启用 Right_Gear_Door2_2_R，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Body_T",
+   "direction": "input",
+   "summary": "机体平移 1-by-3 matrix"
+  },
+  {
+   "name": "Engine1_T",
+   "direction": "input",
+   "summary": "发动机 1 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Engine2_T",
+   "direction": "input",
+   "summary": "发动机 2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Engine3_T",
+   "direction": "input",
+   "summary": "发动机 3 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Engine4_T",
+   "direction": "input",
+   "summary": "发动机 4 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Rudder_T",
+   "direction": "input",
+   "summary": "方向舵平移 1-by-3 matrix"
+  },
+  {
+   "name": "Elevator_T",
+   "direction": "input",
+   "summary": "升降舵平移 1-by-3 matrix"
+  },
+  {
+   "name": "Horizontal_Stab_T",
+   "direction": "input",
+   "summary": "水平安定面平移 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Aileron_T",
+   "direction": "input",
+   "summary": "左副翼平移 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Aileron_T",
+   "direction": "input",
+   "summary": "右副翼平移 1-by-3 matrix"
+  },
+  {
+   "name": "Flaps1_T",
+   "direction": "input",
+   "summary": "襟翼组 1 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Flaps2_T",
+   "direction": "input",
+   "summary": "襟翼组 2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Spoiler_T",
+   "direction": "input",
+   "summary": "左扰流板平移 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Spoiler_T",
+   "direction": "input",
+   "summary": "右扰流板平移 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Gear_T",
+   "direction": "input",
+   "summary": "前起落架平移 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Wheel_T",
+   "direction": "input",
+   "summary": "前轮平移 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Gear_Door1_T",
+   "direction": "input",
+   "summary": "前起落架舱门 1 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Gear_Door2_T",
+   "direction": "input",
+   "summary": "前起落架舱门 2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_T",
+   "direction": "input",
+   "summary": "左起落架平移 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Wheel_T",
+   "direction": "input",
+   "summary": "左轮平移 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_Link_T",
+   "direction": "input",
+   "summary": "左起落架连杆平移 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_Door1_T",
+   "direction": "input",
+   "summary": "左起落架舱门 1 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_Door2_T",
+   "direction": "input",
+   "summary": "左起落架舱门 2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_Door2_2_T",
+   "direction": "input",
+   "summary": "左起落架舱门 2.2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_T",
+   "direction": "input",
+   "summary": "右起落架平移 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Wheel_T",
+   "direction": "input",
+   "summary": "右轮平移 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_Link_T",
+   "direction": "input",
+   "summary": "右起落架连杆平移 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_Door1_T",
+   "direction": "input",
+   "summary": "右起落架舱门 1 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_Door2_T",
+   "direction": "input",
+   "summary": "右起落架舱门 2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_Door2_2_T",
+   "direction": "input",
+   "summary": "右起落架舱门 2.2 平移 1-by-3 matrix"
+  },
+  {
+   "name": "Body_R",
+   "direction": "input",
+   "summary": "机体旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Engine1_R",
+   "direction": "input",
+   "summary": "发动机 1 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Engine2_R",
+   "direction": "input",
+   "summary": "发动机 2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Engine3_R",
+   "direction": "input",
+   "summary": "发动机 3 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Engine4_R",
+   "direction": "input",
+   "summary": "发动机 4 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Rudder_R",
+   "direction": "input",
+   "summary": "方向舵旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Elevator_R",
+   "direction": "input",
+   "summary": "升降舵旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Horizontal_Stab_R",
+   "direction": "input",
+   "summary": "水平安定面旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Aileron_R",
+   "direction": "input",
+   "summary": "左副翼旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Aileron_R",
+   "direction": "input",
+   "summary": "右副翼旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Flaps1_R",
+   "direction": "input",
+   "summary": "襟翼组 1 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Flaps2_R",
+   "direction": "input",
+   "summary": "襟翼组 2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Spoiler_R",
+   "direction": "input",
+   "summary": "左扰流板旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Spoiler_R",
+   "direction": "input",
+   "summary": "右扰流板旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Gear_R",
+   "direction": "input",
+   "summary": "前起落架旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Wheel_R",
+   "direction": "input",
+   "summary": "前轮旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Gear_Door1_R",
+   "direction": "input",
+   "summary": "前起落架舱门 1 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Nose_Gear_Door2_R",
+   "direction": "input",
+   "summary": "前起落架舱门 2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_R",
+   "direction": "input",
+   "summary": "左起落架旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Wheel_R",
+   "direction": "input",
+   "summary": "左轮旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_Link_R",
+   "direction": "input",
+   "summary": "左起落架连杆旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_Door1_R",
+   "direction": "input",
+   "summary": "左起落架舱门 1 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_Door2_R",
+   "direction": "input",
+   "summary": "左起落架舱门 2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Left_Gear_Door2_2_R",
+   "direction": "input",
+   "summary": "左起落架舱门 2.2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_R",
+   "direction": "input",
+   "summary": "右起落架旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Wheel_R",
+   "direction": "input",
+   "summary": "右轮旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_Link_R",
+   "direction": "input",
+   "summary": "右起落架连杆旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_Door1_R",
+   "direction": "input",
+   "summary": "右起落架舱门 1 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_Door2_R",
+   "direction": "input",
+   "summary": "右起落架舱门 2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Right_Gear_Door2_2_R",
+   "direction": "input",
+   "summary": "右起落架舱门 2.2 旋转 1-by-3 matrix"
+  },
+  {
+   "name": "Translation",
+   "direction": "output",
+   "summary": "飞机平移 30 -by- 3 array"
+  },
+  {
+   "name": "Rotation",
+   "direction": "output",
+   "summary": "飞机旋转 30 -by- 3 array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Engine 1 translation",
+   "default": "off",
+   "values": "用于启用 Engine1_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Engine 2 translation",
+   "default": "off",
+   "values": "用于启用 Engine2_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Engine 3 translation",
+   "default": "off",
+   "values": "用于启用 Engine3_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Engine 4 translation",
+   "default": "off",
+   "values": "用于启用 Engine4_T 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Engine 1 rotation",
+   "default": "off",
+   "values": "用于启用 Engine1_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Engine 2 rotation",
+   "default": "off",
+   "values": "用于启用 Engine2_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Engine 3 rotation",
+   "default": "off",
+   "values": "用于启用 Engine3_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Engine 4 rotation",
+   "default": "off",
+   "values": "用于启用 Engine4_R 输入端口的选项 off (default) | on",
+   "group": "Propulsion"
+  },
+  {
+   "name": "Rudder translation",
+   "default": "off",
+   "values": "用于启用 Rudder_T 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Elevator translation",
+   "default": "off",
+   "values": "用于启用 Elevator_T 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Horizontal stab translation",
+   "default": "off",
+   "values": "用于启用 Horizontal_Stab_T 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left aileron translation",
+   "default": "off",
+   "values": "用于启用 Left_Aileron_T 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right aileron translation",
+   "default": "off",
+   "values": "用于启用 Right_Aileron_T 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Flaps set 1 translation",
+   "default": "off",
+   "values": "用于启用 Flaps1_T 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Flaps set 2 translation",
+   "default": "off",
+   "values": "用于启用 Flaps2_T 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left spoiler translation",
+   "default": "off",
+   "values": "用于启用 Left_Spoiler_T 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right spoiler translation",
+   "default": "off",
+   "values": "用于启用 Right_Spoiler_T 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Rudder rotation",
+   "default": "off",
+   "values": "用于启用 Rudder_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Elevator rotation",
+   "default": "off",
+   "values": "用于启用 Elevator_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Horizontal stab rotation",
+   "default": "off",
+   "values": "用于启用 Horizontal_Stab_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left aileron rotation",
+   "default": "off",
+   "values": "用于启用 Left_Aileron_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right aileron rotation",
+   "default": "off",
+   "values": "用于启用 Right_Aileron_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Flaps set 1 rotation",
+   "default": "off",
+   "values": "用于启用 Flaps1_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Flaps set 2 rotation",
+   "default": "off",
+   "values": "用于启用 Flaps2_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Left spoiler rotation",
+   "default": "off",
+   "values": "用于启用 Left_Spoiler_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Right spoiler rotation",
+   "default": "off",
+   "values": "用于启用 Right_Spoiler_R 输入端口的选项 off (default) | on",
+   "group": "Controls"
+  },
+  {
+   "name": "Nose gear translation",
+   "default": "off",
+   "values": "用于启用 Nose_Gear_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose wheel translation",
+   "default": "off",
+   "values": "用于启用 Nose_Wheel_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose gear door 1 translation",
+   "default": "off",
+   "values": "用于启用 Nose_Gear_Door1_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose gear door 2 translation",
+   "default": "off",
+   "values": "用于启用 Nose_Gear_Door2_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear translation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left wheel translation",
+   "default": "off",
+   "values": "用于启用 Left_Wheel_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear link translation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_Link_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear door 1 translation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_Door1_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear door 2 translation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_Door2_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear door 2.2 translation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_Door2_2_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear translation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right wheel translation",
+   "default": "off",
+   "values": "用于启用 Right_Wheel_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear link translation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_Link_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear door 1 translation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_Door1_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear door 2 translation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_Door2_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear door 2.2 translation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_Door2_2_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose gear rotation",
+   "default": "off",
+   "values": "用于启用 Nose_Gear_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose wheel rotation",
+   "default": "off",
+   "values": "用于启用 Nose_Wheel_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose gear door 1 rotation",
+   "default": "off",
+   "values": "用于启用 Nose_Gear_Door1_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Nose gear door 2 rotation",
+   "default": "off",
+   "values": "用于启用 Nose_Gear_Door2_T 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear rotation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left wheel rotation",
+   "default": "off",
+   "values": "用于启用 Left_Wheel_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear link rotation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_Link_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear door 1 rotation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_Door1_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear door 2 rotation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_Door2_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Left gear door 2.2 rotation",
+   "default": "off",
+   "values": "用于启用 Left_Gear_Door2_2_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear rotation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right wheel rotation",
+   "default": "off",
+   "values": "用于启用 Right_Wheel_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear link rotation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_Link_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear door 1 rotation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_Door1_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear door 2 rotation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_Door2_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Right gear door 2.2 rotation",
+   "default": "off",
+   "values": "用于启用 Right_Gear_Door2_2_R 输入端口的选项 off (default) | on",
+   "group": "Gear"
+  },
+  {
+   "name": "Select input coordinate frame",
+   "default": "NED",
+   "values": "输入坐标系 NED (default) | Fixed-frame | ICRF",
+   "group": "Input"
+  }
+ ]
+}

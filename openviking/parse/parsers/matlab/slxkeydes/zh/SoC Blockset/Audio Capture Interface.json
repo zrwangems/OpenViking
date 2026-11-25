@@ -1,0 +1,60 @@
+{
+ "key": "Audio Capture Interface",
+ "title": "Audio Capture Interface",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Peripherals/Audio_Capture_Interface.md"
+ ],
+ "text": "仿真在硬件上从音频流采集样本，输入 1 路、输出 2 路；按 {Input} 指定仿真音频数据的来源 From；{Value} 指定要输出的音频数据 int16、{Object name} 指定 timeseries 对象、{Sample time} 指定采样时间，单位为秒、{Show event port} 启用任务事件端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "来自采集音频的数据帧 M -element vector | M -by- C matrix"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "任务事件信号 scalar"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "SoC 消息数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input",
+   "default": "dialog",
+   "values": "仿真音频数据的来源 From dialog (default) | From input port | From timeseries object",
+   "group": ""
+  },
+  {
+   "name": "Value",
+   "default": "8])",
+   "values": "要输出的音频数据 int16([1 2 3 4 5 6 7 8]) (default) | C N -length vector",
+   "group": ""
+  },
+  {
+   "name": "Object name",
+   "default": "]",
+   "values": "timeseries 对象 [ ] (default) | MATLAB workspace variable",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "采样时间，单位为秒 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Show event port",
+   "default": "off",
+   "values": "启用任务事件端口的选项 off (default) | on",
+   "group": ""
+  }
+ ]
+}

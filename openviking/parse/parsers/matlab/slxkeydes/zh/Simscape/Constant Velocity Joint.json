@@ -1,0 +1,13 @@
+{
+ "key": "Constant Velocity Joint",
+ "title": "Constant Velocity Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Constant_Velocity_Joint.md"
+ ],
+ "text": "在两个轴之间施加等速运动学约束的关节。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

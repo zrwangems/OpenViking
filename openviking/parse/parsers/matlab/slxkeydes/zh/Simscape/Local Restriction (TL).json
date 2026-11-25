@@ -1,0 +1,13 @@
+{
+ "key": "Local Restriction (TL)",
+ "title": "Local Restriction (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Local_Restriction_TL.md"
+ ],
+ "text": "热液体网络中流通面积的阻力。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

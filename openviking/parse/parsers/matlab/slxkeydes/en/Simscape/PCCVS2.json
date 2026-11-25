@@ -1,0 +1,13 @@
+{
+ "key": "PCCVS2",
+ "title": "PCCVS2",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PCCVS2.md"
+ ],
+ "text": "Polynomial current-controlled voltage source with two controlling inputs.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

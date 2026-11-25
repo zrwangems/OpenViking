@@ -1,0 +1,126 @@
+{
+ "key": "Extremum Seeking Controller",
+ "title": "Extremum Seeking Control",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Adaptive Control/Extremum_Seeking_Control.md"
+ ],
+ "text": "Compute controller parameters in real time by maximizing objective function, 1 input, 2 outputs, {Forcing frequency omega (rad/s)} sets Forcing frequency; {Time Domain} sets the filter and integrator time domain Continuous, {Sample time} sets the discrete-time filter and integrator sample, {Integrator method} sets the discrete-time integration method Forward, {Number of parameters}, {Initial condition x0} sets the initial parameter values, {Learning rate k} sets the parameter update rate, {Demodulation amplitude a} sets the demodulation signal amplitude, {Demodulation phase phi_1 (rad)} sets the demodulation signal phase, {Modulation amplitude b} sets the modulation signal amplitude, {Modulation phase phi_2 (rad)} sets the modulation signal phase, {Enable HPF} enables high-pass filtering of objective function, {HPF frequency omega_h (rad/s)} sets the high-pass filter cutoff frequency, {Enable LPF} enables low-pass filtering of demodulated, {LPF frequency omega_l (rad/s)} sets the low-pass filter cutoff frequency ω l and {Output estimated parameters} adds estimated parameters output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "J",
+   "direction": "input",
+   "summary": "Objective function scalar"
+  },
+  {
+   "name": "theta",
+   "direction": "output",
+   "summary": "Perturbed parameters scalar | vector"
+  },
+  {
+   "name": "theta_hat",
+   "direction": "output",
+   "summary": "Estimated parameters scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time Domain",
+   "default": "time",
+   "values": "Filter and integrator time domain Continuous time (default) | Discrete time",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Discrete-time filter and integrator sample time 0.1 (default) | finite positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integrator method",
+   "default": "Euler",
+   "values": "Discrete-time integration method Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": ""
+  },
+  {
+   "name": "Number of parameters",
+   "default": "1",
+   "values": "Number of parameters 1 (default) | positive integer less than or equal to 5",
+   "group": ""
+  },
+  {
+   "name": "Initial condition x0",
+   "default": "0",
+   "values": "Initial parameter values 0 (default) | finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Forcing frequency omega (rad/s)",
+   "default": "1",
+   "values": "Forcing frequency 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Learning rate k",
+   "default": "1",
+   "values": "Parameter update rate 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Demodulation amplitude a",
+   "default": "1",
+   "values": "Demodulation signal amplitude 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Demodulation phase phi_1 (rad)",
+   "default": "0",
+   "values": "Demodulation signal phase 0 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Modulation amplitude b",
+   "default": "0.1",
+   "values": "Modulation signal amplitude 0.1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Modulation phase phi_2 (rad)",
+   "default": "0",
+   "values": "Modulation signal phase 0 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable HPF",
+   "default": "off",
+   "values": "Enable high-pass filtering of objective function signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "HPF frequency omega_h (rad/s)",
+   "default": "1",
+   "values": "High-pass filter cutoff frequency 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable LPF",
+   "default": "off",
+   "values": "Enable low-pass filtering of demodulated signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "LPF frequency omega_l (rad/s)",
+   "default": "1",
+   "values": "Low-pass filter cutoff frequency ω l 1 (default) | positive finite scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Output estimated parameters",
+   "default": "off",
+   "values": "Add estimated parameters output port off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "key": "Checks_Gradient",
+ "title": "Check Discrete Gradient",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Model Verification/Check_Discrete_Gradient.md",
+  "HDL Coder/Model Verification/Check_Discrete_Gradient.md"
+ ],
+ "text": "Check that absolute value of difference between successive samples of discrete signal is less than specified value, 1 input, 1 output, no direct feedthrough; {Maximum gradient} sets the maximum value of allowed differences, {Enable assertion} enables or disable check, {Simulation callback when assertion fails (optional)} sets the expression to evaluate when assertion, {Stop simulation when assertion fails} sets the whether to stop simulation when check, {Output assertion signal} sets the create output signal and {Select icon type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal checked against gradient scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Assertion output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum gradient",
+   "default": "1",
+   "values": "Maximum value of allowed differences 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable assertion",
+   "default": "on",
+   "values": "Enable or disable check on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Simulation callback when assertion fails (optional)",
+   "default": "\"\"",
+   "values": "Expression to evaluate when assertion fails \"\" (default) | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Stop simulation when assertion fails",
+   "default": "on",
+   "values": "Whether to stop simulation when check fails on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Output assertion signal",
+   "default": "off",
+   "values": "Create output signal off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Select icon type",
+   "default": "graphic",
+   "values": "Select icon type graphic (default) | text",
+   "group": ""
+  }
+ ]
+}

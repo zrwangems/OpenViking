@@ -1,0 +1,89 @@
+{
+ "key": "C28x CAN Transmit",
+ "title": "CAN Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F280015x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F28003x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p65x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/C2803x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/C2805x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/C2806x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/C280x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/C281x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/C2833x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/C2834x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F280013x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F28002x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F28004x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F2807x/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xD/CAN_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xS/CAN_Transmit.md"
+ ],
+ "text": "Send serial data to CAN bus, 1 input, 1 output, {Length (bytes)} sets Length of message; {Data format} sets the data output type, {Frame format}, {Identifier Type} sets the message identifier type Standard, {Identifier} sets the message identifier, {Remote Frame} enables remote message, {Enable bit rate switching} enables bit rate switch message and {Output Status} enables output status. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "TX",
+   "direction": "input",
+   "summary": "Input data port vector | scalar"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Status of CAN message transmission scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Data format",
+   "default": "data",
+   "values": "Data output type Raw data (default) | CAN Msg",
+   "group": ""
+  },
+  {
+   "name": "Frame format",
+   "default": "CAN-FD",
+   "values": "Frame format type CAN-FD (default) | Classic CAN",
+   "group": ""
+  },
+  {
+   "name": "Identifier Type",
+   "default": "identifier)",
+   "values": "Message identifier type Standard (11-bit identifier) (default) | Extended (29-bit identifier)",
+   "group": ""
+  },
+  {
+   "name": "Identifier",
+   "default": "100",
+   "values": "Message identifier 100 (default) | numeric identifier of length 11 or 29 bits",
+   "group": ""
+  },
+  {
+   "name": "Length (bytes)",
+   "default": "64",
+   "values": "Length of message 64 (default) | positive integer less than or equal to 64(CAN-FD) | positive integer less than or equal to 8(Classic CAN)",
+   "group": ""
+  },
+  {
+   "name": "Remote Frame",
+   "default": "off",
+   "values": "Enable remote message off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Enable bit rate switching",
+   "default": "off",
+   "values": "Enable bit rate switch message off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output Status",
+   "default": "off",
+   "values": "Enable output status off (default) | on",
+   "group": ""
+  }
+ ]
+}

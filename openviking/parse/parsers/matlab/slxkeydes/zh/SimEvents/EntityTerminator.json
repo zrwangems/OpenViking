@@ -1,0 +1,37 @@
+{
+ "key": "EntityTerminator",
+ "title": "Entity Terminator",
+ "toolbox": "SimEvents",
+ "kind": "block_type",
+ "source_docs": [
+  "SimEvents/Entity_Terminator.md"
+ ],
+ "text": "Entity Terminator 模块接受并销毁实体，输入 1 路、输出 1 路；{Event action} 指定实体在某些事件中的行为 Entry、{Number of entities arrived, a} 输出已到达该模块的实体数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入实体 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_a",
+   "direction": "output",
+   "summary": "已到达实体数 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Event action",
+   "default": "",
+   "values": "指定实体在某些事件中的行为 Entry",
+   "group": ""
+  },
+  {
+   "name": "Number of entities arrived, a",
+   "default": "off",
+   "values": "输出已到达该模块的实体数 off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "key": "Serial F",
+ "title": "Legacy Serial F",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/RS232/Mainboard/Legacy_Serial_F.md"
+ ],
+ "text": "Send and receive data over mainboard baseboard serial port with FIFO, 1 input, 1 output, {Parity} sets Parity for checking data transfer; {Serial port} sets the port that is being accessed Legacy Serial, {Baud rate} sets the baud for transferring data, {Data bits} sets the number of bits per character, {Stop bits} sets the number of stop bits for port, {Enable auto RTS/CTS} enables RTS/CTS handshake, {Port to modify} sets the port that is being accessed, {Receive FIFO size} sets the fIFO size in bytes, {Transmit data type} sets the data type of transmitter count+32 and {Sample Time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "XMT",
+   "direction": "input",
+   "summary": "Vector of data to transmit vector"
+  },
+  {
+   "name": "FIFO",
+   "direction": "output",
+   "summary": "FIFO of data received over serial port serialfifoptr"
+  }
+ ],
+ "params": [
+  {
+   "name": "Serial port",
+   "default": "1",
+   "values": "Port that is being accessed Legacy Serial Port 1 (default) |.. | Legacy Serial Port 8 | USB Serial Port 1 |.. | USB Serial Port 8",
+   "group": ""
+  },
+  {
+   "name": "Baud rate",
+   "default": "115200",
+   "values": "Baud for transferring data 115200 (default) | 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1200 | 600 | 300 | 110",
+   "group": ""
+  },
+  {
+   "name": "Data bits",
+   "default": "8",
+   "values": "Number of bits per character 8 (default) | 7 | 6 | 5",
+   "group": ""
+  },
+  {
+   "name": "Stop bits",
+   "default": "1",
+   "values": "Number of stop bits for port 1 (default) | 2",
+   "group": ""
+  },
+  {
+   "name": "Parity",
+   "default": "None",
+   "values": "Parity for checking data transfer None (default) | Even | Odd | Mark | Space",
+   "group": ""
+  },
+  {
+   "name": "Enable auto RTS/CTS",
+   "default": "off",
+   "values": "Enable RTS/CTS handshake off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Port to modify",
+   "default": "1",
+   "values": "Port that is being accessed 1 (default) | 2",
+   "group": ""
+  },
+  {
+   "name": "Receive FIFO size",
+   "default": "1024",
+   "values": "FIFO size in bytes 1024 (default)",
+   "group": ""
+  },
+  {
+   "name": "Transmit data type",
+   "default": "int",
+   "values": "Data type of transmitter count+32 bit int (default) | count+32 bit uint | count+16 bit int | count+16 bit uint | 8 bit int null terminated | 8 bit uint null terminated",
+   "group": ""
+  },
+  {
+   "name": "Sample Time",
+   "default": "-1",
+   "values": "Sample time -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

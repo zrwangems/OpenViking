@@ -1,0 +1,13 @@
+{
+ "key": "PS Lookup Table (4D)",
+ "title": "PS Lookup Table (4D)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Lookup Tables/PS_Lookup_Table_4D.md"
+ ],
+ "text": "Approximate four-dimensional function using specified lookup method.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

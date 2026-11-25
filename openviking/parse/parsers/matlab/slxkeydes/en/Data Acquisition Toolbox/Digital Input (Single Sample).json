@@ -1,0 +1,55 @@
+{
+ "key": "Digital Input (Single Sample)",
+ "title": "Digital Input (Single Sample)",
+ "toolbox": "Data Acquisition Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Data Acquisition Toolbox/Digital_Input_Single_Sample.md"
+ ],
+ "text": "Acquire single sample from multiple digital lines of data acquisition device, 2 outputs, {Number of ports} sets Number of output data ports 1 for all lines; {Device}, {Lines} sets the device line selection and configuration options depend, {Sample time} sets the block execution rate and {Output timestamp} adds timestamp output port. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Acquired digital input boolean"
+  },
+  {
+   "name": "Timestamp",
+   "direction": "output",
+   "summary": "Timestamp of scan double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Device",
+   "default": "",
+   "values": "Device from which you want to acquire data",
+   "group": ""
+  },
+  {
+   "name": "Lines",
+   "default": "",
+   "values": "Device line selection and configuration options depend on device",
+   "group": ""
+  },
+  {
+   "name": "Number of ports",
+   "default": "",
+   "values": "Number of output data ports 1 for all lines | 1 per line",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Block execution rate 1 (default)",
+   "group": ""
+  },
+  {
+   "name": "Output timestamp",
+   "default": "",
+   "values": "Add timestamp output port",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Open Circuit (Three-Phase)",
+ "title": "Open Circuit (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Connectors & References/Open_Circuit_Three_Phase.md"
+ ],
+ "text": "Three-phase terminator that draws no current.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

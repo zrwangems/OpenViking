@@ -1,0 +1,43 @@
+{
+ "key": "MQTTSubscribe",
+ "title": "MQTT Client Subscribe",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/MQTT/MQTT_Client_Subscribe.md"
+ ],
+ "text": "Read messages from subscribed MQTT topics, 2 outputs; {Client} selects MQTT client, {Topics to subscribe} sets the list of MQTT and {Block sample time} sets the sample time for read operation. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Topic_ x",
+   "direction": "output",
+   "summary": "Current messages from subscribed topics vector"
+  },
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "Flag indicating if read message is new 0 | 1 | vector of logicals"
+  }
+ ],
+ "params": [
+  {
+   "name": "Client",
+   "default": "",
+   "values": "Select MQTT client drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Topics to subscribe",
+   "default": "",
+   "values": "List of MQTT topics table",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "-1",
+   "values": "Sample time for read operation -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "key": "Memory Allocate",
+ "title": "Memory Allocate",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Memory Operations/Memory_Allocate.md"
+ ],
+ "text": "为新变量分配内存；按 {Variable name} 指定变量名称；{Specify variable alignment} 指定变量对齐标志、{Memory alignment boundary} 指定变量的内存对齐、{Data type} 指定变量的数据类型、{Specify data type qualifier} 指定数据类型限定符标志、{Data type qualifier} 指定变量的数据类型限定符、{Data dimension} 指定变量数据类型的元素数、{Initialize memory} 指定内存初始化标志、{Initial value} 指定变量的初始值、{Specify memory section} 指定内存段标志、{Memory section} 指定变量的内存段、{Bind memory section} 指定将内存段绑定到起始地址标志、{Section start address} 指定变量的内存段起始地址 hex2dec，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Variable name",
+   "default": "myVariable",
+   "values": "变量名称 myVariable (default) | string | character vector",
+   "group": "Memory"
+  },
+  {
+   "name": "Specify variable alignment",
+   "default": "off",
+   "values": "变量对齐标志 off (default) | on",
+   "group": "Memory"
+  },
+  {
+   "name": "Memory alignment boundary",
+   "default": "4",
+   "values": "变量的内存对齐 4 (default) | 1 | 2 | 8",
+   "group": "Memory"
+  },
+  {
+   "name": "Data type",
+   "default": "uint32",
+   "values": "变量的数据类型 uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | boolean",
+   "group": "Memory"
+  },
+  {
+   "name": "Specify data type qualifier",
+   "default": "off",
+   "values": "数据类型限定符标志 off (default) | on",
+   "group": "Memory"
+  },
+  {
+   "name": "Data type qualifier",
+   "default": "volatile",
+   "values": "变量的数据类型限定符 volatile (default) | sting | character vectory",
+   "group": "Memory"
+  },
+  {
+   "name": "Data dimension",
+   "default": "64",
+   "values": "变量数据类型的元素数 64 (default) | positive integer",
+   "group": "Memory"
+  },
+  {
+   "name": "Initialize memory",
+   "default": "off",
+   "values": "内存初始化标志 off (default) | on",
+   "group": "Memory"
+  },
+  {
+   "name": "Initial value",
+   "default": "0",
+   "values": "变量的初始值 0 (default) | scalar | vector | matrix",
+   "group": "Memory"
+  },
+  {
+   "name": "Specify memory section",
+   "default": "off",
+   "values": "内存段标志 off (default) | on",
+   "group": "Section"
+  },
+  {
+   "name": "Memory section",
+   "default": "mySEC1",
+   "values": "变量的内存段 mySEC1 (default) | string | character vector",
+   "group": "Section"
+  },
+  {
+   "name": "Bind memory section",
+   "default": "off",
+   "values": "将内存段绑定到起始地址标志 off (default) | on",
+   "group": "Section"
+  },
+  {
+   "name": "Section start address",
+   "default": "hex2dec(’8000’)",
+   "values": "变量的内存段起始地址 hex2dec(’8000’) (default) | memory address in decimal or hexadecimal form",
+   "group": "Section"
+  }
+ ]
+}

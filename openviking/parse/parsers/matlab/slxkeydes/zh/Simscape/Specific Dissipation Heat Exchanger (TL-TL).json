@@ -1,0 +1,13 @@
+{
+ "key": "Specific Dissipation Heat Exchanger (TL-TL)",
+ "title": "Specific Dissipation Heat Exchanger (TL-TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid/Specific_Dissipation_Heat_Exchanger_TL_TL.md"
+ ],
+ "text": "由比耗散数据参数化的热交换器，用于具有两股热液流的系统。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

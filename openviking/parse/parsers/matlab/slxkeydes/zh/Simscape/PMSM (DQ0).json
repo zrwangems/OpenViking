@@ -1,0 +1,13 @@
+{
+ "key": "PMSM (DQ0)",
+ "title": "PMSM (DQ0)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/PMSM_DQ0.md"
+ ],
+ "text": "永磁同步电机的直轴-交轴-零轴表示。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

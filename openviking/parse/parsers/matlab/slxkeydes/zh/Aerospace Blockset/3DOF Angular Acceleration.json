@@ -1,0 +1,172 @@
+{
+ "key": "3DOF Angular Acceleration",
+ "title": "3DOF Angular Acceleration",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Equations of Motion/3DOF/b_3DOF_Angular_Acceleration.md"
+ ],
+ "text": "实现相对于机体轴的三自由度运动方程，输入 4 路、输出 7 路；按 {Mass type} 指定质量类型；{Units}、{Axes}、{Initial velocity}、{Initial body attitude}、{Initial body rotation rate}、{Initial incidence}、{Initial position (x,z)}、{Initial mass}、{Inertia}、{Gravity Source}、{Acceleration due to gravity}、{Include inertial acceleration}、{Velocity: e.g., ’u, ’w’}、{Position: e.g., ’Xe’, ’Ze’}、{Pitch angular rate e.g., ’q’}、{Pitch attitude: e.g., ’theta’} 同样影响行为。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "F x",
+   "direction": "input",
+   "summary": "沿 x 轴施加的力 scalar"
+  },
+  {
+   "name": "F z",
+   "direction": "input",
+   "summary": "沿 z 轴施加的力 scalar"
+  },
+  {
+   "name": "M",
+   "direction": "input",
+   "summary": "施加的俯仰力矩 scalar"
+  },
+  {
+   "name": "g",
+   "direction": "input",
+   "summary": "重力 scalar"
+  },
+  {
+   "name": "θ",
+   "direction": "output",
+   "summary": "俯仰姿态 scalar"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "俯仰角速率 scalar"
+  },
+  {
+   "name": "dq/dt",
+   "direction": "output",
+   "summary": "俯仰角加速度 scalar"
+  },
+  {
+   "name": "X e Z e",
+   "direction": "output",
+   "summary": "机体位置 two-element vector"
+  },
+  {
+   "name": "U w",
+   "direction": "output",
+   "summary": "机体速度 two-element vector"
+  },
+  {
+   "name": "A xb A zb",
+   "direction": "output",
+   "summary": "机体加速度 two-element vector"
+  },
+  {
+   "name": "A xe A ze",
+   "direction": "output",
+   "summary": "机体加速度 two-element vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "输入和输出单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": "Main"
+  },
+  {
+   "name": "Axes",
+   "default": "Body",
+   "values": "机体轴或风轴 Body (default) | Wind",
+   "group": "Main"
+  },
+  {
+   "name": "Mass type",
+   "default": "Fixed",
+   "values": "质量类型 Fixed (default) | Simple Variable | Custom Variable",
+   "group": "Main"
+  },
+  {
+   "name": "Initial velocity",
+   "default": "100",
+   "values": "机体初始速度 100 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial body attitude",
+   "default": "0",
+   "values": "初始俯仰姿态 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial body rotation rate",
+   "default": "0",
+   "values": "初始俯仰旋转速率 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial incidence",
+   "default": "0",
+   "values": "初始角度 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Initial position (x,z)",
+   "default": "0]",
+   "values": "初始位置 [0 0] (default) | two-element vector",
+   "group": "Main"
+  },
+  {
+   "name": "Initial mass",
+   "default": "1.0",
+   "values": "初始质量 1.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Inertia",
+   "default": "1.0",
+   "values": "惯性 1.0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Gravity Source",
+   "default": "Internal",
+   "values": "重力来源 Internal (default) | External",
+   "group": "Main"
+  },
+  {
+   "name": "Acceleration due to gravity",
+   "default": "9.81",
+   "values": "重力来源 9.81 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Include inertial acceleration",
+   "default": "off",
+   "values": "包括惯性加速度端口 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Velocity: e.g., {’u, ’w’}",
+   "default": "’’",
+   "values": "速度状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Position: e.g., {’Xe’, ’Ze’}",
+   "default": "’’",
+   "values": "位置状态名称 ’’ (default) | comma-separated list surrounded by braces",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Pitch angular rate e.g., ’q’",
+   "default": "’’",
+   "values": "俯仰角速率状态名称 ’’ (default)",
+   "group": "State Attributes"
+  },
+  {
+   "name": "Pitch attitude: e.g., ’theta’",
+   "default": "’’",
+   "values": "俯仰姿态状态名称 ’’ (default)",
+   "group": "State Attributes"
+  }
+ ]
+}

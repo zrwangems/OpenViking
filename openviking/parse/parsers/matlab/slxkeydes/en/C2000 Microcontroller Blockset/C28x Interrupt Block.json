@@ -1,0 +1,55 @@
+{
+ "key": "C28x Interrupt Block",
+ "title": "C28x Hardware Interrupt",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/C28x_Hardware_Interrupt.md"
+ ],
+ "text": "Interrupt Service Routine to handle hardware interrupt on C28x processors, 1 input, 1 output; {CPU interrupt number} sets the vector of CPU interrupt, {PIE interrupt number} sets a vector of PIE interrupt, {Simulink task priorities} sets the provides relative importance of tasks associated with the asynchronous interrupts, {Preemption flags: preemptable-1, non-preemptable-0} sets a vector of preemption flags and {Enable simulation input} enables simulation ports to block. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SimIRQ",
+   "direction": "input",
+   "summary": "Simulation interrupt input port scalar"
+  },
+  {
+   "name": "IRQ",
+   "direction": "output",
+   "summary": "Generate interrupt request Scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "CPU interrupt number",
+   "default": "1]",
+   "values": "Specify vector of CPU interrupt [1 1] (default) | integer in [1, 8]",
+   "group": ""
+  },
+  {
+   "name": "PIE interrupt number",
+   "default": "2]",
+   "values": "Specify a vector of PIE interrupt [1 2] (default)",
+   "group": ""
+  },
+  {
+   "name": "Simulink task priorities",
+   "default": "26]",
+   "values": "Provides relative importance of tasks associated with the asynchronous interrupts [30 26] (default)",
+   "group": ""
+  },
+  {
+   "name": "Preemption flags: preemptable-1, non-preemptable-0",
+   "default": "0",
+   "values": "Specify a vector of preemption flags for the interrupts 0 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Enable simulation input",
+   "default": "off",
+   "values": "Enable simulation ports to block off (default) | on",
+   "group": ""
+  }
+ ]
+}

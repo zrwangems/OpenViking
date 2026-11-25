@@ -1,0 +1,68 @@
+{
+ "key": "PWM Modulation",
+ "title": "PWM Reference Generator",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Controls/Math Transforms/PWM_Reference_Generator.md",
+  "Motor Control Blockset/Controls/Math Transforms/PWM_Reference_Generator.md"
+ ],
+ "text": "Generate modulated signals from phase voltages, 5 inputs, 3 outputs, {Modulation method} sets Pulse-width; {Input type} sets the block input type. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V α",
+   "direction": "input",
+   "summary": "α -axis stator reference voltage component scalar"
+  },
+  {
+   "name": "V β",
+   "direction": "input",
+   "summary": "β -axis stator reference voltage component scalar"
+  },
+  {
+   "name": "Va",
+   "direction": "input",
+   "summary": "Phase component scalar"
+  },
+  {
+   "name": "Vb",
+   "direction": "input",
+   "summary": "Phase component scalar"
+  },
+  {
+   "name": "Vc",
+   "direction": "input",
+   "summary": "Phase component scalar"
+  },
+  {
+   "name": "V ao",
+   "direction": "output",
+   "summary": "a -axis stator reference voltage component scalar"
+  },
+  {
+   "name": "V bo",
+   "direction": "output",
+   "summary": "b -axis stator reference voltage component scalar"
+  },
+  {
+   "name": "V co",
+   "direction": "output",
+   "summary": "c -axis stator reference voltage component scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input type",
+   "default": "Valphabeta",
+   "values": "Block input type Valphabeta (default) | Vabc | Degrees",
+   "group": ""
+  },
+  {
+   "name": "Modulation method",
+   "default": "modulation",
+   "values": "Pulse-width modulation (PWM) methods SVM: space vector modulation (default) | SPWM: sinusoidal PWM | 60 DPWM:60 degree discontinuous PWM | 60 DPWM (+30 degree shift):+30 degree shift from 60 DPWM | 60 DPWM (-30 degree shift):-30 degree shift from 60 DPWM | 30 DPWM: 30 degree discontinuous PWM | 120 DPWM: positive DC component | 120 DPWM: negative DC component",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Synchronous Machine Round Rotor",
+ "title": "Synchronous Machine Round Rotor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Synchronous/Synchronous_Machine_Round_Rotor.md"
+ ],
+ "text": "Round-rotor synchronous machine with fundamental or standard parameterization.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

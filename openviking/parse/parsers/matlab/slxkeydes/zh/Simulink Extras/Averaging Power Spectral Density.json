@@ -1,0 +1,13 @@
+{
+ "key": "Averaging Power Spectral Density",
+ "title": "Averaging Power Spectral Density",
+ "toolbox": "Simulink Extras",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Extras/Additional Sinks/Averaging_Power_Spectral_Density.md"
+ ],
+ "text": "当该模块连接到系统输出时，会在图窗口中显示缓冲区的频率成分。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

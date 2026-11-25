@@ -1,0 +1,67 @@
+{
+ "key": "slrealtimeudpsend",
+ "title": "UDP Send",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/UDP_Send.md"
+ ],
+ "text": "Send data over UDP network to a remote device, 2 inputs, {Local port} sets Source UDP port to transmit data no; {Use host-target connection} uses Ethernet connection between development and target, {To IP address} sets the iP address of target, {To port} sets the uDP port of target device, {Sample time (-1 for inherited)} sets the sample time of block, {Enable Simulink messages} sets the data as messages and {Local IP address} sets the source IP address for sending data no. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "input",
+   "summary": "Data to transmit vector"
+  },
+  {
+   "name": "Length",
+   "direction": "input",
+   "summary": "Number of bytes of data to transmit double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use host-target connection",
+   "default": "’off’",
+   "values": "Use Ethernet connection between development and target computers ’off’ (default) | ’on’",
+   "group": ""
+  },
+  {
+   "name": "To IP address",
+   "default": "10.10.10.10",
+   "values": "IP address of target device 10.10.10.10 (default) | x.x.x.x",
+   "group": ""
+  },
+  {
+   "name": "To port",
+   "default": "34",
+   "values": "UDP port of target device 34 (default) | 1–65535",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  },
+  {
+   "name": "Enable Simulink messages",
+   "default": "off",
+   "values": "Data as messages off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Local IP address",
+   "default": "value",
+   "values": "Source IP address for sending data no value (default) | x.x.x.x",
+   "group": "Advanced Parameters"
+  },
+  {
+   "name": "Local port",
+   "default": "value",
+   "values": "Source UDP port to transmit data no value (default) | 0–65535 | -1",
+   "group": "Advanced Parameters"
+  }
+ ]
+}

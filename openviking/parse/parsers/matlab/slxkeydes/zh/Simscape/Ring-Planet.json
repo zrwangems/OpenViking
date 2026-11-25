@@ -1,0 +1,13 @@
+{
+ "key": "Ring-Planet",
+ "title": "Ring-Planet",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Gears/Planetary Subcomponents/Ring_Planet.md"
+ ],
+ "text": "由行星架、行星轮和齿圈组成的行星齿轮组，具有可调传动比和摩擦损耗。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

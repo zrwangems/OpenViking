@@ -1,0 +1,32 @@
+{
+ "key": "UAV Scenario Scope",
+ "title": "UAV Scenario Scope",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/UAV Scenario and Sensor Modeling/UAV_Scenario_Scope.md"
+ ],
+ "text": "Visualize UAV scenario and lidar point clouds, 1 input; {Lidar Sensors} sets the list of lidar sensors and their visualization and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In_1, In_2,..., In_N",
+   "direction": "input",
+   "summary": "Point cloud data inputs for lidar sensors N -by- M -by-3 double matrix | N -by-3 double matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Lidar Sensors",
+   "default": "",
+   "values": "List of lidar sensors and their visualization table",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Sample time 0.1 (default)",
+   "group": ""
+  }
+ ]
+}

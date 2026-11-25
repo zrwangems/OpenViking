@@ -1,0 +1,223 @@
+{
+ "key": "Memory Channel",
+ "title": "Memory Channel",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Memory/Memory_Channel.md"
+ ],
+ "text": "通过内存通道流式传输数据，输入 6 路、输出 8 路；按 {Sample time} 指定采样时间间隔；{Hardware board} 指定查看或修改当前硬件设置 Read-only: name of selected hardware、{Show implementation info} 指定查看通道信息 Read-only: text、{Enable memory simulation} 控制内存仿真精度、{Channel type} 指定通道协议 AXI4-Stream、{Region size (bytes)} 为区域分配的内存大小，以字节为单位 Read-only、{Buffer size (bytes)} 指定缓冲区大小，以字节为单位、{Number of buffers} 指定区域中的缓冲区数量、{Burst length} 指定存储器事务的突发长度、{Use hardware board settings} 使用配置参数中的 Hardware Implementation、{Reader/Writer use same values} 指定读取器和写入器使用相同的值、{FIFO depth (number of bursts)} 指定数据 FIFO 的深度、{Almost full depth} 指定断言背压时的 FIFO 深度、{Clock frequency (MHz)} 指定主数据通路的互连频率、{Data width (bits)} 指定主数据通路的数据宽度、{Dimensions} 指定输入数据信号的维度 scalar、{Data type} 指定写入器数据的数据类型 double、{Enable sample packing (last signal dimension as channel)} 指定在信号的最后一维打包数据、{Output data signal matches input} 指定读取器和写入器使用相同的值、{Inherit sample time offset} 指定使读取端继承写入端的采样时间、{Use pixel clock sample times} 使用像素时钟采样时间、{Frame size} 指定帧尺寸 480p SDTV、{Launch performance plots} 显示性能指标，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "wrData",
+   "direction": "input",
+   "summary": "写入器数据总线信号 scalar | vector | matrix"
+  },
+  {
+   "name": "wrCtrlIn",
+   "direction": "input",
+   "summary": "写入器输入控制信号 bus"
+  },
+  {
+   "name": "rdCtrlIn",
+   "direction": "input",
+   "summary": "读取器输入控制信号 bus"
+  },
+  {
+   "name": "rdDone",
+   "direction": "input",
+   "summary": "完成读取的通知消息 scalar"
+  },
+  {
+   "name": "wrBurstDone",
+   "direction": "input",
+   "summary": "来自内存控制器的写入器控制输入 scalar"
+  },
+  {
+   "name": "rdBurstDone",
+   "direction": "input",
+   "summary": "来自内存控制器的读取器控制输入 scalar"
+  },
+  {
+   "name": "rdData",
+   "direction": "output",
+   "summary": "输出数据信号至数据消费方 scalar | vector | matrix"
+  },
+  {
+   "name": "rdEvent",
+   "direction": "output",
+   "summary": "任务读取事件信号 scalar"
+  },
+  {
+   "name": "wrEvent",
+   "direction": "output",
+   "summary": "任务写入事件信号 scalar"
+  },
+  {
+   "name": "wrDone",
+   "direction": "output",
+   "summary": "内存中已释放缓冲区的通知 scalar"
+  },
+  {
+   "name": "rdCtrlOut",
+   "direction": "output",
+   "summary": "从内存通道到数据消费方的读取器控制信号 bus"
+  },
+  {
+   "name": "wrCtrlOut",
+   "direction": "output",
+   "summary": "从内存通道到数据生产方的写入器控制信号 bus"
+  },
+  {
+   "name": "wrBurstReq",
+   "direction": "output",
+   "summary": "写入突发请求 scalar"
+  },
+  {
+   "name": "rdBurstReq",
+   "direction": "output",
+   "summary": "读取突发请求 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Hardware board",
+   "default": "",
+   "values": "查看或修改当前硬件设置 Read-only: name of selected hardware board",
+   "group": ""
+  },
+  {
+   "name": "Show implementation info",
+   "default": "",
+   "values": "查看通道信息 Read-only: text window",
+   "group": ""
+  },
+  {
+   "name": "Enable memory simulation",
+   "default": "on",
+   "values": "控制内存仿真精度 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Channel type",
+   "default": "FIFO",
+   "values": "选择通道协议 AXI4-Stream FIFO (default) | AXI4-Stream to Software via DMA | Software to AXI4-Stream via DMA | AXI4-Stream Video FIFO | AXI4-Stream Video Frame Buffer | AXI4 Random Access",
+   "group": "Main"
+  },
+  {
+   "name": "Region size (bytes)",
+   "default": "",
+   "values": "为区域分配的内存大小，以字节为单位 Read-only: calculated",
+   "group": "Main"
+  },
+  {
+   "name": "Buffer size (bytes)",
+   "default": "1024",
+   "values": "缓冲区大小，以字节为单位 1024 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Number of buffers",
+   "default": "8",
+   "values": "区域中的缓冲区数量 8 (default) | integer",
+   "group": "Main"
+  },
+  {
+   "name": "Burst length",
+   "default": "1",
+   "values": "存储器事务的突发长度 1 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Use hardware board settings",
+   "default": "on",
+   "values": "使用配置参数中的 Hardware Implementation 设置 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Reader/Writer use same values",
+   "default": "on",
+   "values": "读取器和写入器使用相同的值 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "FIFO depth (number of bursts)",
+   "default": "12",
+   "values": "数据 FIFO 的深度 12 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Almost full depth",
+   "default": "8",
+   "values": "断言背压时的 FIFO 深度 8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Clock frequency (MHz)",
+   "default": "100",
+   "values": "主数据通路的互连频率 100 (default)",
+   "group": "Main"
+  },
+  {
+   "name": "Data width (bits)",
+   "default": "64",
+   "values": "主数据通路的数据宽度 64 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Dimensions",
+   "default": "",
+   "values": "输入数据信号的维度 scalar | array",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Data type",
+   "default": "",
+   "values": "写入器数据的数据类型 double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean | fixed point",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "采样时间间隔 1 (default) | positive scalar | vector",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Enable sample packing (last signal dimension as channel)",
+   "default": "off",
+   "values": "在信号的最后一维打包数据 off (default) | on",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Output data signal matches input",
+   "default": "on",
+   "values": "读取器和写入器使用相同的值 on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Inherit sample time offset",
+   "default": "on",
+   "values": "使读取端继承写入端的采样时间 on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Use pixel clock sample times",
+   "default": "on",
+   "values": "使用像素时钟采样时间 on (default) | off",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Frame size",
+   "default": "(720x480p)",
+   "values": "帧尺寸 480p SDTV (720x480p) (default) |...",
+   "group": "Signal Attributes"
+  },
+  {
+   "name": "Launch performance plots",
+   "default": "",
+   "values": "显示性能指标 button",
+   "group": "Performance"
+  }
+ ]
+}

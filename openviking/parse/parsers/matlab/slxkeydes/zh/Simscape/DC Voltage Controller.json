@@ -1,0 +1,95 @@
+{
+ "key": "DC Voltage Controller",
+ "title": "DC Voltage Controller",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Machine Control/DC_Voltage_Controller.md"
+ ],
+ "text": "带前馈零点对消和积分抗饱和的离散时间 DC 电压 PI 控制，输入 3 路、输出 1 路；{Proportional gain} 指定比例增益，K p、{Integral gain} 指定积分增益 K i、{Anti-windup gain} 指定抗饱和增益 K aw、{Control action upper limit} 控制信号的上限，control max、{Control action lower limit} 控制信号的下限，control min、{Sample time (-1 for inherited)} 指定模块采样时间、{Discretization sample time} 指定离散化采样时间、{Time constant voltage filter} 指定 DC 电压滤波器时间常数，τ、{Enable zero cancellation} 指定前馈零消去、{Filter DC voltage} 指定直流电压滤波器，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "vRef",
+   "direction": "input",
+   "summary": "参考 DC 电压 scalar"
+  },
+  {
+   "name": "v",
+   "direction": "input",
+   "summary": "测量 DC 电压 scalar"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部复位 scalar"
+  },
+  {
+   "name": "Control",
+   "direction": "output",
+   "summary": "控制信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Proportional gain",
+   "default": "0.1",
+   "values": "比例增益，K p 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Integral gain",
+   "default": "50",
+   "values": "积分增益 K i 50 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Anti-windup gain",
+   "default": "1",
+   "values": "抗饱和增益 K aw 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Control action upper limit",
+   "default": "1",
+   "values": "控制信号的上限，control max 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Control action lower limit",
+   "default": "0",
+   "values": "控制信号的下限，control min 0 (default) | non-negative scalar",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "模块采样时间 -1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Discretization sample time",
+   "default": "0.001",
+   "values": "离散化采样时间 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Time constant voltage filter",
+   "default": "0.001",
+   "values": "DC 电压滤波器时间常数，τ 0.001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Enable zero cancellation",
+   "default": "off",
+   "values": "前馈零消去 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Filter DC voltage",
+   "default": "on",
+   "values": "直流电压滤波器选项 on (default) | off",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Nonlinear Translational Damper",
+ "title": "Nonlinear Translational Damper",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Springs & Dampers/Nonlinear_Translational_Damper.md"
+ ],
+ "text": "Nonlinear damper in a translational system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

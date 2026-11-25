@@ -1,0 +1,56 @@
+{
+ "key": "Hadamard Code Generator",
+ "title": "Hadamard Code Generator",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Comm Sources/Sequence Generators/Hadamard_Code_Generator.md"
+ ],
+ "text": "Generate OVSF code, 1 output; {Code length}, {Code index} sets the row index of OVSF code matrix, {Sample time}, {Samples per frame} sets the number of OVSF chips output, {Output data type} sets the output type and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output data column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Code length",
+   "default": "64",
+   "values": "Code length 64 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Code index",
+   "default": "60",
+   "values": "Row index of OVSF code matrix 60 (default) | integer",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Sample time, in seconds 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Number of OVSF chips output 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output type double (default) | int8",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,145 @@
+{
+ "key": "AnalogChannel",
+ "title": "Analog Channel",
+ "toolbox": "SerDes Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "SerDes Toolbox/Utilities/Analog_Channel.md"
+ ],
+ "text": "Construct loss model from channel loss metric or impulse response, 1 input, 1 output, {Specification} sets magnitude of near and far end aggressors; {Channel model} sets the source of channel, {Target frequency (Hz)} sets the frequency for desired channel, {Loss (dB)} sets the channel loss at target frequency, {Impedance (Ohms)} sets the channel characteristic impedance positive real, {Impulse response} sets the user provided impulse response, {Impulse sample interval} sets the sample interval of user provided impulse response, {Tx R (Ohms)} sets the single-ended impedance of transmitter analog, {Tx C (F)} sets the capacitance of transmitter analog model, {Rx R (Ohms)} sets the single-ended impedance of receiver analog, {Rx C (F)} sets the capacitance of receiver analog model, {Rise time (s)} sets the 20%−80% rise time of stimulus, {Voltage (V)} sets the peak-to-peak voltage at input of transmitter analog, {Include crosstalk}, {Far end crosstalk ICN (V)} sets the desired integrated noise level of far end aggressor, {Near end crosstalk ICN (V)} sets the desired integrated noise level of near end aggressor, {Symbol Time (s)} sets the symbol time of far end crosstalk stimulus, {Delay (s)} sets the delay offset of far end crosstalk stimulus, {Modulation} and {PRBS Order} sets the pRBS order of far end crosstalk stimulus. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WaveIn",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "WaveOut",
+   "direction": "output",
+   "summary": "Modified output data scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Channel model",
+   "default": "model",
+   "values": "Source of channel model Loss model (default) | Impulse response",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Target frequency (Hz)",
+   "default": "20e9",
+   "values": "Frequency for desired channel loss 20e9 (default) | positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Loss (dB)",
+   "default": "8",
+   "values": "Channel loss at target frequency 8 (default) | scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Impedance (Ohms)",
+   "default": "",
+   "values": "Channel characteristic impedance positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Impulse response",
+   "default": "[zeros(1,63),1/SampleInterval,zeros(1,192)]",
+   "values": "User provided impulse response [zeros(1,63),1/SampleInterval,zeros(1,192)] (default) | matrix",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Impulse sample interval",
+   "default": "6.25e-12",
+   "values": "Sample interval of user provided impulse response 6.25e-12 (default) | positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Tx R (Ohms)",
+   "default": "50",
+   "values": "Single-ended impedance of transmitter analog model 50 (default) | nonnegative real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Tx C (F)",
+   "default": "100e-15",
+   "values": "Capacitance of transmitter analog model 100e-15 (default) | nonnegative real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Rx R (Ohms)",
+   "default": "50",
+   "values": "Single-ended impedance of receiver analog model 50 (default) | nonnegative real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Rx C (F)",
+   "default": "200e-15",
+   "values": "Capacitance of receiver analog model 200e-15 (default) | nonnegative real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Rise time (s)",
+   "default": "10e-12",
+   "values": "20%−80% rise time of stimulus input 10e-12 (default) | positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Voltage (V)",
+   "default": "1",
+   "values": "Peak-to-peak voltage at input of transmitter analog model 1 (default) | positive real scalar",
+   "group": "Channel Model"
+  },
+  {
+   "name": "Include crosstalk",
+   "default": "off",
+   "values": "Include crosstalk in simulation off (default) | on",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Specification",
+   "default": "100GBASE-CR4",
+   "values": "Specify magnitude of near and far end aggressors 100GBASE-CR4 (default) | CEI-25G-LR | CEI-28G-SR | CEI-28G-VSR | Custom",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Far end crosstalk ICN (V)",
+   "default": "15e-3",
+   "values": "Desired integrated noise level of far end aggressor 15e-3 (default) | nonnegative real scalar",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Near end crosstalk ICN (V)",
+   "default": "10e-3",
+   "values": "Desired integrated noise level of near end aggressor 10e-3 (default) | nonnegative real scalar",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Symbol Time (s)",
+   "default": "100e-12",
+   "values": "Symbol time of far end crosstalk stimulus 100e-12 (default) | positive real scalar",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Delay (s)",
+   "default": "0",
+   "values": "Delay offset of far end crosstalk stimulus 0 (default) | nonnegative real scalar",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "Modulation",
+   "default": "NRZ",
+   "values": "Modulation levels of far end crosstalk stimulus NRZ (default) | PAM3 | PAM4 | PAM5 | PAM6 | PAM7 | PAM8 | PAM9 | PAM10 | PAM11 | PAM12 | PAM13 | PAM14 | PAM15 | PAM16",
+   "group": "Crosstalk"
+  },
+  {
+   "name": "PRBS Order",
+   "default": "7",
+   "values": "PRBS order of far end crosstalk stimulus 7 (default) | 9 | 11 | 13 | 15 | 20 | 23 | 31 | 47",
+   "group": "Crosstalk"
+  }
+ ]
+}

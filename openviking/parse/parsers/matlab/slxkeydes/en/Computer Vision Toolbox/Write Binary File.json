@@ -1,0 +1,154 @@
+{
+ "key": "Write Binary File",
+ "title": "Write Binary File",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Sinks/Write_Binary_File.md"
+ ],
+ "text": "Write binary video data to file, 5 inputs, {Four character code} sets Format of binary file; {File name} sets the name of the binary, {Video format} sets the format of the video data Four character, {Line ordering} sets the binary file fill direction Top, {Bit stream format} sets the data format of binary, {Number of inputs} sets the number of components in input video stream, {Inherit size of components from input data type} sets the all components have same number of bits, {Component1} sets the name of luminance component input port Y, {Component2} sets the name of blue difference, {Component3} sets the name of red difference, {Component4} sets the name of alpha, {Bits1} sets the size of luminance component, {Bits2} sets the size of blue difference component, {Bits3} sets the size of red difference component, {Bits4} sets the size of alpha component, {Component order in binary file} sets the arrangement of components in binary file, {Interlaced video} sets the read video data as interlaced, {Write signed data to output file} sets the write signed data to output binary file and {Byte order in binary file} sets the byte order in output binary file Little. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Y’",
+   "direction": "input",
+   "summary": "Luminance component of input video stream scalar | vector | matrix"
+  },
+  {
+   "name": "Cb",
+   "direction": "input",
+   "summary": "Blue difference component of the input video stream scalar | vector | matrix"
+  },
+  {
+   "name": "Cr",
+   "direction": "input",
+   "summary": "Red difference component of input video stream scalar | vector | matrix"
+  },
+  {
+   "name": "A",
+   "direction": "input",
+   "summary": "Alpha component of input video stream scalar | vector | matrix"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "Transparency component of input video stream scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "File name",
+   "default": "output.bin",
+   "values": "Name of the binary file output.bin (default) | file name",
+   "group": ""
+  },
+  {
+   "name": "Video format",
+   "default": "codes",
+   "values": "Format of the video data Four character codes (default) | Custom",
+   "group": ""
+  },
+  {
+   "name": "Four character code",
+   "default": "I420",
+   "values": "Format of binary file I420 (default) | AYUV | CLJR | cyuv | GREY | IF09 | IMC1 | IMC2 | IMC3 | IMC4 | IUYV | IY41 | IYU1 | IYU2 | IYUV | NV12 | NV21 | UYNV | UYNY | V210 | Y411 | Y41P | Y41T | Y422 | Y42T | Y8 | Y800 | YUNV | YUY2 | YUYV | YV12 | YV16 | YVU9 | YVYU |...",
+   "group": ""
+  },
+  {
+   "name": "Line ordering",
+   "default": "first",
+   "values": "Binary file fill direction Top line first (default) | Bottom line first",
+   "group": ""
+  },
+  {
+   "name": "Bit stream format",
+   "default": "Planar",
+   "values": "Data format of binary file Planar (default) | Packed",
+   "group": ""
+  },
+  {
+   "name": "Number of inputs",
+   "default": "3",
+   "values": "Number of components in input video stream 3 (default) | 1 | 2 | 4",
+   "group": ""
+  },
+  {
+   "name": "Inherit size of components from input data type",
+   "default": "on",
+   "values": "All components have same number of bits on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Component1",
+   "default": "Y’",
+   "values": "Name of luminance component input port Y’ (default) | component name",
+   "group": ""
+  },
+  {
+   "name": "Component2",
+   "default": "Cb",
+   "values": "Name of blue difference component Cb (default) | component name",
+   "group": ""
+  },
+  {
+   "name": "Component3",
+   "default": "Cr",
+   "values": "Name of red difference component Cr (default) | component name",
+   "group": ""
+  },
+  {
+   "name": "Component4",
+   "default": "Alpha",
+   "values": "Name of alpha component Alpha (default) | component name",
+   "group": ""
+  },
+  {
+   "name": "Bits1",
+   "default": "8",
+   "values": "Size of luminance component 8 (default) | 0 | 16 | 24 | 32",
+   "group": ""
+  },
+  {
+   "name": "Bits2",
+   "default": "8",
+   "values": "Size of blue difference component 8 (default) | 0 | 16 | 24 | 32",
+   "group": ""
+  },
+  {
+   "name": "Bits3",
+   "default": "8",
+   "values": "Size of red difference component 8 (default) | 0 | 16 | 24 | 32",
+   "group": ""
+  },
+  {
+   "name": "Bits4",
+   "default": "8",
+   "values": "Size of alpha component 8 (default) | 0 | 16 | 24 | 32",
+   "group": ""
+  },
+  {
+   "name": "Component order in binary file",
+   "default": "]",
+   "values": "Arrangement of components in binary file [ 1 2 3 ] (default) | vector of valid component identifiers",
+   "group": ""
+  },
+  {
+   "name": "Interlaced video",
+   "default": "off",
+   "values": "Read video data as interlaced off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Write signed data to output file",
+   "default": "off",
+   "values": "Write signed data to output binary file off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Byte order in binary file",
+   "default": "endian",
+   "values": "Byte order in output binary file Little endian (default) | Big endian",
+   "group": ""
+  }
+ ]
+}

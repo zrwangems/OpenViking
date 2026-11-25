@@ -1,0 +1,13 @@
+{
+ "key": "Op-Amp",
+ "title": "Op-Amp",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Electrical/Electrical Elements/Op_Amp.md"
+ ],
+ "text": "Ideal operational amplifier.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

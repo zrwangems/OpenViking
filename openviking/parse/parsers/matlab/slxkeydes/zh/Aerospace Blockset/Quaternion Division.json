@@ -1,0 +1,29 @@
+{
+ "key": "Quaternion Division",
+ "title": "Quaternion Division",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Math Operations/Quaternion_Division.md"
+ ],
+ "text": "用一个四元数除以另一个四元数，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "被除数四元数 quaternion | vector of quaternions"
+  },
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "除数四元数 quaternion | vector of quaternions"
+  },
+  {
+   "name": "q/r",
+   "direction": "output",
+   "summary": "输出四元数 quaternion | vector"
+  }
+ ],
+ "params": []
+}

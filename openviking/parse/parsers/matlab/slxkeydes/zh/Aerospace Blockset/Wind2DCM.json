@@ -1,0 +1,24 @@
+{
+ "key": "Wind2DCM",
+ "title": "Wind Angles to Direction Cosine Matrix",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Wind_Angles_to_Direction_Cosine_Matrix.md"
+ ],
+ "text": "将风角转换为方向余弦矩阵，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "μ γ χ",
+   "direction": "input",
+   "summary": "风旋转角 3-by-1 vector"
+  },
+  {
+   "name": "DCM we",
+   "direction": "output",
+   "summary": "方向余弦矩阵 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

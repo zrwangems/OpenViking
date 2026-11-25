@@ -1,0 +1,13 @@
+{
+ "key": "Controlled Temperature Source",
+ "title": "Controlled Temperature Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Sources/Controlled_Temperature_Source.md"
+ ],
+ "text": "Variable source of thermal energy, characterized by temperature.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Thermodynamic Properties Sensor (MA)",
+ "title": "Thermodynamic Properties Sensor (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Moist Air/Sensors/Thermodynamic_Properties_Sensor_MA.md"
+ ],
+ "text": "Measure specific enthalpy, density, specific heat at constant pressure, and specific entropy of air mixture.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,42 @@
+{
+ "key": "Park Transform",
+ "title": "Park Transform",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Mathematical Transforms/Park_Transform.md"
+ ],
+ "text": "Implement abc to dq0 transform, 2 inputs, 1 output; {Power Invariant} sets the power invariant transform and {Phase-a axis alignment} sets the dq0 reference frame. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "abc",
+   "direction": "input",
+   "summary": "a -, b -, and c -phase components vector"
+  },
+  {
+   "name": "θ elec",
+   "direction": "input",
+   "summary": "Rotational angle, radians scalar"
+  },
+  {
+   "name": "dq0",
+   "direction": "output",
+   "summary": "d - q axis and zero components vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Power Invariant",
+   "default": "off",
+   "values": "Power invariant transform off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Phase-a axis alignment",
+   "default": "Q-axis",
+   "values": "dq0 reference frame alignment Q-axis (default) | D-axis",
+   "group": ""
+  }
+ ]
+}

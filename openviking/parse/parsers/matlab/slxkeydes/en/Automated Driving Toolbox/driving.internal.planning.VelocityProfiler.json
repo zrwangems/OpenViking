@@ -1,0 +1,98 @@
+{
+ "key": "driving.internal.planning.VelocityProfiler",
+ "title": "Velocity Profiler",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Velocity_Profiler.md"
+ ],
+ "text": "Generate velocity profile of vehicle path given kinematic constraints, 5 inputs, 2 outputs; {Maximum longitudinal acceleration (m/s^2)} sets the maximum longitudinal acceleration, {Maximum longitudinal deceleration (m/s^2)} sets the maximum longitudinal deceleration, {Maximum allowable speed (m/s)} sets the maximum allowable speed along path, {Maximum longitudinal jerk (m/s^3)}, {Maximum lateral acceleration (m/s^2)}, {Show Times output port} sets the output times of arrival for velocity, {Sample time} and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Directions",
+   "direction": "input",
+   "summary": "Driving directions along path M -by-1 vector of 1s (forward motion) and –1s (reverse motion)"
+  },
+  {
+   "name": "CumLengths",
+   "direction": "input",
+   "summary": "Cumulative path lengths M -by-1 vector of monotonically increasing real-valued elements"
+  },
+  {
+   "name": "Curvatures",
+   "direction": "input",
+   "summary": "Signed path curvatures along path M -by-1 real-valued vector"
+  },
+  {
+   "name": "StartVelocity",
+   "direction": "input",
+   "summary": "Longitudinal velocity of vehicle at start of path real scalar"
+  },
+  {
+   "name": "EndVelocity",
+   "direction": "input",
+   "summary": "Longitudinal velocity of vehicle at end of path real scalar"
+  },
+  {
+   "name": "Velocities",
+   "direction": "output",
+   "summary": "Velocity profile along path M -by-1 real-valued vector"
+  },
+  {
+   "name": "Times",
+   "direction": "output",
+   "summary": "Vehicle times of arrival for velocity profile M -by-1 real-valued vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum longitudinal acceleration (m/s^2)",
+   "default": "3",
+   "values": "Maximum longitudinal acceleration of vehicle 3 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum longitudinal deceleration (m/s^2)",
+   "default": "6",
+   "values": "Maximum longitudinal deceleration of vehicle 6 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum allowable speed (m/s)",
+   "default": "10",
+   "values": "Maximum allowable speed along path 10 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum longitudinal jerk (m/s^3)",
+   "default": "1",
+   "values": "Maximum longitudinal jerk 1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Maximum lateral acceleration (m/s^2)",
+   "default": "1",
+   "values": "Maximum lateral acceleration 1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Show Times output port",
+   "default": "off",
+   "values": "Output times of arrival for velocity profile off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | positive real scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Generation",
+   "values": "Type of simulation to run Code Generation (default) | Interpreted Execution",
+   "group": ""
+  }
+ ]
+}

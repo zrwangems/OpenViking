@@ -1,0 +1,39 @@
+{
+ "key": "TwoWayConnection",
+ "title": "Two-Way Connection",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Routing/Two_Way_Connection.md",
+  "Powertrain Blockset/Utilities/Simscape/Two_Way_Connection.md",
+  "Vehicle Dynamics Blockset/Utilities/Simscape/Two_Way_Connection.md"
+ ],
+ "text": "将相同数据类型和复/实性的输入信号合并为虚拟向量，输入 1 路、输出 1 路；按 {显示选项} 指定模块图标外观；{输入数目} 指定输入信号的数量，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "要包含在复路信号中的输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出复路信号 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "输入数目",
+   "default": "2",
+   "values": "输入信号的数量 2 (默认) | 标量 | 向量 | 元胞数组 | 以逗号分隔的信号名称列表",
+   "group": ""
+  },
+  {
+   "name": "显示选项",
+   "default": "bar",
+   "values": "模块图标外观 bar (默认) | 信号 | 无",
+   "group": ""
+  }
+ ]
+}

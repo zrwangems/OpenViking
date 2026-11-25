@@ -1,0 +1,82 @@
+{
+ "key": "Battery Coolant Control",
+ "title": "Battery Coolant Control",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/BMS/Thermal Management/Battery_Coolant_Control.md"
+ ],
+ "text": "Battery coolant control algorithm, 3 inputs, 2 outputs, {Algorithm data type} sets Option to choose data type for block algorithm Inherit:; {Specify CellTemperature input as [Min,Max]} sets the option to specify CellTemperature input as minimum and maximum, {Control strategy}, {Switch-on temperature} sets the coolant switch-on temperature, {Switch-off temperature} sets the coolant switch-off temperature, {Constant used in f(deltaT)=c*deltaT} sets the constant for coolant strategy and {Flow rate step}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "CellTemperature",
+   "direction": "input",
+   "summary": "Cell temperature, K scalar | vector"
+  },
+  {
+   "name": "AmbientTemperature",
+   "direction": "input",
+   "summary": "Ambient temperature, K scalar"
+  },
+  {
+   "name": "CoolantTemperature",
+   "direction": "input",
+   "summary": "Coolant temperature, K scalar"
+  },
+  {
+   "name": "FlowRateCommand",
+   "direction": "output",
+   "summary": "Flow rate command scalar"
+  },
+  {
+   "name": "FlowTemperature",
+   "direction": "output",
+   "summary": "Flow temperature scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Specify CellTemperature input as [Min,Max]",
+   "default": "off",
+   "values": "Option to specify CellTemperature input as minimum and maximum values off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Control strategy",
+   "default": "control",
+   "values": "Control strategy ON-OFF control (default) | Step control",
+   "group": ""
+  },
+  {
+   "name": "Switch-on temperature",
+   "default": "305.15",
+   "values": "Coolant switch-on temperature 305.15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Switch-off temperature",
+   "default": "301.15",
+   "values": "Coolant switch-off temperature 301.15 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Constant used in f(deltaT)=c*deltaT",
+   "default": "0.1",
+   "values": "Constant for coolant strategy 0.1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Flow rate step",
+   "default": "0.2",
+   "values": "Flow rate step 0.2 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Algorithm data type",
+   "default": "auto",
+   "values": "Option to choose data type for block algorithm Inherit: auto (default) | double | single |",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "key": "J1939 Node Configuration",
+ "title": "J1939 Node Configuration",
+ "toolbox": "Vehicle Network Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Network Toolbox/J1939 Communication/J1939_Node_Configuration.md",
+  "Simulink Real-Time/J1939/J1939_Node_Configuration.md"
+ ],
+ "text": "Configure J1939 node with address and network management attributes, 2 outputs; {Config name} sets the iD of the J1939 network configuration to associate with this node, {Node name} sets the name of this J1939, {Message} sets the nine network attributes as defined by the database file consistent with the J1939 protocol vector, {Sample time} sets the simulation refresh rate, {Output current node address} enables or disable the Address port display and {Output address claim status} enables or disable the address claim AC Status. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Address",
+   "direction": "output",
+   "summary": "Returns the effective address of the node int8"
+  },
+  {
+   "name": "AC Status",
+   "direction": "output",
+   "summary": "Indicates the success (1) or failure (0) of the node’s address claim 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "Config name",
+   "default": "ConfigX",
+   "values": "ID of the J1939 network configuration to associate with this node ConfigX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Node name",
+   "default": "NodeX",
+   "values": "name of this J1939 node NodeX (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Message",
+   "default": "",
+   "values": "Nine network attributes as defined by the database file consistent with the J1939 protocol vector array",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.01",
+   "values": "Simulation refresh rate 0.01 (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Output current node address",
+   "default": "off",
+   "values": "Enable or disable the Address port display off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Output address claim status",
+   "default": "off",
+   "values": "Enable or disable the address claim AC Status display off (default) | on",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,143 @@
+{
+ "key": "dsp.simulink.DCBlocker",
+ "title": "DC Blocker",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Comm Filters/DC_Blocker.md",
+  "Communications Toolbox/Comm Filters/DC_Blocker.md",
+  "Communications Toolbox/RF Impairments Correction/DC_Blocker.md",
+  "DSP System Toolbox HDL Support/Signal Operations/DC_Blocker.md",
+  "DSP System Toolbox/Signal Operations/DC_Blocker.md"
+ ],
+ "text": "Apply matched filtering using raised cosine FIR filter, 1 input, 1 output, {Output} sets Output data type Inherit: Same as; {Filter shape}, {Rolloff factor} sets the roll-off factor, {Filter span in symbols}, {Input samples per symbol} sets the number of input samples per symbol, {Decimation factor}, {Decimation offset}, {Linear amplitude filter gain} sets the linear filter gain, {Input processing}, {Rate options} sets the block processing rate Enforce single-rate, {Export filter coefficients to workspace}, {Coefficient variable name} sets the name of coefficient, {View Filter Response} sets the open Filter Visualization, {Rounding mode}, {Saturate on integer overflow} sets the overflow mode for fixed-point operations, {Coefficients} sets the coefficient data type, {Product output}, {Accumulator} and {Lock data type settings against changes by the fixed-point tools} prevents fixed-point tools from overriding data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal column vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal column vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Filter shape",
+   "default": "root",
+   "values": "Filter shape Square root (default) | Normal",
+   "group": ""
+  },
+  {
+   "name": "Rolloff factor",
+   "default": "0.2",
+   "values": "Roll-off factor 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Filter span in symbols",
+   "default": "10",
+   "values": "Filter span in symbols 10 (default) | even positive integer",
+   "group": ""
+  },
+  {
+   "name": "Input samples per symbol",
+   "default": "8",
+   "values": "Number of input samples per symbol 8 (default) | integer greater than 1",
+   "group": ""
+  },
+  {
+   "name": "Decimation factor",
+   "default": "8",
+   "values": "Decimation factor for input signal 8 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Decimation offset",
+   "default": "0",
+   "values": "Decimation offset in samples 0 (default)",
+   "group": ""
+  },
+  {
+   "name": "Linear amplitude filter gain",
+   "default": "1",
+   "values": "Linear filter gain 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Input processing",
+   "default": "based)",
+   "values": "Input processing control Columns as channels (frame based) (default) | Elements as channels (sample based)",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Block processing rate Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Export filter coefficients to workspace",
+   "default": "off",
+   "values": "Export filter coefficients off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Coefficient variable name",
+   "default": "rcRxFilt",
+   "values": "Name of coefficient variable rcRxFilt (default)",
+   "group": ""
+  },
+  {
+   "name": "View Filter Response",
+   "default": "",
+   "values": "Open Filter Visualization Tool button",
+   "group": ""
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero",
+   "group": ""
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "Overflow mode for fixed-point operations off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Coefficients",
+   "default": "input",
+   "values": "Coefficient data type Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Product output",
+   "default": "input",
+   "values": "Product output data type Inherit: Same as input (default) | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Accumulator",
+   "default": "output",
+   "values": "Accumulator data type Inherit: Same as product output (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Output",
+   "default": "accumulator",
+   "values": "Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | fixdt(1,16,0)",
+   "group": ""
+  },
+  {
+   "name": "Lock data type settings against changes by the fixed-point tools",
+   "default": "off",
+   "values": "Prevent fixed-point tools from overriding data types off (default) | on",
+   "group": ""
+  }
+ ]
+}

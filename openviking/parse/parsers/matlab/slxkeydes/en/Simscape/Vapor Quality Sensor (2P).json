@@ -1,0 +1,13 @@
+{
+ "key": "Vapor Quality Sensor (2P)",
+ "title": "Vapor Quality Sensor (2P)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Two-Phase Fluid/Sensors/Vapor_Quality_Sensor_2P.md"
+ ],
+ "text": "Measure vapor fraction in two-phase fluids.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,44 @@
+{
+ "key": "chirp",
+ "title": "Chirp Signal",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Chirp_Signal.md"
+ ],
+ "text": "Generate sine wave with increasing frequency, 1 output, no direct feedthrough, {Frequency at target time} sets Frequency (Hz); {Initial frequency}, {Target time} and {Interpret vector parameters as 1-D} treats vector parameters as 1-D. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Chirp signal scalar | vector | matrix | N-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Initial frequency",
+   "default": "0.1",
+   "values": "Initial frequency (Hz) 0.1 (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Target time",
+   "default": "100",
+   "values": "Target time (seconds) 100 (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Frequency at target time",
+   "default": "1",
+   "values": "Frequency (Hz) 1 (default) | scalar | vector | matrix | N-D array",
+   "group": ""
+  },
+  {
+   "name": "Interpret vector parameters as 1-D",
+   "default": "on",
+   "values": "Treat vector parameters as 1-D on (default) | off",
+   "group": ""
+  }
+ ]
+}

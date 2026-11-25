@@ -1,0 +1,122 @@
+{
+ "key": "Generate FlightGear Run Script",
+ "title": "Generate Run Script",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Flight Simulator Interfaces/Generate_Run_Script.md"
+ ],
+ "text": "在当前平台上生成 FlightGear 运行脚本；按 {Select target architecture} 指定运行脚本的目标平台；{Select FlightGear data flow} 指定 FlightGear 数据流、{FlightGear geometry model name} 指定包含 FlightGear 几何模型的文件夹、{Airport ID} 指定受支持的机场 ID、{Runway ID} 指定受支持的跑道 ID、{Initial altitude (ft)*} 指定飞机初始高度、{Initial heading (deg)*} 指定飞机初始航向、{Offset distance (miles)*} 指定偏移距离、{Offset azimuth (deg)*} 指定飞机偏移方位角、{Install FlightGear scenery during simulation (requires Internet connection)} 指定安装 FlightGear 地景、{Disable FlightGear shader options} 指定禁用 FlightGear 着色器、{Destination/Origin IP address} 指定运行 MATLAB 的计算机的网络 IP 地址、{Destination port} 指定 FlightGear 计算机的目标端口、{Origin port} 指定 FlightGear 计算机的源端口、{Network IP address} 指定 FlightGear 计算机的网络 IP 地址、{Output file name} 输出文件 runfg.bat、{FlightGear base directory} 指定 FlightGear 基础目录 C:\\Program、{Generate Script}，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Select target architecture",
+   "default": "Default",
+   "values": "运行脚本的目标平台 Default (default) | Win64 | Linux | Mac",
+   "group": ""
+  },
+  {
+   "name": "Select FlightGear data flow",
+   "default": "Send",
+   "values": "FlightGear 数据流 Send (default) | Receive | Send-Receive",
+   "group": ""
+  },
+  {
+   "name": "FlightGear geometry model name",
+   "default": "HL20",
+   "values": "包含 FlightGear 几何模型的文件夹 HL20 (default)",
+   "group": ""
+  },
+  {
+   "name": "Airport ID",
+   "default": "KSFO",
+   "values": "受支持的机场 ID KSFO (default)",
+   "group": ""
+  },
+  {
+   "name": "Runway ID",
+   "default": "10L",
+   "values": "受支持的跑道 ID 10L (default)",
+   "group": ""
+  },
+  {
+   "name": "Initial altitude (ft)*",
+   "default": "",
+   "values": "飞机初始高度 7224 | numeric",
+   "group": ""
+  },
+  {
+   "name": "Initial heading (deg)*",
+   "default": "",
+   "values": "飞机初始航向 113 | numeric",
+   "group": ""
+  },
+  {
+   "name": "Offset distance (miles)*",
+   "default": "",
+   "values": "偏移距离 4.72 | numeric",
+   "group": ""
+  },
+  {
+   "name": "Offset azimuth (deg)*",
+   "default": "",
+   "values": "飞机偏移方位角 0 | numeric",
+   "group": ""
+  },
+  {
+   "name": "Install FlightGear scenery during simulation (requires Internet connection)",
+   "default": "off",
+   "values": "安装 FlightGear 地景 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Disable FlightGear shader options",
+   "default": "off",
+   "values": "禁用 FlightGear 着色器 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Destination/Origin IP address",
+   "default": "",
+   "values": "运行 MATLAB 的计算机的网络 IP 地址 127.0.0.1",
+   "group": ""
+  },
+  {
+   "name": "Destination port",
+   "default": "",
+   "values": "FlightGear 计算机的目标端口 5502",
+   "group": ""
+  },
+  {
+   "name": "Origin port",
+   "default": "",
+   "values": "FlightGear 计算机的源端口 5505",
+   "group": ""
+  },
+  {
+   "name": "Network IP address",
+   "default": "",
+   "values": "FlightGear 计算机的网络 IP 地址 127.0.0.1",
+   "group": ""
+  },
+  {
+   "name": "Output file name",
+   "default": "",
+   "values": "输出文件 runfg.bat",
+   "group": ""
+  },
+  {
+   "name": "FlightGear base directory",
+   "default": "",
+   "values": "FlightGear 基础目录 C:\\Program Files\\FlightGear",
+   "group": ""
+  },
+  {
+   "name": "Generate Script",
+   "default": "",
+   "values": "Generate Script 按钮 button",
+   "group": ""
+  }
+ ]
+}

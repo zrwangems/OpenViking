@@ -1,0 +1,149 @@
+{
+ "key": "OFDM Modulator",
+ "title": "OFDM Modulator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Modulation/OFDM_Modulator.md",
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/OFDM/OFDM_Modulator.md"
+ ],
+ "text": "为自定义通信协议将频域 OFDM 子载波调制为时域样本，输入 8 路、输出 3 路；按 {Rounding Method} 指定内部定点计算的舍入模式；{OFDM parameters source} 指定 OFDM 参数的来源、{Maximum FFT length} 指定 FFT 长度的最大长度、{FFT length} 指定 FFT 长度、{Cyclic prefix length} 指定循环前缀长度、{Number of left guard subcarriers} 指定 OFDM 符号最左侧的保护频带子载波数量、{Number of right guard subcarriers} 指定 OFDM 符号最右侧的保护频带子载波数量、{Insert DC Null} 指定插入 DC 空位、{Enable reset input port} 指定重置信号、{Windowing} 指定频谱增长降低、{Window length} 指定窗长度、{Maximum window length} 指定窗的最大长度、{Divide butterfly outputs by two} 指定将 FFT 蝶形输出除以，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据 scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "FFTLen",
+   "direction": "input",
+   "summary": "FFT 长度 scalar"
+  },
+  {
+   "name": "CPLen",
+   "direction": "input",
+   "summary": "循环前缀长度 scalar"
+  },
+  {
+   "name": "numLgSc",
+   "direction": "input",
+   "summary": "OFDM 符号的左侧保护载波数量 scalar"
+  },
+  {
+   "name": "numRgSc",
+   "direction": "input",
+   "summary": "OFDM 符号的右侧保护载波数量 scalar"
+  },
+  {
+   "name": "reset",
+   "direction": "input",
+   "summary": "清除内部状态 scalar"
+  },
+  {
+   "name": "winLen",
+   "direction": "input",
+   "summary": "窗长度 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "调制输出数据 scalar | column vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "指示模块已就绪 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "OFDM parameters source",
+   "default": "Property",
+   "values": "OFDM 参数的来源 Property (default) | Input port",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum FFT length",
+   "default": "64",
+   "values": "FFT 长度的最大长度 64 (default) | power of 2 in range from 8 to 65,536",
+   "group": "Main"
+  },
+  {
+   "name": "FFT length",
+   "default": "64",
+   "values": "FFT 长度 64 (default) | power of 2 in range from 8 to 65, 536",
+   "group": "Main"
+  },
+  {
+   "name": "Cyclic prefix length",
+   "default": "16",
+   "values": "循环前缀长度 16 (default) | integer in range from 0 to FFTLength",
+   "group": "Main"
+  },
+  {
+   "name": "Number of left guard subcarriers",
+   "default": "6",
+   "values": "OFDM 符号最左侧的保护频带子载波数量 6 (default) | integer in range from 0 to ( FFTLength /2) – 1",
+   "group": "Main"
+  },
+  {
+   "name": "Number of right guard subcarriers",
+   "default": "5",
+   "values": "OFDM 符号最右侧的保护频带子载波数量 5 (default) | integer in range from 0 to ( FFTLength /2) – 1",
+   "group": "Main"
+  },
+  {
+   "name": "Insert DC Null",
+   "default": "on",
+   "values": "插入 DC 空位的选项 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "重置信号 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Windowing",
+   "default": "off",
+   "values": "频谱增长降低 off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Window length",
+   "default": "4",
+   "values": "窗长度 4 (default) | even integer in range from 1 to Cyclic prefix length",
+   "group": "Main"
+  },
+  {
+   "name": "Maximum window length",
+   "default": "8",
+   "values": "窗的最大长度 8 (default) | integer in the range from 1 to CPLen",
+   "group": "Main"
+  },
+  {
+   "name": "Divide butterfly outputs by two",
+   "default": "on",
+   "values": "将 FFT 蝶形输出除以 2 on (default) | off",
+   "group": "IFFT Parameters"
+  },
+  {
+   "name": "Rounding Method",
+   "default": "Floor",
+   "values": "内部定点计算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "IFFT Parameters"
+  }
+ ]
+}

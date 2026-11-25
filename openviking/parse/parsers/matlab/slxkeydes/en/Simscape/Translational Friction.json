@@ -1,0 +1,13 @@
+{
+ "key": "Translational Friction",
+ "title": "Translational Friction",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Translational Elements/Translational_Friction.md"
+ ],
+ "text": "Friction in contact between moving bodies.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

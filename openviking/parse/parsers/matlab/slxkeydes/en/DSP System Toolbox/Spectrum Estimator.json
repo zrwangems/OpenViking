@@ -1,0 +1,213 @@
+{
+ "key": "Spectrum Estimator",
+ "title": "Spectrum Estimator",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Estimation/Power Spectrum Estimation/Spectrum_Estimator.md"
+ ],
+ "text": "Estimate power spectrum or power-density spectrum, 1 input, 5 outputs, {Power units} sets Power units; {Method} sets the welch or filter, {Number of taps per band} sets the number of filter taps per frequency band, {Spectrum type} sets the type of spectrum, {Frequency resolution method}, {RBW (Hz)} sets the resolution bandwidth, {Window length source} sets the source of window length Same as input frame, {Window length}, {Number of bands source} sets the source of number of frequency bands Same as input frame, {Number of bands} sets the number of frequency bands, {FFT length source} sets the source of FFT length value, {FFT length}, {Inherit sample rate from input}, {Sample rate (Hz)} sets the sample rate of input, {Window function}, {Sidelobe attenuation of window (dB)}, {Averaging method}, {Number of spectral averages}, {Specify forgetting factor from input port}, {Forgetting factor}, {Window overlap (%)} sets the percentage of overlap between windows, {Reference load (ohms)}, {Frequency range}, {Output max-hold spectrum}, {Output min-hold spectrum}, {Output frequency vector}, {Output effective RBW} and {Simulate using} sets the type of simulation to run Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "Input signal vector | matrix"
+  },
+  {
+   "name": "P",
+   "direction": "output",
+   "summary": "Power spectrum or power-density spectrum vector | matrix"
+  },
+  {
+   "name": "P_max",
+   "direction": "output",
+   "summary": "Max-hold spectrum vector | matrix"
+  },
+  {
+   "name": "P_min",
+   "direction": "output",
+   "summary": "Min-hold spectrum vector | matrix"
+  },
+  {
+   "name": "F",
+   "direction": "output",
+   "summary": "Output frequencies column vector"
+  },
+  {
+   "name": "RBW",
+   "direction": "output",
+   "summary": "Effective resolution bandwidth scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Method",
+   "default": "bank",
+   "values": "Welch or filter bank Filter bank (default) | Welch",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of taps per band",
+   "default": "12",
+   "values": "Number of filter taps per frequency band 12 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Spectrum type",
+   "default": "Power",
+   "values": "Type of spectrum Power (default) | Power density",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Frequency resolution method",
+   "default": "Auto",
+   "values": "Frequency resolution method Auto (default) | RBW | Number of frequency bands",
+   "group": "Main Tab"
+  },
+  {
+   "name": "RBW (Hz)",
+   "default": "5",
+   "values": "Resolution bandwidth 5 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Window length source",
+   "default": "length",
+   "values": "Source of window length Same as input frame length (default) | Specify on dialog",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Window length",
+   "default": "1024",
+   "values": "Window length 1024 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of bands source",
+   "default": "size",
+   "values": "Source of number of frequency bands Same as input frame size (default) | Specify on dialog",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of bands",
+   "default": "1024",
+   "values": "Number of frequency bands 1024 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "FFT length source",
+   "default": "Auto",
+   "values": "Source of FFT length value Auto (default) | Property",
+   "group": "Main Tab"
+  },
+  {
+   "name": "FFT length",
+   "default": "1024",
+   "values": "FFT length 1024 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Inherit sample rate from input",
+   "default": "on",
+   "values": "Inherit sample rate from input on (default) | off",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sample rate (Hz)",
+   "default": "44100",
+   "values": "Sample rate of input 44100 (default) | scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Window function",
+   "default": "Hann",
+   "values": "Window function Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Sidelobe attenuation of window (dB)",
+   "default": "60",
+   "values": "Sidelobe attenuation of window 60 (default) | positive scalar",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Averaging method",
+   "default": "Exponential",
+   "values": "Averaging method Exponential (default) | Running",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Number of spectral averages",
+   "default": "1",
+   "values": "Number of spectral averages 1 (default) | positive integer",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Specify forgetting factor from input port",
+   "default": "off",
+   "values": "Specify forgetting factor from input port off (default) | on",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Forgetting factor",
+   "default": "0.9",
+   "values": "Forgetting factor 0.9 (default) | scalar in the range ( 0,1 ]",
+   "group": "Main Tab"
+  },
+  {
+   "name": "Window overlap (%)",
+   "default": "0",
+   "values": "Percentage of overlap between windows 0 (default)",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Reference load (ohms)",
+   "default": "1",
+   "values": "Reference load 1 (default) | positive scalar",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Frequency range",
+   "default": "Centered",
+   "values": "Frequency range of spectrum estimator Centered (default) | One-sided | Two-sided",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Power units",
+   "default": "dBm",
+   "values": "Power units dBm (default) | Watts | dBW",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Output max-hold spectrum",
+   "default": "off",
+   "values": "Output max-hold spectrum off (default) | on",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Output min-hold spectrum",
+   "default": "off",
+   "values": "Output min-hold spectrum off (default) | on",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Output frequency vector",
+   "default": "off",
+   "values": "Output frequency vector off (default) | on",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Output effective RBW",
+   "default": "off",
+   "values": "Output effective RBW off (default) | on",
+   "group": "Advanced Tab"
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": "Advanced Tab"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PS-Simulink Converter",
+ "title": "PS-Simulink Converter",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Utilities/PS_Simulink_Converter.md"
+ ],
+ "text": "将物理信号转换为 Simulink 输出信号。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

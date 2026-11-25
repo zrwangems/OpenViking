@@ -1,0 +1,223 @@
+{
+ "key": "DiscreteIntegrator",
+ "title": "Discrete-Time Integrator",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Commonly Used Blocks/Discrete_Time_Integrator.md",
+  "Simulink/Discrete/Discrete_Time_Integrator.md",
+  "Simulink/Quick Insert/Discrete/Accumulator.md",
+  "HDL Coder/Discrete/Discrete_Time_Integrator.md",
+  "HDL Coder/HDL Floating Point Operations/Discrete_Time_Integrator.md"
+ ],
+ "text": "执行信号的离散时间积分或累积，输入 3 路、输出 3 路；按 {积分器方法} 指定累积方法；{增益值} 指定与积分器输入相乘的值、{外部重置} 指定何时将状态重置为初始条件、{初始条件来源} 使用外部信号设置初始条件、{初始条件}、{初始条件设置} 指定应用初始条件的位置、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{限制输出} 指定将模块输出值限制在指定范围内、{饱和上限} 指定积分的上限、{饱和下限} 指定积分的下限、{显示饱和端口} 启用饱和输出端口、{显示状态端口} 启用状态输出端口、{线性化时忽略限制和重置} 指定将模块视为不可重置、{输出最小值} 指定范围检查的最小输出值、{输出最大值} 指定范围检查的最大输出值、{数据类型}、{锁定输出数据类型设置以防止被定点工具更改} 用于防止定点工具覆盖输出数据类型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法、{模式}、{数据类型覆盖}、{符号性}、{字长} 指定存储量化整数的字的位大小、{定标}、{小数长度}、{斜率}、{偏置}、{状态名称} 指定模块状态的唯一名称、{状态名称必须解析为 Simulink 信号对象} 指定要求状态名称解析为信号对象，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "External reset",
+   "direction": "input",
+   "summary": "外部重置信号 标量"
+  },
+  {
+   "name": "IC",
+   "direction": "input",
+   "summary": "状态的初始条件 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入的离散时间积分或累积 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_2",
+   "direction": "output",
+   "summary": "饱和输出 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "Port_3",
+   "direction": "output",
+   "summary": "状态输出 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "积分器方法",
+   "default": "集成:前向欧拉",
+   "values": "累积方法 集成:前向欧拉 (默认) | 集成:后向欧拉 | 集成:梯形 | 累加:前向欧拉 | 累加:后向欧拉 | 累加:梯形",
+   "group": "常设"
+  },
+  {
+   "name": "增益值",
+   "default": "1.0",
+   "values": "与积分器输入相乘的值 1.0 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "外部重置",
+   "default": "无",
+   "values": "选择何时将状态重置为初始条件 无 (默认) | 上升沿 | 下降沿 | 任一沿 | 电平 | 采样电平",
+   "group": "常设"
+  },
+  {
+   "name": "初始条件来源",
+   "default": "内部",
+   "values": "使用外部信号设置初始条件的选项 内部 (默认) | 外部",
+   "group": "常设"
+  },
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "状态的初始条件 0 (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "初始条件设置",
+   "default": "自动",
+   "values": "选择应用初始条件的位置 自动 (默认) | 输出 | 兼容性",
+   "group": "常设"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "常设"
+  },
+  {
+   "name": "限制输出",
+   "default": "off",
+   "values": "将模块输出值限制在指定范围内 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "饱和上限",
+   "default": "inf",
+   "values": "指定积分的上限 inf (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "饱和下限",
+   "default": "-inf",
+   "values": "指定积分的下限 -inf (默认) | 标量 | 向量 | 矩阵",
+   "group": "常设"
+  },
+  {
+   "name": "显示饱和端口",
+   "default": "off",
+   "values": "启用饱和输出端口 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "显示状态端口",
+   "default": "off",
+   "values": "启用状态输出端口 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "线性化时忽略限制和重置",
+   "default": "off",
+   "values": "将模块视为不可重置 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "输出最小值",
+   "default": "[]",
+   "values": "范围检查的最小输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "输出最大值",
+   "default": "[]",
+   "values": "范围检查的最大输出值 [] (默认) | 标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "数据类型",
+   "default": "从内部规则继承",
+   "values": "输出数据类型 继承: 从内部规则继承 (默认) | 继承: 通过反向传播继承 | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "信号属性"
+  },
+  {
+   "name": "锁定输出数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "用于防止定点工具覆盖输出数据类型的选项 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "向下",
+   "values": "指定定点运算的舍入模式 向下 (默认) | 向上 | 收敛 | 最邻近值 | 舍入 | 最简 | 零",
+   "group": "信号属性"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "信号属性"
+  },
+  {
+   "name": "模式",
+   "default": "Inherit",
+   "values": "选择数据类型模式 Inherit (默认) | Built in | Fixed Point",
+   "group": "信号属性"
+  },
+  {
+   "name": "数据类型覆盖",
+   "default": "",
+   "values": "为此信号指定数据类型覆盖模式 Inherit | Off",
+   "group": "信号属性"
+  },
+  {
+   "name": "符号性",
+   "default": "有符号",
+   "values": "定点数据的符号性 有符号 (默认) | 无符号",
+   "group": "信号属性"
+  },
+  {
+   "name": "字长",
+   "default": "16",
+   "values": "存储量化整数的字的位大小 16 (默认) | 从 0 到 32 的整数",
+   "group": "信号属性"
+  },
+  {
+   "name": "定标",
+   "default": "最佳精度",
+   "values": "定标定点数据的方法 最佳精度 (默认) | 二进制小数点 | 斜率和偏置",
+   "group": "信号属性"
+  },
+  {
+   "name": "小数长度",
+   "default": "0",
+   "values": "指定定点数据类型的小数长度 0 (默认) | 整数标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "斜率",
+   "default": "2^0",
+   "values": "指定定点数据类型的斜率。 2^0 (默认) | 正实数值标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "偏置",
+   "default": "0",
+   "values": "指定定点数据类型的偏置。 0 (默认) | 实数值标量",
+   "group": "信号属性"
+  },
+  {
+   "name": "状态名称",
+   "default": "’’",
+   "values": "模块状态的唯一名称 ’’ (默认) | 字母数字字符串",
+   "group": "状态属性"
+  },
+  {
+   "name": "状态名称必须解析为 Simulink 信号对象",
+   "default": "off",
+   "values": "要求状态名称解析为信号对象的选项 off (默认) | on",
+   "group": "状态属性"
+  }
+ ]
+}

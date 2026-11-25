@@ -1,0 +1,61 @@
+{
+ "key": "Multiband Combiner",
+ "title": "Multiband Combiner",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/RF Impairments and Components/Multiband_Combiner.md"
+ ],
+ "text": "Frequency-shift and combine signals, 1 input, 1 output, {Frequency offsets (Hz)} sets Frequency offsets [0; {Input sample rate (Hz)} sets the input signal sample, {Rate options} sets the options for processing rate Enforce single-rate, {Output sample rate options} sets the options for output sample rate, {Output sample rate (Hz)} sets the output signal sample and {Output delay (samples)} sets the output delay Read-only. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signals N samp -by- N chan matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output signal N out -by-1 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input sample rate (Hz)",
+   "default": "1e6",
+   "values": "Input signal sample rate 1e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency offsets (Hz)",
+   "default": "1e6]",
+   "values": "Frequency offsets [0 1e6] (default) | scalar | 1-by- N chan vector",
+   "group": ""
+  },
+  {
+   "name": "Rate options",
+   "default": "processing",
+   "values": "Options for processing rate Enforce single-rate processing (default) | Allow multirate processing",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate options",
+   "default": "Auto",
+   "values": "Options for output sample rate Auto (default) | Specify via property",
+   "group": ""
+  },
+  {
+   "name": "Output sample rate (Hz)",
+   "default": "3e6",
+   "values": "Output signal sample rate 3e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Output delay (samples)",
+   "default": "36",
+   "values": "Output delay Read-only: 36 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

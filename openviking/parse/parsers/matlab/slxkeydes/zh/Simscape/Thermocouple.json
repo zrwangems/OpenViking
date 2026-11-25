@@ -1,0 +1,13 @@
+{
+ "key": "Thermocouple",
+ "title": "Thermocouple",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sensors & Transducers/Thermocouple.md"
+ ],
+ "text": "将热电势差转换为电势差的传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

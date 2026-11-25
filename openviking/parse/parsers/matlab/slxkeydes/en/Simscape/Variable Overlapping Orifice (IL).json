@@ -1,0 +1,13 @@
+{
+ "key": "Variable Overlapping Orifice (IL)",
+ "title": "Variable Overlapping Orifice (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Orifices/Variable_Overlapping_Orifice_IL.md"
+ ],
+ "text": "Orifice created by open segments with variable overlap in an isothermal liquid system.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

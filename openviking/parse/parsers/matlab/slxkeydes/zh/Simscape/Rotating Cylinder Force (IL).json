@@ -1,0 +1,13 @@
+{
+ "key": "Rotating Cylinder Force (IL)",
+ "title": "Rotating Cylinder Force (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Actuators/Auxiliary Components/Rotating_Cylinder_Force_IL.md"
+ ],
+ "text": "等温液体系统中组件的向心压力梯度。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

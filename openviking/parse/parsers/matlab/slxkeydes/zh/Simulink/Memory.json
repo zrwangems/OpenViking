@@ -1,0 +1,62 @@
+{
+ "key": "Memory",
+ "title": "Memory",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discrete/Memory.md",
+  "HDL Coder/Discrete/Memory.md"
+ ],
+ "text": "输出上一个时间步的输入，输入 1 路、输出 1 路；按 {初始条件} 指定初始条件；{继承采样时间}、{线性化期间直接馈通输入} 指定在线性化和配平期间直接将输入作为输出、{针对离散采样时间信号进行线性化时视为单位延迟} 指定对于离散输入，线性化为单位延迟、{状态名称} 指定模块状态的唯一名称、{状态名称必须解析为 Simulink 信号对象} 指定要求将状态名称解析为信号对象，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量 | 矩阵 | N 维数组"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "延迟了一个主积分时间步的输入 标量 | 向量 | 矩阵 | N 维数组"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始条件",
+   "default": "0",
+   "values": "初始条件 0 (默认) | 标量 | 向量 | 矩阵 | N 维数组",
+   "group": "常设"
+  },
+  {
+   "name": "继承采样时间",
+   "default": "off",
+   "values": "继承采样时间 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "线性化期间直接馈通输入",
+   "default": "off",
+   "values": "在线性化和配平期间直接将输入作为输出 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "针对离散采样时间信号进行线性化时视为单位延迟",
+   "default": "off",
+   "values": "对于离散输入，线性化为单位延迟 off (默认) | on",
+   "group": "常设"
+  },
+  {
+   "name": "状态名称",
+   "default": "’’",
+   "values": "模块状态的唯一名称 ’’ (默认) | 字母数字字符串",
+   "group": "状态属性"
+  },
+  {
+   "name": "状态名称必须解析为 Simulink 信号对象",
+   "default": "off",
+   "values": "要求将状态名称解析为信号对象 off (默认) | on",
+   "group": "状态属性"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "key": "Divide by Constant HDL Optimized",
+ "title": "Divide by Constant HDL Optimized",
+ "toolbox": "Fixed-Point Designer HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Fixed-Point Designer HDL Support/Math Operations/Divide_by_Constant_HDL_Optimized.md"
+ ],
+ "text": "将输入除以常量并舍入到整数并生成优化的 HDL 代码，输入 2 路、输出 2 路；按 {舍入方法} 指定要使用的舍入方法；{有理除法的分母} 指定除数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "X",
+   "direction": "input",
+   "summary": "被除数 实数标量"
+  },
+  {
+   "name": "validIn",
+   "direction": "input",
+   "summary": "输入是否有效 布尔标量"
+  },
+  {
+   "name": "Y",
+   "direction": "output",
+   "summary": "除法和舍入运算的结果 标量"
+  },
+  {
+   "name": "validOut",
+   "direction": "output",
+   "summary": "输出数据是否有效 布尔标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "有理除法的分母",
+   "default": "10",
+   "values": "除数 10 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "舍入方法",
+   "default": "向下",
+   "values": "要使用的舍入方法 向下 (默认) | 向上 | 最邻近值 | 零 | 收敛",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "key": "PilotJoystick",
+ "title": "Pilot Joystick",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Animation/Animation Support Utilities/Pilot_Joystick.md",
+  "Aerospace Blockset/Animation/Animation Support Utilities/Pilot_Joystick_All.md"
+ ],
+ "text": "Provide joystick interface on Windows platform, 4 outputs, {Joystick ID} sets Joystick ID; {Output configuration} sets the joystick output configuration and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "roll",
+   "direction": "output",
+   "summary": "Roll range [-1, 1]"
+  },
+  {
+   "name": "pitch",
+   "direction": "output",
+   "summary": "Pitch range [-1, 1]"
+  },
+  {
+   "name": "yaw",
+   "direction": "output",
+   "summary": "Yaw range [-1, 1]"
+  },
+  {
+   "name": "throttle",
+   "direction": "output",
+   "summary": "Throttle range [ 0, 1]"
+  }
+ ],
+ "params": [
+  {
+   "name": "Joystick ID",
+   "default": "Joystick1",
+   "values": "Joystick ID Joystick1 (default) | Joystick2 | Joystick3 | Joystick4 | Joystick5 | Joystick6 | Joystick7 | Joystick8 | Joystick9 | Joystick10 | Joystick11 | Joystick12 | Joystick13 | Joystick14 | Joystick15 | Joystick16 | None",
+   "group": ""
+  },
+  {
+   "name": "Output configuration",
+   "default": "FourAxis",
+   "values": "Joystick output configuration FourAxis (default) | AllOutputs",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "1/30",
+   "values": "Sample time 1/30 (default) | -1 | scalar",
+   "group": ""
+  }
+ ]
+}

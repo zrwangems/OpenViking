@@ -1,0 +1,49 @@
+{
+ "key": "Uncertain State Space Block",
+ "title": "Uncertain State Space",
+ "toolbox": "Robust Control Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robust Control Toolbox/Uncertain_State_Space.md"
+ ],
+ "text": "Simulate uncertain system in Simulink, 1 input, 1 output, {Uncertain system variable (uss)} sets Uncertain system; {Uncertainty value (struct or [] to use nominal value)} sets the values to substitute for uncertain variables, {Initial states (nominal dynamics)} sets the initial state values of nominal system and {Initial states (uncertain dynamics)} sets the initial state values for uncertain dynamics. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "Output signal scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Uncertain system variable (uss)",
+   "default": "ss(ureal(’a’,-5),5,1,1)",
+   "values": "Uncertain system ss(ureal(’a’,-5),5,1,1) (default) | uss model | model or element that can be converted to uss",
+   "group": ""
+  },
+  {
+   "name": "Uncertainty value (struct or [] to use nominal value)",
+   "default": "[]",
+   "values": "Values to substitute for uncertain variables [] (default) | structure",
+   "group": ""
+  },
+  {
+   "name": "Initial states (nominal dynamics)",
+   "default": "[]",
+   "values": "Initial state values of nominal system [] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Initial states (uncertain dynamics)",
+   "default": "",
+   "values": "Initial state values for uncertain dynamics [] | vector",
+   "group": ""
+  }
+ ]
+}

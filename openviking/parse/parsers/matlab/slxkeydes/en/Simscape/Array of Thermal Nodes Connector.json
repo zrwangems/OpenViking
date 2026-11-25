@@ -1,0 +1,13 @@
+{
+ "key": "Array of Thermal Nodes Connector",
+ "title": "Array of Thermal Nodes Connector",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Thermal/Array_of_Thermal_Nodes_Connector.md"
+ ],
+ "text": "(To be removed) Concatenate arrays of thermal nodes into single array of thermal nodes port.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,38 @@
+{
+ "key": "ethercatgetslavestate",
+ "title": "Get SubDevice State",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/EtherCAT/Get_SubDevice_State.md"
+ ],
+ "text": "Get state of EtherCAT network, 1 output; {Network Device Index} sets the etherCAT network identifier, {SubDevice Name} sets the name of EtherCAT subordinate device character and {Sample time}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "State",
+   "direction": "output",
+   "summary": "State received from the selected device 1 | 2 | 4 | 8"
+  }
+ ],
+ "params": [
+  {
+   "name": "Network Device Index",
+   "default": "0",
+   "values": "EtherCAT network identifier 0 (default) | 0-11",
+   "group": ""
+  },
+  {
+   "name": "SubDevice Name",
+   "default": "",
+   "values": "Name of EtherCAT subordinate device character vector",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": ""
+  }
+ ]
+}

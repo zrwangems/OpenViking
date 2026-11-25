@@ -1,0 +1,13 @@
+{
+ "key": "T-Junction (TL)",
+ "title": "T-Junction (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/T_Junction_TL.md"
+ ],
+ "text": "热液体系统中的三通接头。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "ELLIOTSIG",
+ "title": "elliotsig",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Transfer Functions/elliotsig.md"
+ ],
+ "text": "Elliot 对称 sigmoid 传递函数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,37 @@
+{
+ "key": "IDDATA Sink",
+ "title": "Iddata Sink",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Iddata_Sink.md"
+ ],
+ "text": "将仿真数据作为 iddata 对象导出到 MATLAB 工作区，输入 2 路；{IDDATA Name} 指定 iddata 对象的名称、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Input",
+   "direction": "input",
+   "summary": "iddata 对象的输入 标量 | 向量"
+  },
+  {
+   "name": "Output",
+   "direction": "input",
+   "summary": "iddata 对象的输出 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "IDDATA Name",
+   "default": "data",
+   "values": "iddata 对象的名称 data (默认) | 变量名称",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.1",
+   "values": "采样时间（以秒为单位） 0.1 (默认) | 有限正数",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,312 @@
+{
+ "key": "Vehicle air suspension",
+ "title": "Solid Axle Suspension - Air Spring",
+ "toolbox": "Vehicle Dynamics Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Vehicle Dynamics Blockset/Suspension/Solid_Axle_Suspension_Air_Spring.md",
+  "Vehicle Dynamics Blockset/Suspension/Independent_Suspension_Air_Spring.md"
+ ],
+ "text": "Air spring solid axle suspension, 10 inputs, 6 outputs, {Toe angle vs steering angle slope, ToeStrgSlp} sets Toe angle steering slope; {Model type} sets the air suspension model, {Number of axles, NumAxl}, {Number of wheels by axle, NumWhlsByAxl} sets the number of wheels per axle, {Steered axle enable by axle, StrgEnByAxl} sets the boolean vector to enable axle steering, {Axle and wheels lumped principal moment of inertia about longitudinal axis, AxlIxx} sets the principal moment of inertia about longitudinal, {Axle and wheels lumped mass, AxlM}, {Track hardpoint coordinates relative to axle center, TrackCoords} sets the track hardpoint coordinates, {Suspension hardpoint coordinates relative to axle center, SuspCoords} sets the suspension hardpoint coordinates, {Wheel and axle interface compliance constant, KzWhlAxl}, {Wheel and axle interface compliance preload, F0zWhlAxl}, {Wheel and axle interface damping constant, CzWhlAxl [Ns/m]}, {Air suspension spring preload, F0z}, {Air suspension shock damping constant, Cz}, {Air spring effective area, EffctArea}, {Air spring volume in design position, VolDgnPos}, {Air spring isentropic exponent, IstpExp}, {Air spring outer diameter, OuterDiam}, {Air spring piston diameter, PistDiam}, {Air suspension maximum height, Hmax}, {Toe angle at steering center, Toe}, {Roll steer vs suspension height slope, RollStrgSlp} sets the steer angle suspension slope, {Caster angle at steering center, Caster}, {Caster angle vs suspension height slope, CasterHslp} sets the caster angle versus suspension height, {Caster angle vs steering angle slope, CasterStrgSlp} sets the caster angle versus steering angle slope, {Camber angle at steering center, Camber}, {Camber angle vs suspension height slope, CamberHslp} sets the camber angle versus suspension height, {Camber angle vs steering angle slope, CamberStrgSlp} sets the camber angle versus steering angle slope, {Suspension height vs steering angle slope, StrgHgtSlp} sets the suspension height versus steering angle, {Axle breakpoints, f_susp_axl_bp} sets the breakpoints, {Vertical axis suspension height breakpoints, f_susp_dz_bp} sets the breakpoints 1 -by, {Vertical axis air suspension pressure breakpoints, f_susp_press_bp} sets the vertical axis air suspension pressure breakpoints, {Vertical air axis suspension force and moment responses, f_susp_fmz} sets the output array zeros, {Air suspension shock damping constant, c_airSusp} sets the air suspension shock damping, {Suspension geometry responses, f_susp_geom} sets the suspension geometry responses zeros and {Steering angle breakpoints, f_susp_strgdelta_bp} sets the steering angle breakpoints 1 -by. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "WhlPz",
+   "direction": "input",
+   "summary": "Wheel z -axis displacement array"
+  },
+  {
+   "name": "WhlRe",
+   "direction": "input",
+   "summary": "Wheel effective radius array"
+  },
+  {
+   "name": "WhlVz",
+   "direction": "input",
+   "summary": "Wheel z -axis velocity array"
+  },
+  {
+   "name": "WhlFx",
+   "direction": "input",
+   "summary": "Longitudinal wheel force on vehicle array"
+  },
+  {
+   "name": "WhlFy",
+   "direction": "input",
+   "summary": "Lateral wheel force on vehicle array"
+  },
+  {
+   "name": "WhlM",
+   "direction": "input",
+   "summary": "Suspension moment on wheel array"
+  },
+  {
+   "name": "VehP",
+   "direction": "input",
+   "summary": "Vehicle displacement array"
+  },
+  {
+   "name": "VehV",
+   "direction": "input",
+   "summary": "Vehicle velocity array"
+  },
+  {
+   "name": "StrgAng",
+   "direction": "input",
+   "summary": "Steering angle, optional array"
+  },
+  {
+   "name": "Pressure",
+   "direction": "input",
+   "summary": "Pressure in air spring array"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "VehF",
+   "direction": "output",
+   "summary": "Suspension force on vehicle array"
+  },
+  {
+   "name": "VehM",
+   "direction": "output",
+   "summary": "Suspension moment on vehicle array"
+  },
+  {
+   "name": "WhlF",
+   "direction": "output",
+   "summary": "Suspension force on wheel array"
+  },
+  {
+   "name": "WhlV",
+   "direction": "output",
+   "summary": "Wheel velocity array"
+  },
+  {
+   "name": "WhlAng",
+   "direction": "output",
+   "summary": "Wheel camber, caster, toe angles array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model type",
+   "default": "Physical",
+   "values": "Air suspension model type Physical (default) | Mapped",
+   "group": ""
+  },
+  {
+   "name": "Number of axles, NumAxl",
+   "default": "2",
+   "values": "Number of axles 2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of wheels by axle, NumWhlsByAxl",
+   "default": "2]",
+   "values": "Number of wheels per axle [2 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Steered axle enable by axle, StrgEnByAxl",
+   "default": "0]",
+   "values": "Boolean vector to enable axle steering [1 0] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Axle and wheels lumped principal moment of inertia about longitudinal axis, AxlIxx",
+   "default": "200",
+   "values": "Principal moment of inertia about longitudinal axis 200 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Axle and wheels lumped mass, AxlM",
+   "default": "300",
+   "values": "Axle and wheels lumped mass 300 (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Track hardpoint coordinates relative to axle center, TrackCoords",
+   "default": "0]",
+   "values": "Track hardpoint coordinates [0 0 0 0;-1 1 -1 1;0 0 0 0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Suspension hardpoint coordinates relative to axle center, SuspCoords",
+   "default": "0]",
+   "values": "Suspension hardpoint coordinates [0 0 0 0;-1 1 -1 1;0 0 0 0] (default)",
+   "group": ""
+  },
+  {
+   "name": "Wheel and axle interface compliance constant, KzWhlAxl",
+   "default": "6437000",
+   "values": "Wheel and axle interface compliance constant 6437000 (default)",
+   "group": ""
+  },
+  {
+   "name": "Wheel and axle interface compliance preload, F0zWhlAxl",
+   "default": "9810",
+   "values": "Wheel and axle interface compliance preload 9810 (default)",
+   "group": ""
+  },
+  {
+   "name": "Wheel and axle interface damping constant, CzWhlAxl [Ns/m]",
+   "default": "10000",
+   "values": "Wheel and axle interface damping constant 10000 (default)",
+   "group": ""
+  },
+  {
+   "name": "Air suspension spring preload, F0z",
+   "default": "9810",
+   "values": "Air suspension spring preload 9810 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air suspension shock damping constant, Cz",
+   "default": "10000",
+   "values": "Air suspension shock damping constant 10000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring effective area, EffctArea",
+   "default": "0.21993",
+   "values": "Air spring effective area 0.21993 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring volume in design position, VolDgnPos",
+   "default": "0.08",
+   "values": "Air spring volume in design position 0.08 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring isentropic exponent, IstpExp",
+   "default": "1.4",
+   "values": "Air spring isentropic exponent 1.4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring outer diameter, OuterDiam",
+   "default": "0.6199",
+   "values": "Air spring outer diameter 0.6199 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air spring piston diameter, PistDiam",
+   "default": "0.236",
+   "values": "Air spring piston diameter 0.236 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Air suspension maximum height, Hmax",
+   "default": "0.5",
+   "values": "Air suspension maximum height 0.5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Toe angle at steering center, Toe",
+   "default": "0.0349",
+   "values": "Toe angle 0.0349 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Roll steer vs suspension height slope, RollStrgSlp",
+   "default": "-0.2269",
+   "values": "Steer angle suspension slope -0.2269 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Toe angle vs steering angle slope, ToeStrgSlp",
+   "default": "0.01",
+   "values": "Toe angle steering slope 0.01 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Caster angle at steering center, Caster",
+   "default": "0.0698",
+   "values": "Caster angle at steering center 0.0698 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Caster angle vs suspension height slope, CasterHslp",
+   "default": "-0.2269",
+   "values": "Caster angle versus suspension height slope -0.2269 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Caster angle vs steering angle slope, CasterStrgSlp",
+   "default": "0.01",
+   "values": "Caster angle versus steering angle slope 0.01 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Camber angle at steering center, Camber",
+   "default": "0.0698",
+   "values": "Camber angle at steering center 0.0698 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Camber angle vs suspension height slope, CamberHslp",
+   "default": "-0.2269",
+   "values": "Camber angle versus suspension height slope -0.2269 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Camber angle vs steering angle slope, CamberStrgSlp",
+   "default": "0.01",
+   "values": "Camber angle versus steering angle slope 0.01 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Suspension height vs steering angle slope, StrgHgtSlp",
+   "default": "0.1432",
+   "values": "Suspension height versus steering angle slope 0.1432 (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Axle breakpoints, f_susp_axl_bp",
+   "default": "2]",
+   "values": "Breakpoints [1 2] (default) | 1 -by- P array",
+   "group": ""
+  },
+  {
+   "name": "Vertical axis suspension height breakpoints, f_susp_dz_bp",
+   "default": "",
+   "values": "Breakpoints 1 -by- M array",
+   "group": ""
+  },
+  {
+   "name": "Vertical axis air suspension pressure breakpoints, f_susp_press_bp",
+   "default": "7]",
+   "values": "Vertical axis air suspension pressure breakpoints [0.50 7] (default) | 1 -by- M array",
+   "group": ""
+  },
+  {
+   "name": "Vertical air axis suspension force and moment responses, f_susp_fmz",
+   "default": "zeros(31,31,61,2,4)",
+   "values": "Output array zeros(31,31,61,2,4) (default) | M -by- N -by- O -by- P -by- 4 array",
+   "group": ""
+  },
+  {
+   "name": "Air suspension shock damping constant, c_airSusp",
+   "default": "6e6",
+   "values": "Air suspension shock damping constant 6e6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Suspension geometry responses, f_susp_geom",
+   "default": "zeros(31,61,2,3)",
+   "values": "Suspension geometry responses zeros(31,61,2,3) (default) | M -by- O -by- P -by- 3 array",
+   "group": ""
+  },
+  {
+   "name": "Steering angle breakpoints, f_susp_strgdelta_bp",
+   "default": "",
+   "values": "Steering angle breakpoints 1 -by- O array",
+   "group": ""
+  }
+ ]
+}

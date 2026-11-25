@@ -1,0 +1,93 @@
+{
+ "key": "codertarget.tic2000.blocks.SPIWrite",
+ "title": "SPI Transmit",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2803x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2805x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2806x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C280x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C281x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2833x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/C2834x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F280013x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F280015x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28002x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28003x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28004x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2807x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xD/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2837xS/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p55x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28p65x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/SPI_Transmit.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/SPI_Transmit.md"
+ ],
+ "text": "Transmit data through Serial Peripheral Interface (SPI) on target, 1 input, 1 output, {SPI module} sets SPI module to write data; {Clock polarity} sets the sPI clock polarity, {Clock phase} sets the sPI clock phase, {Enable blocking mode} sets the sPI blocking mode enable, {Data bits} sets the number of bits in SPI transfer, {Chip select calling method} sets the method to select SPI peripheral device Provided by the SPI, {Chip select pin polarity} sets the sPI chip select pin polarity and {Chip select pin} sets the sPI peripheral select pin. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Tx",
+   "direction": "input",
+   "summary": "SPI Transmit data vector"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "SPI transmit status 0 | 1 | 2"
+  }
+ ],
+ "params": [
+  {
+   "name": "SPI module",
+   "default": "SPI_A",
+   "values": "SPI module to write data SPI_A (default) | SPI_B | SPI_C | SPI_D",
+   "group": "Main"
+  },
+  {
+   "name": "Clock polarity",
+   "default": "Rising_edge",
+   "values": "SPI clock polarity Rising_edge (default) | Falling_edge",
+   "group": "Main"
+  },
+  {
+   "name": "Clock phase",
+   "default": "No_delay",
+   "values": "SPI clock phase No_delay (default) | Delay_half_cycle",
+   "group": "Main"
+  },
+  {
+   "name": "Enable blocking mode",
+   "default": "off",
+   "values": "SPI blocking mode enable off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Data bits",
+   "default": "8",
+   "values": "Number of bits in SPI transfer 8 (default) | integer in [1 16]",
+   "group": "Advanced"
+  },
+  {
+   "name": "Chip select calling method",
+   "default": "peripheral",
+   "values": "Method to select SPI peripheral device Provided by the SPI peripheral (default) | Explicit GPIO calls",
+   "group": "Advanced"
+  },
+  {
+   "name": "Chip select pin polarity",
+   "default": "low",
+   "values": "SPI chip select pin polarity Active low (default) | Active high",
+   "group": "Advanced"
+  },
+  {
+   "name": "Chip select pin",
+   "default": "0",
+   "values": "SPI peripheral select pin 0 (default) | positive integer scalar",
+   "group": "Advanced"
+  }
+ ]
+}

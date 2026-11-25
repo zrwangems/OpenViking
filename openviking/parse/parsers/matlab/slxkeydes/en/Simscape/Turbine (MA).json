@@ -1,0 +1,13 @@
+{
+ "key": "Turbine (MA)",
+ "title": "Turbine (MA)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Moist Air/Turbomachinery/Turbine_MA.md"
+ ],
+ "text": "Turbine in a moist air network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

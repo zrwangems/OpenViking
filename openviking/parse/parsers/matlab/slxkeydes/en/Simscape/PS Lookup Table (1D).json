@@ -1,0 +1,13 @@
+{
+ "key": "PS Lookup Table (1D)",
+ "title": "PS Lookup Table (1D)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Lookup Tables/PS_Lookup_Table_1D.md"
+ ],
+ "text": "Approximate one-dimensional function using specified lookup method.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

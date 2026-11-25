@@ -1,0 +1,13 @@
+{
+ "key": "Belt Pulley",
+ "title": "Belt Pulley",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Belt_Pulley.md"
+ ],
+ "text": "Power transmission element with frictional belt wrapped around pulley circumference.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

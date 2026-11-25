@@ -1,0 +1,99 @@
+{
+ "key": "Task Space Motion Model",
+ "title": "Task Space Motion Model",
+ "toolbox": "Robotics System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Robotics System Toolbox/Manipulator Algorithms/Task_Space_Motion_Model.md"
+ ],
+ "text": "根据任务空间输入对刚体树运动建模，输入 3 路、输出 3 路；按 {Joint damping} 指定阻尼比 [1；{Rigid body tree} 指定刚体树 twoJointRigidBodyTree、{End effector} 指定末端执行器刚体、{Proportional gain} 指定 PD Control 的比例增益 500*eye、{Derivative gain} 用于 PD 控制的微分增益 100*eye、{Show external force input} 显示 FExt 端口、{Initial joint configuration} 指定初始关节位置、{Initial joint velocities} 指定初始关节速度、{Simulate using} 指定要运行的仿真类型 Interpreted，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "refPose",
+   "direction": "input",
+   "summary": "期望的末端执行器位姿 4-by-4 matrix"
+  },
+  {
+   "name": "refVel",
+   "direction": "input",
+   "summary": "期望的末端执行器速度 6-element vector"
+  },
+  {
+   "name": "FExt",
+   "direction": "input",
+   "summary": "外力 6-by- m matrix"
+  },
+  {
+   "name": "q",
+   "direction": "output",
+   "summary": "关节位置 n -element vector"
+  },
+  {
+   "name": "qd",
+   "direction": "output",
+   "summary": "关节速度 n -element"
+  },
+  {
+   "name": "qdd",
+   "direction": "output",
+   "summary": "关节加速度 n -element"
+  }
+ ],
+ "params": [
+  {
+   "name": "Rigid body tree",
+   "default": "object",
+   "values": "刚体树 twoJointRigidBodyTree object (default) | RigidBodyTree object",
+   "group": ""
+  },
+  {
+   "name": "End effector",
+   "default": "tool",
+   "values": "末端执行器刚体 tool (default)",
+   "group": ""
+  },
+  {
+   "name": "Proportional gain",
+   "default": "500*eye(6)",
+   "values": "PD Control 的比例增益 500*eye(6) (default) | 6-by-6 matrix",
+   "group": ""
+  },
+  {
+   "name": "Derivative gain",
+   "default": "100*eye(6)",
+   "values": "用于 PD 控制的微分增益 100*eye(6) (default) | 6-by-6 matrix",
+   "group": ""
+  },
+  {
+   "name": "Joint damping",
+   "default": "1]",
+   "values": "阻尼比 [1 1] (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Show external force input",
+   "default": "off",
+   "values": "显示 FExt 端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Initial joint configuration",
+   "default": "0",
+   "values": "初始关节位置 0 (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Initial joint velocities",
+   "default": "0",
+   "values": "初始关节速度 0 (default) | n -element vector | scalar",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "要运行的仿真类型 Interpreted execution (default) | Code generation",
+   "group": ""
+  }
+ ]
+}

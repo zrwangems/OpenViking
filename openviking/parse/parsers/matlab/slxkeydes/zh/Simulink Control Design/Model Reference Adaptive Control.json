@@ -1,0 +1,266 @@
+{
+ "key": "Model Reference Adaptive Control",
+ "title": "Model Reference Adaptive Control",
+ "toolbox": "Simulink Control Design",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Control Design/Adaptive Control/Model_Reference_Adaptive_Control.md"
+ ],
+ "text": "计算控制动作以使受控系统跟踪参考模型，输入 3 路、输出 4 路；按 {Feature type} 指定扰动模型特征类型；{A} 指定标称模型状态矩阵、{B} 指定标称模型控制有效矩阵、{Am} 指定参考模型状态矩阵、{Bm} 指定参考模型控制有效矩阵、{Ahat} 指定估计器被控对象模型状态矩阵、{Adapt Ahat} 用于自适应估计器被控对象模型状态矩阵、{Learning rate (gamma_a)} 用于自适应估计器被控对象模型状态矩阵的学习率、{Use learning modification} 用于启用学习修正以更新估计器模型状态矩阵、{Bhat} 指定估计器被控对象模型控制有效矩阵、{Adapt Bhat} 用于自适应估计器被控对象模型控制有效矩阵、{Learning rate (gamma_b)} 用于自适应估计器被控对象模型控制有效矩阵的学习率、{Specify estimator feedback gain} 用于启用估计器反馈增益指定、{Estimator feedback gain} 指定估计器反馈增益、{Output estimated parameters} 用于输出估计器状态矩阵和控制有效矩阵、{Feedback gains} 用于模型匹配的反馈增益、{Adapt feedback gains} 用于自适应反馈增益、{Learning rate (gamma_x)} 用于自适应反馈增益的学习率、{Feedforward gains} 用于模型匹配的前馈增益、{Adapt feedforward gains} 用于自适应前馈增益、{Learning rate (gamma_r)} 用于自适应前馈增益的学习率、{Enable disturbance adaptation} 用于启用对系统扰动和不确定性进行自适应、{Learning rate (gamma_w)} 用于调整扰动模型参数的学习率、{Channel learning rate (Q)} 用于 Lyapunov 求解的通道学习率、{Number of RBF centers} 指定扰动模型的径向基函数中心数、{Centers min} 指定径向基函数中心的下限、{Centers max} 指定径向基函数中心的上限、{Bandwidth} 指定径向基函数标准差、{Number of neurons in hidden layer} 指定神经元数、{Hidden layer learning rate (gamma_v)} 用于更新神经网络权重的学习率、{Output disturbance/uncertancy estimate} 用于输出扰动和不确定性估计、{Modification Methods} 用于更新参数的修正方法、{Sigma} 指定参数更新的动量权重、{Use discrete-time integration in adaptation} 指定在自适应中使用离散时间积分、{Sample time} 指定采样时间、{Integration method} 指定离散积分方法 Forward，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "r",
+   "direction": "input",
+   "summary": "参考信号 scalar signal | vector signal"
+  },
+  {
+   "name": "state",
+   "direction": "input",
+   "summary": "受控系统状态 vector signal"
+  },
+  {
+   "name": "phi",
+   "direction": "input",
+   "summary": "扰动模型特征 vector signal | matrix signal"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "控制输入 scalar signal | matrix signal"
+  },
+  {
+   "name": "u_ad",
+   "direction": "output",
+   "summary": "扰动和不确定性估计 scalar signal | matrix signal"
+  },
+  {
+   "name": "Ahat",
+   "direction": "output",
+   "summary": "估计器状态矩阵 matrix signal"
+  },
+  {
+   "name": "Bhat",
+   "direction": "output",
+   "summary": "估计器控制有效矩阵 vector signal | matrix signal"
+  }
+ ],
+ "params": [
+  {
+   "name": "A",
+   "default": "0",
+   "values": "标称模型状态矩阵 0 (default) | square matrix",
+   "group": "System"
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "标称模型控制有效矩阵 1 (default) | vector | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Am",
+   "default": "-1",
+   "values": "参考模型状态矩阵 -1 (default) | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Bm",
+   "default": "1",
+   "values": "参考模型控制有效矩阵 1 (default) | vector | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Ahat",
+   "default": "0",
+   "values": "估计器被控对象模型状态矩阵 0 (default) | square matrix",
+   "group": "System"
+  },
+  {
+   "name": "Adapt Ahat",
+   "default": "on",
+   "values": "用于自适应估计器被控对象模型状态矩阵的选项 on (default) | off",
+   "group": "System"
+  },
+  {
+   "name": "Learning rate (gamma_a)",
+   "default": "1",
+   "values": "用于自适应估计器被控对象模型状态矩阵的学习率 1 (default) | finite positive scalar",
+   "group": "System"
+  },
+  {
+   "name": "Use learning modification",
+   "default": "on",
+   "values": "用于启用学习修正以更新估计器模型状态矩阵的选项 on (default) | off",
+   "group": "System"
+  },
+  {
+   "name": "Bhat",
+   "default": "1",
+   "values": "估计器被控对象模型控制有效矩阵 1 (default) | vector | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Adapt Bhat",
+   "default": "on",
+   "values": "用于自适应估计器被控对象模型控制有效矩阵的选项 on (default) | off",
+   "group": "System"
+  },
+  {
+   "name": "Learning rate (gamma_b)",
+   "default": "1",
+   "values": "用于自适应估计器被控对象模型控制有效矩阵的学习率 1 (default) | finite positive scalar",
+   "group": "System"
+  },
+  {
+   "name": "Specify estimator feedback gain",
+   "default": "off",
+   "values": "用于启用估计器反馈增益指定的选项 off (default) | on",
+   "group": "System"
+  },
+  {
+   "name": "Estimator feedback gain",
+   "default": "-1",
+   "values": "估计器反馈增益 -1 (default) | matrix",
+   "group": "System"
+  },
+  {
+   "name": "Output estimated parameters",
+   "default": "off",
+   "values": "用于输出估计器状态矩阵和控制有效矩阵的选项 off (default) | on",
+   "group": "System"
+  },
+  {
+   "name": "Feedback gains",
+   "default": "0",
+   "values": "用于模型匹配的反馈增益 0 (default) | finite scalar | matrix of finite values",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Adapt feedback gains",
+   "default": "on",
+   "values": "用于自适应反馈增益的选项 on (default) | off",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Learning rate (gamma_x)",
+   "default": "1",
+   "values": "用于自适应反馈增益的学习率 1 (default) | finite positive scalar",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Feedforward gains",
+   "default": "0",
+   "values": "用于模型匹配的前馈增益 0 (default) | finite scalar | matrix of finite values",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Adapt feedforward gains",
+   "default": "on",
+   "values": "用于自适应前馈增益的选项 on (default) | off",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Learning rate (gamma_r)",
+   "default": "1",
+   "values": "用于自适应前馈增益的学习率 1 (default) | finite positive scalar",
+   "group": "Control Gains"
+  },
+  {
+   "name": "Enable disturbance adaptation",
+   "default": "on",
+   "values": "用于启用对系统扰动和不确定性进行自适应的选项 on (default) | off",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Learning rate (gamma_w)",
+   "default": "1",
+   "values": "用于调整扰动模型参数的学习率 1 (default) | finite positive scalar",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Channel learning rate (Q)",
+   "default": "1",
+   "values": "用于 Lyapunov 求解的通道学习率 1 (default) | finite positive scalar | vector of length N containing positive finite values | symmetric positive definite matrix of size N -by- N",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Feature type",
+   "default": "State",
+   "values": "扰动模型特征类型 State (default) | Radial Basis Function | Single Hidden Layer Network | Use External Source for Feature",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Number of RBF centers",
+   "default": "20",
+   "values": "扰动模型的径向基函数中心数 20 (default) | positive integer",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Centers min",
+   "default": "-1",
+   "values": "径向基函数中心的下限 -1 (default) | finite scalar | vector",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Centers max",
+   "default": "1",
+   "values": "径向基函数中心的上限 1 (default) | finite scalar | vector",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Bandwidth",
+   "default": "5",
+   "values": "径向基函数标准差 5 (default) | positive scalar | vector",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Number of neurons in hidden layer",
+   "default": "10",
+   "values": "神经元数 10 (default) | positive integer",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Hidden layer learning rate (gamma_v)",
+   "default": "0.1",
+   "values": "用于更新神经网络权重的学习率 0.1 (default) | positive scalar",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Output disturbance/uncertancy estimate",
+   "default": "on",
+   "values": "用于输出扰动和不确定性估计的选项 on (default) | off",
+   "group": "Disturbance Model"
+  },
+  {
+   "name": "Modification Methods",
+   "default": "None",
+   "values": "用于更新参数的修正方法 None (default) | e-Modification | Sigma Modification",
+   "group": "Learning Modification"
+  },
+  {
+   "name": "Sigma",
+   "default": "0.1",
+   "values": "参数更新的动量权重 0.1 (default) | scalar",
+   "group": "Learning Modification"
+  },
+  {
+   "name": "Use discrete-time integration in adaptation",
+   "default": "off",
+   "values": "在自适应中使用离散时间积分 off (default) | on",
+   "group": "Learning Modification"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.05",
+   "values": "采样时间 0.05 (default) | finite positive scalar",
+   "group": "Learning Modification"
+  },
+  {
+   "name": "Integration method",
+   "default": "Euler",
+   "values": "离散积分方法 Forward Euler (default) | Backward Euler | Trapezoidal",
+   "group": "Learning Modification"
+  }
+ ]
+}

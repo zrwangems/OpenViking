@@ -1,0 +1,32 @@
+{
+ "key": "Simulation 3D Probabilistic Radar Configuration",
+ "title": "Simulation 3D Probabilistic Radar Configuration",
+ "toolbox": "Automated Driving Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Automated Driving Toolbox/Simulation 3D/Simulation_3D_Probabilistic_Radar_Configuration.md"
+ ],
+ "text": "在 3D 仿真环境中配置概率雷达特征；按 {Radar cross sections (dBsm)} 指定雷达截面积；{Radar targets} 指定对应于雷达目标的标识符、{Default radar cross section (dBsm)} 指定默认雷达截面积，按实例取值。",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Radar targets",
+   "default": "[]",
+   "values": "对应于雷达目标的标识符 [] (default) | positive integer | L -length vector of unique positive integers",
+   "group": ""
+  },
+  {
+   "name": "Radar cross sections (dBsm)",
+   "default": "{}",
+   "values": "雷达截面积 {} (default) | real-valued Q -by- P matrix | L -length cell array of real-valued Q 1 -by- P 1, …, Q L -by- P L matrices",
+   "group": ""
+  },
+  {
+   "name": "Default radar cross section (dBsm)",
+   "default": "-20",
+   "values": "默认雷达截面积 -20 (default) | real scalar",
+   "group": ""
+  }
+ ]
+}

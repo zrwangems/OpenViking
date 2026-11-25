@@ -1,0 +1,13 @@
+{
+ "key": "Inertia Sensor",
+ "title": "Inertia Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Body Elements/Inertia_Sensor.md"
+ ],
+ "text": "用于测量刚体组或机构惯性特性的传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

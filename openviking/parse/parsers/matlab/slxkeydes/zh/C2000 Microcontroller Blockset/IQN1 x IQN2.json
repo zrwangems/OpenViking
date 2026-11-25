@@ -1,0 +1,13 @@
+{
+ "key": "IQN1 x IQN2",
+ "title": "IQN1 x IQN2",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/IQN1_x_IQN2.md"
+ ],
+ "text": "将具有不同 Q 格式的 IQ 数相乘。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,55 @@
+{
+ "key": "Register Write",
+ "title": "Register Write",
+ "toolbox": "SoC Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "SoC Blockset/Processor I_O/Register_Write.md"
+ ],
+ "text": "将数据写入指定 IP 核上的寄存器区域，输入 1 路、输出 1 路；按 {Output sink} 指定将输出定向到端口或基础工作区 To output；{Simulink.Parameter object name} 指定 Simulink.Parameter 对象的名称、{Register name} 指定 IP 核中寄存器的名称、{Device name} 指定 IP 核设备的路径和文件名、{Offset address} 指定从 IP 核基地址到寄存器的偏移量 hex2dec，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "数据输入 vector"
+  },
+  {
+   "name": "msg",
+   "direction": "output",
+   "summary": "输出寄存器数据消息 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output sink",
+   "default": "port",
+   "values": "将输出定向到端口或基础工作区 To output port (default) | Base workspace | IP core register",
+   "group": ""
+  },
+  {
+   "name": "Simulink.Parameter object name",
+   "default": "A",
+   "values": "Simulink.Parameter 对象的名称 A (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Register name",
+   "default": "RegA",
+   "values": "IP 核中寄存器的名称 RegA (default) | character vector",
+   "group": ""
+  },
+  {
+   "name": "Device name",
+   "default": "/dev/mwipcore",
+   "values": "IP 核设备的路径和文件名 /dev/mwipcore (default) | character array",
+   "group": ""
+  },
+  {
+   "name": "Offset address",
+   "default": "hex2dec(’0100’)",
+   "values": "从 IP 核基地址到寄存器的偏移量 hex2dec(’0100’) (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

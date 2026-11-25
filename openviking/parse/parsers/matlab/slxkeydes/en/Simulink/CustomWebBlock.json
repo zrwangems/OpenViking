@@ -1,0 +1,182 @@
+{
+ "key": "CustomWebBlock",
+ "title": "Circular Gauge",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Dashboard/Customizable Blocks/Circular_Gauge.md",
+  "Simulink/Dashboard/Customizable Blocks/Horizontal_Gauge.md",
+  "Simulink/Dashboard/Customizable Blocks/Vertical_Gauge.md",
+  "Simulink/Dashboard/Customizable Blocks/Display.md",
+  "Simulink/Dashboard/Customizable Blocks/Half_Gauge.md",
+  "Simulink/Dashboard/Customizable Blocks/Lamp.md",
+  "Simulink/Dashboard/Customizable Blocks/Quarter_Gauge.md"
+ ],
+ "text": "Display signal value during simulation on circular gauge with customizable appearance, {Label} sets Position of label displaying name of connected element; {Connection} sets the signal to connect and display signal connection, {Minimum}, {Maximum}, {Tick Interval} sets the interval between major tick marks, {Direction}, {Lock Aspect Ratio} sets the option to maintain block aspect ratio, {Scale Colors} sets the color indications on gauge scale colors for scale, {Origin} sets the value on scale from which needle moves and value bar, {Arc}, {Start Angle} sets the angular location of scale minimum, {Inner Radius} sets the radius of free end of scale tick marks, {Outer Radius} sets the span line radius scalar, {X Offset} sets the horizontal offset of left edge of scale bounding box from left edge of block, {Y Offset} sets the vertical offset of top edge of scale bounding box from top edge of block, {Width} scales width scalar, {Height} scales height scalar, {Tick Color} sets the color of scale tick marks, span line, and block name, {Minor Tick Height} sets the height of minor tick marks on scale, {Label Color} scales label font color, {Label Radius} sets the distance of scale labels from scale center, {Rotate Image} sets the rotation of needle image, {Offset from Center} sets the offset of needle image center from scale, {Use Background Color} sets the option to specify solid block background, {Color} sets the block background color, {Opacity} sets the block background opacity and {Corner radius} sets the offset of outer edge of area with block background color from tick marks. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Connection",
+   "default": "",
+   "values": "Signal to connect and display signal connection options",
+   "group": "Parameters"
+  },
+  {
+   "name": "Minimum",
+   "default": "0",
+   "values": "Minimum tick mark value 0 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Maximum",
+   "default": "100",
+   "values": "Maximum tick mark value 100 (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Tick Interval",
+   "default": "auto",
+   "values": "Interval between major tick marks auto (default) | scalar",
+   "group": "Parameters"
+  },
+  {
+   "name": "Direction",
+   "default": "Clockwise",
+   "values": "Direction of increasing scale values Clockwise (default) | Counterclockwise",
+   "group": "Parameters"
+  },
+  {
+   "name": "Label",
+   "default": "Hide",
+   "values": "Position of label displaying name of connected element Hide (default) | Bottom | Top",
+   "group": "Parameters"
+  },
+  {
+   "name": "Lock Aspect Ratio",
+   "default": "on",
+   "values": "Option to maintain block aspect ratio on (default) | off",
+   "group": "Parameters"
+  },
+  {
+   "name": "Scale Colors",
+   "default": "",
+   "values": "Color indications on gauge scale colors for scale ranges",
+   "group": "Parameters"
+  },
+  {
+   "name": "Origin",
+   "default": "auto",
+   "values": "Value on scale from which needle moves and value bar grows auto (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Arc",
+   "default": "270",
+   "values": "Arc length of scale 270 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Start Angle",
+   "default": "135",
+   "values": "Angular location of scale minimum 135 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Inner Radius",
+   "default": "",
+   "values": "Radius of free end of scale tick marks scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Outer Radius",
+   "default": "",
+   "values": "Span line radius scalar",
+   "group": "Design"
+  },
+  {
+   "name": "X Offset",
+   "default": "",
+   "values": "Horizontal offset of left edge of scale bounding box from left edge of block scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Y Offset",
+   "default": "",
+   "values": "Vertical offset of top edge of scale bounding box from top edge of block scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Width",
+   "default": "",
+   "values": "Scale width scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Height",
+   "default": "",
+   "values": "Scale height scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Tick Color",
+   "default": "",
+   "values": "Color of scale tick marks, span line, and block name [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Minor Tick Height",
+   "default": "1",
+   "values": "Height of minor tick marks on scale 1 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Label Color",
+   "default": "",
+   "values": "Scale label font color [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Label Radius",
+   "default": "",
+   "values": "Distance of scale labels from scale center scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Rotate Image",
+   "default": "180",
+   "values": "Rotation of needle image 180 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Offset from Center",
+   "default": "0",
+   "values": "Offset of needle image center from scale center 0 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Use Background Color",
+   "default": "off",
+   "values": "Option to specify solid block background color off (default) | on",
+   "group": "Design"
+  },
+  {
+   "name": "Color",
+   "default": "",
+   "values": "Block background color [r g b] vector",
+   "group": "Design"
+  },
+  {
+   "name": "Opacity",
+   "default": "1",
+   "values": "Block background opacity 1 (default) | scalar",
+   "group": "Design"
+  },
+  {
+   "name": "Corner radius",
+   "default": "",
+   "values": "Offset of outer edge of area with block background color from tick marks scalar",
+   "group": "Design"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Nonlinear Reluctance",
+ "title": "Nonlinear Reluctance",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Passive/Nonlinear_Reluctance.md"
+ ],
+ "text": "具有可选滞回的线性或非线性磁阻。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

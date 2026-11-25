@@ -1,0 +1,13 @@
+{
+ "key": "DC Motor",
+ "title": "DC Motor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Brushed Motors/DC_Motor.md"
+ ],
+ "text": "具有电气和转矩特性以及故障建模的直流电动机模型。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

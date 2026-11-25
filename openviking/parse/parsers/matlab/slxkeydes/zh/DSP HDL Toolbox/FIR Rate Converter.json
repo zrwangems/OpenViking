@@ -1,0 +1,88 @@
+{
+ "key": "FIR Rate Converter",
+ "title": "FIR Rate Converter",
+ "toolbox": "DSP HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP HDL Toolbox/Filtering/FIR_Rate_Converter.md"
+ ],
+ "text": "对输入信号进行上采样、滤波和下采样，输入 2 路、输出 3 路；按 {Rounding mode} 指定定点运算的舍入模式；{Interpolation factor} 指定插值因子、{Decimation factor} 指定抽取因子、{FIR filter coefficients} 指定 FIR 滤波器系数 firpm、{Saturate on integer overflow} 指定溢出操作的方法、{Coefficients} 指定 FIR 滤波器系数数据类型 fixdt、{Output} 输出数据样本的数据类型、{Enable ready output port} 启用 ready 控制信号，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入数据样本 scalar | row vector"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "指示有效的输入数据 scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "输出数据样本 scalar | row vector"
+  },
+  {
+   "name": "valid",
+   "direction": "output",
+   "summary": "指示有效的输出数据 scalar"
+  },
+  {
+   "name": "ready",
+   "direction": "output",
+   "summary": "指示模块已准备好接收新输入数据 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Interpolation factor",
+   "default": "3",
+   "values": "插值因子 3 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "Decimation factor",
+   "default": "2",
+   "values": "抽取因子 2 (default) | positive integer",
+   "group": "Main"
+  },
+  {
+   "name": "FIR filter coefficients",
+   "default": "0])",
+   "values": "FIR 滤波器系数 firpm(70, [0 0.28 0.32 1],[1 1 0 0]) (default) | row vector",
+   "group": "Main"
+  },
+  {
+   "name": "Rounding mode",
+   "default": "Floor",
+   "values": "定点运算的舍入模式 Floor (default) | Ceiling | Convergent | Nearest | Round | Zero",
+   "group": "Data Types"
+  },
+  {
+   "name": "Saturate on integer overflow",
+   "default": "off",
+   "values": "溢出操作的方法 off (default) | on",
+   "group": "Data Types"
+  },
+  {
+   "name": "Coefficients",
+   "default": "fixdt(1,16,16)",
+   "values": "FIR 滤波器系数数据类型 fixdt(1,16,16) (default)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Output",
+   "default": "input",
+   "values": "输出数据样本的数据类型 Inherit: Same word length as input (default) | Inherit via internal rule | fixdt(s,wl,fl)",
+   "group": "Data Types"
+  },
+  {
+   "name": "Enable ready output port",
+   "default": "off",
+   "values": "启用 ready 控制信号的选项 off (default) | on",
+   "group": "Control Ports"
+  }
+ ]
+}

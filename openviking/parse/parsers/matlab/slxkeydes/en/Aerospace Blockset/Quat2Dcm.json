@@ -1,0 +1,24 @@
+{
+ "key": "Quat2Dcm",
+ "title": "Quaternions to Direction Cosine Matrix",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Quaternions_to_Direction_Cosine_Matrix.md"
+ ],
+ "text": "Convert quaternion vector to direction cosine matrix, 1 input, 1 output.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "q",
+   "direction": "input",
+   "summary": "Quaternion 4-by-1 vector"
+  },
+  {
+   "name": "DCM be",
+   "direction": "output",
+   "summary": "Direction cosine matrix 3-by-3 matrix"
+  }
+ ],
+ "params": []
+}

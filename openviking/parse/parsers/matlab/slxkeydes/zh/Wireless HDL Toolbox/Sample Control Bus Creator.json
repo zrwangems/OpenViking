@@ -1,0 +1,34 @@
+{
+ "key": "Sample Control Bus Creator",
+ "title": "Sample Control Bus Creator",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Utilities/Sample_Control_Bus_Creator.md"
+ ],
+ "text": "创建与 Wireless HDL Toolbox 模块配合使用的控制信号总线，输入 3 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "start",
+   "direction": "input",
+   "summary": "帧起始 scalar"
+  },
+  {
+   "name": "end",
+   "direction": "input",
+   "summary": "帧结束 scalar"
+  },
+  {
+   "name": "valid",
+   "direction": "input",
+   "summary": "样本有效性 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  }
+ ],
+ "params": []
+}

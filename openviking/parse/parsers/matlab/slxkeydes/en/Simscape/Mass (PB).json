@@ -1,0 +1,13 @@
+{
+ "key": "Mass (PB)",
+ "title": "Mass (PB)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Translational/Elements/Mass_PB.md"
+ ],
+ "text": "Point mass with gravitational effects.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

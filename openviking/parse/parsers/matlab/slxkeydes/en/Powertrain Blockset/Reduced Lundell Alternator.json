@@ -1,0 +1,117 @@
+{
+ "key": "Reduced Lundell Alternator",
+ "title": "Reduced Lundell Alternator",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Energy Storage and Auxiliary Drive/Alternator/Reduced_Lundell_Alternator.md"
+ ],
+ "text": "Reduced Lundell (claw-pole) alternator with an external voltage regulator, 3 outputs; {Voltage constant, Kv} sets the constant .1, {Field winding resistance, Rf} sets the resistance, {Field winding inductance, Lf} sets the inductance, {Stator winding resistance, Rs} sets the resistance, {Diode voltage drop, Vd} sets the voltage, {Regulator bandwidth, Fv} sets the bandwidth, {Current filter bandwidth, Fc} sets the bandwidth, {Field voltage max, Vfmax} sets the maximum field voltage, {Field voltage min, Vfmin} sets the minimum field voltage, {Coulomb friction, Kc} sets the friction, {Viscous friction, Kb} sets the friction and {Windage, Kw}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RefVolt",
+   "direction": "unknown",
+   "summary": "Alternator output voltage command scalar"
+  },
+  {
+   "name": "AltSpd",
+   "direction": "unknown",
+   "summary": "Angular speed scalar"
+  },
+  {
+   "name": "LdCurr",
+   "direction": "unknown",
+   "summary": "Alternator load current scalar"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "AltVolt",
+   "direction": "output",
+   "summary": "Alternator output voltage scalar"
+  },
+  {
+   "name": "LdTrq",
+   "direction": "output",
+   "summary": "Motor shaft torque scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Voltage constant, Kv",
+   "default": ".1",
+   "values": "Constant .1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field winding resistance, Rf",
+   "default": "0.2",
+   "values": "Resistance 0.2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field winding inductance, Lf",
+   "default": "0.002",
+   "values": "Inductance 0.002 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator winding resistance, Rs",
+   "default": "0.01",
+   "values": "Resistance 0.01 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Diode voltage drop, Vd",
+   "default": "0.7",
+   "values": "Voltage 0.7 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Regulator bandwidth, Fv",
+   "default": "2000",
+   "values": "Bandwidth 2000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Current filter bandwidth, Fc",
+   "default": "1000",
+   "values": "Bandwidth 1000 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field voltage max, Vfmax",
+   "default": "100",
+   "values": "Maximum field voltage 100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Field voltage min, Vfmin",
+   "default": "-100",
+   "values": "Minimum field voltage -100 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Coulomb friction, Kc",
+   "default": "0",
+   "values": "Friction 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Viscous friction, Kb",
+   "default": "0",
+   "values": "Friction 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Windage, Kw",
+   "default": "0",
+   "values": "Windage 0 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

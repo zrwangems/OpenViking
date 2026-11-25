@@ -1,0 +1,50 @@
+{
+ "key": "Backlash",
+ "title": "Backlash",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Discontinuities/Backlash.md",
+  "HDL Coder/Discontinuities/Backlash.md"
+ ],
+ "text": "对间隙系统行为进行建模，输入 1 路、输出 1 路；按 {死区宽度} 指定死区的宽度；{初始输出}、{输入处理} 指定基于采样或基于帧的处理 元素作为通道、{启用过零检测}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量 | 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出信号 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "死区宽度",
+   "default": "1",
+   "values": "指定死区的宽度 1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "初始输出",
+   "default": "0",
+   "values": "指定初始输出值 0 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "输入处理",
+   "default": "元素作为通道(基于采样)",
+   "values": "指定基于采样或基于帧的处理 元素作为通道(基于采样) (默认) | 列作为通道(基于帧)",
+   "group": ""
+  },
+  {
+   "name": "启用过零检测",
+   "default": "on",
+   "values": "启用过零检测 on (默认) | off",
+   "group": ""
+  }
+ ]
+}

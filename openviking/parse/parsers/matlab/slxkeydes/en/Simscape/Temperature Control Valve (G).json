@@ -1,0 +1,13 @@
+{
+ "key": "Temperature Control Valve (G)",
+ "title": "Temperature Control Valve (G)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Gas/Valves & Orifices/Flow Control Valves/Temperature_Control_Valve_G.md"
+ ],
+ "text": "Temperature control valve in a gas network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "PMSM (Five-Phase)",
+ "title": "PMSM (Five-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Permanent Magnet/PMSM_Five_Phase.md"
+ ],
+ "text": "Five-phase permanent magnet synchronous motor with sinusoidal flux distribution.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

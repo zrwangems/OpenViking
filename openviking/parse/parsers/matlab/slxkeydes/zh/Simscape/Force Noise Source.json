@@ -1,0 +1,13 @@
+{
+ "key": "Force Noise Source",
+ "title": "Force Noise Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Sources/Force_Noise_Source.md"
+ ],
+ "text": "对零均值正态（高斯）分布的力进行建模。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

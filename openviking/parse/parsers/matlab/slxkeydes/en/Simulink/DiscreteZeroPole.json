@@ -1,0 +1,74 @@
+{
+ "key": "DiscreteZeroPole",
+ "title": "Discrete Zero-Pole",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Quick Insert/Discrete/Discrete_Zero_Pole.md",
+  "Simulink/Discrete/Discrete_Zero_Pole.md"
+ ],
+ "text": "Implement discrete state-space system, 1 input, 1 output, direct feedthrough, {A} sets Matrix coefficient A; {B}, {C}, {D}, {Initial conditions} sets the initial state, {Sample time (–1 for inherited)} sets the interval between samples, {State name} sets the unique name for block state and {State name must resolve to Simulink signal object} requires state name resolve to a signal. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal scalar | vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output vector scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "A",
+   "default": "1",
+   "values": "Matrix coefficient A 1 (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "B",
+   "default": "1",
+   "values": "Matrix coefficient B 1 (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "C",
+   "default": "1",
+   "values": "Matrix coefficient, C 1 (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "D",
+   "default": "1",
+   "values": "Matrix coefficient, D 1 (default) | scalar | vector | matrix",
+   "group": "Main"
+  },
+  {
+   "name": "Initial conditions",
+   "default": "0",
+   "values": "Initial state vector 0 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "Sample time (–1 for inherited)",
+   "default": "-1",
+   "values": "Interval between samples -1 (default) | scalar | vector",
+   "group": "Main"
+  },
+  {
+   "name": "State name",
+   "default": "’’",
+   "values": "Unique name for block state ’’ (default) | alphanumeric string",
+   "group": "State Attributes"
+  },
+  {
+   "name": "State name must resolve to Simulink signal object",
+   "default": "off",
+   "values": "Require state name resolve to a signal object off (default) | on",
+   "group": "State Attributes"
+  }
+ ]
+}

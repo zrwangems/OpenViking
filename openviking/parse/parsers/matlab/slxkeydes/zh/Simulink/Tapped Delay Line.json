@@ -1,0 +1,56 @@
+{
+ "key": "Tapped Delay Line",
+ "title": "Tapped Delay",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Discrete/Tapped_Delay.md",
+  "HDL Coder/Discrete/Tapped_Delay.md"
+ ],
+ "text": "将标量信号延迟多个采样周期并输出所有延迟版本，输入 1 路、输出 1 路；按 {采样时间} 指定采样之间的时间间隔；{初始条件} 指定初始输出、{延迟数} 指定离散时间运算符的数量、{输出向量排序} 输出的顺序、{将当前输入包含在输出向量中}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入信号 标量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输入信号的延迟版本 标量 | 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "初始条件",
+   "default": "0.0",
+   "values": "初始输出 0.0 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": ""
+  },
+  {
+   "name": "延迟数",
+   "default": "4",
+   "values": "离散时间运算符的数量 4 (默认) | 正标量 | -1 （表示继承）",
+   "group": ""
+  },
+  {
+   "name": "输出向量排序",
+   "default": "最早",
+   "values": "输出的顺序 最早 (默认) | 最近",
+   "group": ""
+  },
+  {
+   "name": "将当前输入包含在输出向量中",
+   "default": "off",
+   "values": "将当前输入包含在输出向量中 off (默认) | on",
+   "group": ""
+  }
+ ]
+}

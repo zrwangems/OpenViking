@@ -1,0 +1,64 @@
+{
+ "key": "MoonLibration",
+ "title": "Moon Libration",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Moon_Libration.md"
+ ],
+ "text": "实现月球天平动，输入 3 路、输出 2 路；按 {Ephemeris model} 指定星历模型；{Epoch} 指定历元 Julian、{Action for out-of-range input} 指定超出范围时的模块行为、{Calculate rates} 指定计算月球天平动速率，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T JD",
+   "direction": "input",
+   "summary": "儒略日 scalar | positive | between minimum and maximum Julian dates"
+  },
+  {
+   "name": "T0 JD",
+   "direction": "input",
+   "summary": "固定儒略日 scalar | positive"
+  },
+  {
+   "name": "ΔT JD",
+   "direction": "input",
+   "summary": "经过的儒略时间 scalar | positive"
+  },
+  {
+   "name": "φ θ ψ (rad)",
+   "direction": "output",
+   "summary": "欧拉角 vector"
+  },
+  {
+   "name": "ω (rad/day)",
+   "direction": "output",
+   "summary": "月球天平动 Euler 角速率 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Epoch",
+   "default": "date",
+   "values": "历元 Julian date (default) | T0 and elapsed Julian time",
+   "group": ""
+  },
+  {
+   "name": "Ephemeris model",
+   "default": "DE405",
+   "values": "星历模型 DE405 (default) | DE421 | DE423 | DE430 | DE432t",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "Calculate rates",
+   "default": "on",
+   "values": "计算月球天平动速率 on (default) | off",
+   "group": ""
+  }
+ ]
+}

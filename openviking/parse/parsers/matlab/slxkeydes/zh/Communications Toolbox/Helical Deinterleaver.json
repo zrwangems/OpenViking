@@ -1,0 +1,13 @@
+{
+ "key": "Helical Deinterleaver",
+ "title": "Helical Deinterleaver",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Interleaving/Convolutional/Helical_Deinterleaver.md"
+ ],
+ "text": "恢复由螺旋交织器置换的符号顺序。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

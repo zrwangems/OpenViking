@@ -1,0 +1,13 @@
+{
+ "key": "Loaded-Contact Rotational Friction",
+ "title": "Loaded-Contact Rotational Friction",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Rotational/Loaded_Contact_Rotational_Friction.md"
+ ],
+ "text": "两个旋转表面之间的负载接触摩擦。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

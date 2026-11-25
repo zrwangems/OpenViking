@@ -1,0 +1,80 @@
+{
+ "key": "phased.MFSKWaveform",
+ "title": "MFSK Waveform",
+ "toolbox": "Phased Array System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Phased Array System Toolbox/Waveforms/MFSK_Waveform.md"
+ ],
+ "text": "Multiple frequency shift keying (MFSK) continuous waveform, 1 output, {Output signal format} sets Output signal format; {Sample rate (Hz)} sets the sample rate 151e6, {Sweep bandwidth (Hz)} sets the mFSK sweep bandwidth 150e6, {Frequency step burst time (s)} sets the frequency step burst, {Number of steps per sweep} sets the total number of frequency steps, {Chirp offset frequency (Hz)} sets the chirp offset frequency -294e3, {Number of sweeps in output}, {Number of frequency steps in output}, {Number of samples in output} and {Simulate using} sets the block simulation method Interpreted. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "MFSK Waveform complex-valued column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate (Hz)",
+   "default": "151e6",
+   "values": "Sample rate 151e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sweep bandwidth (Hz)",
+   "default": "150e6",
+   "values": "MFSK sweep bandwidth 150e6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Frequency step burst time (s)",
+   "default": "5e-6",
+   "values": "Frequency step burst time 5e-6 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Number of steps per sweep",
+   "default": "512",
+   "values": "Total number of frequency steps 512 (default) | even positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Chirp offset frequency (Hz)",
+   "default": "-294e3",
+   "values": "Chirp offset frequency -294e3 (default) | real scalar",
+   "group": ""
+  },
+  {
+   "name": "Output signal format",
+   "default": "Steps",
+   "values": "Output signal format Steps (default) | Samples | Sweeps",
+   "group": ""
+  },
+  {
+   "name": "Number of sweeps in output",
+   "default": "1",
+   "values": "Number of sweeps in output 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of frequency steps in output",
+   "default": "1",
+   "values": "Number of frequency steps in output 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Number of samples in output",
+   "default": "100",
+   "values": "Number of samples in output 100 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "Execution",
+   "values": "Block simulation method Interpreted Execution (default) | Code Generation",
+   "group": ""
+  }
+ ]
+}

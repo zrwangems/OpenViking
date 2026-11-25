@@ -1,0 +1,55 @@
+{
+ "key": "Nonlinear ARX Model",
+ "title": "Nonlinear ARX Model",
+ "toolbox": "System Identification Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "System Identification Toolbox/Models/Nonlinear_ARX_Model.md"
+ ],
+ "text": "Simulate nonlinear ARX model in Simulink software, 1 input, 1 output; {Model} sets the nonlinear ARX model to be simulated idnlarx, {Initial conditions} sets the initial condition specification for simulation Input and output, {Input level} sets the steady-state input signal level, {Output level} sets the steady-state output signal level and {Specify initial states as a vector} sets the initial state values. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1(In1)",
+   "direction": "input",
+   "summary": "Simulation input data scalar | vector"
+  },
+  {
+   "name": "Port_1(Out1)",
+   "direction": "output",
+   "summary": "Simulated output scalar | vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model",
+   "default": "",
+   "values": "Nonlinear ARX model to be simulated idnlarx object",
+   "group": ""
+  },
+  {
+   "name": "Initial conditions",
+   "default": "values",
+   "values": "Initial condition specification for simulation Input and output values (default) | State values",
+   "group": ""
+  },
+  {
+   "name": "Input level",
+   "default": "0",
+   "values": "Steady-state input signal level 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Output level",
+   "default": "0",
+   "values": "Steady-state output signal level 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify initial states as a vector",
+   "default": "0",
+   "values": "Initial state values 0 (default) | vector",
+   "group": ""
+  }
+ ]
+}

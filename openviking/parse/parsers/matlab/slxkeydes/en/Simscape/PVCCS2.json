@@ -1,0 +1,13 @@
+{
+ "key": "PVCCS2",
+ "title": "PVCCS2",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Additional Components/SPICE Sources/PVCCS2.md"
+ ],
+ "text": "Polynomial voltage-controlled current source with two controlling inputs.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

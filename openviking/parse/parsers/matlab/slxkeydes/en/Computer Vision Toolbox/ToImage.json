@@ -1,0 +1,31 @@
+{
+ "key": "ToImage",
+ "title": "To Simulink Image",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "block_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Utilities/To_Simulink_Image.md"
+ ],
+ "text": "Pack numeric matrix into a Simulink image, 1 input, 1 output, direct feedthrough; {Output data type} sets the data type of output signal values Inherit. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Output signal Simulink.ImageType"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output data type",
+   "default": "auto",
+   "values": "Data type of output signal values Inherit: auto (default) | Simulink.ImageType(480,640,3)",
+   "group": ""
+  }
+ ]
+}

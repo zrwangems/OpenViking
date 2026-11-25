@@ -1,0 +1,13 @@
+{
+ "key": "Cross-Junction (TL)",
+ "title": "Cross-Junction (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Thermal Liquid/Pipes & Fittings/Cross_Junction_TL.md"
+ ],
+ "text": "热液体网络中的十字接头。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

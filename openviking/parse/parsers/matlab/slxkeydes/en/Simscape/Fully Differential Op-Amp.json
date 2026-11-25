@@ -1,0 +1,13 @@
+{
+ "key": "Fully Differential Op-Amp",
+ "title": "Fully Differential Op-Amp",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Integrated Circuits/Fully_Differential_Op_Amp.md"
+ ],
+ "text": "Operational amplifier with fully differential output, that is, not referenced to ground.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

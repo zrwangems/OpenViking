@@ -1,0 +1,80 @@
+{
+ "key": "EOParameters",
+ "title": "Earth Orientation Parameters",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Celestial Phenomena/Earth_Orientation_Parameters.md"
+ ],
+ "text": "计算地球定向参数 (EOP)，输入 1 路、输出 6 路；按 {Action for out-of-range input} 指定超出范围时的模块行为；{IERS data file} 指定地球定向数据、{Output parameter error} 启用输出端口以返回误差、{IERS data URL} 指定网站或地球定向数据文件、{Destination folder} 指定 IERS 数据文件文件夹 current，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "UTC MJD",
+   "direction": "input",
+   "summary": "UTC scalar"
+  },
+  {
+   "name": "ΔUT1",
+   "direction": "output",
+   "summary": "UT1 与 UTC 之间的差值 scalar"
+  },
+  {
+   "name": "[xp,yp]",
+   "direction": "output",
+   "summary": "地球极移 vector"
+  },
+  {
+   "name": "[dX,dY]",
+   "direction": "output",
+   "summary": "对天球中间极 (CIP) 位置的调整 vector"
+  },
+  {
+   "name": "ΔUT1 err",
+   "direction": "output",
+   "summary": "返回 IERS 数据中测量值和预测值的误差 vector"
+  },
+  {
+   "name": "[xp,yp] err",
+   "direction": "output",
+   "summary": "返回 IERS 数据中测量值和预测值的误差 vector"
+  },
+  {
+   "name": "[dX,dY] err",
+   "direction": "output",
+   "summary": "返回 IERS 数据中测量值和预测值的误差 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "IERS data file",
+   "default": "aeroiersdata.mat",
+   "values": "地球定向数据 aeroiersdata.mat (default) | MAT-file",
+   "group": ""
+  },
+  {
+   "name": "Output parameter error",
+   "default": "off",
+   "values": "启用输出端口以返回误差 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "None",
+   "values": "超出范围时的模块行为 None (default) | Warning | Error",
+   "group": ""
+  },
+  {
+   "name": "IERS data URL",
+   "default": "http://maia.usno.navy.mil/ser7/finals2000A.data",
+   "values": "网站或地球定向数据文件 http://maia.usno.navy.mil/ser7/finals2000A.data (default) | web site address | file name",
+   "group": ""
+  },
+  {
+   "name": "Destination folder",
+   "default": "Folder",
+   "values": "IERS 数据文件文件夹 current Folder (default)",
+   "group": ""
+  }
+ ]
+}

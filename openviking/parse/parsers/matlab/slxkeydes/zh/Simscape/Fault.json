@@ -1,0 +1,13 @@
+{
+ "key": "Fault",
+ "title": "Fault",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Utilities/Fault.md"
+ ],
+ "text": "具有时间、行为或外部触发的电气故障。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

@@ -1,0 +1,13 @@
+{
+ "key": "Temperature Source",
+ "title": "Temperature Source",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal/Thermal Sources/Temperature_Source.md"
+ ],
+ "text": "由温度表征的热能恒定源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

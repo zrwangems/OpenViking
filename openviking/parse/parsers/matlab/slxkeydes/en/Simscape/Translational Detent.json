@@ -1,0 +1,13 @@
+{
+ "key": "Translational Detent",
+ "title": "Translational Detent",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Brakes & Detents/Translational/Translational_Detent.md"
+ ],
+ "text": "Double-sided, spring-loaded translational detent.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

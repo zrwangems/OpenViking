@@ -1,0 +1,13 @@
+{
+ "key": "Array of Thermal Nodes Connector",
+ "title": "Array of Thermal Nodes Connector",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Battery/Thermal/Array_of_Thermal_Nodes_Connector.md"
+ ],
+ "text": "（将移除）将热节点数组串联为单个热节点端口数组。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

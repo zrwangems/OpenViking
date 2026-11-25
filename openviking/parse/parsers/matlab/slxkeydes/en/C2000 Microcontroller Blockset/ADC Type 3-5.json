@@ -1,0 +1,121 @@
+{
+ "key": "ADC Type 3-5",
+ "title": "ADC",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2802x/ADC.md",
+  "C2000 Microcontroller Blockset/C2803x/ADC.md",
+  "C2000 Microcontroller Blockset/C2805x/ADC.md",
+  "C2000 Microcontroller Blockset/C2806x/ADC.md",
+  "C2000 Microcontroller Blockset/F280013x/ADC.md",
+  "C2000 Microcontroller Blockset/F280015x/ADC.md",
+  "C2000 Microcontroller Blockset/F28002x/ADC.md",
+  "C2000 Microcontroller Blockset/F28003x/ADC.md",
+  "C2000 Microcontroller Blockset/F28004x/ADC.md",
+  "C2000 Microcontroller Blockset/F2807x/ADC.md",
+  "C2000 Microcontroller Blockset/F2837xD/ADC.md",
+  "C2000 Microcontroller Blockset/F2837xS/ADC.md",
+  "C2000 Microcontroller Blockset/F28p55x/ADC.md",
+  "C2000 Microcontroller Blockset/F28p65x/ADC.md",
+  "C2000 Microcontroller Blockset/F29H85x/ADC.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/ADC.md",
+  "C2000 Microcontroller Blockset/F28M35x/C28x/ADC.md",
+  "C2000 Microcontroller Blockset/F28M36x/C28x/ADC.md"
+ ],
+ "text": "Configure ADC to sample analog pins and output digital data, 1 output, {ADC Module} sets Select module to use; {ADC Resolution} selects 12 bit or 16 bit resolution 12-bit, {ADC mode}, {Sampling mode} selects sampling type, {SOC trigger number} sets the start of conversion, {SOCx acquisition window} sets the length of the acquisition period, {SOCx trigger source} sets the source that triggers the start of conversion, {ADCINT will trigger SOCx} uses ADC interrupt to trigger SOC, {Sample time} sets the interval at which block reads data, {Data type} selects the output data, {Post interrupt at EOC trigger} sets the post interrupts when ADC triggers, {Interrupt selection} sets the aDC interrupt selection, {ADC# continuous mode} sets the generate ADC interrupt and {Conversions channel} selects ADC channel to which this ADC conversion applies. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "ADC data vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "ADC Module",
+   "default": "A",
+   "values": "Select module to use A (default) | B | A and B",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "ADC Resolution",
+   "default": "input)",
+   "values": "Select 12 bit or 16 bit resolution 12-bit (Single-ended input) (default) | 16-bit (Differential inputs)",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "ADC mode",
+   "default": "input",
+   "values": "Select ADC mode Single-ended input (default) | Differential inputs",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "Sampling mode",
+   "default": "Single",
+   "values": "Select sampling type Single (default) | Simultaneous",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "SOC trigger number",
+   "default": "SOC0",
+   "values": "Start of conversion number SOC0 (default) | SOC1 | SOC2 | …",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "SOCx acquisition window",
+   "default": "7",
+   "values": "Length of the acquisition period 7 (default) | 8 |...",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "SOCx trigger source",
+   "default": "Software",
+   "values": "Source that triggers the start of conversion Software (default) | EVA | External pin",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "ADCINT will trigger SOCx",
+   "default": "ADCINT",
+   "values": "Use ADC interrupt to trigger SOC No ADCINT (default) | ADCINT1 | ADCINT2",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Interval at which block reads data 0.1 (default)",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "Data type",
+   "default": "uint16",
+   "values": "Select the output data type uint16 (default) | double | single | int8 | uint8 | int16 | int32 | uint32",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "Post interrupt at EOC trigger",
+   "default": "Off",
+   "values": "Post interrupts when ADC triggers Off (default) | on",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "Interrupt selection",
+   "default": "ADCINT1",
+   "values": "ADC interrupt selection ADCINT1 (default) | ADCINT2",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "ADC# continuous mode",
+   "default": "ADCINT1",
+   "values": "Generate ADC interrupt ADCINT1 (default) | ADCINT2",
+   "group": "SOC Trigger"
+  },
+  {
+   "name": "Conversions channel",
+   "default": "ADCINA0",
+   "values": "Select ADC channel to which this ADC conversion applies ADCINA0 (default) | ADCINA1 | ADCINA2 | …",
+   "group": "Input channels"
+  }
+ ]
+}

@@ -1,0 +1,143 @@
+{
+ "key": "Planetary Gear: Torque Input - Reduced Order",
+ "title": "Planetary Gear",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Planetary_Gear.md"
+ ],
+ "text": "Ideal planetary gear with sun, ring, and carrier, 4 inputs, 6 outputs; {Port Configuration} sets the configuration, {Sun to planet ratio, Nsp} sets the ratio, {Sun to ring ratio, Nsr} sets the ratio, {Sun inertia, Js} sets the inertia .003, {Planet inertia, Jp} sets the inertia .001, {Ring inertia, Jr} sets the inertia .01, {Carrier inertia, Jc} sets the inertia .002, {Sun viscous damping, bs} sets the damping .001, {Ring viscous damping, br} sets the damping .001, {Planet viscous damping, bp} sets the damping .001, {Carrier viscous damping, bc} sets the damping .001, {Initial sun velocity, ws_o} sets the angular speed and {Initial carrier velocity, wc_o} sets the angular speed. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "SunTrq",
+   "direction": "input",
+   "summary": "Sun gear applied torque scalar"
+  },
+  {
+   "name": "CarrTrq",
+   "direction": "input",
+   "summary": "Carrier gear applied torque scalar"
+  },
+  {
+   "name": "RingTrq",
+   "direction": "input",
+   "summary": "Ring gear applied torque scalar"
+  },
+  {
+   "name": "C",
+   "direction": "input",
+   "summary": "Carrier gear angular speed and torque two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "SunSpd",
+   "direction": "output",
+   "summary": "Sun gear angular speed scalar"
+  },
+  {
+   "name": "CarrSpd",
+   "direction": "output",
+   "summary": "Carrier gear angular speed scalar"
+  },
+  {
+   "name": "RingSpd",
+   "direction": "output",
+   "summary": "Ring gear angular speed scalar"
+  },
+  {
+   "name": "S",
+   "direction": "output",
+   "summary": "Sun gear angular speed and torque two-way connector port"
+  },
+  {
+   "name": "R",
+   "direction": "output",
+   "summary": "Ring gear angular speed and torque two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "Specify configuration Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Sun to planet ratio, Nsp",
+   "default": "30/23",
+   "values": "Ratio 30/23 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sun to ring ratio, Nsr",
+   "default": "30/78",
+   "values": "Ratio 30/78 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sun inertia, Js",
+   "default": ".003",
+   "values": "Inertia .003 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Planet inertia, Jp",
+   "default": ".001",
+   "values": "Inertia .001 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Ring inertia, Jr",
+   "default": ".01",
+   "values": "Inertia .01 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Carrier inertia, Jc",
+   "default": ".002",
+   "values": "Inertia .002 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Sun viscous damping, bs",
+   "default": ".001",
+   "values": "Damping .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Ring viscous damping, br",
+   "default": ".001",
+   "values": "Damping .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Planet viscous damping, bp",
+   "default": ".001",
+   "values": "Damping .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Carrier viscous damping, bc",
+   "default": ".001",
+   "values": "Damping .001 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial sun velocity, ws_o",
+   "default": "0",
+   "values": "Angular speed 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Initial carrier velocity, wc_o",
+   "default": "0",
+   "values": "Angular speed 0 (default) | scalar greater than or equal to 0",
+   "group": ""
+  }
+ ]
+}

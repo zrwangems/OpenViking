@@ -1,0 +1,13 @@
+{
+ "key": "PS Subtract",
+ "title": "PS Subtract",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Physical Signals/Functions/PS_Subtract.md"
+ ],
+ "text": "Compute simple subtraction of two input physical signals.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

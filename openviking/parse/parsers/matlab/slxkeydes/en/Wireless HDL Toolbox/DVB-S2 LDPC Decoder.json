@@ -1,0 +1,148 @@
+{
+ "key": "DVB-S2 LDPC Decoder",
+ "title": "DVB-S2 LDPC Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/DVB_S2_LDPC_Decoder.md"
+ ],
+ "text": "Decode LDPC code according to DVB-S2 standard, 6 inputs, 5 outputs, {Code rate} sets Code rate; {FEC frame source} sets the source for FEC frame, {FEC frame type}, {Parallelism level}, {Code rate source} sets the source for code, {Algorithm} sets the lDPC decoding algorithm, {Source for scaling factor}, {Scaling factor}, {Decoding termination criteria} sets the termination criteria, {Source for number of iterations} sets the source selection for number of iterations, {Number of iterations} sets the number of decoding iterations, {Maximum number of iterations} sets the maximum number of decoding iterations and {Enable parity check output port} sets the parity check status. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "LLR values scalar | column vector (since R2025a)"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "frameType",
+   "direction": "input",
+   "summary": "Type of FEC frame scalar"
+  },
+  {
+   "name": "codeRateIdx",
+   "direction": "input",
+   "summary": "Code rate index integer"
+  },
+  {
+   "name": "iter",
+   "direction": "input",
+   "summary": "Number of iterations scalar"
+  },
+  {
+   "name": "scalingFactorIdx",
+   "direction": "input",
+   "summary": "Scaling factor index scalar"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "Decoded bits scalar | column vector (since R2025a)"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "Control signals accompanying sample stream samplecontrol bus"
+  },
+  {
+   "name": "nextFrame",
+   "direction": "output",
+   "summary": "Block ready indicator scalar"
+  },
+  {
+   "name": "parityCheck",
+   "direction": "output",
+   "summary": "Parity check status indicator scalar"
+  },
+  {
+   "name": "actIter",
+   "direction": "output",
+   "summary": "Actual number of iterations scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "FEC frame source",
+   "default": "port",
+   "values": "Source for FEC frame Input port (default) | Property",
+   "group": ""
+  },
+  {
+   "name": "FEC frame type",
+   "default": "Normal",
+   "values": "FEC frame type Normal (default) | Short",
+   "group": ""
+  },
+  {
+   "name": "Parallelism level",
+   "default": "45",
+   "values": "Parallelism level 45 (default) | 180",
+   "group": ""
+  },
+  {
+   "name": "Code rate source",
+   "default": "Property",
+   "values": "Source for code rate Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Code rate",
+   "default": "1/4",
+   "values": "Code rate 1/4 (default) | 1/3 | 2/5 | 1/2 | 3/5 | 2/3 | 3/4 | 4/5 | 5/6 | 8/9 | 9/10",
+   "group": ""
+  },
+  {
+   "name": "Algorithm",
+   "default": "Min-sum",
+   "values": "LDPC decoding algorithm Min-sum (default) | Normalized min-sum",
+   "group": ""
+  },
+  {
+   "name": "Source for scaling factor",
+   "default": "Property",
+   "values": "Source for scaling factor Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Scaling factor",
+   "default": "0.75",
+   "values": "Scaling factor for normalized min-sum decoding 0.75 (default) | scalar in the range 0.5 to 1, incremented by 0.0625",
+   "group": ""
+  },
+  {
+   "name": "Decoding termination criteria",
+   "default": "Max",
+   "values": "Termination criteria Max (default) | Early",
+   "group": ""
+  },
+  {
+   "name": "Source for number of iterations",
+   "default": "Property",
+   "values": "Source selection for number of iterations Property (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "8",
+   "values": "Number of decoding iterations 8 (default) | integer in the range from 1 to 63",
+   "group": ""
+  },
+  {
+   "name": "Maximum number of iterations",
+   "default": "8",
+   "values": "Maximum number of decoding iterations 8 (default) | integer in the range from 1 to 63",
+   "group": ""
+  },
+  {
+   "name": "Enable parity check output port",
+   "default": "off",
+   "values": "Parity check status off (default) | on",
+   "group": ""
+  }
+ ]
+}

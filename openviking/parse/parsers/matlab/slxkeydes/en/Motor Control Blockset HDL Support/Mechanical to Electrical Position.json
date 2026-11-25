@@ -1,0 +1,72 @@
+{
+ "key": "Mechanical to Electrical Position",
+ "title": "Mechanical to Electrical Position",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Sensor Decoders/Mechanical_to_Electrical_Position.md",
+  "Motor Control Blockset/Sensor Decoders/Mechanical_to_Electrical_Position.md"
+ ],
+ "text": "Compute electrical position of rotor from mechanical position, 3 inputs, 1 output, {Input data type} sets Data type of input ports; {Pole pairs input} sets the method to specify number of pole pairs available in motor Specify via, {Number of pole pairs}, {Input mechanical angle unit} sets the unit of mechanical position of rotor Per, {Offset input type} sets the method to specify offset and {Mechanical offset} sets the value of mechanical position offset. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "θ m",
+   "direction": "input",
+   "summary": "Mechanical position of rotor scalar"
+  },
+  {
+   "name": "N pp",
+   "direction": "input",
+   "summary": "Number of pole pairs available in motor scalar"
+  },
+  {
+   "name": "Offset",
+   "direction": "input",
+   "summary": "Mechanical position offset scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "Electrical position of rotor scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pole pairs input",
+   "default": "dialog",
+   "values": "Method to specify number of pole pairs available in motor Specify via dialog (default) | Input port",
+   "group": ""
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "Number of pole pairs available in motor 4 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input mechanical angle unit",
+   "default": "unit",
+   "values": "Unit of mechanical position of rotor Per unit (default) | Radians | Degrees",
+   "group": ""
+  },
+  {
+   "name": "Offset input type",
+   "default": "port",
+   "values": "Method to specify offset Input port (default) | Specify via dialog",
+   "group": ""
+  },
+  {
+   "name": "Mechanical offset",
+   "default": "0",
+   "values": "Value of mechanical position offset 0 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Input data type",
+   "default": "single",
+   "values": "Data type of input ports single (default) | double | fixed point",
+   "group": ""
+  }
+ ]
+}

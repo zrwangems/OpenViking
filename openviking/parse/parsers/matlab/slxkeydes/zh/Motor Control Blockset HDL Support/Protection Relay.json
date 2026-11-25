@@ -1,0 +1,85 @@
+{
+ "key": "Protection Relay",
+ "title": "Protection Relay",
+ "toolbox": "Motor Control Blockset HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset HDL Support/Protection and Diagnostics/Protection_Relay.md",
+  "Motor Control Blockset/Protection and Diagnostics/Protection_Relay.md"
+ ],
+ "text": "实现具有确定最短时间 (DMT) 跳闸特性的保护中继设备，输入 8 路、输出 1 路；按 {选择保护类型} 指定保护中继的类型；{最大计数输入类型} 指定最大计数的输入方法、{最大计数} 指定计数器限值、{去抖滤波器采样数} 指定去抖采样数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "I max",
+   "direction": "input",
+   "summary": "电流上限 标量"
+  },
+  {
+   "name": "I fb",
+   "direction": "input",
+   "summary": "反馈环中的实际电流 标量"
+  },
+  {
+   "name": "⍵ m max",
+   "direction": "input",
+   "summary": "超速保护的转子转速限值 标量"
+  },
+  {
+   "name": "⍵ m fb",
+   "direction": "input",
+   "summary": "实际转子转速 标量"
+  },
+  {
+   "name": "V max",
+   "direction": "input",
+   "summary": "过压保护的电压上限 标量"
+  },
+  {
+   "name": "V min",
+   "direction": "input",
+   "summary": "欠压保护的电压下限 标量"
+  },
+  {
+   "name": "V fb",
+   "direction": "input",
+   "summary": "反馈环上的实际电压 标量"
+  },
+  {
+   "name": "Reset",
+   "direction": "input",
+   "summary": "外部重置脉冲 标量"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "锁存的故障信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "选择保护类型",
+   "default": "过电流",
+   "values": "保护中继的类型 过电流 (默认) | 超速 | 过压 | 欠压",
+   "group": ""
+  },
+  {
+   "name": "最大计数输入类型",
+   "default": "通过对话框指定",
+   "values": "最大计数的输入方法 通过对话框指定 (默认) | 输入端口",
+   "group": ""
+  },
+  {
+   "name": "最大计数",
+   "default": "100",
+   "values": "计数器限值 100 (默认) | 标量",
+   "group": ""
+  },
+  {
+   "name": "去抖滤波器采样数",
+   "default": "3",
+   "values": "去抖采样数 3 (默认) | 标量",
+   "group": ""
+  }
+ ]
+}

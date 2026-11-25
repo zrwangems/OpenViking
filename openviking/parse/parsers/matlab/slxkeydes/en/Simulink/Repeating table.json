@@ -1,0 +1,32 @@
+{
+ "key": "Repeating table",
+ "title": "Repeating Sequence",
+ "toolbox": "Simulink",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink/Sources/Repeating_Sequence.md"
+ ],
+ "text": "Generate arbitrarily shaped periodic signal, 1 output, no direct feedthrough; {Time values} sets the vector of output times and {Output values} sets the vector of output values. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Periodic output signal scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Time values",
+   "default": "2]",
+   "values": "Vector of output times [0 2] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Output values",
+   "default": "2]",
+   "values": "Vector of output values [0 2] (default) | vector",
+   "group": ""
+  }
+ ]
+}

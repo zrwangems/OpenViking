@@ -1,0 +1,79 @@
+{
+ "key": "Variable Selector",
+ "title": "Variable Selector",
+ "toolbox": "DSP System Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox HDL Support/Signal Management/Variable_Selector.md",
+  "DSP System Toolbox/Signal Management/Indexing/Variable_Selector.md"
+ ],
+ "text": "从输入中选择行或列的子集，输入 2 路、输出 1 路、无直接馈通；按 {Elements} 指定所选元素 [1；{Number of input signals} 指定输入数目、{Select} 指定维度 Rows、{Selector mode} 指定索引模式 Variable、{Index mode} 指定索引模式 Zero-based、{Invalid index} 指定错误处理 Clip、{Fill empty spaces in outputs (for logical indexing)} 指定填充输出中的空位、{Fill values}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "InN",
+   "direction": "input",
+   "summary": "第 N 个输入信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Idx",
+   "direction": "input",
+   "summary": "索引向量 scalar | vector"
+  },
+  {
+   "name": "OutN",
+   "direction": "output",
+   "summary": "第 N 个输出信号 scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Number of input signals",
+   "default": "1",
+   "values": "输入数目 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Select",
+   "default": "Rows",
+   "values": "选择维度 Rows (default) | Columns",
+   "group": ""
+  },
+  {
+   "name": "Selector mode",
+   "default": "Variable",
+   "values": "索引模式 Variable (default) | Fixed",
+   "group": ""
+  },
+  {
+   "name": "Elements",
+   "default": "3]",
+   "values": "所选元素 [1 3] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Index mode",
+   "default": "Zero-based",
+   "values": "索引模式 Zero-based (default) | One-based",
+   "group": ""
+  },
+  {
+   "name": "Invalid index",
+   "default": "Index",
+   "values": "错误处理 Clip Index (default) | Clip and Warn | Generate Error",
+   "group": ""
+  },
+  {
+   "name": "Fill empty spaces in outputs (for logical indexing)",
+   "default": "on",
+   "values": "填充输出中的空位 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Fill values",
+   "default": "0",
+   "values": "Fill values 0 (default) | scalar value | integer",
+   "group": ""
+  }
+ ]
+}

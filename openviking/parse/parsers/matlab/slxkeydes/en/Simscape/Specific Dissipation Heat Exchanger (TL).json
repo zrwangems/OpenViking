@@ -1,0 +1,13 @@
+{
+ "key": "Specific Dissipation Heat Exchanger (TL)",
+ "title": "Specific Dissipation Heat Exchanger (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Heat Exchangers/Thermal Liquid/Specific_Dissipation_Heat_Exchanger_TL.md"
+ ],
+ "text": "Heat exchanger parameterized by specific dissipation data for systems with thermal liquid and controlled flows.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

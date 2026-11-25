@@ -1,0 +1,24 @@
+{
+ "key": "DCM Body to Wind",
+ "title": "Direction Cosine Matrix Body to Wind",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Utilities/Axes Transformations/Direction_Cosine_Matrix_Body_to_Wind.md"
+ ],
+ "text": "将攻角和侧滑角转换为方向余弦矩阵，输入 1 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ɑ β",
+   "direction": "input",
+   "summary": "迎角和侧滑角 2-by-1 vector"
+  },
+  {
+   "name": "DCM wb",
+   "direction": "output",
+   "summary": "方向余弦矩阵 3-by-3 direction cosine matrix"
+  }
+ ],
+ "params": []
+}

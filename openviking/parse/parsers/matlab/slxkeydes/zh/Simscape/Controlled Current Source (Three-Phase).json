@@ -1,0 +1,13 @@
+{
+ "key": "Controlled Current Source (Three-Phase)",
+ "title": "Controlled Current Source (Three-Phase)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Sources/Controlled_Current_Source_Three_Phase.md"
+ ],
+ "text": "理想三相受控电流源。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

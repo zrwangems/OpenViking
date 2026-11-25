@@ -1,0 +1,13 @@
+{
+ "key": "Square Root IQN",
+ "title": "Square Root IQN",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Optimization/C28x IQmath/Square_Root_IQN.md"
+ ],
+ "text": "IQ 数的平方根或平方根倒数。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

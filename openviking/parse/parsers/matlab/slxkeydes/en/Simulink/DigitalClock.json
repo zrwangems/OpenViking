@@ -1,0 +1,26 @@
+{
+ "key": "DigitalClock",
+ "title": "Digital Clock",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Sources/Digital_Clock.md"
+ ],
+ "text": "Output simulation time at specified sampling interval, 1 output, no direct feedthrough, {Sample time} sets Sampling interval.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Sample time scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time",
+   "default": "1",
+   "values": "Sampling interval 1 (default) | scalar | vector",
+   "group": ""
+  }
+ ]
+}

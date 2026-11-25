@@ -1,0 +1,79 @@
+{
+ "key": "M-APSK Modulator Baseband",
+ "title": "M-APSK Modulator Baseband",
+ "toolbox": "Communications Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox/Modulation/Digital Baseband Modulation/APSK/M_APSK_Modulator_Baseband.md"
+ ],
+ "text": "M -ary amplitude phase shift keying (APSK) modulation, 1 input, 1 output, {Symbol mapping} sets Symbol mapping; {Constellation points per circle} sets the constellation points per PSK ring, {Radius of each circle} sets the radius per PSK ring, {Phase offset of each circle (rad)} sets the phase offset per PSK ring, {Custom symbol mapping}, {Input type}, {Output data type}, {View Constellation} plots reference constellation and {Simulate using} sets the type of simulation to run. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Input signal scalar | vector | matrix"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "APSK modulated signal scalar | vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Constellation points per circle",
+   "default": "[4,12]",
+   "values": "Constellation points per PSK ring [4,12] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Radius of each circle",
+   "default": "[0.5,1]",
+   "values": "Radius per PSK ring [0.5,1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Phase offset of each circle (rad)",
+   "default": "[pi/4,pi/12]",
+   "values": "Phase offset per PSK ring [pi/4,pi/12] (default) | scalar | vector",
+   "group": ""
+  },
+  {
+   "name": "Symbol mapping",
+   "default": "Auto",
+   "values": "Symbol mapping Auto (default) | Contourwise-gray | Gray | User-defined",
+   "group": ""
+  },
+  {
+   "name": "Custom symbol mapping",
+   "default": "[0,4,12,8,1,3,2,6,7,5,13,15,14,10,11,9]",
+   "values": "Custom symbol mapping [0,4,12,8,1,3,2,6,7,5,13,15,14,10,11,9] (default) | integer vector",
+   "group": ""
+  },
+  {
+   "name": "Input type",
+   "default": "Integer",
+   "values": "Input type Integer (default) | Bit",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "double",
+   "values": "Output data type double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "View Constellation",
+   "default": "",
+   "values": "Plot reference constellation button",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "generation",
+   "values": "Type of simulation to run Code generation (default) | Interpreted execution",
+   "group": ""
+  }
+ ]
+}

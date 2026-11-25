@@ -1,0 +1,70 @@
+{
+ "key": "PWM Timing and Waveform Generator (Three-phase, Two-level)",
+ "title": "PWM Timing and Waveform Generator (Three-phase, Two-level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Timing_and_Waveform_Generator_Three_phase_Two_level.md"
+ ],
+ "text": "生成三相两电平门控时间信息，输入 2 路、输出 3 路；按 {Sampling mode} 指定波形采样方法；{PWM mode} 指定脉宽调制方法 Continuous PWM、{Continuous PWM} 指定连续脉宽调制方法 SVM: space vector、{Discontinuous PWM (DPWM)} 指定钳位方法 60 DPWM: 60 degree discontinuous、{Switching frequency (Hz)} 指定开关速率 1e3，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "三相正弦参考信号 vector"
+  },
+  {
+   "name": "vdc",
+   "direction": "input",
+   "summary": "直流母线电压信号 scalar"
+  },
+  {
+   "name": "TgabcON",
+   "direction": "output",
+   "summary": "导通门极时间 vector"
+  },
+  {
+   "name": "TgabcOFF",
+   "direction": "output",
+   "summary": "关断门极时间 vector"
+  },
+  {
+   "name": "ModWave",
+   "direction": "output",
+   "summary": "调制波 vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "PWM mode",
+   "default": "(CPWM)",
+   "values": "脉宽调制方法 Continuous PWM (CPWM) (default) | Discontinuous PWM (DPWM)",
+   "group": ""
+  },
+  {
+   "name": "Continuous PWM",
+   "default": "modulation",
+   "values": "连续脉宽调制方法 SVM: space vector modulation (default) | SPWM: sinusoidal PWM",
+   "group": ""
+  },
+  {
+   "name": "Discontinuous PWM (DPWM)",
+   "default": "PWM",
+   "values": "钳位方法 60 DPWM: 60 degree discontinuous PWM (default) |...",
+   "group": ""
+  },
+  {
+   "name": "Sampling mode",
+   "default": "Natural",
+   "values": "波形采样方法 Natural (default) | Asymmetric | Symmetric",
+   "group": ""
+  },
+  {
+   "name": "Switching frequency (Hz)",
+   "default": "1e3",
+   "values": "开关速率 1e3 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

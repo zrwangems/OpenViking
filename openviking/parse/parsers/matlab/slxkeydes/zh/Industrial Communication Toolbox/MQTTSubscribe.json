@@ -1,0 +1,43 @@
+{
+ "key": "MQTTSubscribe",
+ "title": "MQTT Client Subscribe",
+ "toolbox": "Industrial Communication Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Industrial Communication Toolbox/MQTT/MQTT_Client_Subscribe.md"
+ ],
+ "text": "从订阅的 MQTT 主题读取消息；输出 2 路；{Client} 指定 MQTT 客户端、{Topics to subscribe} 指定 MQTT 主题列表 table、{Block sample time} 指定读取操作的采样时间，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Topic_ x",
+   "direction": "output",
+   "summary": "来自已订阅主题的当前消息 vector"
+  },
+  {
+   "name": "IsNew",
+   "direction": "output",
+   "summary": "指示读取的消息是否为新消息的标志 0 | 1 | vector of logicals"
+  }
+ ],
+ "params": [
+  {
+   "name": "Client",
+   "default": "",
+   "values": "选择 MQTT 客户端 drop-down list",
+   "group": ""
+  },
+  {
+   "name": "Topics to subscribe",
+   "default": "",
+   "values": "MQTT 主题列表 table",
+   "group": ""
+  },
+  {
+   "name": "Block sample time",
+   "default": "-1",
+   "values": "读取操作的采样时间 -1 (default) | nonnegative scalar",
+   "group": ""
+  }
+ ]
+}

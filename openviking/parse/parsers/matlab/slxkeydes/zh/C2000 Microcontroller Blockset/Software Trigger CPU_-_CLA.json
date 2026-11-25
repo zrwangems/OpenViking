@@ -1,0 +1,43 @@
+{
+ "key": "Software Trigger CPU<->CLA",
+ "title": "Software Trigger CPU<->CLA",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Scheduling/Software_Trigger_CPU_CLA.md"
+ ],
+ "text": "在处理器 (CPU) 与控制律加速器 (CLA) 之间触发软件事件，输入 1 路、输出 1 路；{Task number} 指定任务标识号、{Trigger condition} 指定触发事件的条件 Rising、{Trigger type} 指定触发类型 Trig，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "事件触发信号 scalar"
+  },
+  {
+   "name": "event",
+   "direction": "output",
+   "summary": "任务事件信号 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Task number",
+   "default": "1",
+   "values": "任务标识号 1 (default) | integer from 1 to 8",
+   "group": ""
+  },
+  {
+   "name": "Trigger condition",
+   "default": "edge",
+   "values": "触发事件的条件 Rising edge (default) | Input high",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "Trig",
+   "values": "触发类型 Trig (default) | TrigAndWait(codegen)",
+   "group": ""
+  }
+ ]
+}

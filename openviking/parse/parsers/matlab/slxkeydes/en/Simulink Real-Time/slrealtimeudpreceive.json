@@ -1,0 +1,79 @@
+{
+ "key": "slrealtimeudpreceive",
+ "title": "UDP Receive",
+ "toolbox": "Simulink Real-Time",
+ "kind": "source_type",
+ "source_docs": [
+  "Simulink Real-Time/IP/UDP_Receive.md"
+ ],
+ "text": "Receive data over UDP network from a remote device, 2 outputs; {Use host-target connection} uses Ethernet connection between development and target, {Local IP address} sets the destination IP address for receiving data Use host-target, {Local port} sets the destination UDP port to receive data, {Receive width} sets the width of Data output, {Receive from any source} sets the causes receiver to accept data from any IP, {From IP address} sets the source from which to receive, {Sample time (-1 for inherited)} sets the sample time of block, {Enable Simulink messages} sets the data as messages and {Maximum messages per timestep} sets the limits messages. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Data received vector"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "Number of bytes received double"
+  }
+ ],
+ "params": [
+  {
+   "name": "Use host-target connection",
+   "default": "’off’",
+   "values": "Use Ethernet connection between development and target computers ’off’ (default) | ’on’",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Local IP address",
+   "default": "connection",
+   "values": "Destination IP address for receiving data Use host-target connection (default)",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Local port",
+   "default": "",
+   "values": "Destination UDP port to receive data 1–65535",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Receive width",
+   "default": "",
+   "values": "Width of Data output vector 1–65504",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Receive from any source",
+   "default": "on",
+   "values": "Causes receiver to accept data from any IP address on (default) | off",
+   "group": "General Parameters"
+  },
+  {
+   "name": "From IP address",
+   "default": "",
+   "values": "Source from which to receive data x.x.x.x",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Sample time of block -1 (default) | numeric",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Enable Simulink messages",
+   "default": "off",
+   "values": "Data as messages off (default) | on",
+   "group": "General Parameters"
+  },
+  {
+   "name": "Maximum messages per timestep",
+   "default": "1",
+   "values": "Limits messages 1 (default) | int",
+   "group": "General Parameters"
+  }
+ ]
+}

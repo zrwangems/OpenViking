@@ -1,0 +1,67 @@
+{
+ "key": "Discrete Wind Gust Model",
+ "title": "Discrete Wind Gust Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Environment/Wind/Discrete_Wind_Gust_Model.md"
+ ],
+ "text": "生成离散阵风，输入 1 路、输出 1 路；按 {Units} 指定单位 Metric；{Gust in u-axis} 指定作用于 u 轴的阵风、{Gust in v-axis} 指定作用于 v 轴的阵风、{Gust in w-axis} 指定作用于 w 轴的阵风、{Gust start time (sec)} 指定阵风开始时间、{Gust length [dx dy dz] (m)} 指定阵风长度、{Gust amplitude [ug vg wg] (m/s)} 指定阵风幅度，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V",
+   "direction": "input",
+   "summary": "空速 scalar"
+  },
+  {
+   "name": "V wind",
+   "direction": "output",
+   "summary": "风速 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(MKS)",
+   "values": "单位 Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)",
+   "group": ""
+  },
+  {
+   "name": "Gust in u-axis",
+   "default": "on",
+   "values": "作用于 u 轴的阵风 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Gust in v-axis",
+   "default": "on",
+   "values": "作用于 v 轴的阵风 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Gust in w-axis",
+   "default": "on",
+   "values": "作用于 w 轴的阵风 on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Gust start time (sec)",
+   "default": "5",
+   "values": "阵风开始时间 5 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Gust length [dx dy dz] (m)",
+   "default": "80]",
+   "values": "阵风长度 [120 120 80] (default)",
+   "group": ""
+  },
+  {
+   "name": "Gust amplitude [ug vg wg] (m/s)",
+   "default": "3.0]",
+   "values": "阵风幅度 [3.5 3.5 3.0] (default)",
+   "group": ""
+  }
+ ]
+}

@@ -1,0 +1,165 @@
+{
+ "key": "Split Torsional Compliance",
+ "title": "Split Torsional Compliance",
+ "toolbox": "Powertrain Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Powertrain Blockset/Drivetrain/Couplings/Split_Torsional_Compliance.md",
+  "Vehicle Dynamics Blockset/Powertrain/Drivetrain/Couplings/Split_Torsional_Compliance.md"
+ ],
+ "text": "Split torsional coupler, 9 inputs, 10 outputs; {Port Configuration} sets the configuration, {Coupling Configuration} sets the configuration Shaft, {Output Info bus} sets the selection, {Torsional stiffness, k1} sets the stiffness 5e4, {Torsional damping, b1} sets the damping 1e2, {Damping cutoff frequency, omega1_c} sets the frequency, {Torsional stiffness, k2} sets the stiffness 5e4, {Torsional damping, b2} sets the damping 1e2 and {Damping cutoff frequency, omega2_c} sets the frequency. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "RSpd",
+   "direction": "input",
+   "summary": "Input shaft speed scalar"
+  },
+  {
+   "name": "C1Spd",
+   "direction": "input",
+   "summary": "First output shaft speed scalar"
+  },
+  {
+   "name": "C2Spd",
+   "direction": "input",
+   "summary": "Second output shaft speed scalar"
+  },
+  {
+   "name": "CSpd",
+   "direction": "input",
+   "summary": "Input speed scalar"
+  },
+  {
+   "name": "R1Spd",
+   "direction": "input",
+   "summary": "First input shaft speed scalar"
+  },
+  {
+   "name": "R2Spd",
+   "direction": "input",
+   "summary": "Second input shaft speed scalar"
+  },
+  {
+   "name": "R",
+   "direction": "input",
+   "summary": "Input shaft angular velocity and torque two-way connector port"
+  },
+  {
+   "name": "R1",
+   "direction": "input",
+   "summary": "First input shaft angular velocity and torque two-way connector port"
+  },
+  {
+   "name": "R2",
+   "direction": "input",
+   "summary": "Second input shaft angular velocity and torque two-way connector port"
+  },
+  {
+   "name": "Info",
+   "direction": "output",
+   "summary": "Bus signal bus"
+  },
+  {
+   "name": "RTrq",
+   "direction": "output",
+   "summary": "Input shaft torque scalar"
+  },
+  {
+   "name": "C1Trq",
+   "direction": "output",
+   "summary": "First output shaft torque scalar"
+  },
+  {
+   "name": "C2Trq",
+   "direction": "output",
+   "summary": "Second output shaft torque scalar"
+  },
+  {
+   "name": "CTrq",
+   "direction": "output",
+   "summary": "Output shaft torque scalar"
+  },
+  {
+   "name": "R1Trq",
+   "direction": "output",
+   "summary": "First input shaft torque scalar"
+  },
+  {
+   "name": "R2Trq",
+   "direction": "output",
+   "summary": "Second input shaft torque scalar"
+  },
+  {
+   "name": "C1",
+   "direction": "output",
+   "summary": "First output shaft angular velocity and torque two-way connector port"
+  },
+  {
+   "name": "C2",
+   "direction": "output",
+   "summary": "Second output shaft angular velocity and torque two-way connector port"
+  },
+  {
+   "name": "C",
+   "direction": "output",
+   "summary": "Output shaft angular velocity and torque two-way connector port"
+  }
+ ],
+ "params": [
+  {
+   "name": "Port Configuration",
+   "default": "Simulink",
+   "values": "Specify configuration Simulink (default) | Two-way connection",
+   "group": ""
+  },
+  {
+   "name": "Coupling Configuration",
+   "default": "split",
+   "values": "Specify configuration Shaft split (default) | Shaft merge",
+   "group": ""
+  },
+  {
+   "name": "Output Info bus",
+   "default": "off",
+   "values": "Selection off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Torsional stiffness, k1",
+   "default": "5e4",
+   "values": "Stiffness 5e4 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Torsional damping, b1",
+   "default": "1e2",
+   "values": "Damping 1e2 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Damping cutoff frequency, omega1_c",
+   "default": "3000",
+   "values": "Frequency 3000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Torsional stiffness, k2",
+   "default": "5e4",
+   "values": "Stiffness 5e4 (default) | scalar greater than or equal to 0",
+   "group": ""
+  },
+  {
+   "name": "Torsional damping, b2",
+   "default": "1e2",
+   "values": "Damping 1e2 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Damping cutoff frequency, omega2_c",
+   "default": "3000",
+   "values": "Frequency 3000 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

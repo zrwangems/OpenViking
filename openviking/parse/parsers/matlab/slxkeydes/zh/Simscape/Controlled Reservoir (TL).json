@@ -1,0 +1,13 @@
+{
+ "key": "Controlled Reservoir (TL)",
+ "title": "Controlled Reservoir (TL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Thermal Liquid/Elements/Controlled_Reservoir_TL.md"
+ ],
+ "text": "温度随时间变化的热液体储液罐。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

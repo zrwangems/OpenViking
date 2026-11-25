@@ -1,0 +1,55 @@
+{
+ "key": "2-D IFFT",
+ "title": "2-D IFFT",
+ "toolbox": "Computer Vision Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Computer Vision Toolbox/Transforms/b_2_D_IFFT.md"
+ ],
+ "text": "计算二维快速傅里叶逆变换 (IFFT)，输入 1 路、输出 1 路；按 {FFT implementation} 指定FFT implementation；{Input is in bit-reversed order} 指定 Bit-reversed input、{Input is conjugate symmetric} 指定共轭对称输入、{Divide output by product of FFT length in each input dimension} 指定 Scale output data、{Lock data type settings against change by the fixed-point tools} 指定数据类型覆盖，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "输入数据 vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "输出数据 vector | matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "FFT implementation",
+   "default": "Auto",
+   "values": "FFT implementation Auto (default) | Radix-2 | FFTW",
+   "group": "Main"
+  },
+  {
+   "name": "Input is in bit-reversed order",
+   "default": "off",
+   "values": "Bit-reversed input off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Input is conjugate symmetric",
+   "default": "on",
+   "values": "共轭对称输入 on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Divide output by product of FFT length in each input dimension",
+   "default": "on",
+   "values": "Scale output data on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Lock data type settings against change by the fixed-point tools",
+   "default": "off",
+   "values": "数据类型覆盖 off (default) | on",
+   "group": "Data Types"
+  }
+ ]
+}

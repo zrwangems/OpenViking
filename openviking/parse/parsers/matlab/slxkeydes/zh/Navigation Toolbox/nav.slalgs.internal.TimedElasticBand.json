@@ -1,0 +1,283 @@
+{
+ "key": "nav.slalgs.internal.TimedElasticBand",
+ "title": "Timed Elastic Band (TEB)",
+ "toolbox": "Navigation Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Navigation Toolbox/Control Algorithms/Timed_Elastic_Band_TEB.md"
+ ],
+ "text": "规划路径以避开障碍物并生成时间最优轨迹，输入 16 路、输出 4 路；{Sample time (s)} 控制器的采样时间、{Specify lookahead time using input port} 为前瞻时间添加输入端口、{Lookahead time (s)} 指定前视时间、{Specify goal tolerance using input port} 为目标容差添加输入端口、{Goal tolerance ([m m rad])} 指定目标位姿周围的容差、{Shape} 指定机器人形状、{Dimension ([m m])} 指定机器人尺寸、{Fixed transform ([m m rad])} 指定变换矩阵 se2、{Specify obstacle safety margin using input port} 为障碍物安全裕量添加输入端口、{Obstacle safety margin (m)} 指定机器人与障碍物之间的安全距离、{Specify max velocity using input port} 为最大速度添加输入端口、{Maximum velocity ([m/s rad/s])} 指定线速度和角速度的最大限值、{Specify max reverse velocity using input port} 为最大倒车速度添加输入端口、{Maximum reverse velocity (m/s)} 指定反向运动的最大速度、{Specify max acceleration using input port} 为最大加速度添加输入端口、{Maximum acceleration ([m/s^2 rad/s^2])} 指定线加速度和角加速度的最大限值、{Specify min turning radius using input port} 为最小转弯半径添加输入端口、{Minimum turning radius (m)} 指定车辆在优化路径上的最小转弯半径、{Specify reference delta time using input port} 为参考时间增量添加输入端口、{Reference delta time (s)} 指定参考时间增量、{Specify number of iterations using input port} 添加用于迭代次数的输入端口、{Number of iterations} 指定优化轨迹的迭代次数、{Specify time weight using input port} 添加时间权重的输入端口、{Time weight} 指定时间代价函数权重、{Specify smoothness weight using input port} 添加平滑度权重的输入端口、{Smoothness weight} 指定平滑运动权重、{Specify obstacle weight using input port} 添加障碍物权重的输入端口、{Obstacle weight} 指定与障碍物保持安全距离的权重，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Pose",
+   "direction": "input",
+   "summary": "机器人当前位姿 three-element vector of form [ x y theta ]"
+  },
+  {
+   "name": "Vel",
+   "direction": "input",
+   "summary": "机器人当前速度 two-element vector of form [ v w ]"
+  },
+  {
+   "name": "MapInfo",
+   "direction": "input",
+   "summary": "局部地图信息 bus"
+  },
+  {
+   "name": "RefPath",
+   "direction": "input",
+   "summary": "要跟随的参考路径 N -by-3 matrix"
+  },
+  {
+   "name": "MaxVel",
+   "direction": "input",
+   "summary": "线速度和角速度的最大限值 [0.8, 1.6] (default) | two-element positive vector"
+  },
+  {
+   "name": "MaxRevVel",
+   "direction": "input",
+   "summary": "反向运动的最大速度 NaN (default) | positive scalar"
+  },
+  {
+   "name": "MaxAccel",
+   "direction": "input",
+   "summary": "线加速度和角加速度的最大限值 [2.4, 4.8] (default) | two-element positive vector"
+  },
+  {
+   "name": "MinTurnRad",
+   "direction": "input",
+   "summary": "车辆在优化路径上的最小转弯半径 0 (default) | nonnegative scalar"
+  },
+  {
+   "name": "TimeWeight",
+   "direction": "input",
+   "summary": "时间权重 10 (default) | positive scalar"
+  },
+  {
+   "name": "SmoothWeight",
+   "direction": "input",
+   "summary": "平滑运动权重 1000 (default) | positive scalar"
+  },
+  {
+   "name": "ObstWeight",
+   "direction": "input",
+   "summary": "与障碍物保持安全距离的权重 50 (default) | positive scalar"
+  },
+  {
+   "name": "ObstMargin",
+   "direction": "input",
+   "summary": "机器人与障碍物之间的安全距离 0.5 (default) | positive scalar"
+  },
+  {
+   "name": "NumIter",
+   "direction": "input",
+   "summary": "优化轨迹的迭代次数 2 (default) | positive integer"
+  },
+  {
+   "name": "LookAheadTime",
+   "direction": "input",
+   "summary": "前视时间 5 (default) | positive scalar"
+  },
+  {
+   "name": "GoalTol",
+   "direction": "input",
+   "summary": "目标位姿周围的容差 [0.1,0.1,0.1] (default) | three-element column vector"
+  },
+  {
+   "name": "RefDelTime",
+   "direction": "input",
+   "summary": "参考时间增量 0.3 (default) | positive scalar"
+  },
+  {
+   "name": "VelCmds",
+   "direction": "output",
+   "summary": "速度命令 N -by-2 matrix"
+  },
+  {
+   "name": "Timestamps",
+   "direction": "output",
+   "summary": "与速度命令对应的时间戳 N -element column vector"
+  },
+  {
+   "name": "OptPath",
+   "direction": "output",
+   "summary": "优化后的路径 N -by-3 matrix"
+  },
+  {
+   "name": "SolnInfo",
+   "direction": "output",
+   "summary": "额外信息 bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample time (s)",
+   "default": "1",
+   "values": "控制器的采样时间 1 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify lookahead time using input port",
+   "default": "off",
+   "values": "为前瞻时间添加输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Lookahead time (s)",
+   "default": "5",
+   "values": "前视时间 5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify goal tolerance using input port",
+   "default": "off",
+   "values": "为目标容差添加输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Goal tolerance ([m m rad])",
+   "default": "0.1]",
+   "values": "目标位姿周围的容差 [0.1, 0.1, 0.1] (default) | three-element column vector",
+   "group": ""
+  },
+  {
+   "name": "Shape",
+   "default": "Rectangle",
+   "values": "机器人形状 Rectangle (default) | Point",
+   "group": ""
+  },
+  {
+   "name": "Dimension ([m m])",
+   "default": "0.67]",
+   "values": "机器人尺寸 [1, 0.67] (default) | two-element positive vector",
+   "group": ""
+  },
+  {
+   "name": "Fixed transform ([m m rad])",
+   "default": "se2",
+   "values": "变换矩阵 se2 (default) | three-element row vector of form [ x, y, theta ]",
+   "group": ""
+  },
+  {
+   "name": "Specify obstacle safety margin using input port",
+   "default": "off",
+   "values": "为障碍物安全裕量添加输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Obstacle safety margin (m)",
+   "default": "0.5",
+   "values": "机器人与障碍物之间的安全距离 0.5 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify max velocity using input port",
+   "default": "off",
+   "values": "为最大速度添加输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum velocity ([m/s rad/s])",
+   "default": "1.6]",
+   "values": "线速度和角速度的最大限值 [0.8, 1.6] (default) | two-element positive vector",
+   "group": ""
+  },
+  {
+   "name": "Specify max reverse velocity using input port",
+   "default": "off",
+   "values": "为最大倒车速度添加输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum reverse velocity (m/s)",
+   "default": "NaN",
+   "values": "反向运动的最大速度 NaN (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify max acceleration using input port",
+   "default": "off",
+   "values": "为最大加速度添加输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Maximum acceleration ([m/s^2 rad/s^2])",
+   "default": "[2.4,4.8]",
+   "values": "线加速度和角加速度的最大限值 [2.4,4.8] (default) | two-element positive vector",
+   "group": ""
+  },
+  {
+   "name": "Specify min turning radius using input port",
+   "default": "off",
+   "values": "为最小转弯半径添加输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Minimum turning radius (m)",
+   "default": "0",
+   "values": "车辆在优化路径上的最小转弯半径 0 (default) | nonnegative scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify reference delta time using input port",
+   "default": "off",
+   "values": "为参考时间增量添加输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Reference delta time (s)",
+   "default": "0.3",
+   "values": "参考时间增量 0.3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify number of iterations using input port",
+   "default": "off",
+   "values": "添加用于迭代次数的输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Number of iterations",
+   "default": "2",
+   "values": "优化轨迹的迭代次数 2 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify time weight using input port",
+   "default": "off",
+   "values": "添加时间权重的输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Time weight",
+   "default": "10",
+   "values": "时间代价函数权重 10 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Specify smoothness weight using input port",
+   "default": "off",
+   "values": "添加平滑度权重的输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Smoothness weight",
+   "default": "1000",
+   "values": "平滑运动权重 1000 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Specify obstacle weight using input port",
+   "default": "off",
+   "values": "添加障碍物权重的输入端口 off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Obstacle weight",
+   "default": "50",
+   "values": "与障碍物保持安全距离的权重 50 (default) | positive scalar",
+   "group": ""
+  }
+ ]
+}

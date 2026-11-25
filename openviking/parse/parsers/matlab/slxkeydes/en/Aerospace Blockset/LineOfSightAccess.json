@@ -1,0 +1,268 @@
+{
+ "key": "LineOfSightAccess",
+ "title": "Line of Sight Access",
+ "toolbox": "Aerospace Blockset",
+ "kind": "block_type",
+ "source_docs": [
+  "Aerospace Blockset/Spacecraft/Spacecraft Dynamics/Line_of_Sight_Access.md"
+ ],
+ "text": "Determine line of sight (LOS) access between one or more source positions and one or more target positions, 11 inputs, 6 outputs, {Ephemeris model} sets Ephemeris model; {Units} sets the parameter and port units Metric, {Time source}, {Start date/time (JD)} sets the initial start date and time for simulation, {Access calculation type} sets the method to control access, {Output access status for each occulting body}, {Limit ephemerides date range} sets the option to enable start and end of range of ephemeris, {Start date (JD)} sets the start date of ephemerides date range, {End date (JD)} sets the end date of ephemerides date range, {Action for out-of-range input} sets the out-of-range block behavior, {Enable zero-crossing detection}, {Central body} sets the celestial central body for source position, {Include Moon} sets the option to include Moon, {Include Earth} sets the option to include Earth, {Position coordinate frame}, {Minimum elevation angle (deg)}, {Input Moon libration angles}, {Use Earth orientation parameters (EOPs)} sets the option to use Earth orientation parameters, {IERS EOP data file} sets the earth orientation data, {Equatorial radius} sets the custom equatorial radius 3.3962e6, {Use field of view (FOV)} sets the option to specify field of view, {FOV half angle (deg)} sets the field of view half angle, {Attitude representation}, {FOV orientation source} sets the field of view orientation source method, {FOV orientation} sets the field of view orientation, {Attitude reference coordinate frame}, {Angle rotation order} and {Use same central body as Source} sets the option to use same central body as specified for source. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "T JD",
+   "direction": "input",
+   "summary": "Julian date scalar"
+  },
+  {
+   "name": "T0 JD",
+   "direction": "input",
+   "summary": "Julian date epoch scalar"
+  },
+  {
+   "name": "ΔT JD",
+   "direction": "input",
+   "summary": "Elapsed Julian time with respect to T0 JD scalar"
+  },
+  {
+   "name": "Src position",
+   "direction": "input",
+   "summary": "Source position 3-element vector | 4-element vector | M -by-3 array | M -by-4 array"
+  },
+  {
+   "name": "Src attitude",
+   "direction": "input",
+   "summary": "Source attitude 3-element vector | M -by-3 array"
+  },
+  {
+   "name": "Src FOV orientation",
+   "direction": "input",
+   "summary": "Source field of view orientation 4-element vector | 3-element vector"
+  },
+  {
+   "name": "Tgt position",
+   "direction": "input",
+   "summary": "Target position 3-element vector | M -by-3 array"
+  },
+  {
+   "name": "Tgt attitude",
+   "direction": "input",
+   "summary": "Target attitude 3-element vector | M -by-3 array"
+  },
+  {
+   "name": "Tgt FOV orientation",
+   "direction": "input",
+   "summary": "Target field of view orientation 4-element vector | 3-element vector"
+  },
+  {
+   "name": "R ss bary, cb",
+   "direction": "input",
+   "summary": "Custom central body position 3-by-1 array"
+  },
+  {
+   "name": "φθψ",
+   "direction": "input",
+   "summary": "Moon libration angles 3-element vector"
+  },
+  {
+   "name": "Access",
+   "direction": "output",
+   "summary": "Total combined line of sight access status 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access source CB",
+   "direction": "output",
+   "summary": "Line of sight access status for source central body 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access Earth/Moon",
+   "direction": "output",
+   "summary": "Line of sight access status for Earth or Moon 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access target CB",
+   "direction": "output",
+   "summary": "Line of sight access status for target central body 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access Src FOV",
+   "direction": "output",
+   "summary": "Status of line of sight access from source to target for source field of view 0 (false) | 1 (true)"
+  },
+  {
+   "name": "Access Tgt FOV",
+   "direction": "output",
+   "summary": "Status of line of sight access from source to target for the target field of view 0 (false) | 1 (true)"
+  }
+ ],
+ "params": [
+  {
+   "name": "Units",
+   "default": "(m)",
+   "values": "Parameter and port units Metric (m) (default) | Metric (km) | English (ft) | English (M)",
+   "group": "Main"
+  },
+  {
+   "name": "Time source",
+   "default": "Dialog",
+   "values": "Time source method Dialog (default) | Port (Julian date) | Port (T0 and elapsed Julian time)",
+   "group": "Main"
+  },
+  {
+   "name": "Start date/time (JD)",
+   "default": "1)",
+   "values": "Initial start date and time for simulation juliandate(2020, 1, 1) (default) | valid scalar Julian date",
+   "group": "Main"
+  },
+  {
+   "name": "Access calculation type",
+   "default": "Cumulative",
+   "values": "Method to control access type Cumulative (default) | Element-wise",
+   "group": "Main"
+  },
+  {
+   "name": "Output access status for each occulting body",
+   "default": "off",
+   "values": "Output access status for each occulting body off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Ephemeris model",
+   "default": "DE405",
+   "values": "Ephemeris model DE405 (default) | DE421 | DE423 | DE430 | DE432t",
+   "group": "Main"
+  },
+  {
+   "name": "Limit ephemerides date range",
+   "default": "on",
+   "values": "Option to enable start and end of range of ephemeris data on (default) | off",
+   "group": "Main"
+  },
+  {
+   "name": "Start date (JD)",
+   "default": "1)",
+   "values": "Start date of ephemerides date range juliandate(2020, 1, 1) (default) | Julian date",
+   "group": "Main"
+  },
+  {
+   "name": "End date (JD)",
+   "default": "1)",
+   "values": "End date of ephemerides date range juliandate(2035, 1, 1) (default) | Julian date",
+   "group": "Main"
+  },
+  {
+   "name": "Action for out-of-range input",
+   "default": "Warning",
+   "values": "Out-of-range block behavior Warning (default) | Error | None",
+   "group": "Main"
+  },
+  {
+   "name": "Enable zero-crossing detection",
+   "default": "off",
+   "values": "Enable zero-crossing detection off (default) | on",
+   "group": "Main"
+  },
+  {
+   "name": "Central body",
+   "default": "Earth",
+   "values": "Celestial central body for source position Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Sun | Custom",
+   "group": "Source"
+  },
+  {
+   "name": "Include Moon",
+   "default": "off",
+   "values": "Option to include Moon off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "Include Earth",
+   "default": "off",
+   "values": "Option to include Earth off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "Position coordinate frame",
+   "default": "ICRF",
+   "values": "Position coordinate frame ICRF (default) | Fixed-frame | Latitude, Longitude, Altitude",
+   "group": "Source"
+  },
+  {
+   "name": "Minimum elevation angle (deg)",
+   "default": "0",
+   "values": "Minimum elevation angle 0 (default) | double scalar | vector",
+   "group": "Source"
+  },
+  {
+   "name": "Input Moon libration angles",
+   "default": "off",
+   "values": "Moon libration off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "Use Earth orientation parameters (EOPs)",
+   "default": "on",
+   "values": "Option to use Earth orientation parameters on (default) | off",
+   "group": "Source"
+  },
+  {
+   "name": "IERS EOP data file",
+   "default": "aeroiersdata.mat",
+   "values": "Earth orientation data aeroiersdata.mat (default) | MAT file",
+   "group": "Source"
+  },
+  {
+   "name": "Equatorial radius",
+   "default": "3.3962e6",
+   "values": "Custom equatorial radius 3.3962e6 (default) | double scalar",
+   "group": "Source"
+  },
+  {
+   "name": "Use field of view (FOV)",
+   "default": "off",
+   "values": "Option to specify field of view off (default) | on",
+   "group": "Source"
+  },
+  {
+   "name": "FOV half angle (deg)",
+   "default": "22.5",
+   "values": "Field of view half angle 22.5 (default) | double scalar",
+   "group": "Source"
+  },
+  {
+   "name": "Attitude representation",
+   "default": "Quaternion",
+   "values": "Attitude representation Quaternion (default) | Euler angles",
+   "group": "Source"
+  },
+  {
+   "name": "FOV orientation source",
+   "default": "Dialog",
+   "values": "Field of view orientation source method Dialog (default) | Port",
+   "group": "Source"
+  },
+  {
+   "name": "FOV orientation",
+   "default": "",
+   "values": "Field of view orientation 4-element vector | 3-element vector",
+   "group": "Source"
+  },
+  {
+   "name": "Attitude reference coordinate frame",
+   "default": "",
+   "values": "Attitude reference coordinate frame ICRF | Fixed-frame | NED",
+   "group": "Source"
+  },
+  {
+   "name": "Angle rotation order",
+   "default": "ZYX",
+   "values": "Angle rotation order ZYX (default) | ZYX | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX",
+   "group": "Source"
+  },
+  {
+   "name": "Use same central body as Source",
+   "default": "on",
+   "values": "Option to use same central body as specified for source body on (default) | off",
+   "group": "Target"
+  }
+ ]
+}

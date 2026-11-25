@@ -1,0 +1,13 @@
+{
+ "key": "Induction Machine Squirrel Cage",
+ "title": "Induction Machine Squirrel Cage",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Electromechanical/Asynchronous/Induction_Machine_Squirrel_Cage.md"
+ ],
+ "text": "Squirrel-cage-rotor induction machine with per-unit or SI parameterization.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

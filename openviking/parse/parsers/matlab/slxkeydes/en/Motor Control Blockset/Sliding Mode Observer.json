@@ -1,0 +1,140 @@
+{
+ "key": "Sliding Mode Observer",
+ "title": "Sliding Mode Observer",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Sensorless Estimators/Sliding_Mode_Observer.md"
+ ],
+ "text": "Compute electrical position and mechanical speed of a surface-mount PMSM, 5 inputs, 2 outputs, {Speed unit} sets Unit of speed output; {Input units} sets the unit of block inputs, {Discrete step size (s)} sets the sample time after which block executes again, {Stator resistance (ohm)} sets the resistance, {Stator inductance (H)} sets the inductance 0.2e-3, {Maximum application speed (RPM)} sets the maximum supported mechanical speed, {Number of pole pairs}, {Base voltage (V)} sets the nominal voltage corresponding to one per, {Base current (A)} sets the nominal current corresponding to one per, {Back-emf observer gain} sets the sliding mode observer gain for back-emf, {Current observer gain} sets the sliding mode observer gain for current, {Filter cut-off frequency (Hz)} sets the cut-off frequency of internal filter, {Position unit} sets the unit of position, {Position data type} sets the data type of position and {Speed data type} sets the data type of speed. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "V α",
+   "direction": "input",
+   "summary": "α -axis voltage scalar"
+  },
+  {
+   "name": "V β",
+   "direction": "input",
+   "summary": "β -axis voltage scalar"
+  },
+  {
+   "name": "I α",
+   "direction": "input",
+   "summary": "α -axis current scalar"
+  },
+  {
+   "name": "I β",
+   "direction": "input",
+   "summary": "β -axis current scalar"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Reset the block scalar"
+  },
+  {
+   "name": "θ e",
+   "direction": "output",
+   "summary": "Electrical position of PMSM scalar"
+  },
+  {
+   "name": "⍵ m",
+   "direction": "output",
+   "summary": "Mechanical speed of PMSM scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Input units",
+   "default": "unit",
+   "values": "Unit of block inputs SI unit (default) | Per-unit",
+   "group": ""
+  },
+  {
+   "name": "Discrete step size (s)",
+   "default": "50e-6",
+   "values": "Sample time after which block executes again 50e-6 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Stator resistance (ohm)",
+   "default": "0.36",
+   "values": "Resistance 0.36 (default) | scalar",
+   "group": "Motor parameters"
+  },
+  {
+   "name": "Stator inductance (H)",
+   "default": "0.2e-3",
+   "values": "Inductance 0.2e-3 (default) | scalar",
+   "group": "Motor parameters"
+  },
+  {
+   "name": "Maximum application speed (RPM)",
+   "default": "6000",
+   "values": "Maximum supported mechanical speed 6000 (default) | scalar",
+   "group": "Motor parameters"
+  },
+  {
+   "name": "Number of pole pairs",
+   "default": "4",
+   "values": "Number of pole pairs available in motor 4 (default) | scalar",
+   "group": "Motor parameters"
+  },
+  {
+   "name": "Base voltage (V)",
+   "default": "13.8564",
+   "values": "Nominal voltage corresponding to one per unit 13.8564 (default) | scalar",
+   "group": "Motor parameters"
+  },
+  {
+   "name": "Base current (A)",
+   "default": "21.4286",
+   "values": "Nominal current corresponding to one per unit 21.4286 (default) | scalar",
+   "group": "Motor parameters"
+  },
+  {
+   "name": "Back-emf observer gain",
+   "default": "0.9",
+   "values": "Sliding mode observer gain for back-emf 0.9 (default) | scalar",
+   "group": "Observer Parameters"
+  },
+  {
+   "name": "Current observer gain",
+   "default": "0.50881",
+   "values": "Sliding mode observer gain for current 0.50881 (default) | scalar",
+   "group": "Observer Parameters"
+  },
+  {
+   "name": "Filter cut-off frequency (Hz)",
+   "default": "1200",
+   "values": "Cut-off frequency of internal filter 1200 (default) | scalar",
+   "group": "Observer Parameters"
+  },
+  {
+   "name": "Position unit",
+   "default": "Radians",
+   "values": "Unit of position output Radians (default) | Degrees | Per unit",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Position data type",
+   "default": "single",
+   "values": "Data type of position output single (default) | double | fixed point",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Speed unit",
+   "default": "RPM",
+   "values": "Unit of speed output RPM (default) | Degrees/sec | Radians/sec | Per unit",
+   "group": "Datatypes"
+  },
+  {
+   "name": "Speed data type",
+   "default": "single",
+   "values": "Data type of speed output single (default) | double | fixed point",
+   "group": "Datatypes"
+  }
+ ]
+}

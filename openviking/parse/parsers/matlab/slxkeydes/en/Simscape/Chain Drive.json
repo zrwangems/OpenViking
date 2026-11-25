@@ -1,0 +1,13 @@
+{
+ "key": "Chain Drive",
+ "title": "Chain Drive",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Chain_Drive.md"
+ ],
+ "text": "Power transmission system with chain and two sprockets.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

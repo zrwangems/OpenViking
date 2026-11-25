@@ -1,0 +1,13 @@
+{
+ "key": "MAPMINMAX Preprocess",
+ "title": "mapminmax",
+ "toolbox": "Deep Learning Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Deep Learning Toolbox/Shallow Neural Networks/Processing Functions/mapminmax.md"
+ ],
+ "text": "Process matrices by mapping row minimum and maximum values to [ -1 1 ].",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

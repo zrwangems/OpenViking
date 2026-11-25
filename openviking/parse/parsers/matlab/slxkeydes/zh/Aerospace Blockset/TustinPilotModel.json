@@ -1,0 +1,48 @@
+{
+ "key": "TustinPilotModel",
+ "title": "Tustin Pilot Model",
+ "toolbox": "Aerospace Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Aerospace Blockset/Pilot Models/Tustin_Pilot_Model.md"
+ ],
+ "text": "表示 Tustin 飞行员模型，输入 2 路、输出 1 路；{Pilot gain} 指定飞行员增益、{Pilot time delay(s)} 指定飞行员时间延迟、{Pilot lead constant} 指定飞行员超前常数，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "x com",
+   "direction": "input",
+   "summary": "信号指令 scalar"
+  },
+  {
+   "name": "x",
+   "direction": "input",
+   "summary": "由飞行员控制的信号 scalar"
+  },
+  {
+   "name": "u",
+   "direction": "output",
+   "summary": "飞行器指令 scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Pilot gain",
+   "default": "1",
+   "values": "飞行员增益 1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot time delay(s)",
+   "default": "0.1",
+   "values": "飞行员时间延迟 0.1 (default) | scalar",
+   "group": ""
+  },
+  {
+   "name": "Pilot lead constant",
+   "default": "5",
+   "values": "飞行员超前常数 5 (default) | scalar",
+   "group": ""
+  }
+ ]
+}

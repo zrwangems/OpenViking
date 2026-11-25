@@ -1,0 +1,152 @@
+{
+ "key": "Coplanar Waveguide Transmission Line",
+ "title": "Coplanar Waveguide Transmission Line",
+ "toolbox": "RF Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "RF Blockset/Equivalent Baseband/Transmission Lines/Coplanar_Waveguide_Transmission_Line.md"
+ ],
+ "text": "Model coplanar waveguide transmission line, {Stub mode} sets Type of; {Conductor width (m)} sets the physical width, {Slot width (m)} sets the physical width, {Substrate height (m)} sets the thickness of dielectric on which the conductor resides, {Strip thickness (m)} sets the physical thickness, {Relative permittivity constant} sets the relative permittivity of dielectric, {Loss tangent of dielectric} sets the dielectric loss tangent, {Conductivity of the conductor (S/m)} sets the conductivity of the conductor in siemens per meter, {Transmission line length (m)} sets the physical length of transmission line, {Termination of stub} sets the stub termination, {Source of frequency data} sets the frequency data source, {Frequency data (Hz)} sets the frequency data range, {Reference impedance (ohms)}, {Plot type} sets the type of data plot, {Y parameter1} sets the type of parameters, {Y parameter2} sets the type of parameters, {Y format1} plots format Magnitude, {Y format2} plots format Magnitude, {X parameter} sets the frequency plot, {X format} sets the frequency plot format, {Y scale} sets the y-axis scale, {X scale} sets the x-axis scale and {Plot}. Values come from the instance.",
+ "variants": [],
+ "ports": [],
+ "params": [
+  {
+   "name": "Conductor width (m)",
+   "default": "0.6e-3",
+   "values": "Physical width of conductor 0.6e-3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Slot width (m)",
+   "default": "0.2e-3",
+   "values": "Physical width of slot 0.2e-3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Substrate height (m)",
+   "default": "0.635e-3",
+   "values": "Thickness of dielectric on which the conductor resides 0.635e-3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Strip thickness (m)",
+   "default": "0.005e-3",
+   "values": "Physical thickness of conductor 0.005e-3 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Relative permittivity constant",
+   "default": "9.8",
+   "values": "Relative permittivity of dielectric 9.8 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Loss tangent of dielectric",
+   "default": "0",
+   "values": "Dielectric loss tangent 0 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Conductivity of the conductor (S/m)",
+   "default": "inf",
+   "values": "Conductivity of the conductor in siemens per meter inf (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Transmission line length (m)",
+   "default": "0.01",
+   "values": "Physical length of transmission line 0.01 (default) | scalar",
+   "group": "Main"
+  },
+  {
+   "name": "Stub mode",
+   "default": "stub",
+   "values": "Type of stub Not a stub (default) | Shunt | Series",
+   "group": "Main"
+  },
+  {
+   "name": "Termination of stub",
+   "default": "Open",
+   "values": "Stub termination Open (default) | Short",
+   "group": "Main"
+  },
+  {
+   "name": "Source of frequency data",
+   "default": "User-specified",
+   "values": "Frequency data source User-specified (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "Frequency data (Hz)",
+   "default": "[1e9:1e6:3e9]",
+   "values": "Frequency data range [1e9:1e6:3e9] (default) | vector",
+   "group": "Visualization"
+  },
+  {
+   "name": "Reference impedance (ohms)",
+   "default": "50",
+   "values": "Reference impedance 50 (default) | nonnegative scalar",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot type",
+   "default": "plane",
+   "values": "Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter1",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y parameter2",
+   "default": "S11",
+   "values": "Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format1",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y format2",
+   "default": "(decibels)",
+   "values": "Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary |...",
+   "group": "Visualization"
+  },
+  {
+   "name": "X parameter",
+   "default": "Freq",
+   "values": "Frequency plot Freq (default)",
+   "group": "Visualization"
+  },
+  {
+   "name": "X format",
+   "default": "Hz",
+   "values": "Frequency plot format Hz (default) | Auto | kHz | MHz | GHz | THz",
+   "group": "Visualization"
+  },
+  {
+   "name": "Y scale",
+   "default": "Linear",
+   "values": "Y-axis scale Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "X scale",
+   "default": "Linear",
+   "values": "X-axis scale Linear (default) | Log",
+   "group": "Visualization"
+  },
+  {
+   "name": "Plot",
+   "default": "",
+   "values": "Plot specified data button",
+   "group": "Visualization"
+  }
+ ]
+}

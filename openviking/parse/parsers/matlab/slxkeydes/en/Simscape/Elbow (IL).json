@@ -1,0 +1,13 @@
+{
+ "key": "Elbow (IL)",
+ "title": "Elbow (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Pipes & Fittings/Elbow_IL.md"
+ ],
+ "text": "Pipe turn in an isothermal liquid network.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

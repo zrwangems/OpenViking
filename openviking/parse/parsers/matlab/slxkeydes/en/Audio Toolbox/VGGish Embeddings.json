@@ -1,0 +1,37 @@
+{
+ "key": "VGGish Embeddings",
+ "title": "VGGish Embeddings",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/VGGish_Embeddings.md"
+ ],
+ "text": "Extract VGGish embeddings, 1 input, 1 output, no direct feedthrough; {Sample rate of input signal (Hz)} sets the sample rate of input signal and {Overlap percentage (%)} sets the overlap percentage between consecutive mel. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Sound data column vector"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Embeddings row vector of length 128"
+  }
+ ],
+ "params": [
+  {
+   "name": "Sample rate of input signal (Hz)",
+   "default": "16e3",
+   "values": "Sample rate of input signal in Hz 16e3 (default) | positive scalar",
+   "group": ""
+  },
+  {
+   "name": "Overlap percentage (%)",
+   "default": "50",
+   "values": "Overlap percentage between consecutive mel spectrograms 50 (default) | [0 100)",
+   "group": ""
+  }
+ ]
+}

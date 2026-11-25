@@ -1,0 +1,13 @@
+{
+ "key": "Lead Screw Joint",
+ "title": "Lead Screw Joint",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Joints/Lead_Screw_Joint.md"
+ ],
+ "text": "Joint with coupled rotational and translational degrees of freedom.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

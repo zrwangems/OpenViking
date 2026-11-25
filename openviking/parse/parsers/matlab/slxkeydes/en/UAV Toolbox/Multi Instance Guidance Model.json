@@ -1,0 +1,72 @@
+{
+ "key": "Multi Instance Guidance Model",
+ "title": "Multi-Instance Guidance Model",
+ "toolbox": "UAV Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "UAV Toolbox/Algorithms/Multi_Instance_Guidance_Model.md"
+ ],
+ "text": "Reduced-order model for multiple UAVs, 2 inputs, 1 output; {Model Type} sets the uAV guidance model, {Number of Instances} sets the number of UAVs to simulate, {Data Type} sets the input and output numeric data, {Simulate using} sets the type of simulation to run Interpreted, {Initial State} sets the initial UAV state tab multiple table, {Configuration} sets the uAV controller configuration tab multiple table and {Input/Output Bus Names} sets the simulink bus signal names tab. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Control",
+   "direction": "input",
+   "summary": "Control input bus"
+  },
+  {
+   "name": "Environment",
+   "direction": "input",
+   "summary": "Environment inputs bus"
+  },
+  {
+   "name": "State",
+   "direction": "output",
+   "summary": "Simulated UAV state bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model Type",
+   "default": "MultirotorGuidance",
+   "values": "UAV guidance model type MultirotorGuidance (default) | FixedWingGuidance",
+   "group": ""
+  },
+  {
+   "name": "Number of Instances",
+   "default": "5",
+   "values": "Number of UAVs to simulate 5 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Data Type",
+   "default": "double",
+   "values": "Input and output numeric data types double (default) | single",
+   "group": ""
+  },
+  {
+   "name": "Simulate using",
+   "default": "execution",
+   "values": "Type of simulation to run Interpreted execution (default) | Code generation",
+   "group": ""
+  },
+  {
+   "name": "Initial State",
+   "default": "",
+   "values": "Initial UAV state tab multiple table entries",
+   "group": ""
+  },
+  {
+   "name": "Configuration",
+   "default": "",
+   "values": "UAV controller configuration tab multiple table entries",
+   "group": ""
+  },
+  {
+   "name": "Input/Output Bus Names",
+   "default": "",
+   "values": "Simulink bus signal names tab bus names",
+   "group": ""
+  }
+ ]
+}

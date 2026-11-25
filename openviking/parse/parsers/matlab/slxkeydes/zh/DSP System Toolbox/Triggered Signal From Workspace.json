@@ -1,0 +1,55 @@
+{
+ "key": "Triggered Signal From Workspace",
+ "title": "Triggered Signal From Workspace",
+ "toolbox": "DSP System Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "DSP System Toolbox/Signal Operations/Triggered_Signal_From_Workspace.md"
+ ],
+ "text": "触发时从 MATLAB 工作区导入信号采样，输入 1 路、输出 1 路、无直接馈通；按 {Initial output} 指定初始输出值；{Signal} 指定要导入的信号、{Trigger type} 指定触发事件的类型 Rising、{Samples per frame}、{Form output after final data value by} 指定导入信号的最后一个信号值之后要输出的值 Setting，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "trigger",
+   "direction": "input",
+   "summary": "触发信号 scalar | vector | matrix"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "从工作区导入的信号 scalar | vector | matrix | 3-D array"
+  }
+ ],
+ "params": [
+  {
+   "name": "Signal",
+   "default": "1:10",
+   "values": "要导入的信号 1:10 (default) | MATLAB workspace variable | MATLAB expression",
+   "group": ""
+  },
+  {
+   "name": "Trigger type",
+   "default": "edge",
+   "values": "触发事件的类型 Rising edge (default) | Falling edge | Either edge",
+   "group": ""
+  },
+  {
+   "name": "Initial output",
+   "default": "0",
+   "values": "初始输出值 0 (default) | scalar | vector | matrix",
+   "group": ""
+  },
+  {
+   "name": "Samples per frame",
+   "default": "1",
+   "values": "Samples per frame 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Form output after final data value by",
+   "default": "zero",
+   "values": "导入信号的最后一个信号值之后要输出的值 Setting to zero (default) | Holding final value | Cyclic repetition",
+   "group": ""
+  }
+ ]
+}

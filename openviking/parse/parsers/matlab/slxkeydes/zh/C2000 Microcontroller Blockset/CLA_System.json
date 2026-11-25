@@ -1,0 +1,54 @@
+{
+ "key": "CLA_System",
+ "title": "CLA Task",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/C2803x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/C2805x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/C2806x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F28003x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F28004x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F2807x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F2837xD/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F2837xS/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F28p55x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F28p65x/CLA_Task.md",
+  "C2000 Microcontroller Blockset/F2838x/C28x/CLA_Task.md"
+ ],
+ "text": "创建 CLA 任务，该任务在 CLA 核心上执行下游函数调用子系统；输出 1 路；按 {采样时间} 指定函数调用子系统触发的频率；{CLA 任务编号}、{CLA 任务触发器源}、{等到任务完成} 指定阻止 C28x 执行，直到 CLA 任务完成，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "向函数调用子系统或函数调用模型发送函数调用信号 标量"
+  }
+ ],
+ "params": [
+  {
+   "name": "CLA 任务编号",
+   "default": "1",
+   "values": "在 CLA 核心上执行的 CLA 任务编号 1 (默认) | [1, 8] 范围内的整数",
+   "group": ""
+  },
+  {
+   "name": "CLA 任务触发器源",
+   "default": "Software",
+   "values": "CLA 任务触发器源 Software (默认) | 外设中断",
+   "group": ""
+  },
+  {
+   "name": "等到任务完成",
+   "default": "off",
+   "values": "阻止 C28x 执行，直到 CLA 任务完成。 off (默认) | on",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "0.2",
+   "values": "函数调用子系统触发的频率 0.2 (默认) | -1 | 标量",
+   "group": ""
+  }
+ ]
+}

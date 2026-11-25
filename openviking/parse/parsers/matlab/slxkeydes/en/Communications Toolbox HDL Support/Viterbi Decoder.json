@@ -1,0 +1,145 @@
+{
+ "key": "Viterbi Decoder",
+ "title": "Viterbi Decoder",
+ "toolbox": "Communications Toolbox HDL Support",
+ "kind": "source_type",
+ "source_docs": [
+  "Communications Toolbox HDL Support/Error Detection and Correction/Convolutional/Viterbi_Decoder.md",
+  "Communications Toolbox/Error Detection and Correction/Convolutional/Viterbi_Decoder.md",
+  "Wireless HDL Toolbox/Error Detection and Correction/Viterbi_Decoder.md"
+ ],
+ "text": "Decode convolutionally encoded data using Viterbi algorithm, 3 inputs, 1 output, {Decision type} sets Decoder decision type; {Trellis structure}, {numInputSymbols} sets the number, {numOutputSymbols} sets the number, {numStates} sets the number, {nextStates}, {outputs}, {Punctured code} sets the option, {Puncture vector} sets the puncture pattern 1; 0; 1; {Enable erasures input port} sets the option to enable erasures input port, {Number of soft decision bits} sets the soft input word length, {Error if quantized input values are out of range} sets the option to error if quantized input values are out, {Traceback depth}, {Operation mode} sets the termination method of encoded frame, {Enable reset input port} sets the option to add reset input port, {Delay reset action to next time step} sets the option to delay reset action until next time, {State metric word length} and {Output data type}. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "In",
+   "direction": "input",
+   "summary": "Convolutionally encoded codeword column vector"
+  },
+  {
+   "name": "Era",
+   "direction": "input",
+   "summary": "Erasure bits in codeword binary-valued vector"
+  },
+  {
+   "name": "Rst",
+   "direction": "input",
+   "summary": "Option to reset state of decoder registers scalar"
+  },
+  {
+   "name": "Out",
+   "direction": "output",
+   "summary": "Output message binary column vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Trellis structure",
+   "default": "133])",
+   "values": "Trellis description of convolutional code poly2trellis(7,[171 133]) (default)",
+   "group": ""
+  },
+  {
+   "name": "numInputSymbols",
+   "default": "",
+   "values": "Number of symbols input to encoder 2 K",
+   "group": ""
+  },
+  {
+   "name": "numOutputSymbols",
+   "default": "",
+   "values": "Number of symbols output from encoder 2 N",
+   "group": ""
+  },
+  {
+   "name": "numStates",
+   "default": "",
+   "values": "Number of states in encoder power of 2",
+   "group": ""
+  },
+  {
+   "name": "nextStates",
+   "default": "",
+   "values": "Next states matrix of integers",
+   "group": ""
+  },
+  {
+   "name": "outputs",
+   "default": "",
+   "values": "Outputs matrix of octal numbers",
+   "group": ""
+  },
+  {
+   "name": "Punctured code",
+   "default": "off",
+   "values": "Option to enable specification of code puncturing off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Puncture vector",
+   "default": "1]",
+   "values": "Puncture pattern vector [1; 1; 0; 1; 0; 1] (default) | vector",
+   "group": ""
+  },
+  {
+   "name": "Enable erasures input port",
+   "default": "off",
+   "values": "Option to enable erasures input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Decision type",
+   "default": "Unquantized",
+   "values": "Decoder decision type Unquantized (default) | Hard decision | Soft decision",
+   "group": ""
+  },
+  {
+   "name": "Number of soft decision bits",
+   "default": "4",
+   "values": "Soft input word length 4 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Error if quantized input values are out of range",
+   "default": "off",
+   "values": "Option to error if quantized input values are out of range off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Traceback depth",
+   "default": "34",
+   "values": "Traceback depth 34 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Operation mode",
+   "default": "Continuous",
+   "values": "Termination method of encoded frame Continuous (default) | Truncated | Terminated",
+   "group": ""
+  },
+  {
+   "name": "Enable reset input port",
+   "default": "off",
+   "values": "Option to add reset input port off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Delay reset action to next time step",
+   "default": "off",
+   "values": "Option to delay reset action until next time step off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "State metric word length",
+   "default": "16",
+   "values": "State metric word length 16 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Output data type",
+   "default": "rule",
+   "values": "Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  }
+ ]
+}

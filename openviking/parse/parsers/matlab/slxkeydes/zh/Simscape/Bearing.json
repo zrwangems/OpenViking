@@ -1,0 +1,13 @@
+{
+ "key": "Bearing",
+ "title": "Bearing",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Driveline/Couplings & Drives/Bearing.md"
+ ],
+ "text": "为自由旋转轴提供横向支撑的轴承。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

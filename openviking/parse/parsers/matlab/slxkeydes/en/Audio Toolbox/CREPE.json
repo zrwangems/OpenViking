@@ -1,0 +1,37 @@
+{
+ "key": "CREPE",
+ "title": "CREPE",
+ "toolbox": "Audio Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Audio Toolbox/Deep Learning/CREPE.md"
+ ],
+ "text": "CREPE deep pitch estimation neural network, 1 input, 1 output, no direct feedthrough, {Model capacity} sets Size of trained neural network; {Mini-batch size} sets the size of mini-batches. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Preprocessed audio input vector | 4-D array"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Network activations matrix"
+  }
+ ],
+ "params": [
+  {
+   "name": "Model capacity",
+   "default": "Full",
+   "values": "Size of trained neural network Full (default) | Large | Medium | Small | Tiny",
+   "group": ""
+  },
+  {
+   "name": "Mini-batch size",
+   "default": "128",
+   "values": "Size of mini-batches 128 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

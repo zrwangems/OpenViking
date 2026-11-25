@@ -1,0 +1,13 @@
+{
+ "key": "Annular Leakage (IL)",
+ "title": "Annular Leakage (IL)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Fluids/Isothermal Liquid/Valves & Orifices/Orifices/Annular_Leakage_IL.md"
+ ],
+ "text": "Models annular leakage between a circular tube and a round insert in an isothermal flow.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

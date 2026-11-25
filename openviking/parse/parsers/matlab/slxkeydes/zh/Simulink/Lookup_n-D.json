@@ -1,0 +1,281 @@
+{
+ "key": "Lookup_n-D",
+ "title": "n-D Lookup Table",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Lookup Tables/n_D_Lookup_Table.md",
+  "Simulink/Lookup Tables/b_1_D_Lookup_Table.md",
+  "Simulink/Lookup Tables/b_2_D_Lookup_Table.md",
+  "Simulink/Quick Insert/Lookup Tables/b_3_D_Lookup_Table.md",
+  "Simulink/Quick Insert/Lookup Tables/Lookup_with_Akima_spline_Interpolation.md",
+  "Simulink/Quick Insert/Lookup Tables/Lookup_with_Linear_Lagrange_Interpolation.md",
+  "Simulink/Quick Insert/Lookup Tables/Lookup_with_Linear_Point_slope_Interpolation.md",
+  "HDL Coder/Lookup Tables/n_D_Lookup_Table.md",
+  "HDL Coder/Lookup Tables/b_1_D_Lookup_Table.md",
+  "HDL Coder/Lookup Tables/b_2_D_Lookup_Table.md"
+ ],
+ "text": "逼近 N 维函数，输入 6 路、输出 1 路；按 {插值方法} 指定断点值之间插值的方法；{表维数} 查找表维度的数量、{数据设定} 指定表和断点的设定方法、{名称}、{断点设定}、{支持可调大小} 用于启用可调表大小、{源}、{可调大小} 指定每个数组的最大元素数、{表数据} 定义输出值的表 reshape、{断点}、{第一个点}、{间距}、{编辑表和断点} 打开、{外插方法} 指定处理超出断点向量范围的输入值的方法、{索引搜索方法} 指定计算表索引的方法、{尽可能应用更准确高效的舍入} 使用高效舍入到最接近值进行更精确的定点表查找、{使用上一个索引结果开始索引搜索} 指定开始使用来自上一时间步的索引、{假设输入在范围内} 指定检查输入值是否超出范围、{输入超出范围的诊断} 指定当输入超出范围时的模块操作、{尽可能应用全精度定点算法} 指定更精确的定点表查找、{输入等于或高于最后一个断点时使用最后一个表值} 用于计算最后一个断点上或高于该断点的输入的输出的方法、{采样时间(-1 表示继承)} 指定采样之间的时间间隔、{所有输入数据使用一个输入端口} 指定只使用一个输入端口、{表数据最小值} 指定表数据的最小值、{表数据最大值} 指定表数据的最大值、{断点最小值} 指定最小值断点数据可以有、{断点最大值} 指定最大值断点数据可以有、{区间比}、{中间结果}、{输出}、{输出最小值} 指定范围检查的最小值、{输出最大值} 指定范围检查的最大值、{内部规则优先级} 指定进行中间计算的内部规则、{要求所有输入具有相同的数据类型}、{锁定数据类型设置以防止被定点工具更改} 防止定点工具覆盖数据类型、{整数舍入模式} 指定定点运算的舍入模式、{对整数溢出进行饱和处理} 指定溢出操作的方法，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u1",
+   "direction": "input",
+   "summary": "第一个维度（行）输入 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "uN",
+   "direction": "input",
+   "summary": "第 n 维输入值 标量 | 向量 | 矩阵"
+  },
+  {
+   "name": "T",
+   "direction": "input",
+   "summary": "定义输出值的表 值组成的矩阵，其维度与 表维数 匹配，每个维度与表中每个维度的断点长度匹配"
+  },
+  {
+   "name": "bp1",
+   "direction": "input",
+   "summary": "显式断点值 单调递增值的 1×n 或 n×1 向量"
+  },
+  {
+   "name": "bp2",
+   "direction": "input",
+   "summary": "显式断点值 单调递增值的 1×n 或 n×1 向量"
+  },
+  {
+   "name": "bp3",
+   "direction": "input",
+   "summary": "显式断点值 单调递增值的 1×n 或 n×1 向量"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "通过查找或估算表值计算的输出 标量 | 向量 | 矩阵"
+  }
+ ],
+ "params": [
+  {
+   "name": "表维数",
+   "default": "3",
+   "values": "查找表维度的数量 3 (默认) | 1 | 2 | 4 |... | 30",
+   "group": "表和断点"
+  },
+  {
+   "name": "数据设定",
+   "default": "表和断点",
+   "values": "表和断点的设定方法 表和断点 (默认) | 查找表对象",
+   "group": "表和断点"
+  },
+  {
+   "name": "名称",
+   "default": "[]",
+   "values": "查找表对象的名称 [] (默认) | Simulink.LookupTable 对象",
+   "group": "表和断点"
+  },
+  {
+   "name": "断点设定",
+   "default": "显式值",
+   "values": "断点设定的方法 显式值 (默认) | 等间距",
+   "group": "表和断点"
+  },
+  {
+   "name": "支持可调大小",
+   "default": "off",
+   "values": "用于启用可调表大小的选项 off (默认) | on",
+   "group": "表和断点"
+  },
+  {
+   "name": "源",
+   "default": "对话框",
+   "values": "表和断点数据的源 对话框 (默认) | 输入端口",
+   "group": "表和断点"
+  },
+  {
+   "name": "可调大小",
+   "default": "-1",
+   "values": "每个数组的最大元素数 -1 (默认) | 实整数标量",
+   "group": "表和断点"
+  },
+  {
+   "name": "表数据",
+   "default": "23],1,2),[3,3,2])",
+   "values": "定义输出值的表 reshape(repmat([4 5 6;16 19 20;10 18 23],1,2),[3,3,2]) (默认) | 值组成的矩阵，其维度与 表维数 匹配",
+   "group": "表和断点"
+  },
+  {
+   "name": "断点",
+   "default": "[10,22,31]",
+   "values": "显式断点值，或断点的第一个点和间距 [10,22,31] (默认) | 单调递增值的 1×n 或 n×1 向量",
+   "group": "表和断点"
+  },
+  {
+   "name": "第一个点",
+   "default": "1",
+   "values": "等间距断点数据中的第一个点 1 (默认) | 标量",
+   "group": "表和断点"
+  },
+  {
+   "name": "间距",
+   "default": "1",
+   "values": "等间距断点之间的间距 1 (默认) | 标量",
+   "group": "表和断点"
+  },
+  {
+   "name": "编辑表和断点",
+   "default": "",
+   "values": "打开“查找表编辑器”对话框 按钮",
+   "group": "表和断点"
+  },
+  {
+   "name": "插值方法",
+   "default": "线性点-斜率",
+   "values": "断点值之间插值的方法 线性点-斜率 (默认) | 均一 | 最邻近值 | 线性拉格朗日 | 三次样条 | Akima 样条",
+   "group": "算法"
+  },
+  {
+   "name": "外插方法",
+   "default": "线性",
+   "values": "处理超出断点向量范围的输入值的方法 线性 (默认) | 裁剪 | 三次样条 | Akima 样条",
+   "group": "算法"
+  },
+  {
+   "name": "索引搜索方法",
+   "default": "二分搜索",
+   "values": "计算表索引的方法 二分搜索 (默认) | 线性搜索 | 等间距点",
+   "group": "算法"
+  },
+  {
+   "name": "尽可能应用更准确高效的舍入",
+   "default": "off",
+   "values": "使用高效舍入到最接近值进行更精确的定点表查找 off (默认) | on",
+   "group": "算法"
+  },
+  {
+   "name": "使用上一个索引结果开始索引搜索",
+   "default": "off",
+   "values": "开始使用来自上一时间步的索引 off (默认) | on",
+   "group": "算法"
+  },
+  {
+   "name": "假设输入在范围内",
+   "default": "off",
+   "values": "检查输入值是否超出范围的选项 off (默认) | on",
+   "group": "算法"
+  },
+  {
+   "name": "输入超出范围的诊断",
+   "default": "无",
+   "values": "当输入超出范围时的模块操作 无 (默认) | 警告 | 错误",
+   "group": "算法"
+  },
+  {
+   "name": "尽可能应用全精度定点算法",
+   "default": "off",
+   "values": "更精确的定点表查找 off (默认) | on",
+   "group": "算法"
+  },
+  {
+   "name": "输入等于或高于最后一个断点时使用最后一个表值",
+   "default": "off",
+   "values": "用于计算最后一个断点上或高于该断点的输入的输出的方法 off (默认) | on",
+   "group": "算法"
+  },
+  {
+   "name": "采样时间(-1 表示继承)",
+   "default": "-1",
+   "values": "采样之间的时间间隔 -1 (默认) | 标量 | 向量",
+   "group": "算法"
+  },
+  {
+   "name": "所有输入数据使用一个输入端口",
+   "default": "off",
+   "values": "只使用一个输入端口 off (默认) | on",
+   "group": "算法"
+  },
+  {
+   "name": "表数据最小值",
+   "default": "",
+   "values": "表数据的最小值 [] | scalar",
+   "group": "数据类型"
+  },
+  {
+   "name": "表数据最大值",
+   "default": "",
+   "values": "表数据的最大值 [] | scalar",
+   "group": "数据类型"
+  },
+  {
+   "name": "断点最小值",
+   "default": "",
+   "values": "最小值断点数据可以有 [] | scalar",
+   "group": "数据类型"
+  },
+  {
+   "name": "断点最大值",
+   "default": "",
+   "values": "最大值断点数据可以有 [] | scalar",
+   "group": "数据类型"
+  },
+  {
+   "name": "区间比",
+   "default": "从内部规则继承",
+   "values": "区间比数据类型 继承: 从内部规则继承 (默认) | double | single | fixdt(1,16,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "中间结果",
+   "default": "与输出相同",
+   "values": "中间结果数据类型 继承: 与输出相同 (默认) | 继承: 从内部规则继承 | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出",
+   "default": "与输入相同",
+   "values": "输出数据类型 继承: 与输入相同 (默认) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最小值",
+   "default": "",
+   "values": "范围检查的最小值 [] | scalar",
+   "group": "数据类型"
+  },
+  {
+   "name": "输出最大值",
+   "default": "",
+   "values": "范围检查的最大值 [] | scalar",
+   "group": "数据类型"
+  },
+  {
+   "name": "内部规则优先级",
+   "default": "速度",
+   "values": "进行中间计算的内部规则 速度 (默认) | 精度",
+   "group": "数据类型"
+  },
+  {
+   "name": "要求所有输入具有相同的数据类型",
+   "default": "on",
+   "values": "要求所有输入具有相同的数据类型 on (默认) | off",
+   "group": "数据类型"
+  },
+  {
+   "name": "锁定数据类型设置以防止被定点工具更改",
+   "default": "off",
+   "values": "防止定点工具覆盖数据类型 off (默认) | on",
+   "group": "数据类型"
+  },
+  {
+   "name": "整数舍入模式",
+   "default": "最简",
+   "values": "定点运算的舍入模式 最简 (默认) | 向上 | 收敛 | 向下 | 最邻近值 | 舍入 | 零",
+   "group": "数据类型"
+  },
+  {
+   "name": "对整数溢出进行饱和处理",
+   "default": "off",
+   "values": "溢出操作的方法 off (默认) | on",
+   "group": "数据类型"
+  }
+ ]
+}

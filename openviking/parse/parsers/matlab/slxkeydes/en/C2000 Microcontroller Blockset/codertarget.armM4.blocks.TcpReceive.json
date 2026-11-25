@@ -1,0 +1,90 @@
+{
+ "key": "codertarget.armM4.blocks.TcpReceive",
+ "title": "TCP Receive",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/F2838x/M4/TCP_Receive.md"
+ ],
+ "text": "Receive data over TCP/IP network from remote host, 3 outputs, {Data type} sets Data type of received data; {Connection mode} sets the block as server, {Local IP Port} sets the iP port on receiving host from which data, {Server IP Address} sets the remote IP address of server from which data is received, {Server IP Port} sets the remote IP port on server from which data, {Enable variable length} enables to receive variable data length, {Data size (N)} sets the number of data bytes in received data, {Maximum data size (N)} sets the maximum length of data, {Wait until data received} sets the wait until requested data is available and {Sample time} sets the interval at which block reads data from sending. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Data",
+   "direction": "output",
+   "summary": "Output data vector"
+  },
+  {
+   "name": "Status",
+   "direction": "output",
+   "summary": "Requested data received at given time step scalar"
+  },
+  {
+   "name": "Length",
+   "direction": "output",
+   "summary": "Receive data length scalar"
+  }
+ ],
+ "params": [
+  {
+   "name": "Connection mode",
+   "default": "Server",
+   "values": "Set the block as server or client Server (default) | Client",
+   "group": ""
+  },
+  {
+   "name": "Local IP Port",
+   "default": "25000",
+   "values": "IP port on receiving host from which data is received 25000 (default) | positive integer in the range [1,65535]",
+   "group": ""
+  },
+  {
+   "name": "Server IP Address",
+   "default": "192.168.1.10",
+   "values": "Remote IP address of server from which data is received 192.168.1.10 (default) | any valid IP address",
+   "group": ""
+  },
+  {
+   "name": "Server IP Port",
+   "default": "25002",
+   "values": "Remote IP port on server from which data is received 25002 (default) | positive integer in the range [1,65535]",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "uint8",
+   "values": "Data type of received data uint8 (default) | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean",
+   "group": ""
+  },
+  {
+   "name": "Enable variable length",
+   "default": "off",
+   "values": "Enable to receive variable data length off (default) | on",
+   "group": ""
+  },
+  {
+   "name": "Data size (N)",
+   "default": "1",
+   "values": "Number of data bytes in received data 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Maximum data size (N)",
+   "default": "1",
+   "values": "Maximum length of data 1 (default) | positive integer",
+   "group": ""
+  },
+  {
+   "name": "Wait until data received",
+   "default": "on",
+   "values": "Wait until requested data is available on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "0.1",
+   "values": "Interval at which block reads data from sending host 0.1 (default) | nonnegative value",
+   "group": ""
+  }
+ ]
+}

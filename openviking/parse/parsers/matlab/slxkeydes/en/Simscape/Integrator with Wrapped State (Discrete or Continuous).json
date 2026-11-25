@@ -1,0 +1,49 @@
+{
+ "key": "Integrator with Wrapped State (Discrete or Continuous)",
+ "title": "Integrator with Wrapped State (Discrete or Continuous)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/General Control/Integrator_with_Wrapped_State_Discrete_or_Continuous.md"
+ ],
+ "text": "Discrete-time or continuous-time integrator with wrapped state, 1 input, 1 output, {Sample time (-1 for inherited)} sets Block sample time; {Wrapped state upper limit} sets the state upper limit, {Wrapped state lower limit} sets the state lower limit and {Initial condition} sets the state initial value. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "u",
+   "direction": "input",
+   "summary": "Integrator input vector"
+  },
+  {
+   "name": "y",
+   "direction": "output",
+   "summary": "Integrator output vector"
+  }
+ ],
+ "params": [
+  {
+   "name": "Wrapped state upper limit",
+   "default": "2*pi",
+   "values": "State upper limit 2*pi (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Wrapped state lower limit",
+   "default": "0",
+   "values": "State lower limit 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Initial condition",
+   "default": "0",
+   "values": "State initial value 0 (default) | real number",
+   "group": ""
+  },
+  {
+   "name": "Sample time (-1 for inherited)",
+   "default": "-1",
+   "values": "Block sample time -1 (default) | 0 | positive scalar",
+   "group": ""
+  }
+ ]
+}

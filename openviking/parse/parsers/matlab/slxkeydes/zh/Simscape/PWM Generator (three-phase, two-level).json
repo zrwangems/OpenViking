@@ -1,0 +1,71 @@
+{
+ "key": "PWM Generator (three-phase, two-level)",
+ "title": "PWM Generator (Three-phase, Two-level)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Generator_Three_phase_Two_level.md"
+ ],
+ "text": "生成三相、两电平脉冲宽度调制波形，输入 2 路、输出 2 路；按 {采样模式} 指定波采样方法；{PWM 模式} 指定脉冲宽度调制方法 连续 PWM、{连续 PWM} 指定连续脉冲宽度调制方法 SPWM: 正弦、{开关频率(Hz)} 指定开关速率 1e3、{采样时间(秒)} 指定模块采样时间 5e-5、{不连续 PWM (DPWM)} 指定钳位方法 60 DPWM:60，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Vabc",
+   "direction": "input",
+   "summary": "三相正弦参考信号 向量"
+  },
+  {
+   "name": "vdc",
+   "direction": "input",
+   "summary": "DC 链路电压信号 标量"
+  },
+  {
+   "name": "g",
+   "direction": "output",
+   "summary": "栅极控制 向量"
+  },
+  {
+   "name": "ModWave",
+   "direction": "output",
+   "summary": "调制波 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "PWM 模式",
+   "default": "(CPWM)",
+   "values": "脉冲宽度调制方法 连续 PWM (CPWM) (默认) | 不连续 PWM (DPWM)",
+   "group": ""
+  },
+  {
+   "name": "连续 PWM",
+   "default": "PWM",
+   "values": "连续脉冲宽度调制方法 SPWM: 正弦 PWM (默认) | SVM: 空间矢量调制",
+   "group": ""
+  },
+  {
+   "name": "采样模式",
+   "default": "自然",
+   "values": "波采样方法 自然 (默认) | 不对称 | 对称",
+   "group": ""
+  },
+  {
+   "name": "开关频率(Hz)",
+   "default": "1e3",
+   "values": "开关速率 1e3 (默认) | 正数",
+   "group": ""
+  },
+  {
+   "name": "采样时间(秒)",
+   "default": "5e-5",
+   "values": "模块采样时间 5e-5 (默认) | 正数",
+   "group": ""
+  },
+  {
+   "name": "不连续 PWM (DPWM)",
+   "default": "PWM",
+   "values": "钳位方法 60 DPWM:60 度不连续 PWM (默认)",
+   "group": ""
+  }
+ ]
+}

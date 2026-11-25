@@ -1,0 +1,29 @@
+{
+ "key": "BLDC Average Value Inverter",
+ "title": "BLDC Average-Value Inverter",
+ "toolbox": "Motor Control Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "Motor Control Blockset/Electrical Systems/Inverters/BLDC_Average_Value_Inverter.md"
+ ],
+ "text": "根据逆变器 DC 电压计算三相梯形 AC 电压，输入 2 路、输出 1 路。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "D sw",
+   "direction": "input",
+   "summary": "与六个逆变器开关对应的占空比 1 × 6 数组"
+  },
+  {
+   "name": "V dc",
+   "direction": "input",
+   "summary": "逆变器 DC 电压 标量"
+  },
+  {
+   "name": "V abc",
+   "direction": "output",
+   "summary": "三相电压输出 1 × 3 数组"
+  }
+ ],
+ "params": []
+}

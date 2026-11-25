@@ -1,0 +1,47 @@
+{
+ "key": "SignalConversion",
+ "title": "Signal Conversion",
+ "toolbox": "Simulink",
+ "kind": "block_type",
+ "source_docs": [
+  "Simulink/Signal Attributes/Signal_Conversion.md",
+  "Simulink/Quick Insert/Signal Attributes/Signal_Copy.md",
+  "Simulink/Quick Insert/Signal Attributes/To_Nonvirtual_Bus.md",
+  "Simulink/Quick Insert/Signal Attributes/To_Virtual_Bus.md",
+  "HDL Coder/Signal Attributes/Signal_Conversion.md"
+ ],
+ "text": "Convert signal to new type without altering signal values, 1 input, 1 output, direct feedthrough, {Output} sets Type of conversion Signal copy; {Data type} sets the nonvirtual bus data type Inherit and {Exclude this block from ’Block reduction’ optimization} sets the option to exclude block from block reduction. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Port_1",
+   "direction": "input",
+   "summary": "Input signal to convert scalar | vector | matrix | array | bus"
+  },
+  {
+   "name": "Port_1",
+   "direction": "output",
+   "summary": "Converted signal scalar | vector | matrix | array | bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Output",
+   "default": "",
+   "values": "Type of conversion Signal copy | Virtual bus | Nonvirtual bus",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "auto",
+   "values": "Nonvirtual bus data type Inherit: auto (default) | Bus: |",
+   "group": ""
+  },
+  {
+   "name": "Exclude this block from ’Block reduction’ optimization",
+   "default": "off",
+   "values": "Option to exclude block from block reduction optimization off (default) | on",
+   "group": ""
+  }
+ ]
+}

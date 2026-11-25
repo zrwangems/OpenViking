@@ -1,0 +1,13 @@
+{
+ "key": "Spline",
+ "title": "Spline",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Multibody/Curves and Surfaces/Spline.md"
+ ],
+ "text": "Cubic interpolating plane curve or space curve.",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

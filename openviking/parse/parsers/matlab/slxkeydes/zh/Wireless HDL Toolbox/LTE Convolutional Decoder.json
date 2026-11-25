@@ -1,0 +1,41 @@
+{
+ "key": "LTE Convolutional Decoder",
+ "title": "LTE Convolutional Decoder",
+ "toolbox": "Wireless HDL Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "Wireless HDL Toolbox/Error Detection and Correction/LTE_Convolutional_Decoder.md"
+ ],
+ "text": "使用 Viterbi 算法解码卷积编码样本，输入 2 路、输出 2 路；{Maximum message length} 指定最大输入帧大小，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "data",
+   "direction": "input",
+   "summary": "输入样本 3-by-1 column vector"
+  },
+  {
+   "name": "ctrl",
+   "direction": "input",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  },
+  {
+   "name": "data",
+   "direction": "output",
+   "summary": "输出样本 scalar"
+  },
+  {
+   "name": "ctrl",
+   "direction": "output",
+   "summary": "伴随样本流的控制信号 samplecontrol bus"
+  }
+ ],
+ "params": [
+  {
+   "name": "Maximum message length",
+   "default": "1024",
+   "values": "最大输入帧大小 1024 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

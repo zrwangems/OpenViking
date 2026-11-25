@@ -1,0 +1,49 @@
+{
+ "key": "PWM Generator (Multilevel)",
+ "title": "PWM Generator (Multilevel)",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Electrical/Control/Pulse Width Modulation/PWM_Generator_Multilevel.md"
+ ],
+ "text": "生成用于模块化多电平转换器的脉冲宽度调制信号或波形，输入 1 路、输出 1 路；{转换器拓扑}、{功率子模块数} 指定模块化多电平子模块的数量、{计时器周期(秒)} 指定 PWM 周期、{采样时间}，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "ref",
+   "direction": "input",
+   "summary": "参考信号 向量"
+  },
+  {
+   "name": "PWM",
+   "direction": "output",
+   "summary": "PWM 信号 向量"
+  }
+ ],
+ "params": [
+  {
+   "name": "转换器拓扑",
+   "default": "半桥",
+   "values": "模块化多电平转换器拓扑 半桥 (默认) | 全桥",
+   "group": ""
+  },
+  {
+   "name": "功率子模块数",
+   "default": "1",
+   "values": "模块化多电平子模块的数量 1 (默认) | 正标量",
+   "group": ""
+  },
+  {
+   "name": "计时器周期(秒)",
+   "default": "0.001",
+   "values": "PWM 周期 0.001 (默认) | 正标量",
+   "group": ""
+  },
+  {
+   "name": "采样时间",
+   "default": "5e-5",
+   "values": "模块采样时间 5e-5 (默认) | 正标量",
+   "group": ""
+  }
+ ]
+}

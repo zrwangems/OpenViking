@@ -1,0 +1,13 @@
+{
+ "key": "Ideal Translational Motion Sensor",
+ "title": "Ideal Translational Motion Sensor",
+ "toolbox": "Simscape",
+ "kind": "source_type",
+ "source_docs": [
+  "Simscape/Foundation Library/Mechanical/Mechanical Sensors/Ideal_Translational_Motion_Sensor.md"
+ ],
+ "text": "机械平移系统中的运动传感器。",
+ "variants": [],
+ "ports": [],
+ "params": []
+}

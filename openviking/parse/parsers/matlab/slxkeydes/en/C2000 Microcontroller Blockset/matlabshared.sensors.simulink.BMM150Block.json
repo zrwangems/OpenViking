@@ -1,0 +1,61 @@
+{
+ "key": "matlabshared.sensors.simulink.BMM150Block",
+ "title": "BMM150",
+ "toolbox": "C2000 Microcontroller Blockset",
+ "kind": "source_type",
+ "source_docs": [
+  "C2000 Microcontroller Blockset/Sensors/BMM150.md"
+ ],
+ "text": "Measure magnetic field from BMM150 sensor, 2 outputs, {I2C address} sets I2C address of BMM150 sensor; {I2C module} sets the module for communication, {Status} sets the output port for obtaining magnetic field, {Preset value}, {Data type} sets the output data type for values from BMM150 sensor and {Sample time} sets the time interval to read data. Values come from the instance.",
+ "variants": [],
+ "ports": [
+  {
+   "name": "Magnetic Field",
+   "direction": "output",
+   "summary": "Magnetic field strength measured by a BMM150 sensor row vector"
+  },
+  {
+   "name": "Magnetic Field Status",
+   "direction": "output",
+   "summary": "Status of magnetic field value 0 | 1"
+  }
+ ],
+ "params": [
+  {
+   "name": "I2C module",
+   "default": "I2C_A",
+   "values": "Module for communication I2C_A (default)",
+   "group": ""
+  },
+  {
+   "name": "I2C address",
+   "default": "0x13",
+   "values": "I2C address of BMM150 sensor 0x13 (default) | 0x10 | 0x11 | 0x12",
+   "group": ""
+  },
+  {
+   "name": "Status",
+   "default": "on",
+   "values": "Set output port for obtaining magnetic field status on (default) | off",
+   "group": ""
+  },
+  {
+   "name": "Preset value",
+   "default": "power",
+   "values": "Preset value for the operating condition of BMM150 sensor Low power (default) | Regular | Enhanced | High accuracy",
+   "group": ""
+  },
+  {
+   "name": "Data type",
+   "default": "single",
+   "values": "Output data type for values from BMM150 sensor single (default) | double",
+   "group": ""
+  },
+  {
+   "name": "Sample time",
+   "default": "-1",
+   "values": "Time interval to read data -1 (default) | positive integer",
+   "group": ""
+  }
+ ]
+}

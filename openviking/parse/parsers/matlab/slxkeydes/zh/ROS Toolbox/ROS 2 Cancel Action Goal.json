@@ -1,0 +1,41 @@
+{
+ "key": "ROS 2 Cancel Action Goal",
+ "title": "Cancel Action Goal",
+ "toolbox": "ROS Toolbox",
+ "kind": "source_type",
+ "source_docs": [
+  "ROS Toolbox/ROS 2/Cancel_Action_Goal.md"
+ ],
+ "text": "取消 ROS 2 网络中的活动动作目标，输入 2 路、输出 2 路；{Show ErrorCode output port} 启用错误代码输出端口，按实例取值。",
+ "variants": [],
+ "ports": [
+  {
+   "name": "UUID",
+   "direction": "input",
+   "summary": "专用于任何目标消息的唯一 ID non-virtual bus"
+  },
+  {
+   "name": "Enable",
+   "direction": "input",
+   "summary": "用于为活动动作目标发送取消请求的布尔值 true or 1 | false or 0"
+  },
+  {
+   "name": "Response",
+   "direction": "output",
+   "summary": "取消目标请求的响应消息 non-virtual bus"
+  },
+  {
+   "name": "ErrorCode",
+   "direction": "output",
+   "summary": "取消动作目标时的错误条件 integer"
+  }
+ ],
+ "params": [
+  {
+   "name": "Show ErrorCode output port",
+   "default": "off",
+   "values": "启用错误代码输出端口 off (default) | on",
+   "group": ""
+  }
+ ]
+}
