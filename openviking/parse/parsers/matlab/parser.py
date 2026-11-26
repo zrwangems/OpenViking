@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import json
 import time
 import zipfile
@@ -123,6 +124,26 @@ def _zip_member_bytes(path: Path, name: str) -> bytes:
         return archive.read(name)
 
 
+def _source_identity(path: Path) -> dict:
+    """Byte length and SHA-256 of the source, so output ties to the exact file.
+
+    Most of these containers are stored only as their parsed content, because the
+    archive itself has no search value and can be large; the digest is then the
+    only record of which file produced the artifact.
+    """
+    data = path.read_bytes()
+    return {"source_bytes": len(data), "source_sha256": hashlib.sha256(data).hexdigest()}
+
+
+def _parse_is_incomplete(suffix: str, payload: dict) -> bool:
+    """Whether the parsed payload is known to leave part of the source out."""
+    if suffix == ".fig":
+        return bool(payload.get("truncated_value_count"))
+    if suffix == ".mldatx":
+        return bool(payload.get("unparsed_member_count"))
+    return False
+
+
 class MatlabParser(BaseParser):
     """Parse MATLAB project files into the plan's JSON, JSONL and original-file set."""
 
@@ -193,6 +214,7 @@ class MatlabParser(BaseParser):
                     "stateflow_transition_count": sum(len(chart.transitions) for chart in charts),
                     "original_preserved": False,
                     "language": "zh-CN" if str(language).lower().startswith("zh") else "en",
+                    **_source_identity(path),
                 }
                 title = path.stem
             elif suffix == ".mdl":
@@ -215,13 +237,11 @@ class MatlabParser(BaseParser):
                     "stateflow_transition_count": 0,
                     "original_preserved": False,
                     "language": "zh-CN" if str(language).lower().startswith("zh") else "en",
+                    **_source_identity(path),
                 }
                 title = path.stem
             elif suffix == ".mat":
                 folder = _output_folder(path)
-                await writer.write_bytes(
-                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
-                )
                 documents, mat_warnings = await asyncio.to_thread(parse_mat_documents, path)
                 for name, document in documents.items():
                     if isinstance(document, bytes):
@@ -229,9 +249,18 @@ class MatlabParser(BaseParser):
                     else:
                         await writer.write_text(f"{folder}/{name}", document)
                 warnings.extend(mat_warnings)
+                # A MAT file is kept as its parsed values, except when the reader
+                # reports content it could not expand (HDF5 reference arrays):
+                # then the bytes stay the only complete copy.
+                incomplete = bool(mat_warnings)
+                if incomplete:
+                    await writer.write_bytes(
+                        f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                    )
                 meta = {
                     "matlab_format": "mat",
-                    "original_preserved": True,
+                    "original_preserved": incomplete,
+                    **_source_identity(path),
                 }
                 title = path.stem
             elif suffix == ".p":
@@ -266,9 +295,11 @@ class MatlabParser(BaseParser):
                 else:
                     payload, auxiliary = await asyncio.to_thread(parse_mlapp, path)
                 folder = _output_folder(path)
-                if suffix != ".sldd":
-                    # Only parsed content is kept: the dictionary archive itself
-                    # has no search value and can be tens of megabytes.
+                # Only parsed content is kept: the archive itself has no search
+                # value and can be tens of megabytes. When the parse reports
+                # content it could not expand, the bytes stay as well.
+                preserved = _parse_is_incomplete(suffix, payload)
+                if preserved:
                     await writer.write_bytes(
                         f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
                     )
@@ -319,14 +350,14 @@ class MatlabParser(BaseParser):
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
                     "structured_format": payload.get("schema", ""),
-                    "original_preserved": suffix != ".sldd",
+                    "original_preserved": preserved,
+                    **_source_identity(path),
                 }
                 title = path.stem
             elif suffix == ".sfx":
                 folder = _output_folder(path)
-                await writer.write_bytes(
-                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
-                )
+                # A Stateflow chart file is fully parsed, so only that parsed
+                # chart is kept; the ZIP itself would only duplicate it.
                 charts = await asyncio.to_thread(parse_stateflow, path)
                 await writer.write_text(
                     f"{folder}/stateflow.json",
@@ -343,8 +374,9 @@ class MatlabParser(BaseParser):
                 )
                 meta = {
                     "matlab_format": "sfx",
-                    "original_preserved": True,
+                    "original_preserved": False,
                     "stateflow_chart_count": len(charts),
+                    **_source_identity(path),
                 }
                 title = path.stem
             elif suffix in _NATIVE_BINARY_SUFFIXES:

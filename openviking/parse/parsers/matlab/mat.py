@@ -184,7 +184,7 @@ def parse_mat_documents(path: str | Path) -> tuple[dict[str, str | bytes], list[
                         )
                         warnings.append(
                             f"{path.name}: `{name}` 是 HDF5 引用数组，"
-                            "引用目标未作为数组展开；原件保留"
+                            "引用目标未作为数组展开，只保留引用数组的形状"
                         )
                         return
                     arrays.append((name, dataset[()]))

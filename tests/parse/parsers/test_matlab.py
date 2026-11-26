@@ -3,6 +3,7 @@
 
 import io
 import json
+import hashlib
 import shutil
 import zipfile
 from pathlib import Path
@@ -437,6 +438,43 @@ def test_mat_three_dimensional_array_round_trips_through_npy(tmp_path):
     assert not warnings
 
 
+@pytest.mark.asyncio
+async def test_mat_with_unexpandable_references_keeps_its_bytes(tmp_path):
+    """When a part cannot be expanded, the original stays the only complete copy."""
+    h5py = pytest.importorskip("h5py")
+    source = tmp_path / "signals.mat"
+    with h5py.File(source, "w") as handle:
+        handle.create_dataset("signals", (2,), dtype=h5py.special_dtype(ref=h5py.Reference))
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "signals"
+    assert (root / "signals.mat").read_bytes() == source.read_bytes()
+    assert result.meta["original_preserved"] is True
+    assert any("HDF5 引用数组" in warning for warning in result.warnings)
+
+
+@pytest.mark.asyncio
+async def test_parsed_containers_are_not_stored_as_originals(tmp_path):
+    """A file whose content is fully parsed is kept only as that parsed content."""
+    store = LocalParseOutputStore(tmp_path / "artifacts")
+    parser = MatlabParser()
+    notebook = SAMPLE / "model" / "asbCubeSatMBSE" / "MissionAnalysis" / "mappingToolboxAnalysis.mlx"
+    for source, folder, document in (
+        (SAMPLE / "model" / "TargetStateChart.sfx", "TargetStateChart", "stateflow.json"),
+        (SAMPLE / "data" / "flames.mat", "flames", "entries.jsonl"),
+        (notebook, "mappingToolboxAnalysis", "notebook.json"),
+    ):
+        result = await parser.parse(source, parse_output_store=store)
+        root = Path(result.artifact_ref.root) / folder
+        assert (root / document).is_file(), document
+        assert not list(root.glob(f"*{source.suffix}")), source.name
+        assert result.meta["original_preserved"] is False
+        # Without the bytes, meta still says which source produced the output.
+        assert result.meta["source_bytes"] == source.stat().st_size
+        assert result.meta["source_sha256"] == hashlib.sha256(source.read_bytes()).hexdigest()
+
+
 def test_mat_wide_higher_dimension_array_stays_one_file(tmp_path):
     np = pytest.importorskip("numpy")
     savemat = pytest.importorskip("scipy.io").savemat
@@ -534,6 +572,24 @@ def test_fig_tree_keeps_handle_objects(tmp_path):
     rendered = json.dumps(tree, ensure_ascii=False)
     assert "figure" in tree["objects"]
     assert "axes" in rendered and "speed" in rendered
+    assert tree["truncated_value_count"] == 0
+
+
+@pytest.mark.asyncio
+async def test_figure_with_summarized_arrays_keeps_its_bytes(tmp_path):
+    """A figure whose large arrays are summarized keeps the source bytes too."""
+    np = pytest.importorskip("numpy")
+    savemat = pytest.importorskip("scipy.io").savemat
+    source = tmp_path / "image.fig"
+    savemat(source, {"figure": {"Type": "figure", "CData": np.zeros((1, 30000))}})
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "image"
+    figure = json.loads((root / "figure.json").read_text(encoding="utf-8"))
+    assert figure["truncated_value_count"] == 30000
+    assert (root / "image.fig").is_file()
+    assert result.meta["original_preserved"] is True
 
 
 def test_mldatx_keeps_all_suites_cases_and_results(tmp_path):
@@ -548,6 +604,27 @@ def test_mldatx_keeps_all_suites_cases_and_results(tmp_path):
     assert {"battery", "heat"} <= names
     assert any(item["tag"] == "Result" for item in tree["tests"])
     assert tree["members"][0]["name"] == "testSuite.xml"
+    assert tree["unparsed_member_count"] == 0
+
+
+@pytest.mark.asyncio
+async def test_test_file_with_non_xml_members_keeps_its_bytes(tmp_path):
+    """Non-XML test data is listed, not decoded, so the container stays too."""
+    source = tmp_path / "tests.mldatx"
+    with zipfile.ZipFile(source, "w") as archive:
+        archive.writestr(
+            "testSuite.xml",
+            '<TestSuite name="battery"><TestCase name="heat"/></TestSuite>',
+        )
+        archive.writestr("battery/inputs.mat", b"\x00mat")
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "tests"
+    payload = json.loads((root / "tests.json").read_text(encoding="utf-8"))
+    assert payload["unparsed_members"] == ["battery/inputs.mat"]
+    assert (root / "tests.mldatx").is_file()
+    assert result.meta["original_preserved"] is True
 
 
 def test_requirement_set_extracts_requirements_and_links(tmp_path):
@@ -616,6 +693,7 @@ async def test_parser_keeps_protected_original_and_requirement_json(tmp_path):
         )
     result = await MatlabParser().parse(requirements, parse_output_store=store)
     root = Path(result.artifact_ref.root)
+    assert not (root / "requirements" / "requirements.slreqx").exists()
     rows = [
         json.loads(line)
         for line in (root / "requirements" / "requirements.jsonl")
@@ -711,8 +789,8 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     ]
     assert len(system_pages) > 500
     base = root / "matlab-ingest-fixture"
-    assert (base / "data" / "flames" / "flames.mat").is_file()
     assert (base / "data" / "flames" / "entries.jsonl").is_file()
+    assert not list((base / "data" / "flames").glob("*.mat"))
     assert (
         base
         / "model"

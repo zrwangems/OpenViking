@@ -438,6 +438,19 @@ def _fig_node(value: Any, depth: int = 0) -> dict[str, Any]:
     return {"type": type(value).__name__, "value": _mat_scalar(value)}
 
 
+def _omitted_value_count(value: Any) -> int:
+    """Count values ``_mat_scalar`` summarized, so the caller can keep the source."""
+    if isinstance(value, dict):
+        omitted = value.get("omitted_values")
+        total = omitted if isinstance(omitted, int) else 0
+        return total + sum(
+            _omitted_value_count(item) for key, item in value.items() if key != "omitted_values"
+        )
+    if isinstance(value, (list, tuple)):
+        return sum(_omitted_value_count(item) for item in value)
+    return 0
+
+
 def parse_fig_tree(path: str | Path) -> dict[str, Any]:
     """FIG -> a compact Figure/Axes/Line/Text object tree from the MAT handle data."""
     path = Path(path)
@@ -480,6 +493,9 @@ def parse_fig_tree(path: str | Path) -> dict[str, Any]:
         "tree": roots[0] if roots else None,
         "object_counts": count(roots),
         "objects": objects,
+        # Large arrays are summarized by _mat_scalar; a non-zero count means the
+        # JSON alone does not carry every value of the figure.
+        "truncated_value_count": sum(_omitted_value_count(value) for value in objects.values()),
         "boundary": "MAT handle tree; custom drawing callbacks and pixel rendering are not evaluated.",
     }
 
@@ -680,10 +696,19 @@ def parse_mldatx(path: str | Path) -> dict[str, Any]:
         suite["cases"].append(case)
 
     suites = list(suites_by_path.values())
+    # Test data held in non-XML members is listed, not decoded; the parse tells
+    # the caller when the container holds more than the XML it read.
+    unparsed_members = [
+        member["name"]
+        for member in members
+        if not member["name"].lower().endswith((".xml", ".rels"))
+    ]
     return {
         "schema": "ov.matlab.mldatx/1",
         "file": path.name,
         "members": members,
+        "unparsed_member_count": len(unparsed_members),
+        "unparsed_members": unparsed_members[:20],
         "suites": suites,
         "tests": generic_tests,
         "coverage": {

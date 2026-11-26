@@ -44,8 +44,8 @@ OpenViking 支持多种资源类型，按照功能分类如下：
 | MATLAB 数据 | `.mat` | 通过 SciPy 读取 v5/v7 数组元数据和有界预览，v7.3 通过 HDF5/h5py 读取；不执行对象 |
 | Live Script / 代码 | `.mlx`, `.m` | MLX 提取正文、标题和代码，M 文件保留完整源码并识别函数声明 |
 | 物理建模 | Simscape `.ssc`, `.sscp` | SSC 保留组件、守恒节点、物理信号和方程原文；受保护的 SSCP 只保留原文件与边界说明。SLX 中 `ConnectionPort`、`PMIOPort` / `lconn` / `rconn` 作为无向守恒网络节点，不混入普通输入输出；有向物理信号由 SSC 的 `inputs` / `outputs` 表达 |
-| App、图形与部署包 | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx` | MLAPP 提取 Live Code 文档或容器元数据，FIG 按 MAT 读取句柄结构，安装包提取 ZIP/XML 清单；均保留原文件，不执行应用 |
-| 工程、需求与测试 | `.prj`, `.mlproj`, `.slreqx`, `.slmx`, `.mldatx` | 提取容器清单与 XML 文本，保留完整原文件；不执行工程任务、需求链接或测试 |
+| App、图形与部署包 | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx` | MLAPP 提取 Live Code 与组件树，FIG 按 MAT 读取句柄结构，安装包提取 ZIP/XML 清单；已解析的 App 与 FIG 只留解析产物，安装包保留原文件 |
+| 工程、需求与测试 | `.prj`, `.mlproj`, `.slreqx`, `.slmx`, `.mldatx` | 提取容器清单与 XML 文本；需求集与测试文件只留解析出的需求、链接和结果，工程归档保留原文件；不执行工程任务、需求链接或测试 |
 | 独立 Stateflow / FMU / TLC | `.sfx`, `.fmu`, `.tlc` | SFX 与 FMU 提取 XML/清单，FMU 的 `modelDescription.xml` 用于接口检索；TLC 保留文本源码，不运行测试、协同仿真或代码生成 |
 | 受保护模型、缓存与备份 | `.slxp`, `.mdlp`, `.slxc`, `.autosave` | 保存原文件、可验证元数据和明确的不可读边界；SLXP 另提取可见容器清单，不伪造模型结构 |
 | MEX 与编辑器备份 | `.mexa64`, `.mexw64`, `.mexmaci64`, `.mexmaca64`, `.asv` | MEX 按平台二进制保存，不反汇编或执行；ASV 按 M 文本读取 |
@@ -53,7 +53,7 @@ OpenViking 支持多种资源类型，按照功能分类如下：
 
 MATLAB 本体的结构也不只按后缀处理：M 文件会区分脚本、函数和 `classdef`，识别 `+package` 命名空间、`@Class` 方法目录、继承声明和 `%%` 代码节；Live Script、App、FIG、MAT、P-code 与 MEX 分别走上述格式路径。Simulink 侧保留 Model Reference、库链接、Mask、Variant Subsystem 与 Variant Source/Sink 实例参数，Stateflow 单独生成状态/转移页，Simscape 使用守恒网络语义。
 
-安装 `openviking[matlab]` 后用普通目录导入即可，例如 `ov add-resource ./tests/matlab_repos/DRLHevIps5_4 --to viking://resources/DRLHevIps5_4 --wait`。所有受支持格式都会同时保留原始文件；生成的 Markdown 文件名包含源扩展名，避免同名 `.m`、`.mat` 等文件互相覆盖。目录导入会像 `.gitignore` 一样跳过派生文件：`slprj/`、`sfprj/`、`<model>_*_rtw/`、`*.slxc`、`*.autosave` 默认不入库；`codegen/` 和 `*.asv` 在检测到 MATLAB/Simulink 工程时同样跳过。默认缓存和代码生成目录跟着 MATLAB 当前工作文件夹（`pwd`）走，可能出现在工程任意层级，所以按目录名在整棵树里匹配，而不是只看模型所在目录；如果工程用 `Simulink.fileGenControl` 改了 `CacheFolder`/`CodeGenFolder`，解析器会静态读取工程 `.m` 脚本里的设置并按该目录名排除，不需要安装 MATLAB，无法求值的表达式（`getenv`、`tempdir`）仍按默认目录处理。加密格式 `.p`/`.slxp`/`.mdlp`/`.sscp` 不跳过，仍按边界页导入。API 也可通过 `args.language` 显式指定；模型中的信号名、变量名、参数标识符和枚举值保持原文。Stateflow 的状态层级、动作和转移会生成对应子系统的 `stateflow_<chart-id>.md`；MATLAB Function 代码和 P-code 仍需专门解析器，当前不声称已理解
+安装 `openviking[matlab]` 后用普通目录导入即可，例如 `ov add-resource ./tests/matlab_repos/DRLHevIps5_4 --to viking://resources/DRLHevIps5_4 --wait`。只有内容不能完整解析的文件才按原始字节保存：纯文本源码与配置、加密或受保护容器、原生二进制、只生成清单的安装包，以及解码是尽力而为的测量数据文件。内容能被解析的容器（`.slx`、`.mdl`、`.sldd`、`.sfx`、`.mat`、`.mlx`、`.fig`、`.mlapp`、`.mldatx`、`.slreqx`、`.slmx`）只保留解析产物，源的字节数与 SHA-256 记在解析元数据里；解析时报告有内容展不开（MAT 里的 HDF5 引用数组、FIG 里被摘要的大数组、测试文件里的非 XML 成员），原件会一并保留，`original_preserved` 标明属于哪种情况。生成的 Markdown 文件名包含源扩展名，避免同名 `.m`、`.mat` 等文件互相覆盖。目录导入会像 `.gitignore` 一样跳过派生文件：`slprj/`、`sfprj/`、`<model>_*_rtw/`、`*.slxc`、`*.autosave` 默认不入库；`codegen/` 和 `*.asv` 在检测到 MATLAB/Simulink 工程时同样跳过。默认缓存和代码生成目录跟着 MATLAB 当前工作文件夹（`pwd`）走，可能出现在工程任意层级，所以按目录名在整棵树里匹配，而不是只看模型所在目录；如果工程用 `Simulink.fileGenControl` 改了 `CacheFolder`/`CodeGenFolder`，解析器会静态读取工程 `.m` 脚本里的设置并按该目录名排除，不需要安装 MATLAB，无法求值的表达式（`getenv`、`tempdir`）仍按默认目录处理。加密格式 `.p`/`.slxp`/`.mdlp`/`.sscp` 不跳过，仍按边界页导入。API 也可通过 `args.language` 显式指定；模型中的信号名、变量名、参数标识符和枚举值保持原文。Stateflow 的状态层级、动作和转移会生成对应子系统的 `stateflow_<chart-id>.md`；MATLAB Function 代码和 P-code 仍需专门解析器，当前不声称已理解
 
 添加 `matlab-simulink` 示例 Skill 后，可运行 `ov compile --from viking://resources/DRLHevIps5_4 --to viking://resources/DRLHevIps5_4-patterns --skill viking://agent/skills/matlab-simulink`，按滤波、故障编码、模式控制和能量管理等有证据的模式编译。动态仿真结果不在确定性解析的范围内。
 
