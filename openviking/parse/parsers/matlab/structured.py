@@ -865,7 +865,6 @@ def protected_metadata(path: str | Path, kind: str) -> dict[str, Any]:
     return metadata
 
 
-_SLDD_INLINE_LIMIT = 2048
 _NUMBER = re.compile(
     r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?|[-+]?(?:NaN|Inf|nan|inf)"
 )
@@ -946,8 +945,8 @@ def _number_tokens(text: str) -> list[str] | None:
 def _array_payload(raw: Any, dimensions: Any, dtype: str = "") -> list[str] | None:
     """Numeric tokens when one value is an array that belongs in a CSV file.
 
-    Every array of two or more dimensions is externalized; a one-dimensional
-    array stays inline while it is small enough to keep the JSONL line readable.
+    Only a 1x1 value stays inline in ``entries.jsonl``; every other array is
+    externalized, whatever its size, so the JSONL line never carries numbers.
     """
     if isinstance(raw, list):
         if not raw or not all(isinstance(item, (int, float)) for item in raw):
@@ -964,10 +963,8 @@ def _array_payload(raw: Any, dimensions: Any, dtype: str = "") -> list[str] | No
         product *= dimension
     if product != len(tokens):
         return None
-    if sum(1 for dimension in dimensions if dimension > 1) < 2:
-        text = raw if isinstance(raw, str) else ",".join(tokens)
-        if len(text) <= _SLDD_INLINE_LIMIT:
-            return None
+    if product == 1:
+        return None
     return tokens
 
 
@@ -978,19 +975,54 @@ def _matlab_index_order(dimensions: list[int]):
         yield tuple(reversed(index))
 
 
-def _array_csv(tokens: list[str], dimensions: list[int]) -> str:
-    """Write an array column-major; 2-D keeps the matrix shape of the value."""
+_MAX_CSV_COLUMNS = 4096
+
+
+def _array_csv(tokens: list[str], dimensions: list[int]) -> tuple[str, dict[str, Any]]:
+    """Write one array as a 2-D CSV grid plus the pointer fields for its row.
+
+    A CSV cell holds one number, so a vector is written as a single column and a
+    matrix keeps its rows and columns. Three or more dimensions are flattened
+    column-major (MATLAB order) to ``dims[0] x prod(dims[1:])`` and reported as
+    ``order: F`` so the shape can be restored; a grid wider than
+    ``_MAX_CSV_COLUMNS`` falls back to one row per element with index columns.
+    """
     output = io.StringIO(newline="")
     writer = csv.writer(output, lineterminator="\n")
-    if len(dimensions) >= 3:
-        writer.writerow([f"dim_{index + 1}" for index in range(len(dimensions))] + ["value"])
-        for flat, index in enumerate(_matlab_index_order(dimensions)):
+    shape = [int(part) for part in dimensions]
+    rows = 0
+    if len(shape) <= 1 or min(shape) == 1:
+        for token in tokens:
+            writer.writerow([token])
+        rows, cols = len(tokens), 1
+        pointer: dict[str, Any] = {}
+    elif len(shape) == 2:
+        for row in range(shape[0]):
+            writer.writerow(tokens[row:: shape[0]])
+        rows, cols = shape[0], shape[1]
+        pointer = {}
+    elif _product(shape[1:]) > _MAX_CSV_COLUMNS:
+        writer.writerow([f"dim_{index + 1}" for index in range(len(shape))] + ["value"])
+        for flat, index in enumerate(_matlab_index_order(shape)):
             writer.writerow([str(part + 1) for part in index] + [tokens[flat]])
-        return output.getvalue()
-    rows = dimensions[0]
-    for row in range(rows):
-        writer.writerow(tokens[row::rows])
-    return output.getvalue()
+        rows, cols = len(tokens), len(shape) + 1
+        pointer = {"layout": "long", "shape": shape}
+    else:
+        cols = _product(shape[1:])
+        for row in range(shape[0]):
+            writer.writerow([tokens[row + column * shape[0]] for column in range(cols)])
+        rows = shape[0]
+        pointer = {"order": "F", "shape": shape}
+    pointer["rows"] = rows
+    pointer["cols"] = cols
+    return output.getvalue(), pointer
+
+
+def _product(values: list[int]) -> int:
+    product = 1
+    for value in values:
+        product *= value
+    return product
 
 
 class _SlddCsvCollector:
@@ -998,6 +1030,7 @@ class _SlddCsvCollector:
 
     def __init__(self) -> None:
         self.files: dict[str, str] = {}
+        self.pointers: dict[str, dict[str, Any]] = {}
 
     def add(self, stem: str, tokens: list[str], dimensions: list[int]) -> str:
         name = f"{_csv_stem(stem)}.csv"
@@ -1006,8 +1039,11 @@ class _SlddCsvCollector:
         while name in self.files:
             counter += 1
             name = f"{base}_{counter}.csv"
-        self.files[name] = _array_csv(tokens, dimensions)
+        self.files[name], self.pointers[name] = _array_csv(tokens, dimensions)
         return name
+
+    def pointer(self, name: str) -> dict[str, Any]:
+        return dict(self.pointers.get(name, {}))
 
 
 def _unwrap(value: Any) -> Any:
@@ -1055,11 +1091,15 @@ def _rewrite_arrays(
             if tokens is not None and dims is not None:
                 pointer = {key: item for key, item in node.items() if key != "value"}
                 pointer["data"] = collector.add(path or "value", tokens, dims)
+                pointer.update(collector.pointer(pointer["data"]))
                 return pointer
         return {
             key: (
                 item
-                if key == "class"
+                # ``class`` is a tag and ``Dimensions`` describes the entry's
+                # shape (``value`` there is the dimension list, not the array),
+                # so neither is data that belongs in a CSV.
+                if key in {"class", "Dimensions"}
                 else _rewrite_arrays(
                     item,
                     collector,
@@ -1207,6 +1247,7 @@ def sldd_entry_documents(tree: dict[str, Any]) -> tuple[list[dict[str, Any]], di
             nested = rewritten.get("Value")
             if isinstance(nested, dict) and "data" in nested:
                 row["data"] = nested["data"]
+                row.update(collector.pointer(row["data"]))
                 dimensions = _dimension_list(nested.get("dimension"))
                 if dimensions is not None:
                     row["dimensions"] = dimensions
@@ -1226,6 +1267,7 @@ def sldd_entry_documents(tree: dict[str, Any]) -> tuple[list[dict[str, Any]], di
                 row["dtype"] = dtype
             if tokens is not None:
                 row["data"] = collector.add(stem, tokens, dimensions)
+                row.update(collector.pointer(row["data"]))
             elif value is not None:
                 row["value"] = _inline_value(value)
         rows.append(row)

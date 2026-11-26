@@ -336,9 +336,14 @@ async def test_sldd_multidimensional_values_are_csv_and_original_is_dropped(tmp_
     turb = rows["PlntEngCITurbEff"]
     assert turb["dimensions"] == [60, 80, 6]
     assert turb["data"] == "0003_PlntEngCITurbEff.csv"
+    # Three or more dimensions are flattened column-major to a 2-D grid, so the
+    # shape travels with the row instead of in index columns.
+    assert turb["order"] == "F"
+    assert turb["shape"] == [60, 80, 6]
+    assert (turb["rows"], turb["cols"]) == (60, 480)
     turb_rows = (root / turb["data"]).read_text(encoding="utf-8").splitlines()
-    assert turb_rows[0] == "dim_1,dim_2,dim_3,value"
-    assert len(turb_rows) == 60 * 80 * 6 + 1
+    assert len(turb_rows) == 60
+    assert len(turb_rows[0].split(",")) == 480
     assert not (root / "data").exists()
 
 
@@ -361,9 +366,12 @@ async def test_sldd_one_dimensional_values_stay_inline(tmp_path):
         for line in (root / "entries.jsonl").read_text(encoding="utf-8").splitlines()
     ]
     inline = [row for row in rows if "value" in row]
-    assert inline
+    external = [row for row in rows if "data" in row]
+    assert external
     assert all("data" not in row for row in inline)
-    assert all(row["dimensions"] and len(row["dimensions"]) == 2 for row in inline)
+    # Only a 1x1 value is allowed to carry numbers in the JSONL line.
+    assert all(row["dimensions"] == [1, 1] for row in inline)
+    assert all(list(map(int, row["dimensions"])) != [1, 1] or "value" not in row for row in external)
 
 
 def test_slx_rejects_missing_model_root(tmp_path):
@@ -390,23 +398,75 @@ def test_mat_v73_hdf5_full_array_export(tmp_path):
         handle.create_dataset("trajectory", data=[[1.0, 2.0], [3.0, 4.0]])
         handle.create_dataset("nested/speed", data=[5.0, 6.0])
     content, warnings = parse_mat(path)
-    payload = json.loads(content)
-    assert payload["mat_version"] == "v7.3"
-    trajectory = next(item for item in payload["variables"] if item["name"] == "trajectory")
+    entries = [json.loads(line) for line in content.splitlines()]
+    header = entries[0]
+    assert header["kind"] == "file"
+    assert header["schema"] == "ov.matlab.entries/1"
+    assert header["mat_version"] == "v7.3"
+    trajectory = next(item for item in entries if item.get("name") == "trajectory")
     assert trajectory["dims"] == [2, 2]
     documents, warnings = parse_mat_documents(path)
+    assert "entries.jsonl" in documents
+    assert not any(name.endswith("variables.json") for name in documents)
     csv_path = next(name for name in documents if "trajectory" in name and name.endswith(".csv"))
     rows = list(csv.reader(io.StringIO(documents[csv_path])))
-    assert rows == [
-        ["row", "column", "value"],
-        ["1", "1", "1"],
-        ["1", "2", "2"],
-        ["2", "1", "3"],
-        ["2", "2", "4"],
-    ]
+    assert rows == [["1", "2"], ["3", "4"]]
     assert not warnings
     nested = next(name for name in documents if "nested_speed" in name)
-    assert documents[nested].splitlines() == ["dim_1,value", "1,5", "2,6"]
+    assert documents[nested].splitlines() == ["5", "6"]
+
+
+def test_mat_three_dimensional_array_round_trips_through_a_flat_grid(tmp_path):
+    np = pytest.importorskip("numpy")
+    savemat = pytest.importorskip("scipy.io").savemat
+    path = tmp_path / "cube.mat"
+    cube = np.arange(1, 25, dtype=float).reshape(4, 3, 2)
+    savemat(path, {"cube": cube})
+    documents, warnings = parse_mat_documents(path)
+    entries = [json.loads(line) for line in documents["entries.jsonl"].splitlines()]
+    row = next(item for item in entries if item.get("name") == "cube")
+    assert row["dims"] == [4, 3, 2]
+    assert row["order"] == "F"
+    assert row["shape"] == [4, 3, 2]
+    assert (row["rows"], row["cols"]) == (4, 6)
+    grid = np.array(
+        [[float(cell) for cell in line.split(",")]
+         for line in documents[row["data"]].splitlines()],
+        dtype=float,
+    )
+    assert np.array_equal(np.reshape(grid, (4, 3, 2), order="F"), cube)
+    assert not warnings
+
+
+def test_mat_wide_higher_dimension_array_falls_back_to_a_long_table(tmp_path):
+    np = pytest.importorskip("numpy")
+    savemat = pytest.importorskip("scipy.io").savemat
+    path = tmp_path / "wide.mat"
+    wide = np.arange(2 * 65 * 65, dtype=float).reshape(2, 65, 65)
+    savemat(path, {"wide": wide})
+    documents, warnings = parse_mat_documents(path)
+    entries = [json.loads(line) for line in documents["entries.jsonl"].splitlines()]
+    row = next(item for item in entries if item.get("name") == "wide")
+    assert row["layout"] == "long"
+    lines = documents[row["data"]].splitlines()
+    assert lines[0] == "dim_1,dim_2,dim_3,value"
+    assert len(lines) == wide.size + 1
+    assert warnings == []
+
+
+def test_mat_scalars_stay_in_the_jsonl_and_arrays_go_to_csv(tmp_path):
+    np = pytest.importorskip("numpy")
+    savemat = pytest.importorskip("scipy.io").savemat
+    path = tmp_path / "mixed.mat"
+    savemat(path, {"gain": np.array([[2.5]]), "vector": np.array([[1.0, 2.0, 3.0]])})
+    documents, _ = parse_mat_documents(path)
+    entries = [json.loads(line) for line in documents["entries.jsonl"].splitlines()]
+    gain = next(item for item in entries if item.get("name") == "gain")
+    vector = next(item for item in entries if item.get("name") == "vector")
+    assert gain["value"] == 2.5 and "data" not in gain
+    assert "value" not in vector
+    assert documents[vector["data"]].splitlines() == ["1", "2", "3"]
+    assert (vector["rows"], vector["cols"]) == (3, 1)
 
 
 def test_mat_sparse_array_is_exported_in_full(tmp_path):
@@ -416,13 +476,7 @@ def test_mat_sparse_array_is_exported_in_full(tmp_path):
     savemat(path, {"matrix": sparse.csc_matrix([[0.0, 1.5], [2.5, 0.0]])})
     documents, warnings = parse_mat_documents(path)
     csv_path = next(name for name in documents if name.endswith(".csv"))
-    assert list(csv.reader(io.StringIO(documents[csv_path]))) == [
-        ["row", "column", "value"],
-        ["1", "1", "0"],
-        ["1", "2", "1.5"],
-        ["2", "1", "2.5"],
-        ["2", "2", "0"],
-    ]
+    assert list(csv.reader(io.StringIO(documents[csv_path]))) == [["0", "1.5"], ["2.5", "0"]]
     assert not warnings
 
 
@@ -574,8 +628,8 @@ async def test_parser_keeps_protected_original_and_requirement_json(tmp_path):
 def test_mat_shapes_struct_fields_and_m_source():
     flames = SAMPLE / "data" / "flames.mat"
     content, warnings = parse_mat(flames)
-    payload = json.loads(content)
-    variable = next(item for item in payload["variables"] if item["name"] == "X")
+    entries = [json.loads(line) for line in content.splitlines()]
+    variable = next(item for item in entries if item.get("name") == "X")
     assert variable["dims"] == [100, 100]
     assert variable["class"] == "uint8"
     assert not warnings
@@ -583,10 +637,8 @@ def test_mat_shapes_struct_fields_and_m_source():
     documents, warnings = parse_mat_documents(flames)
     csv_path = next(name for name in documents if name.endswith(".csv"))
     rows = list(csv.reader(io.StringIO(documents[csv_path])))
-    assert len(rows) == 10001
-    assert rows[0] == ["row", "column", "value"]
-    assert rows[-1][:2] == ["100", "100"]
-    assert "variables.json" in documents
+    assert len(rows) == 100 and len(rows[0]) == 100
+    assert "entries.jsonl" in documents
     assert not warnings
 
     dataset = (
@@ -600,7 +652,9 @@ def test_mat_shapes_struct_fields_and_m_source():
         / "TransientBatteryTestDataset.mat"
     )
     agent, _ = parse_mat(dataset)
-    assert "DLBatteryTestData[1]._ObjectMetadata" in agent
+    # SciPy names the recoverable array of an opaque object differently across
+    # versions (``._ObjectMetadata`` vs ``.arr``); either way it is exported.
+    assert "opaque_object" in agent or "DLBatteryTestData[1]._ObjectMetadata" in agent
 
 @pytest.mark.asyncio
 async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
@@ -658,7 +712,7 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     assert len(system_pages) > 500
     base = root / "matlab-ingest-fixture"
     assert (base / "data" / "flames" / "flames.mat").is_file()
-    assert (base / "data" / "flames" / "variables.json").is_file()
+    assert (base / "data" / "flames" / "entries.jsonl").is_file()
     assert (
         base
         / "model"

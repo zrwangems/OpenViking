@@ -83,27 +83,103 @@ def _number(value: Any) -> str:
     return str(scalar.item() if hasattr(scalar, "item") else scalar)
 
 
-def _array_csv(value: Any) -> str:
-    """Serialize an N-D array without truncation; indices are one-based."""
-    import numpy as np
-    from scipy import sparse
+_MAX_CSV_COLUMNS = 4096
 
-    array = value.toarray() if sparse.issparse(value) else np.asarray(value)
+
+def _is_scalar(array: Any) -> bool:
+    import numpy as np
+
+    return array.size == 1 and array.ndim <= 2 and not np.issubdtype(
+        array.dtype, np.complexfloating
+    )
+
+
+def _csv_grid(array: Any) -> tuple[list[list[str]], dict[str, Any]]:
+    """Lay an array out as a 2-D grid of values, plus the JSONL pointer fields.
+
+    A CSV cell is a single number, so only a 2-D grid is native: vectors become a
+    single column, matrices keep their rows and columns, and anything with three
+    or more dimensions is flattened column-major (MATLAB order) to
+    ``dims[0] x prod(dims[1:])`` and reported as ``order: F`` so it can be
+    reshaped back losslessly. A grid too wide to read as one matrix falls back to
+    a long table with one row per element and explicit index columns.
+    """
+    import numpy as np
+
+    shape = [int(part) for part in array.shape]
+    complex_values = np.issubdtype(array.dtype, np.complexfloating)
+    pointer: dict[str, Any] = {}
+    if not shape or min(shape) == 1 or len(shape) == 1:
+        grid = [[_cell(item)] for item in array.reshape(-1, order="F")]
+        rows, cols = len(grid), 1
+    elif len(shape) == 2:
+        grid = [
+            [_cell(array[row, column]) for column in range(shape[1])]
+            for row in range(shape[0])
+        ]
+        rows, cols = shape[0], shape[1]
+    elif int(np.prod(shape[1:])) > _MAX_CSV_COLUMNS:
+        rows, cols = int(np.prod(shape)), len(shape) + (2 if complex_values else 1)
+        header = [f"dim_{index + 1}" for index in range(len(shape))]
+        header += ["real", "imag"] if complex_values else ["value"]
+        grid = [header]
+        # Column-major (MATLAB) order, matching the flat grid layout above.
+        for index in _matlab_index_order(shape):
+            coordinates = [str(part + 1) for part in index]
+            item = array[index]
+            if complex_values:
+                grid.append([*coordinates, _number(item.real), _number(item.imag)])
+            else:
+                grid.append([*coordinates, _cell(item)])
+        pointer["layout"] = "long"
+        pointer["shape"] = shape
+        return grid, pointer
+    else:
+        flat = np.reshape(array, (shape[0], int(np.prod(shape[1:]))), order="F")
+        grid = [
+            [_cell(flat[row, column]) for column in range(flat.shape[1])]
+            for row in range(flat.shape[0])
+        ]
+        rows, cols = int(flat.shape[0]), int(flat.shape[1])
+        pointer["order"] = "F"
+        pointer["shape"] = shape
+    if complex_values and "layout" not in pointer:
+        interleaved = []
+        dense = np.asarray(array)
+        flat = np.reshape(dense, (-1,), order="F")
+        for row in range(rows):
+            line: list[str] = []
+            for column in range(cols):
+                item = flat[row * cols + column]
+                line.extend([_number(item.real), _number(item.imag)])
+            interleaved.append(line)
+        grid = interleaved
+        cols *= 2
+    pointer["rows"] = rows
+    pointer["cols"] = cols
+    return grid, pointer
+
+
+def _matlab_index_order(shape: list[int]):
+    from itertools import product
+
+    for index in product(*[range(part) for part in reversed(shape)]):
+        yield tuple(reversed(index))
+
+
+def _cell(value: Any) -> str:
+    import numpy as np
+
+    item = np.asarray(value)
+    if item.dtype.kind in {"U", "S"}:
+        return str(value).strip()
+    return _number(value)
+
+
+def _grid_csv(grid: list[list[str]]) -> str:
     output = io.StringIO(newline="")
     writer = csv.writer(output, lineterminator="\n")
-    complex_values = np.issubdtype(array.dtype, np.complexfloating)
-    if array.ndim == 2:
-        indices = ["row", "column"]
-    else:
-        indices = [f"dim_{index + 1}" for index in range(array.ndim)]
-    writer.writerow([*indices, "real", "imag"] if complex_values else [*indices, "value"])
-    for index in np.ndindex(array.shape):
-        item = array[index]
-        coordinates = [str(part + 1) for part in index]
-        if complex_values:
-            writer.writerow([*coordinates, _number(item.real), _number(item.imag)])
-        else:
-            writer.writerow([*coordinates, _number(item)])
+    writer.writerows(grid)
     return output.getvalue()
 
 
@@ -216,33 +292,58 @@ def parse_mat_documents(path: str | Path) -> tuple[dict[str, str], list[str]]:
     if isinstance(header, bytes):
         header = header.decode("latin-1", errors="replace")
     documents: dict[str, str] = {}
-    variables = []
+    entries: list[dict[str, Any]] = [
+        {
+            "kind": "file",
+            "schema": "ov.matlab.entries/1",
+            "file": path.name,
+            "mat_version": "v7.3" if fmt.startswith("MAT v7.3") else "v7",
+            "header": str(header).strip() or None,
+            "entry_count": len(arrays),
+        }
+    ]
     for index, (array_path, value) in enumerate(arrays, 1):
-        name = _csv_name(index, array_path)
-        documents[name] = _array_csv(value)
-        shape = list(getattr(value, "shape", ()))
-        variables.append(
-            {
-                "name": array_path,
-                "class": _matlab_class(value),
-                "dims": shape,
-                "complex": "complex" in str(getattr(value, "dtype", "")),
-                "sparse": hasattr(value, "toarray"),
-                "data": name,
-                "rows": shape[0] if shape else 1,
-                "cols": shape[1] if len(shape) > 1 else 1,
-            }
-        )
-    payload = {
-        "schema": "ov.matlab.variables/1",
-        "file": path.name,
-        "mat_version": "v7.3" if fmt.startswith("MAT v7.3") else "v7",
-        "header": str(header).strip(),
-        "variables": variables,
-    }
-    documents["variables.json"] = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+        import numpy as np
+        from scipy import sparse
+
+        dense = np.asarray(value.toarray() if sparse.issparse(value) else value)
+        row: dict[str, Any] = {
+            "kind": "value",
+            "name": array_path,
+            "class": _matlab_class(value),
+            "dims": [int(part) for part in dense.shape],
+            "complex": "complex" in str(dense.dtype),
+            "sparse": sparse.issparse(value),
+        }
+        if _is_scalar(dense):
+            row["value"] = _scalar_json(dense.reshape(-1)[0])
+        else:
+            grid, pointer = _csv_grid(dense)
+            name = _csv_name(index, array_path)
+            documents[name] = _grid_csv(grid)
+            row["data"] = name
+            row.update(pointer)
+        entries.append(row)
+    documents["entries.jsonl"] = (
+        "\n".join(json.dumps(entry, ensure_ascii=False) for entry in entries) + "\n"
+    )
     return documents, warnings
+
+
+def _scalar_json(value: Any) -> Any:
+    """JSON-native inline value for a 1x1 array; only such values stay in JSONL."""
+    import numpy as np
+
+    item = np.asarray(value)
+    if item.dtype.kind in {"U", "S"}:
+        return str(value).strip()
+    if item.dtype.kind == "b":
+        return bool(value)
+    if item.dtype.kind in {"i", "u"}:
+        return int(value)
+    return float(value)
+
 
 def parse_mat(path: str | Path) -> tuple[str, list[str]]:
     documents, warnings = parse_mat_documents(path)
-    return documents["variables.json"], warnings
+    return documents["entries.jsonl"], warnings
