@@ -35,6 +35,8 @@ slxkeydes/
 3. 渲染：占位符换成实例值（实例没有就用默认值）；值超过 120 字符截断；一段里没有任何值、
    或者整段只有一个值没有文字时，整段丢掉，避免出现「、[]、」这种残句。
 
+默认用中文模板渲染（`language="zh"`），导入时 `--args language:en` 改走英文模板。
+
 结果写进每个系统 JSON 的 `blocks[].description`，`blocks[].key` 记录渲染用的是哪个 key。
 没有模板的块（不在文档覆盖里的第三方库块，如 `autolibutils/LPF IC`）`description` 留空，
 `coverage.blocks_without_description` 列出这些 key，`coverage.described_blocks` 计数。

@@ -283,7 +283,7 @@ def _endpoint_kind(value: str) -> str:
 
 
 def system_json_documents(
-    model: System, language: str = "en", library: KeydesLibrary | None = None
+    model: System, language: str = "zh", library: KeydesLibrary | None = None
 ) -> dict[str, dict]:
     """Return one JSON object per system, keyed by its resource path.
 

@@ -150,7 +150,7 @@ class MatlabParser(BaseParser):
             raise FileNotFoundError(f"MATLAB file not found: {path}")
         started = time.time()
         output_store = kwargs.pop("parse_output_store", None)
-        language = kwargs.get("language", "en")
+        language = kwargs.get("language", "zh")
         writer = await create_parse_artifact_writer(
             output_store, viking_fs=self._get_viking_fs() if output_store is None else None
         )

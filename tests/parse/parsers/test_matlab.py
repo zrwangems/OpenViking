@@ -116,6 +116,25 @@ def test_system_json_carries_a_description_per_block_instead_of_parameters():
     assert power["coverage"]["described_blocks"] <= power["coverage"]["blocks"]
     assert len(payload) < 20_000
 
+def test_block_descriptions_are_chinese_by_default():
+    documents = system_json_documents(parse_slx(CONTROLLER))
+    power_path = next(
+        path for path in documents if path.endswith("Mech_To_Elec_Power_Estimate.json")
+    )
+    descriptions = [
+        block["description"] for block in documents[power_path]["blocks"] if block["description"]
+    ]
+    assert descriptions
+    assert any("逼近 N 维函数" in text for text in descriptions)
+
+
+def test_keydes_default_language_is_chinese():
+    library = KeydesLibrary()
+    block = Block(sid="1", name="Gain", block_type="Gain", parameters={"Gain": "3.5"})
+    _, description = library.describe(block)
+    assert "将输入乘以常量" in description
+
+
 def test_keydes_renders_instance_values_into_the_template():
     library = KeydesLibrary()
     block = Block(

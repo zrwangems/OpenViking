@@ -151,7 +151,7 @@ class KeydesLibrary:
             self._index[tree] = entries
         return entries
 
-    def template(self, key: str, language: str = "en") -> dict | None:
+    def template(self, key: str, language: str = "zh") -> dict | None:
         """Return the parsed template for ``key``, or ``None`` when it has none."""
         tree = template_language(language)
         cache_key = (tree, key)
@@ -171,7 +171,7 @@ class KeydesLibrary:
             self._templates[cache_key] = document
         return document
 
-    def describe(self, block: "Block", language: str = "en") -> tuple[str | None, str | None]:
+    def describe(self, block: "Block", language: str = "zh") -> tuple[str | None, str | None]:
         """Return ``(key, description)`` for one block.
 
         ``key`` is ``None`` for a subsystem, which the parser expands instead of
