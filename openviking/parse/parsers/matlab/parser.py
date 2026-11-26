@@ -224,7 +224,10 @@ class MatlabParser(BaseParser):
                 )
                 documents, mat_warnings = await asyncio.to_thread(parse_mat_documents, path)
                 for name, document in documents.items():
-                    await writer.write_text(f"{folder}/{name}", document)
+                    if isinstance(document, bytes):
+                        await writer.write_bytes(f"{folder}/{name}", document)
+                    else:
+                        await writer.write_text(f"{folder}/{name}", document)
                 warnings.extend(mat_warnings)
                 meta = {
                     "matlab_format": "mat",
@@ -274,7 +277,7 @@ class MatlabParser(BaseParser):
                 if suffix == ".sldd":
                     rows, data_files = await asyncio.to_thread(sldd_entry_documents, payload)
                     for name, content in data_files.items():
-                        await writer.write_text(f"{folder}/{name}", content)
+                        await writer.write_bytes(f"{folder}/{name}", content)
                     await writer.write_text(
                         f"{folder}/entries.jsonl",
                         "\n".join(json.dumps(row, ensure_ascii=False) for row in rows) + "\n",

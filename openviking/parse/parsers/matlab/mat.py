@@ -4,7 +4,6 @@
 
 from __future__ import annotations
 
-import csv
 import hashlib
 import io
 import json
@@ -70,20 +69,20 @@ def _walk_arrays(value: Any, path: str, depth: int = 0) -> Iterator[tuple[str, A
             yield from _walk_arrays(item, f"{path}.{field}", depth + 1)
 
 
-def _number(value: Any) -> str:
+def _npy_document(array: Any) -> bytes:
+    """Serialize an N-D array as a standalone .npy file (dtype and shape inside)."""
     import numpy as np
 
-    scalar = np.asarray(value).reshape(-1)[0]
-    if np.issubdtype(scalar.dtype, np.floating):
-        return format(float(scalar), ".17g")
-    if np.issubdtype(scalar.dtype, np.complexfloating):
-        return format(complex(scalar), ".17g")
-    if np.issubdtype(scalar.dtype, np.bool_):
-        return "true" if bool(scalar) else "false"
-    return str(scalar.item() if hasattr(scalar, "item") else scalar)
+    buffer = io.BytesIO()
+    np.save(buffer, np.ascontiguousarray(array), allow_pickle=False)
+    return buffer.getvalue()
 
 
-_MAX_CSV_COLUMNS = 4096
+def _npy_dtype(array: Any) -> str:
+    import numpy as np
+
+    dtype = np.asarray(array).dtype
+    return dtype.name if dtype.names is None else "struct"
 
 
 def _is_scalar(array: Any) -> bool:
@@ -92,95 +91,6 @@ def _is_scalar(array: Any) -> bool:
     return array.size == 1 and array.ndim <= 2 and not np.issubdtype(
         array.dtype, np.complexfloating
     )
-
-
-def _csv_grid(array: Any) -> tuple[list[list[str]], dict[str, Any]]:
-    """Lay an array out as a 2-D grid of values, plus the JSONL pointer fields.
-
-    A CSV cell is a single number, so only a 2-D grid is native: vectors become a
-    single column, matrices keep their rows and columns, and anything with three
-    or more dimensions is flattened column-major (MATLAB order) to
-    ``dims[0] x prod(dims[1:])`` and reported as ``order: F`` so it can be
-    reshaped back losslessly. A grid too wide to read as one matrix falls back to
-    a long table with one row per element and explicit index columns.
-    """
-    import numpy as np
-
-    shape = [int(part) for part in array.shape]
-    complex_values = np.issubdtype(array.dtype, np.complexfloating)
-    pointer: dict[str, Any] = {}
-    if not shape or min(shape) == 1 or len(shape) == 1:
-        grid = [[_cell(item)] for item in array.reshape(-1, order="F")]
-        rows, cols = len(grid), 1
-    elif len(shape) == 2:
-        grid = [
-            [_cell(array[row, column]) for column in range(shape[1])]
-            for row in range(shape[0])
-        ]
-        rows, cols = shape[0], shape[1]
-    elif int(np.prod(shape[1:])) > _MAX_CSV_COLUMNS:
-        rows, cols = int(np.prod(shape)), len(shape) + (2 if complex_values else 1)
-        header = [f"dim_{index + 1}" for index in range(len(shape))]
-        header += ["real", "imag"] if complex_values else ["value"]
-        grid = [header]
-        # Column-major (MATLAB) order, matching the flat grid layout above.
-        for index in _matlab_index_order(shape):
-            coordinates = [str(part + 1) for part in index]
-            item = array[index]
-            if complex_values:
-                grid.append([*coordinates, _number(item.real), _number(item.imag)])
-            else:
-                grid.append([*coordinates, _cell(item)])
-        pointer["layout"] = "long"
-        pointer["shape"] = shape
-        return grid, pointer
-    else:
-        flat = np.reshape(array, (shape[0], int(np.prod(shape[1:]))), order="F")
-        grid = [
-            [_cell(flat[row, column]) for column in range(flat.shape[1])]
-            for row in range(flat.shape[0])
-        ]
-        rows, cols = int(flat.shape[0]), int(flat.shape[1])
-        pointer["order"] = "F"
-        pointer["shape"] = shape
-    if complex_values and "layout" not in pointer:
-        interleaved = []
-        dense = np.asarray(array)
-        flat = np.reshape(dense, (-1,), order="F")
-        for row in range(rows):
-            line: list[str] = []
-            for column in range(cols):
-                item = flat[row * cols + column]
-                line.extend([_number(item.real), _number(item.imag)])
-            interleaved.append(line)
-        grid = interleaved
-        cols *= 2
-    pointer["rows"] = rows
-    pointer["cols"] = cols
-    return grid, pointer
-
-
-def _matlab_index_order(shape: list[int]):
-    from itertools import product
-
-    for index in product(*[range(part) for part in reversed(shape)]):
-        yield tuple(reversed(index))
-
-
-def _cell(value: Any) -> str:
-    import numpy as np
-
-    item = np.asarray(value)
-    if item.dtype.kind in {"U", "S"}:
-        return str(value).strip()
-    return _number(value)
-
-
-def _grid_csv(grid: list[list[str]]) -> str:
-    output = io.StringIO(newline="")
-    writer = csv.writer(output, lineterminator="\n")
-    writer.writerows(grid)
-    return output.getvalue()
 
 
 def _matlab_class(value: Any) -> str:
@@ -208,14 +118,18 @@ def _matlab_class(value: Any) -> str:
         return str(getattr(value, "dtype", type(value).__name__))
 
 
-def _csv_name(index: int, path: str) -> str:
+def _npy_name(index: int, path: str) -> str:
     stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", path).strip("._")[:80] or "array"
     digest = hashlib.sha256(path.encode("utf-8")).hexdigest()[:8]
-    return f"data/{index:04d}_{stem}_{digest}.csv"
+    return f"data/{index:04d}_{stem}_{digest}.npy"
 
 
-def parse_mat_documents(path: str | Path) -> tuple[dict[str, str], list[str]]:
-    """Return a summary page and lossless CSV documents for all readable arrays.
+def parse_mat_documents(path: str | Path) -> tuple[dict[str, str | bytes], list[str]]:
+    """Return the entries JSONL page and lossless .npy documents for all arrays.
+
+    Only a 1x1 value is written into the JSONL line; every other array becomes a
+    ``.npy`` file, which carries its own dtype and shape and needs no index
+    columns, no flattening and no separate metadata to be read back exactly.
 
     Opaque MATLAB objects are still bounded by SciPy's format support: their
     recoverable arrays are exported, and a warning says that the object itself
@@ -318,11 +232,11 @@ def parse_mat_documents(path: str | Path) -> tuple[dict[str, str], list[str]]:
         if _is_scalar(dense):
             row["value"] = _scalar_json(dense.reshape(-1)[0])
         else:
-            grid, pointer = _csv_grid(dense)
-            name = _csv_name(index, array_path)
-            documents[name] = _grid_csv(grid)
+            name = _npy_name(index, array_path)
+            documents[name] = _npy_document(dense)
             row["data"] = name
-            row.update(pointer)
+            row["format"] = "npy"
+            row["dtype"] = _npy_dtype(dense)
         entries.append(row)
     documents["entries.jsonl"] = (
         "\n".join(json.dumps(entry, ensure_ascii=False) for entry in entries) + "\n"

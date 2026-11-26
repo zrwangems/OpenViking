@@ -11,10 +11,10 @@ requirement sets and App Designer apps.
 from __future__ import annotations
 
 import base64
-import csv
 import hashlib
 import io
 import re
+import struct
 import zipfile
 from pathlib import Path
 from typing import Any
@@ -905,7 +905,7 @@ def _snake(name: str) -> str:
     return text.strip("_").lower() or "field"
 
 
-def _csv_stem(name: str) -> str:
+def _array_stem(name: str) -> str:
     return re.sub(r"[^\w.-]+", "_", name, flags=re.UNICODE).strip("._") or "entry"
 
 
@@ -943,7 +943,7 @@ def _number_tokens(text: str) -> list[str] | None:
 
 
 def _array_payload(raw: Any, dimensions: Any, dtype: str = "") -> list[str] | None:
-    """Numeric tokens when one value is an array that belongs in a CSV file.
+    """Numeric tokens when one value is an array that belongs in its own .npy.
 
     Only a 1x1 value stays inline in ``entries.jsonl``; every other array is
     externalized, whatever its size, so the JSONL line never carries numbers.
@@ -968,78 +968,47 @@ def _array_payload(raw: Any, dimensions: Any, dtype: str = "") -> list[str] | No
     return tokens
 
 
-def _matlab_index_order(dimensions: list[int]):
-    from itertools import product
+def _npy_bytes(tokens: list[str], dimensions: list[int]) -> bytes:
+    """Serialize numeric tokens as a Fortran-order float64 .npy file.
 
-    for index in product(*[range(dimension) for dimension in reversed(dimensions)]):
-        yield tuple(reversed(index))
-
-
-_MAX_CSV_COLUMNS = 4096
-
-
-def _array_csv(tokens: list[str], dimensions: list[int]) -> tuple[str, dict[str, Any]]:
-    """Write one array as a 2-D CSV grid plus the pointer fields for its row.
-
-    A CSV cell holds one number, so a vector is written as a single column and a
-    matrix keeps its rows and columns. Three or more dimensions are flattened
-    column-major (MATLAB order) to ``dims[0] x prod(dims[1:])`` and reported as
-    ``order: F`` so the shape can be restored; a grid wider than
-    ``_MAX_CSV_COLUMNS`` falls back to one row per element with index columns.
+    Values are stored column-major, the order MATLAB keeps them in, so the file
+    reads back as the exact original array. The writer is pure Python: a
+    dictionary keeps its numbers readable without numpy being installed.
     """
-    output = io.StringIO(newline="")
-    writer = csv.writer(output, lineterminator="\n")
-    shape = [int(part) for part in dimensions]
-    rows = 0
-    if len(shape) <= 1 or min(shape) == 1:
-        for token in tokens:
-            writer.writerow([token])
-        rows, cols = len(tokens), 1
-        pointer: dict[str, Any] = {}
-    elif len(shape) == 2:
-        for row in range(shape[0]):
-            writer.writerow(tokens[row:: shape[0]])
-        rows, cols = shape[0], shape[1]
-        pointer = {}
-    elif _product(shape[1:]) > _MAX_CSV_COLUMNS:
-        writer.writerow([f"dim_{index + 1}" for index in range(len(shape))] + ["value"])
-        for flat, index in enumerate(_matlab_index_order(shape)):
-            writer.writerow([str(part + 1) for part in index] + [tokens[flat]])
-        rows, cols = len(tokens), len(shape) + 1
-        pointer = {"layout": "long", "shape": shape}
-    else:
-        cols = _product(shape[1:])
-        for row in range(shape[0]):
-            writer.writerow([tokens[row + column * shape[0]] for column in range(cols)])
-        rows = shape[0]
-        pointer = {"order": "F", "shape": shape}
-    pointer["rows"] = rows
-    pointer["cols"] = cols
-    return output.getvalue(), pointer
+    shape = tuple(int(part) for part in dimensions)
+    header = (
+        "{'descr': '<f8', 'fortran_order': True, 'shape': %s, }"
+        % (shape,)
+    )
+    padding = 16 - (10 + len(header) + 1) % 16
+    header = header + " " * padding + "\n"
+    body = b"".join(struct.pack("<d", _token_float(token)) for token in tokens)
+    return b"\x93NUMPY\x01\x00" + struct.pack("<H", len(header)) + header.encode("latin-1") + body
 
 
-def _product(values: list[int]) -> int:
-    product = 1
-    for value in values:
-        product *= value
-    return product
+def _token_float(token: str) -> float:
+    text = token.strip()
+    if text.lower() in {"nan", "+nan", "-nan"}:
+        return float("nan")
+    return float(text)
 
 
-class _SlddCsvCollector:
-    """Collects the CSV files referenced by the entry rows of one dictionary."""
+class _SlddArrayWriter:
+    """Collects the .npy files referenced by the entry rows of one dictionary."""
 
     def __init__(self) -> None:
-        self.files: dict[str, str] = {}
+        self.files: dict[str, bytes] = {}
         self.pointers: dict[str, dict[str, Any]] = {}
 
     def add(self, stem: str, tokens: list[str], dimensions: list[int]) -> str:
-        name = f"{_csv_stem(stem)}.csv"
-        base = name[: -len(".csv")]
+        name = f"{_array_stem(stem)}.npy"
+        base = name[: -len(".npy")]
         counter = 1
         while name in self.files:
             counter += 1
-            name = f"{base}_{counter}.csv"
-        self.files[name], self.pointers[name] = _array_csv(tokens, dimensions)
+            name = f"{base}_{counter}.npy"
+        self.files[name] = _npy_bytes(tokens, dimensions)
+        self.pointers[name] = {"format": "npy", "dtype": "double"}
         return name
 
     def pointer(self, name: str) -> dict[str, Any]:
@@ -1076,9 +1045,9 @@ def _inline_value(value: Any) -> Any:
 
 
 def _rewrite_arrays(
-    node: Any, collector: _SlddCsvCollector, path: str, root: bool = False
+    node: Any, collector: _SlddArrayWriter, path: str, root: bool = False
 ) -> Any:
-    """Replace every numeric array inside a value tree with a CSV pointer.
+    """Replace every numeric array inside a value tree with a .npy pointer.
 
     ``root`` marks the entry's own value object, whose ``Value`` property names
     the data file after the entry instead of after ``<entry>.Value``.
@@ -1098,7 +1067,7 @@ def _rewrite_arrays(
                 item
                 # ``class`` is a tag and ``Dimensions`` describes the entry's
                 # shape (``value`` there is the dimension list, not the array),
-                # so neither is data that belongs in a CSV.
+                # so neither is data that belongs in a file.
                 if key in {"class", "Dimensions"}
                 else _rewrite_arrays(
                     item,
@@ -1205,12 +1174,14 @@ def _container_items(value: Any) -> list[dict[str, Any]]:
     return []
 
 
-def sldd_entry_documents(tree: dict[str, Any]) -> tuple[list[dict[str, Any]], dict[str, str]]:
-    """One row per dictionary entry, plus the CSV files multi-dimensional values need."""
-    collector = _SlddCsvCollector()
+def sldd_entry_documents(
+    tree: dict[str, Any],
+) -> tuple[list[dict[str, Any]], dict[str, bytes]]:
+    """One row per dictionary entry, plus the .npy files its arrays need."""
+    collector = _SlddArrayWriter()
     rows: list[dict[str, Any]] = []
     for index, entry in enumerate(tree.get("entries", []), 1):
-        stem = f"{index:04d}_{_csv_stem(entry.get('name', ''))}"
+        stem = f"{index:04d}_{_array_stem(entry.get('name', ''))}"
         row: dict[str, Any] = {
             "name": entry.get("name", ""),
             "class": "",

@@ -1,7 +1,6 @@
 # Copyright (c) 2026 Beijing Volcano Engine Technology Co., Ltd.
 # SPDX-License-Identifier: AGPL-3.0
 
-import csv
 import io
 import json
 import shutil
@@ -299,7 +298,8 @@ def test_slx_unnamed_ports_fall_back_to_port_index():
 
 
 @pytest.mark.asyncio
-async def test_sldd_multidimensional_values_are_csv_and_original_is_dropped(tmp_path):
+async def test_sldd_arrays_go_to_npy_and_original_is_dropped(tmp_path):
+    np = pytest.importorskip("numpy")
     dictionary = (
         SAMPLE
         / "model"
@@ -326,24 +326,21 @@ async def test_sldd_multidimensional_values_are_csv_and_original_is_dropped(tmp_
     assert mep["dtype"] == "double"
     assert mep["complexity"] == "real"
     assert "value" not in mep
-    assert mep["data"] == "0008_PlntEngCIGIMepMap.csv"
-    matrix = list(csv.reader(io.StringIO((root / mep["data"]).read_text(encoding="utf-8"))))
-    assert len(matrix) == 15 and len(matrix[0]) == 16
-    assert matrix[0][:4] == ["0.0", "0.0", "0.0", "0.0"]
-    assert float(matrix[1][0]) == pytest.approx(158686.535, rel=1e-6)
-    assert float(matrix[2][0]) == pytest.approx(343074.266, rel=1e-6)
+    assert mep["format"] == "npy"
+    assert mep["data"] == "0008_PlntEngCIGIMepMap.npy"
+    matrix = np.load(root / mep["data"])
+    assert matrix.shape == (15, 16)
+    assert matrix[0, 0] == pytest.approx(0.0)
+    assert matrix[1, 0] == pytest.approx(158686.535, rel=1e-6)
+    assert matrix[2, 0] == pytest.approx(343074.266, rel=1e-6)
 
     turb = rows["PlntEngCITurbEff"]
     assert turb["dimensions"] == [60, 80, 6]
-    assert turb["data"] == "0003_PlntEngCITurbEff.csv"
-    # Three or more dimensions are flattened column-major to a 2-D grid, so the
-    # shape travels with the row instead of in index columns.
-    assert turb["order"] == "F"
-    assert turb["shape"] == [60, 80, 6]
-    assert (turb["rows"], turb["cols"]) == (60, 480)
-    turb_rows = (root / turb["data"]).read_text(encoding="utf-8").splitlines()
-    assert len(turb_rows) == 60
-    assert len(turb_rows[0].split(",")) == 480
+    assert turb["data"] == "0003_PlntEngCITurbEff.npy"
+    # .npy carries the shape itself: no flattening, no index columns, no manifest.
+    cube = np.load(root / turb["data"])
+    assert cube.shape == (60, 80, 6)
+    assert not list(root.glob("*.csv"))
     assert not (root / "data").exists()
 
 
@@ -391,6 +388,12 @@ def test_zip_xml_member_limit(tmp_path):
             read_xml_member(archive, "simulink/blockdiagram.xml", max_bytes=16)
 
 
+def load_npy(documents, name):
+    """Read a .npy document from a parser result without touching the disk."""
+    np = pytest.importorskip("numpy")
+    return np.load(io.BytesIO(documents[name]))
+
+
 def test_mat_v73_hdf5_full_array_export(tmp_path):
     h5py = pytest.importorskip("h5py")
     path = tmp_path / "large.mat"
@@ -405,18 +408,20 @@ def test_mat_v73_hdf5_full_array_export(tmp_path):
     assert header["mat_version"] == "v7.3"
     trajectory = next(item for item in entries if item.get("name") == "trajectory")
     assert trajectory["dims"] == [2, 2]
+    assert trajectory["format"] == "npy"
+    assert trajectory["dtype"] == "float64"
     documents, warnings = parse_mat_documents(path)
     assert "entries.jsonl" in documents
     assert not any(name.endswith("variables.json") for name in documents)
-    csv_path = next(name for name in documents if "trajectory" in name and name.endswith(".csv"))
-    rows = list(csv.reader(io.StringIO(documents[csv_path])))
-    assert rows == [["1", "2"], ["3", "4"]]
+    matrix = load_npy(documents, trajectory["data"])
+    assert matrix.shape == (2, 2)
+    assert matrix.tolist() == [[1.0, 2.0], [3.0, 4.0]]
     assert not warnings
-    nested = next(name for name in documents if "nested_speed" in name)
-    assert documents[nested].splitlines() == ["5", "6"]
+    nested = next(item for item in entries if item.get("name") == "nested/speed")
+    assert load_npy(documents, nested["data"]).tolist() == [5.0, 6.0]
 
 
-def test_mat_three_dimensional_array_round_trips_through_a_flat_grid(tmp_path):
+def test_mat_three_dimensional_array_round_trips_through_npy(tmp_path):
     np = pytest.importorskip("numpy")
     savemat = pytest.importorskip("scipy.io").savemat
     path = tmp_path / "cube.mat"
@@ -426,19 +431,13 @@ def test_mat_three_dimensional_array_round_trips_through_a_flat_grid(tmp_path):
     entries = [json.loads(line) for line in documents["entries.jsonl"].splitlines()]
     row = next(item for item in entries if item.get("name") == "cube")
     assert row["dims"] == [4, 3, 2]
-    assert row["order"] == "F"
-    assert row["shape"] == [4, 3, 2]
-    assert (row["rows"], row["cols"]) == (4, 6)
-    grid = np.array(
-        [[float(cell) for cell in line.split(",")]
-         for line in documents[row["data"]].splitlines()],
-        dtype=float,
-    )
-    assert np.array_equal(np.reshape(grid, (4, 3, 2), order="F"), cube)
+    assert row["format"] == "npy"
+    assert row["data"].endswith(".npy")
+    assert np.array_equal(load_npy(documents, row["data"]), cube)
     assert not warnings
 
 
-def test_mat_wide_higher_dimension_array_falls_back_to_a_long_table(tmp_path):
+def test_mat_wide_higher_dimension_array_stays_one_file(tmp_path):
     np = pytest.importorskip("numpy")
     savemat = pytest.importorskip("scipy.io").savemat
     path = tmp_path / "wide.mat"
@@ -447,14 +446,14 @@ def test_mat_wide_higher_dimension_array_falls_back_to_a_long_table(tmp_path):
     documents, warnings = parse_mat_documents(path)
     entries = [json.loads(line) for line in documents["entries.jsonl"].splitlines()]
     row = next(item for item in entries if item.get("name") == "wide")
-    assert row["layout"] == "long"
-    lines = documents[row["data"]].splitlines()
-    assert lines[0] == "dim_1,dim_2,dim_3,value"
-    assert len(lines) == wide.size + 1
+    # A CSV grid would need 4225 columns here; .npy keeps the shape as it is.
+    assert row["dims"] == [2, 65, 65]
+    assert [name for name in documents if name.endswith(".npy")] == [row["data"]]
+    assert np.array_equal(load_npy(documents, row["data"]), wide)
     assert warnings == []
 
 
-def test_mat_scalars_stay_in_the_jsonl_and_arrays_go_to_csv(tmp_path):
+def test_mat_scalars_stay_in_the_jsonl_and_arrays_go_to_npy(tmp_path):
     np = pytest.importorskip("numpy")
     savemat = pytest.importorskip("scipy.io").savemat
     path = tmp_path / "mixed.mat"
@@ -465,8 +464,8 @@ def test_mat_scalars_stay_in_the_jsonl_and_arrays_go_to_csv(tmp_path):
     vector = next(item for item in entries if item.get("name") == "vector")
     assert gain["value"] == 2.5 and "data" not in gain
     assert "value" not in vector
-    assert documents[vector["data"]].splitlines() == ["1", "2", "3"]
-    assert (vector["rows"], vector["cols"]) == (3, 1)
+    assert [name for name in documents if name.endswith(".npy")] == [vector["data"]]
+    assert load_npy(documents, vector["data"]).tolist() == [[1.0, 2.0, 3.0]]
 
 
 def test_mat_sparse_array_is_exported_in_full(tmp_path):
@@ -475,8 +474,10 @@ def test_mat_sparse_array_is_exported_in_full(tmp_path):
     path = tmp_path / "sparse.mat"
     savemat(path, {"matrix": sparse.csc_matrix([[0.0, 1.5], [2.5, 0.0]])})
     documents, warnings = parse_mat_documents(path)
-    csv_path = next(name for name in documents if name.endswith(".csv"))
-    assert list(csv.reader(io.StringIO(documents[csv_path]))) == [["0", "1.5"], ["2.5", "0"]]
+    entries = [json.loads(line) for line in documents["entries.jsonl"].splitlines()]
+    row = next(item for item in entries if item.get("name") == "matrix")
+    assert row["sparse"] is True
+    assert load_npy(documents, row["data"]).tolist() == [[0.0, 1.5], [2.5, 0.0]]
     assert not warnings
 
 
@@ -635,9 +636,8 @@ def test_mat_shapes_struct_fields_and_m_source():
     assert not warnings
 
     documents, warnings = parse_mat_documents(flames)
-    csv_path = next(name for name in documents if name.endswith(".csv"))
-    rows = list(csv.reader(io.StringIO(documents[csv_path])))
-    assert len(rows) == 100 and len(rows[0]) == 100
+    image = load_npy(documents, variable["data"])
+    assert image.shape == (100, 100)
     assert "entries.jsonl" in documents
     assert not warnings
 
