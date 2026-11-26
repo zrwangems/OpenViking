@@ -17,7 +17,11 @@ from openviking.parse.parsers.matlab.keydes import KeydesLibrary
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.slx import Block, parse_slx, system_json_documents
-from openviking.parse.parsers.matlab.stateflow import chart_json, parse_stateflow
+from openviking.parse.parsers.matlab.stateflow import (
+    STATE_FLOW_SCHEMA,
+    chart_json,
+    parse_stateflow,
+)
 from openviking.parse.parsers.matlab.structured import (
     parse_fig_tree,
     parse_mlapp,
@@ -196,23 +200,172 @@ def test_slx_deduplicates_colliding_directory_names():
     assert len(documents) == len(set(documents))
 
 
-def test_stateflow_states_actions_default_transition_and_conditions():
+def test_stateflow_charts_keep_state_actions_and_components():
     charts = parse_stateflow(CONTROLLER)
     assert [chart.chart_id for chart in charts] == ["798", "962"]
 
     timer = chart_json(charts[1])
-    assert len(timer["states"]) == 3
-    assert len(timer["transitions"]) == 5
-    assert any(state["name"] == "StartTimer" for state in timer["states"])
-    assert "Out = 0;" in json.dumps(timer, ensure_ascii=False)
-    assert "after(0.1, sec)" in json.dumps(timer, ensure_ascii=False)
-    assert timer["transitions"][1]["from_name"] == "StartTimer"
+    assert timer["schema"] == STATE_FLOW_SCHEMA
+    assert timer["summary"]["states"] == 3
+    assert timer["summary"]["transitions"] == 5
+    states = {state["name"]: state for state in timer["states"]}
+    assert states["Wait"]["during"] == "Out = 0;"
+    assert states["TimerDone"]["during"] == "Out = 1;"
+    assert all(state["parent"] is None for state in timer["states"])
+    timed = next(item for item in timer["transitions"] if item.get("event") == "after(0.1, sec)")
+    assert (timed["from_name"], timed["to_name"]) == ("Wait", "TimerDone")
+    conditioned = next(item for item in timer["transitions"] if item["id"] == "4")
+    assert conditioned["condition"] == "In"
+    assert conditioned["from_name"] == "StartTimer"
+    default = next(item for item in timer["transitions"] if item["from_kind"] == "default")
+    assert default["to_name"] == "StartTimer"
 
     supervisory = chart_json(charts[0])
-    assert len(supervisory["states"]) == 34
+    states = {state["name"]: state for state in supervisory["states"]}
+    assert "HEV" in states
+    assert states["Operating_Modes"]["entry"] == states["Operating_Modes"]["during"]
+    assert states["EV"]["entry"] == "OpMode = 1;\nEngPwrCmd = 0;\nMotMode = 1;"
+    assert states["Driving"]["path"] == "Operating_Modes/Driving"
     assert len(supervisory["transitions"]) == 35
     assert "EngOnReq = EngOnCalc" in json.dumps(supervisory, ensure_ascii=False)
-    assert any(state["name"] == "HEV" for state in supervisory["states"])
+
+    functions = {function["name"]: function for function in supervisory["functions"]}
+    op_mode = functions["OpMode3"]
+    assert op_mode["kind"] == "simulink"
+    assert op_mode["path"].endswith("HEV/Low_Power_Charge_Sustain/OpMode3")
+    assert op_mode["inputs"][:2] == ["WhlPwrCmd", "ChrgPwr"]
+    assert op_mode["outputs"] == ["EngPwrCmd", "MotPwrCmd"]
+    assert functions["TrqCalc"]["kind"] == "simulink"
+    assert "FUNC_STATE" not in {state["type"] for state in supervisory["states"]}
+
+
+def test_stateflow_sfx_keeps_hierarchy_notes_and_matlab_functions():
+    chart = chart_json(parse_stateflow(SAMPLE / "model" / "TargetStateChart.sfx")[0])
+    assert chart["schema"] == STATE_FLOW_SCHEMA
+    assert chart["summary"] == {
+        "states": 12,
+        "functions": 3,
+        "notes": 9,
+        "junctions": 2,
+        "transitions": 22,
+        "events": 12,
+        "data": 8,
+    }
+
+    states = {state["name"]: state for state in chart["states"]}
+    assert states["Unloaded"]["path"] == "Status/Connected/Unloaded"
+    assert states["Running"]["path"] == "Status/Connected/Loaded/Running"
+    assert states["Connected"]["path"] == "Status/Connected"
+    assert states["Status"]["parent"] is None
+    assert states["Disconnected"]["entry"].endswith("notify(tg_, 'Disconnected');\nend")
+    assert states["Connected"]["exit"] == "notify(tg_, 'Disconnecting');\ntg_.disconnectTarget();"
+
+    functions = {function["name"]: function for function in chart["functions"]}
+    assert functions["EnterUnloadedState"]["kind"] == "matlab"
+    assert "Stopped" in functions["EnterUnloadedState"]["notifies"]
+    assert "EnterRunningState" in functions
+    assert functions["EnterRunningState"]["body"].startswith("% The 'Running' state")
+
+    notes = {note["id"]: note for note in chart["notes"]}
+    assert notes["629"]["text"].startswith("% Path taken when user executes")
+    assert notes["629"]["parent_name"] == "Connected"
+    assert "DOCTYPE" not in json.dumps(chart, ensure_ascii=False)
+
+    junctions = {item["id"]: item for item in chart["junctions"]}
+    assert junctions["458"]["name"] == "Junction 458"
+    transitions = {item["id"]: item for item in chart["transitions"]}
+    assert transitions["485"]["from_kind"] == "default"
+    assert transitions["486"]["from_name"] == "Junction 483"
+    assert transitions["234"]["condition"] == "runningOnConnect_"
+    assert transitions["564"]["from_name"] == transitions["564"]["to_name"] == "Loading"
+    assert transitions["457"]["event"] == "disconnect"
+    assert transitions["457"]["condition_action"] == "disconnectEV_ = true;"
+    assert transitions["489"]["scope_name"] == "Connected"
+
+
+def test_stateflow_generic_chart_components(tmp_path):
+    chart_xml = """<?xml version="1.0" encoding="utf-8"?>
+<chart id="7">
+  <P Name="name">Generic Chart</P>
+  <P Name="actionLanguage">1</P>
+  <Children>
+    <state SSID="1">
+      <P Name="labelString">Top
+entry, during:
+  x = 1;
+exit:
+  x = 0;
+on E1:
+  y = 1;
+bind:
+  z = 1;</P>
+      <P Name="type">OR_STATE</P>
+      <P Name="decomposition">CLUSTER_STATE</P>
+      <Children>
+        <state SSID="2">
+          <P Name="labelString">&lt;html&gt;&lt;body&gt;&lt;p&gt;% note text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+          <P Name="type">GROUP_STATE</P>
+          <P Name="isNoteBox">1</P>
+        </state>
+        <box SSID="3">
+          <P Name="labelString">Box label</P>
+        </box>
+        <truthTable SSID="4">
+          <P Name="conditionTable">[x &gt; 0]</P>
+          <P Name="actionTable">y = 1;</P>
+        </truthTable>
+        <junction SSID="5">
+          <P Name="type">CONNECTIVE_JUNCTION</P>
+        </junction>
+        <transition SSID="6">
+          <P Name="labelString">E1[x &gt; 0]{y = 2;}/z = 3;</P>
+          <P Name="executionOrder">2</P>
+          <src><P Name="SSID">1</P></src>
+          <dst><P Name="SSID">5</P></dst>
+        </transition>
+        <event SSID="12"><P Name="name">E1</P><P Name="scope">INPUT_EVENT</P><P Name="trigger">RISING_EDGE_EVENT</P></event>
+        <data SSID="13" name="x"><P Name="scope">INPUT_DATA</P><P Name="dataType">double</P></data>
+      </Children>
+    </state>
+  </Children>
+</chart>
+"""
+    source = tmp_path / "Generic.sfx"
+    with zipfile.ZipFile(source, "w") as archive:
+        archive.writestr("simulink/stateflow/chart_7.xml", chart_xml)
+
+    chart = chart_json(parse_stateflow(source)[0])
+    assert chart["summary"] == {
+        "states": 2,
+        "functions": 1,
+        "notes": 1,
+        "junctions": 1,
+        "transitions": 1,
+        "events": 1,
+        "data": 1,
+    }
+    states = {state["name"]: state for state in chart["states"]}
+    assert states["Top"]["entry"] == states["Top"]["during"] == "x = 1;"
+    assert states["Top"]["exit"] == "x = 0;"
+    assert states["Top"]["on"] == [{"event": "E1", "actions": "y = 1;"}]
+    assert states["Top"]["bind"] == "z = 1;"
+    assert states["Box label"]["type"] == "BOX"
+    assert states["Box label"]["path"] == "Top/Box label"
+    assert chart["notes"][0]["text"] == "% note text"
+    assert chart["notes"][0]["parent_name"] == "Top"
+    function = chart["functions"][0]
+    assert function["kind"] == "truth_table"
+    assert function["properties"] == {"conditionTable": "[x > 0]", "actionTable": "y = 1;"}
+    transition = chart["transitions"][0]
+    assert transition["event"] == "E1"
+    assert transition["condition"] == "x > 0"
+    assert transition["condition_action"] == "y = 2;"
+    assert transition["transition_action"] == "z = 3;"
+    assert transition["to_name"] == "Junction 5"
+    assert chart["events"][0]["trigger"] == "RISING_EDGE_EVENT"
+    assert chart["data"][0]["data_type"] == "double"
+
+
 def test_sldd_entries_dimensions_types_and_references():
     dictionary = (
         SAMPLE
@@ -749,7 +902,9 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     assert result.meta["system_count"] == 32
     assert result.meta["block_count"] == 478
     assert result.meta["stateflow_chart_count"] == 2
-    assert result.meta["stateflow_state_count"] == 37
+    assert result.meta["stateflow_state_count"] == 28
+    assert result.meta["stateflow_function_count"] == 9
+    assert result.meta["stateflow_note_count"] == 0
     assert result.meta["stateflow_transition_count"] == 40
     assert len(docs) == 32
     model_root = root / "HevIpsPowertrainController"

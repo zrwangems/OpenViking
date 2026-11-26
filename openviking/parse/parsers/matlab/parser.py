@@ -29,6 +29,7 @@ from openviking.parse.parsers.matlab.packages import (
 )
 from openviking.parse.parsers.matlab.slx import parse_slx, system_json_documents
 from openviking.parse.parsers.matlab.stateflow import (
+    STATE_FLOW_SCHEMA,
     chart_json,
     chart_system_path,
     parse_stateflow,
@@ -211,6 +212,8 @@ class MatlabParser(BaseParser):
                     "subsystems": [system.name for system in systems],
                     "stateflow_chart_count": len(charts),
                     "stateflow_state_count": sum(len(chart.states) for chart in charts),
+                    "stateflow_function_count": sum(len(chart.functions) for chart in charts),
+                    "stateflow_note_count": sum(len(chart.notes) for chart in charts),
                     "stateflow_transition_count": sum(len(chart.transitions) for chart in charts),
                     "original_preserved": False,
                     "language": "zh-CN" if str(language).lower().startswith("zh") else "en",
@@ -234,6 +237,8 @@ class MatlabParser(BaseParser):
                     "subsystems": [system.name for system in systems],
                     "stateflow_chart_count": 0,
                     "stateflow_state_count": 0,
+                    "stateflow_function_count": 0,
+                    "stateflow_note_count": 0,
                     "stateflow_transition_count": 0,
                     "original_preserved": False,
                     "language": "zh-CN" if str(language).lower().startswith("zh") else "en",
@@ -363,7 +368,7 @@ class MatlabParser(BaseParser):
                     f"{folder}/stateflow.json",
                     json.dumps(
                         {
-                            "schema": "ov.matlab.stateflow/1",
+                            "schema": STATE_FLOW_SCHEMA,
                             "file": path.name,
                             "charts": [chart_json(chart) for chart in charts],
                         },
@@ -376,6 +381,10 @@ class MatlabParser(BaseParser):
                     "matlab_format": "sfx",
                     "original_preserved": False,
                     "stateflow_chart_count": len(charts),
+                    "stateflow_state_count": sum(len(chart.states) for chart in charts),
+                    "stateflow_function_count": sum(len(chart.functions) for chart in charts),
+                    "stateflow_note_count": sum(len(chart.notes) for chart in charts),
+                    "stateflow_transition_count": sum(len(chart.transitions) for chart in charts),
                     **_source_identity(path),
                 }
                 title = path.stem
