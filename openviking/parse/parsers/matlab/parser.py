@@ -15,6 +15,7 @@ from typing import List, Optional, Union
 from openviking.parse.base import NodeType, ParseResult, ResourceNode, create_parse_result
 from openviking.parse.output import create_parse_artifact_writer
 from openviking.parse.parsers.base_parser import BaseParser
+from openviking.parse.parsers.matlab.figures import figure_text, parse_figure
 from openviking.parse.parsers.matlab.formats import (
     additional_extensions,
     archive_manifest,
@@ -37,7 +38,6 @@ from openviking.parse.parsers.matlab.stateflow import (
     state_transition_count,
 )
 from openviking.parse.parsers.matlab.structured import (
-    parse_fig_tree,
     parse_mlapp,
     parse_mldatx,
     parse_mlx_notebook,
@@ -144,7 +144,9 @@ def _source_identity(path: Path) -> dict:
 def _parse_is_incomplete(suffix: str, payload: dict) -> bool:
     """Whether the parsed payload is known to leave part of the source out."""
     if suffix == ".fig":
-        return bool(payload.get("truncated_value_count"))
+        # MCOS-only and MAT v7.3 figures keep their bytes: the page says so and
+        # the file can be re-read once the object model is decodable.
+        return payload.get("status") not in {None, "parsed"}
     if suffix == ".mldatx":
         return bool(payload.get("unparsed_member_count"))
     return False
@@ -306,7 +308,7 @@ class MatlabParser(BaseParser):
                 elif suffix == ".mlx":
                     payload, auxiliary = await asyncio.to_thread(parse_mlx_notebook, path)
                 elif suffix == ".fig":
-                    payload = await asyncio.to_thread(parse_fig_tree, path)
+                    payload, auxiliary = await asyncio.to_thread(parse_figure, path)
                 elif suffix == ".mldatx":
                     payload = await asyncio.to_thread(parse_mldatx, path)
                 elif suffix in {".slreqx", ".slmx"}:
@@ -323,7 +325,10 @@ class MatlabParser(BaseParser):
                         f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
                     )
                 for name, data in auxiliary.items():
-                    await writer.write_bytes(f"{folder}/{name}", data)
+                    # FIG series files already carry their folder; other formats
+                    # return plain names inside the output folder.
+                    target = name if name.startswith(f"{folder}/") else f"{folder}/{name}"
+                    await writer.write_bytes(target, data)
                 if suffix == ".sldd":
                     rows, data_files = await asyncio.to_thread(sldd_entry_documents, payload)
                     for name, content in data_files.items():
@@ -338,10 +343,13 @@ class MatlabParser(BaseParser):
                         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
                     )
                 elif suffix == ".fig":
+                    # figure.json carries the chart types, series and labels;
+                    # figure.md is the readable page the ingest searches.
                     await writer.write_text(
                         f"{folder}/figure.json",
                         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
                     )
+                    await writer.write_text(f"{folder}/figure.md", figure_text(payload))
                 elif suffix == ".mldatx":
                     await writer.write_text(
                         f"{folder}/tests.json",
