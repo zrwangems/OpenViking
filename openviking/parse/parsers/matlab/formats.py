@@ -30,7 +30,7 @@ class FormatSpec:
 _FORMATS = {
     ".asv": FormatSpec(
         "MATLAB editor backup",
-        "按 M 源码读取，不执行",
+        "编辑器残留，不入库（classify 表排除）",
         "https://www.mathworks.com/help/matlab/",
         text=True,
     ),
@@ -59,19 +59,19 @@ _FORMATS = {
     ),
     ".sltx": FormatSpec(
         "Simulink project template",
-        "ZIP 包清单与模板元数据",
+        "ZIP 包清单与模板元数据，fsroot 成员逐个展开",
         "https://www.mathworks.com/help/simulink/ug/create-a-simulink-project-template.html",
         archive=True,
     ),
     ".mltbx": FormatSpec(
         "MATLAB toolbox installer",
-        "ZIP 包清单与 XML 元数据",
+        "ZIP 包清单与 XML 元数据，成员不展开",
         "https://www.mathworks.com/help/matlab/matlab_prog/create-and-share-custom-matlab-toolboxes.html",
         archive=True,
     ),
     ".mlproj": FormatSpec(
         "MATLAB project archive",
-        "ZIP 包清单与 XML 元数据",
+        "ZIP 包清单与 XML 元数据，成员不展开",
         "https://www.mathworks.com/help/matlab/projects.html",
         archive=True,
     ),

@@ -144,8 +144,10 @@ def matlab_ignore_for(root: Path) -> MatlabBuildIgnore:
     """Return the build/cache rules for an import root.
 
     The default folder and cache-file patterns apply to any directory import;
-    MATLAB-specific additions (``codegen/``, ``*.asv`` and the folders named in
+    MATLAB-specific additions (``codegen/`` and the folders named in
     ``Simulink.fileGenControl``) activate when the tree contains a project.
+    Editor backups (``*.asv``) are not cache files but a stale copy of a source
+    file, so the ingest table excludes them instead of the scanner.
     """
     return MatlabBuildIgnore(Path(root).resolve())
 

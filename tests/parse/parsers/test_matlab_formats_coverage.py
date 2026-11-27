@@ -30,8 +30,10 @@ def test_text_and_binary_project_extensions_are_classified(tmp_path):
         "file.map",
         "solver.dll",
         "solver.mexw32",
-        "old.asv",
     }
+    # An editor backup is a stale copy of a source file already in the project.
+    assert "old.asv" not in {entry.path.name for entry in result.processable}
+    assert any(entry.startswith("old.asv (") for entry in result.skipped)
 
 
 def test_legacy_mdl_becomes_system_json(tmp_path):
@@ -58,16 +60,27 @@ def test_legacy_mdl_becomes_system_json(tmp_path):
 
 
 @pytest.mark.asyncio
-async def test_jar_and_native_binary_keep_original(tmp_path):
+async def test_jar_keeps_only_its_manifest_and_native_binary_keeps_original(tmp_path):
     jar = tmp_path / "library.jar"
     with zipfile.ZipFile(jar, "w") as archive:
         archive.writestr("META-INF/MANIFEST.MF", "Manifest-Version: 1.0\n")
+        archive.writestr("org/example/Engine.class", b"\xca\xfe\xba\xbe")
     dll = tmp_path / "solver.dll"
     dll.write_bytes(b"MZ\x00\x00")
 
-    for path in (jar, dll):
-        result = await MatlabParser().parse(
-            path, parse_output_store=LocalParseOutputStore(tmp_path / f"art-{path.suffix[1:]}")
-        )
-        root = Path(result.artifact_ref.root)
-        assert list(root.rglob(path.name)), path
+    result = await MatlabParser().parse(
+        jar, parse_output_store=LocalParseOutputStore(tmp_path / "art-jar")
+    )
+    root = Path(result.artifact_ref.root)
+    # A package container is recorded, not ingested: the manifest says what is
+    # inside and the archive bytes are not stored.
+    assert not list(root.rglob(jar.name))
+    manifest = json.loads((root / "library" / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["classes"] == ["org/example/Engine.class"]
+    assert manifest["java_manifest"]["Manifest-Version"] == "1.0"
+    assert result.meta["original_preserved"] is False
+
+    result = await MatlabParser().parse(
+        dll, parse_output_store=LocalParseOutputStore(tmp_path / "art-dll")
+    )
+    assert list(Path(result.artifact_ref.root).rglob(dll.name)), dll

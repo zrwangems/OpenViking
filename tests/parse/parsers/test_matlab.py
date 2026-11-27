@@ -37,6 +37,7 @@ from openviking.parse.parsers.matlab.structured import (
     protected_metadata,
     sldd_entry_rows,
 )
+from openviking.parse.parsers.matlab.workbook import parse_workbook, workbook_text
 from openviking.parse.registry import ParserRegistry
 
 SAMPLE = Path(__file__).parents[2] / "matlab_repos" / "matlab-ingest-fixture"
@@ -1636,7 +1637,9 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
 
     assert result.warnings == []
     assert result.meta["unsupported_files"] == []
-    assert len(result.meta["skipped_files"]) == 73
+    # 74 = the previous 73 plus the editor backup, which the rules table excludes.
+    assert len(result.meta["skipped_files"]) == 74
+    assert any(item["path"].endswith(".asv") for item in result.meta["skipped_files"])
     system_pages = [
         path
         for path in root.rglob("*.json")
@@ -1862,3 +1865,182 @@ async def test_unpackable_and_installer_files_resolve_as_file_nodes(tmp_path):
         assert resolved.doc_name == name, rel_path
         assert resolved.doc_rel == name, rel_path
 
+
+@pytest.mark.asyncio
+async def test_xlsx_cells_are_read_instead_of_the_workbook_bytes(tmp_path):
+    """A project spreadsheet is a table: every sheet is stored as cells."""
+    source = (
+        SAMPLE
+        / "model"
+        / "VirtualVehicle"
+        / "SI"
+        / "Plant"
+        / "Calibrations"
+        / "MappedEngine"
+        / "SiEngineData.xlsx"
+    )
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "SiEngineData"
+
+    assert sorted(path.name for path in root.iterdir()) == ["workbook.json", "workbook.md"]
+    payload = json.loads((root / "workbook.json").read_text(encoding="utf-8"))
+    assert payload["schema"] == "ov.matlab.workbook/1"
+    assert payload["parse_status"] == "parsed"
+    assert payload["summary"]["sheet_names"] == ["Firing Data", "Nonfiring Data"]
+    firing = payload["sheets"][0]
+    assert firing["range"].startswith("A1:")
+    assert firing["header"][:4] == ["Name:", "Torque", "EngSpd", "AirMassFlwRate"]
+    # Numbers stay numbers; a blank cell stays a hole instead of shifting the row.
+    assert firing["cells"][2][0] == "Data:"
+    assert isinstance(firing["cells"][2][1], float)
+    assert firing["cells"][3][0] is None
+    assert isinstance(firing["cells"][3][1], float)
+    assert result.meta["original_preserved"] is False
+    assert result.meta["sheet_count"] == 2
+    assert result.meta["cell_count"] > 2000
+    assert result.meta["source_sha256"] == hashlib.sha256(source.read_bytes()).hexdigest()
+    page = (root / "workbook.md").read_text(encoding="utf-8")
+    assert "## Firing Data" in page
+    assert "Torque" in page
+
+
+@pytest.mark.asyncio
+async def test_xlsx_formulas_dates_and_merged_ranges_are_kept(tmp_path):
+    """Cells carry their formula, a date-formatted number, and merged ranges."""
+    openpyxl = pytest.importorskip("openpyxl")
+    import datetime
+
+    source = tmp_path / "calibration.xlsx"
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.title = "Table"
+    sheet["A1"] = "speed"
+    sheet["B1"] = "torque"
+    sheet["A2"] = 100
+    sheet["B2"] = "=A2*2"
+    sheet["A3"] = datetime.date(2026, 5, 4)
+    sheet["A3"].number_format = "yyyy-mm-dd"
+    sheet["C1"] = True
+    sheet.merge_cells("D1:E1")
+    sheet["D1"] = "merged label"
+    workbook.save(source)
+
+    payload = parse_workbook(source)
+    table = payload["sheets"][0]
+    assert table["formulas"] == {"B2": "=A2*2"}
+    # openpyxl stores the formula without a cached result, so the cell has no value.
+    assert table["cells"][1][1] is None
+    assert table["cells"][2][0] == "2026-05-04"
+    assert table["cells"][0][2] is True
+    assert table["merged"] == ["D1:E1"]
+    assert "=A2*2" in workbook_text(payload)
+
+
+@pytest.mark.asyncio
+async def test_unreadable_workbook_keeps_its_bytes(tmp_path):
+    """A renamed or damaged workbook is kept as the file itself."""
+    source = tmp_path / "legacy.xlsx"
+    source.write_bytes(b"not a zip at all")
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "legacy"
+    assert (root / "legacy.xlsx").read_bytes() == source.read_bytes()
+    payload = json.loads((root / "workbook.json").read_text(encoding="utf-8"))
+    assert payload["parse_status"] == "unreadable"
+    assert result.meta["original_preserved"] is True
+    assert any("单元格读取失败" in warning for warning in result.warnings)
+
+
+@pytest.mark.asyncio
+async def test_project_spreadsheet_is_routed_to_the_project_parser(tmp_path):
+    """Inside a project the workbook is read as cells, not as a document page."""
+    source = tmp_path / "plant"
+    source.mkdir()
+    shutil.copyfile(
+        SAMPLE / "model" / "VirtualVehicle" / "PassVeh" / "Plant" / "SteeringSystem.slx",
+        source / "SteeringSystem.slx",
+    )
+    shutil.copyfile(
+        SAMPLE
+        / "model"
+        / "VirtualVehicle"
+        / "Electrical"
+        / "Plant"
+        / "Calibrations"
+        / "MappedMotor"
+        / "EM1"
+        / "MappedMotorDataset.xlsx",
+        source / "MappedMotorDataset.xlsx",
+    )
+    result = await DirectoryParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "plant"
+    workbook = json.loads(
+        (root / "MappedMotorDataset" / "workbook.json").read_text(encoding="utf-8")
+    )
+    assert workbook["sheets"][0]["name"] == "MBC Data"
+    assert workbook["sheets"][0]["header"][:3] == ["Name:", "MtrSpd", "MtrTrq"]
+    processed = {item["path"]: item["parser"] for item in result.meta["processed_files"]}
+    assert processed["MappedMotorDataset.xlsx"] == "MatlabParser"
+
+
+@pytest.mark.asyncio
+async def test_template_members_are_expanded_into_the_tree(tmp_path):
+    """A template archive ships its project: every fsroot member is parsed."""
+    source = SAMPLE / "packages" / "asbCubeSatMBSEProject.sltx"
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "asbCubeSatMBSEProject"
+    manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+
+    assert manifest["expansion"]["member_count"] == 46
+    assert manifest["expansion"]["expanded"] == 46
+    assert manifest["expansion"]["failed"] == []
+    assert result.meta["expanded_member_count"] == 46
+    # The archive bytes are gone once every member has been read.
+    assert not list(root.glob("*.sltx"))
+    assert result.meta["original_preserved"] is False
+    members = root / "members" / "asbCubeSatMBSE"
+    model = json.loads(
+        (
+            members
+            / "CubeSatMBSEModel"
+            / "CubeSatPlant"
+            / "VehicleDynamics"
+            / "asbCubeSatVehiclePlant"
+            / "main.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert model["schema"] == "ov.matlab.simulink/1"
+    assert model["blocks"], "model blocks are read out of the archive member"
+    assert (members / "ProjectTasks" / "projectStartup.m").is_file()
+    dictionary = members / "CubeSatMBSEModel" / "ModelData" / "asbCubeSatArchInterfaceData"
+    assert (dictionary / "entries.jsonl").is_file()
+    assert (members / "CubeSatRequirements" / "SystemRequirements" / "requirements.jsonl").is_file()
+
+
+@pytest.mark.asyncio
+async def test_package_containers_keep_only_their_manifest(tmp_path):
+    """A project archive or toolbox is a listing: its bytes are not ingested."""
+    store = LocalParseOutputStore(tmp_path / "artifacts")
+    cases = [
+        ("packages/MatlabIngestFixture.mlproj", "MatlabIngestFixture", "mlproj"),
+        ("packages/IngestFixtureToolbox.mltbx", "IngestFixtureToolbox", "mltbx"),
+        ("packages/addons.jar", "addons", "jar"),
+        ("packages/mps_check.ctf", "mps_check", "ctf"),
+    ]
+    for rel_path, folder, kind in cases:
+        source = SAMPLE / rel_path
+        result = await MatlabParser().parse(source, parse_output_store=store)
+        root = Path(result.artifact_ref.root) / folder
+        assert sorted(path.name for path in root.iterdir()) == ["manifest.json"], rel_path
+        manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+        assert manifest["type"] == kind
+        assert manifest["members"], rel_path
+        assert "只留清单" in manifest["boundary"]
+        assert result.meta["original_preserved"] is False, rel_path

@@ -264,6 +264,7 @@ class DirectoryParser(BaseParser):
                 else {}
             )
             from openviking.parse.parsers.matlab.classification import SUMMARY_PARSE
+            from openviking.parse.parsers.matlab.parser import PROJECT_SHARED_EXTENSIONS
 
             for index, cf in enumerate(processable_files):
                 entry = entry_map.get(cf.path)
@@ -280,6 +281,18 @@ class DirectoryParser(BaseParser):
                 )
                 use_understanding = bool(split_content and configured_for_understanding)
                 native_parser = None if use_understanding else self._assign_parser(cf, registry)
+                if (
+                    native_parser is not None
+                    and scan_result.matlab_project
+                    and Path(cf.path).suffix.lower() in PROJECT_SHARED_EXTENSIONS
+                ):
+                    # The general document pipeline also claims these formats; inside
+                    # a project the project parser owns them, because a spreadsheet is
+                    # read here as cells and formulas rather than a rendered page.
+                    get_parser = getattr(registry, "get_parser", None)
+                    project_parser = get_parser("matlab") if get_parser else None
+                    if project_parser is not None:
+                        native_parser = project_parser
                 if scan_result.matlab_project and cf.summary and cf.summary != SUMMARY_PARSE:
                     # The classification table owns the summary strategy: these
                     # files are stored as the original bytes, not as parsed pages.

@@ -141,7 +141,6 @@ def test_scan_skips_build_cache_and_custom_folders(tmp_path: Path):
     assert [entry.rel_path for entry in result.processable] == [
         "Plant.sldd",
         "Plant.slx",
-        "old_script.asv",
         "run.m",
         "src/controller.m",
     ]
@@ -157,6 +156,7 @@ def test_scan_skips_build_cache_and_custom_folders(tmp_path: Path):
         "Simulation cache folder/cache.slxc",
         "Plant.slxc",
         "Plant.slx.autosave",
+        "old_script.asv",
     } == {entry_path.split(" (")[0] for entry_path in result.skipped}
     assert all("matlab build/cache" in entry for entry in result.skipped)
 
@@ -235,10 +235,11 @@ def test_whole_sample_project_still_imports_every_source_file(tmp_path: Path):
 
     processable = [entry.rel_path for entry in result.processable]
     duplicates = [entry.rel_path for entry in result.duplicates]
-    # 3425 files: 1147 imported, 73 build/cache skipped, 2204 project state in the
-    # aggregation table (2191 resources + 13 .prj) and 1 repeated .fmu.
-    assert len(processable) == 1147
-    assert len(result.skipped_details) == 73
+    # 3425 files: 1146 imported, 74 build/cache skipped (the 73 from before the
+    # editor-backup rule plus the .asv), 2204 project state in the aggregation
+    # table (2191 resources + 13 .prj) and 1 repeated .fmu.
+    assert len(processable) == 1146
+    assert len(result.skipped_details) == 74
     assert len(result.aggregated) == 2204
     assert duplicates == ["packages/VvcFmuEngExl.fmu"]
     assert (

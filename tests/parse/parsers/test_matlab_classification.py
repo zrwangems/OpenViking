@@ -212,7 +212,7 @@ def test_app_screenshot_is_only_flagged_as_possible_redundant():
 def test_fixture_account_and_project_table():
     result = scan_directory(SAMPLE)
 
-    assert len(result.processable) == 1147
+    assert len(result.processable) == 1146
     assert len(result.aggregated) == 2204
     assert [item.rel_path for item in result.duplicates] == ["packages/VvcFmuEngExl.fmu"]
     flagged = [item for item in result.processable if "possible_redundant" in item.tags]
@@ -236,3 +236,14 @@ def test_fixture_account_and_project_table():
         "none",
     }
     assert all(row.get("target") for row in categorized)
+
+def test_editor_backup_is_excluded_and_workbook_is_read_as_cells():
+    """Editor leftovers stay out of the tree; a spreadsheet is parsed, not copied."""
+    backup = classify_path("src/old_script.m.asv")
+    assert backup["action"] == ACTION_EXCLUDE
+    assert backup["reason"] == "matlab derived file"
+
+    workbook = classify_path("model/Plant/Calibrations/SiEngineData.xlsx")
+    assert workbook["action"] == ACTION_IMPORT
+    assert workbook["summary"] == "parse"
+    assert workbook["categories"] == ["数据/目标二进制"]

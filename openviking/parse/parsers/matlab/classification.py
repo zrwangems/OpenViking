@@ -54,7 +54,9 @@ PROJECT_BUILD_DIR_NAMES = frozenset({"codegen"})
 BUILD_OUTPUT_DIR_NAMES = frozenset({"build", "output", "out", "target", "release", "debug"})
 RUNTIME_DIR_NAMES = frozenset({"rsim", "raccel", "sim"})
 
-DERIVED_EXTS = frozenset({".slxc", ".autosave"})
+# Editor backups are a stale copy of a source file already in the project: the
+# rules table excludes ``.asv`` outright, so it never enters the resource tree.
+DERIVED_EXTS = frozenset({".slxc", ".autosave", ".asv"})
 TARGET_OUTPUT_EXTS = frozenset({".hex", ".s19", ".elf", ".bin"})
 BUILD_SCRIPT_EXTS = frozenset({".mk", ".bat", ".rsp"})
 NATIVE_BUILD_EXTS = frozenset({".mexw64", ".mexw32", ".dll", ".exe", ".lib", ".obj", ".pdb"})
@@ -95,7 +97,7 @@ class Rule:
 RULES: Tuple[Rule, ...] = (
     Rule(
         (CATEGORY_DERIVED,),
-        exts=(".slxc", ".autosave"),
+        exts=(".slxc", ".autosave", ".asv"),
         action=ACTION_EXCLUDE,
         summary=SUMMARY_ORIGINAL,
     ),
@@ -155,6 +157,13 @@ RULES: Tuple[Rule, ...] = (
     Rule(
         (CATEGORY_DATA,),
         exts=(".fig", ".mat", ".mdf", ".mf4", ".blf"),
+        summary=SUMMARY_PARSE,
+    ),
+    # A spreadsheet in a project is a table of numbers (calibration data, lookup
+    # breakpoints), so the cells are read instead of the workbook bytes.
+    Rule(
+        (CATEGORY_DATA,),
+        exts=(".xlsx",),
         summary=SUMMARY_PARSE,
     ),
     # A model backup (model.slx.r2023a) is still a model container.
@@ -226,7 +235,6 @@ RULES: Tuple[Rule, ...] = (
             ".bat",
             ".rsp",
             ".html",
-            ".asv",
             ".tlh",
             ".py",
             ".xml",
@@ -241,7 +249,6 @@ RULES: Tuple[Rule, ...] = (
             ".ldf",
             ".a2l",
             ".md",
-            ".xlsx",
             ".dmr",
             ".twm",
         ),

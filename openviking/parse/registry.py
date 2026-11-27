@@ -77,6 +77,10 @@ class ParserRegistry:
         for ext in parser.supported_extensions:
             self._extension_map[ext.lower()] = name
 
+    def get_parser(self, name: str) -> Optional[BaseParser]:
+        """Return one registered parser by name, or ``None`` when it is absent."""
+        return self._parsers.get(name)
+
     def get_parser_for_file(self, path: Union[str, Path]) -> Optional[BaseParser]:
         """
         Get appropriate parser for a file.

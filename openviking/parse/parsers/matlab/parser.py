@@ -5,15 +5,20 @@
 from __future__ import annotations
 
 import asyncio
+import contextvars
 import hashlib
 import json
+import posixpath
+import shutil
+import tempfile
 import time
 import zipfile
+from contextlib import suppress
 from pathlib import Path
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from openviking.parse.base import NodeType, ParseResult, ResourceNode, create_parse_result
-from openviking.parse.output import create_parse_artifact_writer
+from openviking.parse.output import copy_artifact_tree, create_parse_artifact_writer
 from openviking.parse.parsers.base_parser import BaseParser
 from openviking.parse.parsers.matlab.figures import figure_text, parse_figure
 from openviking.parse.parsers.matlab.formats import (
@@ -47,6 +52,7 @@ from openviking.parse.parsers.matlab.structured import (
     requirement_rows,
     sldd_entry_documents,
 )
+from openviking.parse.parsers.matlab.workbook import parse_workbook, workbook_text
 
 _NATIVE_BINARY_SUFFIXES = {
     ".mexa64",
@@ -70,6 +76,17 @@ _PACKAGE_MANIFEST_SUFFIXES = {
     ".mltbx",
     ".fmu",
 }
+# Containers whose members are the content: the archive itself is only a listing,
+# so every member is parsed on its own and placed under ``members/``.
+_MEMBER_EXPANSIONS = frozenset({".sltx"})
+# Members live under this prefix in a template archive; the rest is metadata.
+_MEMBER_ROOT = "fsroot/"
+_MEMBER_EXPANSION_DEPTH = contextvars.ContextVar("matlab_member_expansion_depth", default=0)
+
+# Formats the general document pipeline also claims. Inside a MATLAB project the
+# project parser owns them: a workbook is a table of numbers there, so its cells
+# are read instead of being handed to the office-document renderer.
+PROJECT_SHARED_EXTENSIONS = frozenset({".xlsx"})
 # Sources whose bytes are the only useful output. Installers, p-code and
 # platform binaries are imported as the original file itself: no wrapper
 # folder and no manifest/metadata sidecar. L0/L1 decides what the file is for.
@@ -105,7 +122,17 @@ _FOLDER_SUFFIXES = {
     ".slxp",
     ".sscp",
     ".mdlp",
+    ".xlsx",
 }
+
+
+def _member_rel(name: str) -> str:
+    """Member path below ``fsroot/``, refusing anything that would escape it."""
+    rel = name[len(_MEMBER_ROOT) :].replace("\\", "/").strip("/")
+    parts = [part for part in rel.split("/") if part not in {"", "."}]
+    if not parts or any(part == ".." for part in parts):
+        return ""
+    return "/".join(parts)
 
 
 def _output_folder(path: Path) -> str:
@@ -160,6 +187,121 @@ class MatlabParser(BaseParser):
     # folder would make every single-system model in a directory write the same
     # <dir>/main.json and lose the rest.
     keeps_output_folder = True
+
+    async def _expand_members(
+        self,
+        path: Path,
+        writer: Any,
+        folder: str,
+        manifest: dict,
+        warnings: list[str],
+        *,
+        language: str,
+    ) -> dict:
+        """Parse every ``fsroot/`` member of a template archive into ``members/``.
+
+        Each member goes through the same parser a standalone file would get, so a
+        model inside a template yields the same JSON as that model on disk. The
+        record says what was expanded and what failed; the caller keeps the
+        archive bytes when any member could not be read.
+        """
+        members = [
+            member
+            for member in manifest.get("members", [])
+            if member["name"].startswith(_MEMBER_ROOT)
+            and not member["name"].endswith("/")
+            and not member.get("encrypted")
+        ]
+        record: dict = {
+            "root": "members",
+            "member_prefix": _MEMBER_ROOT,
+            "member_count": len(members),
+            "expanded": 0,
+            "failed": [],
+            "skipped": "",
+            "members": [],
+        }
+        if not members:
+            record["skipped"] = "包内没有可展开的 fsroot 成员"
+            return {"complete": True, "expanded": 0, "record": record}
+        if manifest.get("encrypted"):
+            record["skipped"] = "成员加密，字节无法读出"
+            return {"complete": False, "expanded": 0, "record": record}
+        if _MEMBER_EXPANSION_DEPTH.get() > 0:
+            record["skipped"] = "包内嵌套的包容器不再二次展开"
+            return {"complete": False, "expanded": 0, "record": record}
+
+        expanded: list[dict] = []
+        used_stems: set[tuple[str, str]] = set()
+        temp_root = Path(tempfile.mkdtemp(prefix="matlab-members-"))
+        token = _MEMBER_EXPANSION_DEPTH.set(_MEMBER_EXPANSION_DEPTH.get() + 1)
+        try:
+            with zipfile.ZipFile(path) as archive:
+                for member in members:
+                    rel = _member_rel(member["name"])
+                    if not rel:
+                        record["failed"].append(
+                            {"member": member["name"], "error": "成员路径不安全，未展开"}
+                        )
+                        continue
+                    parent, _, name = rel.rpartition("/")
+                    stem, extension = posixpath.splitext(name)
+                    # Two members with one stem (model.slx beside model.sldd) would
+                    # both write a folder named after the stem; the second keeps its
+                    # suffix so neither overwrites the other.
+                    local_name = name
+                    if extension.lower() in _FOLDER_SUFFIXES and (parent, stem) in used_stems:
+                        local_name = f"{stem}_{extension.lstrip('.')}{extension}"
+                    used_stems.add((parent, stem))
+                    local = (
+                        temp_root.joinpath(*parent.split("/")) / local_name
+                        if parent
+                        else temp_root / local_name
+                    )
+                    local.parent.mkdir(parents=True, exist_ok=True)
+                    local.write_bytes(archive.read(member["name"]))
+                    target = f"{folder}/members" + (f"/{parent}" if parent else "")
+                    nested = None
+                    try:
+                        nested = await self.parse(
+                            local, parse_output_store=writer.store, language=language
+                        )
+                        await copy_artifact_tree(
+                            source_store=writer.store,
+                            source_ref=nested.artifact_ref,
+                            source_rel="",
+                            target=writer,
+                            target_rel=target,
+                        )
+                    except Exception as error:  # one bad member must not lose the rest
+                        record["failed"].append({"member": member["name"], "error": str(error)})
+                        warnings.append(f"模板成员未展开 {rel}: {error}")
+                    else:
+                        output = (
+                            f"{target}/{posixpath.splitext(local_name)[0]}"
+                            if extension.lower() in _FOLDER_SUFFIXES
+                            else f"{target}/{local_name}"
+                        )
+                        expanded.append(
+                            {
+                                "member": member["name"],
+                                "path": output.removeprefix(f"{folder}/"),
+                            }
+                        )
+                    finally:
+                        if nested is not None:
+                            with suppress(Exception):
+                                await writer.store.cleanup(nested.artifact_ref)
+        finally:
+            _MEMBER_EXPANSION_DEPTH.reset(token)
+            shutil.rmtree(temp_root, ignore_errors=True)
+        record["expanded"] = len(expanded)
+        record["members"] = expanded
+        return {
+            "complete": not record["failed"] and len(expanded) == record["member_count"],
+            "expanded": len(expanded),
+            "record": record,
+        }
 
     @property
     def supported_extensions(self) -> List[str]:
@@ -285,6 +427,36 @@ class MatlabParser(BaseParser):
                 meta = {
                     "matlab_format": "mat",
                     "original_preserved": incomplete,
+                    **_source_identity(path),
+                }
+                title = path.stem
+            elif suffix == ".xlsx":
+                folder = _output_folder(path)
+                payload = await asyncio.to_thread(parse_workbook, path)
+                parsed = payload.get("parse_status") == "parsed"
+                await writer.write_text(
+                    f"{folder}/workbook.json",
+                    json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                )
+                # The table page is what the ingest searches; the JSON keeps every
+                # cell, formula and merged range for anything that needs the values.
+                await writer.write_text(f"{folder}/workbook.md", workbook_text(payload))
+                if not parsed:
+                    # An unreadable workbook (encrypted, renamed .xls, damaged ZIP)
+                    # leaves the bytes as the only copy of the file.
+                    await writer.write_bytes(
+                        f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                    )
+                    warnings.append(
+                        f"{path.name}: 单元格读取失败，保留原件（{payload.get('error', '')}）"
+                    )
+                meta = {
+                    "matlab_format": "xlsx",
+                    "structured_format": payload["schema"],
+                    "original_preserved": not parsed,
+                    "sheet_count": payload.get("sheet_count", 0),
+                    "cell_count": (payload.get("summary") or {}).get("cells", 0),
+                    "formula_cells": (payload.get("summary") or {}).get("formula_cells", 0),
                     **_source_identity(path),
                 }
                 title = path.stem
@@ -458,38 +630,59 @@ class MatlabParser(BaseParser):
                 title = path.stem
             elif suffix in _PRESERVED_CONTAINER_SUFFIXES:
                 folder = _output_folder(path)
-                await writer.write_bytes(
-                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
-                )
                 manifest = await asyncio.to_thread(archive_manifest, path)
                 manifest["type"] = suffix.removeprefix(".")
                 if suffix == ".jar":
                     manifest = await asyncio.to_thread(jar_metadata, path, manifest)
+                # A binary container is recorded, not ingested: the manifest says
+                # what is inside, the archive bytes carry no search value.
+                manifest["boundary"] = (
+                    "包容器只留清单：成员不展开，原件字节不保存；成员名、类型与大小见 members。"
+                )
                 await writer.write_text(
                     f"{folder}/manifest.json",
                     json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
                 )
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
-                    "original_preserved": True,
+                    "original_preserved": False,
                     "encrypted": manifest["encrypted"],
+                    **_source_identity(path),
                 }
                 title = path.stem
             elif suffix in _PACKAGE_MANIFEST_SUFFIXES:
                 folder = _output_folder(path)
-                await writer.write_bytes(
-                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
-                )
                 manifest = await asyncio.to_thread(archive_manifest, path)
                 manifest["type"] = suffix.removeprefix(".")
                 if suffix == ".fmu":
                     manifest = await asyncio.to_thread(fmu_metadata, path, manifest)
                 else:
                     manifest = await asyncio.to_thread(package_metadata, path, manifest)
-                await writer.write_text(
-                    f"{folder}/manifest.json",
-                    json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
-                )
+                # Packages are containers: their own bytes are kept only for an
+                # FMU (a compiled artifact with no readable content) and for a
+                # template whose members could not all be expanded.
+                expansion: dict = {}
+                if suffix in _MEMBER_EXPANSIONS:
+                    expansion = await self._expand_members(
+                        path, writer, folder, manifest, warnings, language=language
+                    )
+                    manifest["expansion"] = expansion["record"]
+                complete = expansion.get("complete", True)
+                preserved = suffix == ".fmu" or not complete
+                if suffix == ".fmu":
+                    # An FMU is compiled: its bytes and modelDescription are the content.
+                    boundary = "FMU 保留原件字节与 modelDescription.xml 清单。"
+                elif preserved:
+                    boundary = "部分成员无法展开，原件字节保留以固化完整内容；已展开的成员见 expansion。"
+                elif expansion.get("expanded"):
+                    boundary = "fsroot 成员已逐个解析到 members/，原件字节不保存；包内元数据见 metadata。"
+                else:
+                    boundary = "包容器只留清单：成员不展开，原件字节不保存；成员名、类型与大小见 members。"
+                manifest["boundary"] = boundary
+                if preserved:
+                    await writer.write_bytes(
+                        f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                    )
                 if suffix == ".fmu" and "modelDescription.xml" in {
                     member["name"] for member in manifest["members"]
                 }:
@@ -516,10 +709,16 @@ class MatlabParser(BaseParser):
                         f"{folder}/template.json",
                         json.dumps(template, ensure_ascii=False, indent=2) + "\n",
                     )
+                await writer.write_text(
+                    f"{folder}/manifest.json",
+                    json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                )
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
-                    "original_preserved": True,
+                    "original_preserved": preserved,
                     "encrypted": manifest["encrypted"],
+                    "expanded_member_count": expansion.get("expanded", 0),
+                    **_source_identity(path),
                 }
                 title = path.stem
             elif suffix in {".slxp", ".mdlp", ".sscp"}:
