@@ -3,17 +3,18 @@
 """Stateflow chart XML to structured JSON.
 
 A chart is written the way a person reads it in Simulink: states nest the way
-they nest on the canvas, each state carries its entry/during/exit/on actions,
-the transitions drawn inside a state are listed there, and the chart's other
-components (MATLAB and Simulink functions, note boxes, junctions, events, data)
-sit in the container they were drawn in.
+they nest on the canvas, each state carries its entry/during/exit/on actions
+and the transitions drawn inside it, and every other chart component (MATLAB,
+Simulink and graphical functions, truth tables, atomic subcharts and their
+ports, junctions, note boxes, events, data, messages) sits in the container it
+was drawn in.
 
 Nothing in the output is a machine identifier. States, transitions and
 everything else are referred to by name; when the same name is used more than
 once in a chart, the reference is the path through the nesting that separates
 them. Junctions have no name on the canvas, so a transition that runs through
-one is written as the path it makes: from the source state, through the
-junction's own condition and action, to the state it ends in.
+one is written as the path it makes; a transition that enters a history
+junction is written as a transition into the state whose substates it restores.
 """
 
 from __future__ import annotations
@@ -30,22 +31,18 @@ from defusedxml import ElementTree as ET
 
 from openviking.parse.parsers.matlab._zip import read_xml_member
 
-STATE_FLOW_SCHEMA = "ov.matlab.stateflow/3"
+STATE_FLOW_SCHEMA = "ov.matlab.stateflow/4"
 
 #: Elements that own a nested view. Everything below one of these belongs to it.
 _CONTAINER_TAGS = {"chart", "state", "box", "function", "truthTable", "machine"}
-_STATE_TAGS = {"state", "box"}
-_FUNCTION_TAGS = {"function", "truthTable"}
-_COMPONENT_TAGS = {
-    "state",
-    "box",
-    "junction",
-    "transition",
-    "data",
-    "event",
-    "function",
-    "truthTable",
+
+#: Chart kinds Stateflow records; anything else is a plain state chart.
+_CHART_TYPES = {
+    "EML_CHART": "MATLAB function",
+    "TRUTHTABLE_CHART": "truth table",
+    "STATE_EVENT_TABLE_CHART": "state transition table",
 }
+_MACHINES = {"MOORE_MACHINE": "Moore", "MEALY_MACHINE": "Mealy"}
 
 _ACTION_ALIASES = {
     "entry": "entry",
@@ -65,6 +62,7 @@ _ACTION_HEADER = re.compile(
 _CALL = re.compile(r"notify\s*\(\s*[^,]+,\s*['\"]([^'\"]+)['\"]")
 _SIGNATURE = re.compile(r"^\s*(?:\[[^\]]*\]|[\w.]+)\s*=\s*(?P<name>\w+)\s*\(")
 _CALL_SIGNATURE = re.compile(r"^\s*(?P<name>\w+)\s*\(")
+_LINKS_GID = re.compile(r"\s*%GID[0-9a-fA-F_]+")
 
 #: A transition is followed through this many junctions at most, and a single
 #: source may branch into this many paths; beyond either the junction hops stay
@@ -82,6 +80,14 @@ class State:
     parent: str = ""
     active_state_output: str = ""
     is_box: bool = False
+    is_subchart: bool = False
+    generated: bool = False
+    order: str = ""
+    description: str = ""
+    simulink_block: str = ""
+    action_subsystem: bool = False
+    history: bool = False
+    ports: list[str] = field(default_factory=list)
 
     @property
     def name(self) -> str:
@@ -100,14 +106,17 @@ class Function:
     block: str = ""
     script: str = ""
     properties: dict[str, str] = field(default_factory=dict)
+    table: dict | None = None
 
     @property
     def signature(self) -> str:
-        return _first_line(self.label)
+        """The function's own declaration, as written in the chart or the script."""
+        first = _first_line(self.script) if self.script.lstrip().startswith("function") else ""
+        return first or _first_line(self.label)
 
     @property
     def name(self) -> str:
-        return _function_name(self.label)
+        return _function_name(self.signature)
 
     @property
     def body(self) -> str:
@@ -119,10 +128,27 @@ class Function:
 
 
 @dataclass
+class Port:
+    ssid: str
+    name: str
+    state: str
+    kind: str = ""
+
+    @property
+    def label(self) -> str:
+        return self.name.strip()
+
+
+@dataclass
 class Junction:
     ssid: str
     junction_type: str
     parent: str = ""
+    label: str = ""
+
+    @property
+    def is_history(self) -> bool:
+        return self.junction_type == "HISTORY_JUNCTION"
 
 
 @dataclass
@@ -151,6 +177,15 @@ class Data:
     size: str
     initial_value: str = ""
     parent: str = ""
+    range: list[str] = field(default_factory=list)
+    logged: bool = False
+    queue_length: str = ""
+    queue_overflow: str = ""
+    from_workspace: bool = False
+
+    @property
+    def is_message(self) -> bool:
+        return bool(self.queue_length or self.queue_overflow)
 
 
 @dataclass
@@ -166,7 +201,15 @@ class Event:
 @dataclass
 class Chart:
     name: str
-    action_language: str
+    chart_type: str = "state chart"
+    action_language: str = "未声明"
+    parallel: bool = False
+    sample_time: str = ""
+    machine: str = ""
+    variant: str = ""
+    app: bool = False
+    execute_at_initialization: bool = False
+    initialize_output: bool = False
     states: list[State] = field(default_factory=list)
     functions: list[Function] = field(default_factory=list)
     notes: list[Note] = field(default_factory=list)
@@ -174,10 +217,15 @@ class Chart:
     transitions: list[Transition] = field(default_factory=list)
     data: list[Data] = field(default_factory=list)
     events: list[Event] = field(default_factory=list)
+    ports: list[Port] = field(default_factory=list)
 
 
 def _props(element) -> dict[str, str]:
     return {p.get("Name"): p.text or "" for p in element.findall("./P") if p.get("Name")}
+
+
+def _flag(props: dict[str, str], key: str) -> bool:
+    return props.get(key, "") == "1"
 
 
 def _first_line(value: str) -> str:
@@ -244,10 +292,10 @@ def _clean_body(lines: list[str]) -> str:
     return textwrap.dedent("\n".join(lines)).strip()
 
 
-def _function_name(label: str) -> str:
-    signature = _first_line(label)
-    matched = _SIGNATURE.match(signature) or _CALL_SIGNATURE.match(signature)
-    return matched.group("name") if matched else signature
+def _function_name(signature: str) -> str:
+    body = signature.removeprefix("function").strip()
+    matched = _SIGNATURE.match(body) or _CALL_SIGNATURE.match(body)
+    return matched.group("name") if matched else body
 
 
 def _function_body(script: str) -> str:
@@ -277,6 +325,17 @@ def _read_block(text: str, start: int, opener: str) -> tuple[str, int]:
     return text[start + 1 :], len(text)
 
 
+_LEADING_COMMENT = re.compile(r"\s*((?://[^\n]*|/\*.*?\*/)\s*)+", re.S)
+
+
+def _leading_comment(label: str) -> re.Match | None:
+    """The comment a transition label starts with, which prefaces the guard."""
+    matched = _LEADING_COMMENT.match(label)
+    if matched is None or not matched.group(0).strip():
+        return None
+    return matched
+
+
 def transition_label(label: str) -> dict[str, str]:
     """Split a transition label into event, condition, condition action and action.
 
@@ -285,6 +344,9 @@ def transition_label(label: str) -> dict[str, str]:
     braces only count at the top level, so MATLAB indexing inside a condition or
     a ``...`` line continuation stays in its block.
     """
+    comment = _leading_comment(label)
+    if comment:
+        label = label[comment.end() :]
     event: list[str] = []
     parts = {"condition": "", "condition_action": "", "transition_action": ""}
     buffer: list[str] = []
@@ -309,6 +371,7 @@ def transition_label(label: str) -> dict[str, str]:
         index += 1
     event.append("".join(buffer))
     return {
+        "comment": " ".join(comment.group(0).split()) if comment else "",
         "event": "\n".join(part.strip() for part in event if part.strip()).strip(),
         "condition": parts["condition"].strip(),
         "condition_action": parts["condition_action"].strip(),
@@ -333,27 +396,118 @@ def _note_text(label: str) -> str:
     return "\n".join(line for line in lines if line)
 
 
+def _description(value: str) -> str:
+    text = _LINKS_GID.sub("", value)
+    return text.replace("{}", "").strip()
+
+
+def _truth_table(element) -> dict:
+    """Read a truth table's conditions, decisions and actions.
+
+    Stateflow stores the table as two cell arrays: one row per condition (its
+    name, its test, then a ``T``/``F``/``-`` per decision column) followed by a
+    row that names the action of each column, and one row per action.
+    """
+
+    def cells(prop: str) -> tuple[list[str], int, int]:
+        array = next(
+            (item for item in element.findall("./Array") if item.get("PropName") == prop), None
+        )
+        if array is None:
+            return [], 0, 0
+        dimension = (array.get("Dimension") or "0*0").split("*")
+        rows, columns = int(dimension[0]), int(dimension[1])
+        return [(cell.text or "") for cell in array.findall("./Cell")], rows, columns
+
+    predicates, rows, columns = cells("predicateArray")
+    actions, action_rows, action_columns = cells("actionArray")
+    if not predicates or not rows:
+        return {}
+
+    def at(values: list[str], row: int, column: int, height: int) -> str:
+        index = row + column * height
+        return values[index].strip() if index < len(values) else ""
+
+    conditions = [
+        {
+            "name": at(predicates, row, 0, rows),
+            "test": at(predicates, row, 1, rows),
+            "values": [at(predicates, row, column, rows) for column in range(2, columns)],
+        }
+        for row in range(rows - 1)
+    ]
+    decisions = [at(predicates, rows - 1, column, rows) for column in range(2, columns)]
+    return _compact(
+        {
+            "conditions": [item for item in (_compact(c) for c in conditions) if item],
+            "decisions": [item for item in decisions if item],
+            "actions": [
+                _compact(
+                    {
+                        "name": at(actions, row, 0, action_rows),
+                        "action": at(actions, row, 1, action_rows),
+                    }
+                )
+                for row in range(action_rows)
+            ]
+            if action_columns
+            else [],
+        }
+    )
+
+
 def _parse_chart(root, member: str) -> Chart:
     props = _props(root)
     chart = Chart(
         name=props.get("name", Path(member).stem),
+        chart_type=_CHART_TYPES.get(props.get("type", ""), "state chart"),
         action_language=props.get("actionLanguage", "未声明"),
+        parallel=props.get("decomposition") == "SET_CHART",
+        sample_time=props.get("sampleTime", ""),
+        machine=_MACHINES.get(props.get("stateMachineType", ""), ""),
+        execute_at_initialization=_flag(props, "executeAtInitialization"),
+        initialize_output=_flag(props, "initializeOutput"),
     )
+    variant = root.find("./variant")
+    if variant is not None:
+        chart.variant = _props(variant).get("activationTime", "")
+    app = root.find("./stateflowApp")
+    if app is not None and _flag(_props(app), "isApp"):
+        chart.app = True
+
     parents = {child: parent for parent in root.iter() for child in parent}
+    ports: list[Port] = []
+
     for element in root.iter():
-        if element.tag not in _COMPONENT_TAGS:
+        tag = element.tag
+        if tag == "port":
+            element_props = _props(element)
+            ports.append(
+                Port(
+                    ssid=element.get("SSID") or element.get("id") or "",
+                    name=element_props.get("labelString", ""),
+                    state=element_props.get("parent", ""),
+                    kind=element_props.get("pType", ""),
+                )
+            )
+            continue
+        if tag == "truthTable":
+            # Normally a truth table is the body of a FUNC_STATE, which reads it
+            # itself; one drawn on its own is a truth table function.
+            owner = parents.get(element)
+            if owner is not None and _props(owner).get("type") == "FUNC_STATE":
+                continue
+            chart.functions.append(
+                _parse_function(element, _props(element), _container(parents, element, root))
+            )
+            continue
+        if tag not in {"state", "box", "junction", "transition", "data", "event"}:
             continue
         element_props = _props(element)
         parent = _container(parents, element, root)
-        if element.tag in _STATE_TAGS or element.tag in _FUNCTION_TAGS:
-            state_type = (
-                "BOX"
-                if element.tag == "box"
-                else "TRUTH_TABLE"
-                if element.tag == "truthTable"
-                else element_props.get("type", "未知")
-            )
-            if element_props.get("isNoteBox") == "1":
+        if tag in {"state", "box"}:
+            state_type = element_props.get("type", "BOX" if tag == "box" else "未知")
+            if _flag(element_props, "isNoteBox"):
                 chart.notes.append(
                     Note(
                         ssid=element.get("SSID", ""),
@@ -361,44 +515,9 @@ def _parse_chart(root, member: str) -> Chart:
                         parent=parent,
                     )
                 )
-            elif state_type == "FUNC_STATE" or element.tag in _FUNCTION_TAGS:
-                simulink = element.find("./simulink")
-                eml = element.find("./eml")
-                eml_props = _props(eml) if eml is not None else {}
-                simulink_props = _props(simulink) if simulink is not None else {}
-                truth_table = (
-                    element if element.tag == "truthTable" else element.find(".//truthTable")
-                )
-                if eml_props.get("isEML") == "1":
-                    kind = "matlab"
-                elif simulink_props.get("isSimulinkFcn") == "1":
-                    kind = "simulink"
-                elif element.tag == "truthTable" or truth_table is not None:
-                    kind = "truth_table"
-                else:
-                    kind = "graphical"
-                table_props = (
-                    {
-                        item.get("Name"): item.text or ""
-                        for item in truth_table.iter("P")
-                        if item.get("Name")
-                    }
-                    if truth_table is not None
-                    else {}
-                )
-                chart.functions.append(
-                    Function(
-                        ssid=element.get("SSID", ""),
-                        label=element_props.get("labelString", ""),
-                        kind=kind,
-                        parent=parent,
-                        block=simulink_props.get("blockName", ""),
-                        script=eml_props.get("script", ""),
-                        properties=table_props,
-                    )
-                )
+            elif state_type == "FUNC_STATE":
+                chart.functions.append(_parse_function(element, element_props, parent))
             else:
-                active_output = element.find("./activeStateOutput")
                 chart.states.append(
                     State(
                         ssid=element.get("SSID", ""),
@@ -406,21 +525,26 @@ def _parse_chart(root, member: str) -> Chart:
                         state_type=state_type,
                         decomposition=element_props.get("decomposition", ""),
                         parent=parent,
-                        active_state_output=_props(active_output).get("activityMode", "")
-                        if active_output is not None
-                        else "",
-                        is_box=element.tag == "box",
+                        active_state_output=_activity_output(element),
+                        is_box=tag == "box" or state_type == "GROUP_STATE",
+                        is_subchart=element_props.get("superState") == "SUBCHART",
+                        generated=_flag(element_props, "isAutoCreated")
+                        or _autogen(element),
+                        order=element_props.get("executionOrder", ""),
+                        description=_description(element_props.get("description", "")),
+                        **(_simulink_state(element, element_props)),
                     )
                 )
-        elif element.tag == "junction":
+        elif tag == "junction":
             chart.junctions.append(
                 Junction(
                     ssid=element.get("SSID", ""),
                     junction_type=element_props.get("type", ""),
                     parent=parent,
+                    label=element_props.get("labelString", "").strip(),
                 )
             )
-        elif element.tag == "transition":
+        elif tag == "transition":
             source = element.find("./src/P[@Name='SSID']")
             destination = element.find("./dst/P[@Name='SSID']")
             chart.transitions.append(
@@ -435,21 +559,9 @@ def _parse_chart(root, member: str) -> Chart:
                     scope=parent,
                 )
             )
-        elif element.tag == "data":
-            size = element.find("./props/array/P[@Name='size']")
-            initial = element.find("./props/P[@Name='initialValue']")
-            chart.data.append(
-                Data(
-                    ssid=element.get("SSID", ""),
-                    name=element.get("name", ""),
-                    scope=element_props.get("scope", "未声明"),
-                    data_type=element_props.get("dataType", "未声明"),
-                    size=size.text if size is not None and size.text else "未声明",
-                    initial_value=initial.text if initial is not None and initial.text else "",
-                    parent=parent,
-                )
-            )
-        elif element.tag == "event":
+        elif tag == "data":
+            chart.data.append(_parse_data(element, element_props, parent))
+        elif tag == "event":
             chart.events.append(
                 Event(
                     ssid=element.get("SSID", ""),
@@ -460,7 +572,102 @@ def _parse_chart(root, member: str) -> Chart:
                     parent=parent,
                 )
             )
+
+    chart.ports = ports
+    for junction in chart.junctions:
+        if junction.is_history:
+            for state in chart.states:
+                if state.ssid == junction.parent:
+                    # A history junction is the state's memory: re-entering it
+                    # resumes the substate that was active last time.
+                    state.history = True
+    for state in chart.states:
+        state.ports = _unique(
+            [port.label for port in ports if port.state == state.ssid and port.label]
+        )
     return chart
+
+
+def _autogen(element) -> bool:
+    autogen = element.find("./autogen")
+    return autogen is not None and _flag(_props(autogen), "isAutoCreated")
+
+
+def _activity_output(element) -> str:
+    active = element.find("./activeStateOutput")
+    return _props(active).get("activityMode", "") if active is not None else ""
+
+
+def _simulink_state(element, element_props: dict[str, str]) -> dict:
+    simulink = element.find("./simulink")
+    if simulink is None:
+        return {}
+    simulink_props = _props(simulink)
+    if not (_flag(simulink_props, "isComponent") or _flag(simulink_props, "isActionSubsystem")):
+        return {}
+    return {
+        "simulink_block": simulink_props.get("blockName", ""),
+        "action_subsystem": _flag(simulink_props, "isActionSubsystem"),
+    }
+
+
+def _parse_function(element, element_props: dict[str, str], parent: str) -> Function:
+    simulink = element.find("./simulink")
+    eml = element.find("./eml")
+    table = element if element.tag == "truthTable" else element.find("./truthTable")
+    eml_props = _props(eml) if eml is not None else {}
+    simulink_props = _props(simulink) if simulink is not None else {}
+    if _flag(eml_props, "isEML"):
+        kind = "matlab"
+    elif _flag(simulink_props, "isSimulinkFcn"):
+        kind = "simulink"
+    elif table is not None:
+        kind = "truth_table"
+    else:
+        kind = "graphical"
+    return Function(
+        ssid=element.get("SSID") or element.get("id") or "",
+        label=element_props.get("labelString", ""),
+        kind=kind,
+        parent=parent,
+        block=simulink_props.get("blockName", ""),
+        script=eml_props.get("script", ""),
+        properties={
+            item.get("Name"): item.text or ""
+            for item in (table.iter("P") if table is not None else [])
+            if item.get("Name") and item.get("Name") not in {"isTruthTable", "useEML", "checksum"}
+        },
+        table=_truth_table(table) if table is not None else None,
+    )
+
+
+def _parse_data(element, element_props: dict[str, str], parent: str) -> Data:
+    props = element.find("./props")
+    size = element.find("./props/array/P[@Name='size']")
+    initial = element.find("./props/P[@Name='initialValue']")
+    minimum = element.find("./props/range/P[@Name='minimum']")
+    maximum = element.find("./props/range/P[@Name='maximum']")
+    logging = element.find("./loggingInfo")
+    message = element.find("./message")
+    message_props = _props(message) if message is not None else {}
+    return Data(
+        ssid=element.get("SSID", ""),
+        name=element.get("name", ""),
+        scope=element_props.get("scope", "未声明"),
+        data_type=element_props.get("dataType", "未声明"),
+        size=size.text if size is not None and size.text else "未声明",
+        initial_value=initial.text if initial is not None and initial.text else "",
+        parent=parent,
+        range=[
+            item.text or ""
+            for item in (minimum, maximum)
+            if item is not None and item.text is not None
+        ],
+        logged=logging is not None and _flag(_props(logging), "logSignal"),
+        queue_length=message_props.get("queueLength", ""),
+        queue_overflow=message_props.get("queueOverflowDiagnostic", ""),
+        from_workspace=_flag(_props(props) if props is not None else {}, "initFromWorkspace"),
+    )
 
 
 def parse_stateflow(path: str | Path) -> list[Chart]:
@@ -573,6 +780,7 @@ def _order_key(transition: Transition) -> int:
 def _transition_parts(transition: Transition) -> dict[str, str]:
     parts = transition_label(transition.label)
     return {
+        "comment": parts["comment"],
         "event": parts["event"],
         "condition": parts["condition"],
         "condition_action": parts["condition_action"],
@@ -584,31 +792,51 @@ def _junction_label(junction: Junction, index: int, paths: dict[str, str],
                     names: dict[str, str]) -> str:
     """Name a junction by the container it sits in; it has no name of its own."""
     container = paths.get(junction.parent) or names.get(junction.parent, "")
-    return f"{container or 'chart'} 里的 junction {index}"
+    return f"{container or 'chart'} 里的 decision {index}"
+
+
+@dataclass
+class _Path:
+    steps: list[Transition]
+    node: str
+    #: "state" for a state, "loop" for a junction the path comes back to,
+    #: "dead-end" for a junction nothing continues from, "history" for a
+    #: history junction.
+    ends: str
 
 
 def _junction_paths(
     transition: Transition,
     out_edges: dict[str, list[Transition]],
     junction_ssids: dict[str, Junction],
-) -> list[tuple[list[Transition], str]]:
+) -> list[_Path]:
     """Follow a transition through the junctions it enters.
 
-    Returns the transitions it passes and the state it finally reaches; a
-    junction that branches yields one entry per branch.
+    Returns the transitions it passes and where it ends; a junction that
+    branches yields one entry per branch. A history junction ends the path by
+    restoring the substates of the state that owns it, and a path that loops
+    back through a junction it already passed ends at that junction.
     """
-    found: list[tuple[list[Transition], str]] = []
+    found: list[_Path] = []
 
     def walk(prefix: list[Transition], node: str, seen: frozenset[str]) -> None:
         if len(found) >= _MAX_JUNCTION_PATHS or len(prefix) > _MAX_JUNCTION_HOPS:
             raise _Overflow
-        edges = out_edges.get(node, []) if node in junction_ssids else []
+        junction = junction_ssids.get(node)
+        if junction is None:
+            found.append(_Path(prefix, node, "state"))
+            return
+        if junction.is_history:
+            found.append(_Path(prefix, node, "history"))
+            return
+        edges = out_edges.get(node, [])
         if not edges:
-            found.append((prefix, node))
+            found.append(_Path(prefix, node, "dead-end"))
             return
         for edge in edges:
             if edge.destination in seen:
-                raise _Overflow
+                found.append(_Path([*prefix, edge], edge.destination, "loop"))
+                continue
             walk([*prefix, edge], edge.destination, seen | {edge.destination})
 
     first = transition.destination
@@ -641,16 +869,41 @@ def _collapse(chart: Chart, names: dict[str, str], paths: dict[str, str]) -> dic
         junction = junction_ssids[ssid]
         return _junction_label(junction, junction_index[ssid], paths, names)
 
+    port_refs: dict[str, str] = {}
+    unnamed_ports: Counter[str] = Counter()
+    for port in chart.ports:
+        owner = ref.get(port.state, "")
+        if port.label:
+            port_refs[port.ssid] = port.label
+        else:
+            unnamed_ports[owner] += 1
+            port_refs[port.ssid] = (
+                f"{owner} 的端口 {unnamed_ports[owner]}"
+                if owner
+                else f"端口 {unnamed_ports[owner]}"
+            )
+
+    def endpoint(node: str, history: bool = False) -> tuple[str | None, dict]:
+        """Resolve one end of a transition to what the reader should see."""
+        junction = junction_ssids.get(node)
+        if junction is not None and junction.is_history:
+            return ref.get(junction.parent), {"history": True}
+        if node in port_refs:
+            return port_refs[node], {"port": True}
+        return ref.get(node), {}
+
     def raw(transition: Transition, destination: str) -> dict:
-        source = ref.get(transition.source) or (
-            junction_ref(transition.source) if transition.source in junction_ssids else None
-        )
-        target = ref.get(destination) or (
-            junction_ref(destination) if destination in junction_ssids else None
-        )
+        source, source_flags = endpoint(transition.source)
+        if not source and transition.source in junction_ssids:
+            source = junction_ref(transition.source)
+        target, target_flags = endpoint(destination)
+        if not target and destination in junction_ssids:
+            target = junction_ref(destination)
         payload = {
             "from": source,
             "to": target,
+            **source_flags,
+            **target_flags,
             **_transition_parts(transition),
             "order": transition.order,
         }
@@ -669,27 +922,46 @@ def _collapse(chart: Chart, names: dict[str, str], paths: dict[str, str]) -> dic
         except _Overflow:
             scoped[transition.scope].append(raw(transition, transition.destination))
             continue
-        for prefix, destination in found:
+        for path in found:
+            prefix, destination, ends = path.steps, path.node, path.ends
             followed.update(step.ssid for step in prefix[1:])
             head = prefix[0]
+            source, source_flags = endpoint(head.source)
+            target, target_flags = endpoint(destination)
             payload = {
-                "from": ref.get(head.source),
-                "to": ref.get(destination),
+                "from": source,
+                "to": target,
+                **source_flags,
                 **_transition_parts(head),
                 "order": head.order,
             }
-            if prefix[1:]:
-                payload["via"] = [
-                    _compact({**_transition_parts(step), "order": step.order})
-                    for step in prefix[1:]
-                ]
+            if ends == "loop":
+                # The path comes back to a junction it already passed, so it
+                # ends there; the junction is named by the container it sits in.
+                payload["to"] = junction_ref(destination)
+            elif ends != "dead-end":
+                payload.update(target_flags)
+            steps = [
+                _compact({**_transition_parts(step), "order": step.order})
+                for step in prefix[1:]
+            ]
+            steps = [
+                step
+                for step in steps
+                if set(step) - {"order"}
+            ]
+            if steps:
+                payload["via"] = steps
             if not payload["from"]:
                 payload.pop("from")
                 payload["initial"] = True
             if not payload.get("to"):
-                # The path ends on a junction nothing continues from, so it
-                # leaves the state (or the chart entry) without a target.
+                # The path ends on a junction nothing continues from: inside a
+                # function that is the end of its flow, which returns; at chart
+                # level it is the entry action itself.
                 payload.pop("to", None)
+                if ends == "dead-end" and _flow_ends_here(chart, head.scope):
+                    payload["return"] = True
             scoped[transition.scope].append(_compact(payload))
 
     # A junction nothing leads into still carries a condition of its own; keep it
@@ -701,18 +973,55 @@ def _collapse(chart: Chart, names: dict[str, str], paths: dict[str, str]) -> dic
     return scoped
 
 
+def _flow_ends_here(chart: Chart, scope: str) -> bool:
+    """Whether running into a junction with no way on ends the flow.
+
+    Inside a function that is the function returning. A chart that is one flow
+    chart (no states, several decisions) ends there too. A single dangling
+    junction in a chart that wraps one function is a drawing artifact instead,
+    so nothing is said about it.
+    """
+    if scope and _in_function(chart, scope):
+        return True
+    return not chart.states and len(chart.junctions) > 1
+
+
+def _in_function(chart: Chart, ssid: str) -> bool:
+    functions = {function.ssid for function in chart.functions}
+    parent = {state.ssid: state.parent for state in chart.states}
+    current = ssid
+    seen: set[str] = set()
+    while current and current not in seen:
+        if current in functions:
+            return True
+        seen.add(current)
+        current = parent.get(current, "")
+    return False
+
+
 def _is_function_interface(item: Data) -> bool:
     """Function arguments live in the function entry, not in the chart's data list."""
     return item.scope in {"FUNCTION_INPUT_DATA", "FUNCTION_OUTPUT_DATA"}
 
 
 def _state_json(state: State, name: str) -> dict:
-    parallel = state.state_type == "AND_STATE" or state.decomposition == "PARALLEL_STATE"
+    parallel = state.state_type == "AND_STATE" or state.decomposition in {
+        "PARALLEL_STATE",
+        "SET_STATE",
+    }
     payload = {
         "name": name,
-        "parallel": True if parallel else "",
+        "parallel": True if parallel and not state.is_box else "",
         "box": True if state.is_box else "",
+        "subchart": True if state.is_subchart else "",
+        "history": True if state.history else "",
+        "generated": True if state.generated else "",
+        "order": state.order,
+        "description": state.description,
         "active_state_output": state.active_state_output,
+        "simulink_block": state.simulink_block,
+        "action_subsystem": True if state.action_subsystem else "",
+        "ports": state.ports,
         **state_actions(state.label),
     }
     return _compact(payload)
@@ -729,7 +1038,9 @@ def _function_json(function: Function, name: str, data: list[Data]) -> dict:
         "outputs": [item.name for item in own if item.scope == "FUNCTION_OUTPUT_DATA"],
         "notifies": function.notifies,
         "properties": function.properties,
-        "body": function.body,
+        "truth_table": function.table or {},
+        # A truth table's MATLAB body is generated from the table itself.
+        "body": "" if function.kind == "truth_table" else function.body,
     }
     return _compact(payload)
 
@@ -742,6 +1053,17 @@ def _data_json(item: Data) -> dict:
             "type": item.data_type,
             "size": item.size,
             "initial_value": item.initial_value,
+            "range": item.range,
+            "logged": True if item.logged else "",
+            "from_workspace": True if item.from_workspace else "",
+            "message": _compact(
+                {
+                    "queue_length": item.queue_length,
+                    "queue_overflow": item.queue_overflow,
+                }
+            )
+            if item.is_message
+            else {},
         }
     )
 
@@ -760,13 +1082,19 @@ def _event_json(event: Event) -> dict:
 def chart_json(chart: Chart) -> dict:
     """Return one chart as the JSON document written next to its subsystem."""
     names, paths = _references(chart)
-    scoped = _collapse(chart, names, paths)
+    if not chart.states and chart.chart_type in {"MATLAB function", "truth table"}:
+        # These charts exist to wrap one function; the call that runs it is
+        # plumbing rather than behaviour, so it is left out.
+        scoped: dict[str, list[dict]] = {}
+    else:
+        scoped = _collapse(chart, names, paths)
 
     containers: dict[str, _Container] = {"": _Container("", "chart")}
     for state in chart.states:
         containers[state.ssid] = _Container(state.ssid, "state", state)
     for function in chart.functions:
-        containers[function.ssid] = _Container(function.ssid, "function", function)
+        if function.ssid:
+            containers[function.ssid] = _Container(function.ssid, "function", function)
 
     def place(ssid: str) -> _Container:
         return containers.get(ssid) or containers[""]
@@ -808,19 +1136,27 @@ def chart_json(chart: Chart) -> dict:
         return payload
 
     chart_level = render(containers[""])
-    total_transitions = sum(len(items) for items in scoped.values())
-    payload = {
+    messages = len([item for item in chart.data if item.is_message])
+    return _compact({
         "schema": STATE_FLOW_SCHEMA,
         "chart": chart.name,
+        "type": chart.chart_type,
+        "parallel": True if chart.parallel else "",
         "action_language": chart.action_language,
+        "sample_time": chart.sample_time,
+        "machine": chart.machine,
+        "variant": chart.variant,
+        "app": True if chart.app else "",
+        "execute_at_initialization": True if chart.execute_at_initialization else "",
+        "initialize_output": True if chart.initialize_output else "",
         "summary": {
             "states": len(chart.states),
             "functions": len(chart.functions),
             "notes": len(chart.notes),
-            "transitions": total_transitions,
+            "transitions": sum(len(items) for items in scoped.values()),
             "events": len(chart.events),
             "data": len([item for item in chart.data if not _is_function_interface(item)]),
+            "messages": messages,
         },
         **chart_level,
-    }
-    return payload
+    })

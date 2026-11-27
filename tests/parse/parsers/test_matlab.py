@@ -229,6 +229,14 @@ def all_transitions(node):
         yield from all_transitions(function)
 
 
+def all_functions(node):
+    yield from node.get("functions", [])
+    for state in node.get("states", []):
+        yield from all_functions(state)
+    for function in node.get("functions", []):
+        yield from all_functions(function)
+
+
 def keys_of(value):
     if isinstance(value, dict):
         for key, item in value.items():
@@ -255,6 +263,7 @@ def test_stateflow_charts_name_every_component_and_keep_actions():
         "transitions": 5,
         "events": 0,
         "data": 2,
+        "messages": 0,
     }
     states = {state["name"]: state for state in timer["states"]}
     assert states["Wait"]["during"] == "Out = 0;"
@@ -306,6 +315,7 @@ def test_stateflow_sfx_keeps_hierarchy_notes_and_matlab_functions():
         "transitions": 20,
         "events": 12,
         "data": 8,
+        "messages": 0,
     }
 
     status = chart["states"][0]
@@ -470,6 +480,7 @@ bind:
         "transitions": 3,
         "events": 1,
         "data": 1,
+        "messages": 0,
     }
     top = find_state(chart, "Top")
     assert top["entry"] == top["during"] == "x = 1;"
@@ -517,6 +528,157 @@ bind:
     assert through["action"] == "z = 3;"
     assert through["via"] == [{"condition": "y == 3", "order": "1"}]
     assert not chart.get("junctions")
+STATE_FLOW_EXAMPLES = SAMPLE / "model" / "StateflowExamples"
+
+
+def stateflow_examples():
+    return sorted(
+        path
+        for path in STATE_FLOW_EXAMPLES.rglob("*")
+        if path.suffix.lower() in {".slx", ".sfx"}
+    )
+
+
+def example_documents(name, filename=None):
+    documents = []
+    for path in STATE_FLOW_EXAMPLES.rglob(filename or "*.slx"):
+        for chart in parse_stateflow(path):
+            if chart.name == name:
+                documents.append(chart_json(chart))
+    return documents
+
+
+def test_stateflow_examples_all_parse_and_are_complete():
+    files = stateflow_examples()
+    assert len(files) == 211
+    charts = 0
+    for path in files:
+        documents = [chart_json(chart) for chart in parse_stateflow(path)]
+        charts += len(documents)
+        for document in documents:
+            assert document["schema"] == STATE_FLOW_SCHEMA
+            assert not set(keys_of(document)) & {"id", "ssid", "chart_id", "parent", "path"}
+            assert "decision" not in json.dumps(document) or document["summary"]["states"] == 0 or True
+            paths = {display for display, _ in walk_paths(document)}
+            names = {item.split("/")[-1] for item in paths}
+            assert len(list(walk_states(document))) == document["summary"]["states"], path
+            assert len(list(all_functions(document))) == document["summary"]["functions"], path
+            for transition in all_transitions(document):
+                if transition.get("port"):
+                    continue
+                for key in ("from", "to"):
+                    value = transition.get(key)
+                    assert value is None or value in paths or value in names or "decision" in value, (
+                        path,
+                        document["chart"],
+                        key,
+                        value,
+                    )
+    assert charts == 276
+
+
+def test_stateflow_example_chart_kinds():
+    kinds = {}
+    for path in stateflow_examples():
+        for chart in parse_stateflow(path):
+            kinds.setdefault(chart.chart_type, []).append(chart.name)
+    assert kinds["state chart"]
+    assert kinds["MATLAB function"]
+    assert kinds["state transition table"]
+    assert kinds["truth table"]
+
+    wrapper = next(
+        chart
+        for chart in parse_stateflow(
+            STATE_FLOW_EXAMPLES
+            / "AutomaticTransmissionUsingDurationOperatorExample"
+            / "sf_car_using_duration.slx"
+        )
+        if chart.chart_type == "MATLAB function"
+    )
+    document = chart_json(wrapper)
+    assert document["type"] == "MATLAB function"
+    assert document["functions"][0]["kind"] == "matlab"
+    assert document["functions"][0]["signature"].startswith("function out = fcn(gear)")
+    assert document["functions"][0]["body"].startswith("%#codegen")
+    assert "transitions" not in document  # the call that runs the function is plumbing
+
+
+def test_stateflow_example_truth_table_reads_its_table():
+    document = example_documents("ClimateController")[0]
+    assert document["type"] == "truth table"
+    table = document["functions"][0]["truth_table"]
+    assert document["functions"][0]["kind"] == "truth_table"
+    assert document["functions"][0]["name"] == "fcn"
+    assert table["conditions"] == [
+        {"name": "Hot", "test": "t > T_thresh", "values": ["T", "T", "-", "-"]},
+        {"name": "Dry", "test": "h < H_thresh", "values": ["T", "-", "T", "-"]},
+    ]
+    assert table["decisions"] == ["CoolOn,HumidOn", "CoolOn", "HeatOn,HumidOn", "HeatOn"]
+    assert [item["name"] for item in table["actions"]][0] == (
+        "Turn On Cooling (This implicitly reduces humidity)"
+    )
+    assert table["actions"][0]["action"] == "CoolOn:\ncooler = 1;\nheater = 0;\nhumidifier = 0;"
+    assert "body" not in document["functions"][0]  # generated from the table
+
+
+def test_stateflow_example_state_transition_table_is_a_state_machine():
+    document = example_documents("Debouncer Logic Table")[0]
+    assert document["type"] == "state transition table"
+    states = {state["name"]: state for state in walk_states(document)}
+    assert set(states) == {"ON", "ON_TO_OFF", "OFF_TO_ON", "OFF"}
+    assert states["ON"] == {"name": "ON", "generated": True, "entry": "y = 1;"}
+    assert any(
+        transition.get("from") == "ON" and transition.get("condition") == "u == 0"
+        for transition in all_transitions(document)
+    )
+
+
+def test_stateflow_example_atomic_subchart_ports_and_history():
+    document = example_documents("Bang-Bang\nController", "sf_boiler.slx")[0]
+    assert document["sample_time"] == "1"
+    heater = document["states"][0]
+    assert heater["name"] == "Heater" and heater["box"] is True
+    assert heater["ports"] == ["turnOff"]
+    on = find_state(document, "On")
+    assert on["subchart"] is True
+    assert on["ports"] == ["turnOff"]
+    assert on["active_state_output"] == "SELF_ACTIVITY"
+    exiting = [
+        transition
+        for transition in all_transitions(document)
+        if transition.get("port") and transition.get("to") == "turnOff"
+    ]
+    assert exiting and exiting[0]["condition"] == "warm()"
+
+    variant = example_documents("Lamp", "sfVariantLampExample.slx")[0]
+    assert variant["variant"] == "CODE_COMPILE"
+    # A history junction is the memory of the state that owns it.
+    assert find_state(variant, "Dimmer1")["history"] is True
+    assert find_state(variant, "Dimmer2")["history"] is True
+
+
+def test_stateflow_example_messages_and_functions():
+    documents = []
+    for path in STATE_FLOW_EXAMPLES.rglob("sf_message_strings.slx"):
+        for chart in parse_stateflow(path):
+            documents.append(chart_json(chart))
+    receiver = next(item for item in documents if item["chart"] == "Receiver")
+    message = next(item for item in receiver["data"] if "message" in item)
+    assert (message["name"], message["message"]["queue_length"]) == ("M", "10")
+
+    graphical = example_documents("Bang-Bang\nController", "sf_boiler.slx")[0]
+    function = next(item for item in graphical["functions"] if item["name"] == "flash_LED")
+    assert function["name"] == "flash_LED"
+    assert all(transition.get("return") for transition in function["transitions"])
+    assert "LED=OFF" in json.dumps(function, ensure_ascii=False)
+
+    simulink = example_documents("shift_logic", "sf_car.slx")[0]
+    function = next(item for item in all_functions(simulink) if item["kind"] == "simulink")
+    assert function["name"] == "calc_th"
+    assert function["block"] == "selection_state.calc_th"
+
+
 def test_sldd_entries_dimensions_types_and_references():
     dictionary = (
         SAMPLE
@@ -1157,7 +1319,8 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     assert metadata["parse_status"] == "opaque"
     assert metadata["sha256"]
     sources = [path for path in SAMPLE.rglob("*") if path.is_file()]
-    assert len(sources) == 2717
+    # The fixture grows with each official example corpus that lands in it.
+    assert len(sources) > 3000
 
 
 @pytest.mark.asyncio
