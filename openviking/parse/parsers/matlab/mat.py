@@ -121,7 +121,9 @@ def _matlab_class(value: Any) -> str:
 def _npy_name(index: int, path: str) -> str:
     stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", path).strip("._")[:80] or "array"
     digest = hashlib.sha256(path.encode("utf-8")).hexdigest()[:8]
-    return f"data/{index:04d}_{stem}_{digest}.npy"
+    # Arrays sit next to entries.jsonl: the workspace of one .mat file is one
+    # folder, and a data/ level would only add a hop for no grouping benefit.
+    return f"{index:04d}_{stem}_{digest}.npy"
 
 
 def parse_mat_documents(path: str | Path) -> tuple[dict[str, str | bytes], list[str]]:

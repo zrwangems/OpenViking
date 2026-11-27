@@ -1692,6 +1692,9 @@ def test_mat_shapes_struct_fields_and_m_source():
     image = load_npy(documents, variable["data"])
     assert image.shape == (100, 100)
     assert "entries.jsonl" in documents
+    # One flat workspace per .mat: arrays carry no directory of their own.
+    assert variable["data"].count("/") == 0
+    assert all("/" not in name for name in documents if name.endswith(".npy"))
     assert not warnings
 
     dataset = (
@@ -1778,6 +1781,9 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     base = root / "matlab-ingest-fixture"
     assert (base / "data" / "flames" / "entries.jsonl").is_file()
     assert not list((base / "data" / "flames").glob("*.mat"))
+    # Arrays of one MAT file are siblings of entries.jsonl, not a data/ level.
+    assert not (base / "data" / "flames" / "data").exists()
+    assert list((base / "data" / "flames").glob("*.npy"))
     assert (
         base
         / "model"
