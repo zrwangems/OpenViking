@@ -27,8 +27,8 @@ from openviking.parse.parsers.matlab.stateflow import (
     parse_stateflow,
     transition_label,
 )
+from openviking.parse.parsers.matlab.figures import parse_figure
 from openviking.parse.parsers.matlab.structured import (
-    parse_fig_tree,
     parse_mlapp,
     parse_mldatx,
     parse_mlx_notebook,
@@ -1169,40 +1169,74 @@ def test_mlx_blocks_are_code_markdown_and_output():
             assert block["content"] in files
     assert any(block.get("media") == "image" for block in notebook["blocks"])
     assert files and all(name.startswith("outputs/") for name in files)
-def test_fig_tree_keeps_handle_objects(tmp_path):
+def test_fig_chart_type_and_values_are_kept(tmp_path):
+    np = pytest.importorskip("numpy")
     scipy_io = pytest.importorskip("scipy.io")
-    scipy_io.savemat(
-        tmp_path / "plot.fig",
-        {
-            "figure": {
-                "Type": "figure",
-                "Children": [{"Type": "axes", "Title": "speed"}],
-            }
-        },
-    )
-    tree = parse_fig_tree(tmp_path / "plot.fig")
-    assert tree["schema"] == "ov.matlab.figure/1"
-    rendered = json.dumps(tree, ensure_ascii=False)
-    assert "figure" in tree["objects"]
-    assert "axes" in rendered and "speed" in rendered
-    assert tree["truncated_value_count"] == 0
+    node = np.dtype([("type", "O"), ("handle", "O"), ("properties", "O"), ("children", "O")])
+    line = np.zeros((1, 1), dtype=node)
+    line[0, 0]["type"] = "l"
+    line[0, 0]["properties"] = {
+        "XData": np.array([[0.0, 1.0]]),
+        "YData": np.array([[2.0, 3.0]]),
+        "DisplayName": "speed",
+    }
+    axes = np.zeros((1, 1), dtype=node)
+    axes[0, 0]["type"] = "a"
+    axes[0, 0]["properties"] = {"Title": "speed"}
+    axes[0, 0]["children"] = line
+    figure = np.zeros((1, 1), dtype=node)
+    figure[0, 0]["type"] = "f"
+    figure[0, 0]["properties"] = {"Name": "plot"}
+    figure[0, 0]["children"] = axes
+    scipy_io.savemat(tmp_path / "plot.fig", {"hgS_070000": figure})
+
+    payload, files = parse_figure(tmp_path / "plot.fig")
+    assert payload["schema"] == "ov.matlab.figure/2"
+    assert payload["summary"]["chart_types"] == {"line": 1}
+    series = payload["charts"][0]["series"][0]
+    assert series["name"] == "speed"
+    assert series["values"] == {"x": [0.0, 1.0], "y": [2.0, 3.0]}
+    assert payload["charts"][0]["axes"]["title"] == "speed"
+    assert files == {}
 
 
 @pytest.mark.asyncio
-async def test_figure_with_summarized_arrays_keeps_its_bytes(tmp_path):
-    """A figure whose large arrays are summarized keeps the source bytes too."""
+async def test_figure_series_beyond_the_inline_limit_is_saved_as_npy(tmp_path):
+    """A long series keeps every value in an .npy file next to figure.json."""
     np = pytest.importorskip("numpy")
     savemat = pytest.importorskip("scipy.io").savemat
-    source = tmp_path / "image.fig"
-    savemat(source, {"figure": {"Type": "figure", "CData": np.zeros((1, 30000))}})
+    node = np.dtype([("type", "O"), ("handle", "O"), ("properties", "O"), ("children", "O")])
+    line = np.zeros((1, 1), dtype=node)
+    line[0, 0]["type"] = "l"
+    line[0, 0]["properties"] = {
+        "XData": np.linspace(0, 1, 2000).reshape(1, -1),
+        "YData": np.linspace(0, 2, 2000).reshape(1, -1),
+    }
+    axes = np.zeros((1, 1), dtype=node)
+    axes[0, 0]["type"] = "a"
+    axes[0, 0]["children"] = line
+    figure = np.zeros((1, 1), dtype=node)
+    figure[0, 0]["type"] = "f"
+    figure[0, 0]["children"] = axes
+    source = tmp_path / "long.fig"
+    savemat(source, {"hgS_070000": figure})
+
     result = await MatlabParser().parse(
         source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
     )
-    root = Path(result.artifact_ref.root) / "image"
-    figure = json.loads((root / "figure.json").read_text(encoding="utf-8"))
-    assert figure["truncated_value_count"] == 30000
-    assert (root / "image.fig").is_file()
-    assert result.meta["original_preserved"] is True
+    root = Path(result.artifact_ref.root) / "long"
+    figure_json = json.loads((root / "figure.json").read_text(encoding="utf-8"))
+    assert figure_json["summary"]["chart_types"] == {"line": 1}
+    series = figure_json["charts"][0]["series"][0]
+    assert series["points"] == 2000
+    data_ref = series["values"]["y"]
+    assert (root / data_ref["data"]).is_file()
+    assert np.load(root / data_ref["data"]).shape == (2000,)
+    assert (root / "figure.md").is_file()
+    assert "线图" in (root / "figure.md").read_text(encoding="utf-8")
+    # The values live in the artifact, so the original bytes are not kept.
+    assert not (root / "long.fig").exists()
+    assert result.meta["original_preserved"] is False
 
 
 def test_mldatx_keeps_all_suites_cases_and_results(tmp_path):

@@ -18,8 +18,8 @@ from openviking.parse.parsers.matlab.packages import (
     jar_metadata,
     package_metadata,
 )
+from openviking.parse.parsers.matlab.figures import parse_figure
 from openviking.parse.parsers.matlab.structured import (
-    parse_fig_tree,
     parse_mldatx,
     parse_requirement_set,
     parse_sldd_tree,
@@ -93,12 +93,12 @@ def test_mldatx_expands_suites_cases_inputs_and_criteria(tmp_path):
     assert "CustomCriteria" in case["criteria"]
 
 
-def test_fig_tree_has_figure_axes_children():
-    tree = parse_fig_tree(SAMPLE / "data" / "teapotdemo.fig")
-    assert tree["tree"]["type"] == "figure"
-    assert tree["object_counts"]["figure"] == 1
-    assert tree["object_counts"]["axes"] == 1
-    assert any(child["type"] == "axes" for child in tree["tree"]["children"])
+def test_fig_reports_axes_and_widgets():
+    payload, files = parse_figure(SAMPLE / "data" / "teapotdemo.fig")
+    assert payload["schema"] == "ov.matlab.figure/2"
+    assert payload["summary"]["axes_count"] == 1
+    assert payload["figures"][0]["name"] == "Untitled"
+    assert files == {}
 
 
 def test_fmu_packages_and_jar_expose_plan_metadata():
