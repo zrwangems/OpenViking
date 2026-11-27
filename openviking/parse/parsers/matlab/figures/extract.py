@@ -52,7 +52,38 @@ _BOUNDARY = (
 
 STATUS_PARSED = "parsed"
 STATUS_MCOS_ONLY = "unreadable_mcos"
+STATUS_MCOS_PARTIAL = "parsed_mcos"
 STATUS_V73 = "unsupported_v73"
+
+# MATLAB class names from the figure's own name table -> figure kind.
+_MCOS_KINDS = {
+    "Line": "line",
+    "Stair": "stairs",
+    "ErrorBar": "errorbar",
+    "Area": "area",
+    "Scatter": "scatter",
+    "BubbleChart": "bubble",
+    "BubbleCloud": "bubble",
+    "Bar": "bar",
+    "Stem": "stem",
+    "Pie": "pie",
+    "Histogram": "histogram",
+    "Histogram2": "histogram",
+    "Heatmap": "heatmap",
+    "Contour": "contour",
+    "Surface": "surface",
+    "Image": "image",
+    "Quiver": "quiver",
+    "BoxChart": "boxchart",
+    "WordCloud": "wordcloud",
+    "ParallelCoordinatesPlot": "parallel",
+    "GraphPlot": "graph",
+    "ScatterHistogramChart": "composite",
+    "StackedLineChart": "composite",
+    "TiledChartLayout": "composite",
+    "PolarAxes": "polar",
+    "GeographicAxes": "geo",
+}
 
 _SKIP_CHILDREN = {"legend", "colorbar", "text", "rectangle", "decoration", "uicontrol"}
 
@@ -796,12 +827,23 @@ def parse_figure(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
     for chart in charts:
         counts[chart["type"]] = counts.get(chart["type"], 0) + 1
     status = STATUS_PARSED
+    mcos_summary: dict[str, Any] | None = None
     if not charts and report.get("handle_tree_empty") and report.get("mcos_containers"):
         status = STATUS_MCOS_ONLY
-        warnings.append(
-            "该文件由 R2014b 之后的 MATLAB 保存：句柄树 hgS_080000 为空，图形对象以 MCOS 记录"
-            "（hgM_070000/080000）存放，当前解析器还读不了，需要 MCOS 解码或 MATLAB CLI"
-        )
+        mcos_summary = _read_mcos(source)
+        if mcos_summary and mcos_summary["entries"]:
+            status = STATUS_MCOS_PARTIAL
+            for class_name in mcos_summary["classes"]:
+                kind = _MCOS_KINDS.get(class_name)
+                if kind:
+                    counts[kind] = counts.get(kind, 0) + 1
+            if not mcos_summary["series_pairs"] and not mcos_summary["matrices"]:
+                warnings.append("解出了对象与类名，但这个文件里没有找到可用的数值数组")
+        else:
+            warnings.append(
+                "该文件由 R2014b 之后的 MATLAB 保存：句柄树 hgS_080000 为空，图形对象写在"
+                " __function_workspace__ 的 MCOS 记录里，当前只解到容器层"
+            )
     payload: dict[str, Any] = {
         "schema": FIGURE_SCHEMA,
         "status": status,
@@ -827,6 +869,7 @@ def parse_figure(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
             **report,
             "mcos_objects": bool(report.get("mcos_containers")),
         },
+        "mcos": mcos_summary,
         "warnings": warnings,
         "boundary": _BOUNDARY,
     }
@@ -855,3 +898,16 @@ def _status_payload(source: Path, status: str, detail: str) -> dict[str, Any]:
         "warnings": [f"无法解析：{detail}"],
         "boundary": _BOUNDARY,
     }
+
+
+def _read_mcos(source: Path) -> dict[str, Any] | None:
+    """Decode the R2025b object payload; None when the container is unreadable."""
+    from openviking.parse.parsers.matlab.figures.mcos import candidates, read_payload
+
+    try:
+        payload = read_payload(source)
+        found = candidates(payload)
+    except Exception as exc:  # noqa: BLE001 - any format drift must not fail the import
+        return {"error": f"{type(exc).__name__}: {exc}", "entries": 0}
+    found["entries"] = len(payload.entries)
+    return found

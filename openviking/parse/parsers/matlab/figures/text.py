@@ -164,7 +164,32 @@ def figure_text(payload: dict[str, Any]) -> str:
             lines.append("- " + "，".join(pieces))
         lines.append("")
 
-    if not charts and not widgets:
+    mcos = payload.get("mcos") or {}
+    if mcos and not mcos.get("error"):
+        lines.append("## MCOS 对象载荷（R2014b 之后的保存格式）")
+        classes = mcos.get("classes") or []
+        if classes:
+            lines.append("- 文件里登记的对象类：" + "、".join(classes))
+        pairs = mcos.get("series_pairs") or []
+        if pairs:
+            lines.append(f"- 候选数据序列 {len(pairs)} 组：")
+            for pair in pairs[:8]:
+                lines.append(
+                    f"  · {pair['points']} 点，x {_fmt_range(pair['x_like'])}，"
+                    f"y {_fmt_range(pair['y_like'])}（槽 {pair['cells'][0]}、{pair['cells'][1]}）"
+                )
+        matrices = mcos.get("matrices") or []
+        if matrices:
+            shapes = "、".join("×".join(str(v) for v in item["shape"]) for item in matrices[:6])
+            lines.append(f"- 矩阵数据 {len(matrices)} 个：{shapes}")
+        labels = [label for label in (mcos.get("labels") or []) if label][:10]
+        if labels:
+            lines.append("- 图内文字：" + "、".join(f"“{label}”" for label in labels))
+        if not classes and not pairs and not matrices:
+            lines.append("- 只解出对象记录，没有找到可用的数值数组。")
+        lines.append("")
+
+    if not charts and not widgets and not mcos:
         lines.append("文件里没有可识别的图形对象。")
         lines.append("")
 

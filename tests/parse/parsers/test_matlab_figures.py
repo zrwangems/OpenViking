@@ -507,28 +507,66 @@ def test_legacy_hg2_class_names_are_read(tmp_path):
     assert payload["charts"][0]["series"][0]["values"]["y"] == [3.0, 4.0]
 
 
-def test_r2025b_figure_reports_the_object_model_it_cannot_read():
-    """R2025b saves no handle tree; the payload must say so, not look empty."""
+def test_r2025b_figure_yields_its_classes_and_plotted_values():
+    """R2025b keeps no handle tree; classes and arrays come from the MCOS payload."""
     payload, files = parse_figure(GALLERY_FIXTURES / "fig/01_line_basic.fig")
-    assert payload["status"] == "unreadable_mcos"
-    assert payload["charts"] == []
+    assert payload["status"] == "parsed_mcos"
     assert payload["read"]["handle_tree_empty"] is True
     assert payload["read"]["mcos_objects"] is True
     assert files == {}
-    assert any("MCOS" in warning for warning in payload["warnings"])
+    mcos = payload["mcos"]
+    assert {"Line", "Figure", "Axes"} <= set(mcos["classes"])
+    assert mcos["entries"] > 100
+    pair = mcos["series_pairs"][0]
+    assert pair["points"] == 200
+    assert pair["x_like"] == pytest.approx([0.0, 2 * 3.141592653589793], abs=1e-6)
+    assert pair["y_like"] == pytest.approx([-1.0, 1.0], abs=1e-3)
+    assert "Line: sin(x)" in mcos["labels"]
     page = figure_text(payload)
-    assert "MCOS" in page
+    assert "MCOS" in page and "Line" in page
+
+
+def test_r2025b_container_reads_a_sample_of_the_corpus():
+    """The container layer must open every saved variant, not one lucky file."""
+    from openviking.parse.parsers.matlab.figures.mcos import read_payload
+
+    sample = [
+        "02_line_multi_legend.fig",
+        "19_bar_basic.fig",
+        "28_histogram.fig",
+        "30_pie.fig",
+        "33_scatter.fig",
+        "43_heatmap.fig",
+        "48_surf.fig",
+        "65_quiver.fig",
+        "75_image_rgb.fig",
+        "84_polarplot.fig",
+        "88_geoplot.fig",
+        "106_subplot_2x2.fig",
+        "119_uifigure.fig",
+        "137_fig_hgsave_v6.fig",
+        "138_fig_saveas.fig",
+    ]
+    for name in sample:
+        payload = read_payload(GALLERY_FIXTURES / "fig" / name)
+        assert payload.entries, name
+        assert payload.store, name
+        assert payload.store_names, name
 
 
 @pytest.mark.asyncio
-async def test_r2025b_figure_keeps_its_bytes_and_says_why(tmp_path):
+async def test_r2025b_figure_keeps_its_bytes_until_properties_are_named(tmp_path):
+    """A partial MCOS read still ships figure.json/figure.md and the source bytes."""
     source = GALLERY_FIXTURES / "fig/01_line_basic.fig"
     result = await MatlabParser().parse(
         source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
     )
     root = Path(result.artifact_ref.root) / "01_line_basic"
     figure = json.loads((root / "figure.json").read_text(encoding="utf-8"))
-    assert figure["status"] == "unreadable_mcos"
+    assert figure["status"] == "parsed_mcos"
+    assert figure["mcos"]["classes"]
+    assert (root / "figure.md").is_file()
+    assert "MCOS" in (root / "figure.md").read_text(encoding="utf-8")
     assert (root / "01_line_basic.fig").is_file()
     assert result.meta["original_preserved"] is True
 
