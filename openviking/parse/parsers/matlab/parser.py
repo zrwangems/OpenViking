@@ -30,6 +30,7 @@ from openviking.parse.parsers.matlab.packages import (
 from openviking.parse.parsers.matlab.slx import parse_slx, system_json_documents
 from openviking.parse.parsers.matlab.stateflow import (
     STATE_FLOW_SCHEMA,
+    chart_file_name,
     chart_json,
     chart_system_path,
     parse_stateflow,
@@ -183,6 +184,7 @@ class MatlabParser(BaseParser):
                 model = await asyncio.to_thread(parse_slx, path)
                 documents = await asyncio.to_thread(system_json_documents, model, language)
                 charts = await asyncio.to_thread(parse_stateflow, path)
+                chart_files: set[str] = set()
                 for chart in charts:
                     system_path = chart_system_path(chart)
                     nested_page = f"{system_path}/main.json"
@@ -193,10 +195,17 @@ class MatlabParser(BaseParser):
                         subsystem_index = leaf_page
                     else:
                         subsystem_index = "main.json"
-                    chart_name = f"stateflow/chart_{chart.chart_id}.json"
+                    chart_name = chart_file_name(chart)
+                    if chart_name in chart_files:
+                        stem, _, suffix = chart_name.rpartition(".")
+                        index = 2
+                        while f"{stem}-{index}.{suffix}" in chart_files:
+                            index += 1
+                        chart_name = f"{stem}-{index}.{suffix}"
+                    chart_files.add(chart_name)
                     documents[chart_name] = await asyncio.to_thread(chart_json, chart)
                     documents[subsystem_index].setdefault("stateflow", []).append(
-                        {"chart_id": chart.chart_id, "path": chart_name}
+                        {"chart": chart.name, "path": chart_name}
                     )
                 root_dir = _output_folder(path)
                 for name, document in documents.items():

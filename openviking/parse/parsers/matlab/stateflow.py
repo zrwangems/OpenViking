@@ -2,11 +2,18 @@
 # SPDX-License-Identifier: AGPL-3.0
 """Stateflow chart XML to structured JSON.
 
-A chart is written as the state machine a reader needs: the state hierarchy,
-each state's entry/during/exit actions, the transitions with their event,
-condition and actions, and the other chart components (note boxes, junctions,
-MATLAB and Simulink functions, events, data). Layout properties such as
-window position, zoom, colours and label HTML are dropped.
+A chart is written the way a person reads it in Simulink: states nest the way
+they nest on the canvas, each state carries its entry/during/exit/on actions,
+the transitions drawn inside a state are listed there, and the chart's other
+components (MATLAB and Simulink functions, note boxes, junctions, events, data)
+sit in the container they were drawn in.
+
+Nothing in the output is a machine identifier. States, transitions and
+everything else are referred to by name; when the same name is used more than
+once in a chart, the reference is the path through the nesting that separates
+them. Junctions have no name on the canvas, so a transition that runs through
+one is written as the path it makes: from the source state, through the
+junction's own condition and action, to the state it ends in.
 """
 
 from __future__ import annotations
@@ -15,6 +22,7 @@ import html
 import re
 import textwrap
 import zipfile
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -22,7 +30,7 @@ from defusedxml import ElementTree as ET
 
 from openviking.parse.parsers.matlab._zip import read_xml_member
 
-STATE_FLOW_SCHEMA = "ov.matlab.stateflow/2"
+STATE_FLOW_SCHEMA = "ov.matlab.stateflow/3"
 
 #: Elements that own a nested view. Everything below one of these belongs to it.
 _CONTAINER_TAGS = {"chart", "state", "box", "function", "truthTable", "machine"}
@@ -58,6 +66,12 @@ _CALL = re.compile(r"notify\s*\(\s*[^,]+,\s*['\"]([^'\"]+)['\"]")
 _SIGNATURE = re.compile(r"^\s*(?:\[[^\]]*\]|[\w.]+)\s*=\s*(?P<name>\w+)\s*\(")
 _CALL_SIGNATURE = re.compile(r"^\s*(?P<name>\w+)\s*\(")
 
+#: A transition is followed through this many junctions at most, and a single
+#: source may branch into this many paths; beyond either the junction hops stay
+#: as their own entries instead of being written as whole paths.
+_MAX_JUNCTION_HOPS = 8
+_MAX_JUNCTION_PATHS = 32
+
 
 @dataclass
 class State:
@@ -67,6 +81,7 @@ class State:
     decomposition: str = ""
     parent: str = ""
     active_state_output: str = ""
+    is_box: bool = False
 
     @property
     def name(self) -> str:
@@ -92,7 +107,7 @@ class Function:
 
     @property
     def name(self) -> str:
-        return _function_name(self.label) or self.ssid
+        return _function_name(self.label)
 
     @property
     def body(self) -> str:
@@ -108,10 +123,6 @@ class Junction:
     ssid: str
     junction_type: str
     parent: str = ""
-
-    @property
-    def name(self) -> str:
-        return f"Junction {self.ssid}"
 
 
 @dataclass
@@ -149,11 +160,11 @@ class Event:
     scope: str
     trigger: str
     tag: str = ""
+    parent: str = ""
 
 
 @dataclass
 class Chart:
-    chart_id: str
     name: str
     action_language: str
     states: list[State] = field(default_factory=list)
@@ -325,7 +336,6 @@ def _note_text(label: str) -> str:
 def _parse_chart(root, member: str) -> Chart:
     props = _props(root)
     chart = Chart(
-        chart_id=root.get("id") or Path(member).stem.removeprefix("chart_"),
         name=props.get("name", Path(member).stem),
         action_language=props.get("actionLanguage", "未声明"),
     )
@@ -399,6 +409,7 @@ def _parse_chart(root, member: str) -> Chart:
                         active_state_output=_props(active_output).get("activityMode", "")
                         if active_output is not None
                         else "",
+                        is_box=element.tag == "box",
                     )
                 )
         elif element.tag == "junction":
@@ -446,6 +457,7 @@ def _parse_chart(root, member: str) -> Chart:
                     scope=element_props.get("scope", "未声明"),
                     trigger=element_props.get("trigger", "未声明"),
                     tag=element_props.get("tag", ""),
+                    parent=parent,
                 )
             )
     return chart
@@ -471,62 +483,246 @@ def chart_system_path(chart: Chart) -> str:
     return "/".join(_slug(part) for part in chart.name.split("/") if part)
 
 
+def chart_file_name(chart: Chart) -> str:
+    """Return the file name a chart is written under, derived from its name."""
+    return f"stateflow/{_slug(chart.name)}.json"
+
+
 def _slug(value: str) -> str:
     value = re.sub(r"[^\w.-]+", "_", value, flags=re.UNICODE).strip("._")
     return value or "stateflow"
 
 
-def _component_names(chart: Chart) -> dict[str, str]:
-    names = {state.ssid: state.name for state in chart.states}
-    names.update({function.ssid: function.name for function in chart.functions})
-    names.update({junction.ssid: junction.name for junction in chart.junctions})
-    return names
+class _Overflow(Exception):
+    """A junction graph branches too far to be written as whole paths."""
 
 
-def _component_kinds(chart: Chart) -> dict[str, str]:
-    kinds = {state.ssid: "state" for state in chart.states}
-    kinds.update({function.ssid: "function" for function in chart.functions})
-    kinds.update({junction.ssid: "junction" for junction in chart.junctions})
-    return kinds
+@dataclass
+class _Container:
+    ssid: str
+    kind: str  # "chart", "state" or "function"
+    item: object | None = None
+    states: list[str] = field(default_factory=list)
+    functions: list[str] = field(default_factory=list)
+    transitions: list[dict] = field(default_factory=list)
+    notes: list[str] = field(default_factory=list)
+    data: list[dict] = field(default_factory=list)
+    events: list[dict] = field(default_factory=list)
 
 
-def _paths(chart: Chart) -> dict[str, str]:
-    parents = {state.ssid: state.parent for state in chart.states}
-    parents.update({function.ssid: function.parent for function in chart.functions})
-    names = _component_names(chart)
+#: A component the chart leaves unnamed still needs a name to be referred to.
+_UNNAMED = {
+    "truth_table": "truth table",
+    "graphical": "graphical function",
+    "matlab": "function",
+    "simulink": "function",
+}
+
+
+def _references(chart: Chart) -> tuple[dict[str, str], dict[str, str]]:
+    """Return the name and path of every state and function, keyed by the XML id.
+
+    Names are what the output uses; the id only exists inside the parser to tie
+    a transition's endpoints back to what they point at, and never reaches the
+    JSON.
+    """
+    parents: dict[str, str] = {}
+    names: dict[str, str] = {}
+    unnamed: Counter[str] = Counter()
+    for state in chart.states:
+        name = state.name.strip()
+        if not name:
+            unnamed["state"] += 1
+            name = f"unnamed state {unnamed['state']}"
+        names[state.ssid] = name
+        parents[state.ssid] = state.parent
+    for function in chart.functions:
+        name = function.name.strip()
+        if not name:
+            fallback = _UNNAMED.get(function.kind, "function")
+            unnamed[fallback] += 1
+            name = f"{fallback} {unnamed[fallback]}"
+        names[function.ssid] = name
+        parents[function.ssid] = function.parent
 
     def walk(ssid: str, seen: tuple[str, ...] = ()) -> str:
-        name = names.get(ssid, ssid)
+        name = names.get(ssid, "")
         parent = parents.get(ssid, "")
-        if not parent or parent in seen or parent not in names:
+        if not parent or parent not in names or parent in seen:
             return name
         return f"{walk(parent, (*seen, ssid))}/{name}"
 
-    return {ssid: walk(ssid) for ssid in names}
+    return names, {ssid: walk(ssid) for ssid in names}
 
 
-def _state_json(state: State, path: str) -> dict:
+def _reference(names: dict[str, str], paths: dict[str, str]) -> dict[str, str]:
+    """Name every state and function; qualify repeated names with their path."""
+    counts = Counter(names.values())
+    return {
+        ssid: paths[ssid] if counts[name] > 1 else name for ssid, name in names.items()
+    }
+
+
+def _order_key(transition: Transition) -> int:
+    try:
+        return int(transition.order)
+    except (TypeError, ValueError):
+        return 0
+
+
+def _transition_parts(transition: Transition) -> dict[str, str]:
+    parts = transition_label(transition.label)
+    return {
+        "event": parts["event"],
+        "condition": parts["condition"],
+        "condition_action": parts["condition_action"],
+        "action": parts["transition_action"],
+    }
+
+
+def _junction_label(junction: Junction, index: int, paths: dict[str, str],
+                    names: dict[str, str]) -> str:
+    """Name a junction by the container it sits in; it has no name of its own."""
+    container = paths.get(junction.parent) or names.get(junction.parent, "")
+    return f"{container or 'chart'} 里的 junction {index}"
+
+
+def _junction_paths(
+    transition: Transition,
+    out_edges: dict[str, list[Transition]],
+    junction_ssids: dict[str, Junction],
+) -> list[tuple[list[Transition], str]]:
+    """Follow a transition through the junctions it enters.
+
+    Returns the transitions it passes and the state it finally reaches; a
+    junction that branches yields one entry per branch.
+    """
+    found: list[tuple[list[Transition], str]] = []
+
+    def walk(prefix: list[Transition], node: str, seen: frozenset[str]) -> None:
+        if len(found) >= _MAX_JUNCTION_PATHS or len(prefix) > _MAX_JUNCTION_HOPS:
+            raise _Overflow
+        edges = out_edges.get(node, []) if node in junction_ssids else []
+        if not edges:
+            found.append((prefix, node))
+            return
+        for edge in edges:
+            if edge.destination in seen:
+                raise _Overflow
+            walk([*prefix, edge], edge.destination, seen | {edge.destination})
+
+    first = transition.destination
+    walk([transition], first, frozenset({first}) if first in junction_ssids else frozenset())
+    return found
+
+
+def _collapse(chart: Chart, names: dict[str, str], paths: dict[str, str]) -> dict[str, list[dict]]:
+    """Write each transition as the state-to-state path it describes.
+
+    Junctions carry no name on the canvas, so instead of naming them the
+    transition runs from its source through the junction's own condition and
+    action to the state it ends in; a junction that branches becomes one entry
+    per branch, each with its own order.
+    """
+    ref = _reference(names, paths)
+    junction_ssids = {junction.ssid: junction for junction in chart.junctions}
+    junction_index = {
+        junction.ssid: position
+        for position, junction in enumerate(chart.junctions, start=1)
+    }
+    out_edges: dict[str, list[Transition]] = defaultdict(list)
+    for transition in chart.transitions:
+        if transition.source in junction_ssids:
+            out_edges[transition.source].append(transition)
+    for edges in out_edges.values():
+        edges.sort(key=_order_key)
+
+    def junction_ref(ssid: str) -> str:
+        junction = junction_ssids[ssid]
+        return _junction_label(junction, junction_index[ssid], paths, names)
+
+    def raw(transition: Transition, destination: str) -> dict:
+        source = ref.get(transition.source) or (
+            junction_ref(transition.source) if transition.source in junction_ssids else None
+        )
+        target = ref.get(destination) or (
+            junction_ref(destination) if destination in junction_ssids else None
+        )
+        payload = {
+            "from": source,
+            "to": target,
+            **_transition_parts(transition),
+            "order": transition.order,
+        }
+        if not source:
+            payload.pop("from")
+            payload["initial"] = True
+        return _compact(payload)
+
+    scoped: dict[str, list[dict]] = defaultdict(list)
+    followed: set[str] = set()
+    for transition in chart.transitions:
+        if transition.source in junction_ssids:
+            continue
+        try:
+            found = _junction_paths(transition, out_edges, junction_ssids)
+        except _Overflow:
+            scoped[transition.scope].append(raw(transition, transition.destination))
+            continue
+        for prefix, destination in found:
+            followed.update(step.ssid for step in prefix[1:])
+            head = prefix[0]
+            payload = {
+                "from": ref.get(head.source),
+                "to": ref.get(destination),
+                **_transition_parts(head),
+                "order": head.order,
+            }
+            if prefix[1:]:
+                payload["via"] = [
+                    _compact({**_transition_parts(step), "order": step.order})
+                    for step in prefix[1:]
+                ]
+            if not payload["from"]:
+                payload.pop("from")
+                payload["initial"] = True
+            if not payload.get("to"):
+                # The path ends on a junction nothing continues from, so it
+                # leaves the state (or the chart entry) without a target.
+                payload.pop("to", None)
+            scoped[transition.scope].append(_compact(payload))
+
+    # A junction nothing leads into still carries a condition of its own; keep it
+    # rather than dropping what the chart says.
+    for transition in chart.transitions:
+        if transition.source in junction_ssids and transition.ssid not in followed:
+            scoped[transition.scope].append(raw(transition, transition.destination))
+            followed.add(transition.ssid)
+    return scoped
+
+
+def _is_function_interface(item: Data) -> bool:
+    """Function arguments live in the function entry, not in the chart's data list."""
+    return item.scope in {"FUNCTION_INPUT_DATA", "FUNCTION_OUTPUT_DATA"}
+
+
+def _state_json(state: State, name: str) -> dict:
+    parallel = state.state_type == "AND_STATE" or state.decomposition == "PARALLEL_STATE"
     payload = {
-        "id": state.ssid,
-        "name": state.name,
-        "path": path,
-        "type": state.state_type,
-        "decomposition": state.decomposition,
-        "parent": state.parent or None,
+        "name": name,
+        "parallel": True if parallel else "",
+        "box": True if state.is_box else "",
         "active_state_output": state.active_state_output,
         **state_actions(state.label),
     }
     return _compact(payload)
 
 
-def _function_json(function: Function, path: str, data: list[Data]) -> dict:
+def _function_json(function: Function, name: str, data: list[Data]) -> dict:
     own = [item for item in data if item.parent == function.ssid]
     payload = {
-        "id": function.ssid,
-        "name": function.name,
-        "path": path,
+        "name": name,
         "kind": function.kind,
-        "parent": function.parent or None,
         "signature": function.signature,
         "block": function.block,
         "inputs": [item.name for item in own if item.scope == "FUNCTION_INPUT_DATA"],
@@ -538,114 +734,93 @@ def _function_json(function: Function, path: str, data: list[Data]) -> dict:
     return _compact(payload)
 
 
+def _data_json(item: Data) -> dict:
+    return _compact(
+        {
+            "name": item.name,
+            "scope": item.scope,
+            "type": item.data_type,
+            "size": item.size,
+            "initial_value": item.initial_value,
+        }
+    )
+
+
+def _event_json(event: Event) -> dict:
+    return _compact(
+        {
+            "name": event.name,
+            "scope": event.scope,
+            "trigger": event.trigger,
+            "tag": event.tag,
+        }
+    )
+
+
 def chart_json(chart: Chart) -> dict:
     """Return one chart as the JSON document written next to its subsystem."""
-    names = _component_names(chart)
-    kinds = _component_kinds(chart)
-    paths = _paths(chart)
+    names, paths = _references(chart)
+    scoped = _collapse(chart, names, paths)
 
-    def endpoint(ssid: str) -> tuple[str | None, str | None, str]:
-        if not ssid:
-            return None, None, "default"
-        return ssid, names.get(ssid), kinds.get(ssid, "unknown")
+    containers: dict[str, _Container] = {"": _Container("", "chart")}
+    for state in chart.states:
+        containers[state.ssid] = _Container(state.ssid, "state", state)
+    for function in chart.functions:
+        containers[function.ssid] = _Container(function.ssid, "function", function)
 
-    transitions = []
-    for transition in chart.transitions:
-        source, source_name, source_kind = endpoint(transition.source)
-        target, target_name, target_kind = endpoint(transition.destination)
-        payload = {
-            "id": transition.ssid,
-            "order": transition.order,
-            "from": source,
-            "from_name": source_name,
-            "from_kind": source_kind,
-            "to": target,
-            "to_name": target_name,
-            "to_kind": target_kind,
-            **({"scope": transition.scope} if transition.scope else {}),
-            **_name_of("scope_name", transition.scope, names),
-            **transition_label(transition.label),
-        }
-        transitions.append(_compact(payload))
+    def place(ssid: str) -> _Container:
+        return containers.get(ssid) or containers[""]
 
-    return {
+    for state in chart.states:
+        place(state.parent).states.append(state.ssid)
+    for function in chart.functions:
+        place(function.parent).functions.append(function.ssid)
+    for scope, transitions in scoped.items():
+        place(scope).transitions.extend(transitions)
+    for note in chart.notes:
+        place(note.parent).notes.append(note.text)
+    for item in chart.data:
+        if _is_function_interface(item):
+            continue
+        place(item.parent).data.append(_data_json(item))
+    for event in chart.events:
+        place(event.parent).events.append(_event_json(event))
+
+    def render(container: _Container) -> dict:
+        if container.kind == "state":
+            payload = _state_json(container.item, names[container.ssid])
+        elif container.kind == "function":
+            payload = _function_json(container.item, names[container.ssid], chart.data)
+        else:
+            payload = {}
+        if container.states:
+            payload["states"] = [render(containers[ssid]) for ssid in container.states]
+        if container.functions:
+            payload["functions"] = [render(containers[ssid]) for ssid in container.functions]
+        if container.transitions:
+            payload["transitions"] = container.transitions
+        if container.notes:
+            payload["notes"] = container.notes
+        if container.data:
+            payload["data"] = container.data
+        if container.events:
+            payload["events"] = container.events
+        return payload
+
+    chart_level = render(containers[""])
+    total_transitions = sum(len(items) for items in scoped.values())
+    payload = {
         "schema": STATE_FLOW_SCHEMA,
-        "chart_id": chart.chart_id,
         "chart": chart.name,
         "action_language": chart.action_language,
         "summary": {
             "states": len(chart.states),
             "functions": len(chart.functions),
             "notes": len(chart.notes),
-            "junctions": len(chart.junctions),
-            "transitions": len(chart.transitions),
+            "transitions": total_transitions,
             "events": len(chart.events),
             "data": len([item for item in chart.data if not _is_function_interface(item)]),
         },
-        "states": [_state_json(state, paths[state.ssid]) for state in chart.states],
-        "functions": [
-            _function_json(function, paths[function.ssid], chart.data)
-            for function in chart.functions
-        ],
-        "notes": [
-            _compact(
-                {
-                    "id": note.ssid,
-                    "text": note.text,
-                    "parent": note.parent or None,
-                    **_name_of("parent_name", note.parent, names),
-                }
-            )
-            for note in chart.notes
-        ],
-        "junctions": [
-            _compact(
-                {
-                    "id": junction.ssid,
-                    "name": junction.name,
-                    "type": junction.junction_type,
-                    "parent": junction.parent or None,
-                    **_name_of("parent_name", junction.parent, names),
-                }
-            )
-            for junction in chart.junctions
-        ],
-        "transitions": transitions,
-        "events": [
-            _compact(
-                {
-                    "id": event.ssid,
-                    "name": event.name,
-                    "scope": event.scope,
-                    "trigger": event.trigger,
-                    "tag": event.tag,
-                }
-            )
-            for event in chart.events
-        ],
-        "data": [
-            _compact(
-                {
-                    "id": item.ssid,
-                    "name": item.name,
-                    "scope": item.scope,
-                    "data_type": item.data_type,
-                    "size": item.size,
-                    "initial_value": item.initial_value,
-                    "parent": item.parent or None,
-                    **_name_of("parent_name", item.parent, names),
-                }
-            )
-            for item in chart.data
-            if not _is_function_interface(item)
-        ],
+        **chart_level,
     }
-
-
-def _name_of(key: str, ssid: str, names: dict[str, str]) -> dict[str, str]:
-    return {key: names[ssid]} if ssid in names else {}
-
-
-def _is_function_interface(item: Data) -> bool:
-    """Function arguments live in the function entry, not in the chart's data list."""
-    return item.scope in {"FUNCTION_INPUT_DATA", "FUNCTION_OUTPUT_DATA"}
+    return payload

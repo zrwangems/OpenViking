@@ -200,87 +200,179 @@ def test_slx_deduplicates_colliding_directory_names():
     assert len(documents) == len(set(documents))
 
 
-def test_stateflow_charts_keep_state_actions_and_components():
+def walk_states(node):
+    for state in node.get("states", []):
+        yield state
+        yield from walk_states(state)
+
+
+def walk_paths(node, prefix=()):
+    for state in node.get("states", []):
+        path = (*prefix, state["name"])
+        yield "/".join(path), state
+        yield from walk_paths(state, path)
+
+
+def find_state(chart, name):
+    return next(state for state in walk_states(chart) if state["name"] == name)
+
+
+def find_by_path(chart, path):
+    return next(state for current, state in walk_paths(chart) if current == path)
+
+
+def all_transitions(node):
+    yield from node.get("transitions", [])
+    for state in node.get("states", []):
+        yield from all_transitions(state)
+    for function in node.get("functions", []):
+        yield from all_transitions(function)
+
+
+def keys_of(value):
+    if isinstance(value, dict):
+        for key, item in value.items():
+            yield key
+            yield from keys_of(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from keys_of(item)
+
+
+def test_stateflow_charts_name_every_component_and_keep_actions():
     charts = parse_stateflow(CONTROLLER)
-    assert [chart.chart_id for chart in charts] == ["798", "962"]
+    assert [chart.name for chart in charts] == [
+        "IPS Supervisory Control",
+        "IPS Supervisory Control/Operating_Modes.EngOnCalc/Check Power/Timer",
+    ]
 
     timer = chart_json(charts[1])
     assert timer["schema"] == STATE_FLOW_SCHEMA
-    assert timer["summary"]["states"] == 3
-    assert timer["summary"]["transitions"] == 5
+    assert timer["summary"] == {
+        "states": 3,
+        "functions": 0,
+        "notes": 0,
+        "transitions": 5,
+        "events": 0,
+        "data": 2,
+    }
     states = {state["name"]: state for state in timer["states"]}
     assert states["Wait"]["during"] == "Out = 0;"
     assert states["TimerDone"]["during"] == "Out = 1;"
-    assert all(state["parent"] is None for state in timer["states"])
+    assert not any("states" in state for state in timer["states"])
     timed = next(item for item in timer["transitions"] if item.get("event") == "after(0.1, sec)")
-    assert (timed["from_name"], timed["to_name"]) == ("Wait", "TimerDone")
-    conditioned = next(item for item in timer["transitions"] if item["id"] == "4")
-    assert conditioned["condition"] == "In"
-    assert conditioned["from_name"] == "StartTimer"
-    default = next(item for item in timer["transitions"] if item["from_kind"] == "default")
-    assert default["to_name"] == "StartTimer"
+    assert (timed["from"], timed["to"]) == ("Wait", "TimerDone")
+    assert next(item for item in timer["transitions"] if item.get("condition") == "In")["from"] == (
+        "StartTimer"
+    )
+    default = next(item for item in timer["transitions"] if item.get("initial"))
+    assert "from" not in default
+    assert default["to"] == "StartTimer"
 
     supervisory = chart_json(charts[0])
-    states = {state["name"]: state for state in supervisory["states"]}
-    assert "HEV" in states
-    assert states["Operating_Modes"]["entry"] == states["Operating_Modes"]["during"]
-    assert states["EV"]["entry"] == "OpMode = 1;\nEngPwrCmd = 0;\nMotMode = 1;"
-    assert states["Driving"]["path"] == "Operating_Modes/Driving"
-    assert len(supervisory["transitions"]) == 35
-    assert "EngOnReq = EngOnCalc" in json.dumps(supervisory, ensure_ascii=False)
-
-    functions = {function["name"]: function for function in supervisory["functions"]}
-    op_mode = functions["OpMode3"]
+    operating = find_state(supervisory, "Operating_Modes")
+    assert operating["parallel"] is True
+    assert operating["entry"] == operating["during"]
+    driving = find_state(supervisory, "Driving")
+    assert driving in operating["states"]
+    assert find_state(supervisory, "EV")["entry"] == "OpMode = 1;\nEngPwrCmd = 0;\nMotMode = 1;"
+    assert find_state(supervisory, "EV") in driving["states"]
+    assert find_state(supervisory, "Low_Power_Charge_Sustain") in find_state(
+        supervisory, "HEV"
+    )["states"]
+    assert len(list(all_transitions(supervisory))) == 35
+    # Names repeat below different parents, so those references carry the path.
+    references = [
+        item.get("from") for item in all_transitions(supervisory) if item.get("from")
+    ] + [item.get("to") for item in all_transitions(supervisory) if item.get("to")]
+    assert "Operating_Modes/Wait1" in references
+    assert "Driving/Wait" not in references
+    op_mode = find_state(supervisory, "Low_Power_Charge_Sustain")["functions"][0]
+    assert op_mode["name"] == "OpMode3"
     assert op_mode["kind"] == "simulink"
-    assert op_mode["path"].endswith("HEV/Low_Power_Charge_Sustain/OpMode3")
+    assert op_mode["block"].endswith("Low_Power_Charge_Sustain.OpMode3")
     assert op_mode["inputs"][:2] == ["WhlPwrCmd", "ChrgPwr"]
     assert op_mode["outputs"] == ["EngPwrCmd", "MotPwrCmd"]
-    assert functions["TrqCalc"]["kind"] == "simulink"
-    assert "FUNC_STATE" not in {state["type"] for state in supervisory["states"]}
 
 
 def test_stateflow_sfx_keeps_hierarchy_notes_and_matlab_functions():
     chart = chart_json(parse_stateflow(SAMPLE / "model" / "TargetStateChart.sfx")[0])
     assert chart["schema"] == STATE_FLOW_SCHEMA
+    assert chart["chart"] == "TargetStateChart"
     assert chart["summary"] == {
         "states": 12,
         "functions": 3,
         "notes": 9,
-        "junctions": 2,
-        "transitions": 22,
+        "transitions": 20,
         "events": 12,
         "data": 8,
     }
 
-    states = {state["name"]: state for state in chart["states"]}
-    assert states["Unloaded"]["path"] == "Status/Connected/Unloaded"
-    assert states["Running"]["path"] == "Status/Connected/Loaded/Running"
-    assert states["Connected"]["path"] == "Status/Connected"
-    assert states["Status"]["parent"] is None
-    assert states["Disconnected"]["entry"].endswith("notify(tg_, 'Disconnected');\nend")
-    assert states["Connected"]["exit"] == "notify(tg_, 'Disconnecting');\ntg_.disconnectTarget();"
+    status = chart["states"][0]
+    assert status["name"] == "Status"
+    assert status["parallel"] is True
+    connected = find_state(chart, "Connected")
+    loaded = find_state(chart, "Loaded")
+    assert connected in status["states"]
+    assert loaded in connected["states"]
+    assert find_state(chart, "Running") in loaded["states"]
+    assert find_state(chart, "Running")["entry"] == "EnterRunningState();"
+    assert find_state(chart, "Disconnected")["entry"].endswith(
+        "notify(tg_, 'Disconnected');\nend"
+    )
+    assert connected["exit"] == "notify(tg_, 'Disconnecting');\ntg_.disconnectTarget();"
+
+    # Notes stay with the state whose transitions they explain.
+    assert any(
+        note.startswith("% Path taken when user executes\n% tg.connect")
+        for note in connected["notes"]
+    )
+    assert all("DOCTYPE" not in note for note in connected["notes"])
+    assert not any("DOCTYPE" in json.dumps(chart, ensure_ascii=False) for _ in [0])
+
+    # A transition through a junction is written as the path it makes.
+    initial = [item for item in loaded["transitions"] if item.get("initial")]
+    assert {item["to"] for item in initial} == {"NotRunning", "PostStart"}
+    guarded = next(item for item in initial if item["to"] == "PostStart")
+    assert guarded["via"][0]["condition"] == "runningOnConnect_"
+    assert "Running" in {item["to"] for item in loaded["transitions"]}
+    assert not any("junction" in json.dumps(chart, ensure_ascii=False).lower() for _ in [0])
 
     functions = {function["name"]: function for function in chart["functions"]}
     assert functions["EnterUnloadedState"]["kind"] == "matlab"
     assert "Stopped" in functions["EnterUnloadedState"]["notifies"]
-    assert "EnterRunningState" in functions
     assert functions["EnterRunningState"]["body"].startswith("% The 'Running' state")
 
-    notes = {note["id"]: note for note in chart["notes"]}
-    assert notes["629"]["text"].startswith("% Path taken when user executes")
-    assert notes["629"]["parent_name"] == "Connected"
-    assert "DOCTYPE" not in json.dumps(chart, ensure_ascii=False)
+    data = {item["name"]: item for item in chart["data"]}
+    assert data["disconnectEV_"]["initial_value"] == "false"
+    assert data["disconnectEV_"]["scope"] == "LOCAL_DATA"
+    assert {item["name"] for item in chart["events"]} >= {"connected", "disconnect", "loaded"}
 
-    junctions = {item["id"]: item for item in chart["junctions"]}
-    assert junctions["458"]["name"] == "Junction 458"
-    transitions = {item["id"]: item for item in chart["transitions"]}
-    assert transitions["485"]["from_kind"] == "default"
-    assert transitions["486"]["from_name"] == "Junction 483"
-    assert transitions["234"]["condition"] == "runningOnConnect_"
-    assert transitions["564"]["from_name"] == transitions["564"]["to_name"] == "Loading"
-    assert transitions["457"]["event"] == "disconnect"
-    assert transitions["457"]["condition_action"] == "disconnectEV_ = true;"
-    assert transitions["489"]["scope_name"] == "Connected"
+
+def test_stateflow_output_carries_no_machine_identifiers():
+    charts = [
+        chart_json(chart)
+        for chart in parse_stateflow(SAMPLE / "model" / "TargetStateChart.sfx")
+    ] + [chart_json(chart) for chart in parse_stateflow(CONTROLLER)]
+    for chart in charts:
+        keys = set(keys_of(chart))
+        assert not keys & {"id", "ssid", "SSID", "chart_id", "parent", "path"}
+        assert "chart_id" not in json.dumps(chart)
+        for transition in all_transitions(chart):
+            assert set(transition) <= {
+                "from",
+                "to",
+                "via",
+                "event",
+                "condition",
+                "condition_action",
+                "action",
+                "order",
+                "initial",
+                "inner",
+            }
+            for name in (transition.get("from"), transition.get("to")):
+                assert name is None or not name.isdigit()
 
 
 def test_stateflow_generic_chart_components(tmp_path):
@@ -314,6 +406,14 @@ bind:
           <P Name="conditionTable">[x &gt; 0]</P>
           <P Name="actionTable">y = 1;</P>
         </truthTable>
+        <state SSID="8">
+          <P Name="labelString">Done</P>
+          <P Name="type">OR_STATE</P>
+        </state>
+        <state SSID="9">
+          <P Name="labelString">Idle</P>
+          <P Name="type">OR_STATE</P>
+        </state>
         <junction SSID="5">
           <P Name="type">CONNECTIVE_JUNCTION</P>
         </junction>
@@ -323,8 +423,36 @@ bind:
           <src><P Name="SSID">1</P></src>
           <dst><P Name="SSID">5</P></dst>
         </transition>
+        <transition SSID="7">
+          <P Name="labelString">[y == 3]</P>
+          <P Name="executionOrder">1</P>
+          <src><P Name="SSID">5</P></src>
+          <dst><P Name="SSID">8</P></dst>
+        </transition>
+        <transition SSID="10">
+          <P Name="labelString">after(1, sec)</P>
+          <P Name="executionOrder">3</P>
+          <src><P Name="SSID">9</P></src>
+          <dst><P Name="SSID">1</P></dst>
+        </transition>
         <event SSID="12"><P Name="name">E1</P><P Name="scope">INPUT_EVENT</P><P Name="trigger">RISING_EDGE_EVENT</P></event>
         <data SSID="13" name="x"><P Name="scope">INPUT_DATA</P><P Name="dataType">double</P></data>
+      </Children>
+    </state>
+    <state SSID="20">
+      <P Name="labelString">Second</P>
+      <P Name="type">OR_STATE</P>
+      <Children>
+        <state SSID="21">
+          <P Name="labelString">Idle</P>
+          <P Name="type">OR_STATE</P>
+        </state>
+        <transition SSID="22">
+          <P Name="labelString">[x &lt; 0]</P>
+          <P Name="executionOrder">1</P>
+          <src><P Name="SSID">20</P></src>
+          <dst><P Name="SSID">21</P></dst>
+        </transition>
       </Children>
     </state>
   </Children>
@@ -336,36 +464,59 @@ bind:
 
     chart = chart_json(parse_stateflow(source)[0])
     assert chart["summary"] == {
-        "states": 2,
+        "states": 6,
         "functions": 1,
         "notes": 1,
-        "junctions": 1,
-        "transitions": 1,
+        "transitions": 3,
         "events": 1,
         "data": 1,
     }
-    states = {state["name"]: state for state in chart["states"]}
-    assert states["Top"]["entry"] == states["Top"]["during"] == "x = 1;"
-    assert states["Top"]["exit"] == "x = 0;"
-    assert states["Top"]["on"] == [{"event": "E1", "actions": "y = 1;"}]
-    assert states["Top"]["bind"] == "z = 1;"
-    assert states["Box label"]["type"] == "BOX"
-    assert states["Box label"]["path"] == "Top/Box label"
-    assert chart["notes"][0]["text"] == "% note text"
-    assert chart["notes"][0]["parent_name"] == "Top"
-    function = chart["functions"][0]
+    top = find_state(chart, "Top")
+    assert top["entry"] == top["during"] == "x = 1;"
+    assert top["exit"] == "x = 0;"
+    assert top["on"] == [{"event": "E1", "actions": "y = 1;"}]
+    assert top["bind"] == "z = 1;"
+    assert find_state(chart, "Box label")["box"] is True
+    assert top["notes"] == ["% note text"]
+    assert top["data"] == [
+        {
+            "name": "x",
+            "scope": "INPUT_DATA",
+            "type": "double",
+            "size": "未声明",
+        }
+    ]
+    assert top["events"] == [
+        {"name": "E1", "scope": "INPUT_EVENT", "trigger": "RISING_EDGE_EVENT"}
+    ]
+    function = top["functions"][0]
     assert function["kind"] == "truth_table"
+    assert function["name"] == "truth table 1"
     assert function["properties"] == {"conditionTable": "[x > 0]", "actionTable": "y = 1;"}
-    transition = chart["transitions"][0]
-    assert transition["event"] == "E1"
-    assert transition["condition"] == "x > 0"
-    assert transition["condition_action"] == "y = 2;"
-    assert transition["transition_action"] == "z = 3;"
-    assert transition["to_name"] == "Junction 5"
-    assert chart["events"][0]["trigger"] == "RISING_EDGE_EVENT"
-    assert chart["data"][0]["data_type"] == "double"
 
+    # Two states are called Idle, so every reference to them carries the path.
+    paths = {path for path, _ in walk_paths(chart)}
+    assert {"Top/Idle", "Second/Idle"} <= paths
+    references = {
+        item[key]
+        for item in all_transitions(chart)
+        for key in ("from", "to")
+        if item.get(key, "").endswith("Idle")
+    }
+    assert references == {"Top/Idle", "Second/Idle"}
 
+    # The junction on the Top -> Done path carries its own condition into the path.
+    through = next(
+        item
+        for item in top["transitions"]
+        if item["from"] == "Top" and item["to"] == "Done"
+    )
+    assert through["event"] == "E1"
+    assert through["condition"] == "x > 0"
+    assert through["condition_action"] == "y = 2;"
+    assert through["action"] == "z = 3;"
+    assert through["via"] == [{"condition": "y == 3", "order": "1"}]
+    assert not chart.get("junctions")
 def test_sldd_entries_dimensions_types_and_references():
     dictionary = (
         SAMPLE
@@ -911,8 +1062,16 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     assert (model_root / "main.json").is_file()
     assert (model_root / "IPS_Supervisory_Control" / "main.json").is_file()
     assert (model_root / "Accel_Pedal_to_Traction_Wheel_Torque_Request.json").is_file()
-    timer = model_root / "stateflow" / "chart_962.json"
+    timer = model_root / "stateflow" / "IPS_Supervisory_Control_Operating_Modes.EngOnCalc_Check_Power_Timer.json"
     assert "after(0.1, sec)" in timer.read_text(encoding="utf-8")
+    chart_link = json.loads(
+        (model_root / "IPS_Supervisory_Control" / "main.json").read_text(encoding="utf-8")
+    )["stateflow"][0]
+    assert chart_link == {
+        "chart": "IPS Supervisory Control",
+        "path": "stateflow/IPS_Supervisory_Control.json",
+    }
+    assert (model_root / "stateflow" / "IPS_Supervisory_Control.json").is_file()
     # Every child path in a system JSON resolves inside the artifact.
     for document in docs:
         payload = json.loads(document.read_text(encoding="utf-8"))
