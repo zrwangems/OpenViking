@@ -18,13 +18,17 @@ What this module reads out of it:
 * labels (axis titles, legend entries, display names) that were saved as text.
 
 The exact property names of those values live in MATLAB's private index tables
-and are not decoded yet, so the values are reported as candidates with their
-ranges and shapes rather than as named series.
+and are not decoded yet. The reader therefore works by position: an axes block
+holds its box, its ``[xlim; ylim; zlim]`` table, its labels and its children's
+values in a fixed order, and the class record next to each value run names the
+chart. :func:`read_figure` turns that into axes and series; the candidates below
+stay available for diagnosing a file whose layout differs.
 """
 
 from __future__ import annotations
 
 import io
+import math
 import struct
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -415,6 +419,7 @@ def series(payload: Payload) -> list[dict[str, Any]]:
             "property": block["property"],
             "shape": shape,
             "points": int(primary.size),
+            "slot": block["primary_slot"],
         }
         flat = primary.ravel()
         if block["property"] in _HISTOGRAM_PROPERTIES:
@@ -601,4 +606,416 @@ def candidates(payload: Payload) -> dict[str, Any]:
         "labels": labels[:60],
         "store_bytes": len(payload.store),
         "store_names": len(payload.store_names),
+    }
+
+
+# --- axes and series, in the shape a figure JSON needs ---------------------------
+
+# Classes that draw data; the class record next to a value run names its chart.
+_DATA_CLASSES = tuple(name for name in CHART_CLASSES if name != "TiledChartLayout")
+_CLASS_NAMES = set(CHART_CLASSES) | set(LAYOUT_CLASSES)
+
+# Words the payload uses to name schema parts or property enums, not content.
+_SCHEMA_PREFIXES = ("Axes ", "PolarAxes ", "GeographicAxes", "AxisRuler", "Figure ", "Legend ")
+
+# Property-group names the payload stores next to content: "Axes ColorSpace",
+# "SurfaceBrushable Face", "ColorBar Ruler". They end in one of these words and
+# are never a title, a label or a display name.
+_GROUP_SUFFIXES = frozenset(
+    {
+        "Face",
+        "Container",
+        "Camera",
+        "DataSpace",
+        "ColorSpace",
+        "Backdrop",
+        "BoxFrame",
+        "Ruler",
+        "Label",
+        "LightSource",
+        "Baseline",
+        "Handle",
+        "Handles",
+        "Space",
+        "Group",
+        "Highlight",
+        "MapContainer",
+    }
+)
+_ENUM_WORDS = frozenset(
+    {
+        "none",
+        "auto",
+        "manual",
+        "normalized",
+        "points",
+        "replace",
+        "replacechildren",
+        "add",
+        "remove",
+        "flat",
+        "on",
+        "off",
+        "data",
+        "closereq",
+        "openfig",
+        "interp",
+        "faceted",
+        "ortho",
+        "perspective",
+    }
+)
+
+
+def _content(text: str) -> bool:
+    """Whether a string the figure stores is content (a name, title or label)."""
+    if not text or text in _ENUM_WORDS or text.startswith(_SCHEMA_PREFIXES):
+        return False
+    return text.rsplit(" ", 1)[-1] not in _GROUP_SUFFIXES
+
+
+def _aligned_stream(payload: Payload) -> list[tuple[int, int, str]]:
+    """``(position, reference, name)`` records of the store's value stream.
+
+    Property records and object class records share the same three-word layout;
+    walking them together keeps the word alignment of the file. Unlike
+    :func:`property_records` this also returns the class records, which is what
+    tells one plotted object's series from another's.
+    """
+    import numpy as np
+
+    if not payload.store:
+        return []
+    start, end = store_bounds(payload.store)
+    if end <= start:
+        return []
+    words = np.frombuffer(payload.store[start:end], dtype="<u4")
+    properties = {
+        index: name
+        for index, name in enumerate(payload.store_names)
+        if name and ("_" in name or name.endswith("Mode"))
+    }
+    classes = {
+        index: name for index, name in enumerate(payload.store_names) if name in _CLASS_NAMES
+    }
+    limit = len(payload.entries) + 8
+    records: list[tuple[int, int, str]] = []
+    position = 0
+    while position < len(words) - 2:
+        flag, reference, index = (
+            int(words[position]),
+            int(words[position + 1]),
+            int(words[position + 2]),
+        )
+        value = properties.get(index)
+        if value and flag in (0, 1) and reference < limit:
+            records.append((position, reference, value))
+            position += 3
+            continue
+        # Class records carry no usable flag: a shared class value is written
+        # with a packed flag, a per-object one with 0 or 1.
+        value = classes.get(index)
+        if value and reference < limit:
+            records.append((position, reference, value))
+            position += 3
+            continue
+        position += 1
+    return records
+
+
+# Axes kinds whose block starts with a "Camera" marker of their own.
+_CAMERA_OWNERS = ("Axes", "PolarAxes", "GeographicAxes", "GeographicAxesBase")
+
+
+def _is_axes_start(value: str) -> bool:
+    """Whether a string marks the head of one axes block."""
+    if value == "Axes Additional ChildContainer":
+        return True  # the second y-axis of a yyaxis chart
+    if not value.endswith(" Camera"):
+        return False
+    return value[: -len(" Camera")] in _CAMERA_OWNERS
+
+
+def _blocks(texts: list[tuple[int, str]]) -> list[tuple[int, int]]:
+    """Entry-index ranges of the axes, delimited by each axes' own marker.
+
+    The payload serializes one block per axes; the marker is stored once at the
+    head of each block, so the ranges are contiguous slices of the entry list.
+    """
+    starts = [index for index, value in texts if _is_axes_start(value)]
+    return [
+        (start, starts[position + 1] if position + 1 < len(starts) else 10**9)
+        for position, start in enumerate(starts)
+    ]
+
+
+def _axes_position(entries: list[Entry]) -> list[float] | None:
+    """The axes box, ``[left, bottom, width, height]`` in figure units.
+
+    An axes stores its position twice (``Position`` and ``InnerPosition``), so
+    the repeated four-number array inside the block is the box; a decoration
+    container stores similar numbers only once.
+    """
+    candidates: list[list[float]] = []
+    for entry in entries:
+        values = [float(value) for value in entry.values.ravel()]
+        if len(values) != 4:
+            continue
+        left, bottom, width, height = values
+        if not (0.0 <= left <= 1.0 and 0.0 <= bottom <= 1.0):
+            continue
+        if width <= 0.02 or height <= 0.02 or left + width > 1.5 or bottom + height > 1.5:
+            continue
+        candidates.append(values)
+    if not candidates:
+        return None
+    seen: dict[tuple[float, ...], int] = {}
+    for values in candidates:
+        key = tuple(round(value, 6) for value in values)
+        seen[key] = seen.get(key, 0) + 1
+    repeated = [
+        values
+        for values in candidates
+        if seen[tuple(round(value, 6) for value in values)] > 1
+        and values[2] >= 0.1
+        and values[3] >= 0.1
+    ]
+    if repeated:
+        return repeated[0]
+    sized = [values for values in candidates if values[2] >= 0.2 and values[3] >= 0.2]
+    return sized[0] if sized else candidates[0]
+
+
+def _shortest(value: float) -> float:
+    """A float32 value without the noise its widening to float64 adds.
+
+    Ranges and boxes are stored as single precision, so ``6.199999809265137``
+    is the file's way of writing ``6.2``. Numbers that are not exactly a float32
+    (the axes position, for one) are returned unchanged.
+    """
+    import numpy as np
+
+    if not math.isfinite(value):
+        return value
+    single = np.float32(value)
+    if float(single) != value:
+        return value
+    return float(str(single))
+
+
+def _axes_limits(entries: list[Entry]) -> dict[str, list[float]]:
+    """``x_lim``/``y_lim``/``z_lim`` from the block's ``[xlim; ylim; zlim]`` table."""
+    for entry in entries:
+        shape = tuple(entry.shape)
+        if len(shape) != 2 or shape[1] != 2 or shape[0] not in (2, 3):
+            continue
+        values = [_shortest(float(value)) for value in entry.values.ravel()]
+        limits = {"x_lim": values[0:2], "y_lim": values[2:4]}
+        if len(values) >= 6:
+            limits["z_lim"] = values[4:6]
+        return limits
+    return {}
+
+
+def _axes_labels(texts: list[tuple[int, str]]) -> dict[str, str]:
+    """Title and axis labels, from the marker each one is stored in front of."""
+    found = {"title": "", "x_label": "", "y_label": ""}
+    for position, (_index, value) in enumerate(texts):
+        if position == 0 or not _content(texts[position - 1][1]):
+            continue
+        candidate = texts[position - 1][1]
+        if value == "Axes Title":
+            found["title"] = candidate
+        elif value == "AxisRulerBase Label":
+            if not found["x_label"]:
+                found["x_label"] = candidate
+            elif not found["y_label"]:
+                found["y_label"] = candidate
+    return {key: value for key, value in found.items() if value}
+
+
+def _display_names(texts: list[tuple[int, str]], count: int) -> list[str]:
+    """The last ``count`` content strings before the child container marker.
+
+    Each plotted object stores its ``DisplayName`` in front of the axes' child
+    container, in the order the objects were drawn.
+    """
+    if not count:
+        return []
+    stop = next((index for index, value in texts if value == "Axes ChildContainer"), None)
+    if stop is None:
+        return []
+    before = [value for index, value in texts if index < stop and _content(value)]
+    return before[-count:]
+
+
+def _nearest_class(
+    position: int | None,
+    records: list[tuple[int, str]],
+    used: set[int],
+) -> str | None:
+    """The class record closest to one value run, each record used once.
+
+    A data object's class is recorded next to the object, but the exact offset
+    differs between classes (a ``Bar`` records its class before its values, a
+    ``Line`` after), so the nearest unused record is the reliable choice.
+    """
+    if position is None:
+        return None
+    best: tuple[int, int] | None = None
+    for index, (record_position, name) in enumerate(records):
+        if index in used:
+            continue
+        distance = abs(record_position - position)
+        if best is None or distance < best[0]:
+            best = (distance, index)
+    if best is None:
+        return None
+    used.add(best[1])
+    return records[best[1]][1]
+
+
+def _is_box_record(item: dict[str, Any], position: list[float] | None) -> bool:
+    """Whether a candidate series is really an axes or figure box.
+
+    A ``Position`` value run looks like plotted data to the value-zone reader:
+    ``XData`` may point at the axes box, ``ZData`` at the figure's pixel box.
+    """
+    values = item.get("y") or []
+    if item.get("points") != 4 or len(values) != 4:
+        return False
+    if position is not None and all(
+        abs(float(left) - float(right)) <= 1e-9 for left, right in zip(values, position)
+    ):
+        return True
+    if item.get("property") == "ZData_I" and item.get("index") and max(values) > 1.0:
+        return True
+    return False
+
+
+def _block_for(slot: int, blocks: list[tuple[int, int]]) -> int:
+    """Index of the block a value slot belongs to; nearest block when outside."""
+    best = 0
+    best_distance: int | None = None
+    for position, (start, end) in enumerate(blocks):
+        if start <= slot < end:
+            return position
+        distance = start - slot if slot < start else slot - end + 1
+        if best_distance is None or distance < best_distance:
+            best, best_distance = position, distance
+    return best
+
+
+def _figure_name(texts: list[tuple[int, str]]) -> str | None:
+    """The figure's ``Name``, stored after the default close request callback.
+
+    Unnamed figures keep a property-group string there instead, which carries a
+    space; a name does not (the payload writes it as one plain string).
+    """
+    for position, (_index, value) in enumerate(texts):
+        if value != "closereq":
+            continue
+        follower = texts[position + 1][1] if position + 1 < len(texts) else ""
+        if _content(follower) and " " not in follower:
+            return follower
+        break
+    return None
+
+
+def read_figure(payload: Payload) -> dict[str, Any]:
+    """Axes, labels and series of one R2025b figure, from the MCOS payload.
+
+    Returns ``{"name": str | None, "layout": {...}, "axes": [...]}``. Each axes
+    carries its subplot cell, axis ranges, title and labels, legend entries and
+    the plotted series with class, name and values, in drawing order. The
+    figure name, the labels and the display names are read from where the
+    payload stores them (in front of the property marker), not decoded by index.
+    """
+    entries = payload.entries
+    texts = [(entry.index, entry.text) for entry in entries if entry.kind == "text" and entry.text]
+    numeric = [entry for entry in entries if entry.kind == "numbers"]
+    blocks = _blocks(texts)
+    if not blocks:
+        return {"name": None, "layout": {"rows": 1, "columns": 1}, "axes": []}
+
+    stream = _aligned_stream(payload)
+    value_positions = {
+        reference + _PRIMARY_OFFSET: position
+        for position, reference, name in stream
+        if name in _DATA_PROPERTIES
+    }
+    class_records = [
+        (position, name)
+        for position, _reference, name in stream
+        if name in _DATA_CLASSES
+    ]
+    used_classes: set[int] = set()
+
+    # Series belong to the block whose entry range holds them; a yyaxis' extra
+    # axes stores its values in front of the first marker, so the nearest block
+    # takes what no range covers.
+    by_block: list[list[dict[str, Any]]] = [[] for _ in blocks]
+    for item in series(payload):
+        slot = item.get("slot")
+        if isinstance(slot, int):
+            by_block[_block_for(slot, blocks)].append(item)
+
+    axes: list[dict[str, Any]] = []
+    for block_index, (start, end) in enumerate(blocks):
+        block_texts = [(index, value) for index, value in texts if start <= index < end]
+        block_numbers = [entry for entry in numeric if start <= entry.index < end]
+        position = _axes_position(block_numbers)
+        limits = _axes_limits(block_numbers)
+
+        items = sorted(by_block[block_index], key=lambda item: item["slot"])
+        items = [
+            item
+            for item in items
+            if not _is_box_record(item, position)
+        ]
+        names = _display_names(block_texts, len(items))
+        plotted = []
+        for order, item in enumerate(items):
+            fields: dict[str, Any] = {}
+            for key in ("x", "y", "z", "theta", "r", "bin_edges"):
+                value = item.get(key)
+                if value is not None:
+                    fields[key] = value
+            source = _nearest_class(
+                value_positions.get(item["slot"]), class_records, used_classes
+            )
+            plotted.append(
+                {
+                    "class": source,
+                    "name": names[order] if order < len(names) else f"data{order + 1}",
+                    "fields": fields,
+                }
+            )
+        axes.append(
+            {"position": position, **limits, **_axes_labels(block_texts), "series": plotted}
+        )
+
+    positions = [item["position"] for item in axes if item["position"]]
+    lefts = sorted({round(value[0], 2) for value in positions})
+    bottoms = sorted({round(value[1], 2) for value in positions}, reverse=True)
+    rows = len(bottoms) or 1
+    columns = len(lefts) or 1
+    for item in axes:
+        item["rows"] = rows
+        item["columns"] = columns
+        cell = item["position"]
+        if cell and lefts and bottoms:
+            column = min(range(len(lefts)), key=lambda i: abs(lefts[i] - round(cell[0], 2)))
+            row = min(range(len(bottoms)), key=lambda i: abs(bottoms[i] - round(cell[1], 2)))
+            item["column"] = column + 1
+            item["row"] = row + 1
+        else:
+            item["row"] = 0
+            item["column"] = 0
+    axes.sort(key=lambda item: (item["row"], item["column"]))
+
+    return {
+        "name": _figure_name(texts),
+        "layout": {"rows": rows, "columns": columns},
+        "axes": axes,
     }
