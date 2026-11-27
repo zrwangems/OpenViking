@@ -43,6 +43,10 @@ _CHART_TYPES = {
     "STATE_EVENT_TABLE_CHART": "state transition table",
 }
 _MACHINES = {"MOORE_MACHINE": "Moore", "MEALY_MACHINE": "Mealy"}
+#: The language chart actions are written in, as Stateflow stores it. The
+#: corpus settles the two numbers: charts with 2 use ``end``, ``~=`` and ``%``,
+#: charts with 1 use ``//`` and ``!=``.
+_ACTION_LANGUAGES = {"1": "C", "2": "MATLAB"}
 
 _ACTION_ALIASES = {
     "entry": "entry",
@@ -314,6 +318,12 @@ def _read_block(text: str, start: int, opener: str) -> tuple[str, int]:
             if char == quote:
                 quote = ""
         elif char in "\"'":
+            # After a value a single quote is MATLAB's transpose (x'), not the
+            # start of a string; reading it as one swallows the rest of the block.
+            previous = text[index - 1] if index else ""
+            if char == "'" and (previous.isalnum() or previous in "_)]}.'"):
+                index += 1
+                continue
             quote = char
         elif char == opener:
             depth += 1
@@ -463,7 +473,9 @@ def _parse_chart(root, member: str) -> Chart:
     chart = Chart(
         name=props.get("name", Path(member).stem),
         chart_type=_CHART_TYPES.get(props.get("type", ""), "state chart"),
-        action_language=props.get("actionLanguage", "未声明"),
+        action_language=_ACTION_LANGUAGES.get(
+            props.get("actionLanguage", ""), "未声明"
+        ),
         parallel=props.get("decomposition") == "SET_CHART",
         sample_time=props.get("sampleTime", ""),
         machine=_MACHINES.get(props.get("stateMachineType", ""), ""),
@@ -1279,8 +1291,9 @@ def _function_json(function: Function, name: str, data: list[Data]) -> dict:
         "notifies": function.notifies,
         "properties": function.properties,
         "truth_table": function.table or {},
-        # A truth table's MATLAB body is generated from the table itself.
-        "body": "" if function.kind == "truth_table" else function.body,
+        # For a truth table the table is the source and the body is what
+        # Stateflow generates from it; both are kept, the table first.
+        "body": function.body,
     }
     return _compact(payload)
 

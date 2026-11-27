@@ -22,6 +22,7 @@ from openviking.parse.parsers.matlab.stateflow import (
     STATE_FLOW_SCHEMA,
     chart_json,
     parse_stateflow,
+    transition_label,
 )
 from openviking.parse.parsers.matlab.structured import (
     parse_fig_tree,
@@ -651,7 +652,24 @@ def test_stateflow_example_truth_table_reads_its_table():
         "Turn On Cooling (This implicitly reduces humidity)"
     )
     assert table["actions"][0]["action"] == "CoolOn:\ncooler = 1;\nheater = 0;\nhumidifier = 0;"
-    assert "body" not in document["functions"][0]  # generated from the table
+    # The table is the source, the generated code is what actually runs.
+    assert document["functions"][0]["body"].startswith("aVarTruthTableCondition_1")
+
+
+def test_transition_label_keeps_a_matlab_transpose():
+    assert transition_label("[A' * B > 0]")["condition"] == "A' * B > 0"
+    parts = transition_label("[x' > 0]{y = 1;}")
+    assert parts["condition"] == "x' > 0"
+    assert parts["condition_action"] == "y = 1;"
+    # A quote in front of a value still opens a string.
+    assert transition_label("[strcmp(s,'abc')]")["condition"] == "strcmp(s,'abc')"
+
+
+def test_stateflow_example_names_the_action_language():
+    # Chart actions are written in MATLAB by default; these charts say C.
+    assert example_documents("Traffic Controller")[0]["action_language"] == "MATLAB"
+    c_chart = example_documents("SaturationEnabled")[0]
+    assert c_chart["action_language"] == "C"
 
 
 def test_stateflow_example_state_transition_table_is_a_state_machine():
