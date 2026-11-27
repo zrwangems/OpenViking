@@ -65,13 +65,13 @@ _FORMATS = {
     ),
     ".mltbx": FormatSpec(
         "MATLAB toolbox installer",
-        "ZIP 包清单与 XML 元数据，成员不展开",
+        "ZIP 包清单与 XML 元数据；有检索语义的成员（含 FMU 接口）展开，二进制只记名",
         "https://www.mathworks.com/help/matlab/matlab_prog/create-and-share-custom-matlab-toolboxes.html",
         archive=True,
     ),
     ".mlproj": FormatSpec(
         "MATLAB project archive",
-        "ZIP 包清单与 XML 元数据，成员不展开",
+        "ZIP 包清单与 XML 元数据；工程里已有的成员不重复展开",
         "https://www.mathworks.com/help/matlab/projects.html",
         archive=True,
     ),
@@ -161,13 +161,13 @@ _FORMATS = {
     ),
     ".jar": FormatSpec(
         "Java archive",
-        "ZIP 包清单与 XML/属性元数据；不加载 Java 类",
+        "原件作为资源保留，另附清单与 Java Manifest；不加载 Java 类",
         "https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html",
         archive=True,
     ),
     ".ctf": FormatSpec(
         "MATLAB Component Technology File",
-        "检测 ZIP 可读性；能列成员就列清单，否则保留原件和哈希",
+        "原件作为资源保留；能列成员就列清单，加密内容不读",
         "https://www.mathworks.com/help/compiler/ctf-files.html",
         archive=True,
         opaque=True,

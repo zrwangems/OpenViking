@@ -2025,12 +2025,10 @@ async def test_template_members_are_expanded_into_the_tree(tmp_path):
 
 
 @pytest.mark.asyncio
-async def test_package_containers_keep_only_their_manifest(tmp_path):
-    """A project archive or toolbox is a listing: its bytes are not ingested."""
+async def test_binary_containers_are_the_resource_themselves(tmp_path):
+    """A jar or ctf expands into nothing readable: the file is the resource."""
     store = LocalParseOutputStore(tmp_path / "artifacts")
     cases = [
-        ("packages/MatlabIngestFixture.mlproj", "MatlabIngestFixture", "mlproj"),
-        ("packages/IngestFixtureToolbox.mltbx", "IngestFixtureToolbox", "mltbx"),
         ("packages/addons.jar", "addons", "jar"),
         ("packages/mps_check.ctf", "mps_check", "ctf"),
     ]
@@ -2038,9 +2036,92 @@ async def test_package_containers_keep_only_their_manifest(tmp_path):
         source = SAMPLE / rel_path
         result = await MatlabParser().parse(source, parse_output_store=store)
         root = Path(result.artifact_ref.root) / folder
-        assert sorted(path.name for path in root.iterdir()) == ["manifest.json"], rel_path
+        assert sorted(path.name for path in root.iterdir()) == sorted(
+            [source.name, "manifest.json"]
+        ), rel_path
+        assert (root / source.name).read_bytes() == source.read_bytes(), rel_path
         manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
         assert manifest["type"] == kind
         assert manifest["members"], rel_path
-        assert "只留清单" in manifest["boundary"]
-        assert result.meta["original_preserved"] is False, rel_path
+        assert "原件作为资源保留" in manifest["boundary"]
+        assert result.meta["original_preserved"] is True, rel_path
+
+
+@pytest.mark.asyncio
+async def test_toolbox_members_are_expanded_but_binaries_are_not(tmp_path):
+    """A toolbox archive ships its source; its binaries are only named."""
+    source = SAMPLE / "packages" / "IngestFixtureToolbox.mltbx"
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "IngestFixtureToolbox"
+
+    manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+    expansion = manifest["expansion"]
+    assert expansion["member_count"] == 6
+    # The two scripts and the FMU (a model with a readable interface) expand; the
+    # nested packages stay in the manifest only.
+    assert expansion["expanded"] == 3
+    assert expansion["failed"] == []
+    reasons = {item["member"].rsplit("/", 1)[-1]: item["reason"] for item in expansion["skipped"]}
+    assert set(reasons) == {"addons.jar", "asbCubeSatMBSEProject.sltx", "mps_check.ctf"}
+    assert all("无可检索语义" in reason for reason in reasons.values())
+    members = root / "members"
+    assert (members / "detectChangeOrbitalElements.m").is_file()
+    assert (members / "projectStartup.m").is_file()
+    fmu = next(members.rglob("modelDescription.xml"))
+    assert "VvcFmuEngExl" in fmu.read_text(encoding="utf-8")
+    assert result.meta["expanded_member_count"] == 3
+    assert result.meta["original_preserved"] is False
+
+
+@pytest.mark.asyncio
+async def test_project_archive_members_already_in_the_tree_are_not_duplicated(tmp_path):
+    """A project export repeats its own tree: only what the tree lacks is added."""
+    project = tmp_path / "proj"
+    (project / "src").mkdir(parents=True)
+    kept = project / "src" / "keep.m"
+    kept.write_text("function y=keep()\ny=1;\nend\n", encoding="utf-8")
+    shutil.copyfile(
+        SAMPLE / "model" / "VirtualVehicle" / "PassVeh" / "Plant" / "SteeringSystem.slx",
+        project / "SteeringSystem.slx",
+    )
+    archive = project / "packages" / "ExportedProject.mlproj"
+    archive.parent.mkdir()
+    with zipfile.ZipFile(archive, "w") as bundle:
+        bundle.writestr("fsroot/ExportedProject.prj", "project file")
+        bundle.writestr("fsroot/src/keep.m", kept.read_text(encoding="utf-8"))
+        bundle.writestr("fsroot/src/only_in_archive.m", "function y=f()\ny=2;\nend\n")
+        bundle.writestr("fsroot/bin/engine.dll", b"MZ\x00\x00")
+
+    result = await DirectoryParser().parse(
+        project, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "proj" / "packages" / "ExportedProject"
+    manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+    expansion = manifest["expansion"]
+    assert expansion["expanded"] == 2  # the .prj and the member the tree lacks
+    reasons = {item["member"]: item["reason"] for item in expansion["skipped"]}
+    assert reasons["fsroot/src/keep.m"] == "工程里已有同名同内容文件"
+    assert "无可检索语义" in reasons["fsroot/bin/engine.dll"]
+    members = root / "members"
+    assert (members / "src" / "only_in_archive.m").is_file()
+    assert not (members / "src" / "keep.m").exists()
+    assert not (members / "bin").exists()
+
+
+@pytest.mark.asyncio
+async def test_archive_members_are_kept_when_the_tree_is_not_there(tmp_path):
+    """The same archive imported on its own keeps every member it can read."""
+    archive = tmp_path / "Alone.mlproj"
+    with zipfile.ZipFile(archive, "w") as bundle:
+        bundle.writestr("fsroot/src/keep.m", "function y=keep()\ny=1;\nend\n")
+        bundle.writestr("fsroot/bin/engine.dll", b"MZ\x00\x00")
+    result = await MatlabParser().parse(
+        archive, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "Alone"
+    assert (root / "members" / "src" / "keep.m").is_file()
+    manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["expansion"]["expanded"] == 1
+    assert [item["member"] for item in manifest["expansion"]["skipped"]] == ["fsroot/bin/engine.dll"]

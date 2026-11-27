@@ -60,7 +60,7 @@ def test_legacy_mdl_becomes_system_json(tmp_path):
 
 
 @pytest.mark.asyncio
-async def test_jar_keeps_only_its_manifest_and_native_binary_keeps_original(tmp_path):
+async def test_jar_keeps_the_file_and_its_manifest_and_native_binary_keeps_original(tmp_path):
     jar = tmp_path / "library.jar"
     with zipfile.ZipFile(jar, "w") as archive:
         archive.writestr("META-INF/MANIFEST.MF", "Manifest-Version: 1.0\n")
@@ -72,13 +72,14 @@ async def test_jar_keeps_only_its_manifest_and_native_binary_keeps_original(tmp_
         jar, parse_output_store=LocalParseOutputStore(tmp_path / "art-jar")
     )
     root = Path(result.artifact_ref.root)
-    # A package container is recorded, not ingested: the manifest says what is
-    # inside and the archive bytes are not stored.
-    assert not list(root.rglob(jar.name))
-    manifest = json.loads((root / "library" / "manifest.json").read_text(encoding="utf-8"))
+    # Nothing inside a jar is readable, so the file itself is the resource and
+    # the manifest only describes it for L0/L1.
+    jar_root = root / "library"
+    assert (jar_root / jar.name).read_bytes() == jar.read_bytes()
+    manifest = json.loads((jar_root / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["classes"] == ["org/example/Engine.class"]
     assert manifest["java_manifest"]["Manifest-Version"] == "1.0"
-    assert result.meta["original_preserved"] is False
+    assert result.meta["original_preserved"] is True
 
     result = await MatlabParser().parse(
         dll, parse_output_store=LocalParseOutputStore(tmp_path / "art-dll")

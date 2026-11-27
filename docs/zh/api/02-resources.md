@@ -44,8 +44,8 @@ OpenViking 支持多种资源类型，按照功能分类如下：
 | MATLAB 数据 | `.mat` | 通过 SciPy 读取 v5/v7 数组元数据和有界预览，v7.3 通过 HDF5/h5py 读取；不执行对象 |
 | Live Script / 代码 | `.mlx`, `.m` | MLX 提取正文、标题和代码，M 文件保留完整源码并识别函数声明 |
 | 物理建模 | Simscape `.ssc`, `.sscp` | SSC 保留组件、守恒节点、物理信号和方程原文；受保护的 SSCP 只保留原文件与边界说明。SLX 中 `ConnectionPort`、`PMIOPort` / `lconn` / `rconn` 作为无向守恒网络节点，不混入普通输入输出；有向物理信号由 SSC 的 `inputs` / `outputs` 表达 |
-| App、图形与部署包 | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx`, `.jar`, `.ctf` | MLAPP 提取 Live Code 与组件树；FIG 从 MAT v5、v7.3（HDF5）或 R2014b 之后的 MCOS 载荷读出图形类型、坐标轴、数据与标注；已解析的 App 与 FIG 只留解析产物，`.mlappinstall` 安装包只保留原件，不展开，用途由 L0/L1 判断；`.mltbx`、`.jar`、`.ctf` 是包容器，只留清单（成员名、类型、大小，JAR 另含 Manifest 与类清单），原件字节与成员内容都不入库 |
-| 工程、需求与测试 | `.prj`, `.mlproj`, `.slreqx`, `.slmx`, `.mldatx`, `.sltx` | 提取容器清单与 XML 文本；需求集与测试文件只留解析出的需求、链接和结果；`.mlproj` 工程归档只留清单，不再存原件字节；`.sltx` 模板的 `fsroot` 成员逐个按自身格式解析到 `members/` 下（模型出系统 JSON、字典出条目、脚本存源码），成员全部展开后不再保存归档字节，有成员读不出时保留原件；不执行工程任务、需求链接或测试 |
+| App、图形与部署包 | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx`, `.jar`, `.ctf` | MLAPP 提取 Live Code 与组件树；FIG 从 MAT v5、v7.3（HDF5）或 R2014b 之后的 MCOS 载荷读出图形类型、坐标轴、数据与标注；已解析的 App 与 FIG 只留解析产物，`.mlappinstall` 安装包只保留原件，不展开，用途由 L0/L1 判断；`.mltbx` 工具箱包的 `fsroot` 成员按语义展开（源码、界面、模型与 FMU 接口进 `members/`），二进制与嵌套包容器只在清单里记名；`.jar`、`.ctf` 里没有可读成员，原件直接作为资源保留，另附清单（成员名、类型、大小，JAR 另含 Manifest 与类清单）供 L0/L1 描述 |
+| 工程、需求与测试 | `.prj`, `.mlproj`, `.slreqx`, `.slmx`, `.mldatx`, `.sltx` | 提取容器清单与 XML 文本；需求集与测试文件只留解析出的需求、链接和结果；`.mlproj` 工程归档按清单里的相对路径与工程比对，工程里已有同名同内容的成员不再存一份，只有工程缺的成员才展开；`.sltx` 模板的 `fsroot` 成员逐个按自身格式解析到 `members/` 下（模型出系统 JSON、字典出条目、脚本存源码），成员全部展开后不再保存归档字节，有成员读不出时保留原件；不执行工程任务、需求链接或测试 |
 | 独立 Stateflow / FMU / TLC | `.sfx`, `.fmu`, `.tlc` | SFX 与 FMU 提取 XML/清单，FMU 的 `modelDescription.xml` 用于接口检索；TLC 保留文本源码，不运行测试、协同仿真或代码生成 |
 | 受保护模型、缓存与备份 | `.slxp`, `.mdlp`, `.slxc`, `.autosave` | 保存原文件、可验证元数据和明确的不可读边界；SLXP 另提取可见容器清单，不伪造模型结构 |
 | MEX 与编辑器备份 | `.mexa64`, `.mexw64`, `.mexmaci64`, `.mexmaca64`, `.asv` | MEX 按平台二进制保存为单个文件，不反汇编或执行；ASV 是编辑器自动备份，与工程内源码重复，直接排除不入库 |

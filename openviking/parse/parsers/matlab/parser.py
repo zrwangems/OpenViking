@@ -76,11 +76,38 @@ _PACKAGE_MANIFEST_SUFFIXES = {
     ".mltbx",
     ".fmu",
 }
-# Containers whose members are the content: the archive itself is only a listing,
-# so every member is parsed on its own and placed under ``members/``.
-_MEMBER_EXPANSIONS = frozenset({".sltx"})
-# Members live under this prefix in a template archive; the rest is metadata.
+# Package containers whose members are the content: the archive itself is only a
+# listing, so members that carry searchable meaning are parsed on their own and
+# placed under ``members/``.
+_MEMBER_EXPANSIONS = frozenset({".sltx", ".mlproj", ".mltbx"})
+# Members live under this prefix in a package archive; the rest is metadata.
 _MEMBER_ROOT = "fsroot/"
+# Members that carry no searchable meaning: platform binaries, protected sources,
+# firmware images and nested packages. Their names stay in the manifest; their
+# bytes are not stored and they are not counted as failed expansion.
+_MEMBER_SKIP_SUFFIXES = frozenset(
+    {
+        *_NATIVE_BINARY_SUFFIXES,
+        ".p",
+        ".slxp",
+        ".mdlp",
+        ".sscp",
+        ".mlappinstall",
+        ".mlpkginstall",
+        ".jar",
+        ".ctf",
+        ".sltx",
+        ".mlproj",
+        ".mltbx",
+        ".hex",
+        ".s19",
+        ".bin",
+        ".elf",
+        ".slxc",
+        ".autosave",
+        ".asv",
+    }
+)
 _MEMBER_EXPANSION_DEPTH = contextvars.ContextVar("matlab_member_expansion_depth", default=0)
 
 # Formats the general document pipeline also claims. Inside a MATLAB project the
@@ -133,6 +160,23 @@ def _member_rel(name: str) -> str:
     if not parts or any(part == ".." for part in parts):
         return ""
     return "/".join(parts)
+
+
+def _already_in_project(import_root: Optional[str], rel: str, data: bytes) -> bool:
+    """Whether the imported project already holds this member byte for byte.
+
+    A package archive is usually exported from a project that is being imported
+    at the same time; storing its members again would only duplicate the tree.
+    """
+    if not import_root:
+        return False
+    candidate = Path(import_root).joinpath(*rel.split("/"))
+    try:
+        if not candidate.is_file() or candidate.stat().st_size != len(data):
+            return False
+        return hashlib.sha256(candidate.read_bytes()).digest() == hashlib.sha256(data).digest()
+    except OSError:
+        return False
 
 
 def _output_folder(path: Path) -> str:
@@ -197,13 +241,17 @@ class MatlabParser(BaseParser):
         warnings: list[str],
         *,
         language: str,
+        import_root: Optional[str] = None,
     ) -> dict:
-        """Parse every ``fsroot/`` member of a template archive into ``members/``.
+        """Parse the ``fsroot/`` members of a package archive into ``members/``.
 
-        Each member goes through the same parser a standalone file would get, so a
-        model inside a template yields the same JSON as that model on disk. The
-        record says what was expanded and what failed; the caller keeps the
-        archive bytes when any member could not be read.
+        Only members with searchable meaning are kept: each one goes through the
+        same parser a standalone file would get, so a model inside an archive
+        yields the same JSON as that model on disk. Two kinds of member are
+        recorded but not stored — binaries and nested packages, which carry no
+        readable content, and members the imported project already holds byte for
+        byte, which would only duplicate the tree. The caller keeps the archive
+        bytes when a member that should expand could not be read.
         """
         members = [
             member
@@ -218,17 +266,18 @@ class MatlabParser(BaseParser):
             "member_count": len(members),
             "expanded": 0,
             "failed": [],
-            "skipped": "",
+            "skipped": [],
+            "skipped_note": "",
             "members": [],
         }
         if not members:
-            record["skipped"] = "包内没有可展开的 fsroot 成员"
+            record["skipped_note"] = "包内没有 fsroot 成员"
             return {"complete": True, "expanded": 0, "record": record}
         if manifest.get("encrypted"):
-            record["skipped"] = "成员加密，字节无法读出"
+            record["skipped_note"] = "成员加密，字节无法读出"
             return {"complete": False, "expanded": 0, "record": record}
         if _MEMBER_EXPANSION_DEPTH.get() > 0:
-            record["skipped"] = "包内嵌套的包容器不再二次展开"
+            record["skipped_note"] = "包内嵌套的包容器不再二次展开"
             return {"complete": False, "expanded": 0, "record": record}
 
         expanded: list[dict] = []
@@ -246,6 +295,19 @@ class MatlabParser(BaseParser):
                         continue
                     parent, _, name = rel.rpartition("/")
                     stem, extension = posixpath.splitext(name)
+                    data = archive.read(member["name"])
+                    if extension.lower() in _MEMBER_SKIP_SUFFIXES:
+                        # No searchable text in a binary or a nested package: the
+                        # manifest already names it, so its bytes are dropped.
+                        record["skipped"].append(
+                            {"member": member["name"], "reason": "二进制或嵌套包容器，无可检索语义"}
+                        )
+                        continue
+                    if _already_in_project(import_root, rel, data):
+                        record["skipped"].append(
+                            {"member": member["name"], "reason": "工程里已有同名同内容文件"}
+                        )
+                        continue
                     # Two members with one stem (model.slx beside model.sldd) would
                     # both write a folder named after the stem; the second keeps its
                     # suffix so neither overwrites the other.
@@ -259,7 +321,7 @@ class MatlabParser(BaseParser):
                         else temp_root / local_name
                     )
                     local.parent.mkdir(parents=True, exist_ok=True)
-                    local.write_bytes(archive.read(member["name"]))
+                    local.write_bytes(data)
                     target = f"{folder}/members" + (f"/{parent}" if parent else "")
                     nested = None
                     try:
@@ -298,7 +360,7 @@ class MatlabParser(BaseParser):
         record["expanded"] = len(expanded)
         record["members"] = expanded
         return {
-            "complete": not record["failed"] and len(expanded) == record["member_count"],
+            "complete": not record["failed"],
             "expanded": len(expanded),
             "record": record,
         }
@@ -630,14 +692,19 @@ class MatlabParser(BaseParser):
                 title = path.stem
             elif suffix in _PRESERVED_CONTAINER_SUFFIXES:
                 folder = _output_folder(path)
+                # A jar or ctf expands into classes or opaque bytes, not into
+                # readable content, so the archive is the resource itself; the
+                # manifest only gives L0/L1 what it needs to describe it.
+                await writer.write_bytes(
+                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                )
                 manifest = await asyncio.to_thread(archive_manifest, path)
                 manifest["type"] = suffix.removeprefix(".")
                 if suffix == ".jar":
                     manifest = await asyncio.to_thread(jar_metadata, path, manifest)
-                # A binary container is recorded, not ingested: the manifest says
-                # what is inside, the archive bytes carry no search value.
                 manifest["boundary"] = (
-                    "包容器只留清单：成员不展开，原件字节不保存；成员名、类型与大小见 members。"
+                    "无可读成员的包：原件作为资源保留，成员名、类型与大小见 members，"
+                    "由 L0/L1 描述其用途。"
                 )
                 await writer.write_text(
                     f"{folder}/manifest.json",
@@ -645,7 +712,7 @@ class MatlabParser(BaseParser):
                 )
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
-                    "original_preserved": False,
+                    "original_preserved": True,
                     "encrypted": manifest["encrypted"],
                     **_source_identity(path),
                 }
@@ -664,7 +731,13 @@ class MatlabParser(BaseParser):
                 expansion: dict = {}
                 if suffix in _MEMBER_EXPANSIONS:
                     expansion = await self._expand_members(
-                        path, writer, folder, manifest, warnings, language=language
+                        path,
+                        writer,
+                        folder,
+                        manifest,
+                        warnings,
+                        language=language,
+                        import_root=kwargs.get("link_rewrite_root"),
                     )
                     manifest["expansion"] = expansion["record"]
                 complete = expansion.get("complete", True)
@@ -673,11 +746,19 @@ class MatlabParser(BaseParser):
                     # An FMU is compiled: its bytes and modelDescription are the content.
                     boundary = "FMU 保留原件字节与 modelDescription.xml 清单。"
                 elif preserved:
-                    boundary = "部分成员无法展开，原件字节保留以固化完整内容；已展开的成员见 expansion。"
+                    boundary = (
+                        "有成员未能展开，原件字节保留以固化完整内容；已展开的成员见 expansion。"
+                    )
                 elif expansion.get("expanded"):
-                    boundary = "fsroot 成员已逐个解析到 members/，原件字节不保存；包内元数据见 metadata。"
+                    boundary = (
+                        "有语义的 fsroot 成员已逐个解析到 members/，原件字节不保存；"
+                        "二进制与工程里已有的成员只记在 expansion.skipped。"
+                    )
                 else:
-                    boundary = "包容器只留清单：成员不展开，原件字节不保存；成员名、类型与大小见 members。"
+                    boundary = (
+                        "包容器只留清单：成员要么无检索语义、要么工程里已有，原件字节不保存；"
+                        "成员名、类型与大小见 members。"
+                    )
                 manifest["boundary"] = boundary
                 if preserved:
                     await writer.write_bytes(
