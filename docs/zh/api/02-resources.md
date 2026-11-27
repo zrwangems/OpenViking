@@ -44,7 +44,7 @@ OpenViking 支持多种资源类型，按照功能分类如下：
 | MATLAB 数据 | `.mat` | 通过 SciPy 读取 v5/v7 数组元数据和有界预览，v7.3 通过 HDF5/h5py 读取；不执行对象 |
 | Live Script / 代码 | `.mlx`, `.m` | MLX 提取正文、标题和代码，M 文件保留完整源码并识别函数声明 |
 | 物理建模 | Simscape `.ssc`, `.sscp` | SSC 保留组件、守恒节点、物理信号和方程原文；受保护的 SSCP 只保留原文件与边界说明。SLX 中 `ConnectionPort`、`PMIOPort` / `lconn` / `rconn` 作为无向守恒网络节点，不混入普通输入输出；有向物理信号由 SSC 的 `inputs` / `outputs` 表达 |
-| App、图形与部署包 | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx` | MLAPP 提取 Live Code 与组件树，FIG 按 MAT 读取句柄结构，安装包提取 ZIP/XML 清单；已解析的 App 与 FIG 只留解析产物，安装包保留原文件 |
+| App、图形与部署包 | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx` | MLAPP 提取 Live Code 与组件树，FIG 按 MAT v5 或 v7.3（HDF5）读取句柄结构，安装包提取 ZIP/XML 清单；已解析的 App 与 FIG 只留解析产物，安装包保留原文件 |
 | 工程、需求与测试 | `.prj`, `.mlproj`, `.slreqx`, `.slmx`, `.mldatx` | 提取容器清单与 XML 文本；需求集与测试文件只留解析出的需求、链接和结果，工程归档保留原文件；不执行工程任务、需求链接或测试 |
 | 独立 Stateflow / FMU / TLC | `.sfx`, `.fmu`, `.tlc` | SFX 与 FMU 提取 XML/清单，FMU 的 `modelDescription.xml` 用于接口检索；TLC 保留文本源码，不运行测试、协同仿真或代码生成 |
 | 受保护模型、缓存与备份 | `.slxp`, `.mdlp`, `.slxc`, `.autosave` | 保存原文件、可验证元数据和明确的不可读边界；SLXP 另提取可见容器清单，不伪造模型结构 |
