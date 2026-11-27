@@ -94,6 +94,28 @@ def _axes_line(axes: dict[str, Any]) -> str:
     return "；".join(parts)
 
 
+def _mcos_series_line(item: dict[str, Any]) -> str:
+    """One line describing a series recovered from the MCOS payload."""
+    shape = item.get("shape") or []
+    points = item.get("points") or 0
+    if len(shape) == 2 and min(shape) > 1:
+        text = (
+            "×".join(str(v) for v in shape)
+            + f" 矩阵（{item.get('property')}），z {_fmt_range(item.get('z_range'))}"
+        )
+        if item.get("x_range"):
+            text += f"，x {_fmt_range(item.get('x_range'))}"
+        if item.get("y_range"):
+            text += f"，y {_fmt_range(item.get('y_range'))}"
+        return text
+    text = f"{points} 点，x {_fmt_range(item.get('x_range'))}，y {_fmt_range(item.get('y_range'))}"
+    if item.get("index"):
+        text += "（x 为序号）"
+    if item.get("bin_edges"):
+        text += "，带分箱边界"
+    return text
+
+
 def figure_text(payload: dict[str, Any]) -> str:
     """A readable page for one parsed figure."""
     lines: list[str] = []
@@ -170,8 +192,13 @@ def figure_text(payload: dict[str, Any]) -> str:
         classes = mcos.get("classes") or []
         if classes:
             lines.append("- 文件里登记的对象类：" + "、".join(classes))
+        named = mcos.get("series") or []
+        if named:
+            lines.append(f"- 数据序列 {len(named)} 组（属性名已解出）：")
+            for item in named[:8]:
+                lines.append("  · " + _mcos_series_line(item))
         pairs = mcos.get("series_pairs") or []
-        if pairs:
+        if pairs and not named:
             lines.append(f"- 候选数据序列 {len(pairs)} 组：")
             for pair in pairs[:8]:
                 lines.append(
@@ -179,13 +206,18 @@ def figure_text(payload: dict[str, Any]) -> str:
                     f"y {_fmt_range(pair['y_like'])}（槽 {pair['cells'][0]}、{pair['cells'][1]}）"
                 )
         matrices = mcos.get("matrices") or []
-        if matrices:
+        if matrices and not named:
             shapes = "、".join("×".join(str(v) for v in item["shape"]) for item in matrices[:6])
             lines.append(f"- 矩阵数据 {len(matrices)} 个：{shapes}")
-        labels = [label for label in (mcos.get("labels") or []) if label][:10]
+        shown = mcos.get("texts")
+        labels = list(shown if shown is not None else mcos.get("labels") or [])
+        labels = [label for label in labels if label][:12]
         if labels:
-            lines.append("- 图内文字：" + "、".join(f"“{label}”" for label in labels))
-        if not classes and not pairs and not matrices:
+            lines.append(
+                "- 图内文字（标题／轴标签／图例／数据标签）："
+                + "、".join(f"“{label}”" for label in labels)
+            )
+        if not classes and not named and not pairs and not matrices:
             lines.append("- 只解出对象记录，没有找到可用的数值数组。")
         lines.append("")
 

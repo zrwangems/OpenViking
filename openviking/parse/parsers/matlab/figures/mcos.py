@@ -254,7 +254,245 @@ def read_payload(path: str | Path) -> Payload:
     return payload
 
 
-def property_names_seen(payload: Payload, start: int = 4552, end: int = 9032) -> list[str]:
+def store_bounds(store: bytes) -> tuple[int, int]:
+    """``(start, end)`` byte bounds of the store's value stream.
+
+    The first ten uint32 words of a store are a directory whose third word ends
+    the name table and whose sixth and seventh words bound the value stream.
+    The values are per file, so they must be read, not assumed.
+    """
+    if len(store) < 40:
+        return 0, 0
+    header = struct.unpack("<10I", store[:40])
+    start = min(max(header[5], 40), len(store))
+    end = min(max(header[6], start), len(store))
+    return start, end
+
+
+def property_records(payload: Payload) -> list[tuple[int, int, str]]:
+    """``(flag, reference, property name)`` records of the store's value stream.
+
+    A record is three uint32 words: a flag, a reference and the index of the
+    property name. The stream is re-synchronised word by word, so a record of a
+    different width elsewhere does not shift everything after it.
+    """
+    import numpy as np
+
+    if not payload.store:
+        return []
+    start, end = store_bounds(payload.store)
+    if end <= start:
+        return []
+    words = np.frombuffer(payload.store[start:end], dtype="<u4")
+    properties = {
+        index: name
+        for index, name in enumerate(payload.store_names)
+        if name and ("_" in name or name.endswith("Mode"))
+    }
+    limit = len(payload.entries) + 8
+    records: list[tuple[int, int, str]] = []
+    position = 0
+    while position < len(words) - 2:
+        flag, reference, name_index = (
+            int(words[position]),
+            int(words[position + 1]),
+            int(words[position + 2]),
+        )
+        if flag in (0, 1) and name_index in properties and reference < limit:
+            records.append((flag, reference, properties[name_index]))
+            position += 3
+        else:
+            position += 1
+    return records
+
+
+# Properties whose value is a plotted array. The store keeps the coordinates a
+# chart needs immediately before the value it is drawn from.
+_DATA_PROPERTIES = (
+    "XData_I",
+    "YData_I",
+    "ZData_I",
+    "ThetaData_I",
+    "RData_I",
+    "Values_I",
+    "BinEdges_I",
+    "Counts_I",
+)
+
+# A histogram keeps its bin edges on the other side of the counts.
+_HISTOGRAM_PROPERTIES = ("BinEdges_I", "Counts_I")
+
+# Properties whose value is a string shown with the chart (labels, legends).
+_TEXT_PROPERTIES = ("String_I", "Label_I", "DisplayName_I", "Title_I")
+
+# Values of one object are stored as a run of arrays, and the record for a data
+# property points at that run: its plotted array is three slots past the
+# reference, with the coordinates the chart needs right before it.
+_PRIMARY_OFFSET = 3
+_INLINE_LIMIT = 5000
+
+
+def _array_at(payload: Payload, slot: int, smallest: int = 3):
+    """The numeric slot as an ndarray, or None when it is not usable data."""
+    import numpy as np
+
+    if not 0 <= slot < len(payload.entries):
+        return None
+    entry = payload.entries[slot]
+    if entry.kind != "numbers":
+        return None
+    array = np.asarray(entry.values, dtype=float)
+    if array.size < smallest or not np.isfinite(array).any():
+        return None
+    return array
+
+
+def _value_blocks(payload: Payload) -> list[dict[str, Any]]:
+    """Value runs of the serialized objects, one per plotted array.
+
+    Each run is the plotted array (``primary``) plus the coordinate arrays
+    stored right before it. A run that turns out to be the coordinates of a
+    longer run is dropped, which also removes the duplicate record that
+    ``XData`` leaves behind for charts whose x is stored inside the y run.
+    """
+    blocks: list[dict[str, Any]] = []
+    for _flag, reference, name in property_records(payload):
+        if name not in _DATA_PROPERTIES:
+            continue
+        primary_slot = reference + _PRIMARY_OFFSET
+        primary = _array_at(payload, primary_slot)
+        if primary is None or _is_limit_table(primary):
+            continue
+        shape = tuple(primary.shape)
+        wanted = primary.size if min(shape) == 1 else min(shape)
+        leading: list[tuple[int, Any]] = []
+        slot = primary_slot - 1
+        while len(leading) < 3:
+            array = _array_at(payload, slot, smallest=wanted)
+            if array is None or array.size != wanted:
+                break
+            leading.insert(0, (slot, array))
+            slot -= 1
+        blocks.append(
+            {
+                "property": name,
+                "primary_slot": primary_slot,
+                "primary": primary,
+                "leading": leading,
+            }
+        )
+    coordinates = {slot for block in blocks for slot, _ in block["leading"]}
+    kept: list[dict[str, Any]] = []
+    seen: set[tuple[Any, ...]] = set()
+    for block in blocks:
+        if block["primary_slot"] in coordinates:
+            continue
+        key = (block["primary_slot"], tuple(slot for slot, _ in block["leading"]))
+        if key in seen:
+            continue
+        seen.add(key)
+        kept.append(block)
+    return kept
+
+
+def series(payload: Payload) -> list[dict[str, Any]]:
+    """Plotted data as ``x``/``y`` (or ``x``/``y``/``z``) series.
+
+    Verified against ``137_fig_hgsave_v6.fig``, which carries the same kind of
+    figure twice: the 30 line series recovered here match the handle tree's
+    ``XData``/``YData`` in length and range, with no series the handle tree does
+    not have. Over the gallery corpus a coordinate array precedes the values in
+    466 of 659 runs; the rest are drawn against a ``1:n`` index.
+    """
+    import numpy as np
+
+    found: list[dict[str, Any]] = []
+    for block in _value_blocks(payload):
+        primary = block["primary"]
+        leading = [array for _slot, array in block["leading"]]
+        shape = list(primary.shape)
+        item: dict[str, Any] = {
+            "property": block["property"],
+            "shape": shape,
+            "points": int(primary.size),
+        }
+        flat = primary.ravel()
+        if block["property"] in _HISTOGRAM_PROPERTIES:
+            edges = _array_at(payload, block["primary_slot"] + 1, smallest=flat.size + 1)
+            if edges is not None and edges.size == flat.size + 1:
+                edges = edges.ravel()
+                item["bin_edges"] = _listed(edges)
+                item["x"] = _listed(edges[:-1])
+                item["y"] = _listed(flat)
+                item["x_range"] = [float(edges[0]), float(edges[-1])]
+                item["y_range"] = [float(np.nanmin(flat)), float(np.nanmax(flat))]
+                found.append(item)
+                continue
+        if min(shape) == 1:
+            x = leading[-1].ravel() if leading else np.arange(1, flat.size + 1, dtype=float)
+            y = flat
+            item["index"] = not leading
+            item["x"] = _listed(x)
+            item["y"] = _listed(y)
+            item["x_range"] = [float(np.nanmin(x)), float(np.nanmax(x))]
+            item["y_range"] = [float(np.nanmin(y)), float(np.nanmax(y))]
+        else:
+            x = leading[0].ravel() if leading else None
+            y = leading[1].ravel() if len(leading) > 1 else None
+            z = primary
+            item["x"] = _listed(x) if x is not None else None
+            item["y"] = _listed(y) if y is not None else None
+            item["z"] = _listed(z)
+            item["x_range"] = [float(np.nanmin(x)), float(np.nanmax(x))] if x is not None else None
+            item["y_range"] = [float(np.nanmin(y)), float(np.nanmax(y))] if y is not None else None
+            item["z_range"] = [float(np.nanmin(z)), float(np.nanmax(z))]
+        found.append(item)
+    return found
+
+
+def _is_limit_table(array) -> bool:
+    """``[xlim; ylim; zlim]`` is stored like data but is the axes' own range."""
+    shape = array.shape
+    return len(shape) == 2 and shape[1] == 2 and shape[0] in (2, 3)
+
+
+def _listed(array) -> list[float] | None:
+    """The array as plain floats, or None when it is too large to inline."""
+    import numpy as np
+
+    if array is None or np.size(array) > _INLINE_LIMIT:
+        return None
+    return [float(value) for value in np.asarray(array, dtype=float).ravel()]
+
+
+def texts(payload: Payload) -> list[str]:
+    """Strings the figure shows: axis labels, titles, legends, annotations.
+
+    They are stored like data: the record names the property, and the string
+    sits at the same offset past its reference. ``XLabel``/``YLabel`` of a plain
+    line figure come out as the two strings its author typed.
+    """
+    found: list[str] = []
+    names = set(payload.store_names)
+    for _flag, reference, name in property_records(payload):
+        if name not in _TEXT_PROPERTIES:
+            continue
+        slot = reference + _PRIMARY_OFFSET
+        if not 0 <= slot < len(payload.entries):
+            continue
+        entry = payload.entries[slot]
+        if entry.kind != "text" or not entry.text or entry.text in found:
+            continue
+        if entry.text in names:
+            # Schema names ("Axes Camera", property groups) are not figure text.
+            continue
+        found.append(entry.text)
+    return found
+
+
+def property_names_seen(
+    payload: Payload, start: int | None = None, end: int | None = None
+) -> list[str]:
     """Property names referenced by the store's value stream.
 
     The stream interleaves a value reference, a flag and the index of the
@@ -273,6 +511,10 @@ def property_names_seen(payload: Payload, start: int = 4552, end: int = 9032) ->
         for index, name in enumerate(payload.store_names)
         if name and ("_" in name or name.endswith("Mode"))
     }
+    if start is None or end is None:
+        first, last = store_bounds(payload.store)
+        start = first if start is None else start
+        end = last if end is None else end
     seen: list[str] = []
     for position in range(start // 4, min(end // 4, len(words))):
         index = int(words[position])
@@ -310,6 +552,10 @@ def candidates(payload: Payload) -> dict[str, Any]:
             a, b = left.ravel(), right.ravel()
             if np.allclose(a, b):
                 continue  # the same tick cache twice
+            if np.allclose(b, np.arange(1, b.size + 1)) or float(np.nanmax(a)) == float(
+                np.nanmin(a)
+            ):
+                continue  # patch face indices, not plotted values
             pairs.append(
                 {
                     "cells": [left_index, right_index],
@@ -327,6 +573,9 @@ def candidates(payload: Payload) -> dict[str, Any]:
     for entry in payload.entries:
         if entry.kind == "numbers" and len(entry.shape) >= 2 and min(entry.shape) > 1:
             array = np.asarray(entry.values, dtype=float)
+            if _is_limit_table(array) or entry.shape == (16, 16):
+                # Axis ranges and the 16×16 cursor bitmap are stored like data.
+                continue
             matrices.append(
                 {
                     "cell": entry.index,
