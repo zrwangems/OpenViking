@@ -46,8 +46,8 @@ _BOUNDARY = (
     "are read for chart type, plotted values, titles, axis labels, legend and free "
     "text. Since R2014b the object graph is written as MCOS objects (hgS_080000 is "
     "empty, hgM_070000/080000 carry opaque records), which this reader does not "
-    "decode yet. Pixels are never rendered and callbacks never run; MAT v7.3 "
-    "(HDF5) files cannot be read with scipy at all."
+    "decode yet. Pixels are never rendered and callbacks never run. MAT v7.3 "
+    "(HDF5) figures keep hgS_070000 and are read through h5py."
 )
 
 STATUS_PARSED = "parsed"
@@ -763,7 +763,7 @@ def parse_figure(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
     try:
         figures, report = load_figure_objects(source)
     except NotImplementedError as exc:
-        # MAT v7.3 (HDF5) figures: scipy refuses before anything can be read.
+        # Only reached without h5py: MAT v7.3 figures need it.
         return _status_payload(source, STATUS_V73, str(exc)), {}
     folder = source.stem
     charts: list[dict[str, Any]] = []

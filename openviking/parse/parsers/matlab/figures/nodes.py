@@ -231,7 +231,7 @@ def _text(value: Any) -> str:
 
 
 def load_figure_objects(path: str | Path) -> tuple[list[FigureNode], dict[str, Any]]:
-    """Load a FIG file; returns the figure roots and a small read report."""
+    """Load a FIG file (MAT v5 or v7.3); returns the figure roots and a small report."""
     source = Path(path)
     try:
         from scipy.io import loadmat
@@ -239,7 +239,13 @@ def load_figure_objects(path: str | Path) -> tuple[list[FigureNode], dict[str, A
         raise RuntimeError(
             "FIG parsing requires scipy; install OpenViking with the 'matlab' extra"
         ) from exc
-    values = loadmat(source, squeeze_me=False, struct_as_record=True)
+    try:
+        values = loadmat(source, squeeze_me=False, struct_as_record=True)
+    except NotImplementedError:
+        # MAT v7.3 (HDF5) figures keep their handle tree; h5py reads that one.
+        from openviking.parse.parsers.matlab.figures.hdf5 import load_handle_tree
+
+        return load_handle_tree(source)
     roots: list[FigureNode] = []
     report: dict[str, Any] = {
         "variables": [],

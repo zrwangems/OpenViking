@@ -571,11 +571,34 @@ async def test_r2025b_figure_keeps_its_bytes_until_properties_are_named(tmp_path
     assert result.meta["original_preserved"] is True
 
 
-def test_mat_v73_figure_is_reported_instead_of_raising():
+def test_mat_v73_hdf5_figure_reads_its_handle_tree():
+    """hgsave -v7.3 keeps hgS_070000 inside HDF5; h5py recovers the same tree."""
     payload, files = parse_figure(GALLERY_FIXTURES / "fig/136_fig_hgsave_v73.fig")
-    assert payload["status"] == "unsupported_v73"
+    assert payload["status"] == "parsed"
+    assert payload["read"]["mat_version"] == "MATLAB 7.3 (HDF5)"
     assert files == {}
-    assert any("v7.3" in warning for warning in payload["warnings"])
+    chart = payload["charts"][0]
+    assert chart["type"] == "line"
+    assert len(chart["series"]) == 30
+    assert chart["series"][0]["points"] == 30
+    assert chart["axes"]["title"] == "format test"
+    assert chart["axes"]["x_lim"] == [0.0, 30.0]
+
+
+def test_every_corpus_figure_yields_data():
+    """No saved variant is left behind: each file returns values, not a skip status."""
+    corpus = sorted((GALLERY_FIXTURES / "fig").glob("*.fig"))
+    assert len(corpus) >= 138
+    skipped: list[tuple[str, str]] = []
+    empty: list[str] = []
+    for path in corpus:
+        payload, _ = parse_figure(path)
+        if payload["status"] in {"unsupported_v73", "unreadable_mcos"}:
+            skipped.append((path.name, payload["status"]))
+        if not payload["charts"] and not (payload["mcos"] or {}).get("entries"):
+            empty.append(path.name)
+    assert skipped == []
+    assert empty == []
 
 
 def test_hgsave_v6_corpus_file_reads_its_series():
