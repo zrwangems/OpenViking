@@ -325,7 +325,9 @@ def _read_block(text: str, start: int, opener: str) -> tuple[str, int]:
     return text[start + 1 :], len(text)
 
 
-_LEADING_COMMENT = re.compile(r"\s*((?://[^\n]*|/\*.*?\*/)\s*)+", re.S)
+_LEADING_COMMENT = re.compile(
+    r"\s*((?://[^\n]*|/\*.*?\*/|(?:^[ \t]*%[^\n]*)[ \t]*(?:\n|$))\s*)+", re.S
+)
 
 
 def _leading_comment(label: str) -> re.Match | None:
@@ -844,7 +846,92 @@ def _junction_paths(
     return found
 
 
-def _collapse(chart: Chart, names: dict[str, str], paths: dict[str, str]) -> dict[str, list[dict]]:
+def _port_refs(chart: Chart, ref: dict[str, str]) -> dict[str, str]:
+    """Name every atomic subchart port; a port without a label gets its owner."""
+    ports: dict[str, str] = {}
+    unnamed: Counter[str] = Counter()
+    for port in chart.ports:
+        owner = ref.get(port.state, "")
+        if port.label:
+            ports[port.ssid] = port.label
+        else:
+            unnamed[owner] += 1
+            ports[port.ssid] = (
+                f"{owner} 的端口 {unnamed[owner]}" if owner else f"端口 {unnamed[owner]}"
+            )
+    return ports
+
+
+def _flow_scopes(chart: Chart) -> set[str]:
+    """Containers whose junctions describe a flow rather than a state change.
+
+    A flow is what runs between states: steps, branching junctions, loops and
+    ends. A container holds one when its junction graph has a way on that never
+    reaches a state (a dead end) or comes back on itself (a loop); otherwise its
+    junctions only route a transition from one state to another and the
+    transition reads better on its own.
+    """
+    junctions = {junction.ssid: junction for junction in chart.junctions}
+    outgoing: dict[str, list[Transition]] = defaultdict(list)
+    incoming: dict[str, list[Transition]] = defaultdict(list)
+    for transition in chart.transitions:
+        outgoing[transition.source].append(transition)
+        if transition.destination in junctions:
+            incoming[transition.destination].append(transition)
+
+    def reaches_state(start: str) -> bool:
+        stack, seen = [start], set()
+        while stack:
+            node = stack.pop()
+            if node in seen:
+                continue
+            seen.add(node)
+            for transition in outgoing.get(node, []):
+                target = transition.destination
+                if target not in junctions:
+                    return True
+                stack.append(target)
+        return False
+
+    def has_cycle(start: str) -> bool:
+        stack = [(start, frozenset())]
+        while stack:
+            node, path = stack.pop()
+            for transition in outgoing.get(node, []):
+                target = transition.destination
+                if target not in junctions:
+                    continue
+                if target in path:
+                    return True
+                stack.append((target, path | {target}))
+        return False
+
+    scopes: set[str] = set()
+    for ssid, junction in junctions.items():
+        if not incoming.get(ssid):
+            continue
+        if not outgoing.get(ssid) or has_cycle(ssid):
+            scopes.add(junction.parent or "")
+    return scopes
+
+
+def _inside(parents: dict[str, str], ssid: str, container: str) -> bool:
+    current = parents.get(ssid, "")
+    seen: set[str] = set()
+    while current and current not in seen:
+        if current == container:
+            return True
+        seen.add(current)
+        current = parents.get(current, "")
+    return False
+
+
+def _collapse(
+    chart: Chart,
+    names: dict[str, str],
+    paths: dict[str, str],
+    overflowed: set[str] | None = None,
+) -> dict[str, list[dict]]:
     """Write each transition as the state-to-state path it describes.
 
     Junctions carry no name on the canvas, so instead of naming them the
@@ -869,19 +956,7 @@ def _collapse(chart: Chart, names: dict[str, str], paths: dict[str, str]) -> dic
         junction = junction_ssids[ssid]
         return _junction_label(junction, junction_index[ssid], paths, names)
 
-    port_refs: dict[str, str] = {}
-    unnamed_ports: Counter[str] = Counter()
-    for port in chart.ports:
-        owner = ref.get(port.state, "")
-        if port.label:
-            port_refs[port.ssid] = port.label
-        else:
-            unnamed_ports[owner] += 1
-            port_refs[port.ssid] = (
-                f"{owner} 的端口 {unnamed_ports[owner]}"
-                if owner
-                else f"端口 {unnamed_ports[owner]}"
-            )
+    port_refs = _port_refs(chart, ref)
 
     def endpoint(node: str, history: bool = False) -> tuple[str | None, dict]:
         """Resolve one end of a transition to what the reader should see."""
@@ -920,6 +995,10 @@ def _collapse(chart: Chart, names: dict[str, str], paths: dict[str, str]) -> dic
         try:
             found = _junction_paths(transition, out_edges, junction_ssids)
         except _Overflow:
+            # The junctions branch too far to be written as whole paths; the
+            # container is then better read as a flow chart.
+            if overflowed is not None:
+                overflowed.add(transition.scope)
             scoped[transition.scope].append(raw(transition, transition.destination))
             continue
         for path in found:
@@ -997,6 +1076,167 @@ def _in_function(chart: Chart, ssid: str) -> bool:
         seen.add(current)
         current = parent.get(current, "")
     return False
+
+
+def _as_list(value) -> list:
+    return list(value) if isinstance(value, list) else [value]
+
+
+def _flow_statements(
+    chart: Chart,
+    scope: str,
+    names: dict[str, str],
+    ports: dict[str, str],
+) -> dict:
+    """Write a flow chart as the if/else structure its junctions encode.
+
+    A flow chart is a graph of steps and junctions. Read as text, the junctions
+    say nothing on their own: a junction with one way on is a link, and one with
+    several ways on is the place where the chart picks a branch. So the links
+    are followed through and every branching junction becomes a list of cases
+    in the order the chart tries them, the way a person reads the diagram. A
+    step that jumps back to a branch already taken is marked ``loop``.
+    """
+    junction_ssids = {junction.ssid for junction in chart.junctions}
+    edges: dict[str, list[Transition]] = defaultdict(list)
+    for transition in chart.transitions:
+        if transition.scope == scope:
+            edges[transition.source].append(transition)
+    for items in edges.values():
+        items.sort(key=_order_key)
+
+    def effect(node: str) -> dict | None:
+        if node in ports:
+            return {"to": ports[node], "port": True}
+        if node in names:
+            return {"to": names[node]}
+        return None
+
+    def details(transition: Transition) -> dict:
+        parts = transition_label(transition.label)
+        body = [text for text in (parts["condition_action"], parts["transition_action"]) if text]
+        payload = {
+            "comment": parts["comment"],
+            "event": parts["event"],
+            "when": parts["condition"],
+            "do": body[0] if len(body) == 1 else body,
+        }
+        return _compact(payload)
+
+    def merge(statement: dict, following: dict) -> dict:
+        """Join two steps that happen one after the other."""
+        merged = dict(statement)
+        for key, value in following.items():
+            if key in merged and key in {"do", "then"}:
+                merged[key] = _as_list(merged[key]) + _as_list(value)
+            else:
+                merged.setdefault(key, value)
+        return merged
+
+    def conflicting(statement: dict, following: dict) -> bool:
+        """Whether two steps each say something about how they are entered."""
+        return bool(set(statement) & set(following) & {"when", "event", "comment"})
+
+    def walk(transition: Transition, seen: frozenset[str]) -> list[dict]:
+        """The steps that follow one transition, in the order they run."""
+        steps = [details(transition)]
+        node = transition.destination
+        while True:
+            reached = effect(node)
+            if reached is not None:
+                steps[-1] = merge(steps[-1], reached)
+                return steps
+            if node not in junction_ssids:
+                return steps
+            if node in seen:
+                steps[-1] = merge(steps[-1], {"loop": True})
+                return steps
+            onwards = edges.get(node, [])
+            if not onwards:
+                # Nothing continues from here: the flow ends, which is the
+                # function returning or the chart being done with this step.
+                return steps
+            if len(onwards) == 1:
+                step = onwards[0]
+                detail = details(step)
+                if conflicting(steps[-1], detail):
+                    steps.append(detail)
+                else:
+                    steps[-1] = merge(steps[-1], detail)
+                node = step.destination
+                continue
+            branches = cases(onwards, seen | {node})
+            if set(steps[-1]) & {"do", "when"}:
+                steps.append({"cases": branches})
+            else:
+                steps[-1] = merge(steps[-1], {"cases": branches})
+            return steps
+
+    def cases(onwards: list[Transition], seen: frozenset[str]) -> list[dict]:
+        built = []
+        for transition in onwards:
+            steps = walk(transition, seen)
+            if not steps:
+                continue
+            head, *rest = steps
+            if rest:
+                head = merge(head, {"then": rest})
+            if not head:
+                # The branch does nothing and goes nowhere: it is the way out
+                # of the chart, which needs no line of its own.
+                continue
+            built.append(head)
+        # ``else if`` chains read as one list of cases: a branch that only holds
+        # another list of cases is lifted into this one.
+        if len(built) > 1 and list(built[-1]) == ["cases"]:
+            built[-1:] = built[-1]["cases"]
+        return built
+
+    entries = {
+        source: items for source, items in edges.items() if source not in junction_ssids
+    }
+    if len(entries) == 1 and "" in entries:
+        # Everything starts at the chart entry: the flow is one statement list.
+        statements: list[dict] = []
+        for transition in entries[""]:
+            statements.extend(walk(transition, frozenset()))
+        if not statements:
+            return {}
+        first, *rest = statements
+        payload: dict[str, object] = dict(first)
+        if rest:
+            payload["then"] = rest
+        return payload
+
+    # Some steps start from a state (a state that holds a flow chart), so each
+    # starting point becomes one entry of the flow.
+    body: list[dict] = []
+    for source in sorted(entries, key=lambda item: names.get(item, "")):
+        for transition in entries[source]:
+            steps = walk(transition, frozenset())
+            if not steps:
+                continue
+            head, *rest = steps
+            entry = {"from": names.get(source)} if source else {}
+            head = merge(entry, head)
+            if rest:
+                head["then"] = _as_list(head.get("then", [])) + rest
+            body.append(head)
+    return {"entries": body} if body else {}
+
+
+def _count_flow(flow: dict) -> int:
+    """How many steps a flow document holds, counting nested cases."""
+    total = 0
+    for key in ("do", "event", "when", "comment", "to"):
+        if key in flow:
+            total += 1 if not isinstance(flow[key], list) else len(flow[key])
+            break
+    for statement in flow.get("then", []):
+        total += _count_flow(statement)
+    for case in flow.get("cases", []):
+        total += _count_flow(case)
+    return total
 
 
 def _is_function_interface(item: Data) -> bool:
@@ -1082,12 +1322,29 @@ def _event_json(event: Event) -> dict:
 def chart_json(chart: Chart) -> dict:
     """Return one chart as the JSON document written next to its subsystem."""
     names, paths = _references(chart)
+    port_refs = _port_refs(chart, _reference(names, paths))
+    flow_scopes = _flow_scopes(chart)
     if not chart.states and chart.chart_type in {"MATLAB function", "truth table"}:
         # These charts exist to wrap one function; the call that runs it is
         # plumbing rather than behaviour, so it is left out.
         scoped: dict[str, list[dict]] = {}
     else:
-        scoped = _collapse(chart, names, paths)
+        overflowed: set[str] = set()
+        collapsed = _collapse(chart, names, paths, overflowed)
+        flow_scopes |= overflowed
+        scoped = {
+            scope: items for scope, items in collapsed.items() if scope not in flow_scopes
+        }
+    flows = {
+        scope: _flow_statements(
+            chart,
+            scope,
+            names,
+            port_refs,
+        )
+        for scope in flow_scopes
+    }
+    flows = {scope: flow for scope, flow in flows.items() if flow}
 
     containers: dict[str, _Container] = {"": _Container("", "chart")}
     for state in chart.states:
@@ -1125,6 +1382,8 @@ def chart_json(chart: Chart) -> dict:
             payload["states"] = [render(containers[ssid]) for ssid in container.states]
         if container.functions:
             payload["functions"] = [render(containers[ssid]) for ssid in container.functions]
+        if container.ssid in flows:
+            payload["flow"] = flows[container.ssid]
         if container.transitions:
             payload["transitions"] = container.transitions
         if container.notes:
@@ -1153,7 +1412,8 @@ def chart_json(chart: Chart) -> dict:
             "states": len(chart.states),
             "functions": len(chart.functions),
             "notes": len(chart.notes),
-            "transitions": sum(len(items) for items in scoped.values()),
+            "transitions": sum(len(items) for items in scoped.values())
+        + sum(_count_flow(flow) for flow in flows.values()),
             "events": len(chart.events),
             "data": len([item for item in chart.data if not _is_function_interface(item)]),
             "messages": messages,

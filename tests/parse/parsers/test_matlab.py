@@ -1,9 +1,10 @@
 # Copyright (c) 2026 Beijing Volcano Engine Technology Co., Ltd.
 # SPDX-License-Identifier: AGPL-3.0
 
+import hashlib
 import io
 import json
-import hashlib
+import re
 import shutil
 import zipfile
 from pathlib import Path
@@ -227,6 +228,28 @@ def all_transitions(node):
         yield from all_transitions(state)
     for function in node.get("functions", []):
         yield from all_transitions(function)
+
+
+def all_flows(node):
+    if "flow" in node:
+        yield node["flow"]
+    for state in node.get("states", []):
+        yield from all_flows(state)
+    for function in node.get("functions", []):
+        yield from all_flows(function)
+
+
+def walk_flow(flow):
+    """Every statement of a flow document, nested cases included."""
+    if "entries" in flow:
+        for entry in flow["entries"]:
+            yield from walk_flow(entry)
+        return
+    yield flow
+    for statement in flow.get("then", []):
+        yield from walk_flow(statement)
+    for case in flow.get("cases", []):
+        yield from walk_flow(case)
 
 
 def all_functions(node):
@@ -568,11 +591,20 @@ def test_stateflow_examples_all_parse_and_are_complete():
                     continue
                 for key in ("from", "to"):
                     value = transition.get(key)
-                    assert value is None or value in paths or value in names or "decision" in value, (
+                    assert value is None or value in paths or value in names, (
                         path,
                         document["chart"],
                         key,
                         value,
+                    )
+            assert not re.search(r"里的 decision \d", json.dumps(document)), path
+            for flow in all_flows(document):
+                for statement in walk_flow(flow):
+                    target = statement.get("to")
+                    assert target is None or target in paths or target in names, (
+                        path,
+                        document["chart"],
+                        target,
                     )
     assert charts == 276
 
@@ -670,13 +702,64 @@ def test_stateflow_example_messages_and_functions():
     graphical = example_documents("Bang-Bang\nController", "sf_boiler.slx")[0]
     function = next(item for item in graphical["functions"] if item["name"] == "flash_LED")
     assert function["name"] == "flash_LED"
-    assert all(transition.get("return") for transition in function["transitions"])
+    assert function["kind"] == "graphical"
+    # A graphical function's flow chart reads as its branches, not its junctions.
+    cases = function["flow"]["cases"]
+    assert [case.get("when") for case in cases][:2] == ["boiler == ON", None]
     assert "LED=OFF" in json.dumps(function, ensure_ascii=False)
 
     simulink = example_documents("shift_logic", "sf_car.slx")[0]
     function = next(item for item in all_functions(simulink) if item["kind"] == "simulink")
     assert function["name"] == "calc_th"
     assert function["block"] == "selection_state.calc_th"
+
+
+def test_stateflow_flow_chart_reads_as_if_else_without_junctions():
+    else_if = chart_json(
+        parse_stateflow(
+            STATE_FLOW_EXAMPLES / "PatternWizard" / "sf_pw_ifelseifelseifelse_.sfx"
+        )[0]
+    )
+    assert else_if["flow"] == {
+        "comment": "%comment",
+        "cases": [
+            {"when": "condition1", "do": "action1"},
+            {"when": "condition2", "do": "action2"},
+            {"when": "condition3", "do": "action3"},
+            {"do": "action4"},
+        ],
+    }
+    switch = chart_json(
+        parse_stateflow(STATE_FLOW_EXAMPLES / "PatternWizard" / "sf_pw_switch4_.sfx")[0]
+    )
+    assert switch["flow"]["cases"] == [
+        {"when": "case1", "do": "action1"},
+        {"when": "case2", "do": "action2"},
+        {"when": "case3", "do": "action3"},
+        {"when": "case4", "do": "action4"},
+        {"do": "defaultAction"},
+    ]
+    assert not re.search(r"里的 decision \d", json.dumps(switch, ensure_ascii=False))
+
+
+def test_stateflow_flow_chart_writes_loops_as_loops():
+    model = STATE_FLOW_EXAMPLES / "FixedPointMandelbrotSetExample" / "sf_mandelbrot_fixpt.slx"
+    chart = next(
+        chart_json(chart) for chart in parse_stateflow(model) if chart.name == "Chart"
+    )
+    flow = next(item for item in chart["functions"] if item["name"] == "mandel_fix")["flow"]
+    assert flow["do"][0].startswith("a0 = fi(a, 1, 16, 13);")
+    inner = flow["then"][0]["cases"][0]
+    assert inner["when"] == "cn < 4 && ii < local_colors"
+    assert inner["loop"] is True
+    assert any("ii = ii + 1;" in text for text in inner["do"])
+    # The whole chart loops rows and columns and leaves through the state.
+    entries = chart["flow"]["entries"]
+    assert {entry.get("from") for entry in entries} == {None, "Wait"}
+    nested = next(entry for entry in entries if entry.get("from") is None)
+    cases = nested["then"][0]["cases"]
+    assert cases[0]["when"] == "i <= pix_h"
+    assert cases[1]["to"] == "Wait"
 
 
 def test_sldd_entries_dimensions_types_and_references():
