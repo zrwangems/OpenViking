@@ -610,3 +610,101 @@ def test_property_names_recovered_from_the_store_stream():
         "XMinorGrid_I",
         "YMinorGrid_I",
     } <= extra
+
+
+def test_r2025b_series_are_named_arrays_not_guesses():
+    """The plotted array sits three slots past its record, its x right before it."""
+    from openviking.parse.parsers.matlab.figures.mcos import read_payload, series
+
+    found = series(read_payload(GALLERY_FIXTURES / "fig/01_line_basic.fig"))
+    assert len(found) == 1
+    item = found[0]
+    assert item["property"] == "YData_I"
+    assert item["points"] == 200
+    assert item["x"][0] == pytest.approx(0.0)
+    assert item["x"][-1] == pytest.approx(2 * 3.141592653589793, abs=1e-6)
+    assert item["y"][0] == pytest.approx(0.0, abs=1e-3)
+    assert max(item["y"]) == pytest.approx(1.0, abs=1e-3)
+    assert item["index"] is False
+
+
+def test_r2025b_series_match_the_handle_tree_of_the_same_figure():
+    """137 stores the same figure as an old handle tree and as a MCOS payload."""
+    from openviking.parse.parsers.matlab.figures.mcos import read_payload, series
+
+    source = GALLERY_FIXTURES / "fig/137_fig_hgsave_v6.fig"
+    payload, _ = parse_figure(source)
+    truth = [
+        (item["points"], tuple(item["ranges"]["x"]), tuple(item["ranges"]["y"]))
+        for chart in payload["charts"]
+        for item in chart["series"]
+    ]
+    assert len(truth) == 30
+    found = {
+        (item["points"], tuple(item["x_range"]), tuple(item["y_range"]))
+        for item in series(read_payload(source))
+    }
+    for points, x_range, y_range in truth:
+        assert (points, x_range, y_range) in found
+
+
+def test_r2025b_surface_keeps_its_matrix_and_coordinates():
+    from openviking.parse.parsers.matlab.figures.mcos import read_payload, series
+
+    found = series(read_payload(GALLERY_FIXTURES / "fig/48_surf.fig"))
+    assert len(found) == 1
+    item = found[0]
+    assert item["property"] == "ZData_I"
+    assert item["shape"] == [60, 60]
+    assert item["x"][0] == pytest.approx(1.0) and item["x"][-1] == pytest.approx(60.0)
+    assert item["y"][0] == pytest.approx(1.0) and item["y"][-1] == pytest.approx(60.0)
+    assert item["z_range"][0] == pytest.approx(-6.5142, abs=1e-3)
+    assert item["z_range"][1] == pytest.approx(8.0918, abs=1e-3)
+
+
+def test_r2025b_subplots_give_one_series_each():
+    """A 2×2 tiled figure yields four data runs, not one merged blob."""
+    from openviking.parse.parsers.matlab.figures.mcos import read_payload, series
+
+    found = series(read_payload(GALLERY_FIXTURES / "fig/106_subplot_2x2.fig"))
+    assert len(found) == 4
+    assert sorted(item["points"] for item in found) == [6, 14, 20, 100]
+
+
+def test_r2025b_histogram_keeps_its_bin_edges():
+    from openviking.parse.parsers.matlab.figures.mcos import read_payload, series
+
+    (item,) = series(read_payload(GALLERY_FIXTURES / "fig/28_histogram.fig"))
+    assert item["points"] == 40
+    assert len(item["bin_edges"]) == 41
+    assert item["x"] == pytest.approx(item["bin_edges"][:-1])
+    assert item["x_range"] == pytest.approx([-3.7, 3.66], abs=1e-2)
+    assert item["y_range"][1] == pytest.approx(161.0)
+
+
+def test_r2025b_texts_are_the_strings_the_figure_shows():
+    from openviking.parse.parsers.matlab.figures.mcos import read_payload, texts
+
+    line = texts(read_payload(GALLERY_FIXTURES / "fig/01_line_basic.fig"))
+    assert "x" in line and "sin(x)" in line
+    tiled = texts(read_payload(GALLERY_FIXTURES / "fig/107_tiledlayout_mixed.fig"))
+    assert {"pie", "surf", "bar", "line", "50%"} <= set(tiled)
+    gui = texts(read_payload(GALLERY_FIXTURES / "fig/112_gui_controls.fig"))
+    assert {"File", "Parameters"} <= set(gui)
+
+
+def test_property_names_read_the_stream_bounds_from_the_file():
+    """The stream moves with the file size; a fixed window only fit one figure."""
+    from openviking.parse.parsers.matlab.figures.mcos import (
+        property_names_seen,
+        read_payload,
+        store_bounds,
+    )
+
+    small = read_payload(GALLERY_FIXTURES / "fig/43_heatmap.fig")
+    start, end = store_bounds(small.store)
+    assert end - start < 4552
+    assert property_names_seen(small)
+    large = read_payload(GALLERY_FIXTURES / "fig/106_subplot_2x2.fig")
+    wide = property_names_seen(large)
+    assert {"XData_I", "YData_I"} <= set(wide)

@@ -837,7 +837,11 @@ def parse_figure(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
                 kind = _MCOS_KINDS.get(class_name)
                 if kind:
                     counts[kind] = counts.get(kind, 0) + 1
-            if not mcos_summary["series_pairs"] and not mcos_summary["matrices"]:
+            if not (
+                mcos_summary.get("series")
+                or mcos_summary["series_pairs"]
+                or mcos_summary["matrices"]
+            ) and not mcos_summary.get("texts"):
                 warnings.append("解出了对象与类名，但这个文件里没有找到可用的数值数组")
         else:
             warnings.append(
@@ -902,11 +906,20 @@ def _status_payload(source: Path, status: str, detail: str) -> dict[str, Any]:
 
 def _read_mcos(source: Path) -> dict[str, Any] | None:
     """Decode the R2025b object payload; None when the container is unreadable."""
-    from openviking.parse.parsers.matlab.figures.mcos import candidates, read_payload
+    from openviking.parse.parsers.matlab.figures.mcos import (
+        candidates,
+        property_names_seen,
+        read_payload,
+        series,
+        texts,
+    )
 
     try:
         payload = read_payload(source)
         found = candidates(payload)
+        found["series"] = series(payload)
+        found["texts"] = texts(payload)
+        found["property_names"] = property_names_seen(payload)
     except Exception as exc:  # noqa: BLE001 - any format drift must not fail the import
         return {"error": f"{type(exc).__name__}: {exc}", "entries": 0}
     found["entries"] = len(payload.entries)
